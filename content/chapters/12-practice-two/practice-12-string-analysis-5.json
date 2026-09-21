@@ -1,0 +1,41 @@
+{
+  "id": "practice-12-string-analysis-5",
+  "chapter": 12,
+  "group": "string-analysis",
+  "title": {
+    "en": "Short words only",
+    "nl": "Alleen korte woorden"
+  },
+  "kind": "challenge",
+  "optional": true,
+  "explanation": {
+    "en": "Return True when every whitespace-separated word is at most limit characters long. An empty sentence returns True.",
+    "nl": "Geef True als elk woord, gescheiden door whitespace, hoogstens limit tekens heeft. Een lege zin geeft True."
+  },
+  "example": "",
+  "files": {
+    "main.py": "def short_words(sentence, limit):\n    # Implement the function.\n    pass\n\nprint(short_words(\"one two\", 3))\n"
+  },
+  "solution": {
+    "main.py": "def short_words(sentence, limit):\n    for word in sentence.split():\n        if len(word) > limit:\n            return False\n    return True\n\nprint(short_words(\"one two\", 3))\n"
+  },
+  "checkpoints": [
+    {
+      "id": "practice-12-string-analysis-5-step-1",
+      "task": {
+        "en": "Return True when every whitespace-separated word is at most limit characters long. An empty sentence returns True.",
+        "nl": "Geef True als elk woord, gescheiden door whitespace, hoogstens limit tekens heeft. Een lege zin geeft True."
+      },
+      "check": "short_words('one two',3) is True and short_words('one three',3) is False and short_words('',3) is True",
+      "hint": {
+        "en": "Work through a small input by hand first. Separate the condition, transformation, and return value.",
+        "nl": "Werk eerst zelf een kleine invoer uit. Bekijk de voorwaarde, de bewerking en de return value afzonderlijk."
+      }
+    }
+  ],
+  "solutionNote": {
+    "en": "This solution separates the calculation from its input. Test the function with ordinary values and edge cases such as empty collections or boundary values.",
+    "nl": "Deze oplossing scheidt de berekening van de invoer. Test de function met gewone waarden en grensgevallen, zoals lege verzamelingen of grenswaarden."
+  },
+  "estimatedMinutes": 10
+}

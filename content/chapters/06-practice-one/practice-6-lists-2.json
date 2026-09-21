@@ -1,0 +1,41 @@
+{
+  "id": "practice-6-lists-2",
+  "chapter": 6,
+  "group": "lists",
+  "title": {
+    "en": "Extend a pattern",
+    "nl": "Een patroon uitbreiden"
+  },
+  "kind": "challenge",
+  "optional": true,
+  "explanation": {
+    "en": "For a list with at least two numbers, return a new list with one extra value equal to the sum of its final two numbers.",
+    "nl": "Geef voor een list met minstens twee getallen een nieuwe list terug met één extra waarde: de som van de laatste twee getallen."
+  },
+  "example": "",
+  "files": {
+    "main.py": "def extend_once(values):\n    # Implement the function.\n    pass\n\nprint(extend_once([2, 3]))\n"
+  },
+  "solution": {
+    "main.py": "def extend_once(values):\n    return values + [values[-2] + values[-1]]\n\nprint(extend_once([2, 3]))\n"
+  },
+  "checkpoints": [
+    {
+      "id": "practice-6-lists-2-step-1",
+      "task": {
+        "en": "For a list with at least two numbers, return a new list with one extra value equal to the sum of its final two numbers.",
+        "nl": "Geef voor een list met minstens twee getallen een nieuwe list terug met één extra waarde: de som van de laatste twee getallen."
+      },
+      "check": "extend_once([2,3]) == [2,3,5] and extend_once([1,4,8]) == [1,4,8,12]",
+      "hint": {
+        "en": "Work through a small input by hand first. Separate the condition, transformation, and return value.",
+        "nl": "Werk eerst zelf een kleine invoer uit. Bekijk de voorwaarde, de bewerking en de return value afzonderlijk."
+      }
+    }
+  ],
+  "solutionNote": {
+    "en": "This solution separates the calculation from its input. Test the function with ordinary values and edge cases such as empty collections or boundary values.",
+    "nl": "Deze oplossing scheidt de berekening van de invoer. Test de function met gewone waarden en grensgevallen, zoals lege verzamelingen of grenswaarden."
+  },
+  "estimatedMinutes": 10
+}

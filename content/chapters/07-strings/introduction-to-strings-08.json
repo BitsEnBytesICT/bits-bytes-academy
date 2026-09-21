@@ -1,0 +1,43 @@
+{
+  "id": "introduction-to-strings-08",
+  "chapter": 7,
+  "group": "introduction-to-strings",
+  "title": {
+    "en": "Escaped characters",
+    "nl": "Escape sequences"
+  },
+  "kind": "coding",
+  "optional": false,
+  "explanation": {
+    "en": "A backslash introduces an escape sequence. \\n represents a newline, \\t a tab, and an escaped quote can appear inside a quoted string. The escape is interpreted when the literal is created.",
+    "nl": "Een backslash begint een escape sequence. \\n is een nieuwe regel, \\t een tab en een escaped aanhalingsteken kan binnen een string staan. Python verwerkt de escape bij het maken van de literal."
+  },
+  "example": "text = \"Line one\\nLine two\"",
+  "files": {
+    "main.py": "# Write your code below.\n"
+  },
+  "solution": {
+    "main.py": "message = 'He said \"Go\"\\nNow'\nprint(message)\n"
+  },
+  "checkpoints": [
+    {
+      "id": "introduction-to-strings-08-step-1",
+      "task": {
+        "en": "Create message with first line He said \"Go\" and second line Now. Print it.",
+        "nl": "Maak message met als eerste regel He said \"Go\" en als tweede regel Now. Druk de string af."
+      },
+      "check": "message == 'He said \"Go\"\\nNow' and _stdout.strip() == message",
+      "hint": {
+        "en": "Start with message = 'He said \"Go\"\\nNow'. Then compare the values with the task.",
+        "nl": "Begin met message = 'He said \"Go\"\\nNow'. Vergelijk de waarden daarna met de opdracht."
+      }
+    }
+  ],
+  "solutionNote": {
+    "en": "A backslash introduces an escape sequence. \\n represents a newline, \\t a tab, and an escaped quote can appear inside a quoted string. The escape is interpreted when the literal is created.\n\nTrace the solution one line at a time. Try a different input to see which parts change.",
+    "nl": "Een backslash begint een escape sequence. \\n is een nieuwe regel, \\t een tab en een escaped aanhalingsteken kan binnen een string staan. Python verwerkt de escape bij het maken van de literal.\n\nVolg de oplossing regel voor regel. Probeer een andere invoer en bekijk welke onderdelen veranderen."
+  },
+  "sourcePosition": 8,
+  "sourceUrl": "https://www.codecademy.com/courses/learn-python-3/lessons/introduction-to-strings/exercises/escape-characters",
+  "estimatedMinutes": 6
+}

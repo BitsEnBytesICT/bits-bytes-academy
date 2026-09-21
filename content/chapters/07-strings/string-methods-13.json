@@ -1,0 +1,151 @@
+{
+  "id": "string-methods-13",
+  "chapter": 7,
+  "group": "string-methods",
+  "title": {
+    "en": "String methods review",
+    "nl": "Terugblik: tekst opschonen"
+  },
+  "kind": "coding",
+  "optional": false,
+  "explanation": {
+    "en": "A text-processing pipeline turns raw input into structured output one step at a time. Save meaningful intermediate results and inspect them if later output is wrong. These ten small steps combine the string methods from this chapter.",
+    "nl": "Een reeks tekstbewerkingen zet ruwe invoer stap voor stap om naar gestructureerde output. Bewaar duidelijke tussenresultaten en controleer die als de latere output niet klopt. Deze tien kleine stappen combineren de string-methods uit dit hoofdstuk."
+  },
+  "example": "",
+  "files": {
+    "main.py": "raw = \"  north,4; south,7  \"\n"
+  },
+  "solution": {
+    "main.py": "raw = \"  north,4; south,7  \"\nclean = raw.strip()\nloud = clean.upper()\nrows = clean.split(\";\")\nsecond = rows[1].strip()\ncells = second.split(\",\")\nname = cells[0].title()\ncount = int(cells[1])\ncompact = \":\".join(cells)\nchanged = compact.replace(\"south\", \"east\")\nsummary = \"{} has {} units\".format(name, count)\nprint(summary)\n"
+  },
+  "checkpoints": [
+    {
+      "id": "string-methods-13-step-1",
+      "task": {
+        "en": "Strip raw into clean.",
+        "nl": "Strip raw naar clean."
+      },
+      "check": "clean == 'north,4; south,7'",
+      "hint": {
+        "en": "Start with raw = \"  north,4; south,7  \". Then compare the values with the task.",
+        "nl": "Begin met raw = \"  north,4; south,7  \". Vergelijk de waarden daarna met de opdracht."
+      }
+    },
+    {
+      "id": "string-methods-13-step-2",
+      "task": {
+        "en": "Uppercase clean into loud.",
+        "nl": "Zet clean in hoofdletters in loud."
+      },
+      "check": "loud == 'NORTH,4; SOUTH,7'",
+      "hint": {
+        "en": "Start with raw = \"  north,4; south,7  \". Then compare the values with the task.",
+        "nl": "Begin met raw = \"  north,4; south,7  \". Vergelijk de waarden daarna met de opdracht."
+      }
+    },
+    {
+      "id": "string-methods-13-step-3",
+      "task": {
+        "en": "Split clean at semicolons into rows.",
+        "nl": "Splits clean op puntkomma’s naar rows."
+      },
+      "check": "rows == ['north,4',' south,7']",
+      "hint": {
+        "en": "Start with raw = \"  north,4; south,7  \". Then compare the values with the task.",
+        "nl": "Begin met raw = \"  north,4; south,7  \". Vergelijk de waarden daarna met de opdracht."
+      }
+    },
+    {
+      "id": "string-methods-13-step-4",
+      "task": {
+        "en": "Strip the second row into second.",
+        "nl": "Strip de tweede rij naar second."
+      },
+      "check": "second == 'south,7'",
+      "hint": {
+        "en": "Start with raw = \"  north,4; south,7  \". Then compare the values with the task.",
+        "nl": "Begin met raw = \"  north,4; south,7  \". Vergelijk de waarden daarna met de opdracht."
+      }
+    },
+    {
+      "id": "string-methods-13-step-5",
+      "task": {
+        "en": "Split second at its comma into cells.",
+        "nl": "Splits second op de komma naar cells."
+      },
+      "check": "cells == ['south','7']",
+      "hint": {
+        "en": "Start with raw = \"  north,4; south,7  \". Then compare the values with the task.",
+        "nl": "Begin met raw = \"  north,4; south,7  \". Vergelijk de waarden daarna met de opdracht."
+      }
+    },
+    {
+      "id": "string-methods-13-step-6",
+      "task": {
+        "en": "Title-case cells[0] into name.",
+        "nl": "Gebruik title op cells[0] naar name."
+      },
+      "check": "name == 'South'",
+      "hint": {
+        "en": "Start with raw = \"  north,4; south,7  \". Then compare the values with the task.",
+        "nl": "Begin met raw = \"  north,4; south,7  \". Vergelijk de waarden daarna met de opdracht."
+      }
+    },
+    {
+      "id": "string-methods-13-step-7",
+      "task": {
+        "en": "Convert cells[1] to integer count.",
+        "nl": "Zet cells[1] om naar integer count."
+      },
+      "check": "count == 7 and type(count) is int",
+      "hint": {
+        "en": "Start with raw = \"  north,4; south,7  \". Then compare the values with the task.",
+        "nl": "Begin met raw = \"  north,4; south,7  \". Vergelijk de waarden daarna met de opdracht."
+      }
+    },
+    {
+      "id": "string-methods-13-step-8",
+      "task": {
+        "en": "Join cells with : into compact.",
+        "nl": "Voeg cells samen met : naar compact."
+      },
+      "check": "compact == 'south:7'",
+      "hint": {
+        "en": "Start with raw = \"  north,4; south,7  \". Then compare the values with the task.",
+        "nl": "Begin met raw = \"  north,4; south,7  \". Vergelijk de waarden daarna met de opdracht."
+      }
+    },
+    {
+      "id": "string-methods-13-step-9",
+      "task": {
+        "en": "Replace south with east in compact into changed.",
+        "nl": "Vervang south door east in compact naar changed."
+      },
+      "check": "changed == 'east:7'",
+      "hint": {
+        "en": "Start with raw = \"  north,4; south,7  \". Then compare the values with the task.",
+        "nl": "Begin met raw = \"  north,4; south,7  \". Vergelijk de waarden daarna met de opdracht."
+      }
+    },
+    {
+      "id": "string-methods-13-step-10",
+      "task": {
+        "en": "Format summary as South has 7 units, then print it.",
+        "nl": "Maak summary als South has 7 units met formatting en druk dit af."
+      },
+      "check": "summary == 'South has 7 units' and _stdout.strip() == summary",
+      "hint": {
+        "en": "Start with raw = \"  north,4; south,7  \". Then compare the values with the task.",
+        "nl": "Begin met raw = \"  north,4; south,7  \". Vergelijk de waarden daarna met de opdracht."
+      }
+    }
+  ],
+  "solutionNote": {
+    "en": "A text-processing pipeline turns raw input into structured output one step at a time. Save meaningful intermediate results and inspect them if later output is wrong. These ten small steps combine the string methods from this chapter.\n\nTrace the solution one line at a time. Try a different input to see which parts change.",
+    "nl": "Een reeks tekstbewerkingen zet ruwe invoer stap voor stap om naar gestructureerde output. Bewaar duidelijke tussenresultaten en controleer die als de latere output niet klopt. Deze tien kleine stappen combineren de string-methods uit dit hoofdstuk.\n\nVolg de oplossing regel voor regel. Probeer een andere invoer en bekijk welke onderdelen veranderen."
+  },
+  "sourcePosition": 13,
+  "sourceUrl": "https://www.codecademy.com/courses/learn-python-3/lessons/string-methods/exercises/review-ii",
+  "estimatedMinutes": 6
+}

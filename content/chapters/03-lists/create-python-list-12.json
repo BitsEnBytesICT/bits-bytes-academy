@@ -1,0 +1,43 @@
+{
+  "id": "create-python-list-12",
+  "chapter": 3,
+  "group": "create-python-list",
+  "title": {
+    "en": "Reading nested lists",
+    "nl": "Geneste waarden lezen"
+  },
+  "kind": "coding",
+  "optional": false,
+  "explanation": {
+    "en": "Index a nested list in two stages: choose the row, then the value within that row. table[1][0] reads the first value from the second row.",
+    "nl": "Gebruik twee indexes voor een geneste list: kies eerst de rij en daarna de waarde in die rij. table[1][0] leest de eerste waarde uit de tweede rij."
+  },
+  "example": "",
+  "files": {
+    "main.py": "stock = [[\"lamp\", 3], [\"cable\", 8]]\n"
+  },
+  "solution": {
+    "main.py": "stock = [[\"lamp\", 3], [\"cable\", 8]]\ncable_count = stock[1][1]\nprint(cable_count)\n"
+  },
+  "checkpoints": [
+    {
+      "id": "create-python-list-12-step-1",
+      "task": {
+        "en": "Store the cable quantity in cable_count.",
+        "nl": "Sla het aantal cables op in cable_count."
+      },
+      "check": "cable_count == 8",
+      "hint": {
+        "en": "Start with stock = [[\"lamp\", 3], [\"cable\", 8]]. Then compare the values with the task.",
+        "nl": "Begin met stock = [[\"lamp\", 3], [\"cable\", 8]]. Vergelijk de waarden daarna met de opdracht."
+      }
+    }
+  ],
+  "solutionNote": {
+    "en": "Index a nested list in two stages: choose the row, then the value within that row. table[1][0] reads the first value from the second row.\n\nTrace the solution one line at a time. Try a different input to see which parts change.",
+    "nl": "Gebruik twee indexes voor een geneste list: kies eerst de rij en daarna de waarde in die rij. table[1][0] leest de eerste waarde uit de tweede rij.\n\nVolg de oplossing regel voor regel. Probeer een andere invoer en bekijk welke onderdelen veranderen."
+  },
+  "sourcePosition": 12,
+  "sourceUrl": "https://www.codecademy.com/courses/learn-python-3/lessons/create-python-list/exercises/accessing-2-d-lists",
+  "estimatedMinutes": 6
+}

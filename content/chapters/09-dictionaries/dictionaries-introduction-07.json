@@ -1,0 +1,43 @@
+{
+  "id": "dictionaries-introduction-07",
+  "chapter": 9,
+  "group": "dictionaries-introduction",
+  "title": {
+    "en": "Replacing an existing value",
+    "nl": "Een bestaande value vervangen"
+  },
+  "kind": "coding",
+  "optional": false,
+  "explanation": {
+    "en": "Assigning to an existing key replaces its value without creating a duplicate key. Unrelated entries remain unchanged. This differs from appending another row to a list.",
+    "nl": "Een assignment aan een bestaande key vervangt de value zonder een dubbele key te maken. Andere entries blijven ongewijzigd. Dat verschilt van een extra rij toevoegen aan een list."
+  },
+  "example": "",
+  "files": {
+    "main.py": "stock = {\"lamp\": 4, \"cable\": 9}\n"
+  },
+  "solution": {
+    "main.py": "stock = {\"lamp\": 4, \"cable\": 9}\nstock[\"lamp\"] = 10\nprint(stock)\n"
+  },
+  "checkpoints": [
+    {
+      "id": "dictionaries-introduction-07-step-1",
+      "task": {
+        "en": "Change stock[\"lamp\"] to 10 and keep cable at 9.",
+        "nl": "Verander stock[\"lamp\"] naar 10 en laat cable op 9 staan."
+      },
+      "check": "stock == {'lamp':10,'cable':9}",
+      "hint": {
+        "en": "Start with stock = {\"lamp\": 4, \"cable\": 9}. Then compare the values with the task.",
+        "nl": "Begin met stock = {\"lamp\": 4, \"cable\": 9}. Vergelijk de waarden daarna met de opdracht."
+      }
+    }
+  ],
+  "solutionNote": {
+    "en": "Assigning to an existing key replaces its value without creating a duplicate key. Unrelated entries remain unchanged. This differs from appending another row to a list.\n\nTrace the solution one line at a time. Try a different input to see which parts change.",
+    "nl": "Een assignment aan een bestaande key vervangt de value zonder een dubbele key te maken. Andere entries blijven ongewijzigd. Dat verschilt van een extra rij toevoegen aan een list.\n\nVolg de oplossing regel voor regel. Probeer een andere invoer en bekijk welke onderdelen veranderen."
+  },
+  "sourcePosition": 7,
+  "sourceUrl": "https://www.codecademy.com/courses/learn-python-3/lessons/dictionaries-introduction/exercises/overwrite-keys",
+  "estimatedMinutes": 6
+}

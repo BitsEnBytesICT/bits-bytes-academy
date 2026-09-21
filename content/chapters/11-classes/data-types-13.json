@@ -1,0 +1,43 @@
+{
+  "id": "data-types-13",
+  "chapter": 11,
+  "group": "data-types",
+  "title": {
+    "en": "Readable representations",
+    "nl": "Een leesbare weergave"
+  },
+  "kind": "coding",
+  "optional": false,
+  "explanation": {
+    "en": "__repr__ returns a useful textual representation of an object. It must return a string. Include identifying state so debugging output conveys more than an object’s memory address.",
+    "nl": "__repr__ geeft een bruikbare tekstuele weergave van een object. De method moet een string teruggeven. Neem herkenbare toestand op, zodat debug-output meer vertelt dan een geheugenadres."
+  },
+  "example": "",
+  "files": {
+    "main.py": "# Write your code below.\n"
+  },
+  "solution": {
+    "main.py": "class Sensor:\n    def __init__(self, name):\n        self.name = name\n\n    def __repr__(self):\n        return \"Sensor<\" + self.name + \">\"\n\nprint(Sensor(\"East\"))\n"
+  },
+  "checkpoints": [
+    {
+      "id": "data-types-13-step-1",
+      "task": {
+        "en": "Define Sensor(name) with __repr__ returning Sensor<name>, replacing name with the actual name.",
+        "nl": "Definieer Sensor(name) met __repr__ die Sensor<name> teruggeeft, met de echte naam op de plek van name."
+      },
+      "check": "repr(Sensor('East')) == 'Sensor<East>' and repr(Sensor('West')) == 'Sensor<West>'",
+      "hint": {
+        "en": "Start with class Sensor:. Then compare the values with the task.",
+        "nl": "Begin met class Sensor:. Vergelijk de waarden daarna met de opdracht."
+      }
+    }
+  ],
+  "solutionNote": {
+    "en": "__repr__ returns a useful textual representation of an object. It must return a string. Include identifying state so debugging output conveys more than an object’s memory address.\n\nTrace the solution one line at a time. Try a different input to see which parts change.",
+    "nl": "__repr__ geeft een bruikbare tekstuele weergave van een object. De method moet een string teruggeven. Neem herkenbare toestand op, zodat debug-output meer vertelt dan een geheugenadres.\n\nVolg de oplossing regel voor regel. Probeer een andere invoer en bekijk welke onderdelen veranderen."
+  },
+  "sourcePosition": 13,
+  "sourceUrl": "https://www.codecademy.com/courses/learn-python-3/lessons/data-types/exercises/string-representation",
+  "estimatedMinutes": 6
+}

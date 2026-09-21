@@ -1,0 +1,41 @@
+{
+  "id": "practice-6-lists-4",
+  "chapter": 6,
+  "group": "lists",
+  "title": {
+    "en": "Enough occurrences",
+    "nl": "Voldoende voorkomens"
+  },
+  "kind": "challenge",
+  "optional": true,
+  "explanation": {
+    "en": "Return True when value occurs at least required times in values.",
+    "nl": "Geef True terug als value minstens required keer voorkomt in values."
+  },
+  "example": "",
+  "files": {
+    "main.py": "def enough(values, value, required):\n    # Implement the function.\n    pass\n\nprint(enough([1, 2, 1], 1, 2))\n"
+  },
+  "solution": {
+    "main.py": "def enough(values, value, required):\n    return values.count(value) >= required\n\nprint(enough([1, 2, 1], 1, 2))\n"
+  },
+  "checkpoints": [
+    {
+      "id": "practice-6-lists-4-step-1",
+      "task": {
+        "en": "Return True when value occurs at least required times in values.",
+        "nl": "Geef True terug als value minstens required keer voorkomt in values."
+      },
+      "check": "enough([1,2,1],1,2) is True and enough([1,2,1],1,3) is False and enough([],3,0) is True",
+      "hint": {
+        "en": "Work through a small input by hand first. Separate the condition, transformation, and return value.",
+        "nl": "Werk eerst zelf een kleine invoer uit. Bekijk de voorwaarde, de bewerking en de return value afzonderlijk."
+      }
+    }
+  ],
+  "solutionNote": {
+    "en": "This solution separates the calculation from its input. Test the function with ordinary values and edge cases such as empty collections or boundary values.",
+    "nl": "Deze oplossing scheidt de berekening van de invoer. Test de function met gewone waarden en grensgevallen, zoals lege verzamelingen of grenswaarden."
+  },
+  "estimatedMinutes": 10
+}

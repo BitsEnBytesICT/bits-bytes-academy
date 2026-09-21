@@ -1,0 +1,41 @@
+{
+  "id": "practice-6-lists-1",
+  "chapter": 6,
+  "group": "lists",
+  "title": {
+    "en": "Add a summary",
+    "nl": "Een samenvatting toevoegen"
+  },
+  "kind": "challenge",
+  "optional": true,
+  "explanation": {
+    "en": "Return a new list containing all input values followed by their count. Leave the input unchanged.",
+    "nl": "Geef een nieuwe list terug met alle invoerwaarden, gevolgd door hun aantal. Laat de invoer ongewijzigd."
+  },
+  "example": "",
+  "files": {
+    "main.py": "def with_count(values):\n    # Implement the function.\n    pass\n\nprint(with_count([4, 7]))\n"
+  },
+  "solution": {
+    "main.py": "def with_count(values):\n    return values + [len(values)]\n\nprint(with_count([4, 7]))\n"
+  },
+  "checkpoints": [
+    {
+      "id": "practice-6-lists-1-step-1",
+      "task": {
+        "en": "Return a new list containing all input values followed by their count. Leave the input unchanged.",
+        "nl": "Geef een nieuwe list terug met alle invoerwaarden, gevolgd door hun aantal. Laat de invoer ongewijzigd."
+      },
+      "check": "with_count([4,7]) == [4,7,2] and with_count([]) == [0] and (lambda x: (with_count(x),x)[1])([1,2]) == [1,2]",
+      "hint": {
+        "en": "Work through a small input by hand first. Separate the condition, transformation, and return value.",
+        "nl": "Werk eerst zelf een kleine invoer uit. Bekijk de voorwaarde, de bewerking en de return value afzonderlijk."
+      }
+    }
+  ],
+  "solutionNote": {
+    "en": "This solution separates the calculation from its input. Test the function with ordinary values and edge cases such as empty collections or boundary values.",
+    "nl": "Deze oplossing scheidt de berekening van de invoer. Test de function met gewone waarden en grensgevallen, zoals lege verzamelingen of grenswaarden."
+  },
+  "estimatedMinutes": 10
+}

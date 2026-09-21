@@ -1,0 +1,41 @@
+{
+  "id": "practice-6-compose-4",
+  "chapter": 6,
+  "group": "compose",
+  "title": {
+    "en": "Convert minutes",
+    "nl": "Minuten omrekenen"
+  },
+  "kind": "challenge",
+  "optional": true,
+  "explanation": {
+    "en": "Return a tuple of whole hours and remaining minutes for a nonnegative number of minutes.",
+    "nl": "Geef voor een niet-negatief aantal minuten een tuple terug met hele uren en resterende minuten."
+  },
+  "example": "",
+  "files": {
+    "main.py": "def hours_minutes(minutes):\n    # Implement the function.\n    pass\n\nprint(hours_minutes(135))\n"
+  },
+  "solution": {
+    "main.py": "def hours_minutes(minutes):\n    return minutes // 60, minutes % 60\n\nprint(hours_minutes(135))\n"
+  },
+  "checkpoints": [
+    {
+      "id": "practice-6-compose-4-step-1",
+      "task": {
+        "en": "Return a tuple of whole hours and remaining minutes for a nonnegative number of minutes.",
+        "nl": "Geef voor een niet-negatief aantal minuten een tuple terug met hele uren en resterende minuten."
+      },
+      "check": "hours_minutes(135) == (2,15) and hours_minutes(60) == (1,0) and hours_minutes(0) == (0,0)",
+      "hint": {
+        "en": "Work through a small input by hand first. Separate the condition, transformation, and return value.",
+        "nl": "Werk eerst zelf een kleine invoer uit. Bekijk de voorwaarde, de bewerking en de return value afzonderlijk."
+      }
+    }
+  ],
+  "solutionNote": {
+    "en": "This solution separates the calculation from its input. Test the function with ordinary values and edge cases such as empty collections or boundary values.",
+    "nl": "Deze oplossing scheidt de berekening van de invoer. Test de function met gewone waarden en grensgevallen, zoals lege verzamelingen of grenswaarden."
+  },
+  "estimatedMinutes": 10
+}

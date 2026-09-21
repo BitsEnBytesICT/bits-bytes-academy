@@ -1,0 +1,43 @@
+{
+  "id": "using-dictionaries-08",
+  "chapter": 9,
+  "group": "using-dictionaries",
+  "title": {
+    "en": "Item views",
+    "nl": "Key-value-paren doorlopen"
+  },
+  "kind": "coding",
+  "optional": false,
+  "explanation": {
+    "en": "items() provides a view of (key, value) pairs. Unpack each pair into two names in a loop. It is a view, not a separate list, unless you convert it.",
+    "nl": "items() geeft een view van (key, value)-paren. Pak elk paar in een loop uit in twee namen. Het is een view en pas na conversie een aparte list."
+  },
+  "example": "",
+  "files": {
+    "main.py": "counts = {\"east\": 4, \"west\": 7}\nlines = []\n"
+  },
+  "solution": {
+    "main.py": "counts = {\"east\": 4, \"west\": 7}\nlines = []\nfor name, count in counts.items():\n    lines.append(name + \"=\" + str(count))\nprint(lines)\n"
+  },
+  "checkpoints": [
+    {
+      "id": "using-dictionaries-08-step-1",
+      "task": {
+        "en": "Build lines containing east=4 and west=7 by looping over counts.items().",
+        "nl": "Maak lines met east=4 en west=7 door over counts.items() te loopen."
+      },
+      "check": "lines == ['east=4','west=7']",
+      "hint": {
+        "en": "Start with counts = {\"east\": 4, \"west\": 7}. Then compare the values with the task.",
+        "nl": "Begin met counts = {\"east\": 4, \"west\": 7}. Vergelijk de waarden daarna met de opdracht."
+      }
+    }
+  ],
+  "solutionNote": {
+    "en": "items() provides a view of (key, value) pairs. Unpack each pair into two names in a loop. It is a view, not a separate list, unless you convert it.\n\nTrace the solution one line at a time. Try a different input to see which parts change.",
+    "nl": "items() geeft een view van (key, value)-paren. Pak elk paar in een loop uit in twee namen. Het is een view en pas na conversie een aparte list.\n\nVolg de oplossing regel voor regel. Probeer een andere invoer en bekijk welke onderdelen veranderen."
+  },
+  "sourcePosition": 8,
+  "sourceUrl": "https://www.codecademy.com/courses/learn-python-3/lessons/using-dictionaries/exercises/get-all-items",
+  "estimatedMinutes": 6
+}

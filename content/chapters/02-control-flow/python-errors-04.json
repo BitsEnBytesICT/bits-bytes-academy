@@ -1,0 +1,43 @@
+{
+  "id": "python-errors-04",
+  "chapter": 2,
+  "group": "python-errors",
+  "title": {
+    "en": "Type errors",
+    "nl": "TypeError herstellen"
+  },
+  "kind": "coding",
+  "optional": false,
+  "explanation": {
+    "en": "A TypeError reports an operation that does not support the supplied types. Converting intentionally is better than guessing. int() converts suitable numeric text; str() turns a value into text for display.",
+    "nl": "Een TypeError meldt dat een bewerking de gebruikte types niet ondersteunt. Kies bewust een conversie. int() zet geschikte numerieke tekst om; str() zet een waarde om in tekst voor weergave."
+  },
+  "example": "",
+  "files": {
+    "main.py": "quantity = \"6\"\nupdated = quantity + 2\nprint(updated)\n"
+  },
+  "solution": {
+    "main.py": "quantity = \"6\"\nupdated = int(quantity) + 2\nprint(updated)\n"
+  },
+  "checkpoints": [
+    {
+      "id": "python-errors-04-step-1",
+      "task": {
+        "en": "Convert the string quantity to an integer, add 2, and store the result in updated. Print updated.",
+        "nl": "Zet de string quantity om naar een integer, tel er 2 bij op en sla het resultaat op in updated. Druk updated af."
+      },
+      "check": "updated == 8 and type(updated) is int",
+      "hint": {
+        "en": "Start with quantity = \"6\". Then compare the values with the task.",
+        "nl": "Begin met quantity = \"6\". Vergelijk de waarden daarna met de opdracht."
+      }
+    }
+  ],
+  "solutionNote": {
+    "en": "A TypeError reports an operation that does not support the supplied types. Converting intentionally is better than guessing. int() converts suitable numeric text; str() turns a value into text for display.\n\nTrace the solution one line at a time. Try a different input to see which parts change.",
+    "nl": "Een TypeError meldt dat een bewerking de gebruikte types niet ondersteunt. Kies bewust een conversie. int() zet geschikte numerieke tekst om; str() zet een waarde om in tekst voor weergave.\n\nVolg de oplossing regel voor regel. Probeer een andere invoer en bekijk welke onderdelen veranderen."
+  },
+  "sourcePosition": 4,
+  "sourceUrl": "https://www.codecademy.com/courses/learn-python-3/lessons/python-errors/exercises/type-errors",
+  "estimatedMinutes": 6
+}

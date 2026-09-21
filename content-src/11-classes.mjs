@@ -1,0 +1,226 @@
+import { lesson as L, quiz as Q, predict as P } from "./helpers.mjs";
+const g = "data-types";
+L(
+  g,
+  1,
+  "Every Python value has a type that determines its available behavior. type(value) reveals that type. Lists, strings, dictionaries, and your own class instances are all objects.",
+  "Elke Python-waarde heeft een type dat bepaalt welk gedrag beschikbaar is. type(value) toont dat type. Lists, strings, dictionaries en instances van je eigen classes zijn allemaal objecten.",
+  'Store type(12), type("East"), and type([]) in number_type, text_type, and list_type.',
+  'Sla type(12), type("East") en type([]) op in number_type, text_type en list_type.',
+  'number_type = type(12)\ntext_type = type("East")\nlist_type = type([])\nprint(number_type, text_type, list_type)\n',
+  "number_type is int and text_type is str and list_type is list",
+  { example: 'print(type({"a": 1}))', titleNl: "Types onderzoeken" },
+);
+L(
+  g,
+  2,
+  "A class defines a new kind of object. Use class Name: followed by an indented body. Class names conventionally use CapWords. pass provides a valid empty body during development.",
+  "Een class definieert een nieuw soort object. Gebruik class Name: gevolgd door een ingesprongen body. Class-namen gebruiken meestal CapWords. Met pass maak je tijdens ontwikkeling een geldige lege body.",
+  "Define an empty class named WeatherSensor.",
+  "Definieer een lege class met de naam WeatherSensor.",
+  "class WeatherSensor:\n    pass\n",
+  "isinstance(WeatherSensor, type)",
+  { example: "class Beacon:\n    pass", titleNl: "Een class definiëren" },
+);
+L(
+  g,
+  3,
+  "Calling a class creates an instance, a specific object of that type. Two calls normally create two separate instances. Store each instance in a variable when you need to use it later.",
+  "Een class aanroepen maakt een instance: een specifiek object van dat type. Twee aanroepen maken normaal twee aparte instances. Bewaar een instance in een variable als je deze later wilt gebruiken.",
+  "Create sensor as an instance of WeatherSensor.",
+  "Maak sensor als instance van WeatherSensor.",
+  "class WeatherSensor:\n    pass\n\nsensor = WeatherSensor()\nprint(type(sensor))\n",
+  "isinstance(sensor, WeatherSensor)",
+  {
+    starter: "class WeatherSensor:\n    pass\n\n",
+    titleNl: "Een instance maken",
+  },
+);
+L(
+  g,
+  4,
+  "Object-oriented programming groups state and behavior around objects. A class is the definition; an instance is a particular object created from it. type(instance) identifies its class.",
+  "Object-oriented programming groepeert toestand en gedrag rond objecten. De class is de definitie; een instance is een specifiek object dat ermee gemaakt is. type(instance) toont de class.",
+  "Create first and second as different Sensor instances, and store type(first) in sensor_type.",
+  "Maak first en second als verschillende Sensor-instances en sla type(first) op in sensor_type.",
+  "class Sensor:\n    pass\n\nfirst = Sensor()\nsecond = Sensor()\nsensor_type = type(first)\nprint(sensor_type)\n",
+  "isinstance(first,Sensor) and isinstance(second,Sensor) and first is not second and sensor_type is Sensor",
+  { titleNl: "Classes en objecten" },
+);
+L(
+  g,
+  5,
+  "A class attribute belongs to the class and can be read through its instances. Use it for shared metadata. Per-instance assignments can shadow it, so distinguish shared data from individual state.",
+  "Een class attribute hoort bij de class en is via instances leesbaar. Gebruik dit voor gedeelde metadata. Een assignment op een instance kan dit overschaduwen; onderscheid gedeelde data van individuele toestand.",
+  "Define Sensor with class attribute unit = Celsius. Create sensor and read its unit into label.",
+  "Definieer Sensor met class attribute unit = Celsius. Maak sensor en lees de unit in label.",
+  'class Sensor:\n    unit = "Celsius"\n\nsensor = Sensor()\nlabel = sensor.unit\nprint(label)\n',
+  "Sensor.unit == 'Celsius' and label == 'Celsius'",
+  { titleNl: "Class attributes" },
+);
+L(
+  g,
+  6,
+  "An instance method is a function defined inside a class. Its first parameter conventionally has the name self and receives the instance automatically when you call the method through that instance.",
+  "Een instance method is een function binnen een class. De eerste parameter heet volgens conventie self en krijgt automatisch de instance wanneer je de method via die instance aanroept.",
+  "Define Beacon with a status(self) method returning Ready. Create beacon and print beacon.status().",
+  "Definieer Beacon met een status(self)-method die Ready teruggeeft. Maak beacon en druk beacon.status() af.",
+  'class Beacon:\n    def status(self):\n        return "Ready"\n\nbeacon = Beacon()\nprint(beacon.status())\n',
+  "Beacon().status() == 'Ready' and _stdout.strip() == 'Ready'",
+  { titleNl: "Instance methods" },
+);
+L(
+  g,
+  7,
+  "Additional method parameters receive the explicit arguments from the call. self is supplied automatically, so you do not pass the object again. Methods can compute and return values like ordinary functions.",
+  "Extra method-parameters krijgen de expliciete arguments uit de aanroep. self wordt automatisch meegegeven; je geeft het object dus niet nogmaals op. Methods kunnen net als gewone functions waarden berekenen en teruggeven.",
+  "Define Converter.to_fahrenheit(self, celsius) returning celsius * 9 / 5 + 32.",
+  "Definieer Converter.to_fahrenheit(self, celsius) die celsius * 9 / 5 + 32 teruggeeft.",
+  "class Converter:\n    def to_fahrenheit(self, celsius):\n        return celsius * 9 / 5 + 32\n\nconverter = Converter()\nprint(converter.to_fahrenheit(20))\n",
+  "Converter().to_fahrenheit(0) == 32 and Converter().to_fahrenheit(100) == 212 and Converter().to_fahrenheit(-40) == -40",
+  { titleNl: "Method-arguments" },
+);
+L(
+  g,
+  8,
+  "__init__ initializes a new instance. Python calls it after creating the object and passes the construction arguments along with self. Store lasting state in attributes such as self.name.",
+  "__init__ initialiseert een nieuwe instance. Python roept de method na het maken van het object aan en geeft de arguments samen met self door. Bewaar blijvende toestand in attributes zoals self.name.",
+  'Define Sensor.__init__(self, name) to store self.name. Create east as Sensor("East").',
+  'Definieer Sensor.__init__(self, name) die self.name opslaat. Maak east als Sensor("East").',
+  'class Sensor:\n    def __init__(self, name):\n        self.name = name\n\neast = Sensor("East")\nprint(east.name)\n',
+  "east.name == 'East' and Sensor('West').name == 'West'",
+  { titleNl: "Initialiseren met __init__" },
+);
+L(
+  g,
+  9,
+  "Instance attributes store data that can differ between objects. An assignment on one instance does not automatically change another instance. Keeping individual state separate prevents surprising interactions.",
+  "Instance attributes bewaren data die per object kunnen verschillen. Een assignment op één instance verandert niet automatisch een andere instance. Gescheiden toestand voorkomt onverwachte interacties.",
+  "Create east and west Sensor instances. Give them reading attributes of 18 and 23 respectively.",
+  "Maak east en west als Sensor-instances. Geef ze reading-attributes van respectievelijk 18 en 23.",
+  "class Sensor:\n    pass\n\neast = Sensor()\nwest = Sensor()\neast.reading = 18\nwest.reading = 23\nprint(east.reading, west.reading)\n",
+  "east is not west and east.reading == 18 and west.reading == 23",
+  { titleNl: "Instance attributes" },
+);
+L(
+  g,
+  10,
+  "hasattr(object, name) checks whether an attribute can be found. getattr(object, name, default) reads it with an optional fallback. Without an attribute or default, getattr raises AttributeError.",
+  "hasattr(object, name) controleert of een attribute gevonden kan worden. getattr(object, name, default) leest deze met een optionele fallback. Zonder attribute of default geeft getattr een AttributeError.",
+  'Set has_name using hasattr(sensor, "name"). Read absent reading with default 0 into reading.',
+  'Bepaal has_name met hasattr(sensor, "name"). Lees de ontbrekende reading met default 0 naar reading.',
+  'class Sensor:\n    def __init__(self, name):\n        self.name = name\n\nsensor = Sensor("East")\nhas_name = hasattr(sensor, "name")\nreading = getattr(sensor, "reading", 0)\nprint(has_name, reading)\n',
+  "has_name is True and reading == 0 and not hasattr(sensor,'reading')",
+  { titleNl: "Attributes onderzoeken" },
+);
+L(
+  g,
+  11,
+  "self lets a method access the instance’s current attributes and other methods. Values stored by __init__ remain available to later calls. This is how an object carries state over time.",
+  "Via self heeft een method toegang tot de huidige attributes en andere methods van de instance. Waarden uit __init__ blijven beschikbaar voor latere aanroepen. Zo bewaart een object toestand door de tijd heen.",
+  "Define Counter(start) storing self.value. Add increment(self, amount) to increase and return that value.",
+  "Definieer Counter(start) die self.value opslaat. Voeg increment(self, amount) toe om die waarde te verhogen en terug te geven.",
+  "class Counter:\n    def __init__(self, start):\n        self.value = start\n\n    def increment(self, amount):\n        self.value += amount\n        return self.value\n\ncounter = Counter(5)\nprint(counter.increment(3))\n",
+  "counter.value == 8 and Counter(2).increment(4) == 6",
+  { titleNl: "Werken met self" },
+);
+L(
+  g,
+  12,
+  "dir(object) lists attribute names useful for exploration. Functions themselves are objects and have attributes such as __name__. Introspection helps you discover behavior without guessing at an object’s type.",
+  "dir(object) toont attribuutnamen die nuttig zijn bij onderzoek. Functions zijn zelf objecten en hebben attributes zoals __name__. Introspection helpt gedrag te ontdekken zonder het type te raden.",
+  'Define signal() and store its __name__ in name. Store whether upper appears in dir("hello") in supports_upper.',
+  'Definieer signal() en sla __name__ op in name. Sla in supports_upper op of upper voorkomt in dir("hello").',
+  'def signal():\n    return "ready"\n\nname = signal.__name__\nsupports_upper = "upper" in dir("hello")\nprint(name, supports_upper)\n',
+  "name == 'signal' and supports_upper is True",
+  { titleNl: "Object-introspection" },
+);
+L(
+  g,
+  13,
+  "__repr__ returns a useful textual representation of an object. It must return a string. Include identifying state so debugging output conveys more than an object’s memory address.",
+  "__repr__ geeft een bruikbare tekstuele weergave van een object. De method moet een string teruggeven. Neem herkenbare toestand op, zodat debug-output meer vertelt dan een geheugenadres.",
+  "Define Sensor(name) with __repr__ returning Sensor<name>, replacing name with the actual name.",
+  "Definieer Sensor(name) met __repr__ die Sensor<name> teruggeeft, met de echte naam op de plek van name.",
+  'class Sensor:\n    def __init__(self, name):\n        self.name = name\n\n    def __repr__(self):\n        return "Sensor<" + self.name + ">"\n\nprint(Sensor("East"))\n',
+  "repr(Sensor('East')) == 'Sensor<East>' and repr(Sensor('West')) == 'Sensor<West>'",
+  { titleNl: "Een leesbare weergave" },
+);
+L(
+  g,
+  14,
+  "Objects can cooperate by storing references to other objects. Give each instance its own collection in __init__, rather than sharing a mutable class attribute. isinstance(value, Class) checks whether a value belongs to a class or a subclass.",
+  "Objecten kunnen samenwerken door verwijzingen naar andere objecten te bewaren. Geef elke instance in __init__ een eigen verzameling, in plaats van een mutable class attribute te delen. isinstance(value, Class) controleert of een waarde bij een class of subclass hoort.",
+  'Create Reading(value) with a value attribute. Create Sensor(name) with name and its own empty readings list. Its add(reading) method adds only Reading instances. Add Reading(21) to east = Sensor("East").',
+  'Maak Reading(value) met een value-attribute. Maak Sensor(name) met name en een eigen lege readings-list. De add(reading)-method voegt alleen Reading-instances toe. Voeg Reading(21) toe aan east = Sensor("East").',
+  'class Reading:\n    def __init__(self, value):\n        self.value = value\n\nclass Sensor:\n    def __init__(self, name):\n        self.name = name\n        self.readings = []\n\n    def add(self, reading):\n        if isinstance(reading, Reading):\n            self.readings.append(reading)\n\neast = Sensor("East")\neast.add(Reading(21))\nprint(east.name, east.readings[0].value)\n',
+  "east.name == 'East' and len(east.readings) == 1 and isinstance(east.readings[0],Reading) and east.readings[0].value == 21 and Sensor('A').readings is not Sensor('B').readings and (lambda s: (s.add('invalid'), s.readings)[1])(Sensor('test')) == []",
+  { titleNl: "Terugblik: samenwerkende classes" },
+);
+Q(g, [
+  [
+    "What does calling a class normally create?",
+    "Wat maak je normaal door een class aan te roepen?",
+    "",
+    [
+      ["An instance", "Een instance"],
+      ["An import", "Een import"],
+      ["A source file", "Een bronbestand"],
+    ],
+    "Calling the class constructs an instance of that type.",
+    "De class aanroepen maakt een instance van dat type.",
+  ],
+  [
+    "What does self refer to inside an instance method?",
+    "Waarnaar verwijst self binnen een instance method?",
+    "",
+    [
+      [
+        "The instance receiving the method call",
+        "De instance waarop de method wordt aangeroepen",
+      ],
+      ["Every object in the program", "Alle objecten in het programma"],
+      ["Only the class name", "Alleen de classnaam"],
+    ],
+    "Python supplies the instance as the first argument of a bound instance method.",
+    "Python geeft de instance mee als eerste argument van een gebonden instance method.",
+  ],
+  P(
+    'class Box:\n    kind = "storage"\nprint(Box().kind)',
+    ["storage", "Box", "None"],
+    "The instance can read the class attribute kind.",
+    "De instance kan het class attribute kind lezen.",
+  ),
+  [
+    "Which method initializes instance attributes during construction?",
+    "Welke method initialiseert instance attributes bij het maken van een object?",
+    "",
+    ["__init__", "__repr__", "__name__"],
+    "__init__ sets up a newly created instance.",
+    "__init__ richt een nieuwe instance in.",
+  ],
+  P(
+    "class Box:\n    pass\na = Box()\nb = Box()\na.size = 3\nb.size = 8\nprint(a.size)",
+    ["3", "8", "11"],
+    "Each instance has its own size attribute.",
+    "Elke instance heeft een eigen size-attribute.",
+  ),
+  [
+    "What must __repr__ return?",
+    "Wat moet __repr__ teruggeven?",
+    "",
+    [
+      ["A string", "Een string"],
+      ["A dictionary", "Een dictionary"],
+      ["Nothing", "Niets"],
+    ],
+    "The representation protocol expects a string.",
+    "Het representation-protocol verwacht een string.",
+  ],
+  P(
+    'class Box:\n    pass\nb = Box()\nprint(getattr(b, "size", 0))',
+    ["0", "None", "False"],
+    "The absent attribute causes getattr to return the supplied default 0.",
+    "Omdat het attribute ontbreekt, geeft getattr de default 0 terug.",
+  ),
+]);

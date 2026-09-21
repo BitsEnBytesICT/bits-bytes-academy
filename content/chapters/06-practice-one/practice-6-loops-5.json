@@ -1,0 +1,41 @@
+{
+  "id": "practice-6-loops-5",
+  "chapter": 6,
+  "group": "loops",
+  "title": {
+    "en": "Pairwise products",
+    "nl": "Producten per paar"
+  },
+  "kind": "challenge",
+  "optional": true,
+  "explanation": {
+    "en": "Return every product of a value from left and a value from right, visiting left values first in order.",
+    "nl": "Geef elk product van een waarde uit left en een waarde uit right terug. Doorloop eerst de left-waarden in volgorde."
+  },
+  "example": "",
+  "files": {
+    "main.py": "def products(left, right):\n    # Implement the function.\n    pass\n\nprint(products([2, 3], [4, 5]))\n"
+  },
+  "solution": {
+    "main.py": "def products(left, right):\n    result = []\n    for a in left:\n        for b in right:\n            result.append(a * b)\n    return result\n\nprint(products([2, 3], [4, 5]))\n"
+  },
+  "checkpoints": [
+    {
+      "id": "practice-6-loops-5-step-1",
+      "task": {
+        "en": "Return every product of a value from left and a value from right, visiting left values first in order.",
+        "nl": "Geef elk product van een waarde uit left en een waarde uit right terug. Doorloop eerst de left-waarden in volgorde."
+      },
+      "check": "products([2,3],[4,5]) == [8,10,12,15] and products([], [1]) == []",
+      "hint": {
+        "en": "Work through a small input by hand first. Separate the condition, transformation, and return value.",
+        "nl": "Werk eerst zelf een kleine invoer uit. Bekijk de voorwaarde, de bewerking en de return value afzonderlijk."
+      }
+    }
+  ],
+  "solutionNote": {
+    "en": "This solution separates the calculation from its input. Test the function with ordinary values and edge cases such as empty collections or boundary values.",
+    "nl": "Deze oplossing scheidt de berekening van de invoer. Test de function met gewone waarden en grensgevallen, zoals lege verzamelingen of grenswaarden."
+  },
+  "estimatedMinutes": 10
+}

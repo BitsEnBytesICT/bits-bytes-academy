@@ -1,0 +1,41 @@
+{
+  "id": "practice-6-decisions-2",
+  "chapter": 6,
+  "group": "decisions",
+  "title": {
+    "en": "Departure readiness",
+    "nl": "Klaar voor vertrek"
+  },
+  "kind": "challenge",
+  "optional": true,
+  "explanation": {
+    "en": "Return True only when fuel is at least 20 and passengers is at most 8.",
+    "nl": "Geef alleen True terug als fuel minstens 20 is en passengers hoogstens 8 is."
+  },
+  "example": "",
+  "files": {
+    "main.py": "def ready(fuel, passengers):\n    # Implement the function.\n    pass\n\nprint(ready(25, 6))\n"
+  },
+  "solution": {
+    "main.py": "def ready(fuel, passengers):\n    return fuel >= 20 and passengers <= 8\n\nprint(ready(25, 6))\n"
+  },
+  "checkpoints": [
+    {
+      "id": "practice-6-decisions-2-step-1",
+      "task": {
+        "en": "Return True only when fuel is at least 20 and passengers is at most 8.",
+        "nl": "Geef alleen True terug als fuel minstens 20 is en passengers hoogstens 8 is."
+      },
+      "check": "ready(20,8) is True and ready(19,8) is False and ready(40,9) is False",
+      "hint": {
+        "en": "Work through a small input by hand first. Separate the condition, transformation, and return value.",
+        "nl": "Werk eerst zelf een kleine invoer uit. Bekijk de voorwaarde, de bewerking en de return value afzonderlijk."
+      }
+    }
+  ],
+  "solutionNote": {
+    "en": "This solution separates the calculation from its input. Test the function with ordinary values and edge cases such as empty collections or boundary values.",
+    "nl": "Deze oplossing scheidt de berekening van de invoer. Test de function met gewone waarden en grensgevallen, zoals lege verzamelingen of grenswaarden."
+  },
+  "estimatedMinutes": 10
+}

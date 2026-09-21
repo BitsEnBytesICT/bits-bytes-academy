@@ -1,0 +1,45 @@
+{
+  "id": "learn-python-files-03",
+  "chapter": 10,
+  "group": "learn-python-files",
+  "title": {
+    "en": "Reading one line",
+    "nl": "Eén regel lezen"
+  },
+  "kind": "coding",
+  "optional": false,
+  "explanation": {
+    "en": "readline() reads the next line and advances the file position. Repeated calls continue where the previous call stopped. At the end of the file, it returns an empty string.",
+    "nl": "readline() leest de volgende regel en verplaatst de bestandspositie. Volgende aanroepen gaan verder waar de vorige stopte. Aan het einde van het bestand wordt een lege string teruggegeven."
+  },
+  "example": "",
+  "files": {
+    "two.txt": "alpha\nbeta\n",
+    "main.py": "# Write your code below.\n"
+  },
+  "solution": {
+    "two.txt": "alpha\nbeta\n",
+    "main.py": "with open(\"two.txt\", encoding=\"utf-8\") as handle:\n    first = handle.readline()\n    second = handle.readline()\n    end = handle.readline()\nprint(first, second, end)\n"
+  },
+  "checkpoints": [
+    {
+      "id": "learn-python-files-03-step-1",
+      "task": {
+        "en": "Read the first two lines into first and second using readline, then read once more into end.",
+        "nl": "Lees met readline de eerste twee regels naar first en second. Lees daarna nogmaals naar end."
+      },
+      "check": "first == 'alpha\\n' and second == 'beta\\n' and end == ''",
+      "hint": {
+        "en": "Start with with open(\"two.txt\", encoding=\"utf-8\") as handle:. Then compare the values with the task.",
+        "nl": "Begin met with open(\"two.txt\", encoding=\"utf-8\") as handle:. Vergelijk de waarden daarna met de opdracht."
+      }
+    }
+  ],
+  "solutionNote": {
+    "en": "readline() reads the next line and advances the file position. Repeated calls continue where the previous call stopped. At the end of the file, it returns an empty string.\n\nTrace the solution one line at a time. Try a different input to see which parts change.",
+    "nl": "readline() leest de volgende regel en verplaatst de bestandspositie. Volgende aanroepen gaan verder waar de vorige stopte. Aan het einde van het bestand wordt een lege string teruggegeven.\n\nVolg de oplossing regel voor regel. Probeer een andere invoer en bekijk welke onderdelen veranderen."
+  },
+  "sourcePosition": 3,
+  "sourceUrl": "https://www.codecademy.com/courses/learn-python-3/lessons/learn-python-files/exercises/reading-a-line",
+  "estimatedMinutes": 6
+}

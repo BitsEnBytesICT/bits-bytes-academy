@@ -1,0 +1,43 @@
+{
+  "id": "create-python-list-06",
+  "chapter": 3,
+  "group": "create-python-list",
+  "title": {
+    "en": "Concatenating lists",
+    "nl": "Lists samenvoegen"
+  },
+  "kind": "coding",
+  "optional": false,
+  "explanation": {
+    "en": "The + operator creates a new list containing the left list followed by the right list. Both operands must be lists. The originals remain unchanged unless you reassign a name.",
+    "nl": "De operator + maakt een nieuwe list met eerst de linker list en daarna de rechter. Beide operands moeten lists zijn. De oorspronkelijke lists blijven ongewijzigd, tenzij je een naam opnieuw toewijst."
+  },
+  "example": "",
+  "files": {
+    "main.py": "morning = [9, 11]\nafternoon = [14, 16]\n"
+  },
+  "solution": {
+    "main.py": "morning = [9, 11]\nafternoon = [14, 16]\nschedule = morning + afternoon\nprint(schedule)\n"
+  },
+  "checkpoints": [
+    {
+      "id": "create-python-list-06-step-1",
+      "task": {
+        "en": "Combine morning and afternoon into schedule. Keep both input lists unchanged.",
+        "nl": "Combineer morning en afternoon tot schedule. Laat beide invoerlists ongewijzigd."
+      },
+      "check": "schedule == [9,11,14,16] and morning == [9,11] and afternoon == [14,16]",
+      "hint": {
+        "en": "Start with morning = [9, 11]. Then compare the values with the task.",
+        "nl": "Begin met morning = [9, 11]. Vergelijk de waarden daarna met de opdracht."
+      }
+    }
+  ],
+  "solutionNote": {
+    "en": "The + operator creates a new list containing the left list followed by the right list. Both operands must be lists. The originals remain unchanged unless you reassign a name.\n\nTrace the solution one line at a time. Try a different input to see which parts change.",
+    "nl": "De operator + maakt een nieuwe list met eerst de linker list en daarna de rechter. Beide operands moeten lists zijn. De oorspronkelijke lists blijven ongewijzigd, tenzij je een naam opnieuw toewijst.\n\nVolg de oplossing regel voor regel. Probeer een andere invoer en bekijk welke onderdelen veranderen."
+  },
+  "sourcePosition": 6,
+  "sourceUrl": "https://www.codecademy.com/courses/learn-python-3/lessons/create-python-list/exercises/growing-a-list-plus",
+  "estimatedMinutes": 6
+}

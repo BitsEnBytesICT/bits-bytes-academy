@@ -1,0 +1,41 @@
+{
+  "id": "practice-12-objects-1",
+  "chapter": 12,
+  "group": "objects",
+  "title": {
+    "en": "Build a beacon",
+    "nl": "Een beacon maken"
+  },
+  "kind": "challenge",
+  "optional": true,
+  "explanation": {
+    "en": "A factory function can define a class and return an instance. Inside make_beacon, define Beacon with a name attribute and return a new instance for the supplied name.",
+    "nl": "Een factory function kan een class definiëren en een instance teruggeven. Definieer binnen make_beacon een Beacon met een name-attribute en geef een nieuwe instance met de opgegeven naam terug."
+  },
+  "example": "",
+  "files": {
+    "main.py": "def make_beacon(name):\n    # Implement the function.\n    pass\n\nprint(make_beacon(\"East\").name)\n"
+  },
+  "solution": {
+    "main.py": "def make_beacon(name):\n    class Beacon:\n        def __init__(self, name):\n            self.name = name\n    return Beacon(name)\n\nprint(make_beacon(\"East\").name)\n"
+  },
+  "checkpoints": [
+    {
+      "id": "practice-12-objects-1-step-1",
+      "task": {
+        "en": "A factory function can define a class and return an instance. Inside make_beacon, define Beacon with a name attribute and return a new instance for the supplied name.",
+        "nl": "Een factory function kan een class definiëren en een instance teruggeven. Definieer binnen make_beacon een Beacon met een name-attribute en geef een nieuwe instance met de opgegeven naam terug."
+      },
+      "check": "make_beacon('East').name == 'East' and make_beacon('West').name == 'West' and make_beacon('X') is not make_beacon('X')",
+      "hint": {
+        "en": "Work through a small input by hand first. Separate the condition, transformation, and return value.",
+        "nl": "Werk eerst zelf een kleine invoer uit. Bekijk de voorwaarde, de bewerking en de return value afzonderlijk."
+      }
+    }
+  ],
+  "solutionNote": {
+    "en": "This solution separates the calculation from its input. Test the function with ordinary values and edge cases such as empty collections or boundary values.",
+    "nl": "Deze oplossing scheidt de berekening van de invoer. Test de function met gewone waarden en grensgevallen, zoals lege verzamelingen of grenswaarden."
+  },
+  "estimatedMinutes": 10
+}

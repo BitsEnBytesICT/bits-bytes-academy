@@ -1,0 +1,41 @@
+{
+  "id": "practice-6-search-4",
+  "chapter": 6,
+  "group": "search",
+  "title": {
+    "en": "Matching positions",
+    "nl": "Overeenkomende posities"
+  },
+  "kind": "challenge",
+  "optional": true,
+  "explanation": {
+    "en": "For equal-length lists, return indexes where the values match.",
+    "nl": "Geef voor even lange lists de indexes terug waarop de waarden gelijk zijn."
+  },
+  "example": "",
+  "files": {
+    "main.py": "def matching_positions(left, right):\n    # Implement the function.\n    pass\n\nprint(matching_positions([1, 2, 3], [1, 7, 3]))\n"
+  },
+  "solution": {
+    "main.py": "def matching_positions(left, right):\n    result = []\n    for i in range(len(left)):\n        if left[i] == right[i]:\n            result.append(i)\n    return result\n\nprint(matching_positions([1, 2, 3], [1, 7, 3]))\n"
+  },
+  "checkpoints": [
+    {
+      "id": "practice-6-search-4-step-1",
+      "task": {
+        "en": "For equal-length lists, return indexes where the values match.",
+        "nl": "Geef voor even lange lists de indexes terug waarop de waarden gelijk zijn."
+      },
+      "check": "matching_positions([1,2,3],[1,7,3]) == [0,2] and matching_positions([],[]) == []",
+      "hint": {
+        "en": "Work through a small input by hand first. Separate the condition, transformation, and return value.",
+        "nl": "Werk eerst zelf een kleine invoer uit. Bekijk de voorwaarde, de bewerking en de return value afzonderlijk."
+      }
+    }
+  ],
+  "solutionNote": {
+    "en": "This solution separates the calculation from its input. Test the function with ordinary values and edge cases such as empty collections or boundary values.",
+    "nl": "Deze oplossing scheidt de berekening van de invoer. Test de function met gewone waarden en grensgevallen, zoals lege verzamelingen of grenswaarden."
+  },
+  "estimatedMinutes": 10
+}

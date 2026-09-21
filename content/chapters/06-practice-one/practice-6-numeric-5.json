@@ -1,0 +1,41 @@
+{
+  "id": "practice-6-numeric-5",
+  "chapter": 6,
+  "group": "numeric",
+  "title": {
+    "en": "Clock wrap",
+    "nl": "Terug naar het begin van de klok"
+  },
+  "kind": "challenge",
+  "optional": true,
+  "explanation": {
+    "en": "Return the hour after adding elapsed to start on a 24-hour clock.",
+    "nl": "Geef het uur na elapsed uur vanaf start op een 24-uursklok terug."
+  },
+  "example": "",
+  "files": {
+    "main.py": "def clock_hour(start, elapsed):\n    # Implement the function.\n    pass\n\nprint(clock_hour(22, 5))\n"
+  },
+  "solution": {
+    "main.py": "def clock_hour(start, elapsed):\n    return (start + elapsed) % 24\n\nprint(clock_hour(22, 5))\n"
+  },
+  "checkpoints": [
+    {
+      "id": "practice-6-numeric-5-step-1",
+      "task": {
+        "en": "Return the hour after adding elapsed to start on a 24-hour clock.",
+        "nl": "Geef het uur na elapsed uur vanaf start op een 24-uursklok terug."
+      },
+      "check": "clock_hour(22,5) == 3 and clock_hour(8,48) == 8 and clock_hour(0,0) == 0",
+      "hint": {
+        "en": "Work through a small input by hand first. Separate the condition, transformation, and return value.",
+        "nl": "Werk eerst zelf een kleine invoer uit. Bekijk de voorwaarde, de bewerking en de return value afzonderlijk."
+      }
+    }
+  ],
+  "solutionNote": {
+    "en": "This solution separates the calculation from its input. Test the function with ordinary values and edge cases such as empty collections or boundary values.",
+    "nl": "Deze oplossing scheidt de berekening van de invoer. Test de function met gewone waarden en grensgevallen, zoals lege verzamelingen of grenswaarden."
+  },
+  "estimatedMinutes": 10
+}

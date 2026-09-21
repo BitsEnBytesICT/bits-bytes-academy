@@ -1,0 +1,43 @@
+{
+  "id": "python-hello-world-11",
+  "chapter": 1,
+  "group": "python-hello-world",
+  "title": {
+    "en": "Remainders",
+    "nl": "Rest bij een deling"
+  },
+  "kind": "coding",
+  "optional": false,
+  "explanation": {
+    "en": "The modulo operator % returns a division remainder. A remainder of zero tells you that the division is exact. This is useful for even/odd checks and repeating cycles.",
+    "nl": "De modulo operator % geeft de rest van een deling. Een rest van nul betekent dat de deling precies uitkomt. Dat is handig voor even/oneven-controles en herhalende patronen."
+  },
+  "example": "remainder = 17 % 4",
+  "files": {
+    "main.py": "# Write your code below.\n"
+  },
+  "solution": {
+    "main.py": "leftover = 29 % 6\nis_even = 29 % 2 == 0\nprint(leftover, is_even)\n"
+  },
+  "checkpoints": [
+    {
+      "id": "python-hello-world-11-step-1",
+      "task": {
+        "en": "Distribute 29 items into groups of 6. Store the remainder in leftover and whether 29 is even in is_even.",
+        "nl": "Verdeel 29 items in groepen van 6. Sla de rest op in leftover en leg in is_even vast of 29 even is."
+      },
+      "check": "leftover == 5 and is_even is False",
+      "hint": {
+        "en": "Start with leftover = 29 % 6. Then compare the values with the task.",
+        "nl": "Begin met leftover = 29 % 6. Vergelijk de waarden daarna met de opdracht."
+      }
+    }
+  ],
+  "solutionNote": {
+    "en": "The modulo operator % returns a division remainder. A remainder of zero tells you that the division is exact. This is useful for even/odd checks and repeating cycles.\n\nTrace the solution one line at a time. Try a different input to see which parts change.",
+    "nl": "De modulo operator % geeft de rest van een deling. Een rest van nul betekent dat de deling precies uitkomt. Dat is handig voor even/oneven-controles en herhalende patronen.\n\nVolg de oplossing regel voor regel. Probeer een andere invoer en bekijk welke onderdelen veranderen."
+  },
+  "sourcePosition": 11,
+  "sourceUrl": "https://www.codecademy.com/courses/learn-python-3/lessons/python-hello-world/exercises/modulo",
+  "estimatedMinutes": 6
+}

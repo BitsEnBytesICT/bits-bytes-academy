@@ -1,0 +1,43 @@
+{
+  "id": "dictionaries-introduction-09",
+  "chapter": 9,
+  "group": "dictionaries-introduction",
+  "title": {
+    "en": "Dictionary creation review",
+    "nl": "Terugblik: dictionaries maken"
+  },
+  "kind": "coding",
+  "optional": false,
+  "explanation": {
+    "en": "Combine construction and updates to maintain a small catalog. Nested dictionaries let one key refer to an entire mapping. Keep names clear so the level you are modifying is obvious.",
+    "nl": "Combineer opbouwen en bijwerken om een kleine catalogus te onderhouden. Bij geneste dictionaries kan één key naar een volledige mapping verwijzen. Kies duidelijke namen, zodat je weet welk niveau je wijzigt."
+  },
+  "example": "",
+  "files": {
+    "main.py": "names = [\"lamp\", \"cable\"]\namounts = [3, 7]\n"
+  },
+  "solution": {
+    "main.py": "names = [\"lamp\", \"cable\"]\namounts = [3, 7]\nquantities = {name: amount for name, amount in zip(names, amounts)}\nquantities[\"tape\"] = 6\nquantities[\"lamp\"] = 8\ncatalog = {\"workshop\": quantities}\nprint(catalog)\n"
+  },
+  "checkpoints": [
+    {
+      "id": "dictionaries-introduction-09-step-1",
+      "task": {
+        "en": "Build quantities from names and amounts. Add tape: 6 and change lamp to 8. Put quantities under the key workshop in catalog.",
+        "nl": "Maak quantities uit names en amounts. Voeg tape: 6 toe en verander lamp naar 8. Zet quantities onder de key workshop in catalog."
+      },
+      "check": "quantities == {'lamp':8,'cable':7,'tape':6} and catalog == {'workshop':quantities}",
+      "hint": {
+        "en": "Start with names = [\"lamp\", \"cable\"]. Then compare the values with the task.",
+        "nl": "Begin met names = [\"lamp\", \"cable\"]. Vergelijk de waarden daarna met de opdracht."
+      }
+    }
+  ],
+  "solutionNote": {
+    "en": "Combine construction and updates to maintain a small catalog. Nested dictionaries let one key refer to an entire mapping. Keep names clear so the level you are modifying is obvious.\n\nTrace the solution one line at a time. Try a different input to see which parts change.",
+    "nl": "Combineer opbouwen en bijwerken om een kleine catalogus te onderhouden. Bij geneste dictionaries kan één key naar een volledige mapping verwijzen. Kies duidelijke namen, zodat je weet welk niveau je wijzigt.\n\nVolg de oplossing regel voor regel. Probeer een andere invoer en bekijk welke onderdelen veranderen."
+  },
+  "sourcePosition": 9,
+  "sourceUrl": "https://www.codecademy.com/courses/learn-python-3/lessons/dictionaries-introduction/exercises/review",
+  "estimatedMinutes": 6
+}

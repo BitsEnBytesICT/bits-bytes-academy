@@ -1,0 +1,43 @@
+{
+  "id": "create-python-list-08",
+  "chapter": 3,
+  "group": "create-python-list",
+  "title": {
+    "en": "Negative indexing",
+    "nl": "Negatieve indexes"
+  },
+  "kind": "coding",
+  "optional": false,
+  "explanation": {
+    "en": "Negative indexes count from the end: -1 is the last element, -2 is the one before it. This avoids calculating a positive index from the length.",
+    "nl": "Negatieve indexes tellen vanaf het einde: -1 is het laatste element en -2 het voorlaatste. Zo hoef je geen positieve index uit de lengte te berekenen."
+  },
+  "example": "",
+  "files": {
+    "main.py": "readings = [18, 20, 19, 22]\n"
+  },
+  "solution": {
+    "main.py": "readings = [18, 20, 19, 22]\nlatest = readings[-1]\nprevious = readings[-2]\nprint(latest, previous)\n"
+  },
+  "checkpoints": [
+    {
+      "id": "create-python-list-08-step-1",
+      "task": {
+        "en": "Store the last reading in latest and the previous reading in previous.",
+        "nl": "Sla de laatste meting op in latest en de vorige meting in previous."
+      },
+      "check": "latest == 22 and previous == 19",
+      "hint": {
+        "en": "Start with readings = [18, 20, 19, 22]. Then compare the values with the task.",
+        "nl": "Begin met readings = [18, 20, 19, 22]. Vergelijk de waarden daarna met de opdracht."
+      }
+    }
+  ],
+  "solutionNote": {
+    "en": "Negative indexes count from the end: -1 is the last element, -2 is the one before it. This avoids calculating a positive index from the length.\n\nTrace the solution one line at a time. Try a different input to see which parts change.",
+    "nl": "Negatieve indexes tellen vanaf het einde: -1 is het laatste element en -2 het voorlaatste. Zo hoef je geen positieve index uit de lengte te berekenen.\n\nVolg de oplossing regel voor regel. Probeer een andere invoer en bekijk welke onderdelen veranderen."
+  },
+  "sourcePosition": 8,
+  "sourceUrl": "https://www.codecademy.com/courses/learn-python-3/lessons/create-python-list/exercises/accessing-list-elements-negative-index",
+  "estimatedMinutes": 6
+}

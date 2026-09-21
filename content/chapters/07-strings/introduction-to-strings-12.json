@@ -1,0 +1,43 @@
+{
+  "id": "introduction-to-strings-12",
+  "chapter": 7,
+  "group": "introduction-to-strings",
+  "title": {
+    "en": "String foundation review",
+    "nl": "Terugblik: strings"
+  },
+  "kind": "coding",
+  "optional": false,
+  "explanation": {
+    "en": "Use slices, length, and concatenation to construct identifiers without changing the source text. Be explicit about boundaries so shorter or longer values remain understandable.",
+    "nl": "Gebruik slices, lengte en samenvoeging om identifiers te maken zonder de brontekst te veranderen. Kies duidelijke grenzen, zodat het gedrag ook bij kortere of langere waarden begrijpelijk blijft."
+  },
+  "example": "",
+  "files": {
+    "main.py": "# Write your code below.\n"
+  },
+  "solution": {
+    "main.py": "name = \"Forest\"\nnumber = 27\nidentifier = name[:3] + \"-\" + str(number)\nsize = len(identifier)\nprint(identifier, size)\n"
+  },
+  "checkpoints": [
+    {
+      "id": "introduction-to-strings-12-step-1",
+      "task": {
+        "en": "With name = Forest and number = 27, create identifier from the first three characters, a hyphen, and the number. Store its length in size.",
+        "nl": "Gebruik name = Forest en number = 27. Maak identifier van de eerste drie tekens, een streepje en het getal. Sla de lengte op in size."
+      },
+      "check": "identifier == 'For-27' and size == 6",
+      "hint": {
+        "en": "Start with name = \"Forest\". Then compare the values with the task.",
+        "nl": "Begin met name = \"Forest\". Vergelijk de waarden daarna met de opdracht."
+      }
+    }
+  ],
+  "solutionNote": {
+    "en": "Use slices, length, and concatenation to construct identifiers without changing the source text. Be explicit about boundaries so shorter or longer values remain understandable.\n\nTrace the solution one line at a time. Try a different input to see which parts change.",
+    "nl": "Gebruik slices, lengte en samenvoeging om identifiers te maken zonder de brontekst te veranderen. Kies duidelijke grenzen, zodat het gedrag ook bij kortere of langere waarden begrijpelijk blijft.\n\nVolg de oplossing regel voor regel. Probeer een andere invoer en bekijk welke onderdelen veranderen."
+  },
+  "sourcePosition": 12,
+  "sourceUrl": "https://www.codecademy.com/courses/learn-python-3/lessons/introduction-to-strings/exercises/review-i",
+  "estimatedMinutes": 6
+}

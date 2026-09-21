@@ -1,0 +1,43 @@
+{
+  "id": "using-dictionaries-02",
+  "chapter": 9,
+  "group": "using-dictionaries",
+  "title": {
+    "en": "Looking up a value",
+    "nl": "Een value opvragen"
+  },
+  "kind": "coding",
+  "optional": false,
+  "explanation": {
+    "en": "mapping[key] returns the value associated with a key. Unlike list indexing, a numeric dictionary key is a literal key, not a position. The value may itself be another collection.",
+    "nl": "mapping[key] geeft de value bij een key terug. Een numerieke dictionary-key is een letterlijke key, geen positie zoals bij een list. De value kan zelf weer een verzameling zijn."
+  },
+  "example": "",
+  "files": {
+    "main.py": "temperatures = {\"east\": 18, \"west\": 21}\n"
+  },
+  "solution": {
+    "main.py": "temperatures = {\"east\": 18, \"west\": 21}\neast_temp = temperatures[\"east\"]\nwest_temp = temperatures[\"west\"]\nprint(east_temp, west_temp)\n"
+  },
+  "checkpoints": [
+    {
+      "id": "using-dictionaries-02-step-1",
+      "task": {
+        "en": "Read temperatures[\"east\"] into east_temp and temperatures[\"west\"] into west_temp.",
+        "nl": "Lees temperatures[\"east\"] naar east_temp en temperatures[\"west\"] naar west_temp."
+      },
+      "check": "east_temp == 18 and west_temp == 21",
+      "hint": {
+        "en": "Start with temperatures = {\"east\": 18, \"west\": 21}. Then compare the values with the task.",
+        "nl": "Begin met temperatures = {\"east\": 18, \"west\": 21}. Vergelijk de waarden daarna met de opdracht."
+      }
+    }
+  ],
+  "solutionNote": {
+    "en": "mapping[key] returns the value associated with a key. Unlike list indexing, a numeric dictionary key is a literal key, not a position. The value may itself be another collection.\n\nTrace the solution one line at a time. Try a different input to see which parts change.",
+    "nl": "mapping[key] geeft de value bij een key terug. Een numerieke dictionary-key is een letterlijke key, geen positie zoals bij een list. De value kan zelf weer een verzameling zijn.\n\nVolg de oplossing regel voor regel. Probeer een andere invoer en bekijk welke onderdelen veranderen."
+  },
+  "sourcePosition": 2,
+  "sourceUrl": "https://www.codecademy.com/courses/learn-python-3/lessons/using-dictionaries/exercises/get-a-key",
+  "estimatedMinutes": 6
+}

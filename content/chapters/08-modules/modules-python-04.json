@@ -1,0 +1,43 @@
+{
+  "id": "modules-python-04",
+  "chapter": 8,
+  "group": "modules-python",
+  "title": {
+    "en": "Decimal arithmetic",
+    "nl": "Exacte decimalen"
+  },
+  "kind": "coding",
+  "optional": false,
+  "explanation": {
+    "en": "Binary floating-point cannot represent every decimal fraction exactly. Decimal can preserve exact decimal input when constructed from strings. Constructing it from a float preserves that float’s already-approximated value.",
+    "nl": "Binaire floating-point kan niet elke decimale breuk exact voorstellen. Decimal kan exacte decimale invoer bewaren wanneer je strings gebruikt. Een Decimal uit een float neemt de al benaderde floatwaarde over."
+  },
+  "example": "from decimal import Decimal\nprice = Decimal(\"2.40\")",
+  "files": {
+    "main.py": "# Write your code below.\n"
+  },
+  "solution": {
+    "main.py": "from decimal import Decimal\nexact_total = Decimal(\"0.1\") + Decimal(\"0.2\")\nprint(exact_total)\n"
+  },
+  "checkpoints": [
+    {
+      "id": "modules-python-04-step-1",
+      "task": {
+        "en": "Import Decimal. Add Decimal(\"0.1\") and Decimal(\"0.2\") into exact_total.",
+        "nl": "Importeer Decimal. Tel Decimal(\"0.1\") en Decimal(\"0.2\") op in exact_total."
+      },
+      "check": "str(exact_total) == '0.3' and type(exact_total).__name__ == 'Decimal'",
+      "hint": {
+        "en": "Start with from decimal import Decimal. Then compare the values with the task.",
+        "nl": "Begin met from decimal import Decimal. Vergelijk de waarden daarna met de opdracht."
+      }
+    }
+  ],
+  "solutionNote": {
+    "en": "Binary floating-point cannot represent every decimal fraction exactly. Decimal can preserve exact decimal input when constructed from strings. Constructing it from a float preserves that float’s already-approximated value.\n\nTrace the solution one line at a time. Try a different input to see which parts change.",
+    "nl": "Binaire floating-point kan niet elke decimale breuk exact voorstellen. Decimal kan exacte decimale invoer bewaren wanneer je strings gebruikt. Een Decimal uit een float neemt de al benaderde floatwaarde over.\n\nVolg de oplossing regel voor regel. Probeer een andere invoer en bekijk welke onderdelen veranderen."
+  },
+  "sourcePosition": 4,
+  "sourceUrl": "https://www.codecademy.com/courses/learn-python-3/lessons/modules-python/exercises/modules-python-decimals",
+  "estimatedMinutes": 6
+}

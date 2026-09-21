@@ -1,0 +1,43 @@
+{
+  "id": "modules-python-03",
+  "chapter": 8,
+  "group": "modules-python",
+  "title": {
+    "en": "Import aliases",
+    "nl": "Import-aliases"
+  },
+  "kind": "coding",
+  "optional": false,
+  "explanation": {
+    "en": "as assigns a local alias to an imported module or name. An alias changes how you refer to it in your code, not the original module. Choose short names that still communicate their meaning.",
+    "nl": "as geeft een lokale alias aan een geïmporteerde module of naam. De alias verandert de verwijzing in jouw code, niet de oorspronkelijke module. Kies korte namen die duidelijk blijven."
+  },
+  "example": "import datetime as dt\nprint(dt.date.today())",
+  "files": {
+    "main.py": "# Write your code below.\n"
+  },
+  "solution": {
+    "main.py": "import math as maths\nroot = maths.sqrt(81)\nprint(root)\n"
+  },
+  "checkpoints": [
+    {
+      "id": "modules-python-03-step-1",
+      "task": {
+        "en": "Import math as maths. Use the alias to compute root as the square root of 81.",
+        "nl": "Importeer math als maths. Bereken via de alias root als de vierkantswortel van 81."
+      },
+      "check": "root == 9 and maths.__name__ == 'math'",
+      "hint": {
+        "en": "Start with import math as maths. Then compare the values with the task.",
+        "nl": "Begin met import math as maths. Vergelijk de waarden daarna met de opdracht."
+      }
+    }
+  ],
+  "solutionNote": {
+    "en": "as assigns a local alias to an imported module or name. An alias changes how you refer to it in your code, not the original module. Choose short names that still communicate their meaning.\n\nTrace the solution one line at a time. Try a different input to see which parts change.",
+    "nl": "as geeft een lokale alias aan een geïmporteerde module of naam. De alias verandert de verwijzing in jouw code, niet de oorspronkelijke module. Kies korte namen die duidelijk blijven.\n\nVolg de oplossing regel voor regel. Probeer een andere invoer en bekijk welke onderdelen veranderen."
+  },
+  "sourcePosition": 3,
+  "sourceUrl": "https://www.codecademy.com/courses/learn-python-3/lessons/modules-python/exercises/modules-python-aliasing",
+  "estimatedMinutes": 6
+}

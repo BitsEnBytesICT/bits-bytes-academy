@@ -1,0 +1,43 @@
+{
+  "id": "create-python-list-13",
+  "chapter": 3,
+  "group": "create-python-list",
+  "title": {
+    "en": "Editing nested lists",
+    "nl": "Geneste waarden wijzigen"
+  },
+  "kind": "coding",
+  "optional": false,
+  "explanation": {
+    "en": "You can assign through two indexes to replace one cell in a nested list. The outer and inner list keep their existing identities; only the selected value changes.",
+    "nl": "Met twee indexes kun je één cel in een geneste list vervangen. De buitenste en binnenste list blijven dezelfde objecten; alleen de geselecteerde waarde verandert."
+  },
+  "example": "",
+  "files": {
+    "main.py": "stock = [[\"lamp\", 3], [\"cable\", 8]]\n"
+  },
+  "solution": {
+    "main.py": "stock = [[\"lamp\", 3], [\"cable\", 8]]\nstock[0][1] = 5\nprint(stock)\n"
+  },
+  "checkpoints": [
+    {
+      "id": "create-python-list-13-step-1",
+      "task": {
+        "en": "Change the lamp quantity to 5 without replacing the cable row.",
+        "nl": "Verander het aantal lamps naar 5 zonder de cable-rij te vervangen."
+      },
+      "check": "stock == [['lamp',5],['cable',8]]",
+      "hint": {
+        "en": "Start with stock = [[\"lamp\", 3], [\"cable\", 8]]. Then compare the values with the task.",
+        "nl": "Begin met stock = [[\"lamp\", 3], [\"cable\", 8]]. Vergelijk de waarden daarna met de opdracht."
+      }
+    }
+  ],
+  "solutionNote": {
+    "en": "You can assign through two indexes to replace one cell in a nested list. The outer and inner list keep their existing identities; only the selected value changes.\n\nTrace the solution one line at a time. Try a different input to see which parts change.",
+    "nl": "Met twee indexes kun je één cel in een geneste list vervangen. De buitenste en binnenste list blijven dezelfde objecten; alleen de geselecteerde waarde verandert.\n\nVolg de oplossing regel voor regel. Probeer een andere invoer en bekijk welke onderdelen veranderen."
+  },
+  "sourcePosition": 13,
+  "sourceUrl": "https://www.codecademy.com/courses/learn-python-3/lessons/create-python-list/exercises/modifying-2-d-lists",
+  "estimatedMinutes": 6
+}

@@ -1,0 +1,43 @@
+{
+  "id": "using-dictionaries-05",
+  "chapter": 9,
+  "group": "using-dictionaries",
+  "title": {
+    "en": "Removing entries",
+    "nl": "Entries verwijderen"
+  },
+  "kind": "coding",
+  "optional": false,
+  "explanation": {
+    "en": "pop(key, default) removes a key and returns its value. A supplied default handles absence without KeyError. Use it when moving an entry to another collection.",
+    "nl": "pop(key, default) verwijdert een key en geeft de value terug. Een default voorkomt KeyError als de key ontbreekt. Gebruik dit om een entry naar een andere verzameling te verplaatsen."
+  },
+  "example": "",
+  "files": {
+    "main.py": "stock = {\"lamp\": 4, \"cable\": 9}\n"
+  },
+  "solution": {
+    "main.py": "stock = {\"lamp\": 4, \"cable\": 9}\nremoved = stock.pop(\"lamp\")\nmissing = stock.pop(\"battery\", 0)\nprint(removed, missing, stock)\n"
+  },
+  "checkpoints": [
+    {
+      "id": "using-dictionaries-05-step-1",
+      "task": {
+        "en": "Pop lamp into removed, then pop absent battery with default 0 into missing.",
+        "nl": "Pop lamp naar removed en pop daarna de ontbrekende battery met default 0 naar missing."
+      },
+      "check": "removed == 4 and missing == 0 and stock == {'cable':9}",
+      "hint": {
+        "en": "Start with stock = {\"lamp\": 4, \"cable\": 9}. Then compare the values with the task.",
+        "nl": "Begin met stock = {\"lamp\": 4, \"cable\": 9}. Vergelijk de waarden daarna met de opdracht."
+      }
+    }
+  ],
+  "solutionNote": {
+    "en": "pop(key, default) removes a key and returns its value. A supplied default handles absence without KeyError. Use it when moving an entry to another collection.\n\nTrace the solution one line at a time. Try a different input to see which parts change.",
+    "nl": "pop(key, default) verwijdert een key en geeft de value terug. Een default voorkomt KeyError als de key ontbreekt. Gebruik dit om een entry naar een andere verzameling te verplaatsen.\n\nVolg de oplossing regel voor regel. Probeer een andere invoer en bekijk welke onderdelen veranderen."
+  },
+  "sourcePosition": 5,
+  "sourceUrl": "https://www.codecademy.com/courses/learn-python-3/lessons/using-dictionaries/exercises/pop-a-key",
+  "estimatedMinutes": 6
+}

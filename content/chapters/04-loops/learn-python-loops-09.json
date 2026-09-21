@@ -1,0 +1,43 @@
+{
+  "id": "learn-python-loops-09",
+  "chapter": 4,
+  "group": "learn-python-loops",
+  "title": {
+    "en": "Skipping an iteration",
+    "nl": "Een herhaling overslaan"
+  },
+  "kind": "coding",
+  "optional": false,
+  "explanation": {
+    "en": "continue skips the rest of the current iteration and moves to the next one. Use it to ignore invalid entries without ending the entire loop.",
+    "nl": "continue slaat de rest van de huidige herhaling over en gaat naar de volgende. Gebruik dit om ongeldige items over te slaan zonder de hele loop te stoppen."
+  },
+  "example": "",
+  "files": {
+    "main.py": "values = [3, -1, 5, -2, 0]\nvalid = []\n"
+  },
+  "solution": {
+    "main.py": "values = [3, -1, 5, -2, 0]\nvalid = []\nfor value in values:\n    if value < 0:\n        continue\n    valid.append(value)\nprint(valid)\n"
+  },
+  "checkpoints": [
+    {
+      "id": "learn-python-loops-09-step-1",
+      "task": {
+        "en": "Skip negative values using continue and collect the others in valid.",
+        "nl": "Sla negatieve waarden over met continue en verzamel de overige waarden in valid."
+      },
+      "check": "valid == [3,5,0] and any(isinstance(n,_ast.Continue) for n in _ast.walk(_ast.parse(_source)))",
+      "hint": {
+        "en": "Start with values = [3, -1, 5, -2, 0]. Then compare the values with the task.",
+        "nl": "Begin met values = [3, -1, 5, -2, 0]. Vergelijk de waarden daarna met de opdracht."
+      }
+    }
+  ],
+  "solutionNote": {
+    "en": "continue skips the rest of the current iteration and moves to the next one. Use it to ignore invalid entries without ending the entire loop.\n\nTrace the solution one line at a time. Try a different input to see which parts change.",
+    "nl": "continue slaat de rest van de huidige herhaling over en gaat naar de volgende. Gebruik dit om ongeldige items over te slaan zonder de hele loop te stoppen.\n\nVolg de oplossing regel voor regel. Probeer een andere invoer en bekijk welke onderdelen veranderen."
+  },
+  "sourcePosition": 9,
+  "sourceUrl": "https://www.codecademy.com/courses/learn-python-3/lessons/learn-python-loops/exercises/continue",
+  "estimatedMinutes": 6
+}

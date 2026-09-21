@@ -1,0 +1,41 @@
+{
+  "id": "practice-6-numeric-3",
+  "chapter": 6,
+  "group": "numeric",
+  "title": {
+    "en": "Completion percentage",
+    "nl": "Voltooiingspercentage"
+  },
+  "kind": "challenge",
+  "optional": true,
+  "explanation": {
+    "en": "Return completed / total * 100. Return 0 when total is zero.",
+    "nl": "Geef completed / total * 100 terug. Geef 0 als total nul is."
+  },
+  "example": "",
+  "files": {
+    "main.py": "def percentage(completed, total):\n    # Implement the function.\n    pass\n\nprint(percentage(3, 4))\n"
+  },
+  "solution": {
+    "main.py": "def percentage(completed, total):\n    if total == 0:\n        return 0\n    return completed / total * 100\n\nprint(percentage(3, 4))\n"
+  },
+  "checkpoints": [
+    {
+      "id": "practice-6-numeric-3-step-1",
+      "task": {
+        "en": "Return completed / total * 100. Return 0 when total is zero.",
+        "nl": "Geef completed / total * 100 terug. Geef 0 als total nul is."
+      },
+      "check": "percentage(3,4) == 75 and percentage(0,0) == 0 and percentage(2,2) == 100",
+      "hint": {
+        "en": "Work through a small input by hand first. Separate the condition, transformation, and return value.",
+        "nl": "Werk eerst zelf een kleine invoer uit. Bekijk de voorwaarde, de bewerking en de return value afzonderlijk."
+      }
+    }
+  ],
+  "solutionNote": {
+    "en": "This solution separates the calculation from its input. Test the function with ordinary values and edge cases such as empty collections or boundary values.",
+    "nl": "Deze oplossing scheidt de berekening van de invoer. Test de function met gewone waarden en grensgevallen, zoals lege verzamelingen of grenswaarden."
+  },
+  "estimatedMinutes": 10
+}

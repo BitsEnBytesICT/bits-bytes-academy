@@ -1,0 +1,41 @@
+{
+  "id": "practice-6-compound-1",
+  "chapter": 6,
+  "group": "compound",
+  "title": {
+    "en": "Open interval",
+    "nl": "Open interval"
+  },
+  "kind": "challenge",
+  "optional": true,
+  "explanation": {
+    "en": "Return True only when value lies strictly between low and high. Exclude both endpoints.",
+    "nl": "Geef alleen True terug als value strikt tussen low en high ligt. Sluit beide grenzen uit."
+  },
+  "example": "",
+  "files": {
+    "main.py": "def inside(value, low, high):\n    # Implement the function.\n    pass\n\nprint(inside(5, 2, 8))\n"
+  },
+  "solution": {
+    "main.py": "def inside(value, low, high):\n    return low < value < high\n\nprint(inside(5, 2, 8))\n"
+  },
+  "checkpoints": [
+    {
+      "id": "practice-6-compound-1-step-1",
+      "task": {
+        "en": "Return True only when value lies strictly between low and high. Exclude both endpoints.",
+        "nl": "Geef alleen True terug als value strikt tussen low en high ligt. Sluit beide grenzen uit."
+      },
+      "check": "inside(5,2,8) is True and inside(2,2,8) is False and inside(8,2,8) is False",
+      "hint": {
+        "en": "Work through a small input by hand first. Separate the condition, transformation, and return value.",
+        "nl": "Werk eerst zelf een kleine invoer uit. Bekijk de voorwaarde, de bewerking en de return value afzonderlijk."
+      }
+    }
+  ],
+  "solutionNote": {
+    "en": "This solution separates the calculation from its input. Test the function with ordinary values and edge cases such as empty collections or boundary values.",
+    "nl": "Deze oplossing scheidt de berekening van de invoer. Test de function met gewone waarden en grensgevallen, zoals lege verzamelingen of grenswaarden."
+  },
+  "estimatedMinutes": 10
+}

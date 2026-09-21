@@ -1,0 +1,43 @@
+{
+  "id": "introduction-to-strings-06",
+  "chapter": 7,
+  "group": "introduction-to-strings",
+  "title": {
+    "en": "Negative string indexes",
+    "nl": "Negatieve string-indexes"
+  },
+  "kind": "coding",
+  "optional": false,
+  "explanation": {
+    "en": "Negative indexes work on strings as they do on lists. text[-1] is the final character and text[-3:] gives the final three characters.",
+    "nl": "Negatieve indexes werken bij strings net als bij lists. text[-1] is het laatste teken en text[-3:] geeft de laatste drie tekens."
+  },
+  "example": "",
+  "files": {
+    "main.py": "code = \"route-ABC\"\n"
+  },
+  "solution": {
+    "main.py": "code = \"route-ABC\"\nlast = code[-1]\nsuffix = code[-3:]\nprint(last, suffix)\n"
+  },
+  "checkpoints": [
+    {
+      "id": "introduction-to-strings-06-step-1",
+      "task": {
+        "en": "Get the final character into last and the final three characters into suffix.",
+        "nl": "Sla het laatste teken op in last en de laatste drie tekens in suffix."
+      },
+      "check": "last == 'C' and suffix == 'ABC'",
+      "hint": {
+        "en": "Start with code = \"route-ABC\". Then compare the values with the task.",
+        "nl": "Begin met code = \"route-ABC\". Vergelijk de waarden daarna met de opdracht."
+      }
+    }
+  ],
+  "solutionNote": {
+    "en": "Negative indexes work on strings as they do on lists. text[-1] is the final character and text[-3:] gives the final three characters.\n\nTrace the solution one line at a time. Try a different input to see which parts change.",
+    "nl": "Negatieve indexes werken bij strings net als bij lists. text[-1] is het laatste teken en text[-3:] geeft de laatste drie tekens.\n\nVolg de oplossing regel voor regel. Probeer een andere invoer en bekijk welke onderdelen veranderen."
+  },
+  "sourcePosition": 6,
+  "sourceUrl": "https://www.codecademy.com/courses/learn-python-3/lessons/introduction-to-strings/exercises/negative-indices",
+  "estimatedMinutes": 6
+}

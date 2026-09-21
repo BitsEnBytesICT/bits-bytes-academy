@@ -1,0 +1,43 @@
+{
+  "id": "python-control-flow-05",
+  "chapter": 2,
+  "group": "python-control-flow",
+  "title": {
+    "en": "Conditional blocks",
+    "nl": "If statements"
+  },
+  "kind": "coding",
+  "optional": false,
+  "explanation": {
+    "en": "An if statement executes its indented block when the condition is true. End the condition with a colon. Consistent indentation tells Python which statements belong to the block.",
+    "nl": "Een if statement voert het ingesprongen blok uit als de voorwaarde waar is. Sluit de voorwaarde af met een dubbele punt. Consistente inspringing vertelt Python welke regels bij het blok horen."
+  },
+  "example": "if speed > 10:\n    print(\"Slow down\")",
+  "files": {
+    "main.py": "temperature = 34\n"
+  },
+  "solution": {
+    "main.py": "temperature = 34\nif temperature > 30:\n    print(\"Heat warning\")\n"
+  },
+  "checkpoints": [
+    {
+      "id": "python-control-flow-05-step-1",
+      "task": {
+        "en": "If temperature is above 30, print Heat warning. Keep temperature at 34.",
+        "nl": "Druk Heat warning af als temperature hoger is dan 30. Houd temperature op 34."
+      },
+      "check": "temperature == 34 and _stdout.strip() == 'Heat warning' and any(isinstance(n,_ast.If) for n in _ast.walk(_ast.parse(_source)))",
+      "hint": {
+        "en": "Start with temperature = 34. Then compare the values with the task.",
+        "nl": "Begin met temperature = 34. Vergelijk de waarden daarna met de opdracht."
+      }
+    }
+  ],
+  "solutionNote": {
+    "en": "An if statement executes its indented block when the condition is true. End the condition with a colon. Consistent indentation tells Python which statements belong to the block.\n\nTrace the solution one line at a time. Try a different input to see which parts change.",
+    "nl": "Een if statement voert het ingesprongen blok uit als de voorwaarde waar is. Sluit de voorwaarde af met een dubbele punt. Consistente inspringing vertelt Python welke regels bij het blok horen.\n\nVolg de oplossing regel voor regel. Probeer een andere invoer en bekijk welke onderdelen veranderen."
+  },
+  "sourcePosition": 5,
+  "sourceUrl": "https://www.codecademy.com/courses/learn-python-3/lessons/python-control-flow/exercises/if-statement",
+  "estimatedMinutes": 6
+}

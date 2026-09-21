@@ -1,0 +1,43 @@
+{
+  "id": "string-methods-07",
+  "chapter": 7,
+  "group": "string-methods",
+  "title": {
+    "en": "Joining with separators",
+    "nl": "Een separator kiezen"
+  },
+  "kind": "coding",
+  "optional": false,
+  "explanation": {
+    "en": "The join separator can contain any text, including several characters. No separator is added before the first or after the final element.",
+    "nl": "De join-separator kan elke tekst bevatten, ook meerdere tekens. Er verschijnt geen separator vóór het eerste of na het laatste element."
+  },
+  "example": "",
+  "files": {
+    "main.py": "segments = [\"home\", \"notes\", \"today\"]\n"
+  },
+  "solution": {
+    "main.py": "segments = [\"home\", \"notes\", \"today\"]\npath_label = \"/\".join(segments)\nprint(path_label)\n"
+  },
+  "checkpoints": [
+    {
+      "id": "string-methods-07-step-1",
+      "task": {
+        "en": "Join segments with / to produce path_label.",
+        "nl": "Voeg segments samen met / tot path_label."
+      },
+      "check": "path_label == 'home/notes/today'",
+      "hint": {
+        "en": "Start with segments = [\"home\", \"notes\", \"today\"]. Then compare the values with the task.",
+        "nl": "Begin met segments = [\"home\", \"notes\", \"today\"]. Vergelijk de waarden daarna met de opdracht."
+      }
+    }
+  ],
+  "solutionNote": {
+    "en": "The join separator can contain any text, including several characters. No separator is added before the first or after the final element.\n\nTrace the solution one line at a time. Try a different input to see which parts change.",
+    "nl": "De join-separator kan elke tekst bevatten, ook meerdere tekens. Er verschijnt geen separator vóór het eerste of na het laatste element.\n\nVolg de oplossing regel voor regel. Probeer een andere invoer en bekijk welke onderdelen veranderen."
+  },
+  "sourcePosition": 7,
+  "sourceUrl": "https://www.codecademy.com/courses/learn-python-3/lessons/string-methods/exercises/joining-strings-ii",
+  "estimatedMinutes": 6
+}

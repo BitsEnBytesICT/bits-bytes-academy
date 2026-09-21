@@ -1,0 +1,43 @@
+{
+  "id": "string-methods-09",
+  "chapter": 7,
+  "group": "string-methods",
+  "title": {
+    "en": "Replacing substrings",
+    "nl": "Substrings vervangen"
+  },
+  "kind": "coding",
+  "optional": false,
+  "explanation": {
+    "en": "replace(old, new) returns a string with matching substrings replaced. By default it replaces all occurrences. The optional third argument limits the number of replacements.",
+    "nl": "replace(old, new) geeft een string terug waarin passende substrings vervangen zijn. Standaard worden alle voorkomens vervangen. Het optionele derde argument beperkt het aantal vervangingen."
+  },
+  "example": "",
+  "files": {
+    "main.py": "template = \"A: ?; B: ?\"\n"
+  },
+  "solution": {
+    "main.py": "template = \"A: ?; B: ?\"\nstatus = template.replace(\"?\", \"ready\")\nprint(status)\n"
+  },
+  "checkpoints": [
+    {
+      "id": "string-methods-09-step-1",
+      "task": {
+        "en": "Replace every ? in template with ready and save status.",
+        "nl": "Vervang elke ? in template door ready en sla het resultaat op in status."
+      },
+      "check": "status == 'A: ready; B: ready'",
+      "hint": {
+        "en": "Start with template = \"A: ?; B: ?\". Then compare the values with the task.",
+        "nl": "Begin met template = \"A: ?; B: ?\". Vergelijk de waarden daarna met de opdracht."
+      }
+    }
+  ],
+  "solutionNote": {
+    "en": "replace(old, new) returns a string with matching substrings replaced. By default it replaces all occurrences. The optional third argument limits the number of replacements.\n\nTrace the solution one line at a time. Try a different input to see which parts change.",
+    "nl": "replace(old, new) geeft een string terug waarin passende substrings vervangen zijn. Standaard worden alle voorkomens vervangen. Het optionele derde argument beperkt het aantal vervangingen.\n\nVolg de oplossing regel voor regel. Probeer een andere invoer en bekijk welke onderdelen veranderen."
+  },
+  "sourcePosition": 9,
+  "sourceUrl": "https://www.codecademy.com/courses/learn-python-3/lessons/string-methods/exercises/replace",
+  "estimatedMinutes": 6
+}

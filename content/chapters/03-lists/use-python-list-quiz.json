@@ -1,0 +1,542 @@
+{
+  "id": "use-python-list-quiz",
+  "chapter": 3,
+  "group": "use-python-list",
+  "title": {
+    "en": "List operations · Quiz",
+    "nl": "List operations · Quiz"
+  },
+  "kind": "quiz",
+  "optional": false,
+  "questions": [
+    {
+      "id": "use-python-list-q1",
+      "prompt": {
+        "en": "What does this code print?",
+        "nl": "Wat drukt deze code af?"
+      },
+      "code": "print(list(range(4)))",
+      "answer": "a",
+      "choices": [
+        {
+          "id": "a",
+          "label": {
+            "en": "[0, 1, 2, 3]",
+            "nl": "[0, 1, 2, 3]"
+          },
+          "reason": {
+            "en": "The stop value is excluded.",
+            "nl": "De stopwaarde telt niet mee."
+          }
+        },
+        {
+          "id": "b",
+          "label": {
+            "en": "[1, 2, 3, 4]",
+            "nl": "[1, 2, 3, 4]"
+          },
+          "reason": {
+            "en": "The stop value is excluded.",
+            "nl": "De stopwaarde telt niet mee."
+          }
+        },
+        {
+          "id": "c",
+          "label": {
+            "en": "[0, 1, 2, 3, 4]",
+            "nl": "[0, 1, 2, 3, 4]"
+          },
+          "reason": {
+            "en": "The stop value is excluded.",
+            "nl": "De stopwaarde telt niet mee."
+          }
+        }
+      ]
+    },
+    {
+      "id": "use-python-list-q2",
+      "prompt": {
+        "en": "What does this code print?",
+        "nl": "Wat drukt deze code af?"
+      },
+      "code": "print(list(range(2, 9, 3)))",
+      "answer": "a",
+      "choices": [
+        {
+          "id": "a",
+          "label": {
+            "en": "[2, 5, 8]",
+            "nl": "[2, 5, 8]"
+          },
+          "reason": {
+            "en": "Begin at 2 and add 3 while staying below 9.",
+            "nl": "Begin bij 2 en tel telkens 3 op, zolang de waarde kleiner is dan 9."
+          }
+        },
+        {
+          "id": "b",
+          "label": {
+            "en": "[2, 3, 4, 5, 6, 7, 8]",
+            "nl": "[2, 3, 4, 5, 6, 7, 8]"
+          },
+          "reason": {
+            "en": "Begin at 2 and add 3 while staying below 9.",
+            "nl": "Begin bij 2 en tel telkens 3 op, zolang de waarde kleiner is dan 9."
+          }
+        },
+        {
+          "id": "c",
+          "label": {
+            "en": "[3, 6, 9]",
+            "nl": "[3, 6, 9]"
+          },
+          "reason": {
+            "en": "Begin at 2 and add 3 while staying below 9.",
+            "nl": "Begin bij 2 en tel telkens 3 op, zolang de waarde kleiner is dan 9."
+          }
+        }
+      ]
+    },
+    {
+      "id": "use-python-list-q3",
+      "prompt": {
+        "en": "What does this code print?",
+        "nl": "Wat drukt deze code af?"
+      },
+      "code": "print(len([[1, 2], [3, 4]]))",
+      "answer": "a",
+      "choices": [
+        {
+          "id": "a",
+          "label": {
+            "en": "2",
+            "nl": "2"
+          },
+          "reason": {
+            "en": "len counts the two outer elements.",
+            "nl": "len telt de twee buitenste elementen."
+          }
+        },
+        {
+          "id": "b",
+          "label": {
+            "en": "4",
+            "nl": "4"
+          },
+          "reason": {
+            "en": "len counts the two outer elements.",
+            "nl": "len telt de twee buitenste elementen."
+          }
+        },
+        {
+          "id": "c",
+          "label": {
+            "en": "1",
+            "nl": "1"
+          },
+          "reason": {
+            "en": "len counts the two outer elements.",
+            "nl": "len telt de twee buitenste elementen."
+          }
+        }
+      ]
+    },
+    {
+      "id": "use-python-list-q4",
+      "prompt": {
+        "en": "What does this code print?",
+        "nl": "Wat drukt deze code af?"
+      },
+      "code": "print([1, 2, 3, 4][1:3])",
+      "answer": "a",
+      "choices": [
+        {
+          "id": "a",
+          "label": {
+            "en": "[2, 3]",
+            "nl": "[2, 3]"
+          },
+          "reason": {
+            "en": "Index 1 is included and index 3 is excluded.",
+            "nl": "Index 1 telt mee; index 3 niet."
+          }
+        },
+        {
+          "id": "b",
+          "label": {
+            "en": "[1, 2, 3]",
+            "nl": "[1, 2, 3]"
+          },
+          "reason": {
+            "en": "Index 1 is included and index 3 is excluded.",
+            "nl": "Index 1 telt mee; index 3 niet."
+          }
+        },
+        {
+          "id": "c",
+          "label": {
+            "en": "[2, 3, 4]",
+            "nl": "[2, 3, 4]"
+          },
+          "reason": {
+            "en": "Index 1 is included and index 3 is excluded.",
+            "nl": "Index 1 telt mee; index 3 niet."
+          }
+        }
+      ]
+    },
+    {
+      "id": "use-python-list-q5",
+      "prompt": {
+        "en": "What does this code print?",
+        "nl": "Wat drukt deze code af?"
+      },
+      "code": "print([1, 2, 3, 4][-2:])",
+      "answer": "a",
+      "choices": [
+        {
+          "id": "a",
+          "label": {
+            "en": "[3, 4]",
+            "nl": "[3, 4]"
+          },
+          "reason": {
+            "en": "Start two positions from the end and continue to the end.",
+            "nl": "Begin twee posities vóór het einde en ga door tot het einde."
+          }
+        },
+        {
+          "id": "b",
+          "label": {
+            "en": "[1, 2]",
+            "nl": "[1, 2]"
+          },
+          "reason": {
+            "en": "Start two positions from the end and continue to the end.",
+            "nl": "Begin twee posities vóór het einde en ga door tot het einde."
+          }
+        },
+        {
+          "id": "c",
+          "label": {
+            "en": "[2, 3]",
+            "nl": "[2, 3]"
+          },
+          "reason": {
+            "en": "Start two positions from the end and continue to the end.",
+            "nl": "Begin twee posities vóór het einde en ga door tot het einde."
+          }
+        }
+      ]
+    },
+    {
+      "id": "use-python-list-q6",
+      "prompt": {
+        "en": "What does this code print?",
+        "nl": "Wat drukt deze code af?"
+      },
+      "code": "x = [1, 3]\nx.insert(1, 2)\nprint(x)",
+      "answer": "a",
+      "choices": [
+        {
+          "id": "a",
+          "label": {
+            "en": "[1, 2, 3]",
+            "nl": "[1, 2, 3]"
+          },
+          "reason": {
+            "en": "insert places the value before index 1.",
+            "nl": "insert plaatst de waarde vóór index 1."
+          }
+        },
+        {
+          "id": "b",
+          "label": {
+            "en": "[2, 1, 3]",
+            "nl": "[2, 1, 3]"
+          },
+          "reason": {
+            "en": "insert places the value before index 1.",
+            "nl": "insert plaatst de waarde vóór index 1."
+          }
+        },
+        {
+          "id": "c",
+          "label": {
+            "en": "[1, 3, 2]",
+            "nl": "[1, 3, 2]"
+          },
+          "reason": {
+            "en": "insert places the value before index 1.",
+            "nl": "insert plaatst de waarde vóór index 1."
+          }
+        }
+      ]
+    },
+    {
+      "id": "use-python-list-q7",
+      "prompt": {
+        "en": "What does this code print?",
+        "nl": "Wat drukt deze code af?"
+      },
+      "code": "x = [4, 5, 6]\nprint(x.pop())",
+      "answer": "a",
+      "choices": [
+        {
+          "id": "a",
+          "label": {
+            "en": "6",
+            "nl": "6"
+          },
+          "reason": {
+            "en": "pop without an index removes and returns the last value.",
+            "nl": "pop zonder index verwijdert de laatste waarde en geeft die terug."
+          }
+        },
+        {
+          "id": "b",
+          "label": {
+            "en": "4",
+            "nl": "4"
+          },
+          "reason": {
+            "en": "pop without an index removes and returns the last value.",
+            "nl": "pop zonder index verwijdert de laatste waarde en geeft die terug."
+          }
+        },
+        {
+          "id": "c",
+          "label": {
+            "en": "None",
+            "nl": "None"
+          },
+          "reason": {
+            "en": "pop without an index removes and returns the last value.",
+            "nl": "pop zonder index verwijdert de laatste waarde en geeft die terug."
+          }
+        }
+      ]
+    },
+    {
+      "id": "use-python-list-q8",
+      "prompt": {
+        "en": "What does this code print?",
+        "nl": "Wat drukt deze code af?"
+      },
+      "code": "print([2, 1, 2, 2].count(2))",
+      "answer": "a",
+      "choices": [
+        {
+          "id": "a",
+          "label": {
+            "en": "3",
+            "nl": "3"
+          },
+          "reason": {
+            "en": "There are three elements equal to 2.",
+            "nl": "Drie elementen zijn gelijk aan 2."
+          }
+        },
+        {
+          "id": "b",
+          "label": {
+            "en": "2",
+            "nl": "2"
+          },
+          "reason": {
+            "en": "There are three elements equal to 2.",
+            "nl": "Drie elementen zijn gelijk aan 2."
+          }
+        },
+        {
+          "id": "c",
+          "label": {
+            "en": "4",
+            "nl": "4"
+          },
+          "reason": {
+            "en": "There are three elements equal to 2.",
+            "nl": "Drie elementen zijn gelijk aan 2."
+          }
+        }
+      ]
+    },
+    {
+      "id": "use-python-list-q9",
+      "prompt": {
+        "en": "What does this code print?",
+        "nl": "Wat drukt deze code af?"
+      },
+      "code": "x = [3, 1, 2]\nprint(x.sort())",
+      "answer": "a",
+      "choices": [
+        {
+          "id": "a",
+          "label": {
+            "en": "None",
+            "nl": "None"
+          },
+          "reason": {
+            "en": "sort changes x in place and returns None.",
+            "nl": "sort verandert x en geeft None terug."
+          }
+        },
+        {
+          "id": "b",
+          "label": {
+            "en": "[1, 2, 3]",
+            "nl": "[1, 2, 3]"
+          },
+          "reason": {
+            "en": "sort changes x in place and returns None.",
+            "nl": "sort verandert x en geeft None terug."
+          }
+        },
+        {
+          "id": "c",
+          "label": {
+            "en": "[3, 2, 1]",
+            "nl": "[3, 2, 1]"
+          },
+          "reason": {
+            "en": "sort changes x in place and returns None.",
+            "nl": "sort verandert x en geeft None terug."
+          }
+        }
+      ]
+    },
+    {
+      "id": "use-python-list-q10",
+      "prompt": {
+        "en": "What does this code print?",
+        "nl": "Wat drukt deze code af?"
+      },
+      "code": "x = [3, 1]\ny = sorted(x)\nprint(x)",
+      "answer": "a",
+      "choices": [
+        {
+          "id": "a",
+          "label": {
+            "en": "[3, 1]",
+            "nl": "[3, 1]"
+          },
+          "reason": {
+            "en": "sorted returns a separate list, leaving x unchanged.",
+            "nl": "sorted geeft een aparte list terug en laat x ongewijzigd."
+          }
+        },
+        {
+          "id": "b",
+          "label": {
+            "en": "[1, 3]",
+            "nl": "[1, 3]"
+          },
+          "reason": {
+            "en": "sorted returns a separate list, leaving x unchanged.",
+            "nl": "sorted geeft een aparte list terug en laat x ongewijzigd."
+          }
+        },
+        {
+          "id": "c",
+          "label": {
+            "en": "None",
+            "nl": "None"
+          },
+          "reason": {
+            "en": "sorted returns a separate list, leaving x unchanged.",
+            "nl": "sorted geeft een aparte list terug en laat x ongewijzigd."
+          }
+        }
+      ]
+    },
+    {
+      "id": "use-python-list-q11",
+      "prompt": {
+        "en": "What does this code print?",
+        "nl": "Wat drukt deze code af?"
+      },
+      "code": "print(sorted([4, 2, 7], reverse=True))",
+      "answer": "a",
+      "choices": [
+        {
+          "id": "a",
+          "label": {
+            "en": "[7, 4, 2]",
+            "nl": "[7, 4, 2]"
+          },
+          "reason": {
+            "en": "reverse=True requests descending order.",
+            "nl": "reverse=True vraagt om aflopende volgorde."
+          }
+        },
+        {
+          "id": "b",
+          "label": {
+            "en": "[2, 4, 7]",
+            "nl": "[2, 4, 7]"
+          },
+          "reason": {
+            "en": "reverse=True requests descending order.",
+            "nl": "reverse=True vraagt om aflopende volgorde."
+          }
+        },
+        {
+          "id": "c",
+          "label": {
+            "en": "[4, 2, 7]",
+            "nl": "[4, 2, 7]"
+          },
+          "reason": {
+            "en": "reverse=True requests descending order.",
+            "nl": "reverse=True vraagt om aflopende volgorde."
+          }
+        }
+      ]
+    },
+    {
+      "id": "use-python-list-q12",
+      "prompt": {
+        "en": "What does this code print?",
+        "nl": "Wat drukt deze code af?"
+      },
+      "code": "print([1, 2, 3][:0])",
+      "answer": "a",
+      "choices": [
+        {
+          "id": "a",
+          "label": {
+            "en": "[]",
+            "nl": "[]"
+          },
+          "reason": {
+            "en": "The exclusive stop is zero, so no element is selected.",
+            "nl": "De uitgesloten stopgrens is nul; er wordt geen element gekozen."
+          }
+        },
+        {
+          "id": "b",
+          "label": {
+            "en": "[1]",
+            "nl": "[1]"
+          },
+          "reason": {
+            "en": "The exclusive stop is zero, so no element is selected.",
+            "nl": "De uitgesloten stopgrens is nul; er wordt geen element gekozen."
+          }
+        },
+        {
+          "id": "c",
+          "label": {
+            "en": "[1, 2, 3]",
+            "nl": "[1, 2, 3]"
+          },
+          "reason": {
+            "en": "The exclusive stop is zero, so no element is selected.",
+            "nl": "De uitgesloten stopgrens is nul; er wordt geen element gekozen."
+          }
+        }
+      ]
+    }
+  ],
+  "estimatedMinutes": 12
+}

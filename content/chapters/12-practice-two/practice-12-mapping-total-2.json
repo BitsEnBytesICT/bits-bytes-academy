@@ -1,0 +1,41 @@
+{
+  "id": "practice-12-mapping-total-2",
+  "chapter": 12,
+  "group": "mapping-total",
+  "title": {
+    "en": "Select odd keys",
+    "nl": "Oneven keys selecteren"
+  },
+  "kind": "challenge",
+  "optional": true,
+  "explanation": {
+    "en": "For integer keys and numeric values, return the sum of values whose keys are odd.",
+    "nl": "Geef bij integer-keys en numerieke values de som terug van values met een oneven key."
+  },
+  "example": "",
+  "files": {
+    "main.py": "def odd_key_total(mapping):\n    # Implement the function.\n    pass\n\nprint(odd_key_total({1: 4, 2: 9, 3: 6}))\n"
+  },
+  "solution": {
+    "main.py": "def odd_key_total(mapping):\n    total = 0\n    for key, value in mapping.items():\n        if key % 2 != 0:\n            total += value\n    return total\n\nprint(odd_key_total({1: 4, 2: 9, 3: 6}))\n"
+  },
+  "checkpoints": [
+    {
+      "id": "practice-12-mapping-total-2-step-1",
+      "task": {
+        "en": "For integer keys and numeric values, return the sum of values whose keys are odd.",
+        "nl": "Geef bij integer-keys en numerieke values de som terug van values met een oneven key."
+      },
+      "check": "odd_key_total({1:4,2:9,3:6}) == 10 and odd_key_total({}) == 0",
+      "hint": {
+        "en": "Work through a small input by hand first. Separate the condition, transformation, and return value.",
+        "nl": "Werk eerst zelf een kleine invoer uit. Bekijk de voorwaarde, de bewerking en de return value afzonderlijk."
+      }
+    }
+  ],
+  "solutionNote": {
+    "en": "This solution separates the calculation from its input. Test the function with ordinary values and edge cases such as empty collections or boundary values.",
+    "nl": "Deze oplossing scheidt de berekening van de invoer. Test de function met gewone waarden en grensgevallen, zoals lege verzamelingen of grenswaarden."
+  },
+  "estimatedMinutes": 10
+}

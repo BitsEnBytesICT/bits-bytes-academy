@@ -1,0 +1,43 @@
+{
+  "id": "intro-to-functions-07",
+  "chapter": 5,
+  "group": "intro-to-functions",
+  "title": {
+    "en": "Multiple parameters",
+    "nl": "Meerdere parameters"
+  },
+  "kind": "coding",
+  "optional": false,
+  "explanation": {
+    "en": "Separate multiple parameters with commas. Positional arguments are matched in the same order. A function can combine inputs while keeping its calculation reusable.",
+    "nl": "Scheid meerdere parameters met komma’s. Positional arguments worden in dezelfde volgorde gekoppeld. Een function kan invoer combineren en de berekening herbruikbaar houden."
+  },
+  "example": "",
+  "files": {
+    "main.py": "# Write your code below.\n"
+  },
+  "solution": {
+    "main.py": "def travel_time(distance, speed):\n    return distance / speed\n\nprint(travel_time(90, 30))\n"
+  },
+  "checkpoints": [
+    {
+      "id": "intro-to-functions-07-step-1",
+      "task": {
+        "en": "Define travel_time(distance, speed) to return distance divided by speed.",
+        "nl": "Definieer travel_time(distance, speed) die distance gedeeld door speed teruggeeft."
+      },
+      "check": "travel_time(90,30) == 3 and travel_time(24,8) == 3 and travel_time(10,4) == 2.5",
+      "hint": {
+        "en": "Start with def travel_time(distance, speed):. Then compare the values with the task.",
+        "nl": "Begin met def travel_time(distance, speed):. Vergelijk de waarden daarna met de opdracht."
+      }
+    }
+  ],
+  "solutionNote": {
+    "en": "Separate multiple parameters with commas. Positional arguments are matched in the same order. A function can combine inputs while keeping its calculation reusable.\n\nTrace the solution one line at a time. Try a different input to see which parts change.",
+    "nl": "Scheid meerdere parameters met komma’s. Positional arguments worden in dezelfde volgorde gekoppeld. Een function kan invoer combineren en de berekening herbruikbaar houden.\n\nVolg de oplossing regel voor regel. Probeer een andere invoer en bekijk welke onderdelen veranderen."
+  },
+  "sourcePosition": 7,
+  "sourceUrl": "https://www.codecademy.com/courses/learn-python-3/lessons/intro-to-functions/exercises/py-multiple-parameters",
+  "estimatedMinutes": 6
+}

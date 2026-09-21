@@ -1,0 +1,30 @@
+{
+  "id": "learn-python-files-13",
+  "chapter": 10,
+  "group": "learn-python-files",
+  "title": {
+    "en": "File handling review",
+    "nl": "Terugblik: bestanden"
+  },
+  "kind": "reading",
+  "optional": false,
+  "explanation": {
+    "en": "Choose a mode intentionally: r reads, w replaces, and a appends. Use with for cleanup, csv for tables, and json for structured values. Generated files appear beside main.py, and you can download the selected file.",
+    "nl": "Kies bewust een mode: r leest, w vervangt en a voegt toe. Gebruik with voor opruimen, csv voor tabellen en json voor gestructureerde waarden. Gegenereerde bestanden verschijnen naast main.py en je kunt het geselecteerde bestand downloaden."
+  },
+  "example": "",
+  "files": {
+    "main.py": "import json\nwith open(\"summary.json\", \"w\", encoding=\"utf-8\") as handle:\n    json.dump({\"ready\": True}, handle)\nprint(\"Open summary.json to inspect the result.\")\n"
+  },
+  "solution": {
+    "main.py": "import json\nwith open(\"summary.json\", \"w\", encoding=\"utf-8\") as handle:\n    json.dump({\"ready\": True}, handle)\nprint(\"Open summary.json to inspect the result.\")\n"
+  },
+  "checkpoints": [],
+  "solutionNote": {
+    "en": "Choose a mode intentionally: r reads, w replaces, and a appends. Use with for cleanup, csv for tables, and json for structured values. Generated files appear beside main.py, and you can download the selected file.\n\nTrace the solution one line at a time. Try a different input to see which parts change.",
+    "nl": "Kies bewust een mode: r leest, w vervangt en a voegt toe. Gebruik with voor opruimen, csv voor tabellen en json voor gestructureerde waarden. Gegenereerde bestanden verschijnen naast main.py en je kunt het geselecteerde bestand downloaden.\n\nVolg de oplossing regel voor regel. Probeer een andere invoer en bekijk welke onderdelen veranderen."
+  },
+  "sourcePosition": 13,
+  "sourceUrl": "https://www.codecademy.com/courses/learn-python-3/lessons/learn-python-files/exercises/review",
+  "estimatedMinutes": 2
+}

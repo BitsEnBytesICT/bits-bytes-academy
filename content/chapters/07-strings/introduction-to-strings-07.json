@@ -1,0 +1,43 @@
+{
+  "id": "introduction-to-strings-07",
+  "chapter": 7,
+  "group": "introduction-to-strings",
+  "title": {
+    "en": "String immutability",
+    "nl": "String-immutability"
+  },
+  "kind": "coding",
+  "optional": false,
+  "explanation": {
+    "en": "Strings are immutable. Assigning to text[0] raises TypeError because an existing string cannot be edited in place. Build a new string and assign it to a variable instead.",
+    "nl": "Strings zijn immutable. Een assignment naar text[0] geeft TypeError, omdat je een bestaande string niet op haar plek kunt wijzigen. Bouw een nieuwe string en wijs die toe aan een variable."
+  },
+  "example": "",
+  "files": {
+    "main.py": "word = \"goat\"\nword[0] = \"B\"\n"
+  },
+  "solution": {
+    "main.py": "word = \"goat\"\ncorrected = \"B\" + word[1:]\nprint(corrected)\n"
+  },
+  "checkpoints": [
+    {
+      "id": "introduction-to-strings-07-step-1",
+      "task": {
+        "en": "Repair the code by building corrected as Boat from word = goat. Keep word unchanged.",
+        "nl": "Herstel de code door corrected als Boat te maken uit word = goat. Laat word ongewijzigd."
+      },
+      "check": "word == 'goat' and corrected == 'Boat'",
+      "hint": {
+        "en": "Start with word = \"goat\". Then compare the values with the task.",
+        "nl": "Begin met word = \"goat\". Vergelijk de waarden daarna met de opdracht."
+      }
+    }
+  ],
+  "solutionNote": {
+    "en": "Strings are immutable. Assigning to text[0] raises TypeError because an existing string cannot be edited in place. Build a new string and assign it to a variable instead.\n\nTrace the solution one line at a time. Try a different input to see which parts change.",
+    "nl": "Strings zijn immutable. Een assignment naar text[0] geeft TypeError, omdat je een bestaande string niet op haar plek kunt wijzigen. Bouw een nieuwe string en wijs die toe aan een variable.\n\nVolg de oplossing regel voor regel. Probeer een andere invoer en bekijk welke onderdelen veranderen."
+  },
+  "sourcePosition": 7,
+  "sourceUrl": "https://www.codecademy.com/courses/learn-python-3/lessons/introduction-to-strings/exercises/immutable-strings",
+  "estimatedMinutes": 6
+}

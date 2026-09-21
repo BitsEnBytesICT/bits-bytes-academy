@@ -1,0 +1,41 @@
+{
+  "id": "practice-12-string-transform-2",
+  "chapter": 12,
+  "group": "string-transform",
+  "title": {
+    "en": "Sample a string",
+    "nl": "Een string samplen"
+  },
+  "kind": "challenge",
+  "optional": true,
+  "explanation": {
+    "en": "Return the characters at even indexes: 0, 2, 4, and so on.",
+    "nl": "Geef de tekens op even indexes terug: 0, 2, 4 enzovoort."
+  },
+  "example": "",
+  "files": {
+    "main.py": "def sample_text(text):\n    # Implement the function.\n    pass\n\nprint(sample_text(\"abcdef\"))\n"
+  },
+  "solution": {
+    "main.py": "def sample_text(text):\n    return text[::2]\n\nprint(sample_text(\"abcdef\"))\n"
+  },
+  "checkpoints": [
+    {
+      "id": "practice-12-string-transform-2-step-1",
+      "task": {
+        "en": "Return the characters at even indexes: 0, 2, 4, and so on.",
+        "nl": "Geef de tekens op even indexes terug: 0, 2, 4 enzovoort."
+      },
+      "check": "sample_text('abcdef') == 'ace' and sample_text('') == '' and sample_text('A') == 'A'",
+      "hint": {
+        "en": "Work through a small input by hand first. Separate the condition, transformation, and return value.",
+        "nl": "Werk eerst zelf een kleine invoer uit. Bekijk de voorwaarde, de bewerking en de return value afzonderlijk."
+      }
+    }
+  ],
+  "solutionNote": {
+    "en": "This solution separates the calculation from its input. Test the function with ordinary values and edge cases such as empty collections or boundary values.",
+    "nl": "Deze oplossing scheidt de berekening van de invoer. Test de function met gewone waarden en grensgevallen, zoals lege verzamelingen of grenswaarden."
+  },
+  "estimatedMinutes": 10
+}

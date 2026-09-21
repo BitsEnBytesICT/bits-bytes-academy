@@ -1,0 +1,43 @@
+{
+  "id": "intro-to-functions-02",
+  "chapter": 5,
+  "group": "intro-to-functions",
+  "title": {
+    "en": "Removing duplicated logic",
+    "nl": "Dubbele code voorkomen"
+  },
+  "kind": "coding",
+  "optional": false,
+  "explanation": {
+    "en": "A function reduces duplication and gives a repeated action a meaningful name. Calling the same function several times reuses the same instructions without copying its body.",
+    "nl": "Een function vermindert dubbele code en geeft een herhaalde actie een duidelijke naam. Meerdere aanroepen hergebruiken dezelfde instructies zonder de body te kopiëren."
+  },
+  "example": "",
+  "files": {
+    "main.py": "# Write your code below.\n"
+  },
+  "solution": {
+    "main.py": "def show_status():\n    print(\"Ready\")\n\nshow_status()\nshow_status()\n"
+  },
+  "checkpoints": [
+    {
+      "id": "intro-to-functions-02-step-1",
+      "task": {
+        "en": "Define show_status() to print Ready. Call it twice.",
+        "nl": "Definieer show_status() zodat deze Ready afdrukt. Roep de function twee keer aan."
+      },
+      "check": "callable(show_status) and _stdout.splitlines() == ['Ready','Ready']",
+      "hint": {
+        "en": "Start with def show_status():. Then compare the values with the task.",
+        "nl": "Begin met def show_status():. Vergelijk de waarden daarna met de opdracht."
+      }
+    }
+  ],
+  "solutionNote": {
+    "en": "A function reduces duplication and gives a repeated action a meaningful name. Calling the same function several times reuses the same instructions without copying its body.\n\nTrace the solution one line at a time. Try a different input to see which parts change.",
+    "nl": "Een function vermindert dubbele code en geeft een herhaalde actie een duidelijke naam. Meerdere aanroepen hergebruiken dezelfde instructies zonder de body te kopiëren.\n\nVolg de oplossing regel voor regel. Probeer een andere invoer en bekijk welke onderdelen veranderen."
+  },
+  "sourcePosition": 2,
+  "sourceUrl": "https://www.codecademy.com/courses/learn-python-3/lessons/intro-to-functions/exercises/why-functions",
+  "estimatedMinutes": 6
+}

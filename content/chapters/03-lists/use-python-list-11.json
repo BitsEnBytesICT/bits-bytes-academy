@@ -1,0 +1,43 @@
+{
+  "id": "use-python-list-11",
+  "chapter": 3,
+  "group": "use-python-list",
+  "title": {
+    "en": "Creating a sorted copy",
+    "nl": "Een gesorteerde kopie"
+  },
+  "kind": "coding",
+  "optional": false,
+  "explanation": {
+    "en": "sorted() returns a new sorted list and leaves the original collection unchanged. This is useful when the original order has meaning you want to preserve.",
+    "nl": "sorted() geeft een nieuwe gesorteerde list terug en laat de oorspronkelijke verzameling ongewijzigd. Dat is handig als de oorspronkelijke volgorde betekenis heeft."
+  },
+  "example": "",
+  "files": {
+    "main.py": "arrival = [8, 2, 5]\n"
+  },
+  "solution": {
+    "main.py": "arrival = [8, 2, 5]\nranked = sorted(arrival)\nprint(ranked)\n"
+  },
+  "checkpoints": [
+    {
+      "id": "use-python-list-11-step-1",
+      "task": {
+        "en": "Create ranked as a sorted copy of arrival. Keep arrival unchanged.",
+        "nl": "Maak ranked als gesorteerde kopie van arrival. Laat arrival ongewijzigd."
+      },
+      "check": "ranked == [2,5,8] and arrival == [8,2,5]",
+      "hint": {
+        "en": "Start with arrival = [8, 2, 5]. Then compare the values with the task.",
+        "nl": "Begin met arrival = [8, 2, 5]. Vergelijk de waarden daarna met de opdracht."
+      }
+    }
+  ],
+  "solutionNote": {
+    "en": "sorted() returns a new sorted list and leaves the original collection unchanged. This is useful when the original order has meaning you want to preserve.\n\nTrace the solution one line at a time. Try a different input to see which parts change.",
+    "nl": "sorted() geeft een nieuwe gesorteerde list terug en laat de oorspronkelijke verzameling ongewijzigd. Dat is handig als de oorspronkelijke volgorde betekenis heeft.\n\nVolg de oplossing regel voor regel. Probeer een andere invoer en bekijk welke onderdelen veranderen."
+  },
+  "sourcePosition": 11,
+  "sourceUrl": "https://www.codecademy.com/courses/learn-python-3/lessons/use-python-list/exercises/sorted",
+  "estimatedMinutes": 6
+}

@@ -1,0 +1,41 @@
+{
+  "id": "practice-6-lists-3",
+  "chapter": 6,
+  "group": "lists",
+  "title": {
+    "en": "Shorter route",
+    "nl": "Kortere route"
+  },
+  "kind": "challenge",
+  "optional": true,
+  "explanation": {
+    "en": "Return the shorter list. If lengths are equal, return the first list.",
+    "nl": "Geef de kortste list terug. Zijn de lengtes gelijk, geef dan de eerste list terug."
+  },
+  "example": "",
+  "files": {
+    "main.py": "def shorter(first, second):\n    # Implement the function.\n    pass\n\nprint(shorter([1, 2], [3]))\n"
+  },
+  "solution": {
+    "main.py": "def shorter(first, second):\n    if len(first) <= len(second):\n        return first\n    return second\n\nprint(shorter([1, 2], [3]))\n"
+  },
+  "checkpoints": [
+    {
+      "id": "practice-6-lists-3-step-1",
+      "task": {
+        "en": "Return the shorter list. If lengths are equal, return the first list.",
+        "nl": "Geef de kortste list terug. Zijn de lengtes gelijk, geef dan de eerste list terug."
+      },
+      "check": "shorter([1],[2,3]) == [1] and shorter([1,2],[3]) == [3] and shorter([1],[2]) == [1]",
+      "hint": {
+        "en": "Work through a small input by hand first. Separate the condition, transformation, and return value.",
+        "nl": "Werk eerst zelf een kleine invoer uit. Bekijk de voorwaarde, de bewerking en de return value afzonderlijk."
+      }
+    }
+  ],
+  "solutionNote": {
+    "en": "This solution separates the calculation from its input. Test the function with ordinary values and edge cases such as empty collections or boundary values.",
+    "nl": "Deze oplossing scheidt de berekening van de invoer. Test de function met gewone waarden en grensgevallen, zoals lege verzamelingen of grenswaarden."
+  },
+  "estimatedMinutes": 10
+}

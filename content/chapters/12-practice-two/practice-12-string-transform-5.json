@@ -1,0 +1,41 @@
+{
+  "id": "practice-12-string-transform-5",
+  "chapter": 12,
+  "group": "string-transform",
+  "title": {
+    "en": "Pad a display",
+    "nl": "Een weergave opvullen"
+  },
+  "kind": "challenge",
+  "optional": true,
+  "explanation": {
+    "en": "Append dots until text reaches width characters. Do not truncate text that is already long enough.",
+    "nl": "Voeg punten toe totdat text width tekens lang is. Kort tekst die al lang genoeg is niet in."
+  },
+  "example": "",
+  "files": {
+    "main.py": "def pad_display(text, width):\n    # Implement the function.\n    pass\n\nprint(pad_display(\"go\", 5))\n"
+  },
+  "solution": {
+    "main.py": "def pad_display(text, width):\n    while len(text) < width:\n        text += \".\"\n    return text\n\nprint(pad_display(\"go\", 5))\n"
+  },
+  "checkpoints": [
+    {
+      "id": "practice-12-string-transform-5-step-1",
+      "task": {
+        "en": "Append dots until text reaches width characters. Do not truncate text that is already long enough.",
+        "nl": "Voeg punten toe totdat text width tekens lang is. Kort tekst die al lang genoeg is niet in."
+      },
+      "check": "pad_display('go',5) == 'go...' and pad_display('ready',3) == 'ready' and pad_display('',0) == ''",
+      "hint": {
+        "en": "Work through a small input by hand first. Separate the condition, transformation, and return value.",
+        "nl": "Werk eerst zelf een kleine invoer uit. Bekijk de voorwaarde, de bewerking en de return value afzonderlijk."
+      }
+    }
+  ],
+  "solutionNote": {
+    "en": "This solution separates the calculation from its input. Test the function with ordinary values and edge cases such as empty collections or boundary values.",
+    "nl": "Deze oplossing scheidt de berekening van de invoer. Test de function met gewone waarden en grensgevallen, zoals lege verzamelingen of grenswaarden."
+  },
+  "estimatedMinutes": 10
+}

@@ -1,0 +1,43 @@
+{
+  "id": "data-types-12",
+  "chapter": 11,
+  "group": "data-types",
+  "title": {
+    "en": "Object introspection",
+    "nl": "Object-introspection"
+  },
+  "kind": "coding",
+  "optional": false,
+  "explanation": {
+    "en": "dir(object) lists attribute names useful for exploration. Functions themselves are objects and have attributes such as __name__. Introspection helps you discover behavior without guessing at an object’s type.",
+    "nl": "dir(object) toont attribuutnamen die nuttig zijn bij onderzoek. Functions zijn zelf objecten en hebben attributes zoals __name__. Introspection helpt gedrag te ontdekken zonder het type te raden."
+  },
+  "example": "",
+  "files": {
+    "main.py": "# Write your code below.\n"
+  },
+  "solution": {
+    "main.py": "def signal():\n    return \"ready\"\n\nname = signal.__name__\nsupports_upper = \"upper\" in dir(\"hello\")\nprint(name, supports_upper)\n"
+  },
+  "checkpoints": [
+    {
+      "id": "data-types-12-step-1",
+      "task": {
+        "en": "Define signal() and store its __name__ in name. Store whether upper appears in dir(\"hello\") in supports_upper.",
+        "nl": "Definieer signal() en sla __name__ op in name. Sla in supports_upper op of upper voorkomt in dir(\"hello\")."
+      },
+      "check": "name == 'signal' and supports_upper is True",
+      "hint": {
+        "en": "Start with def signal():. Then compare the values with the task.",
+        "nl": "Begin met def signal():. Vergelijk de waarden daarna met de opdracht."
+      }
+    }
+  ],
+  "solutionNote": {
+    "en": "dir(object) lists attribute names useful for exploration. Functions themselves are objects and have attributes such as __name__. Introspection helps you discover behavior without guessing at an object’s type.\n\nTrace the solution one line at a time. Try a different input to see which parts change.",
+    "nl": "dir(object) toont attribuutnamen die nuttig zijn bij onderzoek. Functions zijn zelf objecten en hebben attributes zoals __name__. Introspection helpt gedrag te ontdekken zonder het type te raden.\n\nVolg de oplossing regel voor regel. Probeer een andere invoer en bekijk welke onderdelen veranderen."
+  },
+  "sourcePosition": 12,
+  "sourceUrl": "https://www.codecademy.com/courses/learn-python-3/lessons/data-types/exercises/everything-is-an-object",
+  "estimatedMinutes": 6
+}

@@ -1,0 +1,43 @@
+{
+  "id": "using-dictionaries-03",
+  "chapter": 9,
+  "group": "using-dictionaries",
+  "title": {
+    "en": "Missing keys",
+    "nl": "Een ontbrekende key"
+  },
+  "kind": "coding",
+  "optional": false,
+  "explanation": {
+    "en": "Looking up an absent key with square brackets raises KeyError. Use key in mapping to check keys before lookup. Membership tests keys, not values.",
+    "nl": "Een ontbrekende key opvragen met vierkante haakjes geeft KeyError. Controleer eerst key in mapping. Membership controleert keys, niet values."
+  },
+  "example": "",
+  "files": {
+    "main.py": "readings = {\"north\": 12}\nprint(readings[\"south\"])\n"
+  },
+  "solution": {
+    "main.py": "readings = {\"north\": 12}\nif \"south\" in readings:\n    result = readings[\"south\"]\nelse:\n    result = \"unavailable\"\nprint(result)\n"
+  },
+  "checkpoints": [
+    {
+      "id": "using-dictionaries-03-step-1",
+      "task": {
+        "en": "Fix the missing-key lookup. Set result to readings[\"south\"] if south exists, otherwise set it to unavailable.",
+        "nl": "Herstel de lookup voor de ontbrekende key. Zet result op readings[\"south\"] als south bestaat, en anders op unavailable."
+      },
+      "check": "result == 'unavailable'",
+      "hint": {
+        "en": "Start with readings = {\"north\": 12}. Then compare the values with the task.",
+        "nl": "Begin met readings = {\"north\": 12}. Vergelijk de waarden daarna met de opdracht."
+      }
+    }
+  ],
+  "solutionNote": {
+    "en": "Looking up an absent key with square brackets raises KeyError. Use key in mapping to check keys before lookup. Membership tests keys, not values.\n\nTrace the solution one line at a time. Try a different input to see which parts change.",
+    "nl": "Een ontbrekende key opvragen met vierkante haakjes geeft KeyError. Controleer eerst key in mapping. Membership controleert keys, niet values.\n\nVolg de oplossing regel voor regel. Probeer een andere invoer en bekijk welke onderdelen veranderen."
+  },
+  "sourcePosition": 3,
+  "sourceUrl": "https://www.codecademy.com/courses/learn-python-3/lessons/using-dictionaries/exercises/get-invalid-key",
+  "estimatedMinutes": 6
+}

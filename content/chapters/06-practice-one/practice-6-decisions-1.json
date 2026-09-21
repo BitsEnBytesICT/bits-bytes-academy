@@ -1,0 +1,41 @@
+{
+  "id": "practice-6-decisions-1",
+  "chapter": 6,
+  "group": "decisions",
+  "title": {
+    "en": "Capacity check",
+    "nl": "Capaciteit controleren"
+  },
+  "kind": "challenge",
+  "optional": true,
+  "explanation": {
+    "en": "Return True when used is at most capacity. Include the equality boundary.",
+    "nl": "Geef True terug als used hoogstens capacity is. Neem de grenswaarde mee."
+  },
+  "example": "",
+  "files": {
+    "main.py": "def fits(used, capacity):\n    # Implement the function.\n    pass\n\nprint(fits(8, 10))\n"
+  },
+  "solution": {
+    "main.py": "def fits(used, capacity):\n    return used <= capacity\n\nprint(fits(8, 10))\n"
+  },
+  "checkpoints": [
+    {
+      "id": "practice-6-decisions-1-step-1",
+      "task": {
+        "en": "Return True when used is at most capacity. Include the equality boundary.",
+        "nl": "Geef True terug als used hoogstens capacity is. Neem de grenswaarde mee."
+      },
+      "check": "fits(8,10) is True and fits(10,10) is True and fits(11,10) is False",
+      "hint": {
+        "en": "Work through a small input by hand first. Separate the condition, transformation, and return value.",
+        "nl": "Werk eerst zelf een kleine invoer uit. Bekijk de voorwaarde, de bewerking en de return value afzonderlijk."
+      }
+    }
+  ],
+  "solutionNote": {
+    "en": "This solution separates the calculation from its input. Test the function with ordinary values and edge cases such as empty collections or boundary values.",
+    "nl": "Deze oplossing scheidt de berekening van de invoer. Test de function met gewone waarden en grensgevallen, zoals lege verzamelingen of grenswaarden."
+  },
+  "estimatedMinutes": 10
+}

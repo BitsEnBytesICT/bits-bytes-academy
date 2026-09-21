@@ -1,0 +1,43 @@
+{
+  "id": "data-types-11",
+  "chapter": 11,
+  "group": "data-types",
+  "title": {
+    "en": "Working with self",
+    "nl": "Werken met self"
+  },
+  "kind": "coding",
+  "optional": false,
+  "explanation": {
+    "en": "self lets a method access the instance’s current attributes and other methods. Values stored by __init__ remain available to later calls. This is how an object carries state over time.",
+    "nl": "Via self heeft een method toegang tot de huidige attributes en andere methods van de instance. Waarden uit __init__ blijven beschikbaar voor latere aanroepen. Zo bewaart een object toestand door de tijd heen."
+  },
+  "example": "",
+  "files": {
+    "main.py": "# Write your code below.\n"
+  },
+  "solution": {
+    "main.py": "class Counter:\n    def __init__(self, start):\n        self.value = start\n\n    def increment(self, amount):\n        self.value += amount\n        return self.value\n\ncounter = Counter(5)\nprint(counter.increment(3))\n"
+  },
+  "checkpoints": [
+    {
+      "id": "data-types-11-step-1",
+      "task": {
+        "en": "Define Counter(start) storing self.value. Add increment(self, amount) to increase and return that value.",
+        "nl": "Definieer Counter(start) die self.value opslaat. Voeg increment(self, amount) toe om die waarde te verhogen en terug te geven."
+      },
+      "check": "counter.value == 8 and Counter(2).increment(4) == 6",
+      "hint": {
+        "en": "Start with class Counter:. Then compare the values with the task.",
+        "nl": "Begin met class Counter:. Vergelijk de waarden daarna met de opdracht."
+      }
+    }
+  ],
+  "solutionNote": {
+    "en": "self lets a method access the instance’s current attributes and other methods. Values stored by __init__ remain available to later calls. This is how an object carries state over time.\n\nTrace the solution one line at a time. Try a different input to see which parts change.",
+    "nl": "Via self heeft een method toegang tot de huidige attributes en andere methods van de instance. Waarden uit __init__ blijven beschikbaar voor latere aanroepen. Zo bewaart een object toestand door de tijd heen.\n\nVolg de oplossing regel voor regel. Probeer een andere invoer en bekijk welke onderdelen veranderen."
+  },
+  "sourcePosition": 11,
+  "sourceUrl": "https://www.codecademy.com/courses/learn-python-3/lessons/data-types/exercises/self",
+  "estimatedMinutes": 6
+}

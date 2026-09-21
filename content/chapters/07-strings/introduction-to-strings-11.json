@@ -1,0 +1,43 @@
+{
+  "id": "introduction-to-strings-11",
+  "chapter": 7,
+  "group": "introduction-to-strings",
+  "title": {
+    "en": "Membership tests",
+    "nl": "Membership tests"
+  },
+  "kind": "coding",
+  "optional": false,
+  "explanation": {
+    "en": "in checks whether a substring occurs anywhere within a string. It is case-sensitive. not in negates the membership test and is often clearer than manually searching.",
+    "nl": "in controleert of een substring ergens in een string voorkomt. Hoofdletters en kleine letters verschillen. not in keert de test om en is vaak duidelijker dan zelf zoeken."
+  },
+  "example": "",
+  "files": {
+    "main.py": "# Write your code below.\n"
+  },
+  "solution": {
+    "main.py": "message = \"Gate open\"\nhas_gate = \"Gate\" in message\nlacks_closed = \"closed\" not in message\nprint(has_gate, lacks_closed)\n"
+  },
+  "checkpoints": [
+    {
+      "id": "introduction-to-strings-11-step-1",
+      "task": {
+        "en": "For message = Gate open, set has_gate for Gate in message and lacks_closed for closed not in message.",
+        "nl": "Gebruik message = Gate open. Bepaal has_gate met Gate in message en lacks_closed met closed not in message."
+      },
+      "check": "has_gate is True and lacks_closed is True",
+      "hint": {
+        "en": "Start with message = \"Gate open\". Then compare the values with the task.",
+        "nl": "Begin met message = \"Gate open\". Vergelijk de waarden daarna met de opdracht."
+      }
+    }
+  ],
+  "solutionNote": {
+    "en": "in checks whether a substring occurs anywhere within a string. It is case-sensitive. not in negates the membership test and is often clearer than manually searching.\n\nTrace the solution one line at a time. Try a different input to see which parts change.",
+    "nl": "in controleert of een substring ergens in een string voorkomt. Hoofdletters en kleine letters verschillen. not in keert de test om en is vaak duidelijker dan zelf zoeken.\n\nVolg de oplossing regel voor regel. Probeer een andere invoer en bekijk welke onderdelen veranderen."
+  },
+  "sourcePosition": 11,
+  "sourceUrl": "https://www.codecademy.com/courses/learn-python-3/lessons/introduction-to-strings/exercises/strings-in-conditionals-ii",
+  "estimatedMinutes": 6
+}

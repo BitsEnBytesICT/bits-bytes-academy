@@ -1,0 +1,43 @@
+{
+  "id": "learn-python-files-10",
+  "chapter": 10,
+  "group": "learn-python-files",
+  "title": {
+    "en": "Writing CSV records",
+    "nl": "CSV-records schrijven"
+  },
+  "kind": "coding",
+  "optional": false,
+  "explanation": {
+    "en": "csv.DictWriter serializes dictionaries using a declared field order. Call writeheader() once, then writerow() or writerows() for the data. The writer handles separators and quoting.",
+    "nl": "csv.DictWriter schrijft dictionaries met een opgegeven veldvolgorde. Roep writeheader() één keer aan en daarna writerow() of writerows() voor de gegevens. De writer verwerkt separators en quoting."
+  },
+  "example": "",
+  "files": {
+    "main.py": "rows = [{\"name\": \"East\", \"count\": 3}, {\"name\": \"West\", \"count\": 5}]\n"
+  },
+  "solution": {
+    "main.py": "import csv\nrows = [{\"name\": \"East\", \"count\": 3}, {\"name\": \"West\", \"count\": 5}]\nwith open(\"output.csv\", \"w\", newline=\"\", encoding=\"utf-8\") as handle:\n    writer = csv.DictWriter(handle, fieldnames=[\"name\", \"count\"])\n    writer.writeheader()\n    writer.writerows(rows)\n"
+  },
+  "checkpoints": [
+    {
+      "id": "learn-python-files-10-step-1",
+      "task": {
+        "en": "Write rows to output.csv using the fields name and count, including a header.",
+        "nl": "Schrijf rows naar output.csv met de velden name en count, inclusief header."
+      },
+      "check": "_os.path.exists('output.csv') and list(__import__('csv').DictReader(open('output.csv', newline='', encoding='utf-8'))) == [{'name':'East','count':'3'},{'name':'West','count':'5'}]",
+      "hint": {
+        "en": "Start with import csv. Then compare the values with the task.",
+        "nl": "Begin met import csv. Vergelijk de waarden daarna met de opdracht."
+      }
+    }
+  ],
+  "solutionNote": {
+    "en": "csv.DictWriter serializes dictionaries using a declared field order. Call writeheader() once, then writerow() or writerows() for the data. The writer handles separators and quoting.\n\nTrace the solution one line at a time. Try a different input to see which parts change.",
+    "nl": "csv.DictWriter schrijft dictionaries met een opgegeven veldvolgorde. Roep writeheader() één keer aan en daarna writerow() of writerows() voor de gegevens. De writer verwerkt separators en quoting.\n\nVolg de oplossing regel voor regel. Probeer een andere invoer en bekijk welke onderdelen veranderen."
+  },
+  "sourcePosition": 10,
+  "sourceUrl": "https://www.codecademy.com/courses/learn-python-3/lessons/learn-python-files/exercises/writing-a-csv-file",
+  "estimatedMinutes": 6
+}

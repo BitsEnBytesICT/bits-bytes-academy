@@ -1,0 +1,43 @@
+{
+  "id": "string-methods-03",
+  "chapter": 7,
+  "group": "string-methods",
+  "title": {
+    "en": "Splitting on whitespace",
+    "nl": "Splitsen op whitespace"
+  },
+  "kind": "coding",
+  "optional": false,
+  "explanation": {
+    "en": "split() without an argument separates on whitespace and handles repeated spaces. It returns a list of substrings, which you can process using familiar list operations.",
+    "nl": "split() zonder argument scheidt op whitespace en verwerkt herhaalde spaties. De uitkomst is een list van substrings, waarop je bekende list-bewerkingen kunt toepassen."
+  },
+  "example": "",
+  "files": {
+    "main.py": "sentence = \"pack   the map\"\n"
+  },
+  "solution": {
+    "main.py": "sentence = \"pack   the map\"\nwords = sentence.split()\nprint(words)\n"
+  },
+  "checkpoints": [
+    {
+      "id": "string-methods-03-step-1",
+      "task": {
+        "en": "Split sentence into words.",
+        "nl": "Splits sentence op in words."
+      },
+      "check": "words == ['pack','the','map']",
+      "hint": {
+        "en": "Start with sentence = \"pack   the map\". Then compare the values with the task.",
+        "nl": "Begin met sentence = \"pack   the map\". Vergelijk de waarden daarna met de opdracht."
+      }
+    }
+  ],
+  "solutionNote": {
+    "en": "split() without an argument separates on whitespace and handles repeated spaces. It returns a list of substrings, which you can process using familiar list operations.\n\nTrace the solution one line at a time. Try a different input to see which parts change.",
+    "nl": "split() zonder argument scheidt op whitespace en verwerkt herhaalde spaties. De uitkomst is een list van substrings, waarop je bekende list-bewerkingen kunt toepassen.\n\nVolg de oplossing regel voor regel. Probeer een andere invoer en bekijk welke onderdelen veranderen."
+  },
+  "sourcePosition": 3,
+  "sourceUrl": "https://www.codecademy.com/courses/learn-python-3/lessons/string-methods/exercises/splitting-strings",
+  "estimatedMinutes": 6
+}

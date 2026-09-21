@@ -1,0 +1,43 @@
+{
+  "id": "use-python-list-02",
+  "chapter": 3,
+  "group": "use-python-list",
+  "title": {
+    "en": "Inserting by index",
+    "nl": "Invoegen op index"
+  },
+  "kind": "coding",
+  "optional": false,
+  "explanation": {
+    "en": "insert(index, value) places an element before the selected position. Later elements move to the right. It changes the list in place.",
+    "nl": "insert(index, value) plaatst een element vóór de gekozen positie. Latere elementen schuiven naar rechts. De oorspronkelijke list wordt aangepast."
+  },
+  "example": "",
+  "files": {
+    "main.py": "stops = [\"Oak\", \"Lake\"]\n"
+  },
+  "solution": {
+    "main.py": "stops = [\"Oak\", \"Lake\"]\nstops.insert(1, \"Bridge\")\nprint(stops)\n"
+  },
+  "checkpoints": [
+    {
+      "id": "use-python-list-02-step-1",
+      "task": {
+        "en": "Insert Bridge between Oak and Lake in stops.",
+        "nl": "Voeg Bridge in tussen Oak en Lake in stops."
+      },
+      "check": "stops == ['Oak','Bridge','Lake']",
+      "hint": {
+        "en": "Start with stops = [\"Oak\", \"Lake\"]. Then compare the values with the task.",
+        "nl": "Begin met stops = [\"Oak\", \"Lake\"]. Vergelijk de waarden daarna met de opdracht."
+      }
+    }
+  ],
+  "solutionNote": {
+    "en": "insert(index, value) places an element before the selected position. Later elements move to the right. It changes the list in place.\n\nTrace the solution one line at a time. Try a different input to see which parts change.",
+    "nl": "insert(index, value) plaatst een element vóór de gekozen positie. Latere elementen schuiven naar rechts. De oorspronkelijke list wordt aangepast.\n\nVolg de oplossing regel voor regel. Probeer een andere invoer en bekijk welke onderdelen veranderen."
+  },
+  "sourcePosition": 2,
+  "sourceUrl": "https://www.codecademy.com/courses/learn-python-3/lessons/use-python-list/exercises/adding-by-index-insert",
+  "estimatedMinutes": 6
+}

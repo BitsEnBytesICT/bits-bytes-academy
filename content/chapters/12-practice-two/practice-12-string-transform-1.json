@@ -1,0 +1,41 @@
+{
+  "id": "practice-12-string-transform-1",
+  "chapter": 12,
+  "group": "string-transform",
+  "title": {
+    "en": "Normalize a comparison",
+    "nl": "Een vergelijking normaliseren"
+  },
+  "kind": "challenge",
+  "optional": true,
+  "explanation": {
+    "en": "Return True when two names match after trimming whitespace and converting to lowercase.",
+    "nl": "Geef True als twee namen gelijk zijn na het verwijderen van whitespace aan de randen en omzetten naar kleine letters."
+  },
+  "example": "",
+  "files": {
+    "main.py": "def same_label(left, right):\n    # Implement the function.\n    pass\n\nprint(same_label(\" East \", \"east\"))\n"
+  },
+  "solution": {
+    "main.py": "def same_label(left, right):\n    return left.strip().lower() == right.strip().lower()\n\nprint(same_label(\" East \", \"east\"))\n"
+  },
+  "checkpoints": [
+    {
+      "id": "practice-12-string-transform-1-step-1",
+      "task": {
+        "en": "Return True when two names match after trimming whitespace and converting to lowercase.",
+        "nl": "Geef True als twee namen gelijk zijn na het verwijderen van whitespace aan de randen en omzetten naar kleine letters."
+      },
+      "check": "same_label(' East ','east') is True and same_label('East','West') is False",
+      "hint": {
+        "en": "Work through a small input by hand first. Separate the condition, transformation, and return value.",
+        "nl": "Werk eerst zelf een kleine invoer uit. Bekijk de voorwaarde, de bewerking en de return value afzonderlijk."
+      }
+    }
+  ],
+  "solutionNote": {
+    "en": "This solution separates the calculation from its input. Test the function with ordinary values and edge cases such as empty collections or boundary values.",
+    "nl": "Deze oplossing scheidt de berekening van de invoer. Test de function met gewone waarden en grensgevallen, zoals lege verzamelingen of grenswaarden."
+  },
+  "estimatedMinutes": 10
+}

@@ -1,0 +1,41 @@
+{
+  "id": "practice-12-mapping-build-2",
+  "chapter": 12,
+  "group": "mapping-build",
+  "title": {
+    "en": "Frequency table",
+    "nl": "Frequentietabel"
+  },
+  "kind": "challenge",
+  "optional": true,
+  "explanation": {
+    "en": "Count each label and return a dictionary of frequencies.",
+    "nl": "Tel elk label en geef een dictionary met frequenties terug."
+  },
+  "example": "",
+  "files": {
+    "main.py": "def frequencies(labels):\n    # Implement the function.\n    pass\n\nprint(frequencies([\"a\", \"b\", \"a\"]))\n"
+  },
+  "solution": {
+    "main.py": "def frequencies(labels):\n    counts = {}\n    for label in labels:\n        counts[label] = counts.get(label, 0) + 1\n    return counts\n\nprint(frequencies([\"a\", \"b\", \"a\"]))\n"
+  },
+  "checkpoints": [
+    {
+      "id": "practice-12-mapping-build-2-step-1",
+      "task": {
+        "en": "Count each label and return a dictionary of frequencies.",
+        "nl": "Tel elk label en geef een dictionary met frequenties terug."
+      },
+      "check": "frequencies(['a','b','a']) == {'a':2,'b':1} and frequencies([]) == {}",
+      "hint": {
+        "en": "Work through a small input by hand first. Separate the condition, transformation, and return value.",
+        "nl": "Werk eerst zelf een kleine invoer uit. Bekijk de voorwaarde, de bewerking en de return value afzonderlijk."
+      }
+    }
+  ],
+  "solutionNote": {
+    "en": "This solution separates the calculation from its input. Test the function with ordinary values and edge cases such as empty collections or boundary values.",
+    "nl": "Deze oplossing scheidt de berekening van de invoer. Test de function met gewone waarden en grensgevallen, zoals lege verzamelingen of grenswaarden."
+  },
+  "estimatedMinutes": 10
+}

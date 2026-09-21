@@ -1,0 +1,45 @@
+{
+  "id": "learn-python-files-11",
+  "chapter": 10,
+  "group": "learn-python-files",
+  "title": {
+    "en": "Loading JSON",
+    "nl": "JSON laden"
+  },
+  "kind": "coding",
+  "optional": false,
+  "explanation": {
+    "en": "json.load(file) reads JSON into Python data structures. JSON objects become dictionaries and arrays become lists. JSON true becomes Python True, and null becomes None.",
+    "nl": "json.load(file) leest JSON in Python-datastructuren. JSON-objects worden dictionaries en arrays worden lists. JSON true wordt Python True en null wordt None."
+  },
+  "example": "",
+  "files": {
+    "config.json": "{\"display\":{\"theme\":\"blue\"},\"enabled\":true}",
+    "main.py": "# Write your code below.\n"
+  },
+  "solution": {
+    "config.json": "{\"display\":{\"theme\":\"blue\"},\"enabled\":true}",
+    "main.py": "import json\nwith open(\"config.json\", encoding=\"utf-8\") as handle:\n    config = json.load(handle)\ntheme = config[\"display\"][\"theme\"]\nprint(theme)\n"
+  },
+  "checkpoints": [
+    {
+      "id": "learn-python-files-11-step-1",
+      "task": {
+        "en": "Load config.json into config and read config[\"display\"][\"theme\"] into theme.",
+        "nl": "Laad config.json in config en lees config[\"display\"][\"theme\"] naar theme."
+      },
+      "check": "theme == 'blue' and config['enabled'] is True",
+      "hint": {
+        "en": "Start with import json. Then compare the values with the task.",
+        "nl": "Begin met import json. Vergelijk de waarden daarna met de opdracht."
+      }
+    }
+  ],
+  "solutionNote": {
+    "en": "json.load(file) reads JSON into Python data structures. JSON objects become dictionaries and arrays become lists. JSON true becomes Python True, and null becomes None.\n\nTrace the solution one line at a time. Try a different input to see which parts change.",
+    "nl": "json.load(file) leest JSON in Python-datastructuren. JSON-objects worden dictionaries en arrays worden lists. JSON true wordt Python True en null wordt None.\n\nVolg de oplossing regel voor regel. Probeer een andere invoer en bekijk welke onderdelen veranderen."
+  },
+  "sourcePosition": 11,
+  "sourceUrl": "https://www.codecademy.com/courses/learn-python-3/lessons/learn-python-files/exercises/reading-a-json-file",
+  "estimatedMinutes": 6
+}

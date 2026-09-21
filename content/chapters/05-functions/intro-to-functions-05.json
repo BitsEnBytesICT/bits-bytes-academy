@@ -1,0 +1,43 @@
+{
+  "id": "intro-to-functions-05",
+  "chapter": 5,
+  "group": "intro-to-functions",
+  "title": {
+    "en": "Indentation and execution order",
+    "nl": "Inspringing en volgorde"
+  },
+  "kind": "coding",
+  "optional": false,
+  "explanation": {
+    "en": "Indentation separates a function body from surrounding code. A line outside the body runs as the script reaches it, while an indented line waits for a call.",
+    "nl": "Inspringing scheidt de body van een function van omliggende code. Een regel buiten de body draait zodra het script die bereikt; een ingesprongen regel wacht op een aanroep."
+  },
+  "example": "",
+  "files": {
+    "main.py": "# Write your code below.\n"
+  },
+  "solution": {
+    "main.py": "def prepare():\n    print(\"Check\")\n    print(\"Pack\")\n\nprint(\"Begin\")\nprepare()\nprint(\"Done\")\n"
+  },
+  "checkpoints": [
+    {
+      "id": "intro-to-functions-05-step-1",
+      "task": {
+        "en": "Make prepare() print Check and Pack. Print Begin before calling prepare(), and Done afterward.",
+        "nl": "Laat prepare() Check en Pack afdrukken. Druk Begin af vóór de aanroep en Done erna."
+      },
+      "check": "_stdout.splitlines() == ['Begin','Check','Pack','Done'] and callable(prepare)",
+      "hint": {
+        "en": "Start with def prepare():. Then compare the values with the task.",
+        "nl": "Begin met def prepare():. Vergelijk de waarden daarna met de opdracht."
+      }
+    }
+  ],
+  "solutionNote": {
+    "en": "Indentation separates a function body from surrounding code. A line outside the body runs as the script reaches it, while an indented line waits for a call.\n\nTrace the solution one line at a time. Try a different input to see which parts change.",
+    "nl": "Inspringing scheidt de body van een function van omliggende code. Een regel buiten de body draait zodra het script die bereikt; een ingesprongen regel wacht op een aanroep.\n\nVolg de oplossing regel voor regel. Probeer een andere invoer en bekijk welke onderdelen veranderen."
+  },
+  "sourcePosition": 5,
+  "sourceUrl": "https://www.codecademy.com/courses/learn-python-3/lessons/intro-to-functions/exercises/whitespace-execution-flow",
+  "estimatedMinutes": 6
+}

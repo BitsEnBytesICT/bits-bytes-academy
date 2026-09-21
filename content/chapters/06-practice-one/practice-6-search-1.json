@@ -1,0 +1,41 @@
+{
+  "id": "practice-6-search-1",
+  "chapter": 6,
+  "group": "search",
+  "title": {
+    "en": "Compare totals",
+    "nl": "Totalen vergelijken"
+  },
+  "kind": "challenge",
+  "optional": true,
+  "explanation": {
+    "en": "Return the sum of whichever list has the smaller total. On a tie, the shared total is the answer.",
+    "nl": "Geef de som terug van de list met het kleinste totaal. Bij gelijkheid geef je dat gedeelde totaal."
+  },
+  "example": "",
+  "files": {
+    "main.py": "def smaller_total(left, right):\n    # Implement the function.\n    pass\n\nprint(smaller_total([2, 3], [9]))\n"
+  },
+  "solution": {
+    "main.py": "def smaller_total(left, right):\n    left_total = 0\n    right_total = 0\n    for value in left:\n        left_total += value\n    for value in right:\n        right_total += value\n    return min(left_total, right_total)\n\nprint(smaller_total([2, 3], [9]))\n"
+  },
+  "checkpoints": [
+    {
+      "id": "practice-6-search-1-step-1",
+      "task": {
+        "en": "Return the sum of whichever list has the smaller total. On a tie, the shared total is the answer.",
+        "nl": "Geef de som terug van de list met het kleinste totaal. Bij gelijkheid geef je dat gedeelde totaal."
+      },
+      "check": "smaller_total([2,3],[9]) == 5 and smaller_total([],[]) == 0 and smaller_total([-2],[1]) == -2",
+      "hint": {
+        "en": "Work through a small input by hand first. Separate the condition, transformation, and return value.",
+        "nl": "Werk eerst zelf een kleine invoer uit. Bekijk de voorwaarde, de bewerking en de return value afzonderlijk."
+      }
+    }
+  ],
+  "solutionNote": {
+    "en": "This solution separates the calculation from its input. Test the function with ordinary values and edge cases such as empty collections or boundary values.",
+    "nl": "Deze oplossing scheidt de berekening van de invoer. Test de function met gewone waarden en grensgevallen, zoals lege verzamelingen of grenswaarden."
+  },
+  "estimatedMinutes": 10
+}

@@ -1,0 +1,45 @@
+{
+  "id": "learn-python-files-06",
+  "chapter": 10,
+  "group": "learn-python-files",
+  "title": {
+    "en": "Context managers",
+    "nl": "Een context manager"
+  },
+  "kind": "coding",
+  "optional": false,
+  "explanation": {
+    "en": "A context manager handles setup and cleanup around a block. For files, with ensures close() happens when the block ends. The variable name may still exist afterward, but the file is closed.",
+    "nl": "Een context manager regelt voorbereiding en opruimen rond een blok. Bij bestanden zorgt with dat close() na afloop gebeurt. De variablenaam kan daarna nog bestaan, maar het bestand is gesloten."
+  },
+  "example": "",
+  "files": {
+    "note.txt": "Keep the door closed.",
+    "main.py": "# Write your code below.\n"
+  },
+  "solution": {
+    "note.txt": "Keep the door closed.",
+    "main.py": "with open(\"note.txt\", encoding=\"utf-8\") as handle:\n    text = handle.read()\nis_closed = handle.closed\nprint(is_closed)\n"
+  },
+  "checkpoints": [
+    {
+      "id": "learn-python-files-06-step-1",
+      "task": {
+        "en": "Read note.txt into text using with. After the block, store handle.closed in is_closed.",
+        "nl": "Lees note.txt naar text met with. Sla na het blok handle.closed op in is_closed."
+      },
+      "check": "text == 'Keep the door closed.' and is_closed is True",
+      "hint": {
+        "en": "Start with with open(\"note.txt\", encoding=\"utf-8\") as handle:. Then compare the values with the task.",
+        "nl": "Begin met with open(\"note.txt\", encoding=\"utf-8\") as handle:. Vergelijk de waarden daarna met de opdracht."
+      }
+    }
+  ],
+  "solutionNote": {
+    "en": "A context manager handles setup and cleanup around a block. For files, with ensures close() happens when the block ends. The variable name may still exist afterward, but the file is closed.\n\nTrace the solution one line at a time. Try a different input to see which parts change.",
+    "nl": "Een context manager regelt voorbereiding en opruimen rond een blok. Bij bestanden zorgt with dat close() na afloop gebeurt. De variablenaam kan daarna nog bestaan, maar het bestand is gesloten.\n\nVolg de oplossing regel voor regel. Probeer een andere invoer en bekijk welke onderdelen veranderen."
+  },
+  "sourcePosition": 6,
+  "sourceUrl": "https://www.codecademy.com/courses/learn-python-3/lessons/learn-python-files/exercises/using-with",
+  "estimatedMinutes": 6
+}

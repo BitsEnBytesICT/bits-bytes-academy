@@ -1,0 +1,43 @@
+{
+  "id": "create-python-list-05",
+  "chapter": 3,
+  "group": "create-python-list",
+  "title": {
+    "en": "Appending",
+    "nl": "Toevoegen met append"
+  },
+  "kind": "coding",
+  "optional": false,
+  "explanation": {
+    "en": "append adds one element to the end of a list. It changes the existing list and returns None. Do not assign its return value back to the list name.",
+    "nl": "append voegt één element toe aan het einde van een list. De method verandert de bestaande list en geeft None terug. Wijs die return value niet opnieuw toe aan de listnaam."
+  },
+  "example": "tools = []\ntools.append(\"ruler\")",
+  "files": {
+    "main.py": "packing = [\"map\"]\n"
+  },
+  "solution": {
+    "main.py": "packing = [\"map\"]\npacking.append(\"torch\")\npacking.append(\"blanket\")\nprint(packing)\n"
+  },
+  "checkpoints": [
+    {
+      "id": "create-python-list-05-step-1",
+      "task": {
+        "en": "Append torch and blanket to packing, in that order.",
+        "nl": "Voeg torch en blanket met append toe aan packing, in die volgorde."
+      },
+      "check": "packing == ['map','torch','blanket']",
+      "hint": {
+        "en": "Start with packing = [\"map\"]. Then compare the values with the task.",
+        "nl": "Begin met packing = [\"map\"]. Vergelijk de waarden daarna met de opdracht."
+      }
+    }
+  ],
+  "solutionNote": {
+    "en": "append adds one element to the end of a list. It changes the existing list and returns None. Do not assign its return value back to the list name.\n\nTrace the solution one line at a time. Try a different input to see which parts change.",
+    "nl": "append voegt één element toe aan het einde van een list. De method verandert de bestaande list en geeft None terug. Wijs die return value niet opnieuw toe aan de listnaam.\n\nVolg de oplossing regel voor regel. Probeer een andere invoer en bekijk welke onderdelen veranderen."
+  },
+  "sourcePosition": 5,
+  "sourceUrl": "https://www.codecademy.com/courses/learn-python-3/lessons/create-python-list/exercises/append-list",
+  "estimatedMinutes": 6
+}

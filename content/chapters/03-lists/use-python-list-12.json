@@ -1,0 +1,43 @@
+{
+  "id": "use-python-list-12",
+  "chapter": 3,
+  "group": "use-python-list",
+  "title": {
+    "en": "List operations review",
+    "nl": "Terugblik: list-bewerkingen"
+  },
+  "kind": "coding",
+  "optional": false,
+  "explanation": {
+    "en": "Combine list operations carefully: removing an element changes later indexes, while a slice makes a new list. Keep intermediate values in named variables so you can inspect each stage.",
+    "nl": "Combineer list-bewerkingen zorgvuldig: na het verwijderen veranderen latere indexes, terwijl een slice een nieuwe list maakt. Bewaar tussenresultaten in variables om elke stap te kunnen bekijken."
+  },
+  "example": "",
+  "files": {
+    "main.py": "# Write your code below.\n"
+  },
+  "solution": {
+    "main.py": "queue = [7, 3, 5]\nqueue.insert(1, 9)\nremoved = queue.pop()\nqueue.sort()\nfirst_two = queue[:2]\nprint(queue, removed, first_two)\n"
+  },
+  "checkpoints": [
+    {
+      "id": "use-python-list-12-step-1",
+      "task": {
+        "en": "Start queue at [7, 3, 5]. Insert 9 at index 1, pop the last value into removed, sort queue, and save its first two entries as first_two.",
+        "nl": "Begin met queue = [7, 3, 5]. Voeg 9 in op index 1, pop de laatste waarde naar removed, sorteer queue en sla de eerste twee items op in first_two."
+      },
+      "check": "queue == [3,7,9] and removed == 5 and first_two == [3,7]",
+      "hint": {
+        "en": "Start with queue = [7, 3, 5]. Then compare the values with the task.",
+        "nl": "Begin met queue = [7, 3, 5]. Vergelijk de waarden daarna met de opdracht."
+      }
+    }
+  ],
+  "solutionNote": {
+    "en": "Combine list operations carefully: removing an element changes later indexes, while a slice makes a new list. Keep intermediate values in named variables so you can inspect each stage.\n\nTrace the solution one line at a time. Try a different input to see which parts change.",
+    "nl": "Combineer list-bewerkingen zorgvuldig: na het verwijderen veranderen latere indexes, terwijl een slice een nieuwe list maakt. Bewaar tussenresultaten in variables om elke stap te kunnen bekijken.\n\nVolg de oplossing regel voor regel. Probeer een andere invoer en bekijk welke onderdelen veranderen."
+  },
+  "sourcePosition": 12,
+  "sourceUrl": "https://www.codecademy.com/courses/learn-python-3/lessons/use-python-list/exercises/review-ii",
+  "estimatedMinutes": 6
+}

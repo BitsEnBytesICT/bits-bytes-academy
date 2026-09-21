@@ -1,0 +1,43 @@
+{
+  "id": "learn-python-loops-12",
+  "chapter": 4,
+  "group": "learn-python-loops",
+  "title": {
+    "en": "Comprehension filtering",
+    "nl": "Filteren in een comprehension"
+  },
+  "kind": "coding",
+  "optional": false,
+  "explanation": {
+    "en": "Add if condition at the end of a comprehension to filter input elements. Only matching elements contribute to the new list; the transformation still appears first.",
+    "nl": "Voeg if condition toe aan het einde van een comprehension om invoerelementen te filteren. Alleen passende elementen komen in de nieuwe list; de bewerking staat nog steeds vooraan."
+  },
+  "example": "",
+  "files": {
+    "main.py": "raw = [-2, 0, 3, 5]\n"
+  },
+  "solution": {
+    "main.py": "raw = [-2, 0, 3, 5]\npositive_squares = [value ** 2 for value in raw if value > 0]\nprint(positive_squares)\n"
+  },
+  "checkpoints": [
+    {
+      "id": "learn-python-loops-12-step-1",
+      "task": {
+        "en": "Create positive_squares from the squares of values greater than zero in raw.",
+        "nl": "Maak positive_squares met de kwadraten van waarden groter dan nul in raw."
+      },
+      "check": "positive_squares == [9,25] and any(isinstance(n,_ast.ListComp) for n in _ast.walk(_ast.parse(_source)))",
+      "hint": {
+        "en": "Start with raw = [-2, 0, 3, 5]. Then compare the values with the task.",
+        "nl": "Begin met raw = [-2, 0, 3, 5]. Vergelijk de waarden daarna met de opdracht."
+      }
+    }
+  ],
+  "solutionNote": {
+    "en": "Add if condition at the end of a comprehension to filter input elements. Only matching elements contribute to the new list; the transformation still appears first.\n\nTrace the solution one line at a time. Try a different input to see which parts change.",
+    "nl": "Voeg if condition toe aan het einde van een comprehension om invoerelementen te filteren. Alleen passende elementen komen in de nieuwe list; de bewerking staat nog steeds vooraan.\n\nVolg de oplossing regel voor regel. Probeer een andere invoer en bekijk welke onderdelen veranderen."
+  },
+  "sourcePosition": 12,
+  "sourceUrl": "https://www.codecademy.com/courses/learn-python-3/lessons/learn-python-loops/exercises/list-comprehension",
+  "estimatedMinutes": 6
+}

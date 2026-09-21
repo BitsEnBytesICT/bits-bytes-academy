@@ -1,0 +1,43 @@
+{
+  "id": "string-methods-06",
+  "chapter": 7,
+  "group": "string-methods",
+  "title": {
+    "en": "Joining with spaces",
+    "nl": "Samenvoegen met spaties"
+  },
+  "kind": "coding",
+  "optional": false,
+  "explanation": {
+    "en": "separator.join(strings) puts the separator between neighboring strings. The method is called on the separator, not on the list. All elements must be strings.",
+    "nl": "separator.join(strings) zet de separator tussen opeenvolgende strings. Je roept de method aan op de separator, niet op de list. Alle elementen moeten strings zijn."
+  },
+  "example": "",
+  "files": {
+    "main.py": "words = [\"Take\", \"the\", \"trail\"]\n"
+  },
+  "solution": {
+    "main.py": "words = [\"Take\", \"the\", \"trail\"]\nsentence = \" \".join(words)\nprint(sentence)\n"
+  },
+  "checkpoints": [
+    {
+      "id": "string-methods-06-step-1",
+      "task": {
+        "en": "Join words with spaces into sentence.",
+        "nl": "Voeg words met spaties samen tot sentence."
+      },
+      "check": "sentence == 'Take the trail'",
+      "hint": {
+        "en": "Start with words = [\"Take\", \"the\", \"trail\"]. Then compare the values with the task.",
+        "nl": "Begin met words = [\"Take\", \"the\", \"trail\"]. Vergelijk de waarden daarna met de opdracht."
+      }
+    }
+  ],
+  "solutionNote": {
+    "en": "separator.join(strings) puts the separator between neighboring strings. The method is called on the separator, not on the list. All elements must be strings.\n\nTrace the solution one line at a time. Try a different input to see which parts change.",
+    "nl": "separator.join(strings) zet de separator tussen opeenvolgende strings. Je roept de method aan op de separator, niet op de list. Alle elementen moeten strings zijn.\n\nVolg de oplossing regel voor regel. Probeer een andere invoer en bekijk welke onderdelen veranderen."
+  },
+  "sourcePosition": 6,
+  "sourceUrl": "https://www.codecademy.com/courses/learn-python-3/lessons/string-methods/exercises/joining-strings",
+  "estimatedMinutes": 6
+}

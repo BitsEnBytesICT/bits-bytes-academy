@@ -1,0 +1,45 @@
+{
+  "id": "learn-python-files-07",
+  "chapter": 10,
+  "group": "learn-python-files",
+  "title": {
+    "en": "CSV as text",
+    "nl": "CSV als tekst"
+  },
+  "kind": "coding",
+  "optional": false,
+  "explanation": {
+    "en": "CSV is plain text with a tabular convention. A header names the columns and subsequent rows contain fields. Quoting allows separators to appear inside fields, so a proper CSV parser is safer than manual splitting.",
+    "nl": "CSV is gewone tekst volgens een tabelstructuur. Een header benoemt de kolommen en volgende rijen bevatten velden. Door quoting kunnen separators binnen velden staan; een CSV-parser is daarom veiliger dan handmatig splitsen."
+  },
+  "example": "",
+  "files": {
+    "sensors.csv": "name,level\neast,4\nwest,7\n",
+    "main.py": "# Write your code below.\n"
+  },
+  "solution": {
+    "sensors.csv": "name,level\neast,4\nwest,7\n",
+    "main.py": "with open(\"sensors.csv\", encoding=\"utf-8\") as handle:\n    raw_csv = handle.read()\nprint(raw_csv)\n"
+  },
+  "checkpoints": [
+    {
+      "id": "learn-python-files-07-step-1",
+      "task": {
+        "en": "Read sensors.csv as plain text into raw_csv and print it.",
+        "nl": "Lees sensors.csv als gewone tekst naar raw_csv en druk deze af."
+      },
+      "check": "raw_csv == 'name,level\\neast,4\\nwest,7\\n'",
+      "hint": {
+        "en": "Start with with open(\"sensors.csv\", encoding=\"utf-8\") as handle:. Then compare the values with the task.",
+        "nl": "Begin met with open(\"sensors.csv\", encoding=\"utf-8\") as handle:. Vergelijk de waarden daarna met de opdracht."
+      }
+    }
+  ],
+  "solutionNote": {
+    "en": "CSV is plain text with a tabular convention. A header names the columns and subsequent rows contain fields. Quoting allows separators to appear inside fields, so a proper CSV parser is safer than manual splitting.\n\nTrace the solution one line at a time. Try a different input to see which parts change.",
+    "nl": "CSV is gewone tekst volgens een tabelstructuur. Een header benoemt de kolommen en volgende rijen bevatten velden. Door quoting kunnen separators binnen velden staan; een CSV-parser is daarom veiliger dan handmatig splitsen.\n\nVolg de oplossing regel voor regel. Probeer een andere invoer en bekijk welke onderdelen veranderen."
+  },
+  "sourcePosition": 7,
+  "sourceUrl": "https://www.codecademy.com/courses/learn-python-3/lessons/learn-python-files/exercises/what-is-a-csv",
+  "estimatedMinutes": 6
+}

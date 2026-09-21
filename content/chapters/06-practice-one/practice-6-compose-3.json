@@ -1,0 +1,41 @@
+{
+  "id": "practice-6-compose-3",
+  "chapter": 6,
+  "group": "compose",
+  "title": {
+    "en": "Build a tag",
+    "nl": "Een tag maken"
+  },
+  "kind": "challenge",
+  "optional": true,
+  "explanation": {
+    "en": "Return a label formatted as category + colon + space + name.",
+    "nl": "Geef een label terug als category + dubbele punt + spatie + name."
+  },
+  "example": "",
+  "files": {
+    "main.py": "def tag(category, name):\n    # Implement the function.\n    pass\n\nprint(tag(\"Sensor\", \"East\"))\n"
+  },
+  "solution": {
+    "main.py": "def tag(category, name):\n    return category + \": \" + name\n\nprint(tag(\"Sensor\", \"East\"))\n"
+  },
+  "checkpoints": [
+    {
+      "id": "practice-6-compose-3-step-1",
+      "task": {
+        "en": "Return a label formatted as category + colon + space + name.",
+        "nl": "Geef een label terug als category + dubbele punt + spatie + name."
+      },
+      "check": "tag('Sensor','East') == 'Sensor: East' and tag('Route','Blue') == 'Route: Blue'",
+      "hint": {
+        "en": "Work through a small input by hand first. Separate the condition, transformation, and return value.",
+        "nl": "Werk eerst zelf een kleine invoer uit. Bekijk de voorwaarde, de bewerking en de return value afzonderlijk."
+      }
+    }
+  ],
+  "solutionNote": {
+    "en": "This solution separates the calculation from its input. Test the function with ordinary values and edge cases such as empty collections or boundary values.",
+    "nl": "Deze oplossing scheidt de berekening van de invoer. Test de function met gewone waarden en grensgevallen, zoals lege verzamelingen of grenswaarden."
+  },
+  "estimatedMinutes": 10
+}

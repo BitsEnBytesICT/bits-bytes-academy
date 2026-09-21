@@ -1,0 +1,43 @@
+{
+  "id": "data-types-07",
+  "chapter": 11,
+  "group": "data-types",
+  "title": {
+    "en": "Method arguments",
+    "nl": "Method-arguments"
+  },
+  "kind": "coding",
+  "optional": false,
+  "explanation": {
+    "en": "Additional method parameters receive the explicit arguments from the call. self is supplied automatically, so you do not pass the object again. Methods can compute and return values like ordinary functions.",
+    "nl": "Extra method-parameters krijgen de expliciete arguments uit de aanroep. self wordt automatisch meegegeven; je geeft het object dus niet nogmaals op. Methods kunnen net als gewone functions waarden berekenen en teruggeven."
+  },
+  "example": "",
+  "files": {
+    "main.py": "# Write your code below.\n"
+  },
+  "solution": {
+    "main.py": "class Converter:\n    def to_fahrenheit(self, celsius):\n        return celsius * 9 / 5 + 32\n\nconverter = Converter()\nprint(converter.to_fahrenheit(20))\n"
+  },
+  "checkpoints": [
+    {
+      "id": "data-types-07-step-1",
+      "task": {
+        "en": "Define Converter.to_fahrenheit(self, celsius) returning celsius * 9 / 5 + 32.",
+        "nl": "Definieer Converter.to_fahrenheit(self, celsius) die celsius * 9 / 5 + 32 teruggeeft."
+      },
+      "check": "Converter().to_fahrenheit(0) == 32 and Converter().to_fahrenheit(100) == 212 and Converter().to_fahrenheit(-40) == -40",
+      "hint": {
+        "en": "Start with class Converter:. Then compare the values with the task.",
+        "nl": "Begin met class Converter:. Vergelijk de waarden daarna met de opdracht."
+      }
+    }
+  ],
+  "solutionNote": {
+    "en": "Additional method parameters receive the explicit arguments from the call. self is supplied automatically, so you do not pass the object again. Methods can compute and return values like ordinary functions.\n\nTrace the solution one line at a time. Try a different input to see which parts change.",
+    "nl": "Extra method-parameters krijgen de expliciete arguments uit de aanroep. self wordt automatisch meegegeven; je geeft het object dus niet nogmaals op. Methods kunnen net als gewone functions waarden berekenen en teruggeven.\n\nVolg de oplossing regel voor regel. Probeer een andere invoer en bekijk welke onderdelen veranderen."
+  },
+  "sourcePosition": 7,
+  "sourceUrl": "https://www.codecademy.com/courses/learn-python-3/lessons/data-types/exercises/methods-with-arguments",
+  "estimatedMinutes": 6
+}

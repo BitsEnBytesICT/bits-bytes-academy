@@ -1,0 +1,399 @@
+{
+  "id": "using-dictionaries-quiz",
+  "chapter": 9,
+  "group": "using-dictionaries",
+  "title": {
+    "en": "Using dictionaries · Quiz",
+    "nl": "Using dictionaries · Quiz"
+  },
+  "kind": "quiz",
+  "optional": false,
+  "questions": [
+    {
+      "id": "using-dictionaries-q1",
+      "prompt": {
+        "en": "What does this code print?",
+        "nl": "Wat drukt deze code af?"
+      },
+      "code": "d = {\"x\": 9}\nprint(d[\"x\"])",
+      "answer": "a",
+      "choices": [
+        {
+          "id": "a",
+          "label": {
+            "en": "9",
+            "nl": "9"
+          },
+          "reason": {
+            "en": "A key lookup returns the associated value.",
+            "nl": "Een key-lookup geeft de bijbehorende value terug."
+          }
+        },
+        {
+          "id": "b",
+          "label": {
+            "en": "x",
+            "nl": "x"
+          },
+          "reason": {
+            "en": "A key lookup returns the associated value.",
+            "nl": "Een key-lookup geeft de bijbehorende value terug."
+          }
+        },
+        {
+          "id": "c",
+          "label": {
+            "en": "0",
+            "nl": "0"
+          },
+          "reason": {
+            "en": "A key lookup returns the associated value.",
+            "nl": "Een key-lookup geeft de bijbehorende value terug."
+          }
+        }
+      ]
+    },
+    {
+      "id": "using-dictionaries-q2",
+      "prompt": {
+        "en": "What does d[\"missing\"] raise when the key is absent?",
+        "nl": "Welke fout geeft d[\"missing\"] als de key ontbreekt?"
+      },
+      "code": "",
+      "answer": "a",
+      "choices": [
+        {
+          "id": "a",
+          "label": {
+            "en": "KeyError",
+            "nl": "KeyError"
+          },
+          "reason": {
+            "en": "Bracket lookup on a missing dictionary key raises KeyError.",
+            "nl": "Een ontbrekende dictionary-key met haakjes opvragen geeft KeyError."
+          }
+        },
+        {
+          "id": "b",
+          "label": {
+            "en": "IndexError",
+            "nl": "IndexError"
+          },
+          "reason": {
+            "en": "Bracket lookup on a missing dictionary key raises KeyError.",
+            "nl": "Een ontbrekende dictionary-key met haakjes opvragen geeft KeyError."
+          }
+        },
+        {
+          "id": "c",
+          "label": {
+            "en": "NameError",
+            "nl": "NameError"
+          },
+          "reason": {
+            "en": "Bracket lookup on a missing dictionary key raises KeyError.",
+            "nl": "Een ontbrekende dictionary-key met haakjes opvragen geeft KeyError."
+          }
+        }
+      ]
+    },
+    {
+      "id": "using-dictionaries-q3",
+      "prompt": {
+        "en": "What does this code print?",
+        "nl": "Wat drukt deze code af?"
+      },
+      "code": "print({\"x\": 9}.get(\"z\", 2))",
+      "answer": "a",
+      "choices": [
+        {
+          "id": "a",
+          "label": {
+            "en": "2",
+            "nl": "2"
+          },
+          "reason": {
+            "en": "The key is missing, so get returns the explicit default.",
+            "nl": "De key ontbreekt, dus get geeft de opgegeven default terug."
+          }
+        },
+        {
+          "id": "b",
+          "label": {
+            "en": "9",
+            "nl": "9"
+          },
+          "reason": {
+            "en": "The key is missing, so get returns the explicit default.",
+            "nl": "De key ontbreekt, dus get geeft de opgegeven default terug."
+          }
+        },
+        {
+          "id": "c",
+          "label": {
+            "en": "None",
+            "nl": "None"
+          },
+          "reason": {
+            "en": "The key is missing, so get returns the explicit default.",
+            "nl": "De key ontbreekt, dus get geeft de opgegeven default terug."
+          }
+        }
+      ]
+    },
+    {
+      "id": "using-dictionaries-q4",
+      "prompt": {
+        "en": "What does this code print?",
+        "nl": "Wat drukt deze code af?"
+      },
+      "code": "print(\"x\" in {\"x\": 9})",
+      "answer": "a",
+      "choices": [
+        {
+          "id": "a",
+          "label": {
+            "en": "True",
+            "nl": "True"
+          },
+          "reason": {
+            "en": "Dictionary membership tests keys.",
+            "nl": "Membership bij een dictionary controleert keys."
+          }
+        },
+        {
+          "id": "b",
+          "label": {
+            "en": "False",
+            "nl": "False"
+          },
+          "reason": {
+            "en": "Dictionary membership tests keys.",
+            "nl": "Membership bij een dictionary controleert keys."
+          }
+        }
+      ]
+    },
+    {
+      "id": "using-dictionaries-q5",
+      "prompt": {
+        "en": "What does this code print?",
+        "nl": "Wat drukt deze code af?"
+      },
+      "code": "d = {\"a\": 2, \"b\": 5}\nprint(d.pop(\"a\"))",
+      "answer": "a",
+      "choices": [
+        {
+          "id": "a",
+          "label": {
+            "en": "2",
+            "nl": "2"
+          },
+          "reason": {
+            "en": "pop removes the key and returns its value.",
+            "nl": "pop verwijdert de key en geeft de value terug."
+          }
+        },
+        {
+          "id": "b",
+          "label": {
+            "en": "a",
+            "nl": "a"
+          },
+          "reason": {
+            "en": "pop removes the key and returns its value.",
+            "nl": "pop verwijdert de key en geeft de value terug."
+          }
+        },
+        {
+          "id": "c",
+          "label": {
+            "en": "None",
+            "nl": "None"
+          },
+          "reason": {
+            "en": "pop removes the key and returns its value.",
+            "nl": "pop verwijdert de key en geeft de value terug."
+          }
+        }
+      ]
+    },
+    {
+      "id": "using-dictionaries-q6",
+      "prompt": {
+        "en": "What does this code print?",
+        "nl": "Wat drukt deze code af?"
+      },
+      "code": "print(sum({\"a\": 2, \"b\": 5}.values()))",
+      "answer": "a",
+      "choices": [
+        {
+          "id": "a",
+          "label": {
+            "en": "7",
+            "nl": "7"
+          },
+          "reason": {
+            "en": "values supplies both numeric values to sum.",
+            "nl": "values geeft beide numerieke values aan sum."
+          }
+        },
+        {
+          "id": "b",
+          "label": {
+            "en": "2",
+            "nl": "2"
+          },
+          "reason": {
+            "en": "values supplies both numeric values to sum.",
+            "nl": "values geeft beide numerieke values aan sum."
+          }
+        },
+        {
+          "id": "c",
+          "label": {
+            "en": "5",
+            "nl": "5"
+          },
+          "reason": {
+            "en": "values supplies both numeric values to sum.",
+            "nl": "values geeft beide numerieke values aan sum."
+          }
+        }
+      ]
+    },
+    {
+      "id": "using-dictionaries-q7",
+      "prompt": {
+        "en": "What does this code print?",
+        "nl": "Wat drukt deze code af?"
+      },
+      "code": "print(list({\"a\": 2}.items()))",
+      "answer": "a",
+      "choices": [
+        {
+          "id": "a",
+          "label": {
+            "en": "[('a', 2)]",
+            "nl": "[('a', 2)]"
+          },
+          "reason": {
+            "en": "items yields key-value pairs as tuples.",
+            "nl": "items levert key-value-paren als tuples."
+          }
+        },
+        {
+          "id": "b",
+          "label": {
+            "en": "['a']",
+            "nl": "['a']"
+          },
+          "reason": {
+            "en": "items yields key-value pairs as tuples.",
+            "nl": "items levert key-value-paren als tuples."
+          }
+        },
+        {
+          "id": "c",
+          "label": {
+            "en": "[2]",
+            "nl": "[2]"
+          },
+          "reason": {
+            "en": "items yields key-value pairs as tuples.",
+            "nl": "items levert key-value-paren als tuples."
+          }
+        }
+      ]
+    },
+    {
+      "id": "using-dictionaries-q8",
+      "prompt": {
+        "en": "What does this code print?",
+        "nl": "Wat drukt deze code af?"
+      },
+      "code": "d = {\"a\": 1}\nk = d.keys()\nd[\"b\"] = 2\nprint(list(k))",
+      "answer": "a",
+      "choices": [
+        {
+          "id": "a",
+          "label": {
+            "en": "['a', 'b']",
+            "nl": "['a', 'b']"
+          },
+          "reason": {
+            "en": "The key view reflects later changes to its dictionary.",
+            "nl": "De key view weerspiegelt latere wijzigingen in de dictionary."
+          }
+        },
+        {
+          "id": "b",
+          "label": {
+            "en": "['a']",
+            "nl": "['a']"
+          },
+          "reason": {
+            "en": "The key view reflects later changes to its dictionary.",
+            "nl": "De key view weerspiegelt latere wijzigingen in de dictionary."
+          }
+        },
+        {
+          "id": "c",
+          "label": {
+            "en": "['b']",
+            "nl": "['b']"
+          },
+          "reason": {
+            "en": "The key view reflects later changes to its dictionary.",
+            "nl": "De key view weerspiegelt latere wijzigingen in de dictionary."
+          }
+        }
+      ]
+    },
+    {
+      "id": "using-dictionaries-q9",
+      "prompt": {
+        "en": "What does this code print?",
+        "nl": "Wat drukt deze code af?"
+      },
+      "code": "print({}.get(\"x\"))",
+      "answer": "a",
+      "choices": [
+        {
+          "id": "a",
+          "label": {
+            "en": "None",
+            "nl": "None"
+          },
+          "reason": {
+            "en": "Without an explicit default, get returns None for absence.",
+            "nl": "Zonder expliciete default geeft get None terug bij een ontbrekende key."
+          }
+        },
+        {
+          "id": "b",
+          "label": {
+            "en": "0",
+            "nl": "0"
+          },
+          "reason": {
+            "en": "Without an explicit default, get returns None for absence.",
+            "nl": "Zonder expliciete default geeft get None terug bij een ontbrekende key."
+          }
+        },
+        {
+          "id": "c",
+          "label": {
+            "en": "False",
+            "nl": "False"
+          },
+          "reason": {
+            "en": "Without an explicit default, get returns None for absence.",
+            "nl": "Zonder expliciete default geeft get None terug bij een ontbrekende key."
+          }
+        }
+      ]
+    }
+  ],
+  "estimatedMinutes": 9
+}

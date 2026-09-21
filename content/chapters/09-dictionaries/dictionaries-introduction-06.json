@@ -1,0 +1,43 @@
+{
+  "id": "dictionaries-introduction-06",
+  "chapter": 9,
+  "group": "dictionaries-introduction",
+  "title": {
+    "en": "Updating several entries",
+    "nl": "Meerdere entries bijwerken"
+  },
+  "kind": "coding",
+  "optional": false,
+  "explanation": {
+    "en": "update() merges entries into an existing dictionary. New keys are added; existing keys receive the supplied values. The method changes the mapping in place.",
+    "nl": "update() voegt entries samen met een bestaande dictionary. Nieuwe keys worden toegevoegd; bestaande keys krijgen de opgegeven values. De mapping wordt zelf aangepast."
+  },
+  "example": "",
+  "files": {
+    "main.py": "settings = {\"mode\": \"eco\"}\n"
+  },
+  "solution": {
+    "main.py": "settings = {\"mode\": \"eco\"}\nsettings.update({\"volume\": 8, \"brightness\": 4})\nprint(settings)\n"
+  },
+  "checkpoints": [
+    {
+      "id": "dictionaries-introduction-06-step-1",
+      "task": {
+        "en": "Update settings with volume = 8 and brightness = 4 while retaining mode.",
+        "nl": "Werk settings bij met volume = 8 en brightness = 4. Behoud mode."
+      },
+      "check": "settings == {'mode':'eco','volume':8,'brightness':4}",
+      "hint": {
+        "en": "Start with settings = {\"mode\": \"eco\"}. Then compare the values with the task.",
+        "nl": "Begin met settings = {\"mode\": \"eco\"}. Vergelijk de waarden daarna met de opdracht."
+      }
+    }
+  ],
+  "solutionNote": {
+    "en": "update() merges entries into an existing dictionary. New keys are added; existing keys receive the supplied values. The method changes the mapping in place.\n\nTrace the solution one line at a time. Try a different input to see which parts change.",
+    "nl": "update() voegt entries samen met een bestaande dictionary. Nieuwe keys worden toegevoegd; bestaande keys krijgen de opgegeven values. De mapping wordt zelf aangepast.\n\nVolg de oplossing regel voor regel. Probeer een andere invoer en bekijk welke onderdelen veranderen."
+  },
+  "sourcePosition": 6,
+  "sourceUrl": "https://www.codecademy.com/courses/learn-python-3/lessons/dictionaries-introduction/exercises/add-multiple-keys",
+  "estimatedMinutes": 6
+}

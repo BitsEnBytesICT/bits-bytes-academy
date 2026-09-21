@@ -1,0 +1,43 @@
+{
+  "id": "intro-to-functions-04",
+  "chapter": 5,
+  "group": "intro-to-functions",
+  "title": {
+    "en": "Calling functions",
+    "nl": "Een function aanroepen"
+  },
+  "kind": "coding",
+  "optional": false,
+  "explanation": {
+    "en": "Call a function by writing its name followed by parentheses. Python runs the body, then continues on the next line after the call. A bare name refers to the function without calling it.",
+    "nl": "Roep een function aan met de naam gevolgd door haakjes. Python voert de body uit en gaat daarna verder na de aanroep. Alleen de naam verwijst naar de function zonder haar uit te voeren."
+  },
+  "example": "",
+  "files": {
+    "main.py": "def announce():\n    print(\"System ready\")\n\n"
+  },
+  "solution": {
+    "main.py": "def announce():\n    print(\"System ready\")\n\nannounce()\nprint(\"Complete\")\n"
+  },
+  "checkpoints": [
+    {
+      "id": "intro-to-functions-04-step-1",
+      "task": {
+        "en": "Call announce() and then print Complete.",
+        "nl": "Roep announce() aan en druk daarna Complete af."
+      },
+      "check": "_stdout.splitlines() == ['System ready','Complete']",
+      "hint": {
+        "en": "Start with def announce():. Then compare the values with the task.",
+        "nl": "Begin met def announce():. Vergelijk de waarden daarna met de opdracht."
+      }
+    }
+  ],
+  "solutionNote": {
+    "en": "Call a function by writing its name followed by parentheses. Python runs the body, then continues on the next line after the call. A bare name refers to the function without calling it.\n\nTrace the solution one line at a time. Try a different input to see which parts change.",
+    "nl": "Roep een function aan met de naam gevolgd door haakjes. Python voert de body uit en gaat daarna verder na de aanroep. Alleen de naam verwijst naar de function zonder haar uit te voeren.\n\nVolg de oplossing regel voor regel. Probeer een andere invoer en bekijk welke onderdelen veranderen."
+  },
+  "sourcePosition": 4,
+  "sourceUrl": "https://www.codecademy.com/courses/learn-python-3/lessons/intro-to-functions/exercises/calling-a-function",
+  "estimatedMinutes": 6
+}

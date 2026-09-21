@@ -1,0 +1,45 @@
+{
+  "id": "modules-python-05",
+  "chapter": 8,
+  "group": "modules-python",
+  "title": {
+    "en": "Importing local files",
+    "nl": "Een eigen module"
+  },
+  "kind": "coding",
+  "optional": false,
+  "explanation": {
+    "en": "A Python file can be imported as a module using its filename without .py. Keep reusable definitions in the helper file and call them from the entrypoint. Each module has its own global namespace.",
+    "nl": "Een Python-bestand kun je importeren als module met de bestandsnaam zonder .py. Zet herbruikbare definities in het helperbestand en roep ze aan vanuit het hoofdprogramma. Elke module heeft een eigen globale namespace."
+  },
+  "example": "",
+  "files": {
+    "helpers.py": "# Define your helper here.\n",
+    "main.py": "# Write your code below.\n"
+  },
+  "solution": {
+    "helpers.py": "def to_minutes(hours):\n    return hours * 60\n",
+    "main.py": "from helpers import to_minutes\nminutes = to_minutes(2.5)\nprint(minutes)\n"
+  },
+  "checkpoints": [
+    {
+      "id": "modules-python-05-step-1",
+      "task": {
+        "en": "In helpers.py define to_minutes(hours) returning hours * 60. Import it in main.py and save to_minutes(2.5) as minutes.",
+        "nl": "Definieer in helpers.py to_minutes(hours) die hours * 60 teruggeeft. Importeer deze in main.py en sla to_minutes(2.5) op in minutes."
+      },
+      "check": "minutes == 150 and to_minutes(1.25) == 75",
+      "hint": {
+        "en": "Start with from helpers import to_minutes. Then compare the values with the task.",
+        "nl": "Begin met from helpers import to_minutes. Vergelijk de waarden daarna met de opdracht."
+      }
+    }
+  ],
+  "solutionNote": {
+    "en": "A Python file can be imported as a module using its filename without .py. Keep reusable definitions in the helper file and call them from the entrypoint. Each module has its own global namespace.\n\nTrace the solution one line at a time. Try a different input to see which parts change.",
+    "nl": "Een Python-bestand kun je importeren als module met de bestandsnaam zonder .py. Zet herbruikbare definities in het helperbestand en roep ze aan vanuit het hoofdprogramma. Elke module heeft een eigen globale namespace.\n\nVolg de oplossing regel voor regel. Probeer een andere invoer en bekijk welke onderdelen veranderen."
+  },
+  "sourcePosition": 5,
+  "sourceUrl": "https://www.codecademy.com/courses/learn-python-3/lessons/modules-python/exercises/modules-python-files-and-scope",
+  "estimatedMinutes": 6
+}

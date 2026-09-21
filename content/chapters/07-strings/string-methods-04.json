@@ -1,0 +1,43 @@
+{
+  "id": "string-methods-04",
+  "chapter": 7,
+  "group": "string-methods",
+  "title": {
+    "en": "Splitting on a delimiter",
+    "nl": "Splitsen op een separator"
+  },
+  "kind": "coding",
+  "optional": false,
+  "explanation": {
+    "en": "Give split a separator to divide a string at that exact text. Unlike whitespace splitting, consecutive explicit separators may produce empty strings.",
+    "nl": "Geef split een separator mee om op precies die tekst te splitsen. Anders dan bij whitespace kunnen opeenvolgende expliciete separators lege strings opleveren."
+  },
+  "example": "",
+  "files": {
+    "main.py": "tags = \"blue|orange|white\"\n"
+  },
+  "solution": {
+    "main.py": "tags = \"blue|orange|white\"\nparts = tags.split(\"|\")\nprint(parts)\n"
+  },
+  "checkpoints": [
+    {
+      "id": "string-methods-04-step-1",
+      "task": {
+        "en": "Split tags on the | separator into parts.",
+        "nl": "Splits tags op de separator | en sla het resultaat op in parts."
+      },
+      "check": "parts == ['blue','orange','white']",
+      "hint": {
+        "en": "Start with tags = \"blue|orange|white\". Then compare the values with the task.",
+        "nl": "Begin met tags = \"blue|orange|white\". Vergelijk de waarden daarna met de opdracht."
+      }
+    }
+  ],
+  "solutionNote": {
+    "en": "Give split a separator to divide a string at that exact text. Unlike whitespace splitting, consecutive explicit separators may produce empty strings.\n\nTrace the solution one line at a time. Try a different input to see which parts change.",
+    "nl": "Geef split een separator mee om op precies die tekst te splitsen. Anders dan bij whitespace kunnen opeenvolgende expliciete separators lege strings opleveren.\n\nVolg de oplossing regel voor regel. Probeer een andere invoer en bekijk welke onderdelen veranderen."
+  },
+  "sourcePosition": 4,
+  "sourceUrl": "https://www.codecademy.com/courses/learn-python-3/lessons/string-methods/exercises/splitting-strings-ii",
+  "estimatedMinutes": 6
+}

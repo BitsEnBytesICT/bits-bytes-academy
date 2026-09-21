@@ -1,0 +1,43 @@
+{
+  "id": "python-hello-world-13",
+  "chapter": 1,
+  "group": "python-hello-world",
+  "title": {
+    "en": "Augmented assignment",
+    "nl": "Augmented assignment"
+  },
+  "kind": "coding",
+  "optional": false,
+  "explanation": {
+    "en": "Augmented assignment combines an operation with assignment. energy += 4 updates energy by adding 4. The corresponding forms -= and *= also update the existing value.",
+    "nl": "Augmented assignment combineert een bewerking met assignment. energy += 4 verhoogt energy met 4. Met -= en *= kun je de bestaande waarde ook bijwerken."
+  },
+  "example": "count = 3\ncount += 2",
+  "files": {
+    "main.py": "# Write your code below.\n"
+  },
+  "solution": {
+    "main.py": "energy = 12\nenergy += 8\nprint(energy)\n"
+  },
+  "checkpoints": [
+    {
+      "id": "python-hello-world-13-step-1",
+      "task": {
+        "en": "Start energy at 12 and increase it by 8 using +=. Print energy.",
+        "nl": "Begin met energy = 12 en verhoog de waarde met 8 via +=. Druk energy af."
+      },
+      "check": "energy == 20 and any(isinstance(n, _ast.AugAssign) for n in _ast.walk(_ast.parse(_source)))",
+      "hint": {
+        "en": "Start with energy = 12. Then compare the values with the task.",
+        "nl": "Begin met energy = 12. Vergelijk de waarden daarna met de opdracht."
+      }
+    }
+  ],
+  "solutionNote": {
+    "en": "Augmented assignment combines an operation with assignment. energy += 4 updates energy by adding 4. The corresponding forms -= and *= also update the existing value.\n\nTrace the solution one line at a time. Try a different input to see which parts change.",
+    "nl": "Augmented assignment combineert een bewerking met assignment. energy += 4 verhoogt energy met 4. Met -= en *= kun je de bestaande waarde ook bijwerken.\n\nVolg de oplossing regel voor regel. Probeer een andere invoer en bekijk welke onderdelen veranderen."
+  },
+  "sourcePosition": 13,
+  "sourceUrl": "https://www.codecademy.com/courses/learn-python-3/lessons/python-hello-world/exercises/plus-equals",
+  "estimatedMinutes": 6
+}

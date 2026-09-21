@@ -1,0 +1,43 @@
+{
+  "id": "learn-python-loops-10",
+  "chapter": 4,
+  "group": "learn-python-loops",
+  "title": {
+    "en": "Nested loops",
+    "nl": "Geneste loops"
+  },
+  "kind": "coding",
+  "optional": false,
+  "explanation": {
+    "en": "A nested loop runs its inner loop for each outer element. For a table, the outer loop selects a row and the inner loop selects values in that row.",
+    "nl": "Een geneste loop voert de binnenste loop uit voor elk buitenste element. Bij een tabel kiest de buitenste loop een rij en de binnenste loop waarden in die rij."
+  },
+  "example": "",
+  "files": {
+    "main.py": "grid = [[2, 4], [6, 8]]\ntotal = 0\n"
+  },
+  "solution": {
+    "main.py": "grid = [[2, 4], [6, 8]]\ntotal = 0\nfor row in grid:\n    for value in row:\n        total += value\nprint(total)\n"
+  },
+  "checkpoints": [
+    {
+      "id": "learn-python-loops-10-step-1",
+      "task": {
+        "en": "Use nested loops to add every grid value into total.",
+        "nl": "Gebruik geneste loops om alle grid-waarden op te tellen in total."
+      },
+      "check": "total == 20 and sum(isinstance(n,_ast.For) for n in _ast.walk(_ast.parse(_source))) >= 2",
+      "hint": {
+        "en": "Start with grid = [[2, 4], [6, 8]]. Then compare the values with the task.",
+        "nl": "Begin met grid = [[2, 4], [6, 8]]. Vergelijk de waarden daarna met de opdracht."
+      }
+    }
+  ],
+  "solutionNote": {
+    "en": "A nested loop runs its inner loop for each outer element. For a table, the outer loop selects a row and the inner loop selects values in that row.\n\nTrace the solution one line at a time. Try a different input to see which parts change.",
+    "nl": "Een geneste loop voert de binnenste loop uit voor elk buitenste element. Bij een tabel kiest de buitenste loop een rij en de binnenste loop waarden in die rij.\n\nVolg de oplossing regel voor regel. Probeer een andere invoer en bekijk welke onderdelen veranderen."
+  },
+  "sourcePosition": 10,
+  "sourceUrl": "https://www.codecademy.com/courses/learn-python-3/lessons/learn-python-loops/exercises/nested",
+  "estimatedMinutes": 6
+}

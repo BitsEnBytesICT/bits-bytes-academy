@@ -1,0 +1,41 @@
+{
+  "id": "practice-12-mapping-build-1",
+  "chapter": 12,
+  "group": "mapping-build",
+  "title": {
+    "en": "Word lengths",
+    "nl": "Woordlengtes"
+  },
+  "kind": "challenge",
+  "optional": true,
+  "explanation": {
+    "en": "Return a dictionary mapping each input word to its character count. Repeated words need only one entry.",
+    "nl": "Geef een dictionary terug die elk invoerwoord koppelt aan het aantal tekens. Herhaalde woorden hebben maar één entry nodig."
+  },
+  "example": "",
+  "files": {
+    "main.py": "def word_lengths(words):\n    # Implement the function.\n    pass\n\nprint(word_lengths([\"map\", \"torch\"]))\n"
+  },
+  "solution": {
+    "main.py": "def word_lengths(words):\n    return {word: len(word) for word in words}\n\nprint(word_lengths([\"map\", \"torch\"]))\n"
+  },
+  "checkpoints": [
+    {
+      "id": "practice-12-mapping-build-1-step-1",
+      "task": {
+        "en": "Return a dictionary mapping each input word to its character count. Repeated words need only one entry.",
+        "nl": "Geef een dictionary terug die elk invoerwoord koppelt aan het aantal tekens. Herhaalde woorden hebben maar één entry nodig."
+      },
+      "check": "word_lengths(['map','torch','map']) == {'map':3,'torch':5} and word_lengths([]) == {}",
+      "hint": {
+        "en": "Work through a small input by hand first. Separate the condition, transformation, and return value.",
+        "nl": "Werk eerst zelf een kleine invoer uit. Bekijk de voorwaarde, de bewerking en de return value afzonderlijk."
+      }
+    }
+  ],
+  "solutionNote": {
+    "en": "This solution separates the calculation from its input. Test the function with ordinary values and edge cases such as empty collections or boundary values.",
+    "nl": "Deze oplossing scheidt de berekening van de invoer. Test de function met gewone waarden en grensgevallen, zoals lege verzamelingen of grenswaarden."
+  },
+  "estimatedMinutes": 10
+}

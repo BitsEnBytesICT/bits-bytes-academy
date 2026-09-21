@@ -1,0 +1,43 @@
+{
+  "id": "learn-python-loops-02",
+  "chapter": 4,
+  "group": "learn-python-loops",
+  "title": {
+    "en": "Replacing repeated code",
+    "nl": "Herhaling vervangen"
+  },
+  "kind": "coding",
+  "optional": false,
+  "explanation": {
+    "en": "Repeated lines are difficult to maintain: a rule may need to be changed in several places. A loop expresses the rule once and applies it to each item.",
+    "nl": "Herhaalde regels zijn lastig te onderhouden: dezelfde regel moet dan op meerdere plaatsen worden aangepast. Een loop beschrijft de regel één keer en past deze op elk item toe."
+  },
+  "example": "",
+  "files": {
+    "main.py": "names = [\"East\", \"West\", \"North\"]\nprint(names[0])\nprint(names[1])\nprint(names[2])\n"
+  },
+  "solution": {
+    "main.py": "names = [\"East\", \"West\", \"North\"]\nfor name in names:\n    print(name)\n"
+  },
+  "checkpoints": [
+    {
+      "id": "learn-python-loops-02-step-1",
+      "task": {
+        "en": "Replace repeated prints with a loop over names. Print each name on its own line.",
+        "nl": "Vervang herhaalde print-regels door een loop over names. Druk elke naam op een eigen regel af."
+      },
+      "check": "_stdout.splitlines() == ['East','West','North'] and any(isinstance(n,_ast.For) for n in _ast.walk(_ast.parse(_source)))",
+      "hint": {
+        "en": "Start with names = [\"East\", \"West\", \"North\"]. Then compare the values with the task.",
+        "nl": "Begin met names = [\"East\", \"West\", \"North\"]. Vergelijk de waarden daarna met de opdracht."
+      }
+    }
+  ],
+  "solutionNote": {
+    "en": "Repeated lines are difficult to maintain: a rule may need to be changed in several places. A loop expresses the rule once and applies it to each item.\n\nTrace the solution one line at a time. Try a different input to see which parts change.",
+    "nl": "Herhaalde regels zijn lastig te onderhouden: dezelfde regel moet dan op meerdere plaatsen worden aangepast. Een loop beschrijft de regel één keer en past deze op elk item toe.\n\nVolg de oplossing regel voor regel. Probeer een andere invoer en bekijk welke onderdelen veranderen."
+  },
+  "sourcePosition": 2,
+  "sourceUrl": "https://www.codecademy.com/courses/learn-python-3/lessons/learn-python-loops/exercises/introduction",
+  "estimatedMinutes": 6
+}

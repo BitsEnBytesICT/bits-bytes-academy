@@ -1,0 +1,41 @@
+{
+  "id": "practice-12-objects-2",
+  "chapter": 12,
+  "group": "objects",
+  "title": {
+    "en": "Add a switch",
+    "nl": "Een schakelaar toevoegen"
+  },
+  "kind": "challenge",
+  "optional": true,
+  "explanation": {
+    "en": "Return a Beacon instance with name, active initially False, and turn_on() that sets active to True. Define the class inside the factory.",
+    "nl": "Geef een Beacon-instance terug met name, active aanvankelijk False en turn_on() die active op True zet. Definieer de class binnen de factory."
+  },
+  "example": "",
+  "files": {
+    "main.py": "def switched_beacon(name):\n    # Implement the function.\n    pass\n\nb = switched_beacon(\"East\")\nb.turn_on()\nprint(b.active)\n"
+  },
+  "solution": {
+    "main.py": "def switched_beacon(name):\n    class Beacon:\n        def __init__(self, name):\n            self.name = name\n            self.active = False\n        def turn_on(self):\n            self.active = True\n    return Beacon(name)\n\nb = switched_beacon(\"East\")\nb.turn_on()\nprint(b.active)\n"
+  },
+  "checkpoints": [
+    {
+      "id": "practice-12-objects-2-step-1",
+      "task": {
+        "en": "Return a Beacon instance with name, active initially False, and turn_on() that sets active to True. Define the class inside the factory.",
+        "nl": "Geef een Beacon-instance terug met name, active aanvankelijk False en turn_on() die active op True zet. Definieer de class binnen de factory."
+      },
+      "check": "switched_beacon('E').active is False and (lambda b: (b.turn_on(),b.active)[1])(switched_beacon('E')) is True",
+      "hint": {
+        "en": "Work through a small input by hand first. Separate the condition, transformation, and return value.",
+        "nl": "Werk eerst zelf een kleine invoer uit. Bekijk de voorwaarde, de bewerking en de return value afzonderlijk."
+      }
+    }
+  ],
+  "solutionNote": {
+    "en": "This solution separates the calculation from its input. Test the function with ordinary values and edge cases such as empty collections or boundary values.",
+    "nl": "Deze oplossing scheidt de berekening van de invoer. Test de function met gewone waarden en grensgevallen, zoals lege verzamelingen of grenswaarden."
+  },
+  "estimatedMinutes": 10
+}

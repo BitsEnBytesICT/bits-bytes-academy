@@ -1,0 +1,41 @@
+{
+  "id": "practice-6-compose-5",
+  "chapter": 6,
+  "group": "compose",
+  "title": {
+    "en": "Measurement summary",
+    "nl": "Samenvatting van metingen"
+  },
+  "kind": "challenge",
+  "optional": true,
+  "explanation": {
+    "en": "Return a tuple containing the sum, product, and absolute difference of a and b.",
+    "nl": "Geef een tuple terug met de som, het product en het absolute verschil van a en b."
+  },
+  "example": "",
+  "files": {
+    "main.py": "def summary(a, b):\n    # Implement the function.\n    pass\n\nprint(summary(3, 7))\n"
+  },
+  "solution": {
+    "main.py": "def summary(a, b):\n    return a + b, a * b, abs(a - b)\n\nprint(summary(3, 7))\n"
+  },
+  "checkpoints": [
+    {
+      "id": "practice-6-compose-5-step-1",
+      "task": {
+        "en": "Return a tuple containing the sum, product, and absolute difference of a and b.",
+        "nl": "Geef een tuple terug met de som, het product en het absolute verschil van a en b."
+      },
+      "check": "summary(3,7) == (10,21,4) and summary(-2,5) == (3,-10,7)",
+      "hint": {
+        "en": "Work through a small input by hand first. Separate the condition, transformation, and return value.",
+        "nl": "Werk eerst zelf een kleine invoer uit. Bekijk de voorwaarde, de bewerking en de return value afzonderlijk."
+      }
+    }
+  ],
+  "solutionNote": {
+    "en": "This solution separates the calculation from its input. Test the function with ordinary values and edge cases such as empty collections or boundary values.",
+    "nl": "Deze oplossing scheidt de berekening van de invoer. Test de function met gewone waarden en grensgevallen, zoals lege verzamelingen of grenswaarden."
+  },
+  "estimatedMinutes": 10
+}

@@ -1,0 +1,43 @@
+{
+  "id": "modules-python-02",
+  "chapter": 8,
+  "group": "modules-python",
+  "title": {
+    "en": "Random sampling",
+    "nl": "Willekeurige waarden"
+  },
+  "kind": "coding",
+  "optional": false,
+  "explanation": {
+    "en": "random provides pseudorandom choices. randint(a, b) includes both endpoints; choice(sequence) selects one element. A seed makes a sequence reproducible, which is useful when testing.",
+    "nl": "random biedt pseudowillekeurige keuzes. randint(a, b) omvat beide grenzen; choice(sequence) kiest één element. Met een seed is de reeks reproduceerbaar, wat handig is bij testen."
+  },
+  "example": "",
+  "files": {
+    "main.py": "# Write your code below.\n"
+  },
+  "solution": {
+    "main.py": "import random\nroll = random.randint(1, 6)\nselected = random.choice([\"north\", \"south\", \"west\"])\nprint(roll, selected)\n"
+  },
+  "checkpoints": [
+    {
+      "id": "modules-python-02-step-1",
+      "task": {
+        "en": "Import random. Create roll between 1 and 6 and selected from the list north, south, west.",
+        "nl": "Importeer random. Maak roll tussen 1 en 6 en selected uit de list north, south, west."
+      },
+      "check": "type(roll) is int and 1 <= roll <= 6 and selected in ['north','south','west']",
+      "hint": {
+        "en": "Start with import random. Then compare the values with the task.",
+        "nl": "Begin met import random. Vergelijk de waarden daarna met de opdracht."
+      }
+    }
+  ],
+  "solutionNote": {
+    "en": "random provides pseudorandom choices. randint(a, b) includes both endpoints; choice(sequence) selects one element. A seed makes a sequence reproducible, which is useful when testing.\n\nTrace the solution one line at a time. Try a different input to see which parts change.",
+    "nl": "random biedt pseudowillekeurige keuzes. randint(a, b) omvat beide grenzen; choice(sequence) kiest één element. Met een seed is de reeks reproduceerbaar, wat handig is bij testen.\n\nVolg de oplossing regel voor regel. Probeer een andere invoer en bekijk welke onderdelen veranderen."
+  },
+  "sourcePosition": 2,
+  "sourceUrl": "https://www.codecademy.com/courses/learn-python-3/lessons/modules-python/exercises/modules-python-random",
+  "estimatedMinutes": 6
+}

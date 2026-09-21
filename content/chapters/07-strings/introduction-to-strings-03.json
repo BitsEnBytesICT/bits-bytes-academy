@@ -1,0 +1,43 @@
+{
+  "id": "introduction-to-strings-03",
+  "chapter": 7,
+  "group": "introduction-to-strings",
+  "title": {
+    "en": "String slicing",
+    "nl": "Strings slicen"
+  },
+  "kind": "coding",
+  "optional": false,
+  "explanation": {
+    "en": "String slicing selects characters from start up to an excluded stop index. It produces a new string. The original value stays unchanged.",
+    "nl": "Een string-slice kiest tekens vanaf start tot de uitgesloten stopindex. Het resultaat is een nieuwe string. De oorspronkelijke waarde blijft ongewijzigd."
+  },
+  "example": "word = \"garden\"\nprint(word[1:4])",
+  "files": {
+    "main.py": "label = \"sensor-LAB-42\"\n"
+  },
+  "solution": {
+    "main.py": "label = \"sensor-LAB-42\"\nsection = label[7:10]\nprint(section)\n"
+  },
+  "checkpoints": [
+    {
+      "id": "introduction-to-strings-03-step-1",
+      "task": {
+        "en": "Extract LAB from sensor-LAB-42 into section using a slice.",
+        "nl": "Haal LAB met een slice uit sensor-LAB-42 en sla het op in section."
+      },
+      "check": "section == 'LAB'",
+      "hint": {
+        "en": "Start with label = \"sensor-LAB-42\". Then compare the values with the task.",
+        "nl": "Begin met label = \"sensor-LAB-42\". Vergelijk de waarden daarna met de opdracht."
+      }
+    }
+  ],
+  "solutionNote": {
+    "en": "String slicing selects characters from start up to an excluded stop index. It produces a new string. The original value stays unchanged.\n\nTrace the solution one line at a time. Try a different input to see which parts change.",
+    "nl": "Een string-slice kiest tekens vanaf start tot de uitgesloten stopindex. Het resultaat is een nieuwe string. De oorspronkelijke waarde blijft ongewijzigd.\n\nVolg de oplossing regel voor regel. Probeer een andere invoer en bekijk welke onderdelen veranderen."
+  },
+  "sourcePosition": 3,
+  "sourceUrl": "https://www.codecademy.com/courses/learn-python-3/lessons/introduction-to-strings/exercises/silce-a-string",
+  "estimatedMinutes": 6
+}

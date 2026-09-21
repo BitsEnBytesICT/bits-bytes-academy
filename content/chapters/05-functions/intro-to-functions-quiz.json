@@ -1,0 +1,322 @@
+{
+  "id": "intro-to-functions-quiz",
+  "chapter": 5,
+  "group": "intro-to-functions",
+  "title": {
+    "en": "Functions · Quiz",
+    "nl": "Functions · Quiz"
+  },
+  "kind": "quiz",
+  "optional": false,
+  "questions": [
+    {
+      "id": "intro-to-functions-q1",
+      "prompt": {
+        "en": "What does this code print?",
+        "nl": "Wat drukt deze code af?"
+      },
+      "code": "def double(x):\n    return x * 2\nprint(double(6))",
+      "answer": "a",
+      "choices": [
+        {
+          "id": "a",
+          "label": {
+            "en": "12",
+            "nl": "12"
+          },
+          "reason": {
+            "en": "The argument 6 is assigned to x, then multiplied by 2.",
+            "nl": "Het argument 6 wordt aan x gekoppeld en daarna met 2 vermenigvuldigd."
+          }
+        },
+        {
+          "id": "b",
+          "label": {
+            "en": "6",
+            "nl": "6"
+          },
+          "reason": {
+            "en": "The argument 6 is assigned to x, then multiplied by 2.",
+            "nl": "Het argument 6 wordt aan x gekoppeld en daarna met 2 vermenigvuldigd."
+          }
+        },
+        {
+          "id": "c",
+          "label": {
+            "en": "None",
+            "nl": "None"
+          },
+          "reason": {
+            "en": "The argument 6 is assigned to x, then multiplied by 2.",
+            "nl": "Het argument 6 wordt aan x gekoppeld en daarna met 2 vermenigvuldigd."
+          }
+        }
+      ]
+    },
+    {
+      "id": "intro-to-functions-q2",
+      "prompt": {
+        "en": "What happens when a function is defined but not called?",
+        "nl": "Wat gebeurt er als je een function definieert maar niet aanroept?"
+      },
+      "code": "",
+      "answer": "a",
+      "choices": [
+        {
+          "id": "a",
+          "label": {
+            "en": "Its body does not run yet",
+            "nl": "De body wordt nog niet uitgevoerd"
+          },
+          "reason": {
+            "en": "def creates the function; a call executes its body.",
+            "nl": "def maakt de function; een aanroep voert de body uit."
+          }
+        },
+        {
+          "id": "b",
+          "label": {
+            "en": "Its body runs once",
+            "nl": "De body wordt één keer uitgevoerd"
+          },
+          "reason": {
+            "en": "def creates the function; a call executes its body.",
+            "nl": "def maakt de function; een aanroep voert de body uit."
+          }
+        },
+        {
+          "id": "c",
+          "label": {
+            "en": "Python raises an error",
+            "nl": "Python geeft een fout"
+          },
+          "reason": {
+            "en": "def creates the function; a call executes its body.",
+            "nl": "def maakt de function; een aanroep voert de body uit."
+          }
+        }
+      ]
+    },
+    {
+      "id": "intro-to-functions-q3",
+      "prompt": {
+        "en": "What does this code print?",
+        "nl": "Wat drukt deze code af?"
+      },
+      "code": "def scale(x, factor=3):\n    return x * factor\nprint(scale(4))",
+      "answer": "a",
+      "choices": [
+        {
+          "id": "a",
+          "label": {
+            "en": "12",
+            "nl": "12"
+          },
+          "reason": {
+            "en": "The omitted factor uses its default value of 3.",
+            "nl": "De ontbrekende factor gebruikt de default value 3."
+          }
+        },
+        {
+          "id": "b",
+          "label": {
+            "en": "4",
+            "nl": "4"
+          },
+          "reason": {
+            "en": "The omitted factor uses its default value of 3.",
+            "nl": "De ontbrekende factor gebruikt de default value 3."
+          }
+        },
+        {
+          "id": "c",
+          "label": {
+            "en": "3",
+            "nl": "3"
+          },
+          "reason": {
+            "en": "The omitted factor uses its default value of 3.",
+            "nl": "De ontbrekende factor gebruikt de default value 3."
+          }
+        }
+      ]
+    },
+    {
+      "id": "intro-to-functions-q4",
+      "prompt": {
+        "en": "What does this code print?",
+        "nl": "Wat drukt deze code af?"
+      },
+      "code": "def difference(a, b):\n    return a - b\nprint(difference(b=2, a=9))",
+      "answer": "a",
+      "choices": [
+        {
+          "id": "a",
+          "label": {
+            "en": "7",
+            "nl": "7"
+          },
+          "reason": {
+            "en": "Keywords bind values by parameter name, regardless of their call order.",
+            "nl": "Keywords koppelen waarden op parameternaam, ongeacht de volgorde bij de aanroep."
+          }
+        },
+        {
+          "id": "b",
+          "label": {
+            "en": "-7",
+            "nl": "-7"
+          },
+          "reason": {
+            "en": "Keywords bind values by parameter name, regardless of their call order.",
+            "nl": "Keywords koppelen waarden op parameternaam, ongeacht de volgorde bij de aanroep."
+          }
+        },
+        {
+          "id": "c",
+          "label": {
+            "en": "11",
+            "nl": "11"
+          },
+          "reason": {
+            "en": "Keywords bind values by parameter name, regardless of their call order.",
+            "nl": "Keywords koppelen waarden op parameternaam, ongeacht de volgorde bij de aanroep."
+          }
+        }
+      ]
+    },
+    {
+      "id": "intro-to-functions-q5",
+      "prompt": {
+        "en": "What does this code print?",
+        "nl": "Wat drukt deze code af?"
+      },
+      "code": "x = 4\ndef work():\n    x = 9\nwork()\nprint(x)",
+      "answer": "a",
+      "choices": [
+        {
+          "id": "a",
+          "label": {
+            "en": "4",
+            "nl": "4"
+          },
+          "reason": {
+            "en": "The assignment inside work is local and does not replace outer x.",
+            "nl": "De assignment binnen work is lokaal en vervangt de buitenste x niet."
+          }
+        },
+        {
+          "id": "b",
+          "label": {
+            "en": "9",
+            "nl": "9"
+          },
+          "reason": {
+            "en": "The assignment inside work is local and does not replace outer x.",
+            "nl": "De assignment binnen work is lokaal en vervangt de buitenste x niet."
+          }
+        },
+        {
+          "id": "c",
+          "label": {
+            "en": "None",
+            "nl": "None"
+          },
+          "reason": {
+            "en": "The assignment inside work is local and does not replace outer x.",
+            "nl": "De assignment binnen work is lokaal en vervangt de buitenste x niet."
+          }
+        }
+      ]
+    },
+    {
+      "id": "intro-to-functions-q6",
+      "prompt": {
+        "en": "What does this code print?",
+        "nl": "Wat drukt deze code af?"
+      },
+      "code": "def empty():\n    pass\nprint(empty())",
+      "answer": "a",
+      "choices": [
+        {
+          "id": "a",
+          "label": {
+            "en": "None",
+            "nl": "None"
+          },
+          "reason": {
+            "en": "A function without an explicit returned value returns None.",
+            "nl": "Een function zonder expliciete return value geeft None terug."
+          }
+        },
+        {
+          "id": "b",
+          "label": {
+            "en": "0",
+            "nl": "0"
+          },
+          "reason": {
+            "en": "A function without an explicit returned value returns None.",
+            "nl": "Een function zonder expliciete return value geeft None terug."
+          }
+        },
+        {
+          "id": "c",
+          "label": {
+            "en": "False",
+            "nl": "False"
+          },
+          "reason": {
+            "en": "A function without an explicit returned value returns None.",
+            "nl": "Een function zonder expliciete return value geeft None terug."
+          }
+        }
+      ]
+    },
+    {
+      "id": "intro-to-functions-q7",
+      "prompt": {
+        "en": "What does this code print?",
+        "nl": "Wat drukt deze code af?"
+      },
+      "code": "def pair():\n    return 3, 8\na, b = pair()\nprint(b)",
+      "answer": "a",
+      "choices": [
+        {
+          "id": "a",
+          "label": {
+            "en": "8",
+            "nl": "8"
+          },
+          "reason": {
+            "en": "Unpacking assigns the second tuple value to b.",
+            "nl": "Uitpakken wijst de tweede tuplewaarde toe aan b."
+          }
+        },
+        {
+          "id": "b",
+          "label": {
+            "en": "3",
+            "nl": "3"
+          },
+          "reason": {
+            "en": "Unpacking assigns the second tuple value to b.",
+            "nl": "Uitpakken wijst de tweede tuplewaarde toe aan b."
+          }
+        },
+        {
+          "id": "c",
+          "label": {
+            "en": "(3, 8)",
+            "nl": "(3, 8)"
+          },
+          "reason": {
+            "en": "Unpacking assigns the second tuple value to b.",
+            "nl": "Uitpakken wijst de tweede tuplewaarde toe aan b."
+          }
+        }
+      ]
+    }
+  ],
+  "estimatedMinutes": 7
+}

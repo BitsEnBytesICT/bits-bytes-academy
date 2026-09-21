@@ -1,0 +1,43 @@
+{
+  "id": "python-control-flow-06",
+  "chapter": 2,
+  "group": "python-control-flow",
+  "title": {
+    "en": "Ordered comparisons",
+    "nl": "Grenswaarden vergelijken"
+  },
+  "kind": "coding",
+  "optional": false,
+  "explanation": {
+    "en": "< and > exclude the boundary; <= and >= include it. Choose the comparison that matches the wording of the requirement. At most includes equality; less than does not.",
+    "nl": "< en > sluiten de grenswaarde uit; <= en >= nemen deze mee. Kies de vergelijking die bij de opdracht past. Hoogstens omvat gelijkheid; kleiner dan niet."
+  },
+  "example": "",
+  "files": {
+    "main.py": "# Write your code below.\n"
+  },
+  "solution": {
+    "main.py": "load = 80\nlimit = 80\nwithin_limit = load <= limit\nbelow_limit = load < limit\nprint(within_limit, below_limit)\n"
+  },
+  "checkpoints": [
+    {
+      "id": "python-control-flow-06-step-1",
+      "task": {
+        "en": "For load = 80 and limit = 80, set within_limit using <= and below_limit using <.",
+        "nl": "Gebruik load = 80 en limit = 80. Bepaal within_limit met <= en below_limit met <."
+      },
+      "check": "within_limit is True and below_limit is False",
+      "hint": {
+        "en": "Start with load = 80. Then compare the values with the task.",
+        "nl": "Begin met load = 80. Vergelijk de waarden daarna met de opdracht."
+      }
+    }
+  ],
+  "solutionNote": {
+    "en": "< and > exclude the boundary; <= and >= include it. Choose the comparison that matches the wording of the requirement. At most includes equality; less than does not.\n\nTrace the solution one line at a time. Try a different input to see which parts change.",
+    "nl": "< en > sluiten de grenswaarde uit; <= en >= nemen deze mee. Kies de vergelijking die bij de opdracht past. Hoogstens omvat gelijkheid; kleiner dan niet.\n\nVolg de oplossing regel voor regel. Probeer een andere invoer en bekijk welke onderdelen veranderen."
+  },
+  "sourcePosition": 6,
+  "sourceUrl": "https://www.codecademy.com/courses/learn-python-3/lessons/python-control-flow/exercises/relational-operators-ii",
+  "estimatedMinutes": 6
+}

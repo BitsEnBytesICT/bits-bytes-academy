@@ -1,0 +1,43 @@
+{
+  "id": "python-hello-world-12",
+  "chapter": 1,
+  "group": "python-hello-world",
+  "title": {
+    "en": "Combining text",
+    "nl": "Tekst samenvoegen"
+  },
+  "kind": "coding",
+  "optional": false,
+  "explanation": {
+    "en": "For strings, + joins text in order. Python does not add spaces automatically. Include the spaces or punctuation you want inside the strings.",
+    "nl": "Bij strings voegt + tekst in volgorde samen. Python voegt zelf geen spaties toe. Zet gewenste spaties of leestekens in de strings."
+  },
+  "example": "label = \"Gate \" + \"A\"",
+  "files": {
+    "main.py": "origin = \"North\"\ndestination = \"Pier\"\n"
+  },
+  "solution": {
+    "main.py": "origin = \"North\"\ndestination = \"Pier\"\nroute = origin + \" → \" + destination\nprint(route)\n"
+  },
+  "checkpoints": [
+    {
+      "id": "python-hello-world-12-step-1",
+      "task": {
+        "en": "Join origin North and destination Pier into route with the exact value North → Pier. Print route.",
+        "nl": "Voeg origin North en destination Pier samen tot route met precies de waarde North → Pier. Druk route af."
+      },
+      "check": "route == 'North → Pier' and _stdout.strip() == route",
+      "hint": {
+        "en": "Start with origin = \"North\". Then compare the values with the task.",
+        "nl": "Begin met origin = \"North\". Vergelijk de waarden daarna met de opdracht."
+      }
+    }
+  ],
+  "solutionNote": {
+    "en": "For strings, + joins text in order. Python does not add spaces automatically. Include the spaces or punctuation you want inside the strings.\n\nTrace the solution one line at a time. Try a different input to see which parts change.",
+    "nl": "Bij strings voegt + tekst in volgorde samen. Python voegt zelf geen spaties toe. Zet gewenste spaties of leestekens in de strings.\n\nVolg de oplossing regel voor regel. Probeer een andere invoer en bekijk welke onderdelen veranderen."
+  },
+  "sourcePosition": 12,
+  "sourceUrl": "https://www.codecademy.com/courses/learn-python-3/lessons/python-hello-world/exercises/concatenation",
+  "estimatedMinutes": 6
+}

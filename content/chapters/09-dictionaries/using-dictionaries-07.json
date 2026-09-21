@@ -1,0 +1,43 @@
+{
+  "id": "using-dictionaries-07",
+  "chapter": 9,
+  "group": "using-dictionaries",
+  "title": {
+    "en": "Value views",
+    "nl": "Value views"
+  },
+  "kind": "coding",
+  "optional": false,
+  "explanation": {
+    "en": "values() provides a view of the values, which can be iterated or passed to functions such as sum. Duplicate values remain present because they belong to different keys.",
+    "nl": "values() geeft een view van de values. Je kunt erover loopen of de view aan functions zoals sum geven. Dubbele values blijven aanwezig omdat ze bij verschillende keys horen."
+  },
+  "example": "",
+  "files": {
+    "main.py": "counts = {\"east\": 4, \"west\": 4, \"north\": 7}\n"
+  },
+  "solution": {
+    "main.py": "counts = {\"east\": 4, \"west\": 4, \"north\": 7}\ntotal = sum(counts.values())\nprint(total)\n"
+  },
+  "checkpoints": [
+    {
+      "id": "using-dictionaries-07-step-1",
+      "task": {
+        "en": "Sum the values in counts into total.",
+        "nl": "Tel de values in counts op in total."
+      },
+      "check": "total == 15",
+      "hint": {
+        "en": "Start with counts = {\"east\": 4, \"west\": 4, \"north\": 7}. Then compare the values with the task.",
+        "nl": "Begin met counts = {\"east\": 4, \"west\": 4, \"north\": 7}. Vergelijk de waarden daarna met de opdracht."
+      }
+    }
+  ],
+  "solutionNote": {
+    "en": "values() provides a view of the values, which can be iterated or passed to functions such as sum. Duplicate values remain present because they belong to different keys.\n\nTrace the solution one line at a time. Try a different input to see which parts change.",
+    "nl": "values() geeft een view van de values. Je kunt erover loopen of de view aan functions zoals sum geven. Dubbele values blijven aanwezig omdat ze bij verschillende keys horen.\n\nVolg de oplossing regel voor regel. Probeer een andere invoer en bekijk welke onderdelen veranderen."
+  },
+  "sourcePosition": 7,
+  "sourceUrl": "https://www.codecademy.com/courses/learn-python-3/lessons/using-dictionaries/exercises/get-all-values",
+  "estimatedMinutes": 6
+}

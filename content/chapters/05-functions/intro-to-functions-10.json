@@ -1,0 +1,43 @@
+{
+  "id": "intro-to-functions-10",
+  "chapter": 5,
+  "group": "intro-to-functions",
+  "title": {
+    "en": "Variable scope",
+    "nl": "Variable scope"
+  },
+  "kind": "coding",
+  "optional": false,
+  "explanation": {
+    "en": "Names assigned inside a function are normally local to that call. A local name can have the same spelling as an outer name without changing the outer value. Return a value when it must leave the function.",
+    "nl": "Namen die je binnen een function toewijst, zijn normaal lokaal voor die aanroep. Een lokale naam kan dezelfde spelling hebben als een buitenste naam zonder die buitenste waarde te wijzigen. Gebruik return om een waarde mee naar buiten te geven."
+  },
+  "example": "",
+  "files": {
+    "main.py": "# Write your code below.\n"
+  },
+  "solution": {
+    "main.py": "level = 5\ndef next_level():\n    level = 8\n    return level\n\nresult = next_level()\nprint(level, result)\n"
+  },
+  "checkpoints": [
+    {
+      "id": "intro-to-functions-10-step-1",
+      "task": {
+        "en": "Keep outer level = 5. Define next_level() with a local level = 8 and return it. Store the call result in result.",
+        "nl": "Houd buiten de function level = 5. Definieer next_level() met een lokale level = 8 en geef deze terug. Sla de aanroep op in result."
+      },
+      "check": "level == 5 and result == 8 and next_level() == 8",
+      "hint": {
+        "en": "Start with level = 5. Then compare the values with the task.",
+        "nl": "Begin met level = 5. Vergelijk de waarden daarna met de opdracht."
+      }
+    }
+  ],
+  "solutionNote": {
+    "en": "Names assigned inside a function are normally local to that call. A local name can have the same spelling as an outer name without changing the outer value. Return a value when it must leave the function.\n\nTrace the solution one line at a time. Try a different input to see which parts change.",
+    "nl": "Namen die je binnen een function toewijst, zijn normaal lokaal voor die aanroep. Een lokale naam kan dezelfde spelling hebben als een buitenste naam zonder die buitenste waarde te wijzigen. Gebruik return om een waarde mee naar buiten te geven.\n\nVolg de oplossing regel voor regel. Probeer een andere invoer en bekijk welke onderdelen veranderen."
+  },
+  "sourcePosition": 10,
+  "sourceUrl": "https://www.codecademy.com/courses/learn-python-3/lessons/intro-to-functions/exercises/variable-access",
+  "estimatedMinutes": 6
+}

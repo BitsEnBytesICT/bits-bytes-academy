@@ -1,0 +1,43 @@
+{
+  "id": "python-hello-world-06",
+  "chapter": 1,
+  "group": "python-hello-world",
+  "title": {
+    "en": "Reading errors",
+    "nl": "Foutmeldingen lezen"
+  },
+  "kind": "coding",
+  "optional": false,
+  "explanation": {
+    "en": "Python reports a SyntaxError when it cannot understand the structure of your code. The message and caret identify the area to inspect. A missing closing quote often makes an otherwise simple line invalid.",
+    "nl": "Python geeft een SyntaxError als de structuur van je code niet klopt. De melding en het aanwijsteken helpen je zoeken. Een ontbrekend aanhalingsteken kan een eenvoudige regel al ongeldig maken."
+  },
+  "example": "",
+  "files": {
+    "main.py": "print(\"Gate open)\n"
+  },
+  "solution": {
+    "main.py": "print(\"Gate open\")\n"
+  },
+  "checkpoints": [
+    {
+      "id": "python-hello-world-06-step-1",
+      "task": {
+        "en": "Run the broken code, read the error, then repair it to print Gate open.",
+        "nl": "Voer de kapotte code uit, lees de fout en herstel de regel zodat Gate open verschijnt."
+      },
+      "check": "_stdout.strip() == 'Gate open'",
+      "hint": {
+        "en": "The text needs a closing quote before the closing parenthesis.",
+        "nl": "De tekst heeft een afsluitend aanhalingsteken nodig vóór het sluitende haakje."
+      }
+    }
+  ],
+  "solutionNote": {
+    "en": "Python reports a SyntaxError when it cannot understand the structure of your code. The message and caret identify the area to inspect. A missing closing quote often makes an otherwise simple line invalid.\n\nTrace the solution one line at a time. Try a different input to see which parts change.",
+    "nl": "Python geeft een SyntaxError als de structuur van je code niet klopt. De melding en het aanwijsteken helpen je zoeken. Een ontbrekend aanhalingsteken kan een eenvoudige regel al ongeldig maken.\n\nVolg de oplossing regel voor regel. Probeer een andere invoer en bekijk welke onderdelen veranderen."
+  },
+  "sourcePosition": 6,
+  "sourceUrl": "https://www.codecademy.com/courses/learn-python-3/lessons/python-hello-world/exercises/errors",
+  "estimatedMinutes": 6
+}

@@ -1,0 +1,28 @@
+{
+  "id": "reading-environments",
+  "chapter": 8,
+  "group": "reading",
+  "title": {
+    "en": "Packages and environments",
+    "nl": "Packages en environments"
+  },
+  "kind": "reading",
+  "optional": false,
+  "explanation": {
+    "en": "The standard library ships with Python. Third-party packages add further capabilities and usually need installation. A virtual environment keeps a project’s installed packages separate from other projects.\n\nOn a desktop Python installation, python -m venv .venv creates an environment and python -m pip installs packages into the active interpreter. Pipenv combines environment and dependency management. Lockfiles help reproduce versions.\n\nThis browser workspace uses Pyodide rather than a desktop shell. The course’s required standard-library modules are already available. Native desktop packages and operating-system commands are outside this runner’s scope.",
+    "nl": "De standard library wordt met Python meegeleverd. Externe packages voegen mogelijkheden toe en moeten meestal worden geïnstalleerd. Een virtual environment houdt de packages van een project gescheiden van andere projecten.\n\nBij desktop-Python maakt python -m venv .venv een environment en installeert python -m pip packages voor de actieve interpreter. Pipenv combineert environment- en dependencybeheer. Lockfiles helpen dezelfde versies te reproduceren.\n\nDeze browserwerkruimte gebruikt Pyodide in plaats van een desktop-shell. De benodigde standard-library-modules zijn al beschikbaar. Native desktop-packages en besturingssysteemcommando’s vallen buiten deze runner."
+  },
+  "example": "",
+  "files": {
+    "main.py": "import sys\nimport math\nprint(\"Python:\", sys.version.split()[0])\nprint(\"Standard library:\", math.sqrt(49))\n"
+  },
+  "solution": {
+    "main.py": "import sys\nimport math\nprint(\"Python:\", sys.version.split()[0])\nprint(\"Standard library:\", math.sqrt(49))\n"
+  },
+  "checkpoints": [],
+  "solutionNote": {
+    "en": "This is an exploration activity. Run the example, change one input, and explain the new result in your own words.",
+    "nl": "Dit is een verkenningsactiviteit. Voer het voorbeeld uit, verander één invoer en leg het nieuwe resultaat in je eigen woorden uit."
+  },
+  "estimatedMinutes": 2
+}

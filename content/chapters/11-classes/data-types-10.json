@@ -1,0 +1,43 @@
+{
+  "id": "data-types-10",
+  "chapter": 11,
+  "group": "data-types",
+  "title": {
+    "en": "Attribute inspection",
+    "nl": "Attributes onderzoeken"
+  },
+  "kind": "coding",
+  "optional": false,
+  "explanation": {
+    "en": "hasattr(object, name) checks whether an attribute can be found. getattr(object, name, default) reads it with an optional fallback. Without an attribute or default, getattr raises AttributeError.",
+    "nl": "hasattr(object, name) controleert of een attribute gevonden kan worden. getattr(object, name, default) leest deze met een optionele fallback. Zonder attribute of default geeft getattr een AttributeError."
+  },
+  "example": "",
+  "files": {
+    "main.py": "# Write your code below.\n"
+  },
+  "solution": {
+    "main.py": "class Sensor:\n    def __init__(self, name):\n        self.name = name\n\nsensor = Sensor(\"East\")\nhas_name = hasattr(sensor, \"name\")\nreading = getattr(sensor, \"reading\", 0)\nprint(has_name, reading)\n"
+  },
+  "checkpoints": [
+    {
+      "id": "data-types-10-step-1",
+      "task": {
+        "en": "Set has_name using hasattr(sensor, \"name\"). Read absent reading with default 0 into reading.",
+        "nl": "Bepaal has_name met hasattr(sensor, \"name\"). Lees de ontbrekende reading met default 0 naar reading."
+      },
+      "check": "has_name is True and reading == 0 and not hasattr(sensor,'reading')",
+      "hint": {
+        "en": "Start with class Sensor:. Then compare the values with the task.",
+        "nl": "Begin met class Sensor:. Vergelijk de waarden daarna met de opdracht."
+      }
+    }
+  ],
+  "solutionNote": {
+    "en": "hasattr(object, name) checks whether an attribute can be found. getattr(object, name, default) reads it with an optional fallback. Without an attribute or default, getattr raises AttributeError.\n\nTrace the solution one line at a time. Try a different input to see which parts change.",
+    "nl": "hasattr(object, name) controleert of een attribute gevonden kan worden. getattr(object, name, default) leest deze met een optionele fallback. Zonder attribute of default geeft getattr een AttributeError.\n\nVolg de oplossing regel voor regel. Probeer een andere invoer en bekijk welke onderdelen veranderen."
+  },
+  "sourcePosition": 10,
+  "sourceUrl": "https://www.codecademy.com/courses/learn-python-3/lessons/data-types/exercises/attribute-functions",
+  "estimatedMinutes": 6
+}

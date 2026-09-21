@@ -1,0 +1,43 @@
+{
+  "id": "dictionaries-introduction-08",
+  "chapter": 9,
+  "group": "dictionaries-introduction",
+  "title": {
+    "en": "Dictionary comprehensions",
+    "nl": "Dictionary comprehensions"
+  },
+  "kind": "coding",
+  "optional": false,
+  "explanation": {
+    "en": "A dictionary comprehension creates pairs from an iterable: {key: value for ...}. zip pairs items from separate iterables, stopping when the shortest input ends.",
+    "nl": "Een dictionary comprehension maakt paren uit een iterable: {key: value for ...}. zip koppelt items uit aparte iterables en stopt wanneer de kortste invoer eindigt."
+  },
+  "example": "",
+  "files": {
+    "main.py": "names = [\"north\", \"south\", \"west\"]\nlevels = [2, 5, 3]\n"
+  },
+  "solution": {
+    "main.py": "names = [\"north\", \"south\", \"west\"]\nlevels = [2, 5, 3]\nmapping = {name: level for name, level in zip(names, levels)}\nprint(mapping)\n"
+  },
+  "checkpoints": [
+    {
+      "id": "dictionaries-introduction-08-step-1",
+      "task": {
+        "en": "Use zip and a dictionary comprehension to map names to levels in mapping.",
+        "nl": "Gebruik zip en een dictionary comprehension om names aan levels te koppelen in mapping."
+      },
+      "check": "mapping == {'north':2,'south':5,'west':3} and any(isinstance(n,_ast.DictComp) for n in _ast.walk(_ast.parse(_source)))",
+      "hint": {
+        "en": "Start with names = [\"north\", \"south\", \"west\"]. Then compare the values with the task.",
+        "nl": "Begin met names = [\"north\", \"south\", \"west\"]. Vergelijk de waarden daarna met de opdracht."
+      }
+    }
+  ],
+  "solutionNote": {
+    "en": "A dictionary comprehension creates pairs from an iterable: {key: value for ...}. zip pairs items from separate iterables, stopping when the shortest input ends.\n\nTrace the solution one line at a time. Try a different input to see which parts change.",
+    "nl": "Een dictionary comprehension maakt paren uit een iterable: {key: value for ...}. zip koppelt items uit aparte iterables en stopt wanneer de kortste invoer eindigt.\n\nVolg de oplossing regel voor regel. Probeer een andere invoer en bekijk welke onderdelen veranderen."
+  },
+  "sourcePosition": 8,
+  "sourceUrl": "https://www.codecademy.com/courses/learn-python-3/lessons/dictionaries-introduction/exercises/list-comp-to-dict",
+  "estimatedMinutes": 6
+}

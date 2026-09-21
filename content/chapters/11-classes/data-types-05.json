@@ -1,0 +1,43 @@
+{
+  "id": "data-types-05",
+  "chapter": 11,
+  "group": "data-types",
+  "title": {
+    "en": "Class attributes",
+    "nl": "Class attributes"
+  },
+  "kind": "coding",
+  "optional": false,
+  "explanation": {
+    "en": "A class attribute belongs to the class and can be read through its instances. Use it for shared metadata. Per-instance assignments can shadow it, so distinguish shared data from individual state.",
+    "nl": "Een class attribute hoort bij de class en is via instances leesbaar. Gebruik dit voor gedeelde metadata. Een assignment op een instance kan dit overschaduwen; onderscheid gedeelde data van individuele toestand."
+  },
+  "example": "",
+  "files": {
+    "main.py": "# Write your code below.\n"
+  },
+  "solution": {
+    "main.py": "class Sensor:\n    unit = \"Celsius\"\n\nsensor = Sensor()\nlabel = sensor.unit\nprint(label)\n"
+  },
+  "checkpoints": [
+    {
+      "id": "data-types-05-step-1",
+      "task": {
+        "en": "Define Sensor with class attribute unit = Celsius. Create sensor and read its unit into label.",
+        "nl": "Definieer Sensor met class attribute unit = Celsius. Maak sensor en lees de unit in label."
+      },
+      "check": "Sensor.unit == 'Celsius' and label == 'Celsius'",
+      "hint": {
+        "en": "Start with class Sensor:. Then compare the values with the task.",
+        "nl": "Begin met class Sensor:. Vergelijk de waarden daarna met de opdracht."
+      }
+    }
+  ],
+  "solutionNote": {
+    "en": "A class attribute belongs to the class and can be read through its instances. Use it for shared metadata. Per-instance assignments can shadow it, so distinguish shared data from individual state.\n\nTrace the solution one line at a time. Try a different input to see which parts change.",
+    "nl": "Een class attribute hoort bij de class en is via instances leesbaar. Gebruik dit voor gedeelde metadata. Een assignment op een instance kan dit overschaduwen; onderscheid gedeelde data van individuele toestand.\n\nVolg de oplossing regel voor regel. Probeer een andere invoer en bekijk welke onderdelen veranderen."
+  },
+  "sourcePosition": 5,
+  "sourceUrl": "https://www.codecademy.com/courses/learn-python-3/lessons/data-types/exercises/class-variables",
+  "estimatedMinutes": 6
+}

@@ -1,0 +1,43 @@
+{
+  "id": "data-types-06",
+  "chapter": 11,
+  "group": "data-types",
+  "title": {
+    "en": "Instance methods",
+    "nl": "Instance methods"
+  },
+  "kind": "coding",
+  "optional": false,
+  "explanation": {
+    "en": "An instance method is a function defined inside a class. Its first parameter conventionally has the name self and receives the instance automatically when you call the method through that instance.",
+    "nl": "Een instance method is een function binnen een class. De eerste parameter heet volgens conventie self en krijgt automatisch de instance wanneer je de method via die instance aanroept."
+  },
+  "example": "",
+  "files": {
+    "main.py": "# Write your code below.\n"
+  },
+  "solution": {
+    "main.py": "class Beacon:\n    def status(self):\n        return \"Ready\"\n\nbeacon = Beacon()\nprint(beacon.status())\n"
+  },
+  "checkpoints": [
+    {
+      "id": "data-types-06-step-1",
+      "task": {
+        "en": "Define Beacon with a status(self) method returning Ready. Create beacon and print beacon.status().",
+        "nl": "Definieer Beacon met een status(self)-method die Ready teruggeeft. Maak beacon en druk beacon.status() af."
+      },
+      "check": "Beacon().status() == 'Ready' and _stdout.strip() == 'Ready'",
+      "hint": {
+        "en": "Start with class Beacon:. Then compare the values with the task.",
+        "nl": "Begin met class Beacon:. Vergelijk de waarden daarna met de opdracht."
+      }
+    }
+  ],
+  "solutionNote": {
+    "en": "An instance method is a function defined inside a class. Its first parameter conventionally has the name self and receives the instance automatically when you call the method through that instance.\n\nTrace the solution one line at a time. Try a different input to see which parts change.",
+    "nl": "Een instance method is een function binnen een class. De eerste parameter heet volgens conventie self en krijgt automatisch de instance wanneer je de method via die instance aanroept.\n\nVolg de oplossing regel voor regel. Probeer een andere invoer en bekijk welke onderdelen veranderen."
+  },
+  "sourcePosition": 6,
+  "sourceUrl": "https://www.codecademy.com/courses/learn-python-3/lessons/data-types/exercises/methods",
+  "estimatedMinutes": 6
+}

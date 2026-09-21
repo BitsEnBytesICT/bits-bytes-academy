@@ -1,0 +1,41 @@
+{
+  "id": "practice-6-numeric-4",
+  "chapter": 6,
+  "group": "numeric",
+  "title": {
+    "en": "Weighted reading",
+    "nl": "Gewogen meting"
+  },
+  "kind": "challenge",
+  "optional": true,
+  "explanation": {
+    "en": "Return an average in which recent has twice the weight of previous: divide previous + 2 * recent by 3.",
+    "nl": "Geef een gemiddelde waarin recent dubbel meetelt: deel previous + 2 * recent door 3."
+  },
+  "example": "",
+  "files": {
+    "main.py": "def weighted(previous, recent):\n    # Implement the function.\n    pass\n\nprint(weighted(3, 6))\n"
+  },
+  "solution": {
+    "main.py": "def weighted(previous, recent):\n    return (previous + 2 * recent) / 3\n\nprint(weighted(3, 6))\n"
+  },
+  "checkpoints": [
+    {
+      "id": "practice-6-numeric-4-step-1",
+      "task": {
+        "en": "Return an average in which recent has twice the weight of previous: divide previous + 2 * recent by 3.",
+        "nl": "Geef een gemiddelde waarin recent dubbel meetelt: deel previous + 2 * recent door 3."
+      },
+      "check": "weighted(3,6) == 5 and weighted(9,0) == 3 and weighted(4,4) == 4",
+      "hint": {
+        "en": "Work through a small input by hand first. Separate the condition, transformation, and return value.",
+        "nl": "Werk eerst zelf een kleine invoer uit. Bekijk de voorwaarde, de bewerking en de return value afzonderlijk."
+      }
+    }
+  ],
+  "solutionNote": {
+    "en": "This solution separates the calculation from its input. Test the function with ordinary values and edge cases such as empty collections or boundary values.",
+    "nl": "Deze oplossing scheidt de berekening van de invoer. Test de function met gewone waarden en grensgevallen, zoals lege verzamelingen of grenswaarden."
+  },
+  "estimatedMinutes": 10
+}

@@ -1,0 +1,41 @@
+{
+  "id": "practice-6-compound-4",
+  "chapter": 6,
+  "group": "compound",
+  "title": {
+    "en": "Signal strength",
+    "nl": "Signaalsterkte"
+  },
+  "kind": "challenge",
+  "optional": true,
+  "explanation": {
+    "en": "Classify strength as weak below 30, fair from 30 through 69, and strong from 70 upward.",
+    "nl": "Classificeer strength als weak onder 30, fair van 30 tot en met 69 en strong vanaf 70."
+  },
+  "example": "",
+  "files": {
+    "main.py": "def signal_label(strength):\n    # Implement the function.\n    pass\n\nprint(signal_label(64))\n"
+  },
+  "solution": {
+    "main.py": "def signal_label(strength):\n    if strength < 30:\n        return \"weak\"\n    elif strength < 70:\n        return \"fair\"\n    return \"strong\"\n\nprint(signal_label(64))\n"
+  },
+  "checkpoints": [
+    {
+      "id": "practice-6-compound-4-step-1",
+      "task": {
+        "en": "Classify strength as weak below 30, fair from 30 through 69, and strong from 70 upward.",
+        "nl": "Classificeer strength als weak onder 30, fair van 30 tot en met 69 en strong vanaf 70."
+      },
+      "check": "signal_label(29) == 'weak' and signal_label(30) == 'fair' and signal_label(69) == 'fair' and signal_label(70) == 'strong'",
+      "hint": {
+        "en": "Work through a small input by hand first. Separate the condition, transformation, and return value.",
+        "nl": "Werk eerst zelf een kleine invoer uit. Bekijk de voorwaarde, de bewerking en de return value afzonderlijk."
+      }
+    }
+  ],
+  "solutionNote": {
+    "en": "This solution separates the calculation from its input. Test the function with ordinary values and edge cases such as empty collections or boundary values.",
+    "nl": "Deze oplossing scheidt de berekening van de invoer. Test de function met gewone waarden en grensgevallen, zoals lege verzamelingen of grenswaarden."
+  },
+  "estimatedMinutes": 10
+}

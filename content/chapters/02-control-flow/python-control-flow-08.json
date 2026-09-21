@@ -1,0 +1,43 @@
+{
+  "id": "python-control-flow-08",
+  "chapter": 2,
+  "group": "python-control-flow",
+  "title": {
+    "en": "Alternatives with or",
+    "nl": "Alternatieven met or"
+  },
+  "kind": "coding",
+  "optional": false,
+  "explanation": {
+    "en": "or is true when at least one condition is true. It is also true when both are true. This is useful when several independent conditions can trigger the same action.",
+    "nl": "or is waar als minstens één voorwaarde waar is. Ook als beide waar zijn, is het resultaat waar. Dit is handig als meerdere voorwaarden dezelfde actie kunnen activeren."
+  },
+  "example": "",
+  "files": {
+    "main.py": "# Write your code below.\n"
+  },
+  "solution": {
+    "main.py": "hours = 45\nwarning = True\nmaintenance_needed = hours > 100 or warning\nprint(maintenance_needed)\n"
+  },
+  "checkpoints": [
+    {
+      "id": "python-control-flow-08-step-1",
+      "task": {
+        "en": "Set maintenance_needed from hours > 100 or warning. Use hours = 45 and warning = True.",
+        "nl": "Bepaal maintenance_needed met hours > 100 or warning. Gebruik hours = 45 en warning = True."
+      },
+      "check": "maintenance_needed is True and 'or' in _source",
+      "hint": {
+        "en": "Start with hours = 45. Then compare the values with the task.",
+        "nl": "Begin met hours = 45. Vergelijk de waarden daarna met de opdracht."
+      }
+    }
+  ],
+  "solutionNote": {
+    "en": "or is true when at least one condition is true. It is also true when both are true. This is useful when several independent conditions can trigger the same action.\n\nTrace the solution one line at a time. Try a different input to see which parts change.",
+    "nl": "or is waar als minstens één voorwaarde waar is. Ook als beide waar zijn, is het resultaat waar. Dit is handig als meerdere voorwaarden dezelfde actie kunnen activeren.\n\nVolg de oplossing regel voor regel. Probeer een andere invoer en bekijk welke onderdelen veranderen."
+  },
+  "sourcePosition": 8,
+  "sourceUrl": "https://www.codecademy.com/courses/learn-python-3/lessons/python-control-flow/exercises/boolean-operators-or",
+  "estimatedMinutes": 6
+}

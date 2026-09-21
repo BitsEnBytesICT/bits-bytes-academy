@@ -1,0 +1,41 @@
+{
+  "id": "practice-6-compound-5",
+  "chapter": 6,
+  "group": "compound",
+  "title": {
+    "en": "Highest reading",
+    "nl": "Hoogste meting"
+  },
+  "kind": "challenge",
+  "optional": true,
+  "explanation": {
+    "en": "Return the largest of three readings. If two readings share the maximum, still return that numeric maximum.",
+    "nl": "Geef de grootste van drie metingen terug. Als twee metingen het maximum delen, geef je nog steeds dat numerieke maximum."
+  },
+  "example": "",
+  "files": {
+    "main.py": "def highest(a, b, c):\n    # Implement the function.\n    pass\n\nprint(highest(2, 8, 5))\n"
+  },
+  "solution": {
+    "main.py": "def highest(a, b, c):\n    if a >= b and a >= c:\n        return a\n    if b >= a and b >= c:\n        return b\n    return c\n\nprint(highest(2, 8, 5))\n"
+  },
+  "checkpoints": [
+    {
+      "id": "practice-6-compound-5-step-1",
+      "task": {
+        "en": "Return the largest of three readings. If two readings share the maximum, still return that numeric maximum.",
+        "nl": "Geef de grootste van drie metingen terug. Als twee metingen het maximum delen, geef je nog steeds dat numerieke maximum."
+      },
+      "check": "highest(2,8,5) == 8 and highest(8,8,1) == 8 and highest(-3,-7,-4) == -3",
+      "hint": {
+        "en": "Work through a small input by hand first. Separate the condition, transformation, and return value.",
+        "nl": "Werk eerst zelf een kleine invoer uit. Bekijk de voorwaarde, de bewerking en de return value afzonderlijk."
+      }
+    }
+  ],
+  "solutionNote": {
+    "en": "This solution separates the calculation from its input. Test the function with ordinary values and edge cases such as empty collections or boundary values.",
+    "nl": "Deze oplossing scheidt de berekening van de invoer. Test de function met gewone waarden en grensgevallen, zoals lege verzamelingen of grenswaarden."
+  },
+  "estimatedMinutes": 10
+}

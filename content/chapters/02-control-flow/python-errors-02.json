@@ -1,0 +1,43 @@
+{
+  "id": "python-errors-02",
+  "chapter": 2,
+  "group": "python-errors",
+  "title": {
+    "en": "Syntax errors",
+    "nl": "SyntaxError herstellen"
+  },
+  "kind": "coding",
+  "optional": false,
+  "explanation": {
+    "en": "A SyntaxError means the program could not be parsed. Missing colons, unmatched brackets, or incomplete strings are common causes. No statements in the script run until the syntax is valid.",
+    "nl": "Een SyntaxError betekent dat Python de code niet kan ontleden. Ontbrekende dubbele punten, haakjes of aanhalingstekens zijn veelvoorkomende oorzaken. De code wordt pas uitgevoerd als de syntax klopt."
+  },
+  "example": "",
+  "files": {
+    "main.py": "if True\n    print(\"Ready\")\n"
+  },
+  "solution": {
+    "main.py": "if True:\n    print(\"Ready\")\n"
+  },
+  "checkpoints": [
+    {
+      "id": "python-errors-02-step-1",
+      "task": {
+        "en": "Run the code to see the SyntaxError. Add the missing colon so Ready is printed.",
+        "nl": "Voer de code uit om de SyntaxError te zien. Voeg de ontbrekende dubbele punt toe zodat Ready verschijnt."
+      },
+      "check": "_stdout.strip() == 'Ready'",
+      "hint": {
+        "en": "Start with if True:. Then compare the values with the task.",
+        "nl": "Begin met if True:. Vergelijk de waarden daarna met de opdracht."
+      }
+    }
+  ],
+  "solutionNote": {
+    "en": "A SyntaxError means the program could not be parsed. Missing colons, unmatched brackets, or incomplete strings are common causes. No statements in the script run until the syntax is valid.\n\nTrace the solution one line at a time. Try a different input to see which parts change.",
+    "nl": "Een SyntaxError betekent dat Python de code niet kan ontleden. Ontbrekende dubbele punten, haakjes of aanhalingstekens zijn veelvoorkomende oorzaken. De code wordt pas uitgevoerd als de syntax klopt.\n\nVolg de oplossing regel voor regel. Probeer een andere invoer en bekijk welke onderdelen veranderen."
+  },
+  "sourcePosition": 2,
+  "sourceUrl": "https://www.codecademy.com/courses/learn-python-3/lessons/python-errors/exercises/syntax-errors",
+  "estimatedMinutes": 6
+}

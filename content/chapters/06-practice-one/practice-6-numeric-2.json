@@ -1,0 +1,41 @@
+{
+  "id": "practice-6-numeric-2",
+  "chapter": 6,
+  "group": "numeric",
+  "title": {
+    "en": "Diagonal length",
+    "nl": "Lengte van een diagonaal"
+  },
+  "kind": "challenge",
+  "optional": true,
+  "explanation": {
+    "en": "Return the diagonal of a rectangle using (width² + height²) to the power 0.5.",
+    "nl": "Geef de diagonaal van een rechthoek terug met (width² + height²) tot de macht 0.5."
+  },
+  "example": "",
+  "files": {
+    "main.py": "def diagonal(width, height):\n    # Implement the function.\n    pass\n\nprint(diagonal(3, 4))\n"
+  },
+  "solution": {
+    "main.py": "def diagonal(width, height):\n    return (width ** 2 + height ** 2) ** 0.5\n\nprint(diagonal(3, 4))\n"
+  },
+  "checkpoints": [
+    {
+      "id": "practice-6-numeric-2-step-1",
+      "task": {
+        "en": "Return the diagonal of a rectangle using (width² + height²) to the power 0.5.",
+        "nl": "Geef de diagonaal van een rechthoek terug met (width² + height²) tot de macht 0.5."
+      },
+      "check": "diagonal(3,4) == 5 and diagonal(0,7) == 7",
+      "hint": {
+        "en": "Work through a small input by hand first. Separate the condition, transformation, and return value.",
+        "nl": "Werk eerst zelf een kleine invoer uit. Bekijk de voorwaarde, de bewerking en de return value afzonderlijk."
+      }
+    }
+  ],
+  "solutionNote": {
+    "en": "This solution separates the calculation from its input. Test the function with ordinary values and edge cases such as empty collections or boundary values.",
+    "nl": "Deze oplossing scheidt de berekening van de invoer. Test de function met gewone waarden en grensgevallen, zoals lege verzamelingen of grenswaarden."
+  },
+  "estimatedMinutes": 10
+}

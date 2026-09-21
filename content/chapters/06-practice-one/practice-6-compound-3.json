@@ -1,0 +1,41 @@
+{
+  "id": "practice-6-compound-3",
+  "chapter": 6,
+  "group": "compound",
+  "title": {
+    "en": "Spot the contradiction",
+    "nl": "Een tegenspraak herkennen"
+  },
+  "kind": "challenge",
+  "optional": true,
+  "explanation": {
+    "en": "Return the result of testing whether a number is both below zero and above ten. Explain to yourself why no input can pass.",
+    "nl": "Geef het resultaat van de test of een getal tegelijk onder nul en boven tien is. Bedenk waarom geen enkele invoer kan voldoen."
+  },
+  "example": "",
+  "files": {
+    "main.py": "def contradiction(number):\n    # Implement the function.\n    pass\n\nprint(contradiction(4))\n"
+  },
+  "solution": {
+    "main.py": "def contradiction(number):\n    return number < 0 and number > 10\n\nprint(contradiction(4))\n"
+  },
+  "checkpoints": [
+    {
+      "id": "practice-6-compound-3-step-1",
+      "task": {
+        "en": "Return the result of testing whether a number is both below zero and above ten. Explain to yourself why no input can pass.",
+        "nl": "Geef het resultaat van de test of een getal tegelijk onder nul en boven tien is. Bedenk waarom geen enkele invoer kan voldoen."
+      },
+      "check": "all(contradiction(n) is False for n in [-20,0,5,20])",
+      "hint": {
+        "en": "Work through a small input by hand first. Separate the condition, transformation, and return value.",
+        "nl": "Werk eerst zelf een kleine invoer uit. Bekijk de voorwaarde, de bewerking en de return value afzonderlijk."
+      }
+    }
+  ],
+  "solutionNote": {
+    "en": "This solution separates the calculation from its input. Test the function with ordinary values and edge cases such as empty collections or boundary values.",
+    "nl": "Deze oplossing scheidt de berekening van de invoer. Test de function met gewone waarden en grensgevallen, zoals lege verzamelingen of grenswaarden."
+  },
+  "estimatedMinutes": 10
+}

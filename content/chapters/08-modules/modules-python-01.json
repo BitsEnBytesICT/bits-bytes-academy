@@ -1,0 +1,43 @@
+{
+  "id": "modules-python-01",
+  "chapter": 8,
+  "group": "modules-python",
+  "title": {
+    "en": "Importing from the standard library",
+    "nl": "Modules importeren"
+  },
+  "kind": "coding",
+  "optional": false,
+  "explanation": {
+    "en": "A module groups related Python definitions. import datetime binds the module name, then dot notation accesses its contents. Importing lets you use tested library code instead of rebuilding common tools.",
+    "nl": "Een module groepeert verwante Python-definities. import datetime maakt de modulenaam beschikbaar; met een punt benader je de inhoud. Zo gebruik je bestaande bibliotheekcode voor veelvoorkomende taken."
+  },
+  "example": "import datetime\nprint(datetime.date.today())",
+  "files": {
+    "main.py": "# Write your code below.\n"
+  },
+  "solution": {
+    "main.py": "import datetime\nlaunch = datetime.date(2030, 4, 12)\nlaunch_year = launch.year\nprint(launch)\n"
+  },
+  "checkpoints": [
+    {
+      "id": "modules-python-01-step-1",
+      "task": {
+        "en": "Import datetime. Create launch as the date 2030-04-12 and store its year in launch_year.",
+        "nl": "Importeer datetime. Maak launch als datum 2030-04-12 en sla het jaar op in launch_year."
+      },
+      "check": "str(launch) == '2030-04-12' and launch_year == 2030",
+      "hint": {
+        "en": "Start with import datetime. Then compare the values with the task.",
+        "nl": "Begin met import datetime. Vergelijk de waarden daarna met de opdracht."
+      }
+    }
+  ],
+  "solutionNote": {
+    "en": "A module groups related Python definitions. import datetime binds the module name, then dot notation accesses its contents. Importing lets you use tested library code instead of rebuilding common tools.\n\nTrace the solution one line at a time. Try a different input to see which parts change.",
+    "nl": "Een module groepeert verwante Python-definities. import datetime maakt de modulenaam beschikbaar; met een punt benader je de inhoud. Zo gebruik je bestaande bibliotheekcode voor veelvoorkomende taken.\n\nVolg de oplossing regel voor regel. Probeer een andere invoer en bekijk welke onderdelen veranderen."
+  },
+  "sourcePosition": 1,
+  "sourceUrl": "https://www.codecademy.com/courses/learn-python-3/lessons/modules-python/exercises/modules-python-intro",
+  "estimatedMinutes": 6
+}

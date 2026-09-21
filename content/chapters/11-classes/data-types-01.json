@@ -1,0 +1,43 @@
+{
+  "id": "data-types-01",
+  "chapter": 11,
+  "group": "data-types",
+  "title": {
+    "en": "Inspecting types",
+    "nl": "Types onderzoeken"
+  },
+  "kind": "coding",
+  "optional": false,
+  "explanation": {
+    "en": "Every Python value has a type that determines its available behavior. type(value) reveals that type. Lists, strings, dictionaries, and your own class instances are all objects.",
+    "nl": "Elke Python-waarde heeft een type dat bepaalt welk gedrag beschikbaar is. type(value) toont dat type. Lists, strings, dictionaries en instances van je eigen classes zijn allemaal objecten."
+  },
+  "example": "print(type({\"a\": 1}))",
+  "files": {
+    "main.py": "# Write your code below.\n"
+  },
+  "solution": {
+    "main.py": "number_type = type(12)\ntext_type = type(\"East\")\nlist_type = type([])\nprint(number_type, text_type, list_type)\n"
+  },
+  "checkpoints": [
+    {
+      "id": "data-types-01-step-1",
+      "task": {
+        "en": "Store type(12), type(\"East\"), and type([]) in number_type, text_type, and list_type.",
+        "nl": "Sla type(12), type(\"East\") en type([]) op in number_type, text_type en list_type."
+      },
+      "check": "number_type is int and text_type is str and list_type is list",
+      "hint": {
+        "en": "Start with number_type = type(12). Then compare the values with the task.",
+        "nl": "Begin met number_type = type(12). Vergelijk de waarden daarna met de opdracht."
+      }
+    }
+  ],
+  "solutionNote": {
+    "en": "Every Python value has a type that determines its available behavior. type(value) reveals that type. Lists, strings, dictionaries, and your own class instances are all objects.\n\nTrace the solution one line at a time. Try a different input to see which parts change.",
+    "nl": "Elke Python-waarde heeft een type dat bepaalt welk gedrag beschikbaar is. type(value) toont dat type. Lists, strings, dictionaries en instances van je eigen classes zijn allemaal objecten.\n\nVolg de oplossing regel voor regel. Probeer een andere invoer en bekijk welke onderdelen veranderen."
+  },
+  "sourcePosition": 1,
+  "sourceUrl": "https://www.codecademy.com/courses/learn-python-3/lessons/data-types/exercises/types",
+  "estimatedMinutes": 6
+}

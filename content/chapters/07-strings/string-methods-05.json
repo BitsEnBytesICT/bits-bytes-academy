@@ -1,0 +1,43 @@
+{
+  "id": "string-methods-05",
+  "chapter": 7,
+  "group": "string-methods",
+  "title": {
+    "en": "Splitting line and tab data",
+    "nl": "Regels en tabs splitsen"
+  },
+  "kind": "coding",
+  "optional": false,
+  "explanation": {
+    "en": "Newlines and tabs can act as separators too. Split a table into rows first, then split one row into its cells. Escaped characters are real characters in the string value.",
+    "nl": "Nieuwe regels en tabs kunnen ook separators zijn. Splits een tabel eerst in rijen en daarna een rij in cellen. Escaped tekens zijn echte tekens in de stringwaarde."
+  },
+  "example": "",
+  "files": {
+    "main.py": "table = \"A\\t2\\nB\\t5\"\n"
+  },
+  "solution": {
+    "main.py": "table = \"A\\t2\\nB\\t5\"\nrows = table.split(\"\\n\")\nfirst_cells = rows[0].split(\"\\t\")\nprint(first_cells)\n"
+  },
+  "checkpoints": [
+    {
+      "id": "string-methods-05-step-1",
+      "task": {
+        "en": "Split table on newlines into rows. Split the first row on tabs into first_cells.",
+        "nl": "Splits table op nieuwe regels in rows. Splits de eerste rij op tabs in first_cells."
+      },
+      "check": "rows == ['A\\t2','B\\t5'] and first_cells == ['A','2']",
+      "hint": {
+        "en": "Start with table = \"A\\t2\\nB\\t5\". Then compare the values with the task.",
+        "nl": "Begin met table = \"A\\t2\\nB\\t5\". Vergelijk de waarden daarna met de opdracht."
+      }
+    }
+  ],
+  "solutionNote": {
+    "en": "Newlines and tabs can act as separators too. Split a table into rows first, then split one row into its cells. Escaped characters are real characters in the string value.\n\nTrace the solution one line at a time. Try a different input to see which parts change.",
+    "nl": "Nieuwe regels en tabs kunnen ook separators zijn. Splits een tabel eerst in rijen en daarna een rij in cellen. Escaped tekens zijn echte tekens in de stringwaarde.\n\nVolg de oplossing regel voor regel. Probeer een andere invoer en bekijk welke onderdelen veranderen."
+  },
+  "sourcePosition": 5,
+  "sourceUrl": "https://www.codecademy.com/courses/learn-python-3/lessons/string-methods/exercises/splitting-strings-iii",
+  "estimatedMinutes": 6
+}

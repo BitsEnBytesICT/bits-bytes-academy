@@ -1,0 +1,43 @@
+{
+  "id": "learn-python-loops-06",
+  "chapter": 4,
+  "group": "learn-python-loops",
+  "title": {
+    "en": "While loops over lists",
+    "nl": "Een list met while doorlopen"
+  },
+  "kind": "coding",
+  "optional": false,
+  "explanation": {
+    "en": "An index-controlled while loop can walk through a list. Check index < len(items), use the current element, then increment the index. Keeping these steps together prevents skipped or repeated entries.",
+    "nl": "Een while loop met een index kan door een list lopen. Controleer index < len(items), gebruik het huidige element en verhoog de index. Houd die stappen bij elkaar om overslaan of herhalen te voorkomen."
+  },
+  "example": "",
+  "files": {
+    "main.py": "values = [3, 5, 7]\nindex = 0\ntotal = 0\n"
+  },
+  "solution": {
+    "main.py": "values = [3, 5, 7]\nindex = 0\ntotal = 0\nwhile index < len(values):\n    total += values[index]\n    index += 1\nprint(total)\n"
+  },
+  "checkpoints": [
+    {
+      "id": "learn-python-loops-06-step-1",
+      "task": {
+        "en": "Use a while loop to total values into total. Finish with total equal to 15.",
+        "nl": "Tel values met een while loop op in total. Eindig met total gelijk aan 15."
+      },
+      "check": "total == 15 and index == 3",
+      "hint": {
+        "en": "Start with values = [3, 5, 7]. Then compare the values with the task.",
+        "nl": "Begin met values = [3, 5, 7]. Vergelijk de waarden daarna met de opdracht."
+      }
+    }
+  ],
+  "solutionNote": {
+    "en": "An index-controlled while loop can walk through a list. Check index < len(items), use the current element, then increment the index. Keeping these steps together prevents skipped or repeated entries.\n\nTrace the solution one line at a time. Try a different input to see which parts change.",
+    "nl": "Een while loop met een index kan door een list lopen. Controleer index < len(items), gebruik het huidige element en verhoog de index. Houd die stappen bij elkaar om overslaan of herhalen te voorkomen.\n\nVolg de oplossing regel voor regel. Probeer een andere invoer en bekijk welke onderdelen veranderen."
+  },
+  "sourcePosition": 6,
+  "sourceUrl": "https://www.codecademy.com/courses/learn-python-3/lessons/learn-python-loops/exercises/while-loops-lists",
+  "estimatedMinutes": 6
+}

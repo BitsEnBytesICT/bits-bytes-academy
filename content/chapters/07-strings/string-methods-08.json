@@ -1,0 +1,43 @@
+{
+  "id": "string-methods-08",
+  "chapter": 7,
+  "group": "string-methods",
+  "title": {
+    "en": "Trimming characters",
+    "nl": "Randen opschonen"
+  },
+  "kind": "coding",
+  "optional": false,
+  "explanation": {
+    "en": "strip() removes leading and trailing whitespace. With an argument, it removes any of the listed characters from both ends, not a whole substring. It leaves characters in the middle untouched.",
+    "nl": "strip() verwijdert whitespace aan het begin en einde. Met een argument verwijdert de method elk opgegeven teken aan beide kanten, niet een volledige substring. Tekens in het midden blijven staan."
+  },
+  "example": "",
+  "files": {
+    "main.py": "# Write your code below.\n"
+  },
+  "solution": {
+    "main.py": "raw = \"  gate A  \"\nmarked = \"##ready##\"\nclean = raw.strip()\nunmarked = marked.strip(\"#\")\nprint(clean, unmarked)\n"
+  },
+  "checkpoints": [
+    {
+      "id": "string-methods-08-step-1",
+      "task": {
+        "en": "Strip whitespace from raw into clean. Strip # characters from marked into unmarked.",
+        "nl": "Verwijder whitespace uit de randen van raw naar clean. Verwijder # aan de randen van marked naar unmarked."
+      },
+      "check": "clean == 'gate A' and unmarked == 'ready'",
+      "hint": {
+        "en": "Start with raw = \"  gate A  \". Then compare the values with the task.",
+        "nl": "Begin met raw = \"  gate A  \". Vergelijk de waarden daarna met de opdracht."
+      }
+    }
+  ],
+  "solutionNote": {
+    "en": "strip() removes leading and trailing whitespace. With an argument, it removes any of the listed characters from both ends, not a whole substring. It leaves characters in the middle untouched.\n\nTrace the solution one line at a time. Try a different input to see which parts change.",
+    "nl": "strip() verwijdert whitespace aan het begin en einde. Met een argument verwijdert de method elk opgegeven teken aan beide kanten, niet een volledige substring. Tekens in het midden blijven staan.\n\nVolg de oplossing regel voor regel. Probeer een andere invoer en bekijk welke onderdelen veranderen."
+  },
+  "sourcePosition": 8,
+  "sourceUrl": "https://www.codecademy.com/courses/learn-python-3/lessons/string-methods/exercises/strip",
+  "estimatedMinutes": 6
+}

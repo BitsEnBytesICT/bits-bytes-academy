@@ -1,0 +1,41 @@
+{
+  "id": "practice-6-compose-1",
+  "chapter": 6,
+  "group": "compose",
+  "title": {
+    "en": "Scale three ways",
+    "nl": "Drie schalen"
+  },
+  "kind": "challenge",
+  "optional": true,
+  "explanation": {
+    "en": "Return a tuple containing number multiplied by 2, 4, and 8, in that order.",
+    "nl": "Geef een tuple terug met number maal 2, 4 en 8, in die volgorde."
+  },
+  "example": "",
+  "files": {
+    "main.py": "def scales(number):\n    # Implement the function.\n    pass\n\nprint(scales(3))\n"
+  },
+  "solution": {
+    "main.py": "def scales(number):\n    return number * 2, number * 4, number * 8\n\nprint(scales(3))\n"
+  },
+  "checkpoints": [
+    {
+      "id": "practice-6-compose-1-step-1",
+      "task": {
+        "en": "Return a tuple containing number multiplied by 2, 4, and 8, in that order.",
+        "nl": "Geef een tuple terug met number maal 2, 4 en 8, in die volgorde."
+      },
+      "check": "scales(3) == (6,12,24) and scales(-1) == (-2,-4,-8)",
+      "hint": {
+        "en": "Work through a small input by hand first. Separate the condition, transformation, and return value.",
+        "nl": "Werk eerst zelf een kleine invoer uit. Bekijk de voorwaarde, de bewerking en de return value afzonderlijk."
+      }
+    }
+  ],
+  "solutionNote": {
+    "en": "This solution separates the calculation from its input. Test the function with ordinary values and edge cases such as empty collections or boundary values.",
+    "nl": "Deze oplossing scheidt de berekening van de invoer. Test de function met gewone waarden en grensgevallen, zoals lege verzamelingen of grenswaarden."
+  },
+  "estimatedMinutes": 10
+}

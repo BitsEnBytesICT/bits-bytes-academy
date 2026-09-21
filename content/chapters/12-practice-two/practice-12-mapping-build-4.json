@@ -1,0 +1,41 @@
+{
+  "id": "practice-12-mapping-build-4",
+  "chapter": 12,
+  "group": "mapping-build",
+  "title": {
+    "en": "Group by initial",
+    "nl": "Groeperen op beginletter"
+  },
+  "kind": "challenge",
+  "optional": true,
+  "explanation": {
+    "en": "Return a dictionary mapping each lowercase initial to a list of words with that initial. Ignore empty strings and preserve input order.",
+    "nl": "Geef een dictionary terug met per beginletter in kleine letters een list van woorden. Negeer lege strings en behoud de invoervolgorde."
+  },
+  "example": "",
+  "files": {
+    "main.py": "def group_initials(words):\n    # Implement the function.\n    pass\n\nprint(group_initials([\"Oak\", \"olive\", \"Birch\"]))\n"
+  },
+  "solution": {
+    "main.py": "def group_initials(words):\n    groups = {}\n    for word in words:\n        if not word:\n            continue\n        initial = word[0].lower()\n        if initial not in groups:\n            groups[initial] = []\n        groups[initial].append(word)\n    return groups\n\nprint(group_initials([\"Oak\", \"olive\", \"Birch\"]))\n"
+  },
+  "checkpoints": [
+    {
+      "id": "practice-12-mapping-build-4-step-1",
+      "task": {
+        "en": "Return a dictionary mapping each lowercase initial to a list of words with that initial. Ignore empty strings and preserve input order.",
+        "nl": "Geef een dictionary terug met per beginletter in kleine letters een list van woorden. Negeer lege strings en behoud de invoervolgorde."
+      },
+      "check": "group_initials(['Oak','olive','','Birch']) == {'o':['Oak','olive'],'b':['Birch']} and group_initials([]) == {}",
+      "hint": {
+        "en": "Work through a small input by hand first. Separate the condition, transformation, and return value.",
+        "nl": "Werk eerst zelf een kleine invoer uit. Bekijk de voorwaarde, de bewerking en de return value afzonderlijk."
+      }
+    }
+  ],
+  "solutionNote": {
+    "en": "This solution separates the calculation from its input. Test the function with ordinary values and edge cases such as empty collections or boundary values.",
+    "nl": "Deze oplossing scheidt de berekening van de invoer. Test de function met gewone waarden en grensgevallen, zoals lege verzamelingen of grenswaarden."
+  },
+  "estimatedMinutes": 10
+}

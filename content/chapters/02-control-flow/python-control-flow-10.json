@@ -1,0 +1,43 @@
+{
+  "id": "python-control-flow-10",
+  "chapter": 2,
+  "group": "python-control-flow",
+  "title": {
+    "en": "Fallback branches",
+    "nl": "Een else-blok"
+  },
+  "kind": "coding",
+  "optional": false,
+  "explanation": {
+    "en": "An else block runs when the preceding if condition is false. One of the two blocks runs, never both. else has a colon but no condition of its own.",
+    "nl": "Een else-blok wordt uitgevoerd als de voorafgaande if-voorwaarde onwaar is. Eén van de twee blokken wordt uitgevoerd, nooit beide. else krijgt een dubbele punt, maar geen eigen voorwaarde."
+  },
+  "example": "",
+  "files": {
+    "main.py": "seats = 0\n"
+  },
+  "solution": {
+    "main.py": "seats = 0\nif seats == 0:\n    print(\"Full\")\nelse:\n    print(\"Seats available\")\n"
+  },
+  "checkpoints": [
+    {
+      "id": "python-control-flow-10-step-1",
+      "task": {
+        "en": "For seats = 0, print Full when no seats remain; otherwise print Seats available.",
+        "nl": "Gebruik seats = 0. Druk Full af als er geen plaatsen over zijn; druk anders Seats available af."
+      },
+      "check": "_stdout.strip() == 'Full' and any(isinstance(n,_ast.If) and n.orelse for n in _ast.walk(_ast.parse(_source)))",
+      "hint": {
+        "en": "Start with seats = 0. Then compare the values with the task.",
+        "nl": "Begin met seats = 0. Vergelijk de waarden daarna met de opdracht."
+      }
+    }
+  ],
+  "solutionNote": {
+    "en": "An else block runs when the preceding if condition is false. One of the two blocks runs, never both. else has a colon but no condition of its own.\n\nTrace the solution one line at a time. Try a different input to see which parts change.",
+    "nl": "Een else-blok wordt uitgevoerd als de voorafgaande if-voorwaarde onwaar is. Eén van de twee blokken wordt uitgevoerd, nooit beide. else krijgt een dubbele punt, maar geen eigen voorwaarde.\n\nVolg de oplossing regel voor regel. Probeer een andere invoer en bekijk welke onderdelen veranderen."
+  },
+  "sourcePosition": 10,
+  "sourceUrl": "https://www.codecademy.com/courses/learn-python-3/lessons/python-control-flow/exercises/else-statements",
+  "estimatedMinutes": 6
+}

@@ -1,0 +1,322 @@
+{
+  "id": "learn-python-files-quiz",
+  "chapter": 10,
+  "group": "learn-python-files",
+  "title": {
+    "en": "Text, CSV, and JSON files · Quiz",
+    "nl": "Text, CSV, and JSON files · Quiz"
+  },
+  "kind": "quiz",
+  "optional": false,
+  "questions": [
+    {
+      "id": "learn-python-files-q1",
+      "prompt": {
+        "en": "Which mode appends without replacing existing content?",
+        "nl": "Welke mode voegt toe zonder bestaande inhoud te vervangen?"
+      },
+      "code": "",
+      "answer": "a",
+      "choices": [
+        {
+          "id": "a",
+          "label": {
+            "en": "a",
+            "nl": "a"
+          },
+          "reason": {
+            "en": "a opens for appending; w truncates an existing file.",
+            "nl": "a opent voor toevoegen; w maakt een bestaand bestand leeg."
+          }
+        },
+        {
+          "id": "b",
+          "label": {
+            "en": "w",
+            "nl": "w"
+          },
+          "reason": {
+            "en": "a opens for appending; w truncates an existing file.",
+            "nl": "a opent voor toevoegen; w maakt een bestaand bestand leeg."
+          }
+        },
+        {
+          "id": "c",
+          "label": {
+            "en": "r",
+            "nl": "r"
+          },
+          "reason": {
+            "en": "a opens for appending; w truncates an existing file.",
+            "nl": "a opent voor toevoegen; w maakt een bestaand bestand leeg."
+          }
+        }
+      ]
+    },
+    {
+      "id": "learn-python-files-q2",
+      "prompt": {
+        "en": "What does a with block ensure for a file?",
+        "nl": "Wat zorgt een with-blok voor bij een bestand?"
+      },
+      "code": "",
+      "answer": "a",
+      "choices": [
+        {
+          "id": "a",
+          "label": {
+            "en": "The file is closed when the block ends",
+            "nl": "Het bestand wordt na het blok gesloten"
+          },
+          "reason": {
+            "en": "The file context manager closes the file during cleanup.",
+            "nl": "De file context manager sluit het bestand bij het opruimen."
+          }
+        },
+        {
+          "id": "b",
+          "label": {
+            "en": "The file is deleted",
+            "nl": "Het bestand wordt verwijderd"
+          },
+          "reason": {
+            "en": "The file context manager closes the file during cleanup.",
+            "nl": "De file context manager sluit het bestand bij het opruimen."
+          }
+        },
+        {
+          "id": "c",
+          "label": {
+            "en": "The text is encrypted",
+            "nl": "De tekst wordt versleuteld"
+          },
+          "reason": {
+            "en": "The file context manager closes the file during cleanup.",
+            "nl": "De file context manager sluit het bestand bij het opruimen."
+          }
+        }
+      ]
+    },
+    {
+      "id": "learn-python-files-q3",
+      "prompt": {
+        "en": "What does readline return at end-of-file?",
+        "nl": "Wat geeft readline aan het einde van een bestand terug?"
+      },
+      "code": "",
+      "answer": "a",
+      "choices": [
+        {
+          "id": "a",
+          "label": {
+            "en": "\"\"",
+            "nl": "\"\""
+          },
+          "reason": {
+            "en": "An empty string indicates that no more characters were read.",
+            "nl": "Een lege string geeft aan dat er geen tekens meer zijn gelezen."
+          }
+        },
+        {
+          "id": "b",
+          "label": {
+            "en": "None",
+            "nl": "None"
+          },
+          "reason": {
+            "en": "An empty string indicates that no more characters were read.",
+            "nl": "Een lege string geeft aan dat er geen tekens meer zijn gelezen."
+          }
+        },
+        {
+          "id": "c",
+          "label": {
+            "en": "False",
+            "nl": "False"
+          },
+          "reason": {
+            "en": "An empty string indicates that no more characters were read.",
+            "nl": "Een lege string geeft aan dat er geen tekens meer zijn gelezen."
+          }
+        }
+      ]
+    },
+    {
+      "id": "learn-python-files-q4",
+      "prompt": {
+        "en": "What type is a numeric field read by csv.DictReader before conversion?",
+        "nl": "Welk type heeft een numeriek veld uit csv.DictReader vóór conversie?"
+      },
+      "code": "",
+      "answer": "a",
+      "choices": [
+        {
+          "id": "a",
+          "label": {
+            "en": "str",
+            "nl": "str"
+          },
+          "reason": {
+            "en": "CSV fields are text until converted explicitly.",
+            "nl": "CSV-velden zijn tekst totdat je ze expliciet omzet."
+          }
+        },
+        {
+          "id": "b",
+          "label": {
+            "en": "int",
+            "nl": "int"
+          },
+          "reason": {
+            "en": "CSV fields are text until converted explicitly.",
+            "nl": "CSV-velden zijn tekst totdat je ze expliciet omzet."
+          }
+        },
+        {
+          "id": "c",
+          "label": {
+            "en": "float",
+            "nl": "float"
+          },
+          "reason": {
+            "en": "CSV fields are text until converted explicitly.",
+            "nl": "CSV-velden zijn tekst totdat je ze expliciet omzet."
+          }
+        }
+      ]
+    },
+    {
+      "id": "learn-python-files-q5",
+      "prompt": {
+        "en": "Which function reads JSON from an open file?",
+        "nl": "Welke function leest JSON uit een geopend bestand?"
+      },
+      "code": "",
+      "answer": "a",
+      "choices": [
+        {
+          "id": "a",
+          "label": {
+            "en": "json.load",
+            "nl": "json.load"
+          },
+          "reason": {
+            "en": "load reads and decodes; dump writes and encodes.",
+            "nl": "load leest en decodeert; dump schrijft en encodeert."
+          }
+        },
+        {
+          "id": "b",
+          "label": {
+            "en": "json.dump",
+            "nl": "json.dump"
+          },
+          "reason": {
+            "en": "load reads and decodes; dump writes and encodes.",
+            "nl": "load leest en decodeert; dump schrijft en encodeert."
+          }
+        },
+        {
+          "id": "c",
+          "label": {
+            "en": "json.write",
+            "nl": "json.write"
+          },
+          "reason": {
+            "en": "load reads and decodes; dump writes and encodes.",
+            "nl": "load leest en decodeert; dump schrijft en encodeert."
+          }
+        }
+      ]
+    },
+    {
+      "id": "learn-python-files-q6",
+      "prompt": {
+        "en": "Why pass delimiter to a CSV reader?",
+        "nl": "Waarom geef je delimiter mee aan een CSV-reader?"
+      },
+      "code": "",
+      "answer": "a",
+      "choices": [
+        {
+          "id": "a",
+          "label": {
+            "en": "To specify the field separator",
+            "nl": "Om de veldseparator op te geven"
+          },
+          "reason": {
+            "en": "The delimiter is the character that separates fields.",
+            "nl": "De delimiter is het teken dat velden scheidt."
+          }
+        },
+        {
+          "id": "b",
+          "label": {
+            "en": "To change the filename",
+            "nl": "Om de bestandsnaam te wijzigen"
+          },
+          "reason": {
+            "en": "The delimiter is the character that separates fields.",
+            "nl": "De delimiter is het teken dat velden scheidt."
+          }
+        },
+        {
+          "id": "c",
+          "label": {
+            "en": "To count rows",
+            "nl": "Om rijen te tellen"
+          },
+          "reason": {
+            "en": "The delimiter is the character that separates fields.",
+            "nl": "De delimiter is het teken dat velden scheidt."
+          }
+        }
+      ]
+    },
+    {
+      "id": "learn-python-files-q7",
+      "prompt": {
+        "en": "What does this code print?",
+        "nl": "Wat drukt deze code af?"
+      },
+      "code": "import json\nprint(json.loads(\"true\"))",
+      "answer": "a",
+      "choices": [
+        {
+          "id": "a",
+          "label": {
+            "en": "True",
+            "nl": "True"
+          },
+          "reason": {
+            "en": "JSON true decodes to Python’s Boolean True.",
+            "nl": "JSON true wordt gedecodeerd naar de Python-Boolean True."
+          }
+        },
+        {
+          "id": "b",
+          "label": {
+            "en": "true",
+            "nl": "true"
+          },
+          "reason": {
+            "en": "JSON true decodes to Python’s Boolean True.",
+            "nl": "JSON true wordt gedecodeerd naar de Python-Boolean True."
+          }
+        },
+        {
+          "id": "c",
+          "label": {
+            "en": "\"true\"",
+            "nl": "\"true\""
+          },
+          "reason": {
+            "en": "JSON true decodes to Python’s Boolean True.",
+            "nl": "JSON true wordt gedecodeerd naar de Python-Boolean True."
+          }
+        }
+      ]
+    }
+  ],
+  "estimatedMinutes": 7
+}

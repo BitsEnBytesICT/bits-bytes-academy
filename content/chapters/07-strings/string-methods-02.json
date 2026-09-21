@@ -1,0 +1,43 @@
+{
+  "id": "string-methods-02",
+  "chapter": 7,
+  "group": "string-methods",
+  "title": {
+    "en": "Case conversion",
+    "nl": "Hoofdletters aanpassen"
+  },
+  "kind": "coding",
+  "optional": false,
+  "explanation": {
+    "en": "lower(), upper(), and title() return case-converted strings. Normalizing case is useful before a case-insensitive comparison. The original string remains unchanged.",
+    "nl": "lower(), upper() en title() geven strings met aangepaste hoofdletters terug. Normaliseer tekst vóór een vergelijking die niet hoofdlettergevoelig moet zijn. De oorspronkelijke string blijft ongewijzigd."
+  },
+  "example": "",
+  "files": {
+    "main.py": "# Write your code below.\n"
+  },
+  "solution": {
+    "main.py": "label = \"nORTH gATE\"\nlower_label = label.lower()\nupper_label = label.upper()\ntitle_label = label.title()\nprint(lower_label, upper_label, title_label)\n"
+  },
+  "checkpoints": [
+    {
+      "id": "string-methods-02-step-1",
+      "task": {
+        "en": "From label = nORTH gATE, create lower_label, upper_label, and title_label using the corresponding methods.",
+        "nl": "Maak uit label = nORTH gATE de variables lower_label, upper_label en title_label met de bijbehorende methods."
+      },
+      "check": "lower_label == 'north gate' and upper_label == 'NORTH GATE' and title_label == 'North Gate'",
+      "hint": {
+        "en": "Start with label = \"nORTH gATE\". Then compare the values with the task.",
+        "nl": "Begin met label = \"nORTH gATE\". Vergelijk de waarden daarna met de opdracht."
+      }
+    }
+  ],
+  "solutionNote": {
+    "en": "lower(), upper(), and title() return case-converted strings. Normalizing case is useful before a case-insensitive comparison. The original string remains unchanged.\n\nTrace the solution one line at a time. Try a different input to see which parts change.",
+    "nl": "lower(), upper() en title() geven strings met aangepaste hoofdletters terug. Normaliseer tekst vóór een vergelijking die niet hoofdlettergevoelig moet zijn. De oorspronkelijke string blijft ongewijzigd.\n\nVolg de oplossing regel voor regel. Probeer een andere invoer en bekijk welke onderdelen veranderen."
+  },
+  "sourcePosition": 2,
+  "sourceUrl": "https://www.codecademy.com/courses/learn-python-3/lessons/string-methods/exercises/formatting-methods",
+  "estimatedMinutes": 6
+}

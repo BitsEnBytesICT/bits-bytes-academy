@@ -1,0 +1,43 @@
+{
+  "id": "data-types-14",
+  "chapter": 11,
+  "group": "data-types",
+  "title": {
+    "en": "Class review",
+    "nl": "Terugblik: samenwerkende classes"
+  },
+  "kind": "coding",
+  "optional": false,
+  "explanation": {
+    "en": "Objects can cooperate by storing references to other objects. Give each instance its own collection in __init__, rather than sharing a mutable class attribute. isinstance(value, Class) checks whether a value belongs to a class or a subclass.",
+    "nl": "Objecten kunnen samenwerken door verwijzingen naar andere objecten te bewaren. Geef elke instance in __init__ een eigen verzameling, in plaats van een mutable class attribute te delen. isinstance(value, Class) controleert of een waarde bij een class of subclass hoort."
+  },
+  "example": "",
+  "files": {
+    "main.py": "# Write your code below.\n"
+  },
+  "solution": {
+    "main.py": "class Reading:\n    def __init__(self, value):\n        self.value = value\n\nclass Sensor:\n    def __init__(self, name):\n        self.name = name\n        self.readings = []\n\n    def add(self, reading):\n        if isinstance(reading, Reading):\n            self.readings.append(reading)\n\neast = Sensor(\"East\")\neast.add(Reading(21))\nprint(east.name, east.readings[0].value)\n"
+  },
+  "checkpoints": [
+    {
+      "id": "data-types-14-step-1",
+      "task": {
+        "en": "Create Reading(value) with a value attribute. Create Sensor(name) with name and its own empty readings list. Its add(reading) method adds only Reading instances. Add Reading(21) to east = Sensor(\"East\").",
+        "nl": "Maak Reading(value) met een value-attribute. Maak Sensor(name) met name en een eigen lege readings-list. De add(reading)-method voegt alleen Reading-instances toe. Voeg Reading(21) toe aan east = Sensor(\"East\")."
+      },
+      "check": "east.name == 'East' and len(east.readings) == 1 and isinstance(east.readings[0],Reading) and east.readings[0].value == 21 and Sensor('A').readings is not Sensor('B').readings and (lambda s: (s.add('invalid'), s.readings)[1])(Sensor('test')) == []",
+      "hint": {
+        "en": "Start with class Reading:. Then compare the values with the task.",
+        "nl": "Begin met class Reading:. Vergelijk de waarden daarna met de opdracht."
+      }
+    }
+  ],
+  "solutionNote": {
+    "en": "Objects can cooperate by storing references to other objects. Give each instance its own collection in __init__, rather than sharing a mutable class attribute. isinstance(value, Class) checks whether a value belongs to a class or a subclass.\n\nTrace the solution one line at a time. Try a different input to see which parts change.",
+    "nl": "Objecten kunnen samenwerken door verwijzingen naar andere objecten te bewaren. Geef elke instance in __init__ een eigen verzameling, in plaats van een mutable class attribute te delen. isinstance(value, Class) controleert of een waarde bij een class of subclass hoort.\n\nVolg de oplossing regel voor regel. Probeer een andere invoer en bekijk welke onderdelen veranderen."
+  },
+  "sourcePosition": 14,
+  "sourceUrl": "https://www.codecademy.com/courses/learn-python-3/lessons/data-types/exercises/review",
+  "estimatedMinutes": 6
+}

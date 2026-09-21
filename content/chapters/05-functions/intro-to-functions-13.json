@@ -1,0 +1,43 @@
+{
+  "id": "intro-to-functions-13",
+  "chapter": 5,
+  "group": "intro-to-functions",
+  "title": {
+    "en": "Function review",
+    "nl": "Terugblik: functions"
+  },
+  "kind": "coding",
+  "optional": false,
+  "explanation": {
+    "en": "Build larger behavior by composing small functions. Each function should have a clear input and result. Test with more than one input so a hard-coded answer cannot hide a mistake.",
+    "nl": "Bouw groter gedrag door kleine functions te combineren. Elke function heeft een duidelijke invoer en uitkomst. Test met meerdere waarden, zodat een vast antwoord geen fout kan verbergen."
+  },
+  "example": "",
+  "files": {
+    "main.py": "# Write your code below.\n"
+  },
+  "solution": {
+    "main.py": "def average(values):\n    return sum(values) / len(values)\n\ndef describe(values):\n    return len(values), average(values), max(values)\n\nprint(describe([2, 4, 9]))\n"
+  },
+  "checkpoints": [
+    {
+      "id": "intro-to-functions-13-step-1",
+      "task": {
+        "en": "Define average(values) as sum divided by length. Define describe(values) to return a tuple of length, average, and maximum. Assume a nonempty list.",
+        "nl": "Definieer average(values) als som gedeeld door lengte. Definieer describe(values) die een tuple met lengte, gemiddelde en maximum teruggeeft. Neem een niet-lege list aan."
+      },
+      "check": "average([2,4,9]) == 5 and describe([2,4,9]) == (3,5,9) and describe([8]) == (1,8,8)",
+      "hint": {
+        "en": "Start with def average(values):. Then compare the values with the task.",
+        "nl": "Begin met def average(values):. Vergelijk de waarden daarna met de opdracht."
+      }
+    }
+  ],
+  "solutionNote": {
+    "en": "Build larger behavior by composing small functions. Each function should have a clear input and result. Test with more than one input so a hard-coded answer cannot hide a mistake.\n\nTrace the solution one line at a time. Try a different input to see which parts change.",
+    "nl": "Bouw groter gedrag door kleine functions te combineren. Elke function heeft een duidelijke invoer en uitkomst. Test met meerdere waarden, zodat een vast antwoord geen fout kan verbergen.\n\nVolg de oplossing regel voor regel. Probeer een andere invoer en bekijk welke onderdelen veranderen."
+  },
+  "sourcePosition": 13,
+  "sourceUrl": "https://www.codecademy.com/courses/learn-python-3/lessons/intro-to-functions/exercises/functions-review",
+  "estimatedMinutes": 6
+}

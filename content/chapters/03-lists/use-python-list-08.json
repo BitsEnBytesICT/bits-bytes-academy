@@ -1,0 +1,43 @@
+{
+  "id": "use-python-list-08",
+  "chapter": 3,
+  "group": "use-python-list",
+  "title": {
+    "en": "Open-ended and negative slices",
+    "nl": "Open en negatieve slice-grenzen"
+  },
+  "kind": "coding",
+  "optional": false,
+  "explanation": {
+    "en": "Omit a slice boundary to use the beginning or end. Negative boundaries count from the end. items[-2:] gives the final two elements.",
+    "nl": "Laat een slice-grens weg om het begin of einde te gebruiken. Negatieve grenzen tellen vanaf het einde. items[-2:] geeft de laatste twee elementen."
+  },
+  "example": "",
+  "files": {
+    "main.py": "values = [2, 4, 6, 8, 10]\n"
+  },
+  "solution": {
+    "main.py": "values = [2, 4, 6, 8, 10]\nprefix = values[:2]\nsuffix = values[-2:]\nprint(prefix, suffix)\n"
+  },
+  "checkpoints": [
+    {
+      "id": "use-python-list-08-step-1",
+      "task": {
+        "en": "Create prefix with the first two values and suffix with the last two values.",
+        "nl": "Maak prefix met de eerste twee waarden en suffix met de laatste twee waarden."
+      },
+      "check": "prefix == [2,4] and suffix == [8,10]",
+      "hint": {
+        "en": "Start with values = [2, 4, 6, 8, 10]. Then compare the values with the task.",
+        "nl": "Begin met values = [2, 4, 6, 8, 10]. Vergelijk de waarden daarna met de opdracht."
+      }
+    }
+  ],
+  "solutionNote": {
+    "en": "Omit a slice boundary to use the beginning or end. Negative boundaries count from the end. items[-2:] gives the final two elements.\n\nTrace the solution one line at a time. Try a different input to see which parts change.",
+    "nl": "Laat een slice-grens weg om het begin of einde te gebruiken. Negatieve grenzen tellen vanaf het einde. items[-2:] geeft de laatste twee elementen.\n\nVolg de oplossing regel voor regel. Probeer een andere invoer en bekijk welke onderdelen veranderen."
+  },
+  "sourcePosition": 8,
+  "sourceUrl": "https://www.codecademy.com/courses/learn-python-3/lessons/use-python-list/exercises/slice-iv",
+  "estimatedMinutes": 6
+}

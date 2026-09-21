@@ -1,0 +1,41 @@
+{
+  "id": "practice-6-decisions-5",
+  "chapter": 6,
+  "group": "decisions",
+  "title": {
+    "en": "Packing in rows",
+    "nl": "Verpakken in rijen"
+  },
+  "kind": "challenge",
+  "optional": true,
+  "explanation": {
+    "en": "Return whether count can be split into rows of width with no remainder. Assume width is positive.",
+    "nl": "Geef terug of count zonder rest kan worden verdeeld in rijen met width. Neem een positieve width aan."
+  },
+  "example": "",
+  "files": {
+    "main.py": "def whole_rows(count, width):\n    # Implement the function.\n    pass\n\nprint(whole_rows(24, 6))\n"
+  },
+  "solution": {
+    "main.py": "def whole_rows(count, width):\n    return count % width == 0\n\nprint(whole_rows(24, 6))\n"
+  },
+  "checkpoints": [
+    {
+      "id": "practice-6-decisions-5-step-1",
+      "task": {
+        "en": "Return whether count can be split into rows of width with no remainder. Assume width is positive.",
+        "nl": "Geef terug of count zonder rest kan worden verdeeld in rijen met width. Neem een positieve width aan."
+      },
+      "check": "whole_rows(24,6) is True and whole_rows(25,6) is False and whole_rows(0,4) is True",
+      "hint": {
+        "en": "Work through a small input by hand first. Separate the condition, transformation, and return value.",
+        "nl": "Werk eerst zelf een kleine invoer uit. Bekijk de voorwaarde, de bewerking en de return value afzonderlijk."
+      }
+    }
+  ],
+  "solutionNote": {
+    "en": "This solution separates the calculation from its input. Test the function with ordinary values and edge cases such as empty collections or boundary values.",
+    "nl": "Deze oplossing scheidt de berekening van de invoer. Test de function met gewone waarden en grensgevallen, zoals lege verzamelingen of grenswaarden."
+  },
+  "estimatedMinutes": 10
+}

@@ -1,0 +1,41 @@
+{
+  "id": "practice-6-compose-2",
+  "chapter": 6,
+  "group": "compose",
+  "title": {
+    "en": "Apply a discount",
+    "nl": "Korting toepassen"
+  },
+  "kind": "challenge",
+  "optional": true,
+  "explanation": {
+    "en": "Return the price after discount_percent percent is removed.",
+    "nl": "Geef de prijs terug nadat discount_percent procent is afgetrokken."
+  },
+  "example": "",
+  "files": {
+    "main.py": "def discounted(price, discount_percent):\n    # Implement the function.\n    pass\n\nprint(discounted(80, 25))\n"
+  },
+  "solution": {
+    "main.py": "def discounted(price, discount_percent):\n    return price * (1 - discount_percent / 100)\n\nprint(discounted(80, 25))\n"
+  },
+  "checkpoints": [
+    {
+      "id": "practice-6-compose-2-step-1",
+      "task": {
+        "en": "Return the price after discount_percent percent is removed.",
+        "nl": "Geef de prijs terug nadat discount_percent procent is afgetrokken."
+      },
+      "check": "discounted(80,25) == 60 and discounted(15,0) == 15 and discounted(20,100) == 0",
+      "hint": {
+        "en": "Work through a small input by hand first. Separate the condition, transformation, and return value.",
+        "nl": "Werk eerst zelf een kleine invoer uit. Bekijk de voorwaarde, de bewerking en de return value afzonderlijk."
+      }
+    }
+  ],
+  "solutionNote": {
+    "en": "This solution separates the calculation from its input. Test the function with ordinary values and edge cases such as empty collections or boundary values.",
+    "nl": "Deze oplossing scheidt de berekening van de invoer. Test de function met gewone waarden en grensgevallen, zoals lege verzamelingen of grenswaarden."
+  },
+  "estimatedMinutes": 10
+}

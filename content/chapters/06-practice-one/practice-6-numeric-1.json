@@ -1,0 +1,41 @@
+{
+  "id": "practice-6-numeric-1",
+  "chapter": 6,
+  "group": "numeric",
+  "title": {
+    "en": "Cube a value",
+    "nl": "Een waarde tot de derde macht"
+  },
+  "kind": "challenge",
+  "optional": true,
+  "explanation": {
+    "en": "Return the cube of number. Negative inputs should keep the correct sign.",
+    "nl": "Geef number tot de derde macht terug. Negatieve invoer moet het juiste teken behouden."
+  },
+  "example": "",
+  "files": {
+    "main.py": "def cube(number):\n    # Implement the function.\n    pass\n\nprint(cube(3))\n"
+  },
+  "solution": {
+    "main.py": "def cube(number):\n    return number ** 3\n\nprint(cube(3))\n"
+  },
+  "checkpoints": [
+    {
+      "id": "practice-6-numeric-1-step-1",
+      "task": {
+        "en": "Return the cube of number. Negative inputs should keep the correct sign.",
+        "nl": "Geef number tot de derde macht terug. Negatieve invoer moet het juiste teken behouden."
+      },
+      "check": "cube(3) == 27 and cube(-2) == -8 and cube(0) == 0",
+      "hint": {
+        "en": "Work through a small input by hand first. Separate the condition, transformation, and return value.",
+        "nl": "Werk eerst zelf een kleine invoer uit. Bekijk de voorwaarde, de bewerking en de return value afzonderlijk."
+      }
+    }
+  ],
+  "solutionNote": {
+    "en": "This solution separates the calculation from its input. Test the function with ordinary values and edge cases such as empty collections or boundary values.",
+    "nl": "Deze oplossing scheidt de berekening van de invoer. Test de function met gewone waarden en grensgevallen, zoals lege verzamelingen of grenswaarden."
+  },
+  "estimatedMinutes": 10
+}

@@ -1,0 +1,41 @@
+{
+  "id": "practice-12-objects-4",
+  "chapter": 12,
+  "group": "objects",
+  "title": {
+    "en": "Independent counters",
+    "nl": "Onafhankelijke tellers"
+  },
+  "kind": "challenge",
+  "optional": true,
+  "explanation": {
+    "en": "Return one Counter instance per name. Each starts with count 0; tick() increments only that instance’s count.",
+    "nl": "Geef één Counter-instance per naam terug. Elke instance begint met count 0; tick() verhoogt alleen de eigen count."
+  },
+  "example": "",
+  "files": {
+    "main.py": "def make_counters(names):\n    # Implement the function.\n    pass\n\ncounters = make_counters([\"East\", \"West\"])\ncounters[0].tick()\nprint([c.count for c in counters])\n"
+  },
+  "solution": {
+    "main.py": "def make_counters(names):\n    class Counter:\n        def __init__(self, name):\n            self.name = name\n            self.count = 0\n        def tick(self):\n            self.count += 1\n    return [Counter(name) for name in names]\n\ncounters = make_counters([\"East\", \"West\"])\ncounters[0].tick()\nprint([c.count for c in counters])\n"
+  },
+  "checkpoints": [
+    {
+      "id": "practice-12-objects-4-step-1",
+      "task": {
+        "en": "Return one Counter instance per name. Each starts with count 0; tick() increments only that instance’s count.",
+        "nl": "Geef één Counter-instance per naam terug. Elke instance begint met count 0; tick() verhoogt alleen de eigen count."
+      },
+      "check": "(lambda cs: (cs[0].tick(),[c.count for c in cs])[1])(make_counters(['A','B'])) == [1,0] and make_counters([]) == []",
+      "hint": {
+        "en": "Work through a small input by hand first. Separate the condition, transformation, and return value.",
+        "nl": "Werk eerst zelf een kleine invoer uit. Bekijk de voorwaarde, de bewerking en de return value afzonderlijk."
+      }
+    }
+  ],
+  "solutionNote": {
+    "en": "This solution separates the calculation from its input. Test the function with ordinary values and edge cases such as empty collections or boundary values.",
+    "nl": "Deze oplossing scheidt de berekening van de invoer. Test de function met gewone waarden en grensgevallen, zoals lege verzamelingen of grenswaarden."
+  },
+  "estimatedMinutes": 10
+}

@@ -1,0 +1,43 @@
+{
+  "id": "intro-to-functions-08",
+  "chapter": 5,
+  "group": "intro-to-functions",
+  "title": {
+    "en": "Positional, keyword, and default arguments",
+    "nl": "Positional, keyword en default arguments"
+  },
+  "kind": "coding",
+  "optional": false,
+  "explanation": {
+    "en": "Arguments can be matched by position or by keyword. A default value is used when an argument is omitted. Required parameters must come before ordinary parameters with defaults.",
+    "nl": "Arguments worden gekoppeld op positie of via een keyword. Een default value wordt gebruikt als een argument ontbreekt. Verplichte parameters staan vóór gewone parameters met defaults."
+  },
+  "example": "",
+  "files": {
+    "main.py": "# Write your code below.\n"
+  },
+  "solution": {
+    "main.py": "def ticket(price, quantity=1):\n    return price * quantity\n\nsingle = ticket(6)\ngroup = ticket(quantity=3, price=6)\nprint(single, group)\n"
+  },
+  "checkpoints": [
+    {
+      "id": "intro-to-functions-08-step-1",
+      "task": {
+        "en": "Define ticket(price, quantity=1) to return their product. Store ticket(6) in single and ticket(quantity=3, price=6) in group.",
+        "nl": "Definieer ticket(price, quantity=1) die het product teruggeeft. Sla ticket(6) op in single en ticket(quantity=3, price=6) in group."
+      },
+      "check": "single == 6 and group == 18 and ticket(7) == 7 and ticket(quantity=4,price=2) == 8",
+      "hint": {
+        "en": "Start with def ticket(price, quantity=1):. Then compare the values with the task.",
+        "nl": "Begin met def ticket(price, quantity=1):. Vergelijk de waarden daarna met de opdracht."
+      }
+    }
+  ],
+  "solutionNote": {
+    "en": "Arguments can be matched by position or by keyword. A default value is used when an argument is omitted. Required parameters must come before ordinary parameters with defaults.\n\nTrace the solution one line at a time. Try a different input to see which parts change.",
+    "nl": "Arguments worden gekoppeld op positie of via een keyword. Een default value wordt gebruikt als een argument ontbreekt. Verplichte parameters staan vóór gewone parameters met defaults.\n\nVolg de oplossing regel voor regel. Probeer een andere invoer en bekijk welke onderdelen veranderen."
+  },
+  "sourcePosition": 8,
+  "sourceUrl": "https://www.codecademy.com/courses/learn-python-3/lessons/intro-to-functions/exercises/types-of-arguments",
+  "estimatedMinutes": 6
+}

@@ -1,0 +1,41 @@
+{
+  "id": "practice-12-string-analysis-4",
+  "chapter": 12,
+  "group": "string-analysis",
+  "title": {
+    "en": "Inside brackets",
+    "nl": "Tussen haakjes"
+  },
+  "kind": "challenge",
+  "optional": true,
+  "explanation": {
+    "en": "Return the text between the first [ and the next ]. Return an empty string if either delimiter is missing or in the wrong order.",
+    "nl": "Geef de tekst tussen de eerste [ en de volgende ] terug. Geef een lege string als een grens ontbreekt of de volgorde niet klopt."
+  },
+  "example": "",
+  "files": {
+    "main.py": "def inside_brackets(text):\n    # Implement the function.\n    pass\n\nprint(inside_brackets(\"x[blue]y\"))\n"
+  },
+  "solution": {
+    "main.py": "def inside_brackets(text):\n    start = text.find(\"[\")\n    if start == -1:\n        return \"\"\n    end = text.find(\"]\", start + 1)\n    if end == -1:\n        return \"\"\n    return text[start + 1:end]\n\nprint(inside_brackets(\"x[blue]y\"))\n"
+  },
+  "checkpoints": [
+    {
+      "id": "practice-12-string-analysis-4-step-1",
+      "task": {
+        "en": "Return the text between the first [ and the next ]. Return an empty string if either delimiter is missing or in the wrong order.",
+        "nl": "Geef de tekst tussen de eerste [ en de volgende ] terug. Geef een lege string als een grens ontbreekt of de volgorde niet klopt."
+      },
+      "check": "inside_brackets('x[blue]y') == 'blue' and inside_brackets('none') == '' and inside_brackets(']x[') == ''",
+      "hint": {
+        "en": "Work through a small input by hand first. Separate the condition, transformation, and return value.",
+        "nl": "Werk eerst zelf een kleine invoer uit. Bekijk de voorwaarde, de bewerking en de return value afzonderlijk."
+      }
+    }
+  ],
+  "solutionNote": {
+    "en": "This solution separates the calculation from its input. Test the function with ordinary values and edge cases such as empty collections or boundary values.",
+    "nl": "Deze oplossing scheidt de berekening van de invoer. Test de function met gewone waarden en grensgevallen, zoals lege verzamelingen of grenswaarden."
+  },
+  "estimatedMinutes": 10
+}

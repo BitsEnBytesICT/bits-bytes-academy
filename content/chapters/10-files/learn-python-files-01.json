@@ -1,0 +1,45 @@
+{
+  "id": "learn-python-files-01",
+  "chapter": 10,
+  "group": "learn-python-files",
+  "title": {
+    "en": "Reading complete text",
+    "nl": "Een tekstbestand lezen"
+  },
+  "kind": "coding",
+  "optional": false,
+  "explanation": {
+    "en": "open() returns a file object. A with block closes it automatically when the block ends, even after an exception. read() returns the remaining text as one string. Files here live in your exercise workspace.",
+    "nl": "open() geeft een file object terug. Een with-blok sluit dit automatisch na afloop, ook bij een exception. read() geeft de resterende tekst als één string. Bestanden staan hier in de werkruimte van je oefening."
+  },
+  "example": "with open(\"notes.txt\") as handle:\n    text = handle.read()",
+  "files": {
+    "notice.txt": "Welcome to the field station.\n",
+    "main.py": "# Write your code below.\n"
+  },
+  "solution": {
+    "notice.txt": "Welcome to the field station.\n",
+    "main.py": "with open(\"notice.txt\", encoding=\"utf-8\") as handle:\n    notice = handle.read()\nprint(notice)\n"
+  },
+  "checkpoints": [
+    {
+      "id": "learn-python-files-01-step-1",
+      "task": {
+        "en": "Open notice.txt with a with block, read it into notice, and print notice.",
+        "nl": "Open notice.txt in een with-blok, lees de inhoud in notice en druk notice af."
+      },
+      "check": "notice == 'Welcome to the field station.\\n'",
+      "hint": {
+        "en": "Start with with open(\"notice.txt\", encoding=\"utf-8\") as handle:. Then compare the values with the task.",
+        "nl": "Begin met with open(\"notice.txt\", encoding=\"utf-8\") as handle:. Vergelijk de waarden daarna met de opdracht."
+      }
+    }
+  ],
+  "solutionNote": {
+    "en": "open() returns a file object. A with block closes it automatically when the block ends, even after an exception. read() returns the remaining text as one string. Files here live in your exercise workspace.\n\nTrace the solution one line at a time. Try a different input to see which parts change.",
+    "nl": "open() geeft een file object terug. Een with-blok sluit dit automatisch na afloop, ook bij een exception. read() geeft de resterende tekst als één string. Bestanden staan hier in de werkruimte van je oefening.\n\nVolg de oplossing regel voor regel. Probeer een andere invoer en bekijk welke onderdelen veranderen."
+  },
+  "sourcePosition": 1,
+  "sourceUrl": "https://www.codecademy.com/courses/learn-python-3/lessons/learn-python-files/exercises/reading-a-file",
+  "estimatedMinutes": 6
+}

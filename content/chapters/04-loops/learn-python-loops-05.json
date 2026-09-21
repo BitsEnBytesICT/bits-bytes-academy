@@ -1,0 +1,43 @@
+{
+  "id": "learn-python-loops-05",
+  "chapter": 4,
+  "group": "learn-python-loops",
+  "title": {
+    "en": "While loops",
+    "nl": "Een while loop"
+  },
+  "kind": "coding",
+  "optional": false,
+  "explanation": {
+    "en": "A while loop checks its condition before every iteration. Update the state inside the loop so the condition can eventually become false. Otherwise it may never finish.",
+    "nl": "Een while loop controleert vóór elke herhaling de voorwaarde. Werk de toestand binnen de loop bij, zodat de voorwaarde uiteindelijk onwaar kan worden. Anders stopt de loop mogelijk nooit."
+  },
+  "example": "",
+  "files": {
+    "main.py": "# Write your code below.\n"
+  },
+  "solution": {
+    "main.py": "count = 0\nwhile count < 3:\n    print(count)\n    count += 1\n"
+  },
+  "checkpoints": [
+    {
+      "id": "learn-python-loops-05-step-1",
+      "task": {
+        "en": "Start count at 0. Use while to print 0, 1, and 2, then finish with count equal to 3.",
+        "nl": "Begin met count = 0. Gebruik while om 0, 1 en 2 af te drukken. Eindig met count gelijk aan 3."
+      },
+      "check": "count == 3 and _stdout.splitlines() == ['0','1','2'] and any(isinstance(n,_ast.While) for n in _ast.walk(_ast.parse(_source)))",
+      "hint": {
+        "en": "Start with count = 0. Then compare the values with the task.",
+        "nl": "Begin met count = 0. Vergelijk de waarden daarna met de opdracht."
+      }
+    }
+  ],
+  "solutionNote": {
+    "en": "A while loop checks its condition before every iteration. Update the state inside the loop so the condition can eventually become false. Otherwise it may never finish.\n\nTrace the solution one line at a time. Try a different input to see which parts change.",
+    "nl": "Een while loop controleert vóór elke herhaling de voorwaarde. Werk de toestand binnen de loop bij, zodat de voorwaarde uiteindelijk onwaar kan worden. Anders stopt de loop mogelijk nooit.\n\nVolg de oplossing regel voor regel. Probeer een andere invoer en bekijk welke onderdelen veranderen."
+  },
+  "sourcePosition": 5,
+  "sourceUrl": "https://www.codecademy.com/courses/learn-python-3/lessons/learn-python-loops/exercises/while",
+  "estimatedMinutes": 6
+}

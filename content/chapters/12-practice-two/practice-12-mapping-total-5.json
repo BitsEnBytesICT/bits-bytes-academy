@@ -1,0 +1,41 @@
+{
+  "id": "practice-12-mapping-total-5",
+  "chapter": 12,
+  "group": "mapping-total",
+  "title": {
+    "en": "Largest entry",
+    "nl": "Grootste entry"
+  },
+  "kind": "challenge",
+  "optional": true,
+  "explanation": {
+    "en": "Return the key with the largest numeric value. On a tie return the first inserted key. Return None for an empty mapping.",
+    "nl": "Geef de key met de grootste numerieke value terug. Bij gelijkheid kies je de eerst ingevoegde key. Geef None voor een lege mapping."
+  },
+  "example": "",
+  "files": {
+    "main.py": "def largest_key(mapping):\n    # Implement the function.\n    pass\n\nprint(largest_key({\"a\": 2, \"b\": 8, \"c\": 8}))\n"
+  },
+  "solution": {
+    "main.py": "def largest_key(mapping):\n    best_key = None\n    for key in mapping:\n        if best_key is None or mapping[key] > mapping[best_key]:\n            best_key = key\n    return best_key\n\nprint(largest_key({\"a\": 2, \"b\": 8, \"c\": 8}))\n"
+  },
+  "checkpoints": [
+    {
+      "id": "practice-12-mapping-total-5-step-1",
+      "task": {
+        "en": "Return the key with the largest numeric value. On a tie return the first inserted key. Return None for an empty mapping.",
+        "nl": "Geef de key met de grootste numerieke value terug. Bij gelijkheid kies je de eerst ingevoegde key. Geef None voor een lege mapping."
+      },
+      "check": "largest_key({'a':2,'b':8,'c':8}) == 'b' and largest_key({}) is None and largest_key({'a':-9,'b':-3}) == 'b'",
+      "hint": {
+        "en": "Work through a small input by hand first. Separate the condition, transformation, and return value.",
+        "nl": "Werk eerst zelf een kleine invoer uit. Bekijk de voorwaarde, de bewerking en de return value afzonderlijk."
+      }
+    }
+  ],
+  "solutionNote": {
+    "en": "This solution separates the calculation from its input. Test the function with ordinary values and edge cases such as empty collections or boundary values.",
+    "nl": "Deze oplossing scheidt de berekening van de invoer. Test de function met gewone waarden en grensgevallen, zoals lege verzamelingen of grenswaarden."
+  },
+  "estimatedMinutes": 10
+}

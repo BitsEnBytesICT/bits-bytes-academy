@@ -1,0 +1,43 @@
+{
+  "id": "learn-python-loops-08",
+  "chapter": 4,
+  "group": "learn-python-loops",
+  "title": {
+    "en": "Breaking early",
+    "nl": "Vroeg stoppen met break"
+  },
+  "kind": "coding",
+  "optional": false,
+  "explanation": {
+    "en": "break immediately exits the innermost loop. Statements after break in the same iteration are skipped. It is useful when a search has already found what it needs.",
+    "nl": "break verlaat direct de binnenste loop. Regels na break in dezelfde herhaling worden overgeslagen. Dat is handig als een zoekactie haar doel al heeft gevonden."
+  },
+  "example": "",
+  "files": {
+    "main.py": "values = [4, 8, 12, 18]\nfound = None\n"
+  },
+  "solution": {
+    "main.py": "values = [4, 8, 12, 18]\nfound = None\nfor value in values:\n    if value > 10:\n        found = value\n        break\nprint(found)\n"
+  },
+  "checkpoints": [
+    {
+      "id": "learn-python-loops-08-step-1",
+      "task": {
+        "en": "Find the first value above 10 in values, store it in found, and stop searching.",
+        "nl": "Zoek de eerste waarde boven 10 in values, sla deze op in found en stop met zoeken."
+      },
+      "check": "found == 12 and any(isinstance(n,_ast.Break) for n in _ast.walk(_ast.parse(_source)))",
+      "hint": {
+        "en": "Start with values = [4, 8, 12, 18]. Then compare the values with the task.",
+        "nl": "Begin met values = [4, 8, 12, 18]. Vergelijk de waarden daarna met de opdracht."
+      }
+    }
+  ],
+  "solutionNote": {
+    "en": "break immediately exits the innermost loop. Statements after break in the same iteration are skipped. It is useful when a search has already found what it needs.\n\nTrace the solution one line at a time. Try a different input to see which parts change.",
+    "nl": "break verlaat direct de binnenste loop. Regels na break in dezelfde herhaling worden overgeslagen. Dat is handig als een zoekactie haar doel al heeft gevonden.\n\nVolg de oplossing regel voor regel. Probeer een andere invoer en bekijk welke onderdelen veranderen."
+  },
+  "sourcePosition": 8,
+  "sourceUrl": "https://www.codecademy.com/courses/learn-python-3/lessons/learn-python-loops/exercises/break",
+  "estimatedMinutes": 6
+}

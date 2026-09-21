@@ -1,0 +1,41 @@
+{
+  "id": "practice-12-string-analysis-3",
+  "chapter": 12,
+  "group": "string-analysis",
+  "title": {
+    "en": "Count a token",
+    "nl": "Een token tellen"
+  },
+  "kind": "challenge",
+  "optional": true,
+  "explanation": {
+    "en": "Return the number of non-overlapping occurrences of a nonempty token in text.",
+    "nl": "Geef het aantal niet-overlappende voorkomens van een niet-lege token in text terug."
+  },
+  "example": "",
+  "files": {
+    "main.py": "def token_count(text, token):\n    # Implement the function.\n    pass\n\nprint(token_count(\"aaaa\", \"aa\"))\n"
+  },
+  "solution": {
+    "main.py": "def token_count(text, token):\n    return text.count(token)\n\nprint(token_count(\"aaaa\", \"aa\"))\n"
+  },
+  "checkpoints": [
+    {
+      "id": "practice-12-string-analysis-3-step-1",
+      "task": {
+        "en": "Return the number of non-overlapping occurrences of a nonempty token in text.",
+        "nl": "Geef het aantal niet-overlappende voorkomens van een niet-lege token in text terug."
+      },
+      "check": "token_count('aaaa','aa') == 2 and token_count('abababa','aba') == 2 and token_count('abc','z') == 0",
+      "hint": {
+        "en": "Work through a small input by hand first. Separate the condition, transformation, and return value.",
+        "nl": "Werk eerst zelf een kleine invoer uit. Bekijk de voorwaarde, de bewerking en de return value afzonderlijk."
+      }
+    }
+  ],
+  "solutionNote": {
+    "en": "This solution separates the calculation from its input. Test the function with ordinary values and edge cases such as empty collections or boundary values.",
+    "nl": "Deze oplossing scheidt de berekening van de invoer. Test de function met gewone waarden en grensgevallen, zoals lege verzamelingen of grenswaarden."
+  },
+  "estimatedMinutes": 10
+}

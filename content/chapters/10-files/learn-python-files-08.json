@@ -1,0 +1,45 @@
+{
+  "id": "learn-python-files-08",
+  "chapter": 10,
+  "group": "learn-python-files",
+  "title": {
+    "en": "Reading CSV records",
+    "nl": "CSV-records lezen"
+  },
+  "kind": "coding",
+  "optional": false,
+  "explanation": {
+    "en": "csv.DictReader turns CSV rows into dictionaries keyed by column headers. CSV fields arrive as strings; convert numeric fields when you need arithmetic. Use newline=\"\" when opening CSV files.",
+    "nl": "csv.DictReader maakt dictionaries van CSV-rijen met de kolomheaders als keys. CSV-velden komen als strings binnen; zet numerieke velden om als je ermee wilt rekenen. Gebruik newline=\"\" bij het openen van CSV-bestanden."
+  },
+  "example": "",
+  "files": {
+    "sensors.csv": "name,level\neast,4\nwest,7\n",
+    "main.py": "# Write your code below.\n"
+  },
+  "solution": {
+    "sensors.csv": "name,level\neast,4\nwest,7\n",
+    "main.py": "import csv\nwith open(\"sensors.csv\", newline=\"\", encoding=\"utf-8\") as handle:\n    levels = [int(row[\"level\"]) for row in csv.DictReader(handle)]\nprint(levels)\n"
+  },
+  "checkpoints": [
+    {
+      "id": "learn-python-files-08-step-1",
+      "task": {
+        "en": "Read sensors.csv with DictReader and collect integer levels in levels.",
+        "nl": "Lees sensors.csv met DictReader en verzamel de levels als integers in levels."
+      },
+      "check": "levels == [4,7] and all(type(n) is int for n in levels)",
+      "hint": {
+        "en": "Start with import csv. Then compare the values with the task.",
+        "nl": "Begin met import csv. Vergelijk de waarden daarna met de opdracht."
+      }
+    }
+  ],
+  "solutionNote": {
+    "en": "csv.DictReader turns CSV rows into dictionaries keyed by column headers. CSV fields arrive as strings; convert numeric fields when you need arithmetic. Use newline=\"\" when opening CSV files.\n\nTrace the solution one line at a time. Try a different input to see which parts change.",
+    "nl": "csv.DictReader maakt dictionaries van CSV-rijen met de kolomheaders als keys. CSV-velden komen als strings binnen; zet numerieke velden om als je ermee wilt rekenen. Gebruik newline=\"\" bij het openen van CSV-bestanden.\n\nVolg de oplossing regel voor regel. Probeer een andere invoer en bekijk welke onderdelen veranderen."
+  },
+  "sourcePosition": 8,
+  "sourceUrl": "https://www.codecademy.com/courses/learn-python-3/lessons/learn-python-files/exercises/reading-a-csv",
+  "estimatedMinutes": 6
+}

@@ -1,0 +1,43 @@
+{
+  "id": "data-types-04",
+  "chapter": 11,
+  "group": "data-types",
+  "title": {
+    "en": "Object-oriented organization",
+    "nl": "Classes en objecten"
+  },
+  "kind": "coding",
+  "optional": false,
+  "explanation": {
+    "en": "Object-oriented programming groups state and behavior around objects. A class is the definition; an instance is a particular object created from it. type(instance) identifies its class.",
+    "nl": "Object-oriented programming groepeert toestand en gedrag rond objecten. De class is de definitie; een instance is een specifiek object dat ermee gemaakt is. type(instance) toont de class."
+  },
+  "example": "",
+  "files": {
+    "main.py": "# Write your code below.\n"
+  },
+  "solution": {
+    "main.py": "class Sensor:\n    pass\n\nfirst = Sensor()\nsecond = Sensor()\nsensor_type = type(first)\nprint(sensor_type)\n"
+  },
+  "checkpoints": [
+    {
+      "id": "data-types-04-step-1",
+      "task": {
+        "en": "Create first and second as different Sensor instances, and store type(first) in sensor_type.",
+        "nl": "Maak first en second als verschillende Sensor-instances en sla type(first) op in sensor_type."
+      },
+      "check": "isinstance(first,Sensor) and isinstance(second,Sensor) and first is not second and sensor_type is Sensor",
+      "hint": {
+        "en": "Start with class Sensor:. Then compare the values with the task.",
+        "nl": "Begin met class Sensor:. Vergelijk de waarden daarna met de opdracht."
+      }
+    }
+  ],
+  "solutionNote": {
+    "en": "Object-oriented programming groups state and behavior around objects. A class is the definition; an instance is a particular object created from it. type(instance) identifies its class.\n\nTrace the solution one line at a time. Try a different input to see which parts change.",
+    "nl": "Object-oriented programming groepeert toestand en gedrag rond objecten. De class is de definitie; een instance is een specifiek object dat ermee gemaakt is. type(instance) toont de class.\n\nVolg de oplossing regel voor regel. Probeer een andere invoer en bekijk welke onderdelen veranderen."
+  },
+  "sourcePosition": 4,
+  "sourceUrl": "https://www.codecademy.com/courses/learn-python-3/lessons/data-types/exercises/object-oriented-programming",
+  "estimatedMinutes": 6
+}

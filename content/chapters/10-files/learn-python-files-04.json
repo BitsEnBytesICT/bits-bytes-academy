@@ -1,0 +1,43 @@
+{
+  "id": "learn-python-files-04",
+  "chapter": 10,
+  "group": "learn-python-files",
+  "title": {
+    "en": "Writing text",
+    "nl": "Tekst schrijven"
+  },
+  "kind": "coding",
+  "optional": false,
+  "explanation": {
+    "en": "Mode w creates a text file or replaces the contents of an existing one. write() stores the supplied string and does not add a newline automatically. Inspect the generated file tab after running.",
+    "nl": "Mode w maakt een tekstbestand of vervangt de bestaande inhoud. write() bewaart de opgegeven string en voegt niet automatisch een regeleinde toe. Bekijk na het uitvoeren het gegenereerde bestandstabblad."
+  },
+  "example": "",
+  "files": {
+    "main.py": "# Write your code below.\n"
+  },
+  "solution": {
+    "main.py": "with open(\"report.txt\", \"w\", encoding=\"utf-8\") as handle:\n    handle.write(\"Inspection complete\\n\")\n"
+  },
+  "checkpoints": [
+    {
+      "id": "learn-python-files-04-step-1",
+      "task": {
+        "en": "Write Inspection complete followed by a newline to report.txt.",
+        "nl": "Schrijf Inspection complete gevolgd door een regeleinde naar report.txt."
+      },
+      "check": "_os.path.exists('report.txt') and open('report.txt', encoding='utf-8').read() == 'Inspection complete\\n'",
+      "hint": {
+        "en": "Start with with open(\"report.txt\", \"w\", encoding=\"utf-8\") as handle:. Then compare the values with the task.",
+        "nl": "Begin met with open(\"report.txt\", \"w\", encoding=\"utf-8\") as handle:. Vergelijk de waarden daarna met de opdracht."
+      }
+    }
+  ],
+  "solutionNote": {
+    "en": "Mode w creates a text file or replaces the contents of an existing one. write() stores the supplied string and does not add a newline automatically. Inspect the generated file tab after running.\n\nTrace the solution one line at a time. Try a different input to see which parts change.",
+    "nl": "Mode w maakt een tekstbestand of vervangt de bestaande inhoud. write() bewaart de opgegeven string en voegt niet automatisch een regeleinde toe. Bekijk na het uitvoeren het gegenereerde bestandstabblad.\n\nVolg de oplossing regel voor regel. Probeer een andere invoer en bekijk welke onderdelen veranderen."
+  },
+  "sourcePosition": 4,
+  "sourceUrl": "https://www.codecademy.com/courses/learn-python-3/lessons/learn-python-files/exercises/writing-a-file",
+  "estimatedMinutes": 6
+}

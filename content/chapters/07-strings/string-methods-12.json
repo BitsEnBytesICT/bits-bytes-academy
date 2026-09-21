@@ -1,0 +1,43 @@
+{
+  "id": "string-methods-12",
+  "chapter": 7,
+  "group": "string-methods",
+  "title": {
+    "en": "Named formatting",
+    "nl": "Named formatting"
+  },
+  "kind": "coding",
+  "optional": false,
+  "explanation": {
+    "en": "Named placeholders describe the role of each value. Supply matching keyword arguments to format(). The call order does not need to match the placeholder order.",
+    "nl": "Named placeholders beschrijven de rol van elke waarde. Geef bij format() passende keyword arguments mee. De volgorde bij de aanroep hoeft niet dezelfde te zijn als die van de placeholders."
+  },
+  "example": "",
+  "files": {
+    "main.py": "# Write your code below.\n"
+  },
+  "solution": {
+    "main.py": "message = \"Gate {gate}: {count} seats\".format(count=12, gate=\"B\")\nprint(message)\n"
+  },
+  "checkpoints": [
+    {
+      "id": "string-methods-12-step-1",
+      "task": {
+        "en": "Format message as Gate B: 12 seats using named placeholders gate and count.",
+        "nl": "Maak message als Gate B: 12 seats met named placeholders gate en count."
+      },
+      "check": "message == 'Gate B: 12 seats' and '.format(' in _source",
+      "hint": {
+        "en": "Start with message = \"Gate {gate}: {count} seats\".format(count=12, gate=\"B\"). Then compare the values with the task.",
+        "nl": "Begin met message = \"Gate {gate}: {count} seats\".format(count=12, gate=\"B\"). Vergelijk de waarden daarna met de opdracht."
+      }
+    }
+  ],
+  "solutionNote": {
+    "en": "Named placeholders describe the role of each value. Supply matching keyword arguments to format(). The call order does not need to match the placeholder order.\n\nTrace the solution one line at a time. Try a different input to see which parts change.",
+    "nl": "Named placeholders beschrijven de rol van elke waarde. Geef bij format() passende keyword arguments mee. De volgorde bij de aanroep hoeft niet dezelfde te zijn als die van de placeholders.\n\nVolg de oplossing regel voor regel. Probeer een andere invoer en bekijk welke onderdelen veranderen."
+  },
+  "sourcePosition": 12,
+  "sourceUrl": "https://www.codecademy.com/courses/learn-python-3/lessons/string-methods/exercises/format-ii",
+  "estimatedMinutes": 6
+}

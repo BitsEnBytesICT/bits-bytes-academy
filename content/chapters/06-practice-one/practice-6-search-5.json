@@ -1,0 +1,41 @@
+{
+  "id": "practice-6-search-5",
+  "chapter": 6,
+  "group": "search",
+  "title": {
+    "en": "Mirror order",
+    "nl": "Omgekeerde volgorde"
+  },
+  "kind": "challenge",
+  "optional": true,
+  "explanation": {
+    "en": "Return True when right contains exactly the values of left in reverse order. Different lengths must return False.",
+    "nl": "Geef True als right precies de waarden van left in omgekeerde volgorde bevat. Verschillende lengtes geven False."
+  },
+  "example": "",
+  "files": {
+    "main.py": "def mirrors(left, right):\n    # Implement the function.\n    pass\n\nprint(mirrors([1, 2], [2, 1]))\n"
+  },
+  "solution": {
+    "main.py": "def mirrors(left, right):\n    if len(left) != len(right):\n        return False\n    for i in range(len(left)):\n        if left[i] != right[-1 - i]:\n            return False\n    return True\n\nprint(mirrors([1, 2], [2, 1]))\n"
+  },
+  "checkpoints": [
+    {
+      "id": "practice-6-search-5-step-1",
+      "task": {
+        "en": "Return True when right contains exactly the values of left in reverse order. Different lengths must return False.",
+        "nl": "Geef True als right precies de waarden van left in omgekeerde volgorde bevat. Verschillende lengtes geven False."
+      },
+      "check": "mirrors([1,2],[2,1]) is True and mirrors([1,2],[1,2]) is False and mirrors([],[1]) is False and mirrors([],[]) is True",
+      "hint": {
+        "en": "Work through a small input by hand first. Separate the condition, transformation, and return value.",
+        "nl": "Werk eerst zelf een kleine invoer uit. Bekijk de voorwaarde, de bewerking en de return value afzonderlijk."
+      }
+    }
+  ],
+  "solutionNote": {
+    "en": "This solution separates the calculation from its input. Test the function with ordinary values and edge cases such as empty collections or boundary values.",
+    "nl": "Deze oplossing scheidt de berekening van de invoer. Test de function met gewone waarden en grensgevallen, zoals lege verzamelingen of grenswaarden."
+  },
+  "estimatedMinutes": 10
+}

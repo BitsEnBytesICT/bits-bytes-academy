@@ -1,0 +1,43 @@
+{
+  "id": "learn-python-loops-13",
+  "chapter": 4,
+  "group": "learn-python-loops",
+  "title": {
+    "en": "Loop review",
+    "nl": "Terugblik: loops"
+  },
+  "kind": "coding",
+  "optional": false,
+  "explanation": {
+    "en": "Combine iteration and conditions to process collections. Keep an accumulator outside the loop when it must survive across iterations. Build a new list when the original data should remain available.",
+    "nl": "Combineer loops en voorwaarden om verzamelingen te verwerken. Zet een accumulator buiten de loop als deze tussen herhalingen bewaard moet blijven. Maak een nieuwe list als je de oorspronkelijke gegevens wilt behouden."
+  },
+  "example": "",
+  "files": {
+    "main.py": "batches = [[2, -1], [4, 0], [6]]\n"
+  },
+  "solution": {
+    "main.py": "batches = [[2, -1], [4, 0], [6]]\nreadings = []\nfor batch in batches:\n    for value in batch:\n        readings.append(value)\nvalid = [value for value in readings if value > 0]\ntotal = sum(valid)\nprint(valid, total)\n"
+  },
+  "checkpoints": [
+    {
+      "id": "learn-python-loops-13-step-1",
+      "task": {
+        "en": "Flatten batches into readings. Keep only positive readings in valid and compute their sum as total.",
+        "nl": "Maak van batches één list readings. Bewaar alleen positieve metingen in valid en bereken hun som als total."
+      },
+      "check": "readings == [2,-1,4,0,6] and valid == [2,4,6] and total == 12",
+      "hint": {
+        "en": "Start with batches = [[2, -1], [4, 0], [6]]. Then compare the values with the task.",
+        "nl": "Begin met batches = [[2, -1], [4, 0], [6]]. Vergelijk de waarden daarna met de opdracht."
+      }
+    }
+  ],
+  "solutionNote": {
+    "en": "Combine iteration and conditions to process collections. Keep an accumulator outside the loop when it must survive across iterations. Build a new list when the original data should remain available.\n\nTrace the solution one line at a time. Try a different input to see which parts change.",
+    "nl": "Combineer loops en voorwaarden om verzamelingen te verwerken. Zet een accumulator buiten de loop als deze tussen herhalingen bewaard moet blijven. Maak een nieuwe list als je de oorspronkelijke gegevens wilt behouden.\n\nVolg de oplossing regel voor regel. Probeer een andere invoer en bekijk welke onderdelen veranderen."
+  },
+  "sourcePosition": 13,
+  "sourceUrl": "https://www.codecademy.com/courses/learn-python-3/lessons/learn-python-loops/exercises/review",
+  "estimatedMinutes": 6
+}

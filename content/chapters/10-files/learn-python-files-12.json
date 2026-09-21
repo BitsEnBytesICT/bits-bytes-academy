@@ -1,0 +1,43 @@
+{
+  "id": "learn-python-files-12",
+  "chapter": 10,
+  "group": "learn-python-files",
+  "title": {
+    "en": "Saving JSON",
+    "nl": "JSON opslaan"
+  },
+  "kind": "coding",
+  "optional": false,
+  "explanation": {
+    "en": "json.dump(value, file) serializes a Python value into a file. Use indent to produce readable output. The JSON spelling may differ from Python literals, so use the library instead of manually writing Python representations.",
+    "nl": "json.dump(value, file) schrijft een Python-waarde als JSON naar een bestand. Met indent maak je de output leesbaar. De JSON-notatie kan verschillen van Python-literals; gebruik daarom de bibliotheek in plaats van handmatig Python-weergaven te schrijven."
+  },
+  "example": "",
+  "files": {
+    "main.py": "payload = {\"station\": \"East\", \"active\": True, \"levels\": [2, 4]}\n"
+  },
+  "solution": {
+    "main.py": "import json\npayload = {\"station\": \"East\", \"active\": True, \"levels\": [2, 4]}\nwith open(\"snapshot.json\", \"w\", encoding=\"utf-8\") as handle:\n    json.dump(payload, handle, indent=2)\n"
+  },
+  "checkpoints": [
+    {
+      "id": "learn-python-files-12-step-1",
+      "task": {
+        "en": "Save payload to snapshot.json with json.dump.",
+        "nl": "Sla payload met json.dump op in snapshot.json."
+      },
+      "check": "_os.path.exists('snapshot.json') and _json.load(open('snapshot.json', encoding='utf-8')) == {'station':'East','active':True,'levels':[2,4]}",
+      "hint": {
+        "en": "Start with import json. Then compare the values with the task.",
+        "nl": "Begin met import json. Vergelijk de waarden daarna met de opdracht."
+      }
+    }
+  ],
+  "solutionNote": {
+    "en": "json.dump(value, file) serializes a Python value into a file. Use indent to produce readable output. The JSON spelling may differ from Python literals, so use the library instead of manually writing Python representations.\n\nTrace the solution one line at a time. Try a different input to see which parts change.",
+    "nl": "json.dump(value, file) schrijft een Python-waarde als JSON naar een bestand. Met indent maak je de output leesbaar. De JSON-notatie kan verschillen van Python-literals; gebruik daarom de bibliotheek in plaats van handmatig Python-weergaven te schrijven.\n\nVolg de oplossing regel voor regel. Probeer een andere invoer en bekijk welke onderdelen veranderen."
+  },
+  "sourcePosition": 12,
+  "sourceUrl": "https://www.codecademy.com/courses/learn-python-3/lessons/learn-python-files/exercises/writing-a-json-file",
+  "estimatedMinutes": 6
+}

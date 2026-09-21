@@ -1,0 +1,43 @@
+{
+  "id": "learn-python-loops-03",
+  "chapter": 4,
+  "group": "learn-python-loops",
+  "title": {
+    "en": "For loops",
+    "nl": "Een for loop"
+  },
+  "kind": "coding",
+  "optional": false,
+  "explanation": {
+    "en": "for item in collection assigns each element to item in turn. The indented body runs once per element. Choose a loop variable name that describes one element.",
+    "nl": "for item in collection wijst elk element om de beurt toe aan item. Het ingesprongen blok draait één keer per element. Kies een loopvariablenaam die één element beschrijft."
+  },
+  "example": "for fruit in [\"pear\", \"plum\"]:\n    print(fruit)",
+  "files": {
+    "main.py": "codes = [\"A1\", \"B2\", \"C3\"]\n"
+  },
+  "solution": {
+    "main.py": "codes = [\"A1\", \"B2\", \"C3\"]\nfor code in codes:\n    print(\"Sensor\", code)\n"
+  },
+  "checkpoints": [
+    {
+      "id": "learn-python-loops-03-step-1",
+      "task": {
+        "en": "For each code in codes, print Sensor followed by a space and that code.",
+        "nl": "Druk voor elke code in codes Sensor af, gevolgd door een spatie en de code."
+      },
+      "check": "_stdout.splitlines() == ['Sensor A1','Sensor B2','Sensor C3']",
+      "hint": {
+        "en": "Start with codes = [\"A1\", \"B2\", \"C3\"]. Then compare the values with the task.",
+        "nl": "Begin met codes = [\"A1\", \"B2\", \"C3\"]. Vergelijk de waarden daarna met de opdracht."
+      }
+    }
+  ],
+  "solutionNote": {
+    "en": "for item in collection assigns each element to item in turn. The indented body runs once per element. Choose a loop variable name that describes one element.\n\nTrace the solution one line at a time. Try a different input to see which parts change.",
+    "nl": "for item in collection wijst elk element om de beurt toe aan item. Het ingesprongen blok draait één keer per element. Kies een loopvariablenaam die één element beschrijft.\n\nVolg de oplossing regel voor regel. Probeer een andere invoer en bekijk welke onderdelen veranderen."
+  },
+  "sourcePosition": 3,
+  "sourceUrl": "https://www.codecademy.com/courses/learn-python-3/lessons/learn-python-loops/exercises/creating-for-loop",
+  "estimatedMinutes": 6
+}

@@ -1,0 +1,45 @@
+{
+  "id": "learn-python-files-02",
+  "chapter": 10,
+  "group": "learn-python-files",
+  "title": {
+    "en": "Iterating lines",
+    "nl": "Regels doorlopen"
+  },
+  "kind": "coding",
+  "optional": false,
+  "explanation": {
+    "en": "Iterating over a file yields one line at a time. readlines() instead collects all remaining lines into a list. Each line usually keeps its trailing newline.",
+    "nl": "Over een bestand loopen levert telkens één regel. readlines() verzamelt alle resterende regels in een list. Elke regel behoudt meestal het afsluitende regeleinde."
+  },
+  "example": "",
+  "files": {
+    "log.txt": "ready\nrunning\ndone\n",
+    "main.py": "# Write your code below.\n"
+  },
+  "solution": {
+    "log.txt": "ready\nrunning\ndone\n",
+    "main.py": "with open(\"log.txt\", encoding=\"utf-8\") as handle:\n    lines = [line.rstrip(\"\\n\") for line in handle]\nprint(lines)\n"
+  },
+  "checkpoints": [
+    {
+      "id": "learn-python-files-02-step-1",
+      "task": {
+        "en": "Read log.txt and create lines containing each line without its trailing newline.",
+        "nl": "Lees log.txt en maak lines met elke regel zonder het afsluitende regeleinde."
+      },
+      "check": "lines == ['ready','running','done']",
+      "hint": {
+        "en": "Start with with open(\"log.txt\", encoding=\"utf-8\") as handle:. Then compare the values with the task.",
+        "nl": "Begin met with open(\"log.txt\", encoding=\"utf-8\") as handle:. Vergelijk de waarden daarna met de opdracht."
+      }
+    }
+  ],
+  "solutionNote": {
+    "en": "Iterating over a file yields one line at a time. readlines() instead collects all remaining lines into a list. Each line usually keeps its trailing newline.\n\nTrace the solution one line at a time. Try a different input to see which parts change.",
+    "nl": "Over een bestand loopen levert telkens één regel. readlines() verzamelt alle resterende regels in een list. Elke regel behoudt meestal het afsluitende regeleinde.\n\nVolg de oplossing regel voor regel. Probeer een andere invoer en bekijk welke onderdelen veranderen."
+  },
+  "sourcePosition": 2,
+  "sourceUrl": "https://www.codecademy.com/courses/learn-python-3/lessons/learn-python-files/exercises/iterating-through-lines",
+  "estimatedMinutes": 6
+}

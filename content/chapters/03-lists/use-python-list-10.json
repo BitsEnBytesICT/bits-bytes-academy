@@ -1,0 +1,43 @@
+{
+  "id": "use-python-list-10",
+  "chapter": 3,
+  "group": "use-python-list",
+  "title": {
+    "en": "Sorting in place",
+    "nl": "De bestaande list sorteren"
+  },
+  "kind": "coding",
+  "optional": false,
+  "explanation": {
+    "en": "sort() rearranges the existing list. It returns None because the result is already stored in the list itself. Use reverse=True for descending order.",
+    "nl": "sort() herschikt de bestaande list. De method geeft None terug, omdat het resultaat al in de list staat. Met reverse=True sorteer je aflopend."
+  },
+  "example": "",
+  "files": {
+    "main.py": "priorities = [4, 1, 7, 3]\n"
+  },
+  "solution": {
+    "main.py": "priorities = [4, 1, 7, 3]\nresult = priorities.sort(reverse=True)\nprint(priorities)\n"
+  },
+  "checkpoints": [
+    {
+      "id": "use-python-list-10-step-1",
+      "task": {
+        "en": "Sort priorities in descending order in place. Store the return value of sort in result.",
+        "nl": "Sorteer priorities in de bestaande list aflopend. Sla de return value van sort op in result."
+      },
+      "check": "priorities == [7,4,3,1] and result is None",
+      "hint": {
+        "en": "Start with priorities = [4, 1, 7, 3]. Then compare the values with the task.",
+        "nl": "Begin met priorities = [4, 1, 7, 3]. Vergelijk de waarden daarna met de opdracht."
+      }
+    }
+  ],
+  "solutionNote": {
+    "en": "sort() rearranges the existing list. It returns None because the result is already stored in the list itself. Use reverse=True for descending order.\n\nTrace the solution one line at a time. Try a different input to see which parts change.",
+    "nl": "sort() herschikt de bestaande list. De method geeft None terug, omdat het resultaat al in de list staat. Met reverse=True sorteer je aflopend.\n\nVolg de oplossing regel voor regel. Probeer een andere invoer en bekijk welke onderdelen veranderen."
+  },
+  "sourcePosition": 10,
+  "sourceUrl": "https://www.codecademy.com/courses/learn-python-3/lessons/use-python-list/exercises/sort",
+  "estimatedMinutes": 6
+}

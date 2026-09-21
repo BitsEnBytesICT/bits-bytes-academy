@@ -1,0 +1,43 @@
+{
+  "id": "using-dictionaries-09",
+  "chapter": 9,
+  "group": "using-dictionaries",
+  "title": {
+    "en": "Dictionary use review",
+    "nl": "Terugblik: dictionaries gebruiken"
+  },
+  "kind": "coding",
+  "optional": false,
+  "explanation": {
+    "en": "Use safe lookup, removal, and iteration together when transferring selected data. Distinguish whether an operation should merely read an entry or consume it.",
+    "nl": "Gebruik veilige lookup, verwijderen en herhalen samen om geselecteerde data te verplaatsen. Bepaal bewust of een bewerking een entry alleen leest of ook verwijdert."
+  },
+  "example": "",
+  "files": {
+    "main.py": "bins = {\"red\": 3, \"blue\": 5, \"green\": 8}\n"
+  },
+  "solution": {
+    "main.py": "bins = {\"red\": 3, \"blue\": 5, \"green\": 8}\nselected = {}\nfor color in [\"red\", \"blue\"]:\n    selected[color] = bins.pop(color)\ntotal = sum(selected.values())\nprint(selected, bins, total)\n"
+  },
+  "checkpoints": [
+    {
+      "id": "using-dictionaries-09-step-1",
+      "task": {
+        "en": "Move red and blue from bins into selected using pop. Leave green in bins and store the sum of selected values in total.",
+        "nl": "Verplaats red en blue met pop uit bins naar selected. Laat green in bins staan en sla de som van selected-values op in total."
+      },
+      "check": "selected == {'red':3,'blue':5} and bins == {'green':8} and total == 8",
+      "hint": {
+        "en": "Start with bins = {\"red\": 3, \"blue\": 5, \"green\": 8}. Then compare the values with the task.",
+        "nl": "Begin met bins = {\"red\": 3, \"blue\": 5, \"green\": 8}. Vergelijk de waarden daarna met de opdracht."
+      }
+    }
+  ],
+  "solutionNote": {
+    "en": "Use safe lookup, removal, and iteration together when transferring selected data. Distinguish whether an operation should merely read an entry or consume it.\n\nTrace the solution one line at a time. Try a different input to see which parts change.",
+    "nl": "Gebruik veilige lookup, verwijderen en herhalen samen om geselecteerde data te verplaatsen. Bepaal bewust of een bewerking een entry alleen leest of ook verwijdert.\n\nVolg de oplossing regel voor regel. Probeer een andere invoer en bekijk welke onderdelen veranderen."
+  },
+  "sourcePosition": 9,
+  "sourceUrl": "https://www.codecademy.com/courses/learn-python-3/lessons/using-dictionaries/exercises/review-ii",
+  "estimatedMinutes": 6
+}

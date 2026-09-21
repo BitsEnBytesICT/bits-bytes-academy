@@ -1,0 +1,41 @@
+{
+  "id": "practice-12-string-transform-4",
+  "chapter": 12,
+  "group": "string-transform",
+  "title": {
+    "en": "Exchange endings",
+    "nl": "Uiteinden uitwisselen"
+  },
+  "kind": "challenge",
+  "optional": true,
+  "explanation": {
+    "en": "For two nonempty words, return a tuple with their final characters exchanged. Keep all earlier characters unchanged.",
+    "nl": "Geef voor twee niet-lege woorden een tuple terug waarin de laatste tekens zijn uitgewisseld. Behoud alle eerdere tekens."
+  },
+  "example": "",
+  "files": {
+    "main.py": "def swap_endings(left, right):\n    # Implement the function.\n    pass\n\nprint(swap_endings(\"cat\", \"dog\"))\n"
+  },
+  "solution": {
+    "main.py": "def swap_endings(left, right):\n    return left[:-1] + right[-1], right[:-1] + left[-1]\n\nprint(swap_endings(\"cat\", \"dog\"))\n"
+  },
+  "checkpoints": [
+    {
+      "id": "practice-12-string-transform-4-step-1",
+      "task": {
+        "en": "For two nonempty words, return a tuple with their final characters exchanged. Keep all earlier characters unchanged.",
+        "nl": "Geef voor twee niet-lege woorden een tuple terug waarin de laatste tekens zijn uitgewisseld. Behoud alle eerdere tekens."
+      },
+      "check": "swap_endings('cat','dog') == ('cag','dot') and swap_endings('a','b') == ('b','a')",
+      "hint": {
+        "en": "Work through a small input by hand first. Separate the condition, transformation, and return value.",
+        "nl": "Werk eerst zelf een kleine invoer uit. Bekijk de voorwaarde, de bewerking en de return value afzonderlijk."
+      }
+    }
+  ],
+  "solutionNote": {
+    "en": "This solution separates the calculation from its input. Test the function with ordinary values and edge cases such as empty collections or boundary values.",
+    "nl": "Deze oplossing scheidt de berekening van de invoer. Test de function met gewone waarden en grensgevallen, zoals lege verzamelingen of grenswaarden."
+  },
+  "estimatedMinutes": 10
+}

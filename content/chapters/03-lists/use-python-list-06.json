@@ -1,0 +1,43 @@
+{
+  "id": "use-python-list-06",
+  "chapter": 3,
+  "group": "use-python-list",
+  "title": {
+    "en": "Length",
+    "nl": "Lengte bepalen"
+  },
+  "kind": "coding",
+  "optional": false,
+  "explanation": {
+    "en": "len() counts the top-level elements in a collection. For a nested list, each inner list counts as one element regardless of how many values it contains.",
+    "nl": "len() telt de elementen op het hoogste niveau van een verzameling. Bij een geneste list telt elke binnenste list als één element, ongeacht het aantal waarden erin."
+  },
+  "example": "",
+  "files": {
+    "main.py": "grid = [[1, 2, 3], [4, 5, 6]]\n"
+  },
+  "solution": {
+    "main.py": "grid = [[1, 2, 3], [4, 5, 6]]\nrow_count = len(grid)\ncolumn_count = len(grid[0])\nprint(row_count, column_count)\n"
+  },
+  "checkpoints": [
+    {
+      "id": "use-python-list-06-step-1",
+      "task": {
+        "en": "Store the number of rows in row_count and the length of the first row in column_count.",
+        "nl": "Sla het aantal rijen op in row_count en de lengte van de eerste rij in column_count."
+      },
+      "check": "row_count == 2 and column_count == 3",
+      "hint": {
+        "en": "Start with grid = [[1, 2, 3], [4, 5, 6]]. Then compare the values with the task.",
+        "nl": "Begin met grid = [[1, 2, 3], [4, 5, 6]]. Vergelijk de waarden daarna met de opdracht."
+      }
+    }
+  ],
+  "solutionNote": {
+    "en": "len() counts the top-level elements in a collection. For a nested list, each inner list counts as one element regardless of how many values it contains.\n\nTrace the solution one line at a time. Try a different input to see which parts change.",
+    "nl": "len() telt de elementen op het hoogste niveau van een verzameling. Bij een geneste list telt elke binnenste list als één element, ongeacht het aantal waarden erin.\n\nVolg de oplossing regel voor regel. Probeer een andere invoer en bekijk welke onderdelen veranderen."
+  },
+  "sourcePosition": 6,
+  "sourceUrl": "https://www.codecademy.com/courses/learn-python-3/lessons/use-python-list/exercises/list-len",
+  "estimatedMinutes": 6
+}

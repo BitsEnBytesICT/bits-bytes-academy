@@ -1,0 +1,43 @@
+{
+  "id": "use-python-list-03",
+  "chapter": 3,
+  "group": "use-python-list",
+  "title": {
+    "en": "Removing by index",
+    "nl": "Verwijderen met pop"
+  },
+  "kind": "coding",
+  "optional": false,
+  "explanation": {
+    "en": "pop(index) removes and returns an element. With no argument, it removes the last one. Save the return value when you need the removed item later.",
+    "nl": "pop(index) verwijdert een element en geeft het terug. Zonder argument wordt het laatste element verwijderd. Bewaar de return value als je het verwijderde item later nodig hebt."
+  },
+  "example": "",
+  "files": {
+    "main.py": "queue = [\"A\", \"B\", \"C\"]\n"
+  },
+  "solution": {
+    "main.py": "queue = [\"A\", \"B\", \"C\"]\nremoved = queue.pop()\nprint(removed, queue)\n"
+  },
+  "checkpoints": [
+    {
+      "id": "use-python-list-03-step-1",
+      "task": {
+        "en": "Remove the last entry from queue with pop and store it in removed.",
+        "nl": "Verwijder met pop het laatste item uit queue en sla het op in removed."
+      },
+      "check": "removed == 'C' and queue == ['A','B']",
+      "hint": {
+        "en": "Start with queue = [\"A\", \"B\", \"C\"]. Then compare the values with the task.",
+        "nl": "Begin met queue = [\"A\", \"B\", \"C\"]. Vergelijk de waarden daarna met de opdracht."
+      }
+    }
+  ],
+  "solutionNote": {
+    "en": "pop(index) removes and returns an element. With no argument, it removes the last one. Save the return value when you need the removed item later.\n\nTrace the solution one line at a time. Try a different input to see which parts change.",
+    "nl": "pop(index) verwijdert een element en geeft het terug. Zonder argument wordt het laatste element verwijderd. Bewaar de return value als je het verwijderde item later nodig hebt.\n\nVolg de oplossing regel voor regel. Probeer een andere invoer en bekijk welke onderdelen veranderen."
+  },
+  "sourcePosition": 3,
+  "sourceUrl": "https://www.codecademy.com/courses/learn-python-3/lessons/use-python-list/exercises/removing-by-index-pop",
+  "estimatedMinutes": 6
+}

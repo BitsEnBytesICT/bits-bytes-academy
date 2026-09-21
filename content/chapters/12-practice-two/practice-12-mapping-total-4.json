@@ -1,0 +1,41 @@
+{
+  "id": "practice-12-mapping-total-4",
+  "chapter": 12,
+  "group": "mapping-total",
+  "title": {
+    "en": "Linked labels",
+    "nl": "Gekoppelde labels"
+  },
+  "kind": "challenge",
+  "optional": true,
+  "explanation": {
+    "en": "Return a list of values that also appear as keys, preserving value iteration order. Assume all values are strings.",
+    "nl": "Geef een list terug met values die ook als key voorkomen, in de volgorde van de values. Neem aan dat alle values strings zijn."
+  },
+  "example": "",
+  "files": {
+    "main.py": "def linked_values(mapping):\n    # Implement the function.\n    pass\n\nprint(linked_values({\"a\": \"b\", \"b\": \"z\", \"c\": \"a\"}))\n"
+  },
+  "solution": {
+    "main.py": "def linked_values(mapping):\n    return [value for value in mapping.values() if value in mapping]\n\nprint(linked_values({\"a\": \"b\", \"b\": \"z\", \"c\": \"a\"}))\n"
+  },
+  "checkpoints": [
+    {
+      "id": "practice-12-mapping-total-4-step-1",
+      "task": {
+        "en": "Return a list of values that also appear as keys, preserving value iteration order. Assume all values are strings.",
+        "nl": "Geef een list terug met values die ook als key voorkomen, in de volgorde van de values. Neem aan dat alle values strings zijn."
+      },
+      "check": "linked_values({'a':'b','b':'z','c':'a'}) == ['b','a'] and linked_values({}) == []",
+      "hint": {
+        "en": "Work through a small input by hand first. Separate the condition, transformation, and return value.",
+        "nl": "Werk eerst zelf een kleine invoer uit. Bekijk de voorwaarde, de bewerking en de return value afzonderlijk."
+      }
+    }
+  ],
+  "solutionNote": {
+    "en": "This solution separates the calculation from its input. Test the function with ordinary values and edge cases such as empty collections or boundary values.",
+    "nl": "Deze oplossing scheidt de berekening van de invoer. Test de function met gewone waarden en grensgevallen, zoals lege verzamelingen of grenswaarden."
+  },
+  "estimatedMinutes": 10
+}

@@ -1,0 +1,322 @@
+{
+  "id": "string-methods-quiz",
+  "chapter": 7,
+  "group": "string-methods",
+  "title": {
+    "en": "String methods · Quiz",
+    "nl": "String methods · Quiz"
+  },
+  "kind": "quiz",
+  "optional": false,
+  "questions": [
+    {
+      "id": "string-methods-q1",
+      "prompt": {
+        "en": "What does this code print?",
+        "nl": "Wat drukt deze code af?"
+      },
+      "code": "print(\"North\".lower())",
+      "answer": "a",
+      "choices": [
+        {
+          "id": "a",
+          "label": {
+            "en": "north",
+            "nl": "north"
+          },
+          "reason": {
+            "en": "lower returns a lowercase copy.",
+            "nl": "lower geeft een kopie in kleine letters terug."
+          }
+        },
+        {
+          "id": "b",
+          "label": {
+            "en": "NORTH",
+            "nl": "NORTH"
+          },
+          "reason": {
+            "en": "lower returns a lowercase copy.",
+            "nl": "lower geeft een kopie in kleine letters terug."
+          }
+        },
+        {
+          "id": "c",
+          "label": {
+            "en": "North",
+            "nl": "North"
+          },
+          "reason": {
+            "en": "lower returns a lowercase copy.",
+            "nl": "lower geeft een kopie in kleine letters terug."
+          }
+        }
+      ]
+    },
+    {
+      "id": "string-methods-q2",
+      "prompt": {
+        "en": "What does this code print?",
+        "nl": "Wat drukt deze code af?"
+      },
+      "code": "print(\"a|b|c\".split(\"|\"))",
+      "answer": "a",
+      "choices": [
+        {
+          "id": "a",
+          "label": {
+            "en": "['a', 'b', 'c']",
+            "nl": "['a', 'b', 'c']"
+          },
+          "reason": {
+            "en": "split creates a list by removing the separators between parts.",
+            "nl": "split maakt een list door de separators tussen onderdelen te verwijderen."
+          }
+        },
+        {
+          "id": "b",
+          "label": {
+            "en": "a b c",
+            "nl": "a b c"
+          },
+          "reason": {
+            "en": "split creates a list by removing the separators between parts.",
+            "nl": "split maakt een list door de separators tussen onderdelen te verwijderen."
+          }
+        },
+        {
+          "id": "c",
+          "label": {
+            "en": "['a|b|c']",
+            "nl": "['a|b|c']"
+          },
+          "reason": {
+            "en": "split creates a list by removing the separators between parts.",
+            "nl": "split maakt een list door de separators tussen onderdelen te verwijderen."
+          }
+        }
+      ]
+    },
+    {
+      "id": "string-methods-q3",
+      "prompt": {
+        "en": "What does this code print?",
+        "nl": "Wat drukt deze code af?"
+      },
+      "code": "print(\"-\".join([\"A\", \"B\"]))",
+      "answer": "a",
+      "choices": [
+        {
+          "id": "a",
+          "label": {
+            "en": "A-B",
+            "nl": "A-B"
+          },
+          "reason": {
+            "en": "join inserts the separator only between neighboring elements.",
+            "nl": "join zet de separator alleen tussen opeenvolgende elementen."
+          }
+        },
+        {
+          "id": "b",
+          "label": {
+            "en": "-AB-",
+            "nl": "-AB-"
+          },
+          "reason": {
+            "en": "join inserts the separator only between neighboring elements.",
+            "nl": "join zet de separator alleen tussen opeenvolgende elementen."
+          }
+        },
+        {
+          "id": "c",
+          "label": {
+            "en": "AB-",
+            "nl": "AB-"
+          },
+          "reason": {
+            "en": "join inserts the separator only between neighboring elements.",
+            "nl": "join zet de separator alleen tussen opeenvolgende elementen."
+          }
+        }
+      ]
+    },
+    {
+      "id": "string-methods-q4",
+      "prompt": {
+        "en": "What does this code print?",
+        "nl": "Wat drukt deze code af?"
+      },
+      "code": "print(\"..ok..\".strip(\".\"))",
+      "answer": "a",
+      "choices": [
+        {
+          "id": "a",
+          "label": {
+            "en": "ok",
+            "nl": "ok"
+          },
+          "reason": {
+            "en": "strip removes the specified characters from both ends.",
+            "nl": "strip verwijdert de opgegeven tekens aan beide kanten."
+          }
+        },
+        {
+          "id": "b",
+          "label": {
+            "en": "..ok",
+            "nl": "..ok"
+          },
+          "reason": {
+            "en": "strip removes the specified characters from both ends.",
+            "nl": "strip verwijdert de opgegeven tekens aan beide kanten."
+          }
+        },
+        {
+          "id": "c",
+          "label": {
+            "en": "ok..",
+            "nl": "ok.."
+          },
+          "reason": {
+            "en": "strip removes the specified characters from both ends.",
+            "nl": "strip verwijdert de opgegeven tekens aan beide kanten."
+          }
+        }
+      ]
+    },
+    {
+      "id": "string-methods-q5",
+      "prompt": {
+        "en": "What does this code print?",
+        "nl": "Wat drukt deze code af?"
+      },
+      "code": "print(\"gate\".find(\"x\"))",
+      "answer": "a",
+      "choices": [
+        {
+          "id": "a",
+          "label": {
+            "en": "-1",
+            "nl": "-1"
+          },
+          "reason": {
+            "en": "find returns -1 when the substring is absent.",
+            "nl": "find geeft -1 terug als de substring ontbreekt."
+          }
+        },
+        {
+          "id": "b",
+          "label": {
+            "en": "0",
+            "nl": "0"
+          },
+          "reason": {
+            "en": "find returns -1 when the substring is absent.",
+            "nl": "find geeft -1 terug als de substring ontbreekt."
+          }
+        },
+        {
+          "id": "c",
+          "label": {
+            "en": "None",
+            "nl": "None"
+          },
+          "reason": {
+            "en": "find returns -1 when the substring is absent.",
+            "nl": "find geeft -1 terug als de substring ontbreekt."
+          }
+        }
+      ]
+    },
+    {
+      "id": "string-methods-q6",
+      "prompt": {
+        "en": "What does this code print?",
+        "nl": "Wat drukt deze code af?"
+      },
+      "code": "print(\"a-a\".replace(\"a\", \"b\"))",
+      "answer": "a",
+      "choices": [
+        {
+          "id": "a",
+          "label": {
+            "en": "b-b",
+            "nl": "b-b"
+          },
+          "reason": {
+            "en": "replace changes all matching substrings unless a count limits it.",
+            "nl": "replace vervangt alle passende substrings, tenzij een count dit beperkt."
+          }
+        },
+        {
+          "id": "b",
+          "label": {
+            "en": "b-a",
+            "nl": "b-a"
+          },
+          "reason": {
+            "en": "replace changes all matching substrings unless a count limits it.",
+            "nl": "replace vervangt alle passende substrings, tenzij een count dit beperkt."
+          }
+        },
+        {
+          "id": "c",
+          "label": {
+            "en": "a-b",
+            "nl": "a-b"
+          },
+          "reason": {
+            "en": "replace changes all matching substrings unless a count limits it.",
+            "nl": "replace vervangt alle passende substrings, tenzij een count dit beperkt."
+          }
+        }
+      ]
+    },
+    {
+      "id": "string-methods-q7",
+      "prompt": {
+        "en": "What does this code print?",
+        "nl": "Wat drukt deze code af?"
+      },
+      "code": "print(\"{name}: {n}\".format(n=5, name=\"East\"))",
+      "answer": "a",
+      "choices": [
+        {
+          "id": "a",
+          "label": {
+            "en": "East: 5",
+            "nl": "East: 5"
+          },
+          "reason": {
+            "en": "Named placeholders use the matching keyword arguments.",
+            "nl": "Named placeholders gebruiken de bijbehorende keyword arguments."
+          }
+        },
+        {
+          "id": "b",
+          "label": {
+            "en": "5: East",
+            "nl": "5: East"
+          },
+          "reason": {
+            "en": "Named placeholders use the matching keyword arguments.",
+            "nl": "Named placeholders gebruiken de bijbehorende keyword arguments."
+          }
+        },
+        {
+          "id": "c",
+          "label": {
+            "en": "{name}: {n}",
+            "nl": "{name}: {n}"
+          },
+          "reason": {
+            "en": "Named placeholders use the matching keyword arguments.",
+            "nl": "Named placeholders gebruiken de bijbehorende keyword arguments."
+          }
+        }
+      ]
+    }
+  ],
+  "estimatedMinutes": 7
+}

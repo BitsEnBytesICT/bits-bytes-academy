@@ -1,0 +1,28 @@
+{
+  "id": "reading-lambda",
+  "chapter": 5,
+  "group": "reading",
+  "title": {
+    "en": "Small functions with lambda",
+    "nl": "Kleine functions met lambda"
+  },
+  "kind": "reading",
+  "optional": false,
+  "explanation": {
+    "en": "A lambda creates a small function from one expression. Write lambda parameters: expression. The expression’s value is returned automatically.\n\nUse a regular def when behavior needs several statements or deserves documentation. A short lambda is useful as a key function for sorted(), where it describes what value should determine ordering.",
+    "nl": "Een lambda maakt een kleine function van één expressie. Schrijf lambda parameters: expression. De waarde van de expressie wordt automatisch teruggegeven.\n\nGebruik een gewone def als gedrag meerdere statements of documentatie nodig heeft. Een korte lambda is handig als key function voor sorted(), waar deze bepaalt op welke waarde gesorteerd wordt."
+  },
+  "example": "",
+  "files": {
+    "main.py": "double = lambda number: number * 2\nprint(double(6))\nlabels = [\"compass\", \"map\", \"torch\"]\nprint(sorted(labels, key=lambda word: len(word)))\n"
+  },
+  "solution": {
+    "main.py": "double = lambda number: number * 2\nprint(double(6))\nlabels = [\"compass\", \"map\", \"torch\"]\nprint(sorted(labels, key=lambda word: len(word)))\n"
+  },
+  "checkpoints": [],
+  "solutionNote": {
+    "en": "This is an exploration activity. Run the example, change one input, and explain the new result in your own words.",
+    "nl": "Dit is een verkenningsactiviteit. Voer het voorbeeld uit, verander één invoer en leg het nieuwe resultaat in je eigen woorden uit."
+  },
+  "estimatedMinutes": 2
+}

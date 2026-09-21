@@ -1,0 +1,43 @@
+{
+  "id": "create-python-list-14",
+  "chapter": 3,
+  "group": "create-python-list",
+  "title": {
+    "en": "List foundation review",
+    "nl": "Terugblik: lists"
+  },
+  "kind": "coding",
+  "optional": false,
+  "explanation": {
+    "en": "Use a small table to practice several list operations together. Indexes locate positions, append extends the collection, and remove deletes a matching value. Inspect the final structure rather than relying on intermediate output.",
+    "nl": "Gebruik een kleine tabel om list-bewerkingen te combineren. Indexes zoeken posities op, append breidt de verzameling uit en remove verwijdert een passende waarde. Controleer de uiteindelijke structuur in plaats van alleen tussentijdse output."
+  },
+  "example": "",
+  "files": {
+    "main.py": "# Write your code below.\n"
+  },
+  "solution": {
+    "main.py": "stock = [[\"lamp\", 3], [\"cable\", 8]]\nstock[0][1] = 6\nstock.append([\"battery\", 4])\nnewest = stock[-1]\nprint(stock)\n"
+  },
+  "checkpoints": [
+    {
+      "id": "create-python-list-14-step-1",
+      "task": {
+        "en": "Start with [[\"lamp\", 3], [\"cable\", 8]]. Change lamps to 6, append [\"battery\", 4], and save the final row in newest.",
+        "nl": "Begin met [[\"lamp\", 3], [\"cable\", 8]]. Verander lamps naar 6, voeg [\"battery\", 4] toe en sla de laatste rij op in newest."
+      },
+      "check": "stock == [['lamp',6],['cable',8],['battery',4]] and newest == ['battery',4]",
+      "hint": {
+        "en": "Start with stock = [[\"lamp\", 3], [\"cable\", 8]]. Then compare the values with the task.",
+        "nl": "Begin met stock = [[\"lamp\", 3], [\"cable\", 8]]. Vergelijk de waarden daarna met de opdracht."
+      }
+    }
+  ],
+  "solutionNote": {
+    "en": "Use a small table to practice several list operations together. Indexes locate positions, append extends the collection, and remove deletes a matching value. Inspect the final structure rather than relying on intermediate output.\n\nTrace the solution one line at a time. Try a different input to see which parts change.",
+    "nl": "Gebruik een kleine tabel om list-bewerkingen te combineren. Indexes zoeken posities op, append breidt de verzameling uit en remove verwijdert een passende waarde. Controleer de uiteindelijke structuur in plaats van alleen tussentijdse output.\n\nVolg de oplossing regel voor regel. Probeer een andere invoer en bekijk welke onderdelen veranderen."
+  },
+  "sourcePosition": 14,
+  "sourceUrl": "https://www.codecademy.com/courses/learn-python-3/lessons/create-python-list/exercises/review",
+  "estimatedMinutes": 6
+}

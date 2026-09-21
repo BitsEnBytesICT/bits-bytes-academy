@@ -1,0 +1,41 @@
+{
+  "id": "practice-12-mapping-total-1",
+  "chapter": 12,
+  "group": "mapping-total",
+  "title": {
+    "en": "Sum a mapping",
+    "nl": "Een mapping optellen"
+  },
+  "kind": "challenge",
+  "optional": true,
+  "explanation": {
+    "en": "Return the sum of all numeric dictionary values. Empty input returns 0.",
+    "nl": "Geef de som van alle numerieke dictionary-values terug. Lege invoer geeft 0."
+  },
+  "example": "",
+  "files": {
+    "main.py": "def sum_mapping(mapping):\n    # Implement the function.\n    pass\n\nprint(sum_mapping({\"a\": 3, \"b\": 7}))\n"
+  },
+  "solution": {
+    "main.py": "def sum_mapping(mapping):\n    return sum(mapping.values())\n\nprint(sum_mapping({\"a\": 3, \"b\": 7}))\n"
+  },
+  "checkpoints": [
+    {
+      "id": "practice-12-mapping-total-1-step-1",
+      "task": {
+        "en": "Return the sum of all numeric dictionary values. Empty input returns 0.",
+        "nl": "Geef de som van alle numerieke dictionary-values terug. Lege invoer geeft 0."
+      },
+      "check": "sum_mapping({'a':3,'b':7}) == 10 and sum_mapping({}) == 0",
+      "hint": {
+        "en": "Work through a small input by hand first. Separate the condition, transformation, and return value.",
+        "nl": "Werk eerst zelf een kleine invoer uit. Bekijk de voorwaarde, de bewerking en de return value afzonderlijk."
+      }
+    }
+  ],
+  "solutionNote": {
+    "en": "This solution separates the calculation from its input. Test the function with ordinary values and edge cases such as empty collections or boundary values.",
+    "nl": "Deze oplossing scheidt de berekening van de invoer. Test de function met gewone waarden en grensgevallen, zoals lege verzamelingen of grenswaarden."
+  },
+  "estimatedMinutes": 10
+}

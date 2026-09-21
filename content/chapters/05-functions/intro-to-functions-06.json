@@ -1,0 +1,43 @@
+{
+  "id": "intro-to-functions-06",
+  "chapter": 5,
+  "group": "intro-to-functions",
+  "title": {
+    "en": "Parameters and arguments",
+    "nl": "Parameters en arguments"
+  },
+  "kind": "coding",
+  "optional": false,
+  "explanation": {
+    "en": "A parameter is a name in a function definition. An argument is the value supplied during a call. Each call can supply a different value to the same parameter.",
+    "nl": "Een parameter is een naam in de function-definitie. Een argument is de waarde die je bij de aanroep meegeeft. Elke aanroep kan een andere waarde aan dezelfde parameter geven."
+  },
+  "example": "def double(number):\n    return number * 2",
+  "files": {
+    "main.py": "# Write your code below.\n"
+  },
+  "solution": {
+    "main.py": "def label(name):\n    return \"Station: \" + name\n\nprint(label(\"Pier\"))\n"
+  },
+  "checkpoints": [
+    {
+      "id": "intro-to-functions-06-step-1",
+      "task": {
+        "en": "Define label(name) to return Station: followed by a space and name. Test it with Pier.",
+        "nl": "Definieer label(name) zodat Station: gevolgd door een spatie en name wordt teruggegeven. Test met Pier."
+      },
+      "check": "label('Pier') == 'Station: Pier' and label('Forest') == 'Station: Forest'",
+      "hint": {
+        "en": "Start with def label(name):. Then compare the values with the task.",
+        "nl": "Begin met def label(name):. Vergelijk de waarden daarna met de opdracht."
+      }
+    }
+  ],
+  "solutionNote": {
+    "en": "A parameter is a name in a function definition. An argument is the value supplied during a call. Each call can supply a different value to the same parameter.\n\nTrace the solution one line at a time. Try a different input to see which parts change.",
+    "nl": "Een parameter is een naam in de function-definitie. Een argument is de waarde die je bij de aanroep meegeeft. Elke aanroep kan een andere waarde aan dezelfde parameter geven.\n\nVolg de oplossing regel voor regel. Probeer een andere invoer en bekijk welke onderdelen veranderen."
+  },
+  "sourcePosition": 6,
+  "sourceUrl": "https://www.codecademy.com/courses/learn-python-3/lessons/intro-to-functions/exercises/parameters-arguments",
+  "estimatedMinutes": 6
+}

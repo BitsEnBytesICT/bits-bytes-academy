@@ -1,0 +1,43 @@
+{
+  "id": "string-methods-10",
+  "chapter": 7,
+  "group": "string-methods",
+  "title": {
+    "en": "Finding a substring",
+    "nl": "Een substring zoeken"
+  },
+  "kind": "coding",
+  "optional": false,
+  "explanation": {
+    "en": "find(substring) returns the first matching index, or -1 when the substring is absent. Do not treat -1 as a found position; it is a special not-found result.",
+    "nl": "find(substring) geeft de eerste passende index terug, of -1 als de substring ontbreekt. Gebruik -1 niet als gevonden positie; het is een speciaal resultaat voor niet gevonden."
+  },
+  "example": "",
+  "files": {
+    "main.py": "# Write your code below.\n"
+  },
+  "solution": {
+    "main.py": "text = \"code:42\"\nposition = text.find(\":\")\nmissing = text.find(\"?\")\nprint(position, missing)\n"
+  },
+  "checkpoints": [
+    {
+      "id": "string-methods-10-step-1",
+      "task": {
+        "en": "Find the colon in text as position and the absent ? as missing.",
+        "nl": "Zoek de dubbele punt in text als position en de ontbrekende ? als missing."
+      },
+      "check": "position == 4 and missing == -1",
+      "hint": {
+        "en": "Start with text = \"code:42\". Then compare the values with the task.",
+        "nl": "Begin met text = \"code:42\". Vergelijk de waarden daarna met de opdracht."
+      }
+    }
+  ],
+  "solutionNote": {
+    "en": "find(substring) returns the first matching index, or -1 when the substring is absent. Do not treat -1 as a found position; it is a special not-found result.\n\nTrace the solution one line at a time. Try a different input to see which parts change.",
+    "nl": "find(substring) geeft de eerste passende index terug, of -1 als de substring ontbreekt. Gebruik -1 niet als gevonden positie; het is een speciaal resultaat voor niet gevonden.\n\nVolg de oplossing regel voor regel. Probeer een andere invoer en bekijk welke onderdelen veranderen."
+  },
+  "sourcePosition": 10,
+  "sourceUrl": "https://www.codecademy.com/courses/learn-python-3/lessons/string-methods/exercises/find",
+  "estimatedMinutes": 6
+}

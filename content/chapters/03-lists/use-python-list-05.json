@@ -1,0 +1,43 @@
+{
+  "id": "use-python-list-05",
+  "chapter": 3,
+  "group": "use-python-list",
+  "title": {
+    "en": "Range bounds and step",
+    "nl": "Start, stop en step"
+  },
+  "kind": "coding",
+  "optional": false,
+  "explanation": {
+    "en": "range(start, stop, step) begins at start and advances by step while staying before the stop boundary. A negative step moves downward. A step of zero is invalid.",
+    "nl": "range(start, stop, step) begint bij start en gaat met step vooruit tot de stopgrens. Een negatieve step telt terug. Een step van nul is ongeldig."
+  },
+  "example": "",
+  "files": {
+    "main.py": "# Write your code below.\n"
+  },
+  "solution": {
+    "main.py": "departures = list(range(8, 18, 2))\nprint(departures)\n"
+  },
+  "checkpoints": [
+    {
+      "id": "use-python-list-05-step-1",
+      "task": {
+        "en": "Create departures containing 8, 10, 12, 14, and 16 using range.",
+        "nl": "Maak departures met 8, 10, 12, 14 en 16 via range."
+      },
+      "check": "departures == [8,10,12,14,16] and 'range' in _source",
+      "hint": {
+        "en": "Start with departures = list(range(8, 18, 2)). Then compare the values with the task.",
+        "nl": "Begin met departures = list(range(8, 18, 2)). Vergelijk de waarden daarna met de opdracht."
+      }
+    }
+  ],
+  "solutionNote": {
+    "en": "range(start, stop, step) begins at start and advances by step while staying before the stop boundary. A negative step moves downward. A step of zero is invalid.\n\nTrace the solution one line at a time. Try a different input to see which parts change.",
+    "nl": "range(start, stop, step) begint bij start en gaat met step vooruit tot de stopgrens. Een negatieve step telt terug. Een step van nul is ongeldig.\n\nVolg de oplossing regel voor regel. Probeer een andere invoer en bekijk welke onderdelen veranderen."
+  },
+  "sourcePosition": 5,
+  "sourceUrl": "https://www.codecademy.com/courses/learn-python-3/lessons/use-python-list/exercises/the-power-of-range",
+  "estimatedMinutes": 6
+}

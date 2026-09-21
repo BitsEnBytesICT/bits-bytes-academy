@@ -1,0 +1,1746 @@
+{
+  "schemaVersion": 1,
+  "researchedAt": "2026-09-21",
+  "status": "research-and-implementation-blueprint",
+  "courseLanguage": [
+    "en",
+    "nl"
+  ],
+  "counts": {
+    "chapters": 13,
+    "lessonGroups": 14,
+    "lessonPages": 160,
+    "quizzes": 13,
+    "quizQuestions": 114,
+    "challengeArticles": 12,
+    "challengePrompts": 59,
+    "supplementaryReadings": 7,
+    "nextStepsReadings": 1
+  },
+  "boundary": "Original content to be authored. This inventory contains concept metadata and original authoring briefs, not a copy of course text or a quiz bank.",
+  "exclusions": [
+    "Separate projects",
+    "Videos and walkthrough videos",
+    "Membership promotion"
+  ],
+  "chapters": [
+    {
+      "number": 1,
+      "slug": "hello-world",
+      "title": {
+        "en": "Python foundations",
+        "nl": "Basis van Python"
+      },
+      "outcome": "Variables, text, numeric expressions, and the run/debug cycle.",
+      "note": "Use small, independent examples; supplementary input needs a real stdin prompt."
+    },
+    {
+      "number": 2,
+      "slug": "control-flow",
+      "title": {
+        "en": "Control flow and errors",
+        "nl": "Control flow en fouten"
+      },
+      "outcome": "Boolean logic, branching, and deliberate debugging.",
+      "note": "Expected-error checkpoints must pass when the intended exception is observed. Supplement: match/case with case _ as the wildcard."
+    },
+    {
+      "number": 3,
+      "slug": "lists",
+      "title": {
+        "en": "Lists",
+        "nl": "Lists"
+      },
+      "outcome": "Create, update, inspect, slice, and sort lists.",
+      "note": "Accept alternative correct transformations. Teach mutating methods versus returned values. Supplements: tuples and zip."
+    },
+    {
+      "number": 4,
+      "slug": "loops",
+      "title": {
+        "en": "Loops",
+        "nl": "Loops"
+      },
+      "outcome": "Bounded iteration, control statements, and comprehensions.",
+      "note": "Stop must recover from infinite loops without freezing the interface."
+    },
+    {
+      "number": 5,
+      "slug": "functions",
+      "title": {
+        "en": "Functions",
+        "nl": "Functions"
+      },
+      "outcome": "Reusable behavior, arguments, scope, and returned values.",
+      "note": "Test functions with several inputs rather than comparing one printed example. Supplements: lambda and map."
+    },
+    {
+      "number": 6,
+      "slug": "practice-one",
+      "title": {
+        "en": "Optional practice I",
+        "nl": "Optionele oefeningen I"
+      },
+      "outcome": "Additional independent practice on decisions, lists, loops, and functions.",
+      "note": "Optional groups never block required progression. Each challenge uses new scenarios and tests."
+    },
+    {
+      "number": 7,
+      "slug": "strings",
+      "title": {
+        "en": "Strings",
+        "nl": "Strings"
+      },
+      "outcome": "Indexing, immutability, searching, splitting, joining, and formatting.",
+      "note": "Explain Unicode text and immutability accurately; test empty strings and absent markers."
+    },
+    {
+      "number": 8,
+      "slug": "modules",
+      "title": {
+        "en": "Modules",
+        "nl": "Modules"
+      },
+      "outcome": "Standard-library imports and local Python modules.",
+      "note": "Bundle datetime, random, decimal, and custom-file import support. Environment management is conceptual reading."
+    },
+    {
+      "number": 9,
+      "slug": "dictionaries",
+      "title": {
+        "en": "Dictionaries",
+        "nl": "Dictionaries"
+      },
+      "outcome": "Build, modify, query, and iterate mappings.",
+      "note": "Teach insertion order, hashability, missing-key behavior, and dynamic dict views accurately."
+    },
+    {
+      "number": 10,
+      "slug": "files",
+      "title": {
+        "en": "Files",
+        "nl": "Bestanden"
+      },
+      "outcome": "Work with text, CSV, and JSON in a local virtual workspace.",
+      "note": "Provide fixture tabs, generated-file inspection, deterministic reset, and downloadable output."
+    },
+    {
+      "number": 11,
+      "slug": "classes",
+      "title": {
+        "en": "Classes",
+        "nl": "Classes"
+      },
+      "outcome": "Create objects with state, behavior, and readable representations.",
+      "note": "Verify behavior of multiple independent instances; avoid exact address-based repr checks."
+    },
+    {
+      "number": 12,
+      "slug": "practice-two",
+      "title": {
+        "en": "Optional practice II",
+        "nl": "Optionele oefeningen II"
+      },
+      "outcome": "Further practice with strings, dictionaries, and classes.",
+      "note": "Keep challenges small; exclude separate portfolio/project assignments."
+    },
+    {
+      "number": 13,
+      "slug": "next-steps",
+      "title": {
+        "en": "Next steps",
+        "nl": "Volgende stappen"
+      },
+      "outcome": "Review progress and select further study topics.",
+      "note": "Provide an offline recap and optional external resource links; no required internet actions."
+    }
+  ],
+  "lessonGroups": [
+    {
+      "chapter": 1,
+      "slug": "python-hello-world",
+      "title": "Python foundations",
+      "quiz": {
+        "url": "https://www.codecademy.com/courses/learn-python-3/quizzes/python-hello-world-quiz",
+        "questions": 13,
+        "inspection": "First question, answer controls, and question count inspected"
+      },
+      "exercises": [
+        {
+          "position": 1,
+          "concept": "The learning workspace",
+          "sourceUrl": "https://www.codecademy.com/courses/learn-python-3/lessons/python-hello-world/exercises/welcome",
+          "observedCheckpoints": 0,
+          "authoringBrief": "Introduce the three panes and let the learner run a prepared status message.",
+          "status": "planned-original-content"
+        },
+        {
+          "position": 2,
+          "concept": "Comments",
+          "sourceUrl": "https://www.codecademy.com/courses/learn-python-3/lessons/python-hello-world/exercises/comments",
+          "observedCheckpoints": 1,
+          "authoringBrief": "Annotate a short weather-report script without changing its output.",
+          "status": "planned-original-content"
+        },
+        {
+          "position": 3,
+          "concept": "Printing output",
+          "sourceUrl": "https://www.codecademy.com/courses/learn-python-3/lessons/python-hello-world/exercises/print",
+          "observedCheckpoints": 1,
+          "authoringBrief": "Print a departure-board heading and inspect the terminal.",
+          "status": "planned-original-content"
+        },
+        {
+          "position": 4,
+          "concept": "String literals",
+          "sourceUrl": "https://www.codecademy.com/courses/learn-python-3/lessons/python-hello-world/exercises/strings",
+          "observedCheckpoints": 2,
+          "authoringBrief": "Represent a station name with valid quoted text.",
+          "status": "planned-original-content"
+        },
+        {
+          "position": 5,
+          "concept": "Variables",
+          "sourceUrl": "https://www.codecademy.com/courses/learn-python-3/lessons/python-hello-world/exercises/variables",
+          "observedCheckpoints": 1,
+          "authoringBrief": "Store a destination and use it in an output statement.",
+          "status": "planned-original-content"
+        },
+        {
+          "position": 6,
+          "concept": "Reading errors",
+          "sourceUrl": "https://www.codecademy.com/courses/learn-python-3/lessons/python-hello-world/exercises/errors",
+          "observedCheckpoints": 1,
+          "authoringBrief": "Find and repair a broken quotation mark in a message.",
+          "status": "planned-original-content"
+        },
+        {
+          "position": 7,
+          "concept": "Integers and floats",
+          "sourceUrl": "https://www.codecademy.com/courses/learn-python-3/lessons/python-hello-world/exercises/numbers",
+          "observedCheckpoints": 2,
+          "authoringBrief": "Represent a passenger count and a measured distance.",
+          "status": "planned-original-content"
+        },
+        {
+          "position": 8,
+          "concept": "Arithmetic expressions",
+          "sourceUrl": "https://www.codecademy.com/courses/learn-python-3/lessons/python-hello-world/exercises/calculations",
+          "observedCheckpoints": 1,
+          "authoringBrief": "Calculate a journey duration using several arithmetic operations.",
+          "status": "planned-original-content"
+        },
+        {
+          "position": 9,
+          "concept": "Reassignment",
+          "sourceUrl": "https://www.codecademy.com/courses/learn-python-3/lessons/python-hello-world/exercises/changing-numbers",
+          "observedCheckpoints": 3,
+          "authoringBrief": "Update a score after successive events and inspect intermediate values.",
+          "status": "planned-original-content"
+        },
+        {
+          "position": 10,
+          "concept": "Powers",
+          "sourceUrl": "https://www.codecademy.com/courses/learn-python-3/lessons/python-hello-world/exercises/exponents",
+          "observedCheckpoints": 2,
+          "authoringBrief": "Calculate storage capacities using exponentiation.",
+          "status": "planned-original-content"
+        },
+        {
+          "position": 11,
+          "concept": "Remainders",
+          "sourceUrl": "https://www.codecademy.com/courses/learn-python-3/lessons/python-hello-world/exercises/modulo",
+          "observedCheckpoints": 4,
+          "authoringBrief": "Distribute items among containers and report the remainder.",
+          "status": "planned-original-content"
+        },
+        {
+          "position": 12,
+          "concept": "Combining text",
+          "sourceUrl": "https://www.codecademy.com/courses/learn-python-3/lessons/python-hello-world/exercises/concatenation",
+          "observedCheckpoints": 1,
+          "authoringBrief": "Assemble a short route label from independent strings.",
+          "status": "planned-original-content"
+        },
+        {
+          "position": 13,
+          "concept": "Augmented assignment",
+          "sourceUrl": "https://www.codecademy.com/courses/learn-python-3/lessons/python-hello-world/exercises/plus-equals",
+          "observedCheckpoints": 1,
+          "authoringBrief": "Update an energy counter with augmented assignment.",
+          "status": "planned-original-content"
+        },
+        {
+          "position": 14,
+          "concept": "Multiline text",
+          "sourceUrl": "https://www.codecademy.com/courses/learn-python-3/lessons/python-hello-world/exercises/multiline-strings",
+          "observedCheckpoints": 1,
+          "authoringBrief": "Build a readable multiline bulletin.",
+          "status": "planned-original-content"
+        },
+        {
+          "position": 15,
+          "concept": "Foundation review",
+          "sourceUrl": "https://www.codecademy.com/courses/learn-python-3/lessons/python-hello-world/exercises/review",
+          "observedCheckpoints": 1,
+          "authoringBrief": "Produce a compact equipment label using text and numeric variables.",
+          "status": "planned-original-content"
+        }
+      ]
+    },
+    {
+      "chapter": 2,
+      "slug": "python-control-flow",
+      "title": "Decisions and Boolean logic",
+      "quiz": {
+        "url": "https://www.codecademy.com/courses/learn-python-3/quizzes/python-control-flow-quiz",
+        "questions": 8,
+        "inspection": "Complete attempt, results, and retake tested"
+      },
+      "exercises": [
+        {
+          "position": 1,
+          "concept": "Execution paths",
+          "sourceUrl": "https://www.codecademy.com/courses/learn-python-3/lessons/python-control-flow/exercises/introduction",
+          "observedCheckpoints": 0,
+          "authoringBrief": "Trace how a small program chooses between alternatives.",
+          "status": "planned-original-content"
+        },
+        {
+          "position": 2,
+          "concept": "Boolean propositions",
+          "sourceUrl": "https://www.codecademy.com/courses/learn-python-3/lessons/python-control-flow/exercises/boolean-expressions",
+          "observedCheckpoints": 3,
+          "authoringBrief": "Distinguish objectively testable conditions from subjective descriptions.",
+          "status": "planned-original-content"
+        },
+        {
+          "position": 3,
+          "concept": "Equality comparisons",
+          "sourceUrl": "https://www.codecademy.com/courses/learn-python-3/lessons/python-control-flow/exercises/relational-operators-i",
+          "observedCheckpoints": 3,
+          "authoringBrief": "Compare IDs and compute named Boolean results.",
+          "status": "planned-original-content"
+        },
+        {
+          "position": 4,
+          "concept": "Boolean variables",
+          "sourceUrl": "https://www.codecademy.com/courses/learn-python-3/lessons/python-control-flow/exercises/boolean-variables",
+          "observedCheckpoints": 4,
+          "authoringBrief": "Distinguish Boolean values from similar-looking strings.",
+          "status": "planned-original-content"
+        },
+        {
+          "position": 5,
+          "concept": "Conditional blocks",
+          "sourceUrl": "https://www.codecademy.com/courses/learn-python-3/lessons/python-control-flow/exercises/if-statement",
+          "observedCheckpoints": 3,
+          "authoringBrief": "Show a warning only when a sensor crosses a threshold.",
+          "status": "planned-original-content"
+        },
+        {
+          "position": 6,
+          "concept": "Ordered comparisons",
+          "sourceUrl": "https://www.codecademy.com/courses/learn-python-3/lessons/python-control-flow/exercises/relational-operators-ii",
+          "observedCheckpoints": 2,
+          "authoringBrief": "Apply inclusive and exclusive capacity limits.",
+          "status": "planned-original-content"
+        },
+        {
+          "position": 7,
+          "concept": "Combining conditions with and",
+          "sourceUrl": "https://www.codecademy.com/courses/learn-python-3/lessons/python-control-flow/exercises/boolean-operators-and",
+          "observedCheckpoints": 2,
+          "authoringBrief": "Require two conditions before allowing a fictional machine to start.",
+          "status": "planned-original-content"
+        },
+        {
+          "position": 8,
+          "concept": "Alternatives with or",
+          "sourceUrl": "https://www.codecademy.com/courses/learn-python-3/lessons/python-control-flow/exercises/boolean-operators-or",
+          "observedCheckpoints": 2,
+          "authoringBrief": "Trigger a reminder when either of two maintenance conditions applies.",
+          "status": "planned-original-content"
+        },
+        {
+          "position": 9,
+          "concept": "Negating a condition",
+          "sourceUrl": "https://www.codecademy.com/courses/learn-python-3/lessons/python-control-flow/exercises/boolean-operators-not",
+          "observedCheckpoints": 2,
+          "authoringBrief": "Express the opposite of an availability condition.",
+          "status": "planned-original-content"
+        },
+        {
+          "position": 10,
+          "concept": "Fallback branches",
+          "sourceUrl": "https://www.codecademy.com/courses/learn-python-3/lessons/python-control-flow/exercises/else-statements",
+          "observedCheckpoints": 1,
+          "authoringBrief": "Produce one of two route messages.",
+          "status": "planned-original-content"
+        },
+        {
+          "position": 11,
+          "concept": "Multiple branches",
+          "sourceUrl": "https://www.codecademy.com/courses/learn-python-3/lessons/python-control-flow/exercises/else-if-statements",
+          "observedCheckpoints": 1,
+          "authoringBrief": "Classify measured values with an ordered if/elif/else chain.",
+          "status": "planned-original-content"
+        },
+        {
+          "position": 12,
+          "concept": "Decision review",
+          "sourceUrl": "https://www.codecademy.com/courses/learn-python-3/lessons/python-control-flow/exercises/review",
+          "observedCheckpoints": 0,
+          "authoringBrief": "Provide an optional playground that combines decisions and Boolean logic.",
+          "status": "planned-original-content"
+        }
+      ]
+    },
+    {
+      "chapter": 2,
+      "slug": "python-errors",
+      "title": "Debugging basics",
+      "quiz": null,
+      "exercises": [
+        {
+          "position": 1,
+          "concept": "Debugging workflow",
+          "sourceUrl": "https://www.codecademy.com/courses/learn-python-3/lessons/python-errors/exercises/introduction-to-bugs",
+          "observedCheckpoints": 0,
+          "authoringBrief": "Explain reproduce, inspect, change, and rerun with a small example.",
+          "status": "planned-original-content"
+        },
+        {
+          "position": 2,
+          "concept": "Syntax errors",
+          "sourceUrl": "https://www.codecademy.com/courses/learn-python-3/lessons/python-errors/exercises/syntax-errors",
+          "observedCheckpoints": 2,
+          "authoringBrief": "Run a malformed conditional, inspect the traceback, and repair its syntax.",
+          "status": "planned-original-content"
+        },
+        {
+          "position": 3,
+          "concept": "Name errors",
+          "sourceUrl": "https://www.codecademy.com/courses/learn-python-3/lessons/python-errors/exercises/name-error",
+          "observedCheckpoints": 2,
+          "authoringBrief": "Observe an undefined-name error and repair inconsistent naming.",
+          "status": "planned-original-content"
+        },
+        {
+          "position": 4,
+          "concept": "Type errors",
+          "sourceUrl": "https://www.codecademy.com/courses/learn-python-3/lessons/python-errors/exercises/type-errors",
+          "observedCheckpoints": 2,
+          "authoringBrief": "Observe an incompatible operation and choose an explicit conversion.",
+          "status": "planned-original-content"
+        },
+        {
+          "position": 5,
+          "concept": "Debugging review",
+          "sourceUrl": "https://www.codecademy.com/courses/learn-python-3/lessons/python-errors/exercises/review",
+          "observedCheckpoints": 0,
+          "authoringBrief": "Summarize how error type, line number, and message guide a fix.",
+          "status": "planned-original-content"
+        }
+      ]
+    },
+    {
+      "chapter": 3,
+      "slug": "create-python-list",
+      "title": "List foundations",
+      "quiz": {
+        "url": "https://www.codecademy.com/courses/learn-python-3/quizzes/create-python-list-quiz",
+        "questions": 11,
+        "inspection": "First question, answer controls, and question count inspected"
+      },
+      "exercises": [
+        {
+          "position": 1,
+          "concept": "List literals",
+          "sourceUrl": "https://www.codecademy.com/courses/learn-python-3/lessons/create-python-list/exercises/intro-list",
+          "observedCheckpoints": 2,
+          "authoringBrief": "Store a sequence of trail checkpoints.",
+          "status": "planned-original-content"
+        },
+        {
+          "position": 2,
+          "concept": "Element types",
+          "sourceUrl": "https://www.codecademy.com/courses/learn-python-3/lessons/create-python-list/exercises/list-multiple-data-types",
+          "observedCheckpoints": 2,
+          "authoringBrief": "Represent a small record containing text, numbers, and a Boolean.",
+          "status": "planned-original-content"
+        },
+        {
+          "position": 3,
+          "concept": "Empty lists",
+          "sourceUrl": "https://www.codecademy.com/courses/learn-python-3/lessons/create-python-list/exercises/empty-list",
+          "observedCheckpoints": 1,
+          "authoringBrief": "Prepare a collection for incoming measurements.",
+          "status": "planned-original-content"
+        },
+        {
+          "position": 4,
+          "concept": "Calling methods",
+          "sourceUrl": "https://www.codecademy.com/courses/learn-python-3/lessons/create-python-list/exercises/list-methods",
+          "observedCheckpoints": 0,
+          "authoringBrief": "Explain object.method(arguments) with a visible before-and-after example.",
+          "status": "planned-original-content"
+        },
+        {
+          "position": 5,
+          "concept": "Appending",
+          "sourceUrl": "https://www.codecademy.com/courses/learn-python-3/lessons/create-python-list/exercises/append-list",
+          "observedCheckpoints": 4,
+          "authoringBrief": "Add items to a packing list and inspect its order.",
+          "status": "planned-original-content"
+        },
+        {
+          "position": 6,
+          "concept": "Concatenating lists",
+          "sourceUrl": "https://www.codecademy.com/courses/learn-python-3/lessons/create-python-list/exercises/growing-a-list-plus",
+          "observedCheckpoints": 3,
+          "authoringBrief": "Combine two independent schedules without mutating the originals.",
+          "status": "planned-original-content"
+        },
+        {
+          "position": 7,
+          "concept": "Positive indexing",
+          "sourceUrl": "https://www.codecademy.com/courses/learn-python-3/lessons/create-python-list/exercises/accessing-list-elements",
+          "observedCheckpoints": 3,
+          "authoringBrief": "Retrieve selected entries from an ordered route.",
+          "status": "planned-original-content"
+        },
+        {
+          "position": 8,
+          "concept": "Negative indexing",
+          "sourceUrl": "https://www.codecademy.com/courses/learn-python-3/lessons/create-python-list/exercises/accessing-list-elements-negative-index",
+          "observedCheckpoints": 3,
+          "authoringBrief": "Retrieve the final and penultimate readings.",
+          "status": "planned-original-content"
+        },
+        {
+          "position": 9,
+          "concept": "Replacing elements",
+          "sourceUrl": "https://www.codecademy.com/courses/learn-python-3/lessons/create-python-list/exercises/modifying-list-elements",
+          "observedCheckpoints": 3,
+          "authoringBrief": "Correct a mistaken entry at a known position.",
+          "status": "planned-original-content"
+        },
+        {
+          "position": 10,
+          "concept": "Removing values",
+          "sourceUrl": "https://www.codecademy.com/courses/learn-python-3/lessons/create-python-list/exercises/removing-list-elements",
+          "observedCheckpoints": 5,
+          "authoringBrief": "Remove a canceled item and explore duplicate values and missing-value errors.",
+          "status": "planned-original-content"
+        },
+        {
+          "position": 11,
+          "concept": "Nested lists",
+          "sourceUrl": "https://www.codecademy.com/courses/learn-python-3/lessons/create-python-list/exercises/list-of-lists",
+          "observedCheckpoints": 2,
+          "authoringBrief": "Create a small table of equipment and quantities.",
+          "status": "planned-original-content"
+        },
+        {
+          "position": 12,
+          "concept": "Reading nested lists",
+          "sourceUrl": "https://www.codecademy.com/courses/learn-python-3/lessons/create-python-list/exercises/accessing-2-d-lists",
+          "observedCheckpoints": 3,
+          "authoringBrief": "Select a cell using row and column indexes.",
+          "status": "planned-original-content"
+        },
+        {
+          "position": 13,
+          "concept": "Editing nested lists",
+          "sourceUrl": "https://www.codecademy.com/courses/learn-python-3/lessons/create-python-list/exercises/modifying-2-d-lists",
+          "observedCheckpoints": 3,
+          "authoringBrief": "Update a cell without replacing the surrounding table.",
+          "status": "planned-original-content"
+        },
+        {
+          "position": 14,
+          "concept": "List foundation review",
+          "sourceUrl": "https://www.codecademy.com/courses/learn-python-3/lessons/create-python-list/exercises/review",
+          "observedCheckpoints": 7,
+          "authoringBrief": "Maintain a compact stock table through several independent edits.",
+          "status": "planned-original-content"
+        }
+      ]
+    },
+    {
+      "chapter": 3,
+      "slug": "use-python-list",
+      "title": "List operations",
+      "quiz": {
+        "url": "https://www.codecademy.com/courses/learn-python-3/quizzes/use-python-list-quiz",
+        "questions": 12,
+        "inspection": "First question, answer controls, and question count inspected"
+      },
+      "exercises": [
+        {
+          "position": 1,
+          "concept": "Choosing list operations",
+          "sourceUrl": "https://www.codecademy.com/courses/learn-python-3/lessons/use-python-list/exercises/operations-on-lists",
+          "observedCheckpoints": 0,
+          "authoringBrief": "Preview the operations needed to maintain an ordered collection.",
+          "status": "planned-original-content"
+        },
+        {
+          "position": 2,
+          "concept": "Inserting by index",
+          "sourceUrl": "https://www.codecademy.com/courses/learn-python-3/lessons/use-python-list/exercises/adding-by-index-insert",
+          "observedCheckpoints": 2,
+          "authoringBrief": "Insert a new checkpoint before an existing one.",
+          "status": "planned-original-content"
+        },
+        {
+          "position": 3,
+          "concept": "Removing by index",
+          "sourceUrl": "https://www.codecademy.com/courses/learn-python-3/lessons/use-python-list/exercises/removing-by-index-pop",
+          "observedCheckpoints": 3,
+          "authoringBrief": "Remove and retain an item using pop.",
+          "status": "planned-original-content"
+        },
+        {
+          "position": 4,
+          "concept": "Basic range",
+          "sourceUrl": "https://www.codecademy.com/courses/learn-python-3/lessons/use-python-list/exercises/consecutive-lists-range",
+          "observedCheckpoints": 2,
+          "authoringBrief": "Generate numbered workstations from a range.",
+          "status": "planned-original-content"
+        },
+        {
+          "position": 5,
+          "concept": "Range bounds and step",
+          "sourceUrl": "https://www.codecademy.com/courses/learn-python-3/lessons/use-python-list/exercises/the-power-of-range",
+          "observedCheckpoints": 2,
+          "authoringBrief": "Generate a stepped schedule and explain the excluded stop value.",
+          "status": "planned-original-content"
+        },
+        {
+          "position": 6,
+          "concept": "Length",
+          "sourceUrl": "https://www.codecademy.com/courses/learn-python-3/lessons/use-python-list/exercises/list-len",
+          "observedCheckpoints": 5,
+          "authoringBrief": "Compare counts before and after edits, including nested collections.",
+          "status": "planned-original-content"
+        },
+        {
+          "position": 7,
+          "concept": "Slicing bounds",
+          "sourceUrl": "https://www.codecademy.com/courses/learn-python-3/lessons/use-python-list/exercises/slice-iii",
+          "observedCheckpoints": 3,
+          "authoringBrief": "Select a consecutive segment of a route.",
+          "status": "planned-original-content"
+        },
+        {
+          "position": 8,
+          "concept": "Open-ended and negative slices",
+          "sourceUrl": "https://www.codecademy.com/courses/learn-python-3/lessons/use-python-list/exercises/slice-iv",
+          "observedCheckpoints": 2,
+          "authoringBrief": "Retrieve a prefix, suffix, and interior segment.",
+          "status": "planned-original-content"
+        },
+        {
+          "position": 9,
+          "concept": "Counting values",
+          "sourceUrl": "https://www.codecademy.com/courses/learn-python-3/lessons/use-python-list/exercises/count",
+          "observedCheckpoints": 2,
+          "authoringBrief": "Count repeated status codes.",
+          "status": "planned-original-content"
+        },
+        {
+          "position": 10,
+          "concept": "Sorting in place",
+          "sourceUrl": "https://www.codecademy.com/courses/learn-python-3/lessons/use-python-list/exercises/sort",
+          "observedCheckpoints": 5,
+          "authoringBrief": "Sort numeric and text lists and inspect the original object and return value.",
+          "status": "planned-original-content"
+        },
+        {
+          "position": 11,
+          "concept": "Creating a sorted copy",
+          "sourceUrl": "https://www.codecademy.com/courses/learn-python-3/lessons/use-python-list/exercises/sorted",
+          "observedCheckpoints": 2,
+          "authoringBrief": "Create a ranking while preserving the input order.",
+          "status": "planned-original-content"
+        },
+        {
+          "position": 12,
+          "concept": "List operations review",
+          "sourceUrl": "https://www.codecademy.com/courses/learn-python-3/lessons/use-python-list/exercises/review-ii",
+          "observedCheckpoints": 9,
+          "authoringBrief": "Transform and inspect a small event queue with the operations learned.",
+          "status": "planned-original-content"
+        }
+      ]
+    },
+    {
+      "chapter": 4,
+      "slug": "learn-python-loops",
+      "title": "Loops and comprehensions",
+      "quiz": {
+        "url": "https://www.codecademy.com/courses/learn-python-3/quizzes/python-loops",
+        "questions": 10,
+        "inspection": "First question, answer controls, and question count inspected"
+      },
+      "exercises": [
+        {
+          "position": 1,
+          "concept": "Loop overview",
+          "sourceUrl": "https://www.codecademy.com/courses/learn-python-3/lessons/learn-python-loops/exercises/introduction-to-loops",
+          "observedCheckpoints": 0,
+          "authoringBrief": "Explain repetition as a way to apply a rule to many inputs.",
+          "status": "planned-original-content"
+        },
+        {
+          "position": 2,
+          "concept": "Replacing repeated code",
+          "sourceUrl": "https://www.codecademy.com/courses/learn-python-3/lessons/learn-python-loops/exercises/introduction",
+          "observedCheckpoints": 1,
+          "authoringBrief": "Compare repeated print statements with one loop.",
+          "status": "planned-original-content"
+        },
+        {
+          "position": 3,
+          "concept": "For loops",
+          "sourceUrl": "https://www.codecademy.com/courses/learn-python-3/lessons/learn-python-loops/exercises/creating-for-loop",
+          "observedCheckpoints": 3,
+          "authoringBrief": "Print a labeled line for every sensor.",
+          "status": "planned-original-content"
+        },
+        {
+          "position": 4,
+          "concept": "Looping over range",
+          "sourceUrl": "https://www.codecademy.com/courses/learn-python-3/lessons/learn-python-loops/exercises/range",
+          "observedCheckpoints": 1,
+          "authoringBrief": "Perform a fixed number of repetitions.",
+          "status": "planned-original-content"
+        },
+        {
+          "position": 5,
+          "concept": "While loops",
+          "sourceUrl": "https://www.codecademy.com/courses/learn-python-3/lessons/learn-python-loops/exercises/while",
+          "observedCheckpoints": 4,
+          "authoringBrief": "Advance a counter until a stopping condition becomes false.",
+          "status": "planned-original-content"
+        },
+        {
+          "position": 6,
+          "concept": "While loops over lists",
+          "sourceUrl": "https://www.codecademy.com/courses/learn-python-3/lessons/learn-python-loops/exercises/while-loops-lists",
+          "observedCheckpoints": 3,
+          "authoringBrief": "Process a collection using a changing index.",
+          "status": "planned-original-content"
+        },
+        {
+          "position": 7,
+          "concept": "Nonterminating loops",
+          "sourceUrl": "https://www.codecademy.com/courses/learn-python-3/lessons/learn-python-loops/exercises/infinite-loops",
+          "observedCheckpoints": 0,
+          "authoringBrief": "Show how a missing state change causes a loop to run forever; support Stop.",
+          "status": "planned-original-content"
+        },
+        {
+          "position": 8,
+          "concept": "Breaking early",
+          "sourceUrl": "https://www.codecademy.com/courses/learn-python-3/lessons/learn-python-loops/exercises/break",
+          "observedCheckpoints": 3,
+          "authoringBrief": "Stop searching after a matching event is found.",
+          "status": "planned-original-content"
+        },
+        {
+          "position": 9,
+          "concept": "Skipping an iteration",
+          "sourceUrl": "https://www.codecademy.com/courses/learn-python-3/lessons/learn-python-loops/exercises/continue",
+          "observedCheckpoints": 1,
+          "authoringBrief": "Ignore invalid entries while continuing the remaining work.",
+          "status": "planned-original-content"
+        },
+        {
+          "position": 10,
+          "concept": "Nested loops",
+          "sourceUrl": "https://www.codecademy.com/courses/learn-python-3/lessons/learn-python-loops/exercises/nested",
+          "observedCheckpoints": 4,
+          "authoringBrief": "Traverse a grid and build a running total.",
+          "status": "planned-original-content"
+        },
+        {
+          "position": 11,
+          "concept": "Comprehension transformations",
+          "sourceUrl": "https://www.codecademy.com/courses/learn-python-3/lessons/learn-python-loops/exercises/list-comprehension-ii",
+          "observedCheckpoints": 2,
+          "authoringBrief": "Transform raw measurements into a new list.",
+          "status": "planned-original-content"
+        },
+        {
+          "position": 12,
+          "concept": "Comprehension filtering",
+          "sourceUrl": "https://www.codecademy.com/courses/learn-python-3/lessons/learn-python-loops/exercises/list-comprehension",
+          "observedCheckpoints": 2,
+          "authoringBrief": "Filter and transform a collection with a readable comprehension.",
+          "status": "planned-original-content"
+        },
+        {
+          "position": 13,
+          "concept": "Loop review",
+          "sourceUrl": "https://www.codecademy.com/courses/learn-python-3/lessons/learn-python-loops/exercises/review",
+          "observedCheckpoints": 7,
+          "authoringBrief": "Process a small set of sensor batches using iteration and filtering.",
+          "status": "planned-original-content"
+        }
+      ]
+    },
+    {
+      "chapter": 5,
+      "slug": "intro-to-functions",
+      "title": "Functions",
+      "quiz": {
+        "url": "https://www.codecademy.com/courses/learn-python-3/quizzes/functions-quiz",
+        "questions": 7,
+        "inspection": "First question, answer controls, and question count inspected"
+      },
+      "exercises": [
+        {
+          "position": 1,
+          "concept": "Function overview",
+          "sourceUrl": "https://www.codecademy.com/courses/learn-python-3/lessons/intro-to-functions/exercises/py-introduction-to-functions",
+          "observedCheckpoints": 0,
+          "authoringBrief": "Explain reusable behavior with inputs and outputs.",
+          "status": "planned-original-content"
+        },
+        {
+          "position": 2,
+          "concept": "Removing duplicated logic",
+          "sourceUrl": "https://www.codecademy.com/courses/learn-python-3/lessons/intro-to-functions/exercises/why-functions",
+          "observedCheckpoints": 3,
+          "authoringBrief": "Replace repeated formatting steps with a reusable operation.",
+          "status": "planned-original-content"
+        },
+        {
+          "position": 3,
+          "concept": "Defining functions",
+          "sourceUrl": "https://www.codecademy.com/courses/learn-python-3/lessons/intro-to-functions/exercises/defining-a-function",
+          "observedCheckpoints": 2,
+          "authoringBrief": "Create a named function with an indented body.",
+          "status": "planned-original-content"
+        },
+        {
+          "position": 4,
+          "concept": "Calling functions",
+          "sourceUrl": "https://www.codecademy.com/courses/learn-python-3/lessons/intro-to-functions/exercises/calling-a-function",
+          "observedCheckpoints": 2,
+          "authoringBrief": "Invoke a function several times and inspect execution order.",
+          "status": "planned-original-content"
+        },
+        {
+          "position": 5,
+          "concept": "Indentation and execution order",
+          "sourceUrl": "https://www.codecademy.com/courses/learn-python-3/lessons/intro-to-functions/exercises/whitespace-execution-flow",
+          "observedCheckpoints": 5,
+          "authoringBrief": "Debug which statements belong inside a function.",
+          "status": "planned-original-content"
+        },
+        {
+          "position": 6,
+          "concept": "Parameters and arguments",
+          "sourceUrl": "https://www.codecademy.com/courses/learn-python-3/lessons/intro-to-functions/exercises/parameters-arguments",
+          "observedCheckpoints": 5,
+          "authoringBrief": "Turn a fixed message into a function that accepts a label.",
+          "status": "planned-original-content"
+        },
+        {
+          "position": 7,
+          "concept": "Multiple parameters",
+          "sourceUrl": "https://www.codecademy.com/courses/learn-python-3/lessons/intro-to-functions/exercises/py-multiple-parameters",
+          "observedCheckpoints": 5,
+          "authoringBrief": "Compute a delivery estimate from several inputs.",
+          "status": "planned-original-content"
+        },
+        {
+          "position": 8,
+          "concept": "Positional, keyword, and default arguments",
+          "sourceUrl": "https://www.codecademy.com/courses/learn-python-3/lessons/intro-to-functions/exercises/types-of-arguments",
+          "observedCheckpoints": 6,
+          "authoringBrief": "Call one function using all three supported argument styles.",
+          "status": "planned-original-content"
+        },
+        {
+          "position": 9,
+          "concept": "Built-in and custom functions",
+          "sourceUrl": "https://www.codecademy.com/courses/learn-python-3/lessons/intro-to-functions/exercises/built-in-functions",
+          "observedCheckpoints": 3,
+          "authoringBrief": "Combine standard functions with a small custom helper.",
+          "status": "planned-original-content"
+        },
+        {
+          "position": 10,
+          "concept": "Variable scope",
+          "sourceUrl": "https://www.codecademy.com/courses/learn-python-3/lessons/intro-to-functions/exercises/variable-access",
+          "observedCheckpoints": 2,
+          "authoringBrief": "Contrast local names with names available outside the function.",
+          "status": "planned-original-content"
+        },
+        {
+          "position": 11,
+          "concept": "Return values",
+          "sourceUrl": "https://www.codecademy.com/courses/learn-python-3/lessons/intro-to-functions/exercises/returns",
+          "observedCheckpoints": 6,
+          "authoringBrief": "Return a result and use it in another expression instead of only printing.",
+          "status": "planned-original-content"
+        },
+        {
+          "position": 12,
+          "concept": "Returning multiple values",
+          "sourceUrl": "https://www.codecademy.com/courses/learn-python-3/lessons/intro-to-functions/exercises/multiple-returns",
+          "observedCheckpoints": 4,
+          "authoringBrief": "Return and unpack a summary tuple.",
+          "status": "planned-original-content"
+        },
+        {
+          "position": 13,
+          "concept": "Function review",
+          "sourceUrl": "https://www.codecademy.com/courses/learn-python-3/lessons/intro-to-functions/exercises/functions-review",
+          "observedCheckpoints": 5,
+          "authoringBrief": "Compose short helpers into a compact measurement summary.",
+          "status": "planned-original-content"
+        }
+      ]
+    },
+    {
+      "chapter": 7,
+      "slug": "introduction-to-strings",
+      "title": "String foundations",
+      "quiz": {
+        "url": "https://www.codecademy.com/courses/learn-python-3/quizzes/introduction-to-strings-quiz",
+        "questions": 6,
+        "inspection": "First question, answer controls, and question count inspected"
+      },
+      "exercises": [
+        {
+          "position": 1,
+          "concept": "Text as data",
+          "sourceUrl": "https://www.codecademy.com/courses/learn-python-3/lessons/introduction-to-strings/exercises/introduction",
+          "observedCheckpoints": 2,
+          "authoringBrief": "Represent and inspect a short location code.",
+          "status": "planned-original-content"
+        },
+        {
+          "position": 2,
+          "concept": "Indexed string sequences",
+          "sourceUrl": "https://www.codecademy.com/courses/learn-python-3/lessons/introduction-to-strings/exercises/strings-are-lists",
+          "observedCheckpoints": 2,
+          "authoringBrief": "Access characters while clearly distinguishing strings from lists.",
+          "status": "planned-original-content"
+        },
+        {
+          "position": 3,
+          "concept": "String slicing",
+          "sourceUrl": "https://www.codecademy.com/courses/learn-python-3/lessons/introduction-to-strings/exercises/silce-a-string",
+          "observedCheckpoints": 2,
+          "authoringBrief": "Extract a segment from a structured label.",
+          "status": "planned-original-content"
+        },
+        {
+          "position": 4,
+          "concept": "Concatenating string fragments",
+          "sourceUrl": "https://www.codecademy.com/courses/learn-python-3/lessons/introduction-to-strings/exercises/concatenating-strings",
+          "observedCheckpoints": 2,
+          "authoringBrief": "Construct a display label from several fragments.",
+          "status": "planned-original-content"
+        },
+        {
+          "position": 5,
+          "concept": "Length and slices",
+          "sourceUrl": "https://www.codecademy.com/courses/learn-python-3/lessons/introduction-to-strings/exercises/more-string-slicing",
+          "observedCheckpoints": 2,
+          "authoringBrief": "Use string length to calculate slice boundaries.",
+          "status": "planned-original-content"
+        },
+        {
+          "position": 6,
+          "concept": "Negative string indexes",
+          "sourceUrl": "https://www.codecademy.com/courses/learn-python-3/lessons/introduction-to-strings/exercises/negative-indices",
+          "observedCheckpoints": 2,
+          "authoringBrief": "Extract characters relative to the end.",
+          "status": "planned-original-content"
+        },
+        {
+          "position": 7,
+          "concept": "String immutability",
+          "sourceUrl": "https://www.codecademy.com/courses/learn-python-3/lessons/introduction-to-strings/exercises/immutable-strings",
+          "observedCheckpoints": 2,
+          "authoringBrief": "Observe why item assignment fails and build a replacement string.",
+          "status": "planned-original-content"
+        },
+        {
+          "position": 8,
+          "concept": "Escaped characters",
+          "sourceUrl": "https://www.codecademy.com/courses/learn-python-3/lessons/introduction-to-strings/exercises/escape-characters",
+          "observedCheckpoints": 1,
+          "authoringBrief": "Include quotes and a line break in a message.",
+          "status": "planned-original-content"
+        },
+        {
+          "position": 9,
+          "concept": "Character iteration",
+          "sourceUrl": "https://www.codecademy.com/courses/learn-python-3/lessons/introduction-to-strings/exercises/iterating-through-strings",
+          "observedCheckpoints": 1,
+          "authoringBrief": "Examine characters individually in a loop.",
+          "status": "planned-original-content"
+        },
+        {
+          "position": 10,
+          "concept": "Character conditions",
+          "sourceUrl": "https://www.codecademy.com/courses/learn-python-3/lessons/introduction-to-strings/exercises/strings-in-conditionals-i",
+          "observedCheckpoints": 1,
+          "authoringBrief": "Count characters matching a specified rule.",
+          "status": "planned-original-content"
+        },
+        {
+          "position": 11,
+          "concept": "Membership tests",
+          "sourceUrl": "https://www.codecademy.com/courses/learn-python-3/lessons/introduction-to-strings/exercises/strings-in-conditionals-ii",
+          "observedCheckpoints": 2,
+          "authoringBrief": "Check for a substring using in and not in.",
+          "status": "planned-original-content"
+        },
+        {
+          "position": 12,
+          "concept": "String foundation review",
+          "sourceUrl": "https://www.codecademy.com/courses/learn-python-3/lessons/introduction-to-strings/exercises/review-i",
+          "observedCheckpoints": 3,
+          "authoringBrief": "Build and inspect a short formatted identifier.",
+          "status": "planned-original-content"
+        }
+      ]
+    },
+    {
+      "chapter": 7,
+      "slug": "string-methods",
+      "title": "String methods",
+      "quiz": {
+        "url": "https://www.codecademy.com/courses/learn-python-3/quizzes/string-methods-quiz",
+        "questions": 7,
+        "inspection": "First question, answer controls, and question count inspected"
+      },
+      "exercises": [
+        {
+          "position": 1,
+          "concept": "Method overview",
+          "sourceUrl": "https://www.codecademy.com/courses/learn-python-3/lessons/string-methods/exercises/introduction-ii",
+          "observedCheckpoints": 0,
+          "authoringBrief": "Explain that string methods return new values.",
+          "status": "planned-original-content"
+        },
+        {
+          "position": 2,
+          "concept": "Case conversion",
+          "sourceUrl": "https://www.codecademy.com/courses/learn-python-3/lessons/string-methods/exercises/formatting-methods",
+          "observedCheckpoints": 4,
+          "authoringBrief": "Normalize inconsistent labels while preserving originals.",
+          "status": "planned-original-content"
+        },
+        {
+          "position": 3,
+          "concept": "Splitting on whitespace",
+          "sourceUrl": "https://www.codecademy.com/courses/learn-python-3/lessons/string-methods/exercises/splitting-strings",
+          "observedCheckpoints": 1,
+          "authoringBrief": "Turn a line of words into a list.",
+          "status": "planned-original-content"
+        },
+        {
+          "position": 4,
+          "concept": "Splitting on a delimiter",
+          "sourceUrl": "https://www.codecademy.com/courses/learn-python-3/lessons/string-methods/exercises/splitting-strings-ii",
+          "observedCheckpoints": 2,
+          "authoringBrief": "Parse a simple delimited tag sequence.",
+          "status": "planned-original-content"
+        },
+        {
+          "position": 5,
+          "concept": "Splitting line and tab data",
+          "sourceUrl": "https://www.codecademy.com/courses/learn-python-3/lessons/string-methods/exercises/splitting-strings-iii",
+          "observedCheckpoints": 1,
+          "authoringBrief": "Separate rows and columns from a small text sample.",
+          "status": "planned-original-content"
+        },
+        {
+          "position": 6,
+          "concept": "Joining with spaces",
+          "sourceUrl": "https://www.codecademy.com/courses/learn-python-3/lessons/string-methods/exercises/joining-strings",
+          "observedCheckpoints": 1,
+          "authoringBrief": "Combine a sequence of words into a line.",
+          "status": "planned-original-content"
+        },
+        {
+          "position": 7,
+          "concept": "Joining with separators",
+          "sourceUrl": "https://www.codecademy.com/courses/learn-python-3/lessons/string-methods/exercises/joining-strings-ii",
+          "observedCheckpoints": 1,
+          "authoringBrief": "Create a display path from independent fragments.",
+          "status": "planned-original-content"
+        },
+        {
+          "position": 8,
+          "concept": "Trimming characters",
+          "sourceUrl": "https://www.codecademy.com/courses/learn-python-3/lessons/string-methods/exercises/strip",
+          "observedCheckpoints": 3,
+          "authoringBrief": "Clean leading and trailing whitespace and explain character-set stripping.",
+          "status": "planned-original-content"
+        },
+        {
+          "position": 9,
+          "concept": "Replacing substrings",
+          "sourceUrl": "https://www.codecademy.com/courses/learn-python-3/lessons/string-methods/exercises/replace",
+          "observedCheckpoints": 1,
+          "authoringBrief": "Update repeated markers in a template.",
+          "status": "planned-original-content"
+        },
+        {
+          "position": 10,
+          "concept": "Finding a substring",
+          "sourceUrl": "https://www.codecademy.com/courses/learn-python-3/lessons/string-methods/exercises/find",
+          "observedCheckpoints": 1,
+          "authoringBrief": "Find a marker and handle the -1 result for absence.",
+          "status": "planned-original-content"
+        },
+        {
+          "position": 11,
+          "concept": "Positional formatting",
+          "sourceUrl": "https://www.codecademy.com/courses/learn-python-3/lessons/string-methods/exercises/format-i",
+          "observedCheckpoints": 1,
+          "authoringBrief": "Fill positional slots in a status message.",
+          "status": "planned-original-content"
+        },
+        {
+          "position": 12,
+          "concept": "Named formatting",
+          "sourceUrl": "https://www.codecademy.com/courses/learn-python-3/lessons/string-methods/exercises/format-ii",
+          "observedCheckpoints": 2,
+          "authoringBrief": "Fill named slots from explicit values.",
+          "status": "planned-original-content"
+        },
+        {
+          "position": 13,
+          "concept": "String methods review",
+          "sourceUrl": "https://www.codecademy.com/courses/learn-python-3/lessons/string-methods/exercises/review-ii",
+          "observedCheckpoints": 10,
+          "authoringBrief": "Clean and summarize a compact text log through several transformations.",
+          "status": "planned-original-content"
+        }
+      ]
+    },
+    {
+      "chapter": 8,
+      "slug": "modules-python",
+      "title": "Modules and imports",
+      "quiz": {
+        "url": "https://www.codecademy.com/courses/learn-python-3/quizzes/python-modules",
+        "questions": 12,
+        "inspection": "First question, answer controls, and question count inspected"
+      },
+      "exercises": [
+        {
+          "position": 1,
+          "concept": "Importing from the standard library",
+          "sourceUrl": "https://www.codecademy.com/courses/learn-python-3/lessons/modules-python/exercises/modules-python-intro",
+          "observedCheckpoints": 3,
+          "authoringBrief": "Use datetime and explain module-qualified names.",
+          "status": "planned-original-content"
+        },
+        {
+          "position": 2,
+          "concept": "Random sampling",
+          "sourceUrl": "https://www.codecademy.com/courses/learn-python-3/lessons/modules-python/exercises/modules-python-random",
+          "observedCheckpoints": 5,
+          "authoringBrief": "Generate sample values and select an item from a collection.",
+          "status": "planned-original-content"
+        },
+        {
+          "position": 3,
+          "concept": "Import aliases",
+          "sourceUrl": "https://www.codecademy.com/courses/learn-python-3/lessons/modules-python/exercises/modules-python-aliasing",
+          "observedCheckpoints": 4,
+          "authoringBrief": "Use a readable alias and identify the name introduced by an import.",
+          "status": "planned-original-content"
+        },
+        {
+          "position": 4,
+          "concept": "Decimal arithmetic",
+          "sourceUrl": "https://www.codecademy.com/courses/learn-python-3/lessons/modules-python/exercises/modules-python-decimals",
+          "observedCheckpoints": 3,
+          "authoringBrief": "Compare floating-point behavior with Decimal constructed from strings.",
+          "status": "planned-original-content"
+        },
+        {
+          "position": 5,
+          "concept": "Importing local files",
+          "sourceUrl": "https://www.codecademy.com/courses/learn-python-3/lessons/modules-python/exercises/modules-python-files-and-scope",
+          "observedCheckpoints": 3,
+          "authoringBrief": "Put a helper in a second Python file and import it from the main script.",
+          "status": "planned-original-content"
+        },
+        {
+          "position": 6,
+          "concept": "Module review",
+          "sourceUrl": "https://www.codecademy.com/courses/learn-python-3/lessons/modules-python/exercises/modules-python-review",
+          "observedCheckpoints": 0,
+          "authoringBrief": "Summarize standard-library, selected-name, alias, and local-file imports.",
+          "status": "planned-original-content"
+        }
+      ]
+    },
+    {
+      "chapter": 9,
+      "slug": "dictionaries-introduction",
+      "title": "Creating dictionaries",
+      "quiz": {
+        "url": "https://www.codecademy.com/courses/learn-python-3/quizzes/creating-dicts",
+        "questions": 5,
+        "inspection": "First question, answer controls, and question count inspected"
+      },
+      "exercises": [
+        {
+          "position": 1,
+          "concept": "Key-value mappings",
+          "sourceUrl": "https://www.codecademy.com/courses/learn-python-3/lessons/dictionaries-introduction/exercises/intro-to-dictionary",
+          "observedCheckpoints": 2,
+          "authoringBrief": "Represent settings as named values.",
+          "status": "planned-original-content"
+        },
+        {
+          "position": 2,
+          "concept": "Dictionary literals",
+          "sourceUrl": "https://www.codecademy.com/courses/learn-python-3/lessons/dictionaries-introduction/exercises/make-a-dictionary",
+          "observedCheckpoints": 1,
+          "authoringBrief": "Create a compact mapping of equipment IDs to counts.",
+          "status": "planned-original-content"
+        },
+        {
+          "position": 3,
+          "concept": "Hashable keys",
+          "sourceUrl": "https://www.codecademy.com/courses/learn-python-3/lessons/dictionaries-introduction/exercises/invalid-keys",
+          "observedCheckpoints": 1,
+          "authoringBrief": "Observe an unhashable-key error and choose a valid key type.",
+          "status": "planned-original-content"
+        },
+        {
+          "position": 4,
+          "concept": "Empty dictionaries",
+          "sourceUrl": "https://www.codecademy.com/courses/learn-python-3/lessons/dictionaries-introduction/exercises/empty",
+          "observedCheckpoints": 1,
+          "authoringBrief": "Initialize a mapping for future observations.",
+          "status": "planned-original-content"
+        },
+        {
+          "position": 5,
+          "concept": "Adding one entry",
+          "sourceUrl": "https://www.codecademy.com/courses/learn-python-3/lessons/dictionaries-introduction/exercises/add-a-key",
+          "observedCheckpoints": 5,
+          "authoringBrief": "Build a small mapping incrementally and inspect each result.",
+          "status": "planned-original-content"
+        },
+        {
+          "position": 6,
+          "concept": "Updating several entries",
+          "sourceUrl": "https://www.codecademy.com/courses/learn-python-3/lessons/dictionaries-introduction/exercises/add-multiple-keys",
+          "observedCheckpoints": 2,
+          "authoringBrief": "Merge a batch of settings with update.",
+          "status": "planned-original-content"
+        },
+        {
+          "position": 7,
+          "concept": "Replacing an existing value",
+          "sourceUrl": "https://www.codecademy.com/courses/learn-python-3/lessons/dictionaries-introduction/exercises/overwrite-keys",
+          "observedCheckpoints": 2,
+          "authoringBrief": "Change one value while preserving other entries.",
+          "status": "planned-original-content"
+        },
+        {
+          "position": 8,
+          "concept": "Dictionary comprehensions",
+          "sourceUrl": "https://www.codecademy.com/courses/learn-python-3/lessons/dictionaries-introduction/exercises/list-comp-to-dict",
+          "observedCheckpoints": 2,
+          "authoringBrief": "Pair two sequences using zip and create a mapping.",
+          "status": "planned-original-content"
+        },
+        {
+          "position": 9,
+          "concept": "Dictionary creation review",
+          "sourceUrl": "https://www.codecademy.com/courses/learn-python-3/lessons/dictionaries-introduction/exercises/review",
+          "observedCheckpoints": 6,
+          "authoringBrief": "Build and amend a nested catalog from independent input collections.",
+          "status": "planned-original-content"
+        }
+      ]
+    },
+    {
+      "chapter": 9,
+      "slug": "using-dictionaries",
+      "title": "Using dictionaries",
+      "quiz": {
+        "url": "https://www.codecademy.com/courses/learn-python-3/quizzes/using-dicts",
+        "questions": 9,
+        "inspection": "First question, answer controls, and question count inspected"
+      },
+      "exercises": [
+        {
+          "position": 1,
+          "concept": "Dictionary recap",
+          "sourceUrl": "https://www.codecademy.com/courses/learn-python-3/lessons/using-dictionaries/exercises/use-a-dictionary",
+          "observedCheckpoints": 2,
+          "authoringBrief": "Create and extend a short configuration mapping.",
+          "status": "planned-original-content"
+        },
+        {
+          "position": 2,
+          "concept": "Looking up a value",
+          "sourceUrl": "https://www.codecademy.com/courses/learn-python-3/lessons/using-dictionaries/exercises/get-a-key",
+          "observedCheckpoints": 2,
+          "authoringBrief": "Retrieve named measurements from a mapping.",
+          "status": "planned-original-content"
+        },
+        {
+          "position": 3,
+          "concept": "Missing keys",
+          "sourceUrl": "https://www.codecademy.com/courses/learn-python-3/lessons/using-dictionaries/exercises/get-invalid-key",
+          "observedCheckpoints": 3,
+          "authoringBrief": "Observe KeyError, guard the lookup, and add the missing entry.",
+          "status": "planned-original-content"
+        },
+        {
+          "position": 4,
+          "concept": "Default values",
+          "sourceUrl": "https://www.codecademy.com/courses/learn-python-3/lessons/using-dictionaries/exercises/safe-get-key",
+          "observedCheckpoints": 2,
+          "authoringBrief": "Read an optional setting with get and an explicit default.",
+          "status": "planned-original-content"
+        },
+        {
+          "position": 5,
+          "concept": "Removing entries",
+          "sourceUrl": "https://www.codecademy.com/courses/learn-python-3/lessons/using-dictionaries/exercises/pop-a-key",
+          "observedCheckpoints": 4,
+          "authoringBrief": "Remove entries while retaining their values and handle absent keys.",
+          "status": "planned-original-content"
+        },
+        {
+          "position": 6,
+          "concept": "Key views",
+          "sourceUrl": "https://www.codecademy.com/courses/learn-python-3/lessons/using-dictionaries/exercises/get-all-keys",
+          "observedCheckpoints": 4,
+          "authoringBrief": "Iterate keys and contrast a dynamic view with a list snapshot.",
+          "status": "planned-original-content"
+        },
+        {
+          "position": 7,
+          "concept": "Value views",
+          "sourceUrl": "https://www.codecademy.com/courses/learn-python-3/lessons/using-dictionaries/exercises/get-all-values",
+          "observedCheckpoints": 3,
+          "authoringBrief": "Aggregate numeric mapping values.",
+          "status": "planned-original-content"
+        },
+        {
+          "position": 8,
+          "concept": "Item views",
+          "sourceUrl": "https://www.codecademy.com/courses/learn-python-3/lessons/using-dictionaries/exercises/get-all-items",
+          "observedCheckpoints": 1,
+          "authoringBrief": "Unpack key-value pairs during iteration.",
+          "status": "planned-original-content"
+        },
+        {
+          "position": 9,
+          "concept": "Dictionary use review",
+          "sourceUrl": "https://www.codecademy.com/courses/learn-python-3/lessons/using-dictionaries/exercises/review-ii",
+          "observedCheckpoints": 6,
+          "authoringBrief": "Move selected entries between collections and print a compact summary.",
+          "status": "planned-original-content"
+        }
+      ]
+    },
+    {
+      "chapter": 10,
+      "slug": "learn-python-files",
+      "title": "Text, CSV, and JSON files",
+      "quiz": {
+        "url": "https://www.codecademy.com/courses/learn-python-3/quizzes/python-files",
+        "questions": 7,
+        "inspection": "First question, answer controls, and question count inspected"
+      },
+      "exercises": [
+        {
+          "position": 1,
+          "concept": "Reading complete text",
+          "sourceUrl": "https://www.codecademy.com/courses/learn-python-3/lessons/learn-python-files/exercises/reading-a-file",
+          "observedCheckpoints": 3,
+          "authoringBrief": "Read a bundled station notice using a context manager.",
+          "status": "planned-original-content"
+        },
+        {
+          "position": 2,
+          "concept": "Iterating lines",
+          "sourceUrl": "https://www.codecademy.com/courses/learn-python-3/lessons/learn-python-files/exercises/iterating-through-lines",
+          "observedCheckpoints": 2,
+          "authoringBrief": "Process each line of a small log.",
+          "status": "planned-original-content"
+        },
+        {
+          "position": 3,
+          "concept": "Reading one line",
+          "sourceUrl": "https://www.codecademy.com/courses/learn-python-3/lessons/learn-python-files/exercises/reading-a-line",
+          "observedCheckpoints": 3,
+          "authoringBrief": "Read successive lines and recognize end-of-file.",
+          "status": "planned-original-content"
+        },
+        {
+          "position": 4,
+          "concept": "Writing text",
+          "sourceUrl": "https://www.codecademy.com/courses/learn-python-3/lessons/learn-python-files/exercises/writing-a-file",
+          "observedCheckpoints": 2,
+          "authoringBrief": "Create a new report and inspect the generated file.",
+          "status": "planned-original-content"
+        },
+        {
+          "position": 5,
+          "concept": "Appending text",
+          "sourceUrl": "https://www.codecademy.com/courses/learn-python-3/lessons/learn-python-files/exercises/appending-to-a-file",
+          "observedCheckpoints": 2,
+          "authoringBrief": "Append a log entry and preserve previous contents.",
+          "status": "planned-original-content"
+        },
+        {
+          "position": 6,
+          "concept": "Context managers",
+          "sourceUrl": "https://www.codecademy.com/courses/learn-python-3/lessons/learn-python-files/exercises/using-with",
+          "observedCheckpoints": 1,
+          "authoringBrief": "Refactor manual file handling into a with block.",
+          "status": "planned-original-content"
+        },
+        {
+          "position": 7,
+          "concept": "CSV as text",
+          "sourceUrl": "https://www.codecademy.com/courses/learn-python-3/lessons/learn-python-files/exercises/what-is-a-csv",
+          "observedCheckpoints": 2,
+          "authoringBrief": "Inspect a small structured text fixture before parsing it.",
+          "status": "planned-original-content"
+        },
+        {
+          "position": 8,
+          "concept": "Reading CSV records",
+          "sourceUrl": "https://www.codecademy.com/courses/learn-python-3/lessons/learn-python-files/exercises/reading-a-csv",
+          "observedCheckpoints": 4,
+          "authoringBrief": "Use DictReader and access fields by header name.",
+          "status": "planned-original-content"
+        },
+        {
+          "position": 9,
+          "concept": "Alternative CSV delimiters",
+          "sourceUrl": "https://www.codecademy.com/courses/learn-python-3/lessons/learn-python-files/exercises/reading-different-csvs",
+          "observedCheckpoints": 4,
+          "authoringBrief": "Parse a semicolon-separated file without splitting quoted fields manually.",
+          "status": "planned-original-content"
+        },
+        {
+          "position": 10,
+          "concept": "Writing CSV records",
+          "sourceUrl": "https://www.codecademy.com/courses/learn-python-3/lessons/learn-python-files/exercises/writing-a-csv-file",
+          "observedCheckpoints": 5,
+          "authoringBrief": "Write a header and a sequence of records with DictWriter.",
+          "status": "planned-original-content"
+        },
+        {
+          "position": 11,
+          "concept": "Loading JSON",
+          "sourceUrl": "https://www.codecademy.com/courses/learn-python-3/lessons/learn-python-files/exercises/reading-a-json-file",
+          "observedCheckpoints": 4,
+          "authoringBrief": "Load a nested configuration and access one setting.",
+          "status": "planned-original-content"
+        },
+        {
+          "position": 12,
+          "concept": "Saving JSON",
+          "sourceUrl": "https://www.codecademy.com/courses/learn-python-3/lessons/learn-python-files/exercises/writing-a-json-file",
+          "observedCheckpoints": 3,
+          "authoringBrief": "Serialize a Python data structure and inspect the generated file.",
+          "status": "planned-original-content"
+        },
+        {
+          "position": 13,
+          "concept": "File handling review",
+          "sourceUrl": "https://www.codecademy.com/courses/learn-python-3/lessons/learn-python-files/exercises/review",
+          "observedCheckpoints": 0,
+          "authoringBrief": "Summarize modes, context managers, and structured file formats.",
+          "status": "planned-original-content"
+        }
+      ]
+    },
+    {
+      "chapter": 11,
+      "slug": "data-types",
+      "title": "Classes and objects",
+      "quiz": {
+        "url": "https://www.codecademy.com/courses/learn-python-3/quizzes/python-classes",
+        "questions": 7,
+        "inspection": "First question, answer controls, and question count inspected"
+      },
+      "exercises": [
+        {
+          "position": 1,
+          "concept": "Inspecting types",
+          "sourceUrl": "https://www.codecademy.com/courses/learn-python-3/lessons/data-types/exercises/types",
+          "observedCheckpoints": 5,
+          "authoringBrief": "Compare the types of several built-in values.",
+          "status": "planned-original-content"
+        },
+        {
+          "position": 2,
+          "concept": "Declaring a class",
+          "sourceUrl": "https://www.codecademy.com/courses/learn-python-3/lessons/data-types/exercises/class",
+          "observedCheckpoints": 1,
+          "authoringBrief": "Declare a minimal class for a weather sensor.",
+          "status": "planned-original-content"
+        },
+        {
+          "position": 3,
+          "concept": "Creating an instance",
+          "sourceUrl": "https://www.codecademy.com/courses/learn-python-3/lessons/data-types/exercises/instantiation",
+          "observedCheckpoints": 1,
+          "authoringBrief": "Instantiate the class and store the resulting object.",
+          "status": "planned-original-content"
+        },
+        {
+          "position": 4,
+          "concept": "Object-oriented organization",
+          "sourceUrl": "https://www.codecademy.com/courses/learn-python-3/lessons/data-types/exercises/object-oriented-programming",
+          "observedCheckpoints": 2,
+          "authoringBrief": "Identify the class and type of an instance.",
+          "status": "planned-original-content"
+        },
+        {
+          "position": 5,
+          "concept": "Class attributes",
+          "sourceUrl": "https://www.codecademy.com/courses/learn-python-3/lessons/data-types/exercises/class-variables",
+          "observedCheckpoints": 1,
+          "authoringBrief": "Define shared metadata and distinguish it from per-instance state.",
+          "status": "planned-original-content"
+        },
+        {
+          "position": 6,
+          "concept": "Instance methods",
+          "sourceUrl": "https://www.codecademy.com/courses/learn-python-3/lessons/data-types/exercises/methods",
+          "observedCheckpoints": 2,
+          "authoringBrief": "Add behavior to a class using self.",
+          "status": "planned-original-content"
+        },
+        {
+          "position": 7,
+          "concept": "Method arguments",
+          "sourceUrl": "https://www.codecademy.com/courses/learn-python-3/lessons/data-types/exercises/methods-with-arguments",
+          "observedCheckpoints": 4,
+          "authoringBrief": "Define a method that computes a result from explicit inputs.",
+          "status": "planned-original-content"
+        },
+        {
+          "position": 8,
+          "concept": "Initialization",
+          "sourceUrl": "https://www.codecademy.com/courses/learn-python-3/lessons/data-types/exercises/constructors",
+          "observedCheckpoints": 2,
+          "authoringBrief": "Initialize a new object using __init__.",
+          "status": "planned-original-content"
+        },
+        {
+          "position": 9,
+          "concept": "Instance attributes",
+          "sourceUrl": "https://www.codecademy.com/courses/learn-python-3/lessons/data-types/exercises/instance-variables",
+          "observedCheckpoints": 2,
+          "authoringBrief": "Give two instances distinct readings.",
+          "status": "planned-original-content"
+        },
+        {
+          "position": 10,
+          "concept": "Attribute inspection",
+          "sourceUrl": "https://www.codecademy.com/courses/learn-python-3/lessons/data-types/exercises/attribute-functions",
+          "observedCheckpoints": 3,
+          "authoringBrief": "Use hasattr and getattr safely on varied objects.",
+          "status": "planned-original-content"
+        },
+        {
+          "position": 11,
+          "concept": "Working with self",
+          "sourceUrl": "https://www.codecademy.com/courses/learn-python-3/lessons/data-types/exercises/self",
+          "observedCheckpoints": 4,
+          "authoringBrief": "Store state in the initializer and use it in later method calls.",
+          "status": "planned-original-content"
+        },
+        {
+          "position": 12,
+          "concept": "Object introspection",
+          "sourceUrl": "https://www.codecademy.com/courses/learn-python-3/lessons/data-types/exercises/everything-is-an-object",
+          "observedCheckpoints": 3,
+          "authoringBrief": "Inspect attributes with dir and explain that functions are objects too.",
+          "status": "planned-original-content"
+        },
+        {
+          "position": 13,
+          "concept": "Readable representations",
+          "sourceUrl": "https://www.codecademy.com/courses/learn-python-3/lessons/data-types/exercises/string-representation",
+          "observedCheckpoints": 2,
+          "authoringBrief": "Implement __repr__ for a useful diagnostic display.",
+          "status": "planned-original-content"
+        },
+        {
+          "position": 14,
+          "concept": "Class review",
+          "sourceUrl": "https://www.codecademy.com/courses/learn-python-3/lessons/data-types/exercises/review",
+          "observedCheckpoints": 8,
+          "authoringBrief": "Model sensors and their readings with two cooperating classes.",
+          "status": "planned-original-content"
+        }
+      ]
+    }
+  ],
+  "articles": [
+    {
+      "chapter": 1,
+      "concept": "Interactive input",
+      "sourceUrl": "https://www.codecademy.com/courses/learn-python-3/articles/python3-user-input",
+      "challengeCount": 0,
+      "inspection": "Article structure and section headings inspected; embedded assessment execution not verified"
+    },
+    {
+      "chapter": 2,
+      "concept": "Pattern-matching basics",
+      "sourceUrl": "https://www.codecademy.com/courses/learn-python-3/articles/match-statements-in-python",
+      "challengeCount": 0,
+      "inspection": "Article structure and section headings inspected; embedded assessment execution not verified"
+    },
+    {
+      "chapter": 3,
+      "concept": "Tuples and immutable sequences",
+      "sourceUrl": "https://www.codecademy.com/courses/learn-python-3/articles/tuples-in-python",
+      "challengeCount": 0,
+      "inspection": "Article structure and section headings inspected; embedded assessment execution not verified"
+    },
+    {
+      "chapter": 3,
+      "concept": "Pairing iterables with zip",
+      "sourceUrl": "https://www.codecademy.com/courses/learn-python-3/articles/zip-for-lists",
+      "challengeCount": 0,
+      "inspection": "Article structure and section headings inspected; embedded assessment execution not verified"
+    },
+    {
+      "chapter": 5,
+      "concept": "Small anonymous functions",
+      "sourceUrl": "https://www.codecademy.com/courses/learn-python-3/articles/lambda-functions-in-python",
+      "challengeCount": 0,
+      "inspection": "Article structure and section headings inspected; embedded assessment execution not verified"
+    },
+    {
+      "chapter": 5,
+      "concept": "Transforming iterables with map",
+      "sourceUrl": "https://www.codecademy.com/courses/learn-python-3/articles/map-functions",
+      "challengeCount": 0,
+      "inspection": "Article structure and section headings inspected; embedded assessment execution not verified"
+    },
+    {
+      "chapter": 6,
+      "concept": "Decision practice",
+      "sourceUrl": "https://www.codecademy.com/courses/learn-python-3/articles/python-code-challenges-control-flow",
+      "challengeCount": 5,
+      "inspection": "Article structure and section headings inspected; embedded assessment execution not verified"
+    },
+    {
+      "chapter": 6,
+      "concept": "Compound decision practice",
+      "sourceUrl": "https://www.codecademy.com/courses/learn-python-3/articles/advanced-python-code-challenges-control-flow",
+      "challengeCount": 5,
+      "inspection": "Article structure and section headings inspected; embedded assessment execution not verified"
+    },
+    {
+      "chapter": 6,
+      "concept": "List transformation practice",
+      "sourceUrl": "https://www.codecademy.com/courses/learn-python-3/articles/python-code-challenges-lists",
+      "challengeCount": 5,
+      "inspection": "Article structure and section headings inspected; embedded assessment execution not verified"
+    },
+    {
+      "chapter": 6,
+      "concept": "Iteration practice",
+      "sourceUrl": "https://www.codecademy.com/courses/learn-python-3/articles/python-code-challenges-loops",
+      "challengeCount": 5,
+      "inspection": "Article structure and section headings inspected; embedded assessment execution not verified"
+    },
+    {
+      "chapter": 6,
+      "concept": "Loop search and aggregation",
+      "sourceUrl": "https://www.codecademy.com/courses/learn-python-3/articles/advanced-python-code-challenges-loops",
+      "challengeCount": 5,
+      "inspection": "Article structure and section headings inspected; embedded assessment execution not verified"
+    },
+    {
+      "chapter": 6,
+      "concept": "Numeric function practice",
+      "sourceUrl": "https://www.codecademy.com/courses/learn-python-3/articles/python-code-challenges-functions",
+      "challengeCount": 5,
+      "inspection": "Article structure and section headings inspected; embedded assessment execution not verified"
+    },
+    {
+      "chapter": 6,
+      "concept": "Function composition practice",
+      "sourceUrl": "https://www.codecademy.com/courses/learn-python-3/articles/advanced-python-code-challenges-functions",
+      "challengeCount": 5,
+      "inspection": "Article structure and section headings inspected; embedded assessment execution not verified"
+    },
+    {
+      "chapter": 8,
+      "concept": "Packages and isolated environments",
+      "sourceUrl": "https://www.codecademy.com/courses/learn-python-3/articles/learn-python-pipenv",
+      "challengeCount": 0,
+      "inspection": "Article structure and section headings inspected; embedded assessment execution not verified"
+    },
+    {
+      "chapter": 12,
+      "concept": "String analysis practice",
+      "sourceUrl": "https://www.codecademy.com/courses/learn-python-3/articles/python-code-challenges-strings",
+      "challengeCount": 5,
+      "inspection": "Article structure and section headings inspected; embedded assessment execution not verified"
+    },
+    {
+      "chapter": 12,
+      "concept": "String transformation practice",
+      "sourceUrl": "https://www.codecademy.com/courses/learn-python-3/articles/advanced-python-code-challenges-strings",
+      "challengeCount": 5,
+      "inspection": "Article structure and section headings inspected; embedded assessment execution not verified"
+    },
+    {
+      "chapter": 12,
+      "concept": "Mapping aggregation practice",
+      "sourceUrl": "https://www.codecademy.com/courses/learn-python-3/articles/python-code-challenges-dictionaries",
+      "challengeCount": 5,
+      "inspection": "Article structure and section headings inspected; embedded assessment execution not verified"
+    },
+    {
+      "chapter": 12,
+      "concept": "Mapping construction practice",
+      "sourceUrl": "https://www.codecademy.com/courses/learn-python-3/articles/advanced-python-code-challenges-dictionaries",
+      "challengeCount": 4,
+      "inspection": "Article structure and section headings inspected; embedded assessment execution not verified"
+    },
+    {
+      "chapter": 12,
+      "concept": "Object modeling practice",
+      "sourceUrl": "https://www.codecademy.com/courses/learn-python-3/articles/python-code-challenges-classes",
+      "challengeCount": 5,
+      "inspection": "Article structure and section headings inspected; embedded assessment execution not verified"
+    },
+    {
+      "chapter": 13,
+      "concept": "Continuing after the course",
+      "sourceUrl": "https://www.codecademy.com/courses/learn-python-3/articles/learn-python-3-next-steps",
+      "challengeCount": 0,
+      "inspection": "Article structure and section headings inspected; embedded assessment execution not verified"
+    }
+  ]
+}

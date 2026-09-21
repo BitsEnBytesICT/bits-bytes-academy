@@ -1,0 +1,43 @@
+{
+  "id": "data-types-08",
+  "chapter": 11,
+  "group": "data-types",
+  "title": {
+    "en": "Initialization",
+    "nl": "Initialiseren met __init__"
+  },
+  "kind": "coding",
+  "optional": false,
+  "explanation": {
+    "en": "__init__ initializes a new instance. Python calls it after creating the object and passes the construction arguments along with self. Store lasting state in attributes such as self.name.",
+    "nl": "__init__ initialiseert een nieuwe instance. Python roept de method na het maken van het object aan en geeft de arguments samen met self door. Bewaar blijvende toestand in attributes zoals self.name."
+  },
+  "example": "",
+  "files": {
+    "main.py": "# Write your code below.\n"
+  },
+  "solution": {
+    "main.py": "class Sensor:\n    def __init__(self, name):\n        self.name = name\n\neast = Sensor(\"East\")\nprint(east.name)\n"
+  },
+  "checkpoints": [
+    {
+      "id": "data-types-08-step-1",
+      "task": {
+        "en": "Define Sensor.__init__(self, name) to store self.name. Create east as Sensor(\"East\").",
+        "nl": "Definieer Sensor.__init__(self, name) die self.name opslaat. Maak east als Sensor(\"East\")."
+      },
+      "check": "east.name == 'East' and Sensor('West').name == 'West'",
+      "hint": {
+        "en": "Start with class Sensor:. Then compare the values with the task.",
+        "nl": "Begin met class Sensor:. Vergelijk de waarden daarna met de opdracht."
+      }
+    }
+  ],
+  "solutionNote": {
+    "en": "__init__ initializes a new instance. Python calls it after creating the object and passes the construction arguments along with self. Store lasting state in attributes such as self.name.\n\nTrace the solution one line at a time. Try a different input to see which parts change.",
+    "nl": "__init__ initialiseert een nieuwe instance. Python roept de method na het maken van het object aan en geeft de arguments samen met self door. Bewaar blijvende toestand in attributes zoals self.name.\n\nVolg de oplossing regel voor regel. Probeer een andere invoer en bekijk welke onderdelen veranderen."
+  },
+  "sourcePosition": 8,
+  "sourceUrl": "https://www.codecademy.com/courses/learn-python-3/lessons/data-types/exercises/constructors",
+  "estimatedMinutes": 6
+}

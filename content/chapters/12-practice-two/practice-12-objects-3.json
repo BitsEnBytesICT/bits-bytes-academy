@@ -1,0 +1,41 @@
+{
+  "id": "practice-12-objects-3",
+  "chapter": 12,
+  "group": "objects",
+  "title": {
+    "en": "Configurable alarm",
+    "nl": "Instelbaar alarm"
+  },
+  "kind": "challenge",
+  "optional": true,
+  "explanation": {
+    "en": "Return a Sensor instance with name and threshold attributes. Its is_high(value) method returns True only above that threshold.",
+    "nl": "Geef een Sensor-instance terug met name en threshold. De is_high(value)-method geeft alleen True boven die threshold."
+  },
+  "example": "",
+  "files": {
+    "main.py": "def make_sensor(name, threshold):\n    # Implement the function.\n    pass\n\nprint(make_sensor(\"East\", 20).is_high(23))\n"
+  },
+  "solution": {
+    "main.py": "def make_sensor(name, threshold):\n    class Sensor:\n        def __init__(self, name, threshold):\n            self.name = name\n            self.threshold = threshold\n        def is_high(self, value):\n            return value > self.threshold\n    return Sensor(name, threshold)\n\nprint(make_sensor(\"East\", 20).is_high(23))\n"
+  },
+  "checkpoints": [
+    {
+      "id": "practice-12-objects-3-step-1",
+      "task": {
+        "en": "Return a Sensor instance with name and threshold attributes. Its is_high(value) method returns True only above that threshold.",
+        "nl": "Geef een Sensor-instance terug met name en threshold. De is_high(value)-method geeft alleen True boven die threshold."
+      },
+      "check": "make_sensor('A',10).is_high(11) is True and make_sensor('A',10).is_high(10) is False and make_sensor('B',5).name == 'B'",
+      "hint": {
+        "en": "Work through a small input by hand first. Separate the condition, transformation, and return value.",
+        "nl": "Werk eerst zelf een kleine invoer uit. Bekijk de voorwaarde, de bewerking en de return value afzonderlijk."
+      }
+    }
+  ],
+  "solutionNote": {
+    "en": "This solution separates the calculation from its input. Test the function with ordinary values and edge cases such as empty collections or boundary values.",
+    "nl": "Deze oplossing scheidt de berekening van de invoer. Test de function met gewone waarden en grensgevallen, zoals lege verzamelingen of grenswaarden."
+  },
+  "estimatedMinutes": 10
+}

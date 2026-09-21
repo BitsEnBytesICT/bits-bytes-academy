@@ -1,0 +1,43 @@
+{
+  "id": "python-hello-world-14",
+  "chapter": 1,
+  "group": "python-hello-world",
+  "title": {
+    "en": "Multiline text",
+    "nl": "Tekst op meerdere regels"
+  },
+  "kind": "coding",
+  "optional": false,
+  "explanation": {
+    "en": "Triple quotes create a string that can span several lines. Newlines and indentation inside the quoted text remain part of the string. You can also insert a newline with \\n.",
+    "nl": "Met drie aanhalingstekens maak je een string die meerdere regels kan beslaan. Nieuwe regels en inspringing binnen de tekst blijven onderdeel van de string. Met \\n kun je ook een nieuwe regel invoegen."
+  },
+  "example": "",
+  "files": {
+    "main.py": "# Write your code below.\n"
+  },
+  "solution": {
+    "main.py": "bulletin = \"\"\"Welcome aboard\nNext stop: Delft\"\"\"\nprint(bulletin)\n"
+  },
+  "checkpoints": [
+    {
+      "id": "python-hello-world-14-step-1",
+      "task": {
+        "en": "Create bulletin with two lines: Welcome aboard and Next stop: Delft. Print it.",
+        "nl": "Maak bulletin met twee regels: Welcome aboard en Next stop: Delft. Druk de string af."
+      },
+      "check": "bulletin == 'Welcome aboard\\nNext stop: Delft' and _stdout.strip() == bulletin",
+      "hint": {
+        "en": "Start with bulletin = \"\"\"Welcome aboard. Then compare the values with the task.",
+        "nl": "Begin met bulletin = \"\"\"Welcome aboard. Vergelijk de waarden daarna met de opdracht."
+      }
+    }
+  ],
+  "solutionNote": {
+    "en": "Triple quotes create a string that can span several lines. Newlines and indentation inside the quoted text remain part of the string. You can also insert a newline with \\n.\n\nTrace the solution one line at a time. Try a different input to see which parts change.",
+    "nl": "Met drie aanhalingstekens maak je een string die meerdere regels kan beslaan. Nieuwe regels en inspringing binnen de tekst blijven onderdeel van de string. Met \\n kun je ook een nieuwe regel invoegen.\n\nVolg de oplossing regel voor regel. Probeer een andere invoer en bekijk welke onderdelen veranderen."
+  },
+  "sourcePosition": 14,
+  "sourceUrl": "https://www.codecademy.com/courses/learn-python-3/lessons/python-hello-world/exercises/multiline-strings",
+  "estimatedMinutes": 6
+}

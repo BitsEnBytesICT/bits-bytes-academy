@@ -1,0 +1,41 @@
+{
+  "id": "practice-6-loops-4",
+  "chapter": 6,
+  "group": "loops",
+  "title": {
+    "en": "Alternate samples",
+    "nl": "Afwisselende samples"
+  },
+  "kind": "challenge",
+  "optional": true,
+  "explanation": {
+    "en": "Return values at indexes 0, 2, 4, and so on. Use a loop or a slice.",
+    "nl": "Geef de waarden op indexes 0, 2, 4 enzovoort terug. Gebruik een loop of slice."
+  },
+  "example": "",
+  "files": {
+    "main.py": "def alternate(values):\n    # Implement the function.\n    pass\n\nprint(alternate([5, 6, 7, 8, 9]))\n"
+  },
+  "solution": {
+    "main.py": "def alternate(values):\n    result = []\n    for index in range(0, len(values), 2):\n        result.append(values[index])\n    return result\n\nprint(alternate([5, 6, 7, 8, 9]))\n"
+  },
+  "checkpoints": [
+    {
+      "id": "practice-6-loops-4-step-1",
+      "task": {
+        "en": "Return values at indexes 0, 2, 4, and so on. Use a loop or a slice.",
+        "nl": "Geef de waarden op indexes 0, 2, 4 enzovoort terug. Gebruik een loop of slice."
+      },
+      "check": "alternate([5,6,7,8,9]) == [5,7,9] and alternate([]) == []",
+      "hint": {
+        "en": "Work through a small input by hand first. Separate the condition, transformation, and return value.",
+        "nl": "Werk eerst zelf een kleine invoer uit. Bekijk de voorwaarde, de bewerking en de return value afzonderlijk."
+      }
+    }
+  ],
+  "solutionNote": {
+    "en": "This solution separates the calculation from its input. Test the function with ordinary values and edge cases such as empty collections or boundary values.",
+    "nl": "Deze oplossing scheidt de berekening van de invoer. Test de function met gewone waarden en grensgevallen, zoals lege verzamelingen of grenswaarden."
+  },
+  "estimatedMinutes": 10
+}

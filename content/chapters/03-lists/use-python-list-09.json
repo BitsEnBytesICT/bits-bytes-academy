@@ -1,0 +1,43 @@
+{
+  "id": "use-python-list-09",
+  "chapter": 3,
+  "group": "use-python-list",
+  "title": {
+    "en": "Counting values",
+    "nl": "Waarden tellen"
+  },
+  "kind": "coding",
+  "optional": false,
+  "explanation": {
+    "en": "count(value) returns how many elements are equal to value. It leaves the list unchanged and returns zero if the value does not occur.",
+    "nl": "count(value) geeft het aantal elementen terug dat gelijk is aan value. De list blijft ongewijzigd. Als de waarde ontbreekt, is het resultaat nul."
+  },
+  "example": "",
+  "files": {
+    "main.py": "statuses = [\"ok\", \"wait\", \"ok\", \"ok\"]\n"
+  },
+  "solution": {
+    "main.py": "statuses = [\"ok\", \"wait\", \"ok\", \"ok\"]\nok_count = statuses.count(\"ok\")\nprint(ok_count)\n"
+  },
+  "checkpoints": [
+    {
+      "id": "use-python-list-09-step-1",
+      "task": {
+        "en": "Count occurrences of ok in statuses and save the number in ok_count.",
+        "nl": "Tel hoe vaak ok voorkomt in statuses en sla het aantal op in ok_count."
+      },
+      "check": "ok_count == 3",
+      "hint": {
+        "en": "Start with statuses = [\"ok\", \"wait\", \"ok\", \"ok\"]. Then compare the values with the task.",
+        "nl": "Begin met statuses = [\"ok\", \"wait\", \"ok\", \"ok\"]. Vergelijk de waarden daarna met de opdracht."
+      }
+    }
+  ],
+  "solutionNote": {
+    "en": "count(value) returns how many elements are equal to value. It leaves the list unchanged and returns zero if the value does not occur.\n\nTrace the solution one line at a time. Try a different input to see which parts change.",
+    "nl": "count(value) geeft het aantal elementen terug dat gelijk is aan value. De list blijft ongewijzigd. Als de waarde ontbreekt, is het resultaat nul.\n\nVolg de oplossing regel voor regel. Probeer een andere invoer en bekijk welke onderdelen veranderen."
+  },
+  "sourcePosition": 9,
+  "sourceUrl": "https://www.codecademy.com/courses/learn-python-3/lessons/use-python-list/exercises/count",
+  "estimatedMinutes": 6
+}

@@ -1,0 +1,43 @@
+{
+  "id": "introduction-to-strings-05",
+  "chapter": 7,
+  "group": "introduction-to-strings",
+  "title": {
+    "en": "Length and slices",
+    "nl": "Lengte en slice-grenzen"
+  },
+  "kind": "coding",
+  "optional": false,
+  "explanation": {
+    "en": "len(text) counts the characters in a string. Use the result to compute indexes or boundaries. The last valid positive index is len(text) - 1.",
+    "nl": "len(text) telt de tekens in een string. Gebruik de uitkomst voor indexes of slice-grenzen. De laatste geldige positieve index is len(text) - 1."
+  },
+  "example": "",
+  "files": {
+    "main.py": "word = \"notebook\"\n"
+  },
+  "solution": {
+    "main.py": "word = \"notebook\"\nsize = len(word)\nhalf = word[:size // 2]\nprint(size, half)\n"
+  },
+  "checkpoints": [
+    {
+      "id": "introduction-to-strings-05-step-1",
+      "task": {
+        "en": "Store the length of word in size and its first half in half. Use integer division for the midpoint.",
+        "nl": "Sla de lengte van word op in size en de eerste helft in half. Gebruik integer division voor het midden."
+      },
+      "check": "size == 8 and half == 'note'",
+      "hint": {
+        "en": "Start with word = \"notebook\". Then compare the values with the task.",
+        "nl": "Begin met word = \"notebook\". Vergelijk de waarden daarna met de opdracht."
+      }
+    }
+  ],
+  "solutionNote": {
+    "en": "len(text) counts the characters in a string. Use the result to compute indexes or boundaries. The last valid positive index is len(text) - 1.\n\nTrace the solution one line at a time. Try a different input to see which parts change.",
+    "nl": "len(text) telt de tekens in een string. Gebruik de uitkomst voor indexes of slice-grenzen. De laatste geldige positieve index is len(text) - 1.\n\nVolg de oplossing regel voor regel. Probeer een andere invoer en bekijk welke onderdelen veranderen."
+  },
+  "sourcePosition": 5,
+  "sourceUrl": "https://www.codecademy.com/courses/learn-python-3/lessons/introduction-to-strings/exercises/more-string-slicing",
+  "estimatedMinutes": 6
+}

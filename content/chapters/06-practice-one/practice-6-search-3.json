@@ -1,0 +1,41 @@
+{
+  "id": "practice-6-search-3",
+  "chapter": 6,
+  "group": "search",
+  "title": {
+    "en": "Running minimum",
+    "nl": "Lopend minimum"
+  },
+  "kind": "challenge",
+  "optional": true,
+  "explanation": {
+    "en": "Return the smallest number in a nonempty list by keeping a running candidate.",
+    "nl": "Geef het kleinste getal in een niet-lege list terug door een lopende kandidaat bij te houden."
+  },
+  "example": "",
+  "files": {
+    "main.py": "def smallest(values):\n    # Implement the function.\n    pass\n\nprint(smallest([4, 1, 8]))\n"
+  },
+  "solution": {
+    "main.py": "def smallest(values):\n    candidate = values[0]\n    for value in values:\n        if value < candidate:\n            candidate = value\n    return candidate\n\nprint(smallest([4, 1, 8]))\n"
+  },
+  "checkpoints": [
+    {
+      "id": "practice-6-search-3-step-1",
+      "task": {
+        "en": "Return the smallest number in a nonempty list by keeping a running candidate.",
+        "nl": "Geef het kleinste getal in een niet-lege list terug door een lopende kandidaat bij te houden."
+      },
+      "check": "smallest([4,1,8]) == 1 and smallest([-3,-8,-1]) == -8 and smallest([5]) == 5",
+      "hint": {
+        "en": "Work through a small input by hand first. Separate the condition, transformation, and return value.",
+        "nl": "Werk eerst zelf een kleine invoer uit. Bekijk de voorwaarde, de bewerking en de return value afzonderlijk."
+      }
+    }
+  ],
+  "solutionNote": {
+    "en": "This solution separates the calculation from its input. Test the function with ordinary values and edge cases such as empty collections or boundary values.",
+    "nl": "Deze oplossing scheidt de berekening van de invoer. Test de function met gewone waarden en grensgevallen, zoals lege verzamelingen of grenswaarden."
+  },
+  "estimatedMinutes": 10
+}

@@ -1,0 +1,43 @@
+{
+  "id": "dictionaries-introduction-01",
+  "chapter": 9,
+  "group": "dictionaries-introduction",
+  "title": {
+    "en": "Key-value mappings",
+    "nl": "Key-value mappings"
+  },
+  "kind": "coding",
+  "optional": false,
+  "explanation": {
+    "en": "A dictionary maps unique keys to values. Use a meaningful key instead of remembering a numeric position. Modern Python dictionaries preserve insertion order, but lookup is still based on keys.",
+    "nl": "Een dictionary koppelt unieke keys aan values. Gebruik een duidelijke key in plaats van een numerieke positie te onthouden. Moderne Python-dictionaries bewaren de invoegvolgorde, maar opvragen gebeurt via keys."
+  },
+  "example": "record = {\"name\": \"Sensor\", \"active\": True}",
+  "files": {
+    "main.py": "# Write your code below.\n"
+  },
+  "solution": {
+    "main.py": "settings = {\"mode\": \"eco\", \"level\": 3}\nprint(settings)\n"
+  },
+  "checkpoints": [
+    {
+      "id": "dictionaries-introduction-01-step-1",
+      "task": {
+        "en": "Create settings with mode mapped to eco and level mapped to 3.",
+        "nl": "Maak settings waarin mode naar eco verwijst en level naar 3."
+      },
+      "check": "settings == {'mode':'eco','level':3}",
+      "hint": {
+        "en": "Start with settings = {\"mode\": \"eco\", \"level\": 3}. Then compare the values with the task.",
+        "nl": "Begin met settings = {\"mode\": \"eco\", \"level\": 3}. Vergelijk de waarden daarna met de opdracht."
+      }
+    }
+  ],
+  "solutionNote": {
+    "en": "A dictionary maps unique keys to values. Use a meaningful key instead of remembering a numeric position. Modern Python dictionaries preserve insertion order, but lookup is still based on keys.\n\nTrace the solution one line at a time. Try a different input to see which parts change.",
+    "nl": "Een dictionary koppelt unieke keys aan values. Gebruik een duidelijke key in plaats van een numerieke positie te onthouden. Moderne Python-dictionaries bewaren de invoegvolgorde, maar opvragen gebeurt via keys.\n\nVolg de oplossing regel voor regel. Probeer een andere invoer en bekijk welke onderdelen veranderen."
+  },
+  "sourcePosition": 1,
+  "sourceUrl": "https://www.codecademy.com/courses/learn-python-3/lessons/dictionaries-introduction/exercises/intro-to-dictionary",
+  "estimatedMinutes": 6
+}

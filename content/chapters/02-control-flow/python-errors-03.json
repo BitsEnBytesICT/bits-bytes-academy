@@ -1,0 +1,43 @@
+{
+  "id": "python-errors-03",
+  "chapter": 2,
+  "group": "python-errors",
+  "title": {
+    "en": "Name errors",
+    "nl": "NameError herstellen"
+  },
+  "kind": "coding",
+  "optional": false,
+  "explanation": {
+    "en": "A NameError occurs when a name has no value in the current scope. Python names are case-sensitive. Compare the spelling at the assignment with the spelling where the name is used.",
+    "nl": "Een NameError ontstaat als een naam geen waarde heeft in de huidige scope. Python maakt onderscheid tussen hoofdletters en kleine letters. Vergelijk de naam bij de assignment met de naam op de plek waar je deze gebruikt."
+  },
+  "example": "",
+  "files": {
+    "main.py": "count = 16\nprint(Count)\n"
+  },
+  "solution": {
+    "main.py": "count = 16\nprint(count)\n"
+  },
+  "checkpoints": [
+    {
+      "id": "python-errors-03-step-1",
+      "task": {
+        "en": "Repair the inconsistent name so the program prints 16. Keep the variable named count.",
+        "nl": "Herstel de verschillende schrijfwijzen zodat het programma 16 afdrukt. Houd de variablenaam count."
+      },
+      "check": "count == 16 and _stdout.strip() == '16'",
+      "hint": {
+        "en": "Start with count = 16. Then compare the values with the task.",
+        "nl": "Begin met count = 16. Vergelijk de waarden daarna met de opdracht."
+      }
+    }
+  ],
+  "solutionNote": {
+    "en": "A NameError occurs when a name has no value in the current scope. Python names are case-sensitive. Compare the spelling at the assignment with the spelling where the name is used.\n\nTrace the solution one line at a time. Try a different input to see which parts change.",
+    "nl": "Een NameError ontstaat als een naam geen waarde heeft in de huidige scope. Python maakt onderscheid tussen hoofdletters en kleine letters. Vergelijk de naam bij de assignment met de naam op de plek waar je deze gebruikt.\n\nVolg de oplossing regel voor regel. Probeer een andere invoer en bekijk welke onderdelen veranderen."
+  },
+  "sourcePosition": 3,
+  "sourceUrl": "https://www.codecademy.com/courses/learn-python-3/lessons/python-errors/exercises/name-error",
+  "estimatedMinutes": 6
+}

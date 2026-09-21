@@ -1,0 +1,43 @@
+{
+  "id": "introduction-to-strings-10",
+  "chapter": 7,
+  "group": "introduction-to-strings",
+  "title": {
+    "en": "Character conditions",
+    "nl": "Voorwaarden per teken"
+  },
+  "kind": "coding",
+  "optional": false,
+  "explanation": {
+    "en": "Conditions inside a character loop can count or select matches. Initialize the count before the loop; increment it only when the condition is true.",
+    "nl": "Voorwaarden binnen een loop over tekens kunnen overeenkomsten tellen of selecteren. Initialiseer de teller vóór de loop en verhoog deze alleen als de voorwaarde waar is."
+  },
+  "example": "",
+  "files": {
+    "main.py": "word = \"banana\"\ncount = 0\n"
+  },
+  "solution": {
+    "main.py": "word = \"banana\"\ncount = 0\nfor character in word:\n    if character == \"a\":\n        count += 1\nprint(count)\n"
+  },
+  "checkpoints": [
+    {
+      "id": "introduction-to-strings-10-step-1",
+      "task": {
+        "en": "Count lowercase a characters in banana and save the result in count.",
+        "nl": "Tel de kleine a-tekens in banana en sla het resultaat op in count."
+      },
+      "check": "count == 3",
+      "hint": {
+        "en": "Start with word = \"banana\". Then compare the values with the task.",
+        "nl": "Begin met word = \"banana\". Vergelijk de waarden daarna met de opdracht."
+      }
+    }
+  ],
+  "solutionNote": {
+    "en": "Conditions inside a character loop can count or select matches. Initialize the count before the loop; increment it only when the condition is true.\n\nTrace the solution one line at a time. Try a different input to see which parts change.",
+    "nl": "Voorwaarden binnen een loop over tekens kunnen overeenkomsten tellen of selecteren. Initialiseer de teller vóór de loop en verhoog deze alleen als de voorwaarde waar is.\n\nVolg de oplossing regel voor regel. Probeer een andere invoer en bekijk welke onderdelen veranderen."
+  },
+  "sourcePosition": 10,
+  "sourceUrl": "https://www.codecademy.com/courses/learn-python-3/lessons/introduction-to-strings/exercises/strings-in-conditionals-i",
+  "estimatedMinutes": 6
+}

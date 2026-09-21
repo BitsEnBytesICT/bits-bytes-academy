@@ -1,0 +1,43 @@
+{
+  "id": "python-control-flow-03",
+  "chapter": 2,
+  "group": "python-control-flow",
+  "title": {
+    "en": "Equality comparisons",
+    "nl": "Gelijkheid vergelijken"
+  },
+  "kind": "coding",
+  "optional": false,
+  "explanation": {
+    "en": "== compares values for equality; != checks that they differ. These comparisons return Booleans. A single = assigns a value and cannot replace == in a condition.",
+    "nl": "== vergelijkt of waarden gelijk zijn; != controleert of ze verschillen. Deze vergelijkingen geven Booleans terug. Een enkele = wijst een waarde toe en vervangt == niet in een voorwaarde."
+  },
+  "example": "same = 4 == 4",
+  "files": {
+    "main.py": "expected = 17\nreceived = 12\n"
+  },
+  "solution": {
+    "main.py": "expected = 17\nreceived = 12\nmatches = expected == received\ndiffers = expected != received\nprint(matches, differs)\n"
+  },
+  "checkpoints": [
+    {
+      "id": "python-control-flow-03-step-1",
+      "task": {
+        "en": "With expected = 17 and received = 12, set matches using == and differs using !=.",
+        "nl": "Gebruik expected = 17 en received = 12. Bepaal matches met == en differs met !=."
+      },
+      "check": "matches is False and differs is True",
+      "hint": {
+        "en": "Start with expected = 17. Then compare the values with the task.",
+        "nl": "Begin met expected = 17. Vergelijk de waarden daarna met de opdracht."
+      }
+    }
+  ],
+  "solutionNote": {
+    "en": "== compares values for equality; != checks that they differ. These comparisons return Booleans. A single = assigns a value and cannot replace == in a condition.\n\nTrace the solution one line at a time. Try a different input to see which parts change.",
+    "nl": "== vergelijkt of waarden gelijk zijn; != controleert of ze verschillen. Deze vergelijkingen geven Booleans terug. Een enkele = wijst een waarde toe en vervangt == niet in een voorwaarde.\n\nVolg de oplossing regel voor regel. Probeer een andere invoer en bekijk welke onderdelen veranderen."
+  },
+  "sourcePosition": 3,
+  "sourceUrl": "https://www.codecademy.com/courses/learn-python-3/lessons/python-control-flow/exercises/relational-operators-i",
+  "estimatedMinutes": 6
+}

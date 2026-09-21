@@ -1,0 +1,43 @@
+{
+  "id": "python-control-flow-11",
+  "chapter": 2,
+  "group": "python-control-flow",
+  "title": {
+    "en": "Multiple branches",
+    "nl": "Meerdere branches"
+  },
+  "kind": "coding",
+  "optional": false,
+  "explanation": {
+    "en": "An if/elif/else chain tests conditions from top to bottom. The first true branch wins; later branches are skipped. Order narrow conditions before broader ones that would also match.",
+    "nl": "Een if/elif/else-reeks controleert voorwaarden van boven naar beneden. De eerste ware voorwaarde bepaalt welk blok wordt uitgevoerd. Zet specifieke voorwaarden vóór bredere voorwaarden die ook zouden passen."
+  },
+  "example": "",
+  "files": {
+    "main.py": "wind = 18\n"
+  },
+  "solution": {
+    "main.py": "wind = 18\nif wind < 10:\n    category = \"calm\"\nelif wind < 25:\n    category = \"breezy\"\nelse:\n    category = \"strong\"\nprint(category)\n"
+  },
+  "checkpoints": [
+    {
+      "id": "python-control-flow-11-step-1",
+      "task": {
+        "en": "With wind = 18, set category to calm below 10, breezy below 25, and strong otherwise. Print category.",
+        "nl": "Gebruik wind = 18. Geef category de waarde calm onder 10, breezy onder 25 en anders strong. Druk category af."
+      },
+      "check": "category == 'breezy' and 'elif' in _source",
+      "hint": {
+        "en": "Start with wind = 18. Then compare the values with the task.",
+        "nl": "Begin met wind = 18. Vergelijk de waarden daarna met de opdracht."
+      }
+    }
+  ],
+  "solutionNote": {
+    "en": "An if/elif/else chain tests conditions from top to bottom. The first true branch wins; later branches are skipped. Order narrow conditions before broader ones that would also match.\n\nTrace the solution one line at a time. Try a different input to see which parts change.",
+    "nl": "Een if/elif/else-reeks controleert voorwaarden van boven naar beneden. De eerste ware voorwaarde bepaalt welk blok wordt uitgevoerd. Zet specifieke voorwaarden vóór bredere voorwaarden die ook zouden passen.\n\nVolg de oplossing regel voor regel. Probeer een andere invoer en bekijk welke onderdelen veranderen."
+  },
+  "sourcePosition": 11,
+  "sourceUrl": "https://www.codecademy.com/courses/learn-python-3/lessons/python-control-flow/exercises/else-if-statements",
+  "estimatedMinutes": 6
+}

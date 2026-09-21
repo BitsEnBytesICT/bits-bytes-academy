@@ -1,0 +1,43 @@
+{
+  "id": "intro-to-functions-09",
+  "chapter": 5,
+  "group": "intro-to-functions",
+  "title": {
+    "en": "Built-in and custom functions",
+    "nl": "Built-ins combineren"
+  },
+  "kind": "coding",
+  "optional": false,
+  "explanation": {
+    "en": "Built-in functions such as len, min, max, and sum are already available. Your own functions can combine them into an operation that matches a particular task.",
+    "nl": "Built-in functions zoals len, min, max en sum zijn direct beschikbaar. Je eigen functions kunnen ze combineren tot een bewerking voor een specifieke taak."
+  },
+  "example": "",
+  "files": {
+    "main.py": "# Write your code below.\n"
+  },
+  "solution": {
+    "main.py": "def spread(values):\n    return max(values) - min(values)\n\nprint(spread([4, 9, 6]))\n"
+  },
+  "checkpoints": [
+    {
+      "id": "intro-to-functions-09-step-1",
+      "task": {
+        "en": "Define spread(values) to return the maximum minus the minimum. Assume values is nonempty.",
+        "nl": "Definieer spread(values) die het maximum min het minimum teruggeeft. Neem aan dat values niet leeg is."
+      },
+      "check": "spread([4,9,6]) == 5 and spread([-3,8,2]) == 11 and spread([7]) == 0",
+      "hint": {
+        "en": "Start with def spread(values):. Then compare the values with the task.",
+        "nl": "Begin met def spread(values):. Vergelijk de waarden daarna met de opdracht."
+      }
+    }
+  ],
+  "solutionNote": {
+    "en": "Built-in functions such as len, min, max, and sum are already available. Your own functions can combine them into an operation that matches a particular task.\n\nTrace the solution one line at a time. Try a different input to see which parts change.",
+    "nl": "Built-in functions zoals len, min, max en sum zijn direct beschikbaar. Je eigen functions kunnen ze combineren tot een bewerking voor een specifieke taak.\n\nVolg de oplossing regel voor regel. Probeer een andere invoer en bekijk welke onderdelen veranderen."
+  },
+  "sourcePosition": 9,
+  "sourceUrl": "https://www.codecademy.com/courses/learn-python-3/lessons/intro-to-functions/exercises/built-in-functions",
+  "estimatedMinutes": 6
+}

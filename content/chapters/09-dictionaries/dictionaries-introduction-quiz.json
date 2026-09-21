@@ -1,0 +1,234 @@
+{
+  "id": "dictionaries-introduction-quiz",
+  "chapter": 9,
+  "group": "dictionaries-introduction",
+  "title": {
+    "en": "Creating dictionaries · Quiz",
+    "nl": "Creating dictionaries · Quiz"
+  },
+  "kind": "quiz",
+  "optional": false,
+  "questions": [
+    {
+      "id": "dictionaries-introduction-q1",
+      "prompt": {
+        "en": "Which value can be a dictionary key?",
+        "nl": "Welke waarde kan een dictionary-key zijn?"
+      },
+      "code": "",
+      "answer": "a",
+      "choices": [
+        {
+          "id": "a",
+          "label": {
+            "en": "(2, 3)",
+            "nl": "(2, 3)"
+          },
+          "reason": {
+            "en": "A tuple of hashable integers is hashable; lists and dictionaries are mutable and unhashable.",
+            "nl": "Een tuple met hashable integers is hashable; lists en dictionaries zijn mutable en niet hashable."
+          }
+        },
+        {
+          "id": "b",
+          "label": {
+            "en": "[2, 3]",
+            "nl": "[2, 3]"
+          },
+          "reason": {
+            "en": "A tuple of hashable integers is hashable; lists and dictionaries are mutable and unhashable.",
+            "nl": "Een tuple met hashable integers is hashable; lists en dictionaries zijn mutable en niet hashable."
+          }
+        },
+        {
+          "id": "c",
+          "label": {
+            "en": "{\"a\": 2}",
+            "nl": "{\"a\": 2}"
+          },
+          "reason": {
+            "en": "A tuple of hashable integers is hashable; lists and dictionaries are mutable and unhashable.",
+            "nl": "Een tuple met hashable integers is hashable; lists en dictionaries zijn mutable en niet hashable."
+          }
+        }
+      ]
+    },
+    {
+      "id": "dictionaries-introduction-q2",
+      "prompt": {
+        "en": "What does this code print?",
+        "nl": "Wat drukt deze code af?"
+      },
+      "code": "d = {\"a\": 1}\nd[\"b\"] = 2\nprint(d[\"b\"])",
+      "answer": "a",
+      "choices": [
+        {
+          "id": "a",
+          "label": {
+            "en": "2",
+            "nl": "2"
+          },
+          "reason": {
+            "en": "Assigning a new key stores its associated value.",
+            "nl": "Een assignment aan een nieuwe key bewaart de bijbehorende value."
+          }
+        },
+        {
+          "id": "b",
+          "label": {
+            "en": "1",
+            "nl": "1"
+          },
+          "reason": {
+            "en": "Assigning a new key stores its associated value.",
+            "nl": "Een assignment aan een nieuwe key bewaart de bijbehorende value."
+          }
+        },
+        {
+          "id": "c",
+          "label": {
+            "en": "b",
+            "nl": "b"
+          },
+          "reason": {
+            "en": "Assigning a new key stores its associated value.",
+            "nl": "Een assignment aan een nieuwe key bewaart de bijbehorende value."
+          }
+        }
+      ]
+    },
+    {
+      "id": "dictionaries-introduction-q3",
+      "prompt": {
+        "en": "What does this code print?",
+        "nl": "Wat drukt deze code af?"
+      },
+      "code": "d = {\"a\": 1, \"a\": 4}\nprint(len(d))",
+      "answer": "a",
+      "choices": [
+        {
+          "id": "a",
+          "label": {
+            "en": "1",
+            "nl": "1"
+          },
+          "reason": {
+            "en": "Keys are unique, so the later value replaces the earlier one.",
+            "nl": "Keys zijn uniek; de latere value vervangt de eerdere."
+          }
+        },
+        {
+          "id": "b",
+          "label": {
+            "en": "2",
+            "nl": "2"
+          },
+          "reason": {
+            "en": "Keys are unique, so the later value replaces the earlier one.",
+            "nl": "Keys zijn uniek; de latere value vervangt de eerdere."
+          }
+        },
+        {
+          "id": "c",
+          "label": {
+            "en": "4",
+            "nl": "4"
+          },
+          "reason": {
+            "en": "Keys are unique, so the later value replaces the earlier one.",
+            "nl": "Keys zijn uniek; de latere value vervangt de eerdere."
+          }
+        }
+      ]
+    },
+    {
+      "id": "dictionaries-introduction-q4",
+      "prompt": {
+        "en": "What does this code print?",
+        "nl": "Wat drukt deze code af?"
+      },
+      "code": "print({n: n * 2 for n in [1, 3]})",
+      "answer": "a",
+      "choices": [
+        {
+          "id": "a",
+          "label": {
+            "en": "{1: 2, 3: 6}",
+            "nl": "{1: 2, 3: 6}"
+          },
+          "reason": {
+            "en": "Each input becomes a key and its double becomes the value.",
+            "nl": "Elke invoer wordt een key en het dubbele wordt de value."
+          }
+        },
+        {
+          "id": "b",
+          "label": {
+            "en": "{2: 1, 6: 3}",
+            "nl": "{2: 1, 6: 3}"
+          },
+          "reason": {
+            "en": "Each input becomes a key and its double becomes the value.",
+            "nl": "Elke invoer wordt een key en het dubbele wordt de value."
+          }
+        },
+        {
+          "id": "c",
+          "label": {
+            "en": "[2, 6]",
+            "nl": "[2, 6]"
+          },
+          "reason": {
+            "en": "Each input becomes a key and its double becomes the value.",
+            "nl": "Elke invoer wordt een key en het dubbele wordt de value."
+          }
+        }
+      ]
+    },
+    {
+      "id": "dictionaries-introduction-q5",
+      "prompt": {
+        "en": "How do you create an empty dictionary?",
+        "nl": "Hoe maak je een lege dictionary?"
+      },
+      "code": "",
+      "answer": "a",
+      "choices": [
+        {
+          "id": "a",
+          "label": {
+            "en": "{}",
+            "nl": "{}"
+          },
+          "reason": {
+            "en": "Empty braces denote an empty dictionary.",
+            "nl": "Lege accolades stellen een lege dictionary voor."
+          }
+        },
+        {
+          "id": "b",
+          "label": {
+            "en": "[]",
+            "nl": "[]"
+          },
+          "reason": {
+            "en": "Empty braces denote an empty dictionary.",
+            "nl": "Lege accolades stellen een lege dictionary voor."
+          }
+        },
+        {
+          "id": "c",
+          "label": {
+            "en": "()",
+            "nl": "()"
+          },
+          "reason": {
+            "en": "Empty braces denote an empty dictionary.",
+            "nl": "Lege accolades stellen een lege dictionary voor."
+          }
+        }
+      ]
+    }
+  ],
+  "estimatedMinutes": 5
+}

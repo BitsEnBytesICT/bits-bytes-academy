@@ -1,0 +1,43 @@
+{
+  "id": "string-methods-11",
+  "chapter": 7,
+  "group": "string-methods",
+  "title": {
+    "en": "Positional formatting",
+    "nl": "Positional formatting"
+  },
+  "kind": "coding",
+  "optional": false,
+  "explanation": {
+    "en": "format() inserts values into brace placeholders. Positional placeholders receive arguments in order. Formatting can convert numbers to text without a separate str() call.",
+    "nl": "format() vult waarden in op plaatsen tussen accolades. Positional placeholders krijgen arguments in volgorde. Formatting kan getallen naar tekst omzetten zonder een losse str()-aanroep."
+  },
+  "example": "message = \"{} items\".format(3)",
+  "files": {
+    "main.py": "# Write your code below.\n"
+  },
+  "solution": {
+    "main.py": "summary = \"{} sensors {}\".format(4, \"online\")\nprint(summary)\n"
+  },
+  "checkpoints": [
+    {
+      "id": "string-methods-11-step-1",
+      "task": {
+        "en": "Use format to make summary equal to 4 sensors online.",
+        "nl": "Gebruik format om summary de waarde 4 sensors online te geven."
+      },
+      "check": "summary == '4 sensors online' and '.format(' in _source",
+      "hint": {
+        "en": "Start with summary = \"{} sensors {}\".format(4, \"online\"). Then compare the values with the task.",
+        "nl": "Begin met summary = \"{} sensors {}\".format(4, \"online\"). Vergelijk de waarden daarna met de opdracht."
+      }
+    }
+  ],
+  "solutionNote": {
+    "en": "format() inserts values into brace placeholders. Positional placeholders receive arguments in order. Formatting can convert numbers to text without a separate str() call.\n\nTrace the solution one line at a time. Try a different input to see which parts change.",
+    "nl": "format() vult waarden in op plaatsen tussen accolades. Positional placeholders krijgen arguments in volgorde. Formatting kan getallen naar tekst omzetten zonder een losse str()-aanroep.\n\nVolg de oplossing regel voor regel. Probeer een andere invoer en bekijk welke onderdelen veranderen."
+  },
+  "sourcePosition": 11,
+  "sourceUrl": "https://www.codecademy.com/courses/learn-python-3/lessons/string-methods/exercises/format-i",
+  "estimatedMinutes": 6
+}

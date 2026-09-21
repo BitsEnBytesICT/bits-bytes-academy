@@ -1,0 +1,454 @@
+{
+  "id": "learn-python-loops-quiz",
+  "chapter": 4,
+  "group": "learn-python-loops",
+  "title": {
+    "en": "Loops and comprehensions · Quiz",
+    "nl": "Loops and comprehensions · Quiz"
+  },
+  "kind": "quiz",
+  "optional": false,
+  "questions": [
+    {
+      "id": "learn-python-loops-q1",
+      "prompt": {
+        "en": "What does this code print?",
+        "nl": "Wat drukt deze code af?"
+      },
+      "code": "for n in range(3):\n    print(n)",
+      "answer": "a",
+      "choices": [
+        {
+          "id": "a",
+          "label": {
+            "en": "0\n1\n2",
+            "nl": "0\n1\n2"
+          },
+          "reason": {
+            "en": "range(3) contains 0, 1, and 2.",
+            "nl": "range(3) bevat 0, 1 en 2."
+          }
+        },
+        {
+          "id": "b",
+          "label": {
+            "en": "1\n2\n3",
+            "nl": "1\n2\n3"
+          },
+          "reason": {
+            "en": "range(3) contains 0, 1, and 2.",
+            "nl": "range(3) bevat 0, 1 en 2."
+          }
+        },
+        {
+          "id": "c",
+          "label": {
+            "en": "0\n1\n2\n3",
+            "nl": "0\n1\n2\n3"
+          },
+          "reason": {
+            "en": "range(3) contains 0, 1, and 2.",
+            "nl": "range(3) bevat 0, 1 en 2."
+          }
+        }
+      ]
+    },
+    {
+      "id": "learn-python-loops-q2",
+      "prompt": {
+        "en": "Which statement ends the nearest loop?",
+        "nl": "Welke statement beëindigt de dichtstbijzijnde loop?"
+      },
+      "code": "",
+      "answer": "a",
+      "choices": [
+        {
+          "id": "a",
+          "label": {
+            "en": "break",
+            "nl": "break"
+          },
+          "reason": {
+            "en": "break exits the loop; continue skips an iteration and pass does nothing.",
+            "nl": "break verlaat de loop; continue slaat een herhaling over en pass doet niets."
+          }
+        },
+        {
+          "id": "b",
+          "label": {
+            "en": "continue",
+            "nl": "continue"
+          },
+          "reason": {
+            "en": "break exits the loop; continue skips an iteration and pass does nothing.",
+            "nl": "break verlaat de loop; continue slaat een herhaling over en pass doet niets."
+          }
+        },
+        {
+          "id": "c",
+          "label": {
+            "en": "pass",
+            "nl": "pass"
+          },
+          "reason": {
+            "en": "break exits the loop; continue skips an iteration and pass does nothing.",
+            "nl": "break verlaat de loop; continue slaat een herhaling over en pass doet niets."
+          }
+        }
+      ]
+    },
+    {
+      "id": "learn-python-loops-q3",
+      "prompt": {
+        "en": "What does this code print?",
+        "nl": "Wat drukt deze code af?"
+      },
+      "code": "for n in [1, 2, 3]:\n    if n == 2:\n        continue\n    print(n)",
+      "answer": "a",
+      "choices": [
+        {
+          "id": "a",
+          "label": {
+            "en": "1\n3",
+            "nl": "1\n3"
+          },
+          "reason": {
+            "en": "continue skips printing only when n equals 2.",
+            "nl": "continue slaat het afdrukken alleen over wanneer n gelijk is aan 2."
+          }
+        },
+        {
+          "id": "b",
+          "label": {
+            "en": "1\n2\n3",
+            "nl": "1\n2\n3"
+          },
+          "reason": {
+            "en": "continue skips printing only when n equals 2.",
+            "nl": "continue slaat het afdrukken alleen over wanneer n gelijk is aan 2."
+          }
+        },
+        {
+          "id": "c",
+          "label": {
+            "en": "1",
+            "nl": "1"
+          },
+          "reason": {
+            "en": "continue skips printing only when n equals 2.",
+            "nl": "continue slaat het afdrukken alleen over wanneer n gelijk is aan 2."
+          }
+        }
+      ]
+    },
+    {
+      "id": "learn-python-loops-q4",
+      "prompt": {
+        "en": "What does this code print?",
+        "nl": "Wat drukt deze code af?"
+      },
+      "code": "print([n + 1 for n in [2, 4]])",
+      "answer": "a",
+      "choices": [
+        {
+          "id": "a",
+          "label": {
+            "en": "[3, 5]",
+            "nl": "[3, 5]"
+          },
+          "reason": {
+            "en": "The expression adds 1 to each input element.",
+            "nl": "De expressie telt 1 op bij elk invoerelement."
+          }
+        },
+        {
+          "id": "b",
+          "label": {
+            "en": "[2, 4, 1]",
+            "nl": "[2, 4, 1]"
+          },
+          "reason": {
+            "en": "The expression adds 1 to each input element.",
+            "nl": "De expressie telt 1 op bij elk invoerelement."
+          }
+        },
+        {
+          "id": "c",
+          "label": {
+            "en": "[2, 4]",
+            "nl": "[2, 4]"
+          },
+          "reason": {
+            "en": "The expression adds 1 to each input element.",
+            "nl": "De expressie telt 1 op bij elk invoerelement."
+          }
+        }
+      ]
+    },
+    {
+      "id": "learn-python-loops-q5",
+      "prompt": {
+        "en": "What does this code print?",
+        "nl": "Wat drukt deze code af?"
+      },
+      "code": "print([n for n in [-1, 0, 2] if n > 0])",
+      "answer": "a",
+      "choices": [
+        {
+          "id": "a",
+          "label": {
+            "en": "[2]",
+            "nl": "[2]"
+          },
+          "reason": {
+            "en": "Only 2 satisfies the strict positive condition.",
+            "nl": "Alleen 2 voldoet aan de voorwaarde strikt groter dan nul."
+          }
+        },
+        {
+          "id": "b",
+          "label": {
+            "en": "[0, 2]",
+            "nl": "[0, 2]"
+          },
+          "reason": {
+            "en": "Only 2 satisfies the strict positive condition.",
+            "nl": "Alleen 2 voldoet aan de voorwaarde strikt groter dan nul."
+          }
+        },
+        {
+          "id": "c",
+          "label": {
+            "en": "[-1]",
+            "nl": "[-1]"
+          },
+          "reason": {
+            "en": "Only 2 satisfies the strict positive condition.",
+            "nl": "Alleen 2 voldoet aan de voorwaarde strikt groter dan nul."
+          }
+        }
+      ]
+    },
+    {
+      "id": "learn-python-loops-q6",
+      "prompt": {
+        "en": "What does this code print?",
+        "nl": "Wat drukt deze code af?"
+      },
+      "code": "x = 0\nwhile x < 3:\n    x += 1\nprint(x)",
+      "answer": "a",
+      "choices": [
+        {
+          "id": "a",
+          "label": {
+            "en": "3",
+            "nl": "3"
+          },
+          "reason": {
+            "en": "The loop stops after x becomes 3.",
+            "nl": "De loop stopt nadat x gelijk aan 3 is geworden."
+          }
+        },
+        {
+          "id": "b",
+          "label": {
+            "en": "2",
+            "nl": "2"
+          },
+          "reason": {
+            "en": "The loop stops after x becomes 3.",
+            "nl": "De loop stopt nadat x gelijk aan 3 is geworden."
+          }
+        },
+        {
+          "id": "c",
+          "label": {
+            "en": "0",
+            "nl": "0"
+          },
+          "reason": {
+            "en": "The loop stops after x becomes 3.",
+            "nl": "De loop stopt nadat x gelijk aan 3 is geworden."
+          }
+        }
+      ]
+    },
+    {
+      "id": "learn-python-loops-q7",
+      "prompt": {
+        "en": "What is missing from this loop?",
+        "nl": "Wat ontbreekt in deze loop?"
+      },
+      "code": "n = 0\nwhile n < 4:\n    print(n)",
+      "answer": "a",
+      "choices": [
+        {
+          "id": "a",
+          "label": {
+            "en": "A change that can make the condition false",
+            "nl": "Een wijziging die de voorwaarde onwaar kan maken"
+          },
+          "reason": {
+            "en": "n stays zero, so the condition never becomes false.",
+            "nl": "n blijft nul, waardoor de voorwaarde nooit onwaar wordt."
+          }
+        },
+        {
+          "id": "b",
+          "label": {
+            "en": "A second print",
+            "nl": "Een tweede print"
+          },
+          "reason": {
+            "en": "n stays zero, so the condition never becomes false.",
+            "nl": "n blijft nul, waardoor de voorwaarde nooit onwaar wordt."
+          }
+        },
+        {
+          "id": "c",
+          "label": {
+            "en": "A list",
+            "nl": "Een list"
+          },
+          "reason": {
+            "en": "n stays zero, so the condition never becomes false.",
+            "nl": "n blijft nul, waardoor de voorwaarde nooit onwaar wordt."
+          }
+        }
+      ]
+    },
+    {
+      "id": "learn-python-loops-q8",
+      "prompt": {
+        "en": "What does this code print?",
+        "nl": "Wat drukt deze code af?"
+      },
+      "code": "total = 0\nfor row in [[1, 2], [3]]:\n    for n in row:\n        total += n\nprint(total)",
+      "answer": "a",
+      "choices": [
+        {
+          "id": "a",
+          "label": {
+            "en": "6",
+            "nl": "6"
+          },
+          "reason": {
+            "en": "Each inner value contributes to the total: 1 + 2 + 3.",
+            "nl": "Elke binnenste waarde telt mee: 1 + 2 + 3."
+          }
+        },
+        {
+          "id": "b",
+          "label": {
+            "en": "3",
+            "nl": "3"
+          },
+          "reason": {
+            "en": "Each inner value contributes to the total: 1 + 2 + 3.",
+            "nl": "Elke binnenste waarde telt mee: 1 + 2 + 3."
+          }
+        },
+        {
+          "id": "c",
+          "label": {
+            "en": "2",
+            "nl": "2"
+          },
+          "reason": {
+            "en": "Each inner value contributes to the total: 1 + 2 + 3.",
+            "nl": "Elke binnenste waarde telt mee: 1 + 2 + 3."
+          }
+        }
+      ]
+    },
+    {
+      "id": "learn-python-loops-q9",
+      "prompt": {
+        "en": "What does this code print?",
+        "nl": "Wat drukt deze code af?"
+      },
+      "code": "for n in [4, 8, 12]:\n    if n > 5:\n        break\n    print(n)",
+      "answer": "a",
+      "choices": [
+        {
+          "id": "a",
+          "label": {
+            "en": "4",
+            "nl": "4"
+          },
+          "reason": {
+            "en": "The loop breaks at 8 before that value is printed.",
+            "nl": "De loop stopt bij 8 voordat die waarde wordt afgedrukt."
+          }
+        },
+        {
+          "id": "b",
+          "label": {
+            "en": "4\n8",
+            "nl": "4\n8"
+          },
+          "reason": {
+            "en": "The loop breaks at 8 before that value is printed.",
+            "nl": "De loop stopt bij 8 voordat die waarde wordt afgedrukt."
+          }
+        },
+        {
+          "id": "c",
+          "label": {
+            "en": "4\n8\n12",
+            "nl": "4\n8\n12"
+          },
+          "reason": {
+            "en": "The loop breaks at 8 before that value is printed.",
+            "nl": "De loop stopt bij 8 voordat die waarde wordt afgedrukt."
+          }
+        }
+      ]
+    },
+    {
+      "id": "learn-python-loops-q10",
+      "prompt": {
+        "en": "Where should a running total usually be initialized?",
+        "nl": "Waar initialiseer je meestal een lopend totaal?"
+      },
+      "code": "",
+      "answer": "a",
+      "choices": [
+        {
+          "id": "a",
+          "label": {
+            "en": "Before the loop",
+            "nl": "Vóór de loop"
+          },
+          "reason": {
+            "en": "Initializing once preserves the accumulated value between iterations.",
+            "nl": "Eenmalig initialiseren bewaart het opgebouwde totaal tussen herhalingen."
+          }
+        },
+        {
+          "id": "b",
+          "label": {
+            "en": "Inside every iteration",
+            "nl": "Binnen elke herhaling"
+          },
+          "reason": {
+            "en": "Initializing once preserves the accumulated value between iterations.",
+            "nl": "Eenmalig initialiseren bewaart het opgebouwde totaal tussen herhalingen."
+          }
+        },
+        {
+          "id": "c",
+          "label": {
+            "en": "After the loop",
+            "nl": "Na de loop"
+          },
+          "reason": {
+            "en": "Initializing once preserves the accumulated value between iterations.",
+            "nl": "Eenmalig initialiseren bewaart het opgebouwde totaal tussen herhalingen."
+          }
+        }
+      ]
+    }
+  ],
+  "estimatedMinutes": 10
+}

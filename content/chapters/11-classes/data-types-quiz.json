@@ -1,0 +1,322 @@
+{
+  "id": "data-types-quiz",
+  "chapter": 11,
+  "group": "data-types",
+  "title": {
+    "en": "Classes and objects · Quiz",
+    "nl": "Classes and objects · Quiz"
+  },
+  "kind": "quiz",
+  "optional": false,
+  "questions": [
+    {
+      "id": "data-types-q1",
+      "prompt": {
+        "en": "What does calling a class normally create?",
+        "nl": "Wat maak je normaal door een class aan te roepen?"
+      },
+      "code": "",
+      "answer": "a",
+      "choices": [
+        {
+          "id": "a",
+          "label": {
+            "en": "An instance",
+            "nl": "Een instance"
+          },
+          "reason": {
+            "en": "Calling the class constructs an instance of that type.",
+            "nl": "De class aanroepen maakt een instance van dat type."
+          }
+        },
+        {
+          "id": "b",
+          "label": {
+            "en": "An import",
+            "nl": "Een import"
+          },
+          "reason": {
+            "en": "Calling the class constructs an instance of that type.",
+            "nl": "De class aanroepen maakt een instance van dat type."
+          }
+        },
+        {
+          "id": "c",
+          "label": {
+            "en": "A source file",
+            "nl": "Een bronbestand"
+          },
+          "reason": {
+            "en": "Calling the class constructs an instance of that type.",
+            "nl": "De class aanroepen maakt een instance van dat type."
+          }
+        }
+      ]
+    },
+    {
+      "id": "data-types-q2",
+      "prompt": {
+        "en": "What does self refer to inside an instance method?",
+        "nl": "Waarnaar verwijst self binnen een instance method?"
+      },
+      "code": "",
+      "answer": "a",
+      "choices": [
+        {
+          "id": "a",
+          "label": {
+            "en": "The instance receiving the method call",
+            "nl": "De instance waarop de method wordt aangeroepen"
+          },
+          "reason": {
+            "en": "Python supplies the instance as the first argument of a bound instance method.",
+            "nl": "Python geeft de instance mee als eerste argument van een gebonden instance method."
+          }
+        },
+        {
+          "id": "b",
+          "label": {
+            "en": "Every object in the program",
+            "nl": "Alle objecten in het programma"
+          },
+          "reason": {
+            "en": "Python supplies the instance as the first argument of a bound instance method.",
+            "nl": "Python geeft de instance mee als eerste argument van een gebonden instance method."
+          }
+        },
+        {
+          "id": "c",
+          "label": {
+            "en": "Only the class name",
+            "nl": "Alleen de classnaam"
+          },
+          "reason": {
+            "en": "Python supplies the instance as the first argument of a bound instance method.",
+            "nl": "Python geeft de instance mee als eerste argument van een gebonden instance method."
+          }
+        }
+      ]
+    },
+    {
+      "id": "data-types-q3",
+      "prompt": {
+        "en": "What does this code print?",
+        "nl": "Wat drukt deze code af?"
+      },
+      "code": "class Box:\n    kind = \"storage\"\nprint(Box().kind)",
+      "answer": "a",
+      "choices": [
+        {
+          "id": "a",
+          "label": {
+            "en": "storage",
+            "nl": "storage"
+          },
+          "reason": {
+            "en": "The instance can read the class attribute kind.",
+            "nl": "De instance kan het class attribute kind lezen."
+          }
+        },
+        {
+          "id": "b",
+          "label": {
+            "en": "Box",
+            "nl": "Box"
+          },
+          "reason": {
+            "en": "The instance can read the class attribute kind.",
+            "nl": "De instance kan het class attribute kind lezen."
+          }
+        },
+        {
+          "id": "c",
+          "label": {
+            "en": "None",
+            "nl": "None"
+          },
+          "reason": {
+            "en": "The instance can read the class attribute kind.",
+            "nl": "De instance kan het class attribute kind lezen."
+          }
+        }
+      ]
+    },
+    {
+      "id": "data-types-q4",
+      "prompt": {
+        "en": "Which method initializes instance attributes during construction?",
+        "nl": "Welke method initialiseert instance attributes bij het maken van een object?"
+      },
+      "code": "",
+      "answer": "a",
+      "choices": [
+        {
+          "id": "a",
+          "label": {
+            "en": "__init__",
+            "nl": "__init__"
+          },
+          "reason": {
+            "en": "__init__ sets up a newly created instance.",
+            "nl": "__init__ richt een nieuwe instance in."
+          }
+        },
+        {
+          "id": "b",
+          "label": {
+            "en": "__repr__",
+            "nl": "__repr__"
+          },
+          "reason": {
+            "en": "__init__ sets up a newly created instance.",
+            "nl": "__init__ richt een nieuwe instance in."
+          }
+        },
+        {
+          "id": "c",
+          "label": {
+            "en": "__name__",
+            "nl": "__name__"
+          },
+          "reason": {
+            "en": "__init__ sets up a newly created instance.",
+            "nl": "__init__ richt een nieuwe instance in."
+          }
+        }
+      ]
+    },
+    {
+      "id": "data-types-q5",
+      "prompt": {
+        "en": "What does this code print?",
+        "nl": "Wat drukt deze code af?"
+      },
+      "code": "class Box:\n    pass\na = Box()\nb = Box()\na.size = 3\nb.size = 8\nprint(a.size)",
+      "answer": "a",
+      "choices": [
+        {
+          "id": "a",
+          "label": {
+            "en": "3",
+            "nl": "3"
+          },
+          "reason": {
+            "en": "Each instance has its own size attribute.",
+            "nl": "Elke instance heeft een eigen size-attribute."
+          }
+        },
+        {
+          "id": "b",
+          "label": {
+            "en": "8",
+            "nl": "8"
+          },
+          "reason": {
+            "en": "Each instance has its own size attribute.",
+            "nl": "Elke instance heeft een eigen size-attribute."
+          }
+        },
+        {
+          "id": "c",
+          "label": {
+            "en": "11",
+            "nl": "11"
+          },
+          "reason": {
+            "en": "Each instance has its own size attribute.",
+            "nl": "Elke instance heeft een eigen size-attribute."
+          }
+        }
+      ]
+    },
+    {
+      "id": "data-types-q6",
+      "prompt": {
+        "en": "What must __repr__ return?",
+        "nl": "Wat moet __repr__ teruggeven?"
+      },
+      "code": "",
+      "answer": "a",
+      "choices": [
+        {
+          "id": "a",
+          "label": {
+            "en": "A string",
+            "nl": "Een string"
+          },
+          "reason": {
+            "en": "The representation protocol expects a string.",
+            "nl": "Het representation-protocol verwacht een string."
+          }
+        },
+        {
+          "id": "b",
+          "label": {
+            "en": "A dictionary",
+            "nl": "Een dictionary"
+          },
+          "reason": {
+            "en": "The representation protocol expects a string.",
+            "nl": "Het representation-protocol verwacht een string."
+          }
+        },
+        {
+          "id": "c",
+          "label": {
+            "en": "Nothing",
+            "nl": "Niets"
+          },
+          "reason": {
+            "en": "The representation protocol expects a string.",
+            "nl": "Het representation-protocol verwacht een string."
+          }
+        }
+      ]
+    },
+    {
+      "id": "data-types-q7",
+      "prompt": {
+        "en": "What does this code print?",
+        "nl": "Wat drukt deze code af?"
+      },
+      "code": "class Box:\n    pass\nb = Box()\nprint(getattr(b, \"size\", 0))",
+      "answer": "a",
+      "choices": [
+        {
+          "id": "a",
+          "label": {
+            "en": "0",
+            "nl": "0"
+          },
+          "reason": {
+            "en": "The absent attribute causes getattr to return the supplied default 0.",
+            "nl": "Omdat het attribute ontbreekt, geeft getattr de default 0 terug."
+          }
+        },
+        {
+          "id": "b",
+          "label": {
+            "en": "None",
+            "nl": "None"
+          },
+          "reason": {
+            "en": "The absent attribute causes getattr to return the supplied default 0.",
+            "nl": "Omdat het attribute ontbreekt, geeft getattr de default 0 terug."
+          }
+        },
+        {
+          "id": "c",
+          "label": {
+            "en": "False",
+            "nl": "False"
+          },
+          "reason": {
+            "en": "The absent attribute causes getattr to return the supplied default 0.",
+            "nl": "Omdat het attribute ontbreekt, geeft getattr de default 0 terug."
+          }
+        }
+      ]
+    }
+  ],
+  "estimatedMinutes": 7
+}

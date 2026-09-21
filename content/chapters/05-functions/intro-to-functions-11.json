@@ -1,0 +1,43 @@
+{
+  "id": "intro-to-functions-11",
+  "chapter": 5,
+  "group": "intro-to-functions",
+  "title": {
+    "en": "Return values",
+    "nl": "Return values"
+  },
+  "kind": "coding",
+  "optional": false,
+  "explanation": {
+    "en": "return ends a function call and gives a value back to its caller. Printing only displays information; it does not provide the same return value. A function with no explicit return returns None.",
+    "nl": "return beëindigt een function-aanroep en geeft een waarde terug. print toont informatie, maar levert niet dezelfde return value. Een function zonder expliciete return geeft None terug."
+  },
+  "example": "",
+  "files": {
+    "main.py": "# Write your code below.\n"
+  },
+  "solution": {
+    "main.py": "def usable(total, reserved):\n    return total - reserved\n\navailable = usable(30, 7)\nprint(available)\n"
+  },
+  "checkpoints": [
+    {
+      "id": "intro-to-functions-11-step-1",
+      "task": {
+        "en": "Define usable(total, reserved) to return the difference. Store usable(30, 7) in available.",
+        "nl": "Definieer usable(total, reserved) die het verschil teruggeeft. Sla usable(30, 7) op in available."
+      },
+      "check": "available == 23 and usable(9,4) == 5 and usable(4,4) == 0",
+      "hint": {
+        "en": "Start with def usable(total, reserved):. Then compare the values with the task.",
+        "nl": "Begin met def usable(total, reserved):. Vergelijk de waarden daarna met de opdracht."
+      }
+    }
+  ],
+  "solutionNote": {
+    "en": "return ends a function call and gives a value back to its caller. Printing only displays information; it does not provide the same return value. A function with no explicit return returns None.\n\nTrace the solution one line at a time. Try a different input to see which parts change.",
+    "nl": "return beëindigt een function-aanroep en geeft een waarde terug. print toont informatie, maar levert niet dezelfde return value. Een function zonder expliciete return geeft None terug.\n\nVolg de oplossing regel voor regel. Probeer een andere invoer en bekijk welke onderdelen veranderen."
+  },
+  "sourcePosition": 11,
+  "sourceUrl": "https://www.codecademy.com/courses/learn-python-3/lessons/intro-to-functions/exercises/returns",
+  "estimatedMinutes": 6
+}

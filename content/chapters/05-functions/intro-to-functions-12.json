@@ -1,0 +1,43 @@
+{
+  "id": "intro-to-functions-12",
+  "chapter": 5,
+  "group": "intro-to-functions",
+  "title": {
+    "en": "Returning multiple values",
+    "nl": "Meerdere return values"
+  },
+  "kind": "coding",
+  "optional": false,
+  "explanation": {
+    "en": "A function can return several values separated by commas; Python packs them into a tuple. Assigning to the same number of names unpacks the values in order.",
+    "nl": "Een function kan meerdere waarden teruggeven, gescheiden door komma’s. Python verpakt deze in een tuple. Met evenveel namen aan de linkerkant pak je de waarden in volgorde uit."
+  },
+  "example": "",
+  "files": {
+    "main.py": "# Write your code below.\n"
+  },
+  "solution": {
+    "main.py": "def bounds(values):\n    return min(values), max(values)\n\nlow, high = bounds([8, 2, 6])\nprint(low, high)\n"
+  },
+  "checkpoints": [
+    {
+      "id": "intro-to-functions-12-step-1",
+      "task": {
+        "en": "Define bounds(values) to return min(values), max(values). Unpack bounds([8, 2, 6]) into low and high.",
+        "nl": "Definieer bounds(values) die min(values), max(values) teruggeeft. Pak bounds([8, 2, 6]) uit in low en high."
+      },
+      "check": "low == 2 and high == 8 and bounds([5,9,1]) == (1,9)",
+      "hint": {
+        "en": "Start with def bounds(values):. Then compare the values with the task.",
+        "nl": "Begin met def bounds(values):. Vergelijk de waarden daarna met de opdracht."
+      }
+    }
+  ],
+  "solutionNote": {
+    "en": "A function can return several values separated by commas; Python packs them into a tuple. Assigning to the same number of names unpacks the values in order.\n\nTrace the solution one line at a time. Try a different input to see which parts change.",
+    "nl": "Een function kan meerdere waarden teruggeven, gescheiden door komma’s. Python verpakt deze in een tuple. Met evenveel namen aan de linkerkant pak je de waarden in volgorde uit.\n\nVolg de oplossing regel voor regel. Probeer een andere invoer en bekijk welke onderdelen veranderen."
+  },
+  "sourcePosition": 12,
+  "sourceUrl": "https://www.codecademy.com/courses/learn-python-3/lessons/intro-to-functions/exercises/multiple-returns",
+  "estimatedMinutes": 6
+}

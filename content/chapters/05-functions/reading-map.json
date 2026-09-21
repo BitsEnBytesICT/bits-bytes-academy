@@ -1,0 +1,28 @@
+{
+  "id": "reading-map",
+  "chapter": 5,
+  "group": "reading",
+  "title": {
+    "en": "Transforming with map",
+    "nl": "Bewerken met map"
+  },
+  "kind": "reading",
+  "optional": false,
+  "explanation": {
+    "en": "map(function, iterable) applies a function to each input and returns an iterator of results. Convert it to a list when you need all results immediately.\n\nA list comprehension often expresses the same operation clearly. With multiple iterables, map passes one value from each into the function and stops at the shortest input.",
+    "nl": "map(function, iterable) past een function toe op elke invoer en geeft een iterator met resultaten. Zet deze om naar een list als je alle resultaten direct nodig hebt.\n\nEen list comprehension kan dezelfde bewerking vaak duidelijk uitdrukken. Bij meerdere iterables geeft map telkens één waarde uit elke iterable door en stopt bij de kortste invoer."
+  },
+  "example": "",
+  "files": {
+    "main.py": "texts = [\"2\", \"5\", \"8\"]\nnumbers = list(map(int, texts))\nprint(numbers)\ndoubled = list(map(lambda n: n * 2, numbers))\nprint(doubled)\n"
+  },
+  "solution": {
+    "main.py": "texts = [\"2\", \"5\", \"8\"]\nnumbers = list(map(int, texts))\nprint(numbers)\ndoubled = list(map(lambda n: n * 2, numbers))\nprint(doubled)\n"
+  },
+  "checkpoints": [],
+  "solutionNote": {
+    "en": "This is an exploration activity. Run the example, change one input, and explain the new result in your own words.",
+    "nl": "Dit is een verkenningsactiviteit. Voer het voorbeeld uit, verander één invoer en leg het nieuwe resultaat in je eigen woorden uit."
+  },
+  "estimatedMinutes": 2
+}

@@ -1,0 +1,43 @@
+{
+  "id": "use-python-list-07",
+  "chapter": 3,
+  "group": "use-python-list",
+  "title": {
+    "en": "Slicing bounds",
+    "nl": "Slice-grenzen"
+  },
+  "kind": "coding",
+  "optional": false,
+  "explanation": {
+    "en": "A slice items[start:stop] returns a new list. It includes start and excludes stop. Slicing does not remove values from the original list.",
+    "nl": "Een slice items[start:stop] geeft een nieuwe list terug. start telt mee, stop niet. Een slice verwijdert geen waarden uit de oorspronkelijke list."
+  },
+  "example": "",
+  "files": {
+    "main.py": "route = [10, 20, 30, 40, 50]\n"
+  },
+  "solution": {
+    "main.py": "route = [10, 20, 30, 40, 50]\nmiddle = route[1:4]\nprint(middle)\n"
+  },
+  "checkpoints": [
+    {
+      "id": "use-python-list-07-step-1",
+      "task": {
+        "en": "Save the values 20, 30, and 40 from route into middle using a slice.",
+        "nl": "Sla 20, 30 en 40 uit route via een slice op in middle."
+      },
+      "check": "middle == [20,30,40] and route == [10,20,30,40,50]",
+      "hint": {
+        "en": "Start with route = [10, 20, 30, 40, 50]. Then compare the values with the task.",
+        "nl": "Begin met route = [10, 20, 30, 40, 50]. Vergelijk de waarden daarna met de opdracht."
+      }
+    }
+  ],
+  "solutionNote": {
+    "en": "A slice items[start:stop] returns a new list. It includes start and excludes stop. Slicing does not remove values from the original list.\n\nTrace the solution one line at a time. Try a different input to see which parts change.",
+    "nl": "Een slice items[start:stop] geeft een nieuwe list terug. start telt mee, stop niet. Een slice verwijdert geen waarden uit de oorspronkelijke list.\n\nVolg de oplossing regel voor regel. Probeer een andere invoer en bekijk welke onderdelen veranderen."
+  },
+  "sourcePosition": 7,
+  "sourceUrl": "https://www.codecademy.com/courses/learn-python-3/lessons/use-python-list/exercises/slice-iii",
+  "estimatedMinutes": 6
+}

@@ -1,0 +1,45 @@
+{
+  "id": "learn-python-files-05",
+  "chapter": 10,
+  "group": "learn-python-files",
+  "title": {
+    "en": "Appending text",
+    "nl": "Tekst toevoegen"
+  },
+  "kind": "coding",
+  "optional": false,
+  "explanation": {
+    "en": "Mode a appends to the end of a file instead of replacing it. Existing text remains. Running append code again adds another entry, so consider repeated runs when checking your output.",
+    "nl": "Mode a voegt tekst toe aan het einde in plaats van de inhoud te vervangen. Bestaande tekst blijft staan. Opnieuw uitvoeren voegt nog een entry toe; houd daar rekening mee bij het bekijken van je output."
+  },
+  "example": "",
+  "files": {
+    "events.txt": "ready\n",
+    "main.py": "# Write your code below.\n"
+  },
+  "solution": {
+    "events.txt": "ready\n",
+    "main.py": "with open(\"events.txt\", \"a\", encoding=\"utf-8\") as handle:\n    handle.write(\"loaded\\n\")\n"
+  },
+  "checkpoints": [
+    {
+      "id": "learn-python-files-05-step-1",
+      "task": {
+        "en": "Append loaded followed by a newline to events.txt. Preserve the existing ready line.",
+        "nl": "Voeg loaded gevolgd door een regeleinde toe aan events.txt. Behoud de bestaande ready-regel."
+      },
+      "check": "open('events.txt', encoding='utf-8').read().startswith('ready\\n') and open('events.txt', encoding='utf-8').read().endswith('loaded\\n')",
+      "hint": {
+        "en": "Start with with open(\"events.txt\", \"a\", encoding=\"utf-8\") as handle:. Then compare the values with the task.",
+        "nl": "Begin met with open(\"events.txt\", \"a\", encoding=\"utf-8\") as handle:. Vergelijk de waarden daarna met de opdracht."
+      }
+    }
+  ],
+  "solutionNote": {
+    "en": "Mode a appends to the end of a file instead of replacing it. Existing text remains. Running append code again adds another entry, so consider repeated runs when checking your output.\n\nTrace the solution one line at a time. Try a different input to see which parts change.",
+    "nl": "Mode a voegt tekst toe aan het einde in plaats van de inhoud te vervangen. Bestaande tekst blijft staan. Opnieuw uitvoeren voegt nog een entry toe; houd daar rekening mee bij het bekijken van je output.\n\nVolg de oplossing regel voor regel. Probeer een andere invoer en bekijk welke onderdelen veranderen."
+  },
+  "sourcePosition": 5,
+  "sourceUrl": "https://www.codecademy.com/courses/learn-python-3/lessons/learn-python-files/exercises/appending-to-a-file",
+  "estimatedMinutes": 6
+}

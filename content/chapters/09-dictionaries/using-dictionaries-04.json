@@ -1,0 +1,43 @@
+{
+  "id": "using-dictionaries-04",
+  "chapter": 9,
+  "group": "using-dictionaries",
+  "title": {
+    "en": "Default values",
+    "nl": "Een default value gebruiken"
+  },
+  "kind": "coding",
+  "optional": false,
+  "explanation": {
+    "en": "get(key, default) returns a value when the key exists and the default otherwise. Without an explicit default it returns None. The lookup does not add the missing key.",
+    "nl": "get(key, default) geeft de value terug als de key bestaat en anders de default. Zonder expliciete default is dat None. De lookup voegt de ontbrekende key niet toe."
+  },
+  "example": "",
+  "files": {
+    "main.py": "settings = {\"mode\": \"eco\"}\n"
+  },
+  "solution": {
+    "main.py": "settings = {\"mode\": \"eco\"}\ntimeout = settings.get(\"timeout\", 30)\nprint(timeout)\n"
+  },
+  "checkpoints": [
+    {
+      "id": "using-dictionaries-04-step-1",
+      "task": {
+        "en": "Use get to read absent timeout with default 30 into timeout. Leave settings unchanged.",
+        "nl": "Gebruik get om de ontbrekende timeout met default 30 op te vragen in timeout. Laat settings ongewijzigd."
+      },
+      "check": "timeout == 30 and settings == {'mode':'eco'}",
+      "hint": {
+        "en": "Start with settings = {\"mode\": \"eco\"}. Then compare the values with the task.",
+        "nl": "Begin met settings = {\"mode\": \"eco\"}. Vergelijk de waarden daarna met de opdracht."
+      }
+    }
+  ],
+  "solutionNote": {
+    "en": "get(key, default) returns a value when the key exists and the default otherwise. Without an explicit default it returns None. The lookup does not add the missing key.\n\nTrace the solution one line at a time. Try a different input to see which parts change.",
+    "nl": "get(key, default) geeft de value terug als de key bestaat en anders de default. Zonder expliciete default is dat None. De lookup voegt de ontbrekende key niet toe.\n\nVolg de oplossing regel voor regel. Probeer een andere invoer en bekijk welke onderdelen veranderen."
+  },
+  "sourcePosition": 4,
+  "sourceUrl": "https://www.codecademy.com/courses/learn-python-3/lessons/using-dictionaries/exercises/safe-get-key",
+  "estimatedMinutes": 6
+}

@@ -1,0 +1,43 @@
+{
+  "id": "dictionaries-introduction-03",
+  "chapter": 9,
+  "group": "dictionaries-introduction",
+  "title": {
+    "en": "Hashable keys",
+    "nl": "Hashable keys"
+  },
+  "kind": "coding",
+  "optional": false,
+  "explanation": {
+    "en": "Dictionary keys must be hashable. Strings, numbers, and suitable tuples can be keys; mutable lists cannot. Python raises TypeError when a list is used as a key.",
+    "nl": "Dictionary-keys moeten hashable zijn. Strings, getallen en geschikte tuples kunnen keys zijn; veranderlijke lists niet. Python geeft TypeError als je een list als key gebruikt."
+  },
+  "example": "",
+  "files": {
+    "main.py": "positions = {[2, 3]: \"beacon\"}\n"
+  },
+  "solution": {
+    "main.py": "positions = {(2, 3): \"beacon\"}\nprint(positions)\n"
+  },
+  "checkpoints": [
+    {
+      "id": "dictionaries-introduction-03-step-1",
+      "task": {
+        "en": "Run the starter to observe the TypeError. Repair positions by replacing the list key [2, 3] with the tuple (2, 3).",
+        "nl": "Voer de startcode uit om de TypeError te zien. Herstel positions door de list-key [2, 3] te vervangen door de tuple (2, 3)."
+      },
+      "check": "positions == {(2,3):'beacon'}",
+      "hint": {
+        "en": "Start with positions = {(2, 3): \"beacon\"}. Then compare the values with the task.",
+        "nl": "Begin met positions = {(2, 3): \"beacon\"}. Vergelijk de waarden daarna met de opdracht."
+      }
+    }
+  ],
+  "solutionNote": {
+    "en": "Dictionary keys must be hashable. Strings, numbers, and suitable tuples can be keys; mutable lists cannot. Python raises TypeError when a list is used as a key.\n\nTrace the solution one line at a time. Try a different input to see which parts change.",
+    "nl": "Dictionary-keys moeten hashable zijn. Strings, getallen en geschikte tuples kunnen keys zijn; veranderlijke lists niet. Python geeft TypeError als je een list als key gebruikt.\n\nVolg de oplossing regel voor regel. Probeer een andere invoer en bekijk welke onderdelen veranderen."
+  },
+  "sourcePosition": 3,
+  "sourceUrl": "https://www.codecademy.com/courses/learn-python-3/lessons/dictionaries-introduction/exercises/invalid-keys",
+  "estimatedMinutes": 6
+}

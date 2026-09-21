@@ -1,0 +1,41 @@
+{
+  "id": "practice-6-loops-3",
+  "chapter": 6,
+  "group": "loops",
+  "title": {
+    "en": "Trim the beginning",
+    "nl": "Het begin inkorten"
+  },
+  "kind": "challenge",
+  "optional": true,
+  "explanation": {
+    "en": "Return a new list with all leading zeros removed. Keep zeros after the first nonzero value.",
+    "nl": "Geef een nieuwe list terug zonder nullen aan het begin. Behoud nullen na de eerste niet-nulwaarde."
+  },
+  "example": "",
+  "files": {
+    "main.py": "def trim_zeros(values):\n    # Implement the function.\n    pass\n\nprint(trim_zeros([0, 0, 3, 0]))\n"
+  },
+  "solution": {
+    "main.py": "def trim_zeros(values):\n    index = 0\n    while index < len(values) and values[index] == 0:\n        index += 1\n    return values[index:]\n\nprint(trim_zeros([0, 0, 3, 0]))\n"
+  },
+  "checkpoints": [
+    {
+      "id": "practice-6-loops-3-step-1",
+      "task": {
+        "en": "Return a new list with all leading zeros removed. Keep zeros after the first nonzero value.",
+        "nl": "Geef een nieuwe list terug zonder nullen aan het begin. Behoud nullen na de eerste niet-nulwaarde."
+      },
+      "check": "trim_zeros([0,0,3,0]) == [3,0] and trim_zeros([0,0]) == [] and trim_zeros([]) == []",
+      "hint": {
+        "en": "Work through a small input by hand first. Separate the condition, transformation, and return value.",
+        "nl": "Werk eerst zelf een kleine invoer uit. Bekijk de voorwaarde, de bewerking en de return value afzonderlijk."
+      }
+    }
+  ],
+  "solutionNote": {
+    "en": "This solution separates the calculation from its input. Test the function with ordinary values and edge cases such as empty collections or boundary values.",
+    "nl": "Deze oplossing scheidt de berekening van de invoer. Test de function met gewone waarden en grensgevallen, zoals lege verzamelingen of grenswaarden."
+  },
+  "estimatedMinutes": 10
+}

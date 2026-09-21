@@ -1,0 +1,43 @@
+{
+  "id": "data-types-03",
+  "chapter": 11,
+  "group": "data-types",
+  "title": {
+    "en": "Creating an instance",
+    "nl": "Een instance maken"
+  },
+  "kind": "coding",
+  "optional": false,
+  "explanation": {
+    "en": "Calling a class creates an instance, a specific object of that type. Two calls normally create two separate instances. Store each instance in a variable when you need to use it later.",
+    "nl": "Een class aanroepen maakt een instance: een specifiek object van dat type. Twee aanroepen maken normaal twee aparte instances. Bewaar een instance in een variable als je deze later wilt gebruiken."
+  },
+  "example": "",
+  "files": {
+    "main.py": "class WeatherSensor:\n    pass\n\n"
+  },
+  "solution": {
+    "main.py": "class WeatherSensor:\n    pass\n\nsensor = WeatherSensor()\nprint(type(sensor))\n"
+  },
+  "checkpoints": [
+    {
+      "id": "data-types-03-step-1",
+      "task": {
+        "en": "Create sensor as an instance of WeatherSensor.",
+        "nl": "Maak sensor als instance van WeatherSensor."
+      },
+      "check": "isinstance(sensor, WeatherSensor)",
+      "hint": {
+        "en": "Start with class WeatherSensor:. Then compare the values with the task.",
+        "nl": "Begin met class WeatherSensor:. Vergelijk de waarden daarna met de opdracht."
+      }
+    }
+  ],
+  "solutionNote": {
+    "en": "Calling a class creates an instance, a specific object of that type. Two calls normally create two separate instances. Store each instance in a variable when you need to use it later.\n\nTrace the solution one line at a time. Try a different input to see which parts change.",
+    "nl": "Een class aanroepen maakt een instance: een specifiek object van dat type. Twee aanroepen maken normaal twee aparte instances. Bewaar een instance in een variable als je deze later wilt gebruiken.\n\nVolg de oplossing regel voor regel. Probeer een andere invoer en bekijk welke onderdelen veranderen."
+  },
+  "sourcePosition": 3,
+  "sourceUrl": "https://www.codecademy.com/courses/learn-python-3/lessons/data-types/exercises/instantiation",
+  "estimatedMinutes": 6
+}

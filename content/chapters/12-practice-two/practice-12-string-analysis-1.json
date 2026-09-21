@@ -1,0 +1,41 @@
+{
+  "id": "practice-12-string-analysis-1",
+  "chapter": 12,
+  "group": "string-analysis",
+  "title": {
+    "en": "Distinct symbols",
+    "nl": "Verschillende tekens"
+  },
+  "kind": "challenge",
+  "optional": true,
+  "explanation": {
+    "en": "Return the number of different characters in text. Treat uppercase and lowercase as different characters.",
+    "nl": "Geef het aantal verschillende tekens in text terug. Hoofdletters en kleine letters tellen als verschillende tekens."
+  },
+  "example": "",
+  "files": {
+    "main.py": "def distinct_count(text):\n    # Implement the function.\n    pass\n\nprint(distinct_count(\"banana\"))\n"
+  },
+  "solution": {
+    "main.py": "def distinct_count(text):\n    seen = []\n    for character in text:\n        if character not in seen:\n            seen.append(character)\n    return len(seen)\n\nprint(distinct_count(\"banana\"))\n"
+  },
+  "checkpoints": [
+    {
+      "id": "practice-12-string-analysis-1-step-1",
+      "task": {
+        "en": "Return the number of different characters in text. Treat uppercase and lowercase as different characters.",
+        "nl": "Geef het aantal verschillende tekens in text terug. Hoofdletters en kleine letters tellen als verschillende tekens."
+      },
+      "check": "distinct_count('banana') == 3 and distinct_count('AaA') == 2 and distinct_count('') == 0",
+      "hint": {
+        "en": "Work through a small input by hand first. Separate the condition, transformation, and return value.",
+        "nl": "Werk eerst zelf een kleine invoer uit. Bekijk de voorwaarde, de bewerking en de return value afzonderlijk."
+      }
+    }
+  ],
+  "solutionNote": {
+    "en": "This solution separates the calculation from its input. Test the function with ordinary values and edge cases such as empty collections or boundary values.",
+    "nl": "Deze oplossing scheidt de berekening van de invoer. Test de function met gewone waarden en grensgevallen, zoals lege verzamelingen of grenswaarden."
+  },
+  "estimatedMinutes": 10
+}

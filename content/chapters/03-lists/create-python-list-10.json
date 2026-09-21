@@ -1,0 +1,43 @@
+{
+  "id": "create-python-list-10",
+  "chapter": 3,
+  "group": "create-python-list",
+  "title": {
+    "en": "Removing values",
+    "nl": "Een waarde verwijderen"
+  },
+  "kind": "coding",
+  "optional": false,
+  "explanation": {
+    "en": "remove(value) deletes the first equal value from a list. It uses a value, not an index. Removing a value that is absent raises ValueError, so check membership if absence is expected.",
+    "nl": "remove(value) verwijdert de eerste gelijke waarde uit een list. Je geeft een waarde op, geen index. Een ontbrekende waarde verwijderen veroorzaakt ValueError; controleer membership als de waarde kan ontbreken."
+  },
+  "example": "",
+  "files": {
+    "main.py": "queue = [\"ready\", \"canceled\", \"waiting\", \"canceled\"]\n"
+  },
+  "solution": {
+    "main.py": "queue = [\"ready\", \"canceled\", \"waiting\", \"canceled\"]\nqueue.remove(\"canceled\")\nprint(queue)\n"
+  },
+  "checkpoints": [
+    {
+      "id": "create-python-list-10-step-1",
+      "task": {
+        "en": "Remove one canceled entry from queue. The second canceled entry must remain.",
+        "nl": "Verwijder één canceled uit queue. Het tweede canceled-element moet blijven staan."
+      },
+      "check": "queue == ['ready','waiting','canceled']",
+      "hint": {
+        "en": "Start with queue = [\"ready\", \"canceled\", \"waiting\", \"canceled\"]. Then compare the values with the task.",
+        "nl": "Begin met queue = [\"ready\", \"canceled\", \"waiting\", \"canceled\"]. Vergelijk de waarden daarna met de opdracht."
+      }
+    }
+  ],
+  "solutionNote": {
+    "en": "remove(value) deletes the first equal value from a list. It uses a value, not an index. Removing a value that is absent raises ValueError, so check membership if absence is expected.\n\nTrace the solution one line at a time. Try a different input to see which parts change.",
+    "nl": "remove(value) verwijdert de eerste gelijke waarde uit een list. Je geeft een waarde op, geen index. Een ontbrekende waarde verwijderen veroorzaakt ValueError; controleer membership als de waarde kan ontbreken.\n\nVolg de oplossing regel voor regel. Probeer een andere invoer en bekijk welke onderdelen veranderen."
+  },
+  "sourcePosition": 10,
+  "sourceUrl": "https://www.codecademy.com/courses/learn-python-3/lessons/create-python-list/exercises/removing-list-elements",
+  "estimatedMinutes": 6
+}

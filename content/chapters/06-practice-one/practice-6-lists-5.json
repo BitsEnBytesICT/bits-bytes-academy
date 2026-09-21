@@ -1,0 +1,41 @@
+{
+  "id": "practice-6-lists-5",
+  "chapter": 6,
+  "group": "lists",
+  "title": {
+    "en": "Merge rankings",
+    "nl": "Ranglijsten samenvoegen"
+  },
+  "kind": "challenge",
+  "optional": true,
+  "explanation": {
+    "en": "Return a descending sorted list containing both input lists. Preserve the original lists.",
+    "nl": "Geef beide invoerlists samen terug als aflopend gesorteerde list. Behoud de oorspronkelijke lists."
+  },
+  "example": "",
+  "files": {
+    "main.py": "def merge_ranked(left, right):\n    # Implement the function.\n    pass\n\nprint(merge_ranked([2, 8], [5, 1]))\n"
+  },
+  "solution": {
+    "main.py": "def merge_ranked(left, right):\n    return sorted(left + right, reverse=True)\n\nprint(merge_ranked([2, 8], [5, 1]))\n"
+  },
+  "checkpoints": [
+    {
+      "id": "practice-6-lists-5-step-1",
+      "task": {
+        "en": "Return a descending sorted list containing both input lists. Preserve the original lists.",
+        "nl": "Geef beide invoerlists samen terug als aflopend gesorteerde list. Behoud de oorspronkelijke lists."
+      },
+      "check": "merge_ranked([2,8],[5,1]) == [8,5,2,1] and merge_ranked([],[]) == []",
+      "hint": {
+        "en": "Work through a small input by hand first. Separate the condition, transformation, and return value.",
+        "nl": "Werk eerst zelf een kleine invoer uit. Bekijk de voorwaarde, de bewerking en de return value afzonderlijk."
+      }
+    }
+  ],
+  "solutionNote": {
+    "en": "This solution separates the calculation from its input. Test the function with ordinary values and edge cases such as empty collections or boundary values.",
+    "nl": "Deze oplossing scheidt de berekening van de invoer. Test de function met gewone waarden en grensgevallen, zoals lege verzamelingen of grenswaarden."
+  },
+  "estimatedMinutes": 10
+}

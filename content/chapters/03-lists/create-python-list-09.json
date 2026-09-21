@@ -1,0 +1,43 @@
+{
+  "id": "create-python-list-09",
+  "chapter": 3,
+  "group": "create-python-list",
+  "title": {
+    "en": "Replacing elements",
+    "nl": "Een element vervangen"
+  },
+  "kind": "coding",
+  "optional": false,
+  "explanation": {
+    "en": "Lists are mutable: you can replace an element at an existing index. Assignment to an index changes that position without moving the surrounding elements.",
+    "nl": "Lists zijn mutable: je kunt een element op een bestaande index vervangen. Assignment op een index verandert die positie zonder omliggende elementen te verschuiven."
+  },
+  "example": "",
+  "files": {
+    "main.py": "gear = [\"map\", \"broken compass\", \"water\"]\n"
+  },
+  "solution": {
+    "main.py": "gear = [\"map\", \"broken compass\", \"water\"]\ngear[1] = \"compass\"\nprint(gear)\n"
+  },
+  "checkpoints": [
+    {
+      "id": "create-python-list-09-step-1",
+      "task": {
+        "en": "Replace the second item with compass, leaving the other items unchanged.",
+        "nl": "Vervang het tweede item door compass. Laat de andere items ongewijzigd."
+      },
+      "check": "gear == ['map','compass','water']",
+      "hint": {
+        "en": "Start with gear = [\"map\", \"broken compass\", \"water\"]. Then compare the values with the task.",
+        "nl": "Begin met gear = [\"map\", \"broken compass\", \"water\"]. Vergelijk de waarden daarna met de opdracht."
+      }
+    }
+  ],
+  "solutionNote": {
+    "en": "Lists are mutable: you can replace an element at an existing index. Assignment to an index changes that position without moving the surrounding elements.\n\nTrace the solution one line at a time. Try a different input to see which parts change.",
+    "nl": "Lists zijn mutable: je kunt een element op een bestaande index vervangen. Assignment op een index verandert die positie zonder omliggende elementen te verschuiven.\n\nVolg de oplossing regel voor regel. Probeer een andere invoer en bekijk welke onderdelen veranderen."
+  },
+  "sourcePosition": 9,
+  "sourceUrl": "https://www.codecademy.com/courses/learn-python-3/lessons/create-python-list/exercises/modifying-list-elements",
+  "estimatedMinutes": 6
+}

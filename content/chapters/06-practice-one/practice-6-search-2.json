@@ -1,0 +1,41 @@
+{
+  "id": "practice-6-search-2",
+  "chapter": 6,
+  "group": "search",
+  "title": {
+    "en": "Stop at the budget",
+    "nl": "Stoppen bij een budget"
+  },
+  "kind": "challenge",
+  "optional": true,
+  "explanation": {
+    "en": "Accumulate positive values until the total reaches or exceeds limit. Return the consumed total, or the full sum if the limit is never reached.",
+    "nl": "Tel positieve waarden op tot het totaal limit bereikt of overschrijdt. Geef dat totaal terug, of de hele som als de grens niet wordt bereikt."
+  },
+  "example": "",
+  "files": {
+    "main.py": "def until_limit(values, limit):\n    # Implement the function.\n    pass\n\nprint(until_limit([3, 4, 8], 7))\n"
+  },
+  "solution": {
+    "main.py": "def until_limit(values, limit):\n    total = 0\n    for value in values:\n        total += value\n        if total >= limit:\n            break\n    return total\n\nprint(until_limit([3, 4, 8], 7))\n"
+  },
+  "checkpoints": [
+    {
+      "id": "practice-6-search-2-step-1",
+      "task": {
+        "en": "Accumulate positive values until the total reaches or exceeds limit. Return the consumed total, or the full sum if the limit is never reached.",
+        "nl": "Tel positieve waarden op tot het totaal limit bereikt of overschrijdt. Geef dat totaal terug, of de hele som als de grens niet wordt bereikt."
+      },
+      "check": "until_limit([3,4,8],7) == 7 and until_limit([3,4,8],6) == 7 and until_limit([2],9) == 2 and until_limit([],2) == 0",
+      "hint": {
+        "en": "Work through a small input by hand first. Separate the condition, transformation, and return value.",
+        "nl": "Werk eerst zelf een kleine invoer uit. Bekijk de voorwaarde, de bewerking en de return value afzonderlijk."
+      }
+    }
+  ],
+  "solutionNote": {
+    "en": "This solution separates the calculation from its input. Test the function with ordinary values and edge cases such as empty collections or boundary values.",
+    "nl": "Deze oplossing scheidt de berekening van de invoer. Test de function met gewone waarden en grensgevallen, zoals lege verzamelingen of grenswaarden."
+  },
+  "estimatedMinutes": 10
+}

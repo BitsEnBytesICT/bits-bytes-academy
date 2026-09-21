@@ -1,0 +1,43 @@
+{
+  "id": "using-dictionaries-06",
+  "chapter": 9,
+  "group": "using-dictionaries",
+  "title": {
+    "en": "Key views",
+    "nl": "Key views"
+  },
+  "kind": "coding",
+  "optional": false,
+  "explanation": {
+    "en": "keys() returns a dynamic view of keys. If the dictionary changes, the view reflects it. Convert the view to list when you want an independent snapshot of its current order.",
+    "nl": "keys() geeft een dynamische view van de keys terug. Als de dictionary verandert, verandert de view mee. Zet de view om naar list voor een onafhankelijke momentopname van de huidige volgorde."
+  },
+  "example": "",
+  "files": {
+    "main.py": "stock = {\"lamp\": 4, \"cable\": 9}\n"
+  },
+  "solution": {
+    "main.py": "stock = {\"lamp\": 4, \"cable\": 9}\nview = stock.keys()\nsnapshot = list(view)\nstock[\"battery\"] = 2\nprint(list(view), snapshot)\n"
+  },
+  "checkpoints": [
+    {
+      "id": "using-dictionaries-06-step-1",
+      "task": {
+        "en": "Create view with stock.keys() and snapshot with list(view). Add battery: 2, then compare the view and snapshot.",
+        "nl": "Maak view met stock.keys() en snapshot met list(view). Voeg battery: 2 toe en vergelijk view met snapshot."
+      },
+      "check": "list(view) == ['lamp','cable','battery'] and snapshot == ['lamp','cable']",
+      "hint": {
+        "en": "Start with stock = {\"lamp\": 4, \"cable\": 9}. Then compare the values with the task.",
+        "nl": "Begin met stock = {\"lamp\": 4, \"cable\": 9}. Vergelijk de waarden daarna met de opdracht."
+      }
+    }
+  ],
+  "solutionNote": {
+    "en": "keys() returns a dynamic view of keys. If the dictionary changes, the view reflects it. Convert the view to list when you want an independent snapshot of its current order.\n\nTrace the solution one line at a time. Try a different input to see which parts change.",
+    "nl": "keys() geeft een dynamische view van de keys terug. Als de dictionary verandert, verandert de view mee. Zet de view om naar list voor een onafhankelijke momentopname van de huidige volgorde.\n\nVolg de oplossing regel voor regel. Probeer een andere invoer en bekijk welke onderdelen veranderen."
+  },
+  "sourcePosition": 6,
+  "sourceUrl": "https://www.codecademy.com/courses/learn-python-3/lessons/using-dictionaries/exercises/get-all-keys",
+  "estimatedMinutes": 6
+}

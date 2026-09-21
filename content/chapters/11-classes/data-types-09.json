@@ -1,0 +1,43 @@
+{
+  "id": "data-types-09",
+  "chapter": 11,
+  "group": "data-types",
+  "title": {
+    "en": "Instance attributes",
+    "nl": "Instance attributes"
+  },
+  "kind": "coding",
+  "optional": false,
+  "explanation": {
+    "en": "Instance attributes store data that can differ between objects. An assignment on one instance does not automatically change another instance. Keeping individual state separate prevents surprising interactions.",
+    "nl": "Instance attributes bewaren data die per object kunnen verschillen. Een assignment op één instance verandert niet automatisch een andere instance. Gescheiden toestand voorkomt onverwachte interacties."
+  },
+  "example": "",
+  "files": {
+    "main.py": "# Write your code below.\n"
+  },
+  "solution": {
+    "main.py": "class Sensor:\n    pass\n\neast = Sensor()\nwest = Sensor()\neast.reading = 18\nwest.reading = 23\nprint(east.reading, west.reading)\n"
+  },
+  "checkpoints": [
+    {
+      "id": "data-types-09-step-1",
+      "task": {
+        "en": "Create east and west Sensor instances. Give them reading attributes of 18 and 23 respectively.",
+        "nl": "Maak east en west als Sensor-instances. Geef ze reading-attributes van respectievelijk 18 en 23."
+      },
+      "check": "east is not west and east.reading == 18 and west.reading == 23",
+      "hint": {
+        "en": "Start with class Sensor:. Then compare the values with the task.",
+        "nl": "Begin met class Sensor:. Vergelijk de waarden daarna met de opdracht."
+      }
+    }
+  ],
+  "solutionNote": {
+    "en": "Instance attributes store data that can differ between objects. An assignment on one instance does not automatically change another instance. Keeping individual state separate prevents surprising interactions.\n\nTrace the solution one line at a time. Try a different input to see which parts change.",
+    "nl": "Instance attributes bewaren data die per object kunnen verschillen. Een assignment op één instance verandert niet automatisch een andere instance. Gescheiden toestand voorkomt onverwachte interacties.\n\nVolg de oplossing regel voor regel. Probeer een andere invoer en bekijk welke onderdelen veranderen."
+  },
+  "sourcePosition": 9,
+  "sourceUrl": "https://www.codecademy.com/courses/learn-python-3/lessons/data-types/exercises/instance-variables",
+  "estimatedMinutes": 6
+}

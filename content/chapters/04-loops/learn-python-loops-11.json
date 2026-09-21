@@ -1,0 +1,43 @@
+{
+  "id": "learn-python-loops-11",
+  "chapter": 4,
+  "group": "learn-python-loops",
+  "title": {
+    "en": "Comprehension transformations",
+    "nl": "Een list comprehension"
+  },
+  "kind": "coding",
+  "optional": false,
+  "explanation": {
+    "en": "A list comprehension combines iteration and transformation in one expression: [expression for item in items]. It creates a new list and is best kept short and readable.",
+    "nl": "Een list comprehension combineert herhaling en bewerking in één expressie: [expression for item in items]. Deze maakt een nieuwe list en blijft het duidelijkst als je de expressie kort houdt."
+  },
+  "example": "",
+  "files": {
+    "main.py": "raw = [2, 5, 8]\n"
+  },
+  "solution": {
+    "main.py": "raw = [2, 5, 8]\ndoubled = [value * 2 for value in raw]\nprint(doubled)\n"
+  },
+  "checkpoints": [
+    {
+      "id": "learn-python-loops-11-step-1",
+      "task": {
+        "en": "Create doubled by doubling every value in raw with a list comprehension.",
+        "nl": "Maak doubled door elke waarde in raw met een list comprehension te verdubbelen."
+      },
+      "check": "doubled == [4,10,16] and any(isinstance(n,_ast.ListComp) for n in _ast.walk(_ast.parse(_source)))",
+      "hint": {
+        "en": "Start with raw = [2, 5, 8]. Then compare the values with the task.",
+        "nl": "Begin met raw = [2, 5, 8]. Vergelijk de waarden daarna met de opdracht."
+      }
+    }
+  ],
+  "solutionNote": {
+    "en": "A list comprehension combines iteration and transformation in one expression: [expression for item in items]. It creates a new list and is best kept short and readable.\n\nTrace the solution one line at a time. Try a different input to see which parts change.",
+    "nl": "Een list comprehension combineert herhaling en bewerking in één expressie: [expression for item in items]. Deze maakt een nieuwe list en blijft het duidelijkst als je de expressie kort houdt.\n\nVolg de oplossing regel voor regel. Probeer een andere invoer en bekijk welke onderdelen veranderen."
+  },
+  "sourcePosition": 11,
+  "sourceUrl": "https://www.codecademy.com/courses/learn-python-3/lessons/learn-python-loops/exercises/list-comprehension-ii",
+  "estimatedMinutes": 6
+}

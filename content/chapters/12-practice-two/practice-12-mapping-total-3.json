@@ -1,0 +1,41 @@
+{
+  "id": "practice-12-mapping-total-3",
+  "chapter": 12,
+  "group": "mapping-total",
+  "title": {
+    "en": "Adjust every reading",
+    "nl": "Elke meting bijstellen"
+  },
+  "kind": "challenge",
+  "optional": true,
+  "explanation": {
+    "en": "Return a new dictionary with offset added to every value. Leave the original unchanged.",
+    "nl": "Geef een nieuwe dictionary terug waarin offset bij elke value is opgeteld. Laat het origineel ongewijzigd."
+  },
+  "example": "",
+  "files": {
+    "main.py": "def adjust(mapping, offset):\n    # Implement the function.\n    pass\n\nprint(adjust({\"a\": 2, \"b\": 5}, 3))\n"
+  },
+  "solution": {
+    "main.py": "def adjust(mapping, offset):\n    return {key: value + offset for key, value in mapping.items()}\n\nprint(adjust({\"a\": 2, \"b\": 5}, 3))\n"
+  },
+  "checkpoints": [
+    {
+      "id": "practice-12-mapping-total-3-step-1",
+      "task": {
+        "en": "Return a new dictionary with offset added to every value. Leave the original unchanged.",
+        "nl": "Geef een nieuwe dictionary terug waarin offset bij elke value is opgeteld. Laat het origineel ongewijzigd."
+      },
+      "check": "adjust({'a':2,'b':5},3) == {'a':5,'b':8} and (lambda d: (adjust(d,4),d)[1])({'a':2}) == {'a':2}",
+      "hint": {
+        "en": "Work through a small input by hand first. Separate the condition, transformation, and return value.",
+        "nl": "Werk eerst zelf een kleine invoer uit. Bekijk de voorwaarde, de bewerking en de return value afzonderlijk."
+      }
+    }
+  ],
+  "solutionNote": {
+    "en": "This solution separates the calculation from its input. Test the function with ordinary values and edge cases such as empty collections or boundary values.",
+    "nl": "Deze oplossing scheidt de berekening van de invoer. Test de function met gewone waarden en grensgevallen, zoals lege verzamelingen of grenswaarden."
+  },
+  "estimatedMinutes": 10
+}

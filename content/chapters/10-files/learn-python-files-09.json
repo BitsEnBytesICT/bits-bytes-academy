@@ -1,0 +1,45 @@
+{
+  "id": "learn-python-files-09",
+  "chapter": 10,
+  "group": "learn-python-files",
+  "title": {
+    "en": "Alternative CSV delimiters",
+    "nl": "Een andere CSV-delimiter"
+  },
+  "kind": "coding",
+  "optional": false,
+  "explanation": {
+    "en": "The delimiter argument tells the CSV reader which character separates fields. It still handles quoting correctly. Different separators do not change the need to parse rows consistently.",
+    "nl": "Het delimiter-argument vertelt de CSV-reader welk teken velden scheidt. Quoting wordt nog steeds correct verwerkt. Een andere separator verandert niet dat je rijen consistent moet ontleden."
+  },
+  "example": "",
+  "files": {
+    "stations.csv": "name;count\n\"North; Annex\";3\nSouth;5\n",
+    "main.py": "# Write your code below.\n"
+  },
+  "solution": {
+    "stations.csv": "name;count\n\"North; Annex\";3\nSouth;5\n",
+    "main.py": "import csv\nwith open(\"stations.csv\", newline=\"\", encoding=\"utf-8\") as handle:\n    names = [row[\"name\"] for row in csv.DictReader(handle, delimiter=\";\")]\nprint(names)\n"
+  },
+  "checkpoints": [
+    {
+      "id": "learn-python-files-09-step-1",
+      "task": {
+        "en": "Parse stations.csv with delimiter ; and collect names in names.",
+        "nl": "Lees stations.csv met delimiter ; en verzamel de namen in names."
+      },
+      "check": "names == ['North; Annex','South']",
+      "hint": {
+        "en": "Start with import csv. Then compare the values with the task.",
+        "nl": "Begin met import csv. Vergelijk de waarden daarna met de opdracht."
+      }
+    }
+  ],
+  "solutionNote": {
+    "en": "The delimiter argument tells the CSV reader which character separates fields. It still handles quoting correctly. Different separators do not change the need to parse rows consistently.\n\nTrace the solution one line at a time. Try a different input to see which parts change.",
+    "nl": "Het delimiter-argument vertelt de CSV-reader welk teken velden scheidt. Quoting wordt nog steeds correct verwerkt. Een andere separator verandert niet dat je rijen consistent moet ontleden.\n\nVolg de oplossing regel voor regel. Probeer een andere invoer en bekijk welke onderdelen veranderen."
+  },
+  "sourcePosition": 9,
+  "sourceUrl": "https://www.codecademy.com/courses/learn-python-3/lessons/learn-python-files/exercises/reading-different-csvs",
+  "estimatedMinutes": 6
+}
