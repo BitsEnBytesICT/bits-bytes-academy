@@ -7,6 +7,7 @@ import type {
 } from "../../../shared/types";
 import { Icon } from "../Icon";
 import { CourseIcon } from "./CourseIcon";
+
 export function CourseOverview({
   summary,
   course,
@@ -25,96 +26,235 @@ export function CourseOverview({
   onActivity: (a: Activity) => void;
 }) {
   const tr = (en: string, nl: string) => (language === "nl" ? nl : en);
-  const available = summary.status === "available",
-    required = course.activities.filter((a) => !a.optional),
-    done = required.filter((a) => state.progress[a.id]?.complete).length;
+  const available = summary.status === "available";
+  const required = course.activities.filter((a) => !a.optional);
+  const done = required.filter((a) => state.progress[a.id]?.complete).length;
+  const percent = required.length
+    ? Math.round((done / required.length) * 100)
+    : 0;
   const started =
     !!state.settings.lastActivity || Object.keys(state.progress).length > 0;
+  const activitySummary = (items: Activity[]) => {
+    const labels = [
+      ["coding", "exercise", "exercises", "oefening", "oefeningen"],
+      ["quiz", "quiz", "quizzes", "quiz", "quizzes"],
+      ["reading", "reading", "readings", "leesonderdeel", "leesonderdelen"],
+      ["challenge", "challenge", "challenges", "uitdaging", "uitdagingen"],
+    ];
+    return labels
+      .flatMap(([kind, enOne, enMany, nlOne, nlMany]) => {
+        const count = items.filter((item) => item.kind === kind).length;
+        return count
+          ? [
+              `${count} ${tr(count === 1 ? enOne : enMany, count === 1 ? nlOne : nlMany)}`,
+            ]
+          : [];
+      })
+      .join(" · ");
+  };
+  const topics = (
+    <ul className="topic-list">
+      {summary.topics.map((topic, index) => (
+        <li key={index}>
+          <Icon name="check" size={16} />
+          {topic[language]}
+        </li>
+      ))}
+    </ul>
+  );
   return (
-    <main className="catalog-page">
+    <main
+      className={"catalog-page" + (available ? " course-details-page" : "")}
+    >
       <button className="text-button overview-back" onClick={onBack}>
         <Icon name="back" size={15} />
         {tr("All courses", "Alle cursussen")}
       </button>
-      <div className="overview-grid">
-        <section className="overview-main">
-          <span className="eyebrow">
-            {available
-              ? tr("PYTHON COURSE", "PYTHON-CURSUS")
-              : tr("COMING SOON", "BINNENKORT")}
-          </span>
-          <h1>{summary.title}</h1>
-          <p className="overview-description">
-            {summary.description[language]}
-          </p>
-          <div className="overview-facts">
-            <span>{tr("Beginner", "Beginner")}</span>
-            <span>
-              {available
-                ? tr("Approximately 20 hours", "Ongeveer 20 uur")
-                : tr("Duration to be announced", "Tijdsduur volgt")}
-            </span>
-            {available && <span>13 {tr("chapters", "hoofdstukken")}</span>}
-          </div>
-          <h2>{tr("What you will learn", "Wat je gaat leren")}</h2>
-          <ul className="topic-list">
-            {summary.topics.map((topic, i) => (
-              <li key={i}>
-                <Icon name="check" size={16} />
-                {topic[language]}
-              </li>
-            ))}
-          </ul>
-          {available ? (
-            <>
-              <h2>{tr("Course curriculum", "Curriculum")}</h2>
-              <div className="overview-chapters">
-                {course.chapters.map((chapter) => {
-                  const items = course.activities.filter(
-                      (a) => a.chapter === chapter.number,
-                    ),
-                    completed = items.filter(
-                      (a) => state.progress[a.id]?.complete,
-                    ).length;
-                  return (
-                    <details key={chapter.number}>
-                      <summary>
-                        <span className="chapter-number">
-                          {String(chapter.number).padStart(2, "0")}
-                        </span>
-                        <span>
-                          {chapter.title[language]}
-                          <small>
-                            {completed} / {items.length}{" "}
-                            {tr("complete", "afgerond")}
-                            {items.every((a) => a.optional)
-                              ? " · " + tr("Optional", "Optioneel")
-                              : ""}
-                          </small>
-                        </span>
-                        <Icon name="arrow" size={14} />
-                      </summary>
-                      <div className="overview-activities">
-                        {items.map((a) => (
-                          <button key={a.id} onClick={() => onActivity(a)}>
-                            <span
-                              className={
-                                state.progress[a.id]?.complete ? "good" : ""
-                              }
-                            >
-                              {state.progress[a.id]?.complete ? "✓" : "○"}
-                            </span>
-                            <span>{a.title[language]}</span>
-                            <small>{a.estimatedMinutes} min</small>
-                          </button>
-                        ))}
-                      </div>
-                    </details>
-                  );
-                })}
+      {available ? (
+        <>
+          <section
+            className="course-introduction"
+            aria-labelledby="course-title"
+          >
+            <div className="course-title-row">
+              <CourseIcon slug={summary.slug} />
+              <h1 id="course-title">{summary.title}</h1>
+            </div>
+            <div className="course-start-actions">
+              <button className="primary" onClick={onStart}>
+                {started
+                  ? tr("Resume learning", "Verder leren")
+                  : tr("Start learning", "Begin met leren")}
+                <Icon name="arrow" size={15} />
+              </button>
+            </div>
+            <p className="overview-description">
+              {summary.description[language]}
+            </p>
+            <div className="course-meta">
+              <span>{tr("Beginner", "Beginner")}</span>
+              <span>{tr("Approximately 20 hours", "Ongeveer 20 uur")}</span>
+              <span>
+                {course.chapters.length} {tr("chapters", "hoofdstukken")}
+              </span>
+            </div>
+            <details className="course-topics">
+              <summary>
+                {tr("What you will learn", "Wat je gaat leren")}
+                <Icon name="arrow" size={12} />
+              </summary>
+              {topics}
+            </details>
+            <section
+              className="course-progress-section"
+              aria-labelledby="course-progress-title"
+            >
+              <div className="course-progress-heading">
+                <h2 id="course-progress-title">
+                  {tr("Course progress", "Cursusvoortgang")}
+                </h2>
+                <span>{percent}%</span>
               </div>
-            </>
-          ) : (
+              <div className="course-progress-row">
+                <div
+                  className="course-progress-bar"
+                  role="progressbar"
+                  aria-labelledby="course-progress-title"
+                  aria-valuemin={0}
+                  aria-valuemax={100}
+                  aria-valuenow={percent}
+                >
+                  <div style={{ width: `${percent}%` }} />
+                </div>
+                <svg
+                  className={
+                    "course-progress-trophy" +
+                    (done === required.length && done > 0 ? " complete" : "")
+                  }
+                  width="28"
+                  height="28"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="1.7"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  aria-hidden="true"
+                >
+                  <path d="M7 3h10v5a5 5 0 0 1-10 0ZM7 5H3v3a4 4 0 0 0 5 4m9-7h4v3a4 4 0 0 1-5 4M12 13v5m-4 3h8m-6-3h4l2 3H8Z" />
+                </svg>
+              </div>
+              <p className="course-progress-caption">
+                {done} / {required.length}{" "}
+                {tr(
+                  "required activities complete",
+                  "verplichte activiteiten afgerond",
+                )}
+              </p>
+            </section>
+          </section>
+          <section className="course-syllabus" aria-labelledby="syllabus-title">
+            <h2 id="syllabus-title">{tr("Syllabus", "Curriculum")}</h2>
+            <div className="overview-chapters">
+              {course.chapters.map((chapter) => {
+                const items = course.activities.filter(
+                  (a) => a.chapter === chapter.number,
+                );
+                const completed = items.filter(
+                  (a) => state.progress[a.id]?.complete,
+                ).length;
+                const chapterPercent = items.length
+                  ? Math.round((completed / items.length) * 100)
+                  : 0;
+                return (
+                  <details key={chapter.number}>
+                    <summary>
+                      <span
+                        className={
+                          "chapter-completion" +
+                          (chapterPercent === 100 ? " complete" : "")
+                        }
+                        aria-hidden="true"
+                      >
+                        <svg width="42" height="42" viewBox="0 0 42 42">
+                          <circle
+                            className="chapter-ring-track"
+                            cx="21"
+                            cy="21"
+                            r="18"
+                          />
+                          <circle
+                            className="chapter-ring-fill"
+                            cx="21"
+                            cy="21"
+                            r="18"
+                            pathLength="100"
+                            strokeDasharray={`${chapterPercent} 100`}
+                            transform="rotate(-90 21 21)"
+                          />
+                        </svg>
+                        <span>
+                          {chapterPercent === 100 ? (
+                            <Icon name="check" size={16} />
+                          ) : completed ? (
+                            `${chapterPercent}%`
+                          ) : (
+                            String(chapter.number).padStart(2, "0")
+                          )}
+                        </span>
+                      </span>
+                      <span className="syllabus-chapter-text">
+                        <span className="syllabus-chapter-title">
+                          {chapter.title[language]}
+                        </span>
+                        <small>
+                          {activitySummary(items)}
+                          {items.every((a) => a.optional)
+                            ? " · " + tr("Optional", "Optioneel")
+                            : ""}
+                        </small>
+                        <small className="syllabus-chapter-status">
+                          {completed} / {items.length}{" "}
+                          {tr("complete", "afgerond")}
+                        </small>
+                      </span>
+                      <Icon name="arrow" size={14} />
+                    </summary>
+                    <div className="overview-activities">
+                      {items.map((a) => (
+                        <button key={a.id} onClick={() => onActivity(a)}>
+                          <span
+                            className={
+                              state.progress[a.id]?.complete ? "good" : ""
+                            }
+                          >
+                            {state.progress[a.id]?.complete ? "✓" : "○"}
+                          </span>
+                          <span>{a.title[language]}</span>
+                          <small>{a.estimatedMinutes} min</small>
+                        </button>
+                      ))}
+                    </div>
+                  </details>
+                );
+              })}
+            </div>
+          </section>
+        </>
+      ) : (
+        <div className="overview-grid">
+          <section className="overview-main">
+            <span className="eyebrow">{tr("COMING SOON", "BINNENKORT")}</span>
+            <h1>{summary.title}</h1>
+            <p className="overview-description">
+              {summary.description[language]}
+            </p>
+            <div className="overview-facts">
+              <span>{tr("Beginner", "Beginner")}</span>
+              <span>{tr("Duration to be announced", "Tijdsduur volgt")}</span>
+            </div>
+            <h2>{tr("What you will learn", "Wat je gaat leren")}</h2>
+            {topics}
             <div className="coming-soon-note">
               <h2>
                 {tr("This course is on its way", "Deze cursus komt eraan")}
@@ -126,43 +266,16 @@ export function CourseOverview({
                 )}
               </p>
             </div>
-          )}
-        </section>
-        <aside className="overview-summary">
-          <CourseIcon slug={summary.slug} />
-          <h2>{summary.title}</h2>
-          {available ? (
-            <>
-              <p>
-                {done} / {required.length}{" "}
-                {tr(
-                  "required activities complete",
-                  "verplichte activiteiten afgerond",
-                )}
-              </p>
-              <div className="progress-track">
-                <i style={{ width: (done / required.length) * 100 + "%" }} />
-              </div>
-              <button className="primary" onClick={onStart}>
-                {started
-                  ? tr("Resume learning", "Verder leren")
-                  : tr("Start learning", "Begin met leren")}
-                <Icon name="arrow" size={15} />
-              </button>
-              <small>
-                {tr(
-                  "Your code and progress are saved automatically.",
-                  "Je code en voortgang worden automatisch opgeslagen.",
-                )}
-              </small>
-            </>
-          ) : (
+          </section>
+          <aside className="overview-summary">
+            <CourseIcon slug={summary.slug} />
+            <h2>{summary.title}</h2>
             <span className="course-badge">
               {tr("Coming soon", "Binnenkort")}
             </span>
-          )}
-        </aside>
-      </div>
+          </aside>
+        </div>
+      )}
     </main>
   );
 }
