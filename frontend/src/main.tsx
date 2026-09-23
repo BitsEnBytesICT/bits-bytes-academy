@@ -23,6 +23,7 @@ import { Header } from "./components/Header";
 import { HomePage } from "./components/HomePage";
 import { CourseOverview } from "./components/CourseOverview";
 import { LessonPane } from "./components/LessonPane";
+import { ProjectPane } from "./components/ProjectPane";
 import { LessonNavigation } from "./components/LessonNavigation";
 import { displayConsolePrompt } from "./console-prompt";
 import { CurriculumDrawer } from "./components/CurriculumDrawer";
@@ -57,6 +58,7 @@ function App() {
     [files, setFiles] = useState<Record<string, string>>({}),
     [file, setFile] = useState("main.py"),
     [quizState, setQuizState] = useState<Workspace["quiz"]>();
+  const [projectMilestones, setProjectMilestones] = useState<string[]>([]);
   const [drawer, setDrawer] = useState(false),
     [saveStatus, setSaveStatus] = useState("saved"),
     [loading, setLoading] = useState(true),
@@ -178,6 +180,7 @@ function App() {
             : Object.keys(workspace.files)[0] || "main.py",
         );
         setQuizState(workspace.quiz);
+        setProjectMilestones(workspace.project?.milestones || []);
         setLoading(false);
         setState((s) => ({
           ...s,
@@ -289,7 +292,7 @@ function App() {
             JSON.stringify(store.current.current.files)
           )
             editFiles(result.files);
-          if (event.type === "done") {
+          if (event.type === "done" && a.kind !== "project") {
             const checks = result.results || [];
             setResults(Object.fromEntries(checks.map((r) => [r.id, r.passed])));
             void markProgress(
@@ -455,6 +458,8 @@ function App() {
   };
   const next = async () => {
     if (!course || !active) return;
+    if (active.kind !== "reading" && !state.progress[active.id]?.complete)
+      return;
     try {
       if (active.kind === "reading")
         await markProgress(active.id, { complete: true });
@@ -881,13 +886,38 @@ function App() {
               } as React.CSSProperties
             }
           >
-            <LessonPane
-              activity={a}
-              course={course}
-              language={language}
-              progress={progress}
-              results={results}
-            />
+            {a.kind === "project" ? (
+              <ProjectPane
+                key={a.id}
+                activity={a}
+                course={course}
+                language={language}
+                milestones={projectMilestones}
+                complete={progress.complete}
+                onMilestones={(milestones) => {
+                  setProjectMilestones(milestones);
+                  store.current.edit({ project: { milestones } });
+                  scheduleSave();
+                }}
+                onComplete={async () => {
+                  try {
+                    await store.current.save();
+                    await markProgress(a.id, { complete: true });
+                  } catch (e) {
+                    setError((e as Error).message);
+                  }
+                }}
+                onActivity={(activity) => void go(activity)}
+              />
+            ) : (
+              <LessonPane
+                activity={a}
+                course={course}
+                language={language}
+                progress={progress}
+                results={results}
+              />
+            )}
             {a?.kind === "quiz" ? (
               quizView()
             ) : (
@@ -1038,13 +1068,15 @@ function App() {
                         {tr("Stop", "Stop")}
                       </button>
                     )}
-                    <button
-                      className="solution-button"
-                      onClick={() => setModal("solution")}
-                      disabled={loading}
-                    >
-                      {tr("View solution", "Bekijk oplossing")}
-                    </button>
+                    {a.kind !== "project" && (
+                      <button
+                        className="solution-button"
+                        onClick={() => setModal("solution")}
+                        disabled={loading}
+                      >
+                        {tr("View solution", "Bekijk oplossing")}
+                      </button>
+                    )}
                   </div>
                 </section>
                 <div

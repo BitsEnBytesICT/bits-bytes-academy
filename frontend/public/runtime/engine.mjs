@@ -1,11 +1,73 @@
 // One namespace per activity; every graded run starts fresh.
 export const harness = String.raw`
-import sys, os, json, io, traceback, ast, contextlib, shutil, re
+import sys, os, json, io, traceback, ast, contextlib, shutil, re, math, random
 from pyodide.console import Console, repr_shorten
 _lab_root = '/home/pyodide/workspace'
 _lab_ns = None
 _lab_console = None
 _lab_names = set()
+
+def _lab_probe(files, probe):
+    # Real Python, fresh files/modules/input for every case. A test must not
+    # alter the learner's variables, random generator, imports, or saved files.
+    root = '/home/pyodide/behavior-probe'
+    original_cwd, original_path = os.getcwd(), sys.path[:]
+    original_stdin, original_random = sys.stdin, random.getstate()
+    original_modules = sys.modules.copy()
+    stdout, stderr = io.StringIO(), io.StringIO()
+    class BoundedOutput(io.TextIOBase):
+        def __init__(self, target): self.target, self.size = target, 0
+        def write(self, value):
+            self.size += len(value.encode('utf-8'))
+            if self.size > 1048576: raise RuntimeError('Output limit exceeded (1 MiB)')
+            return self.target.write(value)
+        def flush(self): pass
+    namespace = {'__name__': '__main__', '__file__': 'main.py'}
+    result, error = None, None
+    try:
+        if os.path.exists(root): shutil.rmtree(root)
+        os.makedirs(root)
+        for name, value in files.items():
+            if not re.fullmatch(r'[a-zA-Z0-9_][a-zA-Z0-9_.-]{0,99}', name): raise ValueError('Invalid workspace filename')
+            with open(os.path.join(root, name), 'w', encoding='utf-8') as handle: handle.write(value)
+        for name, module in list(sys.modules.items()):
+            if str(getattr(module, '__file__', '')).startswith((_lab_root + '/', root + '/')):
+                del sys.modules[name]
+        os.chdir(root)
+        sys.path[:] = [root] + [p for p in original_path if p not in (_lab_root, root)]
+        sys.stdin = io.StringIO(''.join(line + '\n' for line in probe.get('stdin', [])))
+        random.seed(1729)
+        tree = ast.parse(files.get('main.py', ''))
+        remaining = set(probe.get('inputs', {}))
+        for node in tree.body:
+            if isinstance(node, ast.Assign) and len(node.targets) == 1 and isinstance(node.targets[0], ast.Name):
+                name = node.targets[0].id
+                if name in remaining:
+                    node.value = ast.copy_location(ast.parse(repr(probe['inputs'][name]), mode='eval').body, node.value)
+                    remaining.remove(name)
+        if remaining: raise ValueError('Missing exercise input assignments: ' + ', '.join(sorted(remaining)))
+        with contextlib.redirect_stdout(BoundedOutput(stdout)), contextlib.redirect_stderr(BoundedOutput(stderr)):
+            try:
+                exec(compile(ast.fix_missing_locations(tree), 'main.py', 'exec'), namespace)
+                if probe.get('call'):
+                    call = probe['call']
+                    result = namespace[call['name']](*call.get('args', []), **call.get('kwargs', {}))
+            except BaseException as exc:
+                error = type(exc).__name__
+        namespace.update(_return=result, _error=error, _stdout=stdout.getvalue(), _stderr=stderr.getvalue(), _remaining_input=sys.stdin.read(), _close=math.isclose)
+        return bool(eval(probe['check'], namespace))
+    finally:
+        os.chdir(original_cwd)
+        sys.path[:] = original_path
+        sys.stdin = original_stdin
+        random.setstate(original_random)
+        for name, module in list(sys.modules.items()):
+            if str(getattr(module, '__file__', '')).startswith(root + '/'):
+                del sys.modules[name]
+        for name, module in original_modules.items():
+            if str(getattr(module, '__file__', '')).startswith((_lab_root + '/', root + '/')):
+                sys.modules[name] = module
+        if os.path.exists(root): shutil.rmtree(root)
 
 def _lab_prepare(files, fresh=False):
     global _lab_ns, _lab_console, _lab_names
@@ -103,6 +165,8 @@ def _lab_run(payload_json):
                         if not bool(eval(case['check'], case_namespace(case['inputs']))):
                             passed = False
                             break
+                if passed:
+                    passed = all(_lab_probe(payload['files'], probe) for probe in check.get('probes', []))
         except BaseException: passed = False
         results.append({'id':check['id'], 'passed':bool(passed)})
     return json.dumps({'results':results, 'error':error, 'files':_lab_files(), 'stdout':output})

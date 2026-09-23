@@ -7,6 +7,7 @@ import type {
 import { Icon } from "../Icon";
 import { CodeBlock } from "./CodeBlock";
 import { InlineLessonText, LessonText } from "./LessonText";
+import { LayeredHints } from "./LayeredHints";
 export function LessonPane({
   activity,
   course,
@@ -128,13 +129,10 @@ export function LessonPane({
                           <InlineLessonText text={c.task[language]} />
                         </p>
                       </div>
-                      <details>
-                        <summary>
-                          <Icon name="hint" size={14} />
-                          {tr("Need a hint?", "Een hint nodig?")}
-                        </summary>
-                        <LessonText text={c.hint[language]} />
-                      </details>
+                      <LayeredHints
+                        hints={c.hints || [c.hint]}
+                        language={language}
+                      />
                       {failed && !passed && (
                         <p className="check-message">
                           {c.feedback ? (

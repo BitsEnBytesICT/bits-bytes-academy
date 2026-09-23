@@ -1,6 +1,6 @@
 import { z } from "zod";
 import { LearningDAO } from "./learning.dao.js";
-import type { Course, Workspace } from "../../../shared/types.js";
+import type { Activity, Course, Workspace } from "../../../shared/types.js";
 const safeFile = z
   .string()
   .regex(/^[a-zA-Z0-9_][a-zA-Z0-9_.-]*$/)
@@ -34,6 +34,9 @@ export const workspaceSchema = z.object({
   revision: z.number().int().min(0),
   files,
   quiz,
+  project: z
+    .object({ milestones: z.array(z.string().max(100)).max(30) })
+    .optional(),
 });
 const progressSchema = z.object({
   complete: z.boolean(),
@@ -66,11 +69,19 @@ const backupSchema = z.object({
 });
 export class LearningService {
   ids: Set<string>;
+  registry: Map<string, Activity>;
   constructor(
     public dao: LearningDAO,
     public course: Course,
+    legacy?: Course,
   ) {
-    this.ids = new Set(course.activities.map((a) => a.id));
+    this.registry = new Map(
+      [...(legacy?.activities || []), ...course.activities].map((a) => [
+        a.id,
+        a,
+      ]),
+    );
+    this.ids = new Set(this.registry.keys());
   }
   id(id: string) {
     if (!this.ids.has(id))
@@ -89,7 +100,21 @@ export class LearningService {
     return this.dao.saveWorkspace(id, revision, data);
   }
   validateWorkspace(id: string, workspace: Workspace) {
-    const activity = this.course.activities.find((a) => a.id === id)!;
+    const activity = this.registry.get(id)!;
+    if (
+      workspace.project &&
+      (activity.kind !== "project" ||
+        new Set(workspace.project.milestones).size !==
+          workspace.project.milestones.length ||
+        workspace.project.milestones.some(
+          (id) => !activity.milestones.some((m) => m.id === id),
+        ))
+    ) {
+      throw Object.assign(
+        new Error("Project milestones do not match this activity"),
+        { status: 422 },
+      );
+    }
     const state = workspace.quiz;
     if (!state) return;
     const invalid = () => {
@@ -192,9 +217,44 @@ export class LearningService {
   }
   unlock(id: string) {
     this.id(id);
+    if (!this.course.activities.some((a) => a.id === id))
+      throw Object.assign(new Error("This activity is archived"), {
+        status: 409,
+      });
     const values = [...new Set([...(this.dao.setting("unlocks") || []), id])];
     this.dao.setting("unlocks", values);
     return values;
+  }
+  archive() {
+    const state = this.dao.state();
+    return [...this.registry.values()]
+      .filter(
+        (a) =>
+          !this.course.activities.some((current) => current.id === a.id) &&
+          (state.progress[a.id] || this.dao.getWorkspace(a.id)),
+      )
+      .map((a) => ({
+        id: a.id,
+        title: a.title,
+        kind: a.kind,
+        progress: state.progress[a.id] || { complete: false },
+      }));
+  }
+  archivedWork(id: string) {
+    this.id(id);
+    if (!this.archive().some((a) => a.id === id))
+      throw Object.assign(
+        new Error("No archived learning data for this activity"),
+        { status: 404 },
+      );
+    const activity = this.registry.get(id)!;
+    return {
+      id,
+      title: activity.title,
+      kind: activity.kind,
+      workspace: this.dao.getWorkspace(id),
+      progress: this.dao.getProgress(id),
+    };
   }
   validateBackup(body: unknown) {
     const data = backupSchema.parse(body);

@@ -9,6 +9,10 @@ export function learningRoutes(service: LearningService) {
     s.json({ ok: true, app: "bits-bytes-python-lab", version: "1.0.0" }),
   );
   r.get("/course", (_q, s) => s.json(service.course));
+  r.get("/archive", (_q, s) => s.json(service.archive()));
+  r.get("/archive/:id", (q, s) =>
+    s.json(service.archivedWork(String(q.params.id))),
+  );
   r.get("/state", (_q, s) => s.json(service.dao.state()));
   r.get("/workspaces/:id", (q, s) =>
     s.json(service.workspace(String(q.params.id))),

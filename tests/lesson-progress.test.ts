@@ -26,7 +26,7 @@ test("Revised tasks preserve earned completion and old progress without passing 
   );
   assert.equal(incomplete.complete, false);
 });
-test("Independent steps accumulate only authentic checks and require every current task", () => {
+test("Step history is preserved but new completion requires all tasks in the same run", () => {
   const first = recordLessonRun(undefined, checkpoints, [
     { id: checkpoints[0].id, passed: true },
     { id: "unrelated", passed: true },
@@ -40,10 +40,16 @@ test("Independent steps accumulate only authentic checks and require every curre
   const last = recordLessonRun(next, checkpoints, [
     { id: checkpoints[2].id, passed: true },
   ]);
-  assert.equal(last.complete, true);
+  assert.equal(last.complete, false);
+  const together = recordLessonRun(
+    last,
+    checkpoints,
+    checkpoints.map((c) => ({ id: c.id, passed: true })),
+  );
+  assert.equal(together.complete, true);
   assert.equal(
     recordLessonRun(
-      last,
+      together,
       checkpoints,
       checkpoints.map((c) => ({ id: c.id, passed: false })),
     ).complete,

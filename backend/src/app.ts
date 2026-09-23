@@ -11,6 +11,9 @@ export function createApp(db = openDatabase()) {
   const course = JSON.parse(
     fs.readFileSync(path.resolve("content/course.json"), "utf8"),
   );
+  const legacy = JSON.parse(
+    fs.readFileSync(path.resolve("content/legacy/course-v1.json"), "utf8"),
+  );
   const app = express();
   app.disable("x-powered-by");
   app.use((q, s, next) => {
@@ -32,7 +35,7 @@ export function createApp(db = openDatabase()) {
   app.get("/api/courses", (_q, s) => s.json(courseCatalog));
   app.use(
     "/api",
-    learningRoutes(new LearningService(new LearningDAO(db), course)),
+    learningRoutes(new LearningService(new LearningDAO(db), course, legacy)),
   );
   app.use("/api", (_q, s) => s.status(404).json({ error: "Unknown endpoint" }));
   app.use(express.static(path.resolve("frontend/dist")));

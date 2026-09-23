@@ -6,6 +6,11 @@ export function recordLessonRun(
   results: { id: string; passed: boolean }[],
 ): Progress {
   const valid = new Set(checkpoints.map((check) => check.id));
+  const passedNow = new Set(
+    results
+      .filter((result) => result.passed && valid.has(result.id))
+      .map((result) => result.id),
+  );
   const passed = [
     ...new Set([
       ...(previous?.checkpoints || []),
@@ -19,7 +24,7 @@ export function recordLessonRun(
     complete: Boolean(
       previous?.complete ||
       (checkpoints.length > 0 &&
-        checkpoints.every((check) => passed.includes(check.id))),
+        checkpoints.every((check) => passedNow.has(check.id))),
     ),
     checkpoints: passed,
   };
