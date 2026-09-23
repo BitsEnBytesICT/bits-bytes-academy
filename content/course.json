@@ -7498,25 +7498,51 @@
       "group": "use-python-list",
       "title": {
         "en": "Choosing list operations",
-        "nl": "List-bewerkingen kiezen"
+        "nl": "Kies de bewerking die bij je doel past"
       },
       "kind": "reading",
       "optional": false,
       "explanation": {
-        "en": "Choose a list operation according to your goal: insert by position, remove by value or position, take a slice, count occurrences, or sort. The distinction between mutation and a new return value is central.",
-        "nl": "Kies een list-bewerking op basis van je doel: invoegen op positie, verwijderen op waarde of positie, een slice nemen, tellen of sorteren. Het verschil tussen wijzigen en een nieuwe return value is essentieel."
+        "en": "A delivery desk needs more than a place to store items. It must insert urgent jobs, remove completed ones, count the remaining work and prepare a report. Each operation answers a different question. Before choosing one, decide whether you want to change the collection or calculate something from it.",
+        "nl": "Een uitgiftebalie heeft meer nodig dan een plek om items te bewaren. Spoedklussen moeten ertussen, afgeronde klussen eruit, en de resterende taken moeten worden geteld en gerapporteerd. Elke bewerking beantwoordt een andere vraag. Bepaal eerst of je de verzameling wilt wijzigen of er iets uit wilt berekenen."
       },
       "example": "",
+      "sections": [
+        {
+          "heading": {
+            "en": "Methods belong to an object",
+            "nl": "Methods horen bij een object"
+          },
+          "body": {
+            "en": "A method starts with the list name and a dot: jobs.insert(...). A built-in function receives the list inside parentheses: len(jobs). Parentheses perform the call in both forms. We will use these tools before studying how to write our own functions.",
+            "nl": "Een method begint met de naam van de list en een punt: jobs.insert(...). Een ingebouwde functie krijgt de list tussen haakjes: len(jobs). In beide vormen voeren de haakjes de aanroep uit. We gebruiken deze hulpmiddelen voordat we eigen functies leren schrijven."
+          },
+          "code": "jobs = [\"scan\", \"pack\"]\njobs.insert(1, \"check\")\nprint(jobs)\nprint(len(jobs))",
+          "output": "['scan', 'check', 'pack']\n3"
+        },
+        {
+          "heading": {
+            "en": "Change, calculate, or copy?",
+            "nl": "Wijzigen, berekenen of kopiëren?"
+          },
+          "body": {
+            "en": "insert changes the list; len calculates its size without changing it. sorted produces a new ordered list. Run the supplied preview and compare the original queue with the report. Try a different urgent job or insertion position. The next pages unpack each operation, including its return value.",
+            "nl": "insert wijzigt de list; len berekent de grootte zonder de list te veranderen. sorted maakt een nieuwe gesorteerde list. Voer de meegeleverde demonstratie uit en vergelijk de oorspronkelijke wachtrij met het rapport. Probeer een andere spoedklus of invoegpositie. De volgende pagina’s behandelen elke bewerking en de bijbehorende return value."
+          },
+          "code": "arrival = [8, 3, 6]\nreport = sorted(arrival)\nprint(arrival)\nprint(report)",
+          "output": "[8, 3, 6]\n[3, 6, 8]"
+        }
+      ],
       "files": {
-        "main.py": "values = [7, 2, 5]\nprint(\"Original:\", values)\nprint(\"Sorted copy:\", sorted(values))\nprint(\"Still original:\", values)\n"
+        "main.py": "jobs = [\"scan\", \"pack\", \"label\"]\nprint(\"Arrival order:\", jobs)\njobs.insert(1, \"check\")\nprint(\"Working order:\", jobs)\nprint(\"Job count:\", len(jobs))\nprint(\"Alphabetical report:\", sorted(jobs))\nprint(\"Queue still:\", jobs)\n"
       },
       "solution": {
-        "main.py": "values = [7, 2, 5]\nprint(\"Original:\", values)\nprint(\"Sorted copy:\", sorted(values))\nprint(\"Still original:\", values)\n"
+        "main.py": "jobs = [\"scan\", \"pack\", \"label\"]\nprint(\"Arrival order:\", jobs)\njobs.insert(1, \"check\")\nprint(\"Working order:\", jobs)\nprint(\"Job count:\", len(jobs))\nprint(\"Alphabetical report:\", sorted(jobs))\nprint(\"Queue still:\", jobs)\n"
       },
       "checkpoints": [],
       "solutionNote": {
-        "en": "Choose a list operation according to your goal: insert by position, remove by value or position, take a slice, count occurrences, or sort. The distinction between mutation and a new return value is central.\n\nTrace the solution one line at a time. Try a different input to see which parts change.",
-        "nl": "Kies een list-bewerking op basis van je doel: invoegen op positie, verwijderen op waarde of positie, een slice nemen, tellen of sorteren. Het verschil tussen wijzigen en een nieuwe return value is essentieel.\n\nVolg de oplossing regel voor regel. Probeer een andere invoer en bekijk welke onderdelen veranderen."
+        "en": "The insertion changes working order. Sorting for a report does not have to change that order: sorted gives a separate list, so the last print still shows the queue.",
+        "nl": "Het invoegen verandert de werkvolgorde. Sorteren voor een rapport hoeft die volgorde niet te veranderen: sorted geeft een aparte list, dus de laatste print toont nog steeds de wachtrij."
       },
       "sourcePosition": 1,
       "sourceUrl": "https://www.codecademy.com/courses/learn-python-3/lessons/use-python-list/exercises/operations-on-lists",
@@ -7528,38 +7554,122 @@
       "group": "use-python-list",
       "title": {
         "en": "Inserting by index",
-        "nl": "Invoegen op index"
+        "nl": "Voeg een stop in zonder andere stops te verliezen"
       },
       "kind": "coding",
       "optional": false,
       "explanation": {
-        "en": "insert(index, value) places an element before the selected position. Later elements move to the right. It changes the list in place.",
-        "nl": "insert(index, value) plaatst een element vóór de gekozen positie. Latere elementen schuiven naar rechts. De oorspronkelijke list wordt aangepast."
+        "en": "A route already has three stops, but two new collections must fit into it. Replacing an item would lose a stop; appending would put it at the end. insert(index, value) opens a position before the existing element and shifts the later elements one place to the right.",
+        "nl": "Een route heeft al drie stops, maar er moeten twee ophaaladressen tussen. Vervangen zou een stop laten verdwijnen; append zou deze achteraan zetten. insert(index, value) maakt ruimte vóór het bestaande element en schuift de latere elementen één plaats naar rechts."
       },
       "example": "",
+      "sections": [
+        {
+          "heading": {
+            "en": "Position first, value second",
+            "nl": "Eerst de positie, dan de waarde"
+          },
+          "body": {
+            "en": "Inserting at index 1 means before the current second element. The index is not the value being inserted. Negative indexes count from the end before the insertion; inserting at -1 places an item before the current last item.",
+            "nl": "Invoegen op index 1 betekent vóór het huidige tweede element. De index is niet de waarde die je invoegt. Negatieve indexes tellen vóór het invoegen vanaf het einde; invoegen op -1 zet een item vóór het huidige laatste item."
+          },
+          "code": "route = [\"Depot\", \"Museum\", \"Harbor\"]\nroute.insert(1, \"Park\")\nroute.insert(-1, \"School\")\nprint(route)",
+          "output": "['Depot', 'Park', 'Museum', 'School', 'Harbor']"
+        },
+        {
+          "heading": {
+            "en": "Read indexes again after an edit",
+            "nl": "Lees indexes opnieuw na een wijziging"
+          },
+          "body": {
+            "en": "The starter prints the original route. Add the priority stop first, then inspect the new positions before inserting the clinic. Keep the Priority print before the second insertion: it records an earlier state even though the list changes again.",
+            "nl": "De starter print de oorspronkelijke route. Voeg eerst de spoedstop toe en bekijk daarna de nieuwe posities voordat je de kliniek invoegt. Laat de Priority-print vóór de tweede invoeging staan: die legt een eerdere toestand vast, ook als de list daarna opnieuw verandert."
+          }
+        }
+      ],
       "files": {
-        "main.py": "stops = [\"Oak\", \"Lake\"]\n"
+        "main.py": "route = [\"Depot\", \"Bridge\", \"Museum\"]\nprint(\"Original:\", route)\n# Add Hub before the current first stop.\nprint(\"Priority:\", route)\n# Add Clinic between Depot and Bridge.\nprint(\"Ready:\", route)\n"
       },
       "solution": {
-        "main.py": "stops = [\"Oak\", \"Lake\"]\nstops.insert(1, \"Bridge\")\nprint(stops)\n"
+        "main.py": "route = [\"Depot\", \"Bridge\", \"Museum\"]\nprint(\"Original:\", route)\nroute.insert(0, \"Hub\")\nprint(\"Priority:\", route)\nroute.insert(2, \"Clinic\")\nprint(\"Ready:\", route)\nshifted = route[3]\nprint(\"Shifted stop:\", shifted)\n"
       },
       "checkpoints": [
         {
-          "id": "use-python-list-02-step-1",
+          "id": "use-python-list-02-v2-step-1",
           "task": {
-            "en": "Insert Bridge between Oak and Lake in stops.",
-            "nl": "Voeg Bridge in tussen Oak en Lake in stops."
+            "en": "Use `insert()` to put \"Hub\" first. Keep the supplied Priority print immediately after this change and run the program.",
+            "nl": "Gebruik `insert()` om \"Hub\" vooraan te zetten. Laat de meegeleverde Priority-print direct na deze wijziging staan en voer het programma uit."
           },
-          "check": "stops == ['Oak','Bridge','Lake']",
+          "check": "any(isinstance(n, _ast.Call) and isinstance(n.func, _ast.Attribute) and n.func.attr == 'insert' for n in _ast.walk(_ast.parse(_source))) and \"Priority: ['Hub', 'Depot', 'Bridge', 'Museum']\" in _stdout.splitlines()",
+          "feedback": {
+            "en": "Insert one Hub before Depot and print that intermediate route before making another change.",
+            "nl": "Voeg één Hub vóór Depot in en print die tussenstand voordat je iets anders verandert."
+          },
+          "cases": [
+            {
+              "inputs": {
+                "route": [
+                  "A",
+                  "B"
+                ]
+              },
+              "check": "\"Priority: ['Hub', 'A', 'B']\" in _stdout.splitlines()"
+            }
+          ],
           "hint": {
-            "en": "Start with stops = [\"Oak\", \"Lake\"]. Then compare the values with the task.",
-            "nl": "Begin met stops = [\"Oak\", \"Lake\"]. Vergelijk de waarden daarna met de opdracht."
+            "en": "The first position has index 0. Supply the position before the new string.",
+            "nl": "De eerste positie heeft index 0. Geef de positie vóór de nieuwe string mee."
+          }
+        },
+        {
+          "id": "use-python-list-02-v2-step-2",
+          "task": {
+            "en": "Now insert \"Clinic\" between Depot and Bridge. Keep every previous stop. Run and inspect the Ready line.",
+            "nl": "Voeg nu \"Clinic\" tussen Depot en Bridge in. Behoud elke bestaande stop. Voer uit en bekijk de Ready-regel."
+          },
+          "check": "route == ['Hub','Depot','Clinic','Bridge','Museum'] and any(isinstance(n, _ast.Call) and isinstance(n.func, _ast.Attribute) and n.func.attr == 'insert' for n in _ast.walk(_ast.parse(_source)))",
+          "feedback": {
+            "en": "Recalculate positions after the first insertion; do not replace or remove a stop.",
+            "nl": "Bereken de posities opnieuw na de eerste invoeging; vervang of verwijder geen stop."
+          },
+          "cases": [
+            {
+              "inputs": {
+                "route": [
+                  "A",
+                  "B",
+                  "C",
+                  "D"
+                ]
+              },
+              "check": "route == ['Hub','A','Clinic','B','C','D']"
+            }
+          ],
+          "hint": {
+            "en": "After Hub is inserted, Depot is at 1 and Bridge is at 2. Insert before Bridge.",
+            "nl": "Na het invoegen van Hub staat Depot op 1 en Bridge op 2. Voeg vóór Bridge in."
+          }
+        },
+        {
+          "id": "use-python-list-02-v2-step-3",
+          "task": {
+            "en": "Store the item now at index 3 in `shifted`, then print it with the label \"Shifted stop:\". It should be Bridge.",
+            "nl": "Bewaar het item dat nu op index 3 staat in `shifted` en print het met het label \"Shifted stop:\". Dit hoort Bridge te zijn."
+          },
+          "check": "shifted == route[3] == 'Bridge' and 'Shifted stop: Bridge' in _stdout.splitlines()",
+          "feedback": {
+            "en": "Read the final route at index 3 and include the selected item in your report.",
+            "nl": "Lees index 3 uit de uiteindelijke route en neem het gekozen item op in je rapport."
+          },
+          "hint": {
+            "en": "Use a lookup after both insertions: route[3].",
+            "nl": "Vraag de waarde na beide invoegingen op met route[3]."
           }
         }
       ],
       "solutionNote": {
-        "en": "insert(index, value) places an element before the selected position. Later elements move to the right. It changes the list in place.\n\nTrace the solution one line at a time. Try a different input to see which parts change.",
-        "nl": "insert(index, value) plaatst een element vóór de gekozen positie. Latere elementen schuiven naar rechts. De oorspronkelijke list wordt aangepast.\n\nVolg de oplossing regel voor regel. Probeer een andere invoer en bekijk welke onderdelen veranderen."
+        "en": "Hub shifts every original stop right. Clinic shifts Bridge and Museum again. The intermediate output and final lookup make those moves visible rather than relying on a guessed final literal.",
+        "nl": "Hub schuift elke oorspronkelijke stop naar rechts. Clinic schuift Bridge en Museum opnieuw op. De tussenliggende output en de laatste opvraag maken die verschuivingen zichtbaar."
       },
       "sourcePosition": 2,
       "sourceUrl": "https://www.codecademy.com/courses/learn-python-3/lessons/use-python-list/exercises/adding-by-index-insert",
@@ -7571,38 +7681,124 @@
       "group": "use-python-list",
       "title": {
         "en": "Removing by index",
-        "nl": "Verwijderen met pop"
+        "nl": "Verwijder een klus en bewaar wat eruit ging"
       },
       "kind": "coding",
       "optional": false,
       "explanation": {
-        "en": "pop(index) removes and returns an element. With no argument, it removes the last one. Save the return value when you need the removed item later.",
-        "nl": "pop(index) verwijdert een element en geeft het terug. Zonder argument wordt het laatste element verwijderd. Bewaar de return value als je het verwijderde item later nodig hebt."
+        "en": "The last job in a queue is canceled and the first job is ready to process. You need both the remaining queue and a record of the removed jobs. pop() removes an item and returns that same item, so one call can update the list and supply a value for a report.",
+        "nl": "De laatste klus in een wachtrij wordt geannuleerd en de eerste kan worden verwerkt. Je hebt zowel de resterende wachtrij als een overzicht van de verwijderde klussen nodig. pop() verwijdert een element en geeft datzelfde element terug: één aanroep wijzigt de list en levert een waarde voor een rapport."
       },
       "example": "",
+      "sections": [
+        {
+          "heading": {
+            "en": "Default end, optional index",
+            "nl": "Standaard achteraan, optioneel op index"
+          },
+          "body": {
+            "en": "With no argument, pop removes the last element. With an index, it removes that position and shifts later elements left. Store the return value before you need it: printing the shortened list does not tell you everything that was removed.",
+            "nl": "Zonder argument verwijdert pop het laatste element. Met een index verwijdert het die positie en schuiven latere elementen naar links. Bewaar de return value: alleen de ingekorte list printen vertelt niet alles over wat werd verwijderd."
+          },
+          "code": "jobs = [\"wash\", \"dry\", \"fold\"]\ncanceled = jobs.pop()\ncurrent = jobs.pop(0)\nprint(canceled, current)\nprint(jobs)",
+          "output": "fold wash\n['dry']"
+        },
+        {
+          "heading": {
+            "en": "A position is not a value",
+            "nl": "Een positie is geen waarde"
+          },
+          "body": {
+            "en": "pop(2) removes index 2; remove(2) searches for the value 2. An invalid index or popping an empty list raises IndexError. Try a deliberately invalid pop in the console, then repair it. Keep the actual program valid while completing its checks.",
+            "nl": "pop(2) verwijdert index 2; remove(2) zoekt de waarde 2. Een ongeldige index of pop op een lege list geeft IndexError. Probeer een ongeldige pop in de console en herstel die daarna. Houd het eigenlijke programma geldig terwijl je de taken afrondt."
+          }
+        }
+      ],
       "files": {
-        "main.py": "queue = [\"A\", \"B\", \"C\"]\n"
+        "main.py": "jobs = [\"scan\", \"pack\", \"label\", \"test\"]\nprint(\"Queued:\", jobs)\n# Cancel the last job and keep its name.\n# Take the first remaining job for processing.\nprint(\"Remaining:\", jobs)\n"
       },
       "solution": {
-        "main.py": "queue = [\"A\", \"B\", \"C\"]\nremoved = queue.pop()\nprint(removed, queue)\n"
+        "main.py": "jobs = [\"scan\", \"pack\", \"label\", \"test\"]\nprint(\"Queued:\", jobs)\ncanceled = jobs.pop()\ncurrent = jobs.pop(0)\nprint(\"Remaining:\", jobs)\nprint(\"Canceled:\", canceled)\nprint(\"Processing:\", current)\n"
       },
       "checkpoints": [
         {
-          "id": "use-python-list-03-step-1",
+          "id": "use-python-list-03-v2-step-1",
           "task": {
-            "en": "Remove the last entry from queue with pop and store it in removed.",
-            "nl": "Verwijder met pop het laatste item uit queue en sla het op in removed."
+            "en": "Cancel the last job using `pop()` and save its returned name in `canceled`. Run to see the shorter queue.",
+            "nl": "Annuleer de laatste klus met `pop()` en bewaar de teruggegeven naam in `canceled`. Voer uit om de kortere wachtrij te zien."
           },
-          "check": "removed == 'C' and queue == ['A','B']",
+          "check": "canceled == 'test' and any(isinstance(n, _ast.Call) and isinstance(n.func, _ast.Attribute) and n.func.attr == 'pop' for n in _ast.walk(_ast.parse(_source)))",
+          "feedback": {
+            "en": "Keep the actual removed item in canceled; a second pop would remove an extra job.",
+            "nl": "Bewaar het werkelijk verwijderde item in canceled; een tweede pop zou nog een klus verwijderen."
+          },
+          "cases": [
+            {
+              "inputs": {
+                "jobs": [
+                  "a",
+                  "b",
+                  "c"
+                ]
+              },
+              "check": "canceled == 'c'"
+            }
+          ],
           "hint": {
-            "en": "Start with queue = [\"A\", \"B\", \"C\"]. Then compare the values with the task.",
-            "nl": "Begin met queue = [\"A\", \"B\", \"C\"]. Vergelijk de waarden daarna met de opdracht."
+            "en": "Assign the call itself: canceled = jobs.pop(). Do not call it twice.",
+            "nl": "Sla de aanroep zelf op: canceled = jobs.pop(). Roep de method niet twee keer aan."
+          }
+        },
+        {
+          "id": "use-python-list-03-v2-step-2",
+          "task": {
+            "en": "Use another `pop()` to take the first remaining job. Store its name in `current`; jobs should then contain pack and label.",
+            "nl": "Gebruik nog een `pop()` om de eerste resterende klus te pakken. Bewaar de naam in `current`; jobs hoort daarna pack en label te bevatten."
+          },
+          "check": "current == 'scan' and jobs == ['pack','label']",
+          "feedback": {
+            "en": "Remove the first remaining item and retain the middle jobs in their original order.",
+            "nl": "Verwijder het eerste resterende item en behoud de middelste klussen in hun oorspronkelijke volgorde."
+          },
+          "cases": [
+            {
+              "inputs": {
+                "jobs": [
+                  "a",
+                  "b",
+                  "c",
+                  "d",
+                  "e"
+                ]
+              },
+              "check": "current == 'a' and jobs == ['b','c','d']"
+            }
+          ],
+          "hint": {
+            "en": "The front of a list is index 0, even after the last item was removed.",
+            "nl": "De voorkant van een list is index 0, ook nadat het laatste element is verwijderd."
+          }
+        },
+        {
+          "id": "use-python-list-03-v2-step-3",
+          "task": {
+            "en": "Finish the report with `print(\"Canceled:\", canceled)` and `print(\"Processing:\", current)`. Keep the Remaining line after both removals.",
+            "nl": "Maak het rapport af met `print(\"Canceled:\", canceled)` en `print(\"Processing:\", current)`. Laat de Remaining-regel na beide verwijderingen staan."
+          },
+          "check": "('Remaining: ' + str(jobs)) in _stdout.splitlines() and 'Canceled: test' in _stdout.splitlines() and 'Processing: scan' in _stdout.splitlines()",
+          "feedback": {
+            "en": "Report both removed names and the remaining two jobs without removing anything else.",
+            "nl": "Rapporteer beide verwijderde namen en de twee resterende klussen zonder nog iets te verwijderen."
+          },
+          "hint": {
+            "en": "The stored strings survive later list changes; print those variables rather than popping again.",
+            "nl": "De bewaarde strings blijven bestaan na latere list-wijzigingen; print die variabelen in plaats van opnieuw pop aan te roepen."
           }
         }
       ],
       "solutionNote": {
-        "en": "pop(index) removes and returns an element. With no argument, it removes the last one. Save the return value when you need the removed item later.\n\nTrace the solution one line at a time. Try a different input to see which parts change.",
-        "nl": "pop(index) verwijdert een element en geeft het terug. Zonder argument wordt het laatste element verwijderd. Bewaar de return value als je het verwijderde item later nodig hebt.\n\nVolg de oplossing regel voor regel. Probeer een andere invoer en bekijk welke onderdelen veranderen."
+        "en": "Each pop has two observable effects: the queue becomes shorter and its return value is assigned to a name. The report uses those saved names, so reporting does not change the queue again.",
+        "nl": "Elke pop heeft twee zichtbare effecten: de wachtrij wordt korter en de return value wordt aan een naam gekoppeld. Het rapport gebruikt die namen en verandert de wachtrij dus niet opnieuw."
       },
       "sourcePosition": 3,
       "sourceUrl": "https://www.codecademy.com/courses/learn-python-3/lessons/use-python-list/exercises/removing-by-index-pop",
@@ -7614,38 +7810,134 @@
       "group": "use-python-list",
       "title": {
         "en": "Basic range",
-        "nl": "Een range gebruiken"
+        "nl": "Nummer werkstations met range"
       },
       "kind": "coding",
       "optional": false,
       "explanation": {
-        "en": "range(stop) describes integers from zero up to, but not including, stop. Convert it with list() when you need to see or store every element as a list.",
-        "nl": "range(stop) beschrijft integers vanaf nul tot stop, waarbij stop zelf niet meetelt. Gebruik list() als je alle elementen als list wilt zien of bewaren."
+        "en": "A workshop has a configurable number of stations. Typing every station number by hand creates work each time that number changes. range(stop) describes consecutive integers beginning at zero and stopping before stop. A range object is a compact description, not a list literal.",
+        "nl": "Een werkplaats heeft een instelbaar aantal stations. Alle stationsnummers handmatig typen levert extra werk op zodra dat aantal verandert. range(stop) beschrijft opeenvolgende gehele getallen vanaf nul tot vóór stop. Een range-object is een compacte beschrijving, geen list-literal."
       },
       "example": "",
+      "sections": [
+        {
+          "heading": {
+            "en": "One boundary, two useful forms",
+            "nl": "Eén grens, twee bruikbare vormen"
+          },
+          "body": {
+            "en": "range(4) contains the values 0, 1, 2 and 3. Printing the object shows its boundaries; list(...) materializes the values as a list. Keep those forms distinct: the range is the recipe and the list is the expanded result.",
+            "nl": "range(4) bevat de waarden 0, 1, 2 en 3. Het object printen toont de grenzen; list(...) werkt de waarden uit tot een list. Houd die vormen uit elkaar: de range is het recept en de list het uitgewerkte resultaat."
+          },
+          "code": "numbers = range(4)\nprint(numbers)\nprint(list(numbers))",
+          "output": "range(0, 4)\n[0, 1, 2, 3]"
+        },
+        {
+          "heading": {
+            "en": "The last value is one less",
+            "nl": "De laatste waarde is één lager"
+          },
+          "body": {
+            "en": "With five stations numbered from zero, the last station is 4. To include a last value of 5 you would need stop 6. The tasks assume at least one station; range(0) is empty, so it has no last element to look up.",
+            "nl": "Bij vijf stations die vanaf nul worden genummerd, is het laatste station 4. Om 5 als laatste waarde op te nemen heb je stop 6 nodig. De taken gaan uit van minstens één station; range(0) is leeg en heeft dus geen laatste element om op te vragen."
+          }
+        }
+      ],
       "files": {
-        "main.py": "# Write your code below.\n"
+        "main.py": "station_count = 5\nstation_numbers = range(3)\nprint(\"Range:\", station_numbers)\n# Expand the range into a list, then inspect the final number.\n"
       },
       "solution": {
-        "main.py": "stations = list(range(6))\nprint(stations)\n"
+        "main.py": "station_count = 5\nstation_numbers = range(station_count)\nprint(\"Range:\", station_numbers)\nstation_list = list(station_numbers)\nprint(\"Stations:\", station_list)\nlast_station = station_list[-1]\nprint(\"Last station:\", last_station)\n"
       },
       "checkpoints": [
         {
-          "id": "use-python-list-04-step-1",
+          "id": "use-python-list-04-v2-step-1",
           "task": {
-            "en": "Create stations as list(range(6)).",
-            "nl": "Maak stations met list(range(6))."
+            "en": "Repair `station_numbers` so it remains a range object but uses `station_count` as its excluded stop. Run and inspect the Range line.",
+            "nl": "Herstel `station_numbers` zodat het een range-object blijft, maar `station_count` als uitgesloten stop gebruikt. Voer uit en bekijk de Range-regel."
           },
-          "check": "stations == [0,1,2,3,4,5]",
+          "check": "type(station_numbers) is range and station_numbers == range(station_count) and station_count == 5",
+          "feedback": {
+            "en": "Generate a range from zero using the configured count, rather than typing fixed values.",
+            "nl": "Maak een range vanaf nul met het ingestelde aantal in plaats van vaste waarden te typen."
+          },
+          "cases": [
+            {
+              "inputs": {
+                "station_count": 1
+              },
+              "check": "type(station_numbers) is range and list(station_numbers) == [0]"
+            },
+            {
+              "inputs": {
+                "station_count": 8
+              },
+              "check": "station_numbers == range(8)"
+            }
+          ],
           "hint": {
-            "en": "Start with stations = list(range(6)). Then compare the values with the task.",
-            "nl": "Begin met stations = list(range(6)). Vergelijk de waarden daarna met de opdracht."
+            "en": "Pass station_count to range without converting the result yet.",
+            "nl": "Geef station_count mee aan range zonder het resultaat al om te zetten."
+          }
+        },
+        {
+          "id": "use-python-list-04-v2-step-2",
+          "task": {
+            "en": "Create `station_list` by converting `station_numbers` with `list()`. Print it with \"Stations:\" to see all generated numbers.",
+            "nl": "Maak `station_list` door `station_numbers` met `list()` om te zetten. Print deze met \"Stations:\" om alle gegenereerde nummers te zien."
+          },
+          "check": "station_list == [0,1,2,3,4] and 'Stations: [0, 1, 2, 3, 4]' in _stdout.splitlines()",
+          "feedback": {
+            "en": "Convert the range into a list and display it; printing only the range boundaries is not the expanded result.",
+            "nl": "Zet de range om in een list en toon die; alleen de range-grenzen printen is niet het uitgewerkte resultaat."
+          },
+          "cases": [
+            {
+              "inputs": {
+                "station_count": 7
+              },
+              "check": "station_list == list(range(7))"
+            }
+          ],
+          "hint": {
+            "en": "list receives the range object as its single argument.",
+            "nl": "list krijgt het range-object als enige argument."
+          }
+        },
+        {
+          "id": "use-python-list-04-v2-step-3",
+          "task": {
+            "en": "Read the last item into `last_station` and print it with \"Last station:\". Then try station_count = 1 in the console or editor and explain why the last value is 0; restore the supplied count before submitting.",
+            "nl": "Lees het laatste item uit naar `last_station` en print het met \"Last station:\". Probeer daarna station_count = 1 in de console of editor en verklaar waarom de laatste waarde 0 is; herstel het meegeleverde aantal voordat je inlevert."
+          },
+          "check": "last_station == 4 and 'Last station: 4' in _stdout.splitlines()",
+          "feedback": {
+            "en": "Read the last generated value instead of assuming it equals the station count.",
+            "nl": "Lees de laatste gegenereerde waarde uit in plaats van aan te nemen dat die gelijk is aan het aantal stations."
+          },
+          "cases": [
+            {
+              "inputs": {
+                "station_count": 1
+              },
+              "check": "last_station == 0"
+            },
+            {
+              "inputs": {
+                "station_count": 8
+              },
+              "check": "last_station == 7"
+            }
+          ],
+          "hint": {
+            "en": "A negative index still selects the end after the station count changes.",
+            "nl": "Een negatieve index kiest nog steeds het einde nadat het aantal stations verandert."
           }
         }
       ],
       "solutionNote": {
-        "en": "range(stop) describes integers from zero up to, but not including, stop. Convert it with list() when you need to see or store every element as a list.\n\nTrace the solution one line at a time. Try a different input to see which parts change.",
-        "nl": "range(stop) beschrijft integers vanaf nul tot stop, waarbij stop zelf niet meetelt. Gebruik list() als je alle elementen als list wilt zien of bewaren.\n\nVolg de oplossing regel voor regel. Probeer een andere invoer en bekijk welke onderdelen veranderen."
+        "en": "The count drives the range, the range drives the list, and the list supplies its last value. Changing the count therefore updates all three results without editing separate literals.",
+        "nl": "Het aantal bepaalt de range, de range bepaalt de list en de list levert de laatste waarde. Een ander aantal werkt daardoor door in alle drie resultaten zonder losse literals te wijzigen."
       },
       "sourcePosition": 4,
       "sourceUrl": "https://www.codecademy.com/courses/learn-python-3/lessons/use-python-list/exercises/consecutive-lists-range",
@@ -7657,38 +7949,120 @@
       "group": "use-python-list",
       "title": {
         "en": "Range bounds and step",
-        "nl": "Start, stop en step"
+        "nl": "Bouw een rooster met begin, grens en stap"
       },
       "kind": "coding",
       "optional": false,
       "explanation": {
-        "en": "range(start, stop, step) begins at start and advances by step while staying before the stop boundary. A negative step moves downward. A step of zero is invalid.",
-        "nl": "range(start, stop, step) begint bij start en gaat met step vooruit tot de stopgrens. Een negatieve step telt terug. Een step van nul is ongeldig."
+        "en": "A shuttle starts at a chosen hour and leaves at a regular interval. range(start, stop, step) expresses that rule directly. Start is included, stop is excluded, and step is the distance from one generated value to the next.",
+        "nl": "Een shuttle begint op een gekozen uur en vertrekt daarna met vaste tussenpozen. range(start, stop, step) drukt die regel direct uit. Start telt mee, stop is uitgesloten en step is het verschil tussen opeenvolgende waarden."
       },
       "example": "",
+      "sections": [
+        {
+          "heading": {
+            "en": "Stop is a boundary, not a promised final value",
+            "nl": "Stop is een grens, geen beloofde eindwaarde"
+          },
+          "body": {
+            "en": "Add the step repeatedly until the next value would reach or pass stop. A boundary does not need to be one of the generated values. Keep the argument order start, stop, step; swapping the last two changes the rule.",
+            "nl": "Tel de stap steeds op totdat de volgende waarde stop zou bereiken of voorbijgaan. De grens hoeft zelf niet in de reeks te vallen. Houd de volgorde start, stop, step aan; de laatste twee verwisselen verandert de regel."
+          },
+          "code": "departures = range(7, 18, 3)\nprint(list(departures))",
+          "output": "[7, 10, 13, 16]"
+        },
+        {
+          "heading": {
+            "en": "Count down with a negative step",
+            "nl": "Tel terug met een negatieve stap"
+          },
+          "body": {
+            "en": "A positive step cannot move from a larger start toward a smaller stop, so that range is empty. Use a negative step to count down. To include zero, put the excluded stop below zero. Step zero is invalid and raises ValueError.",
+            "nl": "Een positieve stap kan niet van een hoger begin naar een lagere stop bewegen; die range is leeg. Gebruik een negatieve stap om terug te tellen. Om nul op te nemen moet de uitgesloten stop onder nul liggen. Stap nul is ongeldig en geeft ValueError."
+          },
+          "code": "print(list(range(3, -1)))\nprint(list(range(3, -1, -1)))",
+          "output": "[]\n[3, 2, 1, 0]"
+        }
+      ],
       "files": {
-        "main.py": "# Write your code below.\n"
+        "main.py": "start = 6\nstop = 19\ninterval = 4\ndepartures = range(start, stop)\nprint(\"Departures:\", list(departures))\n# This countdown currently has the wrong direction.\ncountdown = list(range(3, -1))\nprint(\"Countdown:\", countdown)\n"
       },
       "solution": {
-        "main.py": "departures = list(range(8, 18, 2))\nprint(departures)\n"
+        "main.py": "start = 6\nstop = 19\ninterval = 4\ndepartures = range(start, stop, interval)\nprint(\"Departures:\", list(departures))\nlast_departure = list(departures)[-1]\nprint(\"Last departure:\", last_departure)\ncountdown = list(range(3, -1, -1))\nprint(\"Countdown:\", countdown)\n"
       },
       "checkpoints": [
         {
-          "id": "use-python-list-05-step-1",
+          "id": "use-python-list-05-v2-step-1",
           "task": {
-            "en": "Create departures containing 8, 10, 12, 14, and 16 using range.",
-            "nl": "Maak departures met 8, 10, 12, 14 en 16 via range."
+            "en": "Repair `departures` to use all three supplied settings. Its expanded values should be 6, 10, 14 and 18.",
+            "nl": "Herstel `departures` zodat alle drie instellingen worden gebruikt. De uitgewerkte waarden horen 6, 10, 14 en 18 te zijn."
           },
-          "check": "departures == [8,10,12,14,16] and 'range' in _source",
+          "check": "type(departures) is range and departures == range(start, stop, interval) and list(departures) == [6,10,14,18]",
+          "feedback": {
+            "en": "Build the schedule from start, stop and interval; do not hard-code this one schedule.",
+            "nl": "Bouw het rooster op uit start, stop en interval; leg niet alleen dit ene rooster vast."
+          },
+          "cases": [
+            {
+              "inputs": {
+                "start": 8,
+                "stop": 17,
+                "interval": 3
+              },
+              "check": "list(departures) == [8,11,14]"
+            }
+          ],
           "hint": {
-            "en": "Start with departures = list(range(8, 18, 2)). Then compare the values with the task.",
-            "nl": "Begin met departures = list(range(8, 18, 2)). Vergelijk de waarden daarna met de opdracht."
+            "en": "The interval is the third argument, after the excluded stop.",
+            "nl": "De tussenpoos is het derde argument, na de uitgesloten stop."
+          }
+        },
+        {
+          "id": "use-python-list-05-v2-step-2",
+          "task": {
+            "en": "Read the final generated hour into `last_departure`, then print it with \"Last departure:\". Derive it from the range instead of using stop - 1.",
+            "nl": "Lees het laatste gegenereerde uur uit naar `last_departure` en print het met \"Last departure:\". Leid het af uit de range in plaats van stop - 1 te gebruiken."
+          },
+          "check": "last_departure == 18 and 'Last departure: 18' in _stdout.splitlines()",
+          "feedback": {
+            "en": "Select the last scheduled hour; the excluded boundary is not itself a departure.",
+            "nl": "Kies het laatste geplande uur; de uitgesloten grens is zelf geen vertrek."
+          },
+          "cases": [
+            {
+              "inputs": {
+                "start": 8,
+                "stop": 17,
+                "interval": 3
+              },
+              "check": "last_departure == 14"
+            }
+          ],
+          "hint": {
+            "en": "Convert the range to a list and select its last item. The final value need not be one below stop.",
+            "nl": "Zet de range om in een list en kies het laatste item. De laatste waarde ligt niet altijd één onder stop."
+          }
+        },
+        {
+          "id": "use-python-list-05-v2-step-3",
+          "task": {
+            "en": "Repair `countdown` to contain 3, 2, 1, 0, using a negative step. Keep its Countdown print and run the complete program.",
+            "nl": "Herstel `countdown` zodat deze 3, 2, 1, 0 bevat, met een negatieve stap. Behoud de Countdown-print en voer het hele programma uit."
+          },
+          "check": "countdown == [3,2,1,0] and 'Countdown: [3, 2, 1, 0]' in _stdout.splitlines()",
+          "feedback": {
+            "en": "Move down one unit each time and include zero before reaching the excluded -1 boundary.",
+            "nl": "Ga telkens één omlaag en neem nul op voordat de uitgesloten grens -1 wordt bereikt."
+          },
+          "hint": {
+            "en": "The start and stop are already suitable. Add a step of -1.",
+            "nl": "Het begin en de stop zijn al geschikt. Voeg een stap van -1 toe."
           }
         }
       ],
       "solutionNote": {
-        "en": "range(start, stop, step) begins at start and advances by step while staying before the stop boundary. A negative step moves downward. A step of zero is invalid.\n\nTrace the solution one line at a time. Try a different input to see which parts change.",
-        "nl": "range(start, stop, step) begint bij start en gaat met step vooruit tot de stopgrens. Een negatieve step telt terug. Een step van nul is ongeldig.\n\nVolg de oplossing regel voor regel. Probeer een andere invoer en bekijk welke onderdelen veranderen."
+        "en": "The forward schedule follows configurable intervals. The last value comes from the generated sequence, not arithmetic on the boundary. The countdown demonstrates that step direction controls whether a range contains any values.",
+        "nl": "Het rooster volgt instelbare tussenpozen. De laatste waarde komt uit de gegenereerde reeks, niet uit een berekening met de grens. De aftelling laat zien dat de staprichting bepaalt of een range waarden bevat."
       },
       "sourcePosition": 5,
       "sourceUrl": "https://www.codecademy.com/courses/learn-python-3/lessons/use-python-list/exercises/the-power-of-range",
@@ -7700,38 +8074,177 @@
       "group": "use-python-list",
       "title": {
         "en": "Length",
-        "nl": "Lengte bepalen"
+        "nl": "Tel elementen, geen indexnummers"
       },
       "kind": "coding",
       "optional": false,
       "explanation": {
-        "en": "len() counts the top-level elements in a collection. For a nested list, each inner list counts as one element regardless of how many values it contains.",
-        "nl": "len() telt de elementen op het hoogste niveau van een verzameling. Bij een geneste list telt elke binnenste list als één element, ongeacht het aantal waarden erin."
+        "en": "A monitoring report needs counts: how many readings arrived, how many scheduled samples fit, and how many station records exist. len(collection) returns an integer count without changing the collection. A count of five means the valid positive indexes end at four.",
+        "nl": "Een monitorrapport heeft aantallen nodig: hoeveel metingen kwamen binnen, hoeveel geplande meetmomenten passen erin en hoeveel stationsrecords bestaan er? len(collection) geeft een geheel aantal terug zonder de verzameling te wijzigen. Bij vijf elementen eindigen de geldige positieve indexes bij vier."
       },
       "example": "",
+      "sections": [
+        {
+          "heading": {
+            "en": "Count a range without expanding it",
+            "nl": "Tel een range zonder die uit te werken"
+          },
+          "body": {
+            "en": "len works on a range object directly. Larger gaps can produce fewer values over the same interval. Count the actual sequence rather than assuming stop - start is always the answer.",
+            "nl": "len werkt direct op een range-object. Grotere stappen kunnen binnen hetzelfde interval minder waarden opleveren. Tel de werkelijke reeks in plaats van aan te nemen dat stop - start altijd het antwoord is."
+          },
+          "code": "regular = range(1, 18, 3)\nsparse = range(1, 18, 6)\nprint(len(regular), len(sparse))",
+          "output": "6 3"
+        },
+        {
+          "heading": {
+            "en": "Nested lists have several possible counts",
+            "nl": "Geneste lists hebben verschillende aantallen"
+          },
+          "body": {
+            "en": "len(rows) counts the outer records. len(rows[0]) counts fields in the first record. Neither expression automatically totals every nested value. First decide which level your report needs.",
+            "nl": "len(rows) telt de buitenste records. len(rows[0]) telt de velden in het eerste record. Geen van beide telt automatisch alle geneste waarden op. Bepaal eerst welk niveau je rapport nodig heeft."
+          },
+          "code": "rows = [[\"A\", 12, True], [\"B\", 8, False]]\nprint(len(rows))\nprint(len(rows[0]))\nprint(len([]))",
+          "output": "2\n3\n0"
+        }
+      ],
       "files": {
-        "main.py": "grid = [[1, 2, 3], [4, 5, 6]]\n"
+        "main.py": "readings = [18, 19, 18, 21, 20, 19]\ntick_step = 3\nticks = range(2, 32, tick_step)\nstations = [[\"North\", 4, True], [\"South\", 7, False]]\nreading_count = 0\nprint(\"Readings:\", reading_count)\n# Count the schedule, compare a sparser one, then count station records.\n"
       },
       "solution": {
-        "main.py": "grid = [[1, 2, 3], [4, 5, 6]]\nrow_count = len(grid)\ncolumn_count = len(grid[0])\nprint(row_count, column_count)\n"
+        "main.py": "readings = [18, 19, 18, 21, 20, 19]\ntick_step = 3\nticks = range(2, 32, tick_step)\nstations = [[\"North\", 4, True], [\"South\", 7, False]]\nreading_count = len(readings)\nprint(\"Readings:\", reading_count)\ntick_count = len(ticks)\nprint(\"Scheduled:\", tick_count)\nsparse_ticks = range(2, 32, tick_step * 2)\nsparse_count = len(sparse_ticks)\nprint(\"Sparse:\", sparse_count)\nstation_count = len(stations)\nfield_count = len(stations[0])\nprint(\"Stations and fields:\", station_count, field_count)\n"
       },
       "checkpoints": [
         {
-          "id": "use-python-list-06-step-1",
+          "id": "use-python-list-06-v2-step-1",
           "task": {
-            "en": "Store the number of rows in row_count and the length of the first row in column_count.",
-            "nl": "Sla het aantal rijen op in row_count en de lengte van de eerste rij in column_count."
+            "en": "Replace the placeholder `reading_count` with the length of `readings`. Keep the Readings print; duplicates still count as separate elements.",
+            "nl": "Vervang de tijdelijke `reading_count` door de lengte van `readings`. Behoud de Readings-print; dubbele waarden tellen nog steeds als aparte elementen."
           },
-          "check": "row_count == 2 and column_count == 3",
+          "check": "reading_count == 6 and 'Readings: 6' in _stdout.splitlines()",
+          "feedback": {
+            "en": "Count every list element, including repeated measurements.",
+            "nl": "Tel elk list-element mee, inclusief herhaalde metingen."
+          },
+          "cases": [
+            {
+              "inputs": {
+                "readings": []
+              },
+              "check": "reading_count == 0"
+            },
+            {
+              "inputs": {
+                "readings": [
+                  5,
+                  5,
+                  5
+                ]
+              },
+              "check": "reading_count == 3"
+            }
+          ],
           "hint": {
-            "en": "Start with grid = [[1, 2, 3], [4, 5, 6]]. Then compare the values with the task.",
-            "nl": "Begin met grid = [[1, 2, 3], [4, 5, 6]]. Vergelijk de waarden daarna met de opdracht."
+            "en": "Call len(readings), not readings.len().",
+            "nl": "Roep len(readings) aan, niet readings.len()."
+          }
+        },
+        {
+          "id": "use-python-list-06-v2-step-2",
+          "task": {
+            "en": "Store `len(ticks)` in `tick_count` and print it with \"Scheduled:\". You do not need to convert the range into a list.",
+            "nl": "Bewaar `len(ticks)` in `tick_count` en print dit met \"Scheduled:\". Je hoeft de range niet in een list om te zetten."
+          },
+          "check": "tick_count == 10 and 'Scheduled: 10' in _stdout.splitlines()",
+          "feedback": {
+            "en": "Count generated moments, not the numeric distance between the endpoints.",
+            "nl": "Tel de gegenereerde momenten, niet de numerieke afstand tussen de grenzen."
+          },
+          "cases": [
+            {
+              "inputs": {
+                "tick_step": 5
+              },
+              "check": "tick_count == 6"
+            },
+            {
+              "inputs": {
+                "tick_step": 4
+              },
+              "check": "tick_count == 8"
+            }
+          ],
+          "hint": {
+            "en": "ticks already represents the sequence; len can count it directly.",
+            "nl": "ticks stelt de reeks al voor; len kan die rechtstreeks tellen."
+          }
+        },
+        {
+          "id": "use-python-list-06-v2-step-3",
+          "task": {
+            "en": "Create `sparse_ticks` over the same boundaries but double `tick_step`. Store its length in `sparse_count` and print \"Sparse:\" followed by that count.",
+            "nl": "Maak `sparse_ticks` met dezelfde grenzen maar het dubbele van `tick_step`. Bewaar de lengte in `sparse_count` en print \"Sparse:\" gevolgd door dat aantal."
+          },
+          "check": "type(sparse_ticks) is range and sparse_ticks == range(2,32,6) and sparse_count == 5 and 'Sparse: 5' in _stdout.splitlines()",
+          "feedback": {
+            "en": "Keep both schedules; calculate the sparse count from its own doubled-step range.",
+            "nl": "Behoud beide roosters; bereken het kleinere aantal uit de eigen range met dubbele stap."
+          },
+          "cases": [
+            {
+              "inputs": {
+                "tick_step": 4
+              },
+              "check": "sparse_ticks == range(2,32,8) and sparse_count == 4"
+            }
+          ],
+          "hint": {
+            "en": "Use tick_step * 2 as the third range argument, then call len on the new range.",
+            "nl": "Gebruik tick_step * 2 als derde range-argument en roep daarna len aan op de nieuwe range."
+          }
+        },
+        {
+          "id": "use-python-list-06-v2-step-4",
+          "task": {
+            "en": "Create `station_count` for the number of station records and `field_count` for the first record’s fields. Print both with \"Stations and fields:\".",
+            "nl": "Maak `station_count` voor het aantal stationsrecords en `field_count` voor de velden in het eerste record. Print beide met \"Stations and fields:\"."
+          },
+          "check": "station_count == 2 and field_count == 3 and 'Stations and fields: 2 3' in _stdout.splitlines()",
+          "feedback": {
+            "en": "Distinguish rows from fields; the outer list counts each whole record once.",
+            "nl": "Maak onderscheid tussen rijen en velden; de buitenste list telt elk volledig record één keer."
+          },
+          "cases": [
+            {
+              "inputs": {
+                "stations": [
+                  [
+                    "A",
+                    1
+                  ],
+                  [
+                    "B",
+                    2
+                  ],
+                  [
+                    "C",
+                    3
+                  ]
+                ]
+              },
+              "check": "station_count == 3 and field_count == 2"
+            }
+          ],
+          "hint": {
+            "en": "Compare len(stations) with len(stations[0]).",
+            "nl": "Vergelijk len(stations) met len(stations[0])."
           }
         }
       ],
       "solutionNote": {
-        "en": "len() counts the top-level elements in a collection. For a nested list, each inner list counts as one element regardless of how many values it contains.\n\nTrace the solution one line at a time. Try a different input to see which parts change.",
-        "nl": "len() telt de elementen op het hoogste niveau van een verzameling. Bij een geneste list telt elke binnenste list als één element, ongeacht het aantal waarden erin.\n\nVolg de oplossing regel voor regel. Probeer een andere invoer en bekijk welke onderdelen veranderen."
+        "en": "len measures the supplied collection, so it handles duplicate readings and changed range steps correctly. Nested counts name their level explicitly: station records versus fields in one record.",
+        "nl": "len meet de meegegeven verzameling en verwerkt daardoor dubbele metingen en gewijzigde range-stappen correct. Bij geneste aantallen benoemen we het niveau: stationsrecords tegenover velden in één record."
       },
       "sourcePosition": 6,
       "sourceUrl": "https://www.codecademy.com/courses/learn-python-3/lessons/use-python-list/exercises/list-len",
@@ -7743,38 +8256,130 @@
       "group": "use-python-list",
       "title": {
         "en": "Slicing bounds",
-        "nl": "Slice-grenzen"
+        "nl": "Selecteer een meetvenster met een slice"
       },
       "kind": "coding",
       "optional": false,
       "explanation": {
-        "en": "A slice items[start:stop] returns a new list. It includes start and excludes stop. Slicing does not remove values from the original list.",
-        "nl": "Een slice items[start:stop] geeft een nieuwe list terug. start telt mee, stop niet. Een slice verwijdert geen waarden uit de oorspronkelijke list."
+        "en": "A sensor log has six readings, but a report needs only a consecutive window. A slice uses two boundaries: readings[start:stop]. Start is included and stop is excluded. The result is a new list; selecting a window does not remove readings from the log.",
+        "nl": "Een sensorlog heeft zes metingen, maar een rapport heeft alleen een aaneengesloten venster nodig. Een slice gebruikt twee grenzen: readings[start:stop]. Start telt mee en stop is uitgesloten. Het resultaat is een nieuwe list; een venster kiezen verwijdert geen metingen uit het log."
       },
       "example": "",
+      "sections": [
+        {
+          "heading": {
+            "en": "Think in positions and boundaries",
+            "nl": "Denk in posities en grenzen"
+          },
+          "body": {
+            "en": "To include indexes 1, 2 and 3, stop at 4. The number of selected positions is stop - start when both boundaries are inside the list and increasing. A comma is not a slice separator: use a colon.",
+            "nl": "Om indexes 1, 2 en 3 mee te nemen, stop je op 4. Het aantal gekozen posities is stop - start als beide grenzen binnen de list liggen en oplopen. Een komma scheidt geen slice-grenzen: gebruik een dubbele punt."
+          },
+          "code": "readings = [30, 12, 16, 14, 28]\nwindow = readings[1:4]\nprint(window)\nprint(readings)",
+          "output": "[12, 16, 14]\n[30, 12, 16, 14, 28]"
+        },
+        {
+          "heading": {
+            "en": "A flat slice can be edited separately",
+            "nl": "Een vlakke slice kun je apart wijzigen"
+          },
+          "body": {
+            "en": "Replacing an element in a sliced list does not replace that element in the original list. This is useful for a trial correction. This example uses numbers; a slice is only a shallow copy, so nested mutable records need more care. Equal slice boundaries select no elements and produce [].",
+            "nl": "Een element vervangen in de geslicete list vervangt dat element niet in de oorspronkelijke list. Dat is handig voor een proefcorrectie. Dit voorbeeld gebruikt getallen; een slice is alleen een oppervlakkige kopie, dus bij geneste wijzigbare records is meer aandacht nodig. Gelijke slice-grenzen kiezen geen elementen en leveren [] op."
+          },
+          "code": "source = [4, 8, 12]\ntrial = source[0:2]\ntrial[0] = 99\nprint(trial)\nprint(source)\nprint(source[2:2])",
+          "output": "[99, 8]\n[4, 8, 12]\n[]"
+        }
+      ],
       "files": {
-        "main.py": "route = [10, 20, 30, 40, 50]\n"
+        "main.py": "readings = [12, 18, 9, 14, 17, 11]\nwindow = readings[1:3]\nprint(\"Window:\", window)\n# Make a trial correction in the slice after the Window print.\nprint(\"Original:\", readings)\n"
       },
       "solution": {
-        "main.py": "route = [10, 20, 30, 40, 50]\nmiddle = route[1:4]\nprint(middle)\n"
+        "main.py": "readings = [12, 18, 9, 14, 17, 11]\nwindow = readings[1:4]\nprint(\"Window:\", window)\nwindow[0] = 99\nprint(\"Trial:\", window)\nprint(\"Original:\", readings)\nempty_window = readings[4:4]\nprint(\"Empty:\", empty_window)\n"
       },
       "checkpoints": [
         {
-          "id": "use-python-list-07-step-1",
+          "id": "use-python-list-07-v2-step-1",
           "task": {
-            "en": "Save the values 20, 30, and 40 from route into middle using a slice.",
-            "nl": "Sla 20, 30 en 40 uit route via een slice op in middle."
+            "en": "Repair `window` to select indexes 1 through 3 inclusive. Keep the Window print before later edits; it should show [18, 9, 14].",
+            "nl": "Herstel `window` zodat indexes 1 tot en met 3 worden gekozen. Laat de Window-print vóór latere wijzigingen staan; deze hoort [18, 9, 14] te tonen."
           },
-          "check": "middle == [20,30,40] and route == [10,20,30,40,50]",
+          "check": "'Window: [18, 9, 14]' in _stdout.splitlines()",
+          "feedback": {
+            "en": "Select three consecutive readings starting at index 1 and print that original window.",
+            "nl": "Selecteer drie opeenvolgende metingen vanaf index 1 en print dat oorspronkelijke venster."
+          },
+          "cases": [
+            {
+              "inputs": {
+                "readings": [
+                  2,
+                  4,
+                  6,
+                  8,
+                  10,
+                  12
+                ]
+              },
+              "check": "'Window: [4, 6, 8]' in _stdout.splitlines()"
+            }
+          ],
           "hint": {
-            "en": "Start with route = [10, 20, 30, 40, 50]. Then compare the values with the task.",
-            "nl": "Begin met route = [10, 20, 30, 40, 50]. Vergelijk de waarden daarna met de opdracht."
+            "en": "The final included index is 3, so the excluded stop must be 4.",
+            "nl": "De laatste inbegrepen index is 3, dus de uitgesloten stop moet 4 zijn."
+          }
+        },
+        {
+          "id": "use-python-list-07-v2-step-2",
+          "task": {
+            "en": "After that print, replace only the first value in `window` with 99. Print it with \"Trial:\". Keep `readings` unchanged and its Original print.",
+            "nl": "Vervang na die print alleen de eerste waarde in `window` door 99. Print deze met \"Trial:\". Laat `readings` ongewijzigd en behoud de Original-print."
+          },
+          "check": "window == [99,9,14] and readings == [12,18,9,14,17,11] and 'Trial: [99, 9, 14]' in _stdout.splitlines()",
+          "feedback": {
+            "en": "Apply the trial correction to the slice while preserving every original reading.",
+            "nl": "Pas de proefcorrectie op de slice toe en behoud elke oorspronkelijke meting."
+          },
+          "cases": [
+            {
+              "inputs": {
+                "readings": [
+                  2,
+                  4,
+                  6,
+                  8,
+                  10,
+                  12
+                ]
+              },
+              "check": "window == [99,6,8] and readings == [2,4,6,8,10,12]"
+            }
+          ],
+          "hint": {
+            "en": "Edit window[0], not readings[1]. The slice is a separate outer list.",
+            "nl": "Wijzig window[0], niet readings[1]. De slice is een aparte buitenste list."
+          }
+        },
+        {
+          "id": "use-python-list-07-v2-step-3",
+          "task": {
+            "en": "Create `empty_window` with the slice `readings[4:4]` and print it with \"Empty:\". Predict its length before running.",
+            "nl": "Maak `empty_window` met de slice `readings[4:4]` en print deze met \"Empty:\". Voorspel de lengte voordat je uitvoert."
+          },
+          "check": "empty_window == [] and 'Empty: []' in _stdout.splitlines()",
+          "feedback": {
+            "en": "An empty slice is [], not one selected element and not an error.",
+            "nl": "Een lege slice is [], niet één geselecteerd element en ook geen fout."
+          },
+          "hint": {
+            "en": "Both boundaries are the same; no position lies between them.",
+            "nl": "Beide grenzen zijn gelijk; er ligt geen positie tussen."
           }
         }
       ],
       "solutionNote": {
-        "en": "A slice items[start:stop] returns a new list. It includes start and excludes stop. Slicing does not remove values from the original list.\n\nTrace the solution one line at a time. Try a different input to see which parts change.",
-        "nl": "Een slice items[start:stop] geeft een nieuwe list terug. start telt mee, stop niet. Een slice verwijdert geen waarden uit de oorspronkelijke list.\n\nVolg de oplossing regel voor regel. Probeer een andere invoer en bekijk welke onderdelen veranderen."
+        "en": "The Window line records the selection before correction. The Trial line then shows a changed copy while the Original line stays intact. Equal boundaries demonstrate that slicing can legitimately produce an empty result.",
+        "nl": "De Window-regel legt de selectie vóór de correctie vast. De Trial-regel toont daarna een gewijzigde kopie terwijl Original intact blijft. Gelijke grenzen laten zien dat een slice terecht een leeg resultaat kan opleveren."
       },
       "sourcePosition": 7,
       "sourceUrl": "https://www.codecademy.com/courses/learn-python-3/lessons/use-python-list/exercises/slice-iii",
@@ -7786,38 +8391,163 @@
       "group": "use-python-list",
       "title": {
         "en": "Open-ended and negative slices",
-        "nl": "Open en negatieve slice-grenzen"
+        "nl": "Kies het begin, einde of alles behalve de staart"
       },
       "kind": "coding",
       "optional": false,
       "explanation": {
-        "en": "Omit a slice boundary to use the beginning or end. Negative boundaries count from the end. items[-2:] gives the final two elements.",
-        "nl": "Laat een slice-grens weg om het begin of einde te gebruiken. Negatieve grenzen tellen vanaf het einde. items[-2:] geeft de laatste twee elementen."
+        "en": "An activity log grows during the day. A fixed ending index will eventually point to the wrong place. Omitted boundaries and negative indexes let a report keep asking for the first or last few events even as the log grows.",
+        "nl": "Een activiteitenlog groeit gedurende de dag. Een vaste eindindex wijst uiteindelijk naar de verkeerde plek. Weggelaten grenzen en negatieve indexes laten een rapport steeds de eerste of laatste paar gebeurtenissen opvragen, ook als het log groeit."
       },
       "example": "",
+      "sections": [
+        {
+          "heading": {
+            "en": "Three slices, three different questions",
+            "nl": "Drie slices, drie verschillende vragen"
+          },
+          "body": {
+            "en": "items[:2] selects the first two. items[-2:] starts two positions from the end and continues to the end. items[:-2] starts at the beginning and excludes the final two. The same number on the other side of the colon changes the question.",
+            "nl": "items[:2] kiest de eerste twee. items[-2:] begint twee posities voor het einde en loopt door tot het einde. items[:-2] begint vooraan en sluit de laatste twee uit. Hetzelfde getal aan de andere kant van de dubbele punt verandert de vraag."
+          },
+          "code": "events = [\"a\", \"b\", \"c\", \"d\", \"e\"]\nprint(events[:2])\nprint(events[-2:])\nprint(events[:-2])",
+          "output": "['a', 'b']\n['d', 'e']\n['a', 'b', 'c']"
+        },
+        {
+          "heading": {
+            "en": "Short lists and the zero trap",
+            "nl": "Korte lists en de valkuil van nul"
+          },
+          "body": {
+            "en": "Slices stop at the list boundaries, so asking for more available elements simply returns what exists. Unlike an individual out-of-range index, that is not an IndexError. Be careful with a configurable tail count of zero: -0 is 0, so items[-0:] means the whole list, not an empty tail.",
+            "nl": "Slices stoppen bij de grenzen van de list; als je meer elementen vraagt dan beschikbaar zijn, krijg je wat er is. Anders dan bij één ongeldige index geeft dit geen IndexError. Let op bij een instelbaar staartaantal nul: -0 is 0, dus items[-0:] betekent de hele list, niet een lege staart."
+          },
+          "code": "events = [\"only\"]\nprint(events[:3])\nprint(events[-2:])\nprint(events[:-2])\nprint(events[-0:])",
+          "output": "['only']\n['only']\n[]\n['only']"
+        }
+      ],
       "files": {
-        "main.py": "values = [2, 4, 6, 8, 10]\n"
+        "main.py": "events = [\"open\", \"load\", \"scan\", \"pack\", \"close\", \"archive\"]\nprint(\"Full log:\", events)\n# Build three reports without editing the log.\n"
       },
       "solution": {
-        "main.py": "values = [2, 4, 6, 8, 10]\nprefix = values[:2]\nsuffix = values[-2:]\nprint(prefix, suffix)\n"
+        "main.py": "events = [\"open\", \"load\", \"scan\", \"pack\", \"close\", \"archive\"]\nprint(\"Full log:\", events)\nfirst_two = events[:2]\nlast_two = events[-2:]\nwithout_last_two = events[:-2]\nprint(\"Beginning:\", first_two)\nprint(\"Ending:\", last_two)\nprint(\"Earlier:\", without_last_two)\n"
       },
       "checkpoints": [
         {
-          "id": "use-python-list-08-step-1",
+          "id": "use-python-list-08-v2-step-1",
           "task": {
-            "en": "Create prefix with the first two values and suffix with the last two values.",
-            "nl": "Maak prefix met de eerste twee waarden en suffix met de laatste twee waarden."
+            "en": "Create `first_two` as a slice containing the first two events, then print it with \"Beginning:\".",
+            "nl": "Maak `first_two` als slice met de eerste twee gebeurtenissen en print deze met \"Beginning:\"."
           },
-          "check": "prefix == [2,4] and suffix == [8,10]",
+          "check": "first_two == ['open','load'] and ('Beginning: ' + str(first_two)) in _stdout.splitlines()",
+          "feedback": {
+            "en": "Take the beginning of the supplied log rather than constructing a fixed report.",
+            "nl": "Neem het begin van het meegegeven log in plaats van een vast rapport te maken."
+          },
+          "cases": [
+            {
+              "inputs": {
+                "events": [
+                  "a",
+                  "b",
+                  "c"
+                ]
+              },
+              "check": "first_two == ['a','b']"
+            },
+            {
+              "inputs": {
+                "events": []
+              },
+              "check": "first_two == []"
+            }
+          ],
           "hint": {
-            "en": "Start with values = [2, 4, 6, 8, 10]. Then compare the values with the task.",
-            "nl": "Begin met values = [2, 4, 6, 8, 10]. Vergelijk de waarden daarna met de opdracht."
+            "en": "Omit the start boundary and stop before index 2.",
+            "nl": "Laat de begingrens weg en stop vóór index 2."
+          }
+        },
+        {
+          "id": "use-python-list-08-v2-step-2",
+          "task": {
+            "en": "Create `last_two` from the final two events and print \"Ending:\" followed by that slice. It must still work when events grows.",
+            "nl": "Maak `last_two` uit de laatste twee gebeurtenissen en print \"Ending:\" gevolgd door die slice. Dit moet blijven werken als events groeit."
+          },
+          "check": "last_two == ['close','archive'] and ('Ending: ' + str(last_two)) in _stdout.splitlines()",
+          "feedback": {
+            "en": "Anchor the selection at the end; a fixed start of 4 only fits this example.",
+            "nl": "Veranker de selectie aan het einde; een vast begin van 4 past alleen bij dit voorbeeld."
+          },
+          "cases": [
+            {
+              "inputs": {
+                "events": [
+                  "a",
+                  "b",
+                  "c",
+                  "d",
+                  "e",
+                  "f",
+                  "g"
+                ]
+              },
+              "check": "last_two == ['f','g']"
+            },
+            {
+              "inputs": {
+                "events": [
+                  "only"
+                ]
+              },
+              "check": "last_two == ['only']"
+            }
+          ],
+          "hint": {
+            "en": "Start at -2 and leave the stop boundary open.",
+            "nl": "Begin op -2 en laat de stopgrens open."
+          }
+        },
+        {
+          "id": "use-python-list-08-v2-step-3",
+          "task": {
+            "en": "Create `without_last_two`, containing everything except the final two events. Print it with \"Earlier:\" and leave the full events list unchanged.",
+            "nl": "Maak `without_last_two` met alles behalve de laatste twee gebeurtenissen. Print deze met \"Earlier:\" en laat de volledige list events ongewijzigd."
+          },
+          "check": "without_last_two == ['open','load','scan','pack'] and events == ['open','load','scan','pack','close','archive'] and ('Earlier: ' + str(without_last_two)) in _stdout.splitlines()",
+          "feedback": {
+            "en": "Exclude the tail with a slice, without popping items from the original log.",
+            "nl": "Sluit de staart uit met een slice, zonder elementen uit het oorspronkelijke log te poppen."
+          },
+          "cases": [
+            {
+              "inputs": {
+                "events": [
+                  "a",
+                  "b",
+                  "c",
+                  "d"
+                ]
+              },
+              "check": "without_last_two == ['a','b'] and events == ['a','b','c','d']"
+            },
+            {
+              "inputs": {
+                "events": [
+                  "only"
+                ]
+              },
+              "check": "without_last_two == []"
+            }
+          ],
+          "hint": {
+            "en": "Put -2 after the colon; you want to stop before the final two positions.",
+            "nl": "Zet -2 na de dubbele punt; je wilt vóór de laatste twee posities stoppen."
           }
         }
       ],
       "solutionNote": {
-        "en": "Omit a slice boundary to use the beginning or end. Negative boundaries count from the end. items[-2:] gives the final two elements.\n\nTrace the solution one line at a time. Try a different input to see which parts change.",
-        "nl": "Laat een slice-grens weg om het begin of einde te gebruiken. Negatieve grenzen tellen vanaf het einde. items[-2:] geeft de laatste twee elementen.\n\nVolg de oplossing regel voor regel. Probeer een andere invoer en bekijk welke onderdelen veranderen."
+        "en": "The three reports share one input but answer different positional questions. Open boundaries adapt to length changes and slicing leaves the log available for other reports.",
+        "nl": "De drie rapporten delen één invoer maar beantwoorden verschillende vragen over posities. Open grenzen passen zich aan een andere lengte aan en slicing houdt het log beschikbaar voor andere rapporten."
       },
       "sourcePosition": 8,
       "sourceUrl": "https://www.codecademy.com/courses/learn-python-3/lessons/use-python-list/exercises/slice-iv",
@@ -7829,38 +8559,179 @@
       "group": "use-python-list",
       "title": {
         "en": "Counting values",
-        "nl": "Waarden tellen"
+        "nl": "Tel resultaten en vergelijk vóór en na"
       },
       "kind": "coding",
       "optional": false,
       "explanation": {
-        "en": "count(value) returns how many elements are equal to value. It leaves the list unchanged and returns zero if the value does not occur.",
-        "nl": "count(value) geeft het aantal elementen terug dat gelijk is aan value. De list blijft ongewijzigd. Als de waarde ontbreekt, is het resultaat nul."
+        "en": "A scanner records one status per package. len(statuses) tells you how many packages were scanned, while statuses.count(\"ok\") tells you how many entries equal \"ok\". count returns an integer and leaves the list unchanged.",
+        "nl": "Een scanner registreert één status per pakket. len(statuses) vertelt hoeveel pakketten zijn gescand; statuses.count(\"ok\") vertelt hoeveel waarden gelijk zijn aan \"ok\". count geeft een geheel getal terug en laat de list ongewijzigd."
       },
       "example": "",
+      "sections": [
+        {
+          "heading": {
+            "en": "A saved count is a snapshot",
+            "nl": "Een bewaard aantal is een momentopname"
+          },
+          "body": {
+            "en": "If you append a new value later, an earlier integer count does not update itself. Call count again when you need a new total. An absent value has count zero; that is an ordinary result, not an error.",
+            "nl": "Als je later een nieuwe waarde toevoegt, werkt een eerder geheel aantal zichzelf niet bij. Roep count opnieuw aan wanneer je een nieuw totaal nodig hebt. Een ontbrekende waarde heeft aantal nul; dat is een gewoon resultaat, geen fout."
+          },
+          "code": "statuses = [\"ok\", \"wait\", \"ok\"]\nbefore = statuses.count(\"ok\")\nstatuses.append(\"ok\")\nafter = statuses.count(\"ok\")\nprint(before, after)\nprint(statuses.count(\"error\"))",
+          "output": "2 3\n0"
+        },
+        {
+          "heading": {
+            "en": "Count whole nested records",
+            "nl": "Tel volledige geneste records"
+          },
+          "body": {
+            "en": "A list can contain other lists. count compares each outer element with the entire value you provide. It does not search every field recursively. A matching row must have the same values in the same order.",
+            "nl": "Een list kan andere lists bevatten. count vergelijkt elk buitenste element met de volledige meegegeven waarde. Het doorzoekt niet automatisch elk veld. Een overeenkomende rij moet dezelfde waarden in dezelfde volgorde bevatten."
+          },
+          "code": "batches = [[\"ok\", 2], [\"wait\", 1], [\"ok\", 2]]\nprint(batches.count([\"ok\", 2]))\nprint(batches.count(\"ok\"))",
+          "output": "2\n0"
+        }
+      ],
       "files": {
-        "main.py": "statuses = [\"ok\", \"wait\", \"ok\", \"ok\"]\n"
+        "main.py": "statuses = [\"ok\", \"wait\", \"ok\", \"error\", \"ok\"]\nbatches = [[\"ok\", 2], [\"wait\", 1], [\"ok\", 2], [\"ok\", 3]]\nprint(\"Statuses:\", statuses)\n# Count current successes before appending the next successful scan.\n"
       },
       "solution": {
-        "main.py": "statuses = [\"ok\", \"wait\", \"ok\", \"ok\"]\nok_count = statuses.count(\"ok\")\nprint(ok_count)\n"
+        "main.py": "statuses = [\"ok\", \"wait\", \"ok\", \"error\", \"ok\"]\nbatches = [[\"ok\", 2], [\"wait\", 1], [\"ok\", 2], [\"ok\", 3]]\nprint(\"Statuses:\", statuses)\nbefore = statuses.count(\"ok\")\nstatuses.append(\"ok\")\nafter = statuses.count(\"ok\")\nprint(\"Successes:\", before, after)\nmissing = statuses.count(\"offline\")\nprint(\"Offline:\", missing)\npair_count = batches.count([\"ok\", 2])\nprint(\"Matching batches:\", pair_count)\n"
       },
       "checkpoints": [
         {
-          "id": "use-python-list-09-step-1",
+          "id": "use-python-list-09-v2-step-1",
           "task": {
-            "en": "Count occurrences of ok in statuses and save the number in ok_count.",
-            "nl": "Tel hoe vaak ok voorkomt in statuses en sla het aantal op in ok_count."
+            "en": "Use `count()` to save the current number of \"ok\" statuses in `before`. Keep this assignment before adding another scan.",
+            "nl": "Gebruik `count()` om het huidige aantal \"ok\"-statussen in `before` te bewaren. Laat deze toewijzing vóór het toevoegen van een nieuwe scan staan."
           },
-          "check": "ok_count == 3",
+          "check": "before == 3 and any(isinstance(n, _ast.Call) and isinstance(n.func, _ast.Attribute) and n.func.attr == 'count' for n in _ast.walk(_ast.parse(_source)))",
+          "feedback": {
+            "en": "Count matching statuses rather than the total number of entries.",
+            "nl": "Tel de overeenkomende statussen in plaats van het totale aantal elementen."
+          },
+          "cases": [
+            {
+              "inputs": {
+                "statuses": [
+                  "wait",
+                  "ok"
+                ]
+              },
+              "check": "before == 1"
+            },
+            {
+              "inputs": {
+                "statuses": []
+              },
+              "check": "before == 0"
+            }
+          ],
           "hint": {
-            "en": "Start with statuses = [\"ok\", \"wait\", \"ok\", \"ok\"]. Then compare the values with the task.",
-            "nl": "Begin met statuses = [\"ok\", \"wait\", \"ok\", \"ok\"]. Vergelijk de waarden daarna met de opdracht."
+            "en": "Count the exact string \"ok\", including its lowercase spelling.",
+            "nl": "Tel de exacte string \"ok\", inclusief de kleine letters."
+          }
+        },
+        {
+          "id": "use-python-list-09-v2-step-2",
+          "task": {
+            "en": "Append one \"ok\" status. Count again into `after`, then print both snapshots with \"Successes:\". The earlier count should remain 3.",
+            "nl": "Voeg één \"ok\"-status toe met append. Tel opnieuw naar `after` en print beide momentopnamen met \"Successes:\". Het eerdere aantal hoort 3 te blijven."
+          },
+          "check": "after == 4 and before == 3 and statuses == ['ok','wait','ok','error','ok','ok'] and 'Successes: 3 4' in _stdout.splitlines()",
+          "feedback": {
+            "en": "Keep the earlier count and calculate a fresh count from the extended list.",
+            "nl": "Behoud het eerdere aantal en bereken een nieuw aantal uit de aangevulde list."
+          },
+          "cases": [
+            {
+              "inputs": {
+                "statuses": [
+                  "wait",
+                  "ok"
+                ]
+              },
+              "check": "before == 1 and after == 2 and statuses == ['wait','ok','ok']"
+            }
+          ],
+          "hint": {
+            "en": "Store a new count after append; do not overwrite before.",
+            "nl": "Bewaar een nieuw aantal na append; overschrijf before niet."
+          }
+        },
+        {
+          "id": "use-python-list-09-v2-step-3",
+          "task": {
+            "en": "Count \"offline\" into `missing` and print \"Offline:\" followed by that value. This status is absent from the supplied data.",
+            "nl": "Tel \"offline\" naar `missing` en print \"Offline:\" gevolgd door die waarde. Deze status ontbreekt in de meegeleverde gegevens."
+          },
+          "check": "missing == 0 and 'Offline: 0' in _stdout.splitlines()",
+          "feedback": {
+            "en": "Calculate the absence as a count instead of treating it as a missing-index error.",
+            "nl": "Bereken de afwezigheid als een aantal in plaats van als een fout door een ontbrekende index."
+          },
+          "cases": [
+            {
+              "inputs": {
+                "statuses": [
+                  "offline",
+                  "ok",
+                  "offline"
+                ]
+              },
+              "check": "missing == 2"
+            }
+          ],
+          "hint": {
+            "en": "Call count even when you expect zero; the data may change.",
+            "nl": "Roep count ook aan als je nul verwacht; de gegevens kunnen veranderen."
+          }
+        },
+        {
+          "id": "use-python-list-09-v2-step-4",
+          "task": {
+            "en": "Count the complete row [\"ok\", 2] in `batches`, save it as `pair_count`, and print it with \"Matching batches:\".",
+            "nl": "Tel de volledige rij [\"ok\", 2] in `batches`, bewaar dit als `pair_count` en print het met \"Matching batches:\"."
+          },
+          "check": "pair_count == 2 and 'Matching batches: 2' in _stdout.splitlines()",
+          "feedback": {
+            "en": "Count equal whole rows; [\"ok\", 3] is a different row and should not count.",
+            "nl": "Tel gelijke volledige rijen; [\"ok\", 3] is een andere rij en hoort niet mee te tellen."
+          },
+          "cases": [
+            {
+              "inputs": {
+                "batches": [
+                  [
+                    "ok",
+                    2
+                  ],
+                  [
+                    "ok",
+                    3
+                  ]
+                ]
+              },
+              "check": "pair_count == 1"
+            },
+            {
+              "inputs": {
+                "batches": []
+              },
+              "check": "pair_count == 0"
+            }
+          ],
+          "hint": {
+            "en": "Pass the inner list as the argument to batches.count(...).",
+            "nl": "Geef de binnenste list als argument mee aan batches.count(...)."
           }
         }
       ],
       "solutionNote": {
-        "en": "count(value) returns how many elements are equal to value. It leaves the list unchanged and returns zero if the value does not occur.\n\nTrace the solution one line at a time. Try a different input to see which parts change.",
-        "nl": "count(value) geeft het aantal elementen terug dat gelijk is aan value. De list blijft ongewijzigd. Als de waarde ontbreekt, is het resultaat nul.\n\nVolg de oplossing regel voor regel. Probeer een andere invoer en bekijk welke onderdelen veranderen."
+        "en": "Counts are values calculated at a particular moment. The second count sees the appended status; the first remains a useful snapshot. Counting an inner list compares the whole record rather than individual fields.",
+        "nl": "Aantallen zijn waarden die op een bepaald moment worden berekend. De tweede telling ziet de toegevoegde status; de eerste blijft een bruikbare momentopname. Een binnenste list tellen vergelijkt het hele record, niet losse velden."
       },
       "sourcePosition": 9,
       "sourceUrl": "https://www.codecademy.com/courses/learn-python-3/lessons/use-python-list/exercises/count",
@@ -7872,38 +8743,138 @@
       "group": "use-python-list",
       "title": {
         "en": "Sorting in place",
-        "nl": "De bestaande list sorteren"
+        "nl": "Sorteer dezelfde list en begrijp None"
       },
       "kind": "coding",
       "optional": false,
       "explanation": {
-        "en": "sort() rearranges the existing list. It returns None because the result is already stored in the list itself. Use reverse=True for descending order.",
-        "nl": "sort() herschikt de bestaande list. De method geeft None terug, omdat het resultaat al in de list staat. Met reverse=True sorteer je aflopend."
+        "en": "The dispatch desk wants numeric priorities and alphabetical labels. list.sort() rearranges the existing list. It returns None, because the result is stored in the list itself. Assigning that return value over the list name would lose your reference to the sorted list.",
+        "nl": "De uitgiftebalie wil numerieke prioriteiten en alfabetische labels. list.sort() herschikt de bestaande list. De method geeft None terug, omdat het resultaat in de list zelf wordt bewaard. Die return value over de naam van de list heen opslaan zou je verwijzing naar de gesorteerde list verliezen."
       },
       "example": "",
+      "sections": [
+        {
+          "heading": {
+            "en": "Observe both the list and the return value",
+            "nl": "Bekijk zowel de list als de return value"
+          },
+          "body": {
+            "en": "The default order is increasing for numbers. reverse=True requests decreasing order; it is not the same as simply reversing whatever order happened to be present. Another name for the same list sees the change too.",
+            "nl": "De standaardvolgorde is oplopend voor getallen. reverse=True vraagt om aflopende volgorde; dat is niet hetzelfde als simpelweg de toevallige bestaande volgorde omdraaien. Een andere naam voor dezelfde list ziet de wijziging ook."
+          },
+          "code": "priority = [4, 9, 2]\nalias = priority\nresult = priority.sort(reverse=True)\nprint(priority)\nprint(alias)\nprint(result)",
+          "output": "[9, 4, 2]\n[9, 4, 2]\nNone"
+        },
+        {
+          "heading": {
+            "en": "Method syntax and comparable values",
+            "nl": "Method-syntaxis en vergelijkbare waarden"
+          },
+          "body": {
+            "en": "sort(values) is not a built-in function; use values.sort(). Lowercase strings can be sorted alphabetically, but general string sorting follows character order, so capitalization matters. Python cannot generally order mixed strings and numbers; keep the values comparable in these tasks.",
+            "nl": "sort(values) is geen ingebouwde functie; gebruik values.sort(). Strings met kleine letters kun je alfabetisch sorteren, maar strings volgen in het algemeen tekenvolgorde, dus hoofdletters tellen mee. Python kan strings en getallen meestal niet door elkaar ordenen; houd de waarden in deze taken vergelijkbaar."
+          },
+          "code": "labels = [\"tripod\", \"cable\", \"lamp\"]\nlabels.sort()\nprint(labels)",
+          "output": "['cable', 'lamp', 'tripod']"
+        }
+      ],
       "files": {
-        "main.py": "priorities = [4, 1, 7, 3]\n"
+        "main.py": "priorities = [4, 1, 7, 3]\npriority_alias = priorities\nlabels = [\"tripod\", \"cable\", \"lamp\"]\n# Sort priorities before this print.\nprint(\"Increasing:\", priorities)\n# Repair and activate this method call.\n# sort(labels)\n# Finally sort priorities in decreasing order and inspect its return value.\n"
       },
       "solution": {
-        "main.py": "priorities = [4, 1, 7, 3]\nresult = priorities.sort(reverse=True)\nprint(priorities)\n"
+        "main.py": "priorities = [4, 1, 7, 3]\npriority_alias = priorities\nlabels = [\"tripod\", \"cable\", \"lamp\"]\npriorities.sort()\nprint(\"Increasing:\", priorities)\nlabels.sort()\nprint(\"Labels:\", labels)\nresult = priorities.sort(reverse=True)\nprint(\"Decreasing:\", priorities)\nprint(\"Return value:\", result)\n"
       },
       "checkpoints": [
         {
-          "id": "use-python-list-10-step-1",
+          "id": "use-python-list-10-v2-step-1",
           "task": {
-            "en": "Sort priorities in descending order in place. Store the return value of sort in result.",
-            "nl": "Sorteer priorities in de bestaande list aflopend. Sla de return value van sort op in result."
+            "en": "Sort `priorities` in place in increasing order before the Increasing print. Keep the existing alias assignment.",
+            "nl": "Sorteer `priorities` direct in oplopende volgorde vóór de Increasing-print. Behoud de bestaande alias-toewijzing."
           },
-          "check": "priorities == [7,4,3,1] and result is None",
+          "check": "any(isinstance(n, _ast.Call) and isinstance(n.func, _ast.Attribute) and n.func.attr == 'sort' for n in _ast.walk(_ast.parse(_source))) and 'Increasing: [1, 3, 4, 7]' in _stdout.splitlines() and priority_alias is priorities",
+          "feedback": {
+            "en": "Change the existing list rather than replacing its name or printing a separate sorted copy.",
+            "nl": "Wijzig de bestaande list in plaats van de naam te vervangen of een aparte gesorteerde kopie te printen."
+          },
+          "cases": [
+            {
+              "inputs": {
+                "priorities": [
+                  8,
+                  2,
+                  8,
+                  -1
+                ]
+              },
+              "check": "'Increasing: [-1, 2, 8, 8]' in _stdout.splitlines() and priority_alias is priorities"
+            }
+          ],
           "hint": {
-            "en": "Start with priorities = [4, 1, 7, 3]. Then compare the values with the task.",
-            "nl": "Begin met priorities = [4, 1, 7, 3]. Vergelijk de waarden daarna met de opdracht."
+            "en": "Call priorities.sort() on its own line. Do not assign the result back to priorities.",
+            "nl": "Roep priorities.sort() op een eigen regel aan. Wijs het resultaat niet opnieuw aan priorities toe."
+          }
+        },
+        {
+          "id": "use-python-list-10-v2-step-2",
+          "task": {
+            "en": "Activate and repair the commented `sort(labels)` call. Use the list method, then print \"Labels:\" followed by the alphabetical labels.",
+            "nl": "Activeer en herstel de uitgecommentarieerde aanroep `sort(labels)`. Gebruik de list-method en print daarna \"Labels:\" gevolgd door de alfabetisch gesorteerde labels."
+          },
+          "check": "labels == ['cable','lamp','tripod'] and ('Labels: ' + str(labels)) in _stdout.splitlines()",
+          "feedback": {
+            "en": "Call sort on labels; a standalone sort name would cause NameError.",
+            "nl": "Roep sort aan op labels; een losse naam sort zou NameError geven."
+          },
+          "cases": [
+            {
+              "inputs": {
+                "labels": [
+                  "z",
+                  "a",
+                  "m"
+                ]
+              },
+              "check": "labels == ['a','m','z']"
+            }
+          ],
+          "hint": {
+            "en": "Move labels before the dot: labels.sort(). Remove any indentation left by uncommenting.",
+            "nl": "Zet labels vóór de punt: labels.sort(). Verwijder eventuele inspringing die na het weghalen van commentaar overblijft."
+          }
+        },
+        {
+          "id": "use-python-list-10-v2-step-3",
+          "task": {
+            "en": "After the Increasing print, sort the same priorities list with `reverse=True`. Save the return value in `result`. Print \"Decreasing:\" with the list and \"Return value:\" with result.",
+            "nl": "Sorteer na de Increasing-print dezelfde priorities-list met `reverse=True`. Bewaar de return value in `result`. Print \"Decreasing:\" met de list en \"Return value:\" met result."
+          },
+          "check": "priorities == [7,4,3,1] and priority_alias is priorities and result is None and 'Decreasing: [7, 4, 3, 1]' in _stdout.splitlines() and 'Return value: None' in _stdout.splitlines()",
+          "feedback": {
+            "en": "Keep the list and its alias intact; the method changes them and returns None separately.",
+            "nl": "Behoud de list en de alias; de method wijzigt de list en geeft afzonderlijk None terug."
+          },
+          "cases": [
+            {
+              "inputs": {
+                "priorities": [
+                  8,
+                  2,
+                  8,
+                  -1
+                ]
+              },
+              "check": "priorities == [8,8,2,-1] and priority_alias is priorities and result is None"
+            }
+          ],
+          "hint": {
+            "en": "Assign to result, not priorities: result = priorities.sort(reverse=True).",
+            "nl": "Wijs toe aan result, niet aan priorities: result = priorities.sort(reverse=True)."
           }
         }
       ],
       "solutionNote": {
-        "en": "sort() rearranges the existing list. It returns None because the result is already stored in the list itself. Use reverse=True for descending order.\n\nTrace the solution one line at a time. Try a different input to see which parts change.",
-        "nl": "sort() herschikt de bestaande list. De method geeft None terug, omdat het resultaat al in de list staat. Met reverse=True sorteer je aflopend.\n\nVolg de oplossing regel voor regel. Probeer een andere invoer en bekijk welke onderdelen veranderen."
+        "en": "The printed Increasing snapshot remains valid after the later decreasing sort. Both names still refer to the same list. result contains None, making the distinction between mutation and return value explicit.",
+        "nl": "De geprinte oplopende momentopname blijft geldig na de latere aflopende sortering. Beide namen verwijzen nog steeds naar dezelfde list. result bevat None, waardoor het verschil tussen wijzigen en teruggeven zichtbaar wordt."
       },
       "sourcePosition": 10,
       "sourceUrl": "https://www.codecademy.com/courses/learn-python-3/lessons/use-python-list/exercises/sort",
@@ -7915,38 +8886,147 @@
       "group": "use-python-list",
       "title": {
         "en": "Creating a sorted copy",
-        "nl": "Een gesorteerde kopie"
+        "nl": "Maak een ranglijst zonder aankomstvolgorde te verliezen"
       },
       "kind": "coding",
       "optional": false,
       "explanation": {
-        "en": "sorted() returns a new sorted list and leaves the original collection unchanged. This is useful when the original order has meaning you want to preserve.",
-        "nl": "sorted() geeft een nieuwe gesorteerde list terug en laat de oorspronkelijke verzameling ongewijzigd. Dat is handig als de oorspronkelijke volgorde betekenis heeft."
+        "en": "Arrival order matters for a log, but a report also needs the smallest and largest readings. sorted(arrival) returns a new ordered list while leaving arrival alone. Keeping both lists lets different views of the same data coexist.",
+        "nl": "Aankomstvolgorde is belangrijk voor een log, maar een rapport heeft ook de kleinste en grootste metingen nodig. sorted(arrival) geeft een nieuwe gesorteerde list terug en laat arrival met rust. Door beide lists te bewaren kunnen verschillende weergaven van dezelfde gegevens naast elkaar bestaan."
       },
       "example": "",
+      "sections": [
+        {
+          "heading": {
+            "en": "Function syntax, separate result",
+            "nl": "Functie-syntaxis, apart resultaat"
+          },
+          "body": {
+            "en": "Pass the source list inside sorted(...), then save the returned list. The source keeps its order, even if the returned list is later edited. Using arrival.sort() instead would change the source and return None.",
+            "nl": "Geef de bronlist mee tussen de haakjes van sorted(...) en bewaar de teruggegeven list. De bron behoudt haar volgorde, ook als de nieuwe list later verandert. arrival.sort() zou juist de bron wijzigen en None teruggeven."
+          },
+          "code": "arrival = [13, 5, 9]\nranked = sorted(arrival)\nranked[0] = 0\nprint(arrival)\nprint(ranked)",
+          "output": "[13, 5, 9]\n[0, 9, 13]"
+        },
+        {
+          "heading": {
+            "en": "Choose the direction for each report",
+            "nl": "Kies per rapport de sorteerrichting"
+          },
+          "body": {
+            "en": "sorted also accepts reverse=True. Build an increasing report and a decreasing report from the same arrival log, then slice the decreasing report to select its two largest values. Equal values remain separate elements.",
+            "nl": "sorted accepteert ook reverse=True. Maak een oplopend en een aflopend rapport uit hetzelfde aankomstlog en neem vervolgens een slice van het aflopende rapport voor de twee grootste waarden. Gelijke waarden blijven aparte elementen."
+          },
+          "code": "values = [3, 8, 8, 1]\nprint(sorted(values))\nprint(sorted(values, reverse=True)[:2])",
+          "output": "[1, 3, 8, 8]\n[8, 8]"
+        }
+      ],
       "files": {
-        "main.py": "arrival = [8, 2, 5]\n"
+        "main.py": "arrival = [8, 2, 5, 9, 2]\nprint(\"Arrival:\", arrival)\n# Create separate increasing and decreasing reports.\n"
       },
       "solution": {
-        "main.py": "arrival = [8, 2, 5]\nranked = sorted(arrival)\nprint(ranked)\n"
+        "main.py": "arrival = [8, 2, 5, 9, 2]\nprint(\"Arrival:\", arrival)\nranked = sorted(arrival)\nprint(\"Increasing:\", ranked)\ndescending = sorted(arrival, reverse=True)\nprint(\"Decreasing:\", descending)\ntop_two = descending[:2]\nprint(\"Top two:\", top_two)\nprint(\"Arrival still:\", arrival)\n"
       },
       "checkpoints": [
         {
-          "id": "use-python-list-11-step-1",
+          "id": "use-python-list-11-v2-step-1",
           "task": {
-            "en": "Create ranked as a sorted copy of arrival. Keep arrival unchanged.",
-            "nl": "Maak ranked als gesorteerde kopie van arrival. Laat arrival ongewijzigd."
+            "en": "Create `ranked` using `sorted(arrival)` and print it with \"Increasing:\". Keep arrival in its original order.",
+            "nl": "Maak `ranked` met `sorted(arrival)` en print deze met \"Increasing:\". Houd arrival in de oorspronkelijke volgorde."
           },
-          "check": "ranked == [2,5,8] and arrival == [8,2,5]",
+          "check": "ranked == [2,2,5,8,9] and ranked is not arrival and arrival == [8,2,5,9,2] and 'Increasing: [2, 2, 5, 8, 9]' in _stdout.splitlines()",
+          "feedback": {
+            "en": "Return a separate ordered list while preserving arrival order and duplicates.",
+            "nl": "Maak een aparte geordende list en behoud aankomstvolgorde en dubbele waarden."
+          },
+          "cases": [
+            {
+              "inputs": {
+                "arrival": [
+                  7,
+                  -1,
+                  7,
+                  3
+                ]
+              },
+              "check": "ranked == [-1,3,7,7] and arrival == [7,-1,7,3] and ranked is not arrival"
+            }
+          ],
           "hint": {
-            "en": "Start with arrival = [8, 2, 5]. Then compare the values with the task.",
-            "nl": "Begin met arrival = [8, 2, 5]. Vergelijk de waarden daarna met de opdracht."
+            "en": "Save the return value of the built-in function rather than calling the in-place method.",
+            "nl": "Bewaar de return value van de ingebouwde functie in plaats van de method die direct wijzigt aan te roepen."
+          }
+        },
+        {
+          "id": "use-python-list-11-v2-step-2",
+          "task": {
+            "en": "Create another new list, `descending`, using `sorted()` with `reverse=True`. Print it with \"Decreasing:\" and leave ranked unchanged.",
+            "nl": "Maak nog een nieuwe list, `descending`, met `sorted()` en `reverse=True`. Print deze met \"Decreasing:\" en laat ranked ongewijzigd."
+          },
+          "check": "descending == [9,8,5,2,2] and ranked == [2,2,5,8,9] and descending is not ranked and 'Decreasing: [9, 8, 5, 2, 2]' in _stdout.splitlines()",
+          "feedback": {
+            "en": "Keep both reports usable: increasing order in ranked, decreasing order in descending.",
+            "nl": "Houd beide rapporten bruikbaar: oplopend in ranked, aflopend in descending."
+          },
+          "cases": [
+            {
+              "inputs": {
+                "arrival": [
+                  7,
+                  -1,
+                  7,
+                  3
+                ]
+              },
+              "check": "descending == [7,7,3,-1] and ranked == [-1,3,7,7] and arrival == [7,-1,7,3]"
+            }
+          ],
+          "hint": {
+            "en": "A fresh sorted call gives an independent result; do not sort ranked in place.",
+            "nl": "Een nieuwe sorted-aanroep geeft een onafhankelijk resultaat; sorteer ranked niet direct."
+          }
+        },
+        {
+          "id": "use-python-list-11-v2-step-3",
+          "task": {
+            "en": "Slice the first two values from descending into `top_two`. Print \"Top two:\" with that slice and \"Arrival still:\" with the original log.",
+            "nl": "Slice de eerste twee waarden uit descending naar `top_two`. Print \"Top two:\" met die slice en \"Arrival still:\" met het oorspronkelijke log."
+          },
+          "check": "top_two == [9,8] and arrival == [8,2,5,9,2] and 'Top two: [9, 8]' in _stdout.splitlines() and 'Arrival still: [8, 2, 5, 9, 2]' in _stdout.splitlines()",
+          "feedback": {
+            "en": "Choose the largest two from the decreasing report and demonstrate that the original order survived.",
+            "nl": "Kies de grootste twee uit het aflopende rapport en laat zien dat de oorspronkelijke volgorde behouden bleef."
+          },
+          "cases": [
+            {
+              "inputs": {
+                "arrival": [
+                  7,
+                  -1,
+                  7,
+                  3
+                ]
+              },
+              "check": "top_two == [7,7]"
+            },
+            {
+              "inputs": {
+                "arrival": [
+                  4
+                ]
+              },
+              "check": "top_two == [4]"
+            }
+          ],
+          "hint": {
+            "en": "Use descending[:2]. The sorted order is what makes these the largest values.",
+            "nl": "Gebruik descending[:2]. Door de sorteervolgorde zijn dit de grootste waarden."
           }
         }
       ],
       "solutionNote": {
-        "en": "sorted() returns a new sorted list and leaves the original collection unchanged. This is useful when the original order has meaning you want to preserve.\n\nTrace the solution one line at a time. Try a different input to see which parts change.",
-        "nl": "sorted() geeft een nieuwe gesorteerde list terug en laat de oorspronkelijke verzameling ongewijzigd. Dat is handig als de oorspronkelijke volgorde betekenis heeft.\n\nVolg de oplossing regel voor regel. Probeer een andere invoer en bekijk welke onderdelen veranderen."
+        "en": "Each sorted call creates its own list. The top-two report is a slice of the decreasing copy, so neither reporting nor selection mutates the arrival log.",
+        "nl": "Elke sorted-aanroep maakt een eigen list. Het top-twee-rapport is een slice van de aflopende kopie, dus rapporteren en selecteren wijzigen het aankomstlog niet."
       },
       "sourcePosition": 11,
       "sourceUrl": "https://www.codecademy.com/courses/learn-python-3/lessons/use-python-list/exercises/sorted",
@@ -7958,38 +9038,279 @@
       "group": "use-python-list",
       "title": {
         "en": "List operations review",
-        "nl": "Terugblik: list-bewerkingen"
+        "nl": "Maak het verzendrapport van de materiaalruimte"
       },
       "kind": "coding",
       "optional": false,
       "explanation": {
-        "en": "Combine list operations carefully: removing an element changes later indexes, while a slice makes a new list. Keep intermediate values in named variables so you can inspect each stage.",
-        "nl": "Combineer list-bewerkingen zorgvuldig: na het verwijderen veranderen latere indexes, terwijl een slice een nieuwe list maakt. Bewaar tussenresultaten in variables om elke stap te kunnen bekijken."
+        "en": "The equipment room has a shipment manifest in packing order. One item is canceled, one urgent item must be inserted, and the desk needs counts, a catalog and dispatch numbers. Build this as one program in stages. Run after each step and inspect the variables or output before continuing.",
+        "nl": "De materiaalruimte heeft een verzendlijst in inpakvolgorde. Eén item wordt geannuleerd, een spoeditem moet ertussen en de balie heeft aantallen, een catalogus en verzendnummers nodig. Bouw dit als één programma in stappen. Voer na elke stap uit en bekijk de variabelen of output voordat je verdergaat."
       },
       "example": "",
+      "sections": [
+        {
+          "heading": {
+            "en": "Separate earlier facts from later changes",
+            "nl": "Scheid eerdere feiten van latere wijzigingen"
+          },
+          "body": {
+            "en": "Calculate the initial count, endpoints and preview before changing the manifest. Those values describe what arrived. Store pop’s return value when canceling, and print the edited manifest after inserting the urgent item. A later sorted catalog must not replace packing order.",
+            "nl": "Bereken het eerste aantal, de uiteinden en de preview voordat je de verzendlijst wijzigt. Die waarden beschrijven wat binnenkwam. Bewaar de return value van pop bij het annuleren en print de gewijzigde lijst na het invoegen van het spoeditem. Een latere gesorteerde catalogus mag de inpakvolgorde niet vervangen."
+          }
+        },
+        {
+          "heading": {
+            "en": "Choose tools from the question",
+            "nl": "Kies hulpmiddelen vanuit de vraag"
+          },
+          "body": {
+            "en": "How many? Use len or count. Which positions? Use indexing or a slice. Remove and remember? Use pop. Add at a position? Use insert. A separate alphabetical view? Use sorted. Consecutive labels? Use range with an excluded stop. You have used each tool already; now connect their results.",
+            "nl": "Hoeveel? Gebruik len of count. Welke posities? Gebruik indexes of een slice. Verwijderen en onthouden? Gebruik pop. Op een positie toevoegen? Gebruik insert. Een aparte alfabetische weergave? Gebruik sorted. Opeenvolgende labels? Gebruik range met een uitgesloten stop. Je hebt elk hulpmiddel al gebruikt; verbind nu hun resultaten."
+          },
+          "code": "items = [\"rope\", \"case\", \"rope\"]\nlabels = list(range(100, 100 + len(items)))\nprint(labels)\nprint(sorted(items))\nprint(items)",
+          "output": "[100, 101, 102]\n['case', 'rope', 'rope']\n['rope', 'case', 'rope']"
+        }
+      ],
       "files": {
-        "main.py": "# Write your code below.\n"
+        "main.py": "manifest = [\"cable\", \"lamp\", \"case\", \"lamp\", \"strap\", \"tripod\", \"lamp\"]\ncanceled_index = 4\nrush_item = \"battery\"\nprint(\"Received:\", manifest)\n\n# 1-3: Describe the received manifest before changing it.\n\n# 4: Cancel one item and retain its name.\n\n# 5: Insert the urgent item before index 1.\n\n# 6-8: Build a separate catalog, dispatch numbers and a small preview.\n"
       },
       "solution": {
-        "main.py": "queue = [7, 3, 5]\nqueue.insert(1, 9)\nremoved = queue.pop()\nqueue.sort()\nfirst_two = queue[:2]\nprint(queue, removed, first_two)\n"
+        "main.py": "manifest = [\"cable\", \"lamp\", \"case\", \"lamp\", \"strap\", \"tripod\", \"lamp\"]\ncanceled_index = 4\nrush_item = \"battery\"\nprint(\"Received:\", manifest)\noriginal_count = len(manifest)\nfirst = manifest[0]\nlast = manifest[-1]\nprint(\"Received summary:\", original_count, first, last)\npreview = manifest[1:4]\nprint(\"Initial preview:\", preview)\nlamp_count = manifest.count(\"lamp\")\nprint(\"Lamps:\", lamp_count)\ncanceled = manifest.pop(canceled_index)\nprint(\"Canceled:\", canceled)\nmanifest.insert(1, rush_item)\nprint(\"Ready:\", manifest)\ncatalog = sorted(manifest)\nprint(\"Catalog:\", catalog)\ndispatch_ids = list(range(100, 100 + len(manifest)))\nprint(\"Dispatch IDs:\", dispatch_ids)\nnext_two = manifest[:2]\nearlier = manifest[:-2]\nprint(\"Next two:\", next_two)\nprint(\"Before final two:\", earlier)\n"
       },
       "checkpoints": [
         {
-          "id": "use-python-list-12-step-1",
+          "id": "use-python-list-12-v2-step-1",
           "task": {
-            "en": "Start queue at [7, 3, 5]. Insert 9 at index 1, pop the last value into removed, sort queue, and save its first two entries as first_two.",
-            "nl": "Begin met queue = [7, 3, 5]. Voeg 9 in op index 1, pop de laatste waarde naar removed, sorteer queue en sla de eerste twee items op in first_two."
+            "en": "Before editing manifest, save its length in `original_count`, first item in `first` and last item in `last`. Print all three after \"Received summary:\".",
+            "nl": "Bewaar vóór het wijzigen van manifest de lengte in `original_count`, het eerste item in `first` en het laatste in `last`. Print alle drie na \"Received summary:\"."
           },
-          "check": "queue == [3,7,9] and removed == 5 and first_two == [3,7]",
+          "check": "original_count == 7 and first == 'cable' and last == 'lamp' and 'Received summary: 7 cable lamp' in _stdout.splitlines()",
+          "feedback": {
+            "en": "Describe the original received sequence, not a later edited version.",
+            "nl": "Beschrijf de oorspronkelijke ontvangen reeks, niet een latere gewijzigde versie."
+          },
+          "cases": [
+            {
+              "inputs": {
+                "manifest": [
+                  "a",
+                  "b",
+                  "c",
+                  "d",
+                  "e",
+                  "f"
+                ]
+              },
+              "check": "original_count == 6 and first == 'a' and last == 'f'"
+            }
+          ],
           "hint": {
-            "en": "Start with queue = [7, 3, 5]. Then compare the values with the task.",
-            "nl": "Begin met queue = [7, 3, 5]. Vergelijk de waarden daarna met de opdracht."
+            "en": "Use len, index 0 and index -1 before any pop or insert call.",
+            "nl": "Gebruik len, index 0 en index -1 vóór een aanroep van pop of insert."
+          }
+        },
+        {
+          "id": "use-python-list-12-v2-step-2",
+          "task": {
+            "en": "Save the original items at indexes 1, 2 and 3 in `preview`, using a slice. Print it with \"Initial preview:\".",
+            "nl": "Bewaar de oorspronkelijke items op indexes 1, 2 en 3 via een slice in `preview`. Print deze met \"Initial preview:\"."
+          },
+          "check": "preview == ['lamp','case','lamp'] and ('Initial preview: ' + str(preview)) in _stdout.splitlines()",
+          "feedback": {
+            "en": "Capture the three-item window from the original packing order.",
+            "nl": "Leg het venster van drie items uit de oorspronkelijke inpakvolgorde vast."
+          },
+          "cases": [
+            {
+              "inputs": {
+                "manifest": [
+                  "a",
+                  "b",
+                  "c",
+                  "d",
+                  "e",
+                  "f"
+                ]
+              },
+              "check": "preview == ['b','c','d']"
+            }
+          ],
+          "hint": {
+            "en": "Use an excluded stop of 4, before modifying manifest.",
+            "nl": "Gebruik een uitgesloten stop van 4, voordat je manifest wijzigt."
+          }
+        },
+        {
+          "id": "use-python-list-12-v2-step-3",
+          "task": {
+            "en": "Count the received lamps into `lamp_count` and print it with \"Lamps:\". Count before canceling anything.",
+            "nl": "Tel de ontvangen lampen naar `lamp_count` en print dit met \"Lamps:\". Tel voordat je iets annuleert."
+          },
+          "check": "lamp_count == 3 and 'Lamps: 3' in _stdout.splitlines()",
+          "feedback": {
+            "en": "Count matching received items, including each duplicate lamp.",
+            "nl": "Tel de overeenkomende ontvangen items, inclusief elke dubbele lamp."
+          },
+          "cases": [
+            {
+              "inputs": {
+                "manifest": [
+                  "lamp",
+                  "cable",
+                  "lamp",
+                  "case",
+                  "lamp",
+                  "tripod",
+                  "lamp"
+                ]
+              },
+              "check": "lamp_count == 4"
+            }
+          ],
+          "hint": {
+            "en": "Call manifest.count(\"lamp\"); len would count every kind of item.",
+            "nl": "Roep manifest.count(\"lamp\") aan; len zou elk soort item meetellen."
+          }
+        },
+        {
+          "id": "use-python-list-12-v2-step-4",
+          "task": {
+            "en": "Remove the item at `canceled_index` with `pop()`, retain its name in `canceled`, and print it with \"Canceled:\".",
+            "nl": "Verwijder het item op `canceled_index` met `pop()`, bewaar de naam in `canceled` en print deze met \"Canceled:\"."
+          },
+          "check": "canceled == 'strap' and 'Canceled: strap' in _stdout.splitlines() and any(isinstance(n, _ast.Call) and isinstance(n.func, _ast.Attribute) and n.func.attr == 'pop' for n in _ast.walk(_ast.parse(_source)))",
+          "feedback": {
+            "en": "Remove the configured position and report the actual removed name.",
+            "nl": "Verwijder de ingestelde positie en rapporteer de werkelijk verwijderde naam."
+          },
+          "cases": [
+            {
+              "inputs": {
+                "canceled_index": 2
+              },
+              "check": "canceled == 'case'"
+            }
+          ],
+          "hint": {
+            "en": "The cancellation setting is an index. Save the return value of that pop call.",
+            "nl": "De annuleringsinstelling is een index. Bewaar de return value van die pop-aanroep."
+          }
+        },
+        {
+          "id": "use-python-list-12-v2-step-5",
+          "task": {
+            "en": "Insert `rush_item` before index 1 of the remaining manifest. Print \"Ready:\" with the resulting packing order.",
+            "nl": "Voeg `rush_item` vóór index 1 van de resterende verzendlijst in. Print \"Ready:\" met de nieuwe inpakvolgorde."
+          },
+          "check": "manifest == ['cable','battery','lamp','case','lamp','tripod','lamp'] and any(isinstance(n, _ast.Call) and isinstance(n.func, _ast.Attribute) and n.func.attr == 'insert' for n in _ast.walk(_ast.parse(_source))) and ('Ready: ' + str(manifest)) in _stdout.splitlines()",
+          "feedback": {
+            "en": "Keep the remaining items in order and insert one urgent item after the first.",
+            "nl": "Behoud de resterende volgorde en voeg één spoeditem na het eerste toe."
+          },
+          "cases": [
+            {
+              "inputs": {
+                "canceled_index": 2,
+                "rush_item": "adapter"
+              },
+              "check": "manifest == ['cable','adapter','lamp','lamp','strap','tripod','lamp']"
+            }
+          ],
+          "hint": {
+            "en": "After cancellation, insert at position 1; use the rush_item variable as the value.",
+            "nl": "Voeg na het annuleren op positie 1 in; gebruik rush_item als waarde."
+          }
+        },
+        {
+          "id": "use-python-list-12-v2-step-6",
+          "task": {
+            "en": "Create an alphabetical `catalog` with `sorted(manifest)`. Print it with \"Catalog:\" and preserve the Ready packing order in manifest.",
+            "nl": "Maak een alfabetische `catalog` met `sorted(manifest)`. Print deze met \"Catalog:\" en behoud de Ready-inpakvolgorde in manifest."
+          },
+          "check": "catalog == ['battery','cable','case','lamp','lamp','lamp','tripod'] and catalog is not manifest and manifest == ['cable','battery','lamp','case','lamp','tripod','lamp'] and ('Catalog: ' + str(catalog)) in _stdout.splitlines()",
+          "feedback": {
+            "en": "Preserve the working order while making an independent alphabetical view.",
+            "nl": "Behoud de werkvolgorde terwijl je een onafhankelijke alfabetische weergave maakt."
+          },
+          "cases": [
+            {
+              "inputs": {
+                "rush_item": "adapter"
+              },
+              "check": "catalog == sorted(manifest) and catalog[0] == 'adapter' and manifest[0] == 'cable' and manifest[1] == 'adapter'"
+            }
+          ],
+          "hint": {
+            "en": "A separate sorted result is appropriate for a catalog; the in-place sort would change packing order.",
+            "nl": "Een apart sorted-resultaat past bij een catalogus; de sort-method zou de inpakvolgorde wijzigen."
+          }
+        },
+        {
+          "id": "use-python-list-12-v2-step-7",
+          "task": {
+            "en": "Create `dispatch_ids` as a list of consecutive integers starting at 100, with one number for each final manifest item. Print it with \"Dispatch IDs:\".",
+            "nl": "Maak `dispatch_ids` als list met opeenvolgende gehele getallen vanaf 100, één nummer per item van de uiteindelijke verzendlijst. Print deze met \"Dispatch IDs:\"."
+          },
+          "check": "dispatch_ids == list(range(100,107)) and 'Dispatch IDs: [100, 101, 102, 103, 104, 105, 106]' in _stdout.splitlines()",
+          "feedback": {
+            "en": "Generate exactly one ID per current item, without hard-coding seven IDs.",
+            "nl": "Genereer precies één ID per huidig item, zonder zeven vaste IDs te typen."
+          },
+          "cases": [
+            {
+              "inputs": {
+                "manifest": [
+                  "a",
+                  "b",
+                  "c",
+                  "d",
+                  "e",
+                  "f"
+                ]
+              },
+              "check": "dispatch_ids == list(range(100,106))"
+            }
+          ],
+          "hint": {
+            "en": "The excluded stop is 100 + len(manifest). Convert the range to a list.",
+            "nl": "De uitgesloten stop is 100 + len(manifest). Zet de range om in een list."
+          }
+        },
+        {
+          "id": "use-python-list-12-v2-step-8",
+          "task": {
+            "en": "Finish with two slices of the final manifest: `next_two` for the first two items and `earlier` for everything except its last two. Print \"Next two:\" and \"Before final two:\" with those lists.",
+            "nl": "Sluit af met twee slices van de uiteindelijke verzendlijst: `next_two` voor de eerste twee items en `earlier` voor alles behalve de laatste twee. Print \"Next two:\" en \"Before final two:\" met die lists."
+          },
+          "check": "next_two == ['cable','battery'] and earlier == ['cable','battery','lamp','case','lamp'] and ('Next two: ' + str(next_two)) in _stdout.splitlines() and ('Before final two: ' + str(earlier)) in _stdout.splitlines()",
+          "feedback": {
+            "en": "Build the previews from final packing order without removing any more items.",
+            "nl": "Bouw de previews uit de uiteindelijke inpakvolgorde zonder nog items te verwijderen."
+          },
+          "cases": [
+            {
+              "inputs": {
+                "manifest": [
+                  "a",
+                  "b",
+                  "c",
+                  "d",
+                  "e",
+                  "f"
+                ]
+              },
+              "check": "next_two == ['a','battery'] and earlier == ['a','battery','b','c']"
+            }
+          ],
+          "hint": {
+            "en": "Use [:2] and [:-2]. Select from manifest, because the catalog has a different order.",
+            "nl": "Gebruik [:2] en [:-2]. Selecteer uit manifest, want de catalogus heeft een andere volgorde."
           }
         }
       ],
       "solutionNote": {
-        "en": "Combine list operations carefully: removing an element changes later indexes, while a slice makes a new list. Keep intermediate values in named variables so you can inspect each stage.\n\nTrace the solution one line at a time. Try a different input to see which parts change.",
-        "nl": "Combineer list-bewerkingen zorgvuldig: na het verwijderen veranderen latere indexes, terwijl een slice een nieuwe list maakt. Bewaar tussenresultaten in variables om elke stap te kunnen bekijken.\n\nVolg de oplossing regel voor regel. Probeer een andere invoer en bekijk welke onderdelen veranderen."
+        "en": "The program first records received facts, then applies cancellation and urgency, then builds reports from the final manifest. A sorted copy preserves packing order. The ID range depends on the actual final length, and the final slices select positions without mutation.",
+        "nl": "Het programma legt eerst de ontvangen gegevens vast, verwerkt daarna annulering en spoed en maakt vervolgens rapporten uit de definitieve verzendlijst. Een gesorteerde kopie behoudt de inpakvolgorde. De ID-range hangt af van de werkelijke eindlengte en de laatste slices selecteren posities zonder iets te wijzigen."
       },
       "sourcePosition": 12,
       "sourceUrl": "https://www.codecademy.com/courses/learn-python-3/lessons/use-python-list/exercises/review-ii",
@@ -8033,8 +9354,8 @@
                 "nl": "[1, 2, 3, 4]"
               },
               "reason": {
-                "en": "The stop value is excluded.",
-                "nl": "De stopwaarde telt niet mee."
+                "en": "A one-argument range starts at zero, not one. Stop 4 is excluded.",
+                "nl": "Een range met één argument begint bij nul, niet bij één. Stop 4 is uitgesloten."
               }
             },
             {
@@ -8044,8 +9365,8 @@
                 "nl": "[0, 1, 2, 3, 4]"
               },
               "reason": {
-                "en": "The stop value is excluded.",
-                "nl": "De stopwaarde telt niet mee."
+                "en": "The stop boundary does not belong to the range; 4 is excluded.",
+                "nl": "De stopgrens hoort niet bij de range; 4 is uitgesloten."
               }
             }
           ]
@@ -8077,8 +9398,8 @@
                 "nl": "[2, 3, 4, 5, 6, 7, 8]"
               },
               "reason": {
-                "en": "Begin at 2 and add 3 while staying below 9.",
-                "nl": "Begin bij 2 en tel telkens 3 op, zolang de waarde kleiner is dan 9."
+                "en": "The third argument is the step. Add 3 after each value, rather than including every integer.",
+                "nl": "Het derde argument is de stap. Tel na elke waarde 3 op in plaats van elk geheel getal op te nemen."
               }
             },
             {
@@ -8088,8 +9409,8 @@
                 "nl": "[3, 6, 9]"
               },
               "reason": {
-                "en": "Begin at 2 and add 3 while staying below 9.",
-                "nl": "Begin bij 2 en tel telkens 3 op, zolang de waarde kleiner is dan 9."
+                "en": "The first argument sets the start to 2. The step is 3, and stop 9 is excluded.",
+                "nl": "Het eerste argument zet het begin op 2. De stap is 3 en stop 9 is uitgesloten."
               }
             }
           ]
@@ -8121,8 +9442,8 @@
                 "nl": "4"
               },
               "reason": {
-                "en": "len counts the two outer elements.",
-                "nl": "len telt de twee buitenste elementen."
+                "en": "len counts the two outer records, not all four values inside them.",
+                "nl": "len telt de twee buitenste records, niet alle vier waarden daarin."
               }
             },
             {
@@ -8132,8 +9453,8 @@
                 "nl": "1"
               },
               "reason": {
-                "en": "len counts the two outer elements.",
-                "nl": "len telt de twee buitenste elementen."
+                "en": "The outer list has two elements. Each inner list counts as one whole element.",
+                "nl": "De buitenste list heeft twee elementen. Elke binnenste list telt als één volledig element."
               }
             }
           ]
@@ -8165,8 +9486,8 @@
                 "nl": "[1, 2, 3]"
               },
               "reason": {
-                "en": "Index 1 is included and index 3 is excluded.",
-                "nl": "Index 1 telt mee; index 3 niet."
+                "en": "Start index 1 selects value 2. Indexing begins at zero.",
+                "nl": "Beginindex 1 kiest waarde 2. Indexes beginnen bij nul."
               }
             },
             {
@@ -8176,8 +9497,8 @@
                 "nl": "[2, 3, 4]"
               },
               "reason": {
-                "en": "Index 1 is included and index 3 is excluded.",
-                "nl": "Index 1 telt mee; index 3 niet."
+                "en": "The value at stop index 3 is excluded, leaving values at indexes 1 and 2.",
+                "nl": "De waarde op stopindex 3 is uitgesloten; de waarden op indexes 1 en 2 blijven over."
               }
             }
           ]
@@ -8209,8 +9530,8 @@
                 "nl": "[1, 2]"
               },
               "reason": {
-                "en": "Start two positions from the end and continue to the end.",
-                "nl": "Begin twee posities vóór het einde en ga door tot het einde."
+                "en": "The negative start anchors the slice at the end, not the beginning.",
+                "nl": "Het negatieve begin verankert de slice aan het einde, niet aan het begin."
               }
             },
             {
@@ -8220,8 +9541,8 @@
                 "nl": "[2, 3]"
               },
               "reason": {
-                "en": "Start two positions from the end and continue to the end.",
-                "nl": "Begin twee posities vóór het einde en ga door tot het einde."
+                "en": "Index -2 is the second-to-last value, 3. The open stop includes the final 4 too.",
+                "nl": "Index -2 is de op één na laatste waarde, 3. Door de open stop telt de laatste 4 ook mee."
               }
             }
           ]
@@ -8253,8 +9574,8 @@
                 "nl": "[2, 1, 3]"
               },
               "reason": {
-                "en": "insert places the value before index 1.",
-                "nl": "insert plaatst de waarde vóór index 1."
+                "en": "Index 1 inserts before the second item, so the first item remains first.",
+                "nl": "Index 1 voegt vóór het tweede item in, dus het eerste item blijft vooraan."
               }
             },
             {
@@ -8264,11 +9585,85 @@
                 "nl": "[1, 3, 2]"
               },
               "reason": {
-                "en": "insert places the value before index 1.",
-                "nl": "insert plaatst de waarde vóór index 1."
+                "en": "insert opens the requested position. It does not append the new item at the end.",
+                "nl": "insert maakt ruimte op de gevraagde positie. Het voegt het nieuwe element niet achteraan toe."
               }
             }
-          ]
+          ],
+          "codeBlank": {
+            "prompt": {
+              "en": "Insert \"Clinic\" as the third stop, keeping every existing stop in order.",
+              "nl": "Voeg \"Clinic\" als derde stop in en behoud alle bestaande stops in hun volgorde."
+            },
+            "segments": [
+              "route = [\"Depot\", \"Bridge\", \"Dock\"]\n",
+              ".",
+              "(",
+              ", ",
+              ")\nprint(route)"
+            ],
+            "tokens": [
+              {
+                "id": "token-1",
+                "code": "route"
+              },
+              {
+                "id": "token-2",
+                "code": "insert"
+              },
+              {
+                "id": "token-3",
+                "code": "2"
+              },
+              {
+                "id": "token-4",
+                "code": "\"Clinic\""
+              },
+              {
+                "id": "token-5",
+                "code": "append"
+              },
+              {
+                "id": "token-6",
+                "code": "3"
+              },
+              {
+                "id": "token-7",
+                "code": "1"
+              }
+            ],
+            "blanks": [
+              {
+                "answer": "route",
+                "reason": {
+                  "en": "Call the method on the route list itself.",
+                  "nl": "Roep de method aan op de route-list zelf."
+                }
+              },
+              {
+                "answer": "insert",
+                "reason": {
+                  "en": "insert adds at a position and shifts existing stops; append only adds at the end.",
+                  "nl": "insert voegt op een positie toe en schuift bestaande stops op; append voegt alleen achteraan toe."
+                }
+              },
+              {
+                "answer": "2",
+                "reason": {
+                  "en": "The third position has index 2 because indexing starts at zero.",
+                  "nl": "De derde positie heeft index 2, omdat indexes bij nul beginnen."
+                }
+              },
+              {
+                "answer": "\"Clinic\"",
+                "reason": {
+                  "en": "The inserted stop is a string, so its literal needs quotes.",
+                  "nl": "De ingevoegde stop is een string, dus de literal heeft aanhalingstekens nodig."
+                }
+              }
+            ],
+            "output": "['Depot', 'Bridge', 'Clinic', 'Dock']\n"
+          }
         },
         {
           "id": "use-python-list-q7",
@@ -8297,8 +9692,8 @@
                 "nl": "4"
               },
               "reason": {
-                "en": "pop without an index removes and returns the last value.",
-                "nl": "pop zonder index verwijdert de laatste waarde en geeft die terug."
+                "en": "Without an index, pop removes and returns the last value, 6. pop(0) would return 4.",
+                "nl": "Zonder index verwijdert pop de laatste waarde, 6, en geeft die terug. pop(0) zou 4 teruggeven."
               }
             },
             {
@@ -8308,11 +9703,73 @@
                 "nl": "None"
               },
               "reason": {
-                "en": "pop without an index removes and returns the last value.",
-                "nl": "pop zonder index verwijdert de laatste waarde en geeft die terug."
+                "en": "Unlike sort, pop returns the removed item. Here that item is 6.",
+                "nl": "Anders dan sort geeft pop het verwijderde item terug. Hier is dat 6."
               }
             }
-          ]
+          ],
+          "codeBlank": {
+            "prompt": {
+              "en": "Cancel the third queued job using pop and keep its name in canceled.",
+              "nl": "Annuleer de derde klus in de wachtrij met pop en bewaar de naam in canceled."
+            },
+            "segments": [
+              "queue = [\"scan\", \"pack\", \"calibrate\", \"label\"]\ncanceled = ",
+              ".",
+              "(",
+              ")\nprint(canceled)\nprint(queue)"
+            ],
+            "tokens": [
+              {
+                "id": "token-1",
+                "code": "queue"
+              },
+              {
+                "id": "token-2",
+                "code": "pop"
+              },
+              {
+                "id": "token-3",
+                "code": "2"
+              },
+              {
+                "id": "token-4",
+                "code": "3"
+              },
+              {
+                "id": "token-5",
+                "code": "remove"
+              },
+              {
+                "id": "token-6",
+                "code": "0"
+              }
+            ],
+            "blanks": [
+              {
+                "answer": "queue",
+                "reason": {
+                  "en": "Remove from queue; the returned value is assigned to canceled.",
+                  "nl": "Verwijder uit queue; de teruggegeven waarde wordt aan canceled toegewezen."
+                }
+              },
+              {
+                "answer": "pop",
+                "reason": {
+                  "en": "pop removes by index and returns the item. remove instead searches by value.",
+                  "nl": "pop verwijdert op index en geeft het item terug. remove zoekt juist op waarde."
+                }
+              },
+              {
+                "answer": "2",
+                "reason": {
+                  "en": "The third item is at index 2. Index 3 would cancel the fourth job.",
+                  "nl": "Het derde item staat op index 2. Index 3 zou de vierde klus annuleren."
+                }
+              }
+            ],
+            "output": "calibrate\n['scan', 'pack', 'label']\n"
+          }
         },
         {
           "id": "use-python-list-q8",
@@ -8341,8 +9798,8 @@
                 "nl": "2"
               },
               "reason": {
-                "en": "There are three elements equal to 2.",
-                "nl": "Drie elementen zijn gelijk aan 2."
+                "en": "2 is the value being counted. It occurs three times, not twice.",
+                "nl": "2 is de waarde die wordt geteld. Die komt drie keer voor, niet twee keer."
               }
             },
             {
@@ -8352,8 +9809,8 @@
                 "nl": "4"
               },
               "reason": {
-                "en": "There are three elements equal to 2.",
-                "nl": "Drie elementen zijn gelijk aan 2."
+                "en": "There are four total entries, but only three match 2. count differs from len.",
+                "nl": "Er zijn vier elementen in totaal, maar slechts drie zijn gelijk aan 2. count verschilt van len."
               }
             }
           ]
@@ -8385,8 +9842,8 @@
                 "nl": "[1, 2, 3]"
               },
               "reason": {
-                "en": "sort changes x in place and returns None.",
-                "nl": "sort verandert x en geeft None terug."
+                "en": "The list becomes [1, 2, 3], but this prints the method’s return value: None.",
+                "nl": "De list wordt [1, 2, 3], maar dit print de return value van de method: None."
               }
             },
             {
@@ -8396,8 +9853,8 @@
                 "nl": "[3, 2, 1]"
               },
               "reason": {
-                "en": "sort changes x in place and returns None.",
-                "nl": "sort verandert x en geeft None terug."
+                "en": "The default sort is increasing, and its return value is None regardless of direction.",
+                "nl": "De standaard-sortering is oplopend en de return value is None, ongeacht de richting."
               }
             }
           ]
@@ -8429,8 +9886,8 @@
                 "nl": "[1, 3]"
               },
               "reason": {
-                "en": "sorted returns a separate list, leaving x unchanged.",
-                "nl": "sorted geeft een aparte list terug en laat x ongewijzigd."
+                "en": "That is the new list stored in y. sorted leaves the printed original x unchanged.",
+                "nl": "Dat is de nieuwe list in y. sorted laat de geprinte oorspronkelijke x ongewijzigd."
               }
             },
             {
@@ -8440,8 +9897,8 @@
                 "nl": "None"
               },
               "reason": {
-                "en": "sorted returns a separate list, leaving x unchanged.",
-                "nl": "sorted geeft een aparte list terug en laat x ongewijzigd."
+                "en": "sorted returns a new list to y; x still refers to its original list, not None.",
+                "nl": "sorted geeft een nieuwe list terug aan y; x verwijst nog steeds naar de oorspronkelijke list, niet naar None."
               }
             }
           ]
@@ -8473,8 +9930,8 @@
                 "nl": "[2, 4, 7]"
               },
               "reason": {
-                "en": "reverse=True requests descending order.",
-                "nl": "reverse=True vraagt om aflopende volgorde."
+                "en": "reverse=True requests decreasing order, so the largest value comes first.",
+                "nl": "reverse=True vraagt om aflopende volgorde, dus de grootste waarde komt vooraan."
               }
             },
             {
@@ -8484,8 +9941,8 @@
                 "nl": "[4, 2, 7]"
               },
               "reason": {
-                "en": "reverse=True requests descending order.",
-                "nl": "reverse=True vraagt om aflopende volgorde."
+                "en": "This is the unchanged input order. The printed sorted copy is decreasing.",
+                "nl": "Dit is de ongewijzigde invoervolgorde. De geprinte gesorteerde kopie is aflopend."
               }
             }
           ]
@@ -8517,8 +9974,8 @@
                 "nl": "[1]"
               },
               "reason": {
-                "en": "The exclusive stop is zero, so no element is selected.",
-                "nl": "De uitgesloten stopgrens is nul; er wordt geen element gekozen."
+                "en": "Stop 0 is excluded. There are no positions before it in this slice.",
+                "nl": "Stop 0 is uitgesloten. Er liggen geen posities vóór deze grens in de slice."
               }
             },
             {
@@ -8528,8 +9985,8 @@
                 "nl": "[1, 2, 3]"
               },
               "reason": {
-                "en": "The exclusive stop is zero, so no element is selected.",
-                "nl": "De uitgesloten stopgrens is nul; er wordt geen element gekozen."
+                "en": "An omitted start begins at zero, but the explicit stop is also zero, so the slice is empty.",
+                "nl": "Een weggelaten begin start op nul, maar de opgegeven stop is ook nul, dus de slice is leeg."
               }
             }
           ]

@@ -4,38 +4,279 @@
   "group": "use-python-list",
   "title": {
     "en": "List operations review",
-    "nl": "Terugblik: list-bewerkingen"
+    "nl": "Maak het verzendrapport van de materiaalruimte"
   },
   "kind": "coding",
   "optional": false,
   "explanation": {
-    "en": "Combine list operations carefully: removing an element changes later indexes, while a slice makes a new list. Keep intermediate values in named variables so you can inspect each stage.",
-    "nl": "Combineer list-bewerkingen zorgvuldig: na het verwijderen veranderen latere indexes, terwijl een slice een nieuwe list maakt. Bewaar tussenresultaten in variables om elke stap te kunnen bekijken."
+    "en": "The equipment room has a shipment manifest in packing order. One item is canceled, one urgent item must be inserted, and the desk needs counts, a catalog and dispatch numbers. Build this as one program in stages. Run after each step and inspect the variables or output before continuing.",
+    "nl": "De materiaalruimte heeft een verzendlijst in inpakvolgorde. Eén item wordt geannuleerd, een spoeditem moet ertussen en de balie heeft aantallen, een catalogus en verzendnummers nodig. Bouw dit als één programma in stappen. Voer na elke stap uit en bekijk de variabelen of output voordat je verdergaat."
   },
   "example": "",
+  "sections": [
+    {
+      "heading": {
+        "en": "Separate earlier facts from later changes",
+        "nl": "Scheid eerdere feiten van latere wijzigingen"
+      },
+      "body": {
+        "en": "Calculate the initial count, endpoints and preview before changing the manifest. Those values describe what arrived. Store pop’s return value when canceling, and print the edited manifest after inserting the urgent item. A later sorted catalog must not replace packing order.",
+        "nl": "Bereken het eerste aantal, de uiteinden en de preview voordat je de verzendlijst wijzigt. Die waarden beschrijven wat binnenkwam. Bewaar de return value van pop bij het annuleren en print de gewijzigde lijst na het invoegen van het spoeditem. Een latere gesorteerde catalogus mag de inpakvolgorde niet vervangen."
+      }
+    },
+    {
+      "heading": {
+        "en": "Choose tools from the question",
+        "nl": "Kies hulpmiddelen vanuit de vraag"
+      },
+      "body": {
+        "en": "How many? Use len or count. Which positions? Use indexing or a slice. Remove and remember? Use pop. Add at a position? Use insert. A separate alphabetical view? Use sorted. Consecutive labels? Use range with an excluded stop. You have used each tool already; now connect their results.",
+        "nl": "Hoeveel? Gebruik len of count. Welke posities? Gebruik indexes of een slice. Verwijderen en onthouden? Gebruik pop. Op een positie toevoegen? Gebruik insert. Een aparte alfabetische weergave? Gebruik sorted. Opeenvolgende labels? Gebruik range met een uitgesloten stop. Je hebt elk hulpmiddel al gebruikt; verbind nu hun resultaten."
+      },
+      "code": "items = [\"rope\", \"case\", \"rope\"]\nlabels = list(range(100, 100 + len(items)))\nprint(labels)\nprint(sorted(items))\nprint(items)",
+      "output": "[100, 101, 102]\n['case', 'rope', 'rope']\n['rope', 'case', 'rope']"
+    }
+  ],
   "files": {
-    "main.py": "# Write your code below.\n"
+    "main.py": "manifest = [\"cable\", \"lamp\", \"case\", \"lamp\", \"strap\", \"tripod\", \"lamp\"]\ncanceled_index = 4\nrush_item = \"battery\"\nprint(\"Received:\", manifest)\n\n# 1-3: Describe the received manifest before changing it.\n\n# 4: Cancel one item and retain its name.\n\n# 5: Insert the urgent item before index 1.\n\n# 6-8: Build a separate catalog, dispatch numbers and a small preview.\n"
   },
   "solution": {
-    "main.py": "queue = [7, 3, 5]\nqueue.insert(1, 9)\nremoved = queue.pop()\nqueue.sort()\nfirst_two = queue[:2]\nprint(queue, removed, first_two)\n"
+    "main.py": "manifest = [\"cable\", \"lamp\", \"case\", \"lamp\", \"strap\", \"tripod\", \"lamp\"]\ncanceled_index = 4\nrush_item = \"battery\"\nprint(\"Received:\", manifest)\noriginal_count = len(manifest)\nfirst = manifest[0]\nlast = manifest[-1]\nprint(\"Received summary:\", original_count, first, last)\npreview = manifest[1:4]\nprint(\"Initial preview:\", preview)\nlamp_count = manifest.count(\"lamp\")\nprint(\"Lamps:\", lamp_count)\ncanceled = manifest.pop(canceled_index)\nprint(\"Canceled:\", canceled)\nmanifest.insert(1, rush_item)\nprint(\"Ready:\", manifest)\ncatalog = sorted(manifest)\nprint(\"Catalog:\", catalog)\ndispatch_ids = list(range(100, 100 + len(manifest)))\nprint(\"Dispatch IDs:\", dispatch_ids)\nnext_two = manifest[:2]\nearlier = manifest[:-2]\nprint(\"Next two:\", next_two)\nprint(\"Before final two:\", earlier)\n"
   },
   "checkpoints": [
     {
-      "id": "use-python-list-12-step-1",
+      "id": "use-python-list-12-v2-step-1",
       "task": {
-        "en": "Start queue at [7, 3, 5]. Insert 9 at index 1, pop the last value into removed, sort queue, and save its first two entries as first_two.",
-        "nl": "Begin met queue = [7, 3, 5]. Voeg 9 in op index 1, pop de laatste waarde naar removed, sorteer queue en sla de eerste twee items op in first_two."
+        "en": "Before editing manifest, save its length in `original_count`, first item in `first` and last item in `last`. Print all three after \"Received summary:\".",
+        "nl": "Bewaar vóór het wijzigen van manifest de lengte in `original_count`, het eerste item in `first` en het laatste in `last`. Print alle drie na \"Received summary:\"."
       },
-      "check": "queue == [3,7,9] and removed == 5 and first_two == [3,7]",
+      "check": "original_count == 7 and first == 'cable' and last == 'lamp' and 'Received summary: 7 cable lamp' in _stdout.splitlines()",
+      "feedback": {
+        "en": "Describe the original received sequence, not a later edited version.",
+        "nl": "Beschrijf de oorspronkelijke ontvangen reeks, niet een latere gewijzigde versie."
+      },
+      "cases": [
+        {
+          "inputs": {
+            "manifest": [
+              "a",
+              "b",
+              "c",
+              "d",
+              "e",
+              "f"
+            ]
+          },
+          "check": "original_count == 6 and first == 'a' and last == 'f'"
+        }
+      ],
       "hint": {
-        "en": "Start with queue = [7, 3, 5]. Then compare the values with the task.",
-        "nl": "Begin met queue = [7, 3, 5]. Vergelijk de waarden daarna met de opdracht."
+        "en": "Use len, index 0 and index -1 before any pop or insert call.",
+        "nl": "Gebruik len, index 0 en index -1 vóór een aanroep van pop of insert."
+      }
+    },
+    {
+      "id": "use-python-list-12-v2-step-2",
+      "task": {
+        "en": "Save the original items at indexes 1, 2 and 3 in `preview`, using a slice. Print it with \"Initial preview:\".",
+        "nl": "Bewaar de oorspronkelijke items op indexes 1, 2 en 3 via een slice in `preview`. Print deze met \"Initial preview:\"."
+      },
+      "check": "preview == ['lamp','case','lamp'] and ('Initial preview: ' + str(preview)) in _stdout.splitlines()",
+      "feedback": {
+        "en": "Capture the three-item window from the original packing order.",
+        "nl": "Leg het venster van drie items uit de oorspronkelijke inpakvolgorde vast."
+      },
+      "cases": [
+        {
+          "inputs": {
+            "manifest": [
+              "a",
+              "b",
+              "c",
+              "d",
+              "e",
+              "f"
+            ]
+          },
+          "check": "preview == ['b','c','d']"
+        }
+      ],
+      "hint": {
+        "en": "Use an excluded stop of 4, before modifying manifest.",
+        "nl": "Gebruik een uitgesloten stop van 4, voordat je manifest wijzigt."
+      }
+    },
+    {
+      "id": "use-python-list-12-v2-step-3",
+      "task": {
+        "en": "Count the received lamps into `lamp_count` and print it with \"Lamps:\". Count before canceling anything.",
+        "nl": "Tel de ontvangen lampen naar `lamp_count` en print dit met \"Lamps:\". Tel voordat je iets annuleert."
+      },
+      "check": "lamp_count == 3 and 'Lamps: 3' in _stdout.splitlines()",
+      "feedback": {
+        "en": "Count matching received items, including each duplicate lamp.",
+        "nl": "Tel de overeenkomende ontvangen items, inclusief elke dubbele lamp."
+      },
+      "cases": [
+        {
+          "inputs": {
+            "manifest": [
+              "lamp",
+              "cable",
+              "lamp",
+              "case",
+              "lamp",
+              "tripod",
+              "lamp"
+            ]
+          },
+          "check": "lamp_count == 4"
+        }
+      ],
+      "hint": {
+        "en": "Call manifest.count(\"lamp\"); len would count every kind of item.",
+        "nl": "Roep manifest.count(\"lamp\") aan; len zou elk soort item meetellen."
+      }
+    },
+    {
+      "id": "use-python-list-12-v2-step-4",
+      "task": {
+        "en": "Remove the item at `canceled_index` with `pop()`, retain its name in `canceled`, and print it with \"Canceled:\".",
+        "nl": "Verwijder het item op `canceled_index` met `pop()`, bewaar de naam in `canceled` en print deze met \"Canceled:\"."
+      },
+      "check": "canceled == 'strap' and 'Canceled: strap' in _stdout.splitlines() and any(isinstance(n, _ast.Call) and isinstance(n.func, _ast.Attribute) and n.func.attr == 'pop' for n in _ast.walk(_ast.parse(_source)))",
+      "feedback": {
+        "en": "Remove the configured position and report the actual removed name.",
+        "nl": "Verwijder de ingestelde positie en rapporteer de werkelijk verwijderde naam."
+      },
+      "cases": [
+        {
+          "inputs": {
+            "canceled_index": 2
+          },
+          "check": "canceled == 'case'"
+        }
+      ],
+      "hint": {
+        "en": "The cancellation setting is an index. Save the return value of that pop call.",
+        "nl": "De annuleringsinstelling is een index. Bewaar de return value van die pop-aanroep."
+      }
+    },
+    {
+      "id": "use-python-list-12-v2-step-5",
+      "task": {
+        "en": "Insert `rush_item` before index 1 of the remaining manifest. Print \"Ready:\" with the resulting packing order.",
+        "nl": "Voeg `rush_item` vóór index 1 van de resterende verzendlijst in. Print \"Ready:\" met de nieuwe inpakvolgorde."
+      },
+      "check": "manifest == ['cable','battery','lamp','case','lamp','tripod','lamp'] and any(isinstance(n, _ast.Call) and isinstance(n.func, _ast.Attribute) and n.func.attr == 'insert' for n in _ast.walk(_ast.parse(_source))) and ('Ready: ' + str(manifest)) in _stdout.splitlines()",
+      "feedback": {
+        "en": "Keep the remaining items in order and insert one urgent item after the first.",
+        "nl": "Behoud de resterende volgorde en voeg één spoeditem na het eerste toe."
+      },
+      "cases": [
+        {
+          "inputs": {
+            "canceled_index": 2,
+            "rush_item": "adapter"
+          },
+          "check": "manifest == ['cable','adapter','lamp','lamp','strap','tripod','lamp']"
+        }
+      ],
+      "hint": {
+        "en": "After cancellation, insert at position 1; use the rush_item variable as the value.",
+        "nl": "Voeg na het annuleren op positie 1 in; gebruik rush_item als waarde."
+      }
+    },
+    {
+      "id": "use-python-list-12-v2-step-6",
+      "task": {
+        "en": "Create an alphabetical `catalog` with `sorted(manifest)`. Print it with \"Catalog:\" and preserve the Ready packing order in manifest.",
+        "nl": "Maak een alfabetische `catalog` met `sorted(manifest)`. Print deze met \"Catalog:\" en behoud de Ready-inpakvolgorde in manifest."
+      },
+      "check": "catalog == ['battery','cable','case','lamp','lamp','lamp','tripod'] and catalog is not manifest and manifest == ['cable','battery','lamp','case','lamp','tripod','lamp'] and ('Catalog: ' + str(catalog)) in _stdout.splitlines()",
+      "feedback": {
+        "en": "Preserve the working order while making an independent alphabetical view.",
+        "nl": "Behoud de werkvolgorde terwijl je een onafhankelijke alfabetische weergave maakt."
+      },
+      "cases": [
+        {
+          "inputs": {
+            "rush_item": "adapter"
+          },
+          "check": "catalog == sorted(manifest) and catalog[0] == 'adapter' and manifest[0] == 'cable' and manifest[1] == 'adapter'"
+        }
+      ],
+      "hint": {
+        "en": "A separate sorted result is appropriate for a catalog; the in-place sort would change packing order.",
+        "nl": "Een apart sorted-resultaat past bij een catalogus; de sort-method zou de inpakvolgorde wijzigen."
+      }
+    },
+    {
+      "id": "use-python-list-12-v2-step-7",
+      "task": {
+        "en": "Create `dispatch_ids` as a list of consecutive integers starting at 100, with one number for each final manifest item. Print it with \"Dispatch IDs:\".",
+        "nl": "Maak `dispatch_ids` als list met opeenvolgende gehele getallen vanaf 100, één nummer per item van de uiteindelijke verzendlijst. Print deze met \"Dispatch IDs:\"."
+      },
+      "check": "dispatch_ids == list(range(100,107)) and 'Dispatch IDs: [100, 101, 102, 103, 104, 105, 106]' in _stdout.splitlines()",
+      "feedback": {
+        "en": "Generate exactly one ID per current item, without hard-coding seven IDs.",
+        "nl": "Genereer precies één ID per huidig item, zonder zeven vaste IDs te typen."
+      },
+      "cases": [
+        {
+          "inputs": {
+            "manifest": [
+              "a",
+              "b",
+              "c",
+              "d",
+              "e",
+              "f"
+            ]
+          },
+          "check": "dispatch_ids == list(range(100,106))"
+        }
+      ],
+      "hint": {
+        "en": "The excluded stop is 100 + len(manifest). Convert the range to a list.",
+        "nl": "De uitgesloten stop is 100 + len(manifest). Zet de range om in een list."
+      }
+    },
+    {
+      "id": "use-python-list-12-v2-step-8",
+      "task": {
+        "en": "Finish with two slices of the final manifest: `next_two` for the first two items and `earlier` for everything except its last two. Print \"Next two:\" and \"Before final two:\" with those lists.",
+        "nl": "Sluit af met twee slices van de uiteindelijke verzendlijst: `next_two` voor de eerste twee items en `earlier` voor alles behalve de laatste twee. Print \"Next two:\" en \"Before final two:\" met die lists."
+      },
+      "check": "next_two == ['cable','battery'] and earlier == ['cable','battery','lamp','case','lamp'] and ('Next two: ' + str(next_two)) in _stdout.splitlines() and ('Before final two: ' + str(earlier)) in _stdout.splitlines()",
+      "feedback": {
+        "en": "Build the previews from final packing order without removing any more items.",
+        "nl": "Bouw de previews uit de uiteindelijke inpakvolgorde zonder nog items te verwijderen."
+      },
+      "cases": [
+        {
+          "inputs": {
+            "manifest": [
+              "a",
+              "b",
+              "c",
+              "d",
+              "e",
+              "f"
+            ]
+          },
+          "check": "next_two == ['a','battery'] and earlier == ['a','battery','b','c']"
+        }
+      ],
+      "hint": {
+        "en": "Use [:2] and [:-2]. Select from manifest, because the catalog has a different order.",
+        "nl": "Gebruik [:2] en [:-2]. Selecteer uit manifest, want de catalogus heeft een andere volgorde."
       }
     }
   ],
   "solutionNote": {
-    "en": "Combine list operations carefully: removing an element changes later indexes, while a slice makes a new list. Keep intermediate values in named variables so you can inspect each stage.\n\nTrace the solution one line at a time. Try a different input to see which parts change.",
-    "nl": "Combineer list-bewerkingen zorgvuldig: na het verwijderen veranderen latere indexes, terwijl een slice een nieuwe list maakt. Bewaar tussenresultaten in variables om elke stap te kunnen bekijken.\n\nVolg de oplossing regel voor regel. Probeer een andere invoer en bekijk welke onderdelen veranderen."
+    "en": "The program first records received facts, then applies cancellation and urgency, then builds reports from the final manifest. A sorted copy preserves packing order. The ID range depends on the actual final length, and the final slices select positions without mutation.",
+    "nl": "Het programma legt eerst de ontvangen gegevens vast, verwerkt daarna annulering en spoed en maakt vervolgens rapporten uit de definitieve verzendlijst. Een gesorteerde kopie behoudt de inpakvolgorde. De ID-range hangt af van de werkelijke eindlengte en de laatste slices selecteren posities zonder iets te wijzigen."
   },
   "sourcePosition": 12,
   "sourceUrl": "https://www.codecademy.com/courses/learn-python-3/lessons/use-python-list/exercises/review-ii",

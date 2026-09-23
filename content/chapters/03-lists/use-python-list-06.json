@@ -4,38 +4,177 @@
   "group": "use-python-list",
   "title": {
     "en": "Length",
-    "nl": "Lengte bepalen"
+    "nl": "Tel elementen, geen indexnummers"
   },
   "kind": "coding",
   "optional": false,
   "explanation": {
-    "en": "len() counts the top-level elements in a collection. For a nested list, each inner list counts as one element regardless of how many values it contains.",
-    "nl": "len() telt de elementen op het hoogste niveau van een verzameling. Bij een geneste list telt elke binnenste list als één element, ongeacht het aantal waarden erin."
+    "en": "A monitoring report needs counts: how many readings arrived, how many scheduled samples fit, and how many station records exist. len(collection) returns an integer count without changing the collection. A count of five means the valid positive indexes end at four.",
+    "nl": "Een monitorrapport heeft aantallen nodig: hoeveel metingen kwamen binnen, hoeveel geplande meetmomenten passen erin en hoeveel stationsrecords bestaan er? len(collection) geeft een geheel aantal terug zonder de verzameling te wijzigen. Bij vijf elementen eindigen de geldige positieve indexes bij vier."
   },
   "example": "",
+  "sections": [
+    {
+      "heading": {
+        "en": "Count a range without expanding it",
+        "nl": "Tel een range zonder die uit te werken"
+      },
+      "body": {
+        "en": "len works on a range object directly. Larger gaps can produce fewer values over the same interval. Count the actual sequence rather than assuming stop - start is always the answer.",
+        "nl": "len werkt direct op een range-object. Grotere stappen kunnen binnen hetzelfde interval minder waarden opleveren. Tel de werkelijke reeks in plaats van aan te nemen dat stop - start altijd het antwoord is."
+      },
+      "code": "regular = range(1, 18, 3)\nsparse = range(1, 18, 6)\nprint(len(regular), len(sparse))",
+      "output": "6 3"
+    },
+    {
+      "heading": {
+        "en": "Nested lists have several possible counts",
+        "nl": "Geneste lists hebben verschillende aantallen"
+      },
+      "body": {
+        "en": "len(rows) counts the outer records. len(rows[0]) counts fields in the first record. Neither expression automatically totals every nested value. First decide which level your report needs.",
+        "nl": "len(rows) telt de buitenste records. len(rows[0]) telt de velden in het eerste record. Geen van beide telt automatisch alle geneste waarden op. Bepaal eerst welk niveau je rapport nodig heeft."
+      },
+      "code": "rows = [[\"A\", 12, True], [\"B\", 8, False]]\nprint(len(rows))\nprint(len(rows[0]))\nprint(len([]))",
+      "output": "2\n3\n0"
+    }
+  ],
   "files": {
-    "main.py": "grid = [[1, 2, 3], [4, 5, 6]]\n"
+    "main.py": "readings = [18, 19, 18, 21, 20, 19]\ntick_step = 3\nticks = range(2, 32, tick_step)\nstations = [[\"North\", 4, True], [\"South\", 7, False]]\nreading_count = 0\nprint(\"Readings:\", reading_count)\n# Count the schedule, compare a sparser one, then count station records.\n"
   },
   "solution": {
-    "main.py": "grid = [[1, 2, 3], [4, 5, 6]]\nrow_count = len(grid)\ncolumn_count = len(grid[0])\nprint(row_count, column_count)\n"
+    "main.py": "readings = [18, 19, 18, 21, 20, 19]\ntick_step = 3\nticks = range(2, 32, tick_step)\nstations = [[\"North\", 4, True], [\"South\", 7, False]]\nreading_count = len(readings)\nprint(\"Readings:\", reading_count)\ntick_count = len(ticks)\nprint(\"Scheduled:\", tick_count)\nsparse_ticks = range(2, 32, tick_step * 2)\nsparse_count = len(sparse_ticks)\nprint(\"Sparse:\", sparse_count)\nstation_count = len(stations)\nfield_count = len(stations[0])\nprint(\"Stations and fields:\", station_count, field_count)\n"
   },
   "checkpoints": [
     {
-      "id": "use-python-list-06-step-1",
+      "id": "use-python-list-06-v2-step-1",
       "task": {
-        "en": "Store the number of rows in row_count and the length of the first row in column_count.",
-        "nl": "Sla het aantal rijen op in row_count en de lengte van de eerste rij in column_count."
+        "en": "Replace the placeholder `reading_count` with the length of `readings`. Keep the Readings print; duplicates still count as separate elements.",
+        "nl": "Vervang de tijdelijke `reading_count` door de lengte van `readings`. Behoud de Readings-print; dubbele waarden tellen nog steeds als aparte elementen."
       },
-      "check": "row_count == 2 and column_count == 3",
+      "check": "reading_count == 6 and 'Readings: 6' in _stdout.splitlines()",
+      "feedback": {
+        "en": "Count every list element, including repeated measurements.",
+        "nl": "Tel elk list-element mee, inclusief herhaalde metingen."
+      },
+      "cases": [
+        {
+          "inputs": {
+            "readings": []
+          },
+          "check": "reading_count == 0"
+        },
+        {
+          "inputs": {
+            "readings": [
+              5,
+              5,
+              5
+            ]
+          },
+          "check": "reading_count == 3"
+        }
+      ],
       "hint": {
-        "en": "Start with grid = [[1, 2, 3], [4, 5, 6]]. Then compare the values with the task.",
-        "nl": "Begin met grid = [[1, 2, 3], [4, 5, 6]]. Vergelijk de waarden daarna met de opdracht."
+        "en": "Call len(readings), not readings.len().",
+        "nl": "Roep len(readings) aan, niet readings.len()."
+      }
+    },
+    {
+      "id": "use-python-list-06-v2-step-2",
+      "task": {
+        "en": "Store `len(ticks)` in `tick_count` and print it with \"Scheduled:\". You do not need to convert the range into a list.",
+        "nl": "Bewaar `len(ticks)` in `tick_count` en print dit met \"Scheduled:\". Je hoeft de range niet in een list om te zetten."
+      },
+      "check": "tick_count == 10 and 'Scheduled: 10' in _stdout.splitlines()",
+      "feedback": {
+        "en": "Count generated moments, not the numeric distance between the endpoints.",
+        "nl": "Tel de gegenereerde momenten, niet de numerieke afstand tussen de grenzen."
+      },
+      "cases": [
+        {
+          "inputs": {
+            "tick_step": 5
+          },
+          "check": "tick_count == 6"
+        },
+        {
+          "inputs": {
+            "tick_step": 4
+          },
+          "check": "tick_count == 8"
+        }
+      ],
+      "hint": {
+        "en": "ticks already represents the sequence; len can count it directly.",
+        "nl": "ticks stelt de reeks al voor; len kan die rechtstreeks tellen."
+      }
+    },
+    {
+      "id": "use-python-list-06-v2-step-3",
+      "task": {
+        "en": "Create `sparse_ticks` over the same boundaries but double `tick_step`. Store its length in `sparse_count` and print \"Sparse:\" followed by that count.",
+        "nl": "Maak `sparse_ticks` met dezelfde grenzen maar het dubbele van `tick_step`. Bewaar de lengte in `sparse_count` en print \"Sparse:\" gevolgd door dat aantal."
+      },
+      "check": "type(sparse_ticks) is range and sparse_ticks == range(2,32,6) and sparse_count == 5 and 'Sparse: 5' in _stdout.splitlines()",
+      "feedback": {
+        "en": "Keep both schedules; calculate the sparse count from its own doubled-step range.",
+        "nl": "Behoud beide roosters; bereken het kleinere aantal uit de eigen range met dubbele stap."
+      },
+      "cases": [
+        {
+          "inputs": {
+            "tick_step": 4
+          },
+          "check": "sparse_ticks == range(2,32,8) and sparse_count == 4"
+        }
+      ],
+      "hint": {
+        "en": "Use tick_step * 2 as the third range argument, then call len on the new range.",
+        "nl": "Gebruik tick_step * 2 als derde range-argument en roep daarna len aan op de nieuwe range."
+      }
+    },
+    {
+      "id": "use-python-list-06-v2-step-4",
+      "task": {
+        "en": "Create `station_count` for the number of station records and `field_count` for the first record’s fields. Print both with \"Stations and fields:\".",
+        "nl": "Maak `station_count` voor het aantal stationsrecords en `field_count` voor de velden in het eerste record. Print beide met \"Stations and fields:\"."
+      },
+      "check": "station_count == 2 and field_count == 3 and 'Stations and fields: 2 3' in _stdout.splitlines()",
+      "feedback": {
+        "en": "Distinguish rows from fields; the outer list counts each whole record once.",
+        "nl": "Maak onderscheid tussen rijen en velden; de buitenste list telt elk volledig record één keer."
+      },
+      "cases": [
+        {
+          "inputs": {
+            "stations": [
+              [
+                "A",
+                1
+              ],
+              [
+                "B",
+                2
+              ],
+              [
+                "C",
+                3
+              ]
+            ]
+          },
+          "check": "station_count == 3 and field_count == 2"
+        }
+      ],
+      "hint": {
+        "en": "Compare len(stations) with len(stations[0]).",
+        "nl": "Vergelijk len(stations) met len(stations[0])."
       }
     }
   ],
   "solutionNote": {
-    "en": "len() counts the top-level elements in a collection. For a nested list, each inner list counts as one element regardless of how many values it contains.\n\nTrace the solution one line at a time. Try a different input to see which parts change.",
-    "nl": "len() telt de elementen op het hoogste niveau van een verzameling. Bij een geneste list telt elke binnenste list als één element, ongeacht het aantal waarden erin.\n\nVolg de oplossing regel voor regel. Probeer een andere invoer en bekijk welke onderdelen veranderen."
+    "en": "len measures the supplied collection, so it handles duplicate readings and changed range steps correctly. Nested counts name their level explicitly: station records versus fields in one record.",
+    "nl": "len meet de meegegeven verzameling en verwerkt daardoor dubbele metingen en gewijzigde range-stappen correct. Bij geneste aantallen benoemen we het niveau: stationsrecords tegenover velden in één record."
   },
   "sourcePosition": 6,
   "sourceUrl": "https://www.codecademy.com/courses/learn-python-3/lessons/use-python-list/exercises/list-len",

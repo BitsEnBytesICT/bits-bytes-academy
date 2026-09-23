@@ -4,38 +4,138 @@
   "group": "use-python-list",
   "title": {
     "en": "Sorting in place",
-    "nl": "De bestaande list sorteren"
+    "nl": "Sorteer dezelfde list en begrijp None"
   },
   "kind": "coding",
   "optional": false,
   "explanation": {
-    "en": "sort() rearranges the existing list. It returns None because the result is already stored in the list itself. Use reverse=True for descending order.",
-    "nl": "sort() herschikt de bestaande list. De method geeft None terug, omdat het resultaat al in de list staat. Met reverse=True sorteer je aflopend."
+    "en": "The dispatch desk wants numeric priorities and alphabetical labels. list.sort() rearranges the existing list. It returns None, because the result is stored in the list itself. Assigning that return value over the list name would lose your reference to the sorted list.",
+    "nl": "De uitgiftebalie wil numerieke prioriteiten en alfabetische labels. list.sort() herschikt de bestaande list. De method geeft None terug, omdat het resultaat in de list zelf wordt bewaard. Die return value over de naam van de list heen opslaan zou je verwijzing naar de gesorteerde list verliezen."
   },
   "example": "",
+  "sections": [
+    {
+      "heading": {
+        "en": "Observe both the list and the return value",
+        "nl": "Bekijk zowel de list als de return value"
+      },
+      "body": {
+        "en": "The default order is increasing for numbers. reverse=True requests decreasing order; it is not the same as simply reversing whatever order happened to be present. Another name for the same list sees the change too.",
+        "nl": "De standaardvolgorde is oplopend voor getallen. reverse=True vraagt om aflopende volgorde; dat is niet hetzelfde als simpelweg de toevallige bestaande volgorde omdraaien. Een andere naam voor dezelfde list ziet de wijziging ook."
+      },
+      "code": "priority = [4, 9, 2]\nalias = priority\nresult = priority.sort(reverse=True)\nprint(priority)\nprint(alias)\nprint(result)",
+      "output": "[9, 4, 2]\n[9, 4, 2]\nNone"
+    },
+    {
+      "heading": {
+        "en": "Method syntax and comparable values",
+        "nl": "Method-syntaxis en vergelijkbare waarden"
+      },
+      "body": {
+        "en": "sort(values) is not a built-in function; use values.sort(). Lowercase strings can be sorted alphabetically, but general string sorting follows character order, so capitalization matters. Python cannot generally order mixed strings and numbers; keep the values comparable in these tasks.",
+        "nl": "sort(values) is geen ingebouwde functie; gebruik values.sort(). Strings met kleine letters kun je alfabetisch sorteren, maar strings volgen in het algemeen tekenvolgorde, dus hoofdletters tellen mee. Python kan strings en getallen meestal niet door elkaar ordenen; houd de waarden in deze taken vergelijkbaar."
+      },
+      "code": "labels = [\"tripod\", \"cable\", \"lamp\"]\nlabels.sort()\nprint(labels)",
+      "output": "['cable', 'lamp', 'tripod']"
+    }
+  ],
   "files": {
-    "main.py": "priorities = [4, 1, 7, 3]\n"
+    "main.py": "priorities = [4, 1, 7, 3]\npriority_alias = priorities\nlabels = [\"tripod\", \"cable\", \"lamp\"]\n# Sort priorities before this print.\nprint(\"Increasing:\", priorities)\n# Repair and activate this method call.\n# sort(labels)\n# Finally sort priorities in decreasing order and inspect its return value.\n"
   },
   "solution": {
-    "main.py": "priorities = [4, 1, 7, 3]\nresult = priorities.sort(reverse=True)\nprint(priorities)\n"
+    "main.py": "priorities = [4, 1, 7, 3]\npriority_alias = priorities\nlabels = [\"tripod\", \"cable\", \"lamp\"]\npriorities.sort()\nprint(\"Increasing:\", priorities)\nlabels.sort()\nprint(\"Labels:\", labels)\nresult = priorities.sort(reverse=True)\nprint(\"Decreasing:\", priorities)\nprint(\"Return value:\", result)\n"
   },
   "checkpoints": [
     {
-      "id": "use-python-list-10-step-1",
+      "id": "use-python-list-10-v2-step-1",
       "task": {
-        "en": "Sort priorities in descending order in place. Store the return value of sort in result.",
-        "nl": "Sorteer priorities in de bestaande list aflopend. Sla de return value van sort op in result."
+        "en": "Sort `priorities` in place in increasing order before the Increasing print. Keep the existing alias assignment.",
+        "nl": "Sorteer `priorities` direct in oplopende volgorde vóór de Increasing-print. Behoud de bestaande alias-toewijzing."
       },
-      "check": "priorities == [7,4,3,1] and result is None",
+      "check": "any(isinstance(n, _ast.Call) and isinstance(n.func, _ast.Attribute) and n.func.attr == 'sort' for n in _ast.walk(_ast.parse(_source))) and 'Increasing: [1, 3, 4, 7]' in _stdout.splitlines() and priority_alias is priorities",
+      "feedback": {
+        "en": "Change the existing list rather than replacing its name or printing a separate sorted copy.",
+        "nl": "Wijzig de bestaande list in plaats van de naam te vervangen of een aparte gesorteerde kopie te printen."
+      },
+      "cases": [
+        {
+          "inputs": {
+            "priorities": [
+              8,
+              2,
+              8,
+              -1
+            ]
+          },
+          "check": "'Increasing: [-1, 2, 8, 8]' in _stdout.splitlines() and priority_alias is priorities"
+        }
+      ],
       "hint": {
-        "en": "Start with priorities = [4, 1, 7, 3]. Then compare the values with the task.",
-        "nl": "Begin met priorities = [4, 1, 7, 3]. Vergelijk de waarden daarna met de opdracht."
+        "en": "Call priorities.sort() on its own line. Do not assign the result back to priorities.",
+        "nl": "Roep priorities.sort() op een eigen regel aan. Wijs het resultaat niet opnieuw aan priorities toe."
+      }
+    },
+    {
+      "id": "use-python-list-10-v2-step-2",
+      "task": {
+        "en": "Activate and repair the commented `sort(labels)` call. Use the list method, then print \"Labels:\" followed by the alphabetical labels.",
+        "nl": "Activeer en herstel de uitgecommentarieerde aanroep `sort(labels)`. Gebruik de list-method en print daarna \"Labels:\" gevolgd door de alfabetisch gesorteerde labels."
+      },
+      "check": "labels == ['cable','lamp','tripod'] and ('Labels: ' + str(labels)) in _stdout.splitlines()",
+      "feedback": {
+        "en": "Call sort on labels; a standalone sort name would cause NameError.",
+        "nl": "Roep sort aan op labels; een losse naam sort zou NameError geven."
+      },
+      "cases": [
+        {
+          "inputs": {
+            "labels": [
+              "z",
+              "a",
+              "m"
+            ]
+          },
+          "check": "labels == ['a','m','z']"
+        }
+      ],
+      "hint": {
+        "en": "Move labels before the dot: labels.sort(). Remove any indentation left by uncommenting.",
+        "nl": "Zet labels vóór de punt: labels.sort(). Verwijder eventuele inspringing die na het weghalen van commentaar overblijft."
+      }
+    },
+    {
+      "id": "use-python-list-10-v2-step-3",
+      "task": {
+        "en": "After the Increasing print, sort the same priorities list with `reverse=True`. Save the return value in `result`. Print \"Decreasing:\" with the list and \"Return value:\" with result.",
+        "nl": "Sorteer na de Increasing-print dezelfde priorities-list met `reverse=True`. Bewaar de return value in `result`. Print \"Decreasing:\" met de list en \"Return value:\" met result."
+      },
+      "check": "priorities == [7,4,3,1] and priority_alias is priorities and result is None and 'Decreasing: [7, 4, 3, 1]' in _stdout.splitlines() and 'Return value: None' in _stdout.splitlines()",
+      "feedback": {
+        "en": "Keep the list and its alias intact; the method changes them and returns None separately.",
+        "nl": "Behoud de list en de alias; de method wijzigt de list en geeft afzonderlijk None terug."
+      },
+      "cases": [
+        {
+          "inputs": {
+            "priorities": [
+              8,
+              2,
+              8,
+              -1
+            ]
+          },
+          "check": "priorities == [8,8,2,-1] and priority_alias is priorities and result is None"
+        }
+      ],
+      "hint": {
+        "en": "Assign to result, not priorities: result = priorities.sort(reverse=True).",
+        "nl": "Wijs toe aan result, niet aan priorities: result = priorities.sort(reverse=True)."
       }
     }
   ],
   "solutionNote": {
-    "en": "sort() rearranges the existing list. It returns None because the result is already stored in the list itself. Use reverse=True for descending order.\n\nTrace the solution one line at a time. Try a different input to see which parts change.",
-    "nl": "sort() herschikt de bestaande list. De method geeft None terug, omdat het resultaat al in de list staat. Met reverse=True sorteer je aflopend.\n\nVolg de oplossing regel voor regel. Probeer een andere invoer en bekijk welke onderdelen veranderen."
+    "en": "The printed Increasing snapshot remains valid after the later decreasing sort. Both names still refer to the same list. result contains None, making the distinction between mutation and return value explicit.",
+    "nl": "De geprinte oplopende momentopname blijft geldig na de latere aflopende sortering. Beide namen verwijzen nog steeds naar dezelfde list. result bevat None, waardoor het verschil tussen wijzigen en teruggeven zichtbaar wordt."
   },
   "sourcePosition": 10,
   "sourceUrl": "https://www.codecademy.com/courses/learn-python-3/lessons/use-python-list/exercises/sort",

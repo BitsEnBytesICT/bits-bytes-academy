@@ -190,6 +190,24 @@ The final production restart was checked by comparing every backup field except 
   workspaces, 11 progress rows, two settings and 21 attempts byte-for-byte unchanged.
   Served content matches the generated course. No database migration.
 
+## List-operations revision (23 September 2026)
+
+- Build/type checks and the full suite pass: 227 reference programs, 206 negative
+  cases, 64 quiz predictions, five executable code-blank answers, console coverage
+  and 19 TypeScript tests. Revised content now has 85 runnable worked examples.
+- New tests verify 32 staged/alternative attempts, 16 plausible mistakes and an
+  actual empty-pop IndexError. They include non-divisible range lengths, short/empty
+  lists, duplicate records, alias identity and preserving original sort order.
+- Isolated browser QA verifies an eight-step shipment program at 4/8 then 8/8,
+  accepted variable-based insertion, saved code/completion after reload, Dutch
+  instruction/feedback and desktop rendering. Both new quiz code tasks grade and
+  retain feedback after reload. A wrong range choice receives its specific reason.
+- IDs/kinds/order and legacy quiz definitions are preserved. Existing sizing and
+  database schema are unchanged. Browser error log is empty.
+- Production was restarted with the generated course verified against the API.
+  Exact fingerprints of 10 workspaces, 11 progress rows, two settings and 21 attempts
+  are unchanged across the restart.
+
 ## Reproduce
 
 ```sh

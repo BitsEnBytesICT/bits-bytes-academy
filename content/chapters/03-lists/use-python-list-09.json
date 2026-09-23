@@ -4,38 +4,179 @@
   "group": "use-python-list",
   "title": {
     "en": "Counting values",
-    "nl": "Waarden tellen"
+    "nl": "Tel resultaten en vergelijk vóór en na"
   },
   "kind": "coding",
   "optional": false,
   "explanation": {
-    "en": "count(value) returns how many elements are equal to value. It leaves the list unchanged and returns zero if the value does not occur.",
-    "nl": "count(value) geeft het aantal elementen terug dat gelijk is aan value. De list blijft ongewijzigd. Als de waarde ontbreekt, is het resultaat nul."
+    "en": "A scanner records one status per package. len(statuses) tells you how many packages were scanned, while statuses.count(\"ok\") tells you how many entries equal \"ok\". count returns an integer and leaves the list unchanged.",
+    "nl": "Een scanner registreert één status per pakket. len(statuses) vertelt hoeveel pakketten zijn gescand; statuses.count(\"ok\") vertelt hoeveel waarden gelijk zijn aan \"ok\". count geeft een geheel getal terug en laat de list ongewijzigd."
   },
   "example": "",
+  "sections": [
+    {
+      "heading": {
+        "en": "A saved count is a snapshot",
+        "nl": "Een bewaard aantal is een momentopname"
+      },
+      "body": {
+        "en": "If you append a new value later, an earlier integer count does not update itself. Call count again when you need a new total. An absent value has count zero; that is an ordinary result, not an error.",
+        "nl": "Als je later een nieuwe waarde toevoegt, werkt een eerder geheel aantal zichzelf niet bij. Roep count opnieuw aan wanneer je een nieuw totaal nodig hebt. Een ontbrekende waarde heeft aantal nul; dat is een gewoon resultaat, geen fout."
+      },
+      "code": "statuses = [\"ok\", \"wait\", \"ok\"]\nbefore = statuses.count(\"ok\")\nstatuses.append(\"ok\")\nafter = statuses.count(\"ok\")\nprint(before, after)\nprint(statuses.count(\"error\"))",
+      "output": "2 3\n0"
+    },
+    {
+      "heading": {
+        "en": "Count whole nested records",
+        "nl": "Tel volledige geneste records"
+      },
+      "body": {
+        "en": "A list can contain other lists. count compares each outer element with the entire value you provide. It does not search every field recursively. A matching row must have the same values in the same order.",
+        "nl": "Een list kan andere lists bevatten. count vergelijkt elk buitenste element met de volledige meegegeven waarde. Het doorzoekt niet automatisch elk veld. Een overeenkomende rij moet dezelfde waarden in dezelfde volgorde bevatten."
+      },
+      "code": "batches = [[\"ok\", 2], [\"wait\", 1], [\"ok\", 2]]\nprint(batches.count([\"ok\", 2]))\nprint(batches.count(\"ok\"))",
+      "output": "2\n0"
+    }
+  ],
   "files": {
-    "main.py": "statuses = [\"ok\", \"wait\", \"ok\", \"ok\"]\n"
+    "main.py": "statuses = [\"ok\", \"wait\", \"ok\", \"error\", \"ok\"]\nbatches = [[\"ok\", 2], [\"wait\", 1], [\"ok\", 2], [\"ok\", 3]]\nprint(\"Statuses:\", statuses)\n# Count current successes before appending the next successful scan.\n"
   },
   "solution": {
-    "main.py": "statuses = [\"ok\", \"wait\", \"ok\", \"ok\"]\nok_count = statuses.count(\"ok\")\nprint(ok_count)\n"
+    "main.py": "statuses = [\"ok\", \"wait\", \"ok\", \"error\", \"ok\"]\nbatches = [[\"ok\", 2], [\"wait\", 1], [\"ok\", 2], [\"ok\", 3]]\nprint(\"Statuses:\", statuses)\nbefore = statuses.count(\"ok\")\nstatuses.append(\"ok\")\nafter = statuses.count(\"ok\")\nprint(\"Successes:\", before, after)\nmissing = statuses.count(\"offline\")\nprint(\"Offline:\", missing)\npair_count = batches.count([\"ok\", 2])\nprint(\"Matching batches:\", pair_count)\n"
   },
   "checkpoints": [
     {
-      "id": "use-python-list-09-step-1",
+      "id": "use-python-list-09-v2-step-1",
       "task": {
-        "en": "Count occurrences of ok in statuses and save the number in ok_count.",
-        "nl": "Tel hoe vaak ok voorkomt in statuses en sla het aantal op in ok_count."
+        "en": "Use `count()` to save the current number of \"ok\" statuses in `before`. Keep this assignment before adding another scan.",
+        "nl": "Gebruik `count()` om het huidige aantal \"ok\"-statussen in `before` te bewaren. Laat deze toewijzing vóór het toevoegen van een nieuwe scan staan."
       },
-      "check": "ok_count == 3",
+      "check": "before == 3 and any(isinstance(n, _ast.Call) and isinstance(n.func, _ast.Attribute) and n.func.attr == 'count' for n in _ast.walk(_ast.parse(_source)))",
+      "feedback": {
+        "en": "Count matching statuses rather than the total number of entries.",
+        "nl": "Tel de overeenkomende statussen in plaats van het totale aantal elementen."
+      },
+      "cases": [
+        {
+          "inputs": {
+            "statuses": [
+              "wait",
+              "ok"
+            ]
+          },
+          "check": "before == 1"
+        },
+        {
+          "inputs": {
+            "statuses": []
+          },
+          "check": "before == 0"
+        }
+      ],
       "hint": {
-        "en": "Start with statuses = [\"ok\", \"wait\", \"ok\", \"ok\"]. Then compare the values with the task.",
-        "nl": "Begin met statuses = [\"ok\", \"wait\", \"ok\", \"ok\"]. Vergelijk de waarden daarna met de opdracht."
+        "en": "Count the exact string \"ok\", including its lowercase spelling.",
+        "nl": "Tel de exacte string \"ok\", inclusief de kleine letters."
+      }
+    },
+    {
+      "id": "use-python-list-09-v2-step-2",
+      "task": {
+        "en": "Append one \"ok\" status. Count again into `after`, then print both snapshots with \"Successes:\". The earlier count should remain 3.",
+        "nl": "Voeg één \"ok\"-status toe met append. Tel opnieuw naar `after` en print beide momentopnamen met \"Successes:\". Het eerdere aantal hoort 3 te blijven."
+      },
+      "check": "after == 4 and before == 3 and statuses == ['ok','wait','ok','error','ok','ok'] and 'Successes: 3 4' in _stdout.splitlines()",
+      "feedback": {
+        "en": "Keep the earlier count and calculate a fresh count from the extended list.",
+        "nl": "Behoud het eerdere aantal en bereken een nieuw aantal uit de aangevulde list."
+      },
+      "cases": [
+        {
+          "inputs": {
+            "statuses": [
+              "wait",
+              "ok"
+            ]
+          },
+          "check": "before == 1 and after == 2 and statuses == ['wait','ok','ok']"
+        }
+      ],
+      "hint": {
+        "en": "Store a new count after append; do not overwrite before.",
+        "nl": "Bewaar een nieuw aantal na append; overschrijf before niet."
+      }
+    },
+    {
+      "id": "use-python-list-09-v2-step-3",
+      "task": {
+        "en": "Count \"offline\" into `missing` and print \"Offline:\" followed by that value. This status is absent from the supplied data.",
+        "nl": "Tel \"offline\" naar `missing` en print \"Offline:\" gevolgd door die waarde. Deze status ontbreekt in de meegeleverde gegevens."
+      },
+      "check": "missing == 0 and 'Offline: 0' in _stdout.splitlines()",
+      "feedback": {
+        "en": "Calculate the absence as a count instead of treating it as a missing-index error.",
+        "nl": "Bereken de afwezigheid als een aantal in plaats van als een fout door een ontbrekende index."
+      },
+      "cases": [
+        {
+          "inputs": {
+            "statuses": [
+              "offline",
+              "ok",
+              "offline"
+            ]
+          },
+          "check": "missing == 2"
+        }
+      ],
+      "hint": {
+        "en": "Call count even when you expect zero; the data may change.",
+        "nl": "Roep count ook aan als je nul verwacht; de gegevens kunnen veranderen."
+      }
+    },
+    {
+      "id": "use-python-list-09-v2-step-4",
+      "task": {
+        "en": "Count the complete row [\"ok\", 2] in `batches`, save it as `pair_count`, and print it with \"Matching batches:\".",
+        "nl": "Tel de volledige rij [\"ok\", 2] in `batches`, bewaar dit als `pair_count` en print het met \"Matching batches:\"."
+      },
+      "check": "pair_count == 2 and 'Matching batches: 2' in _stdout.splitlines()",
+      "feedback": {
+        "en": "Count equal whole rows; [\"ok\", 3] is a different row and should not count.",
+        "nl": "Tel gelijke volledige rijen; [\"ok\", 3] is een andere rij en hoort niet mee te tellen."
+      },
+      "cases": [
+        {
+          "inputs": {
+            "batches": [
+              [
+                "ok",
+                2
+              ],
+              [
+                "ok",
+                3
+              ]
+            ]
+          },
+          "check": "pair_count == 1"
+        },
+        {
+          "inputs": {
+            "batches": []
+          },
+          "check": "pair_count == 0"
+        }
+      ],
+      "hint": {
+        "en": "Pass the inner list as the argument to batches.count(...).",
+        "nl": "Geef de binnenste list als argument mee aan batches.count(...)."
       }
     }
   ],
   "solutionNote": {
-    "en": "count(value) returns how many elements are equal to value. It leaves the list unchanged and returns zero if the value does not occur.\n\nTrace the solution one line at a time. Try a different input to see which parts change.",
-    "nl": "count(value) geeft het aantal elementen terug dat gelijk is aan value. De list blijft ongewijzigd. Als de waarde ontbreekt, is het resultaat nul.\n\nVolg de oplossing regel voor regel. Probeer een andere invoer en bekijk welke onderdelen veranderen."
+    "en": "Counts are values calculated at a particular moment. The second count sees the appended status; the first remains a useful snapshot. Counting an inner list compares the whole record rather than individual fields.",
+    "nl": "Aantallen zijn waarden die op een bepaald moment worden berekend. De tweede telling ziet de toegevoegde status; de eerste blijft een bruikbare momentopname. Een binnenste list tellen vergelijkt het hele record, niet losse velden."
   },
   "sourcePosition": 9,
   "sourceUrl": "https://www.codecademy.com/courses/learn-python-3/lessons/use-python-list/exercises/count",

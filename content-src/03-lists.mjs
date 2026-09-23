@@ -1,152 +1,11 @@
 import "./list-foundations.mjs";
+import "./list-operations.mjs";
 import { enhanceListQuiz } from "./list-quiz.mjs";
+import { enhanceOperationsQuiz } from "./list-operations-quiz.mjs";
 import { activities } from "./helpers.mjs";
-import {
-  lesson as L,
-  reading as R,
-  quiz as Q,
-  predict as P,
-} from "./helpers.mjs";
+import { quiz as Q, predict as P } from "./helpers.mjs";
 const g = "create-python-list";
 const w = "use-python-list";
-R(
-  w,
-  1,
-  "Choose a list operation according to your goal: insert by position, remove by value or position, take a slice, count occurrences, or sort. The distinction between mutation and a new return value is central.",
-  "Kies een list-bewerking op basis van je doel: invoegen op positie, verwijderen op waarde of positie, een slice nemen, tellen of sorteren. Het verschil tussen wijzigen en een nieuwe return value is essentieel.",
-  'values = [7, 2, 5]\nprint("Original:", values)\nprint("Sorted copy:", sorted(values))\nprint("Still original:", values)\n',
-  { titleNl: "List-bewerkingen kiezen" },
-);
-L(
-  w,
-  2,
-  "insert(index, value) places an element before the selected position. Later elements move to the right. It changes the list in place.",
-  "insert(index, value) plaatst een element vóór de gekozen positie. Latere elementen schuiven naar rechts. De oorspronkelijke list wordt aangepast.",
-  "Insert Bridge between Oak and Lake in stops.",
-  "Voeg Bridge in tussen Oak en Lake in stops.",
-  'stops = ["Oak", "Lake"]\nstops.insert(1, "Bridge")\nprint(stops)\n',
-  "stops == ['Oak','Bridge','Lake']",
-  { starter: 'stops = ["Oak", "Lake"]\n', titleNl: "Invoegen op index" },
-);
-L(
-  w,
-  3,
-  "pop(index) removes and returns an element. With no argument, it removes the last one. Save the return value when you need the removed item later.",
-  "pop(index) verwijdert een element en geeft het terug. Zonder argument wordt het laatste element verwijderd. Bewaar de return value als je het verwijderde item later nodig hebt.",
-  "Remove the last entry from queue with pop and store it in removed.",
-  "Verwijder met pop het laatste item uit queue en sla het op in removed.",
-  'queue = ["A", "B", "C"]\nremoved = queue.pop()\nprint(removed, queue)\n',
-  "removed == 'C' and queue == ['A','B']",
-  { starter: 'queue = ["A", "B", "C"]\n', titleNl: "Verwijderen met pop" },
-);
-L(
-  w,
-  4,
-  "range(stop) describes integers from zero up to, but not including, stop. Convert it with list() when you need to see or store every element as a list.",
-  "range(stop) beschrijft integers vanaf nul tot stop, waarbij stop zelf niet meetelt. Gebruik list() als je alle elementen als list wilt zien of bewaren.",
-  "Create stations as list(range(6)).",
-  "Maak stations met list(range(6)).",
-  "stations = list(range(6))\nprint(stations)\n",
-  "stations == [0,1,2,3,4,5]",
-  { titleNl: "Een range gebruiken" },
-);
-L(
-  w,
-  5,
-  "range(start, stop, step) begins at start and advances by step while staying before the stop boundary. A negative step moves downward. A step of zero is invalid.",
-  "range(start, stop, step) begint bij start en gaat met step vooruit tot de stopgrens. Een negatieve step telt terug. Een step van nul is ongeldig.",
-  "Create departures containing 8, 10, 12, 14, and 16 using range.",
-  "Maak departures met 8, 10, 12, 14 en 16 via range.",
-  "departures = list(range(8, 18, 2))\nprint(departures)\n",
-  "departures == [8,10,12,14,16] and 'range' in _source",
-  { titleNl: "Start, stop en step" },
-);
-L(
-  w,
-  6,
-  "len() counts the top-level elements in a collection. For a nested list, each inner list counts as one element regardless of how many values it contains.",
-  "len() telt de elementen op het hoogste niveau van een verzameling. Bij een geneste list telt elke binnenste list als één element, ongeacht het aantal waarden erin.",
-  "Store the number of rows in row_count and the length of the first row in column_count.",
-  "Sla het aantal rijen op in row_count en de lengte van de eerste rij in column_count.",
-  "grid = [[1, 2, 3], [4, 5, 6]]\nrow_count = len(grid)\ncolumn_count = len(grid[0])\nprint(row_count, column_count)\n",
-  "row_count == 2 and column_count == 3",
-  { starter: "grid = [[1, 2, 3], [4, 5, 6]]\n", titleNl: "Lengte bepalen" },
-);
-L(
-  w,
-  7,
-  "A slice items[start:stop] returns a new list. It includes start and excludes stop. Slicing does not remove values from the original list.",
-  "Een slice items[start:stop] geeft een nieuwe list terug. start telt mee, stop niet. Een slice verwijdert geen waarden uit de oorspronkelijke list.",
-  "Save the values 20, 30, and 40 from route into middle using a slice.",
-  "Sla 20, 30 en 40 uit route via een slice op in middle.",
-  "route = [10, 20, 30, 40, 50]\nmiddle = route[1:4]\nprint(middle)\n",
-  "middle == [20,30,40] and route == [10,20,30,40,50]",
-  { starter: "route = [10, 20, 30, 40, 50]\n", titleNl: "Slice-grenzen" },
-);
-L(
-  w,
-  8,
-  "Omit a slice boundary to use the beginning or end. Negative boundaries count from the end. items[-2:] gives the final two elements.",
-  "Laat een slice-grens weg om het begin of einde te gebruiken. Negatieve grenzen tellen vanaf het einde. items[-2:] geeft de laatste twee elementen.",
-  "Create prefix with the first two values and suffix with the last two values.",
-  "Maak prefix met de eerste twee waarden en suffix met de laatste twee waarden.",
-  "values = [2, 4, 6, 8, 10]\nprefix = values[:2]\nsuffix = values[-2:]\nprint(prefix, suffix)\n",
-  "prefix == [2,4] and suffix == [8,10]",
-  {
-    starter: "values = [2, 4, 6, 8, 10]\n",
-    titleNl: "Open en negatieve slice-grenzen",
-  },
-);
-L(
-  w,
-  9,
-  "count(value) returns how many elements are equal to value. It leaves the list unchanged and returns zero if the value does not occur.",
-  "count(value) geeft het aantal elementen terug dat gelijk is aan value. De list blijft ongewijzigd. Als de waarde ontbreekt, is het resultaat nul.",
-  "Count occurrences of ok in statuses and save the number in ok_count.",
-  "Tel hoe vaak ok voorkomt in statuses en sla het aantal op in ok_count.",
-  'statuses = ["ok", "wait", "ok", "ok"]\nok_count = statuses.count("ok")\nprint(ok_count)\n',
-  "ok_count == 3",
-  {
-    starter: 'statuses = ["ok", "wait", "ok", "ok"]\n',
-    titleNl: "Waarden tellen",
-  },
-);
-L(
-  w,
-  10,
-  "sort() rearranges the existing list. It returns None because the result is already stored in the list itself. Use reverse=True for descending order.",
-  "sort() herschikt de bestaande list. De method geeft None terug, omdat het resultaat al in de list staat. Met reverse=True sorteer je aflopend.",
-  "Sort priorities in descending order in place. Store the return value of sort in result.",
-  "Sorteer priorities in de bestaande list aflopend. Sla de return value van sort op in result.",
-  "priorities = [4, 1, 7, 3]\nresult = priorities.sort(reverse=True)\nprint(priorities)\n",
-  "priorities == [7,4,3,1] and result is None",
-  {
-    starter: "priorities = [4, 1, 7, 3]\n",
-    titleNl: "De bestaande list sorteren",
-  },
-);
-L(
-  w,
-  11,
-  "sorted() returns a new sorted list and leaves the original collection unchanged. This is useful when the original order has meaning you want to preserve.",
-  "sorted() geeft een nieuwe gesorteerde list terug en laat de oorspronkelijke verzameling ongewijzigd. Dat is handig als de oorspronkelijke volgorde betekenis heeft.",
-  "Create ranked as a sorted copy of arrival. Keep arrival unchanged.",
-  "Maak ranked als gesorteerde kopie van arrival. Laat arrival ongewijzigd.",
-  "arrival = [8, 2, 5]\nranked = sorted(arrival)\nprint(ranked)\n",
-  "ranked == [2,5,8] and arrival == [8,2,5]",
-  { starter: "arrival = [8, 2, 5]\n", titleNl: "Een gesorteerde kopie" },
-);
-L(
-  w,
-  12,
-  "Combine list operations carefully: removing an element changes later indexes, while a slice makes a new list. Keep intermediate values in named variables so you can inspect each stage.",
-  "Combineer list-bewerkingen zorgvuldig: na het verwijderen veranderen latere indexes, terwijl een slice een nieuwe list maakt. Bewaar tussenresultaten in variables om elke stap te kunnen bekijken.",
-  "Start queue at [7, 3, 5]. Insert 9 at index 1, pop the last value into removed, sort queue, and save its first two entries as first_two.",
-  "Begin met queue = [7, 3, 5]. Voeg 9 in op index 1, pop de laatste waarde naar removed, sorteer queue en sla de eerste twee items op in first_two.",
-  "queue = [7, 3, 5]\nqueue.insert(1, 9)\nremoved = queue.pop()\nqueue.sort()\nfirst_two = queue[:2]\nprint(queue, removed, first_two)\n",
-  "queue == [3,7,9] and removed == 5 and first_two == [3,7]",
-  { titleNl: "Terugblik: list-bewerkingen" },
-);
 Q(g, [
   P(
     "print([4, 7, 9][0])",
@@ -299,3 +158,4 @@ Q(w, [
     "De uitgesloten stopgrens is nul; er wordt geen element gekozen.",
   ),
 ]);
+enhanceOperationsQuiz(activities.find((a) => a.id === `${w}-quiz`));

@@ -4,38 +4,122 @@
   "group": "use-python-list",
   "title": {
     "en": "Inserting by index",
-    "nl": "Invoegen op index"
+    "nl": "Voeg een stop in zonder andere stops te verliezen"
   },
   "kind": "coding",
   "optional": false,
   "explanation": {
-    "en": "insert(index, value) places an element before the selected position. Later elements move to the right. It changes the list in place.",
-    "nl": "insert(index, value) plaatst een element vóór de gekozen positie. Latere elementen schuiven naar rechts. De oorspronkelijke list wordt aangepast."
+    "en": "A route already has three stops, but two new collections must fit into it. Replacing an item would lose a stop; appending would put it at the end. insert(index, value) opens a position before the existing element and shifts the later elements one place to the right.",
+    "nl": "Een route heeft al drie stops, maar er moeten twee ophaaladressen tussen. Vervangen zou een stop laten verdwijnen; append zou deze achteraan zetten. insert(index, value) maakt ruimte vóór het bestaande element en schuift de latere elementen één plaats naar rechts."
   },
   "example": "",
+  "sections": [
+    {
+      "heading": {
+        "en": "Position first, value second",
+        "nl": "Eerst de positie, dan de waarde"
+      },
+      "body": {
+        "en": "Inserting at index 1 means before the current second element. The index is not the value being inserted. Negative indexes count from the end before the insertion; inserting at -1 places an item before the current last item.",
+        "nl": "Invoegen op index 1 betekent vóór het huidige tweede element. De index is niet de waarde die je invoegt. Negatieve indexes tellen vóór het invoegen vanaf het einde; invoegen op -1 zet een item vóór het huidige laatste item."
+      },
+      "code": "route = [\"Depot\", \"Museum\", \"Harbor\"]\nroute.insert(1, \"Park\")\nroute.insert(-1, \"School\")\nprint(route)",
+      "output": "['Depot', 'Park', 'Museum', 'School', 'Harbor']"
+    },
+    {
+      "heading": {
+        "en": "Read indexes again after an edit",
+        "nl": "Lees indexes opnieuw na een wijziging"
+      },
+      "body": {
+        "en": "The starter prints the original route. Add the priority stop first, then inspect the new positions before inserting the clinic. Keep the Priority print before the second insertion: it records an earlier state even though the list changes again.",
+        "nl": "De starter print de oorspronkelijke route. Voeg eerst de spoedstop toe en bekijk daarna de nieuwe posities voordat je de kliniek invoegt. Laat de Priority-print vóór de tweede invoeging staan: die legt een eerdere toestand vast, ook als de list daarna opnieuw verandert."
+      }
+    }
+  ],
   "files": {
-    "main.py": "stops = [\"Oak\", \"Lake\"]\n"
+    "main.py": "route = [\"Depot\", \"Bridge\", \"Museum\"]\nprint(\"Original:\", route)\n# Add Hub before the current first stop.\nprint(\"Priority:\", route)\n# Add Clinic between Depot and Bridge.\nprint(\"Ready:\", route)\n"
   },
   "solution": {
-    "main.py": "stops = [\"Oak\", \"Lake\"]\nstops.insert(1, \"Bridge\")\nprint(stops)\n"
+    "main.py": "route = [\"Depot\", \"Bridge\", \"Museum\"]\nprint(\"Original:\", route)\nroute.insert(0, \"Hub\")\nprint(\"Priority:\", route)\nroute.insert(2, \"Clinic\")\nprint(\"Ready:\", route)\nshifted = route[3]\nprint(\"Shifted stop:\", shifted)\n"
   },
   "checkpoints": [
     {
-      "id": "use-python-list-02-step-1",
+      "id": "use-python-list-02-v2-step-1",
       "task": {
-        "en": "Insert Bridge between Oak and Lake in stops.",
-        "nl": "Voeg Bridge in tussen Oak en Lake in stops."
+        "en": "Use `insert()` to put \"Hub\" first. Keep the supplied Priority print immediately after this change and run the program.",
+        "nl": "Gebruik `insert()` om \"Hub\" vooraan te zetten. Laat de meegeleverde Priority-print direct na deze wijziging staan en voer het programma uit."
       },
-      "check": "stops == ['Oak','Bridge','Lake']",
+      "check": "any(isinstance(n, _ast.Call) and isinstance(n.func, _ast.Attribute) and n.func.attr == 'insert' for n in _ast.walk(_ast.parse(_source))) and \"Priority: ['Hub', 'Depot', 'Bridge', 'Museum']\" in _stdout.splitlines()",
+      "feedback": {
+        "en": "Insert one Hub before Depot and print that intermediate route before making another change.",
+        "nl": "Voeg één Hub vóór Depot in en print die tussenstand voordat je iets anders verandert."
+      },
+      "cases": [
+        {
+          "inputs": {
+            "route": [
+              "A",
+              "B"
+            ]
+          },
+          "check": "\"Priority: ['Hub', 'A', 'B']\" in _stdout.splitlines()"
+        }
+      ],
       "hint": {
-        "en": "Start with stops = [\"Oak\", \"Lake\"]. Then compare the values with the task.",
-        "nl": "Begin met stops = [\"Oak\", \"Lake\"]. Vergelijk de waarden daarna met de opdracht."
+        "en": "The first position has index 0. Supply the position before the new string.",
+        "nl": "De eerste positie heeft index 0. Geef de positie vóór de nieuwe string mee."
+      }
+    },
+    {
+      "id": "use-python-list-02-v2-step-2",
+      "task": {
+        "en": "Now insert \"Clinic\" between Depot and Bridge. Keep every previous stop. Run and inspect the Ready line.",
+        "nl": "Voeg nu \"Clinic\" tussen Depot en Bridge in. Behoud elke bestaande stop. Voer uit en bekijk de Ready-regel."
+      },
+      "check": "route == ['Hub','Depot','Clinic','Bridge','Museum'] and any(isinstance(n, _ast.Call) and isinstance(n.func, _ast.Attribute) and n.func.attr == 'insert' for n in _ast.walk(_ast.parse(_source)))",
+      "feedback": {
+        "en": "Recalculate positions after the first insertion; do not replace or remove a stop.",
+        "nl": "Bereken de posities opnieuw na de eerste invoeging; vervang of verwijder geen stop."
+      },
+      "cases": [
+        {
+          "inputs": {
+            "route": [
+              "A",
+              "B",
+              "C",
+              "D"
+            ]
+          },
+          "check": "route == ['Hub','A','Clinic','B','C','D']"
+        }
+      ],
+      "hint": {
+        "en": "After Hub is inserted, Depot is at 1 and Bridge is at 2. Insert before Bridge.",
+        "nl": "Na het invoegen van Hub staat Depot op 1 en Bridge op 2. Voeg vóór Bridge in."
+      }
+    },
+    {
+      "id": "use-python-list-02-v2-step-3",
+      "task": {
+        "en": "Store the item now at index 3 in `shifted`, then print it with the label \"Shifted stop:\". It should be Bridge.",
+        "nl": "Bewaar het item dat nu op index 3 staat in `shifted` en print het met het label \"Shifted stop:\". Dit hoort Bridge te zijn."
+      },
+      "check": "shifted == route[3] == 'Bridge' and 'Shifted stop: Bridge' in _stdout.splitlines()",
+      "feedback": {
+        "en": "Read the final route at index 3 and include the selected item in your report.",
+        "nl": "Lees index 3 uit de uiteindelijke route en neem het gekozen item op in je rapport."
+      },
+      "hint": {
+        "en": "Use a lookup after both insertions: route[3].",
+        "nl": "Vraag de waarde na beide invoegingen op met route[3]."
       }
     }
   ],
   "solutionNote": {
-    "en": "insert(index, value) places an element before the selected position. Later elements move to the right. It changes the list in place.\n\nTrace the solution one line at a time. Try a different input to see which parts change.",
-    "nl": "insert(index, value) plaatst een element vóór de gekozen positie. Latere elementen schuiven naar rechts. De oorspronkelijke list wordt aangepast.\n\nVolg de oplossing regel voor regel. Probeer een andere invoer en bekijk welke onderdelen veranderen."
+    "en": "Hub shifts every original stop right. Clinic shifts Bridge and Museum again. The intermediate output and final lookup make those moves visible rather than relying on a guessed final literal.",
+    "nl": "Hub schuift elke oorspronkelijke stop naar rechts. Clinic schuift Bridge en Museum opnieuw op. De tussenliggende output en de laatste opvraag maken die verschuivingen zichtbaar."
   },
   "sourcePosition": 2,
   "sourceUrl": "https://www.codecademy.com/courses/learn-python-3/lessons/use-python-list/exercises/adding-by-index-insert",

@@ -4,25 +4,51 @@
   "group": "use-python-list",
   "title": {
     "en": "Choosing list operations",
-    "nl": "List-bewerkingen kiezen"
+    "nl": "Kies de bewerking die bij je doel past"
   },
   "kind": "reading",
   "optional": false,
   "explanation": {
-    "en": "Choose a list operation according to your goal: insert by position, remove by value or position, take a slice, count occurrences, or sort. The distinction between mutation and a new return value is central.",
-    "nl": "Kies een list-bewerking op basis van je doel: invoegen op positie, verwijderen op waarde of positie, een slice nemen, tellen of sorteren. Het verschil tussen wijzigen en een nieuwe return value is essentieel."
+    "en": "A delivery desk needs more than a place to store items. It must insert urgent jobs, remove completed ones, count the remaining work and prepare a report. Each operation answers a different question. Before choosing one, decide whether you want to change the collection or calculate something from it.",
+    "nl": "Een uitgiftebalie heeft meer nodig dan een plek om items te bewaren. Spoedklussen moeten ertussen, afgeronde klussen eruit, en de resterende taken moeten worden geteld en gerapporteerd. Elke bewerking beantwoordt een andere vraag. Bepaal eerst of je de verzameling wilt wijzigen of er iets uit wilt berekenen."
   },
   "example": "",
+  "sections": [
+    {
+      "heading": {
+        "en": "Methods belong to an object",
+        "nl": "Methods horen bij een object"
+      },
+      "body": {
+        "en": "A method starts with the list name and a dot: jobs.insert(...). A built-in function receives the list inside parentheses: len(jobs). Parentheses perform the call in both forms. We will use these tools before studying how to write our own functions.",
+        "nl": "Een method begint met de naam van de list en een punt: jobs.insert(...). Een ingebouwde functie krijgt de list tussen haakjes: len(jobs). In beide vormen voeren de haakjes de aanroep uit. We gebruiken deze hulpmiddelen voordat we eigen functies leren schrijven."
+      },
+      "code": "jobs = [\"scan\", \"pack\"]\njobs.insert(1, \"check\")\nprint(jobs)\nprint(len(jobs))",
+      "output": "['scan', 'check', 'pack']\n3"
+    },
+    {
+      "heading": {
+        "en": "Change, calculate, or copy?",
+        "nl": "Wijzigen, berekenen of kopiëren?"
+      },
+      "body": {
+        "en": "insert changes the list; len calculates its size without changing it. sorted produces a new ordered list. Run the supplied preview and compare the original queue with the report. Try a different urgent job or insertion position. The next pages unpack each operation, including its return value.",
+        "nl": "insert wijzigt de list; len berekent de grootte zonder de list te veranderen. sorted maakt een nieuwe gesorteerde list. Voer de meegeleverde demonstratie uit en vergelijk de oorspronkelijke wachtrij met het rapport. Probeer een andere spoedklus of invoegpositie. De volgende pagina’s behandelen elke bewerking en de bijbehorende return value."
+      },
+      "code": "arrival = [8, 3, 6]\nreport = sorted(arrival)\nprint(arrival)\nprint(report)",
+      "output": "[8, 3, 6]\n[3, 6, 8]"
+    }
+  ],
   "files": {
-    "main.py": "values = [7, 2, 5]\nprint(\"Original:\", values)\nprint(\"Sorted copy:\", sorted(values))\nprint(\"Still original:\", values)\n"
+    "main.py": "jobs = [\"scan\", \"pack\", \"label\"]\nprint(\"Arrival order:\", jobs)\njobs.insert(1, \"check\")\nprint(\"Working order:\", jobs)\nprint(\"Job count:\", len(jobs))\nprint(\"Alphabetical report:\", sorted(jobs))\nprint(\"Queue still:\", jobs)\n"
   },
   "solution": {
-    "main.py": "values = [7, 2, 5]\nprint(\"Original:\", values)\nprint(\"Sorted copy:\", sorted(values))\nprint(\"Still original:\", values)\n"
+    "main.py": "jobs = [\"scan\", \"pack\", \"label\"]\nprint(\"Arrival order:\", jobs)\njobs.insert(1, \"check\")\nprint(\"Working order:\", jobs)\nprint(\"Job count:\", len(jobs))\nprint(\"Alphabetical report:\", sorted(jobs))\nprint(\"Queue still:\", jobs)\n"
   },
   "checkpoints": [],
   "solutionNote": {
-    "en": "Choose a list operation according to your goal: insert by position, remove by value or position, take a slice, count occurrences, or sort. The distinction between mutation and a new return value is central.\n\nTrace the solution one line at a time. Try a different input to see which parts change.",
-    "nl": "Kies een list-bewerking op basis van je doel: invoegen op positie, verwijderen op waarde of positie, een slice nemen, tellen of sorteren. Het verschil tussen wijzigen en een nieuwe return value is essentieel.\n\nVolg de oplossing regel voor regel. Probeer een andere invoer en bekijk welke onderdelen veranderen."
+    "en": "The insertion changes working order. Sorting for a report does not have to change that order: sorted gives a separate list, so the last print still shows the queue.",
+    "nl": "Het invoegen verandert de werkvolgorde. Sorteren voor een rapport hoeft die volgorde niet te veranderen: sorted geeft een aparte list, dus de laatste print toont nog steeds de wachtrij."
   },
   "sourcePosition": 1,
   "sourceUrl": "https://www.codecademy.com/courses/learn-python-3/lessons/use-python-list/exercises/operations-on-lists",

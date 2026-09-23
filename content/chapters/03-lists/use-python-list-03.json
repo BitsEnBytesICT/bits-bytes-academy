@@ -4,38 +4,124 @@
   "group": "use-python-list",
   "title": {
     "en": "Removing by index",
-    "nl": "Verwijderen met pop"
+    "nl": "Verwijder een klus en bewaar wat eruit ging"
   },
   "kind": "coding",
   "optional": false,
   "explanation": {
-    "en": "pop(index) removes and returns an element. With no argument, it removes the last one. Save the return value when you need the removed item later.",
-    "nl": "pop(index) verwijdert een element en geeft het terug. Zonder argument wordt het laatste element verwijderd. Bewaar de return value als je het verwijderde item later nodig hebt."
+    "en": "The last job in a queue is canceled and the first job is ready to process. You need both the remaining queue and a record of the removed jobs. pop() removes an item and returns that same item, so one call can update the list and supply a value for a report.",
+    "nl": "De laatste klus in een wachtrij wordt geannuleerd en de eerste kan worden verwerkt. Je hebt zowel de resterende wachtrij als een overzicht van de verwijderde klussen nodig. pop() verwijdert een element en geeft datzelfde element terug: één aanroep wijzigt de list en levert een waarde voor een rapport."
   },
   "example": "",
+  "sections": [
+    {
+      "heading": {
+        "en": "Default end, optional index",
+        "nl": "Standaard achteraan, optioneel op index"
+      },
+      "body": {
+        "en": "With no argument, pop removes the last element. With an index, it removes that position and shifts later elements left. Store the return value before you need it: printing the shortened list does not tell you everything that was removed.",
+        "nl": "Zonder argument verwijdert pop het laatste element. Met een index verwijdert het die positie en schuiven latere elementen naar links. Bewaar de return value: alleen de ingekorte list printen vertelt niet alles over wat werd verwijderd."
+      },
+      "code": "jobs = [\"wash\", \"dry\", \"fold\"]\ncanceled = jobs.pop()\ncurrent = jobs.pop(0)\nprint(canceled, current)\nprint(jobs)",
+      "output": "fold wash\n['dry']"
+    },
+    {
+      "heading": {
+        "en": "A position is not a value",
+        "nl": "Een positie is geen waarde"
+      },
+      "body": {
+        "en": "pop(2) removes index 2; remove(2) searches for the value 2. An invalid index or popping an empty list raises IndexError. Try a deliberately invalid pop in the console, then repair it. Keep the actual program valid while completing its checks.",
+        "nl": "pop(2) verwijdert index 2; remove(2) zoekt de waarde 2. Een ongeldige index of pop op een lege list geeft IndexError. Probeer een ongeldige pop in de console en herstel die daarna. Houd het eigenlijke programma geldig terwijl je de taken afrondt."
+      }
+    }
+  ],
   "files": {
-    "main.py": "queue = [\"A\", \"B\", \"C\"]\n"
+    "main.py": "jobs = [\"scan\", \"pack\", \"label\", \"test\"]\nprint(\"Queued:\", jobs)\n# Cancel the last job and keep its name.\n# Take the first remaining job for processing.\nprint(\"Remaining:\", jobs)\n"
   },
   "solution": {
-    "main.py": "queue = [\"A\", \"B\", \"C\"]\nremoved = queue.pop()\nprint(removed, queue)\n"
+    "main.py": "jobs = [\"scan\", \"pack\", \"label\", \"test\"]\nprint(\"Queued:\", jobs)\ncanceled = jobs.pop()\ncurrent = jobs.pop(0)\nprint(\"Remaining:\", jobs)\nprint(\"Canceled:\", canceled)\nprint(\"Processing:\", current)\n"
   },
   "checkpoints": [
     {
-      "id": "use-python-list-03-step-1",
+      "id": "use-python-list-03-v2-step-1",
       "task": {
-        "en": "Remove the last entry from queue with pop and store it in removed.",
-        "nl": "Verwijder met pop het laatste item uit queue en sla het op in removed."
+        "en": "Cancel the last job using `pop()` and save its returned name in `canceled`. Run to see the shorter queue.",
+        "nl": "Annuleer de laatste klus met `pop()` en bewaar de teruggegeven naam in `canceled`. Voer uit om de kortere wachtrij te zien."
       },
-      "check": "removed == 'C' and queue == ['A','B']",
+      "check": "canceled == 'test' and any(isinstance(n, _ast.Call) and isinstance(n.func, _ast.Attribute) and n.func.attr == 'pop' for n in _ast.walk(_ast.parse(_source)))",
+      "feedback": {
+        "en": "Keep the actual removed item in canceled; a second pop would remove an extra job.",
+        "nl": "Bewaar het werkelijk verwijderde item in canceled; een tweede pop zou nog een klus verwijderen."
+      },
+      "cases": [
+        {
+          "inputs": {
+            "jobs": [
+              "a",
+              "b",
+              "c"
+            ]
+          },
+          "check": "canceled == 'c'"
+        }
+      ],
       "hint": {
-        "en": "Start with queue = [\"A\", \"B\", \"C\"]. Then compare the values with the task.",
-        "nl": "Begin met queue = [\"A\", \"B\", \"C\"]. Vergelijk de waarden daarna met de opdracht."
+        "en": "Assign the call itself: canceled = jobs.pop(). Do not call it twice.",
+        "nl": "Sla de aanroep zelf op: canceled = jobs.pop(). Roep de method niet twee keer aan."
+      }
+    },
+    {
+      "id": "use-python-list-03-v2-step-2",
+      "task": {
+        "en": "Use another `pop()` to take the first remaining job. Store its name in `current`; jobs should then contain pack and label.",
+        "nl": "Gebruik nog een `pop()` om de eerste resterende klus te pakken. Bewaar de naam in `current`; jobs hoort daarna pack en label te bevatten."
+      },
+      "check": "current == 'scan' and jobs == ['pack','label']",
+      "feedback": {
+        "en": "Remove the first remaining item and retain the middle jobs in their original order.",
+        "nl": "Verwijder het eerste resterende item en behoud de middelste klussen in hun oorspronkelijke volgorde."
+      },
+      "cases": [
+        {
+          "inputs": {
+            "jobs": [
+              "a",
+              "b",
+              "c",
+              "d",
+              "e"
+            ]
+          },
+          "check": "current == 'a' and jobs == ['b','c','d']"
+        }
+      ],
+      "hint": {
+        "en": "The front of a list is index 0, even after the last item was removed.",
+        "nl": "De voorkant van een list is index 0, ook nadat het laatste element is verwijderd."
+      }
+    },
+    {
+      "id": "use-python-list-03-v2-step-3",
+      "task": {
+        "en": "Finish the report with `print(\"Canceled:\", canceled)` and `print(\"Processing:\", current)`. Keep the Remaining line after both removals.",
+        "nl": "Maak het rapport af met `print(\"Canceled:\", canceled)` en `print(\"Processing:\", current)`. Laat de Remaining-regel na beide verwijderingen staan."
+      },
+      "check": "('Remaining: ' + str(jobs)) in _stdout.splitlines() and 'Canceled: test' in _stdout.splitlines() and 'Processing: scan' in _stdout.splitlines()",
+      "feedback": {
+        "en": "Report both removed names and the remaining two jobs without removing anything else.",
+        "nl": "Rapporteer beide verwijderde namen en de twee resterende klussen zonder nog iets te verwijderen."
+      },
+      "hint": {
+        "en": "The stored strings survive later list changes; print those variables rather than popping again.",
+        "nl": "De bewaarde strings blijven bestaan na latere list-wijzigingen; print die variabelen in plaats van opnieuw pop aan te roepen."
       }
     }
   ],
   "solutionNote": {
-    "en": "pop(index) removes and returns an element. With no argument, it removes the last one. Save the return value when you need the removed item later.\n\nTrace the solution one line at a time. Try a different input to see which parts change.",
-    "nl": "pop(index) verwijdert een element en geeft het terug. Zonder argument wordt het laatste element verwijderd. Bewaar de return value als je het verwijderde item later nodig hebt.\n\nVolg de oplossing regel voor regel. Probeer een andere invoer en bekijk welke onderdelen veranderen."
+    "en": "Each pop has two observable effects: the queue becomes shorter and its return value is assigned to a name. The report uses those saved names, so reporting does not change the queue again.",
+    "nl": "Elke pop heeft twee zichtbare effecten: de wachtrij wordt korter en de return value wordt aan een naam gekoppeld. Het rapport gebruikt die namen en verandert de wachtrij dus niet opnieuw."
   },
   "sourcePosition": 3,
   "sourceUrl": "https://www.codecademy.com/courses/learn-python-3/lessons/use-python-list/exercises/removing-by-index-pop",

@@ -4,38 +4,134 @@
   "group": "use-python-list",
   "title": {
     "en": "Basic range",
-    "nl": "Een range gebruiken"
+    "nl": "Nummer werkstations met range"
   },
   "kind": "coding",
   "optional": false,
   "explanation": {
-    "en": "range(stop) describes integers from zero up to, but not including, stop. Convert it with list() when you need to see or store every element as a list.",
-    "nl": "range(stop) beschrijft integers vanaf nul tot stop, waarbij stop zelf niet meetelt. Gebruik list() als je alle elementen als list wilt zien of bewaren."
+    "en": "A workshop has a configurable number of stations. Typing every station number by hand creates work each time that number changes. range(stop) describes consecutive integers beginning at zero and stopping before stop. A range object is a compact description, not a list literal.",
+    "nl": "Een werkplaats heeft een instelbaar aantal stations. Alle stationsnummers handmatig typen levert extra werk op zodra dat aantal verandert. range(stop) beschrijft opeenvolgende gehele getallen vanaf nul tot vóór stop. Een range-object is een compacte beschrijving, geen list-literal."
   },
   "example": "",
+  "sections": [
+    {
+      "heading": {
+        "en": "One boundary, two useful forms",
+        "nl": "Eén grens, twee bruikbare vormen"
+      },
+      "body": {
+        "en": "range(4) contains the values 0, 1, 2 and 3. Printing the object shows its boundaries; list(...) materializes the values as a list. Keep those forms distinct: the range is the recipe and the list is the expanded result.",
+        "nl": "range(4) bevat de waarden 0, 1, 2 en 3. Het object printen toont de grenzen; list(...) werkt de waarden uit tot een list. Houd die vormen uit elkaar: de range is het recept en de list het uitgewerkte resultaat."
+      },
+      "code": "numbers = range(4)\nprint(numbers)\nprint(list(numbers))",
+      "output": "range(0, 4)\n[0, 1, 2, 3]"
+    },
+    {
+      "heading": {
+        "en": "The last value is one less",
+        "nl": "De laatste waarde is één lager"
+      },
+      "body": {
+        "en": "With five stations numbered from zero, the last station is 4. To include a last value of 5 you would need stop 6. The tasks assume at least one station; range(0) is empty, so it has no last element to look up.",
+        "nl": "Bij vijf stations die vanaf nul worden genummerd, is het laatste station 4. Om 5 als laatste waarde op te nemen heb je stop 6 nodig. De taken gaan uit van minstens één station; range(0) is leeg en heeft dus geen laatste element om op te vragen."
+      }
+    }
+  ],
   "files": {
-    "main.py": "# Write your code below.\n"
+    "main.py": "station_count = 5\nstation_numbers = range(3)\nprint(\"Range:\", station_numbers)\n# Expand the range into a list, then inspect the final number.\n"
   },
   "solution": {
-    "main.py": "stations = list(range(6))\nprint(stations)\n"
+    "main.py": "station_count = 5\nstation_numbers = range(station_count)\nprint(\"Range:\", station_numbers)\nstation_list = list(station_numbers)\nprint(\"Stations:\", station_list)\nlast_station = station_list[-1]\nprint(\"Last station:\", last_station)\n"
   },
   "checkpoints": [
     {
-      "id": "use-python-list-04-step-1",
+      "id": "use-python-list-04-v2-step-1",
       "task": {
-        "en": "Create stations as list(range(6)).",
-        "nl": "Maak stations met list(range(6))."
+        "en": "Repair `station_numbers` so it remains a range object but uses `station_count` as its excluded stop. Run and inspect the Range line.",
+        "nl": "Herstel `station_numbers` zodat het een range-object blijft, maar `station_count` als uitgesloten stop gebruikt. Voer uit en bekijk de Range-regel."
       },
-      "check": "stations == [0,1,2,3,4,5]",
+      "check": "type(station_numbers) is range and station_numbers == range(station_count) and station_count == 5",
+      "feedback": {
+        "en": "Generate a range from zero using the configured count, rather than typing fixed values.",
+        "nl": "Maak een range vanaf nul met het ingestelde aantal in plaats van vaste waarden te typen."
+      },
+      "cases": [
+        {
+          "inputs": {
+            "station_count": 1
+          },
+          "check": "type(station_numbers) is range and list(station_numbers) == [0]"
+        },
+        {
+          "inputs": {
+            "station_count": 8
+          },
+          "check": "station_numbers == range(8)"
+        }
+      ],
       "hint": {
-        "en": "Start with stations = list(range(6)). Then compare the values with the task.",
-        "nl": "Begin met stations = list(range(6)). Vergelijk de waarden daarna met de opdracht."
+        "en": "Pass station_count to range without converting the result yet.",
+        "nl": "Geef station_count mee aan range zonder het resultaat al om te zetten."
+      }
+    },
+    {
+      "id": "use-python-list-04-v2-step-2",
+      "task": {
+        "en": "Create `station_list` by converting `station_numbers` with `list()`. Print it with \"Stations:\" to see all generated numbers.",
+        "nl": "Maak `station_list` door `station_numbers` met `list()` om te zetten. Print deze met \"Stations:\" om alle gegenereerde nummers te zien."
+      },
+      "check": "station_list == [0,1,2,3,4] and 'Stations: [0, 1, 2, 3, 4]' in _stdout.splitlines()",
+      "feedback": {
+        "en": "Convert the range into a list and display it; printing only the range boundaries is not the expanded result.",
+        "nl": "Zet de range om in een list en toon die; alleen de range-grenzen printen is niet het uitgewerkte resultaat."
+      },
+      "cases": [
+        {
+          "inputs": {
+            "station_count": 7
+          },
+          "check": "station_list == list(range(7))"
+        }
+      ],
+      "hint": {
+        "en": "list receives the range object as its single argument.",
+        "nl": "list krijgt het range-object als enige argument."
+      }
+    },
+    {
+      "id": "use-python-list-04-v2-step-3",
+      "task": {
+        "en": "Read the last item into `last_station` and print it with \"Last station:\". Then try station_count = 1 in the console or editor and explain why the last value is 0; restore the supplied count before submitting.",
+        "nl": "Lees het laatste item uit naar `last_station` en print het met \"Last station:\". Probeer daarna station_count = 1 in de console of editor en verklaar waarom de laatste waarde 0 is; herstel het meegeleverde aantal voordat je inlevert."
+      },
+      "check": "last_station == 4 and 'Last station: 4' in _stdout.splitlines()",
+      "feedback": {
+        "en": "Read the last generated value instead of assuming it equals the station count.",
+        "nl": "Lees de laatste gegenereerde waarde uit in plaats van aan te nemen dat die gelijk is aan het aantal stations."
+      },
+      "cases": [
+        {
+          "inputs": {
+            "station_count": 1
+          },
+          "check": "last_station == 0"
+        },
+        {
+          "inputs": {
+            "station_count": 8
+          },
+          "check": "last_station == 7"
+        }
+      ],
+      "hint": {
+        "en": "A negative index still selects the end after the station count changes.",
+        "nl": "Een negatieve index kiest nog steeds het einde nadat het aantal stations verandert."
       }
     }
   ],
   "solutionNote": {
-    "en": "range(stop) describes integers from zero up to, but not including, stop. Convert it with list() when you need to see or store every element as a list.\n\nTrace the solution one line at a time. Try a different input to see which parts change.",
-    "nl": "range(stop) beschrijft integers vanaf nul tot stop, waarbij stop zelf niet meetelt. Gebruik list() als je alle elementen als list wilt zien of bewaren.\n\nVolg de oplossing regel voor regel. Probeer een andere invoer en bekijk welke onderdelen veranderen."
+    "en": "The count drives the range, the range drives the list, and the list supplies its last value. Changing the count therefore updates all three results without editing separate literals.",
+    "nl": "Het aantal bepaalt de range, de range bepaalt de list en de list levert de laatste waarde. Een ander aantal werkt daardoor door in alle drie resultaten zonder losse literals te wijzigen."
   },
   "sourcePosition": 4,
   "sourceUrl": "https://www.codecademy.com/courses/learn-python-3/lessons/use-python-list/exercises/consecutive-lists-range",

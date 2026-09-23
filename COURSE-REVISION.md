@@ -35,6 +35,12 @@ have also been inspected, including gated review tasks and code-blank grading;
 see `research/2026-09-23-lists.md`. Deeper reviews of later chapters remain. Do not
 describe the whole course as mapped or rewritten.
 
+All 12 list-operations pages, their hints/workspaces and nine gated review steps
+are now deeply reviewed, as is the 12-question quiz through its results screen.
+See `research/2026-09-23-list-operations.md`. Their original rewrite adds 40 connected
+checks, 46 alternate-input cases and 20 runnable examples, plus two code-blank quiz
+variants and specific choice feedback. List support readings/challenges remain.
+
 Authored and implemented in this pass:
 
 - Replaced all 15 foundation lesson pages with original bilingual instruction:
@@ -118,6 +124,6 @@ Verification so far:
    count test alone does not establish richer explanations or appropriate tasks.
 
 This goal turn made progress: original course authoring, implementation, tests and
-fresh source observations. Current rewrite coverage is 46/160 core lesson pages,
-2/8 supporting readings, 3/13 quizzes with enhanced feedback, and 0/59 challenges.
+fresh source observations. Current rewrite coverage is 58/160 core lesson pages,
+2/8 supporting readings, 4/13 quizzes with enhanced feedback, and 0/59 challenges.
 No blocker prevents continuing. The full goal remains active.

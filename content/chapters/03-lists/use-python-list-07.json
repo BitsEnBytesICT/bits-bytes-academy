@@ -4,38 +4,130 @@
   "group": "use-python-list",
   "title": {
     "en": "Slicing bounds",
-    "nl": "Slice-grenzen"
+    "nl": "Selecteer een meetvenster met een slice"
   },
   "kind": "coding",
   "optional": false,
   "explanation": {
-    "en": "A slice items[start:stop] returns a new list. It includes start and excludes stop. Slicing does not remove values from the original list.",
-    "nl": "Een slice items[start:stop] geeft een nieuwe list terug. start telt mee, stop niet. Een slice verwijdert geen waarden uit de oorspronkelijke list."
+    "en": "A sensor log has six readings, but a report needs only a consecutive window. A slice uses two boundaries: readings[start:stop]. Start is included and stop is excluded. The result is a new list; selecting a window does not remove readings from the log.",
+    "nl": "Een sensorlog heeft zes metingen, maar een rapport heeft alleen een aaneengesloten venster nodig. Een slice gebruikt twee grenzen: readings[start:stop]. Start telt mee en stop is uitgesloten. Het resultaat is een nieuwe list; een venster kiezen verwijdert geen metingen uit het log."
   },
   "example": "",
+  "sections": [
+    {
+      "heading": {
+        "en": "Think in positions and boundaries",
+        "nl": "Denk in posities en grenzen"
+      },
+      "body": {
+        "en": "To include indexes 1, 2 and 3, stop at 4. The number of selected positions is stop - start when both boundaries are inside the list and increasing. A comma is not a slice separator: use a colon.",
+        "nl": "Om indexes 1, 2 en 3 mee te nemen, stop je op 4. Het aantal gekozen posities is stop - start als beide grenzen binnen de list liggen en oplopen. Een komma scheidt geen slice-grenzen: gebruik een dubbele punt."
+      },
+      "code": "readings = [30, 12, 16, 14, 28]\nwindow = readings[1:4]\nprint(window)\nprint(readings)",
+      "output": "[12, 16, 14]\n[30, 12, 16, 14, 28]"
+    },
+    {
+      "heading": {
+        "en": "A flat slice can be edited separately",
+        "nl": "Een vlakke slice kun je apart wijzigen"
+      },
+      "body": {
+        "en": "Replacing an element in a sliced list does not replace that element in the original list. This is useful for a trial correction. This example uses numbers; a slice is only a shallow copy, so nested mutable records need more care. Equal slice boundaries select no elements and produce [].",
+        "nl": "Een element vervangen in de geslicete list vervangt dat element niet in de oorspronkelijke list. Dat is handig voor een proefcorrectie. Dit voorbeeld gebruikt getallen; een slice is alleen een oppervlakkige kopie, dus bij geneste wijzigbare records is meer aandacht nodig. Gelijke slice-grenzen kiezen geen elementen en leveren [] op."
+      },
+      "code": "source = [4, 8, 12]\ntrial = source[0:2]\ntrial[0] = 99\nprint(trial)\nprint(source)\nprint(source[2:2])",
+      "output": "[99, 8]\n[4, 8, 12]\n[]"
+    }
+  ],
   "files": {
-    "main.py": "route = [10, 20, 30, 40, 50]\n"
+    "main.py": "readings = [12, 18, 9, 14, 17, 11]\nwindow = readings[1:3]\nprint(\"Window:\", window)\n# Make a trial correction in the slice after the Window print.\nprint(\"Original:\", readings)\n"
   },
   "solution": {
-    "main.py": "route = [10, 20, 30, 40, 50]\nmiddle = route[1:4]\nprint(middle)\n"
+    "main.py": "readings = [12, 18, 9, 14, 17, 11]\nwindow = readings[1:4]\nprint(\"Window:\", window)\nwindow[0] = 99\nprint(\"Trial:\", window)\nprint(\"Original:\", readings)\nempty_window = readings[4:4]\nprint(\"Empty:\", empty_window)\n"
   },
   "checkpoints": [
     {
-      "id": "use-python-list-07-step-1",
+      "id": "use-python-list-07-v2-step-1",
       "task": {
-        "en": "Save the values 20, 30, and 40 from route into middle using a slice.",
-        "nl": "Sla 20, 30 en 40 uit route via een slice op in middle."
+        "en": "Repair `window` to select indexes 1 through 3 inclusive. Keep the Window print before later edits; it should show [18, 9, 14].",
+        "nl": "Herstel `window` zodat indexes 1 tot en met 3 worden gekozen. Laat de Window-print vóór latere wijzigingen staan; deze hoort [18, 9, 14] te tonen."
       },
-      "check": "middle == [20,30,40] and route == [10,20,30,40,50]",
+      "check": "'Window: [18, 9, 14]' in _stdout.splitlines()",
+      "feedback": {
+        "en": "Select three consecutive readings starting at index 1 and print that original window.",
+        "nl": "Selecteer drie opeenvolgende metingen vanaf index 1 en print dat oorspronkelijke venster."
+      },
+      "cases": [
+        {
+          "inputs": {
+            "readings": [
+              2,
+              4,
+              6,
+              8,
+              10,
+              12
+            ]
+          },
+          "check": "'Window: [4, 6, 8]' in _stdout.splitlines()"
+        }
+      ],
       "hint": {
-        "en": "Start with route = [10, 20, 30, 40, 50]. Then compare the values with the task.",
-        "nl": "Begin met route = [10, 20, 30, 40, 50]. Vergelijk de waarden daarna met de opdracht."
+        "en": "The final included index is 3, so the excluded stop must be 4.",
+        "nl": "De laatste inbegrepen index is 3, dus de uitgesloten stop moet 4 zijn."
+      }
+    },
+    {
+      "id": "use-python-list-07-v2-step-2",
+      "task": {
+        "en": "After that print, replace only the first value in `window` with 99. Print it with \"Trial:\". Keep `readings` unchanged and its Original print.",
+        "nl": "Vervang na die print alleen de eerste waarde in `window` door 99. Print deze met \"Trial:\". Laat `readings` ongewijzigd en behoud de Original-print."
+      },
+      "check": "window == [99,9,14] and readings == [12,18,9,14,17,11] and 'Trial: [99, 9, 14]' in _stdout.splitlines()",
+      "feedback": {
+        "en": "Apply the trial correction to the slice while preserving every original reading.",
+        "nl": "Pas de proefcorrectie op de slice toe en behoud elke oorspronkelijke meting."
+      },
+      "cases": [
+        {
+          "inputs": {
+            "readings": [
+              2,
+              4,
+              6,
+              8,
+              10,
+              12
+            ]
+          },
+          "check": "window == [99,6,8] and readings == [2,4,6,8,10,12]"
+        }
+      ],
+      "hint": {
+        "en": "Edit window[0], not readings[1]. The slice is a separate outer list.",
+        "nl": "Wijzig window[0], niet readings[1]. De slice is een aparte buitenste list."
+      }
+    },
+    {
+      "id": "use-python-list-07-v2-step-3",
+      "task": {
+        "en": "Create `empty_window` with the slice `readings[4:4]` and print it with \"Empty:\". Predict its length before running.",
+        "nl": "Maak `empty_window` met de slice `readings[4:4]` en print deze met \"Empty:\". Voorspel de lengte voordat je uitvoert."
+      },
+      "check": "empty_window == [] and 'Empty: []' in _stdout.splitlines()",
+      "feedback": {
+        "en": "An empty slice is [], not one selected element and not an error.",
+        "nl": "Een lege slice is [], niet één geselecteerd element en ook geen fout."
+      },
+      "hint": {
+        "en": "Both boundaries are the same; no position lies between them.",
+        "nl": "Beide grenzen zijn gelijk; er ligt geen positie tussen."
       }
     }
   ],
   "solutionNote": {
-    "en": "A slice items[start:stop] returns a new list. It includes start and excludes stop. Slicing does not remove values from the original list.\n\nTrace the solution one line at a time. Try a different input to see which parts change.",
-    "nl": "Een slice items[start:stop] geeft een nieuwe list terug. start telt mee, stop niet. Een slice verwijdert geen waarden uit de oorspronkelijke list.\n\nVolg de oplossing regel voor regel. Probeer een andere invoer en bekijk welke onderdelen veranderen."
+    "en": "The Window line records the selection before correction. The Trial line then shows a changed copy while the Original line stays intact. Equal boundaries demonstrate that slicing can legitimately produce an empty result.",
+    "nl": "De Window-regel legt de selectie vóór de correctie vast. De Trial-regel toont daarna een gewijzigde kopie terwijl Original intact blijft. Gelijke grenzen laten zien dat een slice terecht een leeg resultaat kan opleveren."
   },
   "sourcePosition": 7,
   "sourceUrl": "https://www.codecademy.com/courses/learn-python-3/lessons/use-python-list/exercises/slice-iii",

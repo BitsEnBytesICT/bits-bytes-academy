@@ -4,38 +4,163 @@
   "group": "use-python-list",
   "title": {
     "en": "Open-ended and negative slices",
-    "nl": "Open en negatieve slice-grenzen"
+    "nl": "Kies het begin, einde of alles behalve de staart"
   },
   "kind": "coding",
   "optional": false,
   "explanation": {
-    "en": "Omit a slice boundary to use the beginning or end. Negative boundaries count from the end. items[-2:] gives the final two elements.",
-    "nl": "Laat een slice-grens weg om het begin of einde te gebruiken. Negatieve grenzen tellen vanaf het einde. items[-2:] geeft de laatste twee elementen."
+    "en": "An activity log grows during the day. A fixed ending index will eventually point to the wrong place. Omitted boundaries and negative indexes let a report keep asking for the first or last few events even as the log grows.",
+    "nl": "Een activiteitenlog groeit gedurende de dag. Een vaste eindindex wijst uiteindelijk naar de verkeerde plek. Weggelaten grenzen en negatieve indexes laten een rapport steeds de eerste of laatste paar gebeurtenissen opvragen, ook als het log groeit."
   },
   "example": "",
+  "sections": [
+    {
+      "heading": {
+        "en": "Three slices, three different questions",
+        "nl": "Drie slices, drie verschillende vragen"
+      },
+      "body": {
+        "en": "items[:2] selects the first two. items[-2:] starts two positions from the end and continues to the end. items[:-2] starts at the beginning and excludes the final two. The same number on the other side of the colon changes the question.",
+        "nl": "items[:2] kiest de eerste twee. items[-2:] begint twee posities voor het einde en loopt door tot het einde. items[:-2] begint vooraan en sluit de laatste twee uit. Hetzelfde getal aan de andere kant van de dubbele punt verandert de vraag."
+      },
+      "code": "events = [\"a\", \"b\", \"c\", \"d\", \"e\"]\nprint(events[:2])\nprint(events[-2:])\nprint(events[:-2])",
+      "output": "['a', 'b']\n['d', 'e']\n['a', 'b', 'c']"
+    },
+    {
+      "heading": {
+        "en": "Short lists and the zero trap",
+        "nl": "Korte lists en de valkuil van nul"
+      },
+      "body": {
+        "en": "Slices stop at the list boundaries, so asking for more available elements simply returns what exists. Unlike an individual out-of-range index, that is not an IndexError. Be careful with a configurable tail count of zero: -0 is 0, so items[-0:] means the whole list, not an empty tail.",
+        "nl": "Slices stoppen bij de grenzen van de list; als je meer elementen vraagt dan beschikbaar zijn, krijg je wat er is. Anders dan bij één ongeldige index geeft dit geen IndexError. Let op bij een instelbaar staartaantal nul: -0 is 0, dus items[-0:] betekent de hele list, niet een lege staart."
+      },
+      "code": "events = [\"only\"]\nprint(events[:3])\nprint(events[-2:])\nprint(events[:-2])\nprint(events[-0:])",
+      "output": "['only']\n['only']\n[]\n['only']"
+    }
+  ],
   "files": {
-    "main.py": "values = [2, 4, 6, 8, 10]\n"
+    "main.py": "events = [\"open\", \"load\", \"scan\", \"pack\", \"close\", \"archive\"]\nprint(\"Full log:\", events)\n# Build three reports without editing the log.\n"
   },
   "solution": {
-    "main.py": "values = [2, 4, 6, 8, 10]\nprefix = values[:2]\nsuffix = values[-2:]\nprint(prefix, suffix)\n"
+    "main.py": "events = [\"open\", \"load\", \"scan\", \"pack\", \"close\", \"archive\"]\nprint(\"Full log:\", events)\nfirst_two = events[:2]\nlast_two = events[-2:]\nwithout_last_two = events[:-2]\nprint(\"Beginning:\", first_two)\nprint(\"Ending:\", last_two)\nprint(\"Earlier:\", without_last_two)\n"
   },
   "checkpoints": [
     {
-      "id": "use-python-list-08-step-1",
+      "id": "use-python-list-08-v2-step-1",
       "task": {
-        "en": "Create prefix with the first two values and suffix with the last two values.",
-        "nl": "Maak prefix met de eerste twee waarden en suffix met de laatste twee waarden."
+        "en": "Create `first_two` as a slice containing the first two events, then print it with \"Beginning:\".",
+        "nl": "Maak `first_two` als slice met de eerste twee gebeurtenissen en print deze met \"Beginning:\"."
       },
-      "check": "prefix == [2,4] and suffix == [8,10]",
+      "check": "first_two == ['open','load'] and ('Beginning: ' + str(first_two)) in _stdout.splitlines()",
+      "feedback": {
+        "en": "Take the beginning of the supplied log rather than constructing a fixed report.",
+        "nl": "Neem het begin van het meegegeven log in plaats van een vast rapport te maken."
+      },
+      "cases": [
+        {
+          "inputs": {
+            "events": [
+              "a",
+              "b",
+              "c"
+            ]
+          },
+          "check": "first_two == ['a','b']"
+        },
+        {
+          "inputs": {
+            "events": []
+          },
+          "check": "first_two == []"
+        }
+      ],
       "hint": {
-        "en": "Start with values = [2, 4, 6, 8, 10]. Then compare the values with the task.",
-        "nl": "Begin met values = [2, 4, 6, 8, 10]. Vergelijk de waarden daarna met de opdracht."
+        "en": "Omit the start boundary and stop before index 2.",
+        "nl": "Laat de begingrens weg en stop vóór index 2."
+      }
+    },
+    {
+      "id": "use-python-list-08-v2-step-2",
+      "task": {
+        "en": "Create `last_two` from the final two events and print \"Ending:\" followed by that slice. It must still work when events grows.",
+        "nl": "Maak `last_two` uit de laatste twee gebeurtenissen en print \"Ending:\" gevolgd door die slice. Dit moet blijven werken als events groeit."
+      },
+      "check": "last_two == ['close','archive'] and ('Ending: ' + str(last_two)) in _stdout.splitlines()",
+      "feedback": {
+        "en": "Anchor the selection at the end; a fixed start of 4 only fits this example.",
+        "nl": "Veranker de selectie aan het einde; een vast begin van 4 past alleen bij dit voorbeeld."
+      },
+      "cases": [
+        {
+          "inputs": {
+            "events": [
+              "a",
+              "b",
+              "c",
+              "d",
+              "e",
+              "f",
+              "g"
+            ]
+          },
+          "check": "last_two == ['f','g']"
+        },
+        {
+          "inputs": {
+            "events": [
+              "only"
+            ]
+          },
+          "check": "last_two == ['only']"
+        }
+      ],
+      "hint": {
+        "en": "Start at -2 and leave the stop boundary open.",
+        "nl": "Begin op -2 en laat de stopgrens open."
+      }
+    },
+    {
+      "id": "use-python-list-08-v2-step-3",
+      "task": {
+        "en": "Create `without_last_two`, containing everything except the final two events. Print it with \"Earlier:\" and leave the full events list unchanged.",
+        "nl": "Maak `without_last_two` met alles behalve de laatste twee gebeurtenissen. Print deze met \"Earlier:\" en laat de volledige list events ongewijzigd."
+      },
+      "check": "without_last_two == ['open','load','scan','pack'] and events == ['open','load','scan','pack','close','archive'] and ('Earlier: ' + str(without_last_two)) in _stdout.splitlines()",
+      "feedback": {
+        "en": "Exclude the tail with a slice, without popping items from the original log.",
+        "nl": "Sluit de staart uit met een slice, zonder elementen uit het oorspronkelijke log te poppen."
+      },
+      "cases": [
+        {
+          "inputs": {
+            "events": [
+              "a",
+              "b",
+              "c",
+              "d"
+            ]
+          },
+          "check": "without_last_two == ['a','b'] and events == ['a','b','c','d']"
+        },
+        {
+          "inputs": {
+            "events": [
+              "only"
+            ]
+          },
+          "check": "without_last_two == []"
+        }
+      ],
+      "hint": {
+        "en": "Put -2 after the colon; you want to stop before the final two positions.",
+        "nl": "Zet -2 na de dubbele punt; je wilt vóór de laatste twee posities stoppen."
       }
     }
   ],
   "solutionNote": {
-    "en": "Omit a slice boundary to use the beginning or end. Negative boundaries count from the end. items[-2:] gives the final two elements.\n\nTrace the solution one line at a time. Try a different input to see which parts change.",
-    "nl": "Laat een slice-grens weg om het begin of einde te gebruiken. Negatieve grenzen tellen vanaf het einde. items[-2:] geeft de laatste twee elementen.\n\nVolg de oplossing regel voor regel. Probeer een andere invoer en bekijk welke onderdelen veranderen."
+    "en": "The three reports share one input but answer different positional questions. Open boundaries adapt to length changes and slicing leaves the log available for other reports.",
+    "nl": "De drie rapporten delen één invoer maar beantwoorden verschillende vragen over posities. Open grenzen passen zich aan een andere lengte aan en slicing houdt het log beschikbaar voor andere rapporten."
   },
   "sourcePosition": 8,
   "sourceUrl": "https://www.codecademy.com/courses/learn-python-3/lessons/use-python-list/exercises/slice-iv",

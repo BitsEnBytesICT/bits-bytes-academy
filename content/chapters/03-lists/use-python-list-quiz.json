@@ -36,8 +36,8 @@
             "nl": "[1, 2, 3, 4]"
           },
           "reason": {
-            "en": "The stop value is excluded.",
-            "nl": "De stopwaarde telt niet mee."
+            "en": "A one-argument range starts at zero, not one. Stop 4 is excluded.",
+            "nl": "Een range met één argument begint bij nul, niet bij één. Stop 4 is uitgesloten."
           }
         },
         {
@@ -47,8 +47,8 @@
             "nl": "[0, 1, 2, 3, 4]"
           },
           "reason": {
-            "en": "The stop value is excluded.",
-            "nl": "De stopwaarde telt niet mee."
+            "en": "The stop boundary does not belong to the range; 4 is excluded.",
+            "nl": "De stopgrens hoort niet bij de range; 4 is uitgesloten."
           }
         }
       ]
@@ -80,8 +80,8 @@
             "nl": "[2, 3, 4, 5, 6, 7, 8]"
           },
           "reason": {
-            "en": "Begin at 2 and add 3 while staying below 9.",
-            "nl": "Begin bij 2 en tel telkens 3 op, zolang de waarde kleiner is dan 9."
+            "en": "The third argument is the step. Add 3 after each value, rather than including every integer.",
+            "nl": "Het derde argument is de stap. Tel na elke waarde 3 op in plaats van elk geheel getal op te nemen."
           }
         },
         {
@@ -91,8 +91,8 @@
             "nl": "[3, 6, 9]"
           },
           "reason": {
-            "en": "Begin at 2 and add 3 while staying below 9.",
-            "nl": "Begin bij 2 en tel telkens 3 op, zolang de waarde kleiner is dan 9."
+            "en": "The first argument sets the start to 2. The step is 3, and stop 9 is excluded.",
+            "nl": "Het eerste argument zet het begin op 2. De stap is 3 en stop 9 is uitgesloten."
           }
         }
       ]
@@ -124,8 +124,8 @@
             "nl": "4"
           },
           "reason": {
-            "en": "len counts the two outer elements.",
-            "nl": "len telt de twee buitenste elementen."
+            "en": "len counts the two outer records, not all four values inside them.",
+            "nl": "len telt de twee buitenste records, niet alle vier waarden daarin."
           }
         },
         {
@@ -135,8 +135,8 @@
             "nl": "1"
           },
           "reason": {
-            "en": "len counts the two outer elements.",
-            "nl": "len telt de twee buitenste elementen."
+            "en": "The outer list has two elements. Each inner list counts as one whole element.",
+            "nl": "De buitenste list heeft twee elementen. Elke binnenste list telt als één volledig element."
           }
         }
       ]
@@ -168,8 +168,8 @@
             "nl": "[1, 2, 3]"
           },
           "reason": {
-            "en": "Index 1 is included and index 3 is excluded.",
-            "nl": "Index 1 telt mee; index 3 niet."
+            "en": "Start index 1 selects value 2. Indexing begins at zero.",
+            "nl": "Beginindex 1 kiest waarde 2. Indexes beginnen bij nul."
           }
         },
         {
@@ -179,8 +179,8 @@
             "nl": "[2, 3, 4]"
           },
           "reason": {
-            "en": "Index 1 is included and index 3 is excluded.",
-            "nl": "Index 1 telt mee; index 3 niet."
+            "en": "The value at stop index 3 is excluded, leaving values at indexes 1 and 2.",
+            "nl": "De waarde op stopindex 3 is uitgesloten; de waarden op indexes 1 en 2 blijven over."
           }
         }
       ]
@@ -212,8 +212,8 @@
             "nl": "[1, 2]"
           },
           "reason": {
-            "en": "Start two positions from the end and continue to the end.",
-            "nl": "Begin twee posities vóór het einde en ga door tot het einde."
+            "en": "The negative start anchors the slice at the end, not the beginning.",
+            "nl": "Het negatieve begin verankert de slice aan het einde, niet aan het begin."
           }
         },
         {
@@ -223,8 +223,8 @@
             "nl": "[2, 3]"
           },
           "reason": {
-            "en": "Start two positions from the end and continue to the end.",
-            "nl": "Begin twee posities vóór het einde en ga door tot het einde."
+            "en": "Index -2 is the second-to-last value, 3. The open stop includes the final 4 too.",
+            "nl": "Index -2 is de op één na laatste waarde, 3. Door de open stop telt de laatste 4 ook mee."
           }
         }
       ]
@@ -256,8 +256,8 @@
             "nl": "[2, 1, 3]"
           },
           "reason": {
-            "en": "insert places the value before index 1.",
-            "nl": "insert plaatst de waarde vóór index 1."
+            "en": "Index 1 inserts before the second item, so the first item remains first.",
+            "nl": "Index 1 voegt vóór het tweede item in, dus het eerste item blijft vooraan."
           }
         },
         {
@@ -267,11 +267,85 @@
             "nl": "[1, 3, 2]"
           },
           "reason": {
-            "en": "insert places the value before index 1.",
-            "nl": "insert plaatst de waarde vóór index 1."
+            "en": "insert opens the requested position. It does not append the new item at the end.",
+            "nl": "insert maakt ruimte op de gevraagde positie. Het voegt het nieuwe element niet achteraan toe."
           }
         }
-      ]
+      ],
+      "codeBlank": {
+        "prompt": {
+          "en": "Insert \"Clinic\" as the third stop, keeping every existing stop in order.",
+          "nl": "Voeg \"Clinic\" als derde stop in en behoud alle bestaande stops in hun volgorde."
+        },
+        "segments": [
+          "route = [\"Depot\", \"Bridge\", \"Dock\"]\n",
+          ".",
+          "(",
+          ", ",
+          ")\nprint(route)"
+        ],
+        "tokens": [
+          {
+            "id": "token-1",
+            "code": "route"
+          },
+          {
+            "id": "token-2",
+            "code": "insert"
+          },
+          {
+            "id": "token-3",
+            "code": "2"
+          },
+          {
+            "id": "token-4",
+            "code": "\"Clinic\""
+          },
+          {
+            "id": "token-5",
+            "code": "append"
+          },
+          {
+            "id": "token-6",
+            "code": "3"
+          },
+          {
+            "id": "token-7",
+            "code": "1"
+          }
+        ],
+        "blanks": [
+          {
+            "answer": "route",
+            "reason": {
+              "en": "Call the method on the route list itself.",
+              "nl": "Roep de method aan op de route-list zelf."
+            }
+          },
+          {
+            "answer": "insert",
+            "reason": {
+              "en": "insert adds at a position and shifts existing stops; append only adds at the end.",
+              "nl": "insert voegt op een positie toe en schuift bestaande stops op; append voegt alleen achteraan toe."
+            }
+          },
+          {
+            "answer": "2",
+            "reason": {
+              "en": "The third position has index 2 because indexing starts at zero.",
+              "nl": "De derde positie heeft index 2, omdat indexes bij nul beginnen."
+            }
+          },
+          {
+            "answer": "\"Clinic\"",
+            "reason": {
+              "en": "The inserted stop is a string, so its literal needs quotes.",
+              "nl": "De ingevoegde stop is een string, dus de literal heeft aanhalingstekens nodig."
+            }
+          }
+        ],
+        "output": "['Depot', 'Bridge', 'Clinic', 'Dock']\n"
+      }
     },
     {
       "id": "use-python-list-q7",
@@ -300,8 +374,8 @@
             "nl": "4"
           },
           "reason": {
-            "en": "pop without an index removes and returns the last value.",
-            "nl": "pop zonder index verwijdert de laatste waarde en geeft die terug."
+            "en": "Without an index, pop removes and returns the last value, 6. pop(0) would return 4.",
+            "nl": "Zonder index verwijdert pop de laatste waarde, 6, en geeft die terug. pop(0) zou 4 teruggeven."
           }
         },
         {
@@ -311,11 +385,73 @@
             "nl": "None"
           },
           "reason": {
-            "en": "pop without an index removes and returns the last value.",
-            "nl": "pop zonder index verwijdert de laatste waarde en geeft die terug."
+            "en": "Unlike sort, pop returns the removed item. Here that item is 6.",
+            "nl": "Anders dan sort geeft pop het verwijderde item terug. Hier is dat 6."
           }
         }
-      ]
+      ],
+      "codeBlank": {
+        "prompt": {
+          "en": "Cancel the third queued job using pop and keep its name in canceled.",
+          "nl": "Annuleer de derde klus in de wachtrij met pop en bewaar de naam in canceled."
+        },
+        "segments": [
+          "queue = [\"scan\", \"pack\", \"calibrate\", \"label\"]\ncanceled = ",
+          ".",
+          "(",
+          ")\nprint(canceled)\nprint(queue)"
+        ],
+        "tokens": [
+          {
+            "id": "token-1",
+            "code": "queue"
+          },
+          {
+            "id": "token-2",
+            "code": "pop"
+          },
+          {
+            "id": "token-3",
+            "code": "2"
+          },
+          {
+            "id": "token-4",
+            "code": "3"
+          },
+          {
+            "id": "token-5",
+            "code": "remove"
+          },
+          {
+            "id": "token-6",
+            "code": "0"
+          }
+        ],
+        "blanks": [
+          {
+            "answer": "queue",
+            "reason": {
+              "en": "Remove from queue; the returned value is assigned to canceled.",
+              "nl": "Verwijder uit queue; de teruggegeven waarde wordt aan canceled toegewezen."
+            }
+          },
+          {
+            "answer": "pop",
+            "reason": {
+              "en": "pop removes by index and returns the item. remove instead searches by value.",
+              "nl": "pop verwijdert op index en geeft het item terug. remove zoekt juist op waarde."
+            }
+          },
+          {
+            "answer": "2",
+            "reason": {
+              "en": "The third item is at index 2. Index 3 would cancel the fourth job.",
+              "nl": "Het derde item staat op index 2. Index 3 zou de vierde klus annuleren."
+            }
+          }
+        ],
+        "output": "calibrate\n['scan', 'pack', 'label']\n"
+      }
     },
     {
       "id": "use-python-list-q8",
@@ -344,8 +480,8 @@
             "nl": "2"
           },
           "reason": {
-            "en": "There are three elements equal to 2.",
-            "nl": "Drie elementen zijn gelijk aan 2."
+            "en": "2 is the value being counted. It occurs three times, not twice.",
+            "nl": "2 is de waarde die wordt geteld. Die komt drie keer voor, niet twee keer."
           }
         },
         {
@@ -355,8 +491,8 @@
             "nl": "4"
           },
           "reason": {
-            "en": "There are three elements equal to 2.",
-            "nl": "Drie elementen zijn gelijk aan 2."
+            "en": "There are four total entries, but only three match 2. count differs from len.",
+            "nl": "Er zijn vier elementen in totaal, maar slechts drie zijn gelijk aan 2. count verschilt van len."
           }
         }
       ]
@@ -388,8 +524,8 @@
             "nl": "[1, 2, 3]"
           },
           "reason": {
-            "en": "sort changes x in place and returns None.",
-            "nl": "sort verandert x en geeft None terug."
+            "en": "The list becomes [1, 2, 3], but this prints the method’s return value: None.",
+            "nl": "De list wordt [1, 2, 3], maar dit print de return value van de method: None."
           }
         },
         {
@@ -399,8 +535,8 @@
             "nl": "[3, 2, 1]"
           },
           "reason": {
-            "en": "sort changes x in place and returns None.",
-            "nl": "sort verandert x en geeft None terug."
+            "en": "The default sort is increasing, and its return value is None regardless of direction.",
+            "nl": "De standaard-sortering is oplopend en de return value is None, ongeacht de richting."
           }
         }
       ]
@@ -432,8 +568,8 @@
             "nl": "[1, 3]"
           },
           "reason": {
-            "en": "sorted returns a separate list, leaving x unchanged.",
-            "nl": "sorted geeft een aparte list terug en laat x ongewijzigd."
+            "en": "That is the new list stored in y. sorted leaves the printed original x unchanged.",
+            "nl": "Dat is de nieuwe list in y. sorted laat de geprinte oorspronkelijke x ongewijzigd."
           }
         },
         {
@@ -443,8 +579,8 @@
             "nl": "None"
           },
           "reason": {
-            "en": "sorted returns a separate list, leaving x unchanged.",
-            "nl": "sorted geeft een aparte list terug en laat x ongewijzigd."
+            "en": "sorted returns a new list to y; x still refers to its original list, not None.",
+            "nl": "sorted geeft een nieuwe list terug aan y; x verwijst nog steeds naar de oorspronkelijke list, niet naar None."
           }
         }
       ]
@@ -476,8 +612,8 @@
             "nl": "[2, 4, 7]"
           },
           "reason": {
-            "en": "reverse=True requests descending order.",
-            "nl": "reverse=True vraagt om aflopende volgorde."
+            "en": "reverse=True requests decreasing order, so the largest value comes first.",
+            "nl": "reverse=True vraagt om aflopende volgorde, dus de grootste waarde komt vooraan."
           }
         },
         {
@@ -487,8 +623,8 @@
             "nl": "[4, 2, 7]"
           },
           "reason": {
-            "en": "reverse=True requests descending order.",
-            "nl": "reverse=True vraagt om aflopende volgorde."
+            "en": "This is the unchanged input order. The printed sorted copy is decreasing.",
+            "nl": "Dit is de ongewijzigde invoervolgorde. De geprinte gesorteerde kopie is aflopend."
           }
         }
       ]
@@ -520,8 +656,8 @@
             "nl": "[1]"
           },
           "reason": {
-            "en": "The exclusive stop is zero, so no element is selected.",
-            "nl": "De uitgesloten stopgrens is nul; er wordt geen element gekozen."
+            "en": "Stop 0 is excluded. There are no positions before it in this slice.",
+            "nl": "Stop 0 is uitgesloten. Er liggen geen posities vóór deze grens in de slice."
           }
         },
         {
@@ -531,8 +667,8 @@
             "nl": "[1, 2, 3]"
           },
           "reason": {
-            "en": "The exclusive stop is zero, so no element is selected.",
-            "nl": "De uitgesloten stopgrens is nul; er wordt geen element gekozen."
+            "en": "An omitted start begins at zero, but the explicit stop is also zero, so the slice is empty.",
+            "nl": "Een weggelaten begin start op nul, maar de opgegeven stop is ook nul, dus de slice is leeg."
           }
         }
       ]

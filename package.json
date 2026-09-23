@@ -10,7 +10,7 @@
     "typecheck": "tsc -p frontend/tsconfig.json --noEmit && tsc -p backend/tsconfig.json --noEmit",
     "build": "npm run content && npm run setup:runtime && npm run typecheck && vite build --config frontend/vite.config.ts && tsc -p backend/tsconfig.json",
     "start": "node dist-server/index.js",
-    "test": "node tests/content.test.mjs && node tests/runtime.test.mjs && node tests/guided-content.test.mjs && node tests/control-flow.test.mjs && node tests/list-foundations.test.mjs && node tests/console.test.mjs && tsx --test tests/api.test.ts tests/workspace.test.ts tests/lesson-progress.test.ts tests/runner.test.ts tests/code-presentation.test.ts tests/terminal-line.test.ts tests/terminal-session.test.ts tests/quiz-blanks.test.ts",
+    "test": "node tests/content.test.mjs && node tests/runtime.test.mjs && node tests/guided-content.test.mjs && node tests/control-flow.test.mjs && node tests/list-foundations.test.mjs && node tests/list-operations.test.mjs && node tests/console.test.mjs && tsx --test tests/api.test.ts tests/workspace.test.ts tests/lesson-progress.test.ts tests/runner.test.ts tests/code-presentation.test.ts tests/terminal-line.test.ts tests/terminal-session.test.ts tests/quiz-blanks.test.ts",
     "launch": "node scripts/start.mjs"
   },
   "dependencies": {

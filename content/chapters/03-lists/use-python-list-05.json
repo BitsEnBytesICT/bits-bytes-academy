@@ -4,38 +4,120 @@
   "group": "use-python-list",
   "title": {
     "en": "Range bounds and step",
-    "nl": "Start, stop en step"
+    "nl": "Bouw een rooster met begin, grens en stap"
   },
   "kind": "coding",
   "optional": false,
   "explanation": {
-    "en": "range(start, stop, step) begins at start and advances by step while staying before the stop boundary. A negative step moves downward. A step of zero is invalid.",
-    "nl": "range(start, stop, step) begint bij start en gaat met step vooruit tot de stopgrens. Een negatieve step telt terug. Een step van nul is ongeldig."
+    "en": "A shuttle starts at a chosen hour and leaves at a regular interval. range(start, stop, step) expresses that rule directly. Start is included, stop is excluded, and step is the distance from one generated value to the next.",
+    "nl": "Een shuttle begint op een gekozen uur en vertrekt daarna met vaste tussenpozen. range(start, stop, step) drukt die regel direct uit. Start telt mee, stop is uitgesloten en step is het verschil tussen opeenvolgende waarden."
   },
   "example": "",
+  "sections": [
+    {
+      "heading": {
+        "en": "Stop is a boundary, not a promised final value",
+        "nl": "Stop is een grens, geen beloofde eindwaarde"
+      },
+      "body": {
+        "en": "Add the step repeatedly until the next value would reach or pass stop. A boundary does not need to be one of the generated values. Keep the argument order start, stop, step; swapping the last two changes the rule.",
+        "nl": "Tel de stap steeds op totdat de volgende waarde stop zou bereiken of voorbijgaan. De grens hoeft zelf niet in de reeks te vallen. Houd de volgorde start, stop, step aan; de laatste twee verwisselen verandert de regel."
+      },
+      "code": "departures = range(7, 18, 3)\nprint(list(departures))",
+      "output": "[7, 10, 13, 16]"
+    },
+    {
+      "heading": {
+        "en": "Count down with a negative step",
+        "nl": "Tel terug met een negatieve stap"
+      },
+      "body": {
+        "en": "A positive step cannot move from a larger start toward a smaller stop, so that range is empty. Use a negative step to count down. To include zero, put the excluded stop below zero. Step zero is invalid and raises ValueError.",
+        "nl": "Een positieve stap kan niet van een hoger begin naar een lagere stop bewegen; die range is leeg. Gebruik een negatieve stap om terug te tellen. Om nul op te nemen moet de uitgesloten stop onder nul liggen. Stap nul is ongeldig en geeft ValueError."
+      },
+      "code": "print(list(range(3, -1)))\nprint(list(range(3, -1, -1)))",
+      "output": "[]\n[3, 2, 1, 0]"
+    }
+  ],
   "files": {
-    "main.py": "# Write your code below.\n"
+    "main.py": "start = 6\nstop = 19\ninterval = 4\ndepartures = range(start, stop)\nprint(\"Departures:\", list(departures))\n# This countdown currently has the wrong direction.\ncountdown = list(range(3, -1))\nprint(\"Countdown:\", countdown)\n"
   },
   "solution": {
-    "main.py": "departures = list(range(8, 18, 2))\nprint(departures)\n"
+    "main.py": "start = 6\nstop = 19\ninterval = 4\ndepartures = range(start, stop, interval)\nprint(\"Departures:\", list(departures))\nlast_departure = list(departures)[-1]\nprint(\"Last departure:\", last_departure)\ncountdown = list(range(3, -1, -1))\nprint(\"Countdown:\", countdown)\n"
   },
   "checkpoints": [
     {
-      "id": "use-python-list-05-step-1",
+      "id": "use-python-list-05-v2-step-1",
       "task": {
-        "en": "Create departures containing 8, 10, 12, 14, and 16 using range.",
-        "nl": "Maak departures met 8, 10, 12, 14 en 16 via range."
+        "en": "Repair `departures` to use all three supplied settings. Its expanded values should be 6, 10, 14 and 18.",
+        "nl": "Herstel `departures` zodat alle drie instellingen worden gebruikt. De uitgewerkte waarden horen 6, 10, 14 en 18 te zijn."
       },
-      "check": "departures == [8,10,12,14,16] and 'range' in _source",
+      "check": "type(departures) is range and departures == range(start, stop, interval) and list(departures) == [6,10,14,18]",
+      "feedback": {
+        "en": "Build the schedule from start, stop and interval; do not hard-code this one schedule.",
+        "nl": "Bouw het rooster op uit start, stop en interval; leg niet alleen dit ene rooster vast."
+      },
+      "cases": [
+        {
+          "inputs": {
+            "start": 8,
+            "stop": 17,
+            "interval": 3
+          },
+          "check": "list(departures) == [8,11,14]"
+        }
+      ],
       "hint": {
-        "en": "Start with departures = list(range(8, 18, 2)). Then compare the values with the task.",
-        "nl": "Begin met departures = list(range(8, 18, 2)). Vergelijk de waarden daarna met de opdracht."
+        "en": "The interval is the third argument, after the excluded stop.",
+        "nl": "De tussenpoos is het derde argument, na de uitgesloten stop."
+      }
+    },
+    {
+      "id": "use-python-list-05-v2-step-2",
+      "task": {
+        "en": "Read the final generated hour into `last_departure`, then print it with \"Last departure:\". Derive it from the range instead of using stop - 1.",
+        "nl": "Lees het laatste gegenereerde uur uit naar `last_departure` en print het met \"Last departure:\". Leid het af uit de range in plaats van stop - 1 te gebruiken."
+      },
+      "check": "last_departure == 18 and 'Last departure: 18' in _stdout.splitlines()",
+      "feedback": {
+        "en": "Select the last scheduled hour; the excluded boundary is not itself a departure.",
+        "nl": "Kies het laatste geplande uur; de uitgesloten grens is zelf geen vertrek."
+      },
+      "cases": [
+        {
+          "inputs": {
+            "start": 8,
+            "stop": 17,
+            "interval": 3
+          },
+          "check": "last_departure == 14"
+        }
+      ],
+      "hint": {
+        "en": "Convert the range to a list and select its last item. The final value need not be one below stop.",
+        "nl": "Zet de range om in een list en kies het laatste item. De laatste waarde ligt niet altijd één onder stop."
+      }
+    },
+    {
+      "id": "use-python-list-05-v2-step-3",
+      "task": {
+        "en": "Repair `countdown` to contain 3, 2, 1, 0, using a negative step. Keep its Countdown print and run the complete program.",
+        "nl": "Herstel `countdown` zodat deze 3, 2, 1, 0 bevat, met een negatieve stap. Behoud de Countdown-print en voer het hele programma uit."
+      },
+      "check": "countdown == [3,2,1,0] and 'Countdown: [3, 2, 1, 0]' in _stdout.splitlines()",
+      "feedback": {
+        "en": "Move down one unit each time and include zero before reaching the excluded -1 boundary.",
+        "nl": "Ga telkens één omlaag en neem nul op voordat de uitgesloten grens -1 wordt bereikt."
+      },
+      "hint": {
+        "en": "The start and stop are already suitable. Add a step of -1.",
+        "nl": "Het begin en de stop zijn al geschikt. Voeg een stap van -1 toe."
       }
     }
   ],
   "solutionNote": {
-    "en": "range(start, stop, step) begins at start and advances by step while staying before the stop boundary. A negative step moves downward. A step of zero is invalid.\n\nTrace the solution one line at a time. Try a different input to see which parts change.",
-    "nl": "range(start, stop, step) begint bij start en gaat met step vooruit tot de stopgrens. Een negatieve step telt terug. Een step van nul is ongeldig.\n\nVolg de oplossing regel voor regel. Probeer een andere invoer en bekijk welke onderdelen veranderen."
+    "en": "The forward schedule follows configurable intervals. The last value comes from the generated sequence, not arithmetic on the boundary. The countdown demonstrates that step direction controls whether a range contains any values.",
+    "nl": "Het rooster volgt instelbare tussenpozen. De laatste waarde komt uit de gegenereerde reeks, niet uit een berekening met de grens. De aftelling laat zien dat de staprichting bepaalt of een range waarden bevat."
   },
   "sourcePosition": 5,
   "sourceUrl": "https://www.codecademy.com/courses/learn-python-3/lessons/use-python-list/exercises/the-power-of-range",
