@@ -4,38 +4,220 @@
   "group": "learn-python-loops",
   "title": {
     "en": "Nested loops",
-    "nl": "Geneste loops"
+    "nl": "Bouw rijtotalen en een eindtotaal"
   },
   "kind": "coding",
   "optional": false,
   "explanation": {
-    "en": "A nested loop runs its inner loop for each outer element. For a table, the outer loop selects a row and the inner loop selects values in that row.",
-    "nl": "Een geneste loop voert de binnenste loop uit voor elk buitenste element. Bij een tabel kiest de buitenste loop een rij en de binnenste loop waarden in die rij."
+    "en": "Measurements arrive in batches of different sizes. One loop visits a batch; another loop inside it visits that batch's values. The inner loop starts afresh for each outer iteration. We need both a subtotal per batch and a grand total across the complete delivery.",
+    "nl": "Metingen komen binnen in batches van verschillende grootte. Eén loop bezoekt een batch; een loop daarbinnen bezoekt de waarden van die batch. De binnenste loop begint opnieuw bij elke buitenste iteratie. We hebben zowel een subtotaal per batch als een eindtotaal over de hele levering nodig."
   },
   "example": "",
+  "sections": [
+    {
+      "heading": {
+        "en": "Which collection does each loop visit?",
+        "nl": "Welke verzameling bezoekt elke loop?"
+      },
+      "body": {
+        "en": "The outer variable is a list, not a number. The inner variable is one value from that list. Notice that the inner loop reads row rather than the complete batches collection. An empty row has no inner iterations, but the outer loop still visits it.",
+        "nl": "De buitenste variabele is een list, geen getal. De binnenste variabele is één waarde uit die list. De binnenste loop leest row en niet de hele verzameling batches. Een lege rij heeft geen binnenste iteraties, maar de buitenste loop bezoekt deze wel."
+      },
+      "code": "batches = [[2, 5], [], [8]]\nfor row in batches:\n    print(\"Batch:\", row)\n    for value in row:\n        print(\"Value:\", value)",
+      "output": "Batch: [2, 5]\nValue: 2\nValue: 5\nBatch: []\nBatch: [8]\nValue: 8"
+    },
+    {
+      "heading": {
+        "en": "Reset at the right level",
+        "nl": "Begin op het juiste niveau opnieuw"
+      },
+      "body": {
+        "en": "Create grand_total before both loops so it survives the entire run. Reset row_total inside the outer loop so each batch starts at zero. Add each value to both totals inside the inner loop. Append the row total after the inner loop; even an empty batch contributes a zero subtotal.",
+        "nl": "Maak grand_total vóór beide loops zodat dit de hele uitvoering behouden blijft. Zet row_total binnen de buitenste loop op nul zodat elke batch opnieuw begint. Tel binnen de binnenste loop elke waarde bij beide totalen op. Voeg het rijtotaal na de binnenste loop toe; ook een lege batch krijgt een subtotaal van nul."
+      },
+      "code": "totals = []\nfor row in [[2, 5], [], [8]]:\n    subtotal = 0\n    for value in row:\n        subtotal += value\n    totals.append(subtotal)\nprint(totals)",
+      "output": "[7, 0, 8]"
+    }
+  ],
   "files": {
-    "main.py": "grid = [[2, 4], [6, 8]]\ntotal = 0\n"
+    "main.py": "batches = [[3, 5], [2], [4, 1, 6]]\nreadings = []\nrow_totals = []\ngrand_total = 0\nprint(\"Batches:\", len(batches))\n# Outer loop: one batch. Inner loop: one reading.\n"
   },
   "solution": {
-    "main.py": "grid = [[2, 4], [6, 8]]\ntotal = 0\nfor row in grid:\n    for value in row:\n        total += value\nprint(total)\n"
+    "main.py": "batches = [[3, 5], [2], [4, 1, 6]]\nreadings = []\nrow_totals = []\ngrand_total = 0\nprint(\"Batches:\", len(batches))\nfor row in batches:\n    row_total = 0\n    for value in row:\n        readings.append(value)\n        row_total += value\n        grand_total += value\n    row_totals.append(row_total)\nprint(\"Rows:\", row_totals)\nprint(\"Grand total:\", grand_total)\n"
   },
   "checkpoints": [
     {
-      "id": "learn-python-loops-10-step-1",
+      "id": "learn-python-loops-10-v2-step-1",
       "task": {
-        "en": "Use nested loops to add every grid value into total.",
-        "nl": "Gebruik geneste loops om alle grid-waarden op te tellen in total."
+        "en": "Use two nested for loops to append each individual reading to readings, in batch order.",
+        "nl": "Gebruik twee geneste for-loops om elke afzonderlijke meting in batchvolgorde aan readings toe te voegen."
       },
-      "check": "total == 20 and sum(isinstance(n,_ast.For) for n in _ast.walk(_ast.parse(_source))) >= 2",
+      "check": "readings == [v for row in batches for v in row] and any(isinstance(n,_ast.For) and any(isinstance(child,_ast.For) for statement in n.body for child in _ast.walk(statement)) for n in _ast.walk(_ast.parse(_source)))",
+      "feedback": {
+        "en": "Loop over batches first, then over the current row. Append values, not entire rows.",
+        "nl": "Loop eerst over batches en daarna over de huidige rij. Voeg waarden toe, geen hele rijen."
+      },
+      "cases": [
+        {
+          "inputs": {
+            "batches": []
+          },
+          "check": "readings == [v for row in batches for v in row]"
+        },
+        {
+          "inputs": {
+            "batches": [
+              [],
+              [
+                5,
+                -2
+              ],
+              [],
+              [
+                0,
+                7,
+                1
+              ]
+            ]
+          },
+          "check": "readings == [v for row in batches for v in row]"
+        },
+        {
+          "inputs": {
+            "batches": [
+              [
+                4
+              ],
+              [
+                2,
+                2
+              ]
+            ]
+          },
+          "check": "readings == [v for row in batches for v in row]"
+        }
+      ],
       "hint": {
-        "en": "Start with grid = [[2, 4], [6, 8]]. Then compare the values with the task.",
-        "nl": "Begin met grid = [[2, 4], [6, 8]]. Vergelijk de waarden daarna met de opdracht."
+        "en": "Loop over batches first, then over the current row. Append values, not entire rows.",
+        "nl": "Loop eerst over batches en daarna over de huidige rij. Voeg waarden toe, geen hele rijen."
+      }
+    },
+    {
+      "id": "learn-python-loops-10-v2-step-2",
+      "task": {
+        "en": "Calculate row_totals and grand_total with your loops. Reset each row's subtotal, but keep the grand total across rows.",
+        "nl": "Bereken row_totals en grand_total met je loops. Begin het subtotaal per rij opnieuw, maar behoud het eindtotaal tussen rijen."
+      },
+      "check": "row_totals == [sum(row) for row in batches] and grand_total == sum([v for row in batches for v in row])",
+      "feedback": {
+        "en": "Reset row_total at the start of each outer iteration. Append it after the inner loop, including zero for an empty row.",
+        "nl": "Zet row_total aan het begin van elke buitenste iteratie op nul. Voeg deze na de binnenste loop toe, inclusief nul bij een lege rij."
+      },
+      "cases": [
+        {
+          "inputs": {
+            "batches": []
+          },
+          "check": "row_totals == [sum(row) for row in batches] and grand_total == sum([v for row in batches for v in row])"
+        },
+        {
+          "inputs": {
+            "batches": [
+              [],
+              [
+                5,
+                -2
+              ],
+              [],
+              [
+                0,
+                7,
+                1
+              ]
+            ]
+          },
+          "check": "row_totals == [sum(row) for row in batches] and grand_total == sum([v for row in batches for v in row])"
+        },
+        {
+          "inputs": {
+            "batches": [
+              [
+                4
+              ],
+              [
+                2,
+                2
+              ]
+            ]
+          },
+          "check": "row_totals == [sum(row) for row in batches] and grand_total == sum([v for row in batches for v in row])"
+        }
+      ],
+      "hint": {
+        "en": "Reset row_total at the start of each outer iteration. Append it after the inner loop, including zero for an empty row.",
+        "nl": "Zet row_total aan het begin van elke buitenste iteratie op nul. Voeg deze na de binnenste loop toe, inclusief nul bij een lege rij."
+      }
+    },
+    {
+      "id": "learn-python-loops-10-v2-step-3",
+      "task": {
+        "en": "After both loops, print Rows: with the subtotals and Grand total: with the overall sum. Keep the Batches line.",
+        "nl": "Druk na beide loops Rows: met de subtotalen en Grand total: met de totale som af. Behoud de Batches-regel."
+      },
+      "check": "_stdout.splitlines() == ['Batches: ' + str(len(batches)), 'Rows: ' + str([sum(row) for row in batches]), 'Grand total: ' + str(sum([v for row in batches for v in row]))]",
+      "feedback": {
+        "en": "Place the final report at the left margin. The row list includes one subtotal for every batch.",
+        "nl": "Zet het slotrapport tegen de linkermarge. De rijlist bevat één subtotaal voor elke batch."
+      },
+      "cases": [
+        {
+          "inputs": {
+            "batches": []
+          },
+          "check": "_stdout.splitlines() == ['Batches: ' + str(len(batches)), 'Rows: ' + str([sum(row) for row in batches]), 'Grand total: ' + str(sum([v for row in batches for v in row]))]"
+        },
+        {
+          "inputs": {
+            "batches": [
+              [],
+              [
+                5,
+                -2
+              ],
+              [],
+              [
+                0,
+                7,
+                1
+              ]
+            ]
+          },
+          "check": "_stdout.splitlines() == ['Batches: ' + str(len(batches)), 'Rows: ' + str([sum(row) for row in batches]), 'Grand total: ' + str(sum([v for row in batches for v in row]))]"
+        },
+        {
+          "inputs": {
+            "batches": [
+              [
+                4
+              ],
+              [
+                2,
+                2
+              ]
+            ]
+          },
+          "check": "_stdout.splitlines() == ['Batches: ' + str(len(batches)), 'Rows: ' + str([sum(row) for row in batches]), 'Grand total: ' + str(sum([v for row in batches for v in row]))]"
+        }
+      ],
+      "hint": {
+        "en": "Place the final report at the left margin. The row list includes one subtotal for every batch.",
+        "nl": "Zet het slotrapport tegen de linkermarge. De rijlist bevat één subtotaal voor elke batch."
       }
     }
   ],
   "solutionNote": {
-    "en": "A nested loop runs its inner loop for each outer element. For a table, the outer loop selects a row and the inner loop selects values in that row.\n\nTrace the solution one line at a time. Try a different input to see which parts change.",
-    "nl": "Een geneste loop voert de binnenste loop uit voor elk buitenste element. Bij een tabel kiest de buitenste loop een rij en de binnenste loop waarden in die rij.\n\nVolg de oplossing regel voor regel. Probeer een andere invoer en bekijk welke onderdelen veranderen."
+    "en": "The nested loops visit each value once. row_total restarts for every row; grand_total does not. Appending the subtotal outside the inner loop preserves a zero entry for empty batches and prevents partial subtotals from leaking into the report.",
+    "nl": "De geneste loops bezoeken elke waarde één keer. row_total begint per rij opnieuw; grand_total niet. Het subtotaal buiten de binnenste loop toevoegen bewaart een nul voor lege batches en voorkomt dat tussentotalen in het rapport belanden."
   },
   "sourcePosition": 10,
   "sourceUrl": "https://www.codecademy.com/courses/learn-python-3/lessons/learn-python-loops/exercises/nested",

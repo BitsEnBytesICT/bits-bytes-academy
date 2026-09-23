@@ -4,38 +4,202 @@
   "group": "learn-python-loops",
   "title": {
     "en": "Comprehension filtering",
-    "nl": "Filteren in een comprehension"
+    "nl": "Filteren of vervangen: twee verschillende vragen"
   },
   "kind": "coding",
   "optional": false,
   "explanation": {
-    "en": "Add if condition at the end of a comprehension to filter input elements. Only matching elements contribute to the new list; the transformation still appears first.",
-    "nl": "Voeg if condition toe aan het einde van een comprehension om invoerelementen te filteren. Alleen passende elementen komen in de nieuwe list; de bewerking staat nog steeds vooraan."
+    "en": "A report needs two views of the same data: only the measurements above a limit, and a status for every measurement. Filtering can shorten a list. A conditional expression chooses a result for every item and keeps the list length. The placement of if tells you which job a comprehension is doing.",
+    "nl": "Een rapport heeft twee weergaven van dezelfde gegevens nodig: alleen metingen boven een grens en een status voor elke meting. Filteren kan een list korter maken. Een conditionele expressie kiest een resultaat voor elk onderdeel en behoudt de listlengte. De plaats van if vertelt welke taak de comprehension uitvoert."
   },
   "example": "",
+  "sections": [
+    {
+      "heading": {
+        "en": "A trailing if selects items",
+        "nl": "Een if achteraan selecteert onderdelen"
+      },
+      "body": {
+        "en": "Read [value for value in values if value > limit] as: visit each value, keep it only if the condition passes. Equal-to-limit values are excluded by a strict > condition. You can also transform the accepted value, such as calculating how far it exceeds the limit.",
+        "nl": "Lees [value for value in values if value > limit] als: bezoek elke waarde en behoud deze alleen als de voorwaarde klopt. Waarden gelijk aan de grens worden uitgesloten door een strikte >-voorwaarde. Je kunt de geaccepteerde waarde ook bewerken, bijvoorbeeld berekenen hoeveel deze de grens overschrijdt."
+      },
+      "code": "values = [3, 7, 5, 9]\nlimit = 5\nprint([value for value in values if value > limit])\nprint([value - limit for value in values if value > limit])",
+      "output": "[7, 9]\n[2, 4]"
+    },
+    {
+      "heading": {
+        "en": "An if/else expression chooses an output",
+        "nl": "Een if/else-expressie kiest een resultaat"
+      },
+      "body": {
+        "en": "Put the complete choice before for: ['high' if value > limit else 'ok' for value in values]. This produces one label for every input. It does not discard the ok measurements. Do not put else after a trailing filter condition; that is not valid comprehension syntax.",
+        "nl": "Zet de volledige keuze vóór for: ['high' if value > limit else 'ok' for value in values]. Dit maakt één label per invoerwaarde. De ok-metingen worden niet weggelaten. Zet else niet na een filtervoorwaarde achteraan; dat is geen geldige comprehensionsyntax."
+      },
+      "code": "values = [3, 7, 5, 9]\nlabels = [\"high\" if value > 5 else \"ok\" for value in values]\nprint(labels)",
+      "output": "['ok', 'high', 'ok', 'high']"
+    }
+  ],
   "files": {
-    "main.py": "raw = [-2, 0, 3, 5]\n"
+    "main.py": "values = [3, 8, 5, 0, 11, -2]\nlimit = 5\nprint(\"Input:\", values)\n# 1. Keep values strictly above the limit.\n# 2. Measure each selected value's excess.\n# 3. Label EVERY original measurement.\n"
   },
   "solution": {
-    "main.py": "raw = [-2, 0, 3, 5]\npositive_squares = [value ** 2 for value in raw if value > 0]\nprint(positive_squares)\n"
+    "main.py": "values = [3, 8, 5, 0, 11, -2]\nlimit = 5\nprint(\"Input:\", values)\nalerts = [value for value in values if value > limit]\nprint(\"Alerts:\", alerts)\nexcess = [value - limit for value in values if value > limit]\nprint(\"Excess:\", excess)\nlabels = [\"high\" if value > limit else \"ok\" for value in values]\nprint(\"Labels:\", labels)\n"
   },
   "checkpoints": [
     {
-      "id": "learn-python-loops-12-step-1",
+      "id": "learn-python-loops-12-v2-step-1",
       "task": {
-        "en": "Create positive_squares from the squares of values greater than zero in raw.",
-        "nl": "Maak positive_squares met de kwadraten van waarden groter dan nul in raw."
+        "en": "Create alerts with a filtering comprehension containing only values strictly above limit. Print Alerts: with the list.",
+        "nl": "Maak alerts met een filterende comprehension die alleen waarden strikt boven limit bevat. Druk Alerts: met de list af."
       },
-      "check": "positive_squares == [9,25] and any(isinstance(n,_ast.ListComp) for n in _ast.walk(_ast.parse(_source)))",
+      "check": "(alerts == [v for v in values if v > limit] and ('Alerts: ' + str(alerts)) in _stdout.splitlines()) and any(isinstance(n, _ast.ListComp) for n in _ast.walk(_ast.parse(_source)))",
+      "feedback": {
+        "en": "Put if value > limit after the for clause. Values equal to the limit do not qualify.",
+        "nl": "Zet if value > limit na het for-deel. Waarden gelijk aan de grens voldoen niet."
+      },
+      "cases": [
+        {
+          "inputs": {
+            "values": [],
+            "limit": 5
+          },
+          "check": "alerts == [v for v in values if v > limit] and ('Alerts: ' + str(alerts)) in _stdout.splitlines()"
+        },
+        {
+          "inputs": {
+            "values": [
+              5,
+              6,
+              4,
+              0,
+              -1,
+              6
+            ],
+            "limit": 5
+          },
+          "check": "alerts == [v for v in values if v > limit] and ('Alerts: ' + str(alerts)) in _stdout.splitlines()"
+        },
+        {
+          "inputs": {
+            "values": [
+              1,
+              2,
+              3
+            ],
+            "limit": 0
+          },
+          "check": "alerts == [v for v in values if v > limit] and ('Alerts: ' + str(alerts)) in _stdout.splitlines()"
+        }
+      ],
       "hint": {
-        "en": "Start with raw = [-2, 0, 3, 5]. Then compare the values with the task.",
-        "nl": "Begin met raw = [-2, 0, 3, 5]. Vergelijk de waarden daarna met de opdracht."
+        "en": "Put if value > limit after the for clause. Values equal to the limit do not qualify.",
+        "nl": "Zet if value > limit na het for-deel. Waarden gelijk aan de grens voldoen niet."
+      }
+    },
+    {
+      "id": "learn-python-loops-12-v2-step-2",
+      "task": {
+        "en": "Create excess with a comprehension: for each alert, store the amount above limit. Print Excess: and that list.",
+        "nl": "Maak excess met een comprehension: bewaar voor elke waarschuwing de hoeveelheid boven limit. Druk Excess: en die list af."
+      },
+      "check": "(excess == [v - limit for v in values if v > limit] and ('Excess: ' + str(excess)) in _stdout.splitlines()) and any(isinstance(n, _ast.ListComp) for n in _ast.walk(_ast.parse(_source)))",
+      "feedback": {
+        "en": "Subtract limit from each selected value. Preserve the order and repeated readings.",
+        "nl": "Trek limit van elke geselecteerde waarde af. Behoud de volgorde en herhaalde metingen."
+      },
+      "cases": [
+        {
+          "inputs": {
+            "values": [],
+            "limit": 5
+          },
+          "check": "excess == [v - limit for v in values if v > limit] and ('Excess: ' + str(excess)) in _stdout.splitlines()"
+        },
+        {
+          "inputs": {
+            "values": [
+              5,
+              6,
+              4,
+              0,
+              -1,
+              6
+            ],
+            "limit": 5
+          },
+          "check": "excess == [v - limit for v in values if v > limit] and ('Excess: ' + str(excess)) in _stdout.splitlines()"
+        },
+        {
+          "inputs": {
+            "values": [
+              1,
+              2,
+              3
+            ],
+            "limit": 0
+          },
+          "check": "excess == [v - limit for v in values if v > limit] and ('Excess: ' + str(excess)) in _stdout.splitlines()"
+        }
+      ],
+      "hint": {
+        "en": "Subtract limit from each selected value. Preserve the order and repeated readings.",
+        "nl": "Trek limit van elke geselecteerde waarde af. Behoud de volgorde en herhaalde metingen."
+      }
+    },
+    {
+      "id": "learn-python-loops-12-v2-step-3",
+      "task": {
+        "en": "Create labels for every original value using 'high' above the limit and 'ok' otherwise. Print Labels: with the full list.",
+        "nl": "Maak labels voor elke oorspronkelijke waarde: 'high' boven de grens en anders 'ok'. Druk Labels: met de volledige list af."
+      },
+      "check": "(labels == ['high' if v > limit else 'ok' for v in values] and ('Labels: ' + str(labels)) in _stdout.splitlines()) and any(isinstance(n, _ast.IfExp) for n in _ast.walk(_ast.parse(_source)))",
+      "feedback": {
+        "en": "Put the if/else expression before for. This task chooses a label for every value rather than filtering values out.",
+        "nl": "Zet de if/else-expressie vóór for. Deze taak kiest een label voor elke waarde in plaats van waarden weg te filteren."
+      },
+      "cases": [
+        {
+          "inputs": {
+            "values": [],
+            "limit": 5
+          },
+          "check": "labels == ['high' if v > limit else 'ok' for v in values] and ('Labels: ' + str(labels)) in _stdout.splitlines()"
+        },
+        {
+          "inputs": {
+            "values": [
+              5,
+              6,
+              4,
+              0,
+              -1,
+              6
+            ],
+            "limit": 5
+          },
+          "check": "labels == ['high' if v > limit else 'ok' for v in values] and ('Labels: ' + str(labels)) in _stdout.splitlines()"
+        },
+        {
+          "inputs": {
+            "values": [
+              1,
+              2,
+              3
+            ],
+            "limit": 0
+          },
+          "check": "labels == ['high' if v > limit else 'ok' for v in values] and ('Labels: ' + str(labels)) in _stdout.splitlines()"
+        }
+      ],
+      "hint": {
+        "en": "Put the if/else expression before for. This task chooses a label for every value rather than filtering values out.",
+        "nl": "Zet de if/else-expressie vóór for. Deze taak kiest een label voor elke waarde in plaats van waarden weg te filteren."
       }
     }
   ],
   "solutionNote": {
-    "en": "Add if condition at the end of a comprehension to filter input elements. Only matching elements contribute to the new list; the transformation still appears first.\n\nTrace the solution one line at a time. Try a different input to see which parts change.",
-    "nl": "Voeg if condition toe aan het einde van een comprehension om invoerelementen te filteren. Alleen passende elementen komen in de nieuwe list; de bewerking staat nog steeds vooraan.\n\nVolg de oplossing regel voor regel. Probeer een andere invoer en bekijk welke onderdelen veranderen."
+    "en": "alerts selects data; excess transforms only the selected data. labels answers a different question for every original measurement. The boundary value belongs to ok and does not appear in alerts.",
+    "nl": "alerts selecteert gegevens; excess bewerkt alleen de geselecteerde gegevens. labels beantwoordt een andere vraag voor elke oorspronkelijke meting. De grenswaarde hoort bij ok en staat niet in alerts."
   },
   "sourcePosition": 12,
   "sourceUrl": "https://www.codecademy.com/courses/learn-python-3/lessons/learn-python-loops/exercises/list-comprehension",

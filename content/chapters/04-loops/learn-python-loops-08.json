@@ -4,38 +4,226 @@
   "group": "learn-python-loops",
   "title": {
     "en": "Breaking early",
-    "nl": "Vroeg stoppen met break"
+    "nl": "Stop bij de eerste afwijkende meting"
   },
   "kind": "coding",
   "optional": false,
   "explanation": {
-    "en": "break immediately exits the innermost loop. Statements after break in the same iteration are skipped. It is useful when a search has already found what it needs.",
-    "nl": "break verlaat direct de binnenste loop. Regels na break in dezelfde herhaling worden overgeslagen. Dat is handig als een zoekactie haar doel al heeft gevonden."
+    "en": "A monitor needs the first measurement above its limit. Once that first alert is found, later values should not replace it. break immediately exits the nearest loop; it does not end the whole program. We will keep an inspection trail to make the stopping point visible.",
+    "nl": "Een monitor zoekt de eerste meting boven de grens. Zodra die eerste waarschuwing gevonden is, mogen latere waarden deze niet vervangen. break verlaat meteen de dichtstbijzijnde loop; het beëindigt niet het hele programma. We bewaren een controleverslag om het stoppunt zichtbaar te maken."
   },
   "example": "",
+  "sections": [
+    {
+      "heading": {
+        "en": "Record the result before leaving",
+        "nl": "Bewaar het resultaat voordat je stopt"
+      },
+      "body": {
+        "en": "Check each value inside the loop. When the condition matches, save that value and then break. Anything after break in that iteration is skipped. If nothing matches, the initial None remains; None represents the absence of a result here.",
+        "nl": "Controleer elke waarde binnen de loop. Bewaar de waarde wanneer de voorwaarde klopt en gebruik daarna break. Alles na break in die iteratie wordt overgeslagen. Als niets past, blijft de beginwaarde None staan; None stelt hier het ontbreken van een resultaat voor."
+      },
+      "code": "found = None\nfor value in [2, 9, 12]:\n    if value > 7:\n        found = value\n        break\nprint(found)\nprint(\"Search ended\")",
+      "output": "9\nSearch ended"
+    },
+    {
+      "heading": {
+        "en": "Make the work visible",
+        "nl": "Maak het werk zichtbaar"
+      },
+      "body": {
+        "en": "Append each value to inspected before testing it. This includes the matching value but excludes later ones after break. A match at the beginning needs one visit; no match needs every visit. The final prints belong outside the loop so they also appear for an empty input.",
+        "nl": "Voeg elke waarde vóór de test toe aan inspected. Daardoor telt de passende waarde mee, maar latere waarden na break niet. Een match aan het begin vraagt één bezoek; zonder match zijn alle bezoeken nodig. De slotprints horen buiten de loop zodat ze ook bij lege invoer verschijnen."
+      },
+      "code": "inspected = []\nfor value in [2, 9, 12]:\n    inspected.append(value)\n    if value > 7:\n        break\nprint(inspected)",
+      "output": "[2, 9]"
+    }
+  ],
   "files": {
-    "main.py": "values = [4, 8, 12, 18]\nfound = None\n"
+    "main.py": "values = [4, 8, 12, 18]\nlimit = 10\nfound = None\ninspected = []\nprint(\"Limit:\", limit)\n# Find the FIRST value above limit and stop searching.\n"
   },
   "solution": {
-    "main.py": "values = [4, 8, 12, 18]\nfound = None\nfor value in values:\n    if value > 10:\n        found = value\n        break\nprint(found)\n"
+    "main.py": "values = [4, 8, 12, 18]\nlimit = 10\nfound = None\ninspected = []\nprint(\"Limit:\", limit)\nfor value in values:\n    inspected.append(value)\n    if value > limit:\n        found = value\n        break\nprint(\"Inspected:\", inspected)\nprint(\"First alert:\", found)\n"
   },
   "checkpoints": [
     {
-      "id": "learn-python-loops-08-step-1",
+      "id": "learn-python-loops-08-v2-step-1",
       "task": {
-        "en": "Find the first value above 10 in values, store it in found, and stop searching.",
-        "nl": "Zoek de eerste waarde boven 10 in values, sla deze op in found en stop met zoeken."
+        "en": "Use a for loop and break to store the first value strictly above limit in found. Leave found as None when no value matches.",
+        "nl": "Gebruik een for-loop en break om de eerste waarde strikt boven limit in found te bewaren. Laat found op None staan als geen waarde past."
       },
-      "check": "found == 12 and any(isinstance(n,_ast.Break) for n in _ast.walk(_ast.parse(_source)))",
+      "check": "(found == ([v for v in values if v > limit][0] if len([v for v in values if v > limit]) else None)) and any(isinstance(n, _ast.Break) for n in _ast.walk(_ast.parse(_source)))",
+      "feedback": {
+        "en": "Save the matching value before break. Use > rather than >= and do not overwrite the first match with a later one.",
+        "nl": "Bewaar de passende waarde vóór break. Gebruik > in plaats van >= en overschrijf de eerste match niet met een latere."
+      },
+      "cases": [
+        {
+          "inputs": {
+            "values": [
+              15,
+              2,
+              18
+            ],
+            "limit": 10
+          },
+          "check": "found == ([v for v in values if v > limit][0] if len([v for v in values if v > limit]) else None)"
+        },
+        {
+          "inputs": {
+            "values": [
+              1,
+              2,
+              3
+            ],
+            "limit": 10
+          },
+          "check": "found == ([v for v in values if v > limit][0] if len([v for v in values if v > limit]) else None)"
+        },
+        {
+          "inputs": {
+            "values": [],
+            "limit": 10
+          },
+          "check": "found == ([v for v in values if v > limit][0] if len([v for v in values if v > limit]) else None)"
+        },
+        {
+          "inputs": {
+            "values": [
+              10,
+              11,
+              11
+            ],
+            "limit": 10
+          },
+          "check": "found == ([v for v in values if v > limit][0] if len([v for v in values if v > limit]) else None)"
+        }
+      ],
       "hint": {
-        "en": "Start with values = [4, 8, 12, 18]. Then compare the values with the task.",
-        "nl": "Begin met values = [4, 8, 12, 18]. Vergelijk de waarden daarna met de opdracht."
+        "en": "Save the matching value before break. Use > rather than >= and do not overwrite the first match with a later one.",
+        "nl": "Bewaar de passende waarde vóór break. Gebruik > in plaats van >= en overschrijf de eerste match niet met een latere."
+      }
+    },
+    {
+      "id": "learn-python-loops-08-v2-step-2",
+      "task": {
+        "en": "Append each visited value to inspected before checking the limit. Include the first alert but no later measurements.",
+        "nl": "Voeg elke bezochte waarde aan inspected toe vóór de grenscontrole. Neem de eerste waarschuwing mee maar geen latere metingen."
+      },
+      "check": "found == ([v for v in values if v > limit][0] if len([v for v in values if v > limit]) else None) and inspected == (values[:values.index(found) + 1] if found is not None else values)",
+      "feedback": {
+        "en": "Place append before the condition; keep break inside the matching branch. A no-match run must inspect the full list.",
+        "nl": "Zet append vóór de voorwaarde; houd break binnen de passende branch. Zonder match moet de hele list worden bekeken."
+      },
+      "cases": [
+        {
+          "inputs": {
+            "values": [
+              15,
+              2,
+              18
+            ],
+            "limit": 10
+          },
+          "check": "found == ([v for v in values if v > limit][0] if len([v for v in values if v > limit]) else None) and inspected == (values[:values.index(found) + 1] if found is not None else values)"
+        },
+        {
+          "inputs": {
+            "values": [
+              1,
+              2,
+              3
+            ],
+            "limit": 10
+          },
+          "check": "found == ([v for v in values if v > limit][0] if len([v for v in values if v > limit]) else None) and inspected == (values[:values.index(found) + 1] if found is not None else values)"
+        },
+        {
+          "inputs": {
+            "values": [],
+            "limit": 10
+          },
+          "check": "found == ([v for v in values if v > limit][0] if len([v for v in values if v > limit]) else None) and inspected == (values[:values.index(found) + 1] if found is not None else values)"
+        },
+        {
+          "inputs": {
+            "values": [
+              10,
+              11,
+              11
+            ],
+            "limit": 10
+          },
+          "check": "found == ([v for v in values if v > limit][0] if len([v for v in values if v > limit]) else None) and inspected == (values[:values.index(found) + 1] if found is not None else values)"
+        }
+      ],
+      "hint": {
+        "en": "Place append before the condition; keep break inside the matching branch. A no-match run must inspect the full list.",
+        "nl": "Zet append vóór de voorwaarde; houd break binnen de passende branch. Zonder match moet de hele list worden bekeken."
+      }
+    },
+    {
+      "id": "learn-python-loops-08-v2-step-3",
+      "task": {
+        "en": "After searching, print Inspected: with the visit list and First alert: with found. Keep the Limit line.",
+        "nl": "Druk na het zoeken Inspected: met de bezoeklist en First alert: met found af. Behoud de Limit-regel."
+      },
+      "check": "_stdout.splitlines() == ['Limit: ' + str(limit), 'Inspected: ' + str(inspected), 'First alert: ' + str(found)]",
+      "feedback": {
+        "en": "Both summaries belong after the loop, so no-match and empty-input runs still show their result.",
+        "nl": "Beide samenvattingen horen na de loop, zodat ook zonder match of met lege invoer het resultaat verschijnt."
+      },
+      "cases": [
+        {
+          "inputs": {
+            "values": [
+              15,
+              2,
+              18
+            ],
+            "limit": 10
+          },
+          "check": "_stdout.splitlines() == ['Limit: ' + str(limit), 'Inspected: ' + str(inspected), 'First alert: ' + str(found)]"
+        },
+        {
+          "inputs": {
+            "values": [
+              1,
+              2,
+              3
+            ],
+            "limit": 10
+          },
+          "check": "_stdout.splitlines() == ['Limit: ' + str(limit), 'Inspected: ' + str(inspected), 'First alert: ' + str(found)]"
+        },
+        {
+          "inputs": {
+            "values": [],
+            "limit": 10
+          },
+          "check": "_stdout.splitlines() == ['Limit: ' + str(limit), 'Inspected: ' + str(inspected), 'First alert: ' + str(found)]"
+        },
+        {
+          "inputs": {
+            "values": [
+              10,
+              11,
+              11
+            ],
+            "limit": 10
+          },
+          "check": "_stdout.splitlines() == ['Limit: ' + str(limit), 'Inspected: ' + str(inspected), 'First alert: ' + str(found)]"
+        }
+      ],
+      "hint": {
+        "en": "Both summaries belong after the loop, so no-match and empty-input runs still show their result.",
+        "nl": "Beide samenvattingen horen na de loop, zodat ook zonder match of met lege invoer het resultaat verschijnt."
       }
     }
   ],
   "solutionNote": {
-    "en": "break immediately exits the innermost loop. Statements after break in the same iteration are skipped. It is useful when a search has already found what it needs.\n\nTrace the solution one line at a time. Try a different input to see which parts change.",
-    "nl": "break verlaat direct de binnenste loop. Regels na break in dezelfde herhaling worden overgeslagen. Dat is handig als een zoekactie haar doel al heeft gevonden.\n\nVolg de oplossing regel voor regel. Probeer een andere invoer en bekijk welke onderdelen veranderen."
+    "en": "The inspection is recorded first, then the condition is evaluated. Saving found before break retains the matching value. The final report still executes because break leaves the loop, not the program.",
+    "nl": "Het bezoek wordt eerst bewaard en daarna wordt de voorwaarde getest. found vóór break opslaan bewaart de passende waarde. Het slotrapport draait nog, omdat break de loop verlaat en niet het programma."
   },
   "sourcePosition": 8,
   "sourceUrl": "https://www.codecademy.com/courses/learn-python-3/lessons/learn-python-loops/exercises/break",

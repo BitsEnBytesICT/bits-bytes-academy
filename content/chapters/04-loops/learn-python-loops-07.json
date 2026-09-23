@@ -4,25 +4,51 @@
   "group": "learn-python-loops",
   "title": {
     "en": "Nonterminating loops",
-    "nl": "Oneindige loops begrijpen"
+    "nl": "Begrijp waarom een loop niet stopt"
   },
   "kind": "reading",
   "optional": false,
   "explanation": {
-    "en": "A loop is infinite if its condition never becomes false and nothing breaks out of it. Try changing the counter update below to see why it matters. Use Stop to cancel a runaway program; your editor stays usable.",
-    "nl": "Een loop is oneindig als de voorwaarde nooit onwaar wordt en niets de loop afbreekt. Verander de tellerupdate hieronder om te onderzoeken waarom die nodig is. Gebruik Stop om een vastgelopen programma te stoppen; de editor blijft werken."
+    "en": "A loop finishes only when it runs out of items, its condition becomes false, or it is explicitly stopped. Two common mistakes prevent that: never updating the value in a while condition, and continually adding new items to the very list a for loop is visiting.\n\nThe supplied program is safe to run. It copies pending jobs into a separate completed list. We will inspect the faulty alternatives and practise recovering from one deliberately.",
+    "nl": "Een loop eindigt alleen als de onderdelen op zijn, de voorwaarde onwaar wordt of de loop expliciet wordt gestopt. Twee veelvoorkomende fouten verhinderen dat: de waarde in een while-voorwaarde nooit bijwerken en steeds nieuwe onderdelen toevoegen aan de list die een for-loop juist doorloopt.\n\nHet meegeleverde programma kun je veilig uitvoeren. Het kopieert wachtende klussen naar een aparte list met afgeronde klussen. We bekijken de foutieve alternatieven en oefenen bewust het herstellen van één ervan."
   },
   "example": "",
+  "sections": [
+    {
+      "heading": {
+        "en": "A moving finish line",
+        "nl": "Een eindpunt dat blijft verschuiven"
+      },
+      "body": {
+        "en": "The editor visits pending but appends to completed. If it appended to pending instead, every visit would create more work to visit. The original list would keep growing. Do not run that growing-list version; trace the first two iterations on paper and explain why the end moves away.",
+        "nl": "De editor doorloopt pending maar voegt toe aan completed. Als hij juist aan pending zou toevoegen, zou elk bezoek meer werk opleveren om te bezoeken. De oorspronkelijke list zou blijven groeien. Voer die groeiende versie niet uit; volg de eerste twee iteraties op papier en leg uit waarom het einde opschuift."
+      },
+      "code": "pending = [\"scan\", \"label\"]\ncompleted = [\"pack\"]\nfor job in pending:\n    completed.append(job)\nprint(pending)\nprint(completed)",
+      "output": "['scan', 'label']\n['pack', 'scan', 'label']"
+    },
+    {
+      "heading": {
+        "en": "Stop, repair, rerun",
+        "nl": "Stoppen, herstellen en opnieuw uitvoeren"
+      },
+      "body": {
+        "en": "Try the finite counter below in the editor after your job report. Then remove only the counter update and run it. The condition now stays true. Press Stop or Ctrl+C to cancel; the workspace also has execution and output limits. Restore the update and run again. Your saved source stays available after interruption.\n\nFinally add a third pending job to the original program. Confirm it is copied exactly once and pending itself remains unchanged. Stopping a run is recovery; correcting the cause is the actual repair.",
+        "nl": "Probeer de eindige teller hieronder in de editor na je klusrapport. Verwijder vervolgens alleen de tellerwijziging en voer uit. De voorwaarde blijft nu waar. Druk op Stop of Ctrl+C om te annuleren; de werkruimte heeft ook uitvoerings- en outputlimieten. Herstel de wijziging en voer opnieuw uit. Je opgeslagen broncode blijft na onderbreking beschikbaar.\n\nVoeg tot slot een derde wachtende klus toe aan het oorspronkelijke programma. Controleer dat deze precies één keer wordt gekopieerd en pending zelf niet verandert. Een uitvoering stoppen is herstel; de oorzaak corrigeren is de echte reparatie."
+      },
+      "code": "counter = 0\nwhile counter < 3:\n    print(\"Pass\", counter)\n    counter += 1\nprint(\"Finished\")",
+      "output": "Pass 0\nPass 1\nPass 2\nFinished"
+    }
+  ],
   "files": {
-    "main.py": "counter = 0\nwhile counter < 3:\n    print(counter)\n    counter += 1\n"
+    "main.py": "pending = [\"scan\", \"label\"]\ncompleted = [\"pack\"]\nfor job in pending:\n    completed.append(job)\n    print(\"Completed:\", job)\nprint(\"Pending source:\", pending)\nprint(\"Combined:\", completed)\n"
   },
   "solution": {
-    "main.py": "counter = 0\nwhile counter < 3:\n    print(counter)\n    counter += 1\n"
+    "main.py": "pending = [\"scan\", \"label\", \"check\"]\ncompleted = [\"pack\"]\nfor job in pending:\n    completed.append(job)\n    print(\"Completed:\", job)\nprint(\"Pending source:\", pending)\nprint(\"Combined:\", completed)\ncounter = 0\nwhile counter < 3:\n    print(\"Pass\", counter)\n    counter += 1\nprint(\"Finished\")\n"
   },
   "checkpoints": [],
   "solutionNote": {
-    "en": "A loop is infinite if its condition never becomes false and nothing breaks out of it. Try changing the counter update below to see why it matters. Use Stop to cancel a runaway program; your editor stays usable.\n\nTrace the solution one line at a time. Try a different input to see which parts change.",
-    "nl": "Een loop is oneindig als de voorwaarde nooit onwaar wordt en niets de loop afbreekt. Verander de tellerupdate hieronder om te onderzoeken waarom die nodig is. Gebruik Stop om een vastgelopen programma te stoppen; de editor blijft werken.\n\nVolg de oplossing regel voor regel. Probeer een andere invoer en bekijk welke onderdelen veranderen."
+    "en": "The source and destination lists have different roles. Appending to completed does not extend the sequence currently being visited. The counter example changes the same variable its condition tests, so its stopping condition eventually becomes false.",
+    "nl": "De bronlist en doellist hebben verschillende rollen. Toevoegen aan completed verlengt de doorlopen verzameling niet. Het tellervoorbeeld verandert dezelfde variabele die de voorwaarde test, waardoor de voorwaarde uiteindelijk onwaar wordt."
   },
   "sourcePosition": 7,
   "sourceUrl": "https://www.codecademy.com/courses/learn-python-3/lessons/learn-python-loops/exercises/infinite-loops",

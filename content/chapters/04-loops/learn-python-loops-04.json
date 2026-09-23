@@ -4,38 +4,144 @@
   "group": "learn-python-loops",
   "title": {
     "en": "Looping over range",
-    "nl": "Herhalen met range"
+    "nl": "Maak genummerde meetrondes"
   },
   "kind": "coding",
   "optional": false,
   "explanation": {
-    "en": "Use range when you want a known number of iterations. The loop variable receives each integer in the range. The stop value is excluded.",
-    "nl": "Gebruik range als je een vast aantal herhalingen wilt. De loopvariable krijgt elke integer uit de range. De stopwaarde telt niet mee."
+    "en": "A calibration device must take a configurable number of measurements. There is no list of sensor names to visit this time: the requirement is a number of repetitions. range supplies the integers for those repetitions without needing a hand-written list.",
+    "nl": "Een kalibratieapparaat moet een instelbaar aantal metingen doen. Dit keer is er geen list met sensornamen om te bezoeken: de opdracht is een aantal herhalingen. range levert de getallen daarvoor zonder dat je zelf een list hoeft uit te schrijven."
   },
   "example": "",
+  "sections": [
+    {
+      "heading": {
+        "en": "Count repetitions from zero",
+        "nl": "Tel herhalingen vanaf nul"
+      },
+      "body": {
+        "en": "range(3) supplies 0, 1 and 2. Printing a constant repeats that constant three times. Printing the loop variable instead reveals the iteration values. Add one for a human-facing round number, or use range(1, rounds + 1). The stop remains excluded.",
+        "nl": "range(3) levert 0, 1 en 2. Een constante afdrukken herhaalt die constante drie keer. De loopvariabele afdrukken toont juist de iteratiewaarden. Tel één op voor een rondenummer voor gebruikers, of gebruik range(1, rounds + 1). De stop blijft uitgesloten."
+      },
+      "code": "for index in range(3):\n    print(\"Round\", index + 1)",
+      "output": "Round 1\nRound 2\nRound 3"
+    },
+    {
+      "heading": {
+        "en": "Build a result alongside the output",
+        "nl": "Bouw naast de output een resultaat op"
+      },
+      "body": {
+        "en": "Each round contributes samples_per_round samples. Store the cumulative sample counts in totals. For three rounds of two samples, the values are 2, 4 and 6. Keep totals outside the loop, append inside it, and put the final summary after it. With zero rounds the list stays empty and the total is zero.",
+        "nl": "Elke ronde levert samples_per_round metingen op. Bewaar de cumulatieve aantallen in totals. Bij drie rondes van twee metingen zijn dat 2, 4 en 6. Zet totals buiten de loop, voeg binnen de loop toe en plaats de slotsamenvatting erna. Bij nul rondes blijft de list leeg en is het totaal nul."
+      },
+      "code": "totals = []\nfor index in range(3):\n    totals.append((index + 1) * 2)\nprint(totals)",
+      "output": "[2, 4, 6]"
+    }
+  ],
   "files": {
-    "main.py": "# Write your code below.\n"
+    "main.py": "rounds = 4\nsamples_per_round = 3\ntotals = []\nprint(\"Calibration\")\n# Add numbered rounds and their cumulative sample totals.\n"
   },
   "solution": {
-    "main.py": "for number in range(1, 5):\n    print(number)\n"
+    "main.py": "rounds = 4\nsamples_per_round = 3\ntotals = []\nprint(\"Calibration\")\nfor index in range(rounds):\n    print(\"Round\", index + 1)\n    totals.append((index + 1) * samples_per_round)\nprint(\"Samples:\", rounds * samples_per_round)\n"
   },
   "checkpoints": [
     {
-      "id": "learn-python-loops-04-step-1",
+      "id": "learn-python-loops-04-v2-step-1",
       "task": {
-        "en": "Print the integers 1 through 4, each on its own line, using range.",
-        "nl": "Druk met range de integers 1 tot en met 4 af, elk op een eigen regel."
+        "en": "Use a for loop with range to print Round 1 through Round 4 beneath Calibration. Use rounds so changing it changes the repetitions.",
+        "nl": "Gebruik een for-loop met range om Round 1 tot en met Round 4 onder Calibration af te drukken. Gebruik rounds zodat een wijziging daarvan het aantal herhalingen verandert."
       },
-      "check": "_stdout.splitlines() == ['1','2','3','4'] and 'range' in _source",
+      "check": "([s for s in _stdout.splitlines() if s.startswith('Round ')] == ['Round ' + str(n) for n in range(1, rounds + 1)]) and any(isinstance(n,_ast.For) and any(isinstance(call,_ast.Call) and isinstance(call.func,_ast.Name) and call.func.id == 'range' for call in _ast.walk(n.iter)) for n in _ast.walk(_ast.parse(_source)))",
+      "feedback": {
+        "en": "The stop is excluded. Either add one to a zero-based index or stop at rounds + 1.",
+        "nl": "De stop is uitgesloten. Tel één op bij een index vanaf nul of stop bij rounds + 1."
+      },
+      "cases": [
+        {
+          "inputs": {
+            "rounds": 0
+          },
+          "check": "[s for s in _stdout.splitlines() if s.startswith('Round ')] == ['Round ' + str(n) for n in range(1, rounds + 1)]"
+        },
+        {
+          "inputs": {
+            "rounds": 2
+          },
+          "check": "[s for s in _stdout.splitlines() if s.startswith('Round ')] == ['Round ' + str(n) for n in range(1, rounds + 1)]"
+        }
+      ],
       "hint": {
-        "en": "Start with for number in range(1, 5):. Then compare the values with the task.",
-        "nl": "Begin met for number in range(1, 5):. Vergelijk de waarden daarna met de opdracht."
+        "en": "The stop is excluded. Either add one to a zero-based index or stop at rounds + 1.",
+        "nl": "De stop is uitgesloten. Tel één op bij een index vanaf nul of stop bij rounds + 1."
+      }
+    },
+    {
+      "id": "learn-python-loops-04-v2-step-2",
+      "task": {
+        "en": "In the same loop, append the cumulative sample count to totals. The supplied settings should produce [3, 6, 9, 12].",
+        "nl": "Voeg in dezelfde loop het cumulatieve aantal metingen toe aan totals. De meegeleverde instellingen moeten [3, 6, 9, 12] opleveren."
+      },
+      "check": "totals == [n * samples_per_round for n in range(1, rounds + 1)]",
+      "feedback": {
+        "en": "Multiply the one-based round number by samples_per_round, then append that value.",
+        "nl": "Vermenigvuldig het rondenummer vanaf één met samples_per_round en voeg die waarde toe."
+      },
+      "cases": [
+        {
+          "inputs": {
+            "rounds": 0
+          },
+          "check": "totals == [n * samples_per_round for n in range(1, rounds + 1)]"
+        },
+        {
+          "inputs": {
+            "rounds": 3,
+            "samples_per_round": 2
+          },
+          "check": "totals == [n * samples_per_round for n in range(1, rounds + 1)]"
+        }
+      ],
+      "hint": {
+        "en": "Multiply the one-based round number by samples_per_round, then append that value.",
+        "nl": "Vermenigvuldig het rondenummer vanaf één met samples_per_round en voeg die waarde toe."
+      }
+    },
+    {
+      "id": "learn-python-loops-04-v2-step-3",
+      "task": {
+        "en": "Finish with one Samples: line showing the total number of samples. Keep it after all rounds, including when rounds is zero.",
+        "nl": "Eindig met één Samples:-regel met het totale aantal metingen. Zet deze na alle rondes, ook wanneer rounds nul is."
+      },
+      "check": "_stdout.splitlines() == ['Calibration'] + ['Round ' + str(n) for n in range(1, rounds + 1)] + ['Samples: ' + str(rounds * samples_per_round)]",
+      "feedback": {
+        "en": "Calculate the total without indexing the last item of an empty totals list.",
+        "nl": "Bereken het totaal zonder het laatste onderdeel van een lege totals-list op te vragen."
+      },
+      "cases": [
+        {
+          "inputs": {
+            "rounds": 0
+          },
+          "check": "_stdout.splitlines() == ['Calibration'] + ['Round ' + str(n) for n in range(1, rounds + 1)] + ['Samples: ' + str(rounds * samples_per_round)]"
+        },
+        {
+          "inputs": {
+            "rounds": 2,
+            "samples_per_round": 5
+          },
+          "check": "_stdout.splitlines() == ['Calibration'] + ['Round ' + str(n) for n in range(1, rounds + 1)] + ['Samples: ' + str(rounds * samples_per_round)]"
+        }
+      ],
+      "hint": {
+        "en": "Calculate the total without indexing the last item of an empty totals list.",
+        "nl": "Bereken het totaal zonder het laatste onderdeel van een lege totals-list op te vragen."
       }
     }
   ],
   "solutionNote": {
-    "en": "Use range when you want a known number of iterations. The loop variable receives each integer in the range. The stop value is excluded.\n\nTrace the solution one line at a time. Try a different input to see which parts change.",
-    "nl": "Gebruik range als je een vast aantal herhalingen wilt. De loopvariable krijgt elke integer uit de range. De stopwaarde telt niet mee.\n\nVolg de oplossing regel voor regel. Probeer een andere invoer en bekijk welke onderdelen veranderen."
+    "en": "The loop uses zero-based indexes but displays one-based round numbers. Each appended value is a cumulative count. The final multiplication handles zero rounds without needing a last list item.",
+    "nl": "De loop gebruikt indexen vanaf nul maar toont rondenummers vanaf één. Elke toegevoegde waarde is een cumulatief aantal. De laatste vermenigvuldiging verwerkt nul rondes zonder een laatste listonderdeel nodig te hebben."
   },
   "sourcePosition": 4,
   "sourceUrl": "https://www.codecademy.com/courses/learn-python-3/lessons/learn-python-loops/exercises/range",

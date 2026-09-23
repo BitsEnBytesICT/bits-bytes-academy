@@ -4,38 +4,416 @@
   "group": "learn-python-loops",
   "title": {
     "en": "Loop review",
-    "nl": "Terugblik: loops"
+    "nl": "Maak een volledig meetrapport"
   },
   "kind": "coding",
   "optional": false,
   "explanation": {
-    "en": "Combine iteration and conditions to process collections. Keep an accumulator outside the loop when it must survive across iterations. Build a new list when the original data should remain available.",
-    "nl": "Combineer loops en voorwaarden om verzamelingen te verwerken. Zet een accumulator buiten de loop als deze tussen herhalingen bewaard moet blijven. Maak een nieuwe list als je de oorspronkelijke gegevens wilt behouden."
+    "en": "Bring the chapter together in one monitoring report. The starter has batches of raw readings and a faulty flattening loop: it stores whole batches instead of their values. Repair that first, then clean, correct and summarise the measurements. Later steps should build on the lists created earlier, so every run reveals a more useful report.",
+    "nl": "Breng het hoofdstuk samen in één monitorrapport. De startcode bevat batches met ruwe metingen en een foutieve loop om ze samen te voegen: deze bewaart hele batches in plaats van hun waarden. Herstel dat eerst en schoon daarna de metingen op, corrigeer ze en vat ze samen. Latere stappen moeten voortbouwen op eerder gemaakte lists, zodat elke uitvoering een bruikbaarder rapport oplevert."
   },
   "example": "",
+  "sections": [
+    {
+      "heading": {
+        "en": "Plan the data flow",
+        "nl": "Plan de gegevensverwerking"
+      },
+      "body": {
+        "en": "Keep batches unchanged as the source. readings should be a flat list in arrival order. valid keeps nonnegative raw readings, because negatives mark failures and zero is valid. corrected adds offset to those valid readings. Apply the limit to corrected values, not to the original data.\n\nUse a loop when you need multiple actions, an accumulator for a running total, and a comprehension for a simple transformation. Use break for the first alert and continue for a failed reading.",
+        "nl": "Behoud batches ongewijzigd als bron. readings moet een vlakke list in aankomstvolgorde zijn. valid behoudt niet-negatieve ruwe metingen, omdat negatieve waarden fouten aangeven en nul geldig is. corrected telt offset bij die geldige metingen op. Pas de grens toe op gecorrigeerde waarden, niet op de oorspronkelijke gegevens.\n\nGebruik een loop voor meerdere acties, een accumulator voor een lopend totaal en een comprehension voor een eenvoudige bewerking. Gebruik break voor de eerste waarschuwing en continue voor een mislukte meting."
+      },
+      "code": "raw = [2, -1, 0, 5]\nvalid = [value for value in raw if value >= 0]\ncorrected = [value + 1 for value in valid]\nprint(valid)\nprint(corrected)",
+      "output": "[2, 0, 5]\n[3, 1, 6]"
+    },
+    {
+      "heading": {
+        "en": "Test each stage before adding the next",
+        "nl": "Test elke fase voordat je de volgende toevoegt"
+      },
+      "body": {
+        "en": "The supplied Batches line gives you a baseline. Keep each new report line after its calculation so earlier results remain visible. With an empty delivery, readings, valid and corrected are empty, total is zero, and first_alert is None. An empty batch inside a delivery should not discard later readings.\n\nAfter finishing, try changing offset and limit. Predict which report lines should change and which describe the unchanged source data.",
+        "nl": "De meegeleverde Batches-regel geeft je een beginpunt. Zet elke nieuwe rapportregel na de bijbehorende berekening zodat eerdere resultaten zichtbaar blijven. Bij een lege levering zijn readings, valid en corrected leeg, total is nul en first_alert is None. Een lege batch binnen een levering mag latere metingen niet laten verdwijnen.\n\nProbeer na afloop offset en limit te veranderen. Voorspel welke rapportregels moeten veranderen en welke de ongewijzigde brongegevens beschrijven."
+      }
+    }
+  ],
   "files": {
-    "main.py": "batches = [[2, -1], [4, 0], [6]]\n"
+    "main.py": "batches = [[2, -1], [4, 0], [], [6, 9]]\noffset = 2\nlimit = 7\nreadings = []\nprint(\"Batches:\", batches)\nfor batch in batches:\n    readings.append(batch)  # Bug: this adds a whole row.\nprint(\"Readings:\", readings)\n# Continue with valid, corrected, total and first_alert.\n"
   },
   "solution": {
-    "main.py": "batches = [[2, -1], [4, 0], [6]]\nreadings = []\nfor batch in batches:\n    for value in batch:\n        readings.append(value)\nvalid = [value for value in readings if value > 0]\ntotal = sum(valid)\nprint(valid, total)\n"
+    "main.py": "batches = [[2, -1], [4, 0], [], [6, 9]]\noffset = 2\nlimit = 7\nreadings = []\nprint(\"Batches:\", batches)\nfor batch in batches:\n    for value in batch:\n        readings.append(value)\nprint(\"Readings:\", readings)\nvalid = []\nfor value in readings:\n    if value < 0:\n        continue\n    valid.append(value)\nprint(\"Valid:\", valid)\ncorrected = [value + offset for value in valid]\nprint(\"Corrected:\", corrected)\ntotal = 0\nfor value in corrected:\n    total += value\nprint(\"Total:\", total)\nfirst_alert = None\nfor value in corrected:\n    if value > limit:\n        first_alert = value\n        break\nprint(\"First alert:\", first_alert)\nlabels = [\"high\" if value > limit else \"ok\" for value in corrected]\nprint(\"Labels:\", labels)\n"
   },
   "checkpoints": [
     {
-      "id": "learn-python-loops-13-step-1",
+      "id": "learn-python-loops-13-v2-step-1",
       "task": {
-        "en": "Flatten batches into readings. Keep only positive readings in valid and compute their sum as total.",
-        "nl": "Maak van batches één list readings. Bewaar alleen positieve metingen in valid en bereken hun som als total."
+        "en": "Repair the supplied flattening loop with an inner for loop. readings must contain individual values in arrival order; keep its print.",
+        "nl": "Herstel de meegeleverde samenvoegloop met een binnenste for-loop. readings moet losse waarden in aankomstvolgorde bevatten; behoud de print."
       },
-      "check": "readings == [2,-1,4,0,6] and valid == [2,4,6] and total == 12",
+      "check": "(readings == [v for row in batches for v in row] and ('Readings: ' + str(readings)) in _stdout.splitlines()) and any(isinstance(n, _ast.For) for n in _ast.walk(_ast.parse(_source)))",
+      "feedback": {
+        "en": "The outer variable batch is a list. Visit its values with an inner loop and append one value at a time.",
+        "nl": "De buitenste variabele batch is een list. Bezoek de waarden met een binnenste loop en voeg telkens één waarde toe."
+      },
+      "cases": [
+        {
+          "inputs": {
+            "batches": [],
+            "offset": 2,
+            "limit": 6
+          },
+          "check": "readings == [v for row in batches for v in row] and ('Readings: ' + str(readings)) in _stdout.splitlines()"
+        },
+        {
+          "inputs": {
+            "batches": [
+              [],
+              [
+                -2,
+                0,
+                4
+              ],
+              [
+                8,
+                4
+              ]
+            ],
+            "offset": 1,
+            "limit": 5
+          },
+          "check": "readings == [v for row in batches for v in row] and ('Readings: ' + str(readings)) in _stdout.splitlines()"
+        },
+        {
+          "inputs": {
+            "batches": [
+              [
+                7
+              ],
+              [],
+              [
+                2
+              ]
+            ],
+            "offset": -1,
+            "limit": 20
+          },
+          "check": "readings == [v for row in batches for v in row] and ('Readings: ' + str(readings)) in _stdout.splitlines()"
+        }
+      ],
       "hint": {
-        "en": "Start with batches = [[2, -1], [4, 0], [6]]. Then compare the values with the task.",
-        "nl": "Begin met batches = [[2, -1], [4, 0], [6]]. Vergelijk de waarden daarna met de opdracht."
+        "en": "The outer variable batch is a list. Visit its values with an inner loop and append one value at a time.",
+        "nl": "De buitenste variabele batch is een list. Bezoek de waarden met een binnenste loop en voeg telkens één waarde toe."
+      }
+    },
+    {
+      "id": "learn-python-loops-13-v2-step-2",
+      "task": {
+        "en": "Use a loop with continue to collect nonnegative readings in valid. Keep zero, preserve order, then print Valid: and the list.",
+        "nl": "Gebruik een loop met continue om niet-negatieve metingen in valid te verzamelen. Behoud nul en de volgorde en druk daarna Valid: en de list af."
+      },
+      "check": "(valid == [v for row in batches for v in row if v >= 0] and ('Valid: ' + str(valid)) in _stdout.splitlines()) and any(isinstance(n, _ast.Continue) for n in _ast.walk(_ast.parse(_source)))",
+      "feedback": {
+        "en": "Skip only negative values. Do not break at the first failure, because later readings still matter.",
+        "nl": "Sla alleen negatieve waarden over. Stop niet bij de eerste fout, want latere metingen blijven belangrijk."
+      },
+      "cases": [
+        {
+          "inputs": {
+            "batches": [],
+            "offset": 2,
+            "limit": 6
+          },
+          "check": "valid == [v for row in batches for v in row if v >= 0] and ('Valid: ' + str(valid)) in _stdout.splitlines()"
+        },
+        {
+          "inputs": {
+            "batches": [
+              [],
+              [
+                -2,
+                0,
+                4
+              ],
+              [
+                8,
+                4
+              ]
+            ],
+            "offset": 1,
+            "limit": 5
+          },
+          "check": "valid == [v for row in batches for v in row if v >= 0] and ('Valid: ' + str(valid)) in _stdout.splitlines()"
+        },
+        {
+          "inputs": {
+            "batches": [
+              [
+                7
+              ],
+              [],
+              [
+                2
+              ]
+            ],
+            "offset": -1,
+            "limit": 20
+          },
+          "check": "valid == [v for row in batches for v in row if v >= 0] and ('Valid: ' + str(valid)) in _stdout.splitlines()"
+        }
+      ],
+      "hint": {
+        "en": "Skip only negative values. Do not break at the first failure, because later readings still matter.",
+        "nl": "Sla alleen negatieve waarden over. Stop niet bij de eerste fout, want latere metingen blijven belangrijk."
+      }
+    },
+    {
+      "id": "learn-python-loops-13-v2-step-3",
+      "task": {
+        "en": "Create corrected with a comprehension that adds offset to every valid reading. Print Corrected: and the result.",
+        "nl": "Maak corrected met een comprehension die offset bij elke geldige meting optelt. Druk Corrected: en het resultaat af."
+      },
+      "check": "(corrected == [v + offset for row in batches for v in row if v >= 0] and ('Corrected: ' + str(corrected)) in _stdout.splitlines()) and any(isinstance(n, _ast.ListComp) for n in _ast.walk(_ast.parse(_source)))",
+      "feedback": {
+        "en": "Filter the raw failures before applying the correction. Read from valid and create a separate corrected list.",
+        "nl": "Filter de ruwe fouten vóór het toepassen van de correctie. Lees uit valid en maak een aparte corrected-list."
+      },
+      "cases": [
+        {
+          "inputs": {
+            "batches": [],
+            "offset": 2,
+            "limit": 6
+          },
+          "check": "corrected == [v + offset for row in batches for v in row if v >= 0] and ('Corrected: ' + str(corrected)) in _stdout.splitlines()"
+        },
+        {
+          "inputs": {
+            "batches": [
+              [],
+              [
+                -2,
+                0,
+                4
+              ],
+              [
+                8,
+                4
+              ]
+            ],
+            "offset": 1,
+            "limit": 5
+          },
+          "check": "corrected == [v + offset for row in batches for v in row if v >= 0] and ('Corrected: ' + str(corrected)) in _stdout.splitlines()"
+        },
+        {
+          "inputs": {
+            "batches": [
+              [
+                7
+              ],
+              [],
+              [
+                2
+              ]
+            ],
+            "offset": -1,
+            "limit": 20
+          },
+          "check": "corrected == [v + offset for row in batches for v in row if v >= 0] and ('Corrected: ' + str(corrected)) in _stdout.splitlines()"
+        }
+      ],
+      "hint": {
+        "en": "Filter the raw failures before applying the correction. Read from valid and create a separate corrected list.",
+        "nl": "Filter de ruwe fouten vóór het toepassen van de correctie. Lees uit valid en maak een aparte corrected-list."
+      }
+    },
+    {
+      "id": "learn-python-loops-13-v2-step-4",
+      "task": {
+        "en": "Accumulate corrected into total using a loop. Initialise once, then print Total: after all values have contributed.",
+        "nl": "Tel corrected met een loop op in total. Initialiseer één keer en druk Total: af nadat alle waarden hebben bijgedragen."
+      },
+      "check": "(total == sum([v + offset for row in batches for v in row if v >= 0]) and ('Total: ' + str(total)) in _stdout.splitlines()) and any(isinstance(n, _ast.For) for n in _ast.walk(_ast.parse(_source)))",
+      "feedback": {
+        "en": "Set total to zero before the loop and add each corrected value. An empty list must leave total at zero.",
+        "nl": "Zet total vóór de loop op nul en tel elke gecorrigeerde waarde erbij op. Bij een lege list moet total nul blijven."
+      },
+      "cases": [
+        {
+          "inputs": {
+            "batches": [],
+            "offset": 2,
+            "limit": 6
+          },
+          "check": "total == sum([v + offset for row in batches for v in row if v >= 0]) and ('Total: ' + str(total)) in _stdout.splitlines()"
+        },
+        {
+          "inputs": {
+            "batches": [
+              [],
+              [
+                -2,
+                0,
+                4
+              ],
+              [
+                8,
+                4
+              ]
+            ],
+            "offset": 1,
+            "limit": 5
+          },
+          "check": "total == sum([v + offset for row in batches for v in row if v >= 0]) and ('Total: ' + str(total)) in _stdout.splitlines()"
+        },
+        {
+          "inputs": {
+            "batches": [
+              [
+                7
+              ],
+              [],
+              [
+                2
+              ]
+            ],
+            "offset": -1,
+            "limit": 20
+          },
+          "check": "total == sum([v + offset for row in batches for v in row if v >= 0]) and ('Total: ' + str(total)) in _stdout.splitlines()"
+        }
+      ],
+      "hint": {
+        "en": "Set total to zero before the loop and add each corrected value. An empty list must leave total at zero.",
+        "nl": "Zet total vóór de loop op nul en tel elke gecorrigeerde waarde erbij op. Bij een lege list moet total nul blijven."
+      }
+    },
+    {
+      "id": "learn-python-loops-13-v2-step-5",
+      "task": {
+        "en": "Search corrected for the first value strictly above limit, store it in first_alert and break. Leave None if no alert exists. Print First alert:.",
+        "nl": "Zoek in corrected de eerste waarde strikt boven limit, bewaar die in first_alert en gebruik break. Laat None staan zonder waarschuwing. Druk First alert: af."
+      },
+      "check": "(first_alert == ([v for v in corrected if v > limit][0] if len([v for v in corrected if v > limit]) else None) and ('First alert: ' + str(first_alert)) in _stdout.splitlines()) and any(isinstance(n, _ast.Break) for n in _ast.walk(_ast.parse(_source)))",
+      "feedback": {
+        "en": "Compare corrected values with limit and save the first match before stopping. Print after the loop even when nothing matches.",
+        "nl": "Vergelijk gecorrigeerde waarden met limit en bewaar de eerste match vóór het stoppen. Druk na de loop af, ook als niets past."
+      },
+      "cases": [
+        {
+          "inputs": {
+            "batches": [],
+            "offset": 2,
+            "limit": 6
+          },
+          "check": "first_alert == ([v for v in corrected if v > limit][0] if len([v for v in corrected if v > limit]) else None) and ('First alert: ' + str(first_alert)) in _stdout.splitlines()"
+        },
+        {
+          "inputs": {
+            "batches": [
+              [],
+              [
+                -2,
+                0,
+                4
+              ],
+              [
+                8,
+                4
+              ]
+            ],
+            "offset": 1,
+            "limit": 5
+          },
+          "check": "first_alert == ([v for v in corrected if v > limit][0] if len([v for v in corrected if v > limit]) else None) and ('First alert: ' + str(first_alert)) in _stdout.splitlines()"
+        },
+        {
+          "inputs": {
+            "batches": [
+              [
+                7
+              ],
+              [],
+              [
+                2
+              ]
+            ],
+            "offset": -1,
+            "limit": 20
+          },
+          "check": "first_alert == ([v for v in corrected if v > limit][0] if len([v for v in corrected if v > limit]) else None) and ('First alert: ' + str(first_alert)) in _stdout.splitlines()"
+        }
+      ],
+      "hint": {
+        "en": "Compare corrected values with limit and save the first match before stopping. Print after the loop even when nothing matches.",
+        "nl": "Vergelijk gecorrigeerde waarden met limit en bewaar de eerste match vóór het stoppen. Druk na de loop af, ook als niets past."
+      }
+    },
+    {
+      "id": "learn-python-loops-13-v2-step-6",
+      "task": {
+        "en": "Finish with labels for every corrected reading: 'high' above limit, otherwise 'ok'. Print Labels: and the complete list.",
+        "nl": "Eindig met labels voor elke gecorrigeerde meting: 'high' boven limit, anders 'ok'. Druk Labels: en de volledige list af."
+      },
+      "check": "(labels == ['high' if v > limit else 'ok' for v in corrected] and ('Labels: ' + str(labels)) in _stdout.splitlines()) and any(isinstance(n, _ast.IfExp) for n in _ast.walk(_ast.parse(_source)))",
+      "feedback": {
+        "en": "Use an if/else expression that produces one label per corrected value, not a filter that removes normal values.",
+        "nl": "Gebruik een if/else-expressie die één label per gecorrigeerde waarde maakt, geen filter dat normale waarden verwijdert."
+      },
+      "cases": [
+        {
+          "inputs": {
+            "batches": [],
+            "offset": 2,
+            "limit": 6
+          },
+          "check": "labels == ['high' if v > limit else 'ok' for v in corrected] and ('Labels: ' + str(labels)) in _stdout.splitlines()"
+        },
+        {
+          "inputs": {
+            "batches": [
+              [],
+              [
+                -2,
+                0,
+                4
+              ],
+              [
+                8,
+                4
+              ]
+            ],
+            "offset": 1,
+            "limit": 5
+          },
+          "check": "labels == ['high' if v > limit else 'ok' for v in corrected] and ('Labels: ' + str(labels)) in _stdout.splitlines()"
+        },
+        {
+          "inputs": {
+            "batches": [
+              [
+                7
+              ],
+              [],
+              [
+                2
+              ]
+            ],
+            "offset": -1,
+            "limit": 20
+          },
+          "check": "labels == ['high' if v > limit else 'ok' for v in corrected] and ('Labels: ' + str(labels)) in _stdout.splitlines()"
+        }
+      ],
+      "hint": {
+        "en": "Use an if/else expression that produces one label per corrected value, not a filter that removes normal values.",
+        "nl": "Gebruik een if/else-expressie die één label per gecorrigeerde waarde maakt, geen filter dat normale waarden verwijdert."
       }
     }
   ],
   "solutionNote": {
-    "en": "Combine iteration and conditions to process collections. Keep an accumulator outside the loop when it must survive across iterations. Build a new list when the original data should remain available.\n\nTrace the solution one line at a time. Try a different input to see which parts change.",
-    "nl": "Combineer loops en voorwaarden om verzamelingen te verwerken. Zet een accumulator buiten de loop als deze tussen herhalingen bewaard moet blijven. Maak een nieuwe list als je de oorspronkelijke gegevens wilt behouden.\n\nVolg de oplossing regel voor regel. Probeer een andere invoer en bekijk welke onderdelen veranderen."
+    "en": "Each stage keeps its input available and gives the next stage a clear output. Nested loops flatten the batches, continue excludes failed raw readings, the comprehension calibrates valid values, the accumulator totals them, and break retains only the first alert. Labels deliberately cover every corrected value, unlike the first-alert search.",
+    "nl": "Elke fase bewaart zijn invoer en geeft de volgende fase een duidelijk resultaat. Geneste loops maken de batches vlak, continue sluit mislukte ruwe metingen uit, de comprehension kalibreert geldige waarden, de accumulator telt ze op en break bewaart alleen de eerste waarschuwing. Labels beschrijven bewust elke gecorrigeerde waarde, anders dan de zoekactie naar de eerste waarschuwing."
   },
   "sourcePosition": 13,
   "sourceUrl": "https://www.codecademy.com/courses/learn-python-3/lessons/learn-python-loops/exercises/review",

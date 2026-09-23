@@ -242,3 +242,33 @@ The app's runtime scope and storage behavior are documented in README.md.
   `research/2026-09-23-list-readings.md`. Embedded source assessments remained
   loading and were not inspected. Overall rewrite: 58/160 core pages, 4/8 support
   readings, 4/13 enhanced quizzes, 0/59 revised optional challenges.
+# Loop chapter rewrite — 23 September 2026
+
+- Rewrote all 13 loop pages with 36 connected checkpoints, 96 alternate-input
+  cases and 25 independently runnable examples. Ten quiz questions have targeted
+  wrong-choice feedback; fresh attempts include a nested-loop code-blank variant.
+- `npm run build` and complete `npm test` pass: 227 reference solutions, 206
+  negative cases, 64 MC code predictions, six code-blank programs, 119 guided
+  examples across 75 structured activities, existing grading/console suites and
+  all 19 TypeScript tests. New loop tests cover 25 staged attempts, 28 mistakes,
+  two diagnostic errors and four equivalent alternative implementations.
+- Explicit comparison with the previous Git version confirms unchanged activity
+  IDs, kinds and order, plus unchanged legacy loop quiz questions/choices/answers.
+- Browser QA on the separate database: the final report awarded 3/6 checks for a
+  partial program, then 6/6 after its extensions; completed code and progress
+  survived reload. Dutch instructions and diagnostic feedback were inspected.
+- A while program using != succeeded for the visible values but failed to stop
+  on an alternate input. The worker reached its time limit safely. Changing the
+  condition to < and recording history recovered normally and passed all 3 checks.
+- Verified the actual quiz viewport at 390 × 844, with document width and scroll
+  width both 390. Screenshots show readable, unclipped code slots, wrapping token
+  controls and per-slot feedback. Keyboard placement/removal/submission, draft
+  reload, wrong-choice feedback, a 90% mixed-format result and expanded complete
+  solution/output review all worked. No browser errors were recorded. The prior
+  pending phone-width audit of the code-blank component is now completed.
+- Restored the viewport override and the user's original Codecademy tab afterward.
+- Production restarted with exact generated-content equality. Before/after
+  fingerprints show learner records unchanged: 10 workspaces, 11 progress records,
+  2 settings, 21 attempts. Existing learner files were not replaced by new starters.
+- Overall authored coverage: 71/160 core pages, 4/8 support readings, 5/13 enhanced
+  quizzes, 0/59 revised optional challenges. Later content remains in progress.

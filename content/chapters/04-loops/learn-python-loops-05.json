@@ -4,38 +4,154 @@
   "group": "learn-python-loops",
   "title": {
     "en": "While loops",
-    "nl": "Een while loop"
+    "nl": "Volg een laadproces met while"
   },
   "kind": "coding",
   "optional": false,
   "explanation": {
-    "en": "A while loop checks its condition before every iteration. Update the state inside the loop so the condition can eventually become false. Otherwise it may never finish.",
-    "nl": "Een while loop controleert vóór elke herhaling de voorwaarde. Werk de toestand binnen de loop bij, zodat de voorwaarde uiteindelijk onwaar kan worden. Anders stopt de loop mogelijk nooit."
+    "en": "A charging station adds a fixed amount of energy until a target is reached. The decision is a condition: is the charge still below the target? A while loop checks that question before every iteration. The update inside the body must move the state toward stopping.",
+    "nl": "Een laadstation voegt telkens een vaste hoeveelheid energie toe totdat een doel is bereikt. De beslissing is een voorwaarde: is de lading nog onder het doel? Een while-loop controleert die vraag vóór elke iteratie. De wijziging binnen het blok moet de toestand richting het einde brengen."
   },
   "example": "",
+  "sections": [
+    {
+      "heading": {
+        "en": "Test, act, update, test again",
+        "nl": "Testen, uitvoeren, bijwerken en opnieuw testen"
+      },
+      "body": {
+        "en": "In this example the first test is 4 < 10. The body adds three, then the next test uses 7. After the second update the charge is 10 and the condition is false. Nothing in while updates a variable automatically. Keep the update inside the body.",
+        "nl": "In dit voorbeeld is de eerste test 4 < 10. Het blok telt drie op; de volgende test gebruikt 7. Na de tweede wijziging is de lading 10 en is de voorwaarde onwaar. while werkt niet automatisch een variabele bij. Laat de wijziging binnen het blok staan."
+      },
+      "code": "charge = 4\nwhile charge < 10:\n    print(\"Before:\", charge)\n    charge += 3\nprint(\"Finished:\", charge)",
+      "output": "Before: 4\nBefore: 7\nFinished: 10"
+    },
+    {
+      "heading": {
+        "en": "Reach or pass the target",
+        "nl": "Bereik of passeer het doel"
+      },
+      "body": {
+        "en": "The target is a stopping boundary, not always an exact result. Starting at 4 and adding 3 toward 9 ends at 10. Using != instead of < could keep going forever when the exact target is skipped. If the starting charge already meets the target, the body runs zero times. Use Stop or Ctrl+C if an edit produces a nonterminating loop, then repair the condition or update.",
+        "nl": "Het doel is een stopgrens, niet altijd het exacte resultaat. Beginnen bij 4 en steeds 3 toevoegen richting 9 eindigt bij 10. Met != in plaats van < zou de loop oneindig kunnen doorgaan wanneer het exacte doel wordt overgeslagen. Als de beginlading al aan het doel voldoet, draait het blok nul keer. Gebruik Stop of Ctrl+C als een wijziging een oneindige loop veroorzaakt en herstel daarna de voorwaarde of wijziging."
+      },
+      "code": "charge = 12\nhistory = []\nwhile charge < 10:\n    charge += 3\n    history.append(charge)\nprint(charge, history)",
+      "output": "12 []"
+    }
+  ],
   "files": {
-    "main.py": "# Write your code below.\n"
+    "main.py": "start = 12\ntarget = 30\nstep = 6\ncharge = start\nhistory = []\nprint(\"Initial:\", charge)\n# Charge repeatedly while below target.\n# Record each charge AFTER its update.\n"
   },
   "solution": {
-    "main.py": "count = 0\nwhile count < 3:\n    print(count)\n    count += 1\n"
+    "main.py": "start = 12\ntarget = 30\nstep = 6\ncharge = start\nhistory = []\nprint(\"Initial:\", charge)\nwhile charge < target:\n    charge += step\n    history.append(charge)\nprint(\"Finished:\", charge)\nprint(\"Cycles:\", len(history))\n"
   },
   "checkpoints": [
     {
-      "id": "learn-python-loops-05-step-1",
+      "id": "learn-python-loops-05-v2-step-1",
       "task": {
-        "en": "Start count at 0. Use while to print 0, 1, and 2, then finish with count equal to 3.",
-        "nl": "Begin met count = 0. Gebruik while om 0, 1 en 2 af te drukken. Eindig met count gelijk aan 3."
+        "en": "Add a while loop that increases charge by step until it reaches or passes target. Keep the supplied input assignments.",
+        "nl": "Voeg een while-loop toe die charge met step verhoogt totdat target wordt bereikt of gepasseerd. Behoud de meegeleverde invoertoewijzingen."
       },
-      "check": "count == 3 and _stdout.splitlines() == ['0','1','2'] and any(isinstance(n,_ast.While) for n in _ast.walk(_ast.parse(_source)))",
+      "check": "(charge == start + max(0, (target - start + step - 1) // step) * step) and any(isinstance(n, _ast.While) for n in _ast.walk(_ast.parse(_source)))",
+      "feedback": {
+        "en": "Check charge < target before each update. Keep charge += step inside the body; the positive step moves toward stopping.",
+        "nl": "Controleer charge < target vóór elke wijziging. Laat charge += step binnen het blok staan; de positieve stap beweegt richting het einde."
+      },
+      "cases": [
+        {
+          "inputs": {
+            "start": 10,
+            "target": 23,
+            "step": 5
+          },
+          "check": "charge == start + max(0, (target - start + step - 1) // step) * step"
+        },
+        {
+          "inputs": {
+            "start": 40,
+            "target": 30,
+            "step": 6
+          },
+          "check": "charge == start + max(0, (target - start + step - 1) // step) * step"
+        }
+      ],
       "hint": {
-        "en": "Start with count = 0. Then compare the values with the task.",
-        "nl": "Begin met count = 0. Vergelijk de waarden daarna met de opdracht."
+        "en": "Check charge < target before each update. Keep charge += step inside the body; the positive step moves toward stopping.",
+        "nl": "Controleer charge < target vóór elke wijziging. Laat charge += step binnen het blok staan; de positieve stap beweegt richting het einde."
+      }
+    },
+    {
+      "id": "learn-python-loops-05-v2-step-2",
+      "task": {
+        "en": "After each update, append the new charge to history inside the loop. The supplied run should record [18, 24, 30].",
+        "nl": "Voeg na elke wijziging de nieuwe charge binnen de loop toe aan history. De meegeleverde uitvoering moet [18, 24, 30] bewaren."
+      },
+      "check": "history == list(range(start + step, target + step, step))",
+      "feedback": {
+        "en": "Append after increasing charge. Initialise history once before the loop, not during each cycle.",
+        "nl": "Voeg toe nadat charge is verhoogd. Initialiseer history één keer vóór de loop, niet tijdens elke cyclus."
+      },
+      "cases": [
+        {
+          "inputs": {
+            "start": 10,
+            "target": 23,
+            "step": 5
+          },
+          "check": "history == list(range(start + step, target + step, step))"
+        },
+        {
+          "inputs": {
+            "start": 40,
+            "target": 30,
+            "step": 6
+          },
+          "check": "history == list(range(start + step, target + step, step))"
+        }
+      ],
+      "hint": {
+        "en": "Append after increasing charge. Initialise history once before the loop, not during each cycle.",
+        "nl": "Voeg toe nadat charge is verhoogd. Initialiseer history één keer vóór de loop, niet tijdens elke cyclus."
+      }
+    },
+    {
+      "id": "learn-python-loops-05-v2-step-3",
+      "task": {
+        "en": "After the loop, print Finished: with the final charge and Cycles: with the number of updates. Each summary appears once.",
+        "nl": "Druk na de loop Finished: met de eindlading en Cycles: met het aantal wijzigingen af. Elke samenvatting verschijnt één keer."
+      },
+      "check": "_stdout.splitlines() == ['Initial: ' + str(start), 'Finished: ' + str(charge), 'Cycles: ' + str(len(history))] and len(history) == max(0, (target - start + step - 1) // step)",
+      "feedback": {
+        "en": "Unindent both summary prints. len(history) counts completed updates, including zero when no charging was needed.",
+        "nl": "Laat beide samenvattingen niet inspringen. len(history) telt afgeronde wijzigingen, ook nul wanneer laden niet nodig was."
+      },
+      "cases": [
+        {
+          "inputs": {
+            "start": 10,
+            "target": 23,
+            "step": 5
+          },
+          "check": "_stdout.splitlines() == ['Initial: ' + str(start), 'Finished: ' + str(charge), 'Cycles: ' + str(len(history))] and len(history) == max(0, (target - start + step - 1) // step)"
+        },
+        {
+          "inputs": {
+            "start": 40,
+            "target": 30,
+            "step": 6
+          },
+          "check": "_stdout.splitlines() == ['Initial: ' + str(start), 'Finished: ' + str(charge), 'Cycles: ' + str(len(history))] and len(history) == max(0, (target - start + step - 1) // step)"
+        }
+      ],
+      "hint": {
+        "en": "Unindent both summary prints. len(history) counts completed updates, including zero when no charging was needed.",
+        "nl": "Laat beide samenvattingen niet inspringen. len(history) telt afgeronde wijzigingen, ook nul wanneer laden niet nodig was."
       }
     }
   ],
   "solutionNote": {
-    "en": "A while loop checks its condition before every iteration. Update the state inside the loop so the condition can eventually become false. Otherwise it may never finish.\n\nTrace the solution one line at a time. Try a different input to see which parts change.",
-    "nl": "Een while loop controleert vóór elke herhaling de voorwaarde. Werk de toestand binnen de loop bij, zodat de voorwaarde uiteindelijk onwaar kan worden. Anders stopt de loop mogelijk nooit.\n\nVolg de oplossing regel voor regel. Probeer een andere invoer en bekijk welke onderdelen veranderen."
+    "en": "The condition tests the current state; the update changes it for the next test. History records the new charge, not the old one. A strict less-than condition handles an overshoot and skips charging when the starting value already meets the target.",
+    "nl": "De voorwaarde test de huidige toestand; de wijziging verandert die voor de volgende test. History bewaart de nieuwe lading, niet de oude. Een strikt-kleiner-danvoorwaarde verwerkt het passeren van het doel en slaat laden over wanneer de beginwaarde al voldoet."
   },
   "sourcePosition": 5,
   "sourceUrl": "https://www.codecademy.com/courses/learn-python-3/lessons/learn-python-loops/exercises/while",

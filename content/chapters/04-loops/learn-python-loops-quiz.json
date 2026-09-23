@@ -36,8 +36,8 @@
             "nl": "1\n2\n3"
           },
           "reason": {
-            "en": "range(3) contains 0, 1, and 2.",
-            "nl": "range(3) bevat 0, 1 en 2."
+            "en": "range starts at zero when no start is supplied. The stop value is excluded.",
+            "nl": "range begint bij nul als geen beginwaarde is opgegeven. De stopwaarde is uitgesloten."
           }
         },
         {
@@ -47,8 +47,8 @@
             "nl": "0\n1\n2\n3"
           },
           "reason": {
-            "en": "range(3) contains 0, 1, and 2.",
-            "nl": "range(3) bevat 0, 1 en 2."
+            "en": "Stop 3 is excluded, so it is never assigned to n.",
+            "nl": "Stop 3 is uitgesloten en wordt dus nooit aan n toegewezen."
           }
         }
       ]
@@ -80,8 +80,8 @@
             "nl": "continue"
           },
           "reason": {
-            "en": "break exits the loop; continue skips an iteration and pass does nothing.",
-            "nl": "break verlaat de loop; continue slaat een herhaling over en pass doet niets."
+            "en": "continue skips the remaining body of one iteration; it does not exit the loop.",
+            "nl": "continue slaat het resterende blok van één iteratie over; het verlaat de loop niet."
           }
         },
         {
@@ -91,8 +91,8 @@
             "nl": "pass"
           },
           "reason": {
-            "en": "break exits the loop; continue skips an iteration and pass does nothing.",
-            "nl": "break verlaat de loop; continue slaat een herhaling over en pass doet niets."
+            "en": "pass performs no action. Execution continues with the following statement.",
+            "nl": "pass doet niets. De uitvoering gaat verder met de volgende instructie."
           }
         }
       ]
@@ -124,8 +124,8 @@
             "nl": "1\n2\n3"
           },
           "reason": {
-            "en": "continue skips printing only when n equals 2.",
-            "nl": "continue slaat het afdrukken alleen over wanneer n gelijk is aan 2."
+            "en": "When n is 2, continue skips the print. The other iterations still print.",
+            "nl": "Wanneer n gelijk is aan 2 slaat continue de print over. De andere iteraties drukken wel af."
           }
         },
         {
@@ -135,8 +135,8 @@
             "nl": "1"
           },
           "reason": {
-            "en": "continue skips printing only when n equals 2.",
-            "nl": "continue slaat het afdrukken alleen over wanneer n gelijk is aan 2."
+            "en": "That would describe break at 2. continue still allows the later value 3 to be visited.",
+            "nl": "Dat zou break bij 2 beschrijven. continue laat de latere waarde 3 nog aan de beurt komen."
           }
         }
       ]
@@ -168,8 +168,8 @@
             "nl": "[2, 4, 1]"
           },
           "reason": {
-            "en": "The expression adds 1 to each input element.",
-            "nl": "De expressie telt 1 op bij elk invoerelement."
+            "en": "The expression adds one to each value; it does not append an extra 1 to the input list.",
+            "nl": "De expressie telt één op bij elke waarde; deze voegt geen extra 1 achteraan de invoerlist toe."
           }
         },
         {
@@ -179,8 +179,8 @@
             "nl": "[2, 4]"
           },
           "reason": {
-            "en": "The expression adds 1 to each input element.",
-            "nl": "De expressie telt 1 op bij elk invoerelement."
+            "en": "The expression n + 1 transforms each input before placing it in the new list.",
+            "nl": "De expressie n + 1 bewerkt elke invoerwaarde voordat die in de nieuwe list komt."
           }
         }
       ]
@@ -212,8 +212,8 @@
             "nl": "[0, 2]"
           },
           "reason": {
-            "en": "Only 2 satisfies the strict positive condition.",
-            "nl": "Alleen 2 voldoet aan de voorwaarde strikt groter dan nul."
+            "en": "Zero is not strictly greater than zero. This condition excludes it.",
+            "nl": "Nul is niet strikt groter dan nul. Deze voorwaarde sluit nul uit."
           }
         },
         {
@@ -223,8 +223,8 @@
             "nl": "[-1]"
           },
           "reason": {
-            "en": "Only 2 satisfies the strict positive condition.",
-            "nl": "Alleen 2 voldoet aan de voorwaarde strikt groter dan nul."
+            "en": "The condition keeps positive values; -1 fails n > 0.",
+            "nl": "De voorwaarde behoudt positieve waarden; -1 voldoet niet aan n > 0."
           }
         }
       ]
@@ -256,8 +256,8 @@
             "nl": "2"
           },
           "reason": {
-            "en": "The loop stops after x becomes 3.",
-            "nl": "De loop stopt nadat x gelijk aan 3 is geworden."
+            "en": "When x is 2 the condition is still true, so the body increments it to 3 before stopping.",
+            "nl": "Wanneer x gelijk is aan 2 is de voorwaarde nog waar, dus het blok verhoogt x naar 3 voordat de loop stopt."
           }
         },
         {
@@ -267,8 +267,8 @@
             "nl": "0"
           },
           "reason": {
-            "en": "The loop stops after x becomes 3.",
-            "nl": "De loop stopt nadat x gelijk aan 3 is geworden."
+            "en": "The condition starts true and the body changes x. The final print runs after those updates.",
+            "nl": "De voorwaarde is aanvankelijk waar en het blok verandert x. De laatste print draait na die wijzigingen."
           }
         }
       ]
@@ -300,8 +300,8 @@
             "nl": "Een tweede print"
           },
           "reason": {
-            "en": "n stays zero, so the condition never becomes false.",
-            "nl": "n blijft nul, waardoor de voorwaarde nooit onwaar wordt."
+            "en": "Printing another line would not change n, so the same condition would remain true.",
+            "nl": "Nog een regel afdrukken zou n niet veranderen, dus dezelfde voorwaarde zou waar blijven."
           }
         },
         {
@@ -311,8 +311,8 @@
             "nl": "Een list"
           },
           "reason": {
-            "en": "n stays zero, so the condition never becomes false.",
-            "nl": "n blijft nul, waardoor de voorwaarde nooit onwaar wordt."
+            "en": "A while loop does not require a list. It needs a condition that can eventually become false.",
+            "nl": "Een while-loop heeft geen list nodig. De voorwaarde moet uiteindelijk onwaar kunnen worden."
           }
         }
       ]
@@ -344,8 +344,8 @@
             "nl": "3"
           },
           "reason": {
-            "en": "Each inner value contributes to the total: 1 + 2 + 3.",
-            "nl": "Elke binnenste waarde telt mee: 1 + 2 + 3."
+            "en": "The total is initialised outside both loops, so it includes the first row as well as the second.",
+            "nl": "Het totaal wordt buiten beide loops geïnitialiseerd en bevat dus zowel de eerste als de tweede rij."
           }
         },
         {
@@ -355,11 +355,69 @@
             "nl": "2"
           },
           "reason": {
-            "en": "Each inner value contributes to the total: 1 + 2 + 3.",
-            "nl": "Elke binnenste waarde telt mee: 1 + 2 + 3."
+            "en": "The program adds inner values; it does not count the two outer rows.",
+            "nl": "Het programma telt binnenste waarden op; het telt niet de twee buitenste rijen."
           }
         }
-      ]
+      ],
+      "codeBlank": {
+        "prompt": {
+          "en": "Complete both loops to total every reading in the batches. The empty batch should contribute nothing.",
+          "nl": "Maak beide loops af om elke meting in de batches op te tellen. De lege batch moet niets bijdragen."
+        },
+        "segments": [
+          "batches = [[4, 1], [], [7]]\ntotal = 0\nfor batch in ",
+          ":\n    for reading in ",
+          ":\n        total += ",
+          "\nprint(total)"
+        ],
+        "tokens": [
+          {
+            "id": "token-1",
+            "code": "batches"
+          },
+          {
+            "id": "token-2",
+            "code": "batch"
+          },
+          {
+            "id": "token-3",
+            "code": "reading"
+          },
+          {
+            "id": "token-4",
+            "code": "total"
+          },
+          {
+            "id": "token-5",
+            "code": "0"
+          }
+        ],
+        "blanks": [
+          {
+            "answer": "batches",
+            "reason": {
+              "en": "The outer loop visits each batch in the complete collection.",
+              "nl": "De buitenste loop bezoekt elke batch in de volledige verzameling."
+            }
+          },
+          {
+            "answer": "batch",
+            "reason": {
+              "en": "The inner loop visits values in the current batch, not all batches again.",
+              "nl": "De binnenste loop bezoekt waarden in de huidige batch, niet opnieuw alle batches."
+            }
+          },
+          {
+            "answer": "reading",
+            "reason": {
+              "en": "Add the current numeric reading to the accumulator. A batch is a list.",
+              "nl": "Tel de huidige numerieke meting op bij de accumulator. Een batch is een list."
+            }
+          }
+        ],
+        "output": "12\n"
+      }
     },
     {
       "id": "learn-python-loops-q9",
@@ -388,8 +446,8 @@
             "nl": "4\n8"
           },
           "reason": {
-            "en": "The loop breaks at 8 before that value is printed.",
-            "nl": "De loop stopt bij 8 voordat die waarde wordt afgedrukt."
+            "en": "break occurs before print when n reaches 8, so 8 is not printed.",
+            "nl": "break staat vóór print wanneer n 8 bereikt, dus 8 wordt niet afgedrukt."
           }
         },
         {
@@ -399,8 +457,8 @@
             "nl": "4\n8\n12"
           },
           "reason": {
-            "en": "The loop breaks at 8 before that value is printed.",
-            "nl": "De loop stopt bij 8 voordat die waarde wordt afgedrukt."
+            "en": "The first value above 5 exits the loop immediately. Later values are never visited.",
+            "nl": "De eerste waarde boven 5 verlaat de loop onmiddellijk. Latere waarden worden nooit bezocht."
           }
         }
       ]
@@ -432,8 +490,8 @@
             "nl": "Binnen elke herhaling"
           },
           "reason": {
-            "en": "Initializing once preserves the accumulated value between iterations.",
-            "nl": "Eenmalig initialiseren bewaart het opgebouwde totaal tussen herhalingen."
+            "en": "Resetting inside the loop discards the earlier contributions on every iteration.",
+            "nl": "Binnen de loop opnieuw beginnen gooit eerdere bijdragen bij elke iteratie weg."
           }
         },
         {
@@ -443,8 +501,8 @@
             "nl": "Na de loop"
           },
           "reason": {
-            "en": "Initializing once preserves the accumulated value between iterations.",
-            "nl": "Eenmalig initialiseren bewaart het opgebouwde totaal tussen herhalingen."
+            "en": "Initialising after the loop is too late for its first addition and would overwrite the result.",
+            "nl": "Na de loop initialiseren is te laat voor de eerste optelling en zou het resultaat overschrijven."
           }
         }
       ]

@@ -4,38 +4,145 @@
   "group": "learn-python-loops",
   "title": {
     "en": "For loops",
-    "nl": "Een for loop"
+    "nl": "Repareer en breid een for-loop uit"
   },
   "kind": "coding",
   "optional": false,
   "explanation": {
-    "en": "for item in collection assigns each element to item in turn. The indented body runs once per element. Choose a loop variable name that describes one element.",
-    "nl": "for item in collection wijst elk element om de beurt toe aan item. Het ingesprongen blok draait één keer per element. Kies een loopvariablenaam die één element beschrijft."
+    "en": "A sensor-check program has the right idea but an invalid block. Python uses indentation to decide which statements belong to a loop. Run the starter once to see IndentationError, then repair the block and extend it into a small audit trail.",
+    "nl": "Een sensorcontrole heeft het juiste idee maar een ongeldig blok. Python gebruikt inspringing om te bepalen welke instructies bij een loop horen. Voer de startcode één keer uit om IndentationError te zien, herstel daarna het blok en breid het uit tot een klein controleverslag."
   },
-  "example": "for fruit in [\"pear\", \"plum\"]:\n    print(fruit)",
+  "example": "",
+  "sections": [
+    {
+      "heading": {
+        "en": "The variable holds the current value",
+        "nl": "De variabele bevat de huidige waarde"
+      },
+      "body": {
+        "en": "In for code in codes, Python assigns each list value to code in turn. You do not define code beforehand. Choose a descriptive name and use that same name inside the body. All body lines use the same indentation; a line back at the left margin runs after the loop.",
+        "nl": "In for code in codes wijst Python elke listwaarde om de beurt aan code toe. Je hoeft code niet vooraf te definiëren. Kies een duidelijke naam en gebruik diezelfde naam binnen het blok. Alle regels van het blok springen even ver in; een regel terug aan de linkermarge draait na de loop."
+      },
+      "code": "codes = [\"R1\", \"R2\"]\nfor code in codes:\n    print(\"Testing\", code)\n    print(\"Recorded\")\nprint(\"Finished\")",
+      "output": "Testing R1\nRecorded\nTesting R2\nRecorded\nFinished"
+    },
+    {
+      "heading": {
+        "en": "Keep a record of the visits",
+        "nl": "Bewaar welke onderdelen zijn bezocht"
+      },
+      "body": {
+        "en": "Initialise visited as an empty list before the loop. Append the current code inside the body, so every iteration contributes one value. Resetting visited inside the loop would discard earlier work. Print its length once at the end; do not hard-code the number of sensors.",
+        "nl": "Initialiseer visited vóór de loop als een lege list. Voeg de huidige code binnen het blok toe, zodat elke iteratie één waarde bijdraagt. visited binnen de loop opnieuw leegmaken zou eerder werk weggooien. Druk aan het einde één keer de lengte af; zet het aantal sensoren niet als vast getal in de code."
+      },
+      "code": "visited = []\nfor code in [\"X\", \"Y\"]:\n    visited.append(code)\nprint(visited)",
+      "output": "['X', 'Y']"
+    }
+  ],
   "files": {
-    "main.py": "codes = [\"A1\", \"B2\", \"C3\"]\n"
+    "main.py": "codes = [\"A1\", \"B2\", \"C3\"]\nvisited = []\n# Repair the indentation, then record each visit inside the loop.\nfor code in codes:\nprint(\"Testing\", code)\n"
   },
   "solution": {
-    "main.py": "codes = [\"A1\", \"B2\", \"C3\"]\nfor code in codes:\n    print(\"Sensor\", code)\n"
+    "main.py": "codes = [\"A1\", \"B2\", \"C3\"]\nvisited = []\nfor code in codes:\n    print(\"Testing\", code)\n    visited.append(code)\nprint(\"Checked:\", len(visited))\n"
   },
   "checkpoints": [
     {
-      "id": "learn-python-loops-03-step-1",
+      "id": "learn-python-loops-03-v2-step-1",
       "task": {
-        "en": "For each code in codes, print Sensor followed by a space and that code.",
-        "nl": "Druk voor elke code in codes Sensor af, gevolgd door een spatie en de code."
+        "en": "Repair the indentation so the for loop prints Testing and each code once, in order.",
+        "nl": "Herstel de inspringing zodat de for-loop Testing en elke code één keer op volgorde afdrukt."
       },
-      "check": "_stdout.splitlines() == ['Sensor A1','Sensor B2','Sensor C3']",
+      "check": "([line for line in _stdout.splitlines() if line.startswith('Testing ')] == ['Testing ' + c for c in codes]) and any(isinstance(n, _ast.For) for n in _ast.walk(_ast.parse(_source)))",
+      "feedback": {
+        "en": "Indent the print beneath for. Print the current code, not the entire codes list.",
+        "nl": "Laat de print onder for inspringen. Druk de huidige code af, niet de hele list codes."
+      },
+      "cases": [
+        {
+          "inputs": {
+            "codes": [
+              "Z9",
+              "A0"
+            ]
+          },
+          "check": "[line for line in _stdout.splitlines() if line.startswith('Testing ')] == ['Testing ' + c for c in codes]"
+        }
+      ],
       "hint": {
-        "en": "Start with codes = [\"A1\", \"B2\", \"C3\"]. Then compare the values with the task.",
-        "nl": "Begin met codes = [\"A1\", \"B2\", \"C3\"]. Vergelijk de waarden daarna met de opdracht."
+        "en": "Indent the print beneath for. Print the current code, not the entire codes list.",
+        "nl": "Laat de print onder for inspringen. Druk de huidige code af, niet de hele list codes."
+      }
+    },
+    {
+      "id": "learn-python-loops-03-v2-step-2",
+      "task": {
+        "en": "Inside that loop, append each code to visited. Keep the initial empty list outside the loop.",
+        "nl": "Voeg binnen die loop elke code toe aan visited. Laat de aanvankelijk lege list buiten de loop staan."
+      },
+      "check": "visited == codes",
+      "feedback": {
+        "en": "Append the loop variable once per visit. Do not reset visited on each iteration.",
+        "nl": "Voeg de loopvariabele één keer per bezoek toe. Maak visited niet bij elke iteratie opnieuw leeg."
+      },
+      "cases": [
+        {
+          "inputs": {
+            "codes": []
+          },
+          "check": "visited == codes"
+        },
+        {
+          "inputs": {
+            "codes": [
+              "Z9",
+              "A0",
+              "Z9"
+            ]
+          },
+          "check": "visited == codes"
+        }
+      ],
+      "hint": {
+        "en": "Append the loop variable once per visit. Do not reset visited on each iteration.",
+        "nl": "Voeg de loopvariabele één keer per bezoek toe. Maak visited niet bij elke iteratie opnieuw leeg."
+      }
+    },
+    {
+      "id": "learn-python-loops-03-v2-step-3",
+      "task": {
+        "en": "After the loop, print Checked: and the number of visited sensors, once.",
+        "nl": "Druk na de loop één keer Checked: en het aantal bezochte sensoren af."
+      },
+      "check": "_stdout.splitlines() == ['Testing ' + c for c in codes] + ['Checked: ' + str(len(codes))]",
+      "feedback": {
+        "en": "Use len(visited) in a print outside the loop, after the repeated Testing lines.",
+        "nl": "Gebruik len(visited) in een print buiten de loop, na de herhaalde Testing-regels."
+      },
+      "cases": [
+        {
+          "inputs": {
+            "codes": []
+          },
+          "check": "_stdout.splitlines() == ['Testing ' + c for c in codes] + ['Checked: ' + str(len(codes))]"
+        },
+        {
+          "inputs": {
+            "codes": [
+              "Z9"
+            ]
+          },
+          "check": "_stdout.splitlines() == ['Testing ' + c for c in codes] + ['Checked: ' + str(len(codes))]"
+        }
+      ],
+      "hint": {
+        "en": "Use len(visited) in a print outside the loop, after the repeated Testing lines.",
+        "nl": "Gebruik len(visited) in een print buiten de loop, na de herhaalde Testing-regels."
       }
     }
   ],
   "solutionNote": {
-    "en": "for item in collection assigns each element to item in turn. The indented body runs once per element. Choose a loop variable name that describes one element.\n\nTrace the solution one line at a time. Try a different input to see which parts change.",
-    "nl": "for item in collection wijst elk element om de beurt toe aan item. Het ingesprongen blok draait één keer per element. Kies een loopvariablenaam die één element beschrijft.\n\nVolg de oplossing regel voor regel. Probeer een andere invoer en bekijk welke onderdelen veranderen."
+    "en": "The body both reports and records each visit. visited is created once, so earlier codes remain in it. The final summary is outside the loop and appears only once, including for an empty collection.",
+    "nl": "Het blok meldt én bewaart elk bezoek. visited wordt één keer gemaakt, zodat eerdere codes erin blijven. De slotsamenvatting staat buiten de loop en verschijnt maar één keer, ook bij een lege verzameling."
   },
   "sourcePosition": 3,
   "sourceUrl": "https://www.codecademy.com/courses/learn-python-3/lessons/learn-python-loops/exercises/creating-for-loop",

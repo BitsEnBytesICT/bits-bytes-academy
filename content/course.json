@@ -10168,25 +10168,51 @@
       "group": "learn-python-loops",
       "title": {
         "en": "Loop overview",
-        "nl": "Waarom loops?"
+        "nl": "Eén regel voor een hele verzameling"
       },
       "kind": "reading",
       "optional": false,
       "explanation": {
-        "en": "A loop repeats a block of work. A for loop visits items in an iterable, while a while loop repeats as long as a condition remains true. Repetition lets a short program process a large collection.",
-        "nl": "Een loop herhaalt een blok code. Een for loop bezoekt items in een iterable. Een while loop herhaalt zolang een voorwaarde waar blijft. Zo kan een kort programma een grote verzameling verwerken."
+        "en": "A station checks several platforms before opening. The rule is the same for every platform; only the platform name changes. A loop expresses that repeated rule once. Each trip through its body is an iteration.\n\nEvery useful loop has a starting situation, repeated work and a way to finish. A for loop visits the values supplied by a collection. A while loop keeps working while a condition is true. We will build both, then decide which fits each job.",
+        "nl": "Een station controleert verschillende perrons voordat het opent. De regel is voor elk perron hetzelfde; alleen de perronnaam verandert. Een loop beschrijft die herhaalde regel één keer. Elke uitvoering van het blok heet een iteratie.\n\nElke bruikbare loop heeft een beginsituatie, herhaald werk en een manier om te eindigen. Een for-loop bezoekt de waarden uit een verzameling. Een while-loop werkt door zolang een voorwaarde waar is. We bouwen beide en bepalen daarna welke bij de taak past."
       },
       "example": "",
+      "sections": [
+        {
+          "heading": {
+            "en": "Follow one item at a time",
+            "nl": "Volg één onderdeel tegelijk"
+          },
+          "body": {
+            "en": "Read the following program aloud: for each gate in gates, print an inspection line. gate receives the first name, then the next. The indented line repeats; the final unindented line runs once after the collection is exhausted. You do not need to memorise the syntax yet.",
+            "nl": "Lees het volgende programma hardop: druk voor elke gate in gates een controleregel af. gate krijgt de eerste naam en daarna de volgende. De ingesprongen regel wordt herhaald; de laatste regel zonder inspringing draait één keer nadat de verzameling op is. Je hoeft de syntax nog niet uit je hoofd te kennen."
+          },
+          "code": "gates = [\"North\", \"South\"]\nfor gate in gates:\n    print(\"Inspect:\", gate)\nprint(\"Inspection finished\")",
+          "output": "Inspect: North\nInspect: South\nInspection finished"
+        },
+        {
+          "heading": {
+            "en": "Change the data, keep the rule",
+            "nl": "Verander de gegevens, behoud de regel"
+          },
+          "body": {
+            "en": "Run the editor preview. Add another platform to platforms and predict which lines will repeat. Then replace the collection with an empty list. The body runs zero times, but the final message still appears. This is how one short program can handle different amounts of work without a new print statement for every item.",
+            "nl": "Voer de demonstratie in de editor uit. Voeg een perron toe aan platforms en voorspel welke regels worden herhaald. Vervang de verzameling daarna door een lege list. Het blok draait nul keer, maar het slotbericht verschijnt nog steeds. Zo verwerkt één kort programma verschillende hoeveelheden werk zonder een nieuwe print-regel voor elk onderdeel."
+          },
+          "code": "gates = []\nfor gate in gates:\n    print(\"Inspect:\", gate)\nprint(\"Inspection finished\")",
+          "output": "Inspection finished"
+        }
+      ],
       "files": {
-        "main.py": "for sensor in [\"north\", \"south\", \"west\"]:\n    print(\"Checking\", sensor)\n"
+        "main.py": "platforms = [\"A\", \"B\", \"C\"]\nprint(\"Opening checks\")\nfor platform in platforms:\n    print(\"Check platform\", platform)\nprint(\"All listed platforms checked\")\n"
       },
       "solution": {
-        "main.py": "for sensor in [\"north\", \"south\", \"west\"]:\n    print(\"Checking\", sensor)\n"
+        "main.py": "platforms = [\"A\", \"B\", \"C\", \"D\"]\nprint(\"Opening checks\")\nfor platform in platforms:\n    print(\"Check platform\", platform)\nprint(\"All listed platforms checked\")\n"
       },
       "checkpoints": [],
       "solutionNote": {
-        "en": "A loop repeats a block of work. A for loop visits items in an iterable, while a while loop repeats as long as a condition remains true. Repetition lets a short program process a large collection.\n\nTrace the solution one line at a time. Try a different input to see which parts change.",
-        "nl": "Een loop herhaalt een blok code. Een for loop bezoekt items in een iterable. Een while loop herhaalt zolang een voorwaarde waar blijft. Zo kan een kort programma een grote verzameling verwerken.\n\nVolg de oplossing regel voor regel. Probeer een andere invoer en bekijk welke onderdelen veranderen."
+        "en": "Only the data gained a fourth platform. The loop applies the same instruction to it automatically. With an empty list there is no current platform, so the body is skipped entirely.",
+        "nl": "Alleen de gegevens kregen een vierde perron. De loop past daar automatisch dezelfde instructie op toe. Bij een lege list is er geen huidig perron, dus wordt het blok helemaal overgeslagen."
       },
       "sourcePosition": 1,
       "sourceUrl": "https://www.codecademy.com/courses/learn-python-3/lessons/learn-python-loops/exercises/introduction-to-loops",
@@ -10198,38 +10224,136 @@
       "group": "learn-python-loops",
       "title": {
         "en": "Replacing repeated code",
-        "nl": "Herhaling vervangen"
+        "nl": "Herstel een onvolledig stationsrapport"
       },
       "kind": "coding",
       "optional": false,
       "explanation": {
-        "en": "Repeated lines are difficult to maintain: a rule may need to be changed in several places. A loop expresses the rule once and applies it to each item.",
-        "nl": "Herhaalde regels zijn lastig te onderhouden: dezelfde regel moet dan op meerdere plaatsen worden aangepast. Een loop beschrijft de regel één keer en past deze op elk item toe."
+        "en": "The departure board received a fourth station, but its old program still prints only three. This is a maintenance problem: the program has the same action copied in several places and assumes a particular list length. First make the missing data visible, then replace the repeated rule with a loop.",
+        "nl": "Het vertrekbord kreeg een vierde station, maar het oude programma drukt er nog maar drie af. Dit is een onderhoudsprobleem: dezelfde actie staat op verschillende plaatsen gekopieerd en het programma gaat uit van een vaste listlengte. Maak eerst de ontbrekende gegevens zichtbaar en vervang daarna de herhaalde regel door een loop."
       },
       "example": "",
+      "sections": [
+        {
+          "heading": {
+            "en": "Find the assumption",
+            "nl": "Zoek de aanname"
+          },
+          "body": {
+            "en": "Run the supplied program. The list has four items but only indexes 0, 1 and 2 are printed. Add the missing print once to see the complete report. That patch works today, but a fifth station would require another edit; an empty list would cause an indexing error.",
+            "nl": "Voer het meegeleverde programma uit. De list heeft vier onderdelen, maar alleen indexen 0, 1 en 2 worden afgedrukt. Voeg de ontbrekende print één keer toe om het volledige rapport te zien. Dat werkt vandaag, maar een vijfde station zou weer een wijziging vereisen; een lege list zou een indexfout geven."
+          },
+          "code": "stops = [\"Pier\", \"Square\"]\nprint(\"Stop:\", stops[0])\nprint(\"Stop:\", stops[1])",
+          "output": "Stop: Pier\nStop: Square"
+        },
+        {
+          "heading": {
+            "en": "Move the repeated action into a body",
+            "nl": "Verplaats de herhaalde actie naar een blok"
+          },
+          "body": {
+            "en": "The loop variable receives an item, not its index. Replace all the indexed prints with one for loop. Keep the colon and indent the print by four spaces. A separate summary after the loop can use len to count the stations. Try adding a station and then using an empty list: the same rule should still work.",
+            "nl": "De loopvariabele krijgt een onderdeel, niet de index ervan. Vervang alle prints met een index door één for-loop. Behoud de dubbele punt en laat de print vier spaties inspringen. Een aparte samenvatting na de loop kan met len het aantal stations tellen. Probeer een station toe te voegen en daarna een lege list: dezelfde regel moet blijven werken."
+          },
+          "code": "stops = [\"Pier\", \"Square\"]\nfor stop in stops:\n    print(\"Stop:\", stop)\nprint(\"Count:\", len(stops))",
+          "output": "Stop: Pier\nStop: Square\nCount: 2"
+        }
+      ],
       "files": {
-        "main.py": "names = [\"East\", \"West\", \"North\"]\nprint(names[0])\nprint(names[1])\nprint(names[2])\n"
+        "main.py": "stations = [\"Harbor\", \"Market\", \"Park\", \"Depot\"]\nprint(\"Stop:\", stations[0])\nprint(\"Stop:\", stations[1])\nprint(\"Stop:\", stations[2])\n# The board is missing a station.\n"
       },
       "solution": {
-        "main.py": "names = [\"East\", \"West\", \"North\"]\nfor name in names:\n    print(name)\n"
+        "main.py": "stations = [\"Harbor\", \"Market\", \"Park\", \"Depot\"]\nfor station in stations:\n    print(\"Stop:\", station)\nprint(\"Count:\", len(stations))\n"
       },
       "checkpoints": [
         {
-          "id": "learn-python-loops-02-step-1",
+          "id": "learn-python-loops-02-v2-step-1",
           "task": {
-            "en": "Replace repeated prints with a loop over names. Print each name on its own line.",
-            "nl": "Vervang herhaalde print-regels door een loop over names. Druk elke naam op een eigen regel af."
+            "en": "Make the report print all four supplied stations as Stop: followed by the name, in order, once each. Run it to confirm the missing station appears.",
+            "nl": "Laat het rapport alle vier meegeleverde stations afdrukken als Stop: gevolgd door de naam, op volgorde en elk één keer. Voer uit om te controleren dat het ontbrekende station verschijnt."
           },
-          "check": "_stdout.splitlines() == ['East','West','North'] and any(isinstance(n,_ast.For) for n in _ast.walk(_ast.parse(_source)))",
+          "check": "[line for line in _stdout.splitlines() if line.startswith('Stop:')] == ['Stop: ' + s for s in stations]",
+          "feedback": {
+            "en": "Add the missing station without duplicating earlier lines. A later loop refactor should preserve this output.",
+            "nl": "Voeg het ontbrekende station toe zonder eerdere regels te verdubbelen. De latere loop-aanpassing moet deze output behouden."
+          },
           "hint": {
-            "en": "Start with names = [\"East\", \"West\", \"North\"]. Then compare the values with the task.",
-            "nl": "Begin met names = [\"East\", \"West\", \"North\"]. Vergelijk de waarden daarna met de opdracht."
+            "en": "Add the missing station without duplicating earlier lines. A later loop refactor should preserve this output.",
+            "nl": "Voeg het ontbrekende station toe zonder eerdere regels te verdubbelen. De latere loop-aanpassing moet deze output behouden."
+          }
+        },
+        {
+          "id": "learn-python-loops-02-v2-step-2",
+          "task": {
+            "en": "Replace the repeated indexed prints with a for loop over stations. It must also work when the list grows or is empty.",
+            "nl": "Vervang de herhaalde prints met indexen door een for-loop over stations. Deze moet ook werken als de list groeit of leeg is."
+          },
+          "check": "([line for line in _stdout.splitlines() if line.startswith('Stop:')] == ['Stop: ' + s for s in stations]) and any(isinstance(n, _ast.For) for n in _ast.walk(_ast.parse(_source)))",
+          "feedback": {
+            "en": "Use one indented print with the current station value. Remove the old indexed prints.",
+            "nl": "Gebruik één ingesprongen print met de huidige stationswaarde. Verwijder de oude prints met indexen."
+          },
+          "cases": [
+            {
+              "inputs": {
+                "stations": []
+              },
+              "check": "[line for line in _stdout.splitlines() if line.startswith('Stop:')] == ['Stop: ' + s for s in stations]"
+            },
+            {
+              "inputs": {
+                "stations": [
+                  "West",
+                  "East",
+                  "North",
+                  "South",
+                  "Central"
+                ]
+              },
+              "check": "[line for line in _stdout.splitlines() if line.startswith('Stop:')] == ['Stop: ' + s for s in stations]"
+            }
+          ],
+          "hint": {
+            "en": "Use one indented print with the current station value. Remove the old indexed prints.",
+            "nl": "Gebruik één ingesprongen print met de huidige stationswaarde. Verwijder de oude prints met indexen."
+          }
+        },
+        {
+          "id": "learn-python-loops-02-v2-step-3",
+          "task": {
+            "en": "After the loop, print Count: and the number of stations. It must appear once, after all station lines.",
+            "nl": "Druk na de loop Count: en het aantal stations af. Dit moet één keer verschijnen, na alle stationsregels."
+          },
+          "check": "_stdout.splitlines() == ['Stop: ' + s for s in stations] + ['Count: ' + str(len(stations))]",
+          "feedback": {
+            "en": "Put the summary at the left margin and calculate its value with len(stations).",
+            "nl": "Zet de samenvatting tegen de linkermarge en bereken de waarde met len(stations)."
+          },
+          "cases": [
+            {
+              "inputs": {
+                "stations": []
+              },
+              "check": "_stdout.splitlines() == ['Stop: ' + s for s in stations] + ['Count: ' + str(len(stations))]"
+            },
+            {
+              "inputs": {
+                "stations": [
+                  "West"
+                ]
+              },
+              "check": "_stdout.splitlines() == ['Stop: ' + s for s in stations] + ['Count: ' + str(len(stations))]"
+            }
+          ],
+          "hint": {
+            "en": "Put the summary at the left margin and calculate its value with len(stations).",
+            "nl": "Zet de samenvatting tegen de linkermarge en bereken de waarde met len(stations)."
           }
         }
       ],
       "solutionNote": {
-        "en": "Repeated lines are difficult to maintain: a rule may need to be changed in several places. A loop expresses the rule once and applies it to each item.\n\nTrace the solution one line at a time. Try a different input to see which parts change.",
-        "nl": "Herhaalde regels zijn lastig te onderhouden: dezelfde regel moet dan op meerdere plaatsen worden aangepast. Een loop beschrijft de regel één keer en past deze op elk item toe.\n\nVolg de oplossing regel voor regel. Probeer een andere invoer en bekijk welke onderdelen veranderen."
+        "en": "The first repair exposes the hidden fourth item. The loop then removes the fixed-size assumption. The unindented summary runs after every item has been visited and also works when there were no items.",
+        "nl": "De eerste reparatie maakt het verborgen vierde onderdeel zichtbaar. De loop verwijdert daarna de aanname over de vaste grootte. De samenvatting zonder inspringing draait nadat alle onderdelen zijn bezocht en werkt ook als er geen onderdelen waren."
       },
       "sourcePosition": 2,
       "sourceUrl": "https://www.codecademy.com/courses/learn-python-3/lessons/learn-python-loops/exercises/introduction",
@@ -10241,38 +10365,145 @@
       "group": "learn-python-loops",
       "title": {
         "en": "For loops",
-        "nl": "Een for loop"
+        "nl": "Repareer en breid een for-loop uit"
       },
       "kind": "coding",
       "optional": false,
       "explanation": {
-        "en": "for item in collection assigns each element to item in turn. The indented body runs once per element. Choose a loop variable name that describes one element.",
-        "nl": "for item in collection wijst elk element om de beurt toe aan item. Het ingesprongen blok draait één keer per element. Kies een loopvariablenaam die één element beschrijft."
+        "en": "A sensor-check program has the right idea but an invalid block. Python uses indentation to decide which statements belong to a loop. Run the starter once to see IndentationError, then repair the block and extend it into a small audit trail.",
+        "nl": "Een sensorcontrole heeft het juiste idee maar een ongeldig blok. Python gebruikt inspringing om te bepalen welke instructies bij een loop horen. Voer de startcode één keer uit om IndentationError te zien, herstel daarna het blok en breid het uit tot een klein controleverslag."
       },
-      "example": "for fruit in [\"pear\", \"plum\"]:\n    print(fruit)",
+      "example": "",
+      "sections": [
+        {
+          "heading": {
+            "en": "The variable holds the current value",
+            "nl": "De variabele bevat de huidige waarde"
+          },
+          "body": {
+            "en": "In for code in codes, Python assigns each list value to code in turn. You do not define code beforehand. Choose a descriptive name and use that same name inside the body. All body lines use the same indentation; a line back at the left margin runs after the loop.",
+            "nl": "In for code in codes wijst Python elke listwaarde om de beurt aan code toe. Je hoeft code niet vooraf te definiëren. Kies een duidelijke naam en gebruik diezelfde naam binnen het blok. Alle regels van het blok springen even ver in; een regel terug aan de linkermarge draait na de loop."
+          },
+          "code": "codes = [\"R1\", \"R2\"]\nfor code in codes:\n    print(\"Testing\", code)\n    print(\"Recorded\")\nprint(\"Finished\")",
+          "output": "Testing R1\nRecorded\nTesting R2\nRecorded\nFinished"
+        },
+        {
+          "heading": {
+            "en": "Keep a record of the visits",
+            "nl": "Bewaar welke onderdelen zijn bezocht"
+          },
+          "body": {
+            "en": "Initialise visited as an empty list before the loop. Append the current code inside the body, so every iteration contributes one value. Resetting visited inside the loop would discard earlier work. Print its length once at the end; do not hard-code the number of sensors.",
+            "nl": "Initialiseer visited vóór de loop als een lege list. Voeg de huidige code binnen het blok toe, zodat elke iteratie één waarde bijdraagt. visited binnen de loop opnieuw leegmaken zou eerder werk weggooien. Druk aan het einde één keer de lengte af; zet het aantal sensoren niet als vast getal in de code."
+          },
+          "code": "visited = []\nfor code in [\"X\", \"Y\"]:\n    visited.append(code)\nprint(visited)",
+          "output": "['X', 'Y']"
+        }
+      ],
       "files": {
-        "main.py": "codes = [\"A1\", \"B2\", \"C3\"]\n"
+        "main.py": "codes = [\"A1\", \"B2\", \"C3\"]\nvisited = []\n# Repair the indentation, then record each visit inside the loop.\nfor code in codes:\nprint(\"Testing\", code)\n"
       },
       "solution": {
-        "main.py": "codes = [\"A1\", \"B2\", \"C3\"]\nfor code in codes:\n    print(\"Sensor\", code)\n"
+        "main.py": "codes = [\"A1\", \"B2\", \"C3\"]\nvisited = []\nfor code in codes:\n    print(\"Testing\", code)\n    visited.append(code)\nprint(\"Checked:\", len(visited))\n"
       },
       "checkpoints": [
         {
-          "id": "learn-python-loops-03-step-1",
+          "id": "learn-python-loops-03-v2-step-1",
           "task": {
-            "en": "For each code in codes, print Sensor followed by a space and that code.",
-            "nl": "Druk voor elke code in codes Sensor af, gevolgd door een spatie en de code."
+            "en": "Repair the indentation so the for loop prints Testing and each code once, in order.",
+            "nl": "Herstel de inspringing zodat de for-loop Testing en elke code één keer op volgorde afdrukt."
           },
-          "check": "_stdout.splitlines() == ['Sensor A1','Sensor B2','Sensor C3']",
+          "check": "([line for line in _stdout.splitlines() if line.startswith('Testing ')] == ['Testing ' + c for c in codes]) and any(isinstance(n, _ast.For) for n in _ast.walk(_ast.parse(_source)))",
+          "feedback": {
+            "en": "Indent the print beneath for. Print the current code, not the entire codes list.",
+            "nl": "Laat de print onder for inspringen. Druk de huidige code af, niet de hele list codes."
+          },
+          "cases": [
+            {
+              "inputs": {
+                "codes": [
+                  "Z9",
+                  "A0"
+                ]
+              },
+              "check": "[line for line in _stdout.splitlines() if line.startswith('Testing ')] == ['Testing ' + c for c in codes]"
+            }
+          ],
           "hint": {
-            "en": "Start with codes = [\"A1\", \"B2\", \"C3\"]. Then compare the values with the task.",
-            "nl": "Begin met codes = [\"A1\", \"B2\", \"C3\"]. Vergelijk de waarden daarna met de opdracht."
+            "en": "Indent the print beneath for. Print the current code, not the entire codes list.",
+            "nl": "Laat de print onder for inspringen. Druk de huidige code af, niet de hele list codes."
+          }
+        },
+        {
+          "id": "learn-python-loops-03-v2-step-2",
+          "task": {
+            "en": "Inside that loop, append each code to visited. Keep the initial empty list outside the loop.",
+            "nl": "Voeg binnen die loop elke code toe aan visited. Laat de aanvankelijk lege list buiten de loop staan."
+          },
+          "check": "visited == codes",
+          "feedback": {
+            "en": "Append the loop variable once per visit. Do not reset visited on each iteration.",
+            "nl": "Voeg de loopvariabele één keer per bezoek toe. Maak visited niet bij elke iteratie opnieuw leeg."
+          },
+          "cases": [
+            {
+              "inputs": {
+                "codes": []
+              },
+              "check": "visited == codes"
+            },
+            {
+              "inputs": {
+                "codes": [
+                  "Z9",
+                  "A0",
+                  "Z9"
+                ]
+              },
+              "check": "visited == codes"
+            }
+          ],
+          "hint": {
+            "en": "Append the loop variable once per visit. Do not reset visited on each iteration.",
+            "nl": "Voeg de loopvariabele één keer per bezoek toe. Maak visited niet bij elke iteratie opnieuw leeg."
+          }
+        },
+        {
+          "id": "learn-python-loops-03-v2-step-3",
+          "task": {
+            "en": "After the loop, print Checked: and the number of visited sensors, once.",
+            "nl": "Druk na de loop één keer Checked: en het aantal bezochte sensoren af."
+          },
+          "check": "_stdout.splitlines() == ['Testing ' + c for c in codes] + ['Checked: ' + str(len(codes))]",
+          "feedback": {
+            "en": "Use len(visited) in a print outside the loop, after the repeated Testing lines.",
+            "nl": "Gebruik len(visited) in een print buiten de loop, na de herhaalde Testing-regels."
+          },
+          "cases": [
+            {
+              "inputs": {
+                "codes": []
+              },
+              "check": "_stdout.splitlines() == ['Testing ' + c for c in codes] + ['Checked: ' + str(len(codes))]"
+            },
+            {
+              "inputs": {
+                "codes": [
+                  "Z9"
+                ]
+              },
+              "check": "_stdout.splitlines() == ['Testing ' + c for c in codes] + ['Checked: ' + str(len(codes))]"
+            }
+          ],
+          "hint": {
+            "en": "Use len(visited) in a print outside the loop, after the repeated Testing lines.",
+            "nl": "Gebruik len(visited) in een print buiten de loop, na de herhaalde Testing-regels."
           }
         }
       ],
       "solutionNote": {
-        "en": "for item in collection assigns each element to item in turn. The indented body runs once per element. Choose a loop variable name that describes one element.\n\nTrace the solution one line at a time. Try a different input to see which parts change.",
-        "nl": "for item in collection wijst elk element om de beurt toe aan item. Het ingesprongen blok draait één keer per element. Kies een loopvariablenaam die één element beschrijft.\n\nVolg de oplossing regel voor regel. Probeer een andere invoer en bekijk welke onderdelen veranderen."
+        "en": "The body both reports and records each visit. visited is created once, so earlier codes remain in it. The final summary is outside the loop and appears only once, including for an empty collection.",
+        "nl": "Het blok meldt én bewaart elk bezoek. visited wordt één keer gemaakt, zodat eerdere codes erin blijven. De slotsamenvatting staat buiten de loop en verschijnt maar één keer, ook bij een lege verzameling."
       },
       "sourcePosition": 3,
       "sourceUrl": "https://www.codecademy.com/courses/learn-python-3/lessons/learn-python-loops/exercises/creating-for-loop",
@@ -10284,38 +10515,144 @@
       "group": "learn-python-loops",
       "title": {
         "en": "Looping over range",
-        "nl": "Herhalen met range"
+        "nl": "Maak genummerde meetrondes"
       },
       "kind": "coding",
       "optional": false,
       "explanation": {
-        "en": "Use range when you want a known number of iterations. The loop variable receives each integer in the range. The stop value is excluded.",
-        "nl": "Gebruik range als je een vast aantal herhalingen wilt. De loopvariable krijgt elke integer uit de range. De stopwaarde telt niet mee."
+        "en": "A calibration device must take a configurable number of measurements. There is no list of sensor names to visit this time: the requirement is a number of repetitions. range supplies the integers for those repetitions without needing a hand-written list.",
+        "nl": "Een kalibratieapparaat moet een instelbaar aantal metingen doen. Dit keer is er geen list met sensornamen om te bezoeken: de opdracht is een aantal herhalingen. range levert de getallen daarvoor zonder dat je zelf een list hoeft uit te schrijven."
       },
       "example": "",
+      "sections": [
+        {
+          "heading": {
+            "en": "Count repetitions from zero",
+            "nl": "Tel herhalingen vanaf nul"
+          },
+          "body": {
+            "en": "range(3) supplies 0, 1 and 2. Printing a constant repeats that constant three times. Printing the loop variable instead reveals the iteration values. Add one for a human-facing round number, or use range(1, rounds + 1). The stop remains excluded.",
+            "nl": "range(3) levert 0, 1 en 2. Een constante afdrukken herhaalt die constante drie keer. De loopvariabele afdrukken toont juist de iteratiewaarden. Tel één op voor een rondenummer voor gebruikers, of gebruik range(1, rounds + 1). De stop blijft uitgesloten."
+          },
+          "code": "for index in range(3):\n    print(\"Round\", index + 1)",
+          "output": "Round 1\nRound 2\nRound 3"
+        },
+        {
+          "heading": {
+            "en": "Build a result alongside the output",
+            "nl": "Bouw naast de output een resultaat op"
+          },
+          "body": {
+            "en": "Each round contributes samples_per_round samples. Store the cumulative sample counts in totals. For three rounds of two samples, the values are 2, 4 and 6. Keep totals outside the loop, append inside it, and put the final summary after it. With zero rounds the list stays empty and the total is zero.",
+            "nl": "Elke ronde levert samples_per_round metingen op. Bewaar de cumulatieve aantallen in totals. Bij drie rondes van twee metingen zijn dat 2, 4 en 6. Zet totals buiten de loop, voeg binnen de loop toe en plaats de slotsamenvatting erna. Bij nul rondes blijft de list leeg en is het totaal nul."
+          },
+          "code": "totals = []\nfor index in range(3):\n    totals.append((index + 1) * 2)\nprint(totals)",
+          "output": "[2, 4, 6]"
+        }
+      ],
       "files": {
-        "main.py": "# Write your code below.\n"
+        "main.py": "rounds = 4\nsamples_per_round = 3\ntotals = []\nprint(\"Calibration\")\n# Add numbered rounds and their cumulative sample totals.\n"
       },
       "solution": {
-        "main.py": "for number in range(1, 5):\n    print(number)\n"
+        "main.py": "rounds = 4\nsamples_per_round = 3\ntotals = []\nprint(\"Calibration\")\nfor index in range(rounds):\n    print(\"Round\", index + 1)\n    totals.append((index + 1) * samples_per_round)\nprint(\"Samples:\", rounds * samples_per_round)\n"
       },
       "checkpoints": [
         {
-          "id": "learn-python-loops-04-step-1",
+          "id": "learn-python-loops-04-v2-step-1",
           "task": {
-            "en": "Print the integers 1 through 4, each on its own line, using range.",
-            "nl": "Druk met range de integers 1 tot en met 4 af, elk op een eigen regel."
+            "en": "Use a for loop with range to print Round 1 through Round 4 beneath Calibration. Use rounds so changing it changes the repetitions.",
+            "nl": "Gebruik een for-loop met range om Round 1 tot en met Round 4 onder Calibration af te drukken. Gebruik rounds zodat een wijziging daarvan het aantal herhalingen verandert."
           },
-          "check": "_stdout.splitlines() == ['1','2','3','4'] and 'range' in _source",
+          "check": "([s for s in _stdout.splitlines() if s.startswith('Round ')] == ['Round ' + str(n) for n in range(1, rounds + 1)]) and any(isinstance(n,_ast.For) and any(isinstance(call,_ast.Call) and isinstance(call.func,_ast.Name) and call.func.id == 'range' for call in _ast.walk(n.iter)) for n in _ast.walk(_ast.parse(_source)))",
+          "feedback": {
+            "en": "The stop is excluded. Either add one to a zero-based index or stop at rounds + 1.",
+            "nl": "De stop is uitgesloten. Tel één op bij een index vanaf nul of stop bij rounds + 1."
+          },
+          "cases": [
+            {
+              "inputs": {
+                "rounds": 0
+              },
+              "check": "[s for s in _stdout.splitlines() if s.startswith('Round ')] == ['Round ' + str(n) for n in range(1, rounds + 1)]"
+            },
+            {
+              "inputs": {
+                "rounds": 2
+              },
+              "check": "[s for s in _stdout.splitlines() if s.startswith('Round ')] == ['Round ' + str(n) for n in range(1, rounds + 1)]"
+            }
+          ],
           "hint": {
-            "en": "Start with for number in range(1, 5):. Then compare the values with the task.",
-            "nl": "Begin met for number in range(1, 5):. Vergelijk de waarden daarna met de opdracht."
+            "en": "The stop is excluded. Either add one to a zero-based index or stop at rounds + 1.",
+            "nl": "De stop is uitgesloten. Tel één op bij een index vanaf nul of stop bij rounds + 1."
+          }
+        },
+        {
+          "id": "learn-python-loops-04-v2-step-2",
+          "task": {
+            "en": "In the same loop, append the cumulative sample count to totals. The supplied settings should produce [3, 6, 9, 12].",
+            "nl": "Voeg in dezelfde loop het cumulatieve aantal metingen toe aan totals. De meegeleverde instellingen moeten [3, 6, 9, 12] opleveren."
+          },
+          "check": "totals == [n * samples_per_round for n in range(1, rounds + 1)]",
+          "feedback": {
+            "en": "Multiply the one-based round number by samples_per_round, then append that value.",
+            "nl": "Vermenigvuldig het rondenummer vanaf één met samples_per_round en voeg die waarde toe."
+          },
+          "cases": [
+            {
+              "inputs": {
+                "rounds": 0
+              },
+              "check": "totals == [n * samples_per_round for n in range(1, rounds + 1)]"
+            },
+            {
+              "inputs": {
+                "rounds": 3,
+                "samples_per_round": 2
+              },
+              "check": "totals == [n * samples_per_round for n in range(1, rounds + 1)]"
+            }
+          ],
+          "hint": {
+            "en": "Multiply the one-based round number by samples_per_round, then append that value.",
+            "nl": "Vermenigvuldig het rondenummer vanaf één met samples_per_round en voeg die waarde toe."
+          }
+        },
+        {
+          "id": "learn-python-loops-04-v2-step-3",
+          "task": {
+            "en": "Finish with one Samples: line showing the total number of samples. Keep it after all rounds, including when rounds is zero.",
+            "nl": "Eindig met één Samples:-regel met het totale aantal metingen. Zet deze na alle rondes, ook wanneer rounds nul is."
+          },
+          "check": "_stdout.splitlines() == ['Calibration'] + ['Round ' + str(n) for n in range(1, rounds + 1)] + ['Samples: ' + str(rounds * samples_per_round)]",
+          "feedback": {
+            "en": "Calculate the total without indexing the last item of an empty totals list.",
+            "nl": "Bereken het totaal zonder het laatste onderdeel van een lege totals-list op te vragen."
+          },
+          "cases": [
+            {
+              "inputs": {
+                "rounds": 0
+              },
+              "check": "_stdout.splitlines() == ['Calibration'] + ['Round ' + str(n) for n in range(1, rounds + 1)] + ['Samples: ' + str(rounds * samples_per_round)]"
+            },
+            {
+              "inputs": {
+                "rounds": 2,
+                "samples_per_round": 5
+              },
+              "check": "_stdout.splitlines() == ['Calibration'] + ['Round ' + str(n) for n in range(1, rounds + 1)] + ['Samples: ' + str(rounds * samples_per_round)]"
+            }
+          ],
+          "hint": {
+            "en": "Calculate the total without indexing the last item of an empty totals list.",
+            "nl": "Bereken het totaal zonder het laatste onderdeel van een lege totals-list op te vragen."
           }
         }
       ],
       "solutionNote": {
-        "en": "Use range when you want a known number of iterations. The loop variable receives each integer in the range. The stop value is excluded.\n\nTrace the solution one line at a time. Try a different input to see which parts change.",
-        "nl": "Gebruik range als je een vast aantal herhalingen wilt. De loopvariable krijgt elke integer uit de range. De stopwaarde telt niet mee.\n\nVolg de oplossing regel voor regel. Probeer een andere invoer en bekijk welke onderdelen veranderen."
+        "en": "The loop uses zero-based indexes but displays one-based round numbers. Each appended value is a cumulative count. The final multiplication handles zero rounds without needing a last list item.",
+        "nl": "De loop gebruikt indexen vanaf nul maar toont rondenummers vanaf één. Elke toegevoegde waarde is een cumulatief aantal. De laatste vermenigvuldiging verwerkt nul rondes zonder een laatste listonderdeel nodig te hebben."
       },
       "sourcePosition": 4,
       "sourceUrl": "https://www.codecademy.com/courses/learn-python-3/lessons/learn-python-loops/exercises/range",
@@ -10327,38 +10664,154 @@
       "group": "learn-python-loops",
       "title": {
         "en": "While loops",
-        "nl": "Een while loop"
+        "nl": "Volg een laadproces met while"
       },
       "kind": "coding",
       "optional": false,
       "explanation": {
-        "en": "A while loop checks its condition before every iteration. Update the state inside the loop so the condition can eventually become false. Otherwise it may never finish.",
-        "nl": "Een while loop controleert vóór elke herhaling de voorwaarde. Werk de toestand binnen de loop bij, zodat de voorwaarde uiteindelijk onwaar kan worden. Anders stopt de loop mogelijk nooit."
+        "en": "A charging station adds a fixed amount of energy until a target is reached. The decision is a condition: is the charge still below the target? A while loop checks that question before every iteration. The update inside the body must move the state toward stopping.",
+        "nl": "Een laadstation voegt telkens een vaste hoeveelheid energie toe totdat een doel is bereikt. De beslissing is een voorwaarde: is de lading nog onder het doel? Een while-loop controleert die vraag vóór elke iteratie. De wijziging binnen het blok moet de toestand richting het einde brengen."
       },
       "example": "",
+      "sections": [
+        {
+          "heading": {
+            "en": "Test, act, update, test again",
+            "nl": "Testen, uitvoeren, bijwerken en opnieuw testen"
+          },
+          "body": {
+            "en": "In this example the first test is 4 < 10. The body adds three, then the next test uses 7. After the second update the charge is 10 and the condition is false. Nothing in while updates a variable automatically. Keep the update inside the body.",
+            "nl": "In dit voorbeeld is de eerste test 4 < 10. Het blok telt drie op; de volgende test gebruikt 7. Na de tweede wijziging is de lading 10 en is de voorwaarde onwaar. while werkt niet automatisch een variabele bij. Laat de wijziging binnen het blok staan."
+          },
+          "code": "charge = 4\nwhile charge < 10:\n    print(\"Before:\", charge)\n    charge += 3\nprint(\"Finished:\", charge)",
+          "output": "Before: 4\nBefore: 7\nFinished: 10"
+        },
+        {
+          "heading": {
+            "en": "Reach or pass the target",
+            "nl": "Bereik of passeer het doel"
+          },
+          "body": {
+            "en": "The target is a stopping boundary, not always an exact result. Starting at 4 and adding 3 toward 9 ends at 10. Using != instead of < could keep going forever when the exact target is skipped. If the starting charge already meets the target, the body runs zero times. Use Stop or Ctrl+C if an edit produces a nonterminating loop, then repair the condition or update.",
+            "nl": "Het doel is een stopgrens, niet altijd het exacte resultaat. Beginnen bij 4 en steeds 3 toevoegen richting 9 eindigt bij 10. Met != in plaats van < zou de loop oneindig kunnen doorgaan wanneer het exacte doel wordt overgeslagen. Als de beginlading al aan het doel voldoet, draait het blok nul keer. Gebruik Stop of Ctrl+C als een wijziging een oneindige loop veroorzaakt en herstel daarna de voorwaarde of wijziging."
+          },
+          "code": "charge = 12\nhistory = []\nwhile charge < 10:\n    charge += 3\n    history.append(charge)\nprint(charge, history)",
+          "output": "12 []"
+        }
+      ],
       "files": {
-        "main.py": "# Write your code below.\n"
+        "main.py": "start = 12\ntarget = 30\nstep = 6\ncharge = start\nhistory = []\nprint(\"Initial:\", charge)\n# Charge repeatedly while below target.\n# Record each charge AFTER its update.\n"
       },
       "solution": {
-        "main.py": "count = 0\nwhile count < 3:\n    print(count)\n    count += 1\n"
+        "main.py": "start = 12\ntarget = 30\nstep = 6\ncharge = start\nhistory = []\nprint(\"Initial:\", charge)\nwhile charge < target:\n    charge += step\n    history.append(charge)\nprint(\"Finished:\", charge)\nprint(\"Cycles:\", len(history))\n"
       },
       "checkpoints": [
         {
-          "id": "learn-python-loops-05-step-1",
+          "id": "learn-python-loops-05-v2-step-1",
           "task": {
-            "en": "Start count at 0. Use while to print 0, 1, and 2, then finish with count equal to 3.",
-            "nl": "Begin met count = 0. Gebruik while om 0, 1 en 2 af te drukken. Eindig met count gelijk aan 3."
+            "en": "Add a while loop that increases charge by step until it reaches or passes target. Keep the supplied input assignments.",
+            "nl": "Voeg een while-loop toe die charge met step verhoogt totdat target wordt bereikt of gepasseerd. Behoud de meegeleverde invoertoewijzingen."
           },
-          "check": "count == 3 and _stdout.splitlines() == ['0','1','2'] and any(isinstance(n,_ast.While) for n in _ast.walk(_ast.parse(_source)))",
+          "check": "(charge == start + max(0, (target - start + step - 1) // step) * step) and any(isinstance(n, _ast.While) for n in _ast.walk(_ast.parse(_source)))",
+          "feedback": {
+            "en": "Check charge < target before each update. Keep charge += step inside the body; the positive step moves toward stopping.",
+            "nl": "Controleer charge < target vóór elke wijziging. Laat charge += step binnen het blok staan; de positieve stap beweegt richting het einde."
+          },
+          "cases": [
+            {
+              "inputs": {
+                "start": 10,
+                "target": 23,
+                "step": 5
+              },
+              "check": "charge == start + max(0, (target - start + step - 1) // step) * step"
+            },
+            {
+              "inputs": {
+                "start": 40,
+                "target": 30,
+                "step": 6
+              },
+              "check": "charge == start + max(0, (target - start + step - 1) // step) * step"
+            }
+          ],
           "hint": {
-            "en": "Start with count = 0. Then compare the values with the task.",
-            "nl": "Begin met count = 0. Vergelijk de waarden daarna met de opdracht."
+            "en": "Check charge < target before each update. Keep charge += step inside the body; the positive step moves toward stopping.",
+            "nl": "Controleer charge < target vóór elke wijziging. Laat charge += step binnen het blok staan; de positieve stap beweegt richting het einde."
+          }
+        },
+        {
+          "id": "learn-python-loops-05-v2-step-2",
+          "task": {
+            "en": "After each update, append the new charge to history inside the loop. The supplied run should record [18, 24, 30].",
+            "nl": "Voeg na elke wijziging de nieuwe charge binnen de loop toe aan history. De meegeleverde uitvoering moet [18, 24, 30] bewaren."
+          },
+          "check": "history == list(range(start + step, target + step, step))",
+          "feedback": {
+            "en": "Append after increasing charge. Initialise history once before the loop, not during each cycle.",
+            "nl": "Voeg toe nadat charge is verhoogd. Initialiseer history één keer vóór de loop, niet tijdens elke cyclus."
+          },
+          "cases": [
+            {
+              "inputs": {
+                "start": 10,
+                "target": 23,
+                "step": 5
+              },
+              "check": "history == list(range(start + step, target + step, step))"
+            },
+            {
+              "inputs": {
+                "start": 40,
+                "target": 30,
+                "step": 6
+              },
+              "check": "history == list(range(start + step, target + step, step))"
+            }
+          ],
+          "hint": {
+            "en": "Append after increasing charge. Initialise history once before the loop, not during each cycle.",
+            "nl": "Voeg toe nadat charge is verhoogd. Initialiseer history één keer vóór de loop, niet tijdens elke cyclus."
+          }
+        },
+        {
+          "id": "learn-python-loops-05-v2-step-3",
+          "task": {
+            "en": "After the loop, print Finished: with the final charge and Cycles: with the number of updates. Each summary appears once.",
+            "nl": "Druk na de loop Finished: met de eindlading en Cycles: met het aantal wijzigingen af. Elke samenvatting verschijnt één keer."
+          },
+          "check": "_stdout.splitlines() == ['Initial: ' + str(start), 'Finished: ' + str(charge), 'Cycles: ' + str(len(history))] and len(history) == max(0, (target - start + step - 1) // step)",
+          "feedback": {
+            "en": "Unindent both summary prints. len(history) counts completed updates, including zero when no charging was needed.",
+            "nl": "Laat beide samenvattingen niet inspringen. len(history) telt afgeronde wijzigingen, ook nul wanneer laden niet nodig was."
+          },
+          "cases": [
+            {
+              "inputs": {
+                "start": 10,
+                "target": 23,
+                "step": 5
+              },
+              "check": "_stdout.splitlines() == ['Initial: ' + str(start), 'Finished: ' + str(charge), 'Cycles: ' + str(len(history))] and len(history) == max(0, (target - start + step - 1) // step)"
+            },
+            {
+              "inputs": {
+                "start": 40,
+                "target": 30,
+                "step": 6
+              },
+              "check": "_stdout.splitlines() == ['Initial: ' + str(start), 'Finished: ' + str(charge), 'Cycles: ' + str(len(history))] and len(history) == max(0, (target - start + step - 1) // step)"
+            }
+          ],
+          "hint": {
+            "en": "Unindent both summary prints. len(history) counts completed updates, including zero when no charging was needed.",
+            "nl": "Laat beide samenvattingen niet inspringen. len(history) telt afgeronde wijzigingen, ook nul wanneer laden niet nodig was."
           }
         }
       ],
       "solutionNote": {
-        "en": "A while loop checks its condition before every iteration. Update the state inside the loop so the condition can eventually become false. Otherwise it may never finish.\n\nTrace the solution one line at a time. Try a different input to see which parts change.",
-        "nl": "Een while loop controleert vóór elke herhaling de voorwaarde. Werk de toestand binnen de loop bij, zodat de voorwaarde uiteindelijk onwaar kan worden. Anders stopt de loop mogelijk nooit.\n\nVolg de oplossing regel voor regel. Probeer een andere invoer en bekijk welke onderdelen veranderen."
+        "en": "The condition tests the current state; the update changes it for the next test. History records the new charge, not the old one. A strict less-than condition handles an overshoot and skips charging when the starting value already meets the target.",
+        "nl": "De voorwaarde test de huidige toestand; de wijziging verandert die voor de volgende test. History bewaart de nieuwe lading, niet de oude. Een strikt-kleiner-danvoorwaarde verwerkt het passeren van het doel en slaat laden over wanneer de beginwaarde al voldoet."
       },
       "sourcePosition": 5,
       "sourceUrl": "https://www.codecademy.com/courses/learn-python-3/lessons/learn-python-loops/exercises/while",
@@ -10370,38 +10823,157 @@
       "group": "learn-python-loops",
       "title": {
         "en": "While loops over lists",
-        "nl": "Een list met while doorlopen"
+        "nl": "Doorloop metingen met een index"
       },
       "kind": "coding",
       "optional": false,
       "explanation": {
-        "en": "An index-controlled while loop can walk through a list. Check index < len(items), use the current element, then increment the index. Keeping these steps together prevents skipped or repeated entries.",
-        "nl": "Een while loop met een index kan door een list lopen. Controleer index < len(items), gebruik het huidige element en verhoog de index. Houd die stappen bij elkaar om overslaan of herhalen te voorkomen."
+        "en": "A monitoring report needs both a measurement's position and its value. A while loop can walk a list with an index: start at zero, read only while the index is smaller than the length, then advance. We will first record the visits and then build a running total.",
+        "nl": "Een monitorrapport heeft zowel de positie als de waarde van een meting nodig. Een while-loop kan met een index door een list lopen: begin bij nul, lees alleen zolang de index kleiner is dan de lengte en ga daarna verder. We bewaren eerst de bezoeken en bouwen vervolgens een lopend totaal op."
       },
       "example": "",
+      "sections": [
+        {
+          "heading": {
+            "en": "Length is not a valid last index",
+            "nl": "De lengte is geen geldige laatste index"
+          },
+          "body": {
+            "en": "A list of three items has indexes 0, 1 and 2. Use index < len(values), not <=. After the last item, increase index to 3; the next test fails before any attempt to read values[3]. An empty list makes the first test false.",
+            "nl": "Een list met drie onderdelen heeft indexen 0, 1 en 2. Gebruik index < len(values), niet <=. Verhoog index na het laatste onderdeel naar 3; de volgende test is onwaar voordat values[3] wordt gelezen. Bij een lege list is de eerste test meteen onwaar."
+          },
+          "code": "values = [7, 2]\nindex = 0\nwhile index < len(values):\n    print(index, values[index])\n    index += 1\nprint(\"Next index:\", index)",
+          "output": "0 7\n1 2\nNext index: 2"
+        },
+        {
+          "heading": {
+            "en": "Accumulate instead of replacing",
+            "nl": "Tel op in plaats van te vervangen"
+          },
+          "body": {
+            "en": "Create total once before the loop. total += value keeps the previous total and adds one contribution. total = value would forget everything except the most recent measurement. In the editor, append each running total to running after adding the current value, then advance the index.",
+            "nl": "Maak total één keer vóór de loop. total += value behoudt het vorige totaal en telt één bijdrage erbij op. total = value zou alles behalve de recentste meting vergeten. Voeg in de editor elk lopend totaal toe aan running nadat de huidige waarde is opgeteld en verhoog daarna de index."
+          },
+          "code": "total = 0\nfor value in [7, 2, 5]:\n    total += value\n    print(total)",
+          "output": "7\n9\n14"
+        }
+      ],
       "files": {
-        "main.py": "values = [3, 5, 7]\nindex = 0\ntotal = 0\n"
+        "main.py": "values = [3, 5, 7]\nindex = 0\nvisited = []\ntotal = 0\nrunning = []\nprint(\"Measurements:\", values)\n# Read, record, accumulate, then advance the index.\n"
       },
       "solution": {
-        "main.py": "values = [3, 5, 7]\nindex = 0\ntotal = 0\nwhile index < len(values):\n    total += values[index]\n    index += 1\nprint(total)\n"
+        "main.py": "values = [3, 5, 7]\nindex = 0\nvisited = []\ntotal = 0\nrunning = []\nprint(\"Measurements:\", values)\nwhile index < len(values):\n    visited.append(values[index])\n    total += values[index]\n    running.append(total)\n    index += 1\nprint(\"Running:\", running)\nprint(\"Total:\", total)\n"
       },
       "checkpoints": [
         {
-          "id": "learn-python-loops-06-step-1",
+          "id": "learn-python-loops-06-v2-step-1",
           "task": {
-            "en": "Use a while loop to total values into total. Finish with total equal to 15.",
-            "nl": "Tel values met een while loop op in total. Eindig met total gelijk aan 15."
+            "en": "Use a while loop to append every measurement to visited in order. Advance index each time; finish at len(values).",
+            "nl": "Gebruik een while-loop om elke meting op volgorde aan visited toe te voegen. Verhoog index elke keer en eindig bij len(values)."
           },
-          "check": "total == 15 and index == 3",
+          "check": "(visited == values and index == len(values)) and any(isinstance(n, _ast.While) for n in _ast.walk(_ast.parse(_source)))",
+          "feedback": {
+            "en": "Test index < len(values), read values[index], then increase index by one. Do not read at index len(values).",
+            "nl": "Test index < len(values), lees values[index] en verhoog index daarna met één. Lees niet op index len(values)."
+          },
+          "cases": [
+            {
+              "inputs": {
+                "values": []
+              },
+              "check": "visited == values and index == len(values)"
+            },
+            {
+              "inputs": {
+                "values": [
+                  8,
+                  0,
+                  -2,
+                  5
+                ]
+              },
+              "check": "visited == values and index == len(values)"
+            }
+          ],
           "hint": {
-            "en": "Start with values = [3, 5, 7]. Then compare the values with the task.",
-            "nl": "Begin met values = [3, 5, 7]. Vergelijk de waarden daarna met de opdracht."
+            "en": "Test index < len(values), read values[index], then increase index by one. Do not read at index len(values).",
+            "nl": "Test index < len(values), lees values[index] en verhoog index daarna met één. Lees niet op index len(values)."
+          }
+        },
+        {
+          "id": "learn-python-loops-06-v2-step-2",
+          "task": {
+            "en": "In that loop, add each value to total and append the updated total to running. Expect [3, 8, 15] for the supplied data.",
+            "nl": "Tel in die loop elke waarde op bij total en voeg het bijgewerkte totaal toe aan running. Verwacht [3, 8, 15] voor de meegeleverde gegevens."
+          },
+          "check": "total == sum(values) and running == [sum(values[:n]) for n in range(1, len(values) + 1)]",
+          "feedback": {
+            "en": "Keep total and running outside the loop. Add the current value before appending the running total.",
+            "nl": "Laat total en running buiten de loop staan. Tel de huidige waarde op vóór het toevoegen van het lopende totaal."
+          },
+          "cases": [
+            {
+              "inputs": {
+                "values": []
+              },
+              "check": "total == sum(values) and running == [sum(values[:n]) for n in range(1, len(values) + 1)]"
+            },
+            {
+              "inputs": {
+                "values": [
+                  8,
+                  0,
+                  -2,
+                  5
+                ]
+              },
+              "check": "total == sum(values) and running == [sum(values[:n]) for n in range(1, len(values) + 1)]"
+            }
+          ],
+          "hint": {
+            "en": "Keep total and running outside the loop. Add the current value before appending the running total.",
+            "nl": "Laat total en running buiten de loop staan. Tel de huidige waarde op vóór het toevoegen van het lopende totaal."
+          }
+        },
+        {
+          "id": "learn-python-loops-06-v2-step-3",
+          "task": {
+            "en": "After traversal, print Running: and the list of running totals, then Total: and the final sum. Keep the Measurements line.",
+            "nl": "Druk na het doorlopen Running: en de list lopende totalen af, gevolgd door Total: en de eindsom. Behoud de Measurements-regel."
+          },
+          "check": "_stdout.splitlines() == ['Measurements: ' + str(values), 'Running: ' + str([sum(values[:n]) for n in range(1, len(values) + 1)]), 'Total: ' + str(sum(values))]",
+          "feedback": {
+            "en": "Put both prints outside the loop. For no measurements the running list is empty and the total is zero.",
+            "nl": "Zet beide prints buiten de loop. Zonder metingen is de list lopende totalen leeg en het totaal nul."
+          },
+          "cases": [
+            {
+              "inputs": {
+                "values": []
+              },
+              "check": "_stdout.splitlines() == ['Measurements: ' + str(values), 'Running: ' + str([sum(values[:n]) for n in range(1, len(values) + 1)]), 'Total: ' + str(sum(values))]"
+            },
+            {
+              "inputs": {
+                "values": [
+                  8,
+                  0,
+                  -2,
+                  5
+                ]
+              },
+              "check": "_stdout.splitlines() == ['Measurements: ' + str(values), 'Running: ' + str([sum(values[:n]) for n in range(1, len(values) + 1)]), 'Total: ' + str(sum(values))]"
+            }
+          ],
+          "hint": {
+            "en": "Put both prints outside the loop. For no measurements the running list is empty and the total is zero.",
+            "nl": "Zet beide prints buiten de loop. Zonder metingen is de list lopende totalen leeg en het totaal nul."
           }
         }
       ],
       "solutionNote": {
-        "en": "An index-controlled while loop can walk through a list. Check index < len(items), use the current element, then increment the index. Keeping these steps together prevents skipped or repeated entries.\n\nTrace the solution one line at a time. Try a different input to see which parts change.",
-        "nl": "Een while loop met een index kan door een list lopen. Controleer index < len(items), gebruik het huidige element en verhoog de index. Houd die stappen bij elkaar om overslaan of herhalen te voorkomen.\n\nVolg de oplossing regel voor regel. Probeer een andere invoer en bekijk welke onderdelen veranderen."
+        "en": "Indexing happens only after the bounds check. The current value contributes to both the visit record and the sum. Advancing last avoids skipping the first value; preserving the initial total outside the loop avoids losing earlier contributions.",
+        "nl": "Indexering gebeurt pas na de grenscontrole. De huidige waarde draagt bij aan zowel het bezoekverslag als de som. Als laatste verdergaan voorkomt dat de eerste waarde wordt overgeslagen; het begintotaal buiten de loop bewaren voorkomt verlies van eerdere bijdragen."
       },
       "sourcePosition": 6,
       "sourceUrl": "https://www.codecademy.com/courses/learn-python-3/lessons/learn-python-loops/exercises/while-loops-lists",
@@ -10413,25 +10985,51 @@
       "group": "learn-python-loops",
       "title": {
         "en": "Nonterminating loops",
-        "nl": "Oneindige loops begrijpen"
+        "nl": "Begrijp waarom een loop niet stopt"
       },
       "kind": "reading",
       "optional": false,
       "explanation": {
-        "en": "A loop is infinite if its condition never becomes false and nothing breaks out of it. Try changing the counter update below to see why it matters. Use Stop to cancel a runaway program; your editor stays usable.",
-        "nl": "Een loop is oneindig als de voorwaarde nooit onwaar wordt en niets de loop afbreekt. Verander de tellerupdate hieronder om te onderzoeken waarom die nodig is. Gebruik Stop om een vastgelopen programma te stoppen; de editor blijft werken."
+        "en": "A loop finishes only when it runs out of items, its condition becomes false, or it is explicitly stopped. Two common mistakes prevent that: never updating the value in a while condition, and continually adding new items to the very list a for loop is visiting.\n\nThe supplied program is safe to run. It copies pending jobs into a separate completed list. We will inspect the faulty alternatives and practise recovering from one deliberately.",
+        "nl": "Een loop eindigt alleen als de onderdelen op zijn, de voorwaarde onwaar wordt of de loop expliciet wordt gestopt. Twee veelvoorkomende fouten verhinderen dat: de waarde in een while-voorwaarde nooit bijwerken en steeds nieuwe onderdelen toevoegen aan de list die een for-loop juist doorloopt.\n\nHet meegeleverde programma kun je veilig uitvoeren. Het kopieert wachtende klussen naar een aparte list met afgeronde klussen. We bekijken de foutieve alternatieven en oefenen bewust het herstellen van één ervan."
       },
       "example": "",
+      "sections": [
+        {
+          "heading": {
+            "en": "A moving finish line",
+            "nl": "Een eindpunt dat blijft verschuiven"
+          },
+          "body": {
+            "en": "The editor visits pending but appends to completed. If it appended to pending instead, every visit would create more work to visit. The original list would keep growing. Do not run that growing-list version; trace the first two iterations on paper and explain why the end moves away.",
+            "nl": "De editor doorloopt pending maar voegt toe aan completed. Als hij juist aan pending zou toevoegen, zou elk bezoek meer werk opleveren om te bezoeken. De oorspronkelijke list zou blijven groeien. Voer die groeiende versie niet uit; volg de eerste twee iteraties op papier en leg uit waarom het einde opschuift."
+          },
+          "code": "pending = [\"scan\", \"label\"]\ncompleted = [\"pack\"]\nfor job in pending:\n    completed.append(job)\nprint(pending)\nprint(completed)",
+          "output": "['scan', 'label']\n['pack', 'scan', 'label']"
+        },
+        {
+          "heading": {
+            "en": "Stop, repair, rerun",
+            "nl": "Stoppen, herstellen en opnieuw uitvoeren"
+          },
+          "body": {
+            "en": "Try the finite counter below in the editor after your job report. Then remove only the counter update and run it. The condition now stays true. Press Stop or Ctrl+C to cancel; the workspace also has execution and output limits. Restore the update and run again. Your saved source stays available after interruption.\n\nFinally add a third pending job to the original program. Confirm it is copied exactly once and pending itself remains unchanged. Stopping a run is recovery; correcting the cause is the actual repair.",
+            "nl": "Probeer de eindige teller hieronder in de editor na je klusrapport. Verwijder vervolgens alleen de tellerwijziging en voer uit. De voorwaarde blijft nu waar. Druk op Stop of Ctrl+C om te annuleren; de werkruimte heeft ook uitvoerings- en outputlimieten. Herstel de wijziging en voer opnieuw uit. Je opgeslagen broncode blijft na onderbreking beschikbaar.\n\nVoeg tot slot een derde wachtende klus toe aan het oorspronkelijke programma. Controleer dat deze precies één keer wordt gekopieerd en pending zelf niet verandert. Een uitvoering stoppen is herstel; de oorzaak corrigeren is de echte reparatie."
+          },
+          "code": "counter = 0\nwhile counter < 3:\n    print(\"Pass\", counter)\n    counter += 1\nprint(\"Finished\")",
+          "output": "Pass 0\nPass 1\nPass 2\nFinished"
+        }
+      ],
       "files": {
-        "main.py": "counter = 0\nwhile counter < 3:\n    print(counter)\n    counter += 1\n"
+        "main.py": "pending = [\"scan\", \"label\"]\ncompleted = [\"pack\"]\nfor job in pending:\n    completed.append(job)\n    print(\"Completed:\", job)\nprint(\"Pending source:\", pending)\nprint(\"Combined:\", completed)\n"
       },
       "solution": {
-        "main.py": "counter = 0\nwhile counter < 3:\n    print(counter)\n    counter += 1\n"
+        "main.py": "pending = [\"scan\", \"label\", \"check\"]\ncompleted = [\"pack\"]\nfor job in pending:\n    completed.append(job)\n    print(\"Completed:\", job)\nprint(\"Pending source:\", pending)\nprint(\"Combined:\", completed)\ncounter = 0\nwhile counter < 3:\n    print(\"Pass\", counter)\n    counter += 1\nprint(\"Finished\")\n"
       },
       "checkpoints": [],
       "solutionNote": {
-        "en": "A loop is infinite if its condition never becomes false and nothing breaks out of it. Try changing the counter update below to see why it matters. Use Stop to cancel a runaway program; your editor stays usable.\n\nTrace the solution one line at a time. Try a different input to see which parts change.",
-        "nl": "Een loop is oneindig als de voorwaarde nooit onwaar wordt en niets de loop afbreekt. Verander de tellerupdate hieronder om te onderzoeken waarom die nodig is. Gebruik Stop om een vastgelopen programma te stoppen; de editor blijft werken.\n\nVolg de oplossing regel voor regel. Probeer een andere invoer en bekijk welke onderdelen veranderen."
+        "en": "The source and destination lists have different roles. Appending to completed does not extend the sequence currently being visited. The counter example changes the same variable its condition tests, so its stopping condition eventually becomes false.",
+        "nl": "De bronlist en doellist hebben verschillende rollen. Toevoegen aan completed verlengt de doorlopen verzameling niet. Het tellervoorbeeld verandert dezelfde variabele die de voorwaarde test, waardoor de voorwaarde uiteindelijk onwaar wordt."
       },
       "sourcePosition": 7,
       "sourceUrl": "https://www.codecademy.com/courses/learn-python-3/lessons/learn-python-loops/exercises/infinite-loops",
@@ -10443,38 +11041,226 @@
       "group": "learn-python-loops",
       "title": {
         "en": "Breaking early",
-        "nl": "Vroeg stoppen met break"
+        "nl": "Stop bij de eerste afwijkende meting"
       },
       "kind": "coding",
       "optional": false,
       "explanation": {
-        "en": "break immediately exits the innermost loop. Statements after break in the same iteration are skipped. It is useful when a search has already found what it needs.",
-        "nl": "break verlaat direct de binnenste loop. Regels na break in dezelfde herhaling worden overgeslagen. Dat is handig als een zoekactie haar doel al heeft gevonden."
+        "en": "A monitor needs the first measurement above its limit. Once that first alert is found, later values should not replace it. break immediately exits the nearest loop; it does not end the whole program. We will keep an inspection trail to make the stopping point visible.",
+        "nl": "Een monitor zoekt de eerste meting boven de grens. Zodra die eerste waarschuwing gevonden is, mogen latere waarden deze niet vervangen. break verlaat meteen de dichtstbijzijnde loop; het beëindigt niet het hele programma. We bewaren een controleverslag om het stoppunt zichtbaar te maken."
       },
       "example": "",
+      "sections": [
+        {
+          "heading": {
+            "en": "Record the result before leaving",
+            "nl": "Bewaar het resultaat voordat je stopt"
+          },
+          "body": {
+            "en": "Check each value inside the loop. When the condition matches, save that value and then break. Anything after break in that iteration is skipped. If nothing matches, the initial None remains; None represents the absence of a result here.",
+            "nl": "Controleer elke waarde binnen de loop. Bewaar de waarde wanneer de voorwaarde klopt en gebruik daarna break. Alles na break in die iteratie wordt overgeslagen. Als niets past, blijft de beginwaarde None staan; None stelt hier het ontbreken van een resultaat voor."
+          },
+          "code": "found = None\nfor value in [2, 9, 12]:\n    if value > 7:\n        found = value\n        break\nprint(found)\nprint(\"Search ended\")",
+          "output": "9\nSearch ended"
+        },
+        {
+          "heading": {
+            "en": "Make the work visible",
+            "nl": "Maak het werk zichtbaar"
+          },
+          "body": {
+            "en": "Append each value to inspected before testing it. This includes the matching value but excludes later ones after break. A match at the beginning needs one visit; no match needs every visit. The final prints belong outside the loop so they also appear for an empty input.",
+            "nl": "Voeg elke waarde vóór de test toe aan inspected. Daardoor telt de passende waarde mee, maar latere waarden na break niet. Een match aan het begin vraagt één bezoek; zonder match zijn alle bezoeken nodig. De slotprints horen buiten de loop zodat ze ook bij lege invoer verschijnen."
+          },
+          "code": "inspected = []\nfor value in [2, 9, 12]:\n    inspected.append(value)\n    if value > 7:\n        break\nprint(inspected)",
+          "output": "[2, 9]"
+        }
+      ],
       "files": {
-        "main.py": "values = [4, 8, 12, 18]\nfound = None\n"
+        "main.py": "values = [4, 8, 12, 18]\nlimit = 10\nfound = None\ninspected = []\nprint(\"Limit:\", limit)\n# Find the FIRST value above limit and stop searching.\n"
       },
       "solution": {
-        "main.py": "values = [4, 8, 12, 18]\nfound = None\nfor value in values:\n    if value > 10:\n        found = value\n        break\nprint(found)\n"
+        "main.py": "values = [4, 8, 12, 18]\nlimit = 10\nfound = None\ninspected = []\nprint(\"Limit:\", limit)\nfor value in values:\n    inspected.append(value)\n    if value > limit:\n        found = value\n        break\nprint(\"Inspected:\", inspected)\nprint(\"First alert:\", found)\n"
       },
       "checkpoints": [
         {
-          "id": "learn-python-loops-08-step-1",
+          "id": "learn-python-loops-08-v2-step-1",
           "task": {
-            "en": "Find the first value above 10 in values, store it in found, and stop searching.",
-            "nl": "Zoek de eerste waarde boven 10 in values, sla deze op in found en stop met zoeken."
+            "en": "Use a for loop and break to store the first value strictly above limit in found. Leave found as None when no value matches.",
+            "nl": "Gebruik een for-loop en break om de eerste waarde strikt boven limit in found te bewaren. Laat found op None staan als geen waarde past."
           },
-          "check": "found == 12 and any(isinstance(n,_ast.Break) for n in _ast.walk(_ast.parse(_source)))",
+          "check": "(found == ([v for v in values if v > limit][0] if len([v for v in values if v > limit]) else None)) and any(isinstance(n, _ast.Break) for n in _ast.walk(_ast.parse(_source)))",
+          "feedback": {
+            "en": "Save the matching value before break. Use > rather than >= and do not overwrite the first match with a later one.",
+            "nl": "Bewaar de passende waarde vóór break. Gebruik > in plaats van >= en overschrijf de eerste match niet met een latere."
+          },
+          "cases": [
+            {
+              "inputs": {
+                "values": [
+                  15,
+                  2,
+                  18
+                ],
+                "limit": 10
+              },
+              "check": "found == ([v for v in values if v > limit][0] if len([v for v in values if v > limit]) else None)"
+            },
+            {
+              "inputs": {
+                "values": [
+                  1,
+                  2,
+                  3
+                ],
+                "limit": 10
+              },
+              "check": "found == ([v for v in values if v > limit][0] if len([v for v in values if v > limit]) else None)"
+            },
+            {
+              "inputs": {
+                "values": [],
+                "limit": 10
+              },
+              "check": "found == ([v for v in values if v > limit][0] if len([v for v in values if v > limit]) else None)"
+            },
+            {
+              "inputs": {
+                "values": [
+                  10,
+                  11,
+                  11
+                ],
+                "limit": 10
+              },
+              "check": "found == ([v for v in values if v > limit][0] if len([v for v in values if v > limit]) else None)"
+            }
+          ],
           "hint": {
-            "en": "Start with values = [4, 8, 12, 18]. Then compare the values with the task.",
-            "nl": "Begin met values = [4, 8, 12, 18]. Vergelijk de waarden daarna met de opdracht."
+            "en": "Save the matching value before break. Use > rather than >= and do not overwrite the first match with a later one.",
+            "nl": "Bewaar de passende waarde vóór break. Gebruik > in plaats van >= en overschrijf de eerste match niet met een latere."
+          }
+        },
+        {
+          "id": "learn-python-loops-08-v2-step-2",
+          "task": {
+            "en": "Append each visited value to inspected before checking the limit. Include the first alert but no later measurements.",
+            "nl": "Voeg elke bezochte waarde aan inspected toe vóór de grenscontrole. Neem de eerste waarschuwing mee maar geen latere metingen."
+          },
+          "check": "found == ([v for v in values if v > limit][0] if len([v for v in values if v > limit]) else None) and inspected == (values[:values.index(found) + 1] if found is not None else values)",
+          "feedback": {
+            "en": "Place append before the condition; keep break inside the matching branch. A no-match run must inspect the full list.",
+            "nl": "Zet append vóór de voorwaarde; houd break binnen de passende branch. Zonder match moet de hele list worden bekeken."
+          },
+          "cases": [
+            {
+              "inputs": {
+                "values": [
+                  15,
+                  2,
+                  18
+                ],
+                "limit": 10
+              },
+              "check": "found == ([v for v in values if v > limit][0] if len([v for v in values if v > limit]) else None) and inspected == (values[:values.index(found) + 1] if found is not None else values)"
+            },
+            {
+              "inputs": {
+                "values": [
+                  1,
+                  2,
+                  3
+                ],
+                "limit": 10
+              },
+              "check": "found == ([v for v in values if v > limit][0] if len([v for v in values if v > limit]) else None) and inspected == (values[:values.index(found) + 1] if found is not None else values)"
+            },
+            {
+              "inputs": {
+                "values": [],
+                "limit": 10
+              },
+              "check": "found == ([v for v in values if v > limit][0] if len([v for v in values if v > limit]) else None) and inspected == (values[:values.index(found) + 1] if found is not None else values)"
+            },
+            {
+              "inputs": {
+                "values": [
+                  10,
+                  11,
+                  11
+                ],
+                "limit": 10
+              },
+              "check": "found == ([v for v in values if v > limit][0] if len([v for v in values if v > limit]) else None) and inspected == (values[:values.index(found) + 1] if found is not None else values)"
+            }
+          ],
+          "hint": {
+            "en": "Place append before the condition; keep break inside the matching branch. A no-match run must inspect the full list.",
+            "nl": "Zet append vóór de voorwaarde; houd break binnen de passende branch. Zonder match moet de hele list worden bekeken."
+          }
+        },
+        {
+          "id": "learn-python-loops-08-v2-step-3",
+          "task": {
+            "en": "After searching, print Inspected: with the visit list and First alert: with found. Keep the Limit line.",
+            "nl": "Druk na het zoeken Inspected: met de bezoeklist en First alert: met found af. Behoud de Limit-regel."
+          },
+          "check": "_stdout.splitlines() == ['Limit: ' + str(limit), 'Inspected: ' + str(inspected), 'First alert: ' + str(found)]",
+          "feedback": {
+            "en": "Both summaries belong after the loop, so no-match and empty-input runs still show their result.",
+            "nl": "Beide samenvattingen horen na de loop, zodat ook zonder match of met lege invoer het resultaat verschijnt."
+          },
+          "cases": [
+            {
+              "inputs": {
+                "values": [
+                  15,
+                  2,
+                  18
+                ],
+                "limit": 10
+              },
+              "check": "_stdout.splitlines() == ['Limit: ' + str(limit), 'Inspected: ' + str(inspected), 'First alert: ' + str(found)]"
+            },
+            {
+              "inputs": {
+                "values": [
+                  1,
+                  2,
+                  3
+                ],
+                "limit": 10
+              },
+              "check": "_stdout.splitlines() == ['Limit: ' + str(limit), 'Inspected: ' + str(inspected), 'First alert: ' + str(found)]"
+            },
+            {
+              "inputs": {
+                "values": [],
+                "limit": 10
+              },
+              "check": "_stdout.splitlines() == ['Limit: ' + str(limit), 'Inspected: ' + str(inspected), 'First alert: ' + str(found)]"
+            },
+            {
+              "inputs": {
+                "values": [
+                  10,
+                  11,
+                  11
+                ],
+                "limit": 10
+              },
+              "check": "_stdout.splitlines() == ['Limit: ' + str(limit), 'Inspected: ' + str(inspected), 'First alert: ' + str(found)]"
+            }
+          ],
+          "hint": {
+            "en": "Both summaries belong after the loop, so no-match and empty-input runs still show their result.",
+            "nl": "Beide samenvattingen horen na de loop, zodat ook zonder match of met lege invoer het resultaat verschijnt."
           }
         }
       ],
       "solutionNote": {
-        "en": "break immediately exits the innermost loop. Statements after break in the same iteration are skipped. It is useful when a search has already found what it needs.\n\nTrace the solution one line at a time. Try a different input to see which parts change.",
-        "nl": "break verlaat direct de binnenste loop. Regels na break in dezelfde herhaling worden overgeslagen. Dat is handig als een zoekactie haar doel al heeft gevonden.\n\nVolg de oplossing regel voor regel. Probeer een andere invoer en bekijk welke onderdelen veranderen."
+        "en": "The inspection is recorded first, then the condition is evaluated. Saving found before break retains the matching value. The final report still executes because break leaves the loop, not the program.",
+        "nl": "Het bezoek wordt eerst bewaard en daarna wordt de voorwaarde getest. found vóór break opslaan bewaart de passende waarde. Het slotrapport draait nog, omdat break de loop verlaat en niet het programma."
       },
       "sourcePosition": 8,
       "sourceUrl": "https://www.codecademy.com/courses/learn-python-3/lessons/learn-python-loops/exercises/break",
@@ -10486,38 +11272,217 @@
       "group": "learn-python-loops",
       "title": {
         "en": "Skipping an iteration",
-        "nl": "Een herhaling overslaan"
+        "nl": "Sla ongeldige metingen over en ga verder"
       },
       "kind": "coding",
       "optional": false,
       "explanation": {
-        "en": "continue skips the rest of the current iteration and moves to the next one. Use it to ignore invalid entries without ending the entire loop.",
-        "nl": "continue slaat de rest van de huidige herhaling over en gaat naar de volgende. Gebruik dit om ongeldige items over te slaan zonder de hele loop te stoppen."
+        "en": "This sensor uses negative numbers for failed readings; zero is a valid measurement. A bad reading should be skipped without hiding later good ones. continue skips the rest of the current iteration and starts the next one. Unlike break, it keeps the search through the collection going.",
+        "nl": "Deze sensor gebruikt negatieve getallen voor mislukte metingen; nul is een geldige meting. Een foutieve meting moet worden overgeslagen zonder latere goede metingen te verbergen. continue slaat de rest van de huidige iteratie over en begint de volgende. Anders dan break blijft het doorlopen van de verzameling doorgaan."
       },
       "example": "",
+      "sections": [
+        {
+          "heading": {
+            "en": "Skip before doing the normal work",
+            "nl": "Sla over vóór het gewone werk"
+          },
+          "body": {
+            "en": "Place the invalid-value condition first. If it matches, continue prevents the later append and print from running for that value. Values after it still get their turn. The boundary matters: < 0 rejects negatives while <= 0 would also reject valid zero readings.",
+            "nl": "Zet de voorwaarde voor ongeldige waarden eerst. Als deze klopt, voorkomt continue dat de latere append en print voor die waarde draaien. Waarden erna komen nog aan de beurt. De grens is belangrijk: < 0 wijst negatieve waarden af, terwijl <= 0 ook geldige nulmetingen zou afwijzen."
+          },
+          "code": "for value in [4, -1, 0, 6]:\n    if value < 0:\n        continue\n    print(\"Accepted:\", value)",
+          "output": "Accepted: 4\nAccepted: 0\nAccepted: 6"
+        },
+        {
+          "heading": {
+            "en": "Count the skipped work separately",
+            "nl": "Tel het overgeslagen werk apart"
+          },
+          "body": {
+            "en": "Increment rejected before continue; placing it after continue would make it unreachable. Initialise counters and result lists once before the loop. After the loop, print the collected accepted values and rejected count. Check an all-invalid list and an empty list as well as mixed data.",
+            "nl": "Verhoog rejected vóór continue; erna zou die regel onbereikbaar zijn. Initialiseer tellers en resultaatlists één keer vóór de loop. Druk na de loop de verzamelde geldige waarden en het aantal afwijzingen af. Controleer naast gemengde gegevens ook een volledig ongeldige list en een lege list."
+          },
+          "code": "rejected = 0\nfor value in [-1, 0, -3]:\n    if value < 0:\n        rejected += 1\n        continue\n    print(value)\nprint(\"Rejected:\", rejected)",
+          "output": "0\nRejected: 2"
+        }
+      ],
       "files": {
-        "main.py": "values = [3, -1, 5, -2, 0]\nvalid = []\n"
+        "main.py": "values = [4, -1, 0, 6, -3, 2]\naccepted = []\nrejected = 0\n# Keep valid readings and skip failed ones.\n"
       },
       "solution": {
-        "main.py": "values = [3, -1, 5, -2, 0]\nvalid = []\nfor value in values:\n    if value < 0:\n        continue\n    valid.append(value)\nprint(valid)\n"
+        "main.py": "values = [4, -1, 0, 6, -3, 2]\naccepted = []\nrejected = 0\nfor value in values:\n    if value < 0:\n        rejected += 1\n        continue\n    accepted.append(value)\nprint(\"Accepted:\", accepted)\nprint(\"Rejected:\", rejected)\n"
       },
       "checkpoints": [
         {
-          "id": "learn-python-loops-09-step-1",
+          "id": "learn-python-loops-09-v2-step-1",
           "task": {
-            "en": "Skip negative values using continue and collect the others in valid.",
-            "nl": "Sla negatieve waarden over met continue en verzamel de overige waarden in valid."
+            "en": "Use a for loop with continue to skip negative readings and append every other value to accepted, preserving order and duplicates.",
+            "nl": "Gebruik een for-loop met continue om negatieve metingen over te slaan en elke andere waarde aan accepted toe te voegen, met behoud van volgorde en duplicaten."
           },
-          "check": "valid == [3,5,0] and any(isinstance(n,_ast.Continue) for n in _ast.walk(_ast.parse(_source)))",
+          "check": "(accepted == [v for v in values if v >= 0]) and any(isinstance(n, _ast.Continue) for n in _ast.walk(_ast.parse(_source)))",
+          "feedback": {
+            "en": "Use value < 0 for the skip condition. Append after that branch so zero and later valid readings are kept.",
+            "nl": "Gebruik value < 0 voor de overslavoorwaarde. Voeg na die branch toe zodat nul en latere geldige metingen behouden blijven."
+          },
+          "cases": [
+            {
+              "inputs": {
+                "values": [
+                  0,
+                  -2,
+                  5,
+                  0,
+                  3
+                ]
+              },
+              "check": "accepted == [v for v in values if v >= 0]"
+            },
+            {
+              "inputs": {
+                "values": []
+              },
+              "check": "accepted == [v for v in values if v >= 0]"
+            },
+            {
+              "inputs": {
+                "values": [
+                  -4,
+                  -1
+                ]
+              },
+              "check": "accepted == [v for v in values if v >= 0]"
+            },
+            {
+              "inputs": {
+                "values": [
+                  2,
+                  2,
+                  7
+                ]
+              },
+              "check": "accepted == [v for v in values if v >= 0]"
+            }
+          ],
           "hint": {
-            "en": "Start with values = [3, -1, 5, -2, 0]. Then compare the values with the task.",
-            "nl": "Begin met values = [3, -1, 5, -2, 0]. Vergelijk de waarden daarna met de opdracht."
+            "en": "Use value < 0 for the skip condition. Append after that branch so zero and later valid readings are kept.",
+            "nl": "Gebruik value < 0 voor de overslavoorwaarde. Voeg na die branch toe zodat nul en latere geldige metingen behouden blijven."
+          }
+        },
+        {
+          "id": "learn-python-loops-09-v2-step-2",
+          "task": {
+            "en": "Count each skipped reading in rejected. The supplied data contains two failed readings.",
+            "nl": "Tel elke overgeslagen meting in rejected. De meegeleverde gegevens bevatten twee mislukte metingen."
+          },
+          "check": "rejected == len([v for v in values if v < 0])",
+          "feedback": {
+            "en": "Increase rejected inside the invalid branch, before continue. Code after continue is skipped.",
+            "nl": "Verhoog rejected binnen de ongeldige branch, vóór continue. Code na continue wordt overgeslagen."
+          },
+          "cases": [
+            {
+              "inputs": {
+                "values": [
+                  0,
+                  -2,
+                  5,
+                  0,
+                  3
+                ]
+              },
+              "check": "rejected == len([v for v in values if v < 0])"
+            },
+            {
+              "inputs": {
+                "values": []
+              },
+              "check": "rejected == len([v for v in values if v < 0])"
+            },
+            {
+              "inputs": {
+                "values": [
+                  -4,
+                  -1
+                ]
+              },
+              "check": "rejected == len([v for v in values if v < 0])"
+            },
+            {
+              "inputs": {
+                "values": [
+                  2,
+                  2,
+                  7
+                ]
+              },
+              "check": "rejected == len([v for v in values if v < 0])"
+            }
+          ],
+          "hint": {
+            "en": "Increase rejected inside the invalid branch, before continue. Code after continue is skipped.",
+            "nl": "Verhoog rejected binnen de ongeldige branch, vóór continue. Code na continue wordt overgeslagen."
+          }
+        },
+        {
+          "id": "learn-python-loops-09-v2-step-3",
+          "task": {
+            "en": "Print Accepted: with the collected list and Rejected: with the count once after processing.",
+            "nl": "Druk na het verwerken één keer Accepted: met de verzamelde list en Rejected: met het aantal af."
+          },
+          "check": "_stdout.splitlines() == ['Accepted: ' + str([v for v in values if v >= 0]), 'Rejected: ' + str(len([v for v in values if v < 0]))]",
+          "feedback": {
+            "en": "Print the whole accepted list after the loop, followed by the rejected count, not one summary per item.",
+            "nl": "Druk de hele accepted-list na de loop af, gevolgd door het aantal afwijzingen; maak niet per onderdeel een samenvatting."
+          },
+          "cases": [
+            {
+              "inputs": {
+                "values": [
+                  0,
+                  -2,
+                  5,
+                  0,
+                  3
+                ]
+              },
+              "check": "_stdout.splitlines() == ['Accepted: ' + str([v for v in values if v >= 0]), 'Rejected: ' + str(len([v for v in values if v < 0]))]"
+            },
+            {
+              "inputs": {
+                "values": []
+              },
+              "check": "_stdout.splitlines() == ['Accepted: ' + str([v for v in values if v >= 0]), 'Rejected: ' + str(len([v for v in values if v < 0]))]"
+            },
+            {
+              "inputs": {
+                "values": [
+                  -4,
+                  -1
+                ]
+              },
+              "check": "_stdout.splitlines() == ['Accepted: ' + str([v for v in values if v >= 0]), 'Rejected: ' + str(len([v for v in values if v < 0]))]"
+            },
+            {
+              "inputs": {
+                "values": [
+                  2,
+                  2,
+                  7
+                ]
+              },
+              "check": "_stdout.splitlines() == ['Accepted: ' + str([v for v in values if v >= 0]), 'Rejected: ' + str(len([v for v in values if v < 0]))]"
+            }
+          ],
+          "hint": {
+            "en": "Print the whole accepted list after the loop, followed by the rejected count, not one summary per item.",
+            "nl": "Druk de hele accepted-list na de loop af, gevolgd door het aantal afwijzingen; maak niet per onderdeel een samenvatting."
           }
         }
       ],
       "solutionNote": {
-        "en": "continue skips the rest of the current iteration and moves to the next one. Use it to ignore invalid entries without ending the entire loop.\n\nTrace the solution one line at a time. Try a different input to see which parts change.",
-        "nl": "continue slaat de rest van de huidige herhaling over en gaat naar de volgende. Gebruik dit om ongeldige items over te slaan zonder de hele loop te stoppen.\n\nVolg de oplossing regel voor regel. Probeer een andere invoer en bekijk welke onderdelen veranderen."
+        "en": "The invalid branch records the rejection and immediately skips normal processing. A zero reading reaches append. Using break instead would wrongly abandon all readings after the first failure.",
+        "nl": "De ongeldige branch bewaart de afwijzing en slaat meteen de gewone verwerking over. Een nulmeting bereikt append wel. Met break zouden alle metingen na de eerste fout ten onrechte vervallen."
       },
       "sourcePosition": 9,
       "sourceUrl": "https://www.codecademy.com/courses/learn-python-3/lessons/learn-python-loops/exercises/continue",
@@ -10529,38 +11494,220 @@
       "group": "learn-python-loops",
       "title": {
         "en": "Nested loops",
-        "nl": "Geneste loops"
+        "nl": "Bouw rijtotalen en een eindtotaal"
       },
       "kind": "coding",
       "optional": false,
       "explanation": {
-        "en": "A nested loop runs its inner loop for each outer element. For a table, the outer loop selects a row and the inner loop selects values in that row.",
-        "nl": "Een geneste loop voert de binnenste loop uit voor elk buitenste element. Bij een tabel kiest de buitenste loop een rij en de binnenste loop waarden in die rij."
+        "en": "Measurements arrive in batches of different sizes. One loop visits a batch; another loop inside it visits that batch's values. The inner loop starts afresh for each outer iteration. We need both a subtotal per batch and a grand total across the complete delivery.",
+        "nl": "Metingen komen binnen in batches van verschillende grootte. Eén loop bezoekt een batch; een loop daarbinnen bezoekt de waarden van die batch. De binnenste loop begint opnieuw bij elke buitenste iteratie. We hebben zowel een subtotaal per batch als een eindtotaal over de hele levering nodig."
       },
       "example": "",
+      "sections": [
+        {
+          "heading": {
+            "en": "Which collection does each loop visit?",
+            "nl": "Welke verzameling bezoekt elke loop?"
+          },
+          "body": {
+            "en": "The outer variable is a list, not a number. The inner variable is one value from that list. Notice that the inner loop reads row rather than the complete batches collection. An empty row has no inner iterations, but the outer loop still visits it.",
+            "nl": "De buitenste variabele is een list, geen getal. De binnenste variabele is één waarde uit die list. De binnenste loop leest row en niet de hele verzameling batches. Een lege rij heeft geen binnenste iteraties, maar de buitenste loop bezoekt deze wel."
+          },
+          "code": "batches = [[2, 5], [], [8]]\nfor row in batches:\n    print(\"Batch:\", row)\n    for value in row:\n        print(\"Value:\", value)",
+          "output": "Batch: [2, 5]\nValue: 2\nValue: 5\nBatch: []\nBatch: [8]\nValue: 8"
+        },
+        {
+          "heading": {
+            "en": "Reset at the right level",
+            "nl": "Begin op het juiste niveau opnieuw"
+          },
+          "body": {
+            "en": "Create grand_total before both loops so it survives the entire run. Reset row_total inside the outer loop so each batch starts at zero. Add each value to both totals inside the inner loop. Append the row total after the inner loop; even an empty batch contributes a zero subtotal.",
+            "nl": "Maak grand_total vóór beide loops zodat dit de hele uitvoering behouden blijft. Zet row_total binnen de buitenste loop op nul zodat elke batch opnieuw begint. Tel binnen de binnenste loop elke waarde bij beide totalen op. Voeg het rijtotaal na de binnenste loop toe; ook een lege batch krijgt een subtotaal van nul."
+          },
+          "code": "totals = []\nfor row in [[2, 5], [], [8]]:\n    subtotal = 0\n    for value in row:\n        subtotal += value\n    totals.append(subtotal)\nprint(totals)",
+          "output": "[7, 0, 8]"
+        }
+      ],
       "files": {
-        "main.py": "grid = [[2, 4], [6, 8]]\ntotal = 0\n"
+        "main.py": "batches = [[3, 5], [2], [4, 1, 6]]\nreadings = []\nrow_totals = []\ngrand_total = 0\nprint(\"Batches:\", len(batches))\n# Outer loop: one batch. Inner loop: one reading.\n"
       },
       "solution": {
-        "main.py": "grid = [[2, 4], [6, 8]]\ntotal = 0\nfor row in grid:\n    for value in row:\n        total += value\nprint(total)\n"
+        "main.py": "batches = [[3, 5], [2], [4, 1, 6]]\nreadings = []\nrow_totals = []\ngrand_total = 0\nprint(\"Batches:\", len(batches))\nfor row in batches:\n    row_total = 0\n    for value in row:\n        readings.append(value)\n        row_total += value\n        grand_total += value\n    row_totals.append(row_total)\nprint(\"Rows:\", row_totals)\nprint(\"Grand total:\", grand_total)\n"
       },
       "checkpoints": [
         {
-          "id": "learn-python-loops-10-step-1",
+          "id": "learn-python-loops-10-v2-step-1",
           "task": {
-            "en": "Use nested loops to add every grid value into total.",
-            "nl": "Gebruik geneste loops om alle grid-waarden op te tellen in total."
+            "en": "Use two nested for loops to append each individual reading to readings, in batch order.",
+            "nl": "Gebruik twee geneste for-loops om elke afzonderlijke meting in batchvolgorde aan readings toe te voegen."
           },
-          "check": "total == 20 and sum(isinstance(n,_ast.For) for n in _ast.walk(_ast.parse(_source))) >= 2",
+          "check": "readings == [v for row in batches for v in row] and any(isinstance(n,_ast.For) and any(isinstance(child,_ast.For) for statement in n.body for child in _ast.walk(statement)) for n in _ast.walk(_ast.parse(_source)))",
+          "feedback": {
+            "en": "Loop over batches first, then over the current row. Append values, not entire rows.",
+            "nl": "Loop eerst over batches en daarna over de huidige rij. Voeg waarden toe, geen hele rijen."
+          },
+          "cases": [
+            {
+              "inputs": {
+                "batches": []
+              },
+              "check": "readings == [v for row in batches for v in row]"
+            },
+            {
+              "inputs": {
+                "batches": [
+                  [],
+                  [
+                    5,
+                    -2
+                  ],
+                  [],
+                  [
+                    0,
+                    7,
+                    1
+                  ]
+                ]
+              },
+              "check": "readings == [v for row in batches for v in row]"
+            },
+            {
+              "inputs": {
+                "batches": [
+                  [
+                    4
+                  ],
+                  [
+                    2,
+                    2
+                  ]
+                ]
+              },
+              "check": "readings == [v for row in batches for v in row]"
+            }
+          ],
           "hint": {
-            "en": "Start with grid = [[2, 4], [6, 8]]. Then compare the values with the task.",
-            "nl": "Begin met grid = [[2, 4], [6, 8]]. Vergelijk de waarden daarna met de opdracht."
+            "en": "Loop over batches first, then over the current row. Append values, not entire rows.",
+            "nl": "Loop eerst over batches en daarna over de huidige rij. Voeg waarden toe, geen hele rijen."
+          }
+        },
+        {
+          "id": "learn-python-loops-10-v2-step-2",
+          "task": {
+            "en": "Calculate row_totals and grand_total with your loops. Reset each row's subtotal, but keep the grand total across rows.",
+            "nl": "Bereken row_totals en grand_total met je loops. Begin het subtotaal per rij opnieuw, maar behoud het eindtotaal tussen rijen."
+          },
+          "check": "row_totals == [sum(row) for row in batches] and grand_total == sum([v for row in batches for v in row])",
+          "feedback": {
+            "en": "Reset row_total at the start of each outer iteration. Append it after the inner loop, including zero for an empty row.",
+            "nl": "Zet row_total aan het begin van elke buitenste iteratie op nul. Voeg deze na de binnenste loop toe, inclusief nul bij een lege rij."
+          },
+          "cases": [
+            {
+              "inputs": {
+                "batches": []
+              },
+              "check": "row_totals == [sum(row) for row in batches] and grand_total == sum([v for row in batches for v in row])"
+            },
+            {
+              "inputs": {
+                "batches": [
+                  [],
+                  [
+                    5,
+                    -2
+                  ],
+                  [],
+                  [
+                    0,
+                    7,
+                    1
+                  ]
+                ]
+              },
+              "check": "row_totals == [sum(row) for row in batches] and grand_total == sum([v for row in batches for v in row])"
+            },
+            {
+              "inputs": {
+                "batches": [
+                  [
+                    4
+                  ],
+                  [
+                    2,
+                    2
+                  ]
+                ]
+              },
+              "check": "row_totals == [sum(row) for row in batches] and grand_total == sum([v for row in batches for v in row])"
+            }
+          ],
+          "hint": {
+            "en": "Reset row_total at the start of each outer iteration. Append it after the inner loop, including zero for an empty row.",
+            "nl": "Zet row_total aan het begin van elke buitenste iteratie op nul. Voeg deze na de binnenste loop toe, inclusief nul bij een lege rij."
+          }
+        },
+        {
+          "id": "learn-python-loops-10-v2-step-3",
+          "task": {
+            "en": "After both loops, print Rows: with the subtotals and Grand total: with the overall sum. Keep the Batches line.",
+            "nl": "Druk na beide loops Rows: met de subtotalen en Grand total: met de totale som af. Behoud de Batches-regel."
+          },
+          "check": "_stdout.splitlines() == ['Batches: ' + str(len(batches)), 'Rows: ' + str([sum(row) for row in batches]), 'Grand total: ' + str(sum([v for row in batches for v in row]))]",
+          "feedback": {
+            "en": "Place the final report at the left margin. The row list includes one subtotal for every batch.",
+            "nl": "Zet het slotrapport tegen de linkermarge. De rijlist bevat één subtotaal voor elke batch."
+          },
+          "cases": [
+            {
+              "inputs": {
+                "batches": []
+              },
+              "check": "_stdout.splitlines() == ['Batches: ' + str(len(batches)), 'Rows: ' + str([sum(row) for row in batches]), 'Grand total: ' + str(sum([v for row in batches for v in row]))]"
+            },
+            {
+              "inputs": {
+                "batches": [
+                  [],
+                  [
+                    5,
+                    -2
+                  ],
+                  [],
+                  [
+                    0,
+                    7,
+                    1
+                  ]
+                ]
+              },
+              "check": "_stdout.splitlines() == ['Batches: ' + str(len(batches)), 'Rows: ' + str([sum(row) for row in batches]), 'Grand total: ' + str(sum([v for row in batches for v in row]))]"
+            },
+            {
+              "inputs": {
+                "batches": [
+                  [
+                    4
+                  ],
+                  [
+                    2,
+                    2
+                  ]
+                ]
+              },
+              "check": "_stdout.splitlines() == ['Batches: ' + str(len(batches)), 'Rows: ' + str([sum(row) for row in batches]), 'Grand total: ' + str(sum([v for row in batches for v in row]))]"
+            }
+          ],
+          "hint": {
+            "en": "Place the final report at the left margin. The row list includes one subtotal for every batch.",
+            "nl": "Zet het slotrapport tegen de linkermarge. De rijlist bevat één subtotaal voor elke batch."
           }
         }
       ],
       "solutionNote": {
-        "en": "A nested loop runs its inner loop for each outer element. For a table, the outer loop selects a row and the inner loop selects values in that row.\n\nTrace the solution one line at a time. Try a different input to see which parts change.",
-        "nl": "Een geneste loop voert de binnenste loop uit voor elk buitenste element. Bij een tabel kiest de buitenste loop een rij en de binnenste loop waarden in die rij.\n\nVolg de oplossing regel voor regel. Probeer een andere invoer en bekijk welke onderdelen veranderen."
+        "en": "The nested loops visit each value once. row_total restarts for every row; grand_total does not. Appending the subtotal outside the inner loop preserves a zero entry for empty batches and prevents partial subtotals from leaking into the report.",
+        "nl": "De geneste loops bezoeken elke waarde één keer. row_total begint per rij opnieuw; grand_total niet. Het subtotaal buiten de binnenste loop toevoegen bewaart een nul voor lege batches en voorkomt dat tussentotalen in het rapport belanden."
       },
       "sourcePosition": 10,
       "sourceUrl": "https://www.codecademy.com/courses/learn-python-3/lessons/learn-python-loops/exercises/nested",
@@ -10572,38 +11719,193 @@
       "group": "learn-python-loops",
       "title": {
         "en": "Comprehension transformations",
-        "nl": "Een list comprehension"
+        "nl": "Schrijf dezelfde bewerking als comprehension"
       },
       "kind": "coding",
       "optional": false,
       "explanation": {
-        "en": "A list comprehension combines iteration and transformation in one expression: [expression for item in items]. It creates a new list and is best kept short and readable.",
-        "nl": "Een list comprehension combineert herhaling en bewerking in één expressie: [expression for item in items]. Deze maakt een nieuwe list en blijft het duidelijkst als je de expressie kort houdt."
+        "en": "A sensor consistently reads a few units low. Correcting it means producing a new value for each raw reading while keeping the raw data available. You already know how to append transformed values in a loop. A list comprehension expresses that same simple transformation in one expression.",
+        "nl": "Een sensor meet steeds enkele eenheden te laag. Corrigeren betekent voor elke ruwe meting een nieuwe waarde maken terwijl de ruwe gegevens beschikbaar blijven. Je weet al hoe je met een loop bewerkte waarden toevoegt. Een list comprehension drukt diezelfde eenvoudige bewerking uit in één expressie."
       },
       "example": "",
+      "sections": [
+        {
+          "heading": {
+            "en": "Read the for part, then the expression",
+            "nl": "Lees het for-deel en daarna de expressie"
+          },
+          "body": {
+            "en": "In [value + 2 for value in raw], take each value from raw, calculate value + 2, and collect the result. The outer brackets create a new list. A comprehension is useful for a short transformation; use an ordinary loop when you need several actions or a detailed trace.",
+            "nl": "Bij [value + 2 for value in raw] neem je elke value uit raw, bereken je value + 2 en verzamel je het resultaat. De buitenste haakjes maken een nieuwe list. Een comprehension is handig voor een korte bewerking; gebruik een gewone loop als je meerdere acties of een uitgebreid verslag nodig hebt."
+          },
+          "code": "raw = [1, 4, -2]\ncorrected = [value + 2 for value in raw]\nprint(raw)\nprint(corrected)",
+          "output": "[1, 4, -2]\n[3, 6, 0]"
+        },
+        {
+          "heading": {
+            "en": "Compare two implementations",
+            "nl": "Vergelijk twee uitvoeringen"
+          },
+          "body": {
+            "en": "Complete the supplied explicit loop first. Then write corrected with a comprehension using the same raw data and offset. Compare the two lists before building doubled from corrected. This keeps the calculation rule visible and shows that later transformations can use earlier results without changing them.",
+            "nl": "Maak eerst de meegeleverde gewone loop af. Schrijf daarna corrected met een comprehension en dezelfde raw-gegevens en offset. Vergelijk de twee lists voordat je doubled uit corrected maakt. Zo blijft de rekenregel zichtbaar en zie je dat latere bewerkingen eerdere resultaten kunnen gebruiken zonder deze te veranderen."
+          },
+          "code": "first = [3, 6, 0]\nsecond = [value * 2 for value in first]\nprint(first)\nprint(second)",
+          "output": "[3, 6, 0]\n[6, 12, 0]"
+        }
+      ],
       "files": {
-        "main.py": "raw = [2, 5, 8]\n"
+        "main.py": "raw = [4, 9, -1, 6]\noffset = 2\nby_loop = []\nfor value in raw:\n    # Replace pass with an append of the corrected value.\n    pass\nprint(\"Raw:\", raw)\n# Build corrected with a comprehension, then doubled.\n"
       },
       "solution": {
-        "main.py": "raw = [2, 5, 8]\ndoubled = [value * 2 for value in raw]\nprint(doubled)\n"
+        "main.py": "raw = [4, 9, -1, 6]\noffset = 2\nby_loop = []\nfor value in raw:\n    by_loop.append(value + offset)\nprint(\"Raw:\", raw)\ncorrected = [value + offset for value in raw]\nprint(\"Corrected:\", corrected)\ndoubled = [value * 2 for value in corrected]\nprint(\"Doubled:\", doubled)\n"
       },
       "checkpoints": [
         {
-          "id": "learn-python-loops-11-step-1",
+          "id": "learn-python-loops-11-v2-step-1",
           "task": {
-            "en": "Create doubled by doubling every value in raw with a list comprehension.",
-            "nl": "Maak doubled door elke waarde in raw met een list comprehension te verdubbelen."
+            "en": "Replace pass in the supplied loop with an append to by_loop of value plus offset. Keep raw unchanged.",
+            "nl": "Vervang pass in de meegeleverde loop door het toevoegen van value plus offset aan by_loop. Laat raw ongewijzigd."
           },
-          "check": "doubled == [4,10,16] and any(isinstance(n,_ast.ListComp) for n in _ast.walk(_ast.parse(_source)))",
+          "check": "(by_loop == [v + offset for v in raw]) and any(isinstance(n, _ast.For) for n in _ast.walk(_ast.parse(_source)))",
+          "feedback": {
+            "en": "Append the calculated value, not offset alone. pass is a placeholder that performs no action.",
+            "nl": "Voeg de berekende waarde toe, niet alleen offset. pass is een tijdelijke instructie die niets doet."
+          },
+          "cases": [
+            {
+              "inputs": {
+                "raw": [],
+                "offset": 3
+              },
+              "check": "by_loop == [v + offset for v in raw]"
+            },
+            {
+              "inputs": {
+                "raw": [
+                  0,
+                  -3,
+                  8,
+                  8
+                ],
+                "offset": 2
+              },
+              "check": "by_loop == [v + offset for v in raw]"
+            },
+            {
+              "inputs": {
+                "raw": [
+                  5,
+                  1
+                ],
+                "offset": -2
+              },
+              "check": "by_loop == [v + offset for v in raw]"
+            }
+          ],
           "hint": {
-            "en": "Start with raw = [2, 5, 8]. Then compare the values with the task.",
-            "nl": "Begin met raw = [2, 5, 8]. Vergelijk de waarden daarna met de opdracht."
+            "en": "Append the calculated value, not offset alone. pass is a placeholder that performs no action.",
+            "nl": "Voeg de berekende waarde toe, niet alleen offset. pass is een tijdelijke instructie die niets doet."
+          }
+        },
+        {
+          "id": "learn-python-loops-11-v2-step-2",
+          "task": {
+            "en": "Create corrected with a list comprehension that applies the same correction to raw. Print Corrected: and the new list.",
+            "nl": "Maak corrected met een list comprehension die dezelfde correctie op raw toepast. Druk Corrected: en de nieuwe list af."
+          },
+          "check": "(corrected == [v + offset for v in raw] and ('Corrected: ' + str(corrected)) in _stdout.splitlines()) and any(isinstance(n, _ast.ListComp) for n in _ast.walk(_ast.parse(_source)))",
+          "feedback": {
+            "en": "Put value + offset before for, and use raw as the input collection. The result should equal by_loop.",
+            "nl": "Zet value + offset vóór for en gebruik raw als invoerverzameling. Het resultaat moet gelijk zijn aan by_loop."
+          },
+          "cases": [
+            {
+              "inputs": {
+                "raw": [],
+                "offset": 3
+              },
+              "check": "corrected == [v + offset for v in raw] and ('Corrected: ' + str(corrected)) in _stdout.splitlines()"
+            },
+            {
+              "inputs": {
+                "raw": [
+                  0,
+                  -3,
+                  8,
+                  8
+                ],
+                "offset": 2
+              },
+              "check": "corrected == [v + offset for v in raw] and ('Corrected: ' + str(corrected)) in _stdout.splitlines()"
+            },
+            {
+              "inputs": {
+                "raw": [
+                  5,
+                  1
+                ],
+                "offset": -2
+              },
+              "check": "corrected == [v + offset for v in raw] and ('Corrected: ' + str(corrected)) in _stdout.splitlines()"
+            }
+          ],
+          "hint": {
+            "en": "Put value + offset before for, and use raw as the input collection. The result should equal by_loop.",
+            "nl": "Zet value + offset vóór for en gebruik raw als invoerverzameling. Het resultaat moet gelijk zijn aan by_loop."
+          }
+        },
+        {
+          "id": "learn-python-loops-11-v2-step-3",
+          "task": {
+            "en": "Build doubled by doubling each value in corrected. Print Doubled: and its list, while keeping both earlier lists available.",
+            "nl": "Maak doubled door elke waarde in corrected te verdubbelen. Druk Doubled: en de list af terwijl beide eerdere lists beschikbaar blijven."
+          },
+          "check": "corrected == [v + offset for v in raw] and doubled == [(v + offset) * 2 for v in raw] and ('Doubled: ' + str(doubled)) in _stdout.splitlines()",
+          "feedback": {
+            "en": "Use corrected as the next input. Doubling raw would skip the earlier correction.",
+            "nl": "Gebruik corrected als volgende invoer. raw verdubbelen zou de eerdere correctie overslaan."
+          },
+          "cases": [
+            {
+              "inputs": {
+                "raw": [],
+                "offset": 3
+              },
+              "check": "corrected == [v + offset for v in raw] and doubled == [(v + offset) * 2 for v in raw] and ('Doubled: ' + str(doubled)) in _stdout.splitlines()"
+            },
+            {
+              "inputs": {
+                "raw": [
+                  0,
+                  -3,
+                  8,
+                  8
+                ],
+                "offset": 2
+              },
+              "check": "corrected == [v + offset for v in raw] and doubled == [(v + offset) * 2 for v in raw] and ('Doubled: ' + str(doubled)) in _stdout.splitlines()"
+            },
+            {
+              "inputs": {
+                "raw": [
+                  5,
+                  1
+                ],
+                "offset": -2
+              },
+              "check": "corrected == [v + offset for v in raw] and doubled == [(v + offset) * 2 for v in raw] and ('Doubled: ' + str(doubled)) in _stdout.splitlines()"
+            }
+          ],
+          "hint": {
+            "en": "Use corrected as the next input. Doubling raw would skip the earlier correction.",
+            "nl": "Gebruik corrected als volgende invoer. raw verdubbelen zou de eerdere correctie overslaan."
           }
         }
       ],
       "solutionNote": {
-        "en": "A list comprehension combines iteration and transformation in one expression: [expression for item in items]. It creates a new list and is best kept short and readable.\n\nTrace the solution one line at a time. Try a different input to see which parts change.",
-        "nl": "Een list comprehension combineert herhaling en bewerking in één expressie: [expression for item in items]. Deze maakt een nieuwe list en blijft het duidelijkst als je de expressie kort houdt.\n\nVolg de oplossing regel voor regel. Probeer een andere invoer en bekijk welke onderdelen veranderen."
+        "en": "The explicit loop and first comprehension calculate equal lists. The second transformation reads corrected and creates doubled. None of these operations needs to replace values in raw.",
+        "nl": "De gewone loop en de eerste comprehension berekenen gelijke lists. De tweede bewerking leest corrected en maakt doubled. Geen van deze bewerkingen hoeft waarden in raw te vervangen."
       },
       "sourcePosition": 11,
       "sourceUrl": "https://www.codecademy.com/courses/learn-python-3/lessons/learn-python-loops/exercises/list-comprehension-ii",
@@ -10615,38 +11917,202 @@
       "group": "learn-python-loops",
       "title": {
         "en": "Comprehension filtering",
-        "nl": "Filteren in een comprehension"
+        "nl": "Filteren of vervangen: twee verschillende vragen"
       },
       "kind": "coding",
       "optional": false,
       "explanation": {
-        "en": "Add if condition at the end of a comprehension to filter input elements. Only matching elements contribute to the new list; the transformation still appears first.",
-        "nl": "Voeg if condition toe aan het einde van een comprehension om invoerelementen te filteren. Alleen passende elementen komen in de nieuwe list; de bewerking staat nog steeds vooraan."
+        "en": "A report needs two views of the same data: only the measurements above a limit, and a status for every measurement. Filtering can shorten a list. A conditional expression chooses a result for every item and keeps the list length. The placement of if tells you which job a comprehension is doing.",
+        "nl": "Een rapport heeft twee weergaven van dezelfde gegevens nodig: alleen metingen boven een grens en een status voor elke meting. Filteren kan een list korter maken. Een conditionele expressie kiest een resultaat voor elk onderdeel en behoudt de listlengte. De plaats van if vertelt welke taak de comprehension uitvoert."
       },
       "example": "",
+      "sections": [
+        {
+          "heading": {
+            "en": "A trailing if selects items",
+            "nl": "Een if achteraan selecteert onderdelen"
+          },
+          "body": {
+            "en": "Read [value for value in values if value > limit] as: visit each value, keep it only if the condition passes. Equal-to-limit values are excluded by a strict > condition. You can also transform the accepted value, such as calculating how far it exceeds the limit.",
+            "nl": "Lees [value for value in values if value > limit] als: bezoek elke waarde en behoud deze alleen als de voorwaarde klopt. Waarden gelijk aan de grens worden uitgesloten door een strikte >-voorwaarde. Je kunt de geaccepteerde waarde ook bewerken, bijvoorbeeld berekenen hoeveel deze de grens overschrijdt."
+          },
+          "code": "values = [3, 7, 5, 9]\nlimit = 5\nprint([value for value in values if value > limit])\nprint([value - limit for value in values if value > limit])",
+          "output": "[7, 9]\n[2, 4]"
+        },
+        {
+          "heading": {
+            "en": "An if/else expression chooses an output",
+            "nl": "Een if/else-expressie kiest een resultaat"
+          },
+          "body": {
+            "en": "Put the complete choice before for: ['high' if value > limit else 'ok' for value in values]. This produces one label for every input. It does not discard the ok measurements. Do not put else after a trailing filter condition; that is not valid comprehension syntax.",
+            "nl": "Zet de volledige keuze vóór for: ['high' if value > limit else 'ok' for value in values]. Dit maakt één label per invoerwaarde. De ok-metingen worden niet weggelaten. Zet else niet na een filtervoorwaarde achteraan; dat is geen geldige comprehensionsyntax."
+          },
+          "code": "values = [3, 7, 5, 9]\nlabels = [\"high\" if value > 5 else \"ok\" for value in values]\nprint(labels)",
+          "output": "['ok', 'high', 'ok', 'high']"
+        }
+      ],
       "files": {
-        "main.py": "raw = [-2, 0, 3, 5]\n"
+        "main.py": "values = [3, 8, 5, 0, 11, -2]\nlimit = 5\nprint(\"Input:\", values)\n# 1. Keep values strictly above the limit.\n# 2. Measure each selected value's excess.\n# 3. Label EVERY original measurement.\n"
       },
       "solution": {
-        "main.py": "raw = [-2, 0, 3, 5]\npositive_squares = [value ** 2 for value in raw if value > 0]\nprint(positive_squares)\n"
+        "main.py": "values = [3, 8, 5, 0, 11, -2]\nlimit = 5\nprint(\"Input:\", values)\nalerts = [value for value in values if value > limit]\nprint(\"Alerts:\", alerts)\nexcess = [value - limit for value in values if value > limit]\nprint(\"Excess:\", excess)\nlabels = [\"high\" if value > limit else \"ok\" for value in values]\nprint(\"Labels:\", labels)\n"
       },
       "checkpoints": [
         {
-          "id": "learn-python-loops-12-step-1",
+          "id": "learn-python-loops-12-v2-step-1",
           "task": {
-            "en": "Create positive_squares from the squares of values greater than zero in raw.",
-            "nl": "Maak positive_squares met de kwadraten van waarden groter dan nul in raw."
+            "en": "Create alerts with a filtering comprehension containing only values strictly above limit. Print Alerts: with the list.",
+            "nl": "Maak alerts met een filterende comprehension die alleen waarden strikt boven limit bevat. Druk Alerts: met de list af."
           },
-          "check": "positive_squares == [9,25] and any(isinstance(n,_ast.ListComp) for n in _ast.walk(_ast.parse(_source)))",
+          "check": "(alerts == [v for v in values if v > limit] and ('Alerts: ' + str(alerts)) in _stdout.splitlines()) and any(isinstance(n, _ast.ListComp) for n in _ast.walk(_ast.parse(_source)))",
+          "feedback": {
+            "en": "Put if value > limit after the for clause. Values equal to the limit do not qualify.",
+            "nl": "Zet if value > limit na het for-deel. Waarden gelijk aan de grens voldoen niet."
+          },
+          "cases": [
+            {
+              "inputs": {
+                "values": [],
+                "limit": 5
+              },
+              "check": "alerts == [v for v in values if v > limit] and ('Alerts: ' + str(alerts)) in _stdout.splitlines()"
+            },
+            {
+              "inputs": {
+                "values": [
+                  5,
+                  6,
+                  4,
+                  0,
+                  -1,
+                  6
+                ],
+                "limit": 5
+              },
+              "check": "alerts == [v for v in values if v > limit] and ('Alerts: ' + str(alerts)) in _stdout.splitlines()"
+            },
+            {
+              "inputs": {
+                "values": [
+                  1,
+                  2,
+                  3
+                ],
+                "limit": 0
+              },
+              "check": "alerts == [v for v in values if v > limit] and ('Alerts: ' + str(alerts)) in _stdout.splitlines()"
+            }
+          ],
           "hint": {
-            "en": "Start with raw = [-2, 0, 3, 5]. Then compare the values with the task.",
-            "nl": "Begin met raw = [-2, 0, 3, 5]. Vergelijk de waarden daarna met de opdracht."
+            "en": "Put if value > limit after the for clause. Values equal to the limit do not qualify.",
+            "nl": "Zet if value > limit na het for-deel. Waarden gelijk aan de grens voldoen niet."
+          }
+        },
+        {
+          "id": "learn-python-loops-12-v2-step-2",
+          "task": {
+            "en": "Create excess with a comprehension: for each alert, store the amount above limit. Print Excess: and that list.",
+            "nl": "Maak excess met een comprehension: bewaar voor elke waarschuwing de hoeveelheid boven limit. Druk Excess: en die list af."
+          },
+          "check": "(excess == [v - limit for v in values if v > limit] and ('Excess: ' + str(excess)) in _stdout.splitlines()) and any(isinstance(n, _ast.ListComp) for n in _ast.walk(_ast.parse(_source)))",
+          "feedback": {
+            "en": "Subtract limit from each selected value. Preserve the order and repeated readings.",
+            "nl": "Trek limit van elke geselecteerde waarde af. Behoud de volgorde en herhaalde metingen."
+          },
+          "cases": [
+            {
+              "inputs": {
+                "values": [],
+                "limit": 5
+              },
+              "check": "excess == [v - limit for v in values if v > limit] and ('Excess: ' + str(excess)) in _stdout.splitlines()"
+            },
+            {
+              "inputs": {
+                "values": [
+                  5,
+                  6,
+                  4,
+                  0,
+                  -1,
+                  6
+                ],
+                "limit": 5
+              },
+              "check": "excess == [v - limit for v in values if v > limit] and ('Excess: ' + str(excess)) in _stdout.splitlines()"
+            },
+            {
+              "inputs": {
+                "values": [
+                  1,
+                  2,
+                  3
+                ],
+                "limit": 0
+              },
+              "check": "excess == [v - limit for v in values if v > limit] and ('Excess: ' + str(excess)) in _stdout.splitlines()"
+            }
+          ],
+          "hint": {
+            "en": "Subtract limit from each selected value. Preserve the order and repeated readings.",
+            "nl": "Trek limit van elke geselecteerde waarde af. Behoud de volgorde en herhaalde metingen."
+          }
+        },
+        {
+          "id": "learn-python-loops-12-v2-step-3",
+          "task": {
+            "en": "Create labels for every original value using 'high' above the limit and 'ok' otherwise. Print Labels: with the full list.",
+            "nl": "Maak labels voor elke oorspronkelijke waarde: 'high' boven de grens en anders 'ok'. Druk Labels: met de volledige list af."
+          },
+          "check": "(labels == ['high' if v > limit else 'ok' for v in values] and ('Labels: ' + str(labels)) in _stdout.splitlines()) and any(isinstance(n, _ast.IfExp) for n in _ast.walk(_ast.parse(_source)))",
+          "feedback": {
+            "en": "Put the if/else expression before for. This task chooses a label for every value rather than filtering values out.",
+            "nl": "Zet de if/else-expressie vóór for. Deze taak kiest een label voor elke waarde in plaats van waarden weg te filteren."
+          },
+          "cases": [
+            {
+              "inputs": {
+                "values": [],
+                "limit": 5
+              },
+              "check": "labels == ['high' if v > limit else 'ok' for v in values] and ('Labels: ' + str(labels)) in _stdout.splitlines()"
+            },
+            {
+              "inputs": {
+                "values": [
+                  5,
+                  6,
+                  4,
+                  0,
+                  -1,
+                  6
+                ],
+                "limit": 5
+              },
+              "check": "labels == ['high' if v > limit else 'ok' for v in values] and ('Labels: ' + str(labels)) in _stdout.splitlines()"
+            },
+            {
+              "inputs": {
+                "values": [
+                  1,
+                  2,
+                  3
+                ],
+                "limit": 0
+              },
+              "check": "labels == ['high' if v > limit else 'ok' for v in values] and ('Labels: ' + str(labels)) in _stdout.splitlines()"
+            }
+          ],
+          "hint": {
+            "en": "Put the if/else expression before for. This task chooses a label for every value rather than filtering values out.",
+            "nl": "Zet de if/else-expressie vóór for. Deze taak kiest een label voor elke waarde in plaats van waarden weg te filteren."
           }
         }
       ],
       "solutionNote": {
-        "en": "Add if condition at the end of a comprehension to filter input elements. Only matching elements contribute to the new list; the transformation still appears first.\n\nTrace the solution one line at a time. Try a different input to see which parts change.",
-        "nl": "Voeg if condition toe aan het einde van een comprehension om invoerelementen te filteren. Alleen passende elementen komen in de nieuwe list; de bewerking staat nog steeds vooraan.\n\nVolg de oplossing regel voor regel. Probeer een andere invoer en bekijk welke onderdelen veranderen."
+        "en": "alerts selects data; excess transforms only the selected data. labels answers a different question for every original measurement. The boundary value belongs to ok and does not appear in alerts.",
+        "nl": "alerts selecteert gegevens; excess bewerkt alleen de geselecteerde gegevens. labels beantwoordt een andere vraag voor elke oorspronkelijke meting. De grenswaarde hoort bij ok en staat niet in alerts."
       },
       "sourcePosition": 12,
       "sourceUrl": "https://www.codecademy.com/courses/learn-python-3/lessons/learn-python-loops/exercises/list-comprehension",
@@ -10658,38 +12124,416 @@
       "group": "learn-python-loops",
       "title": {
         "en": "Loop review",
-        "nl": "Terugblik: loops"
+        "nl": "Maak een volledig meetrapport"
       },
       "kind": "coding",
       "optional": false,
       "explanation": {
-        "en": "Combine iteration and conditions to process collections. Keep an accumulator outside the loop when it must survive across iterations. Build a new list when the original data should remain available.",
-        "nl": "Combineer loops en voorwaarden om verzamelingen te verwerken. Zet een accumulator buiten de loop als deze tussen herhalingen bewaard moet blijven. Maak een nieuwe list als je de oorspronkelijke gegevens wilt behouden."
+        "en": "Bring the chapter together in one monitoring report. The starter has batches of raw readings and a faulty flattening loop: it stores whole batches instead of their values. Repair that first, then clean, correct and summarise the measurements. Later steps should build on the lists created earlier, so every run reveals a more useful report.",
+        "nl": "Breng het hoofdstuk samen in één monitorrapport. De startcode bevat batches met ruwe metingen en een foutieve loop om ze samen te voegen: deze bewaart hele batches in plaats van hun waarden. Herstel dat eerst en schoon daarna de metingen op, corrigeer ze en vat ze samen. Latere stappen moeten voortbouwen op eerder gemaakte lists, zodat elke uitvoering een bruikbaarder rapport oplevert."
       },
       "example": "",
+      "sections": [
+        {
+          "heading": {
+            "en": "Plan the data flow",
+            "nl": "Plan de gegevensverwerking"
+          },
+          "body": {
+            "en": "Keep batches unchanged as the source. readings should be a flat list in arrival order. valid keeps nonnegative raw readings, because negatives mark failures and zero is valid. corrected adds offset to those valid readings. Apply the limit to corrected values, not to the original data.\n\nUse a loop when you need multiple actions, an accumulator for a running total, and a comprehension for a simple transformation. Use break for the first alert and continue for a failed reading.",
+            "nl": "Behoud batches ongewijzigd als bron. readings moet een vlakke list in aankomstvolgorde zijn. valid behoudt niet-negatieve ruwe metingen, omdat negatieve waarden fouten aangeven en nul geldig is. corrected telt offset bij die geldige metingen op. Pas de grens toe op gecorrigeerde waarden, niet op de oorspronkelijke gegevens.\n\nGebruik een loop voor meerdere acties, een accumulator voor een lopend totaal en een comprehension voor een eenvoudige bewerking. Gebruik break voor de eerste waarschuwing en continue voor een mislukte meting."
+          },
+          "code": "raw = [2, -1, 0, 5]\nvalid = [value for value in raw if value >= 0]\ncorrected = [value + 1 for value in valid]\nprint(valid)\nprint(corrected)",
+          "output": "[2, 0, 5]\n[3, 1, 6]"
+        },
+        {
+          "heading": {
+            "en": "Test each stage before adding the next",
+            "nl": "Test elke fase voordat je de volgende toevoegt"
+          },
+          "body": {
+            "en": "The supplied Batches line gives you a baseline. Keep each new report line after its calculation so earlier results remain visible. With an empty delivery, readings, valid and corrected are empty, total is zero, and first_alert is None. An empty batch inside a delivery should not discard later readings.\n\nAfter finishing, try changing offset and limit. Predict which report lines should change and which describe the unchanged source data.",
+            "nl": "De meegeleverde Batches-regel geeft je een beginpunt. Zet elke nieuwe rapportregel na de bijbehorende berekening zodat eerdere resultaten zichtbaar blijven. Bij een lege levering zijn readings, valid en corrected leeg, total is nul en first_alert is None. Een lege batch binnen een levering mag latere metingen niet laten verdwijnen.\n\nProbeer na afloop offset en limit te veranderen. Voorspel welke rapportregels moeten veranderen en welke de ongewijzigde brongegevens beschrijven."
+          }
+        }
+      ],
       "files": {
-        "main.py": "batches = [[2, -1], [4, 0], [6]]\n"
+        "main.py": "batches = [[2, -1], [4, 0], [], [6, 9]]\noffset = 2\nlimit = 7\nreadings = []\nprint(\"Batches:\", batches)\nfor batch in batches:\n    readings.append(batch)  # Bug: this adds a whole row.\nprint(\"Readings:\", readings)\n# Continue with valid, corrected, total and first_alert.\n"
       },
       "solution": {
-        "main.py": "batches = [[2, -1], [4, 0], [6]]\nreadings = []\nfor batch in batches:\n    for value in batch:\n        readings.append(value)\nvalid = [value for value in readings if value > 0]\ntotal = sum(valid)\nprint(valid, total)\n"
+        "main.py": "batches = [[2, -1], [4, 0], [], [6, 9]]\noffset = 2\nlimit = 7\nreadings = []\nprint(\"Batches:\", batches)\nfor batch in batches:\n    for value in batch:\n        readings.append(value)\nprint(\"Readings:\", readings)\nvalid = []\nfor value in readings:\n    if value < 0:\n        continue\n    valid.append(value)\nprint(\"Valid:\", valid)\ncorrected = [value + offset for value in valid]\nprint(\"Corrected:\", corrected)\ntotal = 0\nfor value in corrected:\n    total += value\nprint(\"Total:\", total)\nfirst_alert = None\nfor value in corrected:\n    if value > limit:\n        first_alert = value\n        break\nprint(\"First alert:\", first_alert)\nlabels = [\"high\" if value > limit else \"ok\" for value in corrected]\nprint(\"Labels:\", labels)\n"
       },
       "checkpoints": [
         {
-          "id": "learn-python-loops-13-step-1",
+          "id": "learn-python-loops-13-v2-step-1",
           "task": {
-            "en": "Flatten batches into readings. Keep only positive readings in valid and compute their sum as total.",
-            "nl": "Maak van batches één list readings. Bewaar alleen positieve metingen in valid en bereken hun som als total."
+            "en": "Repair the supplied flattening loop with an inner for loop. readings must contain individual values in arrival order; keep its print.",
+            "nl": "Herstel de meegeleverde samenvoegloop met een binnenste for-loop. readings moet losse waarden in aankomstvolgorde bevatten; behoud de print."
           },
-          "check": "readings == [2,-1,4,0,6] and valid == [2,4,6] and total == 12",
+          "check": "(readings == [v for row in batches for v in row] and ('Readings: ' + str(readings)) in _stdout.splitlines()) and any(isinstance(n, _ast.For) for n in _ast.walk(_ast.parse(_source)))",
+          "feedback": {
+            "en": "The outer variable batch is a list. Visit its values with an inner loop and append one value at a time.",
+            "nl": "De buitenste variabele batch is een list. Bezoek de waarden met een binnenste loop en voeg telkens één waarde toe."
+          },
+          "cases": [
+            {
+              "inputs": {
+                "batches": [],
+                "offset": 2,
+                "limit": 6
+              },
+              "check": "readings == [v for row in batches for v in row] and ('Readings: ' + str(readings)) in _stdout.splitlines()"
+            },
+            {
+              "inputs": {
+                "batches": [
+                  [],
+                  [
+                    -2,
+                    0,
+                    4
+                  ],
+                  [
+                    8,
+                    4
+                  ]
+                ],
+                "offset": 1,
+                "limit": 5
+              },
+              "check": "readings == [v for row in batches for v in row] and ('Readings: ' + str(readings)) in _stdout.splitlines()"
+            },
+            {
+              "inputs": {
+                "batches": [
+                  [
+                    7
+                  ],
+                  [],
+                  [
+                    2
+                  ]
+                ],
+                "offset": -1,
+                "limit": 20
+              },
+              "check": "readings == [v for row in batches for v in row] and ('Readings: ' + str(readings)) in _stdout.splitlines()"
+            }
+          ],
           "hint": {
-            "en": "Start with batches = [[2, -1], [4, 0], [6]]. Then compare the values with the task.",
-            "nl": "Begin met batches = [[2, -1], [4, 0], [6]]. Vergelijk de waarden daarna met de opdracht."
+            "en": "The outer variable batch is a list. Visit its values with an inner loop and append one value at a time.",
+            "nl": "De buitenste variabele batch is een list. Bezoek de waarden met een binnenste loop en voeg telkens één waarde toe."
+          }
+        },
+        {
+          "id": "learn-python-loops-13-v2-step-2",
+          "task": {
+            "en": "Use a loop with continue to collect nonnegative readings in valid. Keep zero, preserve order, then print Valid: and the list.",
+            "nl": "Gebruik een loop met continue om niet-negatieve metingen in valid te verzamelen. Behoud nul en de volgorde en druk daarna Valid: en de list af."
+          },
+          "check": "(valid == [v for row in batches for v in row if v >= 0] and ('Valid: ' + str(valid)) in _stdout.splitlines()) and any(isinstance(n, _ast.Continue) for n in _ast.walk(_ast.parse(_source)))",
+          "feedback": {
+            "en": "Skip only negative values. Do not break at the first failure, because later readings still matter.",
+            "nl": "Sla alleen negatieve waarden over. Stop niet bij de eerste fout, want latere metingen blijven belangrijk."
+          },
+          "cases": [
+            {
+              "inputs": {
+                "batches": [],
+                "offset": 2,
+                "limit": 6
+              },
+              "check": "valid == [v for row in batches for v in row if v >= 0] and ('Valid: ' + str(valid)) in _stdout.splitlines()"
+            },
+            {
+              "inputs": {
+                "batches": [
+                  [],
+                  [
+                    -2,
+                    0,
+                    4
+                  ],
+                  [
+                    8,
+                    4
+                  ]
+                ],
+                "offset": 1,
+                "limit": 5
+              },
+              "check": "valid == [v for row in batches for v in row if v >= 0] and ('Valid: ' + str(valid)) in _stdout.splitlines()"
+            },
+            {
+              "inputs": {
+                "batches": [
+                  [
+                    7
+                  ],
+                  [],
+                  [
+                    2
+                  ]
+                ],
+                "offset": -1,
+                "limit": 20
+              },
+              "check": "valid == [v for row in batches for v in row if v >= 0] and ('Valid: ' + str(valid)) in _stdout.splitlines()"
+            }
+          ],
+          "hint": {
+            "en": "Skip only negative values. Do not break at the first failure, because later readings still matter.",
+            "nl": "Sla alleen negatieve waarden over. Stop niet bij de eerste fout, want latere metingen blijven belangrijk."
+          }
+        },
+        {
+          "id": "learn-python-loops-13-v2-step-3",
+          "task": {
+            "en": "Create corrected with a comprehension that adds offset to every valid reading. Print Corrected: and the result.",
+            "nl": "Maak corrected met een comprehension die offset bij elke geldige meting optelt. Druk Corrected: en het resultaat af."
+          },
+          "check": "(corrected == [v + offset for row in batches for v in row if v >= 0] and ('Corrected: ' + str(corrected)) in _stdout.splitlines()) and any(isinstance(n, _ast.ListComp) for n in _ast.walk(_ast.parse(_source)))",
+          "feedback": {
+            "en": "Filter the raw failures before applying the correction. Read from valid and create a separate corrected list.",
+            "nl": "Filter de ruwe fouten vóór het toepassen van de correctie. Lees uit valid en maak een aparte corrected-list."
+          },
+          "cases": [
+            {
+              "inputs": {
+                "batches": [],
+                "offset": 2,
+                "limit": 6
+              },
+              "check": "corrected == [v + offset for row in batches for v in row if v >= 0] and ('Corrected: ' + str(corrected)) in _stdout.splitlines()"
+            },
+            {
+              "inputs": {
+                "batches": [
+                  [],
+                  [
+                    -2,
+                    0,
+                    4
+                  ],
+                  [
+                    8,
+                    4
+                  ]
+                ],
+                "offset": 1,
+                "limit": 5
+              },
+              "check": "corrected == [v + offset for row in batches for v in row if v >= 0] and ('Corrected: ' + str(corrected)) in _stdout.splitlines()"
+            },
+            {
+              "inputs": {
+                "batches": [
+                  [
+                    7
+                  ],
+                  [],
+                  [
+                    2
+                  ]
+                ],
+                "offset": -1,
+                "limit": 20
+              },
+              "check": "corrected == [v + offset for row in batches for v in row if v >= 0] and ('Corrected: ' + str(corrected)) in _stdout.splitlines()"
+            }
+          ],
+          "hint": {
+            "en": "Filter the raw failures before applying the correction. Read from valid and create a separate corrected list.",
+            "nl": "Filter de ruwe fouten vóór het toepassen van de correctie. Lees uit valid en maak een aparte corrected-list."
+          }
+        },
+        {
+          "id": "learn-python-loops-13-v2-step-4",
+          "task": {
+            "en": "Accumulate corrected into total using a loop. Initialise once, then print Total: after all values have contributed.",
+            "nl": "Tel corrected met een loop op in total. Initialiseer één keer en druk Total: af nadat alle waarden hebben bijgedragen."
+          },
+          "check": "(total == sum([v + offset for row in batches for v in row if v >= 0]) and ('Total: ' + str(total)) in _stdout.splitlines()) and any(isinstance(n, _ast.For) for n in _ast.walk(_ast.parse(_source)))",
+          "feedback": {
+            "en": "Set total to zero before the loop and add each corrected value. An empty list must leave total at zero.",
+            "nl": "Zet total vóór de loop op nul en tel elke gecorrigeerde waarde erbij op. Bij een lege list moet total nul blijven."
+          },
+          "cases": [
+            {
+              "inputs": {
+                "batches": [],
+                "offset": 2,
+                "limit": 6
+              },
+              "check": "total == sum([v + offset for row in batches for v in row if v >= 0]) and ('Total: ' + str(total)) in _stdout.splitlines()"
+            },
+            {
+              "inputs": {
+                "batches": [
+                  [],
+                  [
+                    -2,
+                    0,
+                    4
+                  ],
+                  [
+                    8,
+                    4
+                  ]
+                ],
+                "offset": 1,
+                "limit": 5
+              },
+              "check": "total == sum([v + offset for row in batches for v in row if v >= 0]) and ('Total: ' + str(total)) in _stdout.splitlines()"
+            },
+            {
+              "inputs": {
+                "batches": [
+                  [
+                    7
+                  ],
+                  [],
+                  [
+                    2
+                  ]
+                ],
+                "offset": -1,
+                "limit": 20
+              },
+              "check": "total == sum([v + offset for row in batches for v in row if v >= 0]) and ('Total: ' + str(total)) in _stdout.splitlines()"
+            }
+          ],
+          "hint": {
+            "en": "Set total to zero before the loop and add each corrected value. An empty list must leave total at zero.",
+            "nl": "Zet total vóór de loop op nul en tel elke gecorrigeerde waarde erbij op. Bij een lege list moet total nul blijven."
+          }
+        },
+        {
+          "id": "learn-python-loops-13-v2-step-5",
+          "task": {
+            "en": "Search corrected for the first value strictly above limit, store it in first_alert and break. Leave None if no alert exists. Print First alert:.",
+            "nl": "Zoek in corrected de eerste waarde strikt boven limit, bewaar die in first_alert en gebruik break. Laat None staan zonder waarschuwing. Druk First alert: af."
+          },
+          "check": "(first_alert == ([v for v in corrected if v > limit][0] if len([v for v in corrected if v > limit]) else None) and ('First alert: ' + str(first_alert)) in _stdout.splitlines()) and any(isinstance(n, _ast.Break) for n in _ast.walk(_ast.parse(_source)))",
+          "feedback": {
+            "en": "Compare corrected values with limit and save the first match before stopping. Print after the loop even when nothing matches.",
+            "nl": "Vergelijk gecorrigeerde waarden met limit en bewaar de eerste match vóór het stoppen. Druk na de loop af, ook als niets past."
+          },
+          "cases": [
+            {
+              "inputs": {
+                "batches": [],
+                "offset": 2,
+                "limit": 6
+              },
+              "check": "first_alert == ([v for v in corrected if v > limit][0] if len([v for v in corrected if v > limit]) else None) and ('First alert: ' + str(first_alert)) in _stdout.splitlines()"
+            },
+            {
+              "inputs": {
+                "batches": [
+                  [],
+                  [
+                    -2,
+                    0,
+                    4
+                  ],
+                  [
+                    8,
+                    4
+                  ]
+                ],
+                "offset": 1,
+                "limit": 5
+              },
+              "check": "first_alert == ([v for v in corrected if v > limit][0] if len([v for v in corrected if v > limit]) else None) and ('First alert: ' + str(first_alert)) in _stdout.splitlines()"
+            },
+            {
+              "inputs": {
+                "batches": [
+                  [
+                    7
+                  ],
+                  [],
+                  [
+                    2
+                  ]
+                ],
+                "offset": -1,
+                "limit": 20
+              },
+              "check": "first_alert == ([v for v in corrected if v > limit][0] if len([v for v in corrected if v > limit]) else None) and ('First alert: ' + str(first_alert)) in _stdout.splitlines()"
+            }
+          ],
+          "hint": {
+            "en": "Compare corrected values with limit and save the first match before stopping. Print after the loop even when nothing matches.",
+            "nl": "Vergelijk gecorrigeerde waarden met limit en bewaar de eerste match vóór het stoppen. Druk na de loop af, ook als niets past."
+          }
+        },
+        {
+          "id": "learn-python-loops-13-v2-step-6",
+          "task": {
+            "en": "Finish with labels for every corrected reading: 'high' above limit, otherwise 'ok'. Print Labels: and the complete list.",
+            "nl": "Eindig met labels voor elke gecorrigeerde meting: 'high' boven limit, anders 'ok'. Druk Labels: en de volledige list af."
+          },
+          "check": "(labels == ['high' if v > limit else 'ok' for v in corrected] and ('Labels: ' + str(labels)) in _stdout.splitlines()) and any(isinstance(n, _ast.IfExp) for n in _ast.walk(_ast.parse(_source)))",
+          "feedback": {
+            "en": "Use an if/else expression that produces one label per corrected value, not a filter that removes normal values.",
+            "nl": "Gebruik een if/else-expressie die één label per gecorrigeerde waarde maakt, geen filter dat normale waarden verwijdert."
+          },
+          "cases": [
+            {
+              "inputs": {
+                "batches": [],
+                "offset": 2,
+                "limit": 6
+              },
+              "check": "labels == ['high' if v > limit else 'ok' for v in corrected] and ('Labels: ' + str(labels)) in _stdout.splitlines()"
+            },
+            {
+              "inputs": {
+                "batches": [
+                  [],
+                  [
+                    -2,
+                    0,
+                    4
+                  ],
+                  [
+                    8,
+                    4
+                  ]
+                ],
+                "offset": 1,
+                "limit": 5
+              },
+              "check": "labels == ['high' if v > limit else 'ok' for v in corrected] and ('Labels: ' + str(labels)) in _stdout.splitlines()"
+            },
+            {
+              "inputs": {
+                "batches": [
+                  [
+                    7
+                  ],
+                  [],
+                  [
+                    2
+                  ]
+                ],
+                "offset": -1,
+                "limit": 20
+              },
+              "check": "labels == ['high' if v > limit else 'ok' for v in corrected] and ('Labels: ' + str(labels)) in _stdout.splitlines()"
+            }
+          ],
+          "hint": {
+            "en": "Use an if/else expression that produces one label per corrected value, not a filter that removes normal values.",
+            "nl": "Gebruik een if/else-expressie die één label per gecorrigeerde waarde maakt, geen filter dat normale waarden verwijdert."
           }
         }
       ],
       "solutionNote": {
-        "en": "Combine iteration and conditions to process collections. Keep an accumulator outside the loop when it must survive across iterations. Build a new list when the original data should remain available.\n\nTrace the solution one line at a time. Try a different input to see which parts change.",
-        "nl": "Combineer loops en voorwaarden om verzamelingen te verwerken. Zet een accumulator buiten de loop als deze tussen herhalingen bewaard moet blijven. Maak een nieuwe list als je de oorspronkelijke gegevens wilt behouden.\n\nVolg de oplossing regel voor regel. Probeer een andere invoer en bekijk welke onderdelen veranderen."
+        "en": "Each stage keeps its input available and gives the next stage a clear output. Nested loops flatten the batches, continue excludes failed raw readings, the comprehension calibrates valid values, the accumulator totals them, and break retains only the first alert. Labels deliberately cover every corrected value, unlike the first-alert search.",
+        "nl": "Elke fase bewaart zijn invoer en geeft de volgende fase een duidelijk resultaat. Geneste loops maken de batches vlak, continue sluit mislukte ruwe metingen uit, de comprehension kalibreert geldige waarden, de accumulator telt ze op en break bewaart alleen de eerste waarschuwing. Labels beschrijven bewust elke gecorrigeerde waarde, anders dan de zoekactie naar de eerste waarschuwing."
       },
       "sourcePosition": 13,
       "sourceUrl": "https://www.codecademy.com/courses/learn-python-3/lessons/learn-python-loops/exercises/review",
@@ -10733,8 +12577,8 @@
                 "nl": "1\n2\n3"
               },
               "reason": {
-                "en": "range(3) contains 0, 1, and 2.",
-                "nl": "range(3) bevat 0, 1 en 2."
+                "en": "range starts at zero when no start is supplied. The stop value is excluded.",
+                "nl": "range begint bij nul als geen beginwaarde is opgegeven. De stopwaarde is uitgesloten."
               }
             },
             {
@@ -10744,8 +12588,8 @@
                 "nl": "0\n1\n2\n3"
               },
               "reason": {
-                "en": "range(3) contains 0, 1, and 2.",
-                "nl": "range(3) bevat 0, 1 en 2."
+                "en": "Stop 3 is excluded, so it is never assigned to n.",
+                "nl": "Stop 3 is uitgesloten en wordt dus nooit aan n toegewezen."
               }
             }
           ]
@@ -10777,8 +12621,8 @@
                 "nl": "continue"
               },
               "reason": {
-                "en": "break exits the loop; continue skips an iteration and pass does nothing.",
-                "nl": "break verlaat de loop; continue slaat een herhaling over en pass doet niets."
+                "en": "continue skips the remaining body of one iteration; it does not exit the loop.",
+                "nl": "continue slaat het resterende blok van één iteratie over; het verlaat de loop niet."
               }
             },
             {
@@ -10788,8 +12632,8 @@
                 "nl": "pass"
               },
               "reason": {
-                "en": "break exits the loop; continue skips an iteration and pass does nothing.",
-                "nl": "break verlaat de loop; continue slaat een herhaling over en pass doet niets."
+                "en": "pass performs no action. Execution continues with the following statement.",
+                "nl": "pass doet niets. De uitvoering gaat verder met de volgende instructie."
               }
             }
           ]
@@ -10821,8 +12665,8 @@
                 "nl": "1\n2\n3"
               },
               "reason": {
-                "en": "continue skips printing only when n equals 2.",
-                "nl": "continue slaat het afdrukken alleen over wanneer n gelijk is aan 2."
+                "en": "When n is 2, continue skips the print. The other iterations still print.",
+                "nl": "Wanneer n gelijk is aan 2 slaat continue de print over. De andere iteraties drukken wel af."
               }
             },
             {
@@ -10832,8 +12676,8 @@
                 "nl": "1"
               },
               "reason": {
-                "en": "continue skips printing only when n equals 2.",
-                "nl": "continue slaat het afdrukken alleen over wanneer n gelijk is aan 2."
+                "en": "That would describe break at 2. continue still allows the later value 3 to be visited.",
+                "nl": "Dat zou break bij 2 beschrijven. continue laat de latere waarde 3 nog aan de beurt komen."
               }
             }
           ]
@@ -10865,8 +12709,8 @@
                 "nl": "[2, 4, 1]"
               },
               "reason": {
-                "en": "The expression adds 1 to each input element.",
-                "nl": "De expressie telt 1 op bij elk invoerelement."
+                "en": "The expression adds one to each value; it does not append an extra 1 to the input list.",
+                "nl": "De expressie telt één op bij elke waarde; deze voegt geen extra 1 achteraan de invoerlist toe."
               }
             },
             {
@@ -10876,8 +12720,8 @@
                 "nl": "[2, 4]"
               },
               "reason": {
-                "en": "The expression adds 1 to each input element.",
-                "nl": "De expressie telt 1 op bij elk invoerelement."
+                "en": "The expression n + 1 transforms each input before placing it in the new list.",
+                "nl": "De expressie n + 1 bewerkt elke invoerwaarde voordat die in de nieuwe list komt."
               }
             }
           ]
@@ -10909,8 +12753,8 @@
                 "nl": "[0, 2]"
               },
               "reason": {
-                "en": "Only 2 satisfies the strict positive condition.",
-                "nl": "Alleen 2 voldoet aan de voorwaarde strikt groter dan nul."
+                "en": "Zero is not strictly greater than zero. This condition excludes it.",
+                "nl": "Nul is niet strikt groter dan nul. Deze voorwaarde sluit nul uit."
               }
             },
             {
@@ -10920,8 +12764,8 @@
                 "nl": "[-1]"
               },
               "reason": {
-                "en": "Only 2 satisfies the strict positive condition.",
-                "nl": "Alleen 2 voldoet aan de voorwaarde strikt groter dan nul."
+                "en": "The condition keeps positive values; -1 fails n > 0.",
+                "nl": "De voorwaarde behoudt positieve waarden; -1 voldoet niet aan n > 0."
               }
             }
           ]
@@ -10953,8 +12797,8 @@
                 "nl": "2"
               },
               "reason": {
-                "en": "The loop stops after x becomes 3.",
-                "nl": "De loop stopt nadat x gelijk aan 3 is geworden."
+                "en": "When x is 2 the condition is still true, so the body increments it to 3 before stopping.",
+                "nl": "Wanneer x gelijk is aan 2 is de voorwaarde nog waar, dus het blok verhoogt x naar 3 voordat de loop stopt."
               }
             },
             {
@@ -10964,8 +12808,8 @@
                 "nl": "0"
               },
               "reason": {
-                "en": "The loop stops after x becomes 3.",
-                "nl": "De loop stopt nadat x gelijk aan 3 is geworden."
+                "en": "The condition starts true and the body changes x. The final print runs after those updates.",
+                "nl": "De voorwaarde is aanvankelijk waar en het blok verandert x. De laatste print draait na die wijzigingen."
               }
             }
           ]
@@ -10997,8 +12841,8 @@
                 "nl": "Een tweede print"
               },
               "reason": {
-                "en": "n stays zero, so the condition never becomes false.",
-                "nl": "n blijft nul, waardoor de voorwaarde nooit onwaar wordt."
+                "en": "Printing another line would not change n, so the same condition would remain true.",
+                "nl": "Nog een regel afdrukken zou n niet veranderen, dus dezelfde voorwaarde zou waar blijven."
               }
             },
             {
@@ -11008,8 +12852,8 @@
                 "nl": "Een list"
               },
               "reason": {
-                "en": "n stays zero, so the condition never becomes false.",
-                "nl": "n blijft nul, waardoor de voorwaarde nooit onwaar wordt."
+                "en": "A while loop does not require a list. It needs a condition that can eventually become false.",
+                "nl": "Een while-loop heeft geen list nodig. De voorwaarde moet uiteindelijk onwaar kunnen worden."
               }
             }
           ]
@@ -11041,8 +12885,8 @@
                 "nl": "3"
               },
               "reason": {
-                "en": "Each inner value contributes to the total: 1 + 2 + 3.",
-                "nl": "Elke binnenste waarde telt mee: 1 + 2 + 3."
+                "en": "The total is initialised outside both loops, so it includes the first row as well as the second.",
+                "nl": "Het totaal wordt buiten beide loops geïnitialiseerd en bevat dus zowel de eerste als de tweede rij."
               }
             },
             {
@@ -11052,11 +12896,69 @@
                 "nl": "2"
               },
               "reason": {
-                "en": "Each inner value contributes to the total: 1 + 2 + 3.",
-                "nl": "Elke binnenste waarde telt mee: 1 + 2 + 3."
+                "en": "The program adds inner values; it does not count the two outer rows.",
+                "nl": "Het programma telt binnenste waarden op; het telt niet de twee buitenste rijen."
               }
             }
-          ]
+          ],
+          "codeBlank": {
+            "prompt": {
+              "en": "Complete both loops to total every reading in the batches. The empty batch should contribute nothing.",
+              "nl": "Maak beide loops af om elke meting in de batches op te tellen. De lege batch moet niets bijdragen."
+            },
+            "segments": [
+              "batches = [[4, 1], [], [7]]\ntotal = 0\nfor batch in ",
+              ":\n    for reading in ",
+              ":\n        total += ",
+              "\nprint(total)"
+            ],
+            "tokens": [
+              {
+                "id": "token-1",
+                "code": "batches"
+              },
+              {
+                "id": "token-2",
+                "code": "batch"
+              },
+              {
+                "id": "token-3",
+                "code": "reading"
+              },
+              {
+                "id": "token-4",
+                "code": "total"
+              },
+              {
+                "id": "token-5",
+                "code": "0"
+              }
+            ],
+            "blanks": [
+              {
+                "answer": "batches",
+                "reason": {
+                  "en": "The outer loop visits each batch in the complete collection.",
+                  "nl": "De buitenste loop bezoekt elke batch in de volledige verzameling."
+                }
+              },
+              {
+                "answer": "batch",
+                "reason": {
+                  "en": "The inner loop visits values in the current batch, not all batches again.",
+                  "nl": "De binnenste loop bezoekt waarden in de huidige batch, niet opnieuw alle batches."
+                }
+              },
+              {
+                "answer": "reading",
+                "reason": {
+                  "en": "Add the current numeric reading to the accumulator. A batch is a list.",
+                  "nl": "Tel de huidige numerieke meting op bij de accumulator. Een batch is een list."
+                }
+              }
+            ],
+            "output": "12\n"
+          }
         },
         {
           "id": "learn-python-loops-q9",
@@ -11085,8 +12987,8 @@
                 "nl": "4\n8"
               },
               "reason": {
-                "en": "The loop breaks at 8 before that value is printed.",
-                "nl": "De loop stopt bij 8 voordat die waarde wordt afgedrukt."
+                "en": "break occurs before print when n reaches 8, so 8 is not printed.",
+                "nl": "break staat vóór print wanneer n 8 bereikt, dus 8 wordt niet afgedrukt."
               }
             },
             {
@@ -11096,8 +12998,8 @@
                 "nl": "4\n8\n12"
               },
               "reason": {
-                "en": "The loop breaks at 8 before that value is printed.",
-                "nl": "De loop stopt bij 8 voordat die waarde wordt afgedrukt."
+                "en": "The first value above 5 exits the loop immediately. Later values are never visited.",
+                "nl": "De eerste waarde boven 5 verlaat de loop onmiddellijk. Latere waarden worden nooit bezocht."
               }
             }
           ]
@@ -11129,8 +13031,8 @@
                 "nl": "Binnen elke herhaling"
               },
               "reason": {
-                "en": "Initializing once preserves the accumulated value between iterations.",
-                "nl": "Eenmalig initialiseren bewaart het opgebouwde totaal tussen herhalingen."
+                "en": "Resetting inside the loop discards the earlier contributions on every iteration.",
+                "nl": "Binnen de loop opnieuw beginnen gooit eerdere bijdragen bij elke iteratie weg."
               }
             },
             {
@@ -11140,8 +13042,8 @@
                 "nl": "Na de loop"
               },
               "reason": {
-                "en": "Initializing once preserves the accumulated value between iterations.",
-                "nl": "Eenmalig initialiseren bewaart het opgebouwde totaal tussen herhalingen."
+                "en": "Initialising after the loop is too late for its first addition and would overwrite the result.",
+                "nl": "Na de loop initialiseren is te laat voor de eerste optelling en zou het resultaat overschrijven."
               }
             }
           ]

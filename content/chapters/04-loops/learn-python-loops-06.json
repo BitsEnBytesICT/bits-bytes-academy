@@ -4,38 +4,157 @@
   "group": "learn-python-loops",
   "title": {
     "en": "While loops over lists",
-    "nl": "Een list met while doorlopen"
+    "nl": "Doorloop metingen met een index"
   },
   "kind": "coding",
   "optional": false,
   "explanation": {
-    "en": "An index-controlled while loop can walk through a list. Check index < len(items), use the current element, then increment the index. Keeping these steps together prevents skipped or repeated entries.",
-    "nl": "Een while loop met een index kan door een list lopen. Controleer index < len(items), gebruik het huidige element en verhoog de index. Houd die stappen bij elkaar om overslaan of herhalen te voorkomen."
+    "en": "A monitoring report needs both a measurement's position and its value. A while loop can walk a list with an index: start at zero, read only while the index is smaller than the length, then advance. We will first record the visits and then build a running total.",
+    "nl": "Een monitorrapport heeft zowel de positie als de waarde van een meting nodig. Een while-loop kan met een index door een list lopen: begin bij nul, lees alleen zolang de index kleiner is dan de lengte en ga daarna verder. We bewaren eerst de bezoeken en bouwen vervolgens een lopend totaal op."
   },
   "example": "",
+  "sections": [
+    {
+      "heading": {
+        "en": "Length is not a valid last index",
+        "nl": "De lengte is geen geldige laatste index"
+      },
+      "body": {
+        "en": "A list of three items has indexes 0, 1 and 2. Use index < len(values), not <=. After the last item, increase index to 3; the next test fails before any attempt to read values[3]. An empty list makes the first test false.",
+        "nl": "Een list met drie onderdelen heeft indexen 0, 1 en 2. Gebruik index < len(values), niet <=. Verhoog index na het laatste onderdeel naar 3; de volgende test is onwaar voordat values[3] wordt gelezen. Bij een lege list is de eerste test meteen onwaar."
+      },
+      "code": "values = [7, 2]\nindex = 0\nwhile index < len(values):\n    print(index, values[index])\n    index += 1\nprint(\"Next index:\", index)",
+      "output": "0 7\n1 2\nNext index: 2"
+    },
+    {
+      "heading": {
+        "en": "Accumulate instead of replacing",
+        "nl": "Tel op in plaats van te vervangen"
+      },
+      "body": {
+        "en": "Create total once before the loop. total += value keeps the previous total and adds one contribution. total = value would forget everything except the most recent measurement. In the editor, append each running total to running after adding the current value, then advance the index.",
+        "nl": "Maak total één keer vóór de loop. total += value behoudt het vorige totaal en telt één bijdrage erbij op. total = value zou alles behalve de recentste meting vergeten. Voeg in de editor elk lopend totaal toe aan running nadat de huidige waarde is opgeteld en verhoog daarna de index."
+      },
+      "code": "total = 0\nfor value in [7, 2, 5]:\n    total += value\n    print(total)",
+      "output": "7\n9\n14"
+    }
+  ],
   "files": {
-    "main.py": "values = [3, 5, 7]\nindex = 0\ntotal = 0\n"
+    "main.py": "values = [3, 5, 7]\nindex = 0\nvisited = []\ntotal = 0\nrunning = []\nprint(\"Measurements:\", values)\n# Read, record, accumulate, then advance the index.\n"
   },
   "solution": {
-    "main.py": "values = [3, 5, 7]\nindex = 0\ntotal = 0\nwhile index < len(values):\n    total += values[index]\n    index += 1\nprint(total)\n"
+    "main.py": "values = [3, 5, 7]\nindex = 0\nvisited = []\ntotal = 0\nrunning = []\nprint(\"Measurements:\", values)\nwhile index < len(values):\n    visited.append(values[index])\n    total += values[index]\n    running.append(total)\n    index += 1\nprint(\"Running:\", running)\nprint(\"Total:\", total)\n"
   },
   "checkpoints": [
     {
-      "id": "learn-python-loops-06-step-1",
+      "id": "learn-python-loops-06-v2-step-1",
       "task": {
-        "en": "Use a while loop to total values into total. Finish with total equal to 15.",
-        "nl": "Tel values met een while loop op in total. Eindig met total gelijk aan 15."
+        "en": "Use a while loop to append every measurement to visited in order. Advance index each time; finish at len(values).",
+        "nl": "Gebruik een while-loop om elke meting op volgorde aan visited toe te voegen. Verhoog index elke keer en eindig bij len(values)."
       },
-      "check": "total == 15 and index == 3",
+      "check": "(visited == values and index == len(values)) and any(isinstance(n, _ast.While) for n in _ast.walk(_ast.parse(_source)))",
+      "feedback": {
+        "en": "Test index < len(values), read values[index], then increase index by one. Do not read at index len(values).",
+        "nl": "Test index < len(values), lees values[index] en verhoog index daarna met één. Lees niet op index len(values)."
+      },
+      "cases": [
+        {
+          "inputs": {
+            "values": []
+          },
+          "check": "visited == values and index == len(values)"
+        },
+        {
+          "inputs": {
+            "values": [
+              8,
+              0,
+              -2,
+              5
+            ]
+          },
+          "check": "visited == values and index == len(values)"
+        }
+      ],
       "hint": {
-        "en": "Start with values = [3, 5, 7]. Then compare the values with the task.",
-        "nl": "Begin met values = [3, 5, 7]. Vergelijk de waarden daarna met de opdracht."
+        "en": "Test index < len(values), read values[index], then increase index by one. Do not read at index len(values).",
+        "nl": "Test index < len(values), lees values[index] en verhoog index daarna met één. Lees niet op index len(values)."
+      }
+    },
+    {
+      "id": "learn-python-loops-06-v2-step-2",
+      "task": {
+        "en": "In that loop, add each value to total and append the updated total to running. Expect [3, 8, 15] for the supplied data.",
+        "nl": "Tel in die loop elke waarde op bij total en voeg het bijgewerkte totaal toe aan running. Verwacht [3, 8, 15] voor de meegeleverde gegevens."
+      },
+      "check": "total == sum(values) and running == [sum(values[:n]) for n in range(1, len(values) + 1)]",
+      "feedback": {
+        "en": "Keep total and running outside the loop. Add the current value before appending the running total.",
+        "nl": "Laat total en running buiten de loop staan. Tel de huidige waarde op vóór het toevoegen van het lopende totaal."
+      },
+      "cases": [
+        {
+          "inputs": {
+            "values": []
+          },
+          "check": "total == sum(values) and running == [sum(values[:n]) for n in range(1, len(values) + 1)]"
+        },
+        {
+          "inputs": {
+            "values": [
+              8,
+              0,
+              -2,
+              5
+            ]
+          },
+          "check": "total == sum(values) and running == [sum(values[:n]) for n in range(1, len(values) + 1)]"
+        }
+      ],
+      "hint": {
+        "en": "Keep total and running outside the loop. Add the current value before appending the running total.",
+        "nl": "Laat total en running buiten de loop staan. Tel de huidige waarde op vóór het toevoegen van het lopende totaal."
+      }
+    },
+    {
+      "id": "learn-python-loops-06-v2-step-3",
+      "task": {
+        "en": "After traversal, print Running: and the list of running totals, then Total: and the final sum. Keep the Measurements line.",
+        "nl": "Druk na het doorlopen Running: en de list lopende totalen af, gevolgd door Total: en de eindsom. Behoud de Measurements-regel."
+      },
+      "check": "_stdout.splitlines() == ['Measurements: ' + str(values), 'Running: ' + str([sum(values[:n]) for n in range(1, len(values) + 1)]), 'Total: ' + str(sum(values))]",
+      "feedback": {
+        "en": "Put both prints outside the loop. For no measurements the running list is empty and the total is zero.",
+        "nl": "Zet beide prints buiten de loop. Zonder metingen is de list lopende totalen leeg en het totaal nul."
+      },
+      "cases": [
+        {
+          "inputs": {
+            "values": []
+          },
+          "check": "_stdout.splitlines() == ['Measurements: ' + str(values), 'Running: ' + str([sum(values[:n]) for n in range(1, len(values) + 1)]), 'Total: ' + str(sum(values))]"
+        },
+        {
+          "inputs": {
+            "values": [
+              8,
+              0,
+              -2,
+              5
+            ]
+          },
+          "check": "_stdout.splitlines() == ['Measurements: ' + str(values), 'Running: ' + str([sum(values[:n]) for n in range(1, len(values) + 1)]), 'Total: ' + str(sum(values))]"
+        }
+      ],
+      "hint": {
+        "en": "Put both prints outside the loop. For no measurements the running list is empty and the total is zero.",
+        "nl": "Zet beide prints buiten de loop. Zonder metingen is de list lopende totalen leeg en het totaal nul."
       }
     }
   ],
   "solutionNote": {
-    "en": "An index-controlled while loop can walk through a list. Check index < len(items), use the current element, then increment the index. Keeping these steps together prevents skipped or repeated entries.\n\nTrace the solution one line at a time. Try a different input to see which parts change.",
-    "nl": "Een while loop met een index kan door een list lopen. Controleer index < len(items), gebruik het huidige element en verhoog de index. Houd die stappen bij elkaar om overslaan of herhalen te voorkomen.\n\nVolg de oplossing regel voor regel. Probeer een andere invoer en bekijk welke onderdelen veranderen."
+    "en": "Indexing happens only after the bounds check. The current value contributes to both the visit record and the sum. Advancing last avoids skipping the first value; preserving the initial total outside the loop avoids losing earlier contributions.",
+    "nl": "Indexering gebeurt pas na de grenscontrole. De huidige waarde draagt bij aan zowel het bezoekverslag als de som. Als laatste verdergaan voorkomt dat de eerste waarde wordt overgeslagen; het begintotaal buiten de loop bewaren voorkomt verlies van eerdere bijdragen."
   },
   "sourcePosition": 6,
   "sourceUrl": "https://www.codecademy.com/courses/learn-python-3/lessons/learn-python-loops/exercises/while-loops-lists",

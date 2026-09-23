@@ -4,38 +4,193 @@
   "group": "learn-python-loops",
   "title": {
     "en": "Comprehension transformations",
-    "nl": "Een list comprehension"
+    "nl": "Schrijf dezelfde bewerking als comprehension"
   },
   "kind": "coding",
   "optional": false,
   "explanation": {
-    "en": "A list comprehension combines iteration and transformation in one expression: [expression for item in items]. It creates a new list and is best kept short and readable.",
-    "nl": "Een list comprehension combineert herhaling en bewerking in één expressie: [expression for item in items]. Deze maakt een nieuwe list en blijft het duidelijkst als je de expressie kort houdt."
+    "en": "A sensor consistently reads a few units low. Correcting it means producing a new value for each raw reading while keeping the raw data available. You already know how to append transformed values in a loop. A list comprehension expresses that same simple transformation in one expression.",
+    "nl": "Een sensor meet steeds enkele eenheden te laag. Corrigeren betekent voor elke ruwe meting een nieuwe waarde maken terwijl de ruwe gegevens beschikbaar blijven. Je weet al hoe je met een loop bewerkte waarden toevoegt. Een list comprehension drukt diezelfde eenvoudige bewerking uit in één expressie."
   },
   "example": "",
+  "sections": [
+    {
+      "heading": {
+        "en": "Read the for part, then the expression",
+        "nl": "Lees het for-deel en daarna de expressie"
+      },
+      "body": {
+        "en": "In [value + 2 for value in raw], take each value from raw, calculate value + 2, and collect the result. The outer brackets create a new list. A comprehension is useful for a short transformation; use an ordinary loop when you need several actions or a detailed trace.",
+        "nl": "Bij [value + 2 for value in raw] neem je elke value uit raw, bereken je value + 2 en verzamel je het resultaat. De buitenste haakjes maken een nieuwe list. Een comprehension is handig voor een korte bewerking; gebruik een gewone loop als je meerdere acties of een uitgebreid verslag nodig hebt."
+      },
+      "code": "raw = [1, 4, -2]\ncorrected = [value + 2 for value in raw]\nprint(raw)\nprint(corrected)",
+      "output": "[1, 4, -2]\n[3, 6, 0]"
+    },
+    {
+      "heading": {
+        "en": "Compare two implementations",
+        "nl": "Vergelijk twee uitvoeringen"
+      },
+      "body": {
+        "en": "Complete the supplied explicit loop first. Then write corrected with a comprehension using the same raw data and offset. Compare the two lists before building doubled from corrected. This keeps the calculation rule visible and shows that later transformations can use earlier results without changing them.",
+        "nl": "Maak eerst de meegeleverde gewone loop af. Schrijf daarna corrected met een comprehension en dezelfde raw-gegevens en offset. Vergelijk de twee lists voordat je doubled uit corrected maakt. Zo blijft de rekenregel zichtbaar en zie je dat latere bewerkingen eerdere resultaten kunnen gebruiken zonder deze te veranderen."
+      },
+      "code": "first = [3, 6, 0]\nsecond = [value * 2 for value in first]\nprint(first)\nprint(second)",
+      "output": "[3, 6, 0]\n[6, 12, 0]"
+    }
+  ],
   "files": {
-    "main.py": "raw = [2, 5, 8]\n"
+    "main.py": "raw = [4, 9, -1, 6]\noffset = 2\nby_loop = []\nfor value in raw:\n    # Replace pass with an append of the corrected value.\n    pass\nprint(\"Raw:\", raw)\n# Build corrected with a comprehension, then doubled.\n"
   },
   "solution": {
-    "main.py": "raw = [2, 5, 8]\ndoubled = [value * 2 for value in raw]\nprint(doubled)\n"
+    "main.py": "raw = [4, 9, -1, 6]\noffset = 2\nby_loop = []\nfor value in raw:\n    by_loop.append(value + offset)\nprint(\"Raw:\", raw)\ncorrected = [value + offset for value in raw]\nprint(\"Corrected:\", corrected)\ndoubled = [value * 2 for value in corrected]\nprint(\"Doubled:\", doubled)\n"
   },
   "checkpoints": [
     {
-      "id": "learn-python-loops-11-step-1",
+      "id": "learn-python-loops-11-v2-step-1",
       "task": {
-        "en": "Create doubled by doubling every value in raw with a list comprehension.",
-        "nl": "Maak doubled door elke waarde in raw met een list comprehension te verdubbelen."
+        "en": "Replace pass in the supplied loop with an append to by_loop of value plus offset. Keep raw unchanged.",
+        "nl": "Vervang pass in de meegeleverde loop door het toevoegen van value plus offset aan by_loop. Laat raw ongewijzigd."
       },
-      "check": "doubled == [4,10,16] and any(isinstance(n,_ast.ListComp) for n in _ast.walk(_ast.parse(_source)))",
+      "check": "(by_loop == [v + offset for v in raw]) and any(isinstance(n, _ast.For) for n in _ast.walk(_ast.parse(_source)))",
+      "feedback": {
+        "en": "Append the calculated value, not offset alone. pass is a placeholder that performs no action.",
+        "nl": "Voeg de berekende waarde toe, niet alleen offset. pass is een tijdelijke instructie die niets doet."
+      },
+      "cases": [
+        {
+          "inputs": {
+            "raw": [],
+            "offset": 3
+          },
+          "check": "by_loop == [v + offset for v in raw]"
+        },
+        {
+          "inputs": {
+            "raw": [
+              0,
+              -3,
+              8,
+              8
+            ],
+            "offset": 2
+          },
+          "check": "by_loop == [v + offset for v in raw]"
+        },
+        {
+          "inputs": {
+            "raw": [
+              5,
+              1
+            ],
+            "offset": -2
+          },
+          "check": "by_loop == [v + offset for v in raw]"
+        }
+      ],
       "hint": {
-        "en": "Start with raw = [2, 5, 8]. Then compare the values with the task.",
-        "nl": "Begin met raw = [2, 5, 8]. Vergelijk de waarden daarna met de opdracht."
+        "en": "Append the calculated value, not offset alone. pass is a placeholder that performs no action.",
+        "nl": "Voeg de berekende waarde toe, niet alleen offset. pass is een tijdelijke instructie die niets doet."
+      }
+    },
+    {
+      "id": "learn-python-loops-11-v2-step-2",
+      "task": {
+        "en": "Create corrected with a list comprehension that applies the same correction to raw. Print Corrected: and the new list.",
+        "nl": "Maak corrected met een list comprehension die dezelfde correctie op raw toepast. Druk Corrected: en de nieuwe list af."
+      },
+      "check": "(corrected == [v + offset for v in raw] and ('Corrected: ' + str(corrected)) in _stdout.splitlines()) and any(isinstance(n, _ast.ListComp) for n in _ast.walk(_ast.parse(_source)))",
+      "feedback": {
+        "en": "Put value + offset before for, and use raw as the input collection. The result should equal by_loop.",
+        "nl": "Zet value + offset vóór for en gebruik raw als invoerverzameling. Het resultaat moet gelijk zijn aan by_loop."
+      },
+      "cases": [
+        {
+          "inputs": {
+            "raw": [],
+            "offset": 3
+          },
+          "check": "corrected == [v + offset for v in raw] and ('Corrected: ' + str(corrected)) in _stdout.splitlines()"
+        },
+        {
+          "inputs": {
+            "raw": [
+              0,
+              -3,
+              8,
+              8
+            ],
+            "offset": 2
+          },
+          "check": "corrected == [v + offset for v in raw] and ('Corrected: ' + str(corrected)) in _stdout.splitlines()"
+        },
+        {
+          "inputs": {
+            "raw": [
+              5,
+              1
+            ],
+            "offset": -2
+          },
+          "check": "corrected == [v + offset for v in raw] and ('Corrected: ' + str(corrected)) in _stdout.splitlines()"
+        }
+      ],
+      "hint": {
+        "en": "Put value + offset before for, and use raw as the input collection. The result should equal by_loop.",
+        "nl": "Zet value + offset vóór for en gebruik raw als invoerverzameling. Het resultaat moet gelijk zijn aan by_loop."
+      }
+    },
+    {
+      "id": "learn-python-loops-11-v2-step-3",
+      "task": {
+        "en": "Build doubled by doubling each value in corrected. Print Doubled: and its list, while keeping both earlier lists available.",
+        "nl": "Maak doubled door elke waarde in corrected te verdubbelen. Druk Doubled: en de list af terwijl beide eerdere lists beschikbaar blijven."
+      },
+      "check": "corrected == [v + offset for v in raw] and doubled == [(v + offset) * 2 for v in raw] and ('Doubled: ' + str(doubled)) in _stdout.splitlines()",
+      "feedback": {
+        "en": "Use corrected as the next input. Doubling raw would skip the earlier correction.",
+        "nl": "Gebruik corrected als volgende invoer. raw verdubbelen zou de eerdere correctie overslaan."
+      },
+      "cases": [
+        {
+          "inputs": {
+            "raw": [],
+            "offset": 3
+          },
+          "check": "corrected == [v + offset for v in raw] and doubled == [(v + offset) * 2 for v in raw] and ('Doubled: ' + str(doubled)) in _stdout.splitlines()"
+        },
+        {
+          "inputs": {
+            "raw": [
+              0,
+              -3,
+              8,
+              8
+            ],
+            "offset": 2
+          },
+          "check": "corrected == [v + offset for v in raw] and doubled == [(v + offset) * 2 for v in raw] and ('Doubled: ' + str(doubled)) in _stdout.splitlines()"
+        },
+        {
+          "inputs": {
+            "raw": [
+              5,
+              1
+            ],
+            "offset": -2
+          },
+          "check": "corrected == [v + offset for v in raw] and doubled == [(v + offset) * 2 for v in raw] and ('Doubled: ' + str(doubled)) in _stdout.splitlines()"
+        }
+      ],
+      "hint": {
+        "en": "Use corrected as the next input. Doubling raw would skip the earlier correction.",
+        "nl": "Gebruik corrected als volgende invoer. raw verdubbelen zou de eerdere correctie overslaan."
       }
     }
   ],
   "solutionNote": {
-    "en": "A list comprehension combines iteration and transformation in one expression: [expression for item in items]. It creates a new list and is best kept short and readable.\n\nTrace the solution one line at a time. Try a different input to see which parts change.",
-    "nl": "Een list comprehension combineert herhaling en bewerking in één expressie: [expression for item in items]. Deze maakt een nieuwe list en blijft het duidelijkst als je de expressie kort houdt.\n\nVolg de oplossing regel voor regel. Probeer een andere invoer en bekijk welke onderdelen veranderen."
+    "en": "The explicit loop and first comprehension calculate equal lists. The second transformation reads corrected and creates doubled. None of these operations needs to replace values in raw.",
+    "nl": "De gewone loop en de eerste comprehension berekenen gelijke lists. De tweede bewerking leest corrected en maakt doubled. Geen van deze bewerkingen hoeft waarden in raw te vervangen."
   },
   "sourcePosition": 11,
   "sourceUrl": "https://www.codecademy.com/courses/learn-python-3/lessons/learn-python-loops/exercises/list-comprehension-ii",

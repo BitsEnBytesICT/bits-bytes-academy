@@ -4,38 +4,217 @@
   "group": "learn-python-loops",
   "title": {
     "en": "Skipping an iteration",
-    "nl": "Een herhaling overslaan"
+    "nl": "Sla ongeldige metingen over en ga verder"
   },
   "kind": "coding",
   "optional": false,
   "explanation": {
-    "en": "continue skips the rest of the current iteration and moves to the next one. Use it to ignore invalid entries without ending the entire loop.",
-    "nl": "continue slaat de rest van de huidige herhaling over en gaat naar de volgende. Gebruik dit om ongeldige items over te slaan zonder de hele loop te stoppen."
+    "en": "This sensor uses negative numbers for failed readings; zero is a valid measurement. A bad reading should be skipped without hiding later good ones. continue skips the rest of the current iteration and starts the next one. Unlike break, it keeps the search through the collection going.",
+    "nl": "Deze sensor gebruikt negatieve getallen voor mislukte metingen; nul is een geldige meting. Een foutieve meting moet worden overgeslagen zonder latere goede metingen te verbergen. continue slaat de rest van de huidige iteratie over en begint de volgende. Anders dan break blijft het doorlopen van de verzameling doorgaan."
   },
   "example": "",
+  "sections": [
+    {
+      "heading": {
+        "en": "Skip before doing the normal work",
+        "nl": "Sla over vóór het gewone werk"
+      },
+      "body": {
+        "en": "Place the invalid-value condition first. If it matches, continue prevents the later append and print from running for that value. Values after it still get their turn. The boundary matters: < 0 rejects negatives while <= 0 would also reject valid zero readings.",
+        "nl": "Zet de voorwaarde voor ongeldige waarden eerst. Als deze klopt, voorkomt continue dat de latere append en print voor die waarde draaien. Waarden erna komen nog aan de beurt. De grens is belangrijk: < 0 wijst negatieve waarden af, terwijl <= 0 ook geldige nulmetingen zou afwijzen."
+      },
+      "code": "for value in [4, -1, 0, 6]:\n    if value < 0:\n        continue\n    print(\"Accepted:\", value)",
+      "output": "Accepted: 4\nAccepted: 0\nAccepted: 6"
+    },
+    {
+      "heading": {
+        "en": "Count the skipped work separately",
+        "nl": "Tel het overgeslagen werk apart"
+      },
+      "body": {
+        "en": "Increment rejected before continue; placing it after continue would make it unreachable. Initialise counters and result lists once before the loop. After the loop, print the collected accepted values and rejected count. Check an all-invalid list and an empty list as well as mixed data.",
+        "nl": "Verhoog rejected vóór continue; erna zou die regel onbereikbaar zijn. Initialiseer tellers en resultaatlists één keer vóór de loop. Druk na de loop de verzamelde geldige waarden en het aantal afwijzingen af. Controleer naast gemengde gegevens ook een volledig ongeldige list en een lege list."
+      },
+      "code": "rejected = 0\nfor value in [-1, 0, -3]:\n    if value < 0:\n        rejected += 1\n        continue\n    print(value)\nprint(\"Rejected:\", rejected)",
+      "output": "0\nRejected: 2"
+    }
+  ],
   "files": {
-    "main.py": "values = [3, -1, 5, -2, 0]\nvalid = []\n"
+    "main.py": "values = [4, -1, 0, 6, -3, 2]\naccepted = []\nrejected = 0\n# Keep valid readings and skip failed ones.\n"
   },
   "solution": {
-    "main.py": "values = [3, -1, 5, -2, 0]\nvalid = []\nfor value in values:\n    if value < 0:\n        continue\n    valid.append(value)\nprint(valid)\n"
+    "main.py": "values = [4, -1, 0, 6, -3, 2]\naccepted = []\nrejected = 0\nfor value in values:\n    if value < 0:\n        rejected += 1\n        continue\n    accepted.append(value)\nprint(\"Accepted:\", accepted)\nprint(\"Rejected:\", rejected)\n"
   },
   "checkpoints": [
     {
-      "id": "learn-python-loops-09-step-1",
+      "id": "learn-python-loops-09-v2-step-1",
       "task": {
-        "en": "Skip negative values using continue and collect the others in valid.",
-        "nl": "Sla negatieve waarden over met continue en verzamel de overige waarden in valid."
+        "en": "Use a for loop with continue to skip negative readings and append every other value to accepted, preserving order and duplicates.",
+        "nl": "Gebruik een for-loop met continue om negatieve metingen over te slaan en elke andere waarde aan accepted toe te voegen, met behoud van volgorde en duplicaten."
       },
-      "check": "valid == [3,5,0] and any(isinstance(n,_ast.Continue) for n in _ast.walk(_ast.parse(_source)))",
+      "check": "(accepted == [v for v in values if v >= 0]) and any(isinstance(n, _ast.Continue) for n in _ast.walk(_ast.parse(_source)))",
+      "feedback": {
+        "en": "Use value < 0 for the skip condition. Append after that branch so zero and later valid readings are kept.",
+        "nl": "Gebruik value < 0 voor de overslavoorwaarde. Voeg na die branch toe zodat nul en latere geldige metingen behouden blijven."
+      },
+      "cases": [
+        {
+          "inputs": {
+            "values": [
+              0,
+              -2,
+              5,
+              0,
+              3
+            ]
+          },
+          "check": "accepted == [v for v in values if v >= 0]"
+        },
+        {
+          "inputs": {
+            "values": []
+          },
+          "check": "accepted == [v for v in values if v >= 0]"
+        },
+        {
+          "inputs": {
+            "values": [
+              -4,
+              -1
+            ]
+          },
+          "check": "accepted == [v for v in values if v >= 0]"
+        },
+        {
+          "inputs": {
+            "values": [
+              2,
+              2,
+              7
+            ]
+          },
+          "check": "accepted == [v for v in values if v >= 0]"
+        }
+      ],
       "hint": {
-        "en": "Start with values = [3, -1, 5, -2, 0]. Then compare the values with the task.",
-        "nl": "Begin met values = [3, -1, 5, -2, 0]. Vergelijk de waarden daarna met de opdracht."
+        "en": "Use value < 0 for the skip condition. Append after that branch so zero and later valid readings are kept.",
+        "nl": "Gebruik value < 0 voor de overslavoorwaarde. Voeg na die branch toe zodat nul en latere geldige metingen behouden blijven."
+      }
+    },
+    {
+      "id": "learn-python-loops-09-v2-step-2",
+      "task": {
+        "en": "Count each skipped reading in rejected. The supplied data contains two failed readings.",
+        "nl": "Tel elke overgeslagen meting in rejected. De meegeleverde gegevens bevatten twee mislukte metingen."
+      },
+      "check": "rejected == len([v for v in values if v < 0])",
+      "feedback": {
+        "en": "Increase rejected inside the invalid branch, before continue. Code after continue is skipped.",
+        "nl": "Verhoog rejected binnen de ongeldige branch, vóór continue. Code na continue wordt overgeslagen."
+      },
+      "cases": [
+        {
+          "inputs": {
+            "values": [
+              0,
+              -2,
+              5,
+              0,
+              3
+            ]
+          },
+          "check": "rejected == len([v for v in values if v < 0])"
+        },
+        {
+          "inputs": {
+            "values": []
+          },
+          "check": "rejected == len([v for v in values if v < 0])"
+        },
+        {
+          "inputs": {
+            "values": [
+              -4,
+              -1
+            ]
+          },
+          "check": "rejected == len([v for v in values if v < 0])"
+        },
+        {
+          "inputs": {
+            "values": [
+              2,
+              2,
+              7
+            ]
+          },
+          "check": "rejected == len([v for v in values if v < 0])"
+        }
+      ],
+      "hint": {
+        "en": "Increase rejected inside the invalid branch, before continue. Code after continue is skipped.",
+        "nl": "Verhoog rejected binnen de ongeldige branch, vóór continue. Code na continue wordt overgeslagen."
+      }
+    },
+    {
+      "id": "learn-python-loops-09-v2-step-3",
+      "task": {
+        "en": "Print Accepted: with the collected list and Rejected: with the count once after processing.",
+        "nl": "Druk na het verwerken één keer Accepted: met de verzamelde list en Rejected: met het aantal af."
+      },
+      "check": "_stdout.splitlines() == ['Accepted: ' + str([v for v in values if v >= 0]), 'Rejected: ' + str(len([v for v in values if v < 0]))]",
+      "feedback": {
+        "en": "Print the whole accepted list after the loop, followed by the rejected count, not one summary per item.",
+        "nl": "Druk de hele accepted-list na de loop af, gevolgd door het aantal afwijzingen; maak niet per onderdeel een samenvatting."
+      },
+      "cases": [
+        {
+          "inputs": {
+            "values": [
+              0,
+              -2,
+              5,
+              0,
+              3
+            ]
+          },
+          "check": "_stdout.splitlines() == ['Accepted: ' + str([v for v in values if v >= 0]), 'Rejected: ' + str(len([v for v in values if v < 0]))]"
+        },
+        {
+          "inputs": {
+            "values": []
+          },
+          "check": "_stdout.splitlines() == ['Accepted: ' + str([v for v in values if v >= 0]), 'Rejected: ' + str(len([v for v in values if v < 0]))]"
+        },
+        {
+          "inputs": {
+            "values": [
+              -4,
+              -1
+            ]
+          },
+          "check": "_stdout.splitlines() == ['Accepted: ' + str([v for v in values if v >= 0]), 'Rejected: ' + str(len([v for v in values if v < 0]))]"
+        },
+        {
+          "inputs": {
+            "values": [
+              2,
+              2,
+              7
+            ]
+          },
+          "check": "_stdout.splitlines() == ['Accepted: ' + str([v for v in values if v >= 0]), 'Rejected: ' + str(len([v for v in values if v < 0]))]"
+        }
+      ],
+      "hint": {
+        "en": "Print the whole accepted list after the loop, followed by the rejected count, not one summary per item.",
+        "nl": "Druk de hele accepted-list na de loop af, gevolgd door het aantal afwijzingen; maak niet per onderdeel een samenvatting."
       }
     }
   ],
   "solutionNote": {
-    "en": "continue skips the rest of the current iteration and moves to the next one. Use it to ignore invalid entries without ending the entire loop.\n\nTrace the solution one line at a time. Try a different input to see which parts change.",
-    "nl": "continue slaat de rest van de huidige herhaling over en gaat naar de volgende. Gebruik dit om ongeldige items over te slaan zonder de hele loop te stoppen.\n\nVolg de oplossing regel voor regel. Probeer een andere invoer en bekijk welke onderdelen veranderen."
+    "en": "The invalid branch records the rejection and immediately skips normal processing. A zero reading reaches append. Using break instead would wrongly abandon all readings after the first failure.",
+    "nl": "De ongeldige branch bewaart de afwijzing en slaat meteen de gewone verwerking over. Een nulmeting bereikt append wel. Met break zouden alle metingen na de eerste fout ten onrechte vervallen."
   },
   "sourcePosition": 9,
   "sourceUrl": "https://www.codecademy.com/courses/learn-python-3/lessons/learn-python-loops/exercises/continue",

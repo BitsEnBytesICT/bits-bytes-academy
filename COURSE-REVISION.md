@@ -45,6 +45,12 @@ programs; see `research/2026-09-23-list-readings.md`. Their embedded source
 assessments stayed in a loading state. Function-based list challenges remain in
 their existing later chapter and still need the deeper review.
 
+All 13 loop pages and the ten-question source quiz are now reviewed. The original
+rewrite adds 36 connected checkpoints, 96 alternate-input cases and 25 runnable
+examples. All ten local quiz questions have specific choice feedback, and fresh
+attempts include an original nested-loop code-blank question. See
+`research/2026-09-23-loops.md` for source coverage and verification.
+
 Authored and implemented in this pass:
 
 - Replaced all 15 foundation lesson pages with original bilingual instruction:
@@ -128,6 +134,6 @@ Verification so far:
    count test alone does not establish richer explanations or appropriate tasks.
 
 This goal turn made progress: original course authoring, implementation, tests and
-fresh source observations. Current rewrite coverage is 58/160 core lesson pages,
-4/8 supporting readings, 4/13 quizzes with enhanced feedback, and 0/59 challenges.
+fresh source observations. Current rewrite coverage is 71/160 core lesson pages,
+4/8 supporting readings, 5/13 quizzes with enhanced feedback, and 0/59 challenges.
 No blocker prevents continuing. The full goal remains active.

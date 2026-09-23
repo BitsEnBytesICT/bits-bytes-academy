@@ -4,38 +4,136 @@
   "group": "learn-python-loops",
   "title": {
     "en": "Replacing repeated code",
-    "nl": "Herhaling vervangen"
+    "nl": "Herstel een onvolledig stationsrapport"
   },
   "kind": "coding",
   "optional": false,
   "explanation": {
-    "en": "Repeated lines are difficult to maintain: a rule may need to be changed in several places. A loop expresses the rule once and applies it to each item.",
-    "nl": "Herhaalde regels zijn lastig te onderhouden: dezelfde regel moet dan op meerdere plaatsen worden aangepast. Een loop beschrijft de regel één keer en past deze op elk item toe."
+    "en": "The departure board received a fourth station, but its old program still prints only three. This is a maintenance problem: the program has the same action copied in several places and assumes a particular list length. First make the missing data visible, then replace the repeated rule with a loop.",
+    "nl": "Het vertrekbord kreeg een vierde station, maar het oude programma drukt er nog maar drie af. Dit is een onderhoudsprobleem: dezelfde actie staat op verschillende plaatsen gekopieerd en het programma gaat uit van een vaste listlengte. Maak eerst de ontbrekende gegevens zichtbaar en vervang daarna de herhaalde regel door een loop."
   },
   "example": "",
+  "sections": [
+    {
+      "heading": {
+        "en": "Find the assumption",
+        "nl": "Zoek de aanname"
+      },
+      "body": {
+        "en": "Run the supplied program. The list has four items but only indexes 0, 1 and 2 are printed. Add the missing print once to see the complete report. That patch works today, but a fifth station would require another edit; an empty list would cause an indexing error.",
+        "nl": "Voer het meegeleverde programma uit. De list heeft vier onderdelen, maar alleen indexen 0, 1 en 2 worden afgedrukt. Voeg de ontbrekende print één keer toe om het volledige rapport te zien. Dat werkt vandaag, maar een vijfde station zou weer een wijziging vereisen; een lege list zou een indexfout geven."
+      },
+      "code": "stops = [\"Pier\", \"Square\"]\nprint(\"Stop:\", stops[0])\nprint(\"Stop:\", stops[1])",
+      "output": "Stop: Pier\nStop: Square"
+    },
+    {
+      "heading": {
+        "en": "Move the repeated action into a body",
+        "nl": "Verplaats de herhaalde actie naar een blok"
+      },
+      "body": {
+        "en": "The loop variable receives an item, not its index. Replace all the indexed prints with one for loop. Keep the colon and indent the print by four spaces. A separate summary after the loop can use len to count the stations. Try adding a station and then using an empty list: the same rule should still work.",
+        "nl": "De loopvariabele krijgt een onderdeel, niet de index ervan. Vervang alle prints met een index door één for-loop. Behoud de dubbele punt en laat de print vier spaties inspringen. Een aparte samenvatting na de loop kan met len het aantal stations tellen. Probeer een station toe te voegen en daarna een lege list: dezelfde regel moet blijven werken."
+      },
+      "code": "stops = [\"Pier\", \"Square\"]\nfor stop in stops:\n    print(\"Stop:\", stop)\nprint(\"Count:\", len(stops))",
+      "output": "Stop: Pier\nStop: Square\nCount: 2"
+    }
+  ],
   "files": {
-    "main.py": "names = [\"East\", \"West\", \"North\"]\nprint(names[0])\nprint(names[1])\nprint(names[2])\n"
+    "main.py": "stations = [\"Harbor\", \"Market\", \"Park\", \"Depot\"]\nprint(\"Stop:\", stations[0])\nprint(\"Stop:\", stations[1])\nprint(\"Stop:\", stations[2])\n# The board is missing a station.\n"
   },
   "solution": {
-    "main.py": "names = [\"East\", \"West\", \"North\"]\nfor name in names:\n    print(name)\n"
+    "main.py": "stations = [\"Harbor\", \"Market\", \"Park\", \"Depot\"]\nfor station in stations:\n    print(\"Stop:\", station)\nprint(\"Count:\", len(stations))\n"
   },
   "checkpoints": [
     {
-      "id": "learn-python-loops-02-step-1",
+      "id": "learn-python-loops-02-v2-step-1",
       "task": {
-        "en": "Replace repeated prints with a loop over names. Print each name on its own line.",
-        "nl": "Vervang herhaalde print-regels door een loop over names. Druk elke naam op een eigen regel af."
+        "en": "Make the report print all four supplied stations as Stop: followed by the name, in order, once each. Run it to confirm the missing station appears.",
+        "nl": "Laat het rapport alle vier meegeleverde stations afdrukken als Stop: gevolgd door de naam, op volgorde en elk één keer. Voer uit om te controleren dat het ontbrekende station verschijnt."
       },
-      "check": "_stdout.splitlines() == ['East','West','North'] and any(isinstance(n,_ast.For) for n in _ast.walk(_ast.parse(_source)))",
+      "check": "[line for line in _stdout.splitlines() if line.startswith('Stop:')] == ['Stop: ' + s for s in stations]",
+      "feedback": {
+        "en": "Add the missing station without duplicating earlier lines. A later loop refactor should preserve this output.",
+        "nl": "Voeg het ontbrekende station toe zonder eerdere regels te verdubbelen. De latere loop-aanpassing moet deze output behouden."
+      },
       "hint": {
-        "en": "Start with names = [\"East\", \"West\", \"North\"]. Then compare the values with the task.",
-        "nl": "Begin met names = [\"East\", \"West\", \"North\"]. Vergelijk de waarden daarna met de opdracht."
+        "en": "Add the missing station without duplicating earlier lines. A later loop refactor should preserve this output.",
+        "nl": "Voeg het ontbrekende station toe zonder eerdere regels te verdubbelen. De latere loop-aanpassing moet deze output behouden."
+      }
+    },
+    {
+      "id": "learn-python-loops-02-v2-step-2",
+      "task": {
+        "en": "Replace the repeated indexed prints with a for loop over stations. It must also work when the list grows or is empty.",
+        "nl": "Vervang de herhaalde prints met indexen door een for-loop over stations. Deze moet ook werken als de list groeit of leeg is."
+      },
+      "check": "([line for line in _stdout.splitlines() if line.startswith('Stop:')] == ['Stop: ' + s for s in stations]) and any(isinstance(n, _ast.For) for n in _ast.walk(_ast.parse(_source)))",
+      "feedback": {
+        "en": "Use one indented print with the current station value. Remove the old indexed prints.",
+        "nl": "Gebruik één ingesprongen print met de huidige stationswaarde. Verwijder de oude prints met indexen."
+      },
+      "cases": [
+        {
+          "inputs": {
+            "stations": []
+          },
+          "check": "[line for line in _stdout.splitlines() if line.startswith('Stop:')] == ['Stop: ' + s for s in stations]"
+        },
+        {
+          "inputs": {
+            "stations": [
+              "West",
+              "East",
+              "North",
+              "South",
+              "Central"
+            ]
+          },
+          "check": "[line for line in _stdout.splitlines() if line.startswith('Stop:')] == ['Stop: ' + s for s in stations]"
+        }
+      ],
+      "hint": {
+        "en": "Use one indented print with the current station value. Remove the old indexed prints.",
+        "nl": "Gebruik één ingesprongen print met de huidige stationswaarde. Verwijder de oude prints met indexen."
+      }
+    },
+    {
+      "id": "learn-python-loops-02-v2-step-3",
+      "task": {
+        "en": "After the loop, print Count: and the number of stations. It must appear once, after all station lines.",
+        "nl": "Druk na de loop Count: en het aantal stations af. Dit moet één keer verschijnen, na alle stationsregels."
+      },
+      "check": "_stdout.splitlines() == ['Stop: ' + s for s in stations] + ['Count: ' + str(len(stations))]",
+      "feedback": {
+        "en": "Put the summary at the left margin and calculate its value with len(stations).",
+        "nl": "Zet de samenvatting tegen de linkermarge en bereken de waarde met len(stations)."
+      },
+      "cases": [
+        {
+          "inputs": {
+            "stations": []
+          },
+          "check": "_stdout.splitlines() == ['Stop: ' + s for s in stations] + ['Count: ' + str(len(stations))]"
+        },
+        {
+          "inputs": {
+            "stations": [
+              "West"
+            ]
+          },
+          "check": "_stdout.splitlines() == ['Stop: ' + s for s in stations] + ['Count: ' + str(len(stations))]"
+        }
+      ],
+      "hint": {
+        "en": "Put the summary at the left margin and calculate its value with len(stations).",
+        "nl": "Zet de samenvatting tegen de linkermarge en bereken de waarde met len(stations)."
       }
     }
   ],
   "solutionNote": {
-    "en": "Repeated lines are difficult to maintain: a rule may need to be changed in several places. A loop expresses the rule once and applies it to each item.\n\nTrace the solution one line at a time. Try a different input to see which parts change.",
-    "nl": "Herhaalde regels zijn lastig te onderhouden: dezelfde regel moet dan op meerdere plaatsen worden aangepast. Een loop beschrijft de regel één keer en past deze op elk item toe.\n\nVolg de oplossing regel voor regel. Probeer een andere invoer en bekijk welke onderdelen veranderen."
+    "en": "The first repair exposes the hidden fourth item. The loop then removes the fixed-size assumption. The unindented summary runs after every item has been visited and also works when there were no items.",
+    "nl": "De eerste reparatie maakt het verborgen vierde onderdeel zichtbaar. De loop verwijdert daarna de aanname over de vaste grootte. De samenvatting zonder inspringing draait nadat alle onderdelen zijn bezocht en werkt ook als er geen onderdelen waren."
   },
   "sourcePosition": 2,
   "sourceUrl": "https://www.codecademy.com/courses/learn-python-3/lessons/learn-python-loops/exercises/introduction",

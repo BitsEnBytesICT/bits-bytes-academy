@@ -4,25 +4,51 @@
   "group": "learn-python-loops",
   "title": {
     "en": "Loop overview",
-    "nl": "Waarom loops?"
+    "nl": "Eén regel voor een hele verzameling"
   },
   "kind": "reading",
   "optional": false,
   "explanation": {
-    "en": "A loop repeats a block of work. A for loop visits items in an iterable, while a while loop repeats as long as a condition remains true. Repetition lets a short program process a large collection.",
-    "nl": "Een loop herhaalt een blok code. Een for loop bezoekt items in een iterable. Een while loop herhaalt zolang een voorwaarde waar blijft. Zo kan een kort programma een grote verzameling verwerken."
+    "en": "A station checks several platforms before opening. The rule is the same for every platform; only the platform name changes. A loop expresses that repeated rule once. Each trip through its body is an iteration.\n\nEvery useful loop has a starting situation, repeated work and a way to finish. A for loop visits the values supplied by a collection. A while loop keeps working while a condition is true. We will build both, then decide which fits each job.",
+    "nl": "Een station controleert verschillende perrons voordat het opent. De regel is voor elk perron hetzelfde; alleen de perronnaam verandert. Een loop beschrijft die herhaalde regel één keer. Elke uitvoering van het blok heet een iteratie.\n\nElke bruikbare loop heeft een beginsituatie, herhaald werk en een manier om te eindigen. Een for-loop bezoekt de waarden uit een verzameling. Een while-loop werkt door zolang een voorwaarde waar is. We bouwen beide en bepalen daarna welke bij de taak past."
   },
   "example": "",
+  "sections": [
+    {
+      "heading": {
+        "en": "Follow one item at a time",
+        "nl": "Volg één onderdeel tegelijk"
+      },
+      "body": {
+        "en": "Read the following program aloud: for each gate in gates, print an inspection line. gate receives the first name, then the next. The indented line repeats; the final unindented line runs once after the collection is exhausted. You do not need to memorise the syntax yet.",
+        "nl": "Lees het volgende programma hardop: druk voor elke gate in gates een controleregel af. gate krijgt de eerste naam en daarna de volgende. De ingesprongen regel wordt herhaald; de laatste regel zonder inspringing draait één keer nadat de verzameling op is. Je hoeft de syntax nog niet uit je hoofd te kennen."
+      },
+      "code": "gates = [\"North\", \"South\"]\nfor gate in gates:\n    print(\"Inspect:\", gate)\nprint(\"Inspection finished\")",
+      "output": "Inspect: North\nInspect: South\nInspection finished"
+    },
+    {
+      "heading": {
+        "en": "Change the data, keep the rule",
+        "nl": "Verander de gegevens, behoud de regel"
+      },
+      "body": {
+        "en": "Run the editor preview. Add another platform to platforms and predict which lines will repeat. Then replace the collection with an empty list. The body runs zero times, but the final message still appears. This is how one short program can handle different amounts of work without a new print statement for every item.",
+        "nl": "Voer de demonstratie in de editor uit. Voeg een perron toe aan platforms en voorspel welke regels worden herhaald. Vervang de verzameling daarna door een lege list. Het blok draait nul keer, maar het slotbericht verschijnt nog steeds. Zo verwerkt één kort programma verschillende hoeveelheden werk zonder een nieuwe print-regel voor elk onderdeel."
+      },
+      "code": "gates = []\nfor gate in gates:\n    print(\"Inspect:\", gate)\nprint(\"Inspection finished\")",
+      "output": "Inspection finished"
+    }
+  ],
   "files": {
-    "main.py": "for sensor in [\"north\", \"south\", \"west\"]:\n    print(\"Checking\", sensor)\n"
+    "main.py": "platforms = [\"A\", \"B\", \"C\"]\nprint(\"Opening checks\")\nfor platform in platforms:\n    print(\"Check platform\", platform)\nprint(\"All listed platforms checked\")\n"
   },
   "solution": {
-    "main.py": "for sensor in [\"north\", \"south\", \"west\"]:\n    print(\"Checking\", sensor)\n"
+    "main.py": "platforms = [\"A\", \"B\", \"C\", \"D\"]\nprint(\"Opening checks\")\nfor platform in platforms:\n    print(\"Check platform\", platform)\nprint(\"All listed platforms checked\")\n"
   },
   "checkpoints": [],
   "solutionNote": {
-    "en": "A loop repeats a block of work. A for loop visits items in an iterable, while a while loop repeats as long as a condition remains true. Repetition lets a short program process a large collection.\n\nTrace the solution one line at a time. Try a different input to see which parts change.",
-    "nl": "Een loop herhaalt een blok code. Een for loop bezoekt items in een iterable. Een while loop herhaalt zolang een voorwaarde waar blijft. Zo kan een kort programma een grote verzameling verwerken.\n\nVolg de oplossing regel voor regel. Probeer een andere invoer en bekijk welke onderdelen veranderen."
+    "en": "Only the data gained a fourth platform. The loop applies the same instruction to it automatically. With an empty list there is no current platform, so the body is skipped entirely.",
+    "nl": "Alleen de gegevens kregen een vierde perron. De loop past daar automatisch dezelfde instructie op toe. Bij een lege list is er geen huidig perron, dus wordt het blok helemaal overgeslagen."
   },
   "sourcePosition": 1,
   "sourceUrl": "https://www.codecademy.com/courses/learn-python-3/lessons/learn-python-loops/exercises/introduction-to-loops",
