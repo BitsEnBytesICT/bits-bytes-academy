@@ -1,3 +1,4 @@
+import { ensurePackages } from "./packages.mjs";
 // One namespace per activity; every graded run starts fresh.
 export const harness = String.raw`
 import sys, os, json, io, traceback, ast, contextlib, shutil, re, math, random, importlib
@@ -26,6 +27,7 @@ def _lab_probe(files, probe):
     namespace = {'__name__': '__main__', '__file__': 'main.py'}
     result, error = None, None
     call_reached, call_stdout_start, call_stderr_start, call_input_start = False, 0, 0, 0
+    call_args, call_kwargs = [], {}
     try:
         if os.path.exists(root): shutil.rmtree(root)
         os.makedirs(root)
@@ -56,7 +58,8 @@ def _lab_probe(files, probe):
                     function = getattr(importlib.import_module(call['module']), call['name']) if call.get('module') else namespace[call['name']]
                     call_stdout_start, call_stderr_start = len(stdout.getvalue()), len(stderr.getvalue())
                     call_input_start, call_reached = sys.stdin.tell(), True
-                    result = function(*call.get('args', []), **call.get('kwargs', {}))
+                    call_args, call_kwargs = call.get('args', []), call.get('kwargs', {})
+                    result = function(*call_args, **call_kwargs)
             except BaseException as exc:
                 error = type(exc).__name__
         # An error during setup is not evidence of the function's behavior.
@@ -65,7 +68,7 @@ def _lab_probe(files, probe):
         namespace.update(_return=result, _error=error, _stdout=stdout.getvalue(), _stderr=stderr.getvalue(), _remaining_input=sys.stdin.read(), _close=math.isclose,
             _call_stdout=stdout.getvalue()[call_stdout_start:] if call_reached else '',
             _call_stderr=stderr.getvalue()[call_stderr_start:] if call_reached else '',
-            _call_input_chars=call_input_chars)
+            _call_input_chars=call_input_chars, _args=call_args, _kwargs=call_kwargs)
         return bool(eval(probe['check'], namespace))
     finally:
         os.chdir(original_cwd)
@@ -207,6 +210,7 @@ function initialize(py) {
   }
 }
 export async function execute(py, payload) {
+  await ensurePackages(py, payload.files);
   initialize(py);
   const fn = py.globals.get("_lab_run");
   try {
@@ -217,6 +221,10 @@ export async function execute(py, payload) {
 }
 export async function consoleLine(py, payload) {
   initialize(py);
+  const pending = py.runPython(
+    '"\\n".join(_lab_console.buffer) if _lab_console is not None else ""',
+  );
+  await ensurePackages(py, payload.files, pending + "\n" + payload.line);
   const fn = py.globals.get("_lab_push");
   try {
     return JSON.parse(await fn(JSON.stringify(payload)));

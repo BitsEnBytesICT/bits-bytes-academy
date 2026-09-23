@@ -42,6 +42,7 @@ window.addEventListener("message", async ({ source, origin, data }) => {
     py.canvas.setCanvas2D(canvas);
     py._api._skip_unwind_fatal_error = true;
     py.setInterruptBuffer(new Uint8Array(interrupt));
+    py.runPython('import os\nos.environ["PYGAME_HIDE_SUPPORT_PROMPT"] = "1"');
     await py.loadPackage("pygame-ce");
     for (const channel of ["stdout", "stderr"]) {
       const decoder = new TextDecoder();

@@ -5,14 +5,15 @@ import { loadPyodide } from "pyodide";
 import { execute } from "../frontend/public/runtime/engine.mjs";
 
 const py = await loadPyodide({
-  indexURL: path.resolve("node_modules/pyodide"),
+  indexURL: path.resolve("frontend/public/runtime/pyodide"),
 });
 py.setStdout({ write: (b) => b.length });
 py.setStderr({ write: (b) => b.length });
 const directory = path.resolve("content-src/project-course");
 let lessons = 0,
   tasks = 0,
-  quizzes = 0;
+  quizzes = 0,
+  examples = 0;
 const all = [];
 for (const filename of fs
   .readdirSync(directory)
@@ -59,6 +60,31 @@ for (const filename of fs
     if (a.kind !== "coding") continue;
     assert(a.explanation.en && a.explanation.nl, a.id);
     assert(a.sections.length, a.id);
+    for (const section of a.sections) {
+      if (!section.code) continue;
+      py.globals.set("_example_source", section.code);
+      py.runPython("compile(_example_source, 'example.py', 'exec')");
+      if (section.output !== undefined) {
+        py.setStdin({ stdin: () => undefined });
+        // The multi-file explanation deliberately uses the helper defined in
+        // its preceding section, just as the learner's two-file project does.
+        const dependencies =
+          a.id === "python-v2-7-04"
+            ? { "greetings.py": a.sections[1].code }
+            : {};
+        const example = await execute(py, {
+          files: { ...dependencies, "main.py": section.code },
+          checks: [],
+        });
+        assert.equal(example.error, null, `${a.id}: ${section.heading.en}`);
+        assert.equal(
+          example.stdout.trimEnd(),
+          section.output.trimEnd(),
+          `${a.id}: ${section.heading.en}`,
+        );
+        examples++;
+      }
+    }
     assert(a.checkpoints.length >= 3 && a.checkpoints.length <= 5, a.id);
     assert(
       a.checkpoints.every(
@@ -184,6 +210,7 @@ console.log(
     newLessons: lessons,
     tasks,
     quizzes,
+    executableExamples: examples,
     supplyAlternatives: 3,
     supplyBoundaryMistakesRejected: 3,
     responsiveAlternatives: 2,

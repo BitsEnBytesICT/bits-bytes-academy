@@ -1,5 +1,6 @@
 import { loadPyodide } from "./pyodide/pyodide.mjs";
 import { execute, consoleLine } from "./engine.mjs";
+import { ensurePackages } from "./packages.mjs";
 let interpreter;
 let queue = Promise.resolve();
 self.onmessage = ({ data }) => {
@@ -59,6 +60,8 @@ async function handle(data) {
         );
       },
     });
+    // Package loading uses the startup deadline, not the script's run budget.
+    await ensurePackages(py, files, line);
     send("running");
     const result =
       kind === "console"
