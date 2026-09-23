@@ -9,20 +9,70 @@
   "kind": "reading",
   "optional": false,
   "explanation": {
-    "en": "zip pairs elements at the same positions from separate iterables. It returns an iterator, so use list() to inspect its pairs. By default it stops at the shortest input.\n\nUse tuple unpacking in a for loop to give each part of a pair a clear name. This is useful when labels and measurements arrive separately.",
-    "nl": "zip koppelt elementen op dezelfde posities uit verschillende iterables. Het resultaat is een iterator; gebruik list() om de paren te bekijken. Standaard stopt zip bij de kortste invoer.\n\nGebruik tuple unpacking in een for loop om elk deel van het paar een duidelijke naam te geven. Dat is nuttig wanneer labels en metingen apart binnenkomen."
+    "en": "A display receives station names and passenger counts as separate lists. The first count belongs to the first station, the second count to the second station, and so on. zip() brings corresponding positions together into tuples.\n\nThe editor contains a working display with a missing measurement. Run it, find which station disappeared, and extend the report in the experiments below. You do not need loops for this exploration.",
+    "nl": "Een scherm krijgt stationsnamen en reizigersaantallen als aparte lists. Het eerste aantal hoort bij het eerste station, het tweede bij het tweede station, enzovoort. zip() brengt overeenkomstige posities samen in tuples.\n\nDe editor bevat een werkend scherm met een ontbrekende meting. Voer het uit, zoek welk station verdween en breid het rapport uit met de onderstaande experimenten. Je hebt voor deze verkenning geen loops nodig."
   },
   "example": "",
+  "sections": [
+    {
+      "heading": {
+        "en": "Pair positions, not matching values",
+        "nl": "Koppel posities, geen gelijke waarden"
+      },
+      "body": {
+        "en": "zip takes one item from each input at a time. The order of its arguments becomes the order of fields inside each tuple. It does not search for related names or sort the inputs. Your lists must already use the same ordering.\n\n`list(zip(...))` collects the resulting tuples so you can print, index and reuse them. The outer square brackets belong to the list; the inner parentheses belong to each tuple.",
+        "nl": "zip neemt telkens één onderdeel uit elke invoer. De volgorde van de argumenten wordt de volgorde van de velden in elke tuple. Het zoekt geen bijbehorende namen en sorteert de invoer niet. Je lists moeten dus al dezelfde volgorde gebruiken.\n\n`list(zip(...))` verzamelt de tuples zodat je ze kunt afdrukken, indexeren en hergebruiken. De buitenste vierkante haakjes horen bij de list; de binnenste ronde haakjes bij elke tuple."
+      },
+      "code": "labels = [\"A\", \"B\", \"C\"]\ncharges = [90, 40, 75]\nprint(list(zip(labels, charges)))\nprint(list(zip(charges, labels)))",
+      "output": "[('A', 90), ('B', 40), ('C', 75)]\n[(90, 'A'), (40, 'B'), (75, 'C')]"
+    },
+    {
+      "heading": {
+        "en": "The shortest input sets the limit",
+        "nl": "De kortste invoer bepaalt de grens"
+      },
+      "body": {
+        "en": "By default, zip stops when any input runs out. It does not fill missing values or raise an error for different lengths. With three stations and two measurements, only two complete pairs exist.\n\nRun the starter and compare the station count with the row count. Add the missing passenger measurement, 12, with append. Rebuild pairs with a new call to zip and print the complete display. Changing passengers does not retroactively rebuild an already collected pairs list.\n\nTry an empty passenger list as a separate experiment. Predict the result before running, then restore the measurements.",
+        "nl": "Standaard stopt zip zodra één invoer op is. Het vult ontbrekende waarden niet aan en geeft bij verschillende lengtes geen fout. Met drie stations en twee metingen bestaan maar twee volledige paren.\n\nVoer de startcode uit en vergelijk het aantal stations met het aantal rijen. Voeg de ontbrekende reizigersmeting, 12, toe met append. Bouw pairs opnieuw op met een nieuwe aanroep van zip en druk het volledige scherm af. passengers veranderen bouwt een al verzamelde list pairs niet achteraf opnieuw op.\n\nProbeer als apart experiment een lege reizigerslist. Voorspel het resultaat vóór het uitvoeren en herstel daarna de metingen."
+      },
+      "code": "labels = [\"A\", \"B\", \"C\"]\nprint(list(zip(labels, [90, 40])))\nprint(list(zip(labels, [])))",
+      "output": "[('A', 90), ('B', 40)]\n[]"
+    },
+    {
+      "heading": {
+        "en": "Add another field",
+        "nl": "Voeg een veld toe"
+      },
+      "body": {
+        "en": "zip can combine more than two inputs. Each result then has one field per input, still matched by position and still limited by the shortest input.\n\nAfter repairing the missing measurement, create rows from stations, passengers and platforms, in that order. Print rows, then print `rows[-1][0]`. Explain why the first index chooses a row and the second chooses a field. Finally swap the last two zip arguments and predict which fields will exchange positions.",
+        "nl": "zip kan meer dan twee invoeren combineren. Elk resultaat krijgt dan één veld per invoer, nog steeds gekoppeld per positie en beperkt door de kortste invoer.\n\nMaak na het aanvullen van de ontbrekende meting rows van stations, passengers en platforms, in die volgorde. Druk rows af en daarna `rows[-1][0]`. Leg uit waarom de eerste index een rij kiest en de tweede een veld. Verwissel tot slot de laatste twee argumenten van zip en voorspel welke velden van plaats veranderen."
+      },
+      "code": "names = [\"Lens\", \"Tripod\"]\ncounts = [3, 2]\nshelves = [\"R1\", \"R4\"]\nrows = list(zip(names, counts, shelves))\nprint(rows)\nprint(rows[-1][0])",
+      "output": "[('Lens', 3, 'R1'), ('Tripod', 2, 'R4')]\nTripod"
+    },
+    {
+      "heading": {
+        "en": "An iterator is consumed; a saved list is reusable",
+        "nl": "Een iterator raakt op; een bewaarde list kun je hergebruiken"
+      },
+      "body": {
+        "en": "zip returns an iterator: an object that supplies items as they are requested. Printing the zip object itself shows an object description rather than its pairs. list consumes its remaining items. After they are consumed, converting that same iterator again produces an empty list. The original input lists are unchanged.\n\nIn the editor, create pending with zip(stations, passengers). Save `list(pending)` as saved and print it. Now print `list(pending)` again, then print saved. Explain why only the second read is empty. To generate fresh pairs, call zip again; to reuse collected results, keep the list.",
+        "nl": "zip geeft een iterator terug: een object dat onderdelen levert wanneer je erom vraagt. Het zip-object zelf afdrukken toont een objectbeschrijving in plaats van de paren. list verbruikt de resterende onderdelen. Zijn ze verbruikt, dan levert dezelfde iterator opnieuw omzetten een lege list op. De oorspronkelijke invoerlists blijven ongewijzigd.\n\nMaak in de editor pending met zip(stations, passengers). Bewaar `list(pending)` als saved en druk deze af. Druk daarna nogmaals `list(pending)` af en vervolgens saved. Leg uit waarom alleen de tweede lezing leeg is. Roep zip opnieuw aan voor nieuwe paren; bewaar de list om verzamelde resultaten te hergebruiken."
+      },
+      "code": "pending = zip([\"red\", \"blue\"], [2, 5])\nsaved = list(pending)\nprint(saved)\nprint(list(pending))\nprint(saved)",
+      "output": "[('red', 2), ('blue', 5)]\n[]\n[('red', 2), ('blue', 5)]"
+    }
+  ],
   "files": {
-    "main.py": "names = [\"East\", \"West\", \"North\"]\nlevels = [3, 7]\npairs = list(zip(names, levels))\nprint(pairs)\nfor name, level in pairs:\n    print(name, level)\n"
+    "main.py": "stations = [\"Harbor\", \"Market\", \"Park\"]\npassengers = [18, 7]\nplatforms = [2, 4, 1]\n\npairs = list(zip(stations, passengers))\nprint(\"Display:\", pairs)\nprint(\"Stations:\", len(stations), \"Rows:\", len(pairs))\n\n# 1. Find and supply the missing passenger measurement.\n\n# 2. Rebuild the display with station, passengers and platform.\n\n# 3. Save one zip iterator and consume it twice. Predict the results.\n"
   },
   "solution": {
-    "main.py": "names = [\"East\", \"West\", \"North\"]\nlevels = [3, 7]\npairs = list(zip(names, levels))\nprint(pairs)\nfor name, level in pairs:\n    print(name, level)\n"
+    "main.py": "stations = [\"Harbor\", \"Market\", \"Park\"]\npassengers = [18, 7]\nplatforms = [2, 4, 1]\npairs = list(zip(stations, passengers))\nprint(\"Display:\", pairs)\nprint(\"Stations:\", len(stations), \"Rows:\", len(pairs))\npassengers.append(12)\npairs = list(zip(stations, passengers))\nprint(\"Complete display:\", pairs)\nrows = list(zip(stations, passengers, platforms))\nprint(\"With platforms:\", rows)\nprint(\"Last station:\", rows[-1][0])\npending = zip(stations, passengers)\nsaved = list(pending)\nprint(\"First read:\", saved)\nprint(\"Second read:\", list(pending))\nprint(\"Saved again:\", saved)\n"
   },
   "checkpoints": [],
   "solutionNote": {
-    "en": "This is an exploration activity. Run the example, change one input, and explain the new result in your own words.",
-    "nl": "Dit is een verkenningsactiviteit. Voer het voorbeeld uit, verander één invoer en leg het nieuwe resultaat in je eigen woorden uit."
+    "en": "The first display ends before Park because there is no third passenger count. Appending 12 and calling zip again gives three pairs. Supplying platforms as a third input creates three-field tuples, so rows[-1][0] reads the station from the last row. pending is consumed by its first conversion to a list. saved keeps those results for reuse; reading the exhausted iterator produces an empty list.",
+    "nl": "Het eerste scherm stopt vóór Park omdat er geen derde reizigersaantal is. Na het toevoegen van 12 en opnieuw aanroepen van zip ontstaan drie paren. platforms als derde invoer levert tuples met drie velden op; rows[-1][0] leest dus het station uit de laatste rij. pending wordt verbruikt bij de eerste omzetting naar een list. saved bewaart de resultaten voor hergebruik; de uitgeputte iterator opnieuw lezen levert een lege list op."
   },
   "estimatedMinutes": 2
 }

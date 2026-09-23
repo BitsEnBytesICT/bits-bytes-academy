@@ -218,3 +218,27 @@ node scripts/start.mjs --no-browser
 ```
 
 The app's runtime scope and storage behavior are documented in README.md.
+# List support readings — 23 September 2026
+
+- Replaced the tuple and zip readings with original bilingual guided explorations,
+  substantial starters, specific solution explanations and nine runnable examples.
+- `npm run build` and the complete `npm test` suite pass. The guided-content suite
+  now covers 62 structured activities and 94 examples, plus eleven new reading
+  experiments testing supplied programs, connected extensions, deliberate errors,
+  recovery, singleton syntax, empty input, shortest-input truncation and field order.
+- Existing 227 reference solutions, 206 negative cases, 64 executable quiz
+  predictions, staged grading suites, console suite and 19 TypeScript tests pass.
+- Browser QA on the separate database showed the new Dutch sections and fresh
+  editor scaffolding. The tuple starter printed its record. The zip starter showed
+  two rows for three stations; its extended program displayed all three stations,
+  three-field rows, an empty second iterator read and reusable saved results.
+  The extended code survived reload, and no browser errors were recorded.
+- Restarted the production site and verified the served course exactly matches the
+  generated content. Read-only before/after fingerprints confirm all learner records
+  unchanged: 10 workspaces, 11 progress records, 2 settings and 21 attempts.
+- No layout/style changes in this release. A fresh narrow-screen audit of the
+  earlier code-blank component is still outstanding; this release does not claim it.
+- Source tuple/zip narrative reviews are recorded in
+  `research/2026-09-23-list-readings.md`. Embedded source assessments remained
+  loading and were not inspected. Overall rewrite: 58/160 core pages, 4/8 support
+  readings, 4/13 enhanced quizzes, 0/59 revised optional challenges.

@@ -177,3 +177,79 @@ assert.deepEqual(
 console.log(
   `Guided content passed: ${revised.length} lessons, ${examples} executable examples, ${attempts.length} partial attempts, near-miss grading checks.`,
 );
+
+// Follow the reading's experiments, including deliberate errors and recovery.
+// These pages are ungraded; verifying only their prose examples misses the
+// program learners actually receive and extend in the editor.
+const tuples = course.activities.find((a) => a.id === "reading-tuples");
+const zipped = course.activities.find((a) => a.id === "reading-zip");
+const readingExperiments = [
+  [
+    tuples.files["main.py"],
+    "Departure: ('Harbor', 3, '09:40')\nStation: Harbor\n",
+    null,
+  ],
+  [tuples.solution["main.py"], "One stop: ('Harbor',)\n", null],
+  [
+    tuples.solution["main.py"] + "departure[1] = 8\n",
+    "Original: ('Harbor', 3, '09:40')\n",
+    "TypeError",
+  ],
+  [
+    tuples.solution["main.py"] + "delays.index(99)\n",
+    "Four-minute delays: 2\n",
+    "ValueError",
+  ],
+  [tuples.solution["main.py"] + "print(delays.count(99))\n", "\n0\n", null],
+  [
+    tuples.solution["main.py"].replace(
+      "single_stop = (station,)",
+      "single_stop = (station)",
+    ),
+    "One stop: Harbor\n",
+    null,
+  ],
+  [
+    zipped.files["main.py"],
+    "Display: [('Harbor', 18), ('Market', 7)]\nStations: 3 Rows: 2\n",
+    null,
+  ],
+  [
+    zipped.solution["main.py"],
+    "Second read: []\nSaved again: [('Harbor', 18), ('Market', 7), ('Park', 12)]\n",
+    null,
+  ],
+  [
+    zipped.files["main.py"].replace("passengers = [18, 7]", "passengers = []"),
+    "Display: []\nStations: 3 Rows: 0\n",
+    null,
+  ],
+  [
+    zipped.solution["main.py"].replace(
+      "platforms = [2, 4, 1]",
+      "platforms = [2]",
+    ),
+    "With platforms: [('Harbor', 18, 2)]\nLast station: Harbor\n",
+    null,
+  ],
+  [
+    zipped.solution["main.py"].replace(
+      "zip(stations, passengers, platforms)",
+      "zip(stations, platforms, passengers)",
+    ),
+    "With platforms: [('Harbor', 2, 18), ('Market', 4, 7), ('Park', 1, 12)]\n",
+    null,
+  ],
+];
+for (const [code, output, error] of readingExperiments) {
+  const result = await execute(py, { files: { "main.py": code }, checks: [] });
+  assert(
+    result.stdout.includes(output),
+    `reading experiment output: ${result.stdout}`,
+  );
+  if (error) assert(result.error?.includes(error), result.error);
+  else assert.equal(result.error, null);
+}
+console.log(
+  `List readings passed: ${readingExperiments.length} starter, extension, error and recovery experiments.`,
+);

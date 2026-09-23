@@ -1,4 +1,5 @@
 import { activities, loc, section as S } from "./helpers.mjs";
+import { tupleReading, zipReading } from "./list-readings.mjs";
 function article(chapter, id, enTitle, nlTitle, en, nl, code, options = {}) {
   activities.push({
     id,
@@ -107,24 +108,29 @@ article(
     ],
   },
 );
-article(
-  3,
-  "reading-tuples",
-  "Tuples",
-  "Tuples",
-  "A tuple is an immutable sequence. Indexing, slicing, len(), count(), and index() work much like they do with lists, but you cannot assign a new element at an index.\n\nCommas create tuples: a one-element tuple needs a trailing comma, such as (7,). Tuple unpacking assigns consecutive values to separate names. Immutability describes the tuple’s element references; a mutable object inside it can still change.",
-  "Een tuple is een immutable sequence. Indexes, slices, len(), count() en index() werken vergelijkbaar met lists, maar je kunt geen nieuw element aan een index toewijzen.\n\nKomma’s maken tuples: een tuple met één element heeft een afsluitende komma nodig, zoals (7,). Met tuple unpacking wijs je opeenvolgende waarden toe aan aparte namen. Immutability gaat over de verwijzingen in de tuple; een mutable object erin kan nog wel veranderen.",
-  "point = (4, 9)\nx, y = point\nprint(x, y)\nprint(point[0], len(point))\nsingle = (7,)\nprint(type(single))\n",
-);
-article(
-  3,
-  "reading-zip",
-  "Pairing sequences with zip",
-  "Sequences koppelen met zip",
-  "zip pairs elements at the same positions from separate iterables. It returns an iterator, so use list() to inspect its pairs. By default it stops at the shortest input.\n\nUse tuple unpacking in a for loop to give each part of a pair a clear name. This is useful when labels and measurements arrive separately.",
-  "zip koppelt elementen op dezelfde posities uit verschillende iterables. Het resultaat is een iterator; gebruik list() om de paren te bekijken. Standaard stopt zip bij de kortste invoer.\n\nGebruik tuple unpacking in een for loop om elk deel van het paar een duidelijke naam te geven. Dat is nuttig wanneer labels en metingen apart binnenkomen.",
-  'names = ["East", "West", "North"]\nlevels = [3, 7]\npairs = list(zip(names, levels))\nprint(pairs)\nfor name, level in pairs:\n    print(name, level)\n',
-);
+for (const [id, title, data] of [
+  ["reading-tuples", loc("Tuples", "Tuples"), tupleReading],
+  [
+    "reading-zip",
+    loc("Pairing sequences with zip", "Sequences koppelen met zip"),
+    zipReading,
+  ],
+]) {
+  article(
+    3,
+    id,
+    title.en,
+    title.nl,
+    data.intro.en,
+    data.intro.nl,
+    data.starter,
+    {
+      sections: data.sections,
+      solution: data.solution,
+      solutionNote: data.solutionNote,
+    },
+  );
+}
 article(
   5,
   "reading-lambda",
