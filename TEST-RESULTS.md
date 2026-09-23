@@ -120,6 +120,9 @@ The final production restart was checked by comparing every backup field except 
 - Existing learner files are protected by a regression test even when new starters
   differ. Completed activities remain complete after revised or failed attempts;
   old checkpoint IDs do not satisfy new tasks. No database migration is involved.
+- Production was restarted and the served course contains all 16 revised activities.
+  Before/after database fingerprints match for workspaces, progress, settings and
+  attempts: all existing learning records are unchanged.
 - Desktop rendering was visually checked with unchanged pane/font sizing. The
   attempted viewport override did not resize the background preview, so this pass
   does not claim a new phone-size visual check. The override was reset. Previous

@@ -26,8 +26,11 @@ Current source review is in `research/2026-09-23-foundations.md`. All 15 foundat
 narratives, their instructions, available hints and visible workspaces have been
 reviewed. The 13-question foundation quiz was inspected through its results screen.
 The input article narrative is reviewed, but its embedded assessment remained in
-a loading state. The rest of the course still needs this deeper review. Do not
-describe the whole course as mapped or rewritten.
+a loading state. The 12 control-flow pages, five debugging pages and pattern-matching
+article have now also been reviewed; their workspace/hint observations are in
+`research/2026-09-23-control-flow.md`. That chapter's quiz and original rewrite are
+still pending, as are deeper reviews of later chapters. Do not describe the whole
+course as mapped or rewritten.
 
 Authored and implemented in this pass:
 
