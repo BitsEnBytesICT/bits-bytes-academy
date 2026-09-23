@@ -117,6 +117,68 @@ for (const body of [
   });
   assert.equal(result.results[0].passed, false, body);
 }
+async function verifyVariant(id, code, passes, failedStep) {
+  const activity = all.find((a) => a.id === id);
+  let inputs = [...activity.inputs];
+  py.setStdin({ stdin: () => inputs.shift() });
+  const result = await execute(py, {
+    files: { ...activity.solution, "main.py": code },
+    checks: activity.checkpoints,
+  });
+  assert.equal(result.error, null, id);
+  if (passes)
+    assert(
+      result.results.every((r) => r.passed),
+      JSON.stringify(result.results),
+    );
+  else assert.equal(result.results[failedStep].passed, false, id);
+}
+const byId = (id) => all.find((a) => a.id === id).solution["main.py"];
+const departureId = "python-v2-2-03";
+await verifyVariant(
+  departureId,
+  byId(departureId).replace("walk_minutes <= minutes_left", "buffer >= 0"),
+  true,
+);
+await verifyVariant(
+  departureId,
+  byId(departureId).replace(
+    "walk_minutes <= minutes_left",
+    "walk_minutes < minutes_left",
+  ),
+  false,
+  1,
+);
+const equipmentId = "python-v2-2-04";
+await verifyVariant(
+  equipmentId,
+  byId(equipmentId).replace(
+    "remaining = available\n",
+    "remaining = available - requested\n",
+  ),
+  false,
+  2,
+);
+const bookingId = "python-v2-2-05";
+await verifyVariant(
+  bookingId,
+  `ticket_price = 4.5
+quantity = int(input())
+budget = float(input())
+total = ticket_price * quantity
+can_book = budget >= total
+remaining = budget - total if can_book else budget
+print("%.2f" % total)
+print("booked" if can_book else "save more")
+`,
+  true,
+);
+await verifyVariant(
+  bookingId,
+  byId(bookingId).replace("total <= budget", "total < budget"),
+  false,
+  1,
+);
 console.log(
   JSON.stringify({
     newLessons: lessons,
@@ -124,5 +186,7 @@ console.log(
     quizzes,
     supplyAlternatives: 3,
     supplyBoundaryMistakesRejected: 3,
+    responsiveAlternatives: 2,
+    responsiveBoundaryMistakesRejected: 3,
   }),
 );

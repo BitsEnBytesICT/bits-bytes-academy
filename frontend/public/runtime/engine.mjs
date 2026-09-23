@@ -25,6 +25,7 @@ def _lab_probe(files, probe):
         def flush(self): pass
     namespace = {'__name__': '__main__', '__file__': 'main.py'}
     result, error = None, None
+    call_reached, call_stdout_start, call_stderr_start, call_input_start = False, 0, 0, 0
     try:
         if os.path.exists(root): shutil.rmtree(root)
         os.makedirs(root)
@@ -53,10 +54,18 @@ def _lab_probe(files, probe):
                 if probe.get('call'):
                     call = probe['call']
                     function = getattr(importlib.import_module(call['module']), call['name']) if call.get('module') else namespace[call['name']]
+                    call_stdout_start, call_stderr_start = len(stdout.getvalue()), len(stderr.getvalue())
+                    call_input_start, call_reached = sys.stdin.tell(), True
                     result = function(*call.get('args', []), **call.get('kwargs', {}))
             except BaseException as exc:
                 error = type(exc).__name__
-        namespace.update(_return=result, _error=error, _stdout=stdout.getvalue(), _stderr=stderr.getvalue(), _remaining_input=sys.stdin.read(), _close=math.isclose)
+        # An error during setup is not evidence of the function's behavior.
+        if probe.get('call') and not call_reached: return False
+        call_input_chars = sys.stdin.tell() - call_input_start if call_reached else 0
+        namespace.update(_return=result, _error=error, _stdout=stdout.getvalue(), _stderr=stderr.getvalue(), _remaining_input=sys.stdin.read(), _close=math.isclose,
+            _call_stdout=stdout.getvalue()[call_stdout_start:] if call_reached else '',
+            _call_stderr=stderr.getvalue()[call_stderr_start:] if call_reached else '',
+            _call_input_chars=call_input_chars)
         return bool(eval(probe['check'], namespace))
     finally:
         os.chdir(original_cwd)

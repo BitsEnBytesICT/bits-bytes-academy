@@ -135,6 +135,45 @@ result = await execute(py, {
   ]),
 });
 assert.equal(result.results[0].passed, true);
+result = await execute(py, {
+  files: {
+    "main.py":
+      "fail_setup = False\nif fail_setup: raise ValueError('setup failed')\ndef operation():\n    return 12\n",
+  },
+  checks: check([
+    {
+      inputs: { fail_setup: true },
+      call: { name: "operation" },
+      check: '_error == "ValueError"',
+    },
+  ]),
+});
+assert.equal(
+  result.results[0].passed,
+  false,
+  "A setup error cannot satisfy the function's exception contract",
+);
+let setupInput = ["start", "answer"];
+py.setStdin({ stdin: () => setupInput.shift() });
+result = await execute(py, {
+  files: {
+    "main.py":
+      "print('Starting')\ninitial = input('Setup: ')\ndef ask():\n    value = input('Question: ')\n    print(value)\n    return value\n",
+  },
+  checks: check([
+    {
+      stdin: ["start", "Zoë"],
+      call: { name: "ask" },
+      check:
+        '_error is None and _return == "Zoë" and _call_stdout == "Question: Zoë\\n" and _call_stderr == "" and _call_input_chars == 4 and "Starting" in _stdout',
+    },
+  ]),
+});
+assert.equal(
+  result.results[0].passed,
+  true,
+  "Call output and consumed input exclude setup activity",
+);
 console.log(
   "Behavior probes: alternative algorithms, sample hardcoding, float tolerance, repeated/blank/Unicode input, EOF, exception contracts, keyword calls, and file/module/console isolation passed.",
 );
