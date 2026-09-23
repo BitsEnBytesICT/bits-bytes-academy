@@ -62,6 +62,18 @@ const alternate = await execute(py, {
 assert.equal(alternate.results[0].passed, true);
 for (const quiz of course.activities.filter((a) => a.kind === "quiz")) {
   for (const question of quiz.questions) {
+    if (question.codeBlank) {
+      const b = question.codeBlank;
+      const code = b.segments
+        .map((s, i) => s + (b.blanks[i]?.answer || ""))
+        .join("");
+      const result = await execute(py, {
+        files: { "main.py": code },
+        checks: [],
+      });
+      assert.equal(result.error, null, question.id);
+      assert.equal(result.stdout, b.output, question.id);
+    }
     if (question.prompt.en !== "What does this code print?" || !question.code)
       continue;
     const actual = await execute(py, {

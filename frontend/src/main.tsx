@@ -29,8 +29,11 @@ import { CurriculumDrawer } from "./components/CurriculumDrawer";
 import { Terminal } from "./components/Terminal";
 import { CodeBlock } from "./components/CodeBlock";
 import { SolutionDiff } from "./components/SolutionDiff";
+import { CodeBlankQuestion } from "./components/CodeBlankQuestion";
+import { createQuizState, isCorrect, usesBlanks } from "./quiz-answers";
 import "./styles.css";
 import "./redesign.css";
+import "./quiz-blanks.css";
 
 function shuffle<T>(values: T[]): T[] {
   const result = [...values];
@@ -479,13 +482,7 @@ function App() {
   };
   const newQuiz = () => {
     if (active?.kind !== "quiz") return;
-    updateQuiz({
-      index: 0,
-      orders: active.questions.map((q) => shuffle(q.choices.map((c) => c.id))),
-      answers: {},
-      finished: false,
-      attempt: (quizState?.attempt || 0) + 1,
-    });
+    updateQuiz(createQuizState(active, quizState?.attempt || 0, shuffle));
   };
   useEffect(() => {
     if (active?.kind === "quiz" && !quizState && !loading) newQuiz();
@@ -519,9 +516,7 @@ function App() {
     const q = a.questions[quizState.index],
       chosen = quizState.answers[q.id],
       finished = quizState.finished,
-      correct = a.questions.filter(
-        (q) => quizState.answers[q.id] === q.answer,
-      ).length;
+      correct = a.questions.filter((q) => isCorrect(q, quizState)).length;
     const finish = async () => {
       if (quizState.index < a.questions.length - 1) {
         updateQuiz({ ...quizState, index: quizState.index + 1 });
@@ -536,6 +531,7 @@ function App() {
         score,
         answers: quizState.answers,
         attempt: quizState.attempt,
+        format: quizState.format,
       });
     };
     return (
@@ -585,42 +581,55 @@ function App() {
                   <summary>
                     <span
                       className={
-                        quizState.answers[question.id] === question.answer
-                          ? "good"
-                          : "bad"
+                        isCorrect(question, quizState) ? "good" : "bad"
                       }
                     >
-                      {quizState.answers[question.id] === question.answer
-                        ? "✓"
-                        : "×"}
+                      {isCorrect(question, quizState) ? "✓" : "×"}
                     </span>{" "}
-                    {i + 1}. {text(question.prompt)}
+                    {i + 1}.{" "}
+                    {text(
+                      usesBlanks(question, quizState)
+                        ? question.codeBlank!.prompt
+                        : question.prompt,
+                    )}
                   </summary>
-                  {question.code && <CodeBlock code={question.code} />}
-                  <p>
-                    {tr("Your answer", "Jouw antwoord")}:{" "}
-                    {text(
-                      question.choices.find(
-                        (c) => c.id === quizState.answers[question.id],
-                      )!.label,
-                    )}
-                  </p>
-                  <p>
-                    {tr("Correct answer", "Goed antwoord")}:{" "}
-                    <strong>
-                      {text(
-                        question.choices.find((c) => c.id === question.answer)!
-                          .label,
-                      )}
-                    </strong>
-                  </p>
-                  <p>
-                    {text(
-                      question.choices.find(
-                        (c) => c.id === quizState.answers[question.id],
-                      )!.reason,
-                    )}
-                  </p>
+                  {usesBlanks(question, quizState) ? (
+                    <CodeBlankQuestion
+                      question={question}
+                      state={quizState}
+                      language={language}
+                      review
+                    />
+                  ) : (
+                    <>
+                      {question.code && <CodeBlock code={question.code} />}
+                      <p>
+                        {tr("Your answer", "Jouw antwoord")}:{" "}
+                        {text(
+                          question.choices.find(
+                            (c) => c.id === quizState.answers[question.id],
+                          )!.label,
+                        )}
+                      </p>
+                      <p>
+                        {tr("Correct answer", "Goed antwoord")}:{" "}
+                        <strong>
+                          {text(
+                            question.choices.find(
+                              (c) => c.id === question.answer,
+                            )!.label,
+                          )}
+                        </strong>
+                      </p>
+                      <p>
+                        {text(
+                          question.choices.find(
+                            (c) => c.id === quizState.answers[question.id],
+                          )!.reason,
+                        )}
+                      </p>
+                    </>
+                  )}
                 </details>
               ))}
             </>
@@ -651,61 +660,79 @@ function App() {
                   }}
                 />
               </div>
-              <h2 className="question-prompt">{text(q.prompt)}</h2>
-              {q.code && <CodeBlock className="quiz-code" code={q.code} />}
-              <div className="choices">
-                {(
-                  quizState.orders[quizState.index] ||
-                  q.choices.map((c) => c.id)
-                ).map((id, i) => {
-                  const choice = q.choices.find((c) => c.id === id)!;
-                  return (
-                    <button
-                      key={id}
+              <h2 className="question-prompt">
+                {text(
+                  usesBlanks(q, quizState) ? q.codeBlank!.prompt : q.prompt,
+                )}
+              </h2>
+              {usesBlanks(q, quizState) ? (
+                <CodeBlankQuestion
+                  question={q}
+                  state={quizState}
+                  language={language}
+                  update={updateQuiz}
+                />
+              ) : (
+                <>
+                  {q.code && <CodeBlock className="quiz-code" code={q.code} />}
+                  <div className="choices">
+                    {(
+                      quizState.orders[quizState.index] ||
+                      q.choices.map((c) => c.id)
+                    ).map((id, i) => {
+                      const choice = q.choices.find((c) => c.id === id)!;
+                      return (
+                        <button
+                          key={id}
+                          className={
+                            "choice " +
+                            (chosen
+                              ? id === q.answer
+                                ? "correct"
+                                : id === chosen
+                                  ? "incorrect"
+                                  : "muted"
+                              : "")
+                          }
+                          disabled={!!chosen}
+                          onClick={() =>
+                            updateQuiz({
+                              ...quizState,
+                              answers: { ...quizState.answers, [q.id]: id },
+                            })
+                          }
+                        >
+                          <span className="choice-letter">
+                            {String.fromCharCode(65 + i)}
+                          </span>
+                          <span>{text(choice.label)}</span>
+                          {chosen && id === q.answer && <Icon name="check" />}
+                        </button>
+                      );
+                    })}
+                  </div>
+                  {chosen && (
+                    <div
                       className={
-                        "choice " +
-                        (chosen
-                          ? id === q.answer
-                            ? "correct"
-                            : id === chosen
-                              ? "incorrect"
-                              : "muted"
-                          : "")
+                        "quiz-feedback " +
+                        (chosen === q.answer ? "good" : "bad")
                       }
-                      disabled={!!chosen}
-                      onClick={() =>
-                        updateQuiz({
-                          ...quizState,
-                          answers: { ...quizState.answers, [q.id]: id },
-                        })
-                      }
+                      role="status"
                     >
-                      <span className="choice-letter">
-                        {String.fromCharCode(65 + i)}
-                      </span>
-                      <span>{text(choice.label)}</span>
-                      {chosen && id === q.answer && <Icon name="check" />}
-                    </button>
-                  );
-                })}
-              </div>
-              {chosen && (
-                <div
-                  className={
-                    "quiz-feedback " + (chosen === q.answer ? "good" : "bad")
-                  }
-                  role="status"
-                >
-                  <strong>
-                    {chosen === q.answer
-                      ? tr("That’s right.", "Dat klopt.")
-                      : tr(
-                          "Not quite — here’s why.",
-                          "Nog niet helemaal — dit is waarom.",
-                        )}
-                  </strong>
-                  <p>{text(q.choices.find((c) => c.id === chosen)!.reason)}</p>
-                </div>
+                      <strong>
+                        {chosen === q.answer
+                          ? tr("That’s right.", "Dat klopt.")
+                          : tr(
+                              "Not quite — here’s why.",
+                              "Nog niet helemaal — dit is waarom.",
+                            )}
+                      </strong>
+                      <p>
+                        {text(q.choices.find((c) => c.id === chosen)!.reason)}
+                      </p>
+                    </div>
+                  )}
+                </>
               )}
               <div className="quiz-next">
                 <button

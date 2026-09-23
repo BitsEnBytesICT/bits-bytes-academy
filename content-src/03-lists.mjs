@@ -1,4 +1,6 @@
 import "./list-foundations.mjs";
+import { enhanceListQuiz } from "./list-quiz.mjs";
+import { activities } from "./helpers.mjs";
 import {
   lesson as L,
   reading as R,
@@ -222,6 +224,7 @@ Q(g, [
     "append verandert x en geeft None terug.",
   ),
 ]);
+enhanceListQuiz(activities.find((a) => a.id === `${g}-quiz`));
 Q(w, [
   P(
     "print(list(range(4)))",

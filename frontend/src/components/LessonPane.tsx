@@ -80,8 +80,8 @@ export function LessonPane({
             <div className="explanation">
               <p>
                 {tr(
-                  "Choose an answer to get immediate feedback. Review your results and try again whenever you like.",
-                  "Kies een antwoord voor directe feedback. Bekijk je resultaat en probeer het gerust opnieuw.",
+                  "Answer each question and learn from the feedback. For code blanks, choose tokens and check your answer. Review your results and try again whenever you like.",
+                  "Beantwoord elke vraag en leer van de feedback. Kies bij invulcode de codeblokjes en controleer je antwoord. Bekijk je resultaat en probeer het gerust opnieuw.",
                 )}
               </p>
             </div>

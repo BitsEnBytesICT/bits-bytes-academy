@@ -21,6 +21,13 @@ const quiz = z
     answers: z.record(z.string(), z.string()),
     finished: z.boolean(),
     attempt: z.number().int().min(1),
+    format: z.literal(2).optional(),
+    placements: z
+      .record(
+        z.string().max(120),
+        z.array(z.string().max(50).nullable()).max(30),
+      )
+      .optional(),
   })
   .optional();
 export const workspaceSchema = z.object({
@@ -98,20 +105,66 @@ export class LearningService {
       return invalid();
     for (const [i, question] of activity.questions.entries()) {
       const order = state.orders[i];
+      const options =
+        state.format === 2 && question.codeBlank
+          ? question.codeBlank.tokens
+          : question.choices;
       if (
-        order.length !== question.choices.length ||
+        order.length !== options.length ||
         new Set(order).size !== order.length ||
-        order.some((id) => !question.choices.some((c) => c.id === id))
+        order.some((id) => !options.some((c) => c.id === id))
       )
         return invalid();
     }
     for (const [questionId, answerId] of Object.entries(state.answers)) {
       const question = activity.questions.find((q) => q.id === questionId);
-      if (!question || !question.choices.some((c) => c.id === answerId))
+      if (!question) return invalid();
+      if (state.format === 2 && question.codeBlank) {
+        let values;
+        try {
+          values = JSON.parse(answerId);
+        } catch {
+          return invalid();
+        }
+        if (!this.validPlacement(question.codeBlank, values, true))
+          return invalid();
+      } else if (!question.choices.some((c) => c.id === answerId))
+        return invalid();
+    }
+    for (const [questionId, values] of Object.entries(state.placements || {})) {
+      const question = activity.questions.find((q) => q.id === questionId);
+      if (
+        state.format !== 2 ||
+        !question?.codeBlank ||
+        !this.validPlacement(question.codeBlank, values, false)
+      )
+        return invalid();
+      if (
+        state.answers[questionId] &&
+        JSON.stringify(values) !== state.answers[questionId]
+      )
         return invalid();
     }
     if (state.finished && activity.questions.some((q) => !state.answers[q.id]))
       return invalid();
+  }
+  validPlacement(
+    spec: NonNullable<import("../../../shared/types.js").Question["codeBlank"]>,
+    values: unknown,
+    complete: boolean,
+  ) {
+    if (!Array.isArray(values) || values.length !== spec.blanks.length)
+      return false;
+    const used = values.filter((value) => value !== null);
+    return (
+      new Set(used).size === used.length &&
+      values.every((value) =>
+        value === null
+          ? !complete
+          : typeof value === "string" &&
+            spec.tokens.some((t) => t.id === value),
+      )
+    );
   }
   progress(id: string, body: unknown) {
     this.id(id);

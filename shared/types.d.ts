@@ -43,6 +43,13 @@ export interface Question {
   code?: string;
   choices: { id: string; label: Localized; reason: Localized }[];
   answer: string;
+  codeBlank?: {
+    prompt: Localized;
+    segments: string[];
+    tokens: { id: string; code: string }[];
+    blanks: { answer: string; reason: Localized }[];
+    output: string;
+  };
 }
 export interface Quiz {
   estimatedMinutes: number;
@@ -97,6 +104,8 @@ export interface Workspace {
     answers: Record<string, string>;
     finished: boolean;
     attempt: number;
+    format?: 2;
+    placements?: Record<string, (string | null)[]>;
   };
 }
 export interface State {

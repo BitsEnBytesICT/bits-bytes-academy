@@ -6827,8 +6827,8 @@
                 "nl": "7"
               },
               "reason": {
-                "en": "Indexes start at zero.",
-                "nl": "Indexes beginnen bij nul."
+                "en": "7 is at index 1. Index 0 selects the first value, 4.",
+                "nl": "7 staat op index 1. Index 0 kiest de eerste waarde, 4."
               }
             },
             {
@@ -6838,8 +6838,8 @@
                 "nl": "9"
               },
               "reason": {
-                "en": "Indexes start at zero.",
-                "nl": "Indexes beginnen bij nul."
+                "en": "9 is at index 2, or -1. Index 0 selects 4.",
+                "nl": "9 staat op index 2 of -1. Index 0 kiest 4."
               }
             }
           ]
@@ -6871,8 +6871,8 @@
                 "nl": "4"
               },
               "reason": {
-                "en": "-1 selects the final element.",
-                "nl": "-1 kiest het laatste element."
+                "en": "4 is the first value. Negative indexing starts at the other end: -1 selects 9.",
+                "nl": "4 is de eerste waarde. Negatieve indexes beginnen aan de andere kant: -1 kiest 9."
               }
             },
             {
@@ -6882,8 +6882,8 @@
                 "nl": "7"
               },
               "reason": {
-                "en": "-1 selects the final element.",
-                "nl": "-1 kiest het laatste element."
+                "en": "7 is one place before the last value, at index -2. Index -1 selects 9.",
+                "nl": "7 staat één plek voor de laatste waarde, op index -2. Index -1 kiest 9."
               }
             }
           ]
@@ -6915,8 +6915,8 @@
                 "nl": "[3, 1, 2]"
               },
               "reason": {
-                "en": "append adds one element at the end.",
-                "nl": "append voegt één element toe aan het einde."
+                "en": "append places 3 after existing items, not before them. The result is [1, 2, 3].",
+                "nl": "append plaatst 3 na de bestaande elementen, niet ervoor. Het resultaat is [1, 2, 3]."
               }
             },
             {
@@ -6926,11 +6926,93 @@
                 "nl": "[1, 2]"
               },
               "reason": {
-                "en": "append adds one element at the end.",
-                "nl": "append voegt één element toe aan het einde."
+                "en": "append changes x in place even without assigning a return value. x now contains 3 too.",
+                "nl": "append verandert x direct, ook zonder een return value op te slaan. x bevat nu ook 3."
               }
             }
-          ]
+          ],
+          "codeBlank": {
+            "prompt": {
+              "en": "Build two stock records: a lamp with quantity 6 and a cable with quantity 9. Each record is an inner list. Keep that order.",
+              "nl": "Maak twee voorraadregels: een lamp met aantal 6 en een cable met aantal 9. Elke regel is een binnenste list. Houd die volgorde aan."
+            },
+            "segments": [
+              "stock = ",
+              "[\"lamp\", ",
+              "]",
+              " [\"cable\", ",
+              "]",
+              "\nprint(stock)"
+            ],
+            "tokens": [
+              {
+                "id": "token-1",
+                "code": "["
+              },
+              {
+                "id": "token-2",
+                "code": "6"
+              },
+              {
+                "id": "token-3",
+                "code": ","
+              },
+              {
+                "id": "token-4",
+                "code": "9"
+              },
+              {
+                "id": "token-5",
+                "code": "]"
+              },
+              {
+                "id": "token-6",
+                "code": "("
+              },
+              {
+                "id": "token-7",
+                "code": "0"
+              }
+            ],
+            "blanks": [
+              {
+                "answer": "[",
+                "reason": {
+                  "en": "The outer list contains two records, so start it with a square bracket.",
+                  "nl": "De buitenste list bevat twee regels en begint dus met een vierkante haak."
+                }
+              },
+              {
+                "answer": "6",
+                "reason": {
+                  "en": "The lamp quantity belongs in the second field of its record.",
+                  "nl": "Het aantal lampen hoort in het tweede veld van de regel."
+                }
+              },
+              {
+                "answer": ",",
+                "reason": {
+                  "en": "A comma separates the two inner lists inside the outer list.",
+                  "nl": "Een komma scheidt de twee binnenste lists in de buitenste list."
+                }
+              },
+              {
+                "answer": "9",
+                "reason": {
+                  "en": "The cable quantity belongs alongside its name in the second record.",
+                  "nl": "Het aantal cables hoort naast de naam in de tweede regel."
+                }
+              },
+              {
+                "answer": "]",
+                "reason": {
+                  "en": "Close the outer list after both complete records.",
+                  "nl": "Sluit de buitenste list na beide volledige regels."
+                }
+              }
+            ],
+            "output": "[['lamp', 6], ['cable', 9]]\n"
+          }
         },
         {
           "id": "create-python-list-q4",
@@ -6959,8 +7041,8 @@
                 "nl": "{}"
               },
               "reason": {
-                "en": "Square brackets create a list.",
-                "nl": "Vierkante haakjes maken een list."
+                "en": "{} creates an empty dictionary. An empty list uses square brackets: [].",
+                "nl": "{} maakt een lege dictionary. Een lege list gebruikt vierkante haken: []."
               }
             },
             {
@@ -6970,8 +7052,8 @@
                 "nl": "()"
               },
               "reason": {
-                "en": "Square brackets create a list.",
-                "nl": "Vierkante haakjes maken een list."
+                "en": "() creates an empty tuple. A list uses square brackets: [].",
+                "nl": "() maakt een lege tuple. Een list gebruikt vierkante haken: []."
               }
             },
             {
@@ -6981,8 +7063,8 @@
                 "nl": "\"\""
               },
               "reason": {
-                "en": "Square brackets create a list.",
-                "nl": "Vierkante haakjes maken een list."
+                "en": "An empty quoted value is a string, not a list. Use [].",
+                "nl": "Een lege waarde tussen aanhalingstekens is een string, geen list. Gebruik []."
               }
             }
           ]
@@ -7014,8 +7096,8 @@
                 "nl": "['c', 'b']"
               },
               "reason": {
-                "en": "Index 1 is the second element, which is replaced.",
-                "nl": "Index 1 is het tweede element en wordt vervangen."
+                "en": "Index 1 refers to the second item, so a stays and b becomes c.",
+                "nl": "Index 1 verwijst naar het tweede element, dus a blijft staan en b wordt c."
               }
             },
             {
@@ -7025,11 +7107,73 @@
                 "nl": "['a', 'b', 'c']"
               },
               "reason": {
-                "en": "Index 1 is the second element, which is replaced.",
-                "nl": "Index 1 is het tweede element en wordt vervangen."
+                "en": "Indexed assignment replaces an item; it does not append another one.",
+                "nl": "Een toewijzing via een index vervangt een element; er komt geen extra element bij."
               }
             }
-          ]
+          ],
+          "codeBlank": {
+            "prompt": {
+              "en": "Update only the cable quantity to 12. Keep both names and the lamp quantity unchanged.",
+              "nl": "Verander alleen het aantal cables in 12. Behoud beide namen en het aantal lampen."
+            },
+            "segments": [
+              "stock = [[\"lamp\", 6], [\"cable\", 9]]\nstock[",
+              "][",
+              "] = ",
+              "\nprint(stock)"
+            ],
+            "tokens": [
+              {
+                "id": "token-1",
+                "code": "1"
+              },
+              {
+                "id": "token-2",
+                "code": "1"
+              },
+              {
+                "id": "token-3",
+                "code": "12"
+              },
+              {
+                "id": "token-4",
+                "code": "0"
+              },
+              {
+                "id": "token-5",
+                "code": "2"
+              },
+              {
+                "id": "token-6",
+                "code": "\"12\""
+              }
+            ],
+            "blanks": [
+              {
+                "answer": "1",
+                "reason": {
+                  "en": "Row index 1 selects the cable record; index 0 would change the lamp.",
+                  "nl": "Rij-index 1 kiest de cable-regel; index 0 zou de lamp veranderen."
+                }
+              },
+              {
+                "answer": "1",
+                "reason": {
+                  "en": "Field index 1 selects the quantity; index 0 would overwrite the name.",
+                  "nl": "Veldindex 1 kiest het aantal; index 0 zou de naam overschrijven."
+                }
+              },
+              {
+                "answer": "12",
+                "reason": {
+                  "en": "Use the integer 12, without quotes, so the quantity remains a number.",
+                  "nl": "Gebruik het gehele getal 12 zonder aanhalingstekens, zodat het aantal een getal blijft."
+                }
+              }
+            ],
+            "output": "[['lamp', 6], ['cable', 12]]\n"
+          }
         },
         {
           "id": "create-python-list-q6",
@@ -7058,8 +7202,8 @@
                 "nl": "[3]"
               },
               "reason": {
-                "en": "remove deletes only the first matching value.",
-                "nl": "remove verwijdert alleen de eerste passende waarde."
+                "en": "remove deletes the first match only. The second 2 remains, giving [2, 3].",
+                "nl": "remove verwijdert alleen de eerste overeenkomst. De tweede 2 blijft staan: [2, 3]."
               }
             },
             {
@@ -7069,8 +7213,8 @@
                 "nl": "[2, 2]"
               },
               "reason": {
-                "en": "remove deletes only the first matching value.",
-                "nl": "remove verwijdert alleen de eerste passende waarde."
+                "en": "The argument 2 is a value to remove, not an index. The first 2 is removed; 3 stays.",
+                "nl": "Het argument 2 is de te verwijderen waarde, geen index. De eerste 2 verdwijnt; 3 blijft staan."
               }
             }
           ]
@@ -7102,8 +7246,8 @@
                 "nl": "[3, 4]"
               },
               "reason": {
-                "en": "List addition concatenates the elements in order.",
-                "nl": "Optellen van lists voegt de elementen in volgorde samen."
+                "en": "Adding lists joins their elements; it does not add numeric pairs. The result is [1, 2, 3].",
+                "nl": "Lists optellen voegt hun elementen samen; getallen worden niet paarsgewijs opgeteld. Het resultaat is [1, 2, 3]."
               }
             },
             {
@@ -7113,8 +7257,8 @@
                 "nl": "[1, [2, 3]]"
               },
               "reason": {
-                "en": "List addition concatenates the elements in order.",
-                "nl": "Optellen van lists voegt de elementen in volgorde samen."
+                "en": "Concatenation takes both elements from [2, 3]. Appending that list as one item would create nesting.",
+                "nl": "Samenvoegen neemt beide elementen uit [2, 3] over. Die list als één element toevoegen zou een geneste list maken."
               }
             }
           ]
@@ -7146,8 +7290,8 @@
                 "nl": "8"
               },
               "reason": {
-                "en": "Select the second row, then its first element.",
-                "nl": "Kies de tweede rij en daarna het eerste element."
+                "en": "8 is the second field of the second row: rows[1][1]. This code selects field 0, B.",
+                "nl": "8 is het tweede veld van de tweede rij: rows[1][1]. Deze code kiest veld 0, B."
               }
             },
             {
@@ -7157,8 +7301,8 @@
                 "nl": "A"
               },
               "reason": {
-                "en": "Select the second row, then its first element.",
-                "nl": "Kies de tweede rij en daarna het eerste element."
+                "en": "A belongs to row 0. The first index is 1, so the selected row begins with B.",
+                "nl": "A hoort bij rij 0. De eerste index is 1, dus de gekozen rij begint met B."
               }
             },
             {
@@ -7168,8 +7312,8 @@
                 "nl": "6"
               },
               "reason": {
-                "en": "Select the second row, then its first element.",
-                "nl": "Kies de tweede rij en daarna het eerste element."
+                "en": "6 is in row 0, field 1. This code selects row 1, field 0: B.",
+                "nl": "6 staat in rij 0, veld 1. Deze code kiest rij 1, veld 0: B."
               }
             }
           ]
@@ -7201,8 +7345,8 @@
                 "nl": "None"
               },
               "reason": {
-                "en": "An out-of-range element lookup raises IndexError.",
-                "nl": "Een element opvragen buiten de beschikbare indexes geeft IndexError."
+                "en": "An out-of-range element lookup raises IndexError; Python does not substitute None.",
+                "nl": "Een element opvragen buiten de beschikbare indexes geeft IndexError; Python vult niet automatisch None in."
               }
             },
             {
@@ -7212,8 +7356,8 @@
                 "nl": "Een lege list"
               },
               "reason": {
-                "en": "An out-of-range element lookup raises IndexError.",
-                "nl": "Een element opvragen buiten de beschikbare indexes geeft IndexError."
+                "en": "Some slices can return an empty list, but a single invalid element index raises IndexError.",
+                "nl": "Sommige slices geven een lege list, maar een ongeldige index voor één element geeft IndexError."
               }
             }
           ]
@@ -7245,11 +7389,61 @@
                 "nl": "Nee"
               },
               "reason": {
-                "en": "Python lists can hold objects of different types.",
-                "nl": "Python-lists kunnen objecten van verschillende types bevatten."
+                "en": "A list can mix strings, numbers and Boolean values. Each item keeps its own type.",
+                "nl": "Een list mag strings, getallen en Booleans combineren. Elk element behoudt zijn eigen type."
               }
             }
-          ]
+          ],
+          "codeBlank": {
+            "prompt": {
+              "en": "Repair the second label: replace \"cabell\" with \"cable\". Do not add or remove a label.",
+              "nl": "Herstel het tweede label: vervang \"cabell\" door \"cable\". Voeg geen label toe en verwijder er geen."
+            },
+            "segments": [
+              "labels = [\"lamp\", \"cabell\", \"tripod\"]\nlabels[",
+              "] = ",
+              "\nprint(labels)"
+            ],
+            "tokens": [
+              {
+                "id": "token-1",
+                "code": "1"
+              },
+              {
+                "id": "token-2",
+                "code": "\"cable\""
+              },
+              {
+                "id": "token-3",
+                "code": "2"
+              },
+              {
+                "id": "token-4",
+                "code": "0"
+              },
+              {
+                "id": "token-5",
+                "code": "cable"
+              }
+            ],
+            "blanks": [
+              {
+                "answer": "1",
+                "reason": {
+                  "en": "The second element has index 1 because indexing starts at zero.",
+                  "nl": "Het tweede element heeft index 1, omdat tellen bij nul begint."
+                }
+              },
+              {
+                "answer": "\"cable\"",
+                "reason": {
+                  "en": "Quotes make a string value. Bare cable would refer to a variable that this program has not defined.",
+                  "nl": "Aanhalingstekens maken een stringwaarde. Zonder aanhalingstekens verwijst cable naar een variabele die dit programma niet heeft."
+                }
+              }
+            ],
+            "output": "['lamp', 'cable', 'tripod']\n"
+          }
         },
         {
           "id": "create-python-list-q11",
@@ -7278,8 +7472,8 @@
                 "nl": "[5, 6]"
               },
               "reason": {
-                "en": "append mutates x and returns None.",
-                "nl": "append verandert x en geeft None terug."
+                "en": "x becomes [5, 6], but append returns None. This code prints the return value stored in result.",
+                "nl": "x wordt [5, 6], maar append geeft None terug. Deze code print de return value in result."
               }
             },
             {
@@ -7289,8 +7483,8 @@
                 "nl": "6"
               },
               "reason": {
-                "en": "append mutates x and returns None.",
-                "nl": "append verandert x en geeft None terug."
+                "en": "6 is the item being added, not the return value. append returns None.",
+                "nl": "6 is het toegevoegde element, niet de return value. append geeft None terug."
               }
             }
           ]

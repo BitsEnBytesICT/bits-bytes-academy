@@ -1,0 +1,86 @@
+import type { Question, Quiz, Workspace } from "../../shared/types";
+export type QuizState = NonNullable<Workspace["quiz"]>;
+
+export function createQuizState(
+  quiz: Quiz,
+  previousAttempt: number,
+  shuffle: (values: string[]) => string[],
+): QuizState {
+  const blanks = quiz.questions.some((q) => q.codeBlank);
+  return {
+    index: 0,
+    orders: quiz.questions.map((q) =>
+      shuffle((q.codeBlank?.tokens || q.choices).map((c) => c.id)),
+    ),
+    answers: {},
+    finished: false,
+    attempt: previousAttempt + 1,
+    ...(blanks ? { format: 2 as const, placements: {} } : {}),
+  };
+}
+
+export const usesBlanks = (q: Question, state: QuizState) =>
+  state.format === 2 && !!q.codeBlank;
+
+export function decodePlacement(answer?: string): (string | null)[] {
+  try {
+    const value: unknown = JSON.parse(answer || "null");
+    return Array.isArray(value) &&
+      value.every((v) => v === null || typeof v === "string")
+      ? value
+      : [];
+  } catch {
+    return [];
+  }
+}
+
+export function placement(q: Question, state: QuizState): (string | null)[] {
+  return state.answers[q.id]
+    ? decodePlacement(state.answers[q.id])
+    : state.placements?.[q.id] || q.codeBlank!.blanks.map(() => null);
+}
+
+export function slotResults(q: Question, values: (string | null)[]): boolean[] {
+  return q.codeBlank!.blanks.map(
+    (blank, i) =>
+      q.codeBlank!.tokens.find((t) => t.id === values[i])?.code ===
+      blank.answer,
+  );
+}
+
+export function isCorrect(q: Question, state: QuizState): boolean {
+  if (!state.answers[q.id]) return false;
+  return usesBlanks(q, state)
+    ? slotResults(q, decodePlacement(state.answers[q.id])).every(Boolean)
+    : state.answers[q.id] === q.answer;
+}
+
+export function placeToken(
+  q: Question,
+  values: (string | null)[],
+  token: string,
+) {
+  const index = values.indexOf(null);
+  if (
+    index < 0 ||
+    values.includes(token) ||
+    !q.codeBlank!.tokens.some((t) => t.id === token)
+  )
+    return values;
+  return values.map((value, i) => (i === index ? token : value));
+}
+
+export function blankCode(q: Question, values?: (string | null)[]) {
+  const blank = q.codeBlank!;
+  return blank.segments
+    .map(
+      (segment, i) =>
+        segment +
+        (i < blank.blanks.length
+          ? values
+            ? (blank.tokens.find((t) => t.id === values[i])?.code ?? "___")
+            : blank.blanks[i].answer
+          : ""),
+    )
+    .join("");
+}

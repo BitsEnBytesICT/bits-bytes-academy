@@ -26,15 +26,17 @@ For development, run `npm run dev` and open http://localhost:5174. The API remai
 - An xterm.js terminal with editable commands, history, ANSI output, real Python errors, `input()` and `sys.stdin.readline()`, Stop/Ctrl+C, and checks against program results.
 - Editable files, local Python imports, and text/CSV/JSON files created by your code.
 - Hints, per-file side-by-side solution differences with line numbers and addition/deletion highlighting, and an explicit assisted-completion marker when you use a solution.
-- Quiz feedback after each answer, shuffled choices on retry, resumable attempts, answer review, and best scores.
+- Multiple-choice quizzes and code-blank questions with selectable tokens, per-blank feedback and saved drafts. Shuffled choices/tokens on retry, answer review, and best scores.
 - Sequential progression, with a manual jump that leaves skipped activities incomplete.
 - Automatic code saving, local draft recovery, saved progress, and backup export/import through **Manage learning data** on the homepage.
 
 Separate projects and video walkthroughs are excluded. This is an independently written course following the researched topic sequence; it is not a downloaded copy of Codecademy's explanations or question bank and is not affiliated with Codecademy.
 
-The deeper course rewrite is in progress. The first two chapters and list foundations now have 46 rewritten core pages and two supporting readings, with 65 worked examples, expected output and supplied programs to repair or extend. Their coding exercises have 109 individual checks with specific hints and feedback; control-flow and list checks also try alternate inputs and boundary values. The first two chapter quizzes explain each wrong choice separately. Code-blank quiz interactions and the later lessons remain in progress. Coverage is tracked in `COURSE-REVISION.md`.
+The deeper course rewrite is in progress. The first two chapters and list foundations now have 46 rewritten core pages and two supporting readings, with 65 worked examples, expected output and supplied programs to repair or extend. Their coding exercises have 109 individual checks with specific hints and feedback; control-flow and list checks also try alternate inputs and boundary values. Three quizzes explain each wrong choice separately. Fresh list-foundation quiz attempts include three original code-blank questions. Later lessons and quizzes remain in progress. Coverage is tracked in `COURSE-REVISION.md`.
 
 Existing learner files are kept when course content changes. **Reset code** loads the current starter when you explicitly choose to start that activity over. Previously earned completion remains earned; revised task checks are tracked separately from the older tasks.
+
+Existing quiz attempts retain their original questions and answers. **Try again** starts the updated format after finishing an older attempt. Code-blank drafts and submitted token choices are saved with the attempt; existing backups remain readable. The backup envelope and database schema are unchanged, with optional versioned quiz fields added.
 
 ## Stack and design
 

@@ -19,6 +19,12 @@ write original contexts, explanations, examples and questions.
   programs need explicit explanation of when their checks can pass.
 - Quiz distractors should reflect identifiable misconceptions, each with useful
   feedback. Preserve existing IDs and answer mappings when updating feedback.
+- Code-blank variants keep the legacy multiple-choice definition intact. Use
+  `codeBlank` with N+1 code segments, N blank answers/reasons, distinct token IDs
+  (including duplicate text), and verified output. Fresh attempts opt into format 2;
+  legacy attempts retain their old interpretation. Once published, preserve a
+  format's variant definitions; changing them requires another explicit version.
+  Never mark an unchanged quiz as format 2 before its variants are ready.
 - Keep English and Dutch idiomatic and complete. Python syntax remains English.
 
 Use `guided`, `section`, `step` and `loc` from `helpers.mjs`; see

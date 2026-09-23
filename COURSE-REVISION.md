@@ -62,6 +62,12 @@ Authored and implemented in this pass:
 
 Implemented workspace changes:
 
+- Added original code-blank variants to three list quiz questions: selectable token
+  banks, removable placements, duplicate token instances, explicit submission,
+  per-slot feedback, saved drafts, corrected-code review and shuffled retries.
+  Existing attempts retain their original multiple-choice meaning; fresh attempts
+  opt into the versioned format. All 11 list questions now have choice-specific feedback.
+
 - List foundations now have 14 rewritten pages, 37 connected checkpoints, 24
   alternate-input cases and 17 runnable examples. Supplied programs grow into an
   equipment-room report; historical output keeps early steps verifiable after edits.
@@ -103,9 +109,9 @@ Verification so far:
    treat its loading state as a blocker to original course authoring.
 3. Continue the same source review and authoring process for every remaining chapter,
    challenge set and quiz. Record coverage and remaining uncertainties per chapter.
-   The reviewed list quiz uses code blanks as well as multiple choice. Implement
-   token placement/removal, submission, per-slot feedback, saved drafts and legacy
-   attempt compatibility before counting that quiz as matched.
+   Code-blank mechanics are now implemented and verified in the list quiz. Review
+   remaining quizzes for further interaction types and topic coverage; do not infer
+   that adding one question format establishes full source-course parity.
 4. Verify each revised chapter with valid starters, staged attempts, useful failures,
    independently executable examples and accepted alternative solutions.
 5. Perform a requirement-by-requirement completion audit. A green existing content
@@ -113,5 +119,5 @@ Verification so far:
 
 This goal turn made progress: original course authoring, implementation, tests and
 fresh source observations. Current rewrite coverage is 46/160 core lesson pages,
-2/8 supporting readings, 2/13 quizzes with enhanced feedback, and 0/59 challenges.
+2/8 supporting readings, 3/13 quizzes with enhanced feedback, and 0/59 challenges.
 No blocker prevents continuing. The full goal remains active.

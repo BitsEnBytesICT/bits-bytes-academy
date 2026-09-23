@@ -171,6 +171,25 @@ The final production restart was checked by comparing every backup field except 
 - Coverage is 46/160 core pages and 2/8 readings. Quiz code blanks, list operations,
   later chapters and optional challenges remain unfinished.
 
+## Code-blank quiz revision (23 September 2026)
+
+- Build/type checks and the full course/console suite pass, including three new
+  executable code-blank answers. There are 19 TypeScript tests. After extracting
+  the fresh-attempt helper, the focused quiz suite also passes; it checks retry
+  reset/shuffling and keeps unrevised quizzes in their legacy format.
+- Isolated browser QA completes the mixed list quiz at 10/11, with one intentional
+  wrong blank. Token removal, duplicate instances, keyboard selection/submission,
+  partial draft recovery, locked answer reload, per-slot correction, saved result,
+  answer review, fresh retry and Dutch controls are verified. Browser errors: none.
+- Desktop code-blank rendering was inspected. A new narrow-viewport visual check
+  remains in the final responsive audit; no existing font sizes or pane widths changed.
+- Backend tests validate legacy and new saves/backups, incomplete/duplicate/unknown
+  tokens, mismatched locked drafts, invalid formats and finished-attempt consistency.
+- Existing question/choice IDs, prompts, labels and correct mappings are preserved;
+  new format-specific variants are optional. Production restart leaves all 10
+  workspaces, 11 progress rows, two settings and 21 attempts byte-for-byte unchanged.
+  Served content matches the generated course. No database migration.
+
 ## Reproduce
 
 ```sh

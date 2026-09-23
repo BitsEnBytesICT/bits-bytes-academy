@@ -47,6 +47,19 @@ for (const a of course.activities) {
   if (a.kind === "quiz") {
     for (const q of a.questions) {
       localized(q.prompt);
+      if (q.codeBlank) {
+        const b = q.codeBlank;
+        localized(b.prompt);
+        assert.equal(b.segments.length, b.blanks.length + 1);
+        assert.equal(new Set(b.tokens.map((t) => t.id)).size, b.tokens.length);
+        const available = b.tokens.map((t) => t.code);
+        for (const blank of b.blanks) {
+          localized(blank.reason);
+          const index = available.indexOf(blank.answer);
+          assert(index >= 0, `Missing token for ${q.id}`);
+          available.splice(index, 1);
+        }
+      }
       assert(q.choices.length >= 2 && q.choices.length <= 4);
       assert.equal(q.choices.filter((c) => c.id === q.answer).length, 1);
       assert.equal(new Set(q.choices.map((c) => c.id)).size, q.choices.length);
