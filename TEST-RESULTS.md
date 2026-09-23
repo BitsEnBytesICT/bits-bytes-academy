@@ -153,6 +153,24 @@ The final production restart was checked by comparing every backup field except 
 - Full-course authoring is still in progress: 32/160 core pages, 2/8 supporting
   readings and 2/13 quiz feedback sets revised; optional challenges remain pending.
 
+## List-foundation revision (23 September 2026)
+
+- Production build/type checks and the full suite pass: 227 reference solutions,
+  206 negative cases, 64 quiz predictions, console coverage and 17 TypeScript tests.
+  Guided-content verification now covers 48 activities and 65 runnable examples.
+- New list tests cover 25 staged/alternative solutions and nine plausible errors,
+  including fixed indexes, hard-coded totals and replacing an aliased row. Nested
+  probe inputs, quoted Unicode text, null/Boolean values and isolation are verified.
+- Browser QA on isolated port 3002 confirms 3/6 then 6/6 cumulative completion,
+  accepting a variable-based append and augmented assignment. Code and checks
+  survive reload; English/Dutch instruction and feedback text were checked.
+  Browser error log is empty. No layout or font changes were made in this batch.
+- Production restart preserves exact fingerprints of 10 workspaces, 11 progress
+  rows, two settings and 21 attempts. Served content matches the generated course.
+  Activity IDs/kinds/order and all quiz contents are unchanged.
+- Coverage is 46/160 core pages and 2/8 readings. Quiz code blanks, list operations,
+  later chapters and optional challenges remain unfinished.
+
 ## Reproduce
 
 ```sh

@@ -1,5 +1,6 @@
 export type Language = "en" | "nl";
 export type Localized = { en: string; nl: string };
+export type CheckInput = string | number | boolean | null | CheckInput[];
 export interface Checkpoint {
   id: string;
   task: Localized;
@@ -8,7 +9,7 @@ export interface Checkpoint {
   expectedError?: string;
   feedback?: Localized;
   cases?: {
-    inputs: Record<string, string | number | boolean>;
+    inputs: Record<string, CheckInput>;
     check: string;
   }[];
 }

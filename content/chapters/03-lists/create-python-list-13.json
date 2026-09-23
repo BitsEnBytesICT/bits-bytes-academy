@@ -4,38 +4,146 @@
   "group": "create-python-list",
   "title": {
     "en": "Editing nested lists",
-    "nl": "Geneste waarden wijzigen"
+    "nl": "Eén cel bijwerken en de rest behouden"
   },
   "kind": "coding",
   "optional": false,
   "explanation": {
-    "en": "You can assign through two indexes to replace one cell in a nested list. The outer and inner list keep their existing identities; only the selected value changes.",
-    "nl": "Met twee indexes kun je één cel in een geneste list vervangen. De buitenste en binnenste list blijven dezelfde objecten; alleen de geselecteerde waarde verandert."
+    "en": "To edit a nested value, put both indexes on the left of an assignment. The outer index selects a row and the inner one selects a field. Replacing only the selected cell preserves the other information in that row and every other record.",
+    "nl": "Zet voor het bewerken van een geneste waarde beide indexes links van een toewijzing. De buitenste index kiest een rij en de binnenste een veld. Door alleen de gekozen cel te vervangen behoud je de overige informatie in die rij en alle andere records."
   },
   "example": "",
+  "sections": [
+    {
+      "heading": {
+        "en": "A cell is smaller than a row",
+        "nl": "Een cel is kleiner dan een rij"
+      },
+      "body": {
+        "en": "`stock[0] = ...` would replace a whole row. `stock[0][1] = ...` replaces only its quantity. You can also read the current number on the right of = before storing the updated number back in the same cell.",
+        "nl": "`stock[0] = ...` zou een hele rij vervangen. `stock[0][1] = ...` vervangt alleen het aantal. Je kunt rechts van = ook het huidige getal lezen voordat je het bijgewerkte getal in dezelfde cel terugzet."
+      },
+      "code": "stock = [[\"torch\", 4], [\"map\", 7]]\nstock[0][1] = stock[0][1] + 2\nprint(stock)",
+      "output": "[['torch', 6], ['map', 7]]"
+    },
+    {
+      "heading": {
+        "en": "Two names can see one row",
+        "nl": "Twee namen kunnen dezelfde rij zien"
+      },
+      "body": {
+        "en": "Assigning a whole row to another name does not copy it. Both names refer to the same inner list. A change through either name is visible through the other. This differs from the numeric snapshots earlier in the chapter.",
+        "nl": "Een hele rij aan een andere naam toewijzen kopieert deze niet. Beide namen verwijzen naar dezelfde binnenste list. Een verandering via de ene naam is via de andere zichtbaar. Dit verschilt van de numerieke momentopnamen eerder in het hoofdstuk."
+      },
+      "code": "stock = [[\"torch\", 4]]\nrow = stock[0]\nstock[0][1] = 6\nprint(row)",
+      "output": "['torch', 6]"
+    }
+  ],
   "files": {
-    "main.py": "stock = [[\"lamp\", 3], [\"cable\", 8]]\n"
+    "main.py": "stock = [[\"lamp\", 3], [\"cable\", 8], [\"battery\", 4]]\nlamp_row = stock[0]\n\n# Two lamps arrive. Update their quantity.\n# The last item should be labeled rechargeable battery.\n\nprint(\"Lamp row:\", lamp_row)\nprint(\"Stock:\", stock)\n"
   },
   "solution": {
-    "main.py": "stock = [[\"lamp\", 3], [\"cable\", 8]]\nstock[0][1] = 5\nprint(stock)\n"
+    "main.py": "stock = [[\"lamp\", 3], [\"cable\", 8], [\"battery\", 4]]\nlamp_row = stock[0]\nstock[0][1] = stock[0][1] + 2\nstock[-1][0] = \"rechargeable battery\"\nprint(\"Lamp row:\", lamp_row)\nprint(\"Stock:\", stock)\n"
   },
   "checkpoints": [
     {
-      "id": "create-python-list-13-step-1",
+      "id": "create-python-list-13-v2-step-1",
       "task": {
-        "en": "Change the lamp quantity to 5 without replacing the cable row.",
-        "nl": "Verander het aantal lamps naar 5 zonder de cable-rij te vervangen."
+        "en": "Two lamps arrive. Increase the quantity in the first row by 2 using the existing value. Update the cell, rather than replacing the row, and run to inspect lamp_row.",
+        "nl": "Er komen twee lampen binnen. Verhoog het aantal in de eerste rij met 2 vanuit de bestaande waarde. Werk de cel bij in plaats van de rij te vervangen en voer uit om lamp_row te bekijken."
       },
-      "check": "stock == [['lamp',5],['cable',8]]",
+      "check": "stock[0] == ['lamp',5] and lamp_row is stock[0] and lamp_row[1] == 5",
+      "feedback": {
+        "en": "Add to the current quantity while retaining the original inner list that lamp_row refers to.",
+        "nl": "Tel bij het huidige aantal op en behoud de oorspronkelijke binnenste list waarnaar lamp_row verwijst."
+      },
+      "cases": [
+        {
+          "inputs": {
+            "stock": [
+              [
+                "lamp",
+                10
+              ],
+              [
+                "cable",
+                3
+              ],
+              [
+                "battery",
+                9
+              ]
+            ]
+          },
+          "check": "stock[0][1] == 12 and lamp_row is stock[0]"
+        }
+      ],
       "hint": {
-        "en": "Start with stock = [[\"lamp\", 3], [\"cable\", 8]]. Then compare the values with the task.",
-        "nl": "Begin met stock = [[\"lamp\", 3], [\"cable\", 8]]. Vergelijk de waarden daarna met de opdracht."
+        "en": "Read stock[0][1], add 2, then assign to stock[0][1]. += works too.",
+        "nl": "Lees stock[0][1], tel 2 op en wijs toe aan stock[0][1]. += werkt ook."
+      }
+    },
+    {
+      "id": "create-python-list-13-v2-step-2",
+      "task": {
+        "en": "Rename the last item's label to rechargeable battery. Use a negative index to select the last row and preserve its quantity.",
+        "nl": "Verander het label van het laatste item in rechargeable battery. Kies de laatste rij met een negatieve index en behoud het aantal."
+      },
+      "check": "stock[-1] == ['rechargeable battery',4] and stock[1] == ['cable',8]",
+      "feedback": {
+        "en": "Change only the last row's label, leaving quantities and other records intact.",
+        "nl": "Verander alleen het label van de laatste rij en behoud aantallen en andere records."
+      },
+      "cases": [
+        {
+          "inputs": {
+            "stock": [
+              [
+                "lamp",
+                10
+              ],
+              [
+                "cable",
+                3
+              ],
+              [
+                "battery",
+                9
+              ],
+              [
+                "battery",
+                6
+              ]
+            ]
+          },
+          "check": "stock[-1] == ['rechargeable battery',6] and stock[2] == ['battery',9]"
+        }
+      ],
+      "hint": {
+        "en": "The last row is stock[-1]; its label is field 0.",
+        "nl": "De laatste rij is stock[-1]; het label is veld 0."
+      }
+    },
+    {
+      "id": "create-python-list-13-v2-step-3",
+      "task": {
+        "en": "Run the two supplied displays. Explain why Lamp row now contains quantity 5 even though lamp_row was assigned before the update.",
+        "nl": "Voer de twee meegeleverde weergaven uit. Leg uit waarom Lamp row nu aantal 5 bevat terwijl lamp_row vóór de wijziging werd toegewezen."
+      },
+      "check": "_stdout.splitlines() == [\"Lamp row: ['lamp', 5]\",\"Stock: [['lamp', 5], ['cable', 8], ['rechargeable battery', 4]]\"]",
+      "feedback": {
+        "en": "Print the retained row reference and the complete final table after the edits.",
+        "nl": "Druk de behouden rijverwijzing en de volledige uiteindelijke tabel na de wijzigingen af."
+      },
+      "hint": {
+        "en": "lamp_row refers to the same inner list as stock[0]; it is not a frozen copy.",
+        "nl": "lamp_row verwijst naar dezelfde binnenste list als stock[0]; het is geen vastgezette kopie."
       }
     }
   ],
   "solutionNote": {
-    "en": "You can assign through two indexes to replace one cell in a nested list. The outer and inner list keep their existing identities; only the selected value changes.\n\nTrace the solution one line at a time. Try a different input to see which parts change.",
-    "nl": "Met twee indexes kun je één cel in een geneste list vervangen. De buitenste en binnenste list blijven dezelfde objecten; alleen de geselecteerde waarde verandert.\n\nVolg de oplossing regel voor regel. Probeer een andere invoer en bekijk welke onderdelen veranderen."
+    "en": "The quantity calculation uses the current value, so another starting stock still works. Updating one cell preserves the row's identity; lamp_row therefore sees the new quantity. The last-row label changes independently of that row's position.",
+    "nl": "De berekening gebruikt de huidige waarde en werkt daardoor ook bij een andere beginvoorraad. Eén cel bijwerken behoudt de identiteit van de rij; lamp_row ziet daarom het nieuwe aantal. Het label van de laatste rij verandert onafhankelijk van de positie van die rij."
   },
   "sourcePosition": 13,
   "sourceUrl": "https://www.codecademy.com/courses/learn-python-3/lessons/create-python-list/exercises/modifying-2-d-lists",

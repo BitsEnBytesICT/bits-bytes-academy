@@ -4,38 +4,125 @@
   "group": "create-python-list",
   "title": {
     "en": "Removing values",
-    "nl": "Een waarde verwijderen"
+    "nl": "De eerste passende waarde verwijderen"
   },
   "kind": "coding",
   "optional": false,
   "explanation": {
-    "en": "remove(value) deletes the first equal value from a list. It uses a value, not an index. Removing a value that is absent raises ValueError, so check membership if absence is expected.",
-    "nl": "remove(value) verwijdert de eerste gelijke waarde uit een list. Je geeft een waarde op, geen index. Een ontbrekende waarde verwijderen veroorzaakt ValueError; controleer membership als de waarde kan ontbreken."
+    "en": "Use remove when you know a value to delete rather than its position. `queue.remove(\"canceled\")` searches from the beginning and removes the first equal element. Later elements shift left. If the value occurs twice, one call leaves the second occurrence in place.",
+    "nl": "Gebruik remove wanneer je de te verwijderen waarde kent in plaats van de positie. `queue.remove(\"canceled\")` zoekt vanaf het begin en verwijdert het eerste gelijke element. Latere elementen schuiven naar links. Staat de waarde er twee keer in, dan blijft na één aanroep de tweede staan."
   },
   "example": "",
+  "sections": [
+    {
+      "heading": {
+        "en": "A value, not an index",
+        "nl": "Een waarde, geen index"
+      },
+      "body": {
+        "en": "Passing 1 removes the value 1 if it exists; it does not mean ‘remove position 1’. Like append, remove changes the list and returns None. Keep the method call separate from any assignment to the list name.",
+        "nl": "Met argument 1 verwijder je de waarde 1 als deze bestaat; het betekent niet ‘verwijder positie 1’. Net als append verandert remove de list en geeft None terug. Houd de method-aanroep gescheiden van een toewijzing aan de listnaam."
+      },
+      "code": "orders = [\"lamp\", \"cable\", \"lamp\", \"case\"]\norders.remove(\"lamp\")\nprint(orders)",
+      "output": "['cable', 'lamp', 'case']"
+    },
+    {
+      "heading": {
+        "en": "What if nothing matches?",
+        "nl": "Wat als niets overeenkomt?"
+      },
+      "body": {
+        "en": "Removing an absent value raises ValueError and stops the current run. The program does not quietly do nothing. You will repair a stale cancellation in the editor. Later lessons will show how to check whether an item is present before attempting removal.",
+        "nl": "Een ontbrekende waarde verwijderen geeft ValueError en stopt de huidige uitvoering. Het programma doet dus niet stilletjes niets. In de editor herstel je een verouderde annulering. In latere lessen zie je hoe je vóór het verwijderen controleert of een item aanwezig is."
+      }
+    }
+  ],
   "files": {
-    "main.py": "queue = [\"ready\", \"canceled\", \"waiting\", \"canceled\"]\n"
+    "main.py": "queue = [\"lamp\", \"canceled\", \"tripod\", \"canceled\", \"case\"]\nprint(\"Before:\", queue)\n\n# Remove the first canceled item here.\n\nprint(\"After one cancellation:\", queue)\n# Stale request: activate to inspect the error, then repair it.\n# queue.remove(\"missing\")\n"
   },
   "solution": {
-    "main.py": "queue = [\"ready\", \"canceled\", \"waiting\", \"canceled\"]\nqueue.remove(\"canceled\")\nprint(queue)\n"
+    "main.py": "queue = [\"lamp\", \"canceled\", \"tripod\", \"canceled\", \"case\"]\nprint(\"Before:\", queue)\nqueue.remove(\"canceled\")\nprint(\"After one cancellation:\", queue)\nqueue.remove(\"case\")\nprint(\"Ready:\", queue)\n"
   },
   "checkpoints": [
     {
-      "id": "create-python-list-10-step-1",
+      "id": "create-python-list-10-v2-step-1",
       "task": {
-        "en": "Remove one canceled entry from queue. The second canceled entry must remain.",
-        "nl": "Verwijder één canceled uit queue. Het tweede canceled-element moet blijven staan."
+        "en": "Remove one canceled item between the first two print calls. Run and check that the second canceled item remains after tripod.",
+        "nl": "Verwijder tussen de eerste twee print-aanroepen één canceled-item. Voer uit en controleer dat het tweede canceled-item na tripod blijft staan."
       },
-      "check": "queue == ['ready','waiting','canceled']",
+      "check": "any(isinstance(n, _ast.Call) and isinstance(n.func, _ast.Attribute) and n.func.attr == 'remove' for n in _ast.walk(_ast.parse(_source))) and _stdout.splitlines()[1:2] == [\"After one cancellation: ['lamp', 'tripod', 'canceled', 'case']\"]",
+      "feedback": {
+        "en": "Remove the first matching value only; retain the second occurrence and the remaining order.",
+        "nl": "Verwijder alleen de eerste passende waarde; behoud het tweede exemplaar en de overige volgorde."
+      },
+      "cases": [
+        {
+          "inputs": {
+            "queue": [
+              "canceled",
+              "lamp",
+              "canceled",
+              "case"
+            ]
+          },
+          "check": "_stdout.splitlines()[1:2] == [\"After one cancellation: ['lamp', 'canceled', 'case']\"]"
+        }
+      ],
       "hint": {
-        "en": "Start with queue = [\"ready\", \"canceled\", \"waiting\", \"canceled\"]. Then compare the values with the task.",
-        "nl": "Begin met queue = [\"ready\", \"canceled\", \"waiting\", \"canceled\"]. Vergelijk de waarden daarna met de opdracht."
+        "en": "Use one queue.remove call with the string canceled.",
+        "nl": "Gebruik één queue.remove-aanroep met de string canceled."
+      }
+    },
+    {
+      "id": "create-python-list-10-v2-step-2",
+      "task": {
+        "en": "Activate the stale request and observe its ValueError. The actual canceled item was case: replace missing with case, then run again without an error.",
+        "nl": "Activeer het verouderde verzoek en bekijk de ValueError. Het werkelijk geannuleerde item was case: vervang missing door case en voer daarna opnieuw zonder fout uit."
+      },
+      "check": "queue == ['lamp','tripod','canceled']",
+      "feedback": {
+        "en": "Repair the absent-value request by removing case after the first cancellation.",
+        "nl": "Herstel het verzoek voor een ontbrekende waarde door na de eerste annulering case te verwijderen."
+      },
+      "cases": [
+        {
+          "inputs": {
+            "queue": [
+              "case",
+              "lamp",
+              "canceled",
+              "tripod",
+              "canceled"
+            ]
+          },
+          "check": "queue == ['lamp','tripod','canceled']"
+        }
+      ],
+      "hint": {
+        "en": "The argument must match an existing value exactly; case is present in the current list.",
+        "nl": "Het argument moet exact bij een bestaande waarde passen; case staat in de huidige list."
+      }
+    },
+    {
+      "id": "create-python-list-10-v2-step-3",
+      "task": {
+        "en": "Add a final print call labeled Ready: to show the three remaining entries. Explain why one canceled entry is still present.",
+        "nl": "Voeg een laatste print-aanroep met label Ready: toe om de drie resterende items te tonen. Leg uit waarom er nog één canceled-item aanwezig is."
+      },
+      "check": "_stdout.splitlines()[-1:] == [\"Ready: ['lamp', 'tripod', 'canceled']\"] and len(_stdout.splitlines()) == 3",
+      "feedback": {
+        "en": "Print the final list after both removals, including the surviving duplicate.",
+        "nl": "Druk de uiteindelijke list na beide verwijderingen af, inclusief het overgebleven dubbele item."
+      },
+      "hint": {
+        "en": "Each remove call deletes one first match, not every matching value.",
+        "nl": "Elke remove-aanroep verwijdert één eerste overeenkomst, niet alle passende waarden."
       }
     }
   ],
   "solutionNote": {
-    "en": "remove(value) deletes the first equal value from a list. It uses a value, not an index. Removing a value that is absent raises ValueError, so check membership if absence is expected.\n\nTrace the solution one line at a time. Try a different input to see which parts change.",
-    "nl": "remove(value) verwijdert de eerste gelijke waarde uit een list. Je geeft een waarde op, geen index. Een ontbrekende waarde verwijderen veroorzaakt ValueError; controleer membership als de waarde kan ontbreken.\n\nVolg de oplossing regel voor regel. Probeer een andere invoer en bekijk welke onderdelen veranderen."
+    "en": "The first remove deletes the earliest canceled entry. The next remove searches for case in the already-shortened list, so it still works if that item's position changes. The remaining canceled entry demonstrates that remove is not a filter for all matches.",
+    "nl": "De eerste remove verwijdert het vroegste canceled-item. De volgende remove zoekt case in de al verkorte list en werkt dus ook als dat item op een andere positie staat. Het resterende canceled-item laat zien dat remove niet alle overeenkomsten wegfiltert."
   },
   "sourcePosition": 10,
   "sourceUrl": "https://www.codecademy.com/courses/learn-python-3/lessons/create-python-list/exercises/removing-list-elements",

@@ -4,38 +4,125 @@
   "group": "create-python-list",
   "title": {
     "en": "Replacing elements",
-    "nl": "Een element vervangen"
+    "nl": "Een onderdeel vervangen zonder de volgorde te wijzigen"
   },
   "kind": "coding",
   "optional": false,
   "explanation": {
-    "en": "Lists are mutable: you can replace an element at an existing index. Assignment to an index changes that position without moving the surrounding elements.",
-    "nl": "Lists zijn mutable: je kunt een element op een bestaande index vervangen. Assignment op een index verandert die positie zonder omliggende elementen te verschuiven."
+    "en": "Lists are mutable: you can replace an element at an existing position. Put an indexed access on the left of = to choose the slot to update. Replacement keeps the length and every other position unchanged; it does not add an item or shift the later ones.",
+    "nl": "Lists zijn mutable: je kunt een element op een bestaande positie vervangen. Zet een toegang met index links van = om de plek te kiezen die je wilt bijwerken. Vervangen behoudt de lengte en alle andere posities; het voegt geen item toe en schuift latere items niet op."
   },
   "example": "",
+  "sections": [
+    {
+      "heading": {
+        "en": "Select the slot, then assign",
+        "nl": "Kies de plek en wijs daarna toe"
+      },
+      "body": {
+        "en": "The same brackets used to read a value can identify where to write one. Positive and negative indexes both work. An index beyond the list still raises IndexError; replacement cannot create a new final position.",
+        "nl": "Met dezelfde haakjes waarmee je een waarde leest kun je aangeven waar je een waarde schrijft. Positieve en negatieve indexes werken allebei. Een index buiten de list geeft nog steeds IndexError; vervangen kan geen nieuwe laatste positie aanmaken."
+      },
+      "code": "kit = [\"map\", \"old battery\", \"water\"]\nkit[1] = \"charged battery\"\nkit[-1] = \"full bottle\"\nprint(kit)",
+      "output": "['map', 'charged battery', 'full bottle']"
+    },
+    {
+      "heading": {
+        "en": "Keep evidence of the change",
+        "nl": "Bewaar wat er veranderde"
+      },
+      "body": {
+        "en": "Read the item you are about to replace into a separate variable. Because this item is a string, that variable keeps the old text after the list position changes. This is useful for a repair report. It is different from assigning another name to the entire list, which would refer to the same mutable list.",
+        "nl": "Lees het item dat je gaat vervangen eerst in een afzonderlijke variabele. Omdat dit item een string is, bewaart die variabele de oude tekst nadat de listpositie verandert. Dat is handig voor een reparatierapport. Dit verschilt van een tweede naam aan de hele list toewijzen: die verwijst naar dezelfde veranderbare list."
+      }
+    }
+  ],
   "files": {
-    "main.py": "gear = [\"map\", \"broken compass\", \"water\"]\n"
+    "main.py": "gear = [\"map\", \"broken compass\", \"water\", \"worn strap\"]\nreplaced = \"not recorded\"\n\n# Replace the second and last items below.\n\nprint(\"Removed:\", replaced)\nprint(\"Ready:\", gear)\n"
   },
   "solution": {
-    "main.py": "gear = [\"map\", \"broken compass\", \"water\"]\ngear[1] = \"compass\"\nprint(gear)\n"
+    "main.py": "gear = [\"map\", \"broken compass\", \"water\", \"worn strap\"]\nreplaced = gear[1]\ngear[1] = \"compass\"\ngear[-1] = \"new strap\"\nprint(\"Removed:\", replaced)\nprint(\"Ready:\", gear)\n"
   },
   "checkpoints": [
     {
-      "id": "create-python-list-09-step-1",
+      "id": "create-python-list-09-v2-step-1",
       "task": {
-        "en": "Replace the second item with compass, leaving the other items unchanged.",
-        "nl": "Vervang het tweede item door compass. Laat de andere items ongewijzigd."
+        "en": "Before changing gear, store its second item in `replaced`. Then replace that slot with compass using a positive index.",
+        "nl": "Bewaar het tweede item vóór het wijzigen van gear in `replaced`. Vervang die plek daarna door compass met een positieve index."
       },
-      "check": "gear == ['map','compass','water']",
+      "check": "replaced == 'broken compass' and gear[:3] == ['map','compass','water']",
+      "feedback": {
+        "en": "Capture the old second item before replacing it, preserving the surrounding items.",
+        "nl": "Bewaar het oude tweede item voordat je het vervangt en behoud de omliggende items."
+      },
+      "cases": [
+        {
+          "inputs": {
+            "gear": [
+              "case",
+              "damaged compass",
+              "snack",
+              "strap"
+            ]
+          },
+          "check": "replaced == 'damaged compass' and gear[:3] == ['case','compass','snack']"
+        }
+      ],
       "hint": {
-        "en": "Start with gear = [\"map\", \"broken compass\", \"water\"]. Then compare the values with the task.",
-        "nl": "Begin met gear = [\"map\", \"broken compass\", \"water\"]. Vergelijk de waarden daarna met de opdracht."
+        "en": "Read gear[1] first; assign to gear[1] on the following line.",
+        "nl": "Lees eerst gear[1]; wijs op de volgende regel aan gear[1] toe."
+      }
+    },
+    {
+      "id": "create-python-list-09-v2-step-2",
+      "task": {
+        "en": "Replace the last item with new strap using a negative index. Keep four items and preserve map and water.",
+        "nl": "Vervang het laatste item door new strap met een negatieve index. Houd vier items en behoud map en water."
+      },
+      "check": "gear == ['map','compass','water','new strap']",
+      "feedback": {
+        "en": "Replace the final slot rather than appending an extra strap or changing another item.",
+        "nl": "Vervang de laatste plek in plaats van een extra riem toe te voegen of een ander item te wijzigen."
+      },
+      "cases": [
+        {
+          "inputs": {
+            "gear": [
+              "case",
+              "damaged compass",
+              "snack",
+              "rope",
+              "strap"
+            ]
+          },
+          "check": "gear == ['case','compass','snack','rope','new strap']"
+        }
+      ],
+      "hint": {
+        "en": "Assign to gear[-1]. Appending would leave the worn strap in the list.",
+        "nl": "Wijs toe aan gear[-1]. Met append zou de versleten riem in de list blijven staan."
+      }
+    },
+    {
+      "id": "create-python-list-09-v2-step-3",
+      "task": {
+        "en": "Run the repair report. Keep the old item in the Removed message and show the corrected list after Ready. Compare the two outputs.",
+        "nl": "Voer het reparatierapport uit. Behoud het oude item in het Removed-bericht en toon de herstelde list na Ready. Vergelijk beide outputs."
+      },
+      "check": "_stdout.splitlines() == ['Removed: broken compass',\"Ready: ['map', 'compass', 'water', 'new strap']\"]",
+      "feedback": {
+        "en": "Show the old second item and the final four-item kit in the supplied report format.",
+        "nl": "Toon het oude tweede item en de uiteindelijke uitrusting met vier items in de meegeleverde rapportopmaak."
+      },
+      "hint": {
+        "en": "Leave the supplied print calls after the assignments, and do not overwrite replaced afterward.",
+        "nl": "Laat de meegeleverde print-aanroepen na de toewijzingen staan en overschrijf replaced daarna niet."
       }
     }
   ],
   "solutionNote": {
-    "en": "Lists are mutable: you can replace an element at an existing index. Assignment to an index changes that position without moving the surrounding elements.\n\nTrace the solution one line at a time. Try a different input to see which parts change.",
-    "nl": "Lists zijn mutable: je kunt een element op een bestaande index vervangen. Assignment op een index verandert die positie zonder omliggende elementen te verschuiven.\n\nVolg de oplossing regel voor regel. Probeer een andere invoer en bekijk welke onderdelen veranderen."
+    "en": "Reading gear[1] before replacing it preserves the old string. The two indexed assignments change only their selected positions. The negative index continues to mean last even if the kit grows.",
+    "nl": "Door gear[1] vóór het vervangen te lezen bewaar je de oude string. De twee toewijzingen met index veranderen alleen de gekozen posities. De negatieve index blijft laatste betekenen, ook als de uitrusting groeit."
   },
   "sourcePosition": 9,
   "sourceUrl": "https://www.codecademy.com/courses/learn-python-3/lessons/create-python-list/exercises/modifying-list-elements",

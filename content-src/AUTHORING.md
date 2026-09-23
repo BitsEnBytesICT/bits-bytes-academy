@@ -29,7 +29,8 @@ Inline backticks are supported safely; generated JSON is not the authoring sourc
 Pure introductory programs may opt into checkpoint `cases`, each containing an
 `inputs` mapping and a Python `check` expression. Inputs replace the first simple
 top-level assignment to that name in a separate execution; subsequent updates
-remain intact. Probe namespaces/output are isolated from the learner's actual run.
+remain intact. Inputs may be JSON scalars or nested lists, independently rebuilt
+for each probe. Probe namespaces/output are isolated from the learner's actual run.
 Use these only for short, deterministic, single-file programs without imports,
 interactive input or filesystem effects. Available probe builtins cover basic
 values, arithmetic, printing and collections; this is not a general-purpose Python

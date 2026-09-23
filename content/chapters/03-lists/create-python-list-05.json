@@ -4,38 +4,110 @@
   "group": "create-python-list",
   "title": {
     "en": "Appending",
-    "nl": "Toevoegen met append"
+    "nl": "Een inpaklijst stap voor stap aanvullen"
   },
   "kind": "coding",
   "optional": false,
   "explanation": {
-    "en": "append adds one element to the end of a list. It changes the existing list and returns None. Do not assign its return value back to the list name.",
-    "nl": "append voegt één element toe aan het einde van een list. De method verandert de bestaande list en geeft None terug. Wijs die return value niet opnieuw toe aan de listnaam."
+    "en": "append adds one element at the end of an existing list. The original order stays intact and duplicate values are allowed. A second call adds its element after the first. You do not need to rewrite the whole list every time a request arrives.",
+    "nl": "append voegt één element toe aan het einde van een bestaande list. De oorspronkelijke volgorde blijft behouden en dubbele waarden zijn toegestaan. Een tweede aanroep zet het volgende element achter het eerste. Je hoeft niet telkens de hele list te herschrijven wanneer er een verzoek binnenkomt."
   },
-  "example": "tools = []\ntools.append(\"ruler\")",
+  "example": "",
+  "sections": [
+    {
+      "heading": {
+        "en": "One call, one element",
+        "nl": "Eén aanroep, één element"
+      },
+      "body": {
+        "en": "Call append on the list, put one item inside its parentheses, then inspect the list. Two requests mean two calls. Later, a list itself can be one appended element; append does not automatically unpack its contents.",
+        "nl": "Roep append aan op de list, zet één item tussen de haakjes en bekijk daarna de list. Twee verzoeken betekenen twee aanroepen. Later kan een list zelf één toegevoegd element zijn; append pakt de inhoud niet automatisch uit."
+      },
+      "code": "tools = []\ntools.append(\"ruler\")\ntools.append(\"pencil\")\nprint(tools)",
+      "output": "['ruler', 'pencil']"
+    },
+    {
+      "heading": {
+        "en": "Change versus return value",
+        "nl": "Verandering tegenover return value"
+      },
+      "body": {
+        "en": "append changes the list and returns None. Do not write `tools = tools.append(...)`: that would replace your list variable with None. Use a standalone call, then print the list on a separate line.",
+        "nl": "append verandert de list en geeft None terug. Schrijf niet `tools = tools.append(...)`: daarmee vervang je de listvariabele door None. Gebruik een losse aanroep en druk de list daarna op een aparte regel af."
+      },
+      "code": "tools = [\"ruler\"]\nresult = tools.append(\"pencil\")\nprint(result)\nprint(tools)",
+      "output": "None\n['ruler', 'pencil']"
+    }
+  ],
   "files": {
-    "main.py": "packing = [\"map\"]\n"
+    "main.py": "packing = [\"map\", \"water\"]\nprint(\"Before:\", packing)\n\n# Add the two new requests below, one at a time.\n\nprint(\"After:\", packing)\n"
   },
   "solution": {
-    "main.py": "packing = [\"map\"]\npacking.append(\"torch\")\npacking.append(\"blanket\")\nprint(packing)\n"
+    "main.py": "packing = [\"map\", \"water\"]\nprint(\"Before:\", packing)\npacking.append(\"torch\")\npacking.append(\"blanket\")\nprint(\"After:\", packing)\n"
   },
   "checkpoints": [
     {
-      "id": "create-python-list-05-step-1",
+      "id": "create-python-list-05-v2-step-1",
       "task": {
-        "en": "Append torch and blanket to packing, in that order.",
-        "nl": "Voeg torch en blanket met append toe aan packing, in die volgorde."
+        "en": "Between the two print calls, append torch to `packing`. Run and compare Before with After.",
+        "nl": "Voeg tussen de twee print-aanroepen torch toe aan `packing` met append. Voer uit en vergelijk Before met After."
       },
-      "check": "packing == ['map','torch','blanket']",
+      "check": "packing[:3] == ['map','water','torch'] and any(isinstance(n, _ast.Call) and isinstance(n.func, _ast.Attribute) and n.func.attr == 'append' for n in _ast.walk(_ast.parse(_source)))",
+      "feedback": {
+        "en": "Append torch after the existing items without replacing the original list.",
+        "nl": "Voeg torch achter de bestaande items toe zonder de oorspronkelijke list te vervangen."
+      },
+      "cases": [
+        {
+          "inputs": {
+            "packing": [
+              "compass"
+            ]
+          },
+          "check": "packing[:2] == ['compass','torch']"
+        }
+      ],
       "hint": {
-        "en": "Start with packing = [\"map\"]. Then compare the values with the task.",
-        "nl": "Begin met packing = [\"map\"]. Vergelijk de waarden daarna met de opdracht."
+        "en": "Call packing.append with the string torch. Do not assign the call back to packing.",
+        "nl": "Roep packing.append aan met de string torch. Wijs de aanroep niet terug aan packing toe."
+      }
+    },
+    {
+      "id": "create-python-list-05-v2-step-2",
+      "task": {
+        "en": "A second request arrives for blanket. Add another append call after the torch call. Keep the original Before display and print the final four-item list as After.",
+        "nl": "Er komt een tweede verzoek voor blanket binnen. Voeg na de torch-aanroep nog een append-aanroep toe. Behoud de oorspronkelijke Before-weergave en toon de uiteindelijke list met vier items als After."
+      },
+      "check": "packing == ['map','water','torch','blanket'] and _stdout.splitlines() == [\"Before: ['map', 'water']\",\"After: ['map', 'water', 'torch', 'blanket']\"]",
+      "feedback": {
+        "en": "The final list should retain map and water, then add torch and blanket as separate elements in that order.",
+        "nl": "De laatste list moet map en water behouden, met daarna torch en blanket als losse elementen in die volgorde."
+      },
+      "cases": [
+        {
+          "inputs": {
+            "packing": []
+          },
+          "check": "packing == ['torch','blanket']"
+        },
+        {
+          "inputs": {
+            "packing": [
+              "torch"
+            ]
+          },
+          "check": "packing == ['torch','torch','blanket']"
+        }
+      ],
+      "hint": {
+        "en": "Both append calls belong between the Before and After print calls.",
+        "nl": "Beide append-aanroepen horen tussen de print-aanroepen voor Before en After."
       }
     }
   ],
   "solutionNote": {
-    "en": "append adds one element to the end of a list. It changes the existing list and returns None. Do not assign its return value back to the list name.\n\nTrace the solution one line at a time. Try a different input to see which parts change.",
-    "nl": "append voegt één element toe aan het einde van een list. De method verandert de bestaande list en geeft None terug. Wijs die return value niet opnieuw toe aan de listnaam.\n\nVolg de oplossing regel voor regel. Probeer een andere invoer en bekijk welke onderdelen veranderen."
+    "en": "The two calls mutate one list. The earlier print records the initial state; the later print shows both additions. Appending a duplicate is valid, and an empty starting list works without any special case.",
+    "nl": "De twee aanroepen veranderen één list. De eerdere print legt de beginstand vast; de latere print toont beide toevoegingen. Een dubbele waarde toevoegen is geldig en een lege beginlist werkt zonder speciale behandeling."
   },
   "sourcePosition": 5,
   "sourceUrl": "https://www.codecademy.com/courses/learn-python-3/lessons/create-python-list/exercises/append-list",

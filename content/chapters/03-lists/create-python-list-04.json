@@ -4,25 +4,49 @@
   "group": "create-python-list",
   "title": {
     "en": "Calling methods",
-    "nl": "Methods aanroepen"
+    "nl": "Een method hoort bij een object"
   },
   "kind": "reading",
   "optional": false,
   "explanation": {
-    "en": "A method is behavior associated with an object. Write object.method(arguments) to call it. Some methods change the original list; others return information about it. Always check which behavior a method has.",
-    "nl": "Een method is gedrag dat bij een object hoort. Met object.method(arguments) roep je de method aan. Sommige methods veranderen de oorspronkelijke list; andere geven informatie terug. Controleer altijd welk gedrag een method heeft."
+    "en": "A method is an operation you call through an object. In `items.append(\"map\")`, items is the list being changed, append is the method name, and the value in parentheses is its argument. The dot connects the operation to the particular list.",
+    "nl": "Een method is een bewerking die je via een object aanroept. In `items.append(\"map\")` is items de list die verandert, append de naam van de method en de waarde tussen haakjes het argument. De punt verbindt de bewerking met de specifieke list."
   },
   "example": "",
+  "sections": [
+    {
+      "heading": {
+        "en": "Watch before and after",
+        "nl": "Bekijk vóór en na"
+      },
+      "body": {
+        "en": "This method changes the existing list. Calling print afterward lets you see the effect. The first display is a record of what the list contained then; it does not change retroactively when the list is updated.",
+        "nl": "Deze method verandert de bestaande list. Door daarna print aan te roepen zie je het effect. De eerste weergave toont wat de list toen bevatte; deze verandert niet achteraf wanneer de list wordt bijgewerkt."
+      },
+      "code": "kit = [\"map\"]\nprint(\"Before:\", kit)\nkit.append(\"torch\")\nprint(\"After:\", kit)",
+      "output": "Before: ['map']\nAfter: ['map', 'torch']"
+    },
+    {
+      "heading": {
+        "en": "Change the target, not just the argument",
+        "nl": "Verander het doel, niet alleen het argument"
+      },
+      "body": {
+        "en": "Run the supplied checkout demonstration. It has separate packed and borrowed lists. Change the appended item and predict which output changes. Then move the append call from packed to borrowed. The same method now changes a different object. Restore your preferred version before continuing; the next lesson practises append in detail.",
+        "nl": "Voer de meegeleverde uitleendemonstratie uit. Deze heeft afzonderlijke lists packed en borrowed. Verander het toegevoegde item en voorspel welke output verandert. Verplaats de append-aanroep daarna van packed naar borrowed. Dezelfde method verandert nu een ander object. Herstel de gewenste versie voordat je verdergaat; in de volgende les oefen je append uitgebreider."
+      }
+    }
+  ],
   "files": {
-    "main.py": "items = [\"lamp\"]\nitems.append(\"map\")\nprint(items)\n"
+    "main.py": "packed = [\"map\"]\nborrowed = []\nprint(\"Packed before:\", packed)\npacked.append(\"torch\")\nprint(\"Packed after:\", packed)\nprint(\"Borrowed:\", borrowed)\n"
   },
   "solution": {
-    "main.py": "items = [\"lamp\"]\nitems.append(\"map\")\nprint(items)\n"
+    "main.py": "packed = [\"map\"]\nborrowed = []\nprint(\"Packed before:\", packed)\nborrowed.append(\"torch\")\nprint(\"Packed after:\", packed)\nprint(\"Borrowed:\", borrowed)\n"
   },
   "checkpoints": [],
   "solutionNote": {
-    "en": "A method is behavior associated with an object. Write object.method(arguments) to call it. Some methods change the original list; others return information about it. Always check which behavior a method has.\n\nTrace the solution one line at a time. Try a different input to see which parts change.",
-    "nl": "Een method is gedrag dat bij een object hoort. Met object.method(arguments) roep je de method aan. Sommige methods veranderen de oorspronkelijke list; andere geven informatie terug. Controleer altijd welk gedrag een method heeft.\n\nVolg de oplossing regel voor regel. Probeer een andere invoer en bekijk welke onderdelen veranderen."
+    "en": "Calling borrowed.append puts the new item in borrowed. packed remains unchanged because it is a separate list. The object before the dot determines where the method operates.",
+    "nl": "Met borrowed.append komt het nieuwe item in borrowed. packed blijft ongewijzigd omdat het een afzonderlijke list is. Het object vóór de punt bepaalt waar de method werkt."
   },
   "sourcePosition": 4,
   "sourceUrl": "https://www.codecademy.com/courses/learn-python-3/lessons/create-python-list/exercises/list-methods",

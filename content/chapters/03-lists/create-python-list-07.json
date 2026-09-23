@@ -4,38 +4,137 @@
   "group": "create-python-list",
   "title": {
     "en": "Positive indexing",
-    "nl": "Positieve indexes"
+    "nl": "Een route op positie lezen"
   },
   "kind": "coding",
   "optional": false,
   "explanation": {
-    "en": "List indexes start at zero. items[0] selects the first element and items[1] the second. An index outside the available positions raises IndexError.",
-    "nl": "List-indexes beginnen bij nul. items[0] kiest het eerste element en items[1] het tweede. Een index buiten de beschikbare posities geeft een IndexError."
+    "en": "An index identifies an element's position. Python starts counting at zero: index 0 is the first element, 1 is the second, and 2 is the third. Reading an element does not remove it. Think of the index as a position label rather than an everyday ordinal number.",
+    "nl": "Een index geeft de positie van een element aan. Python telt vanaf nul: index 0 is het eerste element, 1 het tweede en 2 het derde. Een element lezen verwijdert het niet. Zie de index als een positielabel in plaats van een gewoon volgnummer."
   },
   "example": "",
+  "sections": [
+    {
+      "heading": {
+        "en": "Count positions from zero",
+        "nl": "Tel posities vanaf nul"
+      },
+      "body": {
+        "en": "Put the index in square brackets after the list name. You can store the selected value and use it in a message. In a four-element list, the valid non-negative positions are 0, 1, 2 and 3.",
+        "nl": "Zet de index tussen vierkante haakjes achter de listnaam. Je kunt de gekozen waarde bewaren en in een bericht gebruiken. In een list met vier elementen zijn de geldige niet-negatieve posities 0, 1, 2 en 3."
+      },
+      "code": "route = [\"Gate\", \"Pond\", \"Tower\", \"Camp\"]\nthird_stop = route[2]\nprint(third_stop)\nprint(route)",
+      "output": "Tower\n['Gate', 'Pond', 'Tower', 'Camp']"
+    },
+    {
+      "heading": {
+        "en": "Two different indexing mistakes",
+        "nl": "Twee verschillende indexfouten"
+      },
+      "body": {
+        "en": "An integer position outside the list raises IndexError. A float such as 2.0 is not a valid list index and raises TypeError, even though it looks like a whole number. In particular, `/` produces a float. Use the intended integer index rather than an unexamined division result.\n\nThe route display below has a commented-out out-of-range access. Try it, read the error, then repair it to select the fourth stop.",
+        "nl": "Een integerpositie buiten de list veroorzaakt IndexError. Een float zoals 2.0 is geen geldige listindex en geeft TypeError, ook al lijkt het een geheel getal. Vooral belangrijk: `/` geeft een float. Gebruik de bedoelde integerindex in plaats van zomaar een delingsresultaat.\n\nDe routeweergave hieronder bevat een uitgecommentarieerde toegang buiten de list. Probeer deze, lees de fout en herstel de regel zodat deze de vierde stop kiest."
+      }
+    }
+  ],
   "files": {
-    "main.py": "stops = [\"Oak\", \"Lake\", \"Hill\"]\n"
+    "main.py": "stops = [\"Oak\", \"Bridge\", \"Lake\", \"Hill\"]\nfirst = \"not selected\"\nthird = \"not selected\"\nprint(first)\nprint(third)\n\n# Try this access, then repair it to select the fourth stop.\n# print(stops[4])\n"
   },
   "solution": {
-    "main.py": "stops = [\"Oak\", \"Lake\", \"Hill\"]\nfirst = stops[0]\nthird = stops[2]\nprint(first, third)\n"
+    "main.py": "stops = [\"Oak\", \"Bridge\", \"Lake\", \"Hill\"]\nfirst = stops[0]\nthird = stops[2]\nprint(first)\nprint(third)\nprint(stops[3])\n"
   },
   "checkpoints": [
     {
-      "id": "create-python-list-07-step-1",
+      "id": "create-python-list-07-v2-step-1",
       "task": {
-        "en": "Store the first stop in first and the third stop in third.",
-        "nl": "Sla de eerste stop op in first en de derde in third."
+        "en": "Calculate `first` from the first element of stops using index 0. Run and check the first output line.",
+        "nl": "Bereken `first` uit het eerste element van stops met index 0. Voer uit en controleer de eerste outputregel."
       },
-      "check": "first == 'Oak' and third == 'Hill'",
+      "check": "first == 'Oak' and _stdout.splitlines()[:1] == ['Oak']",
+      "feedback": {
+        "en": "Read the first position so the result follows a changed route too.",
+        "nl": "Lees de eerste positie zodat het resultaat ook een gewijzigde route volgt."
+      },
+      "cases": [
+        {
+          "inputs": {
+            "stops": [
+              "Start",
+              "Middle",
+              "End",
+              "Finish"
+            ]
+          },
+          "check": "first == 'Start'"
+        }
+      ],
       "hint": {
-        "en": "Start with stops = [\"Oak\", \"Lake\", \"Hill\"]. Then compare the values with the task.",
-        "nl": "Begin met stops = [\"Oak\", \"Lake\", \"Hill\"]. Vergelijk de waarden daarna met de opdracht."
+        "en": "Write stops[0], not the literal string Oak.",
+        "nl": "Schrijf stops[0], niet de vaste string Oak."
+      }
+    },
+    {
+      "id": "create-python-list-07-v2-step-2",
+      "task": {
+        "en": "Calculate `third` from the third stop with a positive index. Predict its value before running.",
+        "nl": "Bereken `third` uit de derde stop met een positieve index. Voorspel de waarde voordat je uitvoert."
+      },
+      "check": "third == 'Lake' and _stdout.splitlines()[1:2] == ['Lake']",
+      "feedback": {
+        "en": "Select position 2 and print the selected value on the second line.",
+        "nl": "Kies positie 2 en druk die waarde op de tweede regel af."
+      },
+      "cases": [
+        {
+          "inputs": {
+            "stops": [
+              "Start",
+              "Middle",
+              "End",
+              "Finish"
+            ]
+          },
+          "check": "third == 'End'"
+        }
+      ],
+      "hint": {
+        "en": "The third element has index 2 because counting starts at 0.",
+        "nl": "Het derde element heeft index 2 omdat het tellen bij 0 begint."
+      }
+    },
+    {
+      "id": "create-python-list-07-v2-step-3",
+      "task": {
+        "en": "Activate the commented print call and observe its IndexError. Then change the index to select the fourth stop. The repaired program should print Oak, Lake and Hill on separate lines.",
+        "nl": "Activeer de uitgecommentarieerde print-aanroep en bekijk de IndexError. Verander de index daarna zodat je de vierde stop kiest. Het herstelde programma moet Oak, Lake en Hill op afzonderlijke regels afdrukken."
+      },
+      "check": "stops == ['Oak','Bridge','Lake','Hill'] and _stdout.splitlines() == ['Oak','Lake','Hill']",
+      "feedback": {
+        "en": "Repair the last access without changing the route; display the fourth element after the first and third.",
+        "nl": "Herstel de laatste toegang zonder de route te veranderen; toon het vierde element na het eerste en derde."
+      },
+      "cases": [
+        {
+          "inputs": {
+            "stops": [
+              "Start",
+              "Middle",
+              "End",
+              "Finish"
+            ]
+          },
+          "check": "_stdout.splitlines() == ['Start','End','Finish']"
+        }
+      ],
+      "hint": {
+        "en": "Four elements have indexes 0 through 3. The error disappears when the final access uses 3.",
+        "nl": "Vier elementen hebben indexes 0 tot en met 3. De fout verdwijnt wanneer de laatste toegang 3 gebruikt."
       }
     }
   ],
   "solutionNote": {
-    "en": "List indexes start at zero. items[0] selects the first element and items[1] the second. An index outside the available positions raises IndexError.\n\nTrace the solution one line at a time. Try a different input to see which parts change.",
-    "nl": "List-indexes beginnen bij nul. items[0] kiest het eerste element en items[1] het tweede. Een index buiten de beschikbare posities geeft een IndexError.\n\nVolg de oplossing regel voor regel. Probeer een andere invoer en bekijk welke onderdelen veranderen."
+    "en": "The selected positions are 0, 2 and 3. No elements are removed or reordered. Changing the source route changes the messages because each value is read through an index instead of copied into the program as text.",
+    "nl": "De gekozen posities zijn 0, 2 en 3. Er worden geen elementen verwijderd of verplaatst. Een andere bronroute verandert de berichten omdat elke waarde via een index wordt gelezen in plaats van als vaste tekst in het programma te staan."
   },
   "sourcePosition": 7,
   "sourceUrl": "https://www.codecademy.com/courses/learn-python-3/lessons/create-python-list/exercises/accessing-list-elements",

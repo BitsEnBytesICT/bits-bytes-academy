@@ -4,38 +4,82 @@
   "group": "create-python-list",
   "title": {
     "en": "List literals",
-    "nl": "Een list maken"
+    "nl": "Van losse waarden naar een list"
   },
   "kind": "coding",
   "optional": false,
   "explanation": {
-    "en": "A list stores an ordered sequence of values between square brackets. Separate elements with commas. The order matters and can be changed later.",
-    "nl": "Een list bewaart een geordende reeks waarden tussen vierkante haakjes. Scheid de elementen met komma’s. De volgorde is belangrijk en kan later veranderen."
+    "en": "An equipment room records several measurements in the order they arrive. Giving every measurement a separate variable soon becomes awkward. A list keeps the sequence under one name. Its square brackets mark the collection; commas separate the elements inside it.",
+    "nl": "Een materiaalruimte registreert verschillende metingen in de volgorde waarin ze binnenkomen. Elke meting een aparte variabele geven wordt al snel onhandig. Een list bewaart de reeks onder één naam. De vierkante haakjes markeren de verzameling; komma's scheiden de elementen daarin."
   },
-  "example": "colors = [\"blue\", \"orange\"]",
+  "example": "",
+  "sections": [
+    {
+      "heading": {
+        "en": "Order is part of the data",
+        "nl": "De volgorde hoort bij de gegevens"
+      },
+      "body": {
+        "en": "The first reading stays first, and repeated values are allowed. Spaces after commas make a list easier to read, but the commas themselves are required. Assign a list to a name just as you assigned a number or string.",
+        "nl": "De eerste meting blijft de eerste en herhaalde waarden zijn toegestaan. Spaties na komma's maken een list leesbaarder, maar de komma's zelf zijn verplicht. Wijs een list toe aan een naam zoals je dat met een getal of string deed."
+      },
+      "code": "readings = [12, 15, 12]\nprint(readings)",
+      "output": "[12, 15, 12]"
+    },
+    {
+      "heading": {
+        "en": "Extend and repair the manifest",
+        "nl": "Breid de paklijst uit en herstel deze"
+      },
+      "body": {
+        "en": "The editor contains a valid sequence and a commented-out sequence with missing separators. First add the new reading to the valid list literal. Then repair and activate the second assignment. If you activate it before fixing the commas, observe the SyntaxError and repair it before continuing. Python must parse the entire file before any output appears.",
+        "nl": "In de editor staat een geldige reeks en een uitgecommentarieerde reeks met ontbrekende scheidingstekens. Voeg eerst de nieuwe meting aan de geldige list toe. Herstel en activeer daarna de tweede toewijzing. Activeer je deze vóór het toevoegen van komma's, bekijk dan de SyntaxError en herstel deze voordat je verdergaat. Python moet het hele bestand ontleden voordat output verschijnt."
+      }
+    }
+  ],
   "files": {
-    "main.py": "# Write your code below.\n"
+    "main.py": "# Recorded package masses, in arrival order.\nmasses = [4, 7, 4]\nprint(masses)\n\n# Repair and activate this second batch.\n# spare_masses = [6 2 9]\n"
   },
   "solution": {
-    "main.py": "stops = [\"Oak\", \"Lake\", \"Hill\"]\nprint(stops)\n"
+    "main.py": "masses = [4, 7, 4, 8]\nprint(masses)\nspare_masses = [6, 2, 9]\nprint(spare_masses)\n"
   },
   "checkpoints": [
     {
-      "id": "create-python-list-01-step-1",
+      "id": "create-python-list-01-v2-step-1",
       "task": {
-        "en": "Create stops containing Oak, Lake, and Hill in that order.",
-        "nl": "Maak stops met Oak, Lake en Hill in die volgorde."
+        "en": "A fourth package has mass 8. Add 8 at the end of the `masses` list literal, keeping all earlier readings and their order. Run to inspect the updated manifest.",
+        "nl": "Een vierde pakket heeft massa 8. Voeg 8 achteraan de list `masses` toe en behoud alle eerdere metingen en hun volgorde. Voer uit om de bijgewerkte paklijst te bekijken."
       },
-      "check": "stops == ['Oak','Lake','Hill']",
+      "check": "masses == [4,7,4,8] and _stdout.splitlines()[:1] == ['[4, 7, 4, 8]']",
+      "feedback": {
+        "en": "Keep 4, 7, 4 in order and add one final 8; print the complete list.",
+        "nl": "Behoud 4, 7, 4 in die volgorde en voeg één laatste 8 toe; druk de hele list af."
+      },
       "hint": {
-        "en": "Start with stops = [\"Oak\", \"Lake\", \"Hill\"]. Then compare the values with the task.",
-        "nl": "Begin met stops = [\"Oak\", \"Lake\", \"Hill\"]. Vergelijk de waarden daarna met de opdracht."
+        "en": "Keep both readings of 4. Insert a comma before the new final value.",
+        "nl": "Behoud beide metingen van 4. Zet een komma vóór de nieuwe laatste waarde."
+      }
+    },
+    {
+      "id": "create-python-list-01-v2-step-2",
+      "task": {
+        "en": "Uncomment `spare_masses`, repair its missing commas, and print it after the first batch. The second output line should be [6, 2, 9].",
+        "nl": "Haal het commentaarteken bij `spare_masses` weg, herstel de ontbrekende komma's en druk de list na de eerste partij af. De tweede outputregel moet [6, 2, 9] zijn."
+      },
+      "check": "spare_masses == [6,2,9] and _stdout.splitlines() == ['[4, 7, 4, 8]','[6, 2, 9]']",
+      "feedback": {
+        "en": "Define a second list containing three separate integers, then display it below masses.",
+        "nl": "Definieer een tweede list met drie losse integers en toon deze onder masses."
+      },
+      "hint": {
+        "en": "Remove the leading # and separate each pair of numbers with a comma.",
+        "nl": "Verwijder de # vooraan en scheid elk paar getallen met een komma."
       }
     }
   ],
   "solutionNote": {
-    "en": "A list stores an ordered sequence of values between square brackets. Separate elements with commas. The order matters and can be changed later.\n\nTrace the solution one line at a time. Try a different input to see which parts change.",
-    "nl": "Een list bewaart een geordende reeks waarden tussen vierkante haakjes. Scheid de elementen met komma’s. De volgorde is belangrijk en kan later veranderen.\n\nVolg de oplossing regel voor regel. Probeer een andere invoer en bekijk welke onderdelen veranderen."
+    "en": "The added 8 extends the first sequence without removing its duplicate 4. Commas turn the second sequence into three elements. Printing a list displays the surrounding brackets as well as its contents.",
+    "nl": "De toegevoegde 8 breidt de eerste reeks uit zonder de dubbele 4 te verwijderen. Komma's maken van de tweede reeks drie elementen. Bij het afdrukken van een list zie je naast de inhoud ook de omliggende haakjes."
   },
   "sourcePosition": 1,
   "sourceUrl": "https://www.codecademy.com/courses/learn-python-3/lessons/create-python-list/exercises/intro-list",

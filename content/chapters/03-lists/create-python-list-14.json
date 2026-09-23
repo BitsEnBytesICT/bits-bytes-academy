@@ -4,38 +4,184 @@
   "group": "create-python-list",
   "title": {
     "en": "List foundation review",
-    "nl": "Terugblik: lists"
+    "nl": "Houd de materiaalruimte bij"
   },
   "kind": "coding",
   "optional": false,
   "explanation": {
-    "en": "Use a small table to practice several list operations together. Indexes locate positions, append extends the collection, and remove deletes a matching value. Inspect the final structure rather than relying on intermediate output.",
-    "nl": "Gebruik een kleine tabel om list-bewerkingen te combineren. Indexes zoeken posities op, append breidt de verzameling uit en remove verwijdert een passende waarde. Controleer de uiteindelijke structuur in plaats van alleen tussentijdse output."
+    "en": "Put the list tools together in one equipment-room update. You will complete a table, add a delivery, record a quantity change, remove a canceled record and combine two locations. Each step leaves useful work for the next one; run often and compare the report with the requested changes.",
+    "nl": "Combineer de list-bewerkingen in één update voor een materiaalruimte. Je maakt een tabel af, voegt een levering toe, past een aantal aan, verwijdert een geannuleerd record en combineert twee locaties. Elke stap levert werk op voor de volgende; voer vaak uit en vergelijk het rapport met de gevraagde wijzigingen."
   },
   "example": "",
+  "sections": [
+    {
+      "heading": {
+        "en": "Choose the operation from the change",
+        "nl": "Kies de bewerking bij de wijziging"
+      },
+      "body": {
+        "en": "Creating a row needs a list literal. Adding one row to the current table suggests append. Updating a field needs two indexes. Removing a known row can use remove with the entire row value. Combining two tables with + creates a new outer list. Keep the order of operations clear: later code sees the result of earlier edits.",
+        "nl": "Een rij maken vraagt om een list. Eén rij aan de huidige tabel toevoegen past bij append. Een veld bijwerken vraagt om twee indexes. Een bekende rij verwijderen kan met remove en de volledige rijwaarde. Twee tabellen met + combineren maakt een nieuwe buitenste list. Houd de volgorde van bewerkingen duidelijk: latere code ziet het resultaat van eerdere wijzigingen."
+      }
+    },
+    {
+      "heading": {
+        "en": "Combining does not deep-copy rows",
+        "nl": "Samenvoegen kopieert rijen niet afzonderlijk"
+      },
+      "body": {
+        "en": "A new outer list can still contain the same inner rows. Changing an existing row through the combined table also changes it in the original table. Appending a new row to the combined outer list does not append it to the original outer list. This review only reads the combined result after creating it.",
+        "nl": "Een nieuwe buitenste list kan dezelfde binnenste rijen bevatten. Een bestaande rij via de gecombineerde tabel veranderen wijzigt deze ook in de oorspronkelijke tabel. Een nieuwe rij aan de gecombineerde buitenste list toevoegen voegt deze niet aan de oorspronkelijke buitenste list toe. In deze terugblik lees je het gecombineerde resultaat alleen na het maken."
+      },
+      "code": "room = [[\"map\", 3]]\ncombined = room + [[\"torch\", 2]]\ncombined[0][1] = 4\ncombined.append([\"case\", 1])\nprint(room)\nprint(combined)",
+      "output": "[['map', 4]]\n[['map', 4], ['torch', 2], ['case', 1]]"
+    }
+  ],
   "files": {
-    "main.py": "# Write your code below.\n"
+    "main.py": "# Rows are [label, quantity, ready].\nstock = [\n    [\"lamp\", 3, True],\n    # Add cable with quantity 8, not ready.\n]\nremote_stock = [[\"tripod\", 2, True]]\n\nprint(\"Received:\", stock)\n\n# Apply the deliveries and corrections here.\n\nprint(\"Main room:\", stock)\nprint(\"Remote room:\", remote_stock)\n# Build the combined report after all edits.\n"
   },
   "solution": {
-    "main.py": "stock = [[\"lamp\", 3], [\"cable\", 8]]\nstock[0][1] = 6\nstock.append([\"battery\", 4])\nnewest = stock[-1]\nprint(stock)\n"
+    "main.py": "stock = [[\"lamp\", 3, True], [\"cable\", 8, False]]\nremote_stock = [[\"tripod\", 2, True]]\nprint(\"Received:\", stock)\nstock.append([\"battery\", 4, True])\nprint(\"Delivery:\", stock)\nstock[0][1] = stock[0][1] + 3\nstock[1][2] = True\nstock.remove([\"battery\", 4, True])\nprint(\"Main room:\", stock)\nprint(\"Remote room:\", remote_stock)\ncombined = stock + remote_stock\nlast_label = combined[-1][0]\nprint(\"Combined:\", combined)\nprint(\"Last item:\", last_label)\n"
   },
   "checkpoints": [
     {
-      "id": "create-python-list-14-step-1",
+      "id": "create-python-list-14-v2-step-1",
       "task": {
-        "en": "Start with [[\"lamp\", 3], [\"cable\", 8]]. Change lamps to 6, append [\"battery\", 4], and save the final row in newest.",
-        "nl": "Begin met [[\"lamp\", 3], [\"cable\", 8]]. Verander lamps naar 6, voeg [\"battery\", 4] toe en sla de laatste rij op in newest."
+        "en": "Complete the starting `stock` table with a second row: cable, quantity 8, ready False. Keep lamp first and retain the supplied remote_stock table. Print the initial stock with the supplied Received: line before making later changes.",
+        "nl": "Maak de begintabel `stock` af met een tweede rij: cable, aantal 8, ready False. Houd lamp vooraan en behoud de meegeleverde remote_stock-tabel. Druk de beginvoorraad met de meegeleverde Received:-regel af voordat je latere wijzigingen maakt."
       },
-      "check": "stock == [['lamp',6],['cable',8],['battery',4]] and newest == ['battery',4]",
+      "check": "_stdout.splitlines()[:1] == [\"Received: [['lamp', 3, True], ['cable', 8, False]]\"] and len(stock) >= 2 and stock[0][0] == 'lamp' and stock[1][0:2] == ['cable',8] and type(stock[1][2]) is bool and remote_stock == [['tripod',2,True]]",
+      "feedback": {
+        "en": "Keep complete three-field lamp and cable rows in order, with numeric quantities and a Boolean ready field.",
+        "nl": "Behoud volledige lamp- en cable-rijen met drie velden in volgorde, met numerieke aantallen en een Boolean ready-veld."
+      },
       "hint": {
-        "en": "Start with stock = [[\"lamp\", 3], [\"cable\", 8]]. Then compare the values with the task.",
-        "nl": "Begin met stock = [[\"lamp\", 3], [\"cable\", 8]]. Vergelijk de waarden daarna met de opdracht."
+        "en": "Each row has three fields. False is a Boolean, so leave it unquoted.",
+        "nl": "Elke rij heeft drie velden. False is een Boolean en staat dus niet tussen aanhalingstekens."
+      }
+    },
+    {
+      "id": "create-python-list-14-v2-step-2",
+      "task": {
+        "en": "A delivery arrives: append one row for battery, quantity 4, ready True. Immediately after the append, print Delivery: followed by stock. Keep that display so the report records the arrival even after a later cancellation.",
+        "nl": "Er komt een levering: voeg één rij voor battery, aantal 4, ready True toe met append. Druk direct na de append Delivery: gevolgd door stock af. Behoud die weergave zodat het rapport de aankomst ook na een latere annulering vastlegt."
+      },
+      "check": "any(isinstance(n, _ast.Call) and isinstance(n.func, _ast.Attribute) and n.func.attr == 'append' for n in _ast.walk(_ast.parse(_source))) and _stdout.splitlines()[1:2] == [\"Delivery: [['lamp', 3, True], ['cable', 8, False], ['battery', 4, True]]\"]",
+      "feedback": {
+        "en": "Append the battery record as one nested row. Keep that operation in the program for the later cancellation step.",
+        "nl": "Voeg het battery-record als één geneste rij toe. Behoud die bewerking in het programma voor de latere annulering."
+      },
+      "hint": {
+        "en": "Pass the complete three-field row as one argument to stock.append.",
+        "nl": "Geef de volledige rij met drie velden als één argument aan stock.append."
+      }
+    },
+    {
+      "id": "create-python-list-14-v2-step-3",
+      "task": {
+        "en": "Three more lamps arrive. Increase the first row's quantity by 3. The resulting lamp quantity should be 6; keep its label and ready flag.",
+        "nl": "Er komen nog drie lampen binnen. Verhoog het aantal in de eerste rij met 3. Het nieuwe aantal moet 6 zijn; behoud het label en de ready-vlag."
+      },
+      "check": "stock[0] == ['lamp',6,True]",
+      "feedback": {
+        "en": "Increase only the lamp quantity; preserve its label and Boolean ready value.",
+        "nl": "Verhoog alleen het lamp-aantal; behoud het label en de Boolean ready-waarde."
+      },
+      "cases": [
+        {
+          "inputs": {
+            "stock": [
+              [
+                "lamp",
+                10,
+                true
+              ],
+              [
+                "cable",
+                8,
+                false
+              ]
+            ]
+          },
+          "check": "stock[0] == ['lamp',13,True]"
+        }
+      ],
+      "hint": {
+        "en": "Use stock[0][1] on both sides of an addition assignment, or += 3.",
+        "nl": "Gebruik stock[0][1] aan beide kanten van een toewijzing met optelling of gebruik += 3."
+      }
+    },
+    {
+      "id": "create-python-list-14-v2-step-4",
+      "task": {
+        "en": "The cables have now been checked. Set their ready field to True without changing their label or quantity.",
+        "nl": "De kabels zijn nu gecontroleerd. Zet hun ready-veld op True zonder label of aantal te veranderen."
+      },
+      "check": "stock[1] == ['cable',8,True] and type(stock[1][2]) is bool",
+      "feedback": {
+        "en": "Update the third field of the cable row to a real Boolean.",
+        "nl": "Werk het derde veld van de cable-rij bij naar een echte Boolean."
+      },
+      "hint": {
+        "en": "Select row 1 and field 2, then assign the Boolean True.",
+        "nl": "Kies rij 1 en veld 2 en wijs daarna de Boolean True toe."
+      }
+    },
+    {
+      "id": "create-python-list-14-v2-step-5",
+      "task": {
+        "en": "The battery delivery is canceled. Remove that entire row by its value. Keep the earlier append line: the program should record the arrival and then the cancellation.",
+        "nl": "De batterijlevering wordt geannuleerd. Verwijder die hele rij op basis van de waarde. Behoud de eerdere append-regel: het programma moet eerst de aankomst en daarna de annulering verwerken."
+      },
+      "check": "stock == [['lamp',6,True],['cable',8,True]] and any(isinstance(n, _ast.Call) and isinstance(n.func, _ast.Attribute) and n.func.attr == 'remove' for n in _ast.walk(_ast.parse(_source)))",
+      "feedback": {
+        "en": "Remove the complete battery row while keeping the corrected lamp and cable records.",
+        "nl": "Verwijder de volledige battery-rij en behoud de gecorrigeerde lamp- en cable-records."
+      },
+      "hint": {
+        "en": "The outer list contains rows, so pass [\"battery\", 4, True] to stock.remove.",
+        "nl": "De buitenste list bevat rijen, dus geef [\"battery\", 4, True] aan stock.remove."
+      }
+    },
+    {
+      "id": "create-python-list-14-v2-step-6",
+      "task": {
+        "en": "After all edits, create `combined` from stock + remote_stock. Read the last row's label into `last_label`, then print Combined: followed by the table and Last item: followed by the label.",
+        "nl": "Maak na alle wijzigingen `combined` uit stock + remote_stock. Lees het label van de laatste rij in `last_label` en druk daarna Combined: met de tabel en Last item: met het label af."
+      },
+      "check": "combined == [['lamp',6,True],['cable',8,True],['tripod',2,True]] and combined is not stock and last_label == 'tripod' and len(_stdout.splitlines()) == 6 and _stdout.splitlines()[-4:] == [\"Main room: [['lamp', 6, True], ['cable', 8, True]]\",\"Remote room: [['tripod', 2, True]]\",\"Combined: [['lamp', 6, True], ['cable', 8, True], ['tripod', 2, True]]\",'Last item: tripod']",
+      "feedback": {
+        "en": "Build the final report from the corrected tables, preserving the two original room lists.",
+        "nl": "Bouw het laatste rapport uit de gecorrigeerde tabellen en behoud de twee oorspronkelijke locatie-lists."
+      },
+      "cases": [
+        {
+          "inputs": {
+            "remote_stock": [
+              [
+                "case",
+                7,
+                true
+              ],
+              [
+                "rope",
+                9,
+                false
+              ]
+            ]
+          },
+          "check": "combined == stock + remote_stock and combined is not stock and last_label == 'rope' and remote_stock == [['case',7,True],['rope',9,False]]"
+        }
+      ],
+      "hint": {
+        "en": "Combine the two outer lists, then use combined[-1][0] to select the last label.",
+        "nl": "Combineer de twee buitenste lists en gebruik daarna combined[-1][0] voor het laatste label."
       }
     }
   ],
   "solutionNote": {
-    "en": "Use a small table to practice several list operations together. Indexes locate positions, append extends the collection, and remove deletes a matching value. Inspect the final structure rather than relying on intermediate output.\n\nTrace the solution one line at a time. Try a different input to see which parts change.",
-    "nl": "Gebruik een kleine tabel om list-bewerkingen te combineren. Indexes zoeken posities op, append breidt de verzameling uit en remove verwijdert een passende waarde. Controleer de uiteindelijke structuur in plaats van alleen tussentijdse output.\n\nVolg de oplossing regel voor regel. Probeer een andere invoer en bekijk welke onderdelen veranderen."
+    "en": "The update processes events in order: create the missing row, append a delivery, update two cells, then remove the canceled row. The final concatenation makes a new outer list while retaining the rows. Reading the last label demonstrates both negative and nested indexing in the finished report.",
+    "nl": "De update verwerkt gebeurtenissen op volgorde: maak de ontbrekende rij, voeg een levering toe, werk twee cellen bij en verwijder de geannuleerde rij. De uiteindelijke samenvoeging maakt een nieuwe buitenste list maar behoudt de rijen. Het laatste label lezen combineert negatieve en geneste indexes in het voltooide rapport."
   },
   "sourcePosition": 14,
   "sourceUrl": "https://www.codecademy.com/courses/learn-python-3/lessons/create-python-list/exercises/review",

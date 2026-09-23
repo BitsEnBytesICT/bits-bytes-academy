@@ -4,38 +4,165 @@
   "group": "create-python-list",
   "title": {
     "en": "Reading nested lists",
-    "nl": "Geneste waarden lezen"
+    "nl": "Eerst de rij, dan het veld"
   },
   "kind": "coding",
   "optional": false,
   "explanation": {
-    "en": "Index a nested list in two stages: choose the row, then the value within that row. table[1][0] reads the first value from the second row.",
-    "nl": "Gebruik twee indexes voor een geneste list: kies eerst de rij en daarna de waarde in die rij. table[1][0] leest de eerste waarde uit de tweede rij."
+    "en": "Read a nested list in two stages: choose the row from the outer list, then choose the field from that row. `stock[1][1]` means the second field of the second row. The first index does not identify a column; it selects an entire inner list.",
+    "nl": "Lees een geneste list in twee stappen: kies de rij uit de buitenste list en daarna het veld uit die rij. `stock[1][1]` betekent het tweede veld van de tweede rij. De eerste index wijst geen kolom aan; deze kiest een hele binnenste list."
   },
   "example": "",
+  "sections": [
+    {
+      "heading": {
+        "en": "Unpack the expression mentally",
+        "nl": "Haal de expressie in gedachten uit elkaar"
+      },
+      "body": {
+        "en": "Reading table[0] gives a row. Applying [1] to that row gives its quantity. The compact double-index form does the same work in one expression.",
+        "nl": "table[0] lezen geeft een rij. Door daarop [1] toe te passen krijg je het aantal. De compacte vorm met twee indexes doet hetzelfde werk in één expressie."
+      },
+      "code": "table = [[\"map\", 7], [\"torch\", 4]]\nrow = table[0]\nprint(row)\nprint(row[1])\nprint(table[0][1])",
+      "output": "['map', 7]\n7\n7"
+    },
+    {
+      "heading": {
+        "en": "Negative indexes at either level",
+        "nl": "Negatieve indexes op beide niveaus"
+      },
+      "body": {
+        "en": "`stock[-1][-1]` chooses the last field of the last row. Each index applies to a different list, so count the outer rows and inner fields separately. Reading a scalar quantity lets you use it in arithmetic without changing the table.",
+        "nl": "`stock[-1][-1]` kiest het laatste veld van de laatste rij. Elke index geldt voor een andere list, dus tel de buitenste rijen en binnenste velden afzonderlijk. Een losse hoeveelheid lezen maakt rekenen mogelijk zonder de tabel te veranderen."
+      }
+    }
+  ],
   "files": {
-    "main.py": "stock = [[\"lamp\", 3], [\"cable\", 8]]\n"
+    "main.py": "stock = [[\"lamp\", 3], [\"cable\", 8], [\"battery\", 4]]\ncable_count = 0\nlast_count = 0\nprint(\"Cables:\", cable_count)\nprint(\"Last row quantity:\", last_count)\n\n# Calculate the combined quantity from the two selected values.\n"
   },
   "solution": {
-    "main.py": "stock = [[\"lamp\", 3], [\"cable\", 8]]\ncable_count = stock[1][1]\nprint(cable_count)\n"
+    "main.py": "stock = [[\"lamp\", 3], [\"cable\", 8], [\"battery\", 4]]\ncable_count = stock[1][1]\nlast_count = stock[-1][-1]\nprint(\"Cables:\", cable_count)\nprint(\"Last row quantity:\", last_count)\nselected_total = cable_count + last_count\nprint(\"Selected total:\", selected_total)\n"
   },
   "checkpoints": [
     {
-      "id": "create-python-list-12-step-1",
+      "id": "create-python-list-12-v2-step-1",
       "task": {
-        "en": "Store the cable quantity in cable_count.",
-        "nl": "Sla het aantal cables op in cable_count."
+        "en": "Read the cable quantity into `cable_count` using two positive indexes. Run and check the Cables line.",
+        "nl": "Lees het aantal cable in `cable_count` met twee positieve indexes. Voer uit en controleer de Cables-regel."
       },
-      "check": "cable_count == 8",
+      "check": "cable_count == 8 and _stdout.splitlines()[:1] == ['Cables: 8']",
+      "feedback": {
+        "en": "Read a number from the table, not the whole cable row or its label.",
+        "nl": "Lees een getal uit de tabel, niet de hele cable-rij of het label."
+      },
+      "cases": [
+        {
+          "inputs": {
+            "stock": [
+              [
+                "lamp",
+                2
+              ],
+              [
+                "cable",
+                11
+              ],
+              [
+                "battery",
+                6
+              ]
+            ]
+          },
+          "check": "cable_count == 11"
+        }
+      ],
       "hint": {
-        "en": "Start with stock = [[\"lamp\", 3], [\"cable\", 8]]. Then compare the values with the task.",
-        "nl": "Begin met stock = [[\"lamp\", 3], [\"cable\", 8]]. Vergelijk de waarden daarna met de opdracht."
+        "en": "Cable is in the second row, and quantity is the second field: both indexes are 1.",
+        "nl": "Cable staat in de tweede rij en aantal is het tweede veld: beide indexes zijn 1."
+      }
+    },
+    {
+      "id": "create-python-list-12-v2-step-2",
+      "task": {
+        "en": "Read the last field of the last row into `last_count`, using negative indexes at both levels. Run and confirm it prints 4.",
+        "nl": "Lees het laatste veld van de laatste rij in `last_count`, met op beide niveaus negatieve indexes. Voer uit en controleer dat er 4 verschijnt."
+      },
+      "check": "last_count == 4 and _stdout.splitlines()[1:2] == ['Last row quantity: 4']",
+      "feedback": {
+        "en": "Select the end at both levels so this still works when another row is added.",
+        "nl": "Kies op beide niveaus het einde zodat dit ook werkt wanneer er een rij bijkomt."
+      },
+      "cases": [
+        {
+          "inputs": {
+            "stock": [
+              [
+                "lamp",
+                2
+              ],
+              [
+                "cable",
+                11
+              ],
+              [
+                "battery",
+                6
+              ],
+              [
+                "strap",
+                9
+              ]
+            ]
+          },
+          "check": "last_count == 9"
+        }
+      ],
+      "hint": {
+        "en": "Use -1 to select the final row, then -1 again to select its final field.",
+        "nl": "Gebruik -1 voor de laatste rij en daarna nogmaals -1 voor het laatste veld daarin."
+      }
+    },
+    {
+      "id": "create-python-list-12-v2-step-3",
+      "task": {
+        "en": "Calculate `selected_total` by adding the two selected quantities and print Selected total: 12 on a final line. Keep stock unchanged.",
+        "nl": "Bereken `selected_total` door de twee gekozen aantallen op te tellen en druk op een laatste regel Selected total: 12 af. Laat stock ongewijzigd."
+      },
+      "check": "selected_total == 12 and stock == [['lamp',3],['cable',8],['battery',4]] and _stdout.splitlines() == ['Cables: 8','Last row quantity: 4','Selected total: 12']",
+      "feedback": {
+        "en": "Compute the total from the selected fields and preserve every original row.",
+        "nl": "Bereken het totaal uit de gekozen velden en behoud elke oorspronkelijke rij."
+      },
+      "cases": [
+        {
+          "inputs": {
+            "stock": [
+              [
+                "lamp",
+                2
+              ],
+              [
+                "cable",
+                11
+              ],
+              [
+                "battery",
+                6
+              ]
+            ]
+          },
+          "check": "selected_total == 17 and stock == [['lamp',2],['cable',11],['battery',6]]"
+        }
+      ],
+      "hint": {
+        "en": "Add cable_count and last_count; both should be integers, not lists.",
+        "nl": "Tel cable_count en last_count op; beide moeten integers zijn, geen lists."
       }
     }
   ],
   "solutionNote": {
-    "en": "Index a nested list in two stages: choose the row, then the value within that row. table[1][0] reads the first value from the second row.\n\nTrace the solution one line at a time. Try a different input to see which parts change.",
-    "nl": "Gebruik twee indexes voor een geneste list: kies eerst de rij en daarna de waarde in die rij. table[1][0] leest de eerste waarde uit de tweede rij.\n\nVolg de oplossing regel voor regel. Probeer een andere invoer en bekijk welke onderdelen veranderen."
+    "en": "The first index finds a row and the second finds its quantity. The selected values are integers, so + adds them rather than concatenating rows. All operations read the table; none assign to its cells.",
+    "nl": "De eerste index vindt een rij en de tweede het aantal daarin. De gekozen waarden zijn integers, dus + telt ze op in plaats van rijen samen te voegen. Alle bewerkingen lezen de tabel; geen ervan wijst aan een cel toe."
   },
   "sourcePosition": 12,
   "sourceUrl": "https://www.codecademy.com/courses/learn-python-3/lessons/create-python-list/exercises/accessing-2-d-lists",

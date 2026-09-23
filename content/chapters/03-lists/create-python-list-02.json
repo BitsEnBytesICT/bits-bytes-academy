@@ -4,38 +4,98 @@
   "group": "create-python-list",
   "title": {
     "en": "Element types",
-    "nl": "Types in een list"
+    "nl": "Een record met verschillende types"
   },
   "kind": "coding",
   "optional": false,
   "explanation": {
-    "en": "List elements can have different types. This is useful for a small mixed record, although named structures may become clearer as records grow. Values retain their individual types.",
-    "nl": "Elementen in een list kunnen verschillende types hebben. Dat is handig voor een klein gemengd record. Voor grotere records zijn structuren met namen vaak duidelijker. Elke waarde behoudt haar eigen type."
+    "en": "A list can hold strings, numbers and Booleans together. Each element keeps its own type. This lets a small equipment record store a label, quantity, price and availability in a known order. Agreeing on that order makes the record understandable to someone reading it later.",
+    "nl": "Een list kan strings, getallen en Booleans samen bevatten. Elk element behoudt het eigen type. Zo kan een klein materiaalrecord een label, aantal, prijs en beschikbaarheid in een vaste volgorde bewaren. Een afgesproken volgorde maakt het record later begrijpelijk."
   },
   "example": "",
+  "sections": [
+    {
+      "heading": {
+        "en": "Values keep their types",
+        "nl": "Waarden behouden hun types"
+      },
+      "body": {
+        "en": "Quotes identify text; they are not decoration around every value. A quantity of 3 should be the integer 3, not the string \"3\". A price can be a float and availability a bool.",
+        "nl": "Aanhalingstekens geven tekst aan; het is geen versiering rond elke waarde. Een aantal van 3 hoort de integer 3 te zijn, niet de string \"3\". Een prijs kan een float zijn en beschikbaarheid een bool."
+      },
+      "code": "record = [\"Tripod\", 3, 12.5, True]\nprint(record)",
+      "output": "['Tripod', 3, 12.5, True]"
+    },
+    {
+      "heading": {
+        "en": "Build one consistent record",
+        "nl": "Bouw één consistent record"
+      },
+      "body": {
+        "en": "The starter has imported every field as text. Repair the types while keeping the field order: item name, quantity, price, available. Then create a second record with the same layout. In later lessons you will use indexes to read and change individual fields.",
+        "nl": "De startcode heeft elk veld als tekst geïmporteerd. Herstel de types en behoud de veldvolgorde: artikelnaam, aantal, prijs, beschikbaar. Maak daarna een tweede record met dezelfde indeling. In latere lessen lees en verander je losse velden met indexes."
+      }
+    }
+  ],
   "files": {
-    "main.py": "# Write your code below.\n"
+    "main.py": "# Field order: label, quantity, price, available.\nsensor = [\"Sensor\", \"4\", \"2.5\", \"True\"]\nprint(sensor)\n\n# Add a second equipment record below.\n"
   },
   "solution": {
-    "main.py": "record = [\"Sensor\", 4, 2.5, True]\nprint(record)\n"
+    "main.py": "sensor = [\"Sensor\", 4, 2.5, True]\nprint(sensor)\ncable = [\"Cable\", 8, 1.75, False]\nprint(cable)\n"
   },
   "checkpoints": [
     {
-      "id": "create-python-list-02-step-1",
+      "id": "create-python-list-02-v2-step-1",
       "task": {
-        "en": "Create record with the string Sensor, integer 4, float 2.5, and Boolean True.",
-        "nl": "Maak record met de string Sensor, integer 4, float 2.5 en Boolean True."
+        "en": "Repair the numeric fields in `sensor`: quantity must be the integer 4 and price the float 2.5. Keep the label first.",
+        "nl": "Herstel de numerieke velden in `sensor`: het aantal moet de integer 4 zijn en de prijs de float 2.5. Houd het label vooraan."
       },
-      "check": "record == ['Sensor',4,2.5,True] and type(record[1]) is int and type(record[3]) is bool",
+      "check": "sensor[:3] == ['Sensor',4,2.5] and type(sensor[1]) is int and type(sensor[2]) is float",
+      "feedback": {
+        "en": "Quantity must be numeric 4 and price numeric 2.5, in their original positions.",
+        "nl": "Het aantal moet het getal 4 zijn en de prijs het getal 2.5, op de oorspronkelijke posities."
+      },
       "hint": {
-        "en": "Start with record = [\"Sensor\", 4, 2.5, True]. Then compare the values with the task.",
-        "nl": "Begin met record = [\"Sensor\", 4, 2.5, True]. Vergelijk de waarden daarna met de opdracht."
+        "en": "Numbers do not need quotes. Keep quotes around Sensor because it is a name.",
+        "nl": "Getallen hebben geen aanhalingstekens nodig. Behoud ze rond Sensor omdat dat een naam is."
+      }
+    },
+    {
+      "id": "create-python-list-02-v2-step-2",
+      "task": {
+        "en": "Change the final field from text to the Boolean True. Run and compare the printed record with the imported version.",
+        "nl": "Verander het laatste veld van tekst naar de Boolean True. Voer uit en vergelijk het afgedrukte record met de geïmporteerde versie."
+      },
+      "check": "sensor == ['Sensor',4,2.5,True] and type(sensor[3]) is bool",
+      "feedback": {
+        "en": "The availability field should have type bool, not str.",
+        "nl": "Het beschikbaarheidsveld moet type bool hebben, niet str."
+      },
+      "hint": {
+        "en": "True has a capital T and no quotes when it is a Boolean.",
+        "nl": "True heeft een hoofdletter T en geen aanhalingstekens wanneer het een Boolean is."
+      }
+    },
+    {
+      "id": "create-python-list-02-v2-step-3",
+      "task": {
+        "en": "Create `cable` using the same field order: Cable, 8, 1.75, False. Print it below sensor. Which fields are text, integers, floats and Booleans?",
+        "nl": "Maak `cable` met dezelfde veldvolgorde: Cable, 8, 1.75, False. Druk het onder sensor af. Welke velden zijn tekst, integers, floats en Booleans?"
+      },
+      "check": "cable == ['Cable',8,1.75,False] and type(cable[1]) is int and type(cable[2]) is float and type(cable[3]) is bool and _stdout.splitlines() == [str(sensor),str(cable)]",
+      "feedback": {
+        "en": "Create a four-field cable record with the correct types, then print both records in order.",
+        "nl": "Maak een cable-record met vier velden en de juiste types en druk beide records in volgorde af."
+      },
+      "hint": {
+        "en": "Use a new list literal; only Cable needs quotes.",
+        "nl": "Gebruik een nieuwe list; alleen Cable heeft aanhalingstekens nodig."
       }
     }
   ],
   "solutionNote": {
-    "en": "List elements can have different types. This is useful for a small mixed record, although named structures may become clearer as records grow. Values retain their individual types.\n\nTrace the solution one line at a time. Try a different input to see which parts change.",
-    "nl": "Elementen in een list kunnen verschillende types hebben. Dat is handig voor een klein gemengd record. Voor grotere records zijn structuren met namen vaak duidelijker. Elke waarde behoudt haar eigen type.\n\nVolg de oplossing regel voor regel. Probeer een andere invoer en bekijk welke onderdelen veranderen."
+    "en": "The list groups related fields, but does not convert them. Keeping quantities numeric allows later calculations. The Boolean False represents unavailable stock; the string \"False\" would merely be text.",
+    "nl": "De list groepeert gerelateerde velden, maar zet ze niet om. Numerieke aantallen maken latere berekeningen mogelijk. De Boolean False stelt onbeschikbare voorraad voor; de string \"False\" zou alleen tekst zijn."
   },
   "sourcePosition": 2,
   "sourceUrl": "https://www.codecademy.com/courses/learn-python-3/lessons/create-python-list/exercises/list-multiple-data-types",

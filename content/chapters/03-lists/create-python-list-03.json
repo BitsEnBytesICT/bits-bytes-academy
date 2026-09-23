@@ -4,38 +4,92 @@
   "group": "create-python-list",
   "title": {
     "en": "Empty lists",
-    "nl": "Een lege list"
+    "nl": "Nog geen items is ook informatie"
   },
   "kind": "coding",
   "optional": false,
   "explanation": {
-    "en": "An empty list contains no elements. Use [] to create one before data arrives. It is still a list, so methods such as append can be used immediately.",
-    "nl": "Een lege list bevat geen elementen. Maak deze met [] voordat er gegevens binnenkomen. Het blijft een list, dus je kunt meteen methods zoals append gebruiken."
+    "en": "An empty list represents a collection with no elements yet. It is useful before the first request, measurement or message arrives. `[]` is different from `\"\"`, which is empty text, and from `[\"\"]`, which is a list containing one empty string.",
+    "nl": "Een lege list stelt een verzameling voor die nog geen elementen bevat. Dat is handig voordat het eerste verzoek, de eerste meting of het eerste bericht binnenkomt. `[]` verschilt van `\"\"`, wat lege tekst is, en van `[\"\"]`, een list met één lege string."
   },
   "example": "",
+  "sections": [
+    {
+      "heading": {
+        "en": "Empty does not mean missing",
+        "nl": "Leeg betekent niet ontbrekend"
+      },
+      "body": {
+        "en": "The variable exists and contains a list; the list simply has no items. You can inspect its type and compare it with another empty list. Methods that add data will work on it when that data arrives.",
+        "nl": "De variabele bestaat en bevat een list; die list heeft alleen nog geen items. Je kunt het type bekijken en vergelijken met een andere lege list. Methods die gegevens toevoegen werken zodra die gegevens binnenkomen."
+      },
+      "code": "pending = []\nprint(type(pending))\nprint(pending == [])\nprint([\"\"] == [])",
+      "output": "<class 'list'>\nTrue\nFalse"
+    },
+    {
+      "heading": {
+        "en": "Give the dashboard an honest starting state",
+        "nl": "Geef het dashboard een eerlijke beginstand"
+      },
+      "body": {
+        "en": "The editor contains a dashboard with a fake placeholder request. Replace that placeholder with a truly empty collection. Then derive a status from the collection itself, so it will stop saying empty when requests arrive.",
+        "nl": "In de editor staat een dashboard met een nepverzoek als placeholder. Vervang die placeholder door een werkelijk lege verzameling. Leid de status daarna uit de verzameling zelf af, zodat het dashboard niet meer leeg zegt zodra er verzoeken binnenkomen."
+      }
+    }
+  ],
   "files": {
-    "main.py": "# Write your code below.\n"
+    "main.py": "requests = [\"waiting for first request\"]\nis_empty = False\nprint(requests)\nprint(\"Empty:\", is_empty)\n"
   },
   "solution": {
-    "main.py": "readings = []\nprint(readings)\n"
+    "main.py": "requests = []\nis_empty = requests == []\nprint(requests)\nprint(\"Empty:\", is_empty)\n"
   },
   "checkpoints": [
     {
-      "id": "create-python-list-03-step-1",
+      "id": "create-python-list-03-v2-step-1",
       "task": {
-        "en": "Create an empty list named readings.",
-        "nl": "Maak een lege list met de naam readings."
+        "en": "Replace the placeholder in `requests` with a truly empty list. Run and confirm that the first line is [].",
+        "nl": "Vervang de placeholder in `requests` door een echt lege list. Voer uit en controleer dat de eerste regel [] is."
       },
-      "check": "readings == []",
+      "check": "type(requests) is list and requests == [] and _stdout.splitlines()[:1] == ['[]']",
+      "feedback": {
+        "en": "Use an empty list, not empty text or a list with a placeholder item.",
+        "nl": "Gebruik een lege list, niet lege tekst of een list met een placeholder-item."
+      },
       "hint": {
-        "en": "Start with readings = []. Then compare the values with the task.",
-        "nl": "Begin met readings = []. Vergelijk de waarden daarna met de opdracht."
+        "en": "Leave nothing between the square brackets—not even an empty quoted string.",
+        "nl": "Laat niets tussen de vierkante haakjes staan, ook geen lege string tussen aanhalingstekens."
+      }
+    },
+    {
+      "id": "create-python-list-03-v2-step-2",
+      "task": {
+        "en": "Set `is_empty` by comparing requests with []. Keep the existing print calls and run again: the dashboard should show Empty: True.",
+        "nl": "Bereken `is_empty` door requests met [] te vergelijken. Behoud de print-aanroepen en voer opnieuw uit: het dashboard moet Empty: True tonen."
+      },
+      "check": "is_empty is True and _stdout.splitlines() == ['[]','Empty: True']",
+      "feedback": {
+        "en": "Calculate the status from requests so it becomes False for a list that contains a request.",
+        "nl": "Bereken de status uit requests zodat deze False wordt voor een list met een verzoek."
+      },
+      "cases": [
+        {
+          "inputs": {
+            "requests": [
+              "lamp"
+            ]
+          },
+          "check": "is_empty is False"
+        }
+      ],
+      "hint": {
+        "en": "Use the equality comparison you learned earlier: requests == [].",
+        "nl": "Gebruik de eerder geleerde gelijkheidsvergelijking: requests == []."
       }
     }
   ],
   "solutionNote": {
-    "en": "An empty list contains no elements. Use [] to create one before data arrives. It is still a list, so methods such as append can be used immediately.\n\nTrace the solution one line at a time. Try a different input to see which parts change.",
-    "nl": "Een lege list bevat geen elementen. Maak deze met [] voordat er gegevens binnenkomen. Het blijft een list, dus je kunt meteen methods zoals append gebruiken.\n\nVolg de oplossing regel voor regel. Probeer een andere invoer en bekijk welke onderdelen veranderen."
+    "en": "The empty brackets hold zero elements. Comparing the collection with [] computes the dashboard status. A literal True would describe only this moment; the comparison also works after data arrives.",
+    "nl": "De lege haakjes bevatten nul elementen. Door de verzameling met [] te vergelijken bereken je de dashboardstatus. Een vaste True beschrijft alleen dit moment; de vergelijking werkt ook nadat gegevens binnenkomen."
   },
   "sourcePosition": 3,
   "sourceUrl": "https://www.codecademy.com/courses/learn-python-3/lessons/create-python-list/exercises/empty-list",

@@ -4,38 +4,107 @@
   "group": "create-python-list",
   "title": {
     "en": "Concatenating lists",
-    "nl": "Lists samenvoegen"
+    "nl": "Twee roosters samenvoegen"
   },
   "kind": "coding",
   "optional": false,
   "explanation": {
-    "en": "The + operator creates a new list containing the left list followed by the right list. Both operands must be lists. The originals remain unchanged unless you reassign a name.",
-    "nl": "De operator + maakt een nieuwe list met eerst de linker list en daarna de rechter. Beide operands moeten lists zijn. De oorspronkelijke lists blijven ongewijzigd, tenzij je een naam opnieuw toewijst."
+    "en": "The + operator combines two lists into a new outer list, with every element from the left followed by every element from the right. This is concatenation. It differs from append: appending a list adds that whole list as one element, while + combines the elements of both lists.",
+    "nl": "De operator + combineert twee lists tot een nieuwe buitenste list, met eerst alle elementen van links en daarna alle elementen van rechts. Dit heet concatenation. Het verschilt van append: bij het toevoegen van een list met append wordt die hele list één element, terwijl + de elementen uit beide lists samenvoegt."
   },
   "example": "",
+  "sections": [
+    {
+      "heading": {
+        "en": "The original lists remain available",
+        "nl": "De oorspronkelijke lists blijven beschikbaar"
+      },
+      "body": {
+        "en": "Assign the combined result to a new name. For a flat list of strings or numbers, later appends to that new list do not append to either original. Nested elements need more care because concatenation does not recursively copy inner lists; we will return to that when we use tables.",
+        "nl": "Wijs het gecombineerde resultaat toe aan een nieuwe naam. Bij een platte list van strings of getallen voegt een latere append op die nieuwe list niets aan de oorspronkelijke lists toe. Bij geneste elementen is meer aandacht nodig: concatenation kopieert binnenste lists niet afzonderlijk. Daar komen we bij tabellen op terug."
+      },
+      "code": "early = [8, 10]\nlate = [14]\nwhole_day = early + late\nwhole_day.append(16)\nprint(whole_day)\nprint(early)\nprint(late)",
+      "output": "[8, 10, 14, 16]\n[8, 10]\n[14]"
+    },
+    {
+      "heading": {
+        "en": "Both sides must be lists",
+        "nl": "Beide kanten moeten lists zijn"
+      },
+      "body": {
+        "en": "`times + 18` raises TypeError: the right side is an integer. Use `times + [18]` to concatenate a one-element list, or times.append(18) to modify times directly. Decide whether you need a new result or a change to the existing collection.",
+        "nl": "`times + 18` geeft TypeError: rechts staat een integer. Gebruik `times + [18]` om een list met één element samen te voegen, of times.append(18) om times direct te veranderen. Bepaal of je een nieuw resultaat wilt of een wijziging aan de bestaande verzameling."
+      }
+    }
+  ],
   "files": {
-    "main.py": "morning = [9, 11]\nafternoon = [14, 16]\n"
+    "main.py": "morning = [9, 11]\nafternoon = [14, 16]\nschedule = morning\nprint(\"Schedule:\", schedule)\nprint(\"Morning:\", morning)\nprint(\"Afternoon:\", afternoon)\n\n# Create extended from schedule and the additional time 18.\n"
   },
   "solution": {
-    "main.py": "morning = [9, 11]\nafternoon = [14, 16]\nschedule = morning + afternoon\nprint(schedule)\n"
+    "main.py": "morning = [9, 11]\nafternoon = [14, 16]\nschedule = morning + afternoon\nprint(\"Schedule:\", schedule)\nprint(\"Morning:\", morning)\nprint(\"Afternoon:\", afternoon)\nextended = schedule + [18]\nprint(\"Extended:\", extended)\n"
   },
   "checkpoints": [
     {
-      "id": "create-python-list-06-step-1",
+      "id": "create-python-list-06-v2-step-1",
       "task": {
-        "en": "Combine morning and afternoon into schedule. Keep both input lists unchanged.",
-        "nl": "Combineer morning en afternoon tot schedule. Laat beide invoerlists ongewijzigd."
+        "en": "Replace the schedule assignment with a concatenation of morning and afternoon. Run to confirm the complete day appears before the two unchanged input lists.",
+        "nl": "Vervang de toewijzing van schedule door een samenvoeging van morning en afternoon. Voer uit en controleer dat de volledige dag vóór de twee ongewijzigde invoerlists verschijnt."
       },
-      "check": "schedule == [9,11,14,16] and morning == [9,11] and afternoon == [14,16]",
+      "check": "schedule == [9,11,14,16] and morning == [9,11] and afternoon == [14,16] and schedule is not morning and schedule is not afternoon",
+      "feedback": {
+        "en": "Make a new flat list in morning-then-afternoon order; preserve both originals.",
+        "nl": "Maak een nieuwe platte list in de volgorde ochtend-middag en behoud beide oorspronkelijke lists."
+      },
+      "cases": [
+        {
+          "inputs": {
+            "morning": [
+              8
+            ],
+            "afternoon": [
+              13,
+              15
+            ]
+          },
+          "check": "schedule == [8,13,15] and morning == [8] and afternoon == [13,15]"
+        }
+      ],
       "hint": {
-        "en": "Start with morning = [9, 11]. Then compare the values with the task.",
-        "nl": "Begin met morning = [9, 11]. Vergelijk de waarden daarna met de opdracht."
+        "en": "Use morning + afternoon on the right of the assignment.",
+        "nl": "Gebruik morning + afternoon rechts van de toewijzing."
+      }
+    },
+    {
+      "id": "create-python-list-06-v2-step-2",
+      "task": {
+        "en": "Create `extended` by concatenating schedule with a one-element list containing 18. Print it with the label Extended:. Keep schedule unchanged.",
+        "nl": "Maak `extended` door schedule samen te voegen met een list met alleen 18. Druk het resultaat af met het label Extended:. Laat schedule ongewijzigd."
+      },
+      "check": "extended == [9,11,14,16,18] and schedule == [9,11,14,16] and extended is not schedule and _stdout.splitlines()[-1:] == ['Extended: [9, 11, 14, 16, 18]']",
+      "feedback": {
+        "en": "Create a separate extended list with a final 18, rather than modifying schedule or nesting a list inside it.",
+        "nl": "Maak een afzonderlijke extended-list met een laatste 18, in plaats van schedule te wijzigen of er een list in te nesten."
+      },
+      "cases": [
+        {
+          "inputs": {
+            "morning": [],
+            "afternoon": [
+              12
+            ]
+          },
+          "check": "schedule == [12] and extended == [12,18]"
+        }
+      ],
+      "hint": {
+        "en": "Wrap 18 in square brackets. The + operator expects a list on each side.",
+        "nl": "Zet 18 tussen vierkante haakjes. De operator + verwacht aan beide kanten een list."
       }
     }
   ],
   "solutionNote": {
-    "en": "The + operator creates a new list containing the left list followed by the right list. Both operands must be lists. The originals remain unchanged unless you reassign a name.\n\nTrace the solution one line at a time. Try a different input to see which parts change.",
-    "nl": "De operator + maakt een nieuwe list met eerst de linker list en daarna de rechter. Beide operands moeten lists zijn. De oorspronkelijke lists blijven ongewijzigd, tenzij je een naam opnieuw toewijst.\n\nVolg de oplossing regel voor regel. Probeer een andere invoer en bekijk welke onderdelen veranderen."
+    "en": "Both expressions create a new outer list. The original schedules are unchanged, and wrapping 18 in brackets supplies the list operand that + requires. The extended list stays flat.",
+    "nl": "Beide expressies maken een nieuwe buitenste list. De oorspronkelijke roosters blijven ongewijzigd en de haakjes rond 18 leveren de list die + vereist. De extended-list blijft plat."
   },
   "sourcePosition": 6,
   "sourceUrl": "https://www.codecademy.com/courses/learn-python-3/lessons/create-python-list/exercises/growing-a-list-plus",

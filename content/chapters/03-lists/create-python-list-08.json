@@ -4,38 +4,134 @@
   "group": "create-python-list",
   "title": {
     "en": "Negative indexing",
-    "nl": "Negatieve indexes"
+    "nl": "Vanaf het einde terugtellen"
   },
   "kind": "coding",
   "optional": false,
   "explanation": {
-    "en": "Negative indexes count from the end: -1 is the last element, -2 is the one before it. This avoids calculating a positive index from the length.",
-    "nl": "Negatieve indexes tellen vanaf het einde: -1 is het laatste element en -2 het voorlaatste. Zo hoef je geen positieve index uit de lengte te berekenen."
+    "en": "The most recent reading is at the end of a growing list. You could count its position each time, but a negative index expresses the intention directly: -1 means last, -2 means one before last. There is no separate negative zero; -0 is just 0.",
+    "nl": "De recentste meting staat achteraan een groeiende list. Je zou telkens de positie kunnen tellen, maar een negatieve index drukt de bedoeling direct uit: -1 betekent laatste en -2 voorlaatste. Er is geen afzonderlijke negatieve nul; -0 is gewoon 0."
   },
   "example": "",
+  "sections": [
+    {
+      "heading": {
+        "en": "Same element, two addresses",
+        "nl": "Hetzelfde element, twee adressen"
+      },
+      "body": {
+        "en": "Positive and negative indexes can identify the same element. For a four-item list, index 3 and index -1 both select the last item. After an append, index 3 still selects the old fourth item, while -1 selects the new last item.",
+        "nl": "Positieve en negatieve indexes kunnen hetzelfde element aanwijzen. Bij vier items kiezen index 3 en index -1 allebei het laatste item. Na een append kiest index 3 nog steeds het oude vierde item, terwijl -1 het nieuwe laatste item kiest."
+      },
+      "code": "levels = [3, 6, 5, 8]\nprint(levels[3], levels[-1])\nlevels.append(9)\nprint(levels[3], levels[-1])",
+      "output": "8 8\n8 9"
+    },
+    {
+      "heading": {
+        "en": "A selected number is a snapshot",
+        "nl": "Een gekozen getal is een momentopname"
+      },
+      "body": {
+        "en": "Assigning latest = readings[-1] stores the number currently at that position. It is not a live formula that updates automatically. After appending a new reading, calculate a new selected value if you need the current last number. Negative indexes still require an existing element; an empty list has no last item.",
+        "nl": "Met latest = readings[-1] bewaar je het getal dat op dat moment op die positie staat. Het is geen formule die vanzelf wordt bijgewerkt. Bereken na het toevoegen van een meting opnieuw de gekozen waarde als je het huidige laatste getal nodig hebt. Ook bij negatieve indexes moet het element bestaan; een lege list heeft geen laatste item."
+      }
+    }
+  ],
   "files": {
-    "main.py": "readings = [18, 20, 19, 22]\n"
+    "main.py": "readings = [18, 20, 19, 22]\nlatest = 0\nprevious = 0\nprint(latest, previous)\n\n# Add the new reading 24, then read the last position again.\n"
   },
   "solution": {
-    "main.py": "readings = [18, 20, 19, 22]\nlatest = readings[-1]\nprevious = readings[-2]\nprint(latest, previous)\n"
+    "main.py": "readings = [18, 20, 19, 22]\nlatest = readings[-1]\nprevious = readings[-2]\nprint(latest, previous)\nreadings.append(24)\nnew_latest = readings[-1]\nprint(new_latest)\nprint(latest)\n"
   },
   "checkpoints": [
     {
-      "id": "create-python-list-08-step-1",
+      "id": "create-python-list-08-v2-step-1",
       "task": {
-        "en": "Store the last reading in latest and the previous reading in previous.",
-        "nl": "Sla de laatste meting op in latest en de vorige meting in previous."
+        "en": "Read the last and penultimate values into `latest` and `previous` using negative indexes. Run to see 22 and 19 on the first line.",
+        "nl": "Lees de laatste en voorlaatste waarde met negatieve indexes in `latest` en `previous`. Voer uit zodat je 22 en 19 op de eerste regel ziet."
       },
-      "check": "latest == 22 and previous == 19",
+      "check": "latest == 22 and previous == 19 and _stdout.splitlines()[:1] == ['22 19']",
+      "feedback": {
+        "en": "Read from the end of readings, rather than hardcoding its current values or length.",
+        "nl": "Lees vanaf het einde van readings in plaats van de huidige waarden of lengte vast in te vullen."
+      },
+      "cases": [
+        {
+          "inputs": {
+            "readings": [
+              4,
+              7,
+              9
+            ]
+          },
+          "check": "latest == 9 and previous == 7"
+        },
+        {
+          "inputs": {
+            "readings": [
+              1,
+              2,
+              3,
+              4,
+              5
+            ]
+          },
+          "check": "latest == 5 and previous == 4"
+        }
+      ],
       "hint": {
-        "en": "Start with readings = [18, 20, 19, 22]. Then compare the values with the task.",
-        "nl": "Begin met readings = [18, 20, 19, 22]. Vergelijk de waarden daarna met de opdracht."
+        "en": "Use -1 for the last item and -2 for the one before it.",
+        "nl": "Gebruik -1 voor het laatste item en -2 voor het item ervoor."
+      }
+    },
+    {
+      "id": "create-python-list-08-v2-step-2",
+      "task": {
+        "en": "Append the new reading 24. Read the final position again into `new_latest` and print it on the next line. Keep the earlier latest assignment before the append.",
+        "nl": "Voeg de nieuwe meting 24 toe. Lees de laatste positie opnieuw in `new_latest` en druk deze op de volgende regel af. Laat de eerdere toewijzing aan latest vóór de append staan."
+      },
+      "check": "readings == [18,20,19,22,24] and new_latest == 24 and _stdout.splitlines()[1:2] == ['24']",
+      "feedback": {
+        "en": "Append one reading, then select the current last element into a new variable.",
+        "nl": "Voeg één meting toe en kies daarna het huidige laatste element in een nieuwe variabele."
+      },
+      "cases": [
+        {
+          "inputs": {
+            "readings": [
+              4,
+              7,
+              9
+            ]
+          },
+          "check": "readings == [4,7,9,24] and new_latest == 24 and latest == 9"
+        }
+      ],
+      "hint": {
+        "en": "Place new_latest = readings[-1] after the append call.",
+        "nl": "Zet new_latest = readings[-1] na de append-aanroep."
+      }
+    },
+    {
+      "id": "create-python-list-08-v2-step-3",
+      "task": {
+        "en": "Print the original `latest` as the final line. It should still be 22. Explain why the new reading changed the list but not that earlier numeric snapshot.",
+        "nl": "Druk de oorspronkelijke `latest` als laatste regel af. Deze moet nog steeds 22 zijn. Leg uit waarom de nieuwe meting de list veranderde maar niet de eerdere numerieke momentopname."
+      },
+      "check": "latest == 22 and _stdout.splitlines() == ['22 19','24','22']",
+      "feedback": {
+        "en": "Retain the earlier selected number and display it after the new last reading.",
+        "nl": "Behoud het eerder gekozen getal en toon dit na de nieuwe laatste meting."
+      },
+      "hint": {
+        "en": "Do not assign to latest again; simply print the value you stored before appending.",
+        "nl": "Wijs niet opnieuw toe aan latest; druk alleen de waarde af die je vóór de append bewaarde."
       }
     }
   ],
   "solutionNote": {
-    "en": "Negative indexes count from the end: -1 is the last element, -2 is the one before it. This avoids calculating a positive index from the length.\n\nTrace the solution one line at a time. Try a different input to see which parts change.",
-    "nl": "Negatieve indexes tellen vanaf het einde: -1 is het laatste element en -2 het voorlaatste. Zo hoef je geen positieve index uit de lengte te berekenen.\n\nVolg de oplossing regel voor regel. Probeer een andere invoer en bekijk welke onderdelen veranderen."
+    "en": "The first two indexes follow the end of the initial list. Appending changes the list, but latest still refers to the integer selected earlier. new_latest is computed afterward and therefore contains 24.",
+    "nl": "De eerste twee indexes volgen het einde van de beginlist. De append verandert de list, maar latest verwijst nog steeds naar de eerder gekozen integer. new_latest wordt daarna berekend en bevat daarom 24."
   },
   "sourcePosition": 8,
   "sourceUrl": "https://www.codecademy.com/courses/learn-python-3/lessons/create-python-list/exercises/accessing-list-elements-negative-index",

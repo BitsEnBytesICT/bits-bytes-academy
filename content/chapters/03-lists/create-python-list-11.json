@@ -4,38 +4,97 @@
   "group": "create-python-list",
   "title": {
     "en": "Nested lists",
-    "nl": "Geneste lists"
+    "nl": "Van één record naar een tabel"
   },
   "kind": "coding",
   "optional": false,
   "explanation": {
-    "en": "A list can contain other lists. This represents rows of a small table. Each inner list is an element of the outer list.",
-    "nl": "Een list kan andere lists bevatten. Daarmee kun je rijen van een kleine tabel voorstellen. Elke binnenste list is een element van de buitenste list."
+    "en": "A list can contain other lists. The outer list holds records; each inner list groups the fields for one item. This is often called a two-dimensional list. Python does not enforce a rectangular table, so keeping a consistent row layout is your responsibility.",
+    "nl": "Een list kan andere lists bevatten. De buitenste list bewaart records; elke binnenste list groepeert de velden van één item. Dit wordt vaak een tweedimensionale list genoemd. Python dwingt geen rechthoekige tabel af, dus je bewaakt zelf een consistente rij-indeling."
   },
   "example": "",
+  "sections": [
+    {
+      "heading": {
+        "en": "One pair of brackets per level",
+        "nl": "Eén paar haakjes per niveau"
+      },
+      "body": {
+        "en": "Here each row has a label and a quantity. Commas separate fields inside a row and also separate the rows in the outer list. Formatting rows on separate lines makes the structure easier to inspect.",
+        "nl": "Hier heeft elke rij een label en een aantal. Komma's scheiden de velden binnen een rij én de rijen in de buitenste list. Door rijen op aparte regels te zetten kun je de structuur makkelijker bekijken."
+      },
+      "code": "stock = [\n    [\"Tripod\", 2],\n    [\"Case\", 5]\n]\nprint(stock)",
+      "output": "[['Tripod', 2], ['Case', 5]]"
+    },
+    {
+      "heading": {
+        "en": "Appending a row",
+        "nl": "Een rij toevoegen"
+      },
+      "body": {
+        "en": "An inner list is one element of the outer list. Appending [\"Cable\", 8] therefore adds one complete row. Appending the label and the number separately would mix loose fields with rows and break the record layout.",
+        "nl": "Een binnenste list is één element van de buitenste list. Door [\"Cable\", 8] toe te voegen met append voeg je dus één volledige rij toe. Het label en het getal afzonderlijk toevoegen zou losse velden met rijen mengen en de recordindeling breken."
+      },
+      "code": "stock = [[\"Tripod\", 2]]\nstock.append([\"Cable\", 8])\nprint(stock)",
+      "output": "[['Tripod', 2], ['Cable', 8]]"
+    }
+  ],
   "files": {
-    "main.py": "# Write your code below.\n"
+    "main.py": "# Every row uses [item label, quantity].\nstock = [[\"lamp\", 3]]\nprint(\"Main room:\", stock)\n\n# Add the cable row above the print call.\n# Create a second room table below.\n"
   },
   "solution": {
-    "main.py": "stock = [[\"lamp\", 3], [\"cable\", 8]]\nprint(stock)\n"
+    "main.py": "stock = [[\"lamp\", 3]]\nstock.append([\"cable\", 8])\nprint(\"Main room:\", stock)\nspares = [[\"battery\", 4], [\"strap\", 6]]\nprint(\"Spares:\", spares)\n"
   },
   "checkpoints": [
     {
-      "id": "create-python-list-11-step-1",
+      "id": "create-python-list-11-v2-step-1",
       "task": {
-        "en": "Create stock with two rows: lamp with quantity 3, and cable with quantity 8.",
-        "nl": "Maak stock met twee rijen: lamp met aantal 3 en cable met aantal 8."
+        "en": "Append one complete row for cable with quantity 8 to `stock`. Place the append before the Main room display.",
+        "nl": "Voeg één volledige rij voor cable met aantal 8 aan `stock` toe. Zet de append vóór de Main room-weergave."
       },
-      "check": "stock == [['lamp',3],['cable',8]]",
+      "check": "stock == [['lamp',3],['cable',8]] and any(isinstance(n, _ast.Call) and isinstance(n.func, _ast.Attribute) and n.func.attr == 'append' for n in _ast.walk(_ast.parse(_source)))",
+      "feedback": {
+        "en": "Add a nested row rather than appending cable and 8 as separate outer elements.",
+        "nl": "Voeg een geneste rij toe in plaats van cable en 8 als losse buitenste elementen toe te voegen."
+      },
+      "cases": [
+        {
+          "inputs": {
+            "stock": [
+              [
+                "tripod",
+                2
+              ]
+            ]
+          },
+          "check": "stock == [['tripod',2],['cable',8]]"
+        }
+      ],
       "hint": {
-        "en": "Start with stock = [[\"lamp\", 3], [\"cable\", 8]]. Then compare the values with the task.",
-        "nl": "Begin met stock = [[\"lamp\", 3], [\"cable\", 8]]. Vergelijk de waarden daarna met de opdracht."
+        "en": "Pass [\"cable\", 8] as the single argument to stock.append.",
+        "nl": "Geef [\"cable\", 8] als één argument aan stock.append."
+      }
+    },
+    {
+      "id": "create-python-list-11-v2-step-2",
+      "task": {
+        "en": "Create a second table named `spares`, with battery quantity 4 and strap quantity 6 in that order. Print it with the label Spares: below the main table.",
+        "nl": "Maak een tweede tabel `spares`, met battery aantal 4 en strap aantal 6 in die volgorde. Druk deze met label Spares: onder de hoofdtabel af."
+      },
+      "check": "spares == [['battery',4],['strap',6]] and _stdout.splitlines() == [\"Main room: [['lamp', 3], ['cable', 8]]\",\"Spares: [['battery', 4], ['strap', 6]]\"]",
+      "feedback": {
+        "en": "Keep each label paired with its integer quantity and print both complete tables.",
+        "nl": "Houd elk label bij het bijbehorende gehele aantal en druk beide volledige tabellen af."
+      },
+      "hint": {
+        "en": "Wrap two [label, quantity] rows inside one outer pair of brackets.",
+        "nl": "Zet twee [label, aantal]-rijen binnen één buitenste paar haakjes."
       }
     }
   ],
   "solutionNote": {
-    "en": "A list can contain other lists. This represents rows of a small table. Each inner list is an element of the outer list.\n\nTrace the solution one line at a time. Try a different input to see which parts change.",
-    "nl": "Een list kan andere lists bevatten. Daarmee kun je rijen van een kleine tabel voorstellen. Elke binnenste list is een element van de buitenste list.\n\nVolg de oplossing regel voor regel. Probeer een andere invoer en bekijk welke onderdelen veranderen."
+    "en": "The outer stock list has two elements and each is a row. append adds the second row as one item. spares follows the same layout, so a later reader knows what each position within a row means.",
+    "nl": "De buitenste stock-list heeft twee elementen, elk een rij. append voegt de tweede rij als één item toe. spares volgt dezelfde indeling, zodat een latere lezer weet wat elke positie binnen een rij betekent."
   },
   "sourcePosition": 11,
   "sourceUrl": "https://www.codecademy.com/courses/learn-python-3/lessons/create-python-list/exercises/list-of-lists",

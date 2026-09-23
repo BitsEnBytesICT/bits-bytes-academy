@@ -81,7 +81,7 @@ def _lab_run(payload_json):
             if isinstance(node, ast.Assign) and len(node.targets) == 1 and isinstance(node.targets[0], ast.Name):
                 name = node.targets[0].id
                 if name in remaining:
-                    node.value = ast.copy_location(ast.Constant(value=inputs[name]), node.value)
+                    node.value = ast.copy_location(ast.parse(repr(inputs[name]), mode='eval').body, node.value)
                     remaining.remove(name)
         if remaining: raise ValueError('Keep the named input assignments at the top of the program')
         case_output = Capture(io.StringIO())

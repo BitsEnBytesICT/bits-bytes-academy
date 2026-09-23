@@ -30,7 +30,9 @@ a loading state. The 12 control-flow pages, five debugging pages and pattern-mat
 article have now also been reviewed; their workspace/hint observations are in
 `research/2026-09-23-control-flow.md`. That chapter's eight-question quiz has now
 been reviewed through a fresh completed attempt and its original rewrite is
-implemented and verified. Deeper reviews of later chapters remain. Do not
+implemented and verified. All 14 list-foundation pages and their 11-question quiz
+have also been inspected, including gated review tasks and code-blank grading;
+see `research/2026-09-23-lists.md`. Deeper reviews of later chapters remain. Do not
 describe the whole course as mapped or rewritten.
 
 Authored and implemented in this pass:
@@ -59,6 +61,11 @@ Authored and implemented in this pass:
   activity completion and learner files remain preserved.
 
 Implemented workspace changes:
+
+- List foundations now have 14 rewritten pages, 37 connected checkpoints, 24
+  alternate-input cases and 17 runnable examples. Supplied programs grow into an
+  equipment-room report; historical output keeps early steps verifiable after edits.
+  Nested JSON lists are supported as isolated probe inputs.
 
 - Shared Lezer Python token categories/CSS for CodeMirror, lesson examples, quiz
   snippets and solution views; transparent active line preserves selection.
@@ -96,12 +103,15 @@ Verification so far:
    treat its loading state as a blocker to original course authoring.
 3. Continue the same source review and authoring process for every remaining chapter,
    challenge set and quiz. Record coverage and remaining uncertainties per chapter.
+   The reviewed list quiz uses code blanks as well as multiple choice. Implement
+   token placement/removal, submission, per-slot feedback, saved drafts and legacy
+   attempt compatibility before counting that quiz as matched.
 4. Verify each revised chapter with valid starters, staged attempts, useful failures,
    independently executable examples and accepted alternative solutions.
 5. Perform a requirement-by-requirement completion audit. A green existing content
    count test alone does not establish richer explanations or appropriate tasks.
 
 This goal turn made progress: original course authoring, implementation, tests and
-fresh source observations. Current rewrite coverage is 32/160 core lesson pages,
+fresh source observations. Current rewrite coverage is 46/160 core lesson pages,
 2/8 supporting readings, 2/13 quizzes with enhanced feedback, and 0/59 challenges.
 No blocker prevents continuing. The full goal remains active.
