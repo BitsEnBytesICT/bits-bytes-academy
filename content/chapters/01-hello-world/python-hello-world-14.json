@@ -4,38 +4,84 @@
   "group": "python-hello-world",
   "title": {
     "en": "Multiline text",
-    "nl": "Tekst op meerdere regels"
+    "nl": "Strings op meerdere regels"
   },
   "kind": "coding",
   "optional": false,
   "explanation": {
-    "en": "Triple quotes create a string that can span several lines. Newlines and indentation inside the quoted text remain part of the string. You can also insert a newline with \\n.",
-    "nl": "Met drie aanhalingstekens maak je een string die meerdere regels kan beslaan. Nieuwe regels en inspringing binnen de tekst blijven onderdeel van de string. Met \\n kun je ook een nieuwe regel invoegen."
+    "en": "An announcement, address or short document may contain actual line breaks. Triple-quoted strings let a single string literal continue over several code lines. Use three matching single or double quotes at both ends.",
+    "nl": "Een aankondiging, adres of kort document kan echte regeleinden bevatten. Met drie aanhalingstekens kan één string literal over meerdere coderegels doorlopen. Gebruik aan beide kanten drie passende enkele of dubbele aanhalingstekens."
   },
   "example": "",
+  "sections": [
+    {
+      "heading": {
+        "en": "Line breaks are part of the value",
+        "nl": "Regeleinden horen bij de waarde"
+      },
+      "body": {
+        "en": "Everything inside the delimiters becomes part of the string, including newlines and indentation. Starting the text on the line after the opening quotes adds a leading newline. To avoid it, start the text immediately after the opening quotes.",
+        "nl": "Alles binnen de begrenzing hoort bij de string, inclusief regeleinden en inspringing. Begin je de tekst op de regel na de openingsaanhalingstekens, dan voeg je een regeleinde vooraan toe. Begin de tekst direct na de aanhalingstekens om dit te voorkomen."
+      },
+      "code": "notice = \"\"\"Service update\nUse the side entrance\"\"\"\nprint(notice)",
+      "output": "Service update\nUse the side entrance"
+    },
+    {
+      "heading": {
+        "en": "Another way to represent a newline",
+        "nl": "Een andere manier om een regeleinde te schrijven"
+      },
+      "body": {
+        "en": "Inside an ordinary string, `\\n` represents a newline. Triple quotes are often easier to read for longer text. They can also contain ordinary quote marks. A triple-quoted string is still a string, not a comment. In specific positions it can document a module or function as a docstring; ordinary comments use `#`.",
+        "nl": "Binnen een gewone string staat `\\n` voor een regeleinde. Drie aanhalingstekens maken langere tekst vaak beter leesbaar. Gewone aanhalingstekens kunnen er ook in staan. Zo'n string blijft een string en is geen comment. Op bepaalde posities kan deze een module of functie documenteren als docstring; gewone comments gebruiken `#`."
+      },
+      "code": "print(\"Line one\\nLine two\")",
+      "output": "Line one\nLine two"
+    }
+  ],
   "files": {
-    "main.py": "# Write your code below.\n"
+    "main.py": "# This one-line placeholder needs the two-line announcement.\nbulletin = \"Announcement pending\"\n\n# Display the bulletin below.\n"
   },
   "solution": {
     "main.py": "bulletin = \"\"\"Welcome aboard\nNext stop: Delft\"\"\"\nprint(bulletin)\n"
   },
   "checkpoints": [
     {
-      "id": "python-hello-world-14-step-1",
+      "id": "python-hello-world-14-v2-step-1",
       "task": {
-        "en": "Create bulletin with two lines: Welcome aboard and Next stop: Delft. Print it.",
-        "nl": "Maak bulletin met twee regels: Welcome aboard en Next stop: Delft. Druk de string af."
+        "en": "Create `bulletin` as a triple-quoted string with exactly two lines: `Welcome aboard` and `Next stop: Delft`. Do not add a blank line at either end.",
+        "nl": "Maak `bulletin` als een string met drie aanhalingstekens en precies twee regels: `Welcome aboard` en `Next stop: Delft`. Voeg aan het begin en einde geen lege regel toe."
       },
-      "check": "bulletin == 'Welcome aboard\\nNext stop: Delft' and _stdout.strip() == bulletin",
+      "check": "bulletin == 'Welcome aboard\\nNext stop: Delft'",
+      "feedback": {
+        "en": "Check the exact two lines and remove any leading or trailing newline or indentation.",
+        "nl": "Controleer de twee exacte regels en verwijder regeleinden of inspringing aan het begin of einde."
+      },
       "hint": {
-        "en": "Start with bulletin = \"\"\"Welcome aboard. Then compare the values with the task.",
-        "nl": "Begin met bulletin = \"\"\"Welcome aboard. Vergelijk de waarden daarna met de opdracht."
+        "en": "Put the first word directly after the opening triple quotes and close the string directly after Delft.",
+        "nl": "Zet het eerste woord direct na de drie openingsaanhalingstekens en sluit de string direct na Delft."
+      }
+    },
+    {
+      "id": "python-hello-world-14-v2-step-2",
+      "task": {
+        "en": "Print `bulletin` with one print call. Run the program and compare the output's two lines with the layout of your string.",
+        "nl": "Druk `bulletin` met één print-aanroep af. Voer het programma uit en vergelijk de twee outputregels met de indeling van je string."
+      },
+      "check": "_stdout == 'Welcome aboard\\nNext stop: Delft\\n' and any(isinstance(n,_ast.Call) and isinstance(n.func,_ast.Name) and n.func.id == 'print' and any(isinstance(x,_ast.Name) and x.id == 'bulletin' for x in n.args) for n in _ast.walk(_ast.parse(_source)))",
+      "feedback": {
+        "en": "Print the bulletin variable itself, without extra messages or blank lines.",
+        "nl": "Druk de variabele bulletin zelf af, zonder extra berichten of lege regels."
+      },
+      "hint": {
+        "en": "Pass bulletin without quotes to print; the newline is already stored inside it.",
+        "nl": "Geef bulletin zonder aanhalingstekens aan print; het regeleinde is al in de string opgeslagen."
       }
     }
   ],
   "solutionNote": {
-    "en": "Triple quotes create a string that can span several lines. Newlines and indentation inside the quoted text remain part of the string. You can also insert a newline with \\n.\n\nTrace the solution one line at a time. Try a different input to see which parts change.",
-    "nl": "Met drie aanhalingstekens maak je een string die meerdere regels kan beslaan. Nieuwe regels en inspringing binnen de tekst blijven onderdeel van de string. Met \\n kun je ook een nieuwe regel invoegen.\n\nVolg de oplossing regel voor regel. Probeer een andere invoer en bekijk welke onderdelen veranderen."
+    "en": "The internal newline separates the two announcement lines. print adds one final newline after the whole string. Keeping the text flush with the left edge avoids storing unintended indentation.",
+    "nl": "Het interne regeleinde scheidt de twee aankondigingsregels. print voegt na de hele string nog één regeleinde toe. Door de tekst links te laten beginnen sla je geen onbedoelde inspringing op."
   },
   "sourcePosition": 14,
   "sourceUrl": "https://www.codecademy.com/courses/learn-python-3/lessons/python-hello-world/exercises/multiline-strings",

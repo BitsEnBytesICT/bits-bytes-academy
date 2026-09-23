@@ -101,6 +101,30 @@ The final production restart was checked by comparing every backup field except 
   this workspace update. Full curriculum revision remains in progress; see
   `COURSE-REVISION.md` for coverage and outstanding work.
 
+## Foundation teaching revision (23 September 2026)
+
+- Production build and type checking pass. Full tests pass: 227 reference
+  programs, 206 negative cases, 64 executable quiz predictions, console coverage,
+  and 17 API/workspace/progress/runner/presentation/terminal tests.
+- New guided-content verification executes 27 worked examples independently and
+  compares exact expected output. It checks 20 intermediate learner attempts,
+  untouched starters, a comment-marker false positive and hard-coded power answers.
+- All 15 foundation pages plus the input reading are rewritten. Foundation coding
+  now has 35 checkpoints; chapter quiz feedback is specific to each choice.
+- Browser QA on port 3002: packing exercise advanced from 1/4 to 4/4 with an
+  alternative variable-based solution; hints and failure feedback were visible;
+  Continue enabled; code, completed checks and language survived reload.
+- Dutch explanations, inline code, worked output and hint/feedback translation
+  were checked. A wrong quiz choice received its specific Dutch explanation and
+  stayed selected with the same feedback after reload. Browser error log empty.
+- Existing learner files are protected by a regression test even when new starters
+  differ. Completed activities remain complete after revised or failed attempts;
+  old checkpoint IDs do not satisfy new tasks. No database migration is involved.
+- Desktop rendering was visually checked with unchanged pane/font sizing. The
+  attempted viewport override did not resize the background preview, so this pass
+  does not claim a new phone-size visual check. The override was reset. Previous
+  mobile verification above applies to the unchanged responsive layout.
+
 ## Reproduce
 
 ```sh

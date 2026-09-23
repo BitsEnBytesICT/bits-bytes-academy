@@ -4,38 +4,104 @@
   "group": "python-hello-world",
   "title": {
     "en": "Reassignment",
-    "nl": "Waarden opnieuw toewijzen"
+    "nl": "Waarden opnieuw berekenen"
   },
   "kind": "coding",
   "optional": false,
   "explanation": {
-    "en": "Assignment can replace a variable’s earlier value. In score = score + 2, Python reads the current score, calculates a new value, and then stores it back under the same name.",
-    "nl": "Assignment kan een eerdere waarde vervangen. Bij score = score + 2 leest Python eerst de huidige score, berekent een nieuwe waarde en slaat deze daarna op onder dezelfde naam."
+    "en": "Assignment stores the result of an expression at that moment. It does not create a live spreadsheet formula. If a value used in the calculation changes later, you must run the calculation again to obtain an updated result.",
+    "nl": "Een toewijzing slaat het resultaat van een expressie op dat moment op. Er ontstaat geen formule die automatisch wordt bijgewerkt zoals in een spreadsheet. Verandert later een gebruikte waarde, dan moet je de berekening opnieuw uitvoeren om een bijgewerkt resultaat te krijgen."
   },
   "example": "",
+  "sections": [
+    {
+      "heading": {
+        "en": "Stored results do not update themselves",
+        "nl": "Opgeslagen resultaten veranderen niet vanzelf"
+      },
+      "body": {
+        "en": "Trace the current value of each name after every line. Changing `tickets` does not change the already calculated `cost`.",
+        "nl": "Houd na iedere regel de huidige waarde van elke naam bij. Het veranderen van `tickets` verandert de al berekende `cost` niet."
+      },
+      "code": "tickets = 2\nprice = 4\ncost = tickets * price\ntickets = 3\nprint(cost)\ncost = tickets * price\nprint(cost)",
+      "output": "8\n12",
+      "takeaway": {
+        "en": "Only the second assignment to cost uses the new ticket count. The first printed result still reflects two tickets.",
+        "nl": "Pas de tweede toewijzing aan cost gebruikt het nieuwe aantal kaartjes. Het eerste afgedrukte resultaat hoort nog bij twee kaartjes."
+      }
+    },
+    {
+      "heading": {
+        "en": "Using the old value in a new assignment",
+        "nl": "De oude waarde gebruiken bij een nieuwe toewijzing"
+      },
+      "body": {
+        "en": "In `score = score + 2`, Python reads the old score, adds 2, and associates the resulting value with the name score. Assignment is not an algebraic equation: the right side is evaluated before the name on the left is updated.",
+        "nl": "Bij `score = score + 2` leest Python de oude score, telt 2 op en koppelt het resultaat aan de naam score. Een toewijzing is geen wiskundige vergelijking: de rechterkant wordt uitgerekend voordat de naam links wordt bijgewerkt."
+      },
+      "code": "score = 10\nscore = score + 2\nprint(score)",
+      "output": "12"
+    }
+  ],
   "files": {
-    "main.py": "# Write your code below.\n"
+    "main.py": "# Original order: correct the quantity and fill in the calculation.\nkits = 0\nprice = 8\noriginal_total = 0\nprint(original_total)\n\n# A customer adds another kit. Update kits here.\n\n# Recalculate from the current data.\nupdated_total = 0\nprint(updated_total)\n"
   },
   "solution": {
-    "main.py": "score = 10\nscore = score + 7\nscore = score - 3\nprint(score)\n"
+    "main.py": "kits = 3\nprice = 8\noriginal_total = kits * price\nprint(original_total)\nkits = kits + 1\nupdated_total = kits * price\nprint(updated_total)\n"
   },
   "checkpoints": [
     {
-      "id": "python-hello-world-09-step-1",
+      "id": "python-hello-world-09-v2-step-1",
       "task": {
-        "en": "Start score at 10. Add 7, then subtract 3. Print the final score.",
-        "nl": "Begin met score = 10. Tel er 7 bij op en trek er daarna 3 van af. Druk de eindscore af."
+        "en": "An order starts with 3 kits at 8 euros each. Assign `kits = 3` and `price = 8`, then calculate `original_total = kits * price` and print it.",
+        "nl": "Een bestelling begint met 3 kits van 8 euro per stuk. Wijs `kits = 3` en `price = 8` toe, bereken `original_total = kits * price` en druk dit af."
       },
-      "check": "score == 14 and _stdout.strip() == '14'",
+      "check": "price == 8 and original_total == 24 and _stdout.splitlines()[:1] == ['24']",
+      "feedback": {
+        "en": "original_total should remain 24 and be printed first.",
+        "nl": "original_total moet 24 blijven en als eerste worden afgedrukt."
+      },
       "hint": {
-        "en": "Start with score = 10. Then compare the values with the task.",
-        "nl": "Begin met score = 10. Vergelijk de waarden daarna met de opdracht."
+        "en": "Calculate the original total before changing kits.",
+        "nl": "Bereken het oorspronkelijke totaal voordat je kits verandert."
+      }
+    },
+    {
+      "id": "python-hello-world-09-v2-step-2",
+      "task": {
+        "en": "Below the original calculation, increase `kits` by 1 using `kits = kits + 1`. Keep `original_total` unchanged.",
+        "nl": "Verhoog onder de oorspronkelijke berekening `kits` met 1 via `kits = kits + 1`. Laat `original_total` ongewijzigd."
+      },
+      "check": "kits == 4 and original_total == 24 and any(isinstance(n, _ast.Assign) and any(isinstance(t, _ast.Name) and t.id == 'kits' for t in n.targets) and isinstance(n.value, _ast.BinOp) and isinstance(n.value.op, _ast.Add) and all(key in [x.id for x in _ast.walk(n.value) if isinstance(x, _ast.Name)] for key in [\"kits\"]) for n in _ast.walk(_ast.parse(_source)))",
+      "feedback": {
+        "en": "Update kits with addition; the final count is 4 and the original total stays 24.",
+        "nl": "Werk kits bij met een optelling; het uiteindelijke aantal is 4 en het oorspronkelijke totaal blijft 24."
+      },
+      "hint": {
+        "en": "Use kits on both sides of the assignment. The right side reads its previous value.",
+        "nl": "Gebruik kits aan beide kanten van de toewijzing. Rechts wordt de vorige waarde gelezen."
+      }
+    },
+    {
+      "id": "python-hello-world-09-v2-step-3",
+      "task": {
+        "en": "Calculate `updated_total` from the current `kits` and `price`, then print it on the second line. Compare the old and new totals.",
+        "nl": "Bereken `updated_total` met de huidige `kits` en `price` en druk dit op de tweede regel af. Vergelijk het oude en nieuwe totaal."
+      },
+      "check": "updated_total == 32 and _stdout.splitlines() == ['24', '32'] and any(isinstance(n, _ast.Assign) and any(isinstance(t, _ast.Name) and t.id == 'updated_total' for t in n.targets) and isinstance(n.value, _ast.BinOp) and isinstance(n.value.op, _ast.Mult) and all(key in [x.id for x in _ast.walk(n.value) if isinstance(x, _ast.Name)] for key in [\"kits\",\"price\"]) for n in _ast.walk(_ast.parse(_source)))",
+      "feedback": {
+        "en": "Recalculate the order after the change. The output should be 24, then 32.",
+        "nl": "Bereken de bestelling opnieuw na de wijziging. De output moet 24 zijn, gevolgd door 32."
+      },
+      "hint": {
+        "en": "Reuse the multiplication with the same names after increasing kits.",
+        "nl": "Gebruik na het verhogen van kits opnieuw de vermenigvuldiging met dezelfde namen."
       }
     }
   ],
   "solutionNote": {
-    "en": "Assignment can replace a variable’s earlier value. In score = score + 2, Python reads the current score, calculates a new value, and then stores it back under the same name.\n\nTrace the solution one line at a time. Try a different input to see which parts change.",
-    "nl": "Assignment kan een eerdere waarde vervangen. Bij score = score + 2 leest Python eerst de huidige score, berekent een nieuwe waarde en slaat deze daarna op onder dezelfde naam.\n\nVolg de oplossing regel voor regel. Probeer een andere invoer en bekijk welke onderdelen veranderen."
+    "en": "original_total preserves the first calculation. Increasing kits updates only kits. The later multiplication uses the new count and produces updated_total, so both snapshots can be displayed.",
+    "nl": "original_total bewaart de eerste berekening. Het verhogen van kits verandert alleen kits. De latere vermenigvuldiging gebruikt het nieuwe aantal voor updated_total, zodat je beide momenten kunt tonen."
   },
   "sourcePosition": 9,
   "sourceUrl": "https://www.codecademy.com/courses/learn-python-3/lessons/python-hello-world/exercises/changing-numbers",

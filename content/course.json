@@ -414,20 +414,58 @@
       "kind": "reading",
       "optional": false,
       "explanation": {
-        "en": "Welcome to your Python workspace. The left pane explains each concept and gives you a task. Write Python in the middle and press Run code. The terminal on the right shows output and errors.\n\nExperiment freely: Reset restores the starter files, hints offer a nudge, and View solution explains a working answer. Your code and progress are saved automatically.",
-        "nl": "Welkom in je Python-werkruimte. Links vind je uitleg en een opdracht. In het midden schrijf je Python en met Code uitvoeren start je het programma. Rechts toont de terminal de output en eventuele fouten.\n\nExperimenteer gerust: je kunt de startbestanden herstellen, een hint bekijken of een werkende oplossing bestuderen. Je code en voortgang worden automatisch opgeslagen."
+        "en": "A program is a set of instructions a computer can follow. Python lets us write those instructions in a language designed to be readable. You will learn it by changing real programs, predicting what they do, and testing your ideas.",
+        "nl": "Een programma is een reeks instructies die een computer kan uitvoeren. Met Python schrijf je die instructies in een taal die goed leesbaar is. Je leert de taal door echte programma's aan te passen, te voorspellen wat ze doen en je ideeën uit te proberen."
       },
       "example": "",
+      "sections": [
+        {
+          "heading": {
+            "en": "From code to output",
+            "nl": "Van code naar output"
+          },
+          "body": {
+            "en": "The editor contains a file called `main.py`. When you choose Run code, Python reads that file from top to bottom. The terminal shows what the program prints. Here, the quoted words are the message and `print()` is the instruction that displays it.",
+            "nl": "In de editor staat een bestand met de naam `main.py`. Met Code uitvoeren laat je Python dit bestand van boven naar beneden lezen. De terminal toont wat het programma afdrukt. De woorden tussen aanhalingstekens vormen het bericht; `print()` zorgt dat het verschijnt."
+          },
+          "code": "print(\"Hello, explorer!\")\nprint(\"Your journey starts here.\")",
+          "output": "Hello, explorer!\nYour journey starts here.",
+          "takeaway": {
+            "en": "Two instructions produce two lines. Python does not print the surrounding quotes or parentheses: those tell Python how to interpret the code.",
+            "nl": "Twee instructies leveren twee regels op. Python drukt de omringende aanhalingstekens en haakjes niet af: die vertellen Python hoe de code gelezen moet worden."
+          }
+        },
+        {
+          "heading": {
+            "en": "Try it in your workspace",
+            "nl": "Probeer het in je werkruimte"
+          },
+          "body": {
+            "en": "Run the starter program first. Then replace `explorer` with your name inside the quotes and run it again. Change only the message: keep the matching quotes and parentheses. What changes in the output?\n\nLater lessons contain numbered tasks with individual checks and hints. Run after each small change. An error is feedback about the program, not a reason to start over.",
+            "nl": "Voer eerst de startcode uit. Vervang daarna `explorer` tussen de aanhalingstekens door je naam en voer de code opnieuw uit. Verander alleen de tekst: laat de bij elkaar passende aanhalingstekens en haakjes staan. Wat verandert er in de output?\n\nVolgende lessen bevatten genummerde opdrachten met eigen controles en hints. Voer je code na elke kleine wijziging uit. Een foutmelding geeft informatie over je programma; je hoeft niet opnieuw te beginnen."
+          }
+        },
+        {
+          "heading": {
+            "en": "Your files and the console",
+            "nl": "Je bestanden en de console"
+          },
+          "body": {
+            "en": "Your files and course progress are saved automatically. The terminal also accepts short Python commands at `>`. These experiments do not complete tasks; use Run code to check your saved program. Reset restores the starter files for this activity, so use it only when you want to discard your current edits.",
+            "nl": "Je bestanden en cursusvoortgang worden automatisch opgeslagen. Bij `>` in de terminal kun je ook korte Python-opdrachten invoeren. Deze experimenten voltooien geen taken; gebruik Code uitvoeren om je opgeslagen programma te controleren. Herstellen zet de startbestanden van deze activiteit terug, dus gebruik dit alleen als je je huidige aanpassingen wilt weggooien."
+          }
+        }
+      ],
       "files": {
-        "main.py": "print(\"Welcome to Python Lab!\")\nprint(\"Small steps. Real skills.\")\n"
+        "main.py": "print(\"Hello, explorer!\")\nprint(\"I am learning Python.\")\n"
       },
       "solution": {
-        "main.py": "print(\"Welcome to Python Lab!\")\nprint(\"Small steps. Real skills.\")\n"
+        "main.py": "print(\"Hello, Sam!\")\nprint(\"I am learning Python.\")\n"
       },
       "checkpoints": [],
       "solutionNote": {
-        "en": "Welcome to your Python workspace. The left pane explains each concept and gives you a task. Write Python in the middle and press Run code. The terminal on the right shows output and errors.\n\nExperiment freely: Reset restores the starter files, hints offer a nudge, and View solution explains a working answer. Your code and progress are saved automatically.\n\nTrace the solution one line at a time. Try a different input to see which parts change.",
-        "nl": "Welkom in je Python-werkruimte. Links vind je uitleg en een opdracht. In het midden schrijf je Python en met Code uitvoeren start je het programma. Rechts toont de terminal de output en eventuele fouten.\n\nExperimenteer gerust: je kunt de startbestanden herstellen, een hint bekijken of een werkende oplossing bestuderen. Je code en voortgang worden automatisch opgeslagen.\n\nVolg de oplossing regel voor regel. Probeer een andere invoer en bekijk welke onderdelen veranderen."
+        "en": "Only the text inside the first pair of quotes changes. Any name is fine. Run the program again to see the new message, then continue to comments.",
+        "nl": "Alleen de tekst binnen de eerste aanhalingstekens verandert. Elke naam is goed. Voer het programma opnieuw uit om je nieuwe bericht te zien en ga daarna verder met comments."
       },
       "sourcePosition": 1,
       "sourceUrl": "https://www.codecademy.com/courses/learn-python-3/lessons/python-hello-world/exercises/welcome",
@@ -444,33 +482,83 @@
       "kind": "coding",
       "optional": false,
       "explanation": {
-        "en": "A comment explains an intention to a reader. Python ignores everything after # on the same line, unless the character is inside a string. Good comments explain why an operation exists.",
-        "nl": "Een comment legt je bedoeling uit aan de lezer. Python negeert alles na # op dezelfde regel, behalve wanneer het teken in een string staat. Een goede comment legt uit waarom een bewerking nodig is."
+        "en": "Code has two audiences: Python executes it, and people read it. A comment is a note for the reader. It can explain a decision, describe a section, or temporarily disable an instruction while you investigate a problem.",
+        "nl": "Code heeft twee doelgroepen: Python voert de code uit en mensen lezen de code. Een comment is een notitie voor de lezer. Je kunt een keuze uitleggen, een onderdeel beschrijven of een instructie tijdelijk uitschakelen terwijl je een probleem onderzoekt."
       },
-      "example": "# Explain the purpose\nprint(\"Ready\")",
+      "example": "",
+      "sections": [
+        {
+          "heading": {
+            "en": "What Python skips",
+            "nl": "Wat Python overslaat"
+          },
+          "body": {
+            "en": "Outside a string, `#` starts a comment that continues to the end of that line. A comment can occupy its own line or follow an instruction. Python still executes any code before the `#`.",
+            "nl": "Buiten een string begint `#` een comment die doorloopt tot het einde van de regel. Een comment kan op een eigen regel staan of achter een instructie. Code vóór de `#` wordt gewoon uitgevoerd."
+          },
+          "code": "# Explain why this message is shown\nprint(\"Boarding soon\")  # Passenger update\n# print(\"Cancelled\")",
+          "output": "Boarding soon",
+          "takeaway": {
+            "en": "The last line looks like an instruction, but its leading `#` makes the whole line a comment. Removing that character would enable the instruction again.",
+            "nl": "De laatste regel lijkt op een instructie, maar door de `#` vooraan is de hele regel een comment. Verwijder dat teken en de instructie wordt weer uitgevoerd."
+          }
+        },
+        {
+          "heading": {
+            "en": "Text is different",
+            "nl": "Tekst is iets anders"
+          },
+          "body": {
+            "en": "A `#` inside quotes is ordinary text. Good comments add useful context instead of repeating exactly what the code already says. For this exercise, leave the old forecast visible in the file but prevent it from running.",
+            "nl": "Een `#` tussen aanhalingstekens is gewone tekst. Goede comments geven extra context in plaats van letterlijk te herhalen wat de code al zegt. Laat in deze oefening het oude weerbericht in het bestand staan, maar zorg dat het niet wordt uitgevoerd."
+          },
+          "code": "print(\"Platform #4\")",
+          "output": "Platform #4"
+        }
+      ],
       "files": {
-        "main.py": "print(\"Sunny\")\n"
+        "main.py": "print(\"Sunny\")\nprint(\"Rain yesterday\")\n"
       },
       "solution": {
-        "main.py": "# Current weather summary\nprint(\"Sunny\")\n"
+        "main.py": "# Current forecast for passengers\nprint(\"Sunny\")\n# print(\"Rain yesterday\")\n"
       },
       "checkpoints": [
         {
-          "id": "python-hello-world-02-step-1",
+          "id": "python-hello-world-02-v2-step-1",
           "task": {
-            "en": "Add a comment describing the weather report. Keep the output Sunny.",
-            "nl": "Voeg een comment toe over het weerbericht. Zorg dat de output Sunny blijft."
+            "en": "Add a comment on its own line above the first `print()` explaining that this is the current forecast.",
+            "nl": "Voeg boven de eerste `print()` op een eigen regel een comment toe die uitlegt dat dit het huidige weerbericht is."
           },
-          "check": "'#' in _source and _stdout.strip() == 'Sunny'",
+          "check": "any(t.type == __import__('tokenize').COMMENT and t.start[1] == 0 and len(t.string.lstrip('# ').strip()) > 0 and t.start[0] < next((i + 1 for i, line in enumerate(_source.splitlines()) if line.strip().startswith('print(')), 0) for t in __import__('tokenize').generate_tokens(__import__('io').StringIO(_source).readline))",
+          "feedback": {
+            "en": "Add an actual Python comment; a `#` inside a string does not count.",
+            "nl": "Voeg een echte Python-comment toe; een `#` in een string telt niet mee."
+          },
           "hint": {
-            "en": "Start with print(\"Sunny\"). Then compare the values with the task.",
-            "nl": "Begin met print(\"Sunny\"). Vergelijk de waarden daarna met de opdracht."
+            "en": "Start the note with `#`. Write it outside the quoted message.",
+            "nl": "Begin de notitie met `#`. Schrijf deze buiten de tekst tussen aanhalingstekens."
+          }
+        },
+        {
+          "id": "python-hello-world-02-v2-step-2",
+          "task": {
+            "en": "Comment out the line that prints `Rain yesterday`. Keep that line in the file, then run the program. Only `Sunny` should appear.",
+            "nl": "Schakel de regel met `Rain yesterday` uit met een comment. Laat de regel in het bestand staan en voer het programma uit. Alleen `Sunny` mag verschijnen."
+          },
+          "check": "_stdout == 'Sunny\\n' and any(t.type == __import__('tokenize').COMMENT and 'print(' in t.string and 'Rain yesterday' in t.string for t in __import__('tokenize').generate_tokens(__import__('io').StringIO(_source).readline))",
+          "feedback": {
+            "en": "Keep the old print instruction as a comment and check that the terminal contains just Sunny.",
+            "nl": "Bewaar de oude print-instructie als comment en controleer dat de terminal alleen Sunny bevat."
+          },
+          "hint": {
+            "en": "Put `#` before the second `print`, not inside its quotes.",
+            "nl": "Zet `#` vóór de tweede `print`, niet binnen de aanhalingstekens."
           }
         }
       ],
       "solutionNote": {
-        "en": "A comment explains an intention to a reader. Python ignores everything after # on the same line, unless the character is inside a string. Good comments explain why an operation exists.\n\nTrace the solution one line at a time. Try a different input to see which parts change.",
-        "nl": "Een comment legt je bedoeling uit aan de lezer. Python negeert alles na # op dezelfde regel, behalve wanneer het teken in een string staat. Een goede comment legt uit waarom een bewerking nodig is.\n\nVolg de oplossing regel voor regel. Probeer een andere invoer en bekijk welke onderdelen veranderen."
+        "en": "The descriptive comment helps the reader. The second comment keeps the previous instruction for reference while preventing its output. Neither comment changes the remaining print call.",
+        "nl": "De beschrijvende comment helpt de lezer. De tweede comment bewaart de vorige instructie als naslag en voorkomt dat deze wordt uitgevoerd. Beide comments laten de overgebleven print-opdracht ongemoeid."
       },
       "sourcePosition": 2,
       "sourceUrl": "https://www.codecademy.com/courses/learn-python-3/lessons/python-hello-world/exercises/comments",
@@ -487,33 +575,81 @@
       "kind": "coding",
       "optional": false,
       "explanation": {
-        "en": "print() sends a value to the terminal. Put the value between parentheses. Text must be surrounded by matching quotes; the quotes themselves are not printed.",
-        "nl": "print() stuurt een waarde naar de terminal. Zet de waarde tussen haakjes. Tekst staat tussen bij elkaar passende aanhalingstekens; die tekens verschijnen niet in de output."
+        "en": "A program can calculate quietly, but people often need to see its results. The built-in `print()` function sends information to the terminal. Calling a function means asking it to perform its job; the parentheses contain the information you give it.",
+        "nl": "Een programma kan op de achtergrond rekenen, maar mensen willen de resultaten vaak zien. De ingebouwde functie `print()` stuurt informatie naar de terminal. Een functie aanroepen betekent dat je deze een taak laat uitvoeren; tussen de haakjes geef je de benodigde informatie mee."
       },
-      "example": "print(\"Good morning\")",
+      "example": "",
+      "sections": [
+        {
+          "heading": {
+            "en": "One call, one line",
+            "nl": "Eén aanroep, één regel"
+          },
+          "body": {
+            "en": "Put a quoted message between the parentheses. A normal `print()` call ends its output with a newline, so the next call starts on a new line. The order of the calls determines the order of the messages.",
+            "nl": "Zet een bericht tussen aanhalingstekens binnen de haakjes. Een gewone `print()` sluit de output af met een regeleinde. Daardoor begint de volgende aanroep op een nieuwe regel. De volgorde van de aanroepen bepaalt de volgorde van de berichten."
+          },
+          "code": "print(\"Train status\")\nprint(\"On time\")",
+          "output": "Train status\nOn time",
+          "takeaway": {
+            "en": "Read the code aloud as: display Train status, then display On time. The quotes and the word print are instructions, not part of the displayed message.",
+            "nl": "Lees de code als: toon Train status en toon daarna On time. De aanhalingstekens en het woord print zijn instructies en horen niet bij het getoonde bericht."
+          }
+        },
+        {
+          "heading": {
+            "en": "Predict, then run",
+            "nl": "Voorspel en voer uit"
+          },
+          "body": {
+            "en": "You are building a two-line departure board. Before running your code, predict the exact lines, including spaces and capitals. If the result differs, compare one character at a time. Output checks are useful because a program can run without errors and still display the wrong information.",
+            "nl": "Je bouwt een vertrekbord met twee regels. Voorspel vóór het uitvoeren de exacte regels, inclusief spaties en hoofdletters. Vergelijk bij een afwijking de tekst teken voor teken. Outputcontroles zijn nuttig: een programma kan zonder fouten draaien en toch verkeerde informatie tonen."
+          }
+        }
+      ],
       "files": {
-        "main.py": "# Write your code below.\n"
+        "main.py": "# The screen needs a title and a platform number.\nprint(\"Untitled board\")\n# Add the platform message below.\n"
       },
       "solution": {
-        "main.py": "print(\"Departure board\")\n"
+        "main.py": "print(\"Departure board\")\nprint(\"Platform 4\")\n"
       },
       "checkpoints": [
         {
-          "id": "python-hello-world-03-step-1",
+          "id": "python-hello-world-03-v2-step-1",
           "task": {
-            "en": "Print Departure board on one line.",
-            "nl": "Druk Departure board af op één regel."
+            "en": "Print `Departure board` as the first line. Run your code to check the spelling and spacing.",
+            "nl": "Druk `Departure board` af als eerste regel. Voer de code uit om de spelling en spaties te controleren."
           },
-          "check": "_stdout == 'Departure board\\n'",
+          "check": "_stdout.splitlines()[:1] == ['Departure board']",
+          "feedback": {
+            "en": "The first output line must be exactly Departure board.",
+            "nl": "De eerste outputregel moet precies Departure board zijn."
+          },
           "hint": {
-            "en": "Start with print(\"Departure board\"). Then compare the values with the task.",
-            "nl": "Begin met print(\"Departure board\"). Vergelijk de waarden daarna met de opdracht."
+            "en": "Use `print(\"your message\")` with the required text inside the quotes.",
+            "nl": "Gebruik `print(\"je bericht\")` met de gevraagde tekst tussen de aanhalingstekens."
+          }
+        },
+        {
+          "id": "python-hello-world-03-v2-step-2",
+          "task": {
+            "en": "Add a second `print()` call below the first. It must display `Platform 4` on the next line, with no extra output.",
+            "nl": "Voeg onder de eerste aanroep een tweede `print()` toe. Deze moet `Platform 4` op de volgende regel tonen, zonder extra output."
+          },
+          "check": "_stdout == 'Departure board\\nPlatform 4\\n' and sum(isinstance(n, _ast.Call) and isinstance(n.func, _ast.Name) and n.func.id == 'print' for n in _ast.walk(_ast.parse(_source))) == 2",
+          "feedback": {
+            "en": "Use two print calls in order: Departure board, then Platform 4.",
+            "nl": "Gebruik twee print-aanroepen in deze volgorde: Departure board en daarna Platform 4."
+          },
+          "hint": {
+            "en": "Keep the first call. Write another call on its own code line below it.",
+            "nl": "Laat de eerste aanroep staan. Schrijf daaronder een nieuwe aanroep op een eigen coderegel."
           }
         }
       ],
       "solutionNote": {
-        "en": "print() sends a value to the terminal. Put the value between parentheses. Text must be surrounded by matching quotes; the quotes themselves are not printed.\n\nTrace the solution one line at a time. Try a different input to see which parts change.",
-        "nl": "print() stuurt een waarde naar de terminal. Zet de waarde tussen haakjes. Tekst staat tussen bij elkaar passende aanhalingstekens; die tekens verschijnen niet in de output.\n\nVolg de oplossing regel voor regel. Probeer een andere invoer en bekijk welke onderdelen veranderen."
+        "en": "Each print call supplies one line. Keeping the two calls in reading order makes the program match the display. A third print call would add unwanted output.",
+        "nl": "Elke print-aanroep levert één regel. Door de aanroepen in leesvolgorde te plaatsen, komt de code overeen met het scherm. Een derde aanroep zou ongewenste output toevoegen."
       },
       "sourcePosition": 3,
       "sourceUrl": "https://www.codecademy.com/courses/learn-python-3/lessons/python-hello-world/exercises/print",
@@ -525,38 +661,104 @@
       "group": "python-hello-world",
       "title": {
         "en": "String literals",
-        "nl": "String literals"
+        "nl": "Strings: tekst in Python"
       },
       "kind": "coding",
       "optional": false,
       "explanation": {
-        "en": "A string represents text. Single and double quotes both work, but the opening and closing quote must match. Spaces inside the quotes are part of the value.",
-        "nl": "Een string stelt tekst voor. Je kunt enkele of dubbele aanhalingstekens gebruiken, zolang begin en einde bij elkaar passen. Spaties tussen de aanhalingstekens horen bij de waarde."
+        "en": "Python calls a piece of text a string. A string literal is text written directly in your code between quotes. The quotes mark where the text starts and ends; they are not part of the string's contents.",
+        "nl": "Python noemt een stukje tekst een string. Een string literal is tekst die je direct tussen aanhalingstekens in de code schrijft. De aanhalingstekens geven aan waar de tekst begint en eindigt; ze horen niet bij de inhoud van de string."
       },
-      "example": "label = 'North gate'\nprint(label)",
+      "example": "",
+      "sections": [
+        {
+          "heading": {
+            "en": "Two ways to quote text",
+            "nl": "Twee manieren om tekst te schrijven"
+          },
+          "body": {
+            "en": "Single quotes and double quotes create the same kind of value. Choose one style for a string and close it with the same type of quote. Spaces inside the quotes are preserved.",
+            "nl": "Enkele en dubbele aanhalingstekens maken hetzelfde soort waarde. Kies voor een string één soort en sluit af met hetzelfde teken. Spaties binnen de aanhalingstekens blijven behouden."
+          },
+          "code": "print(\"Harbor\")\nprint('Harbor')\nprint(\"North gate\")",
+          "output": "Harbor\nHarbor\nNorth gate",
+          "takeaway": {
+            "en": "The first two lines have different Python spelling but identical output. Quoting digits also makes text: `\"42\"` is a string, whereas `42` is a number.",
+            "nl": "De eerste twee regels zijn anders geschreven in Python, maar hebben dezelfde output. Cijfers tussen aanhalingstekens zijn ook tekst: `\"42\"` is een string en `42` is een getal."
+          }
+        },
+        {
+          "heading": {
+            "en": "Quotes inside a message",
+            "nl": "Aanhalingstekens in een bericht"
+          },
+          "body": {
+            "en": "An apostrophe can accidentally close a single-quoted string. An easy solution is to surround that message with double quotes. The apostrophe then belongs to the text. You will learn other ways to represent special characters later.",
+            "nl": "Een apostrof kan onbedoeld een string met enkele aanhalingstekens afsluiten. Een eenvoudige oplossing is om dubbele aanhalingstekens om het bericht te zetten. De apostrof hoort dan bij de tekst. Andere manieren om bijzondere tekens te schrijven komen later aan bod."
+          },
+          "code": "print(\"It's boarding time\")",
+          "output": "It's boarding time"
+        }
+      ],
       "files": {
-        "main.py": "# Write your code below.\n"
+        "main.py": "# Change this message, then add the other two calls below.\nprint(\"Station name\")\n"
       },
       "solution": {
-        "main.py": "station = \"Harbor\"\nprint(station)\n"
+        "main.py": "print(\"Harbor\")\nprint('Harbor')\nprint(\"It's boarding time\")\n"
       },
       "checkpoints": [
         {
-          "id": "python-hello-world-04-step-1",
+          "id": "python-hello-world-04-v2-step-1",
           "task": {
-            "en": "Create station with the string Harbor, and print it.",
-            "nl": "Maak station met de string Harbor en druk deze af."
+            "en": "Print `Harbor` using double quotes. Run the file and look at whether the quote marks appear in the output.",
+            "nl": "Druk `Harbor` af met dubbele aanhalingstekens. Voer het bestand uit en bekijk of de aanhalingstekens in de output verschijnen."
           },
-          "check": "station == 'Harbor' and isinstance(station, str) and _stdout.strip() == station",
+          "check": "_stdout.splitlines()[:1] == ['Harbor']",
+          "feedback": {
+            "en": "Your first printed line should contain Harbor, without quotation marks.",
+            "nl": "De eerste afgedrukte regel moet Harbor bevatten, zonder aanhalingstekens."
+          },
           "hint": {
-            "en": "Start with station = \"Harbor\". Then compare the values with the task.",
-            "nl": "Begin met station = \"Harbor\". Vergelijk de waarden daarna met de opdracht."
+            "en": "The opening and closing quotes go inside the parentheses.",
+            "nl": "De aanhalingstekens staan binnen de haakjes."
+          }
+        },
+        {
+          "id": "python-hello-world-04-v2-step-2",
+          "task": {
+            "en": "Add a second line that prints `Harbor`, this time using single quotes. Keep both calls so you can compare their output.",
+            "nl": "Voeg een tweede regel toe die `Harbor` afdrukt, nu met enkele aanhalingstekens. Laat beide aanroepen staan zodat je de output kunt vergelijken."
+          },
+          "check": "_stdout.splitlines()[:2] == ['Harbor', 'Harbor']",
+          "feedback": {
+            "en": "The first two output lines should be identical: Harbor.",
+            "nl": "De eerste twee outputregels moeten gelijk zijn: Harbor."
+          },
+          "hint": {
+            "en": "Use a matching pair of single quotes around the same text.",
+            "nl": "Zet dezelfde tekst tussen twee enkele aanhalingstekens."
+          }
+        },
+        {
+          "id": "python-hello-world-04-v2-step-3",
+          "task": {
+            "en": "Print `It's boarding time` on a third line. Choose quotes that allow the apostrophe to be part of your message.",
+            "nl": "Druk `It's boarding time` af op een derde regel. Kies aanhalingstekens waarbij de apostrof bij je bericht hoort."
+          },
+          "check": "_stdout.splitlines() == [\"Harbor\", \"Harbor\", \"It's boarding time\"]",
+          "feedback": {
+            "en": "Keep the first two messages and check the apostrophe, spaces and capitals in the third.",
+            "nl": "Laat de eerste twee berichten staan en controleer de apostrof, spaties en hoofdletters in het derde."
+          },
+          "hint": {
+            "en": "Double quotes around the whole message leave the apostrophe inside it.",
+            "nl": "Met dubbele aanhalingstekens rond het hele bericht blijft de apostrof erin staan."
           }
         }
       ],
       "solutionNote": {
-        "en": "A string represents text. Single and double quotes both work, but the opening and closing quote must match. Spaces inside the quotes are part of the value.\n\nTrace the solution one line at a time. Try a different input to see which parts change.",
-        "nl": "Een string stelt tekst voor. Je kunt enkele of dubbele aanhalingstekens gebruiken, zolang begin en einde bij elkaar passen. Spaties tussen de aanhalingstekens horen bij de waarde.\n\nVolg de oplossing regel voor regel. Probeer een andere invoer en bekijk welke onderdelen veranderen."
+        "en": "The two Harbor strings hold the same text despite their different delimiters. Double quotes around the last message let the apostrophe remain an ordinary character.",
+        "nl": "De twee Harbor-strings bevatten dezelfde tekst, ondanks hun verschillende begrenzing. Door dubbele aanhalingstekens om het laatste bericht is de apostrof een gewoon teken."
       },
       "sourcePosition": 4,
       "sourceUrl": "https://www.codecademy.com/courses/learn-python-3/lessons/python-hello-world/exercises/strings",
@@ -568,38 +770,88 @@
       "group": "python-hello-world",
       "title": {
         "en": "Variables",
-        "nl": "Variables"
+        "nl": "Variabelen en namen"
       },
       "kind": "coding",
       "optional": false,
       "explanation": {
-        "en": "A variable associates a name with a value. The assignment operator = stores the value on its right under the name on its left. Use the name without quotes to retrieve that value.",
-        "nl": "Een variable koppelt een naam aan een waarde. De assignment operator = slaat de waarde rechts op onder de naam links. Gebruik de naam zonder aanhalingstekens om de waarde op te halen."
+        "en": "Programs need to refer to information more than once. A variable gives a value a name. Instead of repeating a destination throughout your program, you can store it once and use its name whenever you need the current value.",
+        "nl": "Programma's gebruiken dezelfde informatie vaak meerdere keren. Een variabele geeft een waarde een naam. In plaats van een bestemming steeds te herhalen, kun je deze opslaan en de naam gebruiken wanneer je de huidige waarde nodig hebt."
       },
-      "example": "status = \"Ready\"\nprint(status)",
+      "example": "",
+      "sections": [
+        {
+          "heading": {
+            "en": "Assign, then use",
+            "nl": "Toewijzen en gebruiken"
+          },
+          "body": {
+            "en": "In an assignment, `=` associates the name on the left with the value on the right. It does not print anything. To display the value, pass the unquoted variable name to `print()`. Quoting the name would display those letters instead.",
+            "nl": "Bij een toewijzing koppelt `=` de naam links aan de waarde rechts. Dit drukt niets af. Geef de variabelenaam zonder aanhalingstekens aan `print()` om de waarde te tonen. Met aanhalingstekens zou je juist de letters van de naam tonen."
+          },
+          "code": "status = \"Ready\"\nprint(status)\nprint(\"status\")",
+          "output": "Ready\nstatus"
+        },
+        {
+          "heading": {
+            "en": "A name can refer to a new value",
+            "nl": "Een naam kan een nieuwe waarde krijgen"
+          },
+          "body": {
+            "en": "A later assignment to the same name replaces its current value. Earlier output stays as it was: Python does not go back and change text it already printed. Names are case-sensitive, cannot contain spaces and cannot start with a digit. Use descriptive names such as `arrival_station`.",
+            "nl": "Een latere toewijzing aan dezelfde naam vervangt de huidige waarde. Eerdere output blijft staan: Python verandert tekst die al is afgedrukt niet achteraf. Namen zijn hoofdlettergevoelig, mogen geen spaties bevatten en mogen niet met een cijfer beginnen. Gebruik duidelijke namen, zoals `arrival_station`."
+          },
+          "code": "status = \"Ready\"\nprint(status)\nstatus = \"Boarding\"\nprint(status)",
+          "output": "Ready\nBoarding",
+          "takeaway": {
+            "en": "Read each line in order and track the current value. This habit will help when programs grow longer.",
+            "nl": "Lees de regels op volgorde en houd de huidige waarde bij. Die gewoonte helpt wanneer programma's langer worden."
+          }
+        }
+      ],
       "files": {
-        "main.py": "# Write your code below.\n"
+        "main.py": "# First destination: update the value and use the variable in print.\ndestination = \"Unknown\"\nprint(\"destination\")\n\n# Update the same variable, then print it again below.\n"
       },
       "solution": {
-        "main.py": "destination = \"Delft\"\nprint(destination)\n"
+        "main.py": "destination = \"Delft\"\nprint(destination)\ndestination = \"Leiden\"\nprint(destination)\n"
       },
       "checkpoints": [
         {
-          "id": "python-hello-world-05-step-1",
+          "id": "python-hello-world-05-v2-step-1",
           "task": {
-            "en": "Store Delft in destination, then print destination.",
-            "nl": "Sla Delft op in destination en druk destination af."
+            "en": "Assign the string `Delft` to `destination`, then print the variable. Do not put quotes around the variable name in the print call.",
+            "nl": "Wijs de string `Delft` toe aan `destination` en druk de variabele af. Zet in de print-aanroep geen aanhalingstekens om de variabelenaam."
           },
-          "check": "destination == 'Delft' and _stdout.strip() == 'Delft'",
+          "check": "_stdout.splitlines()[:1] == ['Delft'] and any(isinstance(n, _ast.Call) and isinstance(n.func, _ast.Name) and n.func.id == 'print' and any(isinstance(x, _ast.Name) and x.id == 'destination' for x in n.args) for n in _ast.walk(_ast.parse(_source)))",
+          "feedback": {
+            "en": "Assign destination before using it, and pass the variable itself to print.",
+            "nl": "Wijs destination een waarde toe voordat je deze gebruikt en geef de variabele zelf aan print."
+          },
           "hint": {
-            "en": "Start with destination = \"Delft\". Then compare the values with the task.",
-            "nl": "Begin met destination = \"Delft\". Vergelijk de waarden daarna met de opdracht."
+            "en": "The pattern is `name = \"text\"`, followed by `print(name)`.",
+            "nl": "Het patroon is `naam = \"tekst\"`, gevolgd door `print(naam)`."
+          }
+        },
+        {
+          "id": "python-hello-world-05-v2-step-2",
+          "task": {
+            "en": "Below the first print call, assign `Leiden` to the same variable. Print it again. The output should show Delft followed by Leiden.",
+            "nl": "Wijs onder de eerste print-aanroep `Leiden` toe aan dezelfde variabele. Druk deze opnieuw af. De output moet Delft tonen, gevolgd door Leiden."
+          },
+          "check": "destination == 'Leiden' and _stdout.splitlines() == ['Delft', 'Leiden']",
+          "feedback": {
+            "en": "The final destination must be Leiden, with both destinations printed in order.",
+            "nl": "De eindwaarde van destination moet Leiden zijn, met beide bestemmingen in de juiste volgorde afgedrukt."
+          },
+          "hint": {
+            "en": "Keep the original assignment and print. Add the new assignment after them.",
+            "nl": "Laat de oorspronkelijke toewijzing en print staan. Voeg daarna de nieuwe toewijzing toe."
           }
         }
       ],
       "solutionNote": {
-        "en": "A variable associates a name with a value. The assignment operator = stores the value on its right under the name on its left. Use the name without quotes to retrieve that value.\n\nTrace the solution one line at a time. Try a different input to see which parts change.",
-        "nl": "Een variable koppelt een naam aan een waarde. De assignment operator = slaat de waarde rechts op onder de naam links. Gebruik de naam zonder aanhalingstekens om de waarde op te halen.\n\nVolg de oplossing regel voor regel. Probeer een andere invoer en bekijk welke onderdelen veranderen."
+        "en": "destination first refers to Delft and later to Leiden. Each print call reads the value at that moment. Reassigning the variable does not rewrite the first output line.",
+        "nl": "destination verwijst eerst naar Delft en later naar Leiden. Elke print-aanroep leest de waarde van dat moment. Opnieuw toewijzen verandert de eerste outputregel niet."
       },
       "sourcePosition": 5,
       "sourceUrl": "https://www.codecademy.com/courses/learn-python-3/lessons/python-hello-world/exercises/variables",
@@ -611,38 +863,88 @@
       "group": "python-hello-world",
       "title": {
         "en": "Reading errors",
-        "nl": "Foutmeldingen lezen"
+        "nl": "Foutmeldingen onderzoeken"
       },
       "kind": "coding",
       "optional": false,
       "explanation": {
-        "en": "Python reports a SyntaxError when it cannot understand the structure of your code. The message and caret identify the area to inspect. A missing closing quote often makes an otherwise simple line invalid.",
-        "nl": "Python geeft een SyntaxError als de structuur van je code niet klopt. De melding en het aanwijsteken helpen je zoeken. Een ontbrekend aanhalingsteken kan een eenvoudige regel al ongeldig maken."
+        "en": "An error message is a clue about the instruction Python could not carry out. Read the last line for the error type and explanation, then inspect the indicated line in your file. Change one thing and run again: fixing one problem can reveal another.",
+        "nl": "Een foutmelding geeft een aanwijzing over de instructie die Python niet kon uitvoeren. Lees de laatste regel voor het type fout en de uitleg. Bekijk daarna de aangewezen regel in je bestand. Verander één ding en voer opnieuw uit: na het oplossen van één probleem kan een volgend probleem zichtbaar worden."
       },
       "example": "",
+      "sections": [
+        {
+          "heading": {
+            "en": "SyntaxError: Python cannot read the instruction",
+            "nl": "SyntaxError: Python kan de instructie niet lezen"
+          },
+          "body": {
+            "en": "A missing closing quote or parenthesis breaks Python's grammar. With a syntax error, Python cannot start executing this file. The marker shows where it noticed the problem, which can be just after the character you need to fix.",
+            "nl": "Een ontbrekend aanhalingsteken of haakje maakt de Python-syntax ongeldig. Met een syntaxfout kan Python dit bestand niet uitvoeren. De markering wijst aan waar Python het probleem opmerkte; dat kan net na het teken zijn dat je moet herstellen."
+          },
+          "code": "print(\"Ready\")",
+          "output": "Ready",
+          "takeaway": {
+            "en": "Compare the matching pairs: the opening parenthesis has a closing parenthesis, and the opening quote has a closing quote.",
+            "nl": "Vergelijk de paren: tegenover het openingshaakje staat een sluithaakje en tegenover het eerste aanhalingsteken staat een tweede."
+          }
+        },
+        {
+          "heading": {
+            "en": "NameError: Python cannot find the name",
+            "nl": "NameError: Python kan de naam niet vinden"
+          },
+          "body": {
+            "en": "The syntax of `print(message)` is valid, but Python needs an earlier assignment to `message`. A typo such as `mesage` refers to a different name. If you mean literal text instead of a variable, put it in quotes.",
+            "nl": "De syntax van `print(message)` is geldig, maar Python heeft eerst een toewijzing aan `message` nodig. Een typefout zoals `mesage` verwijst naar een andere naam. Bedoel je letterlijke tekst in plaats van een variabele, zet die dan tussen aanhalingstekens."
+          },
+          "code": "message = \"Doors closing\"\nprint(message)",
+          "output": "Doors closing"
+        }
+      ],
       "files": {
-        "main.py": "print(\"Gate open)\n"
+        "main.py": "print(\"Gate open)\nmessage = \"Welcome aboard\"\nprint(mesage)\n"
       },
       "solution": {
-        "main.py": "print(\"Gate open\")\n"
+        "main.py": "print(\"Gate open\")\nmessage = \"Welcome aboard\"\nprint(message)\n"
       },
       "checkpoints": [
         {
-          "id": "python-hello-world-06-step-1",
+          "id": "python-hello-world-06-v2-step-1",
           "task": {
-            "en": "Run the broken code, read the error, then repair it to print Gate open.",
-            "nl": "Voer de kapotte code uit, lees de fout en herstel de regel zodat Gate open verschijnt."
+            "en": "Run the broken starter and read the SyntaxError. Repair the first line's quotation marks. Run again: the new error will point to a misspelled name. Both checks become green after the whole file runs successfully.",
+            "nl": "Voer de kapotte startcode uit en lees de SyntaxError. Herstel de aanhalingstekens op de eerste regel. Voer opnieuw uit: de nieuwe fout wijst naar een verkeerd gespelde naam. Beide controles worden groen zodra het hele bestand succesvol draait."
           },
-          "check": "_stdout.strip() == 'Gate open'",
+          "check": "_stdout.splitlines()[:1] == ['Gate open']",
+          "feedback": {
+            "en": "Repair the string on line 1, then fix the remaining NameError so the whole program can run.",
+            "nl": "Herstel de string op regel 1 en daarna de resterende NameError, zodat het hele programma kan draaien."
+          },
           "hint": {
-            "en": "The text needs a closing quote before the closing parenthesis.",
-            "nl": "De tekst heeft een afsluitend aanhalingsteken nodig vóór het sluitende haakje."
+            "en": "Compare your first line with `print(\"Ready\")`. Every opened quote needs a matching closing quote.",
+            "nl": "Vergelijk je eerste regel met `print(\"Ready\")`. Elk geopend aanhalingsteken heeft een passend sluitend teken nodig."
+          }
+        },
+        {
+          "id": "python-hello-world-06-v2-step-2",
+          "task": {
+            "en": "Fix the misspelled variable in the last print call without changing the assignment to `message`. Run again. The two lines must be Gate open and Welcome aboard.",
+            "nl": "Herstel de verkeerd gespelde variabele in de laatste print-aanroep, zonder de toewijzing aan `message` te veranderen. Voer opnieuw uit. De twee regels moeten Gate open en Welcome aboard zijn."
+          },
+          "check": "message == 'Welcome aboard' and _stdout.splitlines() == ['Gate open', 'Welcome aboard'] and any(isinstance(n, _ast.Call) and isinstance(n.func, _ast.Name) and n.func.id == 'print' and any(isinstance(x, _ast.Name) and x.id == 'message' for x in n.args) for n in _ast.walk(_ast.parse(_source)))",
+          "feedback": {
+            "en": "Print the existing message variable, with exactly the same spelling as its assignment.",
+            "nl": "Druk de bestaande variabele message af, met precies dezelfde spelling als in de toewijzing."
+          },
+          "hint": {
+            "en": "Compare the spelling of the name in the assignment with the name inside the last print call.",
+            "nl": "Vergelijk de spelling van de naam in de toewijzing met de naam in de laatste print-aanroep."
           }
         }
       ],
       "solutionNote": {
-        "en": "Python reports a SyntaxError when it cannot understand the structure of your code. The message and caret identify the area to inspect. A missing closing quote often makes an otherwise simple line invalid.\n\nTrace the solution one line at a time. Try a different input to see which parts change.",
-        "nl": "Python geeft een SyntaxError als de structuur van je code niet klopt. De melding en het aanwijsteken helpen je zoeken. Een ontbrekend aanhalingsteken kan een eenvoudige regel al ongeldig maken.\n\nVolg de oplossing regel voor regel. Probeer een andere invoer en bekijk welke onderdelen veranderen."
+        "en": "First the closing quote repairs the grammar. Python can then run far enough to expose mesage, a name never assigned. Correcting it to message retrieves the stored text. The two errors have different causes even though both stop a run.",
+        "nl": "Eerst herstelt het afsluitende aanhalingsteken de syntax. Python kan daarna ver genoeg uitvoeren om mesage tegen te komen, een naam die nooit is toegewezen. Met message haal je de opgeslagen tekst op. Beide fouten stoppen een uitvoering, maar hebben een andere oorzaak."
       },
       "sourcePosition": 6,
       "sourceUrl": "https://www.codecademy.com/courses/learn-python-3/lessons/python-hello-world/exercises/errors",
@@ -654,38 +956,88 @@
       "group": "python-hello-world",
       "title": {
         "en": "Integers and floats",
-        "nl": "Integers en floats"
+        "nl": "Gehele en decimale getallen"
       },
       "kind": "coding",
       "optional": false,
       "explanation": {
-        "en": "Integers represent whole numbers; floats represent numbers with a decimal point. Numeric values do not need quotes. Quoted digits are text, so their behavior differs from numeric values.",
-        "nl": "Integers stellen gehele getallen voor; floats bevatten een decimaal punt. Getallen hebben geen aanhalingstekens nodig. Cijfers tussen aanhalingstekens zijn tekst en gedragen zich anders."
+        "en": "A passenger count and a travel distance are both numbers, but they represent different kinds of information. Python uses integers (`int`) for whole numbers and floating-point numbers (`float`) for values such as 7.5. Numeric literals are written without quotes.",
+        "nl": "Een aantal passagiers en een reisafstand zijn allebei getallen, maar stellen andere informatie voor. Python gebruikt integers (`int`) voor gehele getallen en floating-point-getallen (`float`) voor waarden zoals 7.5. Je schrijft getallen zonder aanhalingstekens."
       },
-      "example": "items = 8\nweight = 2.25",
+      "example": "",
+      "sections": [
+        {
+          "heading": {
+            "en": "Choose the value that fits",
+            "nl": "Kies een passende waarde"
+          },
+          "body": {
+            "en": "An integer can be positive, zero or negative. A literal with a decimal point is a float, even if its fractional part is zero: `3.0` differs in type from `3`. Python uses a point for decimals, not a comma.",
+            "nl": "Een integer kan positief, nul of negatief zijn. Een getal met een decimale punt is een float, ook als het deel achter de punt nul is: `3.0` heeft een ander type dan `3`. Python gebruikt een punt voor decimalen, geen komma."
+          },
+          "code": "seats = 18\ndistance = 4.75\nprint(seats)\nprint(distance)",
+          "output": "18\n4.75"
+        },
+        {
+          "heading": {
+            "en": "Numbers versus text",
+            "nl": "Getallen tegenover tekst"
+          },
+          "body": {
+            "en": "Quotation marks change the meaning. `\"12\"` is text; `12` is a number you can calculate with. Floats are useful approximations, but many decimal fractions cannot be stored exactly. Keep this in mind for later calculations; you do not need to solve that limitation in this task.",
+            "nl": "Aanhalingstekens veranderen de betekenis. `\"12\"` is tekst; `12` is een getal waarmee je kunt rekenen. Floats zijn bruikbare benaderingen, maar veel decimale breuken kunnen niet exact worden opgeslagen. Houd dit in gedachten bij latere berekeningen; in deze opdracht hoef je die beperking niet op te lossen."
+          },
+          "code": "print(12 + 3)\nprint(\"12\" + \"3\")",
+          "output": "15\n123",
+          "takeaway": {
+            "en": "For numbers, + adds. For strings, it joins text. We will examine both operations in the next lessons.",
+            "nl": "Bij getallen telt + op. Bij strings voegt + tekst samen. In de volgende lessen bekijken we beide bewerkingen."
+          }
+        }
+      ],
       "files": {
-        "main.py": "# Write your code below.\n"
+        "main.py": "# These placeholder values need the real passenger information.\npassenger_count = 0\ndistance = 0.0\nprint(passenger_count)\nprint(distance)\n"
       },
       "solution": {
-        "main.py": "passenger_count = 24\ndistance = 7.5\nprint(passenger_count, distance)\n"
+        "main.py": "passenger_count = 24\ndistance = 7.5\nprint(passenger_count)\nprint(distance)\n"
       },
       "checkpoints": [
         {
-          "id": "python-hello-world-07-step-1",
+          "id": "python-hello-world-07-v2-step-1",
           "task": {
-            "en": "Create passenger_count as integer 24 and distance as float 7.5. Print both.",
-            "nl": "Maak passenger_count als integer 24 en distance als float 7.5. Druk beide af."
+            "en": "Create `passenger_count` with the integer value `24`. Print it on the first line.",
+            "nl": "Maak `passenger_count` met de integerwaarde `24`. Druk deze af op de eerste regel."
           },
-          "check": "type(passenger_count) is int and passenger_count == 24 and type(distance) is float and distance == 7.5",
+          "check": "type(passenger_count) is int and passenger_count == 24 and _stdout.splitlines()[:1] == ['24']",
+          "feedback": {
+            "en": "Use the integer 24, not the string '24' or the float 24.0, and print it first.",
+            "nl": "Gebruik de integer 24, niet de string '24' of de float 24.0, en druk deze als eerste af."
+          },
           "hint": {
-            "en": "Start with passenger_count = 24. Then compare the values with the task.",
-            "nl": "Begin met passenger_count = 24. Vergelijk de waarden daarna met de opdracht."
+            "en": "Write the number without quotes or a decimal point.",
+            "nl": "Schrijf het getal zonder aanhalingstekens of decimale punt."
+          }
+        },
+        {
+          "id": "python-hello-world-07-v2-step-2",
+          "task": {
+            "en": "Create `distance` with the float value `7.5`. Print it after the passenger count. Keep the two values on separate output lines.",
+            "nl": "Maak `distance` met de floatwaarde `7.5`. Druk deze na het aantal passagiers af. Zet de twee waarden op afzonderlijke outputregels."
+          },
+          "check": "type(distance) is float and distance == 7.5 and _stdout.splitlines() == ['24', '7.5']",
+          "feedback": {
+            "en": "distance must be the numeric value 7.5, printed on the second line.",
+            "nl": "distance moet de numerieke waarde 7.5 zijn, afgedrukt op de tweede regel."
+          },
+          "hint": {
+            "en": "Use a decimal point. Add a separate print call after the first one.",
+            "nl": "Gebruik een decimale punt. Voeg na de eerste print-aanroep een aparte aanroep toe."
           }
         }
       ],
       "solutionNote": {
-        "en": "Integers represent whole numbers; floats represent numbers with a decimal point. Numeric values do not need quotes. Quoted digits are text, so their behavior differs from numeric values.\n\nTrace the solution one line at a time. Try a different input to see which parts change.",
-        "nl": "Integers stellen gehele getallen voor; floats bevatten een decimaal punt. Getallen hebben geen aanhalingstekens nodig. Cijfers tussen aanhalingstekens zijn tekst en gedragen zich anders.\n\nVolg de oplossing regel voor regel. Probeer een andere invoer en bekijk welke onderdelen veranderen."
+        "en": "The passenger count is a whole-number count, so it is an int. The distance includes a fraction, so it is a float. Printing the values does not change their types.",
+        "nl": "Het aantal passagiers is een geheel aantal en dus een int. De afstand bevat een breukdeel en is daarom een float. Afdrukken verandert de types niet."
       },
       "sourcePosition": 7,
       "sourceUrl": "https://www.codecademy.com/courses/learn-python-3/lessons/python-hello-world/exercises/numbers",
@@ -697,38 +1049,88 @@
       "group": "python-hello-world",
       "title": {
         "en": "Arithmetic expressions",
-        "nl": "Berekeningen"
+        "nl": "Rekenen met expressies"
       },
       "kind": "coding",
       "optional": false,
       "explanation": {
-        "en": "Python evaluates arithmetic expressions using operator precedence: multiplication and division happen before addition and subtraction. Parentheses let you specify a different order. / produces a floating-point result.",
-        "nl": "Python gebruikt een vaste volgorde: vermenigvuldigen en delen gaan vóór optellen en aftrekken. Met haakjes bepaal je een andere volgorde. / geeft een float als resultaat."
+        "en": "An expression combines values and operators to produce a result. Python can add with `+`, subtract with `-`, multiply with `*` and divide with `/`. You can print a calculation directly or assign its result to a useful name.",
+        "nl": "Een expressie combineert waarden en operators tot een resultaat. Python telt op met `+`, trekt af met `-`, vermenigvuldigt met `*` en deelt met `/`. Je kunt een berekening direct afdrukken of het resultaat aan een handige naam toewijzen."
       },
-      "example": "total = 2 * (10 + 4)\nprint(total)",
+      "example": "",
+      "sections": [
+        {
+          "heading": {
+            "en": "Order changes the result",
+            "nl": "De volgorde verandert het resultaat"
+          },
+          "body": {
+            "en": "Multiplication and division happen before addition and subtraction. Parentheses make a group that is evaluated first. Predict these two results before reading the output: only the parentheses change.",
+            "nl": "Vermenigvuldigen en delen gaan vóór optellen en aftrekken. Haakjes maken een groep die eerst wordt uitgerekend. Voorspel de twee resultaten voordat je de output leest: alleen de haakjes verschillen."
+          },
+          "code": "print(2 + 3 * 4)\nprint((2 + 3) * 4)",
+          "output": "14\n20",
+          "takeaway": {
+            "en": "The first expression adds 2 to 12. The second multiplies 5 by 4. Writing spaces around an operator improves readability but does not change precedence.",
+            "nl": "De eerste expressie telt 2 op bij 12. De tweede vermenigvuldigt 5 met 4. Spaties rond een operator maken de code leesbaarder, maar veranderen de rekenvolgorde niet."
+          }
+        },
+        {
+          "heading": {
+            "en": "Division and units",
+            "nl": "Delen en eenheden"
+          },
+          "body": {
+            "en": "The `/` operator produces a float, including when the division is exact. Dividing by zero raises `ZeroDivisionError`. In your task, calculate minutes first, then convert that value to seconds. Keeping track of the units helps you choose the correct operation.",
+            "nl": "De operator `/` geeft een float, ook wanneer de deling precies uitkomt. Delen door nul veroorzaakt `ZeroDivisionError`. Bereken in je opdracht eerst minuten en zet die waarde daarna om naar seconden. Door de eenheden bij te houden kies je makkelijker de juiste bewerking."
+          },
+          "code": "print(12 / 3)\nprint(7 / 2)",
+          "output": "4.0\n3.5"
+        }
+      ],
       "files": {
-        "main.py": "# Write your code below.\n"
+        "main.py": "# A journey has three 15-minute segments and one 5-minute wait.\nsegments = 3\nminutes_per_segment = 15\nwait = 5\n\n# Replace 0 with a calculation using the journey data.\nduration = 0\nprint(duration)\n\n# Convert the minutes to seconds.\nduration_seconds = 0\nprint(duration_seconds)\n"
       },
       "solution": {
-        "main.py": "duration = 3 * 15 + 5\nprint(duration)\n"
+        "main.py": "duration = 3 * 15 + 5\nprint(duration)\nduration_seconds = duration * 60\nprint(duration_seconds)\n"
       },
       "checkpoints": [
         {
-          "id": "python-hello-world-08-step-1",
+          "id": "python-hello-world-08-v2-step-1",
           "task": {
-            "en": "A journey has three 15-minute segments and a 5-minute wait. Store the total in duration and print it.",
-            "nl": "Een reis heeft drie stukken van 15 minuten en 5 minuten wachttijd. Sla het totaal op in duration en druk het af."
+            "en": "A journey has three 15-minute segments and one 5-minute wait. Calculate `duration` using multiplication and addition, then print the total minutes.",
+            "nl": "Een reis bestaat uit drie stukken van 15 minuten en één wachttijd van 5 minuten. Bereken `duration` met vermenigvuldigen en optellen en druk het totaal in minuten af."
           },
-          "check": "duration == 50 and _stdout.strip() == '50'",
+          "check": "duration == 50 and _stdout.splitlines()[:1] == ['50'] and any(isinstance(n, _ast.Assign) and any(isinstance(t, _ast.Name) and t.id == 'duration' for t in n.targets) and isinstance(n.value, _ast.BinOp) and isinstance(n.value.op, _ast.Add) and all(key in [x.id for x in _ast.walk(n.value) if isinstance(x, _ast.Name)] for key in []) for n in _ast.walk(_ast.parse(_source)))",
+          "feedback": {
+            "en": "Use an arithmetic expression for duration. The total should be 50 minutes.",
+            "nl": "Gebruik een rekenexpressie voor duration. Het totaal moet 50 minuten zijn."
+          },
           "hint": {
-            "en": "Start with duration = 3 * 15 + 5. Then compare the values with the task.",
-            "nl": "Begin met duration = 3 * 15 + 5. Vergelijk de waarden daarna met de opdracht."
+            "en": "Multiply the number of segments by their length, then add the single wait. Do not add the wait three times.",
+            "nl": "Vermenigvuldig het aantal stukken met hun duur en tel daarna de ene wachttijd op. Tel de wachttijd niet drie keer mee."
+          }
+        },
+        {
+          "id": "python-hello-world-08-v2-step-2",
+          "task": {
+            "en": "Calculate `duration_seconds` from `duration`: there are 60 seconds in a minute. Print the result on the second line.",
+            "nl": "Bereken `duration_seconds` vanuit `duration`: er zitten 60 seconden in een minuut. Druk het resultaat op de tweede regel af."
+          },
+          "check": "duration_seconds == 3000 and _stdout.splitlines() == ['50', '3000'] and any(isinstance(n, _ast.Assign) and any(isinstance(t, _ast.Name) and t.id == 'duration_seconds' for t in n.targets) and isinstance(n.value, _ast.BinOp) and isinstance(n.value.op, _ast.Mult) and all(key in [x.id for x in _ast.walk(n.value) if isinstance(x, _ast.Name)] for key in [\"duration\"]) for n in _ast.walk(_ast.parse(_source)))",
+          "feedback": {
+            "en": "Store 3000 in duration_seconds using multiplication and print it after the minutes.",
+            "nl": "Sla met een vermenigvuldiging 3000 op in duration_seconds en druk dit na de minuten af."
+          },
+          "hint": {
+            "en": "Multiply the stored duration by 60 rather than retyping the journey calculation.",
+            "nl": "Vermenigvuldig de opgeslagen duur met 60 in plaats van de reisberekening opnieuw te typen."
           }
         }
       ],
       "solutionNote": {
-        "en": "Python evaluates arithmetic expressions using operator precedence: multiplication and division happen before addition and subtraction. Parentheses let you specify a different order. / produces a floating-point result.\n\nTrace the solution one line at a time. Try a different input to see which parts change.",
-        "nl": "Python gebruikt een vaste volgorde: vermenigvuldigen en delen gaan vóór optellen en aftrekken. Met haakjes bepaal je een andere volgorde. / geeft een float als resultaat.\n\nVolg de oplossing regel voor regel. Probeer een andere invoer en bekijk welke onderdelen veranderen."
+        "en": "Multiplication calculates the 45 travel minutes before the five-minute wait is added. Multiplying the resulting duration by 60 converts minutes to seconds without duplicating the first formula.",
+        "nl": "De vermenigvuldiging berekent eerst de 45 reisminuten, waarna vijf minuten wachttijd worden opgeteld. Door duration met 60 te vermenigvuldigen zet je minuten om naar seconden zonder de eerste formule te herhalen."
       },
       "sourcePosition": 8,
       "sourceUrl": "https://www.codecademy.com/courses/learn-python-3/lessons/python-hello-world/exercises/calculations",
@@ -740,38 +1142,104 @@
       "group": "python-hello-world",
       "title": {
         "en": "Reassignment",
-        "nl": "Waarden opnieuw toewijzen"
+        "nl": "Waarden opnieuw berekenen"
       },
       "kind": "coding",
       "optional": false,
       "explanation": {
-        "en": "Assignment can replace a variable’s earlier value. In score = score + 2, Python reads the current score, calculates a new value, and then stores it back under the same name.",
-        "nl": "Assignment kan een eerdere waarde vervangen. Bij score = score + 2 leest Python eerst de huidige score, berekent een nieuwe waarde en slaat deze daarna op onder dezelfde naam."
+        "en": "Assignment stores the result of an expression at that moment. It does not create a live spreadsheet formula. If a value used in the calculation changes later, you must run the calculation again to obtain an updated result.",
+        "nl": "Een toewijzing slaat het resultaat van een expressie op dat moment op. Er ontstaat geen formule die automatisch wordt bijgewerkt zoals in een spreadsheet. Verandert later een gebruikte waarde, dan moet je de berekening opnieuw uitvoeren om een bijgewerkt resultaat te krijgen."
       },
       "example": "",
+      "sections": [
+        {
+          "heading": {
+            "en": "Stored results do not update themselves",
+            "nl": "Opgeslagen resultaten veranderen niet vanzelf"
+          },
+          "body": {
+            "en": "Trace the current value of each name after every line. Changing `tickets` does not change the already calculated `cost`.",
+            "nl": "Houd na iedere regel de huidige waarde van elke naam bij. Het veranderen van `tickets` verandert de al berekende `cost` niet."
+          },
+          "code": "tickets = 2\nprice = 4\ncost = tickets * price\ntickets = 3\nprint(cost)\ncost = tickets * price\nprint(cost)",
+          "output": "8\n12",
+          "takeaway": {
+            "en": "Only the second assignment to cost uses the new ticket count. The first printed result still reflects two tickets.",
+            "nl": "Pas de tweede toewijzing aan cost gebruikt het nieuwe aantal kaartjes. Het eerste afgedrukte resultaat hoort nog bij twee kaartjes."
+          }
+        },
+        {
+          "heading": {
+            "en": "Using the old value in a new assignment",
+            "nl": "De oude waarde gebruiken bij een nieuwe toewijzing"
+          },
+          "body": {
+            "en": "In `score = score + 2`, Python reads the old score, adds 2, and associates the resulting value with the name score. Assignment is not an algebraic equation: the right side is evaluated before the name on the left is updated.",
+            "nl": "Bij `score = score + 2` leest Python de oude score, telt 2 op en koppelt het resultaat aan de naam score. Een toewijzing is geen wiskundige vergelijking: de rechterkant wordt uitgerekend voordat de naam links wordt bijgewerkt."
+          },
+          "code": "score = 10\nscore = score + 2\nprint(score)",
+          "output": "12"
+        }
+      ],
       "files": {
-        "main.py": "# Write your code below.\n"
+        "main.py": "# Original order: correct the quantity and fill in the calculation.\nkits = 0\nprice = 8\noriginal_total = 0\nprint(original_total)\n\n# A customer adds another kit. Update kits here.\n\n# Recalculate from the current data.\nupdated_total = 0\nprint(updated_total)\n"
       },
       "solution": {
-        "main.py": "score = 10\nscore = score + 7\nscore = score - 3\nprint(score)\n"
+        "main.py": "kits = 3\nprice = 8\noriginal_total = kits * price\nprint(original_total)\nkits = kits + 1\nupdated_total = kits * price\nprint(updated_total)\n"
       },
       "checkpoints": [
         {
-          "id": "python-hello-world-09-step-1",
+          "id": "python-hello-world-09-v2-step-1",
           "task": {
-            "en": "Start score at 10. Add 7, then subtract 3. Print the final score.",
-            "nl": "Begin met score = 10. Tel er 7 bij op en trek er daarna 3 van af. Druk de eindscore af."
+            "en": "An order starts with 3 kits at 8 euros each. Assign `kits = 3` and `price = 8`, then calculate `original_total = kits * price` and print it.",
+            "nl": "Een bestelling begint met 3 kits van 8 euro per stuk. Wijs `kits = 3` en `price = 8` toe, bereken `original_total = kits * price` en druk dit af."
           },
-          "check": "score == 14 and _stdout.strip() == '14'",
+          "check": "price == 8 and original_total == 24 and _stdout.splitlines()[:1] == ['24']",
+          "feedback": {
+            "en": "original_total should remain 24 and be printed first.",
+            "nl": "original_total moet 24 blijven en als eerste worden afgedrukt."
+          },
           "hint": {
-            "en": "Start with score = 10. Then compare the values with the task.",
-            "nl": "Begin met score = 10. Vergelijk de waarden daarna met de opdracht."
+            "en": "Calculate the original total before changing kits.",
+            "nl": "Bereken het oorspronkelijke totaal voordat je kits verandert."
+          }
+        },
+        {
+          "id": "python-hello-world-09-v2-step-2",
+          "task": {
+            "en": "Below the original calculation, increase `kits` by 1 using `kits = kits + 1`. Keep `original_total` unchanged.",
+            "nl": "Verhoog onder de oorspronkelijke berekening `kits` met 1 via `kits = kits + 1`. Laat `original_total` ongewijzigd."
+          },
+          "check": "kits == 4 and original_total == 24 and any(isinstance(n, _ast.Assign) and any(isinstance(t, _ast.Name) and t.id == 'kits' for t in n.targets) and isinstance(n.value, _ast.BinOp) and isinstance(n.value.op, _ast.Add) and all(key in [x.id for x in _ast.walk(n.value) if isinstance(x, _ast.Name)] for key in [\"kits\"]) for n in _ast.walk(_ast.parse(_source)))",
+          "feedback": {
+            "en": "Update kits with addition; the final count is 4 and the original total stays 24.",
+            "nl": "Werk kits bij met een optelling; het uiteindelijke aantal is 4 en het oorspronkelijke totaal blijft 24."
+          },
+          "hint": {
+            "en": "Use kits on both sides of the assignment. The right side reads its previous value.",
+            "nl": "Gebruik kits aan beide kanten van de toewijzing. Rechts wordt de vorige waarde gelezen."
+          }
+        },
+        {
+          "id": "python-hello-world-09-v2-step-3",
+          "task": {
+            "en": "Calculate `updated_total` from the current `kits` and `price`, then print it on the second line. Compare the old and new totals.",
+            "nl": "Bereken `updated_total` met de huidige `kits` en `price` en druk dit op de tweede regel af. Vergelijk het oude en nieuwe totaal."
+          },
+          "check": "updated_total == 32 and _stdout.splitlines() == ['24', '32'] and any(isinstance(n, _ast.Assign) and any(isinstance(t, _ast.Name) and t.id == 'updated_total' for t in n.targets) and isinstance(n.value, _ast.BinOp) and isinstance(n.value.op, _ast.Mult) and all(key in [x.id for x in _ast.walk(n.value) if isinstance(x, _ast.Name)] for key in [\"kits\",\"price\"]) for n in _ast.walk(_ast.parse(_source)))",
+          "feedback": {
+            "en": "Recalculate the order after the change. The output should be 24, then 32.",
+            "nl": "Bereken de bestelling opnieuw na de wijziging. De output moet 24 zijn, gevolgd door 32."
+          },
+          "hint": {
+            "en": "Reuse the multiplication with the same names after increasing kits.",
+            "nl": "Gebruik na het verhogen van kits opnieuw de vermenigvuldiging met dezelfde namen."
           }
         }
       ],
       "solutionNote": {
-        "en": "Assignment can replace a variable’s earlier value. In score = score + 2, Python reads the current score, calculates a new value, and then stores it back under the same name.\n\nTrace the solution one line at a time. Try a different input to see which parts change.",
-        "nl": "Assignment kan een eerdere waarde vervangen. Bij score = score + 2 leest Python eerst de huidige score, berekent een nieuwe waarde en slaat deze daarna op onder dezelfde naam.\n\nVolg de oplossing regel voor regel. Probeer een andere invoer en bekijk welke onderdelen veranderen."
+        "en": "original_total preserves the first calculation. Increasing kits updates only kits. The later multiplication uses the new count and produces updated_total, so both snapshots can be displayed.",
+        "nl": "original_total bewaart de eerste berekening. Het verhogen van kits verandert alleen kits. De latere vermenigvuldiging gebruikt het nieuwe aantal voor updated_total, zodat je beide momenten kunt tonen."
       },
       "sourcePosition": 9,
       "sourceUrl": "https://www.codecademy.com/courses/learn-python-3/lessons/python-hello-world/exercises/changing-numbers",
@@ -788,33 +1256,77 @@
       "kind": "coding",
       "optional": false,
       "explanation": {
-        "en": "The ** operator raises a number to a power. For example, 3 ** 2 means 3 multiplied by itself. This differs from ^, which is a bitwise operation in Python.",
-        "nl": "Met ** verhef je een getal tot een macht. Zo betekent 3 ** 2 dat je 3 met zichzelf vermenigvuldigt. ^ is in Python een bitwise operator en geen machtsverheffing."
+        "en": "Repeated multiplication appears in areas, volumes and growth. Python's `**` operator raises a number to a power: the left value is the base and the right value is the exponent. `3 ** 2` means 3 multiplied by itself, not 3 multiplied by 2.",
+        "nl": "Herhaald vermenigvuldigen komt voor bij oppervlakten, volumes en groei. Met `**` verhef je een getal tot een macht: links staat het grondtal en rechts de exponent. `3 ** 2` betekent 3 met zichzelf vermenigvuldigen, niet 3 keer 2."
       },
-      "example": "squared = 6 ** 2",
+      "example": "",
+      "sections": [
+        {
+          "heading": {
+            "en": "Squares, cubes and roots",
+            "nl": "Kwadraten, derde machten en wortels"
+          },
+          "body": {
+            "en": "Squaring a side length gives the area of a square; cubing it gives the volume of a cube. A fractional exponent can calculate a root for a positive number. The `^` character is a different Python operator and does not calculate a power.",
+            "nl": "Het kwadraat van een zijde geeft de oppervlakte van een vierkant; de derde macht geeft het volume van een kubus. Met een gebroken exponent kun je bij een positief getal een wortel berekenen. Het teken `^` is in Python een andere operator en berekent geen macht."
+          },
+          "code": "print(5 ** 2)\nprint(5 ** 3)\nprint(25 ** 0.5)",
+          "output": "25\n125\n5.0"
+        },
+        {
+          "heading": {
+            "en": "A doubling pattern",
+            "nl": "Een verdubbelingspatroon"
+          },
+          "body": {
+            "en": "A storage demonstration starts with one unit and doubles it at each stage. After one stage there are 2 units; after two stages there are 4; after three there are 8. A power describes the whole pattern without writing a long chain of multiplications.",
+            "nl": "Een opslagdemonstratie begint met één eenheid en verdubbelt deze bij iedere stap. Na één stap zijn er 2 eenheden, na twee stappen 4 en na drie stappen 8. Een macht beschrijft het hele patroon zonder een lange rij vermenigvuldigingen."
+          }
+        }
+      ],
       "files": {
-        "main.py": "# Write your code below.\n"
+        "main.py": "# These formulas multiply once, but the task needs powers.\ncapacity = 2 * 10\nprint(capacity)\n\npanel_area = 6 * 2\nprint(panel_area)\n"
       },
       "solution": {
-        "main.py": "capacity = 2 ** 10\nprint(capacity)\n"
+        "main.py": "capacity = 2 ** 10\nprint(capacity)\npanel_area = 6 ** 2\nprint(panel_area)\n"
       },
       "checkpoints": [
         {
-          "id": "python-hello-world-10-step-1",
+          "id": "python-hello-world-10-v2-step-1",
           "task": {
-            "en": "Store 2 to the power 10 in capacity and print the result.",
-            "nl": "Sla 2 tot de macht 10 op in capacity en druk het resultaat af."
+            "en": "Calculate `capacity` after ten doublings using `2 ** 10`. Print the result.",
+            "nl": "Bereken `capacity` na tien verdubbelingen met `2 ** 10`. Druk het resultaat af."
           },
-          "check": "capacity == 1024",
+          "check": "capacity == 1024 and _stdout.splitlines()[:1] == ['1024'] and any(isinstance(n, _ast.Assign) and any(isinstance(t, _ast.Name) and t.id == 'capacity' for t in n.targets) and isinstance(n.value, _ast.BinOp) and isinstance(n.value.op, _ast.Pow) and all(key in [x.id for x in _ast.walk(n.value) if isinstance(x, _ast.Name)] for key in []) for n in _ast.walk(_ast.parse(_source)))",
+          "feedback": {
+            "en": "Use exponentiation for capacity; the result must be 1024.",
+            "nl": "Gebruik machtsverheffing voor capacity; het resultaat moet 1024 zijn."
+          },
           "hint": {
-            "en": "Start with capacity = 2 ** 10. Then compare the values with the task.",
-            "nl": "Begin met capacity = 2 ** 10. Vergelijk de waarden daarna met de opdracht."
+            "en": "The base is 2 and the exponent is 10. Use two adjacent asterisks.",
+            "nl": "Het grondtal is 2 en de exponent is 10. Gebruik twee sterretjes direct naast elkaar."
+          }
+        },
+        {
+          "id": "python-hello-world-10-v2-step-2",
+          "task": {
+            "en": "A square panel has sides of length 6. Calculate `panel_area` with exponentiation and print it on the second line.",
+            "nl": "Een vierkant paneel heeft zijden van lengte 6. Bereken `panel_area` met machtsverheffing en druk dit af op de tweede regel."
+          },
+          "check": "panel_area == 36 and _stdout.splitlines() == ['1024', '36'] and any(isinstance(n, _ast.Assign) and any(isinstance(t, _ast.Name) and t.id == 'panel_area' for t in n.targets) and isinstance(n.value, _ast.BinOp) and isinstance(n.value.op, _ast.Pow) and all(key in [x.id for x in _ast.walk(n.value) if isinstance(x, _ast.Name)] for key in []) for n in _ast.walk(_ast.parse(_source)))",
+          "feedback": {
+            "en": "Square the side length with **. The second output line should be 36.",
+            "nl": "Kwadrateer de zijde met **. De tweede outputregel moet 36 zijn."
+          },
+          "hint": {
+            "en": "An area uses the second power, not the third.",
+            "nl": "Een oppervlakte gebruikt de tweede macht, niet de derde."
           }
         }
       ],
       "solutionNote": {
-        "en": "The ** operator raises a number to a power. For example, 3 ** 2 means 3 multiplied by itself. This differs from ^, which is a bitwise operation in Python.\n\nTrace the solution one line at a time. Try a different input to see which parts change.",
-        "nl": "Met ** verhef je een getal tot een macht. Zo betekent 3 ** 2 dat je 3 met zichzelf vermenigvuldigt. ^ is in Python een bitwise operator en geen machtsverheffing.\n\nVolg de oplossing regel voor regel. Probeer een andere invoer en bekijk welke onderdelen veranderen."
+        "en": "2 ** 10 represents ten factors of 2. The panel uses 6 ** 2 because an area multiplies two lengths. Both expressions use the same operator for different modelling problems.",
+        "nl": "2 ** 10 staat voor tien factoren van 2. Voor het paneel gebruik je 6 ** 2 omdat een oppervlakte twee lengtes vermenigvuldigt. Beide expressies gebruiken dezelfde operator voor verschillende situaties."
       },
       "sourcePosition": 10,
       "sourceUrl": "https://www.codecademy.com/courses/learn-python-3/lessons/python-hello-world/exercises/exponents",
@@ -826,38 +1338,116 @@
       "group": "python-hello-world",
       "title": {
         "en": "Remainders",
-        "nl": "Rest bij een deling"
+        "nl": "Wat blijft er over?"
       },
       "kind": "coding",
       "optional": false,
       "explanation": {
-        "en": "The modulo operator % returns a division remainder. A remainder of zero tells you that the division is exact. This is useful for even/odd checks and repeating cycles.",
-        "nl": "De modulo operator % geeft de rest van een deling. Een rest van nul betekent dat de deling precies uitkomt. Dat is handig voor even/oneven-controles en herhalende patronen."
+        "en": "Division can tell us the size of a share, but sometimes we need to know what remains after making whole groups. The modulo operator `%` returns that remainder. It is not a percentage calculation.",
+        "nl": "Een deling kan vertellen hoe groot een aandeel is, maar soms willen we weten wat er overblijft nadat we hele groepen hebben gemaakt. De modulo-operator `%` geeft die rest terug. Het is geen percentageberekening."
       },
-      "example": "remainder = 17 % 4",
+      "example": "",
+      "sections": [
+        {
+          "heading": {
+            "en": "Count complete groups first",
+            "nl": "Tel eerst de volledige groepen"
+          },
+          "body": {
+            "en": "With 17 items and boxes of 5, three full boxes use 15 items. The remainder is 2. If the items fit exactly, the remainder is zero. For positive integers, the remainder is always smaller than the divisor.",
+            "nl": "Met 17 items en dozen van 5 gebruiken drie volle dozen 15 items. De rest is 2. Als de items precies passen, is de rest nul. Bij positieve gehele getallen is de rest altijd kleiner dan de deler."
+          },
+          "code": "print(17 % 5)\nprint(20 % 5)",
+          "output": "2\n0"
+        },
+        {
+          "heading": {
+            "en": "Repeating patterns",
+            "nl": "Herhalende patronen"
+          },
+          "body": {
+            "en": "Modulo also helps with cycles: dividing a number by 2 leaves 0 for an even number and 1 for an odd number. Later you will use comparisons to make decisions with those remainders. For now, practise calculating and interpreting them.",
+            "nl": "Modulo helpt ook bij patronen: delen door 2 laat bij een even getal 0 over en bij een oneven getal 1. Later gebruik je vergelijkingen om met deze resten beslissingen te nemen. Oefen nu eerst met het berekenen en begrijpen van de rest."
+          },
+          "code": "print(8 % 2)\nprint(9 % 2)",
+          "output": "0\n1"
+        }
+      ],
       "files": {
-        "main.py": "# Write your code below.\n"
+        "main.py": "# A packing machine fills boxes with six items each.\nitems = 29\nbox_size = 6\n\n# Replace each placeholder with the calculation for that step.\nleftover = 0\nprint(leftover)\n\nitems_added = 0\nprint(items_added)\n\nnew_leftover = 0\nprint(new_leftover)\n\nparity_remainder = 0\nprint(parity_remainder)\n"
       },
       "solution": {
-        "main.py": "leftover = 29 % 6\nis_even = 29 % 2 == 0\nprint(leftover, is_even)\n"
+        "main.py": "leftover = 29 % 6\nprint(leftover)\nitems_added = 6 - leftover\nprint(items_added)\nnew_leftover = (29 + items_added) % 6\nprint(new_leftover)\nparity_remainder = 29 % 2\nprint(parity_remainder)\n"
       },
       "checkpoints": [
         {
-          "id": "python-hello-world-11-step-1",
+          "id": "python-hello-world-11-v2-step-1",
           "task": {
-            "en": "Distribute 29 items into groups of 6. Store the remainder in leftover and whether 29 is even in is_even.",
-            "nl": "Verdeel 29 items in groepen van 6. Sla de rest op in leftover en leg in is_even vast of 29 even is."
+            "en": "Pack 29 items into boxes of 6. Calculate `leftover` using `%` and print it.",
+            "nl": "Verpak 29 items in dozen van 6. Bereken `leftover` met `%` en druk de rest af."
           },
-          "check": "leftover == 5 and is_even is False",
+          "check": "leftover == 5 and _stdout.splitlines()[:1] == ['5'] and any(isinstance(n, _ast.Assign) and any(isinstance(t, _ast.Name) and t.id == 'leftover' for t in n.targets) and isinstance(n.value, _ast.BinOp) and isinstance(n.value.op, _ast.Mod) and all(key in [x.id for x in _ast.walk(n.value) if isinstance(x, _ast.Name)] for key in []) for n in _ast.walk(_ast.parse(_source)))",
+          "feedback": {
+            "en": "leftover must be the remainder 5, calculated with %.",
+            "nl": "leftover moet de rest 5 zijn, berekend met %."
+          },
           "hint": {
-            "en": "Start with leftover = 29 % 6. Then compare the values with the task.",
-            "nl": "Begin met leftover = 29 % 6. Vergelijk de waarden daarna met de opdracht."
+            "en": "Four full boxes use 24 items. Ask what remains from 29.",
+            "nl": "Vier volle dozen gebruiken 24 items. Bepaal wat er van 29 overblijft."
+          }
+        },
+        {
+          "id": "python-hello-world-11-v2-step-2",
+          "task": {
+            "en": "How many extra items fill the incomplete box? Calculate `items_added` as `6 - leftover` and print it next.",
+            "nl": "Hoeveel extra items vullen de onvolledige doos? Bereken `items_added` als `6 - leftover` en druk dit daarna af."
+          },
+          "check": "items_added == 1 and _stdout.splitlines()[:2] == ['5', '1']",
+          "feedback": {
+            "en": "Only one extra item is needed; print 1 after the remainder.",
+            "nl": "Er is maar één extra item nodig; druk 1 af na de rest."
+          },
+          "hint": {
+            "en": "The partly filled box already has five of its six items.",
+            "nl": "De gedeeltelijk gevulde doos heeft al vijf van de zes items."
+          }
+        },
+        {
+          "id": "python-hello-world-11-v2-step-3",
+          "task": {
+            "en": "Calculate `new_leftover` from `(29 + items_added) % 6` and print it. A zero remainder means every box is full.",
+            "nl": "Bereken `new_leftover` met `(29 + items_added) % 6` en druk deze af. Een rest van nul betekent dat elke doos vol is."
+          },
+          "check": "new_leftover == 0 and _stdout.splitlines()[:3] == ['5', '1', '0'] and any(isinstance(n, _ast.Assign) and any(isinstance(t, _ast.Name) and t.id == 'new_leftover' for t in n.targets) and isinstance(n.value, _ast.BinOp) and isinstance(n.value.op, _ast.Mod) and all(key in [x.id for x in _ast.walk(n.value) if isinstance(x, _ast.Name)] for key in []) for n in _ast.walk(_ast.parse(_source)))",
+          "feedback": {
+            "en": "The new total is 30, which leaves zero when divided into groups of six.",
+            "nl": "Het nieuwe totaal is 30; dat laat nul over bij groepen van zes."
+          },
+          "hint": {
+            "en": "Group the addition in parentheses before applying modulo.",
+            "nl": "Zet de optelling tussen haakjes voordat je modulo toepast."
+          }
+        },
+        {
+          "id": "python-hello-world-11-v2-step-4",
+          "task": {
+            "en": "Finally, calculate `parity_remainder = 29 % 2` and print it on a fourth line. Does the result describe an even or an odd number?",
+            "nl": "Bereken tot slot `parity_remainder = 29 % 2` en druk deze op een vierde regel af. Beschrijft de uitkomst een even of een oneven getal?"
+          },
+          "check": "parity_remainder == 1 and _stdout.splitlines() == ['5','1','0','1']",
+          "feedback": {
+            "en": "The four output lines should be 5, 1, 0 and 1.",
+            "nl": "De vier outputregels moeten 5, 1, 0 en 1 zijn."
+          },
+          "hint": {
+            "en": "An odd number leaves one item when divided into pairs.",
+            "nl": "Een oneven getal laat één item over als je paren maakt."
           }
         }
       ],
       "solutionNote": {
-        "en": "The modulo operator % returns a division remainder. A remainder of zero tells you that the division is exact. This is useful for even/odd checks and repeating cycles.\n\nTrace the solution one line at a time. Try a different input to see which parts change.",
-        "nl": "De modulo operator % geeft de rest van een deling. Een rest van nul betekent dat de deling precies uitkomt. Dat is handig voor even/oneven-controles en herhalende patronen.\n\nVolg de oplossing regel voor regel. Probeer een andere invoer en bekijk welke onderdelen veranderen."
+        "en": "29 is four groups of six with five left over. Adding one makes 30, or five complete groups. The final modulo uses groups of two instead: a remainder of one identifies 29 as odd.",
+        "nl": "29 bestaat uit vier groepen van zes met vijf over. Eén toevoegen maakt 30: vijf volledige groepen. De laatste modulo gebruikt groepen van twee; een rest van één laat zien dat 29 oneven is."
       },
       "sourcePosition": 11,
       "sourceUrl": "https://www.codecademy.com/courses/learn-python-3/lessons/python-hello-world/exercises/modulo",
@@ -874,33 +1464,79 @@
       "kind": "coding",
       "optional": false,
       "explanation": {
-        "en": "For strings, + joins text in order. Python does not add spaces automatically. Include the spaces or punctuation you want inside the strings.",
-        "nl": "Bij strings voegt + tekst in volgorde samen. Python voegt zelf geen spaties toe. Zet gewenste spaties of leestekens in de strings."
+        "en": "The same operator can have different meanings for different types. With numbers, `+` adds. With strings, `+` joins the left text to the right text. This operation is called concatenation and produces a new string.",
+        "nl": "Dezelfde operator kan voor verschillende types iets anders betekenen. Bij getallen telt `+` op. Bij strings voegt `+` de rechtertekst aan de linkertekst toe. Dit heet concatenatie en levert een nieuwe string op."
       },
-      "example": "label = \"Gate \" + \"A\"",
+      "example": "",
+      "sections": [
+        {
+          "heading": {
+            "en": "You control the separators",
+            "nl": "Jij bepaalt de scheiding"
+          },
+          "body": {
+            "en": "Python does not insert spaces when you concatenate strings. Include every space and punctuation mark you want in the result. The original strings keep their values unless you assign a new value to their names.",
+            "nl": "Python voegt bij het samenvoegen geen spaties in. Neem alle gewenste spaties en leestekens op in de strings. De oorspronkelijke strings behouden hun waarde, tenzij je een nieuwe waarde aan hun namen toewijst."
+          },
+          "code": "first = \"Gate\"\nsecond = \"B\"\nprint(first + second)\nprint(first + \" \" + second)",
+          "output": "GateB\nGate B"
+        },
+        {
+          "heading": {
+            "en": "Joining a number to text",
+            "nl": "Een getal aan tekst toevoegen"
+          },
+          "body": {
+            "en": "A string and an integer cannot be joined directly with `+`; that raises `TypeError`. Convert the number with `str()` when building a single string. Passing separate values to `print()` with commas is another way to display them, but does not store a combined string for later use.",
+            "nl": "Een string en een integer kun je niet direct met `+` samenvoegen; dat geeft `TypeError`. Zet het getal om met `str()` wanneer je één string wilt opbouwen. Met komma's kun je ook losse waarden aan `print()` geven, maar daarmee sla je geen gecombineerde string op voor later gebruik."
+          },
+          "code": "platform = 3\nnotice = \"Platform \" + str(platform)\nprint(notice)\nprint(\"Platform\", platform)",
+          "output": "Platform 3\nPlatform 3"
+        }
+      ],
       "files": {
-        "main.py": "origin = \"North\"\ndestination = \"Pier\"\n"
+        "main.py": "origin = \"North\"\ndestination = \"Pier\"\nplatform = 4\n\n# Extend each expression to build the complete message.\nroute = origin\nprint(route)\n\nannouncement = route\nprint(announcement)\n"
       },
       "solution": {
-        "main.py": "origin = \"North\"\ndestination = \"Pier\"\nroute = origin + \" → \" + destination\nprint(route)\n"
+        "main.py": "origin = \"North\"\ndestination = \"Pier\"\nplatform = 4\nroute = origin + \" → \" + destination\nprint(route)\nannouncement = route + \" | Platform \" + str(platform)\nprint(announcement)\n"
       },
       "checkpoints": [
         {
-          "id": "python-hello-world-12-step-1",
+          "id": "python-hello-world-12-v2-step-1",
           "task": {
-            "en": "Join origin North and destination Pier into route with the exact value North → Pier. Print route.",
-            "nl": "Voeg origin North en destination Pier samen tot route met precies de waarde North → Pier. Druk route af."
+            "en": "Build `route` from `origin`, a separator ` → ` with spaces, and `destination`. Print the result: North → Pier.",
+            "nl": "Bouw `route` op uit `origin`, het scheidingsteken ` → ` met spaties en `destination`. Druk het resultaat af: North → Pier."
           },
-          "check": "route == 'North → Pier' and _stdout.strip() == route",
+          "check": "route == 'North → Pier' and _stdout.splitlines()[:1] == ['North → Pier'] and any(isinstance(n, _ast.Assign) and any(isinstance(t, _ast.Name) and t.id == 'route' for t in n.targets) and isinstance(n.value, _ast.BinOp) and isinstance(n.value.op, _ast.Add) and all(key in [x.id for x in _ast.walk(n.value) if isinstance(x, _ast.Name)] for key in [\"origin\",\"destination\"]) for n in _ast.walk(_ast.parse(_source)))",
+          "feedback": {
+            "en": "Combine the strings into route and check the spaces around the arrow.",
+            "nl": "Voeg de strings samen in route en controleer de spaties rond de pijl."
+          },
           "hint": {
-            "en": "Start with origin = \"North\". Then compare the values with the task.",
-            "nl": "Begin met origin = \"North\". Vergelijk de waarden daarna met de opdracht."
+            "en": "Use + between the three strings. Include a space on both sides of the arrow.",
+            "nl": "Gebruik + tussen de drie strings. Zet aan beide kanten van de pijl een spatie."
+          }
+        },
+        {
+          "id": "python-hello-world-12-v2-step-2",
+          "task": {
+            "en": "Build `announcement` by joining `route`, ` | Platform ` and the string form of `platform`. Print it on the second line. Keep platform as an integer.",
+            "nl": "Bouw `announcement` op door `route`, ` | Platform ` en de stringvorm van `platform` samen te voegen. Druk dit op de tweede regel af. Laat platform een integer blijven."
+          },
+          "check": "type(platform) is int and platform == 4 and announcement == 'North → Pier | Platform 4' and _stdout.splitlines() == ['North → Pier', announcement]",
+          "feedback": {
+            "en": "Convert the number while building announcement; its exact value should be North → Pier | Platform 4.",
+            "nl": "Zet het getal om tijdens het opbouwen van announcement; de exacte waarde moet North → Pier | Platform 4 zijn."
+          },
+          "hint": {
+            "en": "Use str(platform) inside the concatenation. You do not need to reassign platform.",
+            "nl": "Gebruik str(platform) binnen de concatenatie. Je hoeft platform niet opnieuw toe te wijzen."
           }
         }
       ],
       "solutionNote": {
-        "en": "For strings, + joins text in order. Python does not add spaces automatically. Include the spaces or punctuation you want inside the strings.\n\nTrace the solution one line at a time. Try a different input to see which parts change.",
-        "nl": "Bij strings voegt + tekst in volgorde samen. Python voegt zelf geen spaties toe. Zet gewenste spaties of leestekens in de strings.\n\nVolg de oplossing regel voor regel. Probeer een andere invoer en bekijk welke onderdelen veranderen."
+        "en": "route joins three pieces of text, including the spaces around the arrow. str(platform) creates text for the announcement without changing the original numeric platform variable.",
+        "nl": "route voegt drie stukken tekst samen, inclusief de spaties rond de pijl. str(platform) maakt tekst voor de aankondiging zonder de oorspronkelijke numerieke variabele platform te veranderen."
       },
       "sourcePosition": 12,
       "sourceUrl": "https://www.codecademy.com/courses/learn-python-3/lessons/python-hello-world/exercises/concatenation",
@@ -912,38 +1548,104 @@
       "group": "python-hello-world",
       "title": {
         "en": "Augmented assignment",
-        "nl": "Augmented assignment"
+        "nl": "Waarden stapsgewijs bijwerken"
       },
       "kind": "coding",
       "optional": false,
       "explanation": {
-        "en": "Augmented assignment combines an operation with assignment. energy += 4 updates energy by adding 4. The corresponding forms -= and *= also update the existing value.",
-        "nl": "Augmented assignment combineert een bewerking met assignment. energy += 4 verhoogt energy met 4. Met -= en *= kun je de bestaande waarde ook bijwerken."
+        "en": "Updating an existing value is so common that Python provides a shorter assignment form. For the numbers and strings in this lesson, `value += change` has the same effect as `value = value + change`. The name must already have a value.",
+        "nl": "Het bijwerken van een bestaande waarde komt zo vaak voor dat Python er een kortere toewijzing voor heeft. Voor de getallen en strings in deze les doet `value += change` hetzelfde als `value = value + change`. De naam moet al een waarde hebben."
       },
-      "example": "count = 3\ncount += 2",
+      "example": "",
+      "sections": [
+        {
+          "heading": {
+            "en": "Accumulate one update at a time",
+            "nl": "Werk één wijziging tegelijk bij"
+          },
+          "body": {
+            "en": "Each `+=` starts with the current value, not the original one. Related forms include `-=` for subtraction and `*=` for multiplication. Keep the operator and equals sign together.",
+            "nl": "Elke `+=` begint met de huidige waarde, niet met de oorspronkelijke. Vergelijkbare vormen zijn `-=` voor aftrekken en `*=` voor vermenigvuldigen. Schrijf de operator en het gelijkteken direct naast elkaar."
+          },
+          "code": "balance = 10\nbalance += 3\nbalance += 4\nprint(balance)",
+          "output": "17",
+          "takeaway": {
+            "en": "The value moves from 10 to 13 to 17. Replacing the second update with balance = 4 would discard the accumulated amount.",
+            "nl": "De waarde gaat van 10 naar 13 naar 17. Vervang je de tweede wijziging door balance = 4, dan verdwijnt het opgebouwde bedrag."
+          }
+        },
+        {
+          "heading": {
+            "en": "The same pattern works for strings",
+            "nl": "Hetzelfde patroon werkt met strings"
+          },
+          "body": {
+            "en": "With strings, `+=` adds text to the end and assigns the joined result back to the name. It still inserts no automatic spaces. Decide which side of the join supplies the space.",
+            "nl": "Bij strings voegt `+=` tekst aan het einde toe en wijst het samengevoegde resultaat opnieuw aan de naam toe. Er komen nog steeds geen automatische spaties bij. Bepaal welk deel van de samenvoeging de spatie bevat."
+          },
+          "code": "status = \"Gate\"\nstatus += \" open\"\nprint(status)",
+          "output": "Gate open"
+        }
+      ],
       "files": {
-        "main.py": "# Write your code below.\n"
+        "main.py": "energy = 12\nstatus = \"Charge\"\n\n# First charging session: add 8 before printing.\nprint(energy)\n\n# Second charging session: add 5 before printing.\nprint(energy)\n\n# Extend the status message before printing.\nprint(status)\n"
       },
       "solution": {
-        "main.py": "energy = 12\nenergy += 8\nprint(energy)\n"
+        "main.py": "energy = 12\nstatus = \"Charge\"\nenergy += 8\nprint(energy)\nenergy += 5\nprint(energy)\nstatus += \" complete\"\nprint(status)\n"
       },
       "checkpoints": [
         {
-          "id": "python-hello-world-13-step-1",
+          "id": "python-hello-world-13-v2-step-1",
           "task": {
-            "en": "Start energy at 12 and increase it by 8 using +=. Print energy.",
-            "nl": "Begin met energy = 12 en verhoog de waarde met 8 via +=. Druk energy af."
+            "en": "Increase `energy` by 8 using `+=` and print the updated value. Keep the starter value 12.",
+            "nl": "Verhoog `energy` met 8 via `+=` en druk de bijgewerkte waarde af. Laat de startwaarde 12 staan."
           },
-          "check": "energy == 20 and any(isinstance(n, _ast.AugAssign) for n in _ast.walk(_ast.parse(_source)))",
+          "check": "_stdout.splitlines()[:1] == ['20'] and any(isinstance(n,_ast.AugAssign) and isinstance(n.target,_ast.Name) and n.target.id == 'energy' and isinstance(n.op,_ast.Add) for n in _ast.walk(_ast.parse(_source)))",
+          "feedback": {
+            "en": "Use += on energy, then print the intermediate value 20.",
+            "nl": "Gebruik += bij energy en druk daarna de tussenwaarde 20 af."
+          },
           "hint": {
-            "en": "Start with energy = 12. Then compare the values with the task.",
-            "nl": "Begin met energy = 12. Vergelijk de waarden daarna met de opdracht."
+            "en": "Place energy += 8 after the starting assignment.",
+            "nl": "Zet energy += 8 na de starttoewijzing."
+          }
+        },
+        {
+          "id": "python-hello-world-13-v2-step-2",
+          "task": {
+            "en": "Add another 5 to `energy` with a second `+=` statement and print it again. Keep the earlier update and print call.",
+            "nl": "Tel met een tweede `+=` nog 5 op bij `energy` en druk deze opnieuw af. Laat de eerdere wijziging en print-aanroep staan."
+          },
+          "check": "energy == 25 and _stdout.splitlines()[:2] == ['20','25'] and sum(isinstance(n,_ast.AugAssign) and isinstance(n.target,_ast.Name) and n.target.id == 'energy' and isinstance(n.op,_ast.Add) for n in _ast.walk(_ast.parse(_source))) >= 2",
+          "feedback": {
+            "en": "Keep both += updates and print 20 followed by 25.",
+            "nl": "Laat beide +=-wijzigingen staan en druk 20 af, gevolgd door 25."
+          },
+          "hint": {
+            "en": "The second update begins with 20, so do not reset energy to 12.",
+            "nl": "De tweede wijziging begint met 20, dus zet energy niet terug naar 12."
+          }
+        },
+        {
+          "id": "python-hello-world-13-v2-step-3",
+          "task": {
+            "en": "Use `+=` to add ` complete` to `status`, including the leading space. Print status as the third line.",
+            "nl": "Gebruik `+=` om ` complete` aan `status` toe te voegen, inclusief de spatie vooraan. Druk status af als derde regel."
+          },
+          "check": "status == 'Charge complete' and _stdout.splitlines() == ['20','25','Charge complete'] and any(isinstance(n,_ast.AugAssign) and isinstance(n.target,_ast.Name) and n.target.id == 'status' and isinstance(n.op,_ast.Add) for n in _ast.walk(_ast.parse(_source)))",
+          "feedback": {
+            "en": "Use += for the text update too, with one space between Charge and complete.",
+            "nl": "Gebruik ook += voor de tekstwijziging, met één spatie tussen Charge en complete."
+          },
+          "hint": {
+            "en": "Append the string with `status += \" complete\"`.",
+            "nl": "Voeg de string toe met `status += \" complete\"`."
           }
         }
       ],
       "solutionNote": {
-        "en": "Augmented assignment combines an operation with assignment. energy += 4 updates energy by adding 4. The corresponding forms -= and *= also update the existing value.\n\nTrace the solution one line at a time. Try a different input to see which parts change.",
-        "nl": "Augmented assignment combineert een bewerking met assignment. energy += 4 verhoogt energy met 4. Met -= en *= kun je de bestaande waarde ook bijwerken.\n\nVolg de oplossing regel voor regel. Probeer een andere invoer en bekijk welke onderdelen veranderen."
+        "en": "The numeric updates accumulate: 12 becomes 20, then 25. The string update joins text instead of adding numbers. Both forms require an existing value and store the new result back under the same name.",
+        "nl": "De getalswijzigingen stapelen op: 12 wordt 20 en daarna 25. Bij de string wordt tekst samengevoegd in plaats van getallen opgeteld. Beide vormen hebben een bestaande waarde nodig en slaan het nieuwe resultaat onder dezelfde naam op."
       },
       "sourcePosition": 13,
       "sourceUrl": "https://www.codecademy.com/courses/learn-python-3/lessons/python-hello-world/exercises/plus-equals",
@@ -955,38 +1657,84 @@
       "group": "python-hello-world",
       "title": {
         "en": "Multiline text",
-        "nl": "Tekst op meerdere regels"
+        "nl": "Strings op meerdere regels"
       },
       "kind": "coding",
       "optional": false,
       "explanation": {
-        "en": "Triple quotes create a string that can span several lines. Newlines and indentation inside the quoted text remain part of the string. You can also insert a newline with \\n.",
-        "nl": "Met drie aanhalingstekens maak je een string die meerdere regels kan beslaan. Nieuwe regels en inspringing binnen de tekst blijven onderdeel van de string. Met \\n kun je ook een nieuwe regel invoegen."
+        "en": "An announcement, address or short document may contain actual line breaks. Triple-quoted strings let a single string literal continue over several code lines. Use three matching single or double quotes at both ends.",
+        "nl": "Een aankondiging, adres of kort document kan echte regeleinden bevatten. Met drie aanhalingstekens kan één string literal over meerdere coderegels doorlopen. Gebruik aan beide kanten drie passende enkele of dubbele aanhalingstekens."
       },
       "example": "",
+      "sections": [
+        {
+          "heading": {
+            "en": "Line breaks are part of the value",
+            "nl": "Regeleinden horen bij de waarde"
+          },
+          "body": {
+            "en": "Everything inside the delimiters becomes part of the string, including newlines and indentation. Starting the text on the line after the opening quotes adds a leading newline. To avoid it, start the text immediately after the opening quotes.",
+            "nl": "Alles binnen de begrenzing hoort bij de string, inclusief regeleinden en inspringing. Begin je de tekst op de regel na de openingsaanhalingstekens, dan voeg je een regeleinde vooraan toe. Begin de tekst direct na de aanhalingstekens om dit te voorkomen."
+          },
+          "code": "notice = \"\"\"Service update\nUse the side entrance\"\"\"\nprint(notice)",
+          "output": "Service update\nUse the side entrance"
+        },
+        {
+          "heading": {
+            "en": "Another way to represent a newline",
+            "nl": "Een andere manier om een regeleinde te schrijven"
+          },
+          "body": {
+            "en": "Inside an ordinary string, `\\n` represents a newline. Triple quotes are often easier to read for longer text. They can also contain ordinary quote marks. A triple-quoted string is still a string, not a comment. In specific positions it can document a module or function as a docstring; ordinary comments use `#`.",
+            "nl": "Binnen een gewone string staat `\\n` voor een regeleinde. Drie aanhalingstekens maken langere tekst vaak beter leesbaar. Gewone aanhalingstekens kunnen er ook in staan. Zo'n string blijft een string en is geen comment. Op bepaalde posities kan deze een module of functie documenteren als docstring; gewone comments gebruiken `#`."
+          },
+          "code": "print(\"Line one\\nLine two\")",
+          "output": "Line one\nLine two"
+        }
+      ],
       "files": {
-        "main.py": "# Write your code below.\n"
+        "main.py": "# This one-line placeholder needs the two-line announcement.\nbulletin = \"Announcement pending\"\n\n# Display the bulletin below.\n"
       },
       "solution": {
         "main.py": "bulletin = \"\"\"Welcome aboard\nNext stop: Delft\"\"\"\nprint(bulletin)\n"
       },
       "checkpoints": [
         {
-          "id": "python-hello-world-14-step-1",
+          "id": "python-hello-world-14-v2-step-1",
           "task": {
-            "en": "Create bulletin with two lines: Welcome aboard and Next stop: Delft. Print it.",
-            "nl": "Maak bulletin met twee regels: Welcome aboard en Next stop: Delft. Druk de string af."
+            "en": "Create `bulletin` as a triple-quoted string with exactly two lines: `Welcome aboard` and `Next stop: Delft`. Do not add a blank line at either end.",
+            "nl": "Maak `bulletin` als een string met drie aanhalingstekens en precies twee regels: `Welcome aboard` en `Next stop: Delft`. Voeg aan het begin en einde geen lege regel toe."
           },
-          "check": "bulletin == 'Welcome aboard\\nNext stop: Delft' and _stdout.strip() == bulletin",
+          "check": "bulletin == 'Welcome aboard\\nNext stop: Delft'",
+          "feedback": {
+            "en": "Check the exact two lines and remove any leading or trailing newline or indentation.",
+            "nl": "Controleer de twee exacte regels en verwijder regeleinden of inspringing aan het begin of einde."
+          },
           "hint": {
-            "en": "Start with bulletin = \"\"\"Welcome aboard. Then compare the values with the task.",
-            "nl": "Begin met bulletin = \"\"\"Welcome aboard. Vergelijk de waarden daarna met de opdracht."
+            "en": "Put the first word directly after the opening triple quotes and close the string directly after Delft.",
+            "nl": "Zet het eerste woord direct na de drie openingsaanhalingstekens en sluit de string direct na Delft."
+          }
+        },
+        {
+          "id": "python-hello-world-14-v2-step-2",
+          "task": {
+            "en": "Print `bulletin` with one print call. Run the program and compare the output's two lines with the layout of your string.",
+            "nl": "Druk `bulletin` met één print-aanroep af. Voer het programma uit en vergelijk de twee outputregels met de indeling van je string."
+          },
+          "check": "_stdout == 'Welcome aboard\\nNext stop: Delft\\n' and any(isinstance(n,_ast.Call) and isinstance(n.func,_ast.Name) and n.func.id == 'print' and any(isinstance(x,_ast.Name) and x.id == 'bulletin' for x in n.args) for n in _ast.walk(_ast.parse(_source)))",
+          "feedback": {
+            "en": "Print the bulletin variable itself, without extra messages or blank lines.",
+            "nl": "Druk de variabele bulletin zelf af, zonder extra berichten of lege regels."
+          },
+          "hint": {
+            "en": "Pass bulletin without quotes to print; the newline is already stored inside it.",
+            "nl": "Geef bulletin zonder aanhalingstekens aan print; het regeleinde is al in de string opgeslagen."
           }
         }
       ],
       "solutionNote": {
-        "en": "Triple quotes create a string that can span several lines. Newlines and indentation inside the quoted text remain part of the string. You can also insert a newline with \\n.\n\nTrace the solution one line at a time. Try a different input to see which parts change.",
-        "nl": "Met drie aanhalingstekens maak je een string die meerdere regels kan beslaan. Nieuwe regels en inspringing binnen de tekst blijven onderdeel van de string. Met \\n kun je ook een nieuwe regel invoegen.\n\nVolg de oplossing regel voor regel. Probeer een andere invoer en bekijk welke onderdelen veranderen."
+        "en": "The internal newline separates the two announcement lines. print adds one final newline after the whole string. Keeping the text flush with the left edge avoids storing unintended indentation.",
+        "nl": "Het interne regeleinde scheidt de twee aankondigingsregels. print voegt na de hele string nog één regeleinde toe. Door de tekst links te laten beginnen sla je geen onbedoelde inspringing op."
       },
       "sourcePosition": 14,
       "sourceUrl": "https://www.codecademy.com/courses/learn-python-3/lessons/python-hello-world/exercises/multiline-strings",
@@ -998,38 +1746,118 @@
       "group": "python-hello-world",
       "title": {
         "en": "Foundation review",
-        "nl": "Terugblik: de basis"
+        "nl": "Terugblik: van gegevens naar een bon"
       },
       "kind": "coding",
       "optional": false,
       "explanation": {
-        "en": "Combine the tools you have learned: name your data, compute with numbers, and display clear text. Choose names that explain what a value means. Work on one requirement at a time.",
-        "nl": "Combineer wat je hebt geleerd: geef je gegevens namen, reken met getallen en toon duidelijke tekst. Kies namen die de betekenis van een waarde uitleggen. Werk telkens aan één vereiste."
+        "en": "You can now write a small program that turns named data into useful output. This review combines strings, numbers, arithmetic, assignment and text conversion. You will build a short order receipt, checking one part at a time.",
+        "nl": "Je kunt nu een klein programma schrijven dat benoemde gegevens omzet in nuttige output. Deze terugblik combineert strings, getallen, rekenen, toewijzen en tekstomzetting. Je bouwt een korte bestelbon en controleert telkens één onderdeel."
       },
       "example": "",
+      "sections": [
+        {
+          "heading": {
+            "en": "Plan before typing",
+            "nl": "Maak een plan voordat je typt"
+          },
+          "body": {
+            "en": "Separate the input data, the calculation and the presentation. Ask: which values are text, which are numbers, and which are calculated from other values? Store the result of a calculation rather than typing its answer by hand.",
+            "nl": "Scheid de invoergegevens, de berekening en de presentatie. Vraag jezelf af: welke waarden zijn tekst, welke zijn getallen en welke worden uit andere waarden berekend? Sla het resultaat van een berekening op in plaats van het antwoord met de hand te typen."
+          },
+          "code": "item = \"Notebook\"\nquantity = 2\nprice = 3.5\namount = quantity * price\nprint(item)\nprint(\"Total: \" + str(amount))",
+          "output": "Notebook\nTotal: 7.0",
+          "takeaway": {
+            "en": "If the quantity changes, the same calculation can produce the new amount when you run the program. The displayed text is built from the calculated value.",
+            "nl": "Als de hoeveelheid verandert, berekent dezelfde formule het nieuwe bedrag wanneer je het programma uitvoert. De getoonde tekst wordt opgebouwd uit de berekende waarde."
+          }
+        },
+        {
+          "heading": {
+            "en": "A debugging checklist",
+            "nl": "Een controlelijst bij fouten"
+          },
+          "body": {
+            "en": "If the file will not run, check matching quotes and parentheses, then the spelling of names. If it runs but gives the wrong answer, trace assignments in order and check arithmetic precedence. If the number is right but the display is wrong, check spaces and whether you printed a name or quoted text.",
+            "nl": "Als het bestand niet draait, controleer dan bij elkaar passende aanhalingstekens en haakjes en daarna de spelling van namen. Draait het wel maar klopt het antwoord niet, volg dan de toewijzingen op volgorde en controleer de rekenvolgorde. Klopt het getal maar niet de weergave, controleer dan spaties en of je een naam of tekst tussen aanhalingstekens afdrukt."
+          }
+        }
+      ],
       "files": {
-        "main.py": "# Write your code below.\n"
+        "main.py": "# Adapt this unfinished receipt for a sensor-kit order.\nlabel = \"Notebook\"\nunits = 2\nunit_price = 3.5\n\n# The total currently ignores the unit price. Repair the formula.\ntotal = units\n\n# Extend the summary to include the total amount.\nsummary = label\n\nprint(label)\nprint(total)\n# Print the complete summary below.\n"
       },
       "solution": {
-        "main.py": "label = \"Sensor kit\"\nunits = 6\nunit_price = 4.5\ntotal = units * unit_price\nprint(label)\nprint(total)\n"
+        "main.py": "label = \"Sensor kit\"\nunits = 6\nunit_price = 4.5\ntotal = units * unit_price\nsummary = label + \" | Total: \" + str(total)\nprint(label)\nprint(total)\nprint(summary)\n"
       },
       "checkpoints": [
         {
-          "id": "python-hello-world-15-step-1",
+          "id": "python-hello-world-15-v2-step-1",
           "task": {
-            "en": "Create label = Sensor kit, units = 6, unit_price = 4.5, and total = units * unit_price. Print label and total on separate lines.",
-            "nl": "Maak label = Sensor kit, units = 6, unit_price = 4.5 en total = units * unit_price. Druk label en total op aparte regels af."
+            "en": "Create the order data: `label` is the string `Sensor kit`, `units` is the integer `6`, and `unit_price` is the float `4.5`.",
+            "nl": "Maak de bestelgegevens: `label` is de string `Sensor kit`, `units` is de integer `6` en `unit_price` is de float `4.5`."
           },
-          "check": "label == 'Sensor kit' and units == 6 and unit_price == 4.5 and total == 27.0 and _stdout.splitlines() == ['Sensor kit','27.0']",
+          "check": "label == 'Sensor kit' and type(units) is int and units == 6 and type(unit_price) is float and unit_price == 4.5",
+          "feedback": {
+            "en": "Check the three names, values and types before calculating.",
+            "nl": "Controleer de drie namen, waarden en types voordat je rekent."
+          },
           "hint": {
-            "en": "Start with label = \"Sensor kit\". Then compare the values with the task.",
-            "nl": "Begin met label = \"Sensor kit\". Vergelijk de waarden daarna met de opdracht."
+            "en": "Only the label needs quotes. Use a decimal point in the price.",
+            "nl": "Alleen het label heeft aanhalingstekens nodig. Gebruik een decimale punt in de prijs."
+          }
+        },
+        {
+          "id": "python-hello-world-15-v2-step-2",
+          "task": {
+            "en": "Calculate `total` by multiplying `units` by `unit_price`. Do not hard-code the result.",
+            "nl": "Bereken `total` door `units` met `unit_price` te vermenigvuldigen. Typ het resultaat niet rechtstreeks in."
+          },
+          "check": "total == 27.0 and any(isinstance(n, _ast.Assign) and any(isinstance(t, _ast.Name) and t.id == 'total' for t in n.targets) and isinstance(n.value, _ast.BinOp) and isinstance(n.value.op, _ast.Mult) and all(key in [x.id for x in _ast.walk(n.value) if isinstance(x, _ast.Name)] for key in [\"units\",\"unit_price\"]) for n in _ast.walk(_ast.parse(_source)))",
+          "feedback": {
+            "en": "Use multiplication to store the numeric total 27.0.",
+            "nl": "Gebruik een vermenigvuldiging om het numerieke totaal 27.0 op te slaan."
+          },
+          "hint": {
+            "en": "The calculation should still work if you change units at the start of the program.",
+            "nl": "De berekening moet blijven werken als je units aan het begin van het programma verandert."
+          }
+        },
+        {
+          "id": "python-hello-world-15-v2-step-3",
+          "task": {
+            "en": "Build `summary` by joining the label, ` | Total: ` and the string form of total. Its value should be `Sensor kit | Total: 27.0`.",
+            "nl": "Bouw `summary` op uit het label, ` | Total: ` en de stringvorm van total. De waarde moet `Sensor kit | Total: 27.0` zijn."
+          },
+          "check": "summary == 'Sensor kit | Total: 27.0'",
+          "feedback": {
+            "en": "Check the separators and convert total to text when building summary.",
+            "nl": "Controleer de scheidingstekens en zet total om naar tekst tijdens het opbouwen van summary."
+          },
+          "hint": {
+            "en": "Use str(total) when joining the number to text.",
+            "nl": "Gebruik str(total) wanneer je het getal aan tekst toevoegt."
+          }
+        },
+        {
+          "id": "python-hello-world-15-v2-step-4",
+          "task": {
+            "en": "Print `label`, `total` and `summary` on three separate lines, in that order. After passing, try changing the quantity and predict the new result before running again.",
+            "nl": "Druk `label`, `total` en `summary` op drie afzonderlijke regels af, in die volgorde. Verander na het slagen eens de hoeveelheid en voorspel het nieuwe resultaat voordat je opnieuw uitvoert."
+          },
+          "check": "_stdout.splitlines() == ['Sensor kit','27.0','Sensor kit | Total: 27.0']",
+          "feedback": {
+            "en": "The output must contain exactly the label, numeric total and full summary, in order.",
+            "nl": "De output moet precies het label, het numerieke totaal en de volledige samenvatting bevatten, in die volgorde."
+          },
+          "hint": {
+            "en": "Use one print call for each value. Restore the requested inputs if you want to check the original exercise again.",
+            "nl": "Gebruik één print-aanroep per waarde. Herstel de gevraagde invoer als je de oorspronkelijke oefening opnieuw wilt controleren."
           }
         }
       ],
       "solutionNote": {
-        "en": "Combine the tools you have learned: name your data, compute with numbers, and display clear text. Choose names that explain what a value means. Work on one requirement at a time.\n\nTrace the solution one line at a time. Try a different input to see which parts change.",
-        "nl": "Combineer wat je hebt geleerd: geef je gegevens namen, reken met getallen en toon duidelijke tekst. Kies namen die de betekenis van een waarde uitleggen. Werk telkens aan één vereiste.\n\nVolg de oplossing regel voor regel. Probeer een andere invoer en bekijk welke onderdelen veranderen."
+        "en": "The data assignments come first because the multiplication needs their values. The summary uses str(total) to combine numeric information with text. The three print calls display different views of the same order.",
+        "nl": "De gegevens worden eerst toegewezen omdat de vermenigvuldiging deze waarden nodig heeft. De samenvatting gebruikt str(total) om numerieke informatie met tekst te combineren. De drie print-aanroepen tonen verschillende weergaven van dezelfde bestelling."
       },
       "sourcePosition": 15,
       "sourceUrl": "https://www.codecademy.com/courses/learn-python-3/lessons/python-hello-world/exercises/review",
@@ -1073,8 +1901,8 @@
                 "nl": "\"Dock\""
               },
               "reason": {
-                "en": "print displays the string contents; the quotation marks belong to Python syntax.",
-                "nl": "print toont de inhoud van de string; de aanhalingstekens horen bij de Python-syntax."
+                "en": "The quotes delimit the string in your code. print displays its contents, so the output is Dock without quotes.",
+                "nl": "De aanhalingstekens begrenzen de string in je code. print toont de inhoud, dus de output is Dock zonder aanhalingstekens."
               }
             },
             {
@@ -1084,8 +1912,8 @@
                 "nl": "print(Dock)"
               },
               "reason": {
-                "en": "print displays the string contents; the quotation marks belong to Python syntax.",
-                "nl": "print toont de inhoud van de string; de aanhalingstekens horen bij de Python-syntax."
+                "en": "print(Dock) describes code, not its output. The function displays only the supplied string: Dock.",
+                "nl": "print(Dock) beschrijft code, niet de output. De functie toont alleen de meegegeven string: Dock."
               }
             }
           ]
@@ -1117,8 +1945,8 @@
                 "nl": "// status note"
               },
               "reason": {
-                "en": "Python comments begin with # outside a string.",
-                "nl": "Python-comments beginnen met # buiten een string."
+                "en": "// is Python's floor-division operator, not its comment marker. Start a comment with # outside a string.",
+                "nl": "// is de Python-operator voor gehele deling, niet het commentteken. Begin een comment met # buiten een string."
               }
             },
             {
@@ -1128,8 +1956,8 @@
                 "nl": "comment status note"
               },
               "reason": {
-                "en": "Python comments begin with # outside a string.",
-                "nl": "Python-comments beginnen met # buiten een string."
+                "en": "comment is not a keyword for creating notes. Python needs # to know it should ignore the rest of the line.",
+                "nl": "comment is geen keyword om notities te maken. Python heeft # nodig om de rest van de regel te negeren."
               }
             }
           ]
@@ -1161,8 +1989,8 @@
                 "nl": "8"
               },
               "reason": {
-                "en": "+= adds to the current numeric value and saves the result.",
-                "nl": "+= telt op bij de huidige numerieke waarde en slaat het resultaat op."
+                "en": "8 is the starting value. += 5 adds five and stores the new value, so count ends at 13.",
+                "nl": "8 is de startwaarde. += 5 telt vijf op en slaat de nieuwe waarde op, dus count eindigt op 13."
               }
             },
             {
@@ -1172,8 +2000,8 @@
                 "nl": "5"
               },
               "reason": {
-                "en": "+= adds to the current numeric value and saves the result.",
-                "nl": "+= telt op bij de huidige numerieke waarde en slaat het resultaat op."
+                "en": "count = 5 would replace the value. count += 5 instead adds to the existing 8, giving 13.",
+                "nl": "count = 5 zou de waarde vervangen. count += 5 telt juist bij de bestaande 8 op en geeft 13."
               }
             },
             {
@@ -1183,8 +2011,8 @@
                 "nl": "85"
               },
               "reason": {
-                "en": "+= adds to the current numeric value and saves the result.",
-                "nl": "+= telt op bij de huidige numerieke waarde en slaat het resultaat op."
+                "en": "Joining the digits would require strings. These values are integers, so + performs addition: 8 + 5 is 13.",
+                "nl": "Voor het samenvoegen van cijfers zijn strings nodig. Deze waarden zijn integers, dus + telt op: 8 + 5 is 13."
               }
             }
           ]
@@ -1216,8 +2044,8 @@
                 "nl": "42"
               },
               "reason": {
-                "en": "Quotes make 42 text rather than an integer.",
-                "nl": "Door de aanhalingstekens is 42 tekst en geen integer."
+                "en": "Without quotes, 42 is an integer. The quoted version is a string containing two characters.",
+                "nl": "Zonder aanhalingstekens is 42 een integer. De versie met aanhalingstekens is een string met twee tekens."
               }
             },
             {
@@ -1227,8 +2055,8 @@
                 "nl": "4.2"
               },
               "reason": {
-                "en": "Quotes make 42 text rather than an integer.",
-                "nl": "Door de aanhalingstekens is 42 tekst en geen integer."
+                "en": "The decimal point makes 4.2 a float. A string literal is marked by quotes, such as \"42\".",
+                "nl": "De decimale punt maakt 4.2 een float. Een string literal herken je aan aanhalingstekens, zoals \"42\"."
               }
             },
             {
@@ -1238,8 +2066,8 @@
                 "nl": "True"
               },
               "reason": {
-                "en": "Quotes make 42 text rather than an integer.",
-                "nl": "Door de aanhalingstekens is 42 tekst en geen integer."
+                "en": "True is a Boolean value, which the next chapter explores. It is not a string unless quoted.",
+                "nl": "True is een Boolean-waarde, die in het volgende hoofdstuk aan bod komt. Zonder aanhalingstekens is het geen string."
               }
             }
           ]
@@ -1271,8 +2099,8 @@
                 "nl": "20"
               },
               "reason": {
-                "en": "Multiplication happens before addition: 3 * 4 is 12, then add 2.",
-                "nl": "Vermenigvuldigen gaat eerst: 3 * 4 is 12; tel daar 2 bij op."
+                "en": "20 would be the result of (2 + 3) * 4. Here multiplication happens first: 3 * 4 is 12, then 2 + 12 is 14.",
+                "nl": "20 zou het resultaat zijn van (2 + 3) * 4. Hier gaat vermenigvuldigen eerst: 3 * 4 is 12, daarna is 2 + 12 gelijk aan 14."
               }
             },
             {
@@ -1282,8 +2110,8 @@
                 "nl": "24"
               },
               "reason": {
-                "en": "Multiplication happens before addition: 3 * 4 is 12, then add 2.",
-                "nl": "Vermenigvuldigen gaat eerst: 3 * 4 is 12; tel daar 2 bij op."
+                "en": "The first operator is addition, not multiplication. Calculate 3 * 4, then add 2: the result is 14.",
+                "nl": "De eerste operator is optellen, niet vermenigvuldigen. Bereken 3 * 4 en tel daarna 2 op: het resultaat is 14."
               }
             },
             {
@@ -1293,8 +2121,8 @@
                 "nl": "9"
               },
               "reason": {
-                "en": "Multiplication happens before addition: 3 * 4 is 12, then add 2.",
-                "nl": "Vermenigvuldigen gaat eerst: 3 * 4 is 12; tel daar 2 bij op."
+                "en": "Do not add all three numbers. The * groups 3 and 4 into a multiplication before the addition of 2.",
+                "nl": "Tel niet alle drie de getallen op. De * groepeert 3 en 4 in een vermenigvuldiging voordat 2 wordt opgeteld."
               }
             }
           ]
@@ -1326,8 +2154,8 @@
                 "nl": "3"
               },
               "reason": {
-                "en": "Three groups of five use 15, leaving a remainder of 4.",
-                "nl": "Drie groepen van vijf gebruiken 15; de rest is 4."
+                "en": "3 is the number of complete groups of five. % asks for the remainder: 19 minus 15 leaves 4.",
+                "nl": "3 is het aantal volledige groepen van vijf. % vraagt naar de rest: 19 min 15 laat 4 over."
               }
             },
             {
@@ -1337,8 +2165,8 @@
                 "nl": "3.8"
               },
               "reason": {
-                "en": "Three groups of five use 15, leaving a remainder of 4.",
-                "nl": "Drie groepen van vijf gebruiken 15; de rest is 4."
+                "en": "3.8 is the result of 19 / 5. Modulo returns the remainder after whole groups, which is 4.",
+                "nl": "3.8 is het resultaat van 19 / 5. Modulo geeft de rest na volledige groepen: 4."
               }
             },
             {
@@ -1348,8 +2176,8 @@
                 "nl": "5"
               },
               "reason": {
-                "en": "Three groups of five use 15, leaving a remainder of 4.",
-                "nl": "Drie groepen van vijf gebruiken 15; de rest is 4."
+                "en": "5 is the group size, not the remainder. Three groups use 15 items, leaving 4 from the original 19.",
+                "nl": "5 is de groepsgrootte, niet de rest. Drie groepen gebruiken 15 items en laten 4 over van de oorspronkelijke 19."
               }
             }
           ]
@@ -1381,8 +2209,8 @@
                 "nl": "4 ^ 3"
               },
               "reason": {
-                "en": "** is Python’s exponentiation operator.",
-                "nl": "** is de operator voor machtsverheffen in Python."
+                "en": "^ performs a bitwise operation in Python. Use ** for powers: 4 ** 3 means 4 * 4 * 4.",
+                "nl": "^ voert in Python een bitwise-bewerking uit. Gebruik ** voor machten: 4 ** 3 betekent 4 * 4 * 4."
               }
             },
             {
@@ -1392,8 +2220,8 @@
                 "nl": "4 * 3"
               },
               "reason": {
-                "en": "** is Python’s exponentiation operator.",
-                "nl": "** is de operator voor machtsverheffen in Python."
+                "en": "One asterisk multiplies once: 4 * 3 is 12. Two asterisks calculate a power: 4 ** 3 is 64.",
+                "nl": "Eén sterretje vermenigvuldigt één keer: 4 * 3 is 12. Twee sterretjes berekenen een macht: 4 ** 3 is 64."
               }
             },
             {
@@ -1403,8 +2231,8 @@
                 "nl": "4 // 3"
               },
               "reason": {
-                "en": "** is Python’s exponentiation operator.",
-                "nl": "** is de operator voor machtsverheffen in Python."
+                "en": "// is floor division. Exponentiation uses **, so 4 ** 3 calculates the third power of 4.",
+                "nl": "// is gehele deling. Machtsverheffen gebruikt **, dus 4 ** 3 berekent de derde macht van 4."
               }
             }
           ]
@@ -1436,8 +2264,8 @@
                 "nl": "Vergelijkt twee waarden"
               },
               "reason": {
-                "en": "Assignment associates the name city with the string Leiden.",
-                "nl": "Assignment koppelt de naam city aan de string Leiden."
+                "en": "A single = assigns. Comparing equality uses ==, which you will practise in the next chapter.",
+                "nl": "Een enkele = wijst toe. Gelijkheid vergelijken doe je met ==; dat oefen je in het volgende hoofdstuk."
               }
             },
             {
@@ -1447,8 +2275,8 @@
                 "nl": "Drukt de waarde af"
               },
               "reason": {
-                "en": "Assignment associates the name city with the string Leiden.",
-                "nl": "Assignment koppelt de naam city aan de string Leiden."
+                "en": "Assignment does not display a value. After storing it in city, print(city) would display Leiden.",
+                "nl": "Een toewijzing toont geen waarde. Na het opslaan in city zou print(city) Leiden tonen."
               }
             }
           ]
@@ -1480,8 +2308,8 @@
                 "nl": "Gate B"
               },
               "reason": {
-                "en": "String concatenation does not insert a space automatically.",
-                "nl": "Bij het samenvoegen van strings wordt niet automatisch een spatie toegevoegd."
+                "en": "+ does not insert a space. A space would need to be included in one of the strings.",
+                "nl": "+ voegt geen spatie in. Die spatie zou in een van de strings moeten staan."
               }
             },
             {
@@ -1491,8 +2319,8 @@
                 "nl": "Gate+B"
               },
               "reason": {
-                "en": "String concatenation does not insert a space automatically.",
-                "nl": "Bij het samenvoegen van strings wordt niet automatisch een spatie toegevoegd."
+                "en": "The + is an operator outside the quotes. It joins the strings and is not included in the resulting text.",
+                "nl": "De + is een operator buiten de aanhalingstekens. Deze voegt de strings samen en hoort niet bij de resulterende tekst."
               }
             },
             {
@@ -1502,8 +2330,8 @@
                 "nl": "Gate, B"
               },
               "reason": {
-                "en": "String concatenation does not insert a space automatically.",
-                "nl": "Bij het samenvoegen van strings wordt niet automatisch een spatie toegevoegd."
+                "en": "There is no comma in either string. Concatenation simply appends B directly to Gate, giving GateB.",
+                "nl": "In geen van de strings staat een komma. Concatenatie voegt B direct aan Gate toe en geeft GateB."
               }
             }
           ]
@@ -1535,8 +2363,8 @@
                 "nl": "3"
               },
               "reason": {
-                "en": "A decimal point distinguishes this float literal from an integer literal.",
-                "nl": "Het decimale punt onderscheidt deze float literal van een integer literal."
+                "en": "3 is an integer literal. Adding a decimal point, as in 3.0, makes it a float literal.",
+                "nl": "3 is een integer literal. Met een decimale punt, zoals bij 3.0, wordt het een float literal."
               }
             },
             {
@@ -1546,8 +2374,8 @@
                 "nl": "\"3\""
               },
               "reason": {
-                "en": "A decimal point distinguishes this float literal from an integer literal.",
-                "nl": "Het decimale punt onderscheidt deze float literal van een integer literal."
+                "en": "The quotes make this text, not a number. The float literal in these choices is 3.0.",
+                "nl": "Door de aanhalingstekens is dit tekst, geen getal. De float literal bij deze opties is 3.0."
               }
             }
           ]
@@ -1579,8 +2407,8 @@
                 "nl": "print heeft twee arguments nodig"
               },
               "reason": {
-                "en": "Close the quote before the parenthesis to make a valid string literal.",
-                "nl": "Sluit het aanhalingsteken vóór het haakje om een geldige string literal te maken."
+                "en": "print can take a single message. The failure happens because the opening quote is never closed.",
+                "nl": "print kan één bericht meekrijgen. De fout ontstaat doordat het openingsaanhalingsteken nooit wordt gesloten."
               }
             },
             {
@@ -1590,8 +2418,8 @@
                 "nl": "Tekst kan niet worden afgedrukt"
               },
               "reason": {
-                "en": "Close the quote before the parenthesis to make a valid string literal.",
-                "nl": "Sluit het aanhalingsteken vóór het haakje om een geldige string literal te maken."
+                "en": "Printing text is valid. Add a matching closing quote after Ready and before the closing parenthesis.",
+                "nl": "Tekst afdrukken is geldig. Voeg een passend aanhalingsteken toe na Ready en vóór het sluithaakje."
               }
             }
           ]
@@ -1623,8 +2451,8 @@
                 "nl": "2"
               },
               "reason": {
-                "en": "The second assignment replaces the value associated with level.",
-                "nl": "De tweede assignment vervangt de waarde die bij level hoort."
+                "en": "2 is the old value. The next assignment replaces it with 9 before print reads level.",
+                "nl": "2 is de oude waarde. De volgende toewijzing vervangt deze door 9 voordat print level leest."
               }
             },
             {
@@ -1634,8 +2462,8 @@
                 "nl": "11"
               },
               "reason": {
-                "en": "The second assignment replaces the value associated with level.",
-                "nl": "De tweede assignment vervangt de waarde die bij level hoort."
+                "en": "Assignment replaces; it does not add. There is no + or += here, so the final value is simply 9.",
+                "nl": "Toewijzen vervangt; het telt niet op. Hier staat geen + of +=, dus de eindwaarde is gewoon 9."
               }
             },
             {
@@ -1645,8 +2473,8 @@
                 "nl": "29"
               },
               "reason": {
-                "en": "The second assignment replaces the value associated with level.",
-                "nl": "De tweede assignment vervangt de waarde die bij level hoort."
+                "en": "These are separate assignments, not text concatenation. The second assignment leaves level equal to 9.",
+                "nl": "Dit zijn afzonderlijke toewijzingen, geen tekstconcatenatie. Door de tweede toewijzing is level gelijk aan 9."
               }
             }
           ]
@@ -1678,8 +2506,8 @@
                 "nl": "Zet # aan het begin"
               },
               "reason": {
-                "en": "Triple-quoted strings can include actual line breaks.",
-                "nl": "Strings met drie aanhalingstekens kunnen echte regeleinden bevatten."
+                "en": "# starts a comment and Python ignores the rest of that line. It does not create a multiline string.",
+                "nl": "# begint een comment en Python negeert de rest van die regel. Het maakt geen string op meerdere regels."
               }
             },
             {
@@ -1689,8 +2517,8 @@
                 "nl": "Gebruik alleen een variablenaam"
               },
               "reason": {
-                "en": "Triple-quoted strings can include actual line breaks.",
-                "nl": "Strings met drie aanhalingstekens kunnen echte regeleinden bevatten."
+                "en": "A name can refer to a string, but it does not define the string's contents. Triple quotes allow literal line breaks inside those contents.",
+                "nl": "Een naam kan naar een string verwijzen, maar bepaalt niet de inhoud. Met drie aanhalingstekens kun je echte regeleinden in die inhoud opnemen."
               }
             }
           ]
@@ -1709,23 +2537,64 @@
       "kind": "reading",
       "optional": false,
       "explanation": {
-        "en": "input(prompt) displays a prompt and waits for a line of text. The returned value is always a string, even when the user types digits. Convert with int() or float() only when the text is suitable.\n\nRun this example and type into the terminal when prompted. An invalid numeric entry can raise ValueError; the message helps you see what input was expected.",
-        "nl": "input(prompt) toont een vraag en wacht op een regel tekst. De return value is altijd een string, ook als de gebruiker cijfers invoert. Gebruik int() of float() alleen als de tekst daarvoor geschikt is.\n\nVoer dit voorbeeld uit en typ in de terminal wanneer daarom wordt gevraagd. Ongeldige numerieke invoer kan ValueError geven; de melding laat zien welke invoer werd verwacht."
+        "en": "Until now, your programs have used values written directly in the file. An interactive program asks the person running it for information. `input()` pauses the program, reads one line from the terminal, and returns that line as a string. You can assign that result to a name just like any other value.",
+        "nl": "Tot nu toe gebruikten je programma's waarden die direct in het bestand stonden. Een interactief programma vraagt de gebruiker om informatie. `input()` pauzeert het programma, leest één regel uit de terminal en geeft die regel terug als string. Je kunt dit resultaat net als een andere waarde aan een naam toewijzen."
       },
       "example": "",
+      "sections": [
+        {
+          "heading": {
+            "en": "Ask, wait, then continue",
+            "nl": "Vragen, wachten en verdergaan"
+          },
+          "body": {
+            "en": "The optional text inside `input()` is a prompt. It tells the person what to enter. Execution pauses at that call until they type a line and press Enter. The variable receives their answer without the final newline, and Python continues to the next instruction.\n\nRun the ticket-machine starter. Enter your name, press Enter, then enter a destination. While the program is waiting, the terminal sends what you type to the program rather than treating it as a Python command.",
+            "nl": "De optionele tekst binnen `input()` is een prompt. Deze vertelt de gebruiker wat die moet invoeren. De uitvoering wacht bij die aanroep totdat iemand een regel typt en op Enter drukt. De variabele krijgt het antwoord zonder het afsluitende regeleinde en Python gaat verder met de volgende instructie.\n\nVoer de startcode van de kaartjesautomaat uit. Voer je naam in, druk op Enter en voer daarna een bestemming in. Terwijl het programma wacht, stuurt de terminal je tekst naar het programma in plaats van deze als Python-opdracht te behandelen."
+          },
+          "code": "city = input(\"Where are you going? \")\nprint(\"Next stop: \" + city)",
+          "takeaway": {
+            "en": "If you enter Delft, the printed response is Next stop: Delft. You can run the same file again and supply a different destination without editing the code.",
+            "nl": "Voer je Delft in, dan is het afgedrukte antwoord Next stop: Delft. Je kunt hetzelfde bestand opnieuw uitvoeren en een andere bestemming opgeven zonder de code aan te passen."
+          }
+        },
+        {
+          "heading": {
+            "en": "Digits still arrive as text",
+            "nl": "Cijfers komen ook binnen als tekst"
+          },
+          "body": {
+            "en": "If someone types 3, `input()` returns the string `\"3\"`, not the integer `3`. Convert suitable text with `int()` before doing a whole-number calculation, or use `float()` when a decimal is allowed. The conversion creates a numeric value; it does not change the original text variable.",
+            "nl": "Als iemand 3 typt, geeft `input()` de string `\"3\"` terug, niet de integer `3`. Zet geschikte tekst eerst met `int()` om voordat je met gehele getallen rekent, of gebruik `float()` wanneer decimalen zijn toegestaan. De omzetting maakt een numerieke waarde; de oorspronkelijke tekstvariabele verandert niet."
+          },
+          "code": "quantity_text = \"3\"\nquantity = int(quantity_text)\nprint(quantity * 4)",
+          "output": "12"
+        },
+        {
+          "heading": {
+            "en": "Extend the ticket machine",
+            "nl": "Breid de kaartjesautomaat uit"
+          },
+          "body": {
+            "en": "First, add `ticket_text = input(\"How many tickets? \")` after the current messages. Run and check that the third question appears only after the first two answers.\n\nNext, convert ticket_text to an integer called `tickets`. Calculate `cost` at 4 euros per ticket and print `\"Total: \" + str(cost)`. Three tickets should cost 12. Try a different quantity and predict the new total.\n\nFinally, try entering a word when the program expects a number. `int()` raises ValueError because the text cannot be converted. Run again with a valid number to recover. You will learn how programs can handle such errors in a later lesson.",
+            "nl": "Voeg eerst na de huidige berichten `ticket_text = input(\"How many tickets? \")` toe. Voer de code uit en controleer dat de derde vraag pas na de eerste twee antwoorden verschijnt.\n\nZet ticket_text vervolgens om naar een integer met de naam `tickets`. Bereken `cost` bij 4 euro per kaartje en druk `\"Total: \" + str(cost)` af. Drie kaartjes moeten 12 kosten. Probeer een andere hoeveelheid en voorspel het nieuwe totaal.\n\nVoer tot slot eens een woord in waar het programma een getal verwacht. `int()` geeft ValueError omdat de tekst niet kan worden omgezet. Voer opnieuw uit met een geldig getal om verder te gaan. Later leer je hoe programma's zulke fouten kunnen afhandelen."
+          }
+        }
+      ],
       "files": {
-        "main.py": "name = input(\"Your name: \")\nprint(\"Welcome, \" + name + \"!\")\n"
+        "main.py": "# A ticket machine asks for the information it needs.\nname = input(\"Your name: \")\ndestination = input(\"Destination: \")\nprint(\"Welcome, \" + name + \"!\")\nprint(\"Your destination is \" + destination + \".\")\n\n# Add a question about the number of tickets below.\n"
       },
       "solution": {
-        "main.py": "name = input(\"Your name: \")\nprint(\"Welcome, \" + name + \"!\")\n"
+        "main.py": "name = input(\"Your name: \")\ndestination = input(\"Destination: \")\nprint(\"Welcome, \" + name + \"!\")\nprint(\"Your destination is \" + destination + \".\")\nticket_text = input(\"How many tickets? \")\ntickets = int(ticket_text)\ncost = tickets * 4\nprint(\"Total: \" + str(cost))\n"
       },
       "checkpoints": [],
       "solutionNote": {
-        "en": "This is an exploration activity. Run the example, change one input, and explain the new result in your own words.",
-        "nl": "Dit is een verkenningsactiviteit. Voer het voorbeeld uit, verander één invoer en leg het nieuwe resultaat in je eigen woorden uit."
+        "en": "Each input call waits for one answer. The first two answers remain text. int(ticket_text) converts the third into a count so multiplication calculates a price. str(cost) converts the result back to text for the message. An invalid quantity raises ValueError; this exploration intentionally leaves that visible.",
+        "nl": "Elke input-aanroep wacht op één antwoord. De eerste twee antwoorden blijven tekst. int(ticket_text) zet het derde om naar een aantal, zodat de vermenigvuldiging een prijs berekent. str(cost) zet het resultaat terug naar tekst voor het bericht. Een ongeldige hoeveelheid veroorzaakt ValueError; in deze verkenning blijft die fout bewust zichtbaar."
       },
       "inputs": [
-        "Alex"
+        "Alex",
+        "Delft",
+        "3"
       ],
       "estimatedMinutes": 2
     },

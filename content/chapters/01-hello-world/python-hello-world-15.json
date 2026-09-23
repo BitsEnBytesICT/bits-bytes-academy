@@ -4,38 +4,118 @@
   "group": "python-hello-world",
   "title": {
     "en": "Foundation review",
-    "nl": "Terugblik: de basis"
+    "nl": "Terugblik: van gegevens naar een bon"
   },
   "kind": "coding",
   "optional": false,
   "explanation": {
-    "en": "Combine the tools you have learned: name your data, compute with numbers, and display clear text. Choose names that explain what a value means. Work on one requirement at a time.",
-    "nl": "Combineer wat je hebt geleerd: geef je gegevens namen, reken met getallen en toon duidelijke tekst. Kies namen die de betekenis van een waarde uitleggen. Werk telkens aan één vereiste."
+    "en": "You can now write a small program that turns named data into useful output. This review combines strings, numbers, arithmetic, assignment and text conversion. You will build a short order receipt, checking one part at a time.",
+    "nl": "Je kunt nu een klein programma schrijven dat benoemde gegevens omzet in nuttige output. Deze terugblik combineert strings, getallen, rekenen, toewijzen en tekstomzetting. Je bouwt een korte bestelbon en controleert telkens één onderdeel."
   },
   "example": "",
+  "sections": [
+    {
+      "heading": {
+        "en": "Plan before typing",
+        "nl": "Maak een plan voordat je typt"
+      },
+      "body": {
+        "en": "Separate the input data, the calculation and the presentation. Ask: which values are text, which are numbers, and which are calculated from other values? Store the result of a calculation rather than typing its answer by hand.",
+        "nl": "Scheid de invoergegevens, de berekening en de presentatie. Vraag jezelf af: welke waarden zijn tekst, welke zijn getallen en welke worden uit andere waarden berekend? Sla het resultaat van een berekening op in plaats van het antwoord met de hand te typen."
+      },
+      "code": "item = \"Notebook\"\nquantity = 2\nprice = 3.5\namount = quantity * price\nprint(item)\nprint(\"Total: \" + str(amount))",
+      "output": "Notebook\nTotal: 7.0",
+      "takeaway": {
+        "en": "If the quantity changes, the same calculation can produce the new amount when you run the program. The displayed text is built from the calculated value.",
+        "nl": "Als de hoeveelheid verandert, berekent dezelfde formule het nieuwe bedrag wanneer je het programma uitvoert. De getoonde tekst wordt opgebouwd uit de berekende waarde."
+      }
+    },
+    {
+      "heading": {
+        "en": "A debugging checklist",
+        "nl": "Een controlelijst bij fouten"
+      },
+      "body": {
+        "en": "If the file will not run, check matching quotes and parentheses, then the spelling of names. If it runs but gives the wrong answer, trace assignments in order and check arithmetic precedence. If the number is right but the display is wrong, check spaces and whether you printed a name or quoted text.",
+        "nl": "Als het bestand niet draait, controleer dan bij elkaar passende aanhalingstekens en haakjes en daarna de spelling van namen. Draait het wel maar klopt het antwoord niet, volg dan de toewijzingen op volgorde en controleer de rekenvolgorde. Klopt het getal maar niet de weergave, controleer dan spaties en of je een naam of tekst tussen aanhalingstekens afdrukt."
+      }
+    }
+  ],
   "files": {
-    "main.py": "# Write your code below.\n"
+    "main.py": "# Adapt this unfinished receipt for a sensor-kit order.\nlabel = \"Notebook\"\nunits = 2\nunit_price = 3.5\n\n# The total currently ignores the unit price. Repair the formula.\ntotal = units\n\n# Extend the summary to include the total amount.\nsummary = label\n\nprint(label)\nprint(total)\n# Print the complete summary below.\n"
   },
   "solution": {
-    "main.py": "label = \"Sensor kit\"\nunits = 6\nunit_price = 4.5\ntotal = units * unit_price\nprint(label)\nprint(total)\n"
+    "main.py": "label = \"Sensor kit\"\nunits = 6\nunit_price = 4.5\ntotal = units * unit_price\nsummary = label + \" | Total: \" + str(total)\nprint(label)\nprint(total)\nprint(summary)\n"
   },
   "checkpoints": [
     {
-      "id": "python-hello-world-15-step-1",
+      "id": "python-hello-world-15-v2-step-1",
       "task": {
-        "en": "Create label = Sensor kit, units = 6, unit_price = 4.5, and total = units * unit_price. Print label and total on separate lines.",
-        "nl": "Maak label = Sensor kit, units = 6, unit_price = 4.5 en total = units * unit_price. Druk label en total op aparte regels af."
+        "en": "Create the order data: `label` is the string `Sensor kit`, `units` is the integer `6`, and `unit_price` is the float `4.5`.",
+        "nl": "Maak de bestelgegevens: `label` is de string `Sensor kit`, `units` is de integer `6` en `unit_price` is de float `4.5`."
       },
-      "check": "label == 'Sensor kit' and units == 6 and unit_price == 4.5 and total == 27.0 and _stdout.splitlines() == ['Sensor kit','27.0']",
+      "check": "label == 'Sensor kit' and type(units) is int and units == 6 and type(unit_price) is float and unit_price == 4.5",
+      "feedback": {
+        "en": "Check the three names, values and types before calculating.",
+        "nl": "Controleer de drie namen, waarden en types voordat je rekent."
+      },
       "hint": {
-        "en": "Start with label = \"Sensor kit\". Then compare the values with the task.",
-        "nl": "Begin met label = \"Sensor kit\". Vergelijk de waarden daarna met de opdracht."
+        "en": "Only the label needs quotes. Use a decimal point in the price.",
+        "nl": "Alleen het label heeft aanhalingstekens nodig. Gebruik een decimale punt in de prijs."
+      }
+    },
+    {
+      "id": "python-hello-world-15-v2-step-2",
+      "task": {
+        "en": "Calculate `total` by multiplying `units` by `unit_price`. Do not hard-code the result.",
+        "nl": "Bereken `total` door `units` met `unit_price` te vermenigvuldigen. Typ het resultaat niet rechtstreeks in."
+      },
+      "check": "total == 27.0 and any(isinstance(n, _ast.Assign) and any(isinstance(t, _ast.Name) and t.id == 'total' for t in n.targets) and isinstance(n.value, _ast.BinOp) and isinstance(n.value.op, _ast.Mult) and all(key in [x.id for x in _ast.walk(n.value) if isinstance(x, _ast.Name)] for key in [\"units\",\"unit_price\"]) for n in _ast.walk(_ast.parse(_source)))",
+      "feedback": {
+        "en": "Use multiplication to store the numeric total 27.0.",
+        "nl": "Gebruik een vermenigvuldiging om het numerieke totaal 27.0 op te slaan."
+      },
+      "hint": {
+        "en": "The calculation should still work if you change units at the start of the program.",
+        "nl": "De berekening moet blijven werken als je units aan het begin van het programma verandert."
+      }
+    },
+    {
+      "id": "python-hello-world-15-v2-step-3",
+      "task": {
+        "en": "Build `summary` by joining the label, ` | Total: ` and the string form of total. Its value should be `Sensor kit | Total: 27.0`.",
+        "nl": "Bouw `summary` op uit het label, ` | Total: ` en de stringvorm van total. De waarde moet `Sensor kit | Total: 27.0` zijn."
+      },
+      "check": "summary == 'Sensor kit | Total: 27.0'",
+      "feedback": {
+        "en": "Check the separators and convert total to text when building summary.",
+        "nl": "Controleer de scheidingstekens en zet total om naar tekst tijdens het opbouwen van summary."
+      },
+      "hint": {
+        "en": "Use str(total) when joining the number to text.",
+        "nl": "Gebruik str(total) wanneer je het getal aan tekst toevoegt."
+      }
+    },
+    {
+      "id": "python-hello-world-15-v2-step-4",
+      "task": {
+        "en": "Print `label`, `total` and `summary` on three separate lines, in that order. After passing, try changing the quantity and predict the new result before running again.",
+        "nl": "Druk `label`, `total` en `summary` op drie afzonderlijke regels af, in die volgorde. Verander na het slagen eens de hoeveelheid en voorspel het nieuwe resultaat voordat je opnieuw uitvoert."
+      },
+      "check": "_stdout.splitlines() == ['Sensor kit','27.0','Sensor kit | Total: 27.0']",
+      "feedback": {
+        "en": "The output must contain exactly the label, numeric total and full summary, in order.",
+        "nl": "De output moet precies het label, het numerieke totaal en de volledige samenvatting bevatten, in die volgorde."
+      },
+      "hint": {
+        "en": "Use one print call for each value. Restore the requested inputs if you want to check the original exercise again.",
+        "nl": "Gebruik één print-aanroep per waarde. Herstel de gevraagde invoer als je de oorspronkelijke oefening opnieuw wilt controleren."
       }
     }
   ],
   "solutionNote": {
-    "en": "Combine the tools you have learned: name your data, compute with numbers, and display clear text. Choose names that explain what a value means. Work on one requirement at a time.\n\nTrace the solution one line at a time. Try a different input to see which parts change.",
-    "nl": "Combineer wat je hebt geleerd: geef je gegevens namen, reken met getallen en toon duidelijke tekst. Kies namen die de betekenis van een waarde uitleggen. Werk telkens aan één vereiste.\n\nVolg de oplossing regel voor regel. Probeer een andere invoer en bekijk welke onderdelen veranderen."
+    "en": "The data assignments come first because the multiplication needs their values. The summary uses str(total) to combine numeric information with text. The three print calls display different views of the same order.",
+    "nl": "De gegevens worden eerst toegewezen omdat de vermenigvuldiging deze waarden nodig heeft. De samenvatting gebruikt str(total) om numerieke informatie met tekst te combineren. De drie print-aanroepen tonen verschillende weergaven van dezelfde bestelling."
   },
   "sourcePosition": 15,
   "sourceUrl": "https://www.codecademy.com/courses/learn-python-3/lessons/python-hello-world/exercises/review",

@@ -1,299 +1,302 @@
-import { lesson as L, reading as R, quiz as Q, loc } from "./helpers.mjs";
+import "./foundations-lessons.mjs";
+import { quiz as Q, loc } from "./helpers.mjs";
 const g = "python-hello-world";
-R(
+Q(
   g,
-  1,
-  "Welcome to your Python workspace. The left pane explains each concept and gives you a task. Write Python in the middle and press Run code. The terminal on the right shows output and errors.\n\nExperiment freely: Reset restores the starter files, hints offer a nudge, and View solution explains a working answer. Your code and progress are saved automatically.",
-  "Welkom in je Python-werkruimte. Links vind je uitleg en een opdracht. In het midden schrijf je Python en met Code uitvoeren start je het programma. Rechts toont de terminal de output en eventuele fouten.\n\nExperimenteer gerust: je kunt de startbestanden herstellen, een hint bekijken of een werkende oplossing bestuderen. Je code en voortgang worden automatisch opgeslagen.",
-  'print("Welcome to Python Lab!")\nprint("Small steps. Real skills.")\n',
-  { titleNl: "Welkom in je werkruimte" },
-);
-L(
-  g,
-  2,
-  "A comment explains an intention to a reader. Python ignores everything after # on the same line, unless the character is inside a string. Good comments explain why an operation exists.",
-  "Een comment legt je bedoeling uit aan de lezer. Python negeert alles na # op dezelfde regel, behalve wanneer het teken in een string staat. Een goede comment legt uit waarom een bewerking nodig is.",
-  "Add a comment describing the weather report. Keep the output Sunny.",
-  "Voeg een comment toe over het weerbericht. Zorg dat de output Sunny blijft.",
-  '# Current weather summary\nprint("Sunny")\n',
-  "'#' in _source and _stdout.strip() == 'Sunny'",
-  {
-    starter: 'print("Sunny")\n',
-    example: '# Explain the purpose\nprint("Ready")',
-    titleNl: "Comments",
-  },
-);
-L(
-  g,
-  3,
-  "print() sends a value to the terminal. Put the value between parentheses. Text must be surrounded by matching quotes; the quotes themselves are not printed.",
-  "print() stuurt een waarde naar de terminal. Zet de waarde tussen haakjes. Tekst staat tussen bij elkaar passende aanhalingstekens; die tekens verschijnen niet in de output.",
-  "Print Departure board on one line.",
-  "Druk Departure board af op één regel.",
-  'print("Departure board")\n',
-  "_stdout == 'Departure board\\n'",
-  { example: 'print("Good morning")', titleNl: "Output afdrukken" },
-);
-L(
-  g,
-  4,
-  "A string represents text. Single and double quotes both work, but the opening and closing quote must match. Spaces inside the quotes are part of the value.",
-  "Een string stelt tekst voor. Je kunt enkele of dubbele aanhalingstekens gebruiken, zolang begin en einde bij elkaar passen. Spaties tussen de aanhalingstekens horen bij de waarde.",
-  "Create station with the string Harbor, and print it.",
-  "Maak station met de string Harbor en druk deze af.",
-  'station = "Harbor"\nprint(station)\n',
-  "station == 'Harbor' and isinstance(station, str) and _stdout.strip() == station",
-  { example: "label = 'North gate'\nprint(label)", titleNl: "String literals" },
-);
-L(
-  g,
-  5,
-  "A variable associates a name with a value. The assignment operator = stores the value on its right under the name on its left. Use the name without quotes to retrieve that value.",
-  "Een variable koppelt een naam aan een waarde. De assignment operator = slaat de waarde rechts op onder de naam links. Gebruik de naam zonder aanhalingstekens om de waarde op te halen.",
-  "Store Delft in destination, then print destination.",
-  "Sla Delft op in destination en druk destination af.",
-  'destination = "Delft"\nprint(destination)\n',
-  "destination == 'Delft' and _stdout.strip() == 'Delft'",
-  { example: 'status = "Ready"\nprint(status)', titleNl: "Variables" },
-);
-L(
-  g,
-  6,
-  "Python reports a SyntaxError when it cannot understand the structure of your code. The message and caret identify the area to inspect. A missing closing quote often makes an otherwise simple line invalid.",
-  "Python geeft een SyntaxError als de structuur van je code niet klopt. De melding en het aanwijsteken helpen je zoeken. Een ontbrekend aanhalingsteken kan een eenvoudige regel al ongeldig maken.",
-  "Run the broken code, read the error, then repair it to print Gate open.",
-  "Voer de kapotte code uit, lees de fout en herstel de regel zodat Gate open verschijnt.",
-  'print("Gate open")\n',
-  "_stdout.strip() == 'Gate open'",
-  {
-    starter: 'print("Gate open)\n',
-    hint: "The text needs a closing quote before the closing parenthesis.",
-    hintNl:
-      "De tekst heeft een afsluitend aanhalingsteken nodig vóór het sluitende haakje.",
-    titleNl: "Foutmeldingen lezen",
-  },
-);
-L(
-  g,
-  7,
-  "Integers represent whole numbers; floats represent numbers with a decimal point. Numeric values do not need quotes. Quoted digits are text, so their behavior differs from numeric values.",
-  "Integers stellen gehele getallen voor; floats bevatten een decimaal punt. Getallen hebben geen aanhalingstekens nodig. Cijfers tussen aanhalingstekens zijn tekst en gedragen zich anders.",
-  "Create passenger_count as integer 24 and distance as float 7.5. Print both.",
-  "Maak passenger_count als integer 24 en distance als float 7.5. Druk beide af.",
-  "passenger_count = 24\ndistance = 7.5\nprint(passenger_count, distance)\n",
-  "type(passenger_count) is int and passenger_count == 24 and type(distance) is float and distance == 7.5",
-  { example: "items = 8\nweight = 2.25", titleNl: "Integers en floats" },
-);
-L(
-  g,
-  8,
-  "Python evaluates arithmetic expressions using operator precedence: multiplication and division happen before addition and subtraction. Parentheses let you specify a different order. / produces a floating-point result.",
-  "Python gebruikt een vaste volgorde: vermenigvuldigen en delen gaan vóór optellen en aftrekken. Met haakjes bepaal je een andere volgorde. / geeft een float als resultaat.",
-  "A journey has three 15-minute segments and a 5-minute wait. Store the total in duration and print it.",
-  "Een reis heeft drie stukken van 15 minuten en 5 minuten wachttijd. Sla het totaal op in duration en druk het af.",
-  "duration = 3 * 15 + 5\nprint(duration)\n",
-  "duration == 50 and _stdout.strip() == '50'",
-  { example: "total = 2 * (10 + 4)\nprint(total)", titleNl: "Berekeningen" },
-);
-L(
-  g,
-  9,
-  "Assignment can replace a variable’s earlier value. In score = score + 2, Python reads the current score, calculates a new value, and then stores it back under the same name.",
-  "Assignment kan een eerdere waarde vervangen. Bij score = score + 2 leest Python eerst de huidige score, berekent een nieuwe waarde en slaat deze daarna op onder dezelfde naam.",
-  "Start score at 10. Add 7, then subtract 3. Print the final score.",
-  "Begin met score = 10. Tel er 7 bij op en trek er daarna 3 van af. Druk de eindscore af.",
-  "score = 10\nscore = score + 7\nscore = score - 3\nprint(score)\n",
-  "score == 14 and _stdout.strip() == '14'",
-  { titleNl: "Waarden opnieuw toewijzen" },
-);
-L(
-  g,
-  10,
-  "The ** operator raises a number to a power. For example, 3 ** 2 means 3 multiplied by itself. This differs from ^, which is a bitwise operation in Python.",
-  "Met ** verhef je een getal tot een macht. Zo betekent 3 ** 2 dat je 3 met zichzelf vermenigvuldigt. ^ is in Python een bitwise operator en geen machtsverheffing.",
-  "Store 2 to the power 10 in capacity and print the result.",
-  "Sla 2 tot de macht 10 op in capacity en druk het resultaat af.",
-  "capacity = 2 ** 10\nprint(capacity)\n",
-  "capacity == 1024",
-  { example: "squared = 6 ** 2", titleNl: "Machtsverheffen" },
-);
-L(
-  g,
-  11,
-  "The modulo operator % returns a division remainder. A remainder of zero tells you that the division is exact. This is useful for even/odd checks and repeating cycles.",
-  "De modulo operator % geeft de rest van een deling. Een rest van nul betekent dat de deling precies uitkomt. Dat is handig voor even/oneven-controles en herhalende patronen.",
-  "Distribute 29 items into groups of 6. Store the remainder in leftover and whether 29 is even in is_even.",
-  "Verdeel 29 items in groepen van 6. Sla de rest op in leftover en leg in is_even vast of 29 even is.",
-  "leftover = 29 % 6\nis_even = 29 % 2 == 0\nprint(leftover, is_even)\n",
-  "leftover == 5 and is_even is False",
-  { example: "remainder = 17 % 4", titleNl: "Rest bij een deling" },
-);
-L(
-  g,
-  12,
-  "For strings, + joins text in order. Python does not add spaces automatically. Include the spaces or punctuation you want inside the strings.",
-  "Bij strings voegt + tekst in volgorde samen. Python voegt zelf geen spaties toe. Zet gewenste spaties of leestekens in de strings.",
-  "Join origin North and destination Pier into route with the exact value North → Pier. Print route.",
-  "Voeg origin North en destination Pier samen tot route met precies de waarde North → Pier. Druk route af.",
-  'origin = "North"\ndestination = "Pier"\nroute = origin + " → " + destination\nprint(route)\n',
-  "route == 'North → Pier' and _stdout.strip() == route",
-  {
-    starter: 'origin = "North"\ndestination = "Pier"\n',
-    example: 'label = "Gate " + "A"',
-    titleNl: "Tekst samenvoegen",
-  },
-);
-L(
-  g,
-  13,
-  "Augmented assignment combines an operation with assignment. energy += 4 updates energy by adding 4. The corresponding forms -= and *= also update the existing value.",
-  "Augmented assignment combineert een bewerking met assignment. energy += 4 verhoogt energy met 4. Met -= en *= kun je de bestaande waarde ook bijwerken.",
-  "Start energy at 12 and increase it by 8 using +=. Print energy.",
-  "Begin met energy = 12 en verhoog de waarde met 8 via +=. Druk energy af.",
-  "energy = 12\nenergy += 8\nprint(energy)\n",
-  "energy == 20 and any(isinstance(n, _ast.AugAssign) for n in _ast.walk(_ast.parse(_source)))",
-  { example: "count = 3\ncount += 2", titleNl: "Augmented assignment" },
-);
-L(
-  g,
-  14,
-  "Triple quotes create a string that can span several lines. Newlines and indentation inside the quoted text remain part of the string. You can also insert a newline with \\n.",
-  "Met drie aanhalingstekens maak je een string die meerdere regels kan beslaan. Nieuwe regels en inspringing binnen de tekst blijven onderdeel van de string. Met \\n kun je ook een nieuwe regel invoegen.",
-  "Create bulletin with two lines: Welcome aboard and Next stop: Delft. Print it.",
-  "Maak bulletin met twee regels: Welcome aboard en Next stop: Delft. Druk de string af.",
-  'bulletin = """Welcome aboard\nNext stop: Delft"""\nprint(bulletin)\n',
-  "bulletin == 'Welcome aboard\\nNext stop: Delft' and _stdout.strip() == bulletin",
-  { titleNl: "Tekst op meerdere regels" },
-);
-L(
-  g,
-  15,
-  "Combine the tools you have learned: name your data, compute with numbers, and display clear text. Choose names that explain what a value means. Work on one requirement at a time.",
-  "Combineer wat je hebt geleerd: geef je gegevens namen, reken met getallen en toon duidelijke tekst. Kies namen die de betekenis van een waarde uitleggen. Werk telkens aan één vereiste.",
-  "Create label = Sensor kit, units = 6, unit_price = 4.5, and total = units * unit_price. Print label and total on separate lines.",
-  "Maak label = Sensor kit, units = 6, unit_price = 4.5 en total = units * unit_price. Druk label en total op aparte regels af.",
-  'label = "Sensor kit"\nunits = 6\nunit_price = 4.5\ntotal = units * unit_price\nprint(label)\nprint(total)\n',
-  "label == 'Sensor kit' and units == 6 and unit_price == 4.5 and total == 27.0 and _stdout.splitlines() == ['Sensor kit','27.0']",
-  { titleNl: "Terugblik: de basis" },
-);
-Q(g, [
   [
-    "What does this program print?",
-    "Wat drukt dit programma af?",
-    'print("Dock")',
-    ["Dock", '"Dock"', "print(Dock)"],
-    "print displays the string contents; the quotation marks belong to Python syntax.",
-    "print toont de inhoud van de string; de aanhalingstekens horen bij de Python-syntax.",
-  ],
-  [
-    "Which line creates a comment?",
-    "Welke regel maakt een comment?",
-    "",
-    [["# status note"], ["// status note"], ["comment status note"]],
-    "Python comments begin with # outside a string.",
-    "Python-comments beginnen met # buiten een string.",
-  ],
-  [
-    "What is the final value of count?",
-    "Wat is de eindwaarde van count?",
-    "count = 8\ncount += 5",
-    ["13", "8", "5", "85"],
-    "+= adds to the current numeric value and saves the result.",
-    "+= telt op bij de huidige numerieke waarde en slaat het resultaat op.",
-  ],
-  [
-    "Which value is a string?",
-    "Welke waarde is een string?",
-    "",
-    ['"42"', "42", "4.2", "True"],
-    "Quotes make 42 text rather than an integer.",
-    "Door de aanhalingstekens is 42 tekst en geen integer.",
-  ],
-  [
-    "What is the result?",
-    "Wat is het resultaat?",
-    "print(2 + 3 * 4)",
-    ["14", "20", "24", "9"],
-    "Multiplication happens before addition: 3 * 4 is 12, then add 2.",
-    "Vermenigvuldigen gaat eerst: 3 * 4 is 12; tel daar 2 bij op.",
-  ],
-  [
-    "What is printed?",
-    "Wat wordt afgedrukt?",
-    "print(19 % 5)",
-    ["4", "3", "3.8", "5"],
-    "Three groups of five use 15, leaving a remainder of 4.",
-    "Drie groepen van vijf gebruiken 15; de rest is 4.",
-  ],
-  [
-    "Which expression calculates a power?",
-    "Welke expressie berekent een macht?",
-    "",
-    ["4 ** 3", "4 ^ 3", "4 * 3", "4 // 3"],
-    "** is Python’s exponentiation operator.",
-    "** is de operator voor machtsverheffen in Python.",
-  ],
-  [
-    "What does = do here?",
-    "Wat doet = hier?",
-    'city = "Leiden"',
     [
-      ["Assigns a value to a name", "Wijst een waarde toe aan een naam"],
-      ["Compares two values", "Vergelijkt twee waarden"],
-      ["Prints the value", "Drukt de waarde af"],
+      "What does this program print?",
+      "Wat drukt dit programma af?",
+      'print("Dock")',
+      ["Dock", '"Dock"', "print(Dock)"],
+      "print displays the string contents; the quotation marks belong to Python syntax.",
+      "print toont de inhoud van de string; de aanhalingstekens horen bij de Python-syntax.",
     ],
-    "Assignment associates the name city with the string Leiden.",
-    "Assignment koppelt de naam city aan de string Leiden.",
-  ],
-  [
-    "What is the output?",
-    "Wat is de output?",
-    'print("Gate" + "B")',
-    ["GateB", "Gate B", "Gate+B", "Gate, B"],
-    "String concatenation does not insert a space automatically.",
-    "Bij het samenvoegen van strings wordt niet automatisch een spatie toegevoegd.",
-  ],
-  [
-    "Which number is a float literal?",
-    "Welk getal is een float literal?",
-    "",
-    ["3.0", "3", '"3"'],
-    "A decimal point distinguishes this float literal from an integer literal.",
-    "Het decimale punt onderscheidt deze float literal van een integer literal.",
-  ],
-  [
-    "Why will this fail?",
-    "Waarom gaat dit fout?",
-    'print("Ready)',
     [
+      "Which line creates a comment?",
+      "Welke regel maakt een comment?",
+      "",
+      [["# status note"], ["// status note"], ["comment status note"]],
+      "Python comments begin with # outside a string.",
+      "Python-comments beginnen met # buiten een string.",
+    ],
+    [
+      "What is the final value of count?",
+      "Wat is de eindwaarde van count?",
+      "count = 8\ncount += 5",
+      ["13", "8", "5", "85"],
+      "+= adds to the current numeric value and saves the result.",
+      "+= telt op bij de huidige numerieke waarde en slaat het resultaat op.",
+    ],
+    [
+      "Which value is a string?",
+      "Welke waarde is een string?",
+      "",
+      ['"42"', "42", "4.2", "True"],
+      "Quotes make 42 text rather than an integer.",
+      "Door de aanhalingstekens is 42 tekst en geen integer.",
+    ],
+    [
+      "What is the result?",
+      "Wat is het resultaat?",
+      "print(2 + 3 * 4)",
+      ["14", "20", "24", "9"],
+      "Multiplication happens before addition: 3 * 4 is 12, then add 2.",
+      "Vermenigvuldigen gaat eerst: 3 * 4 is 12; tel daar 2 bij op.",
+    ],
+    [
+      "What is printed?",
+      "Wat wordt afgedrukt?",
+      "print(19 % 5)",
+      ["4", "3", "3.8", "5"],
+      "Three groups of five use 15, leaving a remainder of 4.",
+      "Drie groepen van vijf gebruiken 15; de rest is 4.",
+    ],
+    [
+      "Which expression calculates a power?",
+      "Welke expressie berekent een macht?",
+      "",
+      ["4 ** 3", "4 ^ 3", "4 * 3", "4 // 3"],
+      "** is Python’s exponentiation operator.",
+      "** is de operator voor machtsverheffen in Python.",
+    ],
+    [
+      "What does = do here?",
+      "Wat doet = hier?",
+      'city = "Leiden"',
       [
-        "The string has no closing quote",
-        "De string mist een afsluitend aanhalingsteken",
+        ["Assigns a value to a name", "Wijst een waarde toe aan een naam"],
+        ["Compares two values", "Vergelijkt twee waarden"],
+        ["Prints the value", "Drukt de waarde af"],
       ],
-      ["print requires two arguments", "print heeft twee arguments nodig"],
-      ["Text cannot be printed", "Tekst kan niet worden afgedrukt"],
+      "Assignment associates the name city with the string Leiden.",
+      "Assignment koppelt de naam city aan de string Leiden.",
     ],
-    "Close the quote before the parenthesis to make a valid string literal.",
-    "Sluit het aanhalingsteken vóór het haakje om een geldige string literal te maken.",
-  ],
-  [
-    "Which value is printed?",
-    "Welke waarde wordt afgedrukt?",
-    "level = 2\nlevel = 9\nprint(level)",
-    ["9", "2", "11", "29"],
-    "The second assignment replaces the value associated with level.",
-    "De tweede assignment vervangt de waarde die bij level hoort.",
-  ],
-  [
-    "How can a literal string span several lines?",
-    "Hoe kan een string literal meerdere regels beslaan?",
-    "",
     [
-      ["Use triple quotes", "Gebruik drie aanhalingstekens"],
-      ["Put # at the start", "Zet # aan het begin"],
-      ["Use a variable name only", "Gebruik alleen een variablenaam"],
+      "What is the output?",
+      "Wat is de output?",
+      'print("Gate" + "B")',
+      ["GateB", "Gate B", "Gate+B", "Gate, B"],
+      "String concatenation does not insert a space automatically.",
+      "Bij het samenvoegen van strings wordt niet automatisch een spatie toegevoegd.",
     ],
-    "Triple-quoted strings can include actual line breaks.",
-    "Strings met drie aanhalingstekens kunnen echte regeleinden bevatten.",
+    [
+      "Which number is a float literal?",
+      "Welk getal is een float literal?",
+      "",
+      ["3.0", "3", '"3"'],
+      "A decimal point distinguishes this float literal from an integer literal.",
+      "Het decimale punt onderscheidt deze float literal van een integer literal.",
+    ],
+    [
+      "Why will this fail?",
+      "Waarom gaat dit fout?",
+      'print("Ready)',
+      [
+        [
+          "The string has no closing quote",
+          "De string mist een afsluitend aanhalingsteken",
+        ],
+        ["print requires two arguments", "print heeft twee arguments nodig"],
+        ["Text cannot be printed", "Tekst kan niet worden afgedrukt"],
+      ],
+      "Close the quote before the parenthesis to make a valid string literal.",
+      "Sluit het aanhalingsteken vóór het haakje om een geldige string literal te maken.",
+    ],
+    [
+      "Which value is printed?",
+      "Welke waarde wordt afgedrukt?",
+      "level = 2\nlevel = 9\nprint(level)",
+      ["9", "2", "11", "29"],
+      "The second assignment replaces the value associated with level.",
+      "De tweede assignment vervangt de waarde die bij level hoort.",
+    ],
+    [
+      "How can a literal string span several lines?",
+      "Hoe kan een string literal meerdere regels beslaan?",
+      "",
+      [
+        ["Use triple quotes", "Gebruik drie aanhalingstekens"],
+        ["Put # at the start", "Zet # aan het begin"],
+        ["Use a variable name only", "Gebruik alleen een variablenaam"],
+      ],
+      "Triple-quoted strings can include actual line breaks.",
+      "Strings met drie aanhalingstekens kunnen echte regeleinden bevatten.",
+    ],
   ],
-]);
+  {
+    feedback: [
+      [
+        undefined,
+        loc(
+          "The quotes delimit the string in your code. print displays its contents, so the output is Dock without quotes.",
+          "De aanhalingstekens begrenzen de string in je code. print toont de inhoud, dus de output is Dock zonder aanhalingstekens.",
+        ),
+        loc(
+          "print(Dock) describes code, not its output. The function displays only the supplied string: Dock.",
+          "print(Dock) beschrijft code, niet de output. De functie toont alleen de meegegeven string: Dock.",
+        ),
+      ],
+      [
+        undefined,
+        loc(
+          "// is Python's floor-division operator, not its comment marker. Start a comment with # outside a string.",
+          "// is de Python-operator voor gehele deling, niet het commentteken. Begin een comment met # buiten een string.",
+        ),
+        loc(
+          "comment is not a keyword for creating notes. Python needs # to know it should ignore the rest of the line.",
+          "comment is geen keyword om notities te maken. Python heeft # nodig om de rest van de regel te negeren.",
+        ),
+      ],
+      [
+        undefined,
+        loc(
+          "8 is the starting value. += 5 adds five and stores the new value, so count ends at 13.",
+          "8 is de startwaarde. += 5 telt vijf op en slaat de nieuwe waarde op, dus count eindigt op 13.",
+        ),
+        loc(
+          "count = 5 would replace the value. count += 5 instead adds to the existing 8, giving 13.",
+          "count = 5 zou de waarde vervangen. count += 5 telt juist bij de bestaande 8 op en geeft 13.",
+        ),
+        loc(
+          "Joining the digits would require strings. These values are integers, so + performs addition: 8 + 5 is 13.",
+          "Voor het samenvoegen van cijfers zijn strings nodig. Deze waarden zijn integers, dus + telt op: 8 + 5 is 13.",
+        ),
+      ],
+      [
+        undefined,
+        loc(
+          "Without quotes, 42 is an integer. The quoted version is a string containing two characters.",
+          "Zonder aanhalingstekens is 42 een integer. De versie met aanhalingstekens is een string met twee tekens.",
+        ),
+        loc(
+          'The decimal point makes 4.2 a float. A string literal is marked by quotes, such as "42".',
+          'De decimale punt maakt 4.2 een float. Een string literal herken je aan aanhalingstekens, zoals "42".',
+        ),
+        loc(
+          "True is a Boolean value, which the next chapter explores. It is not a string unless quoted.",
+          "True is een Boolean-waarde, die in het volgende hoofdstuk aan bod komt. Zonder aanhalingstekens is het geen string.",
+        ),
+      ],
+      [
+        undefined,
+        loc(
+          "20 would be the result of (2 + 3) * 4. Here multiplication happens first: 3 * 4 is 12, then 2 + 12 is 14.",
+          "20 zou het resultaat zijn van (2 + 3) * 4. Hier gaat vermenigvuldigen eerst: 3 * 4 is 12, daarna is 2 + 12 gelijk aan 14.",
+        ),
+        loc(
+          "The first operator is addition, not multiplication. Calculate 3 * 4, then add 2: the result is 14.",
+          "De eerste operator is optellen, niet vermenigvuldigen. Bereken 3 * 4 en tel daarna 2 op: het resultaat is 14.",
+        ),
+        loc(
+          "Do not add all three numbers. The * groups 3 and 4 into a multiplication before the addition of 2.",
+          "Tel niet alle drie de getallen op. De * groepeert 3 en 4 in een vermenigvuldiging voordat 2 wordt opgeteld.",
+        ),
+      ],
+      [
+        undefined,
+        loc(
+          "3 is the number of complete groups of five. % asks for the remainder: 19 minus 15 leaves 4.",
+          "3 is het aantal volledige groepen van vijf. % vraagt naar de rest: 19 min 15 laat 4 over.",
+        ),
+        loc(
+          "3.8 is the result of 19 / 5. Modulo returns the remainder after whole groups, which is 4.",
+          "3.8 is het resultaat van 19 / 5. Modulo geeft de rest na volledige groepen: 4.",
+        ),
+        loc(
+          "5 is the group size, not the remainder. Three groups use 15 items, leaving 4 from the original 19.",
+          "5 is de groepsgrootte, niet de rest. Drie groepen gebruiken 15 items en laten 4 over van de oorspronkelijke 19.",
+        ),
+      ],
+      [
+        undefined,
+        loc(
+          "^ performs a bitwise operation in Python. Use ** for powers: 4 ** 3 means 4 * 4 * 4.",
+          "^ voert in Python een bitwise-bewerking uit. Gebruik ** voor machten: 4 ** 3 betekent 4 * 4 * 4.",
+        ),
+        loc(
+          "One asterisk multiplies once: 4 * 3 is 12. Two asterisks calculate a power: 4 ** 3 is 64.",
+          "Eén sterretje vermenigvuldigt één keer: 4 * 3 is 12. Twee sterretjes berekenen een macht: 4 ** 3 is 64.",
+        ),
+        loc(
+          "// is floor division. Exponentiation uses **, so 4 ** 3 calculates the third power of 4.",
+          "// is gehele deling. Machtsverheffen gebruikt **, dus 4 ** 3 berekent de derde macht van 4.",
+        ),
+      ],
+      [
+        undefined,
+        loc(
+          "A single = assigns. Comparing equality uses ==, which you will practise in the next chapter.",
+          "Een enkele = wijst toe. Gelijkheid vergelijken doe je met ==; dat oefen je in het volgende hoofdstuk.",
+        ),
+        loc(
+          "Assignment does not display a value. After storing it in city, print(city) would display Leiden.",
+          "Een toewijzing toont geen waarde. Na het opslaan in city zou print(city) Leiden tonen.",
+        ),
+      ],
+      [
+        undefined,
+        loc(
+          "+ does not insert a space. A space would need to be included in one of the strings.",
+          "+ voegt geen spatie in. Die spatie zou in een van de strings moeten staan.",
+        ),
+        loc(
+          "The + is an operator outside the quotes. It joins the strings and is not included in the resulting text.",
+          "De + is een operator buiten de aanhalingstekens. Deze voegt de strings samen en hoort niet bij de resulterende tekst.",
+        ),
+        loc(
+          "There is no comma in either string. Concatenation simply appends B directly to Gate, giving GateB.",
+          "In geen van de strings staat een komma. Concatenatie voegt B direct aan Gate toe en geeft GateB.",
+        ),
+      ],
+      [
+        undefined,
+        loc(
+          "3 is an integer literal. Adding a decimal point, as in 3.0, makes it a float literal.",
+          "3 is een integer literal. Met een decimale punt, zoals bij 3.0, wordt het een float literal.",
+        ),
+        loc(
+          "The quotes make this text, not a number. The float literal in these choices is 3.0.",
+          "Door de aanhalingstekens is dit tekst, geen getal. De float literal bij deze opties is 3.0.",
+        ),
+      ],
+      [
+        undefined,
+        loc(
+          "print can take a single message. The failure happens because the opening quote is never closed.",
+          "print kan één bericht meekrijgen. De fout ontstaat doordat het openingsaanhalingsteken nooit wordt gesloten.",
+        ),
+        loc(
+          "Printing text is valid. Add a matching closing quote after Ready and before the closing parenthesis.",
+          "Tekst afdrukken is geldig. Voeg een passend aanhalingsteken toe na Ready en vóór het sluithaakje.",
+        ),
+      ],
+      [
+        undefined,
+        loc(
+          "2 is the old value. The next assignment replaces it with 9 before print reads level.",
+          "2 is de oude waarde. De volgende toewijzing vervangt deze door 9 voordat print level leest.",
+        ),
+        loc(
+          "Assignment replaces; it does not add. There is no + or += here, so the final value is simply 9.",
+          "Toewijzen vervangt; het telt niet op. Hier staat geen + of +=, dus de eindwaarde is gewoon 9.",
+        ),
+        loc(
+          "These are separate assignments, not text concatenation. The second assignment leaves level equal to 9.",
+          "Dit zijn afzonderlijke toewijzingen, geen tekstconcatenatie. Door de tweede toewijzing is level gelijk aan 9.",
+        ),
+      ],
+      [
+        undefined,
+        loc(
+          "# starts a comment and Python ignores the rest of that line. It does not create a multiline string.",
+          "# begint een comment en Python negeert de rest van die regel. Het maakt geen string op meerdere regels.",
+        ),
+        loc(
+          "A name can refer to a string, but it does not define the string's contents. Triple quotes allow literal line breaks inside those contents.",
+          "Een naam kan naar een string verwijzen, maar bepaalt niet de inhoud. Met drie aanhalingstekens kun je echte regeleinden in die inhoud opnemen.",
+        ),
+      ],
+    ],
+  },
+);

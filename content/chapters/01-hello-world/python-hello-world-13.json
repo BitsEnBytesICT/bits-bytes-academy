@@ -4,38 +4,104 @@
   "group": "python-hello-world",
   "title": {
     "en": "Augmented assignment",
-    "nl": "Augmented assignment"
+    "nl": "Waarden stapsgewijs bijwerken"
   },
   "kind": "coding",
   "optional": false,
   "explanation": {
-    "en": "Augmented assignment combines an operation with assignment. energy += 4 updates energy by adding 4. The corresponding forms -= and *= also update the existing value.",
-    "nl": "Augmented assignment combineert een bewerking met assignment. energy += 4 verhoogt energy met 4. Met -= en *= kun je de bestaande waarde ook bijwerken."
+    "en": "Updating an existing value is so common that Python provides a shorter assignment form. For the numbers and strings in this lesson, `value += change` has the same effect as `value = value + change`. The name must already have a value.",
+    "nl": "Het bijwerken van een bestaande waarde komt zo vaak voor dat Python er een kortere toewijzing voor heeft. Voor de getallen en strings in deze les doet `value += change` hetzelfde als `value = value + change`. De naam moet al een waarde hebben."
   },
-  "example": "count = 3\ncount += 2",
+  "example": "",
+  "sections": [
+    {
+      "heading": {
+        "en": "Accumulate one update at a time",
+        "nl": "Werk één wijziging tegelijk bij"
+      },
+      "body": {
+        "en": "Each `+=` starts with the current value, not the original one. Related forms include `-=` for subtraction and `*=` for multiplication. Keep the operator and equals sign together.",
+        "nl": "Elke `+=` begint met de huidige waarde, niet met de oorspronkelijke. Vergelijkbare vormen zijn `-=` voor aftrekken en `*=` voor vermenigvuldigen. Schrijf de operator en het gelijkteken direct naast elkaar."
+      },
+      "code": "balance = 10\nbalance += 3\nbalance += 4\nprint(balance)",
+      "output": "17",
+      "takeaway": {
+        "en": "The value moves from 10 to 13 to 17. Replacing the second update with balance = 4 would discard the accumulated amount.",
+        "nl": "De waarde gaat van 10 naar 13 naar 17. Vervang je de tweede wijziging door balance = 4, dan verdwijnt het opgebouwde bedrag."
+      }
+    },
+    {
+      "heading": {
+        "en": "The same pattern works for strings",
+        "nl": "Hetzelfde patroon werkt met strings"
+      },
+      "body": {
+        "en": "With strings, `+=` adds text to the end and assigns the joined result back to the name. It still inserts no automatic spaces. Decide which side of the join supplies the space.",
+        "nl": "Bij strings voegt `+=` tekst aan het einde toe en wijst het samengevoegde resultaat opnieuw aan de naam toe. Er komen nog steeds geen automatische spaties bij. Bepaal welk deel van de samenvoeging de spatie bevat."
+      },
+      "code": "status = \"Gate\"\nstatus += \" open\"\nprint(status)",
+      "output": "Gate open"
+    }
+  ],
   "files": {
-    "main.py": "# Write your code below.\n"
+    "main.py": "energy = 12\nstatus = \"Charge\"\n\n# First charging session: add 8 before printing.\nprint(energy)\n\n# Second charging session: add 5 before printing.\nprint(energy)\n\n# Extend the status message before printing.\nprint(status)\n"
   },
   "solution": {
-    "main.py": "energy = 12\nenergy += 8\nprint(energy)\n"
+    "main.py": "energy = 12\nstatus = \"Charge\"\nenergy += 8\nprint(energy)\nenergy += 5\nprint(energy)\nstatus += \" complete\"\nprint(status)\n"
   },
   "checkpoints": [
     {
-      "id": "python-hello-world-13-step-1",
+      "id": "python-hello-world-13-v2-step-1",
       "task": {
-        "en": "Start energy at 12 and increase it by 8 using +=. Print energy.",
-        "nl": "Begin met energy = 12 en verhoog de waarde met 8 via +=. Druk energy af."
+        "en": "Increase `energy` by 8 using `+=` and print the updated value. Keep the starter value 12.",
+        "nl": "Verhoog `energy` met 8 via `+=` en druk de bijgewerkte waarde af. Laat de startwaarde 12 staan."
       },
-      "check": "energy == 20 and any(isinstance(n, _ast.AugAssign) for n in _ast.walk(_ast.parse(_source)))",
+      "check": "_stdout.splitlines()[:1] == ['20'] and any(isinstance(n,_ast.AugAssign) and isinstance(n.target,_ast.Name) and n.target.id == 'energy' and isinstance(n.op,_ast.Add) for n in _ast.walk(_ast.parse(_source)))",
+      "feedback": {
+        "en": "Use += on energy, then print the intermediate value 20.",
+        "nl": "Gebruik += bij energy en druk daarna de tussenwaarde 20 af."
+      },
       "hint": {
-        "en": "Start with energy = 12. Then compare the values with the task.",
-        "nl": "Begin met energy = 12. Vergelijk de waarden daarna met de opdracht."
+        "en": "Place energy += 8 after the starting assignment.",
+        "nl": "Zet energy += 8 na de starttoewijzing."
+      }
+    },
+    {
+      "id": "python-hello-world-13-v2-step-2",
+      "task": {
+        "en": "Add another 5 to `energy` with a second `+=` statement and print it again. Keep the earlier update and print call.",
+        "nl": "Tel met een tweede `+=` nog 5 op bij `energy` en druk deze opnieuw af. Laat de eerdere wijziging en print-aanroep staan."
+      },
+      "check": "energy == 25 and _stdout.splitlines()[:2] == ['20','25'] and sum(isinstance(n,_ast.AugAssign) and isinstance(n.target,_ast.Name) and n.target.id == 'energy' and isinstance(n.op,_ast.Add) for n in _ast.walk(_ast.parse(_source))) >= 2",
+      "feedback": {
+        "en": "Keep both += updates and print 20 followed by 25.",
+        "nl": "Laat beide +=-wijzigingen staan en druk 20 af, gevolgd door 25."
+      },
+      "hint": {
+        "en": "The second update begins with 20, so do not reset energy to 12.",
+        "nl": "De tweede wijziging begint met 20, dus zet energy niet terug naar 12."
+      }
+    },
+    {
+      "id": "python-hello-world-13-v2-step-3",
+      "task": {
+        "en": "Use `+=` to add ` complete` to `status`, including the leading space. Print status as the third line.",
+        "nl": "Gebruik `+=` om ` complete` aan `status` toe te voegen, inclusief de spatie vooraan. Druk status af als derde regel."
+      },
+      "check": "status == 'Charge complete' and _stdout.splitlines() == ['20','25','Charge complete'] and any(isinstance(n,_ast.AugAssign) and isinstance(n.target,_ast.Name) and n.target.id == 'status' and isinstance(n.op,_ast.Add) for n in _ast.walk(_ast.parse(_source)))",
+      "feedback": {
+        "en": "Use += for the text update too, with one space between Charge and complete.",
+        "nl": "Gebruik ook += voor de tekstwijziging, met één spatie tussen Charge en complete."
+      },
+      "hint": {
+        "en": "Append the string with `status += \" complete\"`.",
+        "nl": "Voeg de string toe met `status += \" complete\"`."
       }
     }
   ],
   "solutionNote": {
-    "en": "Augmented assignment combines an operation with assignment. energy += 4 updates energy by adding 4. The corresponding forms -= and *= also update the existing value.\n\nTrace the solution one line at a time. Try a different input to see which parts change.",
-    "nl": "Augmented assignment combineert een bewerking met assignment. energy += 4 verhoogt energy met 4. Met -= en *= kun je de bestaande waarde ook bijwerken.\n\nVolg de oplossing regel voor regel. Probeer een andere invoer en bekijk welke onderdelen veranderen."
+    "en": "The numeric updates accumulate: 12 becomes 20, then 25. The string update joins text instead of adding numbers. Both forms require an existing value and store the new result back under the same name.",
+    "nl": "De getalswijzigingen stapelen op: 12 wordt 20 en daarna 25. Bij de string wordt tekst samengevoegd in plaats van getallen opgeteld. Beide vormen hebben een bestaande waarde nodig en slaan het nieuwe resultaat onder dezelfde naam op."
   },
   "sourcePosition": 13,
   "sourceUrl": "https://www.codecademy.com/courses/learn-python-3/lessons/python-hello-world/exercises/plus-equals",

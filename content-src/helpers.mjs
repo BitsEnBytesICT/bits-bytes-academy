@@ -56,13 +56,15 @@ export function lesson(
     optional: false,
     explanation: loc(en, nl),
     example: options.example || "",
+    ...(options.sections ? { sections: options.sections } : {}),
     files: base,
     solution: solutionFiles,
     checkpoints: steps.map((s, i) => ({
-      id: `${id}-step-${i + 1}`,
+      id: `${id}${options.revision ? `-v${options.revision}` : ""}-step-${i + 1}`,
       task: s.task,
       check: s.check || "True",
       ...(s.expectedError ? { expectedError: s.expectedError } : {}),
+      ...(s.feedback ? { feedback: s.feedback } : {}),
       hint:
         s.hint ||
         loc(
@@ -72,12 +74,14 @@ export function lesson(
             `Begin met ${solution.split("\n").find((l) => l.trim() && !l.startsWith("#")) || "een kleine wijziging"}. Vergelijk de waarden daarna met de opdracht.`,
         ),
     })),
-    solutionNote: loc(
-      en +
-        "\n\nTrace the solution one line at a time. Try a different input to see which parts change.",
-      nl +
-        "\n\nVolg de oplossing regel voor regel. Probeer een andere invoer en bekijk welke onderdelen veranderen.",
-    ),
+    solutionNote:
+      options.solutionNote ||
+      loc(
+        en +
+          "\n\nTrace the solution one line at a time. Try a different input to see which parts change.",
+        nl +
+          "\n\nVolg de oplossing regel voor regel. Probeer een andere invoer en bekijk welke onderdelen veranderen.",
+      ),
     ...(options.inputs ? { inputs: options.inputs } : {}),
     sourcePosition: n,
     sourceUrl: entry.sourceUrl,
@@ -85,6 +89,59 @@ export function lesson(
   activities.push(activity);
   return activity;
 }
+
+// Named fields keep long bilingual lessons reviewable. Revisioned checkpoints
+// prevent an older, different task from passing a newly authored requirement.
+export function guided(group, n, data) {
+  return lesson(
+    group,
+    n,
+    data.intro.en,
+    data.intro.nl,
+    "",
+    "",
+    data.solution,
+    data.steps?.length ? "True" : null,
+    {
+      titleNl: data.titleNl,
+      starter: data.starter,
+      sections: data.sections,
+      steps: data.steps || [],
+      solutionNote: data.solutionNote,
+      revision: 2,
+    },
+  );
+}
+export const section = (
+  headingEn,
+  headingNl,
+  bodyEn,
+  bodyNl,
+  code,
+  output,
+  takeawayEn,
+  takeawayNl,
+) => ({
+  heading: loc(headingEn, headingNl),
+  body: loc(bodyEn, bodyNl),
+  ...(code !== undefined ? { code } : {}),
+  ...(output !== undefined ? { output } : {}),
+  ...(takeawayEn ? { takeaway: loc(takeawayEn, takeawayNl) } : {}),
+});
+export const step = (
+  en,
+  nl,
+  check,
+  hintEn,
+  hintNl,
+  feedbackEn,
+  feedbackNl,
+) => ({
+  task: loc(en, nl),
+  check,
+  hint: loc(hintEn, hintNl),
+  ...(feedbackEn ? { feedback: loc(feedbackEn, feedbackNl) } : {}),
+});
 export function reading(group, n, en, nl, code, options = {}) {
   return lesson(group, n, en, nl, "", "", code, null, {
     ...options,
@@ -141,7 +198,7 @@ export function challenge(
     ),
   });
 }
-export function quiz(group, rows) {
+export function quiz(group, rows, options = {}) {
   const meta = blueprint.lessonGroups.find((g) => g.slug === group);
   if (rows.length !== meta.quiz.questions)
     throw Error(
@@ -162,7 +219,7 @@ export function quiz(group, rows) {
       choices: r[3].map((label, j) => ({
         id: String.fromCharCode(97 + j),
         label: Array.isArray(label) ? loc(...label) : loc(String(label)),
-        reason: loc(r[4], r[5]),
+        reason: options.feedback?.[i]?.[j] || loc(r[4], r[5]),
       })),
     })),
   });

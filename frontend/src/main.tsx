@@ -13,6 +13,7 @@ import type {
   Workspace,
 } from "../../shared/types";
 import { api, WorkspaceStore } from "./api";
+import { recordLessonRun } from "./lesson-progress";
 const Editor = lazy(() =>
   import("./Editor").then((module) => ({ default: module.Editor })),
 );
@@ -288,18 +289,10 @@ function App() {
           if (event.type === "done") {
             const checks = result.results || [];
             setResults(Object.fromEntries(checks.map((r) => [r.id, r.passed])));
-            const passed = [
-              ...new Set([
-                ...(state.progress[a.id]?.checkpoints || []),
-                ...checks.filter((r) => r.passed).map((r) => r.id),
-              ]),
-            ];
-            void markProgress(a.id, {
-              complete:
-                a.checkpoints.length > 0 &&
-                a.checkpoints.every((c) => passed.includes(c.id)),
-              checkpoints: passed,
-            }).catch((e) => setError(e.message));
+            void markProgress(
+              a.id,
+              recordLessonRun(state.progress[a.id], a.checkpoints, checks),
+            ).catch((e) => setError(e.message));
             void api("/attempts/" + a.id, {
               type: "run",
               results: checks,

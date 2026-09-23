@@ -4,38 +4,88 @@
   "group": "python-hello-world",
   "title": {
     "en": "Reading errors",
-    "nl": "Foutmeldingen lezen"
+    "nl": "Foutmeldingen onderzoeken"
   },
   "kind": "coding",
   "optional": false,
   "explanation": {
-    "en": "Python reports a SyntaxError when it cannot understand the structure of your code. The message and caret identify the area to inspect. A missing closing quote often makes an otherwise simple line invalid.",
-    "nl": "Python geeft een SyntaxError als de structuur van je code niet klopt. De melding en het aanwijsteken helpen je zoeken. Een ontbrekend aanhalingsteken kan een eenvoudige regel al ongeldig maken."
+    "en": "An error message is a clue about the instruction Python could not carry out. Read the last line for the error type and explanation, then inspect the indicated line in your file. Change one thing and run again: fixing one problem can reveal another.",
+    "nl": "Een foutmelding geeft een aanwijzing over de instructie die Python niet kon uitvoeren. Lees de laatste regel voor het type fout en de uitleg. Bekijk daarna de aangewezen regel in je bestand. Verander één ding en voer opnieuw uit: na het oplossen van één probleem kan een volgend probleem zichtbaar worden."
   },
   "example": "",
+  "sections": [
+    {
+      "heading": {
+        "en": "SyntaxError: Python cannot read the instruction",
+        "nl": "SyntaxError: Python kan de instructie niet lezen"
+      },
+      "body": {
+        "en": "A missing closing quote or parenthesis breaks Python's grammar. With a syntax error, Python cannot start executing this file. The marker shows where it noticed the problem, which can be just after the character you need to fix.",
+        "nl": "Een ontbrekend aanhalingsteken of haakje maakt de Python-syntax ongeldig. Met een syntaxfout kan Python dit bestand niet uitvoeren. De markering wijst aan waar Python het probleem opmerkte; dat kan net na het teken zijn dat je moet herstellen."
+      },
+      "code": "print(\"Ready\")",
+      "output": "Ready",
+      "takeaway": {
+        "en": "Compare the matching pairs: the opening parenthesis has a closing parenthesis, and the opening quote has a closing quote.",
+        "nl": "Vergelijk de paren: tegenover het openingshaakje staat een sluithaakje en tegenover het eerste aanhalingsteken staat een tweede."
+      }
+    },
+    {
+      "heading": {
+        "en": "NameError: Python cannot find the name",
+        "nl": "NameError: Python kan de naam niet vinden"
+      },
+      "body": {
+        "en": "The syntax of `print(message)` is valid, but Python needs an earlier assignment to `message`. A typo such as `mesage` refers to a different name. If you mean literal text instead of a variable, put it in quotes.",
+        "nl": "De syntax van `print(message)` is geldig, maar Python heeft eerst een toewijzing aan `message` nodig. Een typefout zoals `mesage` verwijst naar een andere naam. Bedoel je letterlijke tekst in plaats van een variabele, zet die dan tussen aanhalingstekens."
+      },
+      "code": "message = \"Doors closing\"\nprint(message)",
+      "output": "Doors closing"
+    }
+  ],
   "files": {
-    "main.py": "print(\"Gate open)\n"
+    "main.py": "print(\"Gate open)\nmessage = \"Welcome aboard\"\nprint(mesage)\n"
   },
   "solution": {
-    "main.py": "print(\"Gate open\")\n"
+    "main.py": "print(\"Gate open\")\nmessage = \"Welcome aboard\"\nprint(message)\n"
   },
   "checkpoints": [
     {
-      "id": "python-hello-world-06-step-1",
+      "id": "python-hello-world-06-v2-step-1",
       "task": {
-        "en": "Run the broken code, read the error, then repair it to print Gate open.",
-        "nl": "Voer de kapotte code uit, lees de fout en herstel de regel zodat Gate open verschijnt."
+        "en": "Run the broken starter and read the SyntaxError. Repair the first line's quotation marks. Run again: the new error will point to a misspelled name. Both checks become green after the whole file runs successfully.",
+        "nl": "Voer de kapotte startcode uit en lees de SyntaxError. Herstel de aanhalingstekens op de eerste regel. Voer opnieuw uit: de nieuwe fout wijst naar een verkeerd gespelde naam. Beide controles worden groen zodra het hele bestand succesvol draait."
       },
-      "check": "_stdout.strip() == 'Gate open'",
+      "check": "_stdout.splitlines()[:1] == ['Gate open']",
+      "feedback": {
+        "en": "Repair the string on line 1, then fix the remaining NameError so the whole program can run.",
+        "nl": "Herstel de string op regel 1 en daarna de resterende NameError, zodat het hele programma kan draaien."
+      },
       "hint": {
-        "en": "The text needs a closing quote before the closing parenthesis.",
-        "nl": "De tekst heeft een afsluitend aanhalingsteken nodig vóór het sluitende haakje."
+        "en": "Compare your first line with `print(\"Ready\")`. Every opened quote needs a matching closing quote.",
+        "nl": "Vergelijk je eerste regel met `print(\"Ready\")`. Elk geopend aanhalingsteken heeft een passend sluitend teken nodig."
+      }
+    },
+    {
+      "id": "python-hello-world-06-v2-step-2",
+      "task": {
+        "en": "Fix the misspelled variable in the last print call without changing the assignment to `message`. Run again. The two lines must be Gate open and Welcome aboard.",
+        "nl": "Herstel de verkeerd gespelde variabele in de laatste print-aanroep, zonder de toewijzing aan `message` te veranderen. Voer opnieuw uit. De twee regels moeten Gate open en Welcome aboard zijn."
+      },
+      "check": "message == 'Welcome aboard' and _stdout.splitlines() == ['Gate open', 'Welcome aboard'] and any(isinstance(n, _ast.Call) and isinstance(n.func, _ast.Name) and n.func.id == 'print' and any(isinstance(x, _ast.Name) and x.id == 'message' for x in n.args) for n in _ast.walk(_ast.parse(_source)))",
+      "feedback": {
+        "en": "Print the existing message variable, with exactly the same spelling as its assignment.",
+        "nl": "Druk de bestaande variabele message af, met precies dezelfde spelling als in de toewijzing."
+      },
+      "hint": {
+        "en": "Compare the spelling of the name in the assignment with the name inside the last print call.",
+        "nl": "Vergelijk de spelling van de naam in de toewijzing met de naam in de laatste print-aanroep."
       }
     }
   ],
   "solutionNote": {
-    "en": "Python reports a SyntaxError when it cannot understand the structure of your code. The message and caret identify the area to inspect. A missing closing quote often makes an otherwise simple line invalid.\n\nTrace the solution one line at a time. Try a different input to see which parts change.",
-    "nl": "Python geeft een SyntaxError als de structuur van je code niet klopt. De melding en het aanwijsteken helpen je zoeken. Een ontbrekend aanhalingsteken kan een eenvoudige regel al ongeldig maken.\n\nVolg de oplossing regel voor regel. Probeer een andere invoer en bekijk welke onderdelen veranderen."
+    "en": "First the closing quote repairs the grammar. Python can then run far enough to expose mesage, a name never assigned. Correcting it to message retrieves the stored text. The two errors have different causes even though both stop a run.",
+    "nl": "Eerst herstelt het afsluitende aanhalingsteken de syntax. Python kan daarna ver genoeg uitvoeren om mesage tegen te komen, een naam die nooit is toegewezen. Met message haal je de opgeslagen tekst op. Beide fouten stoppen een uitvoering, maar hebben een andere oorzaak."
   },
   "sourcePosition": 6,
   "sourceUrl": "https://www.codecademy.com/courses/learn-python-3/lessons/python-hello-world/exercises/errors",

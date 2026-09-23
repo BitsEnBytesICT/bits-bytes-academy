@@ -9,33 +9,79 @@
   "kind": "coding",
   "optional": false,
   "explanation": {
-    "en": "For strings, + joins text in order. Python does not add spaces automatically. Include the spaces or punctuation you want inside the strings.",
-    "nl": "Bij strings voegt + tekst in volgorde samen. Python voegt zelf geen spaties toe. Zet gewenste spaties of leestekens in de strings."
+    "en": "The same operator can have different meanings for different types. With numbers, `+` adds. With strings, `+` joins the left text to the right text. This operation is called concatenation and produces a new string.",
+    "nl": "Dezelfde operator kan voor verschillende types iets anders betekenen. Bij getallen telt `+` op. Bij strings voegt `+` de rechtertekst aan de linkertekst toe. Dit heet concatenatie en levert een nieuwe string op."
   },
-  "example": "label = \"Gate \" + \"A\"",
+  "example": "",
+  "sections": [
+    {
+      "heading": {
+        "en": "You control the separators",
+        "nl": "Jij bepaalt de scheiding"
+      },
+      "body": {
+        "en": "Python does not insert spaces when you concatenate strings. Include every space and punctuation mark you want in the result. The original strings keep their values unless you assign a new value to their names.",
+        "nl": "Python voegt bij het samenvoegen geen spaties in. Neem alle gewenste spaties en leestekens op in de strings. De oorspronkelijke strings behouden hun waarde, tenzij je een nieuwe waarde aan hun namen toewijst."
+      },
+      "code": "first = \"Gate\"\nsecond = \"B\"\nprint(first + second)\nprint(first + \" \" + second)",
+      "output": "GateB\nGate B"
+    },
+    {
+      "heading": {
+        "en": "Joining a number to text",
+        "nl": "Een getal aan tekst toevoegen"
+      },
+      "body": {
+        "en": "A string and an integer cannot be joined directly with `+`; that raises `TypeError`. Convert the number with `str()` when building a single string. Passing separate values to `print()` with commas is another way to display them, but does not store a combined string for later use.",
+        "nl": "Een string en een integer kun je niet direct met `+` samenvoegen; dat geeft `TypeError`. Zet het getal om met `str()` wanneer je één string wilt opbouwen. Met komma's kun je ook losse waarden aan `print()` geven, maar daarmee sla je geen gecombineerde string op voor later gebruik."
+      },
+      "code": "platform = 3\nnotice = \"Platform \" + str(platform)\nprint(notice)\nprint(\"Platform\", platform)",
+      "output": "Platform 3\nPlatform 3"
+    }
+  ],
   "files": {
-    "main.py": "origin = \"North\"\ndestination = \"Pier\"\n"
+    "main.py": "origin = \"North\"\ndestination = \"Pier\"\nplatform = 4\n\n# Extend each expression to build the complete message.\nroute = origin\nprint(route)\n\nannouncement = route\nprint(announcement)\n"
   },
   "solution": {
-    "main.py": "origin = \"North\"\ndestination = \"Pier\"\nroute = origin + \" → \" + destination\nprint(route)\n"
+    "main.py": "origin = \"North\"\ndestination = \"Pier\"\nplatform = 4\nroute = origin + \" → \" + destination\nprint(route)\nannouncement = route + \" | Platform \" + str(platform)\nprint(announcement)\n"
   },
   "checkpoints": [
     {
-      "id": "python-hello-world-12-step-1",
+      "id": "python-hello-world-12-v2-step-1",
       "task": {
-        "en": "Join origin North and destination Pier into route with the exact value North → Pier. Print route.",
-        "nl": "Voeg origin North en destination Pier samen tot route met precies de waarde North → Pier. Druk route af."
+        "en": "Build `route` from `origin`, a separator ` → ` with spaces, and `destination`. Print the result: North → Pier.",
+        "nl": "Bouw `route` op uit `origin`, het scheidingsteken ` → ` met spaties en `destination`. Druk het resultaat af: North → Pier."
       },
-      "check": "route == 'North → Pier' and _stdout.strip() == route",
+      "check": "route == 'North → Pier' and _stdout.splitlines()[:1] == ['North → Pier'] and any(isinstance(n, _ast.Assign) and any(isinstance(t, _ast.Name) and t.id == 'route' for t in n.targets) and isinstance(n.value, _ast.BinOp) and isinstance(n.value.op, _ast.Add) and all(key in [x.id for x in _ast.walk(n.value) if isinstance(x, _ast.Name)] for key in [\"origin\",\"destination\"]) for n in _ast.walk(_ast.parse(_source)))",
+      "feedback": {
+        "en": "Combine the strings into route and check the spaces around the arrow.",
+        "nl": "Voeg de strings samen in route en controleer de spaties rond de pijl."
+      },
       "hint": {
-        "en": "Start with origin = \"North\". Then compare the values with the task.",
-        "nl": "Begin met origin = \"North\". Vergelijk de waarden daarna met de opdracht."
+        "en": "Use + between the three strings. Include a space on both sides of the arrow.",
+        "nl": "Gebruik + tussen de drie strings. Zet aan beide kanten van de pijl een spatie."
+      }
+    },
+    {
+      "id": "python-hello-world-12-v2-step-2",
+      "task": {
+        "en": "Build `announcement` by joining `route`, ` | Platform ` and the string form of `platform`. Print it on the second line. Keep platform as an integer.",
+        "nl": "Bouw `announcement` op door `route`, ` | Platform ` en de stringvorm van `platform` samen te voegen. Druk dit op de tweede regel af. Laat platform een integer blijven."
+      },
+      "check": "type(platform) is int and platform == 4 and announcement == 'North → Pier | Platform 4' and _stdout.splitlines() == ['North → Pier', announcement]",
+      "feedback": {
+        "en": "Convert the number while building announcement; its exact value should be North → Pier | Platform 4.",
+        "nl": "Zet het getal om tijdens het opbouwen van announcement; de exacte waarde moet North → Pier | Platform 4 zijn."
+      },
+      "hint": {
+        "en": "Use str(platform) inside the concatenation. You do not need to reassign platform.",
+        "nl": "Gebruik str(platform) binnen de concatenatie. Je hoeft platform niet opnieuw toe te wijzen."
       }
     }
   ],
   "solutionNote": {
-    "en": "For strings, + joins text in order. Python does not add spaces automatically. Include the spaces or punctuation you want inside the strings.\n\nTrace the solution one line at a time. Try a different input to see which parts change.",
-    "nl": "Bij strings voegt + tekst in volgorde samen. Python voegt zelf geen spaties toe. Zet gewenste spaties of leestekens in de strings.\n\nVolg de oplossing regel voor regel. Probeer een andere invoer en bekijk welke onderdelen veranderen."
+    "en": "route joins three pieces of text, including the spaces around the arrow. str(platform) creates text for the announcement without changing the original numeric platform variable.",
+    "nl": "route voegt drie stukken tekst samen, inclusief de spaties rond de pijl. str(platform) maakt tekst voor de aankondiging zonder de oorspronkelijke numerieke variabele platform te veranderen."
   },
   "sourcePosition": 12,
   "sourceUrl": "https://www.codecademy.com/courses/learn-python-3/lessons/python-hello-world/exercises/concatenation",

@@ -4,38 +4,88 @@
   "group": "python-hello-world",
   "title": {
     "en": "Variables",
-    "nl": "Variables"
+    "nl": "Variabelen en namen"
   },
   "kind": "coding",
   "optional": false,
   "explanation": {
-    "en": "A variable associates a name with a value. The assignment operator = stores the value on its right under the name on its left. Use the name without quotes to retrieve that value.",
-    "nl": "Een variable koppelt een naam aan een waarde. De assignment operator = slaat de waarde rechts op onder de naam links. Gebruik de naam zonder aanhalingstekens om de waarde op te halen."
+    "en": "Programs need to refer to information more than once. A variable gives a value a name. Instead of repeating a destination throughout your program, you can store it once and use its name whenever you need the current value.",
+    "nl": "Programma's gebruiken dezelfde informatie vaak meerdere keren. Een variabele geeft een waarde een naam. In plaats van een bestemming steeds te herhalen, kun je deze opslaan en de naam gebruiken wanneer je de huidige waarde nodig hebt."
   },
-  "example": "status = \"Ready\"\nprint(status)",
+  "example": "",
+  "sections": [
+    {
+      "heading": {
+        "en": "Assign, then use",
+        "nl": "Toewijzen en gebruiken"
+      },
+      "body": {
+        "en": "In an assignment, `=` associates the name on the left with the value on the right. It does not print anything. To display the value, pass the unquoted variable name to `print()`. Quoting the name would display those letters instead.",
+        "nl": "Bij een toewijzing koppelt `=` de naam links aan de waarde rechts. Dit drukt niets af. Geef de variabelenaam zonder aanhalingstekens aan `print()` om de waarde te tonen. Met aanhalingstekens zou je juist de letters van de naam tonen."
+      },
+      "code": "status = \"Ready\"\nprint(status)\nprint(\"status\")",
+      "output": "Ready\nstatus"
+    },
+    {
+      "heading": {
+        "en": "A name can refer to a new value",
+        "nl": "Een naam kan een nieuwe waarde krijgen"
+      },
+      "body": {
+        "en": "A later assignment to the same name replaces its current value. Earlier output stays as it was: Python does not go back and change text it already printed. Names are case-sensitive, cannot contain spaces and cannot start with a digit. Use descriptive names such as `arrival_station`.",
+        "nl": "Een latere toewijzing aan dezelfde naam vervangt de huidige waarde. Eerdere output blijft staan: Python verandert tekst die al is afgedrukt niet achteraf. Namen zijn hoofdlettergevoelig, mogen geen spaties bevatten en mogen niet met een cijfer beginnen. Gebruik duidelijke namen, zoals `arrival_station`."
+      },
+      "code": "status = \"Ready\"\nprint(status)\nstatus = \"Boarding\"\nprint(status)",
+      "output": "Ready\nBoarding",
+      "takeaway": {
+        "en": "Read each line in order and track the current value. This habit will help when programs grow longer.",
+        "nl": "Lees de regels op volgorde en houd de huidige waarde bij. Die gewoonte helpt wanneer programma's langer worden."
+      }
+    }
+  ],
   "files": {
-    "main.py": "# Write your code below.\n"
+    "main.py": "# First destination: update the value and use the variable in print.\ndestination = \"Unknown\"\nprint(\"destination\")\n\n# Update the same variable, then print it again below.\n"
   },
   "solution": {
-    "main.py": "destination = \"Delft\"\nprint(destination)\n"
+    "main.py": "destination = \"Delft\"\nprint(destination)\ndestination = \"Leiden\"\nprint(destination)\n"
   },
   "checkpoints": [
     {
-      "id": "python-hello-world-05-step-1",
+      "id": "python-hello-world-05-v2-step-1",
       "task": {
-        "en": "Store Delft in destination, then print destination.",
-        "nl": "Sla Delft op in destination en druk destination af."
+        "en": "Assign the string `Delft` to `destination`, then print the variable. Do not put quotes around the variable name in the print call.",
+        "nl": "Wijs de string `Delft` toe aan `destination` en druk de variabele af. Zet in de print-aanroep geen aanhalingstekens om de variabelenaam."
       },
-      "check": "destination == 'Delft' and _stdout.strip() == 'Delft'",
+      "check": "_stdout.splitlines()[:1] == ['Delft'] and any(isinstance(n, _ast.Call) and isinstance(n.func, _ast.Name) and n.func.id == 'print' and any(isinstance(x, _ast.Name) and x.id == 'destination' for x in n.args) for n in _ast.walk(_ast.parse(_source)))",
+      "feedback": {
+        "en": "Assign destination before using it, and pass the variable itself to print.",
+        "nl": "Wijs destination een waarde toe voordat je deze gebruikt en geef de variabele zelf aan print."
+      },
       "hint": {
-        "en": "Start with destination = \"Delft\". Then compare the values with the task.",
-        "nl": "Begin met destination = \"Delft\". Vergelijk de waarden daarna met de opdracht."
+        "en": "The pattern is `name = \"text\"`, followed by `print(name)`.",
+        "nl": "Het patroon is `naam = \"tekst\"`, gevolgd door `print(naam)`."
+      }
+    },
+    {
+      "id": "python-hello-world-05-v2-step-2",
+      "task": {
+        "en": "Below the first print call, assign `Leiden` to the same variable. Print it again. The output should show Delft followed by Leiden.",
+        "nl": "Wijs onder de eerste print-aanroep `Leiden` toe aan dezelfde variabele. Druk deze opnieuw af. De output moet Delft tonen, gevolgd door Leiden."
+      },
+      "check": "destination == 'Leiden' and _stdout.splitlines() == ['Delft', 'Leiden']",
+      "feedback": {
+        "en": "The final destination must be Leiden, with both destinations printed in order.",
+        "nl": "De eindwaarde van destination moet Leiden zijn, met beide bestemmingen in de juiste volgorde afgedrukt."
+      },
+      "hint": {
+        "en": "Keep the original assignment and print. Add the new assignment after them.",
+        "nl": "Laat de oorspronkelijke toewijzing en print staan. Voeg daarna de nieuwe toewijzing toe."
       }
     }
   ],
   "solutionNote": {
-    "en": "A variable associates a name with a value. The assignment operator = stores the value on its right under the name on its left. Use the name without quotes to retrieve that value.\n\nTrace the solution one line at a time. Try a different input to see which parts change.",
-    "nl": "Een variable koppelt een naam aan een waarde. De assignment operator = slaat de waarde rechts op onder de naam links. Gebruik de naam zonder aanhalingstekens om de waarde op te halen.\n\nVolg de oplossing regel voor regel. Probeer een andere invoer en bekijk welke onderdelen veranderen."
+    "en": "destination first refers to Delft and later to Leiden. Each print call reads the value at that moment. Reassigning the variable does not rewrite the first output line.",
+    "nl": "destination verwijst eerst naar Delft en later naar Leiden. Elke print-aanroep leest de waarde van dat moment. Opnieuw toewijzen verandert de eerste outputregel niet."
   },
   "sourcePosition": 5,
   "sourceUrl": "https://www.codecademy.com/courses/learn-python-3/lessons/python-hello-world/exercises/variables",

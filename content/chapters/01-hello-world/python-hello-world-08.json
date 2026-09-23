@@ -4,38 +4,88 @@
   "group": "python-hello-world",
   "title": {
     "en": "Arithmetic expressions",
-    "nl": "Berekeningen"
+    "nl": "Rekenen met expressies"
   },
   "kind": "coding",
   "optional": false,
   "explanation": {
-    "en": "Python evaluates arithmetic expressions using operator precedence: multiplication and division happen before addition and subtraction. Parentheses let you specify a different order. / produces a floating-point result.",
-    "nl": "Python gebruikt een vaste volgorde: vermenigvuldigen en delen gaan vóór optellen en aftrekken. Met haakjes bepaal je een andere volgorde. / geeft een float als resultaat."
+    "en": "An expression combines values and operators to produce a result. Python can add with `+`, subtract with `-`, multiply with `*` and divide with `/`. You can print a calculation directly or assign its result to a useful name.",
+    "nl": "Een expressie combineert waarden en operators tot een resultaat. Python telt op met `+`, trekt af met `-`, vermenigvuldigt met `*` en deelt met `/`. Je kunt een berekening direct afdrukken of het resultaat aan een handige naam toewijzen."
   },
-  "example": "total = 2 * (10 + 4)\nprint(total)",
+  "example": "",
+  "sections": [
+    {
+      "heading": {
+        "en": "Order changes the result",
+        "nl": "De volgorde verandert het resultaat"
+      },
+      "body": {
+        "en": "Multiplication and division happen before addition and subtraction. Parentheses make a group that is evaluated first. Predict these two results before reading the output: only the parentheses change.",
+        "nl": "Vermenigvuldigen en delen gaan vóór optellen en aftrekken. Haakjes maken een groep die eerst wordt uitgerekend. Voorspel de twee resultaten voordat je de output leest: alleen de haakjes verschillen."
+      },
+      "code": "print(2 + 3 * 4)\nprint((2 + 3) * 4)",
+      "output": "14\n20",
+      "takeaway": {
+        "en": "The first expression adds 2 to 12. The second multiplies 5 by 4. Writing spaces around an operator improves readability but does not change precedence.",
+        "nl": "De eerste expressie telt 2 op bij 12. De tweede vermenigvuldigt 5 met 4. Spaties rond een operator maken de code leesbaarder, maar veranderen de rekenvolgorde niet."
+      }
+    },
+    {
+      "heading": {
+        "en": "Division and units",
+        "nl": "Delen en eenheden"
+      },
+      "body": {
+        "en": "The `/` operator produces a float, including when the division is exact. Dividing by zero raises `ZeroDivisionError`. In your task, calculate minutes first, then convert that value to seconds. Keeping track of the units helps you choose the correct operation.",
+        "nl": "De operator `/` geeft een float, ook wanneer de deling precies uitkomt. Delen door nul veroorzaakt `ZeroDivisionError`. Bereken in je opdracht eerst minuten en zet die waarde daarna om naar seconden. Door de eenheden bij te houden kies je makkelijker de juiste bewerking."
+      },
+      "code": "print(12 / 3)\nprint(7 / 2)",
+      "output": "4.0\n3.5"
+    }
+  ],
   "files": {
-    "main.py": "# Write your code below.\n"
+    "main.py": "# A journey has three 15-minute segments and one 5-minute wait.\nsegments = 3\nminutes_per_segment = 15\nwait = 5\n\n# Replace 0 with a calculation using the journey data.\nduration = 0\nprint(duration)\n\n# Convert the minutes to seconds.\nduration_seconds = 0\nprint(duration_seconds)\n"
   },
   "solution": {
-    "main.py": "duration = 3 * 15 + 5\nprint(duration)\n"
+    "main.py": "duration = 3 * 15 + 5\nprint(duration)\nduration_seconds = duration * 60\nprint(duration_seconds)\n"
   },
   "checkpoints": [
     {
-      "id": "python-hello-world-08-step-1",
+      "id": "python-hello-world-08-v2-step-1",
       "task": {
-        "en": "A journey has three 15-minute segments and a 5-minute wait. Store the total in duration and print it.",
-        "nl": "Een reis heeft drie stukken van 15 minuten en 5 minuten wachttijd. Sla het totaal op in duration en druk het af."
+        "en": "A journey has three 15-minute segments and one 5-minute wait. Calculate `duration` using multiplication and addition, then print the total minutes.",
+        "nl": "Een reis bestaat uit drie stukken van 15 minuten en één wachttijd van 5 minuten. Bereken `duration` met vermenigvuldigen en optellen en druk het totaal in minuten af."
       },
-      "check": "duration == 50 and _stdout.strip() == '50'",
+      "check": "duration == 50 and _stdout.splitlines()[:1] == ['50'] and any(isinstance(n, _ast.Assign) and any(isinstance(t, _ast.Name) and t.id == 'duration' for t in n.targets) and isinstance(n.value, _ast.BinOp) and isinstance(n.value.op, _ast.Add) and all(key in [x.id for x in _ast.walk(n.value) if isinstance(x, _ast.Name)] for key in []) for n in _ast.walk(_ast.parse(_source)))",
+      "feedback": {
+        "en": "Use an arithmetic expression for duration. The total should be 50 minutes.",
+        "nl": "Gebruik een rekenexpressie voor duration. Het totaal moet 50 minuten zijn."
+      },
       "hint": {
-        "en": "Start with duration = 3 * 15 + 5. Then compare the values with the task.",
-        "nl": "Begin met duration = 3 * 15 + 5. Vergelijk de waarden daarna met de opdracht."
+        "en": "Multiply the number of segments by their length, then add the single wait. Do not add the wait three times.",
+        "nl": "Vermenigvuldig het aantal stukken met hun duur en tel daarna de ene wachttijd op. Tel de wachttijd niet drie keer mee."
+      }
+    },
+    {
+      "id": "python-hello-world-08-v2-step-2",
+      "task": {
+        "en": "Calculate `duration_seconds` from `duration`: there are 60 seconds in a minute. Print the result on the second line.",
+        "nl": "Bereken `duration_seconds` vanuit `duration`: er zitten 60 seconden in een minuut. Druk het resultaat op de tweede regel af."
+      },
+      "check": "duration_seconds == 3000 and _stdout.splitlines() == ['50', '3000'] and any(isinstance(n, _ast.Assign) and any(isinstance(t, _ast.Name) and t.id == 'duration_seconds' for t in n.targets) and isinstance(n.value, _ast.BinOp) and isinstance(n.value.op, _ast.Mult) and all(key in [x.id for x in _ast.walk(n.value) if isinstance(x, _ast.Name)] for key in [\"duration\"]) for n in _ast.walk(_ast.parse(_source)))",
+      "feedback": {
+        "en": "Store 3000 in duration_seconds using multiplication and print it after the minutes.",
+        "nl": "Sla met een vermenigvuldiging 3000 op in duration_seconds en druk dit na de minuten af."
+      },
+      "hint": {
+        "en": "Multiply the stored duration by 60 rather than retyping the journey calculation.",
+        "nl": "Vermenigvuldig de opgeslagen duur met 60 in plaats van de reisberekening opnieuw te typen."
       }
     }
   ],
   "solutionNote": {
-    "en": "Python evaluates arithmetic expressions using operator precedence: multiplication and division happen before addition and subtraction. Parentheses let you specify a different order. / produces a floating-point result.\n\nTrace the solution one line at a time. Try a different input to see which parts change.",
-    "nl": "Python gebruikt een vaste volgorde: vermenigvuldigen en delen gaan vóór optellen en aftrekken. Met haakjes bepaal je een andere volgorde. / geeft een float als resultaat.\n\nVolg de oplossing regel voor regel. Probeer een andere invoer en bekijk welke onderdelen veranderen."
+    "en": "Multiplication calculates the 45 travel minutes before the five-minute wait is added. Multiplying the resulting duration by 60 converts minutes to seconds without duplicating the first formula.",
+    "nl": "De vermenigvuldiging berekent eerst de 45 reisminuten, waarna vijf minuten wachttijd worden opgeteld. Door duration met 60 te vermenigvuldigen zet je minuten om naar seconden zonder de eerste formule te herhalen."
   },
   "sourcePosition": 8,
   "sourceUrl": "https://www.codecademy.com/courses/learn-python-3/lessons/python-hello-world/exercises/calculations",

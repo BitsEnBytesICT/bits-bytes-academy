@@ -4,38 +4,104 @@
   "group": "python-hello-world",
   "title": {
     "en": "String literals",
-    "nl": "String literals"
+    "nl": "Strings: tekst in Python"
   },
   "kind": "coding",
   "optional": false,
   "explanation": {
-    "en": "A string represents text. Single and double quotes both work, but the opening and closing quote must match. Spaces inside the quotes are part of the value.",
-    "nl": "Een string stelt tekst voor. Je kunt enkele of dubbele aanhalingstekens gebruiken, zolang begin en einde bij elkaar passen. Spaties tussen de aanhalingstekens horen bij de waarde."
+    "en": "Python calls a piece of text a string. A string literal is text written directly in your code between quotes. The quotes mark where the text starts and ends; they are not part of the string's contents.",
+    "nl": "Python noemt een stukje tekst een string. Een string literal is tekst die je direct tussen aanhalingstekens in de code schrijft. De aanhalingstekens geven aan waar de tekst begint en eindigt; ze horen niet bij de inhoud van de string."
   },
-  "example": "label = 'North gate'\nprint(label)",
+  "example": "",
+  "sections": [
+    {
+      "heading": {
+        "en": "Two ways to quote text",
+        "nl": "Twee manieren om tekst te schrijven"
+      },
+      "body": {
+        "en": "Single quotes and double quotes create the same kind of value. Choose one style for a string and close it with the same type of quote. Spaces inside the quotes are preserved.",
+        "nl": "Enkele en dubbele aanhalingstekens maken hetzelfde soort waarde. Kies voor een string één soort en sluit af met hetzelfde teken. Spaties binnen de aanhalingstekens blijven behouden."
+      },
+      "code": "print(\"Harbor\")\nprint('Harbor')\nprint(\"North gate\")",
+      "output": "Harbor\nHarbor\nNorth gate",
+      "takeaway": {
+        "en": "The first two lines have different Python spelling but identical output. Quoting digits also makes text: `\"42\"` is a string, whereas `42` is a number.",
+        "nl": "De eerste twee regels zijn anders geschreven in Python, maar hebben dezelfde output. Cijfers tussen aanhalingstekens zijn ook tekst: `\"42\"` is een string en `42` is een getal."
+      }
+    },
+    {
+      "heading": {
+        "en": "Quotes inside a message",
+        "nl": "Aanhalingstekens in een bericht"
+      },
+      "body": {
+        "en": "An apostrophe can accidentally close a single-quoted string. An easy solution is to surround that message with double quotes. The apostrophe then belongs to the text. You will learn other ways to represent special characters later.",
+        "nl": "Een apostrof kan onbedoeld een string met enkele aanhalingstekens afsluiten. Een eenvoudige oplossing is om dubbele aanhalingstekens om het bericht te zetten. De apostrof hoort dan bij de tekst. Andere manieren om bijzondere tekens te schrijven komen later aan bod."
+      },
+      "code": "print(\"It's boarding time\")",
+      "output": "It's boarding time"
+    }
+  ],
   "files": {
-    "main.py": "# Write your code below.\n"
+    "main.py": "# Change this message, then add the other two calls below.\nprint(\"Station name\")\n"
   },
   "solution": {
-    "main.py": "station = \"Harbor\"\nprint(station)\n"
+    "main.py": "print(\"Harbor\")\nprint('Harbor')\nprint(\"It's boarding time\")\n"
   },
   "checkpoints": [
     {
-      "id": "python-hello-world-04-step-1",
+      "id": "python-hello-world-04-v2-step-1",
       "task": {
-        "en": "Create station with the string Harbor, and print it.",
-        "nl": "Maak station met de string Harbor en druk deze af."
+        "en": "Print `Harbor` using double quotes. Run the file and look at whether the quote marks appear in the output.",
+        "nl": "Druk `Harbor` af met dubbele aanhalingstekens. Voer het bestand uit en bekijk of de aanhalingstekens in de output verschijnen."
       },
-      "check": "station == 'Harbor' and isinstance(station, str) and _stdout.strip() == station",
+      "check": "_stdout.splitlines()[:1] == ['Harbor']",
+      "feedback": {
+        "en": "Your first printed line should contain Harbor, without quotation marks.",
+        "nl": "De eerste afgedrukte regel moet Harbor bevatten, zonder aanhalingstekens."
+      },
       "hint": {
-        "en": "Start with station = \"Harbor\". Then compare the values with the task.",
-        "nl": "Begin met station = \"Harbor\". Vergelijk de waarden daarna met de opdracht."
+        "en": "The opening and closing quotes go inside the parentheses.",
+        "nl": "De aanhalingstekens staan binnen de haakjes."
+      }
+    },
+    {
+      "id": "python-hello-world-04-v2-step-2",
+      "task": {
+        "en": "Add a second line that prints `Harbor`, this time using single quotes. Keep both calls so you can compare their output.",
+        "nl": "Voeg een tweede regel toe die `Harbor` afdrukt, nu met enkele aanhalingstekens. Laat beide aanroepen staan zodat je de output kunt vergelijken."
+      },
+      "check": "_stdout.splitlines()[:2] == ['Harbor', 'Harbor']",
+      "feedback": {
+        "en": "The first two output lines should be identical: Harbor.",
+        "nl": "De eerste twee outputregels moeten gelijk zijn: Harbor."
+      },
+      "hint": {
+        "en": "Use a matching pair of single quotes around the same text.",
+        "nl": "Zet dezelfde tekst tussen twee enkele aanhalingstekens."
+      }
+    },
+    {
+      "id": "python-hello-world-04-v2-step-3",
+      "task": {
+        "en": "Print `It's boarding time` on a third line. Choose quotes that allow the apostrophe to be part of your message.",
+        "nl": "Druk `It's boarding time` af op een derde regel. Kies aanhalingstekens waarbij de apostrof bij je bericht hoort."
+      },
+      "check": "_stdout.splitlines() == [\"Harbor\", \"Harbor\", \"It's boarding time\"]",
+      "feedback": {
+        "en": "Keep the first two messages and check the apostrophe, spaces and capitals in the third.",
+        "nl": "Laat de eerste twee berichten staan en controleer de apostrof, spaties en hoofdletters in het derde."
+      },
+      "hint": {
+        "en": "Double quotes around the whole message leave the apostrophe inside it.",
+        "nl": "Met dubbele aanhalingstekens rond het hele bericht blijft de apostrof erin staan."
       }
     }
   ],
   "solutionNote": {
-    "en": "A string represents text. Single and double quotes both work, but the opening and closing quote must match. Spaces inside the quotes are part of the value.\n\nTrace the solution one line at a time. Try a different input to see which parts change.",
-    "nl": "Een string stelt tekst voor. Je kunt enkele of dubbele aanhalingstekens gebruiken, zolang begin en einde bij elkaar passen. Spaties tussen de aanhalingstekens horen bij de waarde.\n\nVolg de oplossing regel voor regel. Probeer een andere invoer en bekijk welke onderdelen veranderen."
+    "en": "The two Harbor strings hold the same text despite their different delimiters. Double quotes around the last message let the apostrophe remain an ordinary character.",
+    "nl": "De twee Harbor-strings bevatten dezelfde tekst, ondanks hun verschillende begrenzing. Door dubbele aanhalingstekens om het laatste bericht is de apostrof een gewoon teken."
   },
   "sourcePosition": 4,
   "sourceUrl": "https://www.codecademy.com/courses/learn-python-3/lessons/python-hello-world/exercises/strings",

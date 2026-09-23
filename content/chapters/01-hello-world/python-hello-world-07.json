@@ -4,38 +4,88 @@
   "group": "python-hello-world",
   "title": {
     "en": "Integers and floats",
-    "nl": "Integers en floats"
+    "nl": "Gehele en decimale getallen"
   },
   "kind": "coding",
   "optional": false,
   "explanation": {
-    "en": "Integers represent whole numbers; floats represent numbers with a decimal point. Numeric values do not need quotes. Quoted digits are text, so their behavior differs from numeric values.",
-    "nl": "Integers stellen gehele getallen voor; floats bevatten een decimaal punt. Getallen hebben geen aanhalingstekens nodig. Cijfers tussen aanhalingstekens zijn tekst en gedragen zich anders."
+    "en": "A passenger count and a travel distance are both numbers, but they represent different kinds of information. Python uses integers (`int`) for whole numbers and floating-point numbers (`float`) for values such as 7.5. Numeric literals are written without quotes.",
+    "nl": "Een aantal passagiers en een reisafstand zijn allebei getallen, maar stellen andere informatie voor. Python gebruikt integers (`int`) voor gehele getallen en floating-point-getallen (`float`) voor waarden zoals 7.5. Je schrijft getallen zonder aanhalingstekens."
   },
-  "example": "items = 8\nweight = 2.25",
+  "example": "",
+  "sections": [
+    {
+      "heading": {
+        "en": "Choose the value that fits",
+        "nl": "Kies een passende waarde"
+      },
+      "body": {
+        "en": "An integer can be positive, zero or negative. A literal with a decimal point is a float, even if its fractional part is zero: `3.0` differs in type from `3`. Python uses a point for decimals, not a comma.",
+        "nl": "Een integer kan positief, nul of negatief zijn. Een getal met een decimale punt is een float, ook als het deel achter de punt nul is: `3.0` heeft een ander type dan `3`. Python gebruikt een punt voor decimalen, geen komma."
+      },
+      "code": "seats = 18\ndistance = 4.75\nprint(seats)\nprint(distance)",
+      "output": "18\n4.75"
+    },
+    {
+      "heading": {
+        "en": "Numbers versus text",
+        "nl": "Getallen tegenover tekst"
+      },
+      "body": {
+        "en": "Quotation marks change the meaning. `\"12\"` is text; `12` is a number you can calculate with. Floats are useful approximations, but many decimal fractions cannot be stored exactly. Keep this in mind for later calculations; you do not need to solve that limitation in this task.",
+        "nl": "Aanhalingstekens veranderen de betekenis. `\"12\"` is tekst; `12` is een getal waarmee je kunt rekenen. Floats zijn bruikbare benaderingen, maar veel decimale breuken kunnen niet exact worden opgeslagen. Houd dit in gedachten bij latere berekeningen; in deze opdracht hoef je die beperking niet op te lossen."
+      },
+      "code": "print(12 + 3)\nprint(\"12\" + \"3\")",
+      "output": "15\n123",
+      "takeaway": {
+        "en": "For numbers, + adds. For strings, it joins text. We will examine both operations in the next lessons.",
+        "nl": "Bij getallen telt + op. Bij strings voegt + tekst samen. In de volgende lessen bekijken we beide bewerkingen."
+      }
+    }
+  ],
   "files": {
-    "main.py": "# Write your code below.\n"
+    "main.py": "# These placeholder values need the real passenger information.\npassenger_count = 0\ndistance = 0.0\nprint(passenger_count)\nprint(distance)\n"
   },
   "solution": {
-    "main.py": "passenger_count = 24\ndistance = 7.5\nprint(passenger_count, distance)\n"
+    "main.py": "passenger_count = 24\ndistance = 7.5\nprint(passenger_count)\nprint(distance)\n"
   },
   "checkpoints": [
     {
-      "id": "python-hello-world-07-step-1",
+      "id": "python-hello-world-07-v2-step-1",
       "task": {
-        "en": "Create passenger_count as integer 24 and distance as float 7.5. Print both.",
-        "nl": "Maak passenger_count als integer 24 en distance als float 7.5. Druk beide af."
+        "en": "Create `passenger_count` with the integer value `24`. Print it on the first line.",
+        "nl": "Maak `passenger_count` met de integerwaarde `24`. Druk deze af op de eerste regel."
       },
-      "check": "type(passenger_count) is int and passenger_count == 24 and type(distance) is float and distance == 7.5",
+      "check": "type(passenger_count) is int and passenger_count == 24 and _stdout.splitlines()[:1] == ['24']",
+      "feedback": {
+        "en": "Use the integer 24, not the string '24' or the float 24.0, and print it first.",
+        "nl": "Gebruik de integer 24, niet de string '24' of de float 24.0, en druk deze als eerste af."
+      },
       "hint": {
-        "en": "Start with passenger_count = 24. Then compare the values with the task.",
-        "nl": "Begin met passenger_count = 24. Vergelijk de waarden daarna met de opdracht."
+        "en": "Write the number without quotes or a decimal point.",
+        "nl": "Schrijf het getal zonder aanhalingstekens of decimale punt."
+      }
+    },
+    {
+      "id": "python-hello-world-07-v2-step-2",
+      "task": {
+        "en": "Create `distance` with the float value `7.5`. Print it after the passenger count. Keep the two values on separate output lines.",
+        "nl": "Maak `distance` met de floatwaarde `7.5`. Druk deze na het aantal passagiers af. Zet de twee waarden op afzonderlijke outputregels."
+      },
+      "check": "type(distance) is float and distance == 7.5 and _stdout.splitlines() == ['24', '7.5']",
+      "feedback": {
+        "en": "distance must be the numeric value 7.5, printed on the second line.",
+        "nl": "distance moet de numerieke waarde 7.5 zijn, afgedrukt op de tweede regel."
+      },
+      "hint": {
+        "en": "Use a decimal point. Add a separate print call after the first one.",
+        "nl": "Gebruik een decimale punt. Voeg na de eerste print-aanroep een aparte aanroep toe."
       }
     }
   ],
   "solutionNote": {
-    "en": "Integers represent whole numbers; floats represent numbers with a decimal point. Numeric values do not need quotes. Quoted digits are text, so their behavior differs from numeric values.\n\nTrace the solution one line at a time. Try a different input to see which parts change.",
-    "nl": "Integers stellen gehele getallen voor; floats bevatten een decimaal punt. Getallen hebben geen aanhalingstekens nodig. Cijfers tussen aanhalingstekens zijn tekst en gedragen zich anders.\n\nVolg de oplossing regel voor regel. Probeer een andere invoer en bekijk welke onderdelen veranderen."
+    "en": "The passenger count is a whole-number count, so it is an int. The distance includes a fraction, so it is a float. Printing the values does not change their types.",
+    "nl": "Het aantal passagiers is een geheel aantal en dus een int. De afstand bevat een breukdeel en is daarom een float. Afdrukken verandert de types niet."
   },
   "sourcePosition": 7,
   "sourceUrl": "https://www.codecademy.com/courses/learn-python-3/lessons/python-hello-world/exercises/numbers",

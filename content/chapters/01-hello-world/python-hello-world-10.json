@@ -9,33 +9,77 @@
   "kind": "coding",
   "optional": false,
   "explanation": {
-    "en": "The ** operator raises a number to a power. For example, 3 ** 2 means 3 multiplied by itself. This differs from ^, which is a bitwise operation in Python.",
-    "nl": "Met ** verhef je een getal tot een macht. Zo betekent 3 ** 2 dat je 3 met zichzelf vermenigvuldigt. ^ is in Python een bitwise operator en geen machtsverheffing."
+    "en": "Repeated multiplication appears in areas, volumes and growth. Python's `**` operator raises a number to a power: the left value is the base and the right value is the exponent. `3 ** 2` means 3 multiplied by itself, not 3 multiplied by 2.",
+    "nl": "Herhaald vermenigvuldigen komt voor bij oppervlakten, volumes en groei. Met `**` verhef je een getal tot een macht: links staat het grondtal en rechts de exponent. `3 ** 2` betekent 3 met zichzelf vermenigvuldigen, niet 3 keer 2."
   },
-  "example": "squared = 6 ** 2",
+  "example": "",
+  "sections": [
+    {
+      "heading": {
+        "en": "Squares, cubes and roots",
+        "nl": "Kwadraten, derde machten en wortels"
+      },
+      "body": {
+        "en": "Squaring a side length gives the area of a square; cubing it gives the volume of a cube. A fractional exponent can calculate a root for a positive number. The `^` character is a different Python operator and does not calculate a power.",
+        "nl": "Het kwadraat van een zijde geeft de oppervlakte van een vierkant; de derde macht geeft het volume van een kubus. Met een gebroken exponent kun je bij een positief getal een wortel berekenen. Het teken `^` is in Python een andere operator en berekent geen macht."
+      },
+      "code": "print(5 ** 2)\nprint(5 ** 3)\nprint(25 ** 0.5)",
+      "output": "25\n125\n5.0"
+    },
+    {
+      "heading": {
+        "en": "A doubling pattern",
+        "nl": "Een verdubbelingspatroon"
+      },
+      "body": {
+        "en": "A storage demonstration starts with one unit and doubles it at each stage. After one stage there are 2 units; after two stages there are 4; after three there are 8. A power describes the whole pattern without writing a long chain of multiplications.",
+        "nl": "Een opslagdemonstratie begint met één eenheid en verdubbelt deze bij iedere stap. Na één stap zijn er 2 eenheden, na twee stappen 4 en na drie stappen 8. Een macht beschrijft het hele patroon zonder een lange rij vermenigvuldigingen."
+      }
+    }
+  ],
   "files": {
-    "main.py": "# Write your code below.\n"
+    "main.py": "# These formulas multiply once, but the task needs powers.\ncapacity = 2 * 10\nprint(capacity)\n\npanel_area = 6 * 2\nprint(panel_area)\n"
   },
   "solution": {
-    "main.py": "capacity = 2 ** 10\nprint(capacity)\n"
+    "main.py": "capacity = 2 ** 10\nprint(capacity)\npanel_area = 6 ** 2\nprint(panel_area)\n"
   },
   "checkpoints": [
     {
-      "id": "python-hello-world-10-step-1",
+      "id": "python-hello-world-10-v2-step-1",
       "task": {
-        "en": "Store 2 to the power 10 in capacity and print the result.",
-        "nl": "Sla 2 tot de macht 10 op in capacity en druk het resultaat af."
+        "en": "Calculate `capacity` after ten doublings using `2 ** 10`. Print the result.",
+        "nl": "Bereken `capacity` na tien verdubbelingen met `2 ** 10`. Druk het resultaat af."
       },
-      "check": "capacity == 1024",
+      "check": "capacity == 1024 and _stdout.splitlines()[:1] == ['1024'] and any(isinstance(n, _ast.Assign) and any(isinstance(t, _ast.Name) and t.id == 'capacity' for t in n.targets) and isinstance(n.value, _ast.BinOp) and isinstance(n.value.op, _ast.Pow) and all(key in [x.id for x in _ast.walk(n.value) if isinstance(x, _ast.Name)] for key in []) for n in _ast.walk(_ast.parse(_source)))",
+      "feedback": {
+        "en": "Use exponentiation for capacity; the result must be 1024.",
+        "nl": "Gebruik machtsverheffing voor capacity; het resultaat moet 1024 zijn."
+      },
       "hint": {
-        "en": "Start with capacity = 2 ** 10. Then compare the values with the task.",
-        "nl": "Begin met capacity = 2 ** 10. Vergelijk de waarden daarna met de opdracht."
+        "en": "The base is 2 and the exponent is 10. Use two adjacent asterisks.",
+        "nl": "Het grondtal is 2 en de exponent is 10. Gebruik twee sterretjes direct naast elkaar."
+      }
+    },
+    {
+      "id": "python-hello-world-10-v2-step-2",
+      "task": {
+        "en": "A square panel has sides of length 6. Calculate `panel_area` with exponentiation and print it on the second line.",
+        "nl": "Een vierkant paneel heeft zijden van lengte 6. Bereken `panel_area` met machtsverheffing en druk dit af op de tweede regel."
+      },
+      "check": "panel_area == 36 and _stdout.splitlines() == ['1024', '36'] and any(isinstance(n, _ast.Assign) and any(isinstance(t, _ast.Name) and t.id == 'panel_area' for t in n.targets) and isinstance(n.value, _ast.BinOp) and isinstance(n.value.op, _ast.Pow) and all(key in [x.id for x in _ast.walk(n.value) if isinstance(x, _ast.Name)] for key in []) for n in _ast.walk(_ast.parse(_source)))",
+      "feedback": {
+        "en": "Square the side length with **. The second output line should be 36.",
+        "nl": "Kwadrateer de zijde met **. De tweede outputregel moet 36 zijn."
+      },
+      "hint": {
+        "en": "An area uses the second power, not the third.",
+        "nl": "Een oppervlakte gebruikt de tweede macht, niet de derde."
       }
     }
   ],
   "solutionNote": {
-    "en": "The ** operator raises a number to a power. For example, 3 ** 2 means 3 multiplied by itself. This differs from ^, which is a bitwise operation in Python.\n\nTrace the solution one line at a time. Try a different input to see which parts change.",
-    "nl": "Met ** verhef je een getal tot een macht. Zo betekent 3 ** 2 dat je 3 met zichzelf vermenigvuldigt. ^ is in Python een bitwise operator en geen machtsverheffing.\n\nVolg de oplossing regel voor regel. Probeer een andere invoer en bekijk welke onderdelen veranderen."
+    "en": "2 ** 10 represents ten factors of 2. The panel uses 6 ** 2 because an area multiplies two lengths. Both expressions use the same operator for different modelling problems.",
+    "nl": "2 ** 10 staat voor tien factoren van 2. Voor het paneel gebruik je 6 ** 2 omdat een oppervlakte twee lengtes vermenigvuldigt. Beide expressies gebruiken dezelfde operator voor verschillende situaties."
   },
   "sourcePosition": 10,
   "sourceUrl": "https://www.codecademy.com/courses/learn-python-3/lessons/python-hello-world/exercises/exponents",

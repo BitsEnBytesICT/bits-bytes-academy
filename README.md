@@ -32,6 +32,10 @@ For development, run `npm run dev` and open http://localhost:5174. The API remai
 
 Separate projects and video walkthroughs are excluded. This is an independently written course following the researched topic sequence; it is not a downloaded copy of Codecademy's explanations or question bank and is not affiliated with Codecademy.
 
+The deeper course rewrite is in progress. The first 15 foundation pages and the input reading now include interleaved explanations, executable worked examples with expected output, and useful starter programs to repair or extend. The 14 foundation coding lessons have 35 individual checks with specific hints and feedback. The foundation quiz explains each wrong choice separately. Coverage and remaining chapters are tracked in `COURSE-REVISION.md`.
+
+Existing learner files are kept when course content changes. **Reset code** loads the current starter when you explicitly choose to start that activity over. Previously earned completion remains earned; revised task checks are tracked separately from the older tasks.
+
 ## Stack and design
 
 | Layer | Technology |

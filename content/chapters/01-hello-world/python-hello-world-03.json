@@ -9,33 +9,81 @@
   "kind": "coding",
   "optional": false,
   "explanation": {
-    "en": "print() sends a value to the terminal. Put the value between parentheses. Text must be surrounded by matching quotes; the quotes themselves are not printed.",
-    "nl": "print() stuurt een waarde naar de terminal. Zet de waarde tussen haakjes. Tekst staat tussen bij elkaar passende aanhalingstekens; die tekens verschijnen niet in de output."
+    "en": "A program can calculate quietly, but people often need to see its results. The built-in `print()` function sends information to the terminal. Calling a function means asking it to perform its job; the parentheses contain the information you give it.",
+    "nl": "Een programma kan op de achtergrond rekenen, maar mensen willen de resultaten vaak zien. De ingebouwde functie `print()` stuurt informatie naar de terminal. Een functie aanroepen betekent dat je deze een taak laat uitvoeren; tussen de haakjes geef je de benodigde informatie mee."
   },
-  "example": "print(\"Good morning\")",
+  "example": "",
+  "sections": [
+    {
+      "heading": {
+        "en": "One call, one line",
+        "nl": "Eén aanroep, één regel"
+      },
+      "body": {
+        "en": "Put a quoted message between the parentheses. A normal `print()` call ends its output with a newline, so the next call starts on a new line. The order of the calls determines the order of the messages.",
+        "nl": "Zet een bericht tussen aanhalingstekens binnen de haakjes. Een gewone `print()` sluit de output af met een regeleinde. Daardoor begint de volgende aanroep op een nieuwe regel. De volgorde van de aanroepen bepaalt de volgorde van de berichten."
+      },
+      "code": "print(\"Train status\")\nprint(\"On time\")",
+      "output": "Train status\nOn time",
+      "takeaway": {
+        "en": "Read the code aloud as: display Train status, then display On time. The quotes and the word print are instructions, not part of the displayed message.",
+        "nl": "Lees de code als: toon Train status en toon daarna On time. De aanhalingstekens en het woord print zijn instructies en horen niet bij het getoonde bericht."
+      }
+    },
+    {
+      "heading": {
+        "en": "Predict, then run",
+        "nl": "Voorspel en voer uit"
+      },
+      "body": {
+        "en": "You are building a two-line departure board. Before running your code, predict the exact lines, including spaces and capitals. If the result differs, compare one character at a time. Output checks are useful because a program can run without errors and still display the wrong information.",
+        "nl": "Je bouwt een vertrekbord met twee regels. Voorspel vóór het uitvoeren de exacte regels, inclusief spaties en hoofdletters. Vergelijk bij een afwijking de tekst teken voor teken. Outputcontroles zijn nuttig: een programma kan zonder fouten draaien en toch verkeerde informatie tonen."
+      }
+    }
+  ],
   "files": {
-    "main.py": "# Write your code below.\n"
+    "main.py": "# The screen needs a title and a platform number.\nprint(\"Untitled board\")\n# Add the platform message below.\n"
   },
   "solution": {
-    "main.py": "print(\"Departure board\")\n"
+    "main.py": "print(\"Departure board\")\nprint(\"Platform 4\")\n"
   },
   "checkpoints": [
     {
-      "id": "python-hello-world-03-step-1",
+      "id": "python-hello-world-03-v2-step-1",
       "task": {
-        "en": "Print Departure board on one line.",
-        "nl": "Druk Departure board af op één regel."
+        "en": "Print `Departure board` as the first line. Run your code to check the spelling and spacing.",
+        "nl": "Druk `Departure board` af als eerste regel. Voer de code uit om de spelling en spaties te controleren."
       },
-      "check": "_stdout == 'Departure board\\n'",
+      "check": "_stdout.splitlines()[:1] == ['Departure board']",
+      "feedback": {
+        "en": "The first output line must be exactly Departure board.",
+        "nl": "De eerste outputregel moet precies Departure board zijn."
+      },
       "hint": {
-        "en": "Start with print(\"Departure board\"). Then compare the values with the task.",
-        "nl": "Begin met print(\"Departure board\"). Vergelijk de waarden daarna met de opdracht."
+        "en": "Use `print(\"your message\")` with the required text inside the quotes.",
+        "nl": "Gebruik `print(\"je bericht\")` met de gevraagde tekst tussen de aanhalingstekens."
+      }
+    },
+    {
+      "id": "python-hello-world-03-v2-step-2",
+      "task": {
+        "en": "Add a second `print()` call below the first. It must display `Platform 4` on the next line, with no extra output.",
+        "nl": "Voeg onder de eerste aanroep een tweede `print()` toe. Deze moet `Platform 4` op de volgende regel tonen, zonder extra output."
+      },
+      "check": "_stdout == 'Departure board\\nPlatform 4\\n' and sum(isinstance(n, _ast.Call) and isinstance(n.func, _ast.Name) and n.func.id == 'print' for n in _ast.walk(_ast.parse(_source))) == 2",
+      "feedback": {
+        "en": "Use two print calls in order: Departure board, then Platform 4.",
+        "nl": "Gebruik twee print-aanroepen in deze volgorde: Departure board en daarna Platform 4."
+      },
+      "hint": {
+        "en": "Keep the first call. Write another call on its own code line below it.",
+        "nl": "Laat de eerste aanroep staan. Schrijf daaronder een nieuwe aanroep op een eigen coderegel."
       }
     }
   ],
   "solutionNote": {
-    "en": "print() sends a value to the terminal. Put the value between parentheses. Text must be surrounded by matching quotes; the quotes themselves are not printed.\n\nTrace the solution one line at a time. Try a different input to see which parts change.",
-    "nl": "print() stuurt een waarde naar de terminal. Zet de waarde tussen haakjes. Tekst staat tussen bij elkaar passende aanhalingstekens; die tekens verschijnen niet in de output.\n\nVolg de oplossing regel voor regel. Probeer een andere invoer en bekijk welke onderdelen veranderen."
+    "en": "Each print call supplies one line. Keeping the two calls in reading order makes the program match the display. A third print call would add unwanted output.",
+    "nl": "Elke print-aanroep levert één regel. Door de aanroepen in leesvolgorde te plaatsen, komt de code overeen met het scherm. Een derde aanroep zou ongewenste output toevoegen."
   },
   "sourcePosition": 3,
   "sourceUrl": "https://www.codecademy.com/courses/learn-python-3/lessons/python-hello-world/exercises/print",

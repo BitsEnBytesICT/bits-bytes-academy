@@ -6,6 +6,7 @@ import type {
 } from "../../../shared/types";
 import { Icon } from "../Icon";
 import { CodeBlock } from "./CodeBlock";
+import { InlineLessonText, LessonText } from "./LessonText";
 export function LessonPane({
   activity,
   course,
@@ -45,13 +46,35 @@ export function LessonPane({
           {exercise ? (
             <>
               <div className="explanation">
-                {exercise.explanation[language].split("\n\n").map((p, i) => (
-                  <p key={i}>{p}</p>
-                ))}
+                <LessonText text={exercise.explanation[language]} />
               </div>
               {exercise.example && (
                 <CodeBlock className="example-code" code={exercise.example} />
               )}
+              {exercise.sections?.map((section, index) => (
+                <section className="worked-example explanation" key={index}>
+                  <h2>
+                    <InlineLessonText text={section.heading[language]} />
+                  </h2>
+                  <LessonText text={section.body[language]} />
+                  {section.code !== undefined && (
+                    <CodeBlock className="example-code" code={section.code} />
+                  )}
+                  {section.output !== undefined && (
+                    <div className="example-result">
+                      <span>{tr("Output", "Output")}</span>
+                      <pre>
+                        <code>
+                          {section.output || tr("(No output)", "(Geen output)")}
+                        </code>
+                      </pre>
+                    </div>
+                  )}
+                  {section.takeaway && (
+                    <LessonText text={section.takeaway[language]} />
+                  )}
+                </section>
+              ))}
             </>
           ) : (
             <div className="explanation">
@@ -71,9 +94,13 @@ export function LessonPane({
               <h2>{tr("Instructions", "Instructies")}</h2>
               {exercise.checkpoints.length > 0 && (
                 <span>
-                  {Object.keys(results).length
-                    ? Object.values(results).filter(Boolean).length
-                    : (progress.checkpoints || []).length}{" "}
+                  {
+                    exercise.checkpoints.filter(
+                      (c) =>
+                        results[c.id] ??
+                        (progress.checkpoints || []).includes(c.id),
+                    ).length
+                  }{" "}
                   / {exercise.checkpoints.length}
                 </span>
               )}
@@ -97,20 +124,26 @@ export function LessonPane({
                         <span>
                           {passed ? <Icon name="check" size={13} /> : i + 1}
                         </span>
-                        <p>{c.task[language]}</p>
+                        <p>
+                          <InlineLessonText text={c.task[language]} />
+                        </p>
                       </div>
                       <details>
                         <summary>
                           <Icon name="hint" size={14} />
                           {tr("Need a hint?", "Een hint nodig?")}
                         </summary>
-                        <p>{c.hint[language]}</p>
+                        <LessonText text={c.hint[language]} />
                       </details>
                       {failed && !passed && (
                         <p className="check-message">
-                          {tr(
-                            "Not passed yet. Check the task and try again.",
-                            "Nog niet geslaagd. Controleer de opdracht en probeer opnieuw.",
+                          {c.feedback ? (
+                            <InlineLessonText text={c.feedback[language]} />
+                          ) : (
+                            tr(
+                              "Not passed yet. Check the task and try again.",
+                              "Nog niet geslaagd. Controleer de opdracht en probeer opnieuw.",
+                            )
                           )}
                         </p>
                       )}

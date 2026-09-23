@@ -9,33 +9,83 @@
   "kind": "coding",
   "optional": false,
   "explanation": {
-    "en": "A comment explains an intention to a reader. Python ignores everything after # on the same line, unless the character is inside a string. Good comments explain why an operation exists.",
-    "nl": "Een comment legt je bedoeling uit aan de lezer. Python negeert alles na # op dezelfde regel, behalve wanneer het teken in een string staat. Een goede comment legt uit waarom een bewerking nodig is."
+    "en": "Code has two audiences: Python executes it, and people read it. A comment is a note for the reader. It can explain a decision, describe a section, or temporarily disable an instruction while you investigate a problem.",
+    "nl": "Code heeft twee doelgroepen: Python voert de code uit en mensen lezen de code. Een comment is een notitie voor de lezer. Je kunt een keuze uitleggen, een onderdeel beschrijven of een instructie tijdelijk uitschakelen terwijl je een probleem onderzoekt."
   },
-  "example": "# Explain the purpose\nprint(\"Ready\")",
+  "example": "",
+  "sections": [
+    {
+      "heading": {
+        "en": "What Python skips",
+        "nl": "Wat Python overslaat"
+      },
+      "body": {
+        "en": "Outside a string, `#` starts a comment that continues to the end of that line. A comment can occupy its own line or follow an instruction. Python still executes any code before the `#`.",
+        "nl": "Buiten een string begint `#` een comment die doorloopt tot het einde van de regel. Een comment kan op een eigen regel staan of achter een instructie. Code vóór de `#` wordt gewoon uitgevoerd."
+      },
+      "code": "# Explain why this message is shown\nprint(\"Boarding soon\")  # Passenger update\n# print(\"Cancelled\")",
+      "output": "Boarding soon",
+      "takeaway": {
+        "en": "The last line looks like an instruction, but its leading `#` makes the whole line a comment. Removing that character would enable the instruction again.",
+        "nl": "De laatste regel lijkt op een instructie, maar door de `#` vooraan is de hele regel een comment. Verwijder dat teken en de instructie wordt weer uitgevoerd."
+      }
+    },
+    {
+      "heading": {
+        "en": "Text is different",
+        "nl": "Tekst is iets anders"
+      },
+      "body": {
+        "en": "A `#` inside quotes is ordinary text. Good comments add useful context instead of repeating exactly what the code already says. For this exercise, leave the old forecast visible in the file but prevent it from running.",
+        "nl": "Een `#` tussen aanhalingstekens is gewone tekst. Goede comments geven extra context in plaats van letterlijk te herhalen wat de code al zegt. Laat in deze oefening het oude weerbericht in het bestand staan, maar zorg dat het niet wordt uitgevoerd."
+      },
+      "code": "print(\"Platform #4\")",
+      "output": "Platform #4"
+    }
+  ],
   "files": {
-    "main.py": "print(\"Sunny\")\n"
+    "main.py": "print(\"Sunny\")\nprint(\"Rain yesterday\")\n"
   },
   "solution": {
-    "main.py": "# Current weather summary\nprint(\"Sunny\")\n"
+    "main.py": "# Current forecast for passengers\nprint(\"Sunny\")\n# print(\"Rain yesterday\")\n"
   },
   "checkpoints": [
     {
-      "id": "python-hello-world-02-step-1",
+      "id": "python-hello-world-02-v2-step-1",
       "task": {
-        "en": "Add a comment describing the weather report. Keep the output Sunny.",
-        "nl": "Voeg een comment toe over het weerbericht. Zorg dat de output Sunny blijft."
+        "en": "Add a comment on its own line above the first `print()` explaining that this is the current forecast.",
+        "nl": "Voeg boven de eerste `print()` op een eigen regel een comment toe die uitlegt dat dit het huidige weerbericht is."
       },
-      "check": "'#' in _source and _stdout.strip() == 'Sunny'",
+      "check": "any(t.type == __import__('tokenize').COMMENT and t.start[1] == 0 and len(t.string.lstrip('# ').strip()) > 0 and t.start[0] < next((i + 1 for i, line in enumerate(_source.splitlines()) if line.strip().startswith('print(')), 0) for t in __import__('tokenize').generate_tokens(__import__('io').StringIO(_source).readline))",
+      "feedback": {
+        "en": "Add an actual Python comment; a `#` inside a string does not count.",
+        "nl": "Voeg een echte Python-comment toe; een `#` in een string telt niet mee."
+      },
       "hint": {
-        "en": "Start with print(\"Sunny\"). Then compare the values with the task.",
-        "nl": "Begin met print(\"Sunny\"). Vergelijk de waarden daarna met de opdracht."
+        "en": "Start the note with `#`. Write it outside the quoted message.",
+        "nl": "Begin de notitie met `#`. Schrijf deze buiten de tekst tussen aanhalingstekens."
+      }
+    },
+    {
+      "id": "python-hello-world-02-v2-step-2",
+      "task": {
+        "en": "Comment out the line that prints `Rain yesterday`. Keep that line in the file, then run the program. Only `Sunny` should appear.",
+        "nl": "Schakel de regel met `Rain yesterday` uit met een comment. Laat de regel in het bestand staan en voer het programma uit. Alleen `Sunny` mag verschijnen."
+      },
+      "check": "_stdout == 'Sunny\\n' and any(t.type == __import__('tokenize').COMMENT and 'print(' in t.string and 'Rain yesterday' in t.string for t in __import__('tokenize').generate_tokens(__import__('io').StringIO(_source).readline))",
+      "feedback": {
+        "en": "Keep the old print instruction as a comment and check that the terminal contains just Sunny.",
+        "nl": "Bewaar de oude print-instructie als comment en controleer dat de terminal alleen Sunny bevat."
+      },
+      "hint": {
+        "en": "Put `#` before the second `print`, not inside its quotes.",
+        "nl": "Zet `#` vóór de tweede `print`, niet binnen de aanhalingstekens."
       }
     }
   ],
   "solutionNote": {
-    "en": "A comment explains an intention to a reader. Python ignores everything after # on the same line, unless the character is inside a string. Good comments explain why an operation exists.\n\nTrace the solution one line at a time. Try a different input to see which parts change.",
-    "nl": "Een comment legt je bedoeling uit aan de lezer. Python negeert alles na # op dezelfde regel, behalve wanneer het teken in een string staat. Een goede comment legt uit waarom een bewerking nodig is.\n\nVolg de oplossing regel voor regel. Probeer een andere invoer en bekijk welke onderdelen veranderen."
+    "en": "The descriptive comment helps the reader. The second comment keeps the previous instruction for reference while preventing its output. Neither comment changes the remaining print call.",
+    "nl": "De beschrijvende comment helpt de lezer. De tweede comment bewaart de vorige instructie als naslag en voorkomt dat deze wordt uitgevoerd. Beide comments laten de overgebleven print-opdracht ongemoeid."
   },
   "sourcePosition": 2,
   "sourceUrl": "https://www.codecademy.com/courses/learn-python-3/lessons/python-hello-world/exercises/comments",

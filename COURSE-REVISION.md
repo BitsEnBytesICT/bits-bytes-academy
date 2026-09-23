@@ -22,9 +22,30 @@ The September 21 `content-src/curriculum-map.json` inventories 160 core pages,
 13 quizzes, 59 optional challenges and supporting readings. It is a starting
 inventory, not proof of the deeper review requested on September 23.
 
-Current source review is in `research/2026-09-23-foundations.md`. The rest of the
-course still needs this deeper review. Do not describe the whole course as mapped
-or rewritten. No authored lesson has been rewritten in this revision yet.
+Current source review is in `research/2026-09-23-foundations.md`. All 15 foundation
+narratives, their instructions, available hints and visible workspaces have been
+reviewed. The 13-question foundation quiz was inspected through its results screen.
+The input article narrative is reviewed, but its embedded assessment remained in
+a loading state. The rest of the course still needs this deeper review. Do not
+describe the whole course as mapped or rewritten.
+
+Authored and implemented in this pass:
+
+- Replaced all 15 foundation lesson pages with original bilingual instruction:
+  explanatory sections, 26 self-contained worked examples and their output,
+  predictions, common mistakes, and context-specific solution explanations.
+- Replaced 14 combined coding checks with 35 staged checks. Supplied programs
+  include a departure board, a two-error repair, a journey calculator, a packing
+  machine, charge accumulation and a receipt to complete. The later steps build
+  on earlier values rather than asking for unrelated one-line answers.
+- Reworked the input reading into a two-prompt ticket machine, with guided
+  extensions for quantity, conversion and cost; one additional verified example.
+- Added per-choice explanations to all 13 foundation quiz questions while keeping
+  existing question/choice IDs and correct-answer mappings.
+- Added optional structured content and safe inline-code formatting. Existing
+  fonts, pane dimensions and breakpoints are unchanged. Revised checkpoint IDs
+  do not accidentally inherit credit from different old tasks; previously earned
+  activity completion and learner files remain preserved.
 
 Implemented workspace changes:
 
@@ -60,14 +81,16 @@ Verification so far:
 
 1. Preserve the verified workspace changes and add regression coverage if further
    course work exposes an interaction issue.
-2. Complete foundation workspace/example inspection and review the quiz/article.
-3. Add structured lesson sections so explanations and worked examples can alternate.
-4. Rewrite the entire first chapter with original bilingual material and checkpoints;
-   check partial attempts, all reference solutions, and saved-data compatibility.
-5. Continue the same source review and authoring process for every remaining chapter,
+2. Revisit the input article's embedded assessment if it becomes available; do not
+   treat its loading state as a blocker to original course authoring.
+3. Continue the same source review and authoring process for every remaining chapter,
    challenge set and quiz. Record coverage and remaining uncertainties per chapter.
-6. Perform a requirement-by-requirement completion audit. A green existing content
+4. Verify each revised chapter with valid starters, staged attempts, useful failures,
+   independently executable examples and accepted alternative solutions.
+5. Perform a requirement-by-requirement completion audit. A green existing content
    count test alone does not establish richer explanations or appropriate tasks.
 
-This goal turn made progress: implementation, tests and fresh source observations.
+This goal turn made progress: original course authoring, implementation, tests and
+fresh source observations. Current rewrite coverage is 15/160 core lesson pages,
+1/8 supporting readings, 1/13 quizzes with enhanced feedback, and 0/59 challenges.
 No blocker prevents continuing. The full goal remains active.

@@ -14,6 +14,31 @@ function memoryStorage() {
     },
   } as Storage;
 }
+test("Rewritten starter files never replace an existing learner workspace", async () => {
+  const original = globalThis.fetch;
+  Object.defineProperty(globalThis, "localStorage", {
+    value: memoryStorage(),
+    configurable: true,
+  });
+  const saved = {
+    revision: 7,
+    files: {
+      "main.py": "# my existing work\nprint('hello')\n",
+      "notes.txt": "keep this",
+    },
+  };
+  globalThis.fetch = async () => json(saved);
+  try {
+    const store = new WorkspaceStore();
+    await store.load("python-hello-world-03", {
+      "main.py": "new lesson starter",
+    });
+    assert.deepEqual(store.current.files, saved.files);
+    assert.equal(store.current.revision, 7);
+  } finally {
+    globalThis.fetch = original;
+  }
+});
 const json = (data: unknown) =>
   new Response(JSON.stringify(data), {
     headers: { "Content-Type": "application/json" },

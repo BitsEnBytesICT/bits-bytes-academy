@@ -6,6 +6,14 @@ export interface Checkpoint {
   hint: Localized;
   check: string;
   expectedError?: string;
+  feedback?: Localized;
+}
+export interface LessonSection {
+  heading: Localized;
+  body: Localized;
+  code?: string;
+  output?: string;
+  takeaway?: Localized;
 }
 export interface Exercise {
   estimatedMinutes: number;
@@ -17,6 +25,7 @@ export interface Exercise {
   optional: boolean;
   explanation: Localized;
   example: string;
+  sections?: LessonSection[];
   files: Record<string, string>;
   solution: Record<string, string>;
   checkpoints: Checkpoint[];

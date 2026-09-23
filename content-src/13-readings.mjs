@@ -1,4 +1,4 @@
-import { activities, loc } from "./helpers.mjs";
+import { activities, loc, section as S } from "./helpers.mjs";
 function article(chapter, id, enTitle, nlTitle, en, nl, code, options = {}) {
   activities.push({
     id,
@@ -9,13 +9,16 @@ function article(chapter, id, enTitle, nlTitle, en, nl, code, options = {}) {
     optional: false,
     explanation: loc(en, nl),
     example: options.example || "",
+    ...(options.sections ? { sections: options.sections } : {}),
     files: { "main.py": code },
-    solution: { "main.py": code },
+    solution: { "main.py": options.solution || code },
     checkpoints: [],
-    solutionNote: loc(
-      "This is an exploration activity. Run the example, change one input, and explain the new result in your own words.",
-      "Dit is een verkenningsactiviteit. Voer het voorbeeld uit, verander één invoer en leg het nieuwe resultaat in je eigen woorden uit.",
-    ),
+    solutionNote:
+      options.solutionNote ||
+      loc(
+        "This is an exploration activity. Run the example, change one input, and explain the new result in your own words.",
+        "Dit is een verkenningsactiviteit. Voer het voorbeeld uit, verander één invoer en leg het nieuwe resultaat in je eigen woorden uit.",
+      ),
     ...(options.inputs ? { inputs: options.inputs } : {}),
   });
 }
@@ -24,10 +27,44 @@ article(
   "reading-input",
   "Input from the terminal",
   "Invoer via de terminal",
-  "input(prompt) displays a prompt and waits for a line of text. The returned value is always a string, even when the user types digits. Convert with int() or float() only when the text is suitable.\n\nRun this example and type into the terminal when prompted. An invalid numeric entry can raise ValueError; the message helps you see what input was expected.",
-  "input(prompt) toont een vraag en wacht op een regel tekst. De return value is altijd een string, ook als de gebruiker cijfers invoert. Gebruik int() of float() alleen als de tekst daarvoor geschikt is.\n\nVoer dit voorbeeld uit en typ in de terminal wanneer daarom wordt gevraagd. Ongeldige numerieke invoer kan ValueError geven; de melding laat zien welke invoer werd verwacht.",
-  'name = input("Your name: ")\nprint("Welcome, " + name + "!")\n',
-  { inputs: ["Alex"] },
+  "Until now, your programs have used values written directly in the file. An interactive program asks the person running it for information. `input()` pauses the program, reads one line from the terminal, and returns that line as a string. You can assign that result to a name just like any other value.",
+  "Tot nu toe gebruikten je programma's waarden die direct in het bestand stonden. Een interactief programma vraagt de gebruiker om informatie. `input()` pauzeert het programma, leest één regel uit de terminal en geeft die regel terug als string. Je kunt dit resultaat net als een andere waarde aan een naam toewijzen.",
+  '# A ticket machine asks for the information it needs.\nname = input("Your name: ")\ndestination = input("Destination: ")\nprint("Welcome, " + name + "!")\nprint("Your destination is " + destination + ".")\n\n# Add a question about the number of tickets below.\n',
+  {
+    inputs: ["Alex", "Delft", "3"],
+    solution:
+      'name = input("Your name: ")\ndestination = input("Destination: ")\nprint("Welcome, " + name + "!")\nprint("Your destination is " + destination + ".")\nticket_text = input("How many tickets? ")\ntickets = int(ticket_text)\ncost = tickets * 4\nprint("Total: " + str(cost))\n',
+    solutionNote: loc(
+      "Each input call waits for one answer. The first two answers remain text. int(ticket_text) converts the third into a count so multiplication calculates a price. str(cost) converts the result back to text for the message. An invalid quantity raises ValueError; this exploration intentionally leaves that visible.",
+      "Elke input-aanroep wacht op één antwoord. De eerste twee antwoorden blijven tekst. int(ticket_text) zet het derde om naar een aantal, zodat de vermenigvuldiging een prijs berekent. str(cost) zet het resultaat terug naar tekst voor het bericht. Een ongeldige hoeveelheid veroorzaakt ValueError; in deze verkenning blijft die fout bewust zichtbaar.",
+    ),
+    sections: [
+      S(
+        "Ask, wait, then continue",
+        "Vragen, wachten en verdergaan",
+        "The optional text inside `input()` is a prompt. It tells the person what to enter. Execution pauses at that call until they type a line and press Enter. The variable receives their answer without the final newline, and Python continues to the next instruction.\n\nRun the ticket-machine starter. Enter your name, press Enter, then enter a destination. While the program is waiting, the terminal sends what you type to the program rather than treating it as a Python command.",
+        "De optionele tekst binnen `input()` is een prompt. Deze vertelt de gebruiker wat die moet invoeren. De uitvoering wacht bij die aanroep totdat iemand een regel typt en op Enter drukt. De variabele krijgt het antwoord zonder het afsluitende regeleinde en Python gaat verder met de volgende instructie.\n\nVoer de startcode van de kaartjesautomaat uit. Voer je naam in, druk op Enter en voer daarna een bestemming in. Terwijl het programma wacht, stuurt de terminal je tekst naar het programma in plaats van deze als Python-opdracht te behandelen.",
+        'city = input("Where are you going? ")\nprint("Next stop: " + city)',
+        undefined,
+        "If you enter Delft, the printed response is Next stop: Delft. You can run the same file again and supply a different destination without editing the code.",
+        "Voer je Delft in, dan is het afgedrukte antwoord Next stop: Delft. Je kunt hetzelfde bestand opnieuw uitvoeren en een andere bestemming opgeven zonder de code aan te passen.",
+      ),
+      S(
+        "Digits still arrive as text",
+        "Cijfers komen ook binnen als tekst",
+        'If someone types 3, `input()` returns the string `"3"`, not the integer `3`. Convert suitable text with `int()` before doing a whole-number calculation, or use `float()` when a decimal is allowed. The conversion creates a numeric value; it does not change the original text variable.',
+        'Als iemand 3 typt, geeft `input()` de string `"3"` terug, niet de integer `3`. Zet geschikte tekst eerst met `int()` om voordat je met gehele getallen rekent, of gebruik `float()` wanneer decimalen zijn toegestaan. De omzetting maakt een numerieke waarde; de oorspronkelijke tekstvariabele verandert niet.',
+        'quantity_text = "3"\nquantity = int(quantity_text)\nprint(quantity * 4)',
+        "12",
+      ),
+      S(
+        "Extend the ticket machine",
+        "Breid de kaartjesautomaat uit",
+        'First, add `ticket_text = input("How many tickets? ")` after the current messages. Run and check that the third question appears only after the first two answers.\n\nNext, convert ticket_text to an integer called `tickets`. Calculate `cost` at 4 euros per ticket and print `"Total: " + str(cost)`. Three tickets should cost 12. Try a different quantity and predict the new total.\n\nFinally, try entering a word when the program expects a number. `int()` raises ValueError because the text cannot be converted. Run again with a valid number to recover. You will learn how programs can handle such errors in a later lesson.',
+        'Voeg eerst na de huidige berichten `ticket_text = input("How many tickets? ")` toe. Voer de code uit en controleer dat de derde vraag pas na de eerste twee antwoorden verschijnt.\n\nZet ticket_text vervolgens om naar een integer met de naam `tickets`. Bereken `cost` bij 4 euro per kaartje en druk `"Total: " + str(cost)` af. Drie kaartjes moeten 12 kosten. Probeer een andere hoeveelheid en voorspel het nieuwe totaal.\n\nVoer tot slot eens een woord in waar het programma een getal verwacht. `int()` geeft ValueError omdat de tekst niet kan worden omgezet. Voer opnieuw uit met een geldig getal om verder te gaan. Later leer je hoe programma\'s zulke fouten kunnen afhandelen.',
+      ),
+    ],
+  },
 );
 article(
   2,
