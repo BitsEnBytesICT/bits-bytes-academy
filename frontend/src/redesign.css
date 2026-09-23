@@ -1,4 +1,160 @@
 /* Existing typography, workspace columns and breakpoints stay in styles.css. */
+.py-keyword {
+  color: #8b2e9d;
+}
+.py-comment {
+  color: #627565;
+  font-style: italic;
+}
+.py-string {
+  color: #237248;
+}
+.py-number,
+.py-constant {
+  color: #a04b0c;
+}
+.py-function {
+  color: #795d00;
+}
+.py-type {
+  color: #126f79;
+}
+.py-builtin {
+  color: #006f83;
+}
+.py-operator {
+  color: #a12f50;
+}
+.py-variable,
+.py-punctuation {
+  color: #233b50;
+}
+.py-escape {
+  color: #a04315;
+}
+.python-code code {
+  font: inherit;
+}
+.file-icon img {
+  display: block;
+  object-fit: contain;
+}
+.solution-comparison {
+  display: grid;
+  gap: 20px;
+}
+.file-diff {
+  border: 1px solid var(--line);
+  border-radius: 7px;
+  overflow: hidden;
+}
+.file-diff > header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 14px;
+  background: #f4f8fb;
+  font:
+    12px Consolas,
+    monospace;
+}
+.diff-counts {
+  display: flex;
+  gap: 12px;
+}
+.diff-counts > :first-child {
+  color: #a52b34;
+}
+.diff-counts > :last-child {
+  color: #176638;
+}
+.diff-scroll {
+  max-height: 400px;
+  overflow: auto;
+}
+.diff-table {
+  border-collapse: collapse;
+  width: 100%;
+  table-layout: fixed;
+  font:
+    12px/1.8 Consolas,
+    "Courier New",
+    monospace;
+}
+.diff-table th {
+  position: sticky;
+  top: 0;
+  padding: 9px 12px;
+  background: #f4f8fb;
+  text-align: left;
+  font:
+    12px Outfit,
+    sans-serif;
+  border-bottom: 1px solid var(--line);
+  z-index: 1;
+}
+.diff-table td {
+  padding: 0;
+  vertical-align: top;
+}
+.diff-table th + th,
+.diff-table td + td {
+  border-left: 1px solid var(--line);
+}
+.diff-line {
+  display: flex;
+  min-height: 22px;
+}
+.diff-line code {
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+  min-width: 0;
+  padding-right: 8px;
+  tab-size: 4;
+}
+.diff-line-number {
+  flex: 0 0 36px;
+  text-align: right;
+  padding: 0 5px;
+  color: #698091;
+  user-select: none;
+}
+.diff-sign {
+  flex: 0 0 18px;
+  text-align: center;
+  user-select: none;
+}
+.diff-removed {
+  background: #ffebe9;
+}
+.diff-removed .diff-sign {
+  color: #a52b34;
+}
+.diff-added {
+  background: #dafbe1;
+}
+.diff-added .diff-sign {
+  color: #176638;
+}
+.diff-empty {
+  background: repeating-linear-gradient(
+    135deg,
+    #f6f8fa,
+    #f6f8fa 5px,
+    #edf1f4 5px,
+    #edf1f4 6px
+  );
+}
+.modal .diff-identical,
+.modal .diff-eof {
+  margin: 0;
+  padding: 8px 12px;
+  font-size: 11px;
+}
+.file-diff > button {
+  padding: 10px 14px;
+  color: var(--blue);
+}
 .brand-logo {
   width: 48px;
   height: 48px;
@@ -628,6 +784,24 @@
 }
 .terminal-command {
   color: #92d5ff;
+}
+.terminal-screen {
+  flex: 1;
+  min-height: 0;
+  min-width: 0;
+  padding: 18px 20px;
+  overflow: hidden;
+}
+.terminal-screen .xterm {
+  height: 100%;
+}
+.terminal-screen .xterm-viewport {
+  background: #183345;
+  scrollbar-width: thin;
+  scrollbar-color: #405b6b transparent;
+}
+.terminal-runtime-status {
+  color: #a4c3d5;
 }
 .console-prompt {
   margin-top: 8px;

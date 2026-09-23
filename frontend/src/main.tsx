@@ -26,6 +26,8 @@ import { LessonNavigation } from "./components/LessonNavigation";
 import { displayConsolePrompt } from "./console-prompt";
 import { CurriculumDrawer } from "./components/CurriculumDrawer";
 import { Terminal } from "./components/Terminal";
+import { CodeBlock } from "./components/CodeBlock";
+import { SolutionDiff } from "./components/SolutionDiff";
 import "./styles.css";
 import "./redesign.css";
 
@@ -246,7 +248,7 @@ function App() {
     if (kind === "run") {
       setResults({});
       setConsolePrompt(">>>");
-      appendOutput("$ python main.py\n", "command");
+      appendOutput("> python main.py\n", "command");
     }
     try {
       await store.current.save();
@@ -336,10 +338,12 @@ function App() {
     setRunStatus("error");
     setConsolePrompt(">>>");
     appendOutput(
-      tr(
-        "Execution stopped. The console session has been reset.",
-        "Uitvoering gestopt. De consolesessie is opnieuw gestart.",
-      ) + "\n",
+      "^C\n" +
+        tr(
+          "Execution stopped. The console session has been reset.",
+          "Uitvoering gestopt. De consolesessie is opnieuw gestart.",
+        ) +
+        "\n",
       "stderr",
     );
   };
@@ -352,9 +356,37 @@ function App() {
       void run();
       return;
     }
-    if (consolePrompt === ">>>" && line.trim() === "/clear") {
+    if (
+      consolePrompt === ">>>" &&
+      ["/clear", "clear", "cls"].includes(line.trim())
+    ) {
       setOutput([]);
       return;
+    }
+    if (consolePrompt === ">>>") {
+      const cmd = line.trim();
+      let reply: string | undefined;
+      if (["ls", "dir"].includes(cmd))
+        reply = Object.keys(files).join("\n") + "\n";
+      else if (cmd === "pwd") reply = "/home/pyodide/workspace\n";
+      else if (cmd === "/help")
+        reply = tr(
+          "Python expressions and statements run here.\npython main.py / /run: run and check your solution\nls / dir: list lesson files\npwd: show the workspace folder\ncat filename / type filename: read a lesson file\nclear / cls / /clear: clear the terminal\n/reset: reset Python variables\n",
+          "Hier voer je Python-expressies en opdrachten uit.\npython main.py / /run: voer je oplossing uit en controleer deze\nls / dir: toon lesbestanden\npwd: toon de werkruimtemap\ncat bestandsnaam / type bestandsnaam: lees een lesbestand\nclear / cls / /clear: wis de terminal\n/reset: herstel de Python-variabelen\n",
+        );
+      else if (/^(cat|type)\s+/.test(cmd)) {
+        const name = cmd
+          .replace(/^(cat|type)\s+/, "")
+          .replace(/^(["'])(.*)\1$/, "$2");
+        reply = Object.hasOwn(files, name)
+          ? files[name] + (files[name].endsWith("\n") ? "" : "\n")
+          : tr("File not found: ", "Bestand niet gevonden: ") + name + "\n";
+      }
+      if (reply !== undefined) {
+        appendOutput("> " + line + "\n", "command");
+        appendOutput(reply);
+        return;
+      }
     }
     if (consolePrompt === ">>>" && line.trim() === "/reset") {
       runner.current.cancel();
@@ -571,7 +603,7 @@ function App() {
                     </span>{" "}
                     {i + 1}. {text(question.prompt)}
                   </summary>
-                  {question.code && <pre>{question.code}</pre>}
+                  {question.code && <CodeBlock code={question.code} />}
                   <p>
                     {tr("Your answer", "Jouw antwoord")}:{" "}
                     {text(
@@ -627,7 +659,7 @@ function App() {
                 />
               </div>
               <h2 className="question-prompt">{text(q.prompt)}</h2>
-              {q.code && <pre className="quiz-code">{q.code}</pre>}
+              {q.code && <CodeBlock className="quiz-code" code={q.code} />}
               <div className="choices">
                 {(
                   quizState.orders[quizState.index] ||
@@ -870,7 +902,17 @@ function App() {
                         className={file === name ? "active" : ""}
                       >
                         <span className="file-icon">
-                          {name.endsWith(".py") ? "py" : "≡"}
+                          {name.endsWith(".py") ? (
+                            <img
+                              src="/images/courses/python.svg"
+                              width="16"
+                              height="16"
+                              alt=""
+                              aria-hidden="true"
+                            />
+                          ) : (
+                            "≡"
+                          )}
                         </span>
                         {name}
                       </button>
@@ -1300,21 +1342,11 @@ function App() {
                 </span>
                 <h2>{tr("One way to solve it", "Eén mogelijke oplossing")}</h2>
                 <p>{text(exercise.solutionNote)}</p>
-                <div className="solution-grid">
-                  <section>
-                    <h3>{tr("Your code", "Jouw code")}</h3>
-                    <pre>{files["main.py"]}</pre>
-                  </section>
-                  <section>
-                    <h3>{tr("Reference solution", "Voorbeeldoplossing")}</h3>
-                    {Object.entries(exercise.solution).map(([name, code]) => (
-                      <div key={name}>
-                        <small>{name}</small>
-                        <pre>{code}</pre>
-                      </div>
-                    ))}
-                  </section>
-                </div>
+                <SolutionDiff
+                  files={files}
+                  solution={exercise.solution}
+                  language={language}
+                />
                 <div className="modal-actions">
                   <button className="secondary" onClick={() => setModal(null)}>
                     {tr("Keep my code", "Mijn code behouden")}

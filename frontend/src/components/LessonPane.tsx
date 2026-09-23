@@ -5,6 +5,7 @@ import type {
   Progress,
 } from "../../../shared/types";
 import { Icon } from "../Icon";
+import { CodeBlock } from "./CodeBlock";
 export function LessonPane({
   activity,
   course,
@@ -49,7 +50,7 @@ export function LessonPane({
                 ))}
               </div>
               {exercise.example && (
-                <pre className="example-code">{exercise.example}</pre>
+                <CodeBlock className="example-code" code={exercise.example} />
               )}
             </>
           ) : (

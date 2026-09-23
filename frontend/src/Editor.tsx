@@ -4,6 +4,8 @@ import { EditorState } from "@codemirror/state";
 import { indentWithTab } from "@codemirror/commands";
 import { python } from "@codemirror/lang-python";
 import { basicSetup } from "codemirror";
+import { syntaxHighlighting } from "@codemirror/language";
+import { pythonHighlighter } from "./python-highlighting";
 export function Editor({
   value,
   onChange,
@@ -27,7 +29,9 @@ export function Editor({
         doc: value,
         extensions: [
           basicSetup,
-          ...(name.endsWith(".py") ? [python()] : []),
+          ...(name.endsWith(".py")
+            ? [python(), syntaxHighlighting(pythonHighlighter)]
+            : []),
           keymap.of([
             indentWithTab,
             {
@@ -59,7 +63,7 @@ export function Editor({
               color: "#879eae",
               border: "none",
             },
-            ".cm-activeLine": { background: "#3171990d" },
+            ".cm-activeLine": { background: "transparent" },
             "& .cm-selectionLayer .cm-selectionBackground": {
               backgroundColor: "#d0e1ee",
             },

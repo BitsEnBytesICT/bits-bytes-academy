@@ -1,113 +1,144 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef } from "react";
+import type { Terminal as XTerminal } from "@xterm/xterm";
 import type { Language } from "../../../shared/types";
 import { Icon } from "../Icon";
-import { displayConsolePrompt } from "../console-prompt";
+import {
+  TerminalSession,
+  type TerminalActions,
+  type TerminalState,
+} from "../terminal-session";
+import "@xterm/xterm/css/xterm.css";
+
 export type OutputLine = { text: string; channel: string };
-export function Terminal({
-  output,
-  status,
-  prompt,
-  language,
-  onCommand,
-  onInput,
-  onStop,
-  onClear,
-}: {
-  output: OutputLine[];
-  status: string;
-  prompt: string;
-  language: Language;
-  onCommand: (line: string) => void;
-  onInput: (line: string | null) => void;
-  onStop: () => void;
-  onClear: () => void;
-}) {
-  const [value, setValue] = useState(""),
-    [history, setHistory] = useState<string[]>([]),
-    [cursor, setCursor] = useState(-1);
-  const body = useRef<HTMLDivElement>(null),
-    field = useRef<HTMLTextAreaElement>(null),
-    last = useRef(""),
-    restoreFocus = useRef(false),
-    draft = useRef("");
-  const waiting = status === "input",
-    busy = ["loading", "running"].includes(status),
-    tr = (en: string, nl: string) => (language === "nl" ? nl : en);
+type Props = TerminalState & TerminalActions & { language: Language };
+
+export function Terminal(props: Props) {
+  const { status, language, onClear, onStop } = props;
+  const host = useRef<HTMLDivElement>(null);
+  const latest = useRef(props);
+  const session = useRef<TerminalSession | null>(null);
+  const terminal = useRef<XTerminal | null>(null);
+  latest.current = props;
+  const tr = (en: string, nl: string) => (language === "nl" ? nl : en);
+  const busy = ["loading", "running", "input"].includes(status);
+
   useEffect(() => {
-    body.current?.scrollTo({ top: body.current.scrollHeight });
-  }, [output, status, prompt]);
-  useEffect(() => {
-    const canInterrupt = () =>
-      (busy || waiting || prompt === "...") &&
-      !window.getSelection()?.toString();
-    const interruptSession = (event: Event) => {
-      event.preventDefault();
-      onStop();
-      setValue("");
-    };
-    const interrupt = (event: KeyboardEvent) => {
-      if (
-        !event.defaultPrevented &&
-        (event.ctrlKey || event.metaKey) &&
-        event.key.toLowerCase() === "c" &&
-        canInterrupt()
-      ) {
-        interruptSession(event);
-      }
-    };
-    // Embedded browsers may dispatch their Copy command instead of keydown.
-    // Preserve ordinary copying whenever the learner has selected text.
-    const copy = (event: ClipboardEvent) => {
-      if (!event.defaultPrevented && canInterrupt()) interruptSession(event);
-    };
-    document.addEventListener("keydown", interrupt);
-    document.addEventListener("copy", copy);
+    let disposed = false;
+    let cleanup = () => {};
+    void Promise.all([import("@xterm/xterm"), import("@xterm/addon-fit")]).then(
+      ([{ Terminal: Xterm }, { FitAddon }]) => {
+        if (disposed || !host.current) return;
+        const term = new Xterm({
+          fontFamily: 'Consolas, "Courier New", monospace',
+          fontSize: 12,
+          lineHeight: 1.85,
+          cursorBlink: true,
+          cursorStyle: "block",
+          convertEol: true,
+          scrollback: 5000,
+          screenReaderMode: true,
+          theme: {
+            background: "#183345",
+            foreground: "#d8e7ef",
+            cursor: "#92d5ff",
+            cursorAccent: "#183345",
+            selectionBackground: "#436c85",
+            selectionInactiveBackground: "#37566b",
+          },
+        });
+        const fit = new FitAddon();
+        term.loadAddon(fit);
+        term.open(host.current);
+        fit.fit();
+        terminal.current = term;
+        const controller = new TerminalSession(term, () => latest.current);
+        session.current = controller;
+        if (term.textarea) {
+          term.textarea.disabled = true;
+          term.textarea.setAttribute(
+            "aria-label",
+            latest.current.language === "nl"
+              ? "Python-terminal"
+              : "Python terminal",
+          );
+          term.textarea.setAttribute("autocomplete", "off");
+        }
+        const input = term.onData((data) => {
+          void controller.input(data);
+        });
+        term.attachCustomKeyEventHandler((event) => {
+          if (
+            (event.ctrlKey || event.metaKey) &&
+            event.key.toLowerCase() === "c" &&
+            term.hasSelection()
+          )
+            return false;
+          return true;
+        });
+        const copyOrInterrupt = (event: ClipboardEvent) => {
+          if (
+            host.current?.contains(document.activeElement) &&
+            !term.hasSelection() &&
+            !window.getSelection()?.toString() &&
+            (["loading", "running", "input"].includes(latest.current.status) ||
+              latest.current.prompt === "...")
+          ) {
+            event.preventDefault();
+            void controller.input("\x03");
+          }
+        };
+        document.addEventListener("copy", copyOrInterrupt);
+        const resize = new ResizeObserver(() => {
+          if (host.current?.clientWidth && host.current.clientHeight)
+            void controller.resize(() => fit.fit());
+        });
+        resize.observe(host.current);
+        void controller.update(latest.current).then(() => {
+          if (!disposed && term.textarea) term.textarea.disabled = false;
+        });
+        cleanup = () => {
+          document.removeEventListener("copy", copyOrInterrupt);
+          resize.disconnect();
+          input.dispose();
+          controller.dispose();
+          term.dispose();
+          session.current = null;
+          terminal.current = null;
+        };
+      },
+    );
     return () => {
-      document.removeEventListener("keydown", interrupt);
-      document.removeEventListener("copy", copy);
+      disposed = true;
+      cleanup();
     };
-  }, [busy, waiting, prompt, onStop]);
+  }, []);
   useEffect(() => {
-    if (waiting) {
-      setValue("");
-      field.current?.focus();
-    } else if (!busy && restoreFocus.current) {
-      restoreFocus.current = false;
-      setValue(
-        prompt === "..."
-          ? (last.current.match(/^\s*/)?.[0] || "") +
-              (last.current.trimEnd().endsWith(":") ? "    " : "")
-          : "",
-      );
-      field.current?.focus();
-    }
-  }, [status, prompt]);
-  const submit = () => {
-    if (busy) return;
-    const line = prompt === "..." && !value.trim() ? "" : value;
-    setValue("");
-    if (waiting) {
-      onInput(line);
-      return;
-    }
-    last.current = line;
-    restoreFocus.current = true;
-    setCursor(-1);
-    if (line.trim())
-      setHistory((h) => [...h.filter((_, i) => i >= h.length - 99), line]);
-    onCommand(line);
-  };
+    void session.current?.update(props);
+  }, [props.output, props.status, props.prompt]);
+  useEffect(() => {
+    terminal.current?.textarea?.setAttribute(
+      "aria-label",
+      tr(
+        status === "input" ? "Python input" : "Python terminal",
+        status === "input" ? "Python-invoer" : "Python-terminal",
+      ),
+    );
+  }, [language, status]);
+
   return (
     <section className="terminal-pane">
       <div className="terminal-header">
         <span>
           <Icon name="terminal" size={17} />
           Terminal
+          {status === "loading" && (
+            <span className="terminal-runtime-status" role="status">
+              {tr("Starting…", "Starten…")}
+            </span>
+          )}
         </span>
         <div className="terminal-actions">
-          {(busy || waiting) && (
-            <button onClick={onStop}>{tr("Stop", "Stop")}</button>
-          )}
+          {busy && <button onClick={onStop}>Stop</button>}
           <button onClick={onClear}>{tr("Clear", "Wissen")}</button>
           <details className="terminal-help">
             <summary aria-label={tr("Terminal help", "Terminalhulp")}>
@@ -116,123 +147,34 @@ export function Terminal({
             <div>
               <p>
                 {tr(
-                  "Type Python or use these commands:",
-                  "Typ Python of gebruik deze commando’s:",
+                  "Type Python or use these workspace commands:",
+                  "Typ Python of gebruik deze werkruimtecommando’s:",
                 )}
               </p>
               <code>
                 python main.py · /run
                 <br />
-                /clear · /reset
+                ls · dir · pwd · cat filename
+                <br />
+                clear · cls · /reset · /help
               </code>
               <p>
                 {tr(
-                  "Enter submits a line. Finish a multiline block with an empty line. ↑/↓ browse history. Ctrl+C stops; Ctrl+D ends program input.",
-                  "Enter verstuurt een regel. Sluit een blok af met een lege regel. ↑/↓ bladeren door commando’s. Ctrl+C stopt; Ctrl+D beëindigt programma-invoer.",
+                  "Enter runs your command. Finish a Python block with an empty line. ↑/↓ recall commands; ←/→ and Home/End edit them. Tab inserts indentation. Pasted code stays editable until Enter.",
+                  "Enter voert je commando uit. Sluit een Python-blok af met een lege regel. ↑/↓ halen commando’s terug; ←/→ en Home/End bewerken ze. Tab voegt inspringing toe. Geplakte code blijft bewerkbaar tot Enter.",
+                )}
+              </p>
+              <p>
+                {tr(
+                  "Ctrl+C stops, Ctrl+L clears the screen, Ctrl+D ends program input. These commands work with your lesson files.",
+                  "Ctrl+C stopt, Ctrl+L wist het scherm, Ctrl+D beëindigt programma-invoer. Deze commando’s werken met je lesbestanden.",
                 )}
               </p>
             </div>
           </details>
         </div>
       </div>
-      <div className="terminal-body" ref={body}>
-        <div aria-live="polite" aria-label="Python output">
-          {output.map((line, i) => (
-            <span
-              key={i}
-              className={
-                line.channel === "stderr"
-                  ? "stderr"
-                  : line.channel === "command"
-                    ? "terminal-command"
-                    : ""
-              }
-            >
-              {line.text}
-            </span>
-          ))}
-        </div>
-        {status === "loading" && (
-          <p className="terminal-status">
-            {tr("Starting Python…", "Python starten…")}
-          </p>
-        )}
-        {status === "running" && (
-          <p className="terminal-status">{tr("Running…", "Bezig…")}</p>
-        )}
-        <form
-          className="input-prompt console-prompt"
-          onSubmit={(e) => {
-            e.preventDefault();
-            submit();
-          }}
-        >
-          <span aria-hidden="true">
-            {waiting ? "" : displayConsolePrompt(prompt)}
-          </span>
-          <textarea
-            ref={field}
-            rows={Math.min(6, value.split("\n").length)}
-            aria-label={
-              waiting
-                ? tr("Python input", "Python-invoer")
-                : tr("Python console", "Python-console")
-            }
-            spellCheck={false}
-            value={value}
-            disabled={busy}
-            onChange={(e) => setValue(e.target.value)}
-            onKeyDown={(e) => {
-              if (
-                (e.ctrlKey || e.metaKey) &&
-                e.key.toLowerCase() === "c" &&
-                !window.getSelection()?.toString()
-              ) {
-                e.preventDefault();
-                if (busy || waiting || prompt === "...") onStop();
-                setValue("");
-              } else if (
-                (e.ctrlKey || e.metaKey) &&
-                e.key.toLowerCase() === "d"
-              ) {
-                e.preventDefault();
-                if (waiting) onInput(null);
-              } else if (e.key === "Enter" && !e.shiftKey) {
-                e.preventDefault();
-                submit();
-              } else if (
-                !waiting &&
-                !busy &&
-                !value.includes("\n") &&
-                ["ArrowUp", "ArrowDown"].includes(e.key) &&
-                history.length
-              ) {
-                e.preventDefault();
-                if (cursor === -1) draft.current = value;
-                const next =
-                  e.key === "ArrowUp"
-                    ? Math.min(history.length - 1, cursor + 1)
-                    : Math.max(-1, cursor - 1);
-                setCursor(next);
-                setValue(
-                  next < 0 ? draft.current : history[history.length - 1 - next],
-                );
-              }
-            }}
-          />
-          <button
-            type="submit"
-            disabled={busy}
-            aria-label={
-              waiting
-                ? tr("Send input", "Verstuur invoer")
-                : tr("Submit command", "Voer commando uit")
-            }
-          >
-            ↵
-          </button>
-        </form>
-      </div>
+      <div className="terminal-screen" ref={host} />
     </section>
   );
 }

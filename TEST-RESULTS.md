@@ -76,6 +76,31 @@ The final production restart was checked by comparing every backup field except 
 - Python, C#, and HTML/CSS icons render on all three course cards and their overview pages. English/Dutch flag switching works. No browser errors were recorded in the isolated testing session.
 - Testing used port 3002 and its separate SQLite profile; production learner files and progress were not used for test exercises.
 
+## Code presentation and terminal update — 23 September 2026
+
+- Type checking, production build and the complete automated suite pass: 227
+  reference solutions, 206 negative cases, 64 executable quiz predictions, the
+  real-Python console suite, and 14 API/workspace/runner/presentation/terminal tests.
+- Shared syntax tests preserve exact source text and multiline string context.
+  Browser checks show the same colours in the editor, lesson example and solution.
+- A changed assignment, an extra comment and a later unchanged print line were
+  compared in-browser: red removals, green additions and unchanged alignment match
+  the code. Automated checks cover insertions, deletions, empty files, whitespace,
+  CRLF and missing final newlines.
+- xterm headless tests exercise the real terminal buffer for wrapped Unicode,
+  ANSI/carriage-return output, long pasted blocks, resize, rapid input, history,
+  cursor editing, blank input/EOF and multiline indentation.
+- Browser checks on isolated port 3002 cover expression output, multiline function
+  definition/inspection, repeated input, blank lines, Unicode paste, EOF, timeout,
+  Ctrl+C and recovery, selected-output copying without interruption, Ctrl+L, file
+  listing/reading, workspace path and navigation away during execution.
+- Mobile layout/input was checked at 390 × 844. The viewport was restored afterward.
+  A black unused viewport strip was corrected to the terminal background colour.
+- Testing used `work/course-depth-test.sqlite`, not the production learner profile.
+  No course content, database schema, activity IDs or backup formats changed in
+  this workspace update. Full curriculum revision remains in progress; see
+  `COURSE-REVISION.md` for coverage and outstanding work.
+
 ## Reproduce
 
 ```sh
