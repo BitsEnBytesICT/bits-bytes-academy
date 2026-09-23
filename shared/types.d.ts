@@ -8,6 +8,8 @@ export type CheckInput =
   | CheckInput[]
   | { [key: string]: CheckInput };
 export interface BehaviorProbe {
+  /** Test a reusable module without starting the interactive main.py loop. */
+  moduleOnly?: boolean;
   files?: Record<string, string>;
   inputs?: Record<string, CheckInput>;
   stdin?: string[];

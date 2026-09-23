@@ -52,10 +52,15 @@ def _lab_probe(files, probe):
         if remaining: raise ValueError('Missing exercise input assignments: ' + ', '.join(sorted(remaining)))
         with contextlib.redirect_stdout(BoundedOutput(stdout)), contextlib.redirect_stderr(BoundedOutput(stderr)):
             try:
-                exec(compile(ast.fix_missing_locations(tree), 'main.py', 'exec'), namespace)
+                if not probe.get('moduleOnly'):
+                    exec(compile(ast.fix_missing_locations(tree), 'main.py', 'exec'), namespace)
+                elif not probe.get('call', {}).get('module'):
+                    raise ValueError('A module-only probe requires a module function')
                 if probe.get('call'):
                     call = probe['call']
-                    function = getattr(importlib.import_module(call['module']), call['name']) if call.get('module') else namespace[call['name']]
+                    module = importlib.import_module(call['module']) if call.get('module') else None
+                    namespace['_module'] = module
+                    function = getattr(module, call['name']) if module is not None else namespace[call['name']]
                     call_stdout_start, call_stderr_start = len(stdout.getvalue()), len(stderr.getvalue())
                     call_input_start, call_reached = sys.stdin.tell(), True
                     call_args, call_kwargs = call.get('args', []), call.get('kwargs', {})
@@ -123,6 +128,30 @@ def _lab_files():
     _lab_names = set(files)
     return files
 
+def _lab_evaluate_checks(payload, error, check_ns, case_namespace=None):
+    results = []
+    for check in payload.get('checks', []):
+        try:
+            with contextlib.redirect_stdout(io.StringIO()), contextlib.redirect_stderr(io.StringIO()):
+                passed = (error == check['expectedError']) if check.get('expectedError') else (error is None and bool(eval(check['check'], check_ns)))
+                if passed:
+                    for case in check.get('cases', []):
+                        if case_namespace is None or not bool(eval(case['check'], case_namespace(case['inputs']))):
+                            passed = False
+                            break
+                if passed:
+                    passed = all(_lab_probe(payload['files'], probe) for probe in check.get('probes', []))
+        except BaseException: passed = False
+        results.append({'id':check['id'], 'passed':bool(passed)})
+    return results
+
+def _lab_game_grade(payload_json):
+    payload = json.loads(payload_json)
+    check_ns = dict(_lab_ns, _stdout=payload.get('stdout', ''), _error=payload.get('error'),
+        _source=payload['files'].get('main.py', ''), _ast=ast, _json=json, _os=os,
+        _rendered_frames=payload.get('frames', 0))
+    return json.dumps(_lab_evaluate_checks(payload, payload.get('error'), check_ns))
+
 def _lab_run(payload_json):
     payload = json.loads(payload_json)
     _lab_prepare(payload['files'], fresh=True)
@@ -142,7 +171,6 @@ def _lab_run(payload_json):
         error = type(exc).__name__
         traceback.print_exception(type(exc), exc, exc.__traceback__.tb_next if exc.__traceback__ else None)
     output = ''.join(captured.parts)
-    results = []
     check_ns = dict(_lab_ns, _stdout=output, _error=error, _source=source, _ast=ast, _json=json, _os=os)
     # Opt-in boundary checks for pure introductory programs. Substitute only
     # each supplied input's first top-level assignment, keeping later updates.
@@ -170,19 +198,7 @@ def _lab_run(payload_json):
         namespace['_stdout'] = ''.join(case_output.parts)
         case_cache[key] = namespace
         return namespace
-    for check in payload.get('checks', []):
-        try:
-            with contextlib.redirect_stdout(io.StringIO()), contextlib.redirect_stderr(io.StringIO()):
-                passed = (error == check['expectedError']) if check.get('expectedError') else (error is None and bool(eval(check['check'], check_ns)))
-                if passed:
-                    for case in check.get('cases', []):
-                        if not bool(eval(case['check'], case_namespace(case['inputs']))):
-                            passed = False
-                            break
-                if passed:
-                    passed = all(_lab_probe(payload['files'], probe) for probe in check.get('probes', []))
-        except BaseException: passed = False
-        results.append({'id':check['id'], 'passed':bool(passed)})
+    results = _lab_evaluate_checks(payload, error, check_ns, case_namespace)
     return json.dumps({'results':results, 'error':error, 'files':_lab_files(), 'stdout':output})
 
 async def _lab_push(payload_json):
