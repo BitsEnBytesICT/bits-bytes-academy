@@ -65,6 +65,7 @@ export function lesson(
       check: s.check || "True",
       ...(s.expectedError ? { expectedError: s.expectedError } : {}),
       ...(s.feedback ? { feedback: s.feedback } : {}),
+      ...(s.cases ? { cases: s.cases } : {}),
       hint:
         s.hint ||
         loc(

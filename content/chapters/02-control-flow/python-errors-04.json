@@ -4,38 +4,125 @@
   "group": "python-errors",
   "title": {
     "en": "Type errors",
-    "nl": "TypeError herstellen"
+    "nl": "Kies de juiste typeconversie"
   },
   "kind": "coding",
   "optional": false,
   "explanation": {
-    "en": "A TypeError reports an operation that does not support the supplied types. Converting intentionally is better than guessing. int() converts suitable numeric text; str() turns a value into text for display.",
-    "nl": "Een TypeError meldt dat een bewerking de gebruikte types niet ondersteunt. Kies bewust een conversie. int() zet geschikte numerieke tekst om; str() zet een waarde om in tekst voor weergave."
+    "en": "An operation can be valid Python syntax yet incompatible with its values. Text from a form is still text even when it contains digits. Convert to a number when you need arithmetic, and convert to text when you need string concatenation. Converting everything to strings can hide one error while breaking the calculation.",
+    "nl": "Een bewerking kan geldige Python-syntax zijn en toch niet passen bij de waarden. Tekst uit een formulier blijft tekst, ook als er cijfers in staan. Zet om naar een getal voor berekeningen en naar tekst voor het samenvoegen van strings. Alles naar strings omzetten kan één fout verbergen maar de berekening kapotmaken."
   },
   "example": "",
+  "sections": [
+    {
+      "heading": {
+        "en": "Choose a direction",
+        "nl": "Kies een richting"
+      },
+      "body": {
+        "en": "For arithmetic, use int on suitable whole-number text or float on suitable decimal text. For a message made with +, use str on a number. Each conversion returns a new value. It does not change the original variable unless you assign the result back to it.",
+        "nl": "Gebruik voor berekeningen int bij geschikte tekst met gehele getallen of float bij geschikte decimale tekst. Gebruik voor een bericht met + de functie str op een getal. Elke conversie geeft een nieuwe waarde terug. De oorspronkelijke variabele verandert alleen als je het resultaat eraan toewijst."
+      },
+      "code": "count_text = \"4\"\ncount = int(count_text)\ncost = count * 3\nprint(\"Cost: \" + str(cost))\nprint(type(count_text))",
+      "output": "Cost: 12\n<class 'str'>"
+    },
+    {
+      "heading": {
+        "en": "Repair the calculation before its label",
+        "nl": "Herstel de berekening vóór het label"
+      },
+      "body": {
+        "en": "The packing estimator first tries to add a number to text, then tries to attach a numeric total to a message. These are two different boundaries. Repair each at its own point. Keep the original quantity_text unchanged so you can still inspect what arrived from the form. Both repairs are needed before the final output can be checked.",
+        "nl": "De verpakkingscalculator probeert eerst een getal bij tekst op te tellen en daarna een numeriek totaal aan een bericht te plakken. Dit zijn twee verschillende overgangen. Herstel elk op de juiste plek. Laat quantity_text ongewijzigd zodat je kunt blijven zien wat uit het formulier kwam. Beide reparaties zijn nodig voordat de laatste output kan worden gecontroleerd."
+      }
+    }
+  ],
   "files": {
-    "main.py": "quantity = \"6\"\nupdated = quantity + 2\nprint(updated)\n"
+    "main.py": "quantity_text = \"6\"\nspares = 2\nunit_price = 3\n\nquantity = quantity_text + spares\ntotal = quantity * unit_price\nprint(\"Packing estimate\")\nprint(\"Total: \" + total)\n# Show the number of packed units on the final line.\n"
   },
   "solution": {
-    "main.py": "quantity = \"6\"\nupdated = int(quantity) + 2\nprint(updated)\n"
+    "main.py": "quantity_text = \"6\"\nspares = 2\nunit_price = 3\nquantity = int(quantity_text) + spares\ntotal = quantity * unit_price\nprint(\"Packing estimate\")\nprint(\"Total: \" + str(total))\nprint(\"Units: \" + str(quantity))\n"
   },
   "checkpoints": [
     {
-      "id": "python-errors-04-step-1",
+      "id": "python-errors-04-v2-step-1",
       "task": {
-        "en": "Convert the string quantity to an integer, add 2, and store the result in updated. Print updated.",
-        "nl": "Zet de string quantity om naar een integer, tel er 2 bij op en sla het resultaat op in updated. Druk updated af."
+        "en": "Run and inspect the first TypeError. Convert quantity_text to an integer when calculating `quantity`, then add spares. Keep quantity_text as the original string.",
+        "nl": "Voer uit en onderzoek de eerste TypeError. Zet quantity_text bij het berekenen van `quantity` om naar een integer en tel daarna spares erbij op. Behoud quantity_text als oorspronkelijke string."
       },
-      "check": "updated == 8 and type(updated) is int",
+      "check": "quantity_text == '6' and type(quantity_text) is str and type(quantity) is int and quantity == 8",
+      "feedback": {
+        "en": "Calculate 6 + 2 numerically to get 8, keeping the original form text intact. Repair the display error next.",
+        "nl": "Bereken 6 + 2 numeriek tot 8 en behoud de oorspronkelijke formuliertekst. Herstel vervolgens de weergavefout."
+      },
+      "cases": [
+        {
+          "inputs": {
+            "quantity_text": "10",
+            "spares": 1
+          },
+          "check": "quantity == 11 and type(quantity) is int"
+        }
+      ],
       "hint": {
-        "en": "Start with quantity = \"6\". Then compare the values with the task.",
-        "nl": "Begin met quantity = \"6\". Vergelijk de waarden daarna met de opdracht."
+        "en": "Use int(quantity_text) on the numeric side of the calculation, not str(spares).",
+        "nl": "Gebruik int(quantity_text) aan de numerieke kant van de berekening, niet str(spares)."
+      }
+    },
+    {
+      "id": "python-errors-04-v2-step-2",
+      "task": {
+        "en": "Run again. Keep `total` numeric, but convert it to text inside the Total message. The first two lines should be Packing estimate and Total: 24.",
+        "nl": "Voer opnieuw uit. Houd `total` numeriek, maar zet deze binnen het Total-bericht om naar tekst. De eerste twee regels moeten Packing estimate en Total: 24 zijn."
+      },
+      "check": "total == 24 and type(total) is int and _stdout.splitlines()[:2] == ['Packing estimate','Total: 24']",
+      "feedback": {
+        "en": "Keep total available for arithmetic and convert it at the display boundary.",
+        "nl": "Houd total beschikbaar voor berekeningen en zet deze pas bij het weergeven om."
+      },
+      "cases": [
+        {
+          "inputs": {
+            "quantity_text": "10",
+            "spares": 1
+          },
+          "check": "total == 33 and _stdout.splitlines()[:2] == ['Packing estimate','Total: 33']"
+        }
+      ],
+      "hint": {
+        "en": "Write str(total) only where you join it to the label.",
+        "nl": "Schrijf str(total) alleen waar je de waarde aan het label plakt."
+      }
+    },
+    {
+      "id": "python-errors-04-v2-step-3",
+      "task": {
+        "en": "Add a final line showing Units: 8 from quantity. Test quantity_text = \"10\", then restore \"6\". Explain why converting the number to text for display does not change quantity itself.",
+        "nl": "Voeg een laatste regel toe die Units: 8 uit quantity toont. Test quantity_text = \"10\" en zet daarna \"6\" terug. Leg uit waarom omzetten naar tekst voor de weergave quantity zelf niet verandert."
+      },
+      "check": "_stdout.splitlines() == ['Packing estimate','Total: 24','Units: 8'] and type(quantity) is int",
+      "feedback": {
+        "en": "Build Units from the calculated integer so the message follows changed quantities too.",
+        "nl": "Bouw Units uit de berekende integer zodat het bericht ook gewijzigde aantallen volgt."
+      },
+      "cases": [
+        {
+          "inputs": {
+            "quantity_text": "10",
+            "spares": 1
+          },
+          "check": "_stdout.splitlines() == ['Packing estimate','Total: 33','Units: 11']"
+        }
+      ],
+      "hint": {
+        "en": "Use the same display conversion as for total, but read quantity.",
+        "nl": "Gebruik dezelfde weergaveconversie als bij total, maar lees quantity."
       }
     }
   ],
   "solutionNote": {
-    "en": "A TypeError reports an operation that does not support the supplied types. Converting intentionally is better than guessing. int() converts suitable numeric text; str() turns a value into text for display.\n\nTrace the solution one line at a time. Try a different input to see which parts change.",
-    "nl": "Een TypeError meldt dat een bewerking de gebruikte types niet ondersteunt. Kies bewust een conversie. int() zet geschikte numerieke tekst om; str() zet een waarde om in tekst voor weergave.\n\nVolg de oplossing regel voor regel. Probeer een andere invoer en bekijk welke onderdelen veranderen."
+    "en": "int converts the incoming digits before addition, so 6 + 2 produces 8 instead of combining text. The total stays numeric. str creates temporary text for each printed message; quantity and total remain integers afterward.",
+    "nl": "int zet de binnenkomende cijfers vóór het optellen om, zodat 6 + 2 het getal 8 geeft in plaats van tekst samen te voegen. Het totaal blijft numeriek. str maakt tijdelijke tekst voor elk afgedrukt bericht; quantity en total blijven daarna integers."
   },
   "sourcePosition": 4,
   "sourceUrl": "https://www.codecademy.com/courses/learn-python-3/lessons/python-errors/exercises/type-errors",

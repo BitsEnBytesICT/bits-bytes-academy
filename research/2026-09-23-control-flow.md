@@ -55,12 +55,44 @@ Python's official [capture-pattern](https://docs.python.org/3/reference/compound
 and [wildcard-pattern](https://docs.python.org/3/reference/compound_stmts.html#wildcard-patterns)
 documentation confirms the distinction. Avoid universal speed/readability claims.
 
-## Pending
+## Quiz review
 
-- Fresh deep review of the eight-question quiz; the older inventory records a
-  completed attempt, but this pass has not remapped the question concepts/feedback.
-- Original bilingual rewrite of 17 core pages and the matching supplement.
-- Branch/boundary grading, partial attempts, executable examples and browser QA.
+The [eight-question quiz](https://www.codecademy.com/courses/learn-python-3/quizzes/python-control-flow-quiz)
+was reviewed in a fresh authorized attempt, finishing at 100%. Concept coverage:
+independent if blocks; arithmetic before equality; combining comparisons with and;
+assignment-versus-comparison syntax; arithmetic before inequality; inclusive
+comparison at equality; Boolean expressions versus text/numbers; objectively
+testable propositions versus opinions. These notes intentionally omit source
+question wording, specific code and answer choices.
 
-This chapter is researched for authoring but has not yet been rewritten. The
-foundation rewrite is the currently released course improvement.
+Each click immediately grades and locks the choices, displays contextual reasoning
+and enables Next. Longer explanations expand with Show more. Progress advances in
+whole-percent increments. The fresh results screen reports the highest score,
+shows the submitted correct responses, and provides Retake and Continue learning.
+The historical results initially lacked explanations; the fresh attempt did show
+them after each answer. Do not infer missing live feedback from old review state.
+
+## Original implementation and verification
+
+All 17 core pages and the matching supplement are rewritten. The 13 coding
+activities contain 37 connected checkpoints. Supplied programs include a dispatch
+simulator, maintenance rule, parking display, ordered category display, a broken
+route planner, two-round score accumulator and mixed-type packing estimator.
+Optional reviews are supplied programs to explore and extend, not blank editors.
+There are 21 independently executable examples with verified expected output.
+All eight existing local quiz questions now have choice-specific bilingual feedback;
+their IDs, choices and answer mappings are unchanged.
+
+Thirty checkpoints use 65 alternate-input cases. These checks execute opt-in pure
+introductory programs in a separate namespace/output stream; the actual learner
+output and inspection variables are retained. Tests verify 20 partial attempts,
+11 plausible-but-wrong rules, later reassignment, missing input definitions and
+probe errors. Existing full-course/runtime/persistence tests pass.
+
+Browser verification on isolated port 3002 confirmed 1/2 then 2/2 progression in
+the conjunction exercise, rejection of an always-false branch despite matching
+default output, unchanged console variables, persistence after reload, and Dutch
+instructions/feedback. The syntax-repair starter produced its genuine error and
+hint; repairing all grammar defects reached 3/4, then the requested output extension
+reached 4/4. The browser error log was empty. Desktop pane and font sizes were not
+changed. Later chapters still require the same depth of review and authoring.

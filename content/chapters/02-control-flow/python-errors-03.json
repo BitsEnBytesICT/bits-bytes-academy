@@ -4,38 +4,134 @@
   "group": "python-errors",
   "title": {
     "en": "Name errors",
-    "nl": "NameError herstellen"
+    "nl": "Volg de namen in een scoreprogramma"
   },
   "kind": "coding",
   "optional": false,
   "explanation": {
-    "en": "A NameError occurs when a name has no value in the current scope. Python names are case-sensitive. Compare the spelling at the assignment with the spelling where the name is used.",
-    "nl": "Een NameError ontstaat als een naam geen waarde heeft in de huidige scope. Python maakt onderscheid tussen hoofdletters en kleine letters. Vergelijk de naam bij de assignment met de naam op de plek waar je deze gebruikt."
+    "en": "Variables must be assigned before a running statement reads them. A NameError often comes from a spelling mismatch or a missing setup line. A variable's name is case-sensitive: `score`, `Score` and `scroe` are three different names. The traceback tells you where Python first needed the unavailable value.",
+    "nl": "Variabelen moeten een waarde krijgen voordat een uitgevoerde instructie ze leest. Een NameError komt vaak door verschillende schrijfwijzen of een ontbrekende instelregel. Hoofdletters tellen mee: `score`, `Score` en `scroe` zijn drie verschillende namen. De traceback laat zien waar Python de ontbrekende waarde voor het eerst nodig had."
   },
   "example": "",
+  "sections": [
+    {
+      "heading": {
+        "en": "Trace the name back to its assignment",
+        "nl": "Volg de naam terug naar de toewijzing"
+      },
+      "body": {
+        "en": "Read the failing line, then search above it for the assignment that should supply that name. Repair the intended data flow instead of creating another variable just to silence the error. This example consistently uses total, so its calculation and display agree.",
+        "nl": "Lees de foutregel en zoek daarboven de toewijzing die de naam een waarde moet geven. Herstel de bedoelde gegevensstroom in plaats van zomaar nog een variabele toe te voegen om de fout te laten verdwijnen. Dit voorbeeld gebruikt overal total, zodat berekening en weergave overeenkomen."
+      },
+      "code": "points = 6\nbonus = 3\ntotal = points + bonus\nprint(\"Total: \" + str(total))",
+      "output": "Total: 9"
+    },
+    {
+      "heading": {
+        "en": "One repair can expose another",
+        "nl": "Een reparatie kan een volgende fout tonen"
+      },
+      "body": {
+        "en": "The editor holds a two-round scoring program. One answer is missing; later, the score has a misspelled name. Run after each repair and notice how execution gets farther. Keep the variable called score throughout. Checks become available once both NameErrors are repaired.",
+        "nl": "In de editor staat een scoreprogramma met twee rondes. Eén antwoord ontbreekt; verderop is de scorenaam verkeerd gespeld. Voer na elke reparatie uit en merk op dat de uitvoering verder komt. Gebruik overal de variabele score. De controles kunnen slagen zodra beide NameErrors zijn hersteld."
+      }
+    }
+  ],
   "files": {
-    "main.py": "count = 16\nprint(Count)\n"
+    "main.py": "answer_one = \"blue\"\n# The second submitted answer should be \"circle\".\nscore = 0\n\nif answer_one == \"blue\":\n    score += 1\nif answer_two == \"circle\":\n    scroe += 1\n\nprint(\"Score: \" + str(score))\n# Add a perfect-round message for a score of 2.\n"
   },
   "solution": {
-    "main.py": "count = 16\nprint(count)\n"
+    "main.py": "answer_one = \"blue\"\nanswer_two = \"circle\"\nscore = 0\nif answer_one == \"blue\":\n    score += 1\nif answer_two == \"circle\":\n    score += 1\nprint(\"Score: \" + str(score))\nif score == 2:\n    print(\"Perfect round\")\n"
   },
   "checkpoints": [
     {
-      "id": "python-errors-03-step-1",
+      "id": "python-errors-03-v2-step-1",
       "task": {
-        "en": "Repair the inconsistent name so the program prints 16. Keep the variable named count.",
-        "nl": "Herstel de verschillende schrijfwijzen zodat het programma 16 afdrukt. Houd de variablenaam count."
+        "en": "Run and read the first NameError. Define `answer_two` as the string circle beside answer_one, before the conditions use it. Run again to reveal the next error.",
+        "nl": "Voer uit en lees de eerste NameError. Definieer `answer_two` als de string circle naast answer_one, voordat de voorwaarden deze gebruiken. Voer opnieuw uit om de volgende fout te zien."
       },
-      "check": "count == 16 and _stdout.strip() == '16'",
+      "check": "answer_two == 'circle'",
+      "feedback": {
+        "en": "Define answer_two before its comparison, then repair the later spelling error so the complete file can run.",
+        "nl": "Definieer answer_two vóór de vergelijking en herstel daarna de latere spelfout zodat het hele bestand kan uitvoeren."
+      },
       "hint": {
-        "en": "Start with count = 16. Then compare the values with the task.",
-        "nl": "Begin met count = 16. Vergelijk de waarden daarna met de opdracht."
+        "en": "An assignment above both if statements makes the second answer available when Python needs it.",
+        "nl": "Een toewijzing boven beide if-instructies maakt het tweede antwoord beschikbaar wanneer Python het nodig heeft."
+      }
+    },
+    {
+      "id": "python-errors-03-v2-step-2",
+      "task": {
+        "en": "Repair the misspelled score name in the second branch. Keep the single accumulator `score`, starting at 0 and gaining one point for each correct answer. The printed score should now be 2.",
+        "nl": "Herstel de verkeerd gespelde scorenaam in de tweede branch. Behoud één teller `score`, beginnend op 0 en met één punt per goed antwoord. De afgedrukte score moet nu 2 zijn."
+      },
+      "check": "score == 2 and _stdout.splitlines()[:1] == ['Score: 2']",
+      "feedback": {
+        "en": "Update score in both branches. One wrong answer should produce 1 point; two wrong answers should produce 0.",
+        "nl": "Werk in beide branches score bij. Eén fout antwoord moet 1 punt opleveren; twee foute antwoorden 0."
+      },
+      "cases": [
+        {
+          "inputs": {
+            "answer_one": "red"
+          },
+          "check": "score == 1"
+        },
+        {
+          "inputs": {
+            "answer_two": "square"
+          },
+          "check": "score == 1"
+        },
+        {
+          "inputs": {
+            "answer_one": "red",
+            "answer_two": "square"
+          },
+          "check": "score == 0"
+        }
+      ],
+      "hint": {
+        "en": "Both += lines must update the same name assigned to 0 above the conditions.",
+        "nl": "Beide +=-regels moeten dezelfde naam bijwerken die boven de voorwaarden op 0 staat."
+      }
+    },
+    {
+      "id": "python-errors-03-v2-step-3",
+      "task": {
+        "en": "After the score display, add an if statement that prints Perfect round only when score is 2. Try a wrong answer, then restore both original answers.",
+        "nl": "Voeg na de scoreweergave een if-instructie toe die alleen bij score 2 Perfect round afdrukt. Probeer een fout antwoord en herstel daarna beide oorspronkelijke antwoorden."
+      },
+      "check": "_stdout.splitlines() == ['Score: 2','Perfect round']",
+      "feedback": {
+        "en": "Show Perfect round only for two correct answers; the score itself must always be printed.",
+        "nl": "Toon Perfect round alleen bij twee goede antwoorden; de score zelf moet altijd worden afgedrukt."
+      },
+      "cases": [
+        {
+          "inputs": {
+            "answer_two": "square"
+          },
+          "check": "_stdout.splitlines() == ['Score: 1']"
+        },
+        {
+          "inputs": {
+            "answer_one": "red",
+            "answer_two": "square"
+          },
+          "check": "_stdout.splitlines() == ['Score: 0']"
+        }
+      ],
+      "hint": {
+        "en": "Keep the score display unconditional; indent only the celebration under if score == 2.",
+        "nl": "Laat de score altijd afdrukken; laat alleen het feestbericht inspringen onder if score == 2."
       }
     }
   ],
   "solutionNote": {
-    "en": "A NameError occurs when a name has no value in the current scope. Python names are case-sensitive. Compare the spelling at the assignment with the spelling where the name is used.\n\nTrace the solution one line at a time. Try a different input to see which parts change.",
-    "nl": "Een NameError ontstaat als een naam geen waarde heeft in de huidige scope. Python maakt onderscheid tussen hoofdletters en kleine letters. Vergelijk de naam bij de assignment met de naam op de plek waar je deze gebruikt.\n\nVolg de oplossing regel voor regel. Probeer een andere invoer en bekijk welke onderdelen veranderen."
+    "en": "The missing assignment supplies the second answer. Correcting scroe to score restores one shared accumulator instead of creating a second score. The final conditional reads the total after both rounds, so its message describes the complete result.",
+    "nl": "De ontbrekende toewijzing levert het tweede antwoord. Door scroe in score te veranderen herstel je één gedeelde teller in plaats van een tweede score te maken. De laatste voorwaarde leest het totaal na beide rondes, zodat het bericht het volledige resultaat beschrijft."
   },
   "sourcePosition": 3,
   "sourceUrl": "https://www.codecademy.com/courses/learn-python-3/lessons/python-errors/exercises/name-error",

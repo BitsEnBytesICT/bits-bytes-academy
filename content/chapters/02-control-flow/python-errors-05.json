@@ -4,25 +4,49 @@
   "group": "python-errors",
   "title": {
     "en": "Debugging review",
-    "nl": "Terugblik: debuggen"
+    "nl": "Een programma zonder foutmelding kan toch fout zijn"
   },
   "kind": "reading",
   "optional": false,
   "explanation": {
-    "en": "Use the exception type as a clue: SyntaxError points to structure, NameError to an unavailable name, and TypeError to incompatible operations. A traceback is diagnostic information, not a sign that you should stop experimenting.",
-    "nl": "Gebruik het exception type als aanwijzing: SyntaxError gaat over structuur, NameError over een onbekende naam en TypeError over onverenigbare bewerkingen. Een traceback helpt je onderzoeken; het is geen reden om te stoppen met experimenteren."
+    "en": "Once a program runs, compare its result with the rule it is supposed to implement. A logic error can produce plausible output with no exception at all. Use a small table of expected cases, especially values exactly on a boundary, rather than trusting one successful run.",
+    "nl": "Vergelijk zodra een programma uitvoert het resultaat met de regel die het hoort toe te passen. Een logische fout kan aannemelijke output geven zonder exception. Gebruik een klein overzicht van verwachte gevallen, vooral waarden precies op een grens, in plaats van op één geslaagde uitvoering te vertrouwen."
   },
   "example": "",
+  "sections": [
+    {
+      "heading": {
+        "en": "Check the promise",
+        "nl": "Controleer de afspraak"
+      },
+      "body": {
+        "en": "A fictional shop waives a delivery fee when the order total is at least 20. The supplied program runs, but charges a fee at exactly 20. Predict the output for totals 19, 20 and 21 before testing them. Identify which comparison disagrees with the rule and repair it.\n\nThen extend the rule: members also receive free delivery, even below 20. Add a member Boolean and combine the two qualifying conditions with or. Test both member values at 19 and at 20.",
+        "nl": "Een fictieve winkel rekent geen verzendkosten bij een ordertotaal van minstens 20. Het meegeleverde programma voert uit, maar rekent bij precies 20 wel kosten. Voorspel de output voor 19, 20 en 21 voordat je test. Zoek welke vergelijking niet bij de regel past en herstel deze.\n\nBreid daarna de regel uit: leden krijgen ook gratis verzending, zelfs onder 20. Voeg een Boolean member toe en combineer de twee voorwaarden met or. Test beide lidmaatschapswaarden bij 19 en bij 20."
+      }
+    },
+    {
+      "heading": {
+        "en": "Keep a debugging routine",
+        "nl": "Houd een vaste debugroutine aan"
+      },
+      "body": {
+        "en": "Syntax errors: inspect structure and punctuation. Name errors: follow the name to its assignment. Type errors: inspect the operation and the types on both sides. Logic errors: compare expected and actual results for several inputs. Change one cause at a time, rerun, and keep the cases that exposed the bug for later checks.",
+        "nl": "Syntaxfouten: onderzoek structuur en leestekens. Naamfouten: volg de naam terug naar de toewijzing. Typefouten: onderzoek de bewerking en de types aan beide kanten. Logische fouten: vergelijk verwacht en werkelijk resultaat voor verschillende invoer. Verander steeds één oorzaak, voer opnieuw uit en bewaar de gevallen die de fout zichtbaar maakten voor latere controles."
+      },
+      "code": "total = 20\nqualifies = total >= 20\nprint(qualifies)",
+      "output": "True"
+    }
+  ],
   "files": {
-    "main.py": "quantity = \"6\"\nprint(int(quantity) + 2)\n"
+    "main.py": "# Rule: delivery is free for totals of at least 20.\ntotal = 20\nif total > 20:\n    delivery = 0\nelse:\n    delivery = 4\nprint(\"Delivery: \" + str(delivery))\nprint(\"Pay: \" + str(total + delivery))\n"
   },
   "solution": {
-    "main.py": "quantity = \"6\"\nprint(int(quantity) + 2)\n"
+    "main.py": "total = 20\nmember = False\nif total >= 20 or member:\n    delivery = 0\nelse:\n    delivery = 4\nprint(\"Delivery: \" + str(delivery))\nprint(\"Pay: \" + str(total + delivery))\n"
   },
   "checkpoints": [],
   "solutionNote": {
-    "en": "Use the exception type as a clue: SyntaxError points to structure, NameError to an unavailable name, and TypeError to incompatible operations. A traceback is diagnostic information, not a sign that you should stop experimenting.\n\nTrace the solution one line at a time. Try a different input to see which parts change.",
-    "nl": "Gebruik het exception type als aanwijzing: SyntaxError gaat over structuur, NameError over een onbekende naam en TypeError over onverenigbare bewerkingen. Een traceback helpt je onderzoeken; het is geen reden om te stoppen met experimenteren.\n\nVolg de oplossing regel voor regel. Probeer een andere invoer en bekijk welke onderdelen veranderen."
+    "en": "At least includes equality, so >= repairs the boundary. The optional member extension uses or because either qualification is sufficient. At total 19, a non-member pays delivery 4 while a member pays 0. At total 20 both receive free delivery. No exception was needed to reveal the original logic mistake.",
+    "nl": "Minstens omvat gelijkheid, dus >= herstelt de grens. De optionele uitbreiding met member gebruikt or omdat één voorwaarde al genoeg is. Bij totaal 19 betaalt een niet-lid 4 verzendkosten en een lid 0. Bij totaal 20 krijgen beiden gratis verzending. Er was geen exception nodig om de oorspronkelijke logische fout te ontdekken."
   },
   "sourcePosition": 5,
   "sourceUrl": "https://www.codecademy.com/courses/learn-python-3/lessons/python-errors/exercises/review",

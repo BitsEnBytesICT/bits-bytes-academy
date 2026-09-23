@@ -4,38 +4,138 @@
   "group": "python-control-flow",
   "title": {
     "en": "Conditional blocks",
-    "nl": "If statements"
+    "nl": "Voorwaardelijke blokken bouwen"
   },
   "kind": "coding",
   "optional": false,
   "explanation": {
-    "en": "An if statement executes its indented block when the condition is true. End the condition with a colon. Consistent indentation tells Python which statements belong to the block.",
-    "nl": "Een if statement voert het ingesprongen blok uit als de voorwaarde waar is. Sluit de voorwaarde af met een dubbele punt. Consistente inspringing vertelt Python welke regels bij het blok horen."
+    "en": "An `if` statement connects a Boolean condition to an action. If the condition is true, Python executes the indented block. If it is false, Python skips that block and continues below it. The colon and indentation are part of Python's syntax.",
+    "nl": "Een `if`-instructie verbindt een Boolean-voorwaarde met een actie. Is de voorwaarde waar, dan voert Python het ingesprongen blok uit. Is deze onwaar, dan slaat Python het blok over en gaat daaronder verder. De dubbele punt en inspringing horen bij de Python-syntax."
   },
-  "example": "if speed > 10:\n    print(\"Slow down\")",
+  "example": "",
+  "sections": [
+    {
+      "heading": {
+        "en": "Which lines belong to the condition?",
+        "nl": "Welke regels horen bij de voorwaarde?"
+      },
+      "body": {
+        "en": "The colon introduces the block. Use a consistent indentation, normally four spaces. Move back to the left edge to leave the block. Predict what happens if mode changes to another value.",
+        "nl": "De dubbele punt begint het blok. Gebruik een vaste inspringing, meestal vier spaties. Ga terug naar de linkerrand om het blok te verlaten. Voorspel wat er gebeurt als mode een andere waarde krijgt."
+      },
+      "code": "mode = \"preview\"\nif mode == \"preview\":\n    print(\"No parcel is sent\")\nprint(\"Ready for another check\")",
+      "output": "No parcel is sent\nReady for another check",
+      "takeaway": {
+        "en": "Only the first message depends on the mode. A missing colon or an assignment where a comparison is needed causes a syntax error before the file runs.",
+        "nl": "Alleen het eerste bericht hangt van de modus af. Een ontbrekende dubbele punt of een toewijzing waar een vergelijking nodig is, veroorzaakt een syntaxfout voordat het bestand draait."
+      }
+    },
+    {
+      "heading": {
+        "en": "Independent decisions",
+        "nl": "Onafhankelijke beslissingen"
+      },
+      "body": {
+        "en": "Two separate if statements each get their own test. One, both or neither block may run, depending on the conditions. In this simulator the two mode names cannot both match, but later examples will have overlapping conditions. Keep the provided mode assignment at the top so you can test different routes.",
+        "nl": "Twee losse if-instructies krijgen elk een eigen test. Eén, beide of geen van de blokken kan draaien, afhankelijk van de voorwaarden. In deze simulator kunnen de twee modusnamen niet tegelijk passen, maar later zie je overlappende voorwaarden. Laat de gegeven modustoewijzing bovenaan staan zodat je verschillende routes kunt testen."
+      }
+    }
+  ],
   "files": {
-    "main.py": "temperature = 34\n"
+    "main.py": "# A dispatch simulator with one broken condition.\nmode = \"test\"\n\nif mode = \"test\":\n    print(\"Test run\")\n\n# Add a separate condition for live mode below.\n\n# Add a final message outside both conditions.\n"
   },
   "solution": {
-    "main.py": "temperature = 34\nif temperature > 30:\n    print(\"Heat warning\")\n"
+    "main.py": "mode = \"test\"\nif mode == \"test\":\n    print(\"Test run\")\nif mode == \"live\":\n    print(\"Live run\")\nprint(\"Check complete\")\n"
   },
   "checkpoints": [
     {
-      "id": "python-control-flow-05-step-1",
+      "id": "python-control-flow-05-v2-step-1",
       "task": {
-        "en": "If temperature is above 30, print Heat warning. Keep temperature at 34.",
-        "nl": "Druk Heat warning af als temperature hoger is dan 30. Houd temperature op 34."
+        "en": "Run the starter and inspect the SyntaxError. Repair the condition so `Test run` appears for mode = test, but does not appear for mode = live. Keep the input assignment.",
+        "nl": "Voer de startcode uit en bekijk de SyntaxError. Herstel de voorwaarde zodat `Test run` verschijnt bij mode = test, maar niet bij mode = live. Behoud de invoertoewijzing."
       },
-      "check": "temperature == 34 and _stdout.strip() == 'Heat warning' and any(isinstance(n,_ast.If) for n in _ast.walk(_ast.parse(_source)))",
+      "check": "mode == 'test' and _stdout.splitlines()[:1] == ['Test run']",
+      "feedback": {
+        "en": "Use a real comparison so Test run depends on the mode, rather than printing unconditionally.",
+        "nl": "Gebruik een echte vergelijking zodat Test run van de modus afhangt en niet altijd wordt afgedrukt."
+      },
+      "cases": [
+        {
+          "inputs": {
+            "mode": "live"
+          },
+          "check": "'Test run' not in _stdout.splitlines()"
+        }
+      ],
       "hint": {
-        "en": "Start with temperature = 34. Then compare the values with the task.",
-        "nl": "Begin met temperature = 34. Vergelijk de waarden daarna met de opdracht."
+        "en": "A single = assigns; use == to ask whether mode equals the string test.",
+        "nl": "Eén = wijst toe; gebruik == om te vragen of mode gelijk is aan de string test."
+      }
+    },
+    {
+      "id": "python-control-flow-05-v2-step-2",
+      "task": {
+        "en": "Add a second, separate `if` statement that prints `Live run` only when mode is live. Test both modes, then leave mode set to test.",
+        "nl": "Voeg een tweede, losse `if`-instructie toe die alleen bij mode = live `Live run` afdrukt. Test beide modi en laat mode daarna op test staan."
+      },
+      "check": "sum(isinstance(n, _ast.If) for n in _ast.parse(_source).body) >= 2",
+      "feedback": {
+        "en": "Keep two independent if blocks. The live input must print Live run, without Test run.",
+        "nl": "Behoud twee onafhankelijke if-blokken. De invoer live moet Live run afdrukken, zonder Test run."
+      },
+      "cases": [
+        {
+          "inputs": {
+            "mode": "live"
+          },
+          "check": "_stdout.splitlines()[:1] == ['Live run'] and 'Test run' not in _stdout"
+        },
+        {
+          "inputs": {
+            "mode": "other"
+          },
+          "check": "'Live run' not in _stdout and 'Test run' not in _stdout"
+        }
+      ],
+      "hint": {
+        "en": "Write another if at the left edge and indent its print call below it.",
+        "nl": "Schrijf nog een if aan de linkerrand en spring de print-aanroep eronder in."
+      }
+    },
+    {
+      "id": "python-control-flow-05-v2-step-3",
+      "task": {
+        "en": "After both conditions, print `Check complete` without indentation. It must appear for every mode, including an unknown one.",
+        "nl": "Druk na beide voorwaarden `Check complete` af zonder inspringing. Dit moet bij elke modus verschijnen, ook bij een onbekende."
+      },
+      "check": "_stdout.splitlines() == ['Test run','Check complete']",
+      "feedback": {
+        "en": "The final message belongs outside both conditions and must appear exactly once.",
+        "nl": "Het laatste bericht hoort buiten beide voorwaarden en moet precies één keer verschijnen."
+      },
+      "cases": [
+        {
+          "inputs": {
+            "mode": "live"
+          },
+          "check": "_stdout.splitlines() == ['Live run','Check complete']"
+        },
+        {
+          "inputs": {
+            "mode": "other"
+          },
+          "check": "_stdout.splitlines() == ['Check complete']"
+        }
+      ],
+      "hint": {
+        "en": "Place the final print at the same indentation level as if, not inside either block.",
+        "nl": "Zet de laatste print op hetzelfde inspringniveau als if, niet binnen een van de blokken."
       }
     }
   ],
   "solutionNote": {
-    "en": "An if statement executes its indented block when the condition is true. End the condition with a colon. Consistent indentation tells Python which statements belong to the block.\n\nTrace the solution one line at a time. Try a different input to see which parts change.",
-    "nl": "Een if statement voert het ingesprongen blok uit als de voorwaarde waar is. Sluit de voorwaarde af met een dubbele punt. Consistente inspringing vertelt Python welke regels bij het blok horen.\n\nVolg de oplossing regel voor regel. Probeer een andere invoer en bekijk welke onderdelen veranderen."
+    "en": "Each if compares mode with a different string. Only its indented print depends on that comparison. The final print is outside both blocks, so it provides a reliable end-of-check message even when neither condition matches.",
+    "nl": "Elke if vergelijkt mode met een andere string. Alleen de ingesprongen print hangt van die vergelijking af. De laatste print staat buiten beide blokken en geeft dus altijd een eindbericht, ook als geen van de voorwaarden past."
   },
   "sourcePosition": 5,
   "sourceUrl": "https://www.codecademy.com/courses/learn-python-3/lessons/python-control-flow/exercises/if-statement",

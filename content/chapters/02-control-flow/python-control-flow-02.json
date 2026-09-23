@@ -4,38 +4,102 @@
   "group": "python-control-flow",
   "title": {
     "en": "Boolean propositions",
-    "nl": "Boolean-beweringen"
+    "nl": "Welke vragen kan code beantwoorden?"
   },
   "kind": "coding",
   "optional": false,
   "explanation": {
-    "en": "A Boolean represents one of two values: True or False. A factual proposition can be checked against data. An opinion has no single objective truth value without additional criteria.",
-    "nl": "Een Boolean heeft één van twee waarden: True of False. Een feitelijke bewering kun je aan gegevens toetsen. Een mening heeft zonder extra criteria geen eenduidige waarheidswaarde."
+    "en": "A Boolean value represents `True` or `False`. To make a reliable decision, first state a question that can be answered from evidence. A false statement can still be testable. A vague opinion needs a clear rule before a program can decide it.",
+    "nl": "Een Boolean-waarde stelt `True` of `False` voor. Formuleer voor een betrouwbare beslissing eerst een vraag die je met gegevens kunt beantwoorden. Ook een onware bewering kan toetsbaar zijn. Voor een vage mening is eerst een duidelijke regel nodig voordat een programma erover kan beslissen."
   },
-  "example": "is_ready = True",
+  "example": "",
+  "sections": [
+    {
+      "heading": {
+        "en": "Testable does not mean true",
+        "nl": "Toetsbaar betekent niet waar"
+      },
+      "body": {
+        "en": "For a box containing four books, ‘the box contains four books’ is testable and true. ‘The box contains five books’ is also testable, but false. Both questions can guide code. ‘This is the nicest box’ has no objective answer until we define what nicest means.",
+        "nl": "Bij een doos met vier boeken is ‘de doos bevat vier boeken’ toetsbaar en waar. ‘De doos bevat vijf boeken’ is ook toetsbaar, maar onwaar. Beide vragen kunnen code aansturen. ‘Dit is de mooiste doos’ heeft geen objectief antwoord zolang we niet bepalen wat mooiste betekent."
+      },
+      "code": "verified = True\nneeds_more_evidence = False\nprint(verified)\nprint(needs_more_evidence)",
+      "output": "True\nFalse",
+      "takeaway": {
+        "en": "Use capital T and F, without quotes. These are Python values, not text labels.",
+        "nl": "Gebruik een hoofdletter T en F, zonder aanhalingstekens. Dit zijn Python-waarden en geen tekstlabels."
+      }
+    },
+    {
+      "heading": {
+        "en": "Turn a vague request into a rule",
+        "nl": "Maak van een vage vraag een regel"
+      },
+      "body": {
+        "en": "A request such as ‘send a parcel when it is light enough’ is incomplete. A measurable rule such as ‘its mass is at most 2 kilograms’ can be tested. Your task classifies three statements for a dispatch checklist. We will turn measurable rules into Python comparisons in the next lesson.",
+        "nl": "Een vraag zoals ‘verstuur een pakket als het licht genoeg is’ is onvolledig. Een meetbare regel zoals ‘de massa is maximaal 2 kilogram’ kun je wel toetsen. Je classificeert drie beweringen voor een verzendcontrole. In de volgende les zetten we meetbare regels om naar Python-vergelijkingen."
+      }
+    }
+  ],
   "files": {
-    "main.py": "# Write your code below.\n"
+    "main.py": "# Dispatch checklist: replace the text placeholders with Boolean values.\ncount_is_testable = \"undecided\"\nopinion_is_testable = \"undecided\"\nfour_is_odd = \"undecided\"\n\nprint(count_is_testable)\nprint(opinion_is_testable)\nprint(four_is_odd)\n"
   },
   "solution": {
-    "main.py": "water_freezes_at_zero = True\nfive_is_even = False\nprint(water_freezes_at_zero, five_is_even)\n"
+    "main.py": "count_is_testable = True\nopinion_is_testable = False\nfour_is_odd = False\nprint(count_is_testable)\nprint(opinion_is_testable)\nprint(four_is_odd)\n"
   },
   "checkpoints": [
     {
-      "id": "python-control-flow-02-step-1",
+      "id": "python-control-flow-02-v2-step-1",
       "task": {
-        "en": "Set water_freezes_at_zero to True and five_is_even to False. Print both.",
-        "nl": "Zet water_freezes_at_zero op True en five_is_even op False. Druk beide af."
+        "en": "‘The parcel contains four books’ can be checked by counting. Set `count_is_testable` to the appropriate Boolean value and run the file.",
+        "nl": "‘Het pakket bevat vier boeken’ kun je controleren door te tellen. Zet `count_is_testable` op de passende Boolean-waarde en voer het bestand uit."
       },
-      "check": "water_freezes_at_zero is True and five_is_even is False",
+      "check": "count_is_testable is True",
+      "feedback": {
+        "en": "Use the Boolean True: counting can establish whether the statement is correct.",
+        "nl": "Gebruik de Boolean True: door te tellen kun je vaststellen of de bewering klopt."
+      },
       "hint": {
-        "en": "Start with water_freezes_at_zero = True. Then compare the values with the task.",
-        "nl": "Begin met water_freezes_at_zero = True. Vergelijk de waarden daarna met de opdracht."
+        "en": "Decide whether evidence can settle the question, not whether this particular parcel really has four books.",
+        "nl": "Bepaal of gegevens de vraag kunnen beantwoorden, niet of dit specifieke pakket echt vier boeken bevat."
+      }
+    },
+    {
+      "id": "python-control-flow-02-v2-step-2",
+      "task": {
+        "en": "‘Blue packaging looks best’ gives no measurement or agreed rule. Set `opinion_is_testable` to the appropriate Boolean.",
+        "nl": "‘Blauwe verpakking is het mooist’ bevat geen meting of afgesproken regel. Zet `opinion_is_testable` op de passende Boolean."
+      },
+      "check": "opinion_is_testable is False",
+      "feedback": {
+        "en": "Without an agreed rule, this preference is not an objectively testable condition.",
+        "nl": "Zonder afgesproken regel is deze voorkeur geen objectief toetsbare voorwaarde."
+      },
+      "hint": {
+        "en": "Different people can prefer different colours without either being factually wrong.",
+        "nl": "Mensen kunnen verschillende kleuren mooier vinden zonder dat iemand feitelijk ongelijk heeft."
+      }
+    },
+    {
+      "id": "python-control-flow-02-v2-step-3",
+      "task": {
+        "en": "‘Four is odd’ is testable, but is it true? Set `four_is_odd` to the statement's truth value. The three printed results should be True, False, False.",
+        "nl": "‘Vier is oneven’ is toetsbaar, maar is het waar? Zet `four_is_odd` op de waarheidswaarde van de bewering. De drie resultaten moeten True, False, False zijn."
+      },
+      "check": "four_is_odd is False and _stdout.splitlines() == ['True','False','False']",
+      "feedback": {
+        "en": "The last answer describes truth, not testability: four is not odd.",
+        "nl": "Het laatste antwoord gaat over waarheid, niet toetsbaarheid: vier is niet oneven."
+      },
+      "hint": {
+        "en": "Four can be divided into pairs with no remainder. A testable statement may be false.",
+        "nl": "Vier kun je zonder rest in paren verdelen. Een toetsbare bewering mag onwaar zijn."
       }
     }
   ],
   "solutionNote": {
-    "en": "A Boolean represents one of two values: True or False. A factual proposition can be checked against data. An opinion has no single objective truth value without additional criteria.\n\nTrace the solution one line at a time. Try a different input to see which parts change.",
-    "nl": "Een Boolean heeft één van twee waarden: True of False. Een feitelijke bewering kun je aan gegevens toetsen. Een mening heeft zonder extra criteria geen eenduidige waarheidswaarde.\n\nVolg de oplossing regel voor regel. Probeer een andere invoer en bekijk welke onderdelen veranderen."
+    "en": "The first two variables classify whether a statement has an objective test. The third answers a testable question. Keeping those two ideas separate prevents a common misunderstanding: False does not mean ‘not a Boolean’.",
+    "nl": "De eerste twee variabelen geven aan of een bewering objectief te toetsen is. De derde beantwoordt een toetsbare vraag. Door die ideeën te scheiden voorkom je een veelgemaakte denkfout: False betekent niet ‘geen Boolean’."
   },
   "sourcePosition": 2,
   "sourceUrl": "https://www.codecademy.com/courses/learn-python-3/lessons/python-control-flow/exercises/boolean-expressions",

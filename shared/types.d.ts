@@ -7,6 +7,10 @@ export interface Checkpoint {
   check: string;
   expectedError?: string;
   feedback?: Localized;
+  cases?: {
+    inputs: Record<string, string | number | boolean>;
+    check: string;
+  }[];
 }
 export interface LessonSection {
   heading: Localized;

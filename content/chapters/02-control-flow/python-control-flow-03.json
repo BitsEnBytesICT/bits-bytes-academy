@@ -4,38 +4,140 @@
   "group": "python-control-flow",
   "title": {
     "en": "Equality comparisons",
-    "nl": "Gelijkheid vergelijken"
+    "nl": "Waarden vergelijken"
   },
   "kind": "coding",
   "optional": false,
   "explanation": {
-    "en": "== compares values for equality; != checks that they differ. These comparisons return Booleans. A single = assigns a value and cannot replace == in a condition.",
-    "nl": "== vergelijkt of waarden gelijk zijn; != controleert of ze verschillen. Deze vergelijkingen geven Booleans terug. Een enkele = wijst een waarde toe en vervangt == niet in een voorwaarde."
+    "en": "Instead of typing an answer yourself, let Python compare the data. `==` asks whether two values are equal; `!=` asks whether they differ. Each comparison produces a Boolean. A single `=` still means assignment: it stores a value rather than asking a question.",
+    "nl": "Laat Python de gegevens vergelijken in plaats van zelf het antwoord in te vullen. `==` vraagt of twee waarden gelijk zijn; `!=` vraagt of ze verschillen. Elke vergelijking levert een Boolean op. Eén `=` blijft een toewijzing: deze slaat een waarde op in plaats van een vraag te stellen."
   },
-  "example": "same = 4 == 4",
+  "example": "",
+  "sections": [
+    {
+      "heading": {
+        "en": "Calculate, then compare",
+        "nl": "Reken uit en vergelijk"
+      },
+      "body": {
+        "en": "Python evaluates arithmetic on either side before comparing the results. Read the two equals signs as ‘is equal to’. You can assign the comparison result to a descriptive name.",
+        "nl": "Python rekent eerst de bewerkingen aan beide kanten uit en vergelijkt daarna de resultaten. Lees de twee gelijktekens als ‘is gelijk aan’. Je kunt het vergelijkingsresultaat aan een duidelijke naam toewijzen."
+      },
+      "code": "same_amount = 3 * 4 == 6 + 6\nprint(same_amount)\nprint(8 != 10)",
+      "output": "True\nTrue"
+    },
+    {
+      "heading": {
+        "en": "A matching appearance is not enough",
+        "nl": "Hetzelfde uiterlijk is niet genoeg"
+      },
+      "body": {
+        "en": "A printed string of digits may look like a number, but these values have different types. `\"12\" == 12` is false. That matters when data comes from labels, forms or `input()`. Compare the numeric values or deliberately convert the text; do not assume Python will do that for equality.",
+        "nl": "Een afgedrukte string met cijfers kan op een getal lijken, maar deze waarden hebben verschillende types. `\"12\" == 12` is onwaar. Dat is belangrijk bij gegevens uit labels, formulieren of `input()`. Vergelijk numerieke waarden of zet tekst bewust om; neem niet aan dat Python dit bij gelijkheid vanzelf doet."
+      },
+      "code": "print(\"12\" == 12)\nprint(int(\"12\") == 12)",
+      "output": "False\nTrue"
+    }
+  ],
   "files": {
-    "main.py": "expected = 17\nreceived = 12\n"
+    "main.py": "# Compare an incoming parcel with its manifest.\nexpected = 12\nreceived = 9\nlabel_text = \"12\"\n\n# Replace these guesses with comparisons.\nmatches = True\ndiffers = False\nlabel_matches_number = True\n\nprint(matches)\nprint(differs)\nprint(label_matches_number)\n"
   },
   "solution": {
-    "main.py": "expected = 17\nreceived = 12\nmatches = expected == received\ndiffers = expected != received\nprint(matches, differs)\n"
+    "main.py": "expected = 12\nreceived = 9\nlabel_text = \"12\"\nmatches = expected == received\ndiffers = expected != received\nlabel_matches_number = label_text == expected\nprint(matches)\nprint(differs)\nprint(label_matches_number)\n"
   },
   "checkpoints": [
     {
-      "id": "python-control-flow-03-step-1",
+      "id": "python-control-flow-03-v2-step-1",
       "task": {
-        "en": "With expected = 17 and received = 12, set matches using == and differs using !=.",
-        "nl": "Gebruik expected = 17 en received = 12. Bepaal matches met == en differs met !=."
+        "en": "Replace the guess in `matches` with `expected == received`. Predict its output before running.",
+        "nl": "Vervang de gok in `matches` door `expected == received`. Voorspel de output voordat je uitvoert."
       },
-      "check": "matches is False and differs is True",
+      "check": "matches is False",
+      "feedback": {
+        "en": "Compare the two input variables so matches also works when the counts are equal.",
+        "nl": "Vergelijk de twee invoervariabelen zodat matches ook werkt wanneer de aantallen gelijk zijn."
+      },
+      "cases": [
+        {
+          "inputs": {
+            "expected": 12,
+            "received": 12
+          },
+          "check": "matches is True"
+        },
+        {
+          "inputs": {
+            "expected": 8,
+            "received": 3
+          },
+          "check": "matches is False"
+        }
+      ],
       "hint": {
-        "en": "Start with expected = 17. Then compare the values with the task.",
-        "nl": "Begin met expected = 17. Vergelijk de waarden daarna met de opdracht."
+        "en": "One = assigns the result; two == compare the two counts on the right.",
+        "nl": "Eén = wijst het resultaat toe; twee == vergelijken de twee aantallen rechts."
+      }
+    },
+    {
+      "id": "python-control-flow-03-v2-step-2",
+      "task": {
+        "en": "Calculate `differs` using `!=` on the same two counts. It should give the opposite result to matches.",
+        "nl": "Bereken `differs` met `!=` op dezelfde twee aantallen. De uitkomst moet het tegenovergestelde zijn van matches."
+      },
+      "check": "differs is True",
+      "feedback": {
+        "en": "Use inequality on the input counts; differing counts should be True, equal counts False.",
+        "nl": "Gebruik ongelijkheid op de invoeraantallen; verschillende aantallen geven True en gelijke False."
+      },
+      "cases": [
+        {
+          "inputs": {
+            "expected": 12,
+            "received": 12
+          },
+          "check": "differs is False"
+        },
+        {
+          "inputs": {
+            "expected": 8,
+            "received": 3
+          },
+          "check": "differs is True"
+        }
+      ],
+      "hint": {
+        "en": "Use expected != received rather than a fixed True value.",
+        "nl": "Gebruik expected != received in plaats van een vaste waarde True."
+      }
+    },
+    {
+      "id": "python-control-flow-03-v2-step-3",
+      "task": {
+        "en": "Set `label_matches_number` by comparing `label_text` with `expected`, without converting either value. Run and explain why the last line is False even though both values look like 12.",
+        "nl": "Bepaal `label_matches_number` door `label_text` met `expected` te vergelijken, zonder een waarde om te zetten. Voer uit en leg uit waarom de laatste regel False is terwijl beide waarden op 12 lijken."
+      },
+      "check": "label_matches_number is False and _stdout.splitlines() == ['False','True','False']",
+      "feedback": {
+        "en": "Keep label_text as text, compare it directly, and print the three results in order.",
+        "nl": "Laat label_text tekst blijven, vergelijk direct en druk de drie resultaten in volgorde af."
+      },
+      "cases": [
+        {
+          "inputs": {
+            "label_text": 12
+          },
+          "check": "label_matches_number is True"
+        }
+      ],
+      "hint": {
+        "en": "The label is text; the expected count is an integer. Equality does not convert between them.",
+        "nl": "Het label is tekst; het verwachte aantal is een integer. Gelijkheid zet deze types niet om."
       }
     }
   ],
   "solutionNote": {
-    "en": "== compares values for equality; != checks that they differ. These comparisons return Booleans. A single = assigns a value and cannot replace == in a condition.\n\nTrace the solution one line at a time. Try a different input to see which parts change.",
-    "nl": "== vergelijkt of waarden gelijk zijn; != controleert of ze verschillen. Deze vergelijkingen geven Booleans terug. Een enkele = wijst een waarde toe en vervangt == niet in een voorwaarde.\n\nVolg de oplossing regel voor regel. Probeer een andere invoer en bekijk welke onderdelen veranderen."
+    "en": "The first two comparisons describe whether the manifest agrees with the delivery. The final comparison deliberately retains the type mismatch. The expressions respond to changed inputs instead of storing a guessed answer.",
+    "nl": "De eerste twee vergelijkingen beschrijven of de paklijst overeenkomt met de levering. De laatste vergelijking behoudt bewust het typeverschil. De expressies reageren op gewijzigde invoer in plaats van een gegokt antwoord op te slaan."
   },
   "sourcePosition": 3,
   "sourceUrl": "https://www.codecademy.com/courses/learn-python-3/lessons/python-control-flow/exercises/relational-operators-i",

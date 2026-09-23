@@ -4,25 +4,53 @@
   "group": "python-control-flow",
   "title": {
     "en": "Execution paths",
-    "nl": "Uitvoeringsvolgorde"
+    "nl": "Een programma kiest een route"
   },
   "kind": "reading",
   "optional": false,
   "explanation": {
-    "en": "Control flow is the order in which a program performs work. A condition lets Python choose whether a block should run. Read the condition before predicting the output.",
-    "nl": "Control flow is de volgorde waarin een programma werk uitvoert. Een voorwaarde bepaalt of Python een blok uitvoert. Lees eerst de voorwaarde en voorspel daarna de output."
+    "en": "So far, your programs have followed every instruction from top to bottom. Many useful programs need to choose: show a warning only when something needs attention, allow an action only when its requirements are met, or select a message for the current situation. These choices change the program's control flow.",
+    "nl": "Tot nu toe voerden je programma's alle instructies van boven naar beneden uit. Veel nuttige programma's moeten kiezen: alleen een waarschuwing tonen als iets aandacht nodig heeft, een actie toestaan als aan de voorwaarden is voldaan of een passend bericht kiezen. Deze keuzes veranderen de uitvoeringsvolgorde, oftewel control flow."
   },
   "example": "",
+  "sections": [
+    {
+      "heading": {
+        "en": "A gate in the program",
+        "nl": "Een poort in het programma"
+      },
+      "body": {
+        "en": "Imagine a parcel kiosk that prints a label only after payment is confirmed. The question has two answers: confirmed or not confirmed. A conditional statement uses the answer to decide whether a block of instructions runs. Code after that block can still run either way.",
+        "nl": "Stel je een pakketautomaat voor die pas een label afdrukt nadat de betaling is bevestigd. Die vraag heeft twee antwoorden: bevestigd of niet bevestigd. Een voorwaardelijke instructie gebruikt het antwoord om te bepalen of een blok code wordt uitgevoerd. Code na dat blok kan in beide gevallen gewoon doorgaan."
+      },
+      "code": "paid = True\nif paid:\n    print(\"Print shipping label\")\nprint(\"Visit complete\")",
+      "output": "Print shipping label\nVisit complete",
+      "takeaway": {
+        "en": "The indented line belongs to the condition. The last line is back at the left edge, so it runs regardless of the answer.",
+        "nl": "De ingesprongen regel hoort bij de voorwaarde. De laatste regel staat weer helemaal links en wordt dus ongeacht het antwoord uitgevoerd."
+      }
+    },
+    {
+      "heading": {
+        "en": "Follow both routes",
+        "nl": "Volg beide routes"
+      },
+      "body": {
+        "en": "Run the supplied demonstration once. Then change `paid` from `True` to `False` and predict which message will disappear. Run again to test your prediction. Do not worry about memorising the syntax yet: this chapter builds the values, comparisons and conditions that make this work.",
+        "nl": "Voer de demonstratie één keer uit. Verander daarna `paid` van `True` naar `False` en voorspel welk bericht verdwijnt. Voer opnieuw uit om je voorspelling te testen. Je hoeft de syntax nog niet te onthouden: in dit hoofdstuk bouw je de waarden, vergelijkingen en voorwaarden op die dit mogelijk maken."
+      }
+    }
+  ],
   "files": {
-    "main.py": "temperature = 28\nif temperature > 25:\n    print(\"Open a window\")\nprint(\"Check complete\")\n"
+    "main.py": "paid = True\nif paid:\n    print(\"Print shipping label\")\nprint(\"Visit complete\")\n"
   },
   "solution": {
-    "main.py": "temperature = 28\nif temperature > 25:\n    print(\"Open a window\")\nprint(\"Check complete\")\n"
+    "main.py": "paid = False\nif paid:\n    print(\"Print shipping label\")\nprint(\"Visit complete\")\n"
   },
   "checkpoints": [],
   "solutionNote": {
-    "en": "Control flow is the order in which a program performs work. A condition lets Python choose whether a block should run. Read the condition before predicting the output.\n\nTrace the solution one line at a time. Try a different input to see which parts change.",
-    "nl": "Control flow is de volgorde waarin een programma werk uitvoert. Een voorwaarde bepaalt of Python een blok uitvoert. Lees eerst de voorwaarde en voorspel daarna de output.\n\nVolg de oplossing regel voor regel. Probeer een andere invoer en bekijk welke onderdelen veranderen."
+    "en": "With paid set to False, Python skips the indented print call. Visit complete still appears because that call is outside the conditional block. Indentation describes structure, not just appearance.",
+    "nl": "Met paid op False slaat Python de ingesprongen print-aanroep over. Visit complete verschijnt nog steeds, omdat die aanroep buiten het voorwaardelijke blok staat. Inspringing beschrijft de structuur en is niet alleen opmaak."
   },
   "sourcePosition": 1,
   "sourceUrl": "https://www.codecademy.com/courses/learn-python-3/lessons/python-control-flow/exercises/introduction",

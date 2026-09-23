@@ -25,8 +25,8 @@
             "nl": "True"
           },
           "reason": {
-            "en": ">= includes equality, so the comparison is true.",
-            "nl": ">= omvat gelijkheid, dus de vergelijking is waar."
+            "en": "True: >= allows either a larger value or an equal value. Here both sides are 8.",
+            "nl": "True: >= staat een grotere of gelijke waarde toe. Hier zijn beide kanten 8."
           }
         },
         {
@@ -36,8 +36,8 @@
             "nl": "False"
           },
           "reason": {
-            "en": ">= includes equality, so the comparison is true.",
-            "nl": ">= omvat gelijkheid, dus de vergelijking is waar."
+            "en": "The equal sign matters: 8 > 8 would be False, but 8 >= 8 is True because equality is included.",
+            "nl": "Het gelijkteken telt mee: 8 > 8 zou False zijn, maar 8 >= 8 is True omdat gelijkheid meetelt."
           }
         }
       ]
@@ -58,8 +58,8 @@
             "nl": "False"
           },
           "reason": {
-            "en": "False without quotes is a Boolean literal.",
-            "nl": "False zonder aanhalingstekens is een Boolean literal."
+            "en": "False without quotes is a bool. A Boolean value can represent either truth value; it does not have to be True.",
+            "nl": "False zonder aanhalingstekens is een bool. Een Boolean kan beide waarheidswaarden voorstellen en hoeft niet True te zijn."
           }
         },
         {
@@ -69,8 +69,8 @@
             "nl": "\"False\""
           },
           "reason": {
-            "en": "False without quotes is a Boolean literal.",
-            "nl": "False zonder aanhalingstekens is een Boolean literal."
+            "en": "Quotes make \"False\" a string. Its letters describe a Boolean, but its type is str.",
+            "nl": "Aanhalingstekens maken \"False\" een string. De letters beschrijven een Boolean, maar het type is str."
           }
         },
         {
@@ -80,8 +80,8 @@
             "nl": "0.0"
           },
           "reason": {
-            "en": "False without quotes is a Boolean literal.",
-            "nl": "False zonder aanhalingstekens is een Boolean literal."
+            "en": "0.0 is a float. A number can be used in a condition, but that does not make its stored type bool.",
+            "nl": "0.0 is een float. Je kunt een getal in een voorwaarde gebruiken, maar het opgeslagen type wordt daardoor geen bool."
           }
         },
         {
@@ -91,8 +91,8 @@
             "nl": "\"0\""
           },
           "reason": {
-            "en": "False without quotes is a Boolean literal.",
-            "nl": "False zonder aanhalingstekens is een Boolean literal."
+            "en": "\"0\" is text because it is quoted. Use the literal False for a Boolean false value.",
+            "nl": "\"0\" is tekst omdat het tussen aanhalingstekens staat. Gebruik de literal False voor een onware Boolean-waarde."
           }
         }
       ]
@@ -113,8 +113,8 @@
             "nl": "True"
           },
           "reason": {
-            "en": "not False is True, and both sides of and are true.",
-            "nl": "not False is True, en beide kanten van and zijn waar."
+            "en": "Evaluate not first: not False becomes True. The remaining expression is True and True, so its result is True.",
+            "nl": "Werk eerst not uit: not False wordt True. Er blijft True and True over, dus de uitkomst is True."
           }
         },
         {
@@ -124,8 +124,8 @@
             "nl": "False"
           },
           "reason": {
-            "en": "not False is True, and both sides of and are true.",
-            "nl": "not False is True, en beide kanten van and zijn waar."
+            "en": "not reverses False before and combines the values. There is no False operand left: both sides of and are True.",
+            "nl": "not keert False om voordat and de waarden combineert. Er blijft geen False-operand over: beide kanten van and zijn True."
           }
         }
       ]
@@ -146,8 +146,8 @@
             "nl": "size == 10"
           },
           "reason": {
-            "en": "== compares; = assigns.",
-            "nl": "== vergelijkt; = wijst een waarde toe."
+            "en": "Two equals signs ask a question about the current value of size; the result is a Boolean.",
+            "nl": "Twee gelijktekens stellen een vraag over de huidige waarde van size; het resultaat is een Boolean."
           }
         },
         {
@@ -157,8 +157,8 @@
             "nl": "size = 10"
           },
           "reason": {
-            "en": "== compares; = assigns.",
-            "nl": "== vergelijkt; = wijst een waarde toe."
+            "en": "A single = stores 10 in size. It is an assignment, not an equality comparison.",
+            "nl": "Eén = slaat 10 op in size. Dit is een toewijzing en geen gelijkheidsvergelijking."
           }
         },
         {
@@ -168,8 +168,8 @@
             "nl": "size => 10"
           },
           "reason": {
-            "en": "== compares; = assigns.",
-            "nl": "== vergelijkt; = wijst een waarde toe."
+            "en": "=> is not a Python comparison operator. >= means greater than or equal to; == is the equality test asked for here.",
+            "nl": "=> is geen Python-vergelijkingsoperator. >= betekent groter dan of gelijk aan; == is de gevraagde gelijkheidstest."
           }
         }
       ]
@@ -190,8 +190,8 @@
             "nl": "A"
           },
           "reason": {
-            "en": "The first true branch wins in an if/elif chain.",
-            "nl": "Bij if/elif wordt alleen de eerste passende branch uitgevoerd."
+            "en": "12 > 5 is already true, so Python runs the first block and skips the remaining elif branches in this chain.",
+            "nl": "12 > 5 is al waar, dus Python voert het eerste blok uit en slaat de overige elif-branches in deze keten over."
           }
         },
         {
@@ -201,8 +201,8 @@
             "nl": "B"
           },
           "reason": {
-            "en": "The first true branch wins in an if/elif chain.",
-            "nl": "Bij if/elif wordt alleen de eerste passende branch uitgevoerd."
+            "en": "Although 12 > 10 is true too, elif is only considered after the previous condition fails. The first branch already matched.",
+            "nl": "Hoewel 12 > 10 ook waar is, wordt elif alleen bekeken als de vorige voorwaarde faalt. De eerste branch paste al."
           }
         },
         {
@@ -212,8 +212,8 @@
             "nl": "A then B"
           },
           "reason": {
-            "en": "The first true branch wins in an if/elif chain.",
-            "nl": "Bij if/elif wordt alleen de eerste passende branch uitgevoerd."
+            "en": "An if/elif chain selects one branch. Two separate if statements could print both messages; that is not the structure shown here.",
+            "nl": "Een if/elif-keten kiest één branch. Twee losse if-instructies zouden beide berichten kunnen afdrukken, maar hier staat een keten."
           }
         },
         {
@@ -223,8 +223,8 @@
             "nl": "Nothing"
           },
           "reason": {
-            "en": "The first true branch wins in an if/elif chain.",
-            "nl": "Bij if/elif wordt alleen de eerste passende branch uitgevoerd."
+            "en": "The first comparison is true because 12 is greater than 5, so its print call does run.",
+            "nl": "De eerste vergelijking is waar omdat 12 groter is dan 5, dus die print-aanroep wordt wel uitgevoerd."
           }
         }
       ]
@@ -245,8 +245,8 @@
             "nl": "False or False"
           },
           "reason": {
-            "en": "or needs at least one true operand. Both operands here are false.",
-            "nl": "or vereist minstens één ware operand. Hier zijn beide operands onwaar."
+            "en": "Neither side of False or False is true. This is the only listed expression that evaluates to False.",
+            "nl": "Geen van beide kanten van False or False is waar. Dit is de enige genoemde expressie die False oplevert."
           }
         },
         {
@@ -256,8 +256,8 @@
             "nl": "True or False"
           },
           "reason": {
-            "en": "or needs at least one true operand. Both operands here are false.",
-            "nl": "or vereist minstens één ware operand. Hier zijn beide operands onwaar."
+            "en": "or needs just one true operand. The left operand is True, so True or False is True.",
+            "nl": "or heeft maar één ware operand nodig. Links staat True, dus True or False is True."
           }
         },
         {
@@ -267,8 +267,8 @@
             "nl": "not False"
           },
           "reason": {
-            "en": "or needs at least one true operand. Both operands here are false.",
-            "nl": "or vereist minstens één ware operand. Hier zijn beide operands onwaar."
+            "en": "not reverses its operand. Reversing False produces True, not False.",
+            "nl": "not keert de operand om. Het omkeren van False geeft True en niet False."
           }
         },
         {
@@ -278,8 +278,8 @@
             "nl": "True and True"
           },
           "reason": {
-            "en": "or needs at least one true operand. Both operands here are false.",
-            "nl": "or vereist minstens één ware operand. Hier zijn beide operands onwaar."
+            "en": "Both operands are True, so and also returns True. Look for the expression with no true operand.",
+            "nl": "Beide operands zijn True, dus and geeft ook True. Zoek de expressie zonder ware operand."
           }
         }
       ]
@@ -300,8 +300,8 @@
             "nl": "Dubbele punt ontbreekt"
           },
           "reason": {
-            "en": "The condition line must end in a colon before its indented block.",
-            "nl": "De regel met de voorwaarde moet eindigen op een dubbele punt."
+            "en": "The if header must end with a colon before its indented body. Python cannot parse this header without it.",
+            "nl": "De if-kop moet eindigen met een dubbele punt vóór het ingesprongen blok. Zonder deze kan Python de kop niet ontleden."
           }
         },
         {
@@ -311,8 +311,8 @@
             "nl": "Ongeldige variablenaam"
           },
           "reason": {
-            "en": "The condition line must end in a colon before its indented block.",
-            "nl": "De regel met de voorwaarde moet eindigen op een dubbele punt."
+            "en": "speed is a valid variable name. A missing value could cause NameError later, but this file first fails to parse because its colon is missing.",
+            "nl": "speed is een geldige variabelenaam. Een ontbrekende waarde kan later NameError geven, maar dit bestand kan eerst al niet worden ontleed doordat de dubbele punt ontbreekt."
           }
         },
         {
@@ -322,8 +322,8 @@
             "nl": "print vereist aanhalingstekens rond speed"
           },
           "reason": {
-            "en": "The condition line must end in a colon before its indented block.",
-            "nl": "De regel met de voorwaarde moet eindigen op een dubbele punt."
+            "en": "The print call already receives the quoted text \"Slow\". speed is used in the comparison, where a variable name should not be quoted.",
+            "nl": "De print-aanroep krijgt al de tekst \"Slow\" tussen aanhalingstekens. speed staat in de vergelijking, waar je de variabelenaam niet tussen aanhalingstekens moet zetten."
           }
         }
       ]
@@ -344,8 +344,8 @@
             "nl": "A then B"
           },
           "reason": {
-            "en": "These are independent if statements, so both true conditions run their blocks.",
-            "nl": "Dit zijn losse if statements. Beide ware voorwaarden voeren hun blok uit."
+            "en": "These are two independent if statements. Both comparisons are true for 7, so Python prints A and then B.",
+            "nl": "Dit zijn twee onafhankelijke if-instructies. Beide vergelijkingen zijn waar voor 7, dus Python drukt eerst A en daarna B af."
           }
         },
         {
@@ -355,8 +355,8 @@
             "nl": "A"
           },
           "reason": {
-            "en": "These are independent if statements, so both true conditions run their blocks.",
-            "nl": "Dit zijn losse if statements. Beide ware voorwaarden voeren hun blok uit."
+            "en": "The first block runs, but it does not stop the program. Python still checks the second independent if and prints B too.",
+            "nl": "Het eerste blok voert uit, maar stopt het programma niet. Python controleert ook de tweede onafhankelijke if en drukt B eveneens af."
           }
         },
         {
@@ -366,8 +366,8 @@
             "nl": "B"
           },
           "reason": {
-            "en": "These are independent if statements, so both true conditions run their blocks.",
-            "nl": "Dit zijn losse if statements. Beide ware voorwaarden voeren hun blok uit."
+            "en": "7 > 2 is true as well as 7 > 5. The first block prints A before execution reaches the second one.",
+            "nl": "7 > 2 is net als 7 > 5 waar. Het eerste blok drukt A af voordat de uitvoering het tweede bereikt."
           }
         },
         {
@@ -377,8 +377,8 @@
             "nl": "Nothing"
           },
           "reason": {
-            "en": "These are independent if statements, so both true conditions run their blocks.",
-            "nl": "Dit zijn losse if statements. Beide ware voorwaarden voeren hun blok uit."
+            "en": "Both comparisons succeed: 7 is greater than 2 and greater than 5. Each matching block contains a print call.",
+            "nl": "Beide vergelijkingen slagen: 7 is groter dan 2 en groter dan 5. Elk passend blok bevat een print-aanroep."
           }
         }
       ]

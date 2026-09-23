@@ -26,6 +26,17 @@ Use `guided`, `section`, `step` and `loc` from `helpers.mjs`; see
 Interactive examples need defined test inputs before asserting expected output.
 Inline backticks are supported safely; generated JSON is not the authoring source.
 
+Pure introductory programs may opt into checkpoint `cases`, each containing an
+`inputs` mapping and a Python `check` expression. Inputs replace the first simple
+top-level assignment to that name in a separate execution; subsequent updates
+remain intact. Probe namespaces/output are isolated from the learner's actual run.
+Use these only for short, deterministic, single-file programs without imports,
+interactive input or filesystem effects. Available probe builtins cover basic
+values, arithmetic, printing and collections; this is not a general-purpose Python
+test environment or a security boundary. Worker time/output limits still apply.
+Test an incorrect rule that matches the supplied inputs but fails another case,
+and a legitimate alternative solution. See `tests/control-flow.test.mjs`.
+
 Keep activity IDs, URLs, kinds and backup formats stable. Revisioned checkpoint
 IDs cannot inherit credit for different old tasks. Preserve earned completion and
 learner files; never reset their files to make a new starter appear.

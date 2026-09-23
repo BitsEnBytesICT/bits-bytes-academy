@@ -74,6 +74,38 @@ article(
   "match checks a value against case patterns. For simple literal cases it can express several alternatives clearly. case _ is a wildcard fallback; default is not a special Python keyword.\n\nPattern matching was added in Python 3.10. It supports richer structure matching too, but ordinary if/elif remains useful for comparisons such as ranges and thresholds.",
   "match vergelijkt een waarde met case-patterns. Bij eenvoudige literals maakt dit meerdere alternatieven overzichtelijk. case _ is de wildcard-fallback; default is geen speciaal Python-keyword.\n\nPattern matching bestaat vanaf Python 3.10 en kan ook complexere structuren herkennen. Gewone if/elif blijft handig voor vergelijkingen zoals intervallen en grenswaarden.",
   'command = "start"\nmatch command:\n    case "start":\n        print("Starting")\n    case "stop":\n        print("Stopping")\n    case _:\n        print("Unknown command")\n',
+  {
+    solution:
+      'command = "status"\nmatch command:\n    case "start":\n        print("Starting")\n    case "stop":\n        print("Stopping")\n    case "status":\n        print("Ready")\n    case _:\n        print("Unknown command: " + command)\n',
+    solutionNote: loc(
+      "Each quoted literal tests one command value. The added status branch belongs before the wildcard because case _ accepts every remaining value. Keeping command in the fallback message helps a person see what the program did not recognise. Use if/elif when your main decision is about numeric ranges rather than exact command values.",
+      "Elke literal tussen aanhalingstekens test één opdrachtwaarde. De toegevoegde status-branch staat vóór de wildcard omdat case _ elke resterende waarde accepteert. Door command in het fallback-bericht te gebruiken ziet iemand wat het programma niet herkende. Gebruik if/elif wanneer de beslissing vooral over numerieke bereiken gaat in plaats van exacte opdrachtwaarden.",
+    ),
+    sections: [
+      S(
+        "The same choice, another structure",
+        "Dezelfde keuze, een andere structuur",
+        "An if/elif chain can compare a command with several known strings. A match statement evaluates its subject, then tries cases in order. For the literal patterns used here, the first equal value chooses the block. After that block finishes, execution continues after the entire match statement.\n\nRun the command dispatcher in the editor with start, stop and an unknown command. Compare its output with this equivalent conditional chain.",
+        "Een if/elif-keten kan een opdracht met verschillende bekende strings vergelijken. Een match-instructie bepaalt de waarde en probeert daarna de cases op volgorde. Bij de literals die we hier gebruiken kiest de eerste gelijke waarde het blok. Na dat blok gaat de uitvoering verder ná de hele match-instructie.\n\nVoer het opdrachtprogramma in de editor uit met start, stop en een onbekende opdracht. Vergelijk de output met deze gelijkwaardige keten van voorwaarden.",
+        'command = "stop"\nif command == "start":\n    print("Starting")\nelif command == "stop":\n    print("Stopping")\nelse:\n    print("Unknown command")',
+        "Stopping",
+      ),
+      S(
+        "Quote literals; put the fallback last",
+        "Zet literals tussen aanhalingstekens; plaats de fallback als laatste",
+        'Write `case "start":` to test a string. A bare name such as `case start:` does something different: it captures the subject into a variable and matches any value. It is not a comparison with a variable named start.\n\nThe special wildcard `case _:` matches anything without binding a name. Place it last, after your specific cases. Python has no special default keyword for a match statement.',
+        'Schrijf `case "start":` om een string te testen. Een losse naam zoals `case start:` doet iets anders: deze slaat de onderzochte waarde op in een variabele en past op elke waarde. Dit is geen vergelijking met een variabele met de naam start.\n\nDe speciale wildcard `case _:` past op alles zonder een naam te binden. Plaats deze als laatste, na je specifieke cases. Python heeft geen speciaal keyword default voor een match-instructie.',
+        'command = "pause"\nmatch command:\n    case "start":\n        print("Starting")\n    case _:\n        print("Unknown command: " + command)',
+        "Unknown command: pause",
+      ),
+      S(
+        "Extend the dispatcher",
+        "Breid het opdrachtprogramma uit",
+        'Add a case for the literal `"status"` that prints Ready. Put it before the wildcard and test it by changing command. Then improve the fallback to include the unrecognised command, as in the example above. Test start, stop, status and pause.\n\nFinally, consider a wind-speed display with thresholds at 10, 25 and 40. An if/elif chain directly expresses those comparisons. Match supports more advanced patterns too, but you do not need them to replace every conditional. Choose the structure that expresses your question clearly.',
+        'Voeg een case voor de literal `"status"` toe die Ready afdrukt. Zet deze vóór de wildcard en test door command te veranderen. Verbeter daarna de fallback zodat de onbekende opdracht in het bericht staat, zoals in het voorbeeld hierboven. Test start, stop, status en pause.\n\nDenk tot slot aan een windscherm met grenzen bij 10, 25 en 40. Een if/elif-keten drukt die vergelijkingen direct uit. Match ondersteunt ook geavanceerdere patterns, maar je hoeft er niet elke voorwaarde door te vervangen. Kies de structuur die je vraag duidelijk beschrijft.',
+      ),
+    ],
+  },
 );
 article(
   3,

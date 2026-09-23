@@ -4,25 +4,49 @@
   "group": "python-errors",
   "title": {
     "en": "Debugging workflow",
-    "nl": "Een fout onderzoeken"
+    "nl": "Van foutmelding naar aanwijzing"
   },
   "kind": "reading",
   "optional": false,
   "explanation": {
-    "en": "Debugging starts with a reproducible problem. Run the code, read the error from the bottom of the traceback, locate the relevant line, and change one thing. Then run again to test your explanation.",
-    "nl": "Debuggen begint met een probleem dat je opnieuw kunt oproepen. Voer de code uit, lees de fout onderaan de traceback, zoek de relevante regel en verander één ding. Voer de code opnieuw uit om je verklaring te testen."
+    "en": "A program can fail before it starts, stop while it runs, or finish with an incorrect result. Debugging means finding the difference between what you expected and what the program actually does. Start with the evidence: the smallest input that shows the problem, the output so far, and any error message.",
+    "nl": "Een programma kan al vóór het starten mislukken, tijdens de uitvoering stoppen of eindigen met een verkeerd resultaat. Debuggen betekent het verschil onderzoeken tussen je verwachting en wat het programma werkelijk doet. Begin met de aanwijzingen: de kleinste invoer die het probleem laat zien, de output tot dat moment en een eventuele foutmelding."
   },
   "example": "",
+  "sections": [
+    {
+      "heading": {
+        "en": "Three useful clues",
+        "nl": "Drie bruikbare aanwijzingen"
+      },
+      "body": {
+        "en": "A SyntaxError means Python could not understand the structure of the file. A NameError means execution reached a name that has no value. A TypeError means an operation received an unsupported type. These names narrow your search; they do not explain your entire program for you.\n\nFor runtime errors, read the last line of the traceback for the error type and message, then find the indicated line in main.py. For syntax errors, inspect that line and the one above it: an unfinished quote or parenthesis can make the next line look wrong.",
+        "nl": "Een SyntaxError betekent dat Python de structuur van het bestand niet begrijpt. Bij een NameError bereikt de uitvoering een naam die geen waarde heeft. Bij een TypeError krijgt een bewerking een ongeschikt type. Deze namen beperken je zoekgebied, maar verklaren niet vanzelf je hele programma.\n\nLees bij runtime-fouten de laatste regel van de traceback voor het fouttype en de melding. Zoek daarna de aangegeven regel in main.py op. Bekijk bij syntaxfouten ook de regel erboven: een onafgesloten aanhalingsteken of haakje kan de volgende regel verdacht maken."
+      }
+    },
+    {
+      "heading": {
+        "en": "Reproduce, inspect, change, rerun",
+        "nl": "Herhalen, onderzoeken, aanpassen, uitvoeren"
+      },
+      "body": {
+        "en": "The editor contains a working stock report. Run it once to establish a baseline. Then change `print(remaining)` to `print(Remaining)` and run again. Which earlier line still appears? Read the NameError, repair the spelling, and rerun.\n\nNext, temporarily remove the colon after the if condition. This time Python cannot parse the file, so none of its print calls run. Restore the colon. Deliberately making one small change helps you connect the error message to its cause.",
+        "nl": "In de editor staat een werkend voorraadrapport. Voer het eerst uit als referentie. Verander daarna `print(remaining)` in `print(Remaining)` en voer opnieuw uit. Welke eerdere regel verschijnt nog wel? Lees de NameError, herstel de spelling en voer opnieuw uit.\n\nVerwijder vervolgens tijdelijk de dubbele punt achter de if-voorwaarde. Python kan het bestand nu niet ontleden, dus geen enkele print-aanroep wordt uitgevoerd. Zet de dubbele punt terug. Met één kleine, bewuste wijziging leer je de foutmelding aan de oorzaak koppelen."
+      },
+      "code": "stock = 14\nordered = 5\nremaining = stock - ordered\nprint(\"Stock report\")\nprint(remaining)\nif remaining < 10:\n    print(\"Reorder soon\")",
+      "output": "Stock report\n9\nReorder soon"
+    }
+  ],
   "files": {
-    "main.py": "print(\"Observe → explain → change → test\")\n"
+    "main.py": "stock = 14\nordered = 5\nremaining = stock - ordered\nprint(\"Stock report\")\nprint(remaining)\nif remaining < 10:\n    print(\"Reorder soon\")\n"
   },
   "solution": {
-    "main.py": "print(\"Observe → explain → change → test\")\n"
+    "main.py": "stock = 14\nordered = 5\nremaining = stock - ordered\nprint(\"Stock report\")\nprint(remaining)\nif remaining < 10:\n    print(\"Reorder soon\")\n"
   },
   "checkpoints": [],
   "solutionNote": {
-    "en": "Debugging starts with a reproducible problem. Run the code, read the error from the bottom of the traceback, locate the relevant line, and change one thing. Then run again to test your explanation.\n\nTrace the solution one line at a time. Try a different input to see which parts change.",
-    "nl": "Debuggen begint met een probleem dat je opnieuw kunt oproepen. Voer de code uit, lees de fout onderaan de traceback, zoek de relevante regel en verander één ding. Voer de code opnieuw uit om je verklaring te testen.\n\nVolg de oplossing regel voor regel. Probeer een andere invoer en bekijk welke onderdelen veranderen."
+    "en": "The repaired baseline prints three lines. A misspelled name interrupts execution only when that line is reached; a syntax error prevents the file from starting. Keep one working version in mind while making and reversing each experiment.",
+    "nl": "De herstelde basisversie drukt drie regels af. Een verkeerd gespelde naam onderbreekt de uitvoering pas zodra die regel wordt bereikt; een syntaxfout voorkomt dat het bestand start. Houd de werkende versie in gedachten terwijl je elke wijziging probeert en weer terugdraait."
   },
   "sourcePosition": 1,
   "sourceUrl": "https://www.codecademy.com/courses/learn-python-3/lessons/python-errors/exercises/introduction-to-bugs",

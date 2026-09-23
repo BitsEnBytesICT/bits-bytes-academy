@@ -68,10 +68,41 @@ def _lab_run(payload_json):
     output = ''.join(captured.parts)
     results = []
     check_ns = dict(_lab_ns, _stdout=output, _error=error, _source=source, _ast=ast, _json=json, _os=os)
+    # Opt-in boundary checks for pure introductory programs. Substitute only
+    # each supplied input's first top-level assignment, keeping later updates.
+    # A separate namespace/output stream leaves console inspection untouched.
+    case_cache = {}
+    def case_namespace(inputs):
+        key = json.dumps(inputs, sort_keys=True)
+        if key in case_cache: return case_cache[key]
+        tree = ast.parse(source)
+        remaining = set(inputs)
+        for node in tree.body:
+            if isinstance(node, ast.Assign) and len(node.targets) == 1 and isinstance(node.targets[0], ast.Name):
+                name = node.targets[0].id
+                if name in remaining:
+                    node.value = ast.copy_location(ast.Constant(value=inputs[name]), node.value)
+                    remaining.remove(name)
+        if remaining: raise ValueError('Keep the named input assignments at the top of the program')
+        case_output = Capture(io.StringIO())
+        # Probe programs need no imports, input prompts or filesystem access.
+        allowed = {name: getattr(__import__('builtins'), name) for name in
+                   ('print', 'int', 'float', 'str', 'bool', 'type', 'len', 'abs', 'round', 'min', 'max', 'sum', 'range', 'list', 'tuple', 'dict', 'set', 'sorted', 'enumerate', 'zip')}
+        namespace = {'__builtins__': allowed, '__name__': '__main__'}
+        with contextlib.redirect_stdout(case_output), contextlib.redirect_stderr(io.StringIO()):
+            exec(compile(ast.fix_missing_locations(tree), 'main.py', 'exec'), namespace)
+        namespace['_stdout'] = ''.join(case_output.parts)
+        case_cache[key] = namespace
+        return namespace
     for check in payload.get('checks', []):
         try:
             with contextlib.redirect_stdout(io.StringIO()), contextlib.redirect_stderr(io.StringIO()):
                 passed = (error == check['expectedError']) if check.get('expectedError') else (error is None and bool(eval(check['check'], check_ns)))
+                if passed:
+                    for case in check.get('cases', []):
+                        if not bool(eval(case['check'], case_namespace(case['inputs']))):
+                            passed = False
+                            break
         except BaseException: passed = False
         results.append({'id':check['id'], 'passed':bool(passed)})
     return json.dumps({'results':results, 'error':error, 'files':_lab_files(), 'stdout':output})

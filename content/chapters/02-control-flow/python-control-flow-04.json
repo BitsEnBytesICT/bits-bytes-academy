@@ -4,38 +4,114 @@
   "group": "python-control-flow",
   "title": {
     "en": "Boolean variables",
-    "nl": "Boolean-variables"
+    "nl": "Booleans herkennen en bewaren"
   },
   "kind": "coding",
   "optional": false,
   "explanation": {
-    "en": "True is a Boolean, while \"True\" is a string. Types matter even when values look similar when printed. Store the comparison itself instead of a quoted description of its result.",
-    "nl": "True is een Boolean, terwijl \"True\" een string is. Het type is belangrijk, ook als waarden op de output lijken. Sla de vergelijking zelf op in plaats van een tekstbeschrijving van het resultaat."
+    "en": "Boolean values have their own type, `bool`. The strings `\"True\"` and `\"False\"` are still text. They can look identical to Booleans when printed, so use `type()` when the appearance of a value is misleading.",
+    "nl": "Boolean-waarden hebben een eigen type: `bool`. De strings `\"True\"` en `\"False\"` blijven tekst. Afgedrukt kunnen ze er hetzelfde uitzien als Booleans. Gebruik daarom `type()` wanneer het uiterlijk van een waarde misleidend is."
   },
   "example": "",
+  "sections": [
+    {
+      "heading": {
+        "en": "Inspect the type",
+        "nl": "Onderzoek het type"
+      },
+      "body": {
+        "en": "`type(value)` reports what kind of value you have. You can pass that result to print. Boolean literals need capital letters and no quotes; lowercase true would be treated as a variable name.",
+        "nl": "`type(waarde)` vertelt welk soort waarde je hebt. Je kunt het resultaat aan print geven. Boolean literals hebben een hoofdletter en geen aanhalingstekens; true met een kleine letter zou als variabelenaam worden gelezen."
+      },
+      "code": "text = \"False\"\nflag = False\nprint(type(text))\nprint(type(flag))",
+      "output": "<class 'str'>\n<class 'bool'>"
+    },
+    {
+      "heading": {
+        "en": "Store a question's answer",
+        "nl": "Bewaar het antwoord op een vraag"
+      },
+      "body": {
+        "en": "A comparison also produces a Boolean. Assigning it stores that answer at the moment the comparison runs. If the inputs change later, recalculate the comparison when you need an updated answer—just like the arithmetic totals in the previous chapter.",
+        "nl": "Ook een vergelijking levert een Boolean op. Door deze toe te wijzen sla je het antwoord op het moment van vergelijken op. Veranderen de invoerwaarden later, bereken de vergelijking dan opnieuw voor een bijgewerkt antwoord, net als bij de rekentotalen uit het vorige hoofdstuk."
+      },
+      "code": "remaining = 2\nhas_stock = remaining != 0\nprint(has_stock)",
+      "output": "True"
+    }
+  ],
   "files": {
-    "main.py": "# Write your code below.\n"
+    "main.py": "# The first two values look alike when printed. Inspect their types.\nstatus_text = \"True\"\nenabled = \"True\"\nremaining = 2\n\nprint(status_text)\nprint(enabled)\n\n# Calculate and print has_tickets below.\n"
   },
   "solution": {
-    "main.py": "enabled = True\nstatus_text = \"True\"\nprint(type(enabled), type(status_text))\n"
+    "main.py": "status_text = \"True\"\nenabled = True\nremaining = 2\nprint(type(status_text))\nprint(type(enabled))\nhas_tickets = remaining != 0\nprint(has_tickets)\n"
   },
   "checkpoints": [
     {
-      "id": "python-control-flow-04-step-1",
+      "id": "python-control-flow-04-v2-step-1",
       "task": {
-        "en": "Set enabled to Boolean True and status_text to string True.",
-        "nl": "Zet enabled op de Boolean True en status_text op de string True."
+        "en": "Keep `status_text` unchanged. Replace its print call with `print(type(status_text))` to inspect what it actually contains.",
+        "nl": "Laat `status_text` ongewijzigd. Vervang de print-aanroep door `print(type(status_text))` om te onderzoeken wat erin zit."
       },
-      "check": "enabled is True and status_text == 'True' and type(status_text) is str",
+      "check": "status_text == 'True' and type(status_text) is str and _stdout.splitlines()[:1] == [\"<class 'str'>\"]",
+      "feedback": {
+        "en": "The first output should identify str; keep the original text value.",
+        "nl": "De eerste output moet str aangeven; behoud de oorspronkelijke tekstwaarde."
+      },
       "hint": {
-        "en": "Start with enabled = True. Then compare the values with the task.",
-        "nl": "Begin met enabled = True. Vergelijk de waarden daarna met de opdracht."
+        "en": "Put type(status_text) inside print's parentheses.",
+        "nl": "Zet type(status_text) binnen de haakjes van print."
+      }
+    },
+    {
+      "id": "python-control-flow-04-v2-step-2",
+      "task": {
+        "en": "Fix `enabled` so it contains the Boolean True, then print its type on the second line. Compare the two types.",
+        "nl": "Herstel `enabled` zodat deze de Boolean True bevat en druk het type op de tweede regel af. Vergelijk de twee types."
+      },
+      "check": "enabled is True and _stdout.splitlines()[:2] == [\"<class 'str'>\", \"<class 'bool'>\"]",
+      "feedback": {
+        "en": "enabled must be a Boolean; the second output should identify bool.",
+        "nl": "enabled moet een Boolean zijn; de tweede output moet bool aangeven."
+      },
+      "hint": {
+        "en": "Remove the quotes around True, but keep its capital T.",
+        "nl": "Verwijder de aanhalingstekens rond True, maar behoud de hoofdletter T."
+      }
+    },
+    {
+      "id": "python-control-flow-04-v2-step-3",
+      "task": {
+        "en": "Create `has_tickets` from the comparison `remaining != 0` and print it as the third line. Try remaining = 0 afterward to observe the change.",
+        "nl": "Maak `has_tickets` met de vergelijking `remaining != 0` en druk deze als derde regel af. Probeer daarna remaining = 0 om het verschil te zien."
+      },
+      "check": "has_tickets is True and _stdout.splitlines() == [\"<class 'str'>\", \"<class 'bool'>\", 'True']",
+      "feedback": {
+        "en": "Calculate has_tickets from remaining; it must become False when no tickets remain.",
+        "nl": "Bereken has_tickets uit remaining; deze moet False worden als er geen kaartjes over zijn."
+      },
+      "cases": [
+        {
+          "inputs": {
+            "remaining": 0
+          },
+          "check": "has_tickets is False"
+        },
+        {
+          "inputs": {
+            "remaining": 5
+          },
+          "check": "has_tickets is True"
+        }
+      ],
+      "hint": {
+        "en": "Assign the comparison itself instead of typing the word True as a string.",
+        "nl": "Wijs de vergelijking zelf toe in plaats van het woord True als string te typen."
       }
     }
   ],
   "solutionNote": {
-    "en": "True is a Boolean, while \"True\" is a string. Types matter even when values look similar when printed. Store the comparison itself instead of a quoted description of its result.\n\nTrace the solution one line at a time. Try a different input to see which parts change.",
-    "nl": "True is een Boolean, terwijl \"True\" een string is. Het type is belangrijk, ook als waarden op de output lijken. Sla de vergelijking zelf op in plaats van een tekstbeschrijving van het resultaat.\n\nVolg de oplossing regel voor regel. Probeer een andere invoer en bekijk welke onderdelen veranderen."
+    "en": "Quotes explain why status_text is str. Removing them makes enabled a bool. The stock comparison computes another bool from live data, rather than from the appearance of text.",
+    "nl": "De aanhalingstekens verklaren waarom status_text een str is. Door ze weg te halen wordt enabled een bool. De voorraadvergelijking berekent nog een bool uit gegevens, in plaats van uit het uiterlijk van tekst."
   },
   "sourcePosition": 4,
   "sourceUrl": "https://www.codecademy.com/courses/learn-python-3/lessons/python-control-flow/exercises/boolean-variables",

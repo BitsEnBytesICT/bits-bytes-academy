@@ -128,6 +128,31 @@ The final production restart was checked by comparing every backup field except 
   does not claim a new phone-size visual check. The override was reset. Previous
   mobile verification above applies to the unchanged responsive layout.
 
+## Control-flow and debugging revision (23 September 2026)
+
+- Build/type checks and the full suite pass: 227 reference solutions, 206 negative
+  cases, 64 quiz predictions and 17 TypeScript tests. Guided-content verification
+  now covers 34 activities and 48 independently runnable worked examples.
+- Chapter 2 adds 37 checkpoints across 13 coding exercises. Thirty checks contain
+  65 alternate-input probes. Twenty staged attempts and 11 incorrect rules are
+  tested, plus accepted descending thresholds and reversed Boolean operand order.
+- Probe tests verify later reassignment is preserved; output, files and console
+  variables remain those of the actual run; missing input assignments and probe
+  exceptions fail the check without fabricating an error in the visible run.
+- Browser QA on isolated port 3002 confirms gradual 1/2 then 2/2 completion,
+  rejection of default-output-only logic, correct console inspection and reload
+  persistence. A three-defect syntax starter shows a real SyntaxError and contextual
+  hint; repaired grammar reaches 3/4 and the requested extension reaches 4/4.
+  Dutch text/feedback and the desktop view were inspected; browser error log empty.
+- Activity IDs/kinds/order and all quiz question/choice IDs, content and answer
+  mappings match the previous release. Only quiz feedback changed. Existing saved
+  files and earned completion retain the previously tested compatibility behavior.
+- Production restart verified exact before/after database fingerprints: 10
+  workspaces, 11 progress rows, 2 settings and 21 attempts unchanged. The served
+  course exactly matches the generated course. No schema or sizing changes.
+- Full-course authoring is still in progress: 32/160 core pages, 2/8 supporting
+  readings and 2/13 quiz feedback sets revised; optional challenges remain pending.
+
 ## Reproduce
 
 ```sh

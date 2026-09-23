@@ -4,38 +4,145 @@
   "group": "python-control-flow",
   "title": {
     "en": "Negating a condition",
-    "nl": "Een voorwaarde ontkennen"
+    "nl": "Een voorwaarde omkeren met not"
   },
   "kind": "coding",
   "optional": false,
   "explanation": {
-    "en": "not reverses a condition’s truth value. It turns True into False and False into True. Prefer a clear positive variable name so the negation remains easy to understand.",
-    "nl": "not keert de waarheidswaarde om. True wordt False en False wordt True. Kies een duidelijke positieve variablenaam, zodat de ontkenning begrijpelijk blijft."
+    "en": "`not` reverses the truth value of a condition. It turns True into False and False into True. This lets you express absence clearly: a bay is empty when it is not occupied. Use parentheses when they make the scope of a negation easier to read.",
+    "nl": "`not` keert de waarheidswaarde van een voorwaarde om. True wordt False en False wordt True. Zo kun je afwezigheid duidelijk uitdrukken: een plek is leeg wanneer deze niet bezet is. Gebruik haakjes wanneer die duidelijker maken waarop de ontkenning werkt."
   },
   "example": "",
+  "sections": [
+    {
+      "heading": {
+        "en": "Negate the whole question",
+        "nl": "Keer de hele vraag om"
+      },
+      "body": {
+        "en": "First evaluate the expression in parentheses, then reverse its answer. Negating a group is different from negating only one part of it.",
+        "nl": "Bereken eerst de expressie tussen haakjes en keer daarna het antwoord om. Een groep ontkennen is iets anders dan slechts één onderdeel ontkennen."
+      },
+      "code": "print(not True)\nprint(not (5 >= 8))\nprint(not (True and False))",
+      "output": "False\nTrue\nTrue"
+    },
+    {
+      "heading": {
+        "en": "Empty and usable are different",
+        "nl": "Leeg en bruikbaar zijn verschillend"
+      },
+      "body": {
+        "en": "A parking bay can be empty but reserved. In this simulator, permission requires both ‘not occupied’ and ‘not reserved’. You will first calculate the empty status, then add two separate messages. An empty, unreserved bay should print both messages; independent if blocks are useful for these overlapping facts.",
+        "nl": "Een parkeerplek kan leeg maar gereserveerd zijn. In deze simulator is toestemming afhankelijk van zowel ‘niet bezet’ als ‘niet gereserveerd’. Je berekent eerst de leegstatus en voegt daarna twee aparte berichten toe. Een lege, ongereserveerde plek moet beide berichten tonen; losse if-blokken zijn handig voor zulke overlappende feiten."
+      }
+    }
+  ],
   "files": {
-    "main.py": "# Write your code below.\n"
+    "main.py": "occupied = False\nreserved = True\n\n# Repair the empty-status calculation.\navailable = occupied\nprint(available)\n\n# Report when the bay is empty.\n\n# Report when parking is allowed.\n"
   },
   "solution": {
-    "main.py": "occupied = False\navailable = not occupied\nprint(available)\n"
+    "main.py": "occupied = False\nreserved = True\navailable = not occupied\nprint(available)\nif not occupied:\n    print(\"Bay is empty\")\nif not occupied and not reserved:\n    print(\"Parking allowed\")\n"
   },
   "checkpoints": [
     {
-      "id": "python-control-flow-09-step-1",
+      "id": "python-control-flow-09-v2-step-1",
       "task": {
-        "en": "Use occupied = False and set available to not occupied.",
-        "nl": "Gebruik occupied = False en zet available op not occupied."
+        "en": "Set `available` to `not occupied` and print it. This variable describes emptiness, not permission to park.",
+        "nl": "Zet `available` op `not occupied` en druk deze af. Deze variabele beschrijft of de plek leeg is, niet of je mag parkeren."
       },
-      "check": "available is True and 'not' in _source",
+      "check": "available is True and any(isinstance(n, _ast.Not) for n in _ast.walk(_ast.parse(_source)))",
+      "feedback": {
+        "en": "available should be True for an empty bay and False for an occupied one.",
+        "nl": "available moet True zijn bij een lege plek en False bij een bezette."
+      },
+      "cases": [
+        {
+          "inputs": {
+            "occupied": true
+          },
+          "check": "available is False"
+        }
+      ],
       "hint": {
-        "en": "Start with occupied = False. Then compare the values with the task.",
-        "nl": "Begin met occupied = False. Vergelijk de waarden daarna met de opdracht."
+        "en": "Reverse the occupied flag; do not change the input to force an answer.",
+        "nl": "Keer de vlag occupied om; verander de invoer niet om een antwoord af te dwingen."
+      }
+    },
+    {
+      "id": "python-control-flow-09-v2-step-2",
+      "task": {
+        "en": "Add an if block using `not occupied` that prints `Bay is empty` when appropriate. Keep the Boolean output first.",
+        "nl": "Voeg een if-blok met `not occupied` toe dat waar nodig `Bay is empty` afdrukt. Laat de Boolean als eerste output staan."
+      },
+      "check": "_stdout.splitlines()[:2] == ['True','Bay is empty']",
+      "feedback": {
+        "en": "The empty-bay message should depend only on occupied.",
+        "nl": "Het bericht over een lege plek moet alleen van occupied afhangen."
+      },
+      "cases": [
+        {
+          "inputs": {
+            "occupied": true,
+            "reserved": false
+          },
+          "check": "'Bay is empty' not in _stdout"
+        }
+      ],
+      "hint": {
+        "en": "An empty bay still deserves the factual message even when reserved is True.",
+        "nl": "Een lege plek krijgt dit feitelijke bericht ook wanneer reserved True is."
+      }
+    },
+    {
+      "id": "python-control-flow-09-v2-step-3",
+      "task": {
+        "en": "Add another if block using `not occupied and not reserved`. Print `Parking allowed` only when both requirements hold. Test reserved = False, then restore the starter inputs.",
+        "nl": "Voeg nog een if-blok toe met `not occupied and not reserved`. Druk alleen `Parking allowed` af als beide eisen kloppen. Test reserved = False en herstel daarna de startinvoer."
+      },
+      "check": "_stdout.splitlines() == ['True','Bay is empty'] and any(isinstance(n, _ast.And) for n in _ast.walk(_ast.parse(_source)))",
+      "feedback": {
+        "en": "Only an empty, unreserved bay may print Parking allowed. An empty reserved bay must not.",
+        "nl": "Alleen een lege, ongereserveerde plek mag Parking allowed tonen. Een lege gereserveerde plek niet."
+      },
+      "cases": [
+        {
+          "inputs": {
+            "occupied": false,
+            "reserved": false
+          },
+          "check": "_stdout.splitlines() == ['True','Bay is empty','Parking allowed']"
+        },
+        {
+          "inputs": {
+            "occupied": false,
+            "reserved": true
+          },
+          "check": "_stdout.splitlines() == ['True','Bay is empty']"
+        },
+        {
+          "inputs": {
+            "occupied": true,
+            "reserved": false
+          },
+          "check": "_stdout.splitlines() == ['False']"
+        },
+        {
+          "inputs": {
+            "occupied": true,
+            "reserved": true
+          },
+          "check": "_stdout.splitlines() == ['False']"
+        }
+      ],
+      "hint": {
+        "en": "Negate each flag separately, then combine them with and.",
+        "nl": "Ontken elke vlag afzonderlijk en combineer ze daarna met and."
       }
     }
   ],
   "solutionNote": {
-    "en": "not reverses a condition’s truth value. It turns True into False and False into True. Prefer a clear positive variable name so the negation remains easy to understand.\n\nTrace the solution one line at a time. Try a different input to see which parts change.",
-    "nl": "not keert de waarheidswaarde om. True wordt False en False wordt True. Kies een duidelijke positieve variablenaam, zodat de ontkenning begrijpelijk blijft.\n\nVolg de oplossing regel voor regel. Probeer een andere invoer en bekijk welke onderdelen veranderen."
+    "en": "The first decision reports one fact: emptiness. The second combines two negated facts to determine permission. With both flags False, both independent blocks run, so two descriptive messages appear.",
+    "nl": "De eerste beslissing meldt één feit: of de plek leeg is. De tweede combineert twee ontkende feiten om toestemming te bepalen. Bij beide vlaggen False draaien beide losse blokken en verschijnen twee beschrijvende berichten."
   },
   "sourcePosition": 9,
   "sourceUrl": "https://www.codecademy.com/courses/learn-python-3/lessons/python-control-flow/exercises/boolean-operators-not",

@@ -4,38 +4,146 @@
   "group": "python-control-flow",
   "title": {
     "en": "Ordered comparisons",
-    "nl": "Grenswaarden vergelijken"
+    "nl": "Grenswaarden precies vergelijken"
   },
   "kind": "coding",
   "optional": false,
   "explanation": {
-    "en": "< and > exclude the boundary; <= and >= include it. Choose the comparison that matches the wording of the requirement. At most includes equality; less than does not.",
-    "nl": "< en > sluiten de grenswaarde uit; <= en >= nemen deze mee. Kies de vergelijking die bij de opdracht past. Hoogstens omvat gelijkheid; kleiner dan niet."
+    "en": "‘Below the limit’ and ‘within the limit’ sound similar, but disagree exactly at the boundary. `<` and `>` exclude equality. `<=` and `>=` include it. Choosing the correct operator is part of translating a requirement into code.",
+    "nl": "‘Onder de limiet’ en ‘binnen de limiet’ klinken bijna hetzelfde, maar verschillen precies op de grens. `<` en `>` sluiten gelijkheid uit. `<=` en `>=` nemen gelijkheid mee. De juiste operator kiezen hoort bij het vertalen van een eis naar code."
   },
   "example": "",
+  "sections": [
+    {
+      "heading": {
+        "en": "Test the exact boundary",
+        "nl": "Test precies op de grens"
+      },
+      "body": {
+        "en": "A box may contain at most 10 items. Nine fits, ten fits, eleven does not. At most therefore uses <=. For at least, the matching operator is >=. Write the comparison in the same direction you read the requirement.",
+        "nl": "Een doos mag maximaal 10 items bevatten. Negen past, tien past en elf niet. Maximaal gebruikt dus <=. Bij minstens hoort >=. Schrijf de vergelijking in dezelfde richting als waarin je de eis leest."
+      },
+      "code": "items = 10\nprint(items < 10)\nprint(items <= 10)\nprint(items >= 10)\nprint(items > 10)",
+      "output": "False\nTrue\nTrue\nFalse"
+    },
+    {
+      "heading": {
+        "en": "Use the result in a decision",
+        "nl": "Gebruik het resultaat in een beslissing"
+      },
+      "body": {
+        "en": "The load monitor below has a limit of 80 units. First compute two different comparisons so you can see their difference. Then use the inclusive comparison to print an acceptance message. The checks also try values below and above the limit: hard-coding today's answer would miss those cases.",
+        "nl": "De belastingsmeter hieronder heeft een limiet van 80 eenheden. Bereken eerst twee verschillende vergelijkingen zodat je het verschil ziet. Gebruik daarna de inclusieve vergelijking voor een acceptatiebericht. De controles proberen ook waarden onder en boven de limiet: een vast antwoord voor vandaag mist die gevallen."
+      }
+    }
+  ],
   "files": {
-    "main.py": "# Write your code below.\n"
+    "main.py": "load = 80\nlimit = 80\n\n# Repair both comparisons, then add an acceptance condition.\nwithin_limit = False\nbelow_limit = True\nprint(within_limit)\nprint(below_limit)\n"
   },
   "solution": {
-    "main.py": "load = 80\nlimit = 80\nwithin_limit = load <= limit\nbelow_limit = load < limit\nprint(within_limit, below_limit)\n"
+    "main.py": "load = 80\nlimit = 80\nwithin_limit = load <= limit\nbelow_limit = load < limit\nprint(within_limit)\nprint(below_limit)\nif within_limit:\n    print(\"Accepted\")\n"
   },
   "checkpoints": [
     {
-      "id": "python-control-flow-06-step-1",
+      "id": "python-control-flow-06-v2-step-1",
       "task": {
-        "en": "For load = 80 and limit = 80, set within_limit using <= and below_limit using <.",
-        "nl": "Gebruik load = 80 en limit = 80. Bepaal within_limit met <= en below_limit met <."
+        "en": "Set `within_limit` by checking whether load is at most limit. Keep load and limit at 80 for the normal run.",
+        "nl": "Bepaal `within_limit` door te controleren of load maximaal limit is. Laat load en limit voor de gewone uitvoering op 80 staan."
       },
-      "check": "within_limit is True and below_limit is False",
+      "check": "within_limit is True",
+      "feedback": {
+        "en": "Use an inclusive comparison that responds to both load and limit.",
+        "nl": "Gebruik een inclusieve vergelijking die op zowel load als limit reageert."
+      },
+      "cases": [
+        {
+          "inputs": {
+            "load": 79
+          },
+          "check": "within_limit is True"
+        },
+        {
+          "inputs": {
+            "load": 81
+          },
+          "check": "within_limit is False"
+        },
+        {
+          "inputs": {
+            "limit": 70
+          },
+          "check": "within_limit is False"
+        }
+      ],
       "hint": {
-        "en": "Start with load = 80. Then compare the values with the task.",
-        "nl": "Begin met load = 80. Vergelijk de waarden daarna met de opdracht."
+        "en": "At most includes the case where both values are equal.",
+        "nl": "Maximaal omvat ook het geval waarin beide waarden gelijk zijn."
+      }
+    },
+    {
+      "id": "python-control-flow-06-v2-step-2",
+      "task": {
+        "en": "Set `below_limit` by checking whether load is strictly less than limit. The first two output lines should now be True and False.",
+        "nl": "Bepaal `below_limit` door te controleren of load strikt kleiner is dan limit. De eerste twee outputregels moeten nu True en False zijn."
+      },
+      "check": "below_limit is False and _stdout.splitlines()[:2] == ['True','False']",
+      "feedback": {
+        "en": "below_limit must be False at equality and True for a lower load.",
+        "nl": "below_limit moet False zijn bij gelijkheid en True bij een lagere belasting."
+      },
+      "cases": [
+        {
+          "inputs": {
+            "load": 79
+          },
+          "check": "below_limit is True"
+        },
+        {
+          "inputs": {
+            "load": 81
+          },
+          "check": "below_limit is False"
+        }
+      ],
+      "hint": {
+        "en": "Strictly below excludes equality, so do not add an equals sign.",
+        "nl": "Strikt onder sluit gelijkheid uit, dus voeg geen gelijkteken toe."
+      }
+    },
+    {
+      "id": "python-control-flow-06-v2-step-3",
+      "task": {
+        "en": "Add an if block that prints `Accepted` only when `within_limit` is true. Keep the two comparison prints before it.",
+        "nl": "Voeg een if-blok toe dat alleen `Accepted` afdrukt wanneer `within_limit` waar is. Laat de twee vergelijkingsprints ervoor staan."
+      },
+      "check": "_stdout.splitlines() == ['True','False','Accepted']",
+      "feedback": {
+        "en": "Accept both 79 and 80, but do not print Accepted for 81.",
+        "nl": "Accepteer zowel 79 als 80, maar druk Accepted niet af bij 81."
+      },
+      "cases": [
+        {
+          "inputs": {
+            "load": 79
+          },
+          "check": "_stdout.splitlines() == ['True','True','Accepted']"
+        },
+        {
+          "inputs": {
+            "load": 81
+          },
+          "check": "_stdout.splitlines() == ['False','False']"
+        }
+      ],
+      "hint": {
+        "en": "A variable that already contains a Boolean can be used directly after if.",
+        "nl": "Een variabele die al een Boolean bevat, kun je direct na if gebruiken."
       }
     }
   ],
   "solutionNote": {
-    "en": "< and > exclude the boundary; <= and >= include it. Choose the comparison that matches the wording of the requirement. At most includes equality; less than does not.\n\nTrace the solution one line at a time. Try a different input to see which parts change.",
-    "nl": "< en > sluiten de grenswaarde uit; <= en >= nemen deze mee. Kies de vergelijking die bij de opdracht past. Hoogstens omvat gelijkheid; kleiner dan niet.\n\nVolg de oplossing regel voor regel. Probeer een andere invoer en bekijk welke onderdelen veranderen."
+    "en": "At equality, <= is true and < is false. Reusing within_limit in the if block keeps the policy in one comparison. Testing either side of the boundary catches the most common wrong operator.",
+    "nl": "Bij gelijkheid is <= waar en < onwaar. Door within_limit in het if-blok te hergebruiken staat de regel op één plek. Tests aan beide kanten van de grens vinden de meest voorkomende verkeerde operator."
   },
   "sourcePosition": 6,
   "sourceUrl": "https://www.codecademy.com/courses/learn-python-3/lessons/python-control-flow/exercises/relational-operators-ii",

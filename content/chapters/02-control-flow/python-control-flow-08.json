@@ -9,33 +9,130 @@
   "kind": "coding",
   "optional": false,
   "explanation": {
-    "en": "or is true when at least one condition is true. It is also true when both are true. This is useful when several independent conditions can trigger the same action.",
-    "nl": "or is waar als minstens één voorwaarde waar is. Ook als beide waar zijn, is het resultaat waar. Dit is handig als meerdere voorwaarden dezelfde actie kunnen activeren."
+    "en": "A maintenance reminder may be needed because a service interval has passed or because a warning flag is active. `or` is true when at least one condition is true. Both conditions being true also counts: Python's or does not mean ‘exactly one’.",
+    "nl": "Een onderhoudsmelding kan nodig zijn omdat de onderhoudsinterval is verstreken of omdat een waarschuwing actief is. `or` is waar zodra minstens één voorwaarde waar is. Beide voorwaarden tegelijk waar telt ook: or betekent in Python niet ‘precies één’."
   },
   "example": "",
+  "sections": [
+    {
+      "heading": {
+        "en": "One reason is enough",
+        "nl": "Eén reden is voldoende"
+      },
+      "body": {
+        "en": "Only the False/False combination gives False. Compare this with and: and requires every requirement, while or accepts either reason. Python can skip evaluating the right side of or once the left side is true.",
+        "nl": "Alleen de combinatie False/False geeft False. Vergelijk dit met and: and vereist alle voorwaarden, terwijl or elke afzonderlijke reden accepteert. Python kan de rechterkant van or overslaan zodra links waar is."
+      },
+      "code": "print(False or False)\nprint(True or False)\nprint(False or True)\nprint(True or True)",
+      "output": "False\nTrue\nTrue\nTrue"
+    },
+    {
+      "heading": {
+        "en": "Combine comparisons with flags",
+        "nl": "Combineer vergelijkingen met vlaggen"
+      },
+      "body": {
+        "en": "Each side of or can be a comparison or an existing Boolean. In this task, ‘more than 100 hours’ is strict: exactly 100 does not trigger the time rule. A warning must still trigger the reminder at any hour count. Keep the two input assignments so the checks can try each situation.",
+        "nl": "Elke kant van or kan een vergelijking of een bestaande Boolean zijn. ‘Meer dan 100 uur’ is hier strikt: precies 100 activeert de tijdsregel niet. Een waarschuwing moet de melding bij elk aantal uren activeren. Laat de twee invoertoewijzingen staan zodat de controles elke situatie kunnen proberen."
+      }
+    }
+  ],
   "files": {
-    "main.py": "# Write your code below.\n"
+    "main.py": "hours = 45\nwarning = True\n\n# The current reminder ignores the warning flag.\nmaintenance_needed = hours > 100\nprint(maintenance_needed)\n\nif hours > 100:\n    print(\"Maintenance needed\")\n"
   },
   "solution": {
-    "main.py": "hours = 45\nwarning = True\nmaintenance_needed = hours > 100 or warning\nprint(maintenance_needed)\n"
+    "main.py": "hours = 45\nwarning = True\nmaintenance_needed = hours > 100 or warning\nprint(maintenance_needed)\nif maintenance_needed:\n    print(\"Maintenance needed\")\n"
   },
   "checkpoints": [
     {
-      "id": "python-control-flow-08-step-1",
+      "id": "python-control-flow-08-v2-step-1",
       "task": {
-        "en": "Set maintenance_needed from hours > 100 or warning. Use hours = 45 and warning = True.",
-        "nl": "Bepaal maintenance_needed met hours > 100 or warning. Gebruik hours = 45 en warning = True."
+        "en": "Calculate `maintenance_needed` using `hours > 100 or warning`. The current warning should trigger a True result even though only 45 hours have passed.",
+        "nl": "Bereken `maintenance_needed` met `hours > 100 or warning`. De huidige waarschuwing moet True opleveren, ook al zijn er pas 45 uur verstreken."
       },
-      "check": "maintenance_needed is True and 'or' in _source",
+      "check": "maintenance_needed is True and any(isinstance(n, _ast.Or) for n in _ast.walk(_ast.parse(_source)))",
+      "feedback": {
+        "en": "The rule must accept either trigger, including both together; 100 hours without a warning is not enough.",
+        "nl": "De regel moet elke reden afzonderlijk accepteren, ook beide tegelijk; 100 uur zonder waarschuwing is niet genoeg."
+      },
+      "cases": [
+        {
+          "inputs": {
+            "hours": 100,
+            "warning": false
+          },
+          "check": "maintenance_needed is False"
+        },
+        {
+          "inputs": {
+            "hours": 101,
+            "warning": false
+          },
+          "check": "maintenance_needed is True"
+        },
+        {
+          "inputs": {
+            "hours": 101,
+            "warning": true
+          },
+          "check": "maintenance_needed is True"
+        },
+        {
+          "inputs": {
+            "hours": 20,
+            "warning": false
+          },
+          "check": "maintenance_needed is False"
+        }
+      ],
       "hint": {
-        "en": "Start with hours = 45. Then compare the values with the task.",
-        "nl": "Begin met hours = 45. Vergelijk de waarden daarna met de opdracht."
+        "en": "Keep the comparison on one side of or and the Boolean warning flag on the other.",
+        "nl": "Laat de vergelijking aan één kant van or staan en de Boolean warning aan de andere."
+      }
+    },
+    {
+      "id": "python-control-flow-08-v2-step-2",
+      "task": {
+        "en": "Update the if block so it uses `maintenance_needed`. Print Maintenance needed when the combined rule is true, and no reminder when both triggers are false.",
+        "nl": "Werk het if-blok bij zodat het `maintenance_needed` gebruikt. Druk Maintenance needed af als de gecombineerde regel waar is en geen melding als beide redenen onwaar zijn."
+      },
+      "check": "_stdout.splitlines() == ['True','Maintenance needed']",
+      "feedback": {
+        "en": "The printed reminder must follow either trigger, not just the hours comparison.",
+        "nl": "De afgedrukte melding moet op elke reden reageren, niet alleen op de urenvergelijking."
+      },
+      "cases": [
+        {
+          "inputs": {
+            "hours": 100,
+            "warning": false
+          },
+          "check": "_stdout.splitlines() == ['False']"
+        },
+        {
+          "inputs": {
+            "hours": 101,
+            "warning": false
+          },
+          "check": "_stdout.splitlines() == ['True','Maintenance needed']"
+        },
+        {
+          "inputs": {
+            "hours": 101,
+            "warning": true
+          },
+          "check": "_stdout.splitlines() == ['True','Maintenance needed']"
+        }
+      ],
+      "hint": {
+        "en": "Use the named Boolean as the condition instead of repeating the old hours-only test.",
+        "nl": "Gebruik de benoemde Boolean als voorwaarde in plaats van de oude controle op alleen uren."
       }
     }
   ],
   "solutionNote": {
-    "en": "or is true when at least one condition is true. It is also true when both are true. This is useful when several independent conditions can trigger the same action.\n\nTrace the solution one line at a time. Try a different input to see which parts change.",
-    "nl": "or is waar als minstens één voorwaarde waar is. Ook als beide waar zijn, is het resultaat waar. Dit is handig als meerdere voorwaarden dezelfde actie kunnen activeren.\n\nVolg de oplossing regel voor regel. Probeer een andere invoer en bekijk welke onderdelen veranderen."
+    "en": "or combines an evaluated comparison with the warning flag. Reusing maintenance_needed ensures the display and decision follow the same rule. Exactly 100 is a useful boundary test because the requirement says more than 100.",
+    "nl": "or combineert een berekende vergelijking met de waarschuwing. Door maintenance_needed te hergebruiken volgen de weergave en beslissing dezelfde regel. Precies 100 is een nuttige grenstest, omdat de eis meer dan 100 luidt."
   },
   "sourcePosition": 8,
   "sourceUrl": "https://www.codecademy.com/courses/learn-python-3/lessons/python-control-flow/exercises/boolean-operators-or",

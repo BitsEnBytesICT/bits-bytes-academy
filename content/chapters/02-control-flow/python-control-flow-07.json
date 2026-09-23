@@ -4,38 +4,142 @@
   "group": "python-control-flow",
   "title": {
     "en": "Combining conditions with and",
-    "nl": "Voorwaarden combineren met and"
+    "nl": "Twee voorwaarden met and"
   },
   "kind": "coding",
   "optional": false,
   "explanation": {
-    "en": "and requires both conditions to be true. Python checks the left side first and only evaluates the right side if needed. Parentheses can make combined comparisons easier to read.",
-    "nl": "and vereist dat beide voorwaarden waar zijn. Python controleert eerst links en beoordeelt rechts alleen als dat nodig is. Haakjes kunnen gecombineerde vergelijkingen duidelijker maken."
+    "en": "Sometimes one condition is not enough. A simulated delivery robot may start only when it is charged and its lid is closed. `and` combines the two requirements: the result is true only when both are true.",
+    "nl": "Soms is één voorwaarde niet genoeg. Een gesimuleerde bezorgrobot mag alleen starten als deze opgeladen is én het deksel dicht is. `and` combineert die twee eisen: het resultaat is alleen waar als beide waar zijn."
   },
   "example": "",
+  "sections": [
+    {
+      "heading": {
+        "en": "All combinations matter",
+        "nl": "Alle combinaties tellen mee"
+      },
+      "body": {
+        "en": "Read each side separately, then combine their answers. One false requirement is enough to make the whole and expression false. When working with Boolean inputs, these four combinations cover every possibility.",
+        "nl": "Lees elke kant afzonderlijk en combineer daarna de antwoorden. Eén onware eis maakt de hele and-expressie onwaar. Bij Boolean-invoer dekken deze vier combinaties alle mogelijkheden."
+      },
+      "code": "print(True and True)\nprint(True and False)\nprint(False and True)\nprint(False and False)",
+      "output": "True\nFalse\nFalse\nFalse"
+    },
+    {
+      "heading": {
+        "en": "Fix the policy, then its use",
+        "nl": "Herstel de regel en daarna het gebruik"
+      },
+      "body": {
+        "en": "The supplied program currently looks only at the battery. Correct the computed decision first, then make the action use that decision. Python evaluates and from left to right and skips the right side when the left side is false; it already knows the combined Boolean result cannot be true.",
+        "nl": "Het gegeven programma kijkt nu alleen naar de batterij. Herstel eerst de berekende beslissing en laat de actie daarna die beslissing gebruiken. Python beoordeelt and van links naar rechts en slaat rechts over wanneer links onwaar is: het gecombineerde Boolean-resultaat kan dan niet meer waar zijn."
+      }
+    }
+  ],
   "files": {
-    "main.py": "# Write your code below.\n"
+    "main.py": "# Dispatch simulator: both requirements must hold.\ncharged = True\nlid_closed = False\n\ncan_start = charged\nprint(can_start)\n\nif charged:\n    print(\"Dispatch started\")\n"
   },
   "solution": {
-    "main.py": "charged = True\nlid_closed = False\ncan_start = charged and lid_closed\nprint(can_start)\n"
+    "main.py": "charged = True\nlid_closed = False\ncan_start = charged and lid_closed\nprint(can_start)\nif can_start:\n    print(\"Dispatch started\")\n"
   },
   "checkpoints": [
     {
-      "id": "python-control-flow-07-step-1",
+      "id": "python-control-flow-07-v2-step-1",
       "task": {
-        "en": "Set can_start using charged and lid_closed. Use charged = True and lid_closed = False.",
-        "nl": "Bepaal can_start met charged and lid_closed. Gebruik charged = True en lid_closed = False."
+        "en": "Change `can_start` to combine charged and lid_closed with `and`. With the starter inputs, its printed value must become False.",
+        "nl": "Verander `can_start` zodat charged en lid_closed met `and` worden gecombineerd. Bij de startinvoer moet de afgedrukte waarde False worden."
       },
-      "check": "can_start is False and 'and' in _source",
+      "check": "can_start is False and any(isinstance(n, _ast.And) for n in _ast.walk(_ast.parse(_source)))",
+      "feedback": {
+        "en": "Use and and test all four flag combinations. A battery alone is not enough.",
+        "nl": "Gebruik and en test alle vier combinaties. Alleen een opgeladen batterij is niet genoeg."
+      },
+      "cases": [
+        {
+          "inputs": {
+            "charged": false,
+            "lid_closed": false
+          },
+          "check": "can_start is False"
+        },
+        {
+          "inputs": {
+            "charged": false,
+            "lid_closed": true
+          },
+          "check": "can_start is False"
+        },
+        {
+          "inputs": {
+            "charged": true,
+            "lid_closed": false
+          },
+          "check": "can_start is False"
+        },
+        {
+          "inputs": {
+            "charged": true,
+            "lid_closed": true
+          },
+          "check": "can_start is True"
+        }
+      ],
       "hint": {
-        "en": "Start with charged = True. Then compare the values with the task.",
-        "nl": "Begin met charged = True. Vergelijk de waarden daarna met de opdracht."
+        "en": "Both flags must be True; the open lid currently prevents starting.",
+        "nl": "Beide vlaggen moeten True zijn; het open deksel verhindert nu het starten."
+      }
+    },
+    {
+      "id": "python-control-flow-07-v2-step-2",
+      "task": {
+        "en": "The robot still prints Dispatch started! Change the if condition to use `can_start`. It should print that message only when both requirements are met.",
+        "nl": "De robot drukt nog steeds Dispatch started af! Verander de if-voorwaarde zodat deze `can_start` gebruikt. Het bericht mag alleen verschijnen als aan beide eisen is voldaan."
+      },
+      "check": "_stdout.splitlines() == ['False']",
+      "feedback": {
+        "en": "Make the action follow the combined decision: only the True/True case may start.",
+        "nl": "Laat de actie de gecombineerde beslissing volgen: alleen bij True/True mag deze starten."
+      },
+      "cases": [
+        {
+          "inputs": {
+            "charged": false,
+            "lid_closed": false
+          },
+          "check": "_stdout.splitlines() == ['False']"
+        },
+        {
+          "inputs": {
+            "charged": false,
+            "lid_closed": true
+          },
+          "check": "_stdout.splitlines() == ['False']"
+        },
+        {
+          "inputs": {
+            "charged": true,
+            "lid_closed": false
+          },
+          "check": "_stdout.splitlines() == ['False']"
+        },
+        {
+          "inputs": {
+            "charged": true,
+            "lid_closed": true
+          },
+          "check": "_stdout.splitlines() == ['True','Dispatch started']"
+        }
+      ],
+      "hint": {
+        "en": "The calculation is correct, but the action still reads the old battery-only condition.",
+        "nl": "De berekening klopt, maar de actie leest nog de oude voorwaarde met alleen de batterij."
       }
     }
   ],
   "solutionNote": {
-    "en": "and requires both conditions to be true. Python checks the left side first and only evaluates the right side if needed. Parentheses can make combined comparisons easier to read.\n\nTrace the solution one line at a time. Try a different input to see which parts change.",
-    "nl": "and vereist dat beide voorwaarden waar zijn. Python controleert eerst links en beoordeelt rechts alleen als dat nodig is. Haakjes kunnen gecombineerde vergelijkingen duidelijker maken.\n\nVolg de oplossing regel voor regel. Probeer een andere invoer en bekijk welke onderdelen veranderen."
+    "en": "The first change fixes the policy, but the old if still checks charged. The second change connects the action to can_start. This is why it is useful to test behavior as well as an intermediate variable.",
+    "nl": "De eerste wijziging herstelt de regel, maar de oude if controleert nog charged. De tweede wijziging koppelt de actie aan can_start. Daarom is het nuttig om zowel het gedrag als een tussenvariabele te testen."
   },
   "sourcePosition": 7,
   "sourceUrl": "https://www.codecademy.com/courses/learn-python-3/lessons/python-control-flow/exercises/boolean-operators-and",

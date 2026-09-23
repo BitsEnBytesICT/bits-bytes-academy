@@ -4,38 +4,150 @@
   "group": "python-errors",
   "title": {
     "en": "Syntax errors",
-    "nl": "SyntaxError herstellen"
+    "nl": "Herstel een kapotte routeplanner"
   },
   "kind": "coding",
   "optional": false,
   "explanation": {
-    "en": "A SyntaxError means the program could not be parsed. Missing colons, unmatched brackets, or incomplete strings are common causes. No statements in the script run until the syntax is valid.",
-    "nl": "Een SyntaxError betekent dat Python de code niet kan ontleden. Ontbrekende dubbele punten, haakjes of aanhalingstekens zijn veelvoorkomende oorzaken. De code wordt pas uitgevoerd als de syntax klopt."
+    "en": "Python must parse the whole file before it can run it. A missing colon, a misspelled keyword or an unclosed parenthesis can prevent even earlier print calls from executing. Fix the first reported structural problem and run again: the next error may only become visible after the first is repaired.",
+    "nl": "Python moet het hele bestand ontleden voordat het wordt uitgevoerd. Een ontbrekende dubbele punt, verkeerd gespeld keyword of onafgesloten haakje kan zelfs eerdere print-aanroepen tegenhouden. Herstel het eerste gemelde structuurprobleem en voer opnieuw uit: de volgende fout wordt soms pas daarna zichtbaar."
   },
   "example": "",
+  "sections": [
+    {
+      "heading": {
+        "en": "Read the shape of a branch",
+        "nl": "Lees de vorm van een branch"
+      },
+      "body": {
+        "en": "A conditional header ends with a colon. Its body is indented. `elif` is one keyword, and all headers in the same chain line up. Each opening parenthesis needs a closing one. Compare the shape of this working example with the route planner in the editor.",
+        "nl": "De kop van een voorwaardelijk blok eindigt met een dubbele punt. De inhoud springt in. `elif` is één keyword en alle koppen in dezelfde keten staan onder elkaar. Elk openingshaakje heeft een sluithaakje nodig. Vergelijk de vorm van dit werkende voorbeeld met de routeplanner in de editor."
+      },
+      "code": "distance = 8\nif distance < 3:\n    print(\"Walk\")\nelif distance < 12:\n    print(\"Cycle\")\nelse:\n    print(\"Take transit\")",
+      "output": "Cycle"
+    },
+    {
+      "heading": {
+        "en": "Repair, then test another route",
+        "nl": "Herstel en test een andere route"
+      },
+      "body": {
+        "en": "The supplied planner contains three syntax defects. Repair them one at a time without deleting its branches. The task checks can turn green only once the whole file is valid Python. After it runs, use different inputs to check that you preserved its decisions, not just its appearance.",
+        "nl": "De meegeleverde planner bevat drie syntaxfouten. Herstel ze één voor één zonder branches te verwijderen. De taakcontroles kunnen pas groen worden als het hele bestand geldige Python is. Probeer daarna andere invoer om te controleren of je de beslissingen hebt behouden en niet alleen de vorm."
+      }
+    }
+  ],
   "files": {
-    "main.py": "if True\n    print(\"Ready\")\n"
+    "main.py": "# Route planner: keep all three choices.\ndistance = 8\nprint(\"Route planner\")\n\nif distance < 3\n    mode = \"Walk\"\nelsif distance < 12:\n    mode = \"Cycle\"\nelse:\n    mode = \"Transit\"\n\nprint(mode\n# Add a distance summary after the repairs.\n"
   },
   "solution": {
-    "main.py": "if True:\n    print(\"Ready\")\n"
+    "main.py": "distance = 8\nprint(\"Route planner\")\nif distance < 3:\n    mode = \"Walk\"\nelif distance < 12:\n    mode = \"Cycle\"\nelse:\n    mode = \"Transit\"\nprint(mode)\nprint(\"Distance: \" + str(distance))\n"
   },
   "checkpoints": [
     {
-      "id": "python-errors-02-step-1",
+      "id": "python-errors-02-v2-step-1",
       "task": {
-        "en": "Run the code to see the SyntaxError. Add the missing colon so Ready is printed.",
-        "nl": "Voer de code uit om de SyntaxError te zien. Voeg de ontbrekende dubbele punt toe zodat Ready verschijnt."
+        "en": "Run the broken file and use the reported location to repair the first if header. Keep its condition `distance < 3`. Continue with the next repairs even if this check remains pending.",
+        "nl": "Voer het kapotte bestand uit en herstel met de gemelde locatie de eerste if-kop. Behoud de voorwaarde `distance < 3`. Ga verder met de volgende reparaties, ook als deze controle nog niet slaagt."
       },
-      "check": "_stdout.strip() == 'Ready'",
+      "check": "distance == 8 and mode == 'Cycle'",
+      "feedback": {
+        "en": "Restore a valid if header and keep the short-distance route. All three syntax repairs are needed before the file can run.",
+        "nl": "Herstel een geldige if-kop en behoud de route voor korte afstanden. Alle drie syntaxreparaties zijn nodig voordat het bestand kan starten."
+      },
+      "cases": [
+        {
+          "inputs": {
+            "distance": 2
+          },
+          "check": "mode == 'Walk'"
+        },
+        {
+          "inputs": {
+            "distance": 3
+          },
+          "check": "mode == 'Cycle'"
+        }
+      ],
       "hint": {
-        "en": "Start with if True:. Then compare the values with the task.",
-        "nl": "Begin met if True:. Vergelijk de waarden daarna met de opdracht."
+        "en": "A header needs a colon before its indented body. Other syntax errors still prevent execution.",
+        "nl": "Een kop heeft een dubbele punt nodig vóór het ingesprongen blok. Andere syntaxfouten houden de uitvoering nog tegen."
+      }
+    },
+    {
+      "id": "python-errors-02-v2-step-2",
+      "task": {
+        "en": "Run again and repair the misspelled middle-branch keyword. Keep all three routes: Walk below 3, Cycle from 3 up to 12, and Transit from 12 onward.",
+        "nl": "Voer opnieuw uit en herstel het verkeerd gespelde keyword van de middelste branch. Behoud alle routes: Walk onder 3, Cycle vanaf 3 tot 12 en Transit vanaf 12."
+      },
+      "check": "mode == 'Cycle' and any(isinstance(n, _ast.If) and n.orelse and isinstance(n.orelse[0], _ast.If) for n in _ast.walk(_ast.parse(_source)))",
+      "feedback": {
+        "en": "Use an if/elif/else chain and preserve the boundaries at 3 and 12.",
+        "nl": "Gebruik een if/elif/else-keten en behoud de grenzen bij 3 en 12."
+      },
+      "cases": [
+        {
+          "inputs": {
+            "distance": 11
+          },
+          "check": "mode == 'Cycle'"
+        },
+        {
+          "inputs": {
+            "distance": 12
+          },
+          "check": "mode == 'Transit'"
+        }
+      ],
+      "hint": {
+        "en": "Python spells the combined else-if keyword elif.",
+        "nl": "Python schrijft het gecombineerde else-if-keyword als elif."
+      }
+    },
+    {
+      "id": "python-errors-02-v2-step-3",
+      "task": {
+        "en": "Repair the unfinished print call. Run to confirm the first two output lines are Route planner and Cycle.",
+        "nl": "Herstel de onafgemaakte print-aanroep. Controleer dat de eerste twee outputregels Route planner en Cycle zijn."
+      },
+      "check": "_stdout.splitlines()[:2] == ['Route planner','Cycle']",
+      "feedback": {
+        "en": "The program must run and print the planner heading followed by its chosen mode.",
+        "nl": "Het programma moet uitvoeren en de plannerkop gevolgd door de gekozen reiswijze afdrukken."
+      },
+      "hint": {
+        "en": "Pair print's opening parenthesis with a closing one after mode.",
+        "nl": "Sluit het openingshaakje van print na mode af met een sluithaakje."
+      }
+    },
+    {
+      "id": "python-errors-02-v2-step-4",
+      "task": {
+        "en": "Add a final summary line using the distance variable: `Distance: 8`. Test distance = 12, then restore 8 for the graded run.",
+        "nl": "Voeg een laatste samenvattingsregel met de distance-variabele toe: `Distance: 8`. Test distance = 12 en zet daarna 8 terug voor de beoordeling."
+      },
+      "check": "_stdout.splitlines() == ['Route planner','Cycle','Distance: 8']",
+      "feedback": {
+        "en": "Print the numeric distance as text after the chosen route; do not hardcode 8 in the message.",
+        "nl": "Druk de numerieke afstand als tekst na de gekozen route af; zet geen vaste 8 in het bericht."
+      },
+      "cases": [
+        {
+          "inputs": {
+            "distance": 12
+          },
+          "check": "_stdout.splitlines() == ['Route planner','Transit','Distance: 12']"
+        }
+      ],
+      "hint": {
+        "en": "Combine the label with str(distance). The same line should work for any distance.",
+        "nl": "Combineer het label met str(distance). Dezelfde regel moet voor elke afstand werken."
       }
     }
   ],
   "solutionNote": {
-    "en": "A SyntaxError means the program could not be parsed. Missing colons, unmatched brackets, or incomplete strings are common causes. No statements in the script run until the syntax is valid.\n\nTrace the solution one line at a time. Try a different input to see which parts change.",
-    "nl": "Een SyntaxError betekent dat Python de code niet kan ontleden. Ontbrekende dubbele punten, haakjes of aanhalingstekens zijn veelvoorkomende oorzaken. De code wordt pas uitgevoerd als de syntax klopt.\n\nVolg de oplossing regel voor regel. Probeer een andere invoer en bekijk welke onderdelen veranderen."
+    "en": "The colon, elif keyword and closing parenthesis repair the grammar without changing the decisions. At distance 12, both earlier comparisons are false, so the fallback selects Transit. The final message reads the current variable and stays correct when the input changes.",
+    "nl": "De dubbele punt, het keyword elif en het sluithaakje herstellen de grammatica zonder de beslissingen te veranderen. Bij afstand 12 zijn beide eerdere vergelijkingen onwaar, dus kiest de fallback Transit. Het laatste bericht leest de huidige variabele en blijft kloppen als de invoer verandert."
   },
   "sourcePosition": 2,
   "sourceUrl": "https://www.codecademy.com/courses/learn-python-3/lessons/python-errors/exercises/syntax-errors",

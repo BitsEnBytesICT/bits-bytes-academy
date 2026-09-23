@@ -4,38 +4,104 @@
   "group": "python-control-flow",
   "title": {
     "en": "Fallback branches",
-    "nl": "Een else-blok"
+    "nl": "Een alternatief met else"
   },
   "kind": "coding",
   "optional": false,
   "explanation": {
-    "en": "An else block runs when the preceding if condition is false. One of the two blocks runs, never both. else has a colon but no condition of its own.",
-    "nl": "Een else-blok wordt uitgevoerd als de voorafgaande if-voorwaarde onwaar is. Eén van de twee blokken wordt uitgevoerd, nooit beide. else krijgt een dubbele punt, maar geen eigen voorwaarde."
+    "en": "Sometimes a program must produce one of two responses. An `else` block is the fallback when its if condition is false. It has a colon but no condition of its own. Exactly one of the two blocks runs.",
+    "nl": "Soms moet een programma één van twee reacties geven. Een `else`-blok is het alternatief wanneer de if-voorwaarde onwaar is. Het krijgt een dubbele punt, maar geen eigen voorwaarde. Precies één van de twee blokken draait."
   },
   "example": "",
+  "sections": [
+    {
+      "heading": {
+        "en": "Cover the other route",
+        "nl": "Vang de andere route op"
+      },
+      "body": {
+        "en": "Align else with its if and indent the code beneath it. The fallback saves you from writing the opposite comparison as another independent if. Code after the entire pair continues normally.",
+        "nl": "Zet else op dezelfde hoogte als de bijbehorende if en spring de code eronder in. Door het alternatief hoef je niet de tegenovergestelde vergelijking als losse if te schrijven. Code na het hele paar gaat gewoon verder."
+      },
+      "code": "stock = 0\nif stock > 0:\n    print(\"Item available\")\nelse:\n    print(\"Restocking\")\nprint(\"Status checked\")",
+      "output": "Restocking\nStatus checked"
+    },
+    {
+      "heading": {
+        "en": "Extend a booking display",
+        "nl": "Breid een boekingsscherm uit"
+      },
+      "body": {
+        "en": "The starter only reports available seats, so it goes silent when the count reaches zero. First add the missing response. Then make the successful response more useful by including the seat count. Assume the supplied count is zero or positive; checking invalid input belongs to a later exercise.",
+        "nl": "De startcode meldt alleen beschikbare plaatsen en blijft dus stil wanneer het aantal nul wordt. Voeg eerst de ontbrekende reactie toe. Maak daarna de positieve reactie nuttiger door het aantal plaatsen te vermelden. Ga uit van een aantal van nul of hoger; ongeldige invoer controleren komt later."
+      }
+    }
+  ],
   "files": {
-    "main.py": "seats = 0\n"
+    "main.py": "seats = 0\n\nif seats > 0:\n    print(\"Seats available\")\n# Add a fallback for no seats.\n"
   },
   "solution": {
-    "main.py": "seats = 0\nif seats == 0:\n    print(\"Full\")\nelse:\n    print(\"Seats available\")\n"
+    "main.py": "seats = 0\nif seats > 0:\n    print(\"Seats available: \" + str(seats))\nelse:\n    print(\"Full\")\n"
   },
   "checkpoints": [
     {
-      "id": "python-control-flow-10-step-1",
+      "id": "python-control-flow-10-v2-step-1",
       "task": {
-        "en": "For seats = 0, print Full when no seats remain; otherwise print Seats available.",
-        "nl": "Gebruik seats = 0. Druk Full af als er geen plaatsen over zijn; druk anders Seats available af."
+        "en": "Add an `else` block that prints `Full` when no seats remain. Do not add a separate condition to else.",
+        "nl": "Voeg een `else`-blok toe dat `Full` afdrukt wanneer er geen plaatsen over zijn. Voeg geen aparte voorwaarde aan else toe."
       },
-      "check": "_stdout.strip() == 'Full' and any(isinstance(n,_ast.If) and n.orelse for n in _ast.walk(_ast.parse(_source)))",
+      "check": "_stdout.splitlines() == ['Full'] and any(isinstance(n,_ast.If) and n.orelse for n in _ast.parse(_source).body)",
+      "feedback": {
+        "en": "A zero count must print Full, while positive counts must not print it.",
+        "nl": "Een aantal van nul moet Full tonen; positieve aantallen mogen dit niet tonen."
+      },
+      "cases": [
+        {
+          "inputs": {
+            "seats": 3
+          },
+          "check": "'Full' not in _stdout.splitlines()"
+        }
+      ],
       "hint": {
-        "en": "Start with seats = 0. Then compare the values with the task.",
-        "nl": "Begin met seats = 0. Vergelijk de waarden daarna met de opdracht."
+        "en": "Write else: aligned with if, then indent its print call.",
+        "nl": "Schrijf else: op dezelfde hoogte als if en spring de print-aanroep in."
+      }
+    },
+    {
+      "id": "python-control-flow-10-v2-step-2",
+      "task": {
+        "en": "Improve the available-seats branch: print `Seats available: ` followed by the current count. Use str(seats) when joining the text. Try 3 and 1, then restore seats = 0.",
+        "nl": "Verbeter de tak voor beschikbare plaatsen: druk `Seats available: ` af met daarna het huidige aantal. Gebruik str(seats) bij het samenvoegen. Probeer 3 en 1 en herstel daarna seats = 0."
+      },
+      "check": "_stdout.splitlines() == ['Full']",
+      "feedback": {
+        "en": "The positive branch must include the actual seat count and produce only one line.",
+        "nl": "De positieve tak moet het werkelijke aantal plaatsen bevatten en slechts één regel produceren."
+      },
+      "cases": [
+        {
+          "inputs": {
+            "seats": 3
+          },
+          "check": "_stdout.splitlines() == ['Seats available: 3']"
+        },
+        {
+          "inputs": {
+            "seats": 1
+          },
+          "check": "_stdout.splitlines() == ['Seats available: 1']"
+        }
+      ],
+      "hint": {
+        "en": "Only change the existing positive branch. The else response should remain Full.",
+        "nl": "Verander alleen de bestaande positieve tak. Het else-antwoord moet Full blijven."
       }
     }
   ],
   "solutionNote": {
-    "en": "An else block runs when the preceding if condition is false. One of the two blocks runs, never both. else has a colon but no condition of its own.\n\nTrace the solution one line at a time. Try a different input to see which parts change.",
-    "nl": "Een else-blok wordt uitgevoerd als de voorafgaande if-voorwaarde onwaar is. Eén van de twee blokken wordt uitgevoerd, nooit beide. else krijgt een dubbele punt, maar geen eigen voorwaarde.\n\nVolg de oplossing regel voor regel. Probeer een andere invoer en bekijk welke onderdelen veranderen."
+    "en": "A positive count selects the first block and includes that count in the message. Zero selects the fallback. The two outputs cannot both appear because they are alternatives in the same if/else statement.",
+    "nl": "Een positief aantal kiest het eerste blok en vermeldt dat aantal in het bericht. Nul kiest het alternatief. De twee berichten kunnen niet samen verschijnen omdat ze alternatieven binnen dezelfde if/else-instructie zijn."
   },
   "sourcePosition": 10,
   "sourceUrl": "https://www.codecademy.com/courses/learn-python-3/lessons/python-control-flow/exercises/else-statements",

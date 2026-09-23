@@ -28,9 +28,10 @@ reviewed. The 13-question foundation quiz was inspected through its results scre
 The input article narrative is reviewed, but its embedded assessment remained in
 a loading state. The 12 control-flow pages, five debugging pages and pattern-matching
 article have now also been reviewed; their workspace/hint observations are in
-`research/2026-09-23-control-flow.md`. That chapter's quiz and original rewrite are
-still pending, as are deeper reviews of later chapters. Do not describe the whole
-course as mapped or rewritten.
+`research/2026-09-23-control-flow.md`. That chapter's eight-question quiz has now
+been reviewed through a fresh completed attempt and its original rewrite is
+implemented and verified. Deeper reviews of later chapters remain. Do not
+describe the whole course as mapped or rewritten.
 
 Authored and implemented in this pass:
 
@@ -45,6 +46,13 @@ Authored and implemented in this pass:
   extensions for quantity, conversion and cost; one additional verified example.
 - Added per-choice explanations to all 13 foundation quiz questions while keeping
   existing question/choice IDs and correct-answer mappings.
+- Rewrote the 12 control-flow and five debugging pages plus the matching reading:
+  37 connected checkpoints and 21 further executable examples. Programs grow from
+  supplied scaffolding, conditions are tested across alternate inputs, and debugging
+  now repairs multi-line programs with several related defects.
+- Added specific feedback to all eight control-flow quiz questions, preserving
+  question/choice IDs and answers. Thirty coding checkpoints have 65 alternate-input
+  cases; probe execution leaves visible output and console variables unchanged.
 - Added optional structured content and safe inline-code formatting. Existing
   fonts, pane dimensions and breakpoints are unchanged. Revised checkpoint IDs
   do not accidentally inherit credit from different old tasks; previously earned
@@ -94,6 +102,6 @@ Verification so far:
    count test alone does not establish richer explanations or appropriate tasks.
 
 This goal turn made progress: original course authoring, implementation, tests and
-fresh source observations. Current rewrite coverage is 15/160 core lesson pages,
-1/8 supporting readings, 1/13 quizzes with enhanced feedback, and 0/59 challenges.
+fresh source observations. Current rewrite coverage is 32/160 core lesson pages,
+2/8 supporting readings, 2/13 quizzes with enhanced feedback, and 0/59 challenges.
 No blocker prevents continuing. The full goal remains active.

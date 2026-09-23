@@ -2604,25 +2604,53 @@
       "group": "python-control-flow",
       "title": {
         "en": "Execution paths",
-        "nl": "Uitvoeringsvolgorde"
+        "nl": "Een programma kiest een route"
       },
       "kind": "reading",
       "optional": false,
       "explanation": {
-        "en": "Control flow is the order in which a program performs work. A condition lets Python choose whether a block should run. Read the condition before predicting the output.",
-        "nl": "Control flow is de volgorde waarin een programma werk uitvoert. Een voorwaarde bepaalt of Python een blok uitvoert. Lees eerst de voorwaarde en voorspel daarna de output."
+        "en": "So far, your programs have followed every instruction from top to bottom. Many useful programs need to choose: show a warning only when something needs attention, allow an action only when its requirements are met, or select a message for the current situation. These choices change the program's control flow.",
+        "nl": "Tot nu toe voerden je programma's alle instructies van boven naar beneden uit. Veel nuttige programma's moeten kiezen: alleen een waarschuwing tonen als iets aandacht nodig heeft, een actie toestaan als aan de voorwaarden is voldaan of een passend bericht kiezen. Deze keuzes veranderen de uitvoeringsvolgorde, oftewel control flow."
       },
       "example": "",
+      "sections": [
+        {
+          "heading": {
+            "en": "A gate in the program",
+            "nl": "Een poort in het programma"
+          },
+          "body": {
+            "en": "Imagine a parcel kiosk that prints a label only after payment is confirmed. The question has two answers: confirmed or not confirmed. A conditional statement uses the answer to decide whether a block of instructions runs. Code after that block can still run either way.",
+            "nl": "Stel je een pakketautomaat voor die pas een label afdrukt nadat de betaling is bevestigd. Die vraag heeft twee antwoorden: bevestigd of niet bevestigd. Een voorwaardelijke instructie gebruikt het antwoord om te bepalen of een blok code wordt uitgevoerd. Code na dat blok kan in beide gevallen gewoon doorgaan."
+          },
+          "code": "paid = True\nif paid:\n    print(\"Print shipping label\")\nprint(\"Visit complete\")",
+          "output": "Print shipping label\nVisit complete",
+          "takeaway": {
+            "en": "The indented line belongs to the condition. The last line is back at the left edge, so it runs regardless of the answer.",
+            "nl": "De ingesprongen regel hoort bij de voorwaarde. De laatste regel staat weer helemaal links en wordt dus ongeacht het antwoord uitgevoerd."
+          }
+        },
+        {
+          "heading": {
+            "en": "Follow both routes",
+            "nl": "Volg beide routes"
+          },
+          "body": {
+            "en": "Run the supplied demonstration once. Then change `paid` from `True` to `False` and predict which message will disappear. Run again to test your prediction. Do not worry about memorising the syntax yet: this chapter builds the values, comparisons and conditions that make this work.",
+            "nl": "Voer de demonstratie één keer uit. Verander daarna `paid` van `True` naar `False` en voorspel welk bericht verdwijnt. Voer opnieuw uit om je voorspelling te testen. Je hoeft de syntax nog niet te onthouden: in dit hoofdstuk bouw je de waarden, vergelijkingen en voorwaarden op die dit mogelijk maken."
+          }
+        }
+      ],
       "files": {
-        "main.py": "temperature = 28\nif temperature > 25:\n    print(\"Open a window\")\nprint(\"Check complete\")\n"
+        "main.py": "paid = True\nif paid:\n    print(\"Print shipping label\")\nprint(\"Visit complete\")\n"
       },
       "solution": {
-        "main.py": "temperature = 28\nif temperature > 25:\n    print(\"Open a window\")\nprint(\"Check complete\")\n"
+        "main.py": "paid = False\nif paid:\n    print(\"Print shipping label\")\nprint(\"Visit complete\")\n"
       },
       "checkpoints": [],
       "solutionNote": {
-        "en": "Control flow is the order in which a program performs work. A condition lets Python choose whether a block should run. Read the condition before predicting the output.\n\nTrace the solution one line at a time. Try a different input to see which parts change.",
-        "nl": "Control flow is de volgorde waarin een programma werk uitvoert. Een voorwaarde bepaalt of Python een blok uitvoert. Lees eerst de voorwaarde en voorspel daarna de output.\n\nVolg de oplossing regel voor regel. Probeer een andere invoer en bekijk welke onderdelen veranderen."
+        "en": "With paid set to False, Python skips the indented print call. Visit complete still appears because that call is outside the conditional block. Indentation describes structure, not just appearance.",
+        "nl": "Met paid op False slaat Python de ingesprongen print-aanroep over. Visit complete verschijnt nog steeds, omdat die aanroep buiten het voorwaardelijke blok staat. Inspringing beschrijft de structuur en is niet alleen opmaak."
       },
       "sourcePosition": 1,
       "sourceUrl": "https://www.codecademy.com/courses/learn-python-3/lessons/python-control-flow/exercises/introduction",
@@ -2634,38 +2662,102 @@
       "group": "python-control-flow",
       "title": {
         "en": "Boolean propositions",
-        "nl": "Boolean-beweringen"
+        "nl": "Welke vragen kan code beantwoorden?"
       },
       "kind": "coding",
       "optional": false,
       "explanation": {
-        "en": "A Boolean represents one of two values: True or False. A factual proposition can be checked against data. An opinion has no single objective truth value without additional criteria.",
-        "nl": "Een Boolean heeft één van twee waarden: True of False. Een feitelijke bewering kun je aan gegevens toetsen. Een mening heeft zonder extra criteria geen eenduidige waarheidswaarde."
+        "en": "A Boolean value represents `True` or `False`. To make a reliable decision, first state a question that can be answered from evidence. A false statement can still be testable. A vague opinion needs a clear rule before a program can decide it.",
+        "nl": "Een Boolean-waarde stelt `True` of `False` voor. Formuleer voor een betrouwbare beslissing eerst een vraag die je met gegevens kunt beantwoorden. Ook een onware bewering kan toetsbaar zijn. Voor een vage mening is eerst een duidelijke regel nodig voordat een programma erover kan beslissen."
       },
-      "example": "is_ready = True",
+      "example": "",
+      "sections": [
+        {
+          "heading": {
+            "en": "Testable does not mean true",
+            "nl": "Toetsbaar betekent niet waar"
+          },
+          "body": {
+            "en": "For a box containing four books, ‘the box contains four books’ is testable and true. ‘The box contains five books’ is also testable, but false. Both questions can guide code. ‘This is the nicest box’ has no objective answer until we define what nicest means.",
+            "nl": "Bij een doos met vier boeken is ‘de doos bevat vier boeken’ toetsbaar en waar. ‘De doos bevat vijf boeken’ is ook toetsbaar, maar onwaar. Beide vragen kunnen code aansturen. ‘Dit is de mooiste doos’ heeft geen objectief antwoord zolang we niet bepalen wat mooiste betekent."
+          },
+          "code": "verified = True\nneeds_more_evidence = False\nprint(verified)\nprint(needs_more_evidence)",
+          "output": "True\nFalse",
+          "takeaway": {
+            "en": "Use capital T and F, without quotes. These are Python values, not text labels.",
+            "nl": "Gebruik een hoofdletter T en F, zonder aanhalingstekens. Dit zijn Python-waarden en geen tekstlabels."
+          }
+        },
+        {
+          "heading": {
+            "en": "Turn a vague request into a rule",
+            "nl": "Maak van een vage vraag een regel"
+          },
+          "body": {
+            "en": "A request such as ‘send a parcel when it is light enough’ is incomplete. A measurable rule such as ‘its mass is at most 2 kilograms’ can be tested. Your task classifies three statements for a dispatch checklist. We will turn measurable rules into Python comparisons in the next lesson.",
+            "nl": "Een vraag zoals ‘verstuur een pakket als het licht genoeg is’ is onvolledig. Een meetbare regel zoals ‘de massa is maximaal 2 kilogram’ kun je wel toetsen. Je classificeert drie beweringen voor een verzendcontrole. In de volgende les zetten we meetbare regels om naar Python-vergelijkingen."
+          }
+        }
+      ],
       "files": {
-        "main.py": "# Write your code below.\n"
+        "main.py": "# Dispatch checklist: replace the text placeholders with Boolean values.\ncount_is_testable = \"undecided\"\nopinion_is_testable = \"undecided\"\nfour_is_odd = \"undecided\"\n\nprint(count_is_testable)\nprint(opinion_is_testable)\nprint(four_is_odd)\n"
       },
       "solution": {
-        "main.py": "water_freezes_at_zero = True\nfive_is_even = False\nprint(water_freezes_at_zero, five_is_even)\n"
+        "main.py": "count_is_testable = True\nopinion_is_testable = False\nfour_is_odd = False\nprint(count_is_testable)\nprint(opinion_is_testable)\nprint(four_is_odd)\n"
       },
       "checkpoints": [
         {
-          "id": "python-control-flow-02-step-1",
+          "id": "python-control-flow-02-v2-step-1",
           "task": {
-            "en": "Set water_freezes_at_zero to True and five_is_even to False. Print both.",
-            "nl": "Zet water_freezes_at_zero op True en five_is_even op False. Druk beide af."
+            "en": "‘The parcel contains four books’ can be checked by counting. Set `count_is_testable` to the appropriate Boolean value and run the file.",
+            "nl": "‘Het pakket bevat vier boeken’ kun je controleren door te tellen. Zet `count_is_testable` op de passende Boolean-waarde en voer het bestand uit."
           },
-          "check": "water_freezes_at_zero is True and five_is_even is False",
+          "check": "count_is_testable is True",
+          "feedback": {
+            "en": "Use the Boolean True: counting can establish whether the statement is correct.",
+            "nl": "Gebruik de Boolean True: door te tellen kun je vaststellen of de bewering klopt."
+          },
           "hint": {
-            "en": "Start with water_freezes_at_zero = True. Then compare the values with the task.",
-            "nl": "Begin met water_freezes_at_zero = True. Vergelijk de waarden daarna met de opdracht."
+            "en": "Decide whether evidence can settle the question, not whether this particular parcel really has four books.",
+            "nl": "Bepaal of gegevens de vraag kunnen beantwoorden, niet of dit specifieke pakket echt vier boeken bevat."
+          }
+        },
+        {
+          "id": "python-control-flow-02-v2-step-2",
+          "task": {
+            "en": "‘Blue packaging looks best’ gives no measurement or agreed rule. Set `opinion_is_testable` to the appropriate Boolean.",
+            "nl": "‘Blauwe verpakking is het mooist’ bevat geen meting of afgesproken regel. Zet `opinion_is_testable` op de passende Boolean."
+          },
+          "check": "opinion_is_testable is False",
+          "feedback": {
+            "en": "Without an agreed rule, this preference is not an objectively testable condition.",
+            "nl": "Zonder afgesproken regel is deze voorkeur geen objectief toetsbare voorwaarde."
+          },
+          "hint": {
+            "en": "Different people can prefer different colours without either being factually wrong.",
+            "nl": "Mensen kunnen verschillende kleuren mooier vinden zonder dat iemand feitelijk ongelijk heeft."
+          }
+        },
+        {
+          "id": "python-control-flow-02-v2-step-3",
+          "task": {
+            "en": "‘Four is odd’ is testable, but is it true? Set `four_is_odd` to the statement's truth value. The three printed results should be True, False, False.",
+            "nl": "‘Vier is oneven’ is toetsbaar, maar is het waar? Zet `four_is_odd` op de waarheidswaarde van de bewering. De drie resultaten moeten True, False, False zijn."
+          },
+          "check": "four_is_odd is False and _stdout.splitlines() == ['True','False','False']",
+          "feedback": {
+            "en": "The last answer describes truth, not testability: four is not odd.",
+            "nl": "Het laatste antwoord gaat over waarheid, niet toetsbaarheid: vier is niet oneven."
+          },
+          "hint": {
+            "en": "Four can be divided into pairs with no remainder. A testable statement may be false.",
+            "nl": "Vier kun je zonder rest in paren verdelen. Een toetsbare bewering mag onwaar zijn."
           }
         }
       ],
       "solutionNote": {
-        "en": "A Boolean represents one of two values: True or False. A factual proposition can be checked against data. An opinion has no single objective truth value without additional criteria.\n\nTrace the solution one line at a time. Try a different input to see which parts change.",
-        "nl": "Een Boolean heeft één van twee waarden: True of False. Een feitelijke bewering kun je aan gegevens toetsen. Een mening heeft zonder extra criteria geen eenduidige waarheidswaarde.\n\nVolg de oplossing regel voor regel. Probeer een andere invoer en bekijk welke onderdelen veranderen."
+        "en": "The first two variables classify whether a statement has an objective test. The third answers a testable question. Keeping those two ideas separate prevents a common misunderstanding: False does not mean ‘not a Boolean’.",
+        "nl": "De eerste twee variabelen geven aan of een bewering objectief te toetsen is. De derde beantwoordt een toetsbare vraag. Door die ideeën te scheiden voorkom je een veelgemaakte denkfout: False betekent niet ‘geen Boolean’."
       },
       "sourcePosition": 2,
       "sourceUrl": "https://www.codecademy.com/courses/learn-python-3/lessons/python-control-flow/exercises/boolean-expressions",
@@ -2677,38 +2769,140 @@
       "group": "python-control-flow",
       "title": {
         "en": "Equality comparisons",
-        "nl": "Gelijkheid vergelijken"
+        "nl": "Waarden vergelijken"
       },
       "kind": "coding",
       "optional": false,
       "explanation": {
-        "en": "== compares values for equality; != checks that they differ. These comparisons return Booleans. A single = assigns a value and cannot replace == in a condition.",
-        "nl": "== vergelijkt of waarden gelijk zijn; != controleert of ze verschillen. Deze vergelijkingen geven Booleans terug. Een enkele = wijst een waarde toe en vervangt == niet in een voorwaarde."
+        "en": "Instead of typing an answer yourself, let Python compare the data. `==` asks whether two values are equal; `!=` asks whether they differ. Each comparison produces a Boolean. A single `=` still means assignment: it stores a value rather than asking a question.",
+        "nl": "Laat Python de gegevens vergelijken in plaats van zelf het antwoord in te vullen. `==` vraagt of twee waarden gelijk zijn; `!=` vraagt of ze verschillen. Elke vergelijking levert een Boolean op. Eén `=` blijft een toewijzing: deze slaat een waarde op in plaats van een vraag te stellen."
       },
-      "example": "same = 4 == 4",
+      "example": "",
+      "sections": [
+        {
+          "heading": {
+            "en": "Calculate, then compare",
+            "nl": "Reken uit en vergelijk"
+          },
+          "body": {
+            "en": "Python evaluates arithmetic on either side before comparing the results. Read the two equals signs as ‘is equal to’. You can assign the comparison result to a descriptive name.",
+            "nl": "Python rekent eerst de bewerkingen aan beide kanten uit en vergelijkt daarna de resultaten. Lees de twee gelijktekens als ‘is gelijk aan’. Je kunt het vergelijkingsresultaat aan een duidelijke naam toewijzen."
+          },
+          "code": "same_amount = 3 * 4 == 6 + 6\nprint(same_amount)\nprint(8 != 10)",
+          "output": "True\nTrue"
+        },
+        {
+          "heading": {
+            "en": "A matching appearance is not enough",
+            "nl": "Hetzelfde uiterlijk is niet genoeg"
+          },
+          "body": {
+            "en": "A printed string of digits may look like a number, but these values have different types. `\"12\" == 12` is false. That matters when data comes from labels, forms or `input()`. Compare the numeric values or deliberately convert the text; do not assume Python will do that for equality.",
+            "nl": "Een afgedrukte string met cijfers kan op een getal lijken, maar deze waarden hebben verschillende types. `\"12\" == 12` is onwaar. Dat is belangrijk bij gegevens uit labels, formulieren of `input()`. Vergelijk numerieke waarden of zet tekst bewust om; neem niet aan dat Python dit bij gelijkheid vanzelf doet."
+          },
+          "code": "print(\"12\" == 12)\nprint(int(\"12\") == 12)",
+          "output": "False\nTrue"
+        }
+      ],
       "files": {
-        "main.py": "expected = 17\nreceived = 12\n"
+        "main.py": "# Compare an incoming parcel with its manifest.\nexpected = 12\nreceived = 9\nlabel_text = \"12\"\n\n# Replace these guesses with comparisons.\nmatches = True\ndiffers = False\nlabel_matches_number = True\n\nprint(matches)\nprint(differs)\nprint(label_matches_number)\n"
       },
       "solution": {
-        "main.py": "expected = 17\nreceived = 12\nmatches = expected == received\ndiffers = expected != received\nprint(matches, differs)\n"
+        "main.py": "expected = 12\nreceived = 9\nlabel_text = \"12\"\nmatches = expected == received\ndiffers = expected != received\nlabel_matches_number = label_text == expected\nprint(matches)\nprint(differs)\nprint(label_matches_number)\n"
       },
       "checkpoints": [
         {
-          "id": "python-control-flow-03-step-1",
+          "id": "python-control-flow-03-v2-step-1",
           "task": {
-            "en": "With expected = 17 and received = 12, set matches using == and differs using !=.",
-            "nl": "Gebruik expected = 17 en received = 12. Bepaal matches met == en differs met !=."
+            "en": "Replace the guess in `matches` with `expected == received`. Predict its output before running.",
+            "nl": "Vervang de gok in `matches` door `expected == received`. Voorspel de output voordat je uitvoert."
           },
-          "check": "matches is False and differs is True",
+          "check": "matches is False",
+          "feedback": {
+            "en": "Compare the two input variables so matches also works when the counts are equal.",
+            "nl": "Vergelijk de twee invoervariabelen zodat matches ook werkt wanneer de aantallen gelijk zijn."
+          },
+          "cases": [
+            {
+              "inputs": {
+                "expected": 12,
+                "received": 12
+              },
+              "check": "matches is True"
+            },
+            {
+              "inputs": {
+                "expected": 8,
+                "received": 3
+              },
+              "check": "matches is False"
+            }
+          ],
           "hint": {
-            "en": "Start with expected = 17. Then compare the values with the task.",
-            "nl": "Begin met expected = 17. Vergelijk de waarden daarna met de opdracht."
+            "en": "One = assigns the result; two == compare the two counts on the right.",
+            "nl": "Eén = wijst het resultaat toe; twee == vergelijken de twee aantallen rechts."
+          }
+        },
+        {
+          "id": "python-control-flow-03-v2-step-2",
+          "task": {
+            "en": "Calculate `differs` using `!=` on the same two counts. It should give the opposite result to matches.",
+            "nl": "Bereken `differs` met `!=` op dezelfde twee aantallen. De uitkomst moet het tegenovergestelde zijn van matches."
+          },
+          "check": "differs is True",
+          "feedback": {
+            "en": "Use inequality on the input counts; differing counts should be True, equal counts False.",
+            "nl": "Gebruik ongelijkheid op de invoeraantallen; verschillende aantallen geven True en gelijke False."
+          },
+          "cases": [
+            {
+              "inputs": {
+                "expected": 12,
+                "received": 12
+              },
+              "check": "differs is False"
+            },
+            {
+              "inputs": {
+                "expected": 8,
+                "received": 3
+              },
+              "check": "differs is True"
+            }
+          ],
+          "hint": {
+            "en": "Use expected != received rather than a fixed True value.",
+            "nl": "Gebruik expected != received in plaats van een vaste waarde True."
+          }
+        },
+        {
+          "id": "python-control-flow-03-v2-step-3",
+          "task": {
+            "en": "Set `label_matches_number` by comparing `label_text` with `expected`, without converting either value. Run and explain why the last line is False even though both values look like 12.",
+            "nl": "Bepaal `label_matches_number` door `label_text` met `expected` te vergelijken, zonder een waarde om te zetten. Voer uit en leg uit waarom de laatste regel False is terwijl beide waarden op 12 lijken."
+          },
+          "check": "label_matches_number is False and _stdout.splitlines() == ['False','True','False']",
+          "feedback": {
+            "en": "Keep label_text as text, compare it directly, and print the three results in order.",
+            "nl": "Laat label_text tekst blijven, vergelijk direct en druk de drie resultaten in volgorde af."
+          },
+          "cases": [
+            {
+              "inputs": {
+                "label_text": 12
+              },
+              "check": "label_matches_number is True"
+            }
+          ],
+          "hint": {
+            "en": "The label is text; the expected count is an integer. Equality does not convert between them.",
+            "nl": "Het label is tekst; het verwachte aantal is een integer. Gelijkheid zet deze types niet om."
           }
         }
       ],
       "solutionNote": {
-        "en": "== compares values for equality; != checks that they differ. These comparisons return Booleans. A single = assigns a value and cannot replace == in a condition.\n\nTrace the solution one line at a time. Try a different input to see which parts change.",
-        "nl": "== vergelijkt of waarden gelijk zijn; != controleert of ze verschillen. Deze vergelijkingen geven Booleans terug. Een enkele = wijst een waarde toe en vervangt == niet in een voorwaarde.\n\nVolg de oplossing regel voor regel. Probeer een andere invoer en bekijk welke onderdelen veranderen."
+        "en": "The first two comparisons describe whether the manifest agrees with the delivery. The final comparison deliberately retains the type mismatch. The expressions respond to changed inputs instead of storing a guessed answer.",
+        "nl": "De eerste twee vergelijkingen beschrijven of de paklijst overeenkomt met de levering. De laatste vergelijking behoudt bewust het typeverschil. De expressies reageren op gewijzigde invoer in plaats van een gegokt antwoord op te slaan."
       },
       "sourcePosition": 3,
       "sourceUrl": "https://www.codecademy.com/courses/learn-python-3/lessons/python-control-flow/exercises/relational-operators-i",
@@ -2720,38 +2914,114 @@
       "group": "python-control-flow",
       "title": {
         "en": "Boolean variables",
-        "nl": "Boolean-variables"
+        "nl": "Booleans herkennen en bewaren"
       },
       "kind": "coding",
       "optional": false,
       "explanation": {
-        "en": "True is a Boolean, while \"True\" is a string. Types matter even when values look similar when printed. Store the comparison itself instead of a quoted description of its result.",
-        "nl": "True is een Boolean, terwijl \"True\" een string is. Het type is belangrijk, ook als waarden op de output lijken. Sla de vergelijking zelf op in plaats van een tekstbeschrijving van het resultaat."
+        "en": "Boolean values have their own type, `bool`. The strings `\"True\"` and `\"False\"` are still text. They can look identical to Booleans when printed, so use `type()` when the appearance of a value is misleading.",
+        "nl": "Boolean-waarden hebben een eigen type: `bool`. De strings `\"True\"` en `\"False\"` blijven tekst. Afgedrukt kunnen ze er hetzelfde uitzien als Booleans. Gebruik daarom `type()` wanneer het uiterlijk van een waarde misleidend is."
       },
       "example": "",
+      "sections": [
+        {
+          "heading": {
+            "en": "Inspect the type",
+            "nl": "Onderzoek het type"
+          },
+          "body": {
+            "en": "`type(value)` reports what kind of value you have. You can pass that result to print. Boolean literals need capital letters and no quotes; lowercase true would be treated as a variable name.",
+            "nl": "`type(waarde)` vertelt welk soort waarde je hebt. Je kunt het resultaat aan print geven. Boolean literals hebben een hoofdletter en geen aanhalingstekens; true met een kleine letter zou als variabelenaam worden gelezen."
+          },
+          "code": "text = \"False\"\nflag = False\nprint(type(text))\nprint(type(flag))",
+          "output": "<class 'str'>\n<class 'bool'>"
+        },
+        {
+          "heading": {
+            "en": "Store a question's answer",
+            "nl": "Bewaar het antwoord op een vraag"
+          },
+          "body": {
+            "en": "A comparison also produces a Boolean. Assigning it stores that answer at the moment the comparison runs. If the inputs change later, recalculate the comparison when you need an updated answer—just like the arithmetic totals in the previous chapter.",
+            "nl": "Ook een vergelijking levert een Boolean op. Door deze toe te wijzen sla je het antwoord op het moment van vergelijken op. Veranderen de invoerwaarden later, bereken de vergelijking dan opnieuw voor een bijgewerkt antwoord, net als bij de rekentotalen uit het vorige hoofdstuk."
+          },
+          "code": "remaining = 2\nhas_stock = remaining != 0\nprint(has_stock)",
+          "output": "True"
+        }
+      ],
       "files": {
-        "main.py": "# Write your code below.\n"
+        "main.py": "# The first two values look alike when printed. Inspect their types.\nstatus_text = \"True\"\nenabled = \"True\"\nremaining = 2\n\nprint(status_text)\nprint(enabled)\n\n# Calculate and print has_tickets below.\n"
       },
       "solution": {
-        "main.py": "enabled = True\nstatus_text = \"True\"\nprint(type(enabled), type(status_text))\n"
+        "main.py": "status_text = \"True\"\nenabled = True\nremaining = 2\nprint(type(status_text))\nprint(type(enabled))\nhas_tickets = remaining != 0\nprint(has_tickets)\n"
       },
       "checkpoints": [
         {
-          "id": "python-control-flow-04-step-1",
+          "id": "python-control-flow-04-v2-step-1",
           "task": {
-            "en": "Set enabled to Boolean True and status_text to string True.",
-            "nl": "Zet enabled op de Boolean True en status_text op de string True."
+            "en": "Keep `status_text` unchanged. Replace its print call with `print(type(status_text))` to inspect what it actually contains.",
+            "nl": "Laat `status_text` ongewijzigd. Vervang de print-aanroep door `print(type(status_text))` om te onderzoeken wat erin zit."
           },
-          "check": "enabled is True and status_text == 'True' and type(status_text) is str",
+          "check": "status_text == 'True' and type(status_text) is str and _stdout.splitlines()[:1] == [\"<class 'str'>\"]",
+          "feedback": {
+            "en": "The first output should identify str; keep the original text value.",
+            "nl": "De eerste output moet str aangeven; behoud de oorspronkelijke tekstwaarde."
+          },
           "hint": {
-            "en": "Start with enabled = True. Then compare the values with the task.",
-            "nl": "Begin met enabled = True. Vergelijk de waarden daarna met de opdracht."
+            "en": "Put type(status_text) inside print's parentheses.",
+            "nl": "Zet type(status_text) binnen de haakjes van print."
+          }
+        },
+        {
+          "id": "python-control-flow-04-v2-step-2",
+          "task": {
+            "en": "Fix `enabled` so it contains the Boolean True, then print its type on the second line. Compare the two types.",
+            "nl": "Herstel `enabled` zodat deze de Boolean True bevat en druk het type op de tweede regel af. Vergelijk de twee types."
+          },
+          "check": "enabled is True and _stdout.splitlines()[:2] == [\"<class 'str'>\", \"<class 'bool'>\"]",
+          "feedback": {
+            "en": "enabled must be a Boolean; the second output should identify bool.",
+            "nl": "enabled moet een Boolean zijn; de tweede output moet bool aangeven."
+          },
+          "hint": {
+            "en": "Remove the quotes around True, but keep its capital T.",
+            "nl": "Verwijder de aanhalingstekens rond True, maar behoud de hoofdletter T."
+          }
+        },
+        {
+          "id": "python-control-flow-04-v2-step-3",
+          "task": {
+            "en": "Create `has_tickets` from the comparison `remaining != 0` and print it as the third line. Try remaining = 0 afterward to observe the change.",
+            "nl": "Maak `has_tickets` met de vergelijking `remaining != 0` en druk deze als derde regel af. Probeer daarna remaining = 0 om het verschil te zien."
+          },
+          "check": "has_tickets is True and _stdout.splitlines() == [\"<class 'str'>\", \"<class 'bool'>\", 'True']",
+          "feedback": {
+            "en": "Calculate has_tickets from remaining; it must become False when no tickets remain.",
+            "nl": "Bereken has_tickets uit remaining; deze moet False worden als er geen kaartjes over zijn."
+          },
+          "cases": [
+            {
+              "inputs": {
+                "remaining": 0
+              },
+              "check": "has_tickets is False"
+            },
+            {
+              "inputs": {
+                "remaining": 5
+              },
+              "check": "has_tickets is True"
+            }
+          ],
+          "hint": {
+            "en": "Assign the comparison itself instead of typing the word True as a string.",
+            "nl": "Wijs de vergelijking zelf toe in plaats van het woord True als string te typen."
           }
         }
       ],
       "solutionNote": {
-        "en": "True is a Boolean, while \"True\" is a string. Types matter even when values look similar when printed. Store the comparison itself instead of a quoted description of its result.\n\nTrace the solution one line at a time. Try a different input to see which parts change.",
-        "nl": "True is een Boolean, terwijl \"True\" een string is. Het type is belangrijk, ook als waarden op de output lijken. Sla de vergelijking zelf op in plaats van een tekstbeschrijving van het resultaat.\n\nVolg de oplossing regel voor regel. Probeer een andere invoer en bekijk welke onderdelen veranderen."
+        "en": "Quotes explain why status_text is str. Removing them makes enabled a bool. The stock comparison computes another bool from live data, rather than from the appearance of text.",
+        "nl": "De aanhalingstekens verklaren waarom status_text een str is. Door ze weg te halen wordt enabled een bool. De voorraadvergelijking berekent nog een bool uit gegevens, in plaats van uit het uiterlijk van tekst."
       },
       "sourcePosition": 4,
       "sourceUrl": "https://www.codecademy.com/courses/learn-python-3/lessons/python-control-flow/exercises/boolean-variables",
@@ -2763,38 +3033,138 @@
       "group": "python-control-flow",
       "title": {
         "en": "Conditional blocks",
-        "nl": "If statements"
+        "nl": "Voorwaardelijke blokken bouwen"
       },
       "kind": "coding",
       "optional": false,
       "explanation": {
-        "en": "An if statement executes its indented block when the condition is true. End the condition with a colon. Consistent indentation tells Python which statements belong to the block.",
-        "nl": "Een if statement voert het ingesprongen blok uit als de voorwaarde waar is. Sluit de voorwaarde af met een dubbele punt. Consistente inspringing vertelt Python welke regels bij het blok horen."
+        "en": "An `if` statement connects a Boolean condition to an action. If the condition is true, Python executes the indented block. If it is false, Python skips that block and continues below it. The colon and indentation are part of Python's syntax.",
+        "nl": "Een `if`-instructie verbindt een Boolean-voorwaarde met een actie. Is de voorwaarde waar, dan voert Python het ingesprongen blok uit. Is deze onwaar, dan slaat Python het blok over en gaat daaronder verder. De dubbele punt en inspringing horen bij de Python-syntax."
       },
-      "example": "if speed > 10:\n    print(\"Slow down\")",
+      "example": "",
+      "sections": [
+        {
+          "heading": {
+            "en": "Which lines belong to the condition?",
+            "nl": "Welke regels horen bij de voorwaarde?"
+          },
+          "body": {
+            "en": "The colon introduces the block. Use a consistent indentation, normally four spaces. Move back to the left edge to leave the block. Predict what happens if mode changes to another value.",
+            "nl": "De dubbele punt begint het blok. Gebruik een vaste inspringing, meestal vier spaties. Ga terug naar de linkerrand om het blok te verlaten. Voorspel wat er gebeurt als mode een andere waarde krijgt."
+          },
+          "code": "mode = \"preview\"\nif mode == \"preview\":\n    print(\"No parcel is sent\")\nprint(\"Ready for another check\")",
+          "output": "No parcel is sent\nReady for another check",
+          "takeaway": {
+            "en": "Only the first message depends on the mode. A missing colon or an assignment where a comparison is needed causes a syntax error before the file runs.",
+            "nl": "Alleen het eerste bericht hangt van de modus af. Een ontbrekende dubbele punt of een toewijzing waar een vergelijking nodig is, veroorzaakt een syntaxfout voordat het bestand draait."
+          }
+        },
+        {
+          "heading": {
+            "en": "Independent decisions",
+            "nl": "Onafhankelijke beslissingen"
+          },
+          "body": {
+            "en": "Two separate if statements each get their own test. One, both or neither block may run, depending on the conditions. In this simulator the two mode names cannot both match, but later examples will have overlapping conditions. Keep the provided mode assignment at the top so you can test different routes.",
+            "nl": "Twee losse if-instructies krijgen elk een eigen test. Eén, beide of geen van de blokken kan draaien, afhankelijk van de voorwaarden. In deze simulator kunnen de twee modusnamen niet tegelijk passen, maar later zie je overlappende voorwaarden. Laat de gegeven modustoewijzing bovenaan staan zodat je verschillende routes kunt testen."
+          }
+        }
+      ],
       "files": {
-        "main.py": "temperature = 34\n"
+        "main.py": "# A dispatch simulator with one broken condition.\nmode = \"test\"\n\nif mode = \"test\":\n    print(\"Test run\")\n\n# Add a separate condition for live mode below.\n\n# Add a final message outside both conditions.\n"
       },
       "solution": {
-        "main.py": "temperature = 34\nif temperature > 30:\n    print(\"Heat warning\")\n"
+        "main.py": "mode = \"test\"\nif mode == \"test\":\n    print(\"Test run\")\nif mode == \"live\":\n    print(\"Live run\")\nprint(\"Check complete\")\n"
       },
       "checkpoints": [
         {
-          "id": "python-control-flow-05-step-1",
+          "id": "python-control-flow-05-v2-step-1",
           "task": {
-            "en": "If temperature is above 30, print Heat warning. Keep temperature at 34.",
-            "nl": "Druk Heat warning af als temperature hoger is dan 30. Houd temperature op 34."
+            "en": "Run the starter and inspect the SyntaxError. Repair the condition so `Test run` appears for mode = test, but does not appear for mode = live. Keep the input assignment.",
+            "nl": "Voer de startcode uit en bekijk de SyntaxError. Herstel de voorwaarde zodat `Test run` verschijnt bij mode = test, maar niet bij mode = live. Behoud de invoertoewijzing."
           },
-          "check": "temperature == 34 and _stdout.strip() == 'Heat warning' and any(isinstance(n,_ast.If) for n in _ast.walk(_ast.parse(_source)))",
+          "check": "mode == 'test' and _stdout.splitlines()[:1] == ['Test run']",
+          "feedback": {
+            "en": "Use a real comparison so Test run depends on the mode, rather than printing unconditionally.",
+            "nl": "Gebruik een echte vergelijking zodat Test run van de modus afhangt en niet altijd wordt afgedrukt."
+          },
+          "cases": [
+            {
+              "inputs": {
+                "mode": "live"
+              },
+              "check": "'Test run' not in _stdout.splitlines()"
+            }
+          ],
           "hint": {
-            "en": "Start with temperature = 34. Then compare the values with the task.",
-            "nl": "Begin met temperature = 34. Vergelijk de waarden daarna met de opdracht."
+            "en": "A single = assigns; use == to ask whether mode equals the string test.",
+            "nl": "Eén = wijst toe; gebruik == om te vragen of mode gelijk is aan de string test."
+          }
+        },
+        {
+          "id": "python-control-flow-05-v2-step-2",
+          "task": {
+            "en": "Add a second, separate `if` statement that prints `Live run` only when mode is live. Test both modes, then leave mode set to test.",
+            "nl": "Voeg een tweede, losse `if`-instructie toe die alleen bij mode = live `Live run` afdrukt. Test beide modi en laat mode daarna op test staan."
+          },
+          "check": "sum(isinstance(n, _ast.If) for n in _ast.parse(_source).body) >= 2",
+          "feedback": {
+            "en": "Keep two independent if blocks. The live input must print Live run, without Test run.",
+            "nl": "Behoud twee onafhankelijke if-blokken. De invoer live moet Live run afdrukken, zonder Test run."
+          },
+          "cases": [
+            {
+              "inputs": {
+                "mode": "live"
+              },
+              "check": "_stdout.splitlines()[:1] == ['Live run'] and 'Test run' not in _stdout"
+            },
+            {
+              "inputs": {
+                "mode": "other"
+              },
+              "check": "'Live run' not in _stdout and 'Test run' not in _stdout"
+            }
+          ],
+          "hint": {
+            "en": "Write another if at the left edge and indent its print call below it.",
+            "nl": "Schrijf nog een if aan de linkerrand en spring de print-aanroep eronder in."
+          }
+        },
+        {
+          "id": "python-control-flow-05-v2-step-3",
+          "task": {
+            "en": "After both conditions, print `Check complete` without indentation. It must appear for every mode, including an unknown one.",
+            "nl": "Druk na beide voorwaarden `Check complete` af zonder inspringing. Dit moet bij elke modus verschijnen, ook bij een onbekende."
+          },
+          "check": "_stdout.splitlines() == ['Test run','Check complete']",
+          "feedback": {
+            "en": "The final message belongs outside both conditions and must appear exactly once.",
+            "nl": "Het laatste bericht hoort buiten beide voorwaarden en moet precies één keer verschijnen."
+          },
+          "cases": [
+            {
+              "inputs": {
+                "mode": "live"
+              },
+              "check": "_stdout.splitlines() == ['Live run','Check complete']"
+            },
+            {
+              "inputs": {
+                "mode": "other"
+              },
+              "check": "_stdout.splitlines() == ['Check complete']"
+            }
+          ],
+          "hint": {
+            "en": "Place the final print at the same indentation level as if, not inside either block.",
+            "nl": "Zet de laatste print op hetzelfde inspringniveau als if, niet binnen een van de blokken."
           }
         }
       ],
       "solutionNote": {
-        "en": "An if statement executes its indented block when the condition is true. End the condition with a colon. Consistent indentation tells Python which statements belong to the block.\n\nTrace the solution one line at a time. Try a different input to see which parts change.",
-        "nl": "Een if statement voert het ingesprongen blok uit als de voorwaarde waar is. Sluit de voorwaarde af met een dubbele punt. Consistente inspringing vertelt Python welke regels bij het blok horen.\n\nVolg de oplossing regel voor regel. Probeer een andere invoer en bekijk welke onderdelen veranderen."
+        "en": "Each if compares mode with a different string. Only its indented print depends on that comparison. The final print is outside both blocks, so it provides a reliable end-of-check message even when neither condition matches.",
+        "nl": "Elke if vergelijkt mode met een andere string. Alleen de ingesprongen print hangt van die vergelijking af. De laatste print staat buiten beide blokken en geeft dus altijd een eindbericht, ook als geen van de voorwaarden past."
       },
       "sourcePosition": 5,
       "sourceUrl": "https://www.codecademy.com/courses/learn-python-3/lessons/python-control-flow/exercises/if-statement",
@@ -2806,38 +3176,146 @@
       "group": "python-control-flow",
       "title": {
         "en": "Ordered comparisons",
-        "nl": "Grenswaarden vergelijken"
+        "nl": "Grenswaarden precies vergelijken"
       },
       "kind": "coding",
       "optional": false,
       "explanation": {
-        "en": "< and > exclude the boundary; <= and >= include it. Choose the comparison that matches the wording of the requirement. At most includes equality; less than does not.",
-        "nl": "< en > sluiten de grenswaarde uit; <= en >= nemen deze mee. Kies de vergelijking die bij de opdracht past. Hoogstens omvat gelijkheid; kleiner dan niet."
+        "en": "‘Below the limit’ and ‘within the limit’ sound similar, but disagree exactly at the boundary. `<` and `>` exclude equality. `<=` and `>=` include it. Choosing the correct operator is part of translating a requirement into code.",
+        "nl": "‘Onder de limiet’ en ‘binnen de limiet’ klinken bijna hetzelfde, maar verschillen precies op de grens. `<` en `>` sluiten gelijkheid uit. `<=` en `>=` nemen gelijkheid mee. De juiste operator kiezen hoort bij het vertalen van een eis naar code."
       },
       "example": "",
+      "sections": [
+        {
+          "heading": {
+            "en": "Test the exact boundary",
+            "nl": "Test precies op de grens"
+          },
+          "body": {
+            "en": "A box may contain at most 10 items. Nine fits, ten fits, eleven does not. At most therefore uses <=. For at least, the matching operator is >=. Write the comparison in the same direction you read the requirement.",
+            "nl": "Een doos mag maximaal 10 items bevatten. Negen past, tien past en elf niet. Maximaal gebruikt dus <=. Bij minstens hoort >=. Schrijf de vergelijking in dezelfde richting als waarin je de eis leest."
+          },
+          "code": "items = 10\nprint(items < 10)\nprint(items <= 10)\nprint(items >= 10)\nprint(items > 10)",
+          "output": "False\nTrue\nTrue\nFalse"
+        },
+        {
+          "heading": {
+            "en": "Use the result in a decision",
+            "nl": "Gebruik het resultaat in een beslissing"
+          },
+          "body": {
+            "en": "The load monitor below has a limit of 80 units. First compute two different comparisons so you can see their difference. Then use the inclusive comparison to print an acceptance message. The checks also try values below and above the limit: hard-coding today's answer would miss those cases.",
+            "nl": "De belastingsmeter hieronder heeft een limiet van 80 eenheden. Bereken eerst twee verschillende vergelijkingen zodat je het verschil ziet. Gebruik daarna de inclusieve vergelijking voor een acceptatiebericht. De controles proberen ook waarden onder en boven de limiet: een vast antwoord voor vandaag mist die gevallen."
+          }
+        }
+      ],
       "files": {
-        "main.py": "# Write your code below.\n"
+        "main.py": "load = 80\nlimit = 80\n\n# Repair both comparisons, then add an acceptance condition.\nwithin_limit = False\nbelow_limit = True\nprint(within_limit)\nprint(below_limit)\n"
       },
       "solution": {
-        "main.py": "load = 80\nlimit = 80\nwithin_limit = load <= limit\nbelow_limit = load < limit\nprint(within_limit, below_limit)\n"
+        "main.py": "load = 80\nlimit = 80\nwithin_limit = load <= limit\nbelow_limit = load < limit\nprint(within_limit)\nprint(below_limit)\nif within_limit:\n    print(\"Accepted\")\n"
       },
       "checkpoints": [
         {
-          "id": "python-control-flow-06-step-1",
+          "id": "python-control-flow-06-v2-step-1",
           "task": {
-            "en": "For load = 80 and limit = 80, set within_limit using <= and below_limit using <.",
-            "nl": "Gebruik load = 80 en limit = 80. Bepaal within_limit met <= en below_limit met <."
+            "en": "Set `within_limit` by checking whether load is at most limit. Keep load and limit at 80 for the normal run.",
+            "nl": "Bepaal `within_limit` door te controleren of load maximaal limit is. Laat load en limit voor de gewone uitvoering op 80 staan."
           },
-          "check": "within_limit is True and below_limit is False",
+          "check": "within_limit is True",
+          "feedback": {
+            "en": "Use an inclusive comparison that responds to both load and limit.",
+            "nl": "Gebruik een inclusieve vergelijking die op zowel load als limit reageert."
+          },
+          "cases": [
+            {
+              "inputs": {
+                "load": 79
+              },
+              "check": "within_limit is True"
+            },
+            {
+              "inputs": {
+                "load": 81
+              },
+              "check": "within_limit is False"
+            },
+            {
+              "inputs": {
+                "limit": 70
+              },
+              "check": "within_limit is False"
+            }
+          ],
           "hint": {
-            "en": "Start with load = 80. Then compare the values with the task.",
-            "nl": "Begin met load = 80. Vergelijk de waarden daarna met de opdracht."
+            "en": "At most includes the case where both values are equal.",
+            "nl": "Maximaal omvat ook het geval waarin beide waarden gelijk zijn."
+          }
+        },
+        {
+          "id": "python-control-flow-06-v2-step-2",
+          "task": {
+            "en": "Set `below_limit` by checking whether load is strictly less than limit. The first two output lines should now be True and False.",
+            "nl": "Bepaal `below_limit` door te controleren of load strikt kleiner is dan limit. De eerste twee outputregels moeten nu True en False zijn."
+          },
+          "check": "below_limit is False and _stdout.splitlines()[:2] == ['True','False']",
+          "feedback": {
+            "en": "below_limit must be False at equality and True for a lower load.",
+            "nl": "below_limit moet False zijn bij gelijkheid en True bij een lagere belasting."
+          },
+          "cases": [
+            {
+              "inputs": {
+                "load": 79
+              },
+              "check": "below_limit is True"
+            },
+            {
+              "inputs": {
+                "load": 81
+              },
+              "check": "below_limit is False"
+            }
+          ],
+          "hint": {
+            "en": "Strictly below excludes equality, so do not add an equals sign.",
+            "nl": "Strikt onder sluit gelijkheid uit, dus voeg geen gelijkteken toe."
+          }
+        },
+        {
+          "id": "python-control-flow-06-v2-step-3",
+          "task": {
+            "en": "Add an if block that prints `Accepted` only when `within_limit` is true. Keep the two comparison prints before it.",
+            "nl": "Voeg een if-blok toe dat alleen `Accepted` afdrukt wanneer `within_limit` waar is. Laat de twee vergelijkingsprints ervoor staan."
+          },
+          "check": "_stdout.splitlines() == ['True','False','Accepted']",
+          "feedback": {
+            "en": "Accept both 79 and 80, but do not print Accepted for 81.",
+            "nl": "Accepteer zowel 79 als 80, maar druk Accepted niet af bij 81."
+          },
+          "cases": [
+            {
+              "inputs": {
+                "load": 79
+              },
+              "check": "_stdout.splitlines() == ['True','True','Accepted']"
+            },
+            {
+              "inputs": {
+                "load": 81
+              },
+              "check": "_stdout.splitlines() == ['False','False']"
+            }
+          ],
+          "hint": {
+            "en": "A variable that already contains a Boolean can be used directly after if.",
+            "nl": "Een variabele die al een Boolean bevat, kun je direct na if gebruiken."
           }
         }
       ],
       "solutionNote": {
-        "en": "< and > exclude the boundary; <= and >= include it. Choose the comparison that matches the wording of the requirement. At most includes equality; less than does not.\n\nTrace the solution one line at a time. Try a different input to see which parts change.",
-        "nl": "< en > sluiten de grenswaarde uit; <= en >= nemen deze mee. Kies de vergelijking die bij de opdracht past. Hoogstens omvat gelijkheid; kleiner dan niet.\n\nVolg de oplossing regel voor regel. Probeer een andere invoer en bekijk welke onderdelen veranderen."
+        "en": "At equality, <= is true and < is false. Reusing within_limit in the if block keeps the policy in one comparison. Testing either side of the boundary catches the most common wrong operator.",
+        "nl": "Bij gelijkheid is <= waar en < onwaar. Door within_limit in het if-blok te hergebruiken staat de regel op één plek. Tests aan beide kanten van de grens vinden de meest voorkomende verkeerde operator."
       },
       "sourcePosition": 6,
       "sourceUrl": "https://www.codecademy.com/courses/learn-python-3/lessons/python-control-flow/exercises/relational-operators-ii",
@@ -2849,38 +3327,142 @@
       "group": "python-control-flow",
       "title": {
         "en": "Combining conditions with and",
-        "nl": "Voorwaarden combineren met and"
+        "nl": "Twee voorwaarden met and"
       },
       "kind": "coding",
       "optional": false,
       "explanation": {
-        "en": "and requires both conditions to be true. Python checks the left side first and only evaluates the right side if needed. Parentheses can make combined comparisons easier to read.",
-        "nl": "and vereist dat beide voorwaarden waar zijn. Python controleert eerst links en beoordeelt rechts alleen als dat nodig is. Haakjes kunnen gecombineerde vergelijkingen duidelijker maken."
+        "en": "Sometimes one condition is not enough. A simulated delivery robot may start only when it is charged and its lid is closed. `and` combines the two requirements: the result is true only when both are true.",
+        "nl": "Soms is één voorwaarde niet genoeg. Een gesimuleerde bezorgrobot mag alleen starten als deze opgeladen is én het deksel dicht is. `and` combineert die twee eisen: het resultaat is alleen waar als beide waar zijn."
       },
       "example": "",
+      "sections": [
+        {
+          "heading": {
+            "en": "All combinations matter",
+            "nl": "Alle combinaties tellen mee"
+          },
+          "body": {
+            "en": "Read each side separately, then combine their answers. One false requirement is enough to make the whole and expression false. When working with Boolean inputs, these four combinations cover every possibility.",
+            "nl": "Lees elke kant afzonderlijk en combineer daarna de antwoorden. Eén onware eis maakt de hele and-expressie onwaar. Bij Boolean-invoer dekken deze vier combinaties alle mogelijkheden."
+          },
+          "code": "print(True and True)\nprint(True and False)\nprint(False and True)\nprint(False and False)",
+          "output": "True\nFalse\nFalse\nFalse"
+        },
+        {
+          "heading": {
+            "en": "Fix the policy, then its use",
+            "nl": "Herstel de regel en daarna het gebruik"
+          },
+          "body": {
+            "en": "The supplied program currently looks only at the battery. Correct the computed decision first, then make the action use that decision. Python evaluates and from left to right and skips the right side when the left side is false; it already knows the combined Boolean result cannot be true.",
+            "nl": "Het gegeven programma kijkt nu alleen naar de batterij. Herstel eerst de berekende beslissing en laat de actie daarna die beslissing gebruiken. Python beoordeelt and van links naar rechts en slaat rechts over wanneer links onwaar is: het gecombineerde Boolean-resultaat kan dan niet meer waar zijn."
+          }
+        }
+      ],
       "files": {
-        "main.py": "# Write your code below.\n"
+        "main.py": "# Dispatch simulator: both requirements must hold.\ncharged = True\nlid_closed = False\n\ncan_start = charged\nprint(can_start)\n\nif charged:\n    print(\"Dispatch started\")\n"
       },
       "solution": {
-        "main.py": "charged = True\nlid_closed = False\ncan_start = charged and lid_closed\nprint(can_start)\n"
+        "main.py": "charged = True\nlid_closed = False\ncan_start = charged and lid_closed\nprint(can_start)\nif can_start:\n    print(\"Dispatch started\")\n"
       },
       "checkpoints": [
         {
-          "id": "python-control-flow-07-step-1",
+          "id": "python-control-flow-07-v2-step-1",
           "task": {
-            "en": "Set can_start using charged and lid_closed. Use charged = True and lid_closed = False.",
-            "nl": "Bepaal can_start met charged and lid_closed. Gebruik charged = True en lid_closed = False."
+            "en": "Change `can_start` to combine charged and lid_closed with `and`. With the starter inputs, its printed value must become False.",
+            "nl": "Verander `can_start` zodat charged en lid_closed met `and` worden gecombineerd. Bij de startinvoer moet de afgedrukte waarde False worden."
           },
-          "check": "can_start is False and 'and' in _source",
+          "check": "can_start is False and any(isinstance(n, _ast.And) for n in _ast.walk(_ast.parse(_source)))",
+          "feedback": {
+            "en": "Use and and test all four flag combinations. A battery alone is not enough.",
+            "nl": "Gebruik and en test alle vier combinaties. Alleen een opgeladen batterij is niet genoeg."
+          },
+          "cases": [
+            {
+              "inputs": {
+                "charged": false,
+                "lid_closed": false
+              },
+              "check": "can_start is False"
+            },
+            {
+              "inputs": {
+                "charged": false,
+                "lid_closed": true
+              },
+              "check": "can_start is False"
+            },
+            {
+              "inputs": {
+                "charged": true,
+                "lid_closed": false
+              },
+              "check": "can_start is False"
+            },
+            {
+              "inputs": {
+                "charged": true,
+                "lid_closed": true
+              },
+              "check": "can_start is True"
+            }
+          ],
           "hint": {
-            "en": "Start with charged = True. Then compare the values with the task.",
-            "nl": "Begin met charged = True. Vergelijk de waarden daarna met de opdracht."
+            "en": "Both flags must be True; the open lid currently prevents starting.",
+            "nl": "Beide vlaggen moeten True zijn; het open deksel verhindert nu het starten."
+          }
+        },
+        {
+          "id": "python-control-flow-07-v2-step-2",
+          "task": {
+            "en": "The robot still prints Dispatch started! Change the if condition to use `can_start`. It should print that message only when both requirements are met.",
+            "nl": "De robot drukt nog steeds Dispatch started af! Verander de if-voorwaarde zodat deze `can_start` gebruikt. Het bericht mag alleen verschijnen als aan beide eisen is voldaan."
+          },
+          "check": "_stdout.splitlines() == ['False']",
+          "feedback": {
+            "en": "Make the action follow the combined decision: only the True/True case may start.",
+            "nl": "Laat de actie de gecombineerde beslissing volgen: alleen bij True/True mag deze starten."
+          },
+          "cases": [
+            {
+              "inputs": {
+                "charged": false,
+                "lid_closed": false
+              },
+              "check": "_stdout.splitlines() == ['False']"
+            },
+            {
+              "inputs": {
+                "charged": false,
+                "lid_closed": true
+              },
+              "check": "_stdout.splitlines() == ['False']"
+            },
+            {
+              "inputs": {
+                "charged": true,
+                "lid_closed": false
+              },
+              "check": "_stdout.splitlines() == ['False']"
+            },
+            {
+              "inputs": {
+                "charged": true,
+                "lid_closed": true
+              },
+              "check": "_stdout.splitlines() == ['True','Dispatch started']"
+            }
+          ],
+          "hint": {
+            "en": "The calculation is correct, but the action still reads the old battery-only condition.",
+            "nl": "De berekening klopt, maar de actie leest nog de oude voorwaarde met alleen de batterij."
           }
         }
       ],
       "solutionNote": {
-        "en": "and requires both conditions to be true. Python checks the left side first and only evaluates the right side if needed. Parentheses can make combined comparisons easier to read.\n\nTrace the solution one line at a time. Try a different input to see which parts change.",
-        "nl": "and vereist dat beide voorwaarden waar zijn. Python controleert eerst links en beoordeelt rechts alleen als dat nodig is. Haakjes kunnen gecombineerde vergelijkingen duidelijker maken.\n\nVolg de oplossing regel voor regel. Probeer een andere invoer en bekijk welke onderdelen veranderen."
+        "en": "The first change fixes the policy, but the old if still checks charged. The second change connects the action to can_start. This is why it is useful to test behavior as well as an intermediate variable.",
+        "nl": "De eerste wijziging herstelt de regel, maar de oude if controleert nog charged. De tweede wijziging koppelt de actie aan can_start. Daarom is het nuttig om zowel het gedrag als een tussenvariabele te testen."
       },
       "sourcePosition": 7,
       "sourceUrl": "https://www.codecademy.com/courses/learn-python-3/lessons/python-control-flow/exercises/boolean-operators-and",
@@ -2897,33 +3479,130 @@
       "kind": "coding",
       "optional": false,
       "explanation": {
-        "en": "or is true when at least one condition is true. It is also true when both are true. This is useful when several independent conditions can trigger the same action.",
-        "nl": "or is waar als minstens één voorwaarde waar is. Ook als beide waar zijn, is het resultaat waar. Dit is handig als meerdere voorwaarden dezelfde actie kunnen activeren."
+        "en": "A maintenance reminder may be needed because a service interval has passed or because a warning flag is active. `or` is true when at least one condition is true. Both conditions being true also counts: Python's or does not mean ‘exactly one’.",
+        "nl": "Een onderhoudsmelding kan nodig zijn omdat de onderhoudsinterval is verstreken of omdat een waarschuwing actief is. `or` is waar zodra minstens één voorwaarde waar is. Beide voorwaarden tegelijk waar telt ook: or betekent in Python niet ‘precies één’."
       },
       "example": "",
+      "sections": [
+        {
+          "heading": {
+            "en": "One reason is enough",
+            "nl": "Eén reden is voldoende"
+          },
+          "body": {
+            "en": "Only the False/False combination gives False. Compare this with and: and requires every requirement, while or accepts either reason. Python can skip evaluating the right side of or once the left side is true.",
+            "nl": "Alleen de combinatie False/False geeft False. Vergelijk dit met and: and vereist alle voorwaarden, terwijl or elke afzonderlijke reden accepteert. Python kan de rechterkant van or overslaan zodra links waar is."
+          },
+          "code": "print(False or False)\nprint(True or False)\nprint(False or True)\nprint(True or True)",
+          "output": "False\nTrue\nTrue\nTrue"
+        },
+        {
+          "heading": {
+            "en": "Combine comparisons with flags",
+            "nl": "Combineer vergelijkingen met vlaggen"
+          },
+          "body": {
+            "en": "Each side of or can be a comparison or an existing Boolean. In this task, ‘more than 100 hours’ is strict: exactly 100 does not trigger the time rule. A warning must still trigger the reminder at any hour count. Keep the two input assignments so the checks can try each situation.",
+            "nl": "Elke kant van or kan een vergelijking of een bestaande Boolean zijn. ‘Meer dan 100 uur’ is hier strikt: precies 100 activeert de tijdsregel niet. Een waarschuwing moet de melding bij elk aantal uren activeren. Laat de twee invoertoewijzingen staan zodat de controles elke situatie kunnen proberen."
+          }
+        }
+      ],
       "files": {
-        "main.py": "# Write your code below.\n"
+        "main.py": "hours = 45\nwarning = True\n\n# The current reminder ignores the warning flag.\nmaintenance_needed = hours > 100\nprint(maintenance_needed)\n\nif hours > 100:\n    print(\"Maintenance needed\")\n"
       },
       "solution": {
-        "main.py": "hours = 45\nwarning = True\nmaintenance_needed = hours > 100 or warning\nprint(maintenance_needed)\n"
+        "main.py": "hours = 45\nwarning = True\nmaintenance_needed = hours > 100 or warning\nprint(maintenance_needed)\nif maintenance_needed:\n    print(\"Maintenance needed\")\n"
       },
       "checkpoints": [
         {
-          "id": "python-control-flow-08-step-1",
+          "id": "python-control-flow-08-v2-step-1",
           "task": {
-            "en": "Set maintenance_needed from hours > 100 or warning. Use hours = 45 and warning = True.",
-            "nl": "Bepaal maintenance_needed met hours > 100 or warning. Gebruik hours = 45 en warning = True."
+            "en": "Calculate `maintenance_needed` using `hours > 100 or warning`. The current warning should trigger a True result even though only 45 hours have passed.",
+            "nl": "Bereken `maintenance_needed` met `hours > 100 or warning`. De huidige waarschuwing moet True opleveren, ook al zijn er pas 45 uur verstreken."
           },
-          "check": "maintenance_needed is True and 'or' in _source",
+          "check": "maintenance_needed is True and any(isinstance(n, _ast.Or) for n in _ast.walk(_ast.parse(_source)))",
+          "feedback": {
+            "en": "The rule must accept either trigger, including both together; 100 hours without a warning is not enough.",
+            "nl": "De regel moet elke reden afzonderlijk accepteren, ook beide tegelijk; 100 uur zonder waarschuwing is niet genoeg."
+          },
+          "cases": [
+            {
+              "inputs": {
+                "hours": 100,
+                "warning": false
+              },
+              "check": "maintenance_needed is False"
+            },
+            {
+              "inputs": {
+                "hours": 101,
+                "warning": false
+              },
+              "check": "maintenance_needed is True"
+            },
+            {
+              "inputs": {
+                "hours": 101,
+                "warning": true
+              },
+              "check": "maintenance_needed is True"
+            },
+            {
+              "inputs": {
+                "hours": 20,
+                "warning": false
+              },
+              "check": "maintenance_needed is False"
+            }
+          ],
           "hint": {
-            "en": "Start with hours = 45. Then compare the values with the task.",
-            "nl": "Begin met hours = 45. Vergelijk de waarden daarna met de opdracht."
+            "en": "Keep the comparison on one side of or and the Boolean warning flag on the other.",
+            "nl": "Laat de vergelijking aan één kant van or staan en de Boolean warning aan de andere."
+          }
+        },
+        {
+          "id": "python-control-flow-08-v2-step-2",
+          "task": {
+            "en": "Update the if block so it uses `maintenance_needed`. Print Maintenance needed when the combined rule is true, and no reminder when both triggers are false.",
+            "nl": "Werk het if-blok bij zodat het `maintenance_needed` gebruikt. Druk Maintenance needed af als de gecombineerde regel waar is en geen melding als beide redenen onwaar zijn."
+          },
+          "check": "_stdout.splitlines() == ['True','Maintenance needed']",
+          "feedback": {
+            "en": "The printed reminder must follow either trigger, not just the hours comparison.",
+            "nl": "De afgedrukte melding moet op elke reden reageren, niet alleen op de urenvergelijking."
+          },
+          "cases": [
+            {
+              "inputs": {
+                "hours": 100,
+                "warning": false
+              },
+              "check": "_stdout.splitlines() == ['False']"
+            },
+            {
+              "inputs": {
+                "hours": 101,
+                "warning": false
+              },
+              "check": "_stdout.splitlines() == ['True','Maintenance needed']"
+            },
+            {
+              "inputs": {
+                "hours": 101,
+                "warning": true
+              },
+              "check": "_stdout.splitlines() == ['True','Maintenance needed']"
+            }
+          ],
+          "hint": {
+            "en": "Use the named Boolean as the condition instead of repeating the old hours-only test.",
+            "nl": "Gebruik de benoemde Boolean als voorwaarde in plaats van de oude controle op alleen uren."
           }
         }
       ],
       "solutionNote": {
-        "en": "or is true when at least one condition is true. It is also true when both are true. This is useful when several independent conditions can trigger the same action.\n\nTrace the solution one line at a time. Try a different input to see which parts change.",
-        "nl": "or is waar als minstens één voorwaarde waar is. Ook als beide waar zijn, is het resultaat waar. Dit is handig als meerdere voorwaarden dezelfde actie kunnen activeren.\n\nVolg de oplossing regel voor regel. Probeer een andere invoer en bekijk welke onderdelen veranderen."
+        "en": "or combines an evaluated comparison with the warning flag. Reusing maintenance_needed ensures the display and decision follow the same rule. Exactly 100 is a useful boundary test because the requirement says more than 100.",
+        "nl": "or combineert een berekende vergelijking met de waarschuwing. Door maintenance_needed te hergebruiken volgen de weergave en beslissing dezelfde regel. Precies 100 is een nuttige grenstest, omdat de eis meer dan 100 luidt."
       },
       "sourcePosition": 8,
       "sourceUrl": "https://www.codecademy.com/courses/learn-python-3/lessons/python-control-flow/exercises/boolean-operators-or",
@@ -2935,38 +3614,145 @@
       "group": "python-control-flow",
       "title": {
         "en": "Negating a condition",
-        "nl": "Een voorwaarde ontkennen"
+        "nl": "Een voorwaarde omkeren met not"
       },
       "kind": "coding",
       "optional": false,
       "explanation": {
-        "en": "not reverses a condition’s truth value. It turns True into False and False into True. Prefer a clear positive variable name so the negation remains easy to understand.",
-        "nl": "not keert de waarheidswaarde om. True wordt False en False wordt True. Kies een duidelijke positieve variablenaam, zodat de ontkenning begrijpelijk blijft."
+        "en": "`not` reverses the truth value of a condition. It turns True into False and False into True. This lets you express absence clearly: a bay is empty when it is not occupied. Use parentheses when they make the scope of a negation easier to read.",
+        "nl": "`not` keert de waarheidswaarde van een voorwaarde om. True wordt False en False wordt True. Zo kun je afwezigheid duidelijk uitdrukken: een plek is leeg wanneer deze niet bezet is. Gebruik haakjes wanneer die duidelijker maken waarop de ontkenning werkt."
       },
       "example": "",
+      "sections": [
+        {
+          "heading": {
+            "en": "Negate the whole question",
+            "nl": "Keer de hele vraag om"
+          },
+          "body": {
+            "en": "First evaluate the expression in parentheses, then reverse its answer. Negating a group is different from negating only one part of it.",
+            "nl": "Bereken eerst de expressie tussen haakjes en keer daarna het antwoord om. Een groep ontkennen is iets anders dan slechts één onderdeel ontkennen."
+          },
+          "code": "print(not True)\nprint(not (5 >= 8))\nprint(not (True and False))",
+          "output": "False\nTrue\nTrue"
+        },
+        {
+          "heading": {
+            "en": "Empty and usable are different",
+            "nl": "Leeg en bruikbaar zijn verschillend"
+          },
+          "body": {
+            "en": "A parking bay can be empty but reserved. In this simulator, permission requires both ‘not occupied’ and ‘not reserved’. You will first calculate the empty status, then add two separate messages. An empty, unreserved bay should print both messages; independent if blocks are useful for these overlapping facts.",
+            "nl": "Een parkeerplek kan leeg maar gereserveerd zijn. In deze simulator is toestemming afhankelijk van zowel ‘niet bezet’ als ‘niet gereserveerd’. Je berekent eerst de leegstatus en voegt daarna twee aparte berichten toe. Een lege, ongereserveerde plek moet beide berichten tonen; losse if-blokken zijn handig voor zulke overlappende feiten."
+          }
+        }
+      ],
       "files": {
-        "main.py": "# Write your code below.\n"
+        "main.py": "occupied = False\nreserved = True\n\n# Repair the empty-status calculation.\navailable = occupied\nprint(available)\n\n# Report when the bay is empty.\n\n# Report when parking is allowed.\n"
       },
       "solution": {
-        "main.py": "occupied = False\navailable = not occupied\nprint(available)\n"
+        "main.py": "occupied = False\nreserved = True\navailable = not occupied\nprint(available)\nif not occupied:\n    print(\"Bay is empty\")\nif not occupied and not reserved:\n    print(\"Parking allowed\")\n"
       },
       "checkpoints": [
         {
-          "id": "python-control-flow-09-step-1",
+          "id": "python-control-flow-09-v2-step-1",
           "task": {
-            "en": "Use occupied = False and set available to not occupied.",
-            "nl": "Gebruik occupied = False en zet available op not occupied."
+            "en": "Set `available` to `not occupied` and print it. This variable describes emptiness, not permission to park.",
+            "nl": "Zet `available` op `not occupied` en druk deze af. Deze variabele beschrijft of de plek leeg is, niet of je mag parkeren."
           },
-          "check": "available is True and 'not' in _source",
+          "check": "available is True and any(isinstance(n, _ast.Not) for n in _ast.walk(_ast.parse(_source)))",
+          "feedback": {
+            "en": "available should be True for an empty bay and False for an occupied one.",
+            "nl": "available moet True zijn bij een lege plek en False bij een bezette."
+          },
+          "cases": [
+            {
+              "inputs": {
+                "occupied": true
+              },
+              "check": "available is False"
+            }
+          ],
           "hint": {
-            "en": "Start with occupied = False. Then compare the values with the task.",
-            "nl": "Begin met occupied = False. Vergelijk de waarden daarna met de opdracht."
+            "en": "Reverse the occupied flag; do not change the input to force an answer.",
+            "nl": "Keer de vlag occupied om; verander de invoer niet om een antwoord af te dwingen."
+          }
+        },
+        {
+          "id": "python-control-flow-09-v2-step-2",
+          "task": {
+            "en": "Add an if block using `not occupied` that prints `Bay is empty` when appropriate. Keep the Boolean output first.",
+            "nl": "Voeg een if-blok met `not occupied` toe dat waar nodig `Bay is empty` afdrukt. Laat de Boolean als eerste output staan."
+          },
+          "check": "_stdout.splitlines()[:2] == ['True','Bay is empty']",
+          "feedback": {
+            "en": "The empty-bay message should depend only on occupied.",
+            "nl": "Het bericht over een lege plek moet alleen van occupied afhangen."
+          },
+          "cases": [
+            {
+              "inputs": {
+                "occupied": true,
+                "reserved": false
+              },
+              "check": "'Bay is empty' not in _stdout"
+            }
+          ],
+          "hint": {
+            "en": "An empty bay still deserves the factual message even when reserved is True.",
+            "nl": "Een lege plek krijgt dit feitelijke bericht ook wanneer reserved True is."
+          }
+        },
+        {
+          "id": "python-control-flow-09-v2-step-3",
+          "task": {
+            "en": "Add another if block using `not occupied and not reserved`. Print `Parking allowed` only when both requirements hold. Test reserved = False, then restore the starter inputs.",
+            "nl": "Voeg nog een if-blok toe met `not occupied and not reserved`. Druk alleen `Parking allowed` af als beide eisen kloppen. Test reserved = False en herstel daarna de startinvoer."
+          },
+          "check": "_stdout.splitlines() == ['True','Bay is empty'] and any(isinstance(n, _ast.And) for n in _ast.walk(_ast.parse(_source)))",
+          "feedback": {
+            "en": "Only an empty, unreserved bay may print Parking allowed. An empty reserved bay must not.",
+            "nl": "Alleen een lege, ongereserveerde plek mag Parking allowed tonen. Een lege gereserveerde plek niet."
+          },
+          "cases": [
+            {
+              "inputs": {
+                "occupied": false,
+                "reserved": false
+              },
+              "check": "_stdout.splitlines() == ['True','Bay is empty','Parking allowed']"
+            },
+            {
+              "inputs": {
+                "occupied": false,
+                "reserved": true
+              },
+              "check": "_stdout.splitlines() == ['True','Bay is empty']"
+            },
+            {
+              "inputs": {
+                "occupied": true,
+                "reserved": false
+              },
+              "check": "_stdout.splitlines() == ['False']"
+            },
+            {
+              "inputs": {
+                "occupied": true,
+                "reserved": true
+              },
+              "check": "_stdout.splitlines() == ['False']"
+            }
+          ],
+          "hint": {
+            "en": "Negate each flag separately, then combine them with and.",
+            "nl": "Ontken elke vlag afzonderlijk en combineer ze daarna met and."
           }
         }
       ],
       "solutionNote": {
-        "en": "not reverses a condition’s truth value. It turns True into False and False into True. Prefer a clear positive variable name so the negation remains easy to understand.\n\nTrace the solution one line at a time. Try a different input to see which parts change.",
-        "nl": "not keert de waarheidswaarde om. True wordt False en False wordt True. Kies een duidelijke positieve variablenaam, zodat de ontkenning begrijpelijk blijft.\n\nVolg de oplossing regel voor regel. Probeer een andere invoer en bekijk welke onderdelen veranderen."
+        "en": "The first decision reports one fact: emptiness. The second combines two negated facts to determine permission. With both flags False, both independent blocks run, so two descriptive messages appear.",
+        "nl": "De eerste beslissing meldt één feit: of de plek leeg is. De tweede combineert twee ontkende feiten om toestemming te bepalen. Bij beide vlaggen False draaien beide losse blokken en verschijnen twee beschrijvende berichten."
       },
       "sourcePosition": 9,
       "sourceUrl": "https://www.codecademy.com/courses/learn-python-3/lessons/python-control-flow/exercises/boolean-operators-not",
@@ -2978,38 +3764,104 @@
       "group": "python-control-flow",
       "title": {
         "en": "Fallback branches",
-        "nl": "Een else-blok"
+        "nl": "Een alternatief met else"
       },
       "kind": "coding",
       "optional": false,
       "explanation": {
-        "en": "An else block runs when the preceding if condition is false. One of the two blocks runs, never both. else has a colon but no condition of its own.",
-        "nl": "Een else-blok wordt uitgevoerd als de voorafgaande if-voorwaarde onwaar is. Eén van de twee blokken wordt uitgevoerd, nooit beide. else krijgt een dubbele punt, maar geen eigen voorwaarde."
+        "en": "Sometimes a program must produce one of two responses. An `else` block is the fallback when its if condition is false. It has a colon but no condition of its own. Exactly one of the two blocks runs.",
+        "nl": "Soms moet een programma één van twee reacties geven. Een `else`-blok is het alternatief wanneer de if-voorwaarde onwaar is. Het krijgt een dubbele punt, maar geen eigen voorwaarde. Precies één van de twee blokken draait."
       },
       "example": "",
+      "sections": [
+        {
+          "heading": {
+            "en": "Cover the other route",
+            "nl": "Vang de andere route op"
+          },
+          "body": {
+            "en": "Align else with its if and indent the code beneath it. The fallback saves you from writing the opposite comparison as another independent if. Code after the entire pair continues normally.",
+            "nl": "Zet else op dezelfde hoogte als de bijbehorende if en spring de code eronder in. Door het alternatief hoef je niet de tegenovergestelde vergelijking als losse if te schrijven. Code na het hele paar gaat gewoon verder."
+          },
+          "code": "stock = 0\nif stock > 0:\n    print(\"Item available\")\nelse:\n    print(\"Restocking\")\nprint(\"Status checked\")",
+          "output": "Restocking\nStatus checked"
+        },
+        {
+          "heading": {
+            "en": "Extend a booking display",
+            "nl": "Breid een boekingsscherm uit"
+          },
+          "body": {
+            "en": "The starter only reports available seats, so it goes silent when the count reaches zero. First add the missing response. Then make the successful response more useful by including the seat count. Assume the supplied count is zero or positive; checking invalid input belongs to a later exercise.",
+            "nl": "De startcode meldt alleen beschikbare plaatsen en blijft dus stil wanneer het aantal nul wordt. Voeg eerst de ontbrekende reactie toe. Maak daarna de positieve reactie nuttiger door het aantal plaatsen te vermelden. Ga uit van een aantal van nul of hoger; ongeldige invoer controleren komt later."
+          }
+        }
+      ],
       "files": {
-        "main.py": "seats = 0\n"
+        "main.py": "seats = 0\n\nif seats > 0:\n    print(\"Seats available\")\n# Add a fallback for no seats.\n"
       },
       "solution": {
-        "main.py": "seats = 0\nif seats == 0:\n    print(\"Full\")\nelse:\n    print(\"Seats available\")\n"
+        "main.py": "seats = 0\nif seats > 0:\n    print(\"Seats available: \" + str(seats))\nelse:\n    print(\"Full\")\n"
       },
       "checkpoints": [
         {
-          "id": "python-control-flow-10-step-1",
+          "id": "python-control-flow-10-v2-step-1",
           "task": {
-            "en": "For seats = 0, print Full when no seats remain; otherwise print Seats available.",
-            "nl": "Gebruik seats = 0. Druk Full af als er geen plaatsen over zijn; druk anders Seats available af."
+            "en": "Add an `else` block that prints `Full` when no seats remain. Do not add a separate condition to else.",
+            "nl": "Voeg een `else`-blok toe dat `Full` afdrukt wanneer er geen plaatsen over zijn. Voeg geen aparte voorwaarde aan else toe."
           },
-          "check": "_stdout.strip() == 'Full' and any(isinstance(n,_ast.If) and n.orelse for n in _ast.walk(_ast.parse(_source)))",
+          "check": "_stdout.splitlines() == ['Full'] and any(isinstance(n,_ast.If) and n.orelse for n in _ast.parse(_source).body)",
+          "feedback": {
+            "en": "A zero count must print Full, while positive counts must not print it.",
+            "nl": "Een aantal van nul moet Full tonen; positieve aantallen mogen dit niet tonen."
+          },
+          "cases": [
+            {
+              "inputs": {
+                "seats": 3
+              },
+              "check": "'Full' not in _stdout.splitlines()"
+            }
+          ],
           "hint": {
-            "en": "Start with seats = 0. Then compare the values with the task.",
-            "nl": "Begin met seats = 0. Vergelijk de waarden daarna met de opdracht."
+            "en": "Write else: aligned with if, then indent its print call.",
+            "nl": "Schrijf else: op dezelfde hoogte als if en spring de print-aanroep in."
+          }
+        },
+        {
+          "id": "python-control-flow-10-v2-step-2",
+          "task": {
+            "en": "Improve the available-seats branch: print `Seats available: ` followed by the current count. Use str(seats) when joining the text. Try 3 and 1, then restore seats = 0.",
+            "nl": "Verbeter de tak voor beschikbare plaatsen: druk `Seats available: ` af met daarna het huidige aantal. Gebruik str(seats) bij het samenvoegen. Probeer 3 en 1 en herstel daarna seats = 0."
+          },
+          "check": "_stdout.splitlines() == ['Full']",
+          "feedback": {
+            "en": "The positive branch must include the actual seat count and produce only one line.",
+            "nl": "De positieve tak moet het werkelijke aantal plaatsen bevatten en slechts één regel produceren."
+          },
+          "cases": [
+            {
+              "inputs": {
+                "seats": 3
+              },
+              "check": "_stdout.splitlines() == ['Seats available: 3']"
+            },
+            {
+              "inputs": {
+                "seats": 1
+              },
+              "check": "_stdout.splitlines() == ['Seats available: 1']"
+            }
+          ],
+          "hint": {
+            "en": "Only change the existing positive branch. The else response should remain Full.",
+            "nl": "Verander alleen de bestaande positieve tak. Het else-antwoord moet Full blijven."
           }
         }
       ],
       "solutionNote": {
-        "en": "An else block runs when the preceding if condition is false. One of the two blocks runs, never both. else has a colon but no condition of its own.\n\nTrace the solution one line at a time. Try a different input to see which parts change.",
-        "nl": "Een else-blok wordt uitgevoerd als de voorafgaande if-voorwaarde onwaar is. Eén van de twee blokken wordt uitgevoerd, nooit beide. else krijgt een dubbele punt, maar geen eigen voorwaarde.\n\nVolg de oplossing regel voor regel. Probeer een andere invoer en bekijk welke onderdelen veranderen."
+        "en": "A positive count selects the first block and includes that count in the message. Zero selects the fallback. The two outputs cannot both appear because they are alternatives in the same if/else statement.",
+        "nl": "Een positief aantal kiest het eerste blok en vermeldt dat aantal in het bericht. Nul kiest het alternatief. De twee berichten kunnen niet samen verschijnen omdat ze alternatieven binnen dezelfde if/else-instructie zijn."
       },
       "sourcePosition": 10,
       "sourceUrl": "https://www.codecademy.com/courses/learn-python-3/lessons/python-control-flow/exercises/else-statements",
@@ -3021,38 +3873,158 @@
       "group": "python-control-flow",
       "title": {
         "en": "Multiple branches",
-        "nl": "Meerdere branches"
+        "nl": "Meerdere uitkomsten met elif"
       },
       "kind": "coding",
       "optional": false,
       "explanation": {
-        "en": "An if/elif/else chain tests conditions from top to bottom. The first true branch wins; later branches are skipped. Order narrow conditions before broader ones that would also match.",
-        "nl": "Een if/elif/else-reeks controleert voorwaarden van boven naar beneden. De eerste ware voorwaarde bepaalt welk blok wordt uitgevoerd. Zet specifieke voorwaarden vóór bredere voorwaarden die ook zouden passen."
+        "en": "An `if`/`elif`/`else` chain chooses one result from several possibilities. Python checks conditions in order and stops at the first true one. The order matters whenever conditions overlap: a broad early test can hide a more specific later test.",
+        "nl": "Een `if`/`elif`/`else`-reeks kiest één resultaat uit meerdere mogelijkheden. Python controleert de voorwaarden op volgorde en stopt bij de eerste ware. De volgorde telt wanneer voorwaarden overlappen: een brede test vooraan kan een specifiekere test verderop verbergen."
       },
       "example": "",
+      "sections": [
+        {
+          "heading": {
+            "en": "First match wins",
+            "nl": "De eerste passende tak wint"
+          },
+          "body": {
+            "en": "A score of 95 is also at least 70. Test the higher threshold first when using >=. Replacing elif with separate if statements could print more than one classification.",
+            "nl": "Een score van 95 is ook minstens 70. Test bij >= eerst de hogere grens. Vervang je elif door losse if-instructies, dan kunnen meerdere classificaties worden afgedrukt."
+          },
+          "code": "score = 95\nif score >= 90:\n    print(\"Excellent\")\nelif score >= 70:\n    print(\"Pass\")\nelse:\n    print(\"Practise again\")",
+          "output": "Excellent"
+        },
+        {
+          "heading": {
+            "en": "Build ordered ranges",
+            "nl": "Bouw geordende bereiken"
+          },
+          "body": {
+            "en": "Our fictional wind display uses these categories: below 10 is calm, 10 up to but not including 25 is breezy, 25 up to 40 is strong, and 40 or more is storm. With less-than comparisons, test the lowest threshold first. A later branch already knows the earlier conditions were false.",
+            "nl": "Ons fictieve windscherm gebruikt deze categorieën: onder 10 is calm, van 10 tot maar niet inclusief 25 is breezy, van 25 tot 40 is strong en vanaf 40 is storm. Test bij kleiner-dan-vergelijkingen eerst de laagste grens. Een latere tak weet al dat eerdere voorwaarden onwaar waren."
+          }
+        }
+      ],
       "files": {
-        "main.py": "wind = 18\n"
+        "main.py": "# The first two thresholds are in the wrong order.\nwind = 18\n\nif wind < 25:\n    category = \"calm\"\nelif wind < 10:\n    category = \"breezy\"\nelse:\n    category = \"unclassified\"\n\nprint(category)\n# Add a labelled summary after the category.\n"
       },
       "solution": {
-        "main.py": "wind = 18\nif wind < 10:\n    category = \"calm\"\nelif wind < 25:\n    category = \"breezy\"\nelse:\n    category = \"strong\"\nprint(category)\n"
+        "main.py": "wind = 18\nif wind < 10:\n    category = \"calm\"\nelif wind < 25:\n    category = \"breezy\"\nelif wind < 40:\n    category = \"strong\"\nelse:\n    category = \"storm\"\nprint(category)\nprint(\"Wind: \" + str(wind) + \" | \" + category)\n"
       },
       "checkpoints": [
         {
-          "id": "python-control-flow-11-step-1",
+          "id": "python-control-flow-11-v2-step-1",
           "task": {
-            "en": "With wind = 18, set category to calm below 10, breezy below 25, and strong otherwise. Print category.",
-            "nl": "Gebruik wind = 18. Geef category de waarde calm onder 10, breezy onder 25 en anders strong. Druk category af."
+            "en": "Repair the first two conditions so values below 10 become calm and values from 10 to below 25 become breezy. The starter's 18 should print breezy.",
+            "nl": "Herstel de eerste twee voorwaarden zodat waarden onder 10 calm worden en waarden van 10 tot onder 25 breezy. De startwaarde 18 moet breezy afdrukken."
           },
-          "check": "category == 'breezy' and 'elif' in _source",
+          "check": "category == 'breezy' and _stdout.splitlines()[:1] == ['breezy']",
+          "feedback": {
+            "en": "Check the ordering at 9, 10 and 24; only the first matching branch runs.",
+            "nl": "Controleer de volgorde bij 9, 10 en 24; alleen de eerste passende tak draait."
+          },
+          "cases": [
+            {
+              "inputs": {
+                "wind": 9
+              },
+              "check": "category == 'calm'"
+            },
+            {
+              "inputs": {
+                "wind": 10
+              },
+              "check": "category == 'breezy'"
+            },
+            {
+              "inputs": {
+                "wind": 24
+              },
+              "check": "category == 'breezy'"
+            }
+          ],
           "hint": {
-            "en": "Start with wind = 18. Then compare the values with the task.",
-            "nl": "Begin met wind = 18. Vergelijk de waarden daarna met de opdracht."
+            "en": "Test wind < 10 before wind < 25. Otherwise the broader condition catches the smaller values too.",
+            "nl": "Test wind < 10 vóór wind < 25. Anders vangt de bredere voorwaarde ook de lagere waarden op."
+          }
+        },
+        {
+          "id": "python-control-flow-11-v2-step-2",
+          "task": {
+            "en": "Add an elif for wind below 40 with category strong. Change the fallback to storm. At exactly 25 the category must be strong; at exactly 40 it must be storm.",
+            "nl": "Voeg een elif toe voor wind onder 40 met categorie strong. Verander het alternatief naar storm. Precies 25 moet strong geven; precies 40 moet storm geven."
+          },
+          "check": "category == 'breezy'",
+          "feedback": {
+            "en": "Test both boundaries: 25 and 39 are strong; 40 and above are storm.",
+            "nl": "Test beide grenzen: 25 en 39 zijn strong; 40 en hoger zijn storm."
+          },
+          "cases": [
+            {
+              "inputs": {
+                "wind": 25
+              },
+              "check": "category == 'strong'"
+            },
+            {
+              "inputs": {
+                "wind": 39
+              },
+              "check": "category == 'strong'"
+            },
+            {
+              "inputs": {
+                "wind": 40
+              },
+              "check": "category == 'storm'"
+            },
+            {
+              "inputs": {
+                "wind": 65
+              },
+              "check": "category == 'storm'"
+            }
+          ],
+          "hint": {
+            "en": "Place the new elif after the below-25 branch and before else.",
+            "nl": "Zet de nieuwe elif na de tak voor onder 25 en vóór else."
+          }
+        },
+        {
+          "id": "python-control-flow-11-v2-step-3",
+          "task": {
+            "en": "After the category, print a summary in the form `Wind: 18 | breezy`, using the current wind and category variables. Keep wind = 18 for the normal run.",
+            "nl": "Druk na de categorie een samenvatting af in de vorm `Wind: 18 | breezy`, met de huidige variabelen wind en category. Laat wind voor de gewone uitvoering op 18 staan."
+          },
+          "check": "_stdout.splitlines() == ['breezy','Wind: 18 | breezy']",
+          "feedback": {
+            "en": "Use the variables in the summary so it stays correct for other wind values.",
+            "nl": "Gebruik de variabelen in de samenvatting zodat deze bij andere windwaarden blijft kloppen."
+          },
+          "cases": [
+            {
+              "inputs": {
+                "wind": 9
+              },
+              "check": "_stdout.splitlines() == ['calm','Wind: 9 | calm']"
+            },
+            {
+              "inputs": {
+                "wind": 40
+              },
+              "check": "_stdout.splitlines() == ['storm','Wind: 40 | storm']"
+            }
+          ],
+          "hint": {
+            "en": "Build the message after the whole chain so every branch shares the same output code.",
+            "nl": "Bouw het bericht na de hele reeks op zodat elke tak dezelfde outputcode gebruikt."
           }
         }
       ],
       "solutionNote": {
-        "en": "An if/elif/else chain tests conditions from top to bottom. The first true branch wins; later branches are skipped. Order narrow conditions before broader ones that would also match.\n\nTrace the solution one line at a time. Try a different input to see which parts change.",
-        "nl": "Een if/elif/else-reeks controleert voorwaarden van boven naar beneden. De eerste ware voorwaarde bepaalt welk blok wordt uitgevoerd. Zet specifieke voorwaarden vóór bredere voorwaarden die ook zouden passen.\n\nVolg de oplossing regel voor regel. Probeer een andere invoer en bekijk welke onderdelen veranderen."
+        "en": "The ascending upper bounds form non-overlapping ranges because each later branch is reached only after earlier tests fail. The summary sits outside the chain, which avoids repeating presentation code in every branch.",
+        "nl": "De oplopende bovengrenzen vormen niet-overlappende bereiken, omdat een latere tak pas wordt bereikt nadat eerdere tests onwaar zijn. De samenvatting staat buiten de reeks, zodat je de presentatiecode niet in elke tak herhaalt."
       },
       "sourcePosition": 11,
       "sourceUrl": "https://www.codecademy.com/courses/learn-python-3/lessons/python-control-flow/exercises/else-if-statements",
@@ -3064,25 +4036,49 @@
       "group": "python-control-flow",
       "title": {
         "en": "Decision review",
-        "nl": "Terugblik: beslissingen"
+        "nl": "Terugblik: een adviesprogramma uitbreiden"
       },
       "kind": "reading",
       "optional": false,
       "explanation": {
-        "en": "Try changing the input values in this decision program. Predict which branch runs before you press Run. Compare separate if statements with an if/elif chain: independent if statements can run more than one block.",
-        "nl": "Verander de invoerwaarden in dit beslisprogramma. Voorspel vóór het uitvoeren welke branch wordt gekozen. Vergelijk losse if statements met een if/elif-reeks: meerdere losse if-blokken kunnen worden uitgevoerd."
+        "en": "You now have the parts of a decision program: comparisons create Boolean answers, and/or/not combine or reverse them, and if/elif/else chooses which instructions run. This optional playground combines those parts in a fictional outdoor-session planner.",
+        "nl": "Je kent nu de onderdelen van een beslisprogramma: vergelijkingen maken Boolean-antwoorden, and/or/not combineren of ontkennen deze en if/elif/else kiest welke instructies draaien. Deze optionele oefenruimte combineert de onderdelen in een fictieve planner voor een buitenactiviteit."
       },
       "example": "",
+      "sections": [
+        {
+          "heading": {
+            "en": "Trace before editing",
+            "nl": "Volg de code voordat je wijzigt"
+          },
+          "body": {
+            "en": "With rain = True and wind = 12, the first condition fails because both requirements are not met. The second condition matches, so only its message appears. If the first branch matched, Python would skip the later elif even though rain is also true there.",
+            "nl": "Bij rain = True en wind = 12 faalt de eerste voorwaarde, omdat niet aan beide eisen is voldaan. De tweede voorwaarde past, dus alleen dat bericht verschijnt. Als de eerste tak wel paste, zou Python de latere elif overslaan, ook al is rain daar eveneens waar."
+          },
+          "code": "rain = True\nwind = 12\nif rain and wind > 20:\n    print(\"Indoor session\")\nelif rain:\n    print(\"Bring a jacket\")\nelse:\n    print(\"Enjoy the trail\")",
+          "output": "Bring a jacket"
+        },
+        {
+          "heading": {
+            "en": "Make the missing route explicit",
+            "nl": "Maak de ontbrekende route expliciet"
+          },
+          "body": {
+            "en": "Run the supplied program with these inputs and predict each result: rainy with wind 25; rainy with wind 12; dry with wind 12; dry with wind 25. The last case currently falls through to Enjoy the trail.\n\nAdd an elif for a dry day with wind above 20 that prints `Choose a sheltered route`. Place it before the fallback and keep the rainy-day outcomes unchanged. Test wind = 20 too: the requirement says above 20, so equality should still use the ordinary dry-day message.\n\nFinally, explain why turning each elif into an independent if can produce extra messages. This is an exploration: your completion does not depend on matching one solution.",
+            "nl": "Voer het gegeven programma uit met deze invoer en voorspel telkens het resultaat: regen met wind 25; regen met wind 12; droog met wind 12; droog met wind 25. Het laatste geval valt nu terug op Enjoy the trail.\n\nVoeg een elif toe voor een droge dag met wind boven 20 die `Choose a sheltered route` afdrukt. Plaats deze vóór het alternatief en laat de uitkomsten bij regen gelijk. Test ook wind = 20: de eis zegt boven 20, dus gelijkheid moet nog het gewone bericht voor droog weer geven.\n\nLeg tot slot uit waarom losse if-instructies in plaats van elke elif extra berichten kunnen produceren. Dit is een verkenning: je voltooiing hangt niet af van één specifieke oplossing."
+          }
+        }
+      ],
       "files": {
-        "main.py": "rain = True\nwind = 12\nif rain and wind > 20:\n    print(\"Indoor session\")\nelif rain:\n    print(\"Bring a jacket\")\nelse:\n    print(\"Enjoy the trail\")\n"
+        "main.py": "rain = True\nwind = 12\n\nif rain and wind > 20:\n    print(\"Indoor session\")\nelif rain:\n    print(\"Bring a jacket\")\n# Add the missing dry, windy route here.\nelse:\n    print(\"Enjoy the trail\")\n"
       },
       "solution": {
-        "main.py": "rain = True\nwind = 12\nif rain and wind > 20:\n    print(\"Indoor session\")\nelif rain:\n    print(\"Bring a jacket\")\nelse:\n    print(\"Enjoy the trail\")\n"
+        "main.py": "rain = True\nwind = 12\nif rain and wind > 20:\n    print(\"Indoor session\")\nelif rain:\n    print(\"Bring a jacket\")\nelif wind > 20:\n    print(\"Choose a sheltered route\")\nelse:\n    print(\"Enjoy the trail\")\n"
       },
       "checkpoints": [],
       "solutionNote": {
-        "en": "Try changing the input values in this decision program. Predict which branch runs before you press Run. Compare separate if statements with an if/elif chain: independent if statements can run more than one block.\n\nTrace the solution one line at a time. Try a different input to see which parts change.",
-        "nl": "Verander de invoerwaarden in dit beslisprogramma. Voorspel vóór het uitvoeren welke branch wordt gekozen. Vergelijk losse if statements met een if/elif-reeks: meerdere losse if-blokken kunnen worden uitgevoerd.\n\nVolg de oplossing regel voor regel. Probeer een andere invoer en bekijk welke onderdelen veranderen."
+        "en": "The new elif only runs after both rainy-day branches fail, so rain is already false. It can simply test wind > 20. Writing not rain and wind > 20 there is also correct, but repeats information the earlier branches established.",
+        "nl": "De nieuwe elif wordt pas bereikt nadat beide regentakken falen; rain is dus al onwaar. Daarom volstaat wind > 20. Daar not rain and wind > 20 schrijven is ook correct, maar herhaalt informatie die de eerdere takken al gaven."
       },
       "sourcePosition": 12,
       "sourceUrl": "https://www.codecademy.com/courses/learn-python-3/lessons/python-control-flow/exercises/review",
@@ -3115,8 +4111,8 @@
                 "nl": "True"
               },
               "reason": {
-                "en": ">= includes equality, so the comparison is true.",
-                "nl": ">= omvat gelijkheid, dus de vergelijking is waar."
+                "en": "True: >= allows either a larger value or an equal value. Here both sides are 8.",
+                "nl": "True: >= staat een grotere of gelijke waarde toe. Hier zijn beide kanten 8."
               }
             },
             {
@@ -3126,8 +4122,8 @@
                 "nl": "False"
               },
               "reason": {
-                "en": ">= includes equality, so the comparison is true.",
-                "nl": ">= omvat gelijkheid, dus de vergelijking is waar."
+                "en": "The equal sign matters: 8 > 8 would be False, but 8 >= 8 is True because equality is included.",
+                "nl": "Het gelijkteken telt mee: 8 > 8 zou False zijn, maar 8 >= 8 is True omdat gelijkheid meetelt."
               }
             }
           ]
@@ -3148,8 +4144,8 @@
                 "nl": "False"
               },
               "reason": {
-                "en": "False without quotes is a Boolean literal.",
-                "nl": "False zonder aanhalingstekens is een Boolean literal."
+                "en": "False without quotes is a bool. A Boolean value can represent either truth value; it does not have to be True.",
+                "nl": "False zonder aanhalingstekens is een bool. Een Boolean kan beide waarheidswaarden voorstellen en hoeft niet True te zijn."
               }
             },
             {
@@ -3159,8 +4155,8 @@
                 "nl": "\"False\""
               },
               "reason": {
-                "en": "False without quotes is a Boolean literal.",
-                "nl": "False zonder aanhalingstekens is een Boolean literal."
+                "en": "Quotes make \"False\" a string. Its letters describe a Boolean, but its type is str.",
+                "nl": "Aanhalingstekens maken \"False\" een string. De letters beschrijven een Boolean, maar het type is str."
               }
             },
             {
@@ -3170,8 +4166,8 @@
                 "nl": "0.0"
               },
               "reason": {
-                "en": "False without quotes is a Boolean literal.",
-                "nl": "False zonder aanhalingstekens is een Boolean literal."
+                "en": "0.0 is a float. A number can be used in a condition, but that does not make its stored type bool.",
+                "nl": "0.0 is een float. Je kunt een getal in een voorwaarde gebruiken, maar het opgeslagen type wordt daardoor geen bool."
               }
             },
             {
@@ -3181,8 +4177,8 @@
                 "nl": "\"0\""
               },
               "reason": {
-                "en": "False without quotes is a Boolean literal.",
-                "nl": "False zonder aanhalingstekens is een Boolean literal."
+                "en": "\"0\" is text because it is quoted. Use the literal False for a Boolean false value.",
+                "nl": "\"0\" is tekst omdat het tussen aanhalingstekens staat. Gebruik de literal False voor een onware Boolean-waarde."
               }
             }
           ]
@@ -3203,8 +4199,8 @@
                 "nl": "True"
               },
               "reason": {
-                "en": "not False is True, and both sides of and are true.",
-                "nl": "not False is True, en beide kanten van and zijn waar."
+                "en": "Evaluate not first: not False becomes True. The remaining expression is True and True, so its result is True.",
+                "nl": "Werk eerst not uit: not False wordt True. Er blijft True and True over, dus de uitkomst is True."
               }
             },
             {
@@ -3214,8 +4210,8 @@
                 "nl": "False"
               },
               "reason": {
-                "en": "not False is True, and both sides of and are true.",
-                "nl": "not False is True, en beide kanten van and zijn waar."
+                "en": "not reverses False before and combines the values. There is no False operand left: both sides of and are True.",
+                "nl": "not keert False om voordat and de waarden combineert. Er blijft geen False-operand over: beide kanten van and zijn True."
               }
             }
           ]
@@ -3236,8 +4232,8 @@
                 "nl": "size == 10"
               },
               "reason": {
-                "en": "== compares; = assigns.",
-                "nl": "== vergelijkt; = wijst een waarde toe."
+                "en": "Two equals signs ask a question about the current value of size; the result is a Boolean.",
+                "nl": "Twee gelijktekens stellen een vraag over de huidige waarde van size; het resultaat is een Boolean."
               }
             },
             {
@@ -3247,8 +4243,8 @@
                 "nl": "size = 10"
               },
               "reason": {
-                "en": "== compares; = assigns.",
-                "nl": "== vergelijkt; = wijst een waarde toe."
+                "en": "A single = stores 10 in size. It is an assignment, not an equality comparison.",
+                "nl": "Eén = slaat 10 op in size. Dit is een toewijzing en geen gelijkheidsvergelijking."
               }
             },
             {
@@ -3258,8 +4254,8 @@
                 "nl": "size => 10"
               },
               "reason": {
-                "en": "== compares; = assigns.",
-                "nl": "== vergelijkt; = wijst een waarde toe."
+                "en": "=> is not a Python comparison operator. >= means greater than or equal to; == is the equality test asked for here.",
+                "nl": "=> is geen Python-vergelijkingsoperator. >= betekent groter dan of gelijk aan; == is de gevraagde gelijkheidstest."
               }
             }
           ]
@@ -3280,8 +4276,8 @@
                 "nl": "A"
               },
               "reason": {
-                "en": "The first true branch wins in an if/elif chain.",
-                "nl": "Bij if/elif wordt alleen de eerste passende branch uitgevoerd."
+                "en": "12 > 5 is already true, so Python runs the first block and skips the remaining elif branches in this chain.",
+                "nl": "12 > 5 is al waar, dus Python voert het eerste blok uit en slaat de overige elif-branches in deze keten over."
               }
             },
             {
@@ -3291,8 +4287,8 @@
                 "nl": "B"
               },
               "reason": {
-                "en": "The first true branch wins in an if/elif chain.",
-                "nl": "Bij if/elif wordt alleen de eerste passende branch uitgevoerd."
+                "en": "Although 12 > 10 is true too, elif is only considered after the previous condition fails. The first branch already matched.",
+                "nl": "Hoewel 12 > 10 ook waar is, wordt elif alleen bekeken als de vorige voorwaarde faalt. De eerste branch paste al."
               }
             },
             {
@@ -3302,8 +4298,8 @@
                 "nl": "A then B"
               },
               "reason": {
-                "en": "The first true branch wins in an if/elif chain.",
-                "nl": "Bij if/elif wordt alleen de eerste passende branch uitgevoerd."
+                "en": "An if/elif chain selects one branch. Two separate if statements could print both messages; that is not the structure shown here.",
+                "nl": "Een if/elif-keten kiest één branch. Twee losse if-instructies zouden beide berichten kunnen afdrukken, maar hier staat een keten."
               }
             },
             {
@@ -3313,8 +4309,8 @@
                 "nl": "Nothing"
               },
               "reason": {
-                "en": "The first true branch wins in an if/elif chain.",
-                "nl": "Bij if/elif wordt alleen de eerste passende branch uitgevoerd."
+                "en": "The first comparison is true because 12 is greater than 5, so its print call does run.",
+                "nl": "De eerste vergelijking is waar omdat 12 groter is dan 5, dus die print-aanroep wordt wel uitgevoerd."
               }
             }
           ]
@@ -3335,8 +4331,8 @@
                 "nl": "False or False"
               },
               "reason": {
-                "en": "or needs at least one true operand. Both operands here are false.",
-                "nl": "or vereist minstens één ware operand. Hier zijn beide operands onwaar."
+                "en": "Neither side of False or False is true. This is the only listed expression that evaluates to False.",
+                "nl": "Geen van beide kanten van False or False is waar. Dit is de enige genoemde expressie die False oplevert."
               }
             },
             {
@@ -3346,8 +4342,8 @@
                 "nl": "True or False"
               },
               "reason": {
-                "en": "or needs at least one true operand. Both operands here are false.",
-                "nl": "or vereist minstens één ware operand. Hier zijn beide operands onwaar."
+                "en": "or needs just one true operand. The left operand is True, so True or False is True.",
+                "nl": "or heeft maar één ware operand nodig. Links staat True, dus True or False is True."
               }
             },
             {
@@ -3357,8 +4353,8 @@
                 "nl": "not False"
               },
               "reason": {
-                "en": "or needs at least one true operand. Both operands here are false.",
-                "nl": "or vereist minstens één ware operand. Hier zijn beide operands onwaar."
+                "en": "not reverses its operand. Reversing False produces True, not False.",
+                "nl": "not keert de operand om. Het omkeren van False geeft True en niet False."
               }
             },
             {
@@ -3368,8 +4364,8 @@
                 "nl": "True and True"
               },
               "reason": {
-                "en": "or needs at least one true operand. Both operands here are false.",
-                "nl": "or vereist minstens één ware operand. Hier zijn beide operands onwaar."
+                "en": "Both operands are True, so and also returns True. Look for the expression with no true operand.",
+                "nl": "Beide operands zijn True, dus and geeft ook True. Zoek de expressie zonder ware operand."
               }
             }
           ]
@@ -3390,8 +4386,8 @@
                 "nl": "Dubbele punt ontbreekt"
               },
               "reason": {
-                "en": "The condition line must end in a colon before its indented block.",
-                "nl": "De regel met de voorwaarde moet eindigen op een dubbele punt."
+                "en": "The if header must end with a colon before its indented body. Python cannot parse this header without it.",
+                "nl": "De if-kop moet eindigen met een dubbele punt vóór het ingesprongen blok. Zonder deze kan Python de kop niet ontleden."
               }
             },
             {
@@ -3401,8 +4397,8 @@
                 "nl": "Ongeldige variablenaam"
               },
               "reason": {
-                "en": "The condition line must end in a colon before its indented block.",
-                "nl": "De regel met de voorwaarde moet eindigen op een dubbele punt."
+                "en": "speed is a valid variable name. A missing value could cause NameError later, but this file first fails to parse because its colon is missing.",
+                "nl": "speed is een geldige variabelenaam. Een ontbrekende waarde kan later NameError geven, maar dit bestand kan eerst al niet worden ontleed doordat de dubbele punt ontbreekt."
               }
             },
             {
@@ -3412,8 +4408,8 @@
                 "nl": "print vereist aanhalingstekens rond speed"
               },
               "reason": {
-                "en": "The condition line must end in a colon before its indented block.",
-                "nl": "De regel met de voorwaarde moet eindigen op een dubbele punt."
+                "en": "The print call already receives the quoted text \"Slow\". speed is used in the comparison, where a variable name should not be quoted.",
+                "nl": "De print-aanroep krijgt al de tekst \"Slow\" tussen aanhalingstekens. speed staat in de vergelijking, waar je de variabelenaam niet tussen aanhalingstekens moet zetten."
               }
             }
           ]
@@ -3434,8 +4430,8 @@
                 "nl": "A then B"
               },
               "reason": {
-                "en": "These are independent if statements, so both true conditions run their blocks.",
-                "nl": "Dit zijn losse if statements. Beide ware voorwaarden voeren hun blok uit."
+                "en": "These are two independent if statements. Both comparisons are true for 7, so Python prints A and then B.",
+                "nl": "Dit zijn twee onafhankelijke if-instructies. Beide vergelijkingen zijn waar voor 7, dus Python drukt eerst A en daarna B af."
               }
             },
             {
@@ -3445,8 +4441,8 @@
                 "nl": "A"
               },
               "reason": {
-                "en": "These are independent if statements, so both true conditions run their blocks.",
-                "nl": "Dit zijn losse if statements. Beide ware voorwaarden voeren hun blok uit."
+                "en": "The first block runs, but it does not stop the program. Python still checks the second independent if and prints B too.",
+                "nl": "Het eerste blok voert uit, maar stopt het programma niet. Python controleert ook de tweede onafhankelijke if en drukt B eveneens af."
               }
             },
             {
@@ -3456,8 +4452,8 @@
                 "nl": "B"
               },
               "reason": {
-                "en": "These are independent if statements, so both true conditions run their blocks.",
-                "nl": "Dit zijn losse if statements. Beide ware voorwaarden voeren hun blok uit."
+                "en": "7 > 2 is true as well as 7 > 5. The first block prints A before execution reaches the second one.",
+                "nl": "7 > 2 is net als 7 > 5 waar. Het eerste blok drukt A af voordat de uitvoering het tweede bereikt."
               }
             },
             {
@@ -3467,8 +4463,8 @@
                 "nl": "Nothing"
               },
               "reason": {
-                "en": "These are independent if statements, so both true conditions run their blocks.",
-                "nl": "Dit zijn losse if statements. Beide ware voorwaarden voeren hun blok uit."
+                "en": "Both comparisons succeed: 7 is greater than 2 and greater than 5. Each matching block contains a print call.",
+                "nl": "Beide vergelijkingen slagen: 7 is groter dan 2 en groter dan 5. Elk passend blok bevat een print-aanroep."
               }
             }
           ]
@@ -3482,25 +4478,49 @@
       "group": "python-errors",
       "title": {
         "en": "Debugging workflow",
-        "nl": "Een fout onderzoeken"
+        "nl": "Van foutmelding naar aanwijzing"
       },
       "kind": "reading",
       "optional": false,
       "explanation": {
-        "en": "Debugging starts with a reproducible problem. Run the code, read the error from the bottom of the traceback, locate the relevant line, and change one thing. Then run again to test your explanation.",
-        "nl": "Debuggen begint met een probleem dat je opnieuw kunt oproepen. Voer de code uit, lees de fout onderaan de traceback, zoek de relevante regel en verander één ding. Voer de code opnieuw uit om je verklaring te testen."
+        "en": "A program can fail before it starts, stop while it runs, or finish with an incorrect result. Debugging means finding the difference between what you expected and what the program actually does. Start with the evidence: the smallest input that shows the problem, the output so far, and any error message.",
+        "nl": "Een programma kan al vóór het starten mislukken, tijdens de uitvoering stoppen of eindigen met een verkeerd resultaat. Debuggen betekent het verschil onderzoeken tussen je verwachting en wat het programma werkelijk doet. Begin met de aanwijzingen: de kleinste invoer die het probleem laat zien, de output tot dat moment en een eventuele foutmelding."
       },
       "example": "",
+      "sections": [
+        {
+          "heading": {
+            "en": "Three useful clues",
+            "nl": "Drie bruikbare aanwijzingen"
+          },
+          "body": {
+            "en": "A SyntaxError means Python could not understand the structure of the file. A NameError means execution reached a name that has no value. A TypeError means an operation received an unsupported type. These names narrow your search; they do not explain your entire program for you.\n\nFor runtime errors, read the last line of the traceback for the error type and message, then find the indicated line in main.py. For syntax errors, inspect that line and the one above it: an unfinished quote or parenthesis can make the next line look wrong.",
+            "nl": "Een SyntaxError betekent dat Python de structuur van het bestand niet begrijpt. Bij een NameError bereikt de uitvoering een naam die geen waarde heeft. Bij een TypeError krijgt een bewerking een ongeschikt type. Deze namen beperken je zoekgebied, maar verklaren niet vanzelf je hele programma.\n\nLees bij runtime-fouten de laatste regel van de traceback voor het fouttype en de melding. Zoek daarna de aangegeven regel in main.py op. Bekijk bij syntaxfouten ook de regel erboven: een onafgesloten aanhalingsteken of haakje kan de volgende regel verdacht maken."
+          }
+        },
+        {
+          "heading": {
+            "en": "Reproduce, inspect, change, rerun",
+            "nl": "Herhalen, onderzoeken, aanpassen, uitvoeren"
+          },
+          "body": {
+            "en": "The editor contains a working stock report. Run it once to establish a baseline. Then change `print(remaining)` to `print(Remaining)` and run again. Which earlier line still appears? Read the NameError, repair the spelling, and rerun.\n\nNext, temporarily remove the colon after the if condition. This time Python cannot parse the file, so none of its print calls run. Restore the colon. Deliberately making one small change helps you connect the error message to its cause.",
+            "nl": "In de editor staat een werkend voorraadrapport. Voer het eerst uit als referentie. Verander daarna `print(remaining)` in `print(Remaining)` en voer opnieuw uit. Welke eerdere regel verschijnt nog wel? Lees de NameError, herstel de spelling en voer opnieuw uit.\n\nVerwijder vervolgens tijdelijk de dubbele punt achter de if-voorwaarde. Python kan het bestand nu niet ontleden, dus geen enkele print-aanroep wordt uitgevoerd. Zet de dubbele punt terug. Met één kleine, bewuste wijziging leer je de foutmelding aan de oorzaak koppelen."
+          },
+          "code": "stock = 14\nordered = 5\nremaining = stock - ordered\nprint(\"Stock report\")\nprint(remaining)\nif remaining < 10:\n    print(\"Reorder soon\")",
+          "output": "Stock report\n9\nReorder soon"
+        }
+      ],
       "files": {
-        "main.py": "print(\"Observe → explain → change → test\")\n"
+        "main.py": "stock = 14\nordered = 5\nremaining = stock - ordered\nprint(\"Stock report\")\nprint(remaining)\nif remaining < 10:\n    print(\"Reorder soon\")\n"
       },
       "solution": {
-        "main.py": "print(\"Observe → explain → change → test\")\n"
+        "main.py": "stock = 14\nordered = 5\nremaining = stock - ordered\nprint(\"Stock report\")\nprint(remaining)\nif remaining < 10:\n    print(\"Reorder soon\")\n"
       },
       "checkpoints": [],
       "solutionNote": {
-        "en": "Debugging starts with a reproducible problem. Run the code, read the error from the bottom of the traceback, locate the relevant line, and change one thing. Then run again to test your explanation.\n\nTrace the solution one line at a time. Try a different input to see which parts change.",
-        "nl": "Debuggen begint met een probleem dat je opnieuw kunt oproepen. Voer de code uit, lees de fout onderaan de traceback, zoek de relevante regel en verander één ding. Voer de code opnieuw uit om je verklaring te testen.\n\nVolg de oplossing regel voor regel. Probeer een andere invoer en bekijk welke onderdelen veranderen."
+        "en": "The repaired baseline prints three lines. A misspelled name interrupts execution only when that line is reached; a syntax error prevents the file from starting. Keep one working version in mind while making and reversing each experiment.",
+        "nl": "De herstelde basisversie drukt drie regels af. Een verkeerd gespelde naam onderbreekt de uitvoering pas zodra die regel wordt bereikt; een syntaxfout voorkomt dat het bestand start. Houd de werkende versie in gedachten terwijl je elke wijziging probeert en weer terugdraait."
       },
       "sourcePosition": 1,
       "sourceUrl": "https://www.codecademy.com/courses/learn-python-3/lessons/python-errors/exercises/introduction-to-bugs",
@@ -3512,38 +4532,150 @@
       "group": "python-errors",
       "title": {
         "en": "Syntax errors",
-        "nl": "SyntaxError herstellen"
+        "nl": "Herstel een kapotte routeplanner"
       },
       "kind": "coding",
       "optional": false,
       "explanation": {
-        "en": "A SyntaxError means the program could not be parsed. Missing colons, unmatched brackets, or incomplete strings are common causes. No statements in the script run until the syntax is valid.",
-        "nl": "Een SyntaxError betekent dat Python de code niet kan ontleden. Ontbrekende dubbele punten, haakjes of aanhalingstekens zijn veelvoorkomende oorzaken. De code wordt pas uitgevoerd als de syntax klopt."
+        "en": "Python must parse the whole file before it can run it. A missing colon, a misspelled keyword or an unclosed parenthesis can prevent even earlier print calls from executing. Fix the first reported structural problem and run again: the next error may only become visible after the first is repaired.",
+        "nl": "Python moet het hele bestand ontleden voordat het wordt uitgevoerd. Een ontbrekende dubbele punt, verkeerd gespeld keyword of onafgesloten haakje kan zelfs eerdere print-aanroepen tegenhouden. Herstel het eerste gemelde structuurprobleem en voer opnieuw uit: de volgende fout wordt soms pas daarna zichtbaar."
       },
       "example": "",
+      "sections": [
+        {
+          "heading": {
+            "en": "Read the shape of a branch",
+            "nl": "Lees de vorm van een branch"
+          },
+          "body": {
+            "en": "A conditional header ends with a colon. Its body is indented. `elif` is one keyword, and all headers in the same chain line up. Each opening parenthesis needs a closing one. Compare the shape of this working example with the route planner in the editor.",
+            "nl": "De kop van een voorwaardelijk blok eindigt met een dubbele punt. De inhoud springt in. `elif` is één keyword en alle koppen in dezelfde keten staan onder elkaar. Elk openingshaakje heeft een sluithaakje nodig. Vergelijk de vorm van dit werkende voorbeeld met de routeplanner in de editor."
+          },
+          "code": "distance = 8\nif distance < 3:\n    print(\"Walk\")\nelif distance < 12:\n    print(\"Cycle\")\nelse:\n    print(\"Take transit\")",
+          "output": "Cycle"
+        },
+        {
+          "heading": {
+            "en": "Repair, then test another route",
+            "nl": "Herstel en test een andere route"
+          },
+          "body": {
+            "en": "The supplied planner contains three syntax defects. Repair them one at a time without deleting its branches. The task checks can turn green only once the whole file is valid Python. After it runs, use different inputs to check that you preserved its decisions, not just its appearance.",
+            "nl": "De meegeleverde planner bevat drie syntaxfouten. Herstel ze één voor één zonder branches te verwijderen. De taakcontroles kunnen pas groen worden als het hele bestand geldige Python is. Probeer daarna andere invoer om te controleren of je de beslissingen hebt behouden en niet alleen de vorm."
+          }
+        }
+      ],
       "files": {
-        "main.py": "if True\n    print(\"Ready\")\n"
+        "main.py": "# Route planner: keep all three choices.\ndistance = 8\nprint(\"Route planner\")\n\nif distance < 3\n    mode = \"Walk\"\nelsif distance < 12:\n    mode = \"Cycle\"\nelse:\n    mode = \"Transit\"\n\nprint(mode\n# Add a distance summary after the repairs.\n"
       },
       "solution": {
-        "main.py": "if True:\n    print(\"Ready\")\n"
+        "main.py": "distance = 8\nprint(\"Route planner\")\nif distance < 3:\n    mode = \"Walk\"\nelif distance < 12:\n    mode = \"Cycle\"\nelse:\n    mode = \"Transit\"\nprint(mode)\nprint(\"Distance: \" + str(distance))\n"
       },
       "checkpoints": [
         {
-          "id": "python-errors-02-step-1",
+          "id": "python-errors-02-v2-step-1",
           "task": {
-            "en": "Run the code to see the SyntaxError. Add the missing colon so Ready is printed.",
-            "nl": "Voer de code uit om de SyntaxError te zien. Voeg de ontbrekende dubbele punt toe zodat Ready verschijnt."
+            "en": "Run the broken file and use the reported location to repair the first if header. Keep its condition `distance < 3`. Continue with the next repairs even if this check remains pending.",
+            "nl": "Voer het kapotte bestand uit en herstel met de gemelde locatie de eerste if-kop. Behoud de voorwaarde `distance < 3`. Ga verder met de volgende reparaties, ook als deze controle nog niet slaagt."
           },
-          "check": "_stdout.strip() == 'Ready'",
+          "check": "distance == 8 and mode == 'Cycle'",
+          "feedback": {
+            "en": "Restore a valid if header and keep the short-distance route. All three syntax repairs are needed before the file can run.",
+            "nl": "Herstel een geldige if-kop en behoud de route voor korte afstanden. Alle drie syntaxreparaties zijn nodig voordat het bestand kan starten."
+          },
+          "cases": [
+            {
+              "inputs": {
+                "distance": 2
+              },
+              "check": "mode == 'Walk'"
+            },
+            {
+              "inputs": {
+                "distance": 3
+              },
+              "check": "mode == 'Cycle'"
+            }
+          ],
           "hint": {
-            "en": "Start with if True:. Then compare the values with the task.",
-            "nl": "Begin met if True:. Vergelijk de waarden daarna met de opdracht."
+            "en": "A header needs a colon before its indented body. Other syntax errors still prevent execution.",
+            "nl": "Een kop heeft een dubbele punt nodig vóór het ingesprongen blok. Andere syntaxfouten houden de uitvoering nog tegen."
+          }
+        },
+        {
+          "id": "python-errors-02-v2-step-2",
+          "task": {
+            "en": "Run again and repair the misspelled middle-branch keyword. Keep all three routes: Walk below 3, Cycle from 3 up to 12, and Transit from 12 onward.",
+            "nl": "Voer opnieuw uit en herstel het verkeerd gespelde keyword van de middelste branch. Behoud alle routes: Walk onder 3, Cycle vanaf 3 tot 12 en Transit vanaf 12."
+          },
+          "check": "mode == 'Cycle' and any(isinstance(n, _ast.If) and n.orelse and isinstance(n.orelse[0], _ast.If) for n in _ast.walk(_ast.parse(_source)))",
+          "feedback": {
+            "en": "Use an if/elif/else chain and preserve the boundaries at 3 and 12.",
+            "nl": "Gebruik een if/elif/else-keten en behoud de grenzen bij 3 en 12."
+          },
+          "cases": [
+            {
+              "inputs": {
+                "distance": 11
+              },
+              "check": "mode == 'Cycle'"
+            },
+            {
+              "inputs": {
+                "distance": 12
+              },
+              "check": "mode == 'Transit'"
+            }
+          ],
+          "hint": {
+            "en": "Python spells the combined else-if keyword elif.",
+            "nl": "Python schrijft het gecombineerde else-if-keyword als elif."
+          }
+        },
+        {
+          "id": "python-errors-02-v2-step-3",
+          "task": {
+            "en": "Repair the unfinished print call. Run to confirm the first two output lines are Route planner and Cycle.",
+            "nl": "Herstel de onafgemaakte print-aanroep. Controleer dat de eerste twee outputregels Route planner en Cycle zijn."
+          },
+          "check": "_stdout.splitlines()[:2] == ['Route planner','Cycle']",
+          "feedback": {
+            "en": "The program must run and print the planner heading followed by its chosen mode.",
+            "nl": "Het programma moet uitvoeren en de plannerkop gevolgd door de gekozen reiswijze afdrukken."
+          },
+          "hint": {
+            "en": "Pair print's opening parenthesis with a closing one after mode.",
+            "nl": "Sluit het openingshaakje van print na mode af met een sluithaakje."
+          }
+        },
+        {
+          "id": "python-errors-02-v2-step-4",
+          "task": {
+            "en": "Add a final summary line using the distance variable: `Distance: 8`. Test distance = 12, then restore 8 for the graded run.",
+            "nl": "Voeg een laatste samenvattingsregel met de distance-variabele toe: `Distance: 8`. Test distance = 12 en zet daarna 8 terug voor de beoordeling."
+          },
+          "check": "_stdout.splitlines() == ['Route planner','Cycle','Distance: 8']",
+          "feedback": {
+            "en": "Print the numeric distance as text after the chosen route; do not hardcode 8 in the message.",
+            "nl": "Druk de numerieke afstand als tekst na de gekozen route af; zet geen vaste 8 in het bericht."
+          },
+          "cases": [
+            {
+              "inputs": {
+                "distance": 12
+              },
+              "check": "_stdout.splitlines() == ['Route planner','Transit','Distance: 12']"
+            }
+          ],
+          "hint": {
+            "en": "Combine the label with str(distance). The same line should work for any distance.",
+            "nl": "Combineer het label met str(distance). Dezelfde regel moet voor elke afstand werken."
           }
         }
       ],
       "solutionNote": {
-        "en": "A SyntaxError means the program could not be parsed. Missing colons, unmatched brackets, or incomplete strings are common causes. No statements in the script run until the syntax is valid.\n\nTrace the solution one line at a time. Try a different input to see which parts change.",
-        "nl": "Een SyntaxError betekent dat Python de code niet kan ontleden. Ontbrekende dubbele punten, haakjes of aanhalingstekens zijn veelvoorkomende oorzaken. De code wordt pas uitgevoerd als de syntax klopt.\n\nVolg de oplossing regel voor regel. Probeer een andere invoer en bekijk welke onderdelen veranderen."
+        "en": "The colon, elif keyword and closing parenthesis repair the grammar without changing the decisions. At distance 12, both earlier comparisons are false, so the fallback selects Transit. The final message reads the current variable and stays correct when the input changes.",
+        "nl": "De dubbele punt, het keyword elif en het sluithaakje herstellen de grammatica zonder de beslissingen te veranderen. Bij afstand 12 zijn beide eerdere vergelijkingen onwaar, dus kiest de fallback Transit. Het laatste bericht leest de huidige variabele en blijft kloppen als de invoer verandert."
       },
       "sourcePosition": 2,
       "sourceUrl": "https://www.codecademy.com/courses/learn-python-3/lessons/python-errors/exercises/syntax-errors",
@@ -3555,38 +4687,134 @@
       "group": "python-errors",
       "title": {
         "en": "Name errors",
-        "nl": "NameError herstellen"
+        "nl": "Volg de namen in een scoreprogramma"
       },
       "kind": "coding",
       "optional": false,
       "explanation": {
-        "en": "A NameError occurs when a name has no value in the current scope. Python names are case-sensitive. Compare the spelling at the assignment with the spelling where the name is used.",
-        "nl": "Een NameError ontstaat als een naam geen waarde heeft in de huidige scope. Python maakt onderscheid tussen hoofdletters en kleine letters. Vergelijk de naam bij de assignment met de naam op de plek waar je deze gebruikt."
+        "en": "Variables must be assigned before a running statement reads them. A NameError often comes from a spelling mismatch or a missing setup line. A variable's name is case-sensitive: `score`, `Score` and `scroe` are three different names. The traceback tells you where Python first needed the unavailable value.",
+        "nl": "Variabelen moeten een waarde krijgen voordat een uitgevoerde instructie ze leest. Een NameError komt vaak door verschillende schrijfwijzen of een ontbrekende instelregel. Hoofdletters tellen mee: `score`, `Score` en `scroe` zijn drie verschillende namen. De traceback laat zien waar Python de ontbrekende waarde voor het eerst nodig had."
       },
       "example": "",
+      "sections": [
+        {
+          "heading": {
+            "en": "Trace the name back to its assignment",
+            "nl": "Volg de naam terug naar de toewijzing"
+          },
+          "body": {
+            "en": "Read the failing line, then search above it for the assignment that should supply that name. Repair the intended data flow instead of creating another variable just to silence the error. This example consistently uses total, so its calculation and display agree.",
+            "nl": "Lees de foutregel en zoek daarboven de toewijzing die de naam een waarde moet geven. Herstel de bedoelde gegevensstroom in plaats van zomaar nog een variabele toe te voegen om de fout te laten verdwijnen. Dit voorbeeld gebruikt overal total, zodat berekening en weergave overeenkomen."
+          },
+          "code": "points = 6\nbonus = 3\ntotal = points + bonus\nprint(\"Total: \" + str(total))",
+          "output": "Total: 9"
+        },
+        {
+          "heading": {
+            "en": "One repair can expose another",
+            "nl": "Een reparatie kan een volgende fout tonen"
+          },
+          "body": {
+            "en": "The editor holds a two-round scoring program. One answer is missing; later, the score has a misspelled name. Run after each repair and notice how execution gets farther. Keep the variable called score throughout. Checks become available once both NameErrors are repaired.",
+            "nl": "In de editor staat een scoreprogramma met twee rondes. Eén antwoord ontbreekt; verderop is de scorenaam verkeerd gespeld. Voer na elke reparatie uit en merk op dat de uitvoering verder komt. Gebruik overal de variabele score. De controles kunnen slagen zodra beide NameErrors zijn hersteld."
+          }
+        }
+      ],
       "files": {
-        "main.py": "count = 16\nprint(Count)\n"
+        "main.py": "answer_one = \"blue\"\n# The second submitted answer should be \"circle\".\nscore = 0\n\nif answer_one == \"blue\":\n    score += 1\nif answer_two == \"circle\":\n    scroe += 1\n\nprint(\"Score: \" + str(score))\n# Add a perfect-round message for a score of 2.\n"
       },
       "solution": {
-        "main.py": "count = 16\nprint(count)\n"
+        "main.py": "answer_one = \"blue\"\nanswer_two = \"circle\"\nscore = 0\nif answer_one == \"blue\":\n    score += 1\nif answer_two == \"circle\":\n    score += 1\nprint(\"Score: \" + str(score))\nif score == 2:\n    print(\"Perfect round\")\n"
       },
       "checkpoints": [
         {
-          "id": "python-errors-03-step-1",
+          "id": "python-errors-03-v2-step-1",
           "task": {
-            "en": "Repair the inconsistent name so the program prints 16. Keep the variable named count.",
-            "nl": "Herstel de verschillende schrijfwijzen zodat het programma 16 afdrukt. Houd de variablenaam count."
+            "en": "Run and read the first NameError. Define `answer_two` as the string circle beside answer_one, before the conditions use it. Run again to reveal the next error.",
+            "nl": "Voer uit en lees de eerste NameError. Definieer `answer_two` als de string circle naast answer_one, voordat de voorwaarden deze gebruiken. Voer opnieuw uit om de volgende fout te zien."
           },
-          "check": "count == 16 and _stdout.strip() == '16'",
+          "check": "answer_two == 'circle'",
+          "feedback": {
+            "en": "Define answer_two before its comparison, then repair the later spelling error so the complete file can run.",
+            "nl": "Definieer answer_two vóór de vergelijking en herstel daarna de latere spelfout zodat het hele bestand kan uitvoeren."
+          },
           "hint": {
-            "en": "Start with count = 16. Then compare the values with the task.",
-            "nl": "Begin met count = 16. Vergelijk de waarden daarna met de opdracht."
+            "en": "An assignment above both if statements makes the second answer available when Python needs it.",
+            "nl": "Een toewijzing boven beide if-instructies maakt het tweede antwoord beschikbaar wanneer Python het nodig heeft."
+          }
+        },
+        {
+          "id": "python-errors-03-v2-step-2",
+          "task": {
+            "en": "Repair the misspelled score name in the second branch. Keep the single accumulator `score`, starting at 0 and gaining one point for each correct answer. The printed score should now be 2.",
+            "nl": "Herstel de verkeerd gespelde scorenaam in de tweede branch. Behoud één teller `score`, beginnend op 0 en met één punt per goed antwoord. De afgedrukte score moet nu 2 zijn."
+          },
+          "check": "score == 2 and _stdout.splitlines()[:1] == ['Score: 2']",
+          "feedback": {
+            "en": "Update score in both branches. One wrong answer should produce 1 point; two wrong answers should produce 0.",
+            "nl": "Werk in beide branches score bij. Eén fout antwoord moet 1 punt opleveren; twee foute antwoorden 0."
+          },
+          "cases": [
+            {
+              "inputs": {
+                "answer_one": "red"
+              },
+              "check": "score == 1"
+            },
+            {
+              "inputs": {
+                "answer_two": "square"
+              },
+              "check": "score == 1"
+            },
+            {
+              "inputs": {
+                "answer_one": "red",
+                "answer_two": "square"
+              },
+              "check": "score == 0"
+            }
+          ],
+          "hint": {
+            "en": "Both += lines must update the same name assigned to 0 above the conditions.",
+            "nl": "Beide +=-regels moeten dezelfde naam bijwerken die boven de voorwaarden op 0 staat."
+          }
+        },
+        {
+          "id": "python-errors-03-v2-step-3",
+          "task": {
+            "en": "After the score display, add an if statement that prints Perfect round only when score is 2. Try a wrong answer, then restore both original answers.",
+            "nl": "Voeg na de scoreweergave een if-instructie toe die alleen bij score 2 Perfect round afdrukt. Probeer een fout antwoord en herstel daarna beide oorspronkelijke antwoorden."
+          },
+          "check": "_stdout.splitlines() == ['Score: 2','Perfect round']",
+          "feedback": {
+            "en": "Show Perfect round only for two correct answers; the score itself must always be printed.",
+            "nl": "Toon Perfect round alleen bij twee goede antwoorden; de score zelf moet altijd worden afgedrukt."
+          },
+          "cases": [
+            {
+              "inputs": {
+                "answer_two": "square"
+              },
+              "check": "_stdout.splitlines() == ['Score: 1']"
+            },
+            {
+              "inputs": {
+                "answer_one": "red",
+                "answer_two": "square"
+              },
+              "check": "_stdout.splitlines() == ['Score: 0']"
+            }
+          ],
+          "hint": {
+            "en": "Keep the score display unconditional; indent only the celebration under if score == 2.",
+            "nl": "Laat de score altijd afdrukken; laat alleen het feestbericht inspringen onder if score == 2."
           }
         }
       ],
       "solutionNote": {
-        "en": "A NameError occurs when a name has no value in the current scope. Python names are case-sensitive. Compare the spelling at the assignment with the spelling where the name is used.\n\nTrace the solution one line at a time. Try a different input to see which parts change.",
-        "nl": "Een NameError ontstaat als een naam geen waarde heeft in de huidige scope. Python maakt onderscheid tussen hoofdletters en kleine letters. Vergelijk de naam bij de assignment met de naam op de plek waar je deze gebruikt.\n\nVolg de oplossing regel voor regel. Probeer een andere invoer en bekijk welke onderdelen veranderen."
+        "en": "The missing assignment supplies the second answer. Correcting scroe to score restores one shared accumulator instead of creating a second score. The final conditional reads the total after both rounds, so its message describes the complete result.",
+        "nl": "De ontbrekende toewijzing levert het tweede antwoord. Door scroe in score te veranderen herstel je één gedeelde teller in plaats van een tweede score te maken. De laatste voorwaarde leest het totaal na beide rondes, zodat het bericht het volledige resultaat beschrijft."
       },
       "sourcePosition": 3,
       "sourceUrl": "https://www.codecademy.com/courses/learn-python-3/lessons/python-errors/exercises/name-error",
@@ -3598,38 +4826,125 @@
       "group": "python-errors",
       "title": {
         "en": "Type errors",
-        "nl": "TypeError herstellen"
+        "nl": "Kies de juiste typeconversie"
       },
       "kind": "coding",
       "optional": false,
       "explanation": {
-        "en": "A TypeError reports an operation that does not support the supplied types. Converting intentionally is better than guessing. int() converts suitable numeric text; str() turns a value into text for display.",
-        "nl": "Een TypeError meldt dat een bewerking de gebruikte types niet ondersteunt. Kies bewust een conversie. int() zet geschikte numerieke tekst om; str() zet een waarde om in tekst voor weergave."
+        "en": "An operation can be valid Python syntax yet incompatible with its values. Text from a form is still text even when it contains digits. Convert to a number when you need arithmetic, and convert to text when you need string concatenation. Converting everything to strings can hide one error while breaking the calculation.",
+        "nl": "Een bewerking kan geldige Python-syntax zijn en toch niet passen bij de waarden. Tekst uit een formulier blijft tekst, ook als er cijfers in staan. Zet om naar een getal voor berekeningen en naar tekst voor het samenvoegen van strings. Alles naar strings omzetten kan één fout verbergen maar de berekening kapotmaken."
       },
       "example": "",
+      "sections": [
+        {
+          "heading": {
+            "en": "Choose a direction",
+            "nl": "Kies een richting"
+          },
+          "body": {
+            "en": "For arithmetic, use int on suitable whole-number text or float on suitable decimal text. For a message made with +, use str on a number. Each conversion returns a new value. It does not change the original variable unless you assign the result back to it.",
+            "nl": "Gebruik voor berekeningen int bij geschikte tekst met gehele getallen of float bij geschikte decimale tekst. Gebruik voor een bericht met + de functie str op een getal. Elke conversie geeft een nieuwe waarde terug. De oorspronkelijke variabele verandert alleen als je het resultaat eraan toewijst."
+          },
+          "code": "count_text = \"4\"\ncount = int(count_text)\ncost = count * 3\nprint(\"Cost: \" + str(cost))\nprint(type(count_text))",
+          "output": "Cost: 12\n<class 'str'>"
+        },
+        {
+          "heading": {
+            "en": "Repair the calculation before its label",
+            "nl": "Herstel de berekening vóór het label"
+          },
+          "body": {
+            "en": "The packing estimator first tries to add a number to text, then tries to attach a numeric total to a message. These are two different boundaries. Repair each at its own point. Keep the original quantity_text unchanged so you can still inspect what arrived from the form. Both repairs are needed before the final output can be checked.",
+            "nl": "De verpakkingscalculator probeert eerst een getal bij tekst op te tellen en daarna een numeriek totaal aan een bericht te plakken. Dit zijn twee verschillende overgangen. Herstel elk op de juiste plek. Laat quantity_text ongewijzigd zodat je kunt blijven zien wat uit het formulier kwam. Beide reparaties zijn nodig voordat de laatste output kan worden gecontroleerd."
+          }
+        }
+      ],
       "files": {
-        "main.py": "quantity = \"6\"\nupdated = quantity + 2\nprint(updated)\n"
+        "main.py": "quantity_text = \"6\"\nspares = 2\nunit_price = 3\n\nquantity = quantity_text + spares\ntotal = quantity * unit_price\nprint(\"Packing estimate\")\nprint(\"Total: \" + total)\n# Show the number of packed units on the final line.\n"
       },
       "solution": {
-        "main.py": "quantity = \"6\"\nupdated = int(quantity) + 2\nprint(updated)\n"
+        "main.py": "quantity_text = \"6\"\nspares = 2\nunit_price = 3\nquantity = int(quantity_text) + spares\ntotal = quantity * unit_price\nprint(\"Packing estimate\")\nprint(\"Total: \" + str(total))\nprint(\"Units: \" + str(quantity))\n"
       },
       "checkpoints": [
         {
-          "id": "python-errors-04-step-1",
+          "id": "python-errors-04-v2-step-1",
           "task": {
-            "en": "Convert the string quantity to an integer, add 2, and store the result in updated. Print updated.",
-            "nl": "Zet de string quantity om naar een integer, tel er 2 bij op en sla het resultaat op in updated. Druk updated af."
+            "en": "Run and inspect the first TypeError. Convert quantity_text to an integer when calculating `quantity`, then add spares. Keep quantity_text as the original string.",
+            "nl": "Voer uit en onderzoek de eerste TypeError. Zet quantity_text bij het berekenen van `quantity` om naar een integer en tel daarna spares erbij op. Behoud quantity_text als oorspronkelijke string."
           },
-          "check": "updated == 8 and type(updated) is int",
+          "check": "quantity_text == '6' and type(quantity_text) is str and type(quantity) is int and quantity == 8",
+          "feedback": {
+            "en": "Calculate 6 + 2 numerically to get 8, keeping the original form text intact. Repair the display error next.",
+            "nl": "Bereken 6 + 2 numeriek tot 8 en behoud de oorspronkelijke formuliertekst. Herstel vervolgens de weergavefout."
+          },
+          "cases": [
+            {
+              "inputs": {
+                "quantity_text": "10",
+                "spares": 1
+              },
+              "check": "quantity == 11 and type(quantity) is int"
+            }
+          ],
           "hint": {
-            "en": "Start with quantity = \"6\". Then compare the values with the task.",
-            "nl": "Begin met quantity = \"6\". Vergelijk de waarden daarna met de opdracht."
+            "en": "Use int(quantity_text) on the numeric side of the calculation, not str(spares).",
+            "nl": "Gebruik int(quantity_text) aan de numerieke kant van de berekening, niet str(spares)."
+          }
+        },
+        {
+          "id": "python-errors-04-v2-step-2",
+          "task": {
+            "en": "Run again. Keep `total` numeric, but convert it to text inside the Total message. The first two lines should be Packing estimate and Total: 24.",
+            "nl": "Voer opnieuw uit. Houd `total` numeriek, maar zet deze binnen het Total-bericht om naar tekst. De eerste twee regels moeten Packing estimate en Total: 24 zijn."
+          },
+          "check": "total == 24 and type(total) is int and _stdout.splitlines()[:2] == ['Packing estimate','Total: 24']",
+          "feedback": {
+            "en": "Keep total available for arithmetic and convert it at the display boundary.",
+            "nl": "Houd total beschikbaar voor berekeningen en zet deze pas bij het weergeven om."
+          },
+          "cases": [
+            {
+              "inputs": {
+                "quantity_text": "10",
+                "spares": 1
+              },
+              "check": "total == 33 and _stdout.splitlines()[:2] == ['Packing estimate','Total: 33']"
+            }
+          ],
+          "hint": {
+            "en": "Write str(total) only where you join it to the label.",
+            "nl": "Schrijf str(total) alleen waar je de waarde aan het label plakt."
+          }
+        },
+        {
+          "id": "python-errors-04-v2-step-3",
+          "task": {
+            "en": "Add a final line showing Units: 8 from quantity. Test quantity_text = \"10\", then restore \"6\". Explain why converting the number to text for display does not change quantity itself.",
+            "nl": "Voeg een laatste regel toe die Units: 8 uit quantity toont. Test quantity_text = \"10\" en zet daarna \"6\" terug. Leg uit waarom omzetten naar tekst voor de weergave quantity zelf niet verandert."
+          },
+          "check": "_stdout.splitlines() == ['Packing estimate','Total: 24','Units: 8'] and type(quantity) is int",
+          "feedback": {
+            "en": "Build Units from the calculated integer so the message follows changed quantities too.",
+            "nl": "Bouw Units uit de berekende integer zodat het bericht ook gewijzigde aantallen volgt."
+          },
+          "cases": [
+            {
+              "inputs": {
+                "quantity_text": "10",
+                "spares": 1
+              },
+              "check": "_stdout.splitlines() == ['Packing estimate','Total: 33','Units: 11']"
+            }
+          ],
+          "hint": {
+            "en": "Use the same display conversion as for total, but read quantity.",
+            "nl": "Gebruik dezelfde weergaveconversie als bij total, maar lees quantity."
           }
         }
       ],
       "solutionNote": {
-        "en": "A TypeError reports an operation that does not support the supplied types. Converting intentionally is better than guessing. int() converts suitable numeric text; str() turns a value into text for display.\n\nTrace the solution one line at a time. Try a different input to see which parts change.",
-        "nl": "Een TypeError meldt dat een bewerking de gebruikte types niet ondersteunt. Kies bewust een conversie. int() zet geschikte numerieke tekst om; str() zet een waarde om in tekst voor weergave.\n\nVolg de oplossing regel voor regel. Probeer een andere invoer en bekijk welke onderdelen veranderen."
+        "en": "int converts the incoming digits before addition, so 6 + 2 produces 8 instead of combining text. The total stays numeric. str creates temporary text for each printed message; quantity and total remain integers afterward.",
+        "nl": "int zet de binnenkomende cijfers vóór het optellen om, zodat 6 + 2 het getal 8 geeft in plaats van tekst samen te voegen. Het totaal blijft numeriek. str maakt tijdelijke tekst voor elk afgedrukt bericht; quantity en total blijven daarna integers."
       },
       "sourcePosition": 4,
       "sourceUrl": "https://www.codecademy.com/courses/learn-python-3/lessons/python-errors/exercises/type-errors",
@@ -3641,25 +4956,49 @@
       "group": "python-errors",
       "title": {
         "en": "Debugging review",
-        "nl": "Terugblik: debuggen"
+        "nl": "Een programma zonder foutmelding kan toch fout zijn"
       },
       "kind": "reading",
       "optional": false,
       "explanation": {
-        "en": "Use the exception type as a clue: SyntaxError points to structure, NameError to an unavailable name, and TypeError to incompatible operations. A traceback is diagnostic information, not a sign that you should stop experimenting.",
-        "nl": "Gebruik het exception type als aanwijzing: SyntaxError gaat over structuur, NameError over een onbekende naam en TypeError over onverenigbare bewerkingen. Een traceback helpt je onderzoeken; het is geen reden om te stoppen met experimenteren."
+        "en": "Once a program runs, compare its result with the rule it is supposed to implement. A logic error can produce plausible output with no exception at all. Use a small table of expected cases, especially values exactly on a boundary, rather than trusting one successful run.",
+        "nl": "Vergelijk zodra een programma uitvoert het resultaat met de regel die het hoort toe te passen. Een logische fout kan aannemelijke output geven zonder exception. Gebruik een klein overzicht van verwachte gevallen, vooral waarden precies op een grens, in plaats van op één geslaagde uitvoering te vertrouwen."
       },
       "example": "",
+      "sections": [
+        {
+          "heading": {
+            "en": "Check the promise",
+            "nl": "Controleer de afspraak"
+          },
+          "body": {
+            "en": "A fictional shop waives a delivery fee when the order total is at least 20. The supplied program runs, but charges a fee at exactly 20. Predict the output for totals 19, 20 and 21 before testing them. Identify which comparison disagrees with the rule and repair it.\n\nThen extend the rule: members also receive free delivery, even below 20. Add a member Boolean and combine the two qualifying conditions with or. Test both member values at 19 and at 20.",
+            "nl": "Een fictieve winkel rekent geen verzendkosten bij een ordertotaal van minstens 20. Het meegeleverde programma voert uit, maar rekent bij precies 20 wel kosten. Voorspel de output voor 19, 20 en 21 voordat je test. Zoek welke vergelijking niet bij de regel past en herstel deze.\n\nBreid daarna de regel uit: leden krijgen ook gratis verzending, zelfs onder 20. Voeg een Boolean member toe en combineer de twee voorwaarden met or. Test beide lidmaatschapswaarden bij 19 en bij 20."
+          }
+        },
+        {
+          "heading": {
+            "en": "Keep a debugging routine",
+            "nl": "Houd een vaste debugroutine aan"
+          },
+          "body": {
+            "en": "Syntax errors: inspect structure and punctuation. Name errors: follow the name to its assignment. Type errors: inspect the operation and the types on both sides. Logic errors: compare expected and actual results for several inputs. Change one cause at a time, rerun, and keep the cases that exposed the bug for later checks.",
+            "nl": "Syntaxfouten: onderzoek structuur en leestekens. Naamfouten: volg de naam terug naar de toewijzing. Typefouten: onderzoek de bewerking en de types aan beide kanten. Logische fouten: vergelijk verwacht en werkelijk resultaat voor verschillende invoer. Verander steeds één oorzaak, voer opnieuw uit en bewaar de gevallen die de fout zichtbaar maakten voor latere controles."
+          },
+          "code": "total = 20\nqualifies = total >= 20\nprint(qualifies)",
+          "output": "True"
+        }
+      ],
       "files": {
-        "main.py": "quantity = \"6\"\nprint(int(quantity) + 2)\n"
+        "main.py": "# Rule: delivery is free for totals of at least 20.\ntotal = 20\nif total > 20:\n    delivery = 0\nelse:\n    delivery = 4\nprint(\"Delivery: \" + str(delivery))\nprint(\"Pay: \" + str(total + delivery))\n"
       },
       "solution": {
-        "main.py": "quantity = \"6\"\nprint(int(quantity) + 2)\n"
+        "main.py": "total = 20\nmember = False\nif total >= 20 or member:\n    delivery = 0\nelse:\n    delivery = 4\nprint(\"Delivery: \" + str(delivery))\nprint(\"Pay: \" + str(total + delivery))\n"
       },
       "checkpoints": [],
       "solutionNote": {
-        "en": "Use the exception type as a clue: SyntaxError points to structure, NameError to an unavailable name, and TypeError to incompatible operations. A traceback is diagnostic information, not a sign that you should stop experimenting.\n\nTrace the solution one line at a time. Try a different input to see which parts change.",
-        "nl": "Gebruik het exception type als aanwijzing: SyntaxError gaat over structuur, NameError over een onbekende naam en TypeError over onverenigbare bewerkingen. Een traceback helpt je onderzoeken; het is geen reden om te stoppen met experimenteren.\n\nVolg de oplossing regel voor regel. Probeer een andere invoer en bekijk welke onderdelen veranderen."
+        "en": "At least includes equality, so >= repairs the boundary. The optional member extension uses or because either qualification is sufficient. At total 19, a non-member pays delivery 4 while a member pays 0. At total 20 both receive free delivery. No exception was needed to reveal the original logic mistake.",
+        "nl": "Minstens omvat gelijkheid, dus >= herstelt de grens. De optionele uitbreiding met member gebruikt or omdat één voorwaarde al genoeg is. Bij totaal 19 betaalt een niet-lid 4 verzendkosten en een lid 0. Bij totaal 20 krijgen beiden gratis verzending. Er was geen exception nodig om de oorspronkelijke logische fout te ontdekken."
       },
       "sourcePosition": 5,
       "sourceUrl": "https://www.codecademy.com/courses/learn-python-3/lessons/python-errors/exercises/review",
@@ -3680,16 +5019,52 @@
         "nl": "match vergelijkt een waarde met case-patterns. Bij eenvoudige literals maakt dit meerdere alternatieven overzichtelijk. case _ is de wildcard-fallback; default is geen speciaal Python-keyword.\n\nPattern matching bestaat vanaf Python 3.10 en kan ook complexere structuren herkennen. Gewone if/elif blijft handig voor vergelijkingen zoals intervallen en grenswaarden."
       },
       "example": "",
+      "sections": [
+        {
+          "heading": {
+            "en": "The same choice, another structure",
+            "nl": "Dezelfde keuze, een andere structuur"
+          },
+          "body": {
+            "en": "An if/elif chain can compare a command with several known strings. A match statement evaluates its subject, then tries cases in order. For the literal patterns used here, the first equal value chooses the block. After that block finishes, execution continues after the entire match statement.\n\nRun the command dispatcher in the editor with start, stop and an unknown command. Compare its output with this equivalent conditional chain.",
+            "nl": "Een if/elif-keten kan een opdracht met verschillende bekende strings vergelijken. Een match-instructie bepaalt de waarde en probeert daarna de cases op volgorde. Bij de literals die we hier gebruiken kiest de eerste gelijke waarde het blok. Na dat blok gaat de uitvoering verder ná de hele match-instructie.\n\nVoer het opdrachtprogramma in de editor uit met start, stop en een onbekende opdracht. Vergelijk de output met deze gelijkwaardige keten van voorwaarden."
+          },
+          "code": "command = \"stop\"\nif command == \"start\":\n    print(\"Starting\")\nelif command == \"stop\":\n    print(\"Stopping\")\nelse:\n    print(\"Unknown command\")",
+          "output": "Stopping"
+        },
+        {
+          "heading": {
+            "en": "Quote literals; put the fallback last",
+            "nl": "Zet literals tussen aanhalingstekens; plaats de fallback als laatste"
+          },
+          "body": {
+            "en": "Write `case \"start\":` to test a string. A bare name such as `case start:` does something different: it captures the subject into a variable and matches any value. It is not a comparison with a variable named start.\n\nThe special wildcard `case _:` matches anything without binding a name. Place it last, after your specific cases. Python has no special default keyword for a match statement.",
+            "nl": "Schrijf `case \"start\":` om een string te testen. Een losse naam zoals `case start:` doet iets anders: deze slaat de onderzochte waarde op in een variabele en past op elke waarde. Dit is geen vergelijking met een variabele met de naam start.\n\nDe speciale wildcard `case _:` past op alles zonder een naam te binden. Plaats deze als laatste, na je specifieke cases. Python heeft geen speciaal keyword default voor een match-instructie."
+          },
+          "code": "command = \"pause\"\nmatch command:\n    case \"start\":\n        print(\"Starting\")\n    case _:\n        print(\"Unknown command: \" + command)",
+          "output": "Unknown command: pause"
+        },
+        {
+          "heading": {
+            "en": "Extend the dispatcher",
+            "nl": "Breid het opdrachtprogramma uit"
+          },
+          "body": {
+            "en": "Add a case for the literal `\"status\"` that prints Ready. Put it before the wildcard and test it by changing command. Then improve the fallback to include the unrecognised command, as in the example above. Test start, stop, status and pause.\n\nFinally, consider a wind-speed display with thresholds at 10, 25 and 40. An if/elif chain directly expresses those comparisons. Match supports more advanced patterns too, but you do not need them to replace every conditional. Choose the structure that expresses your question clearly.",
+            "nl": "Voeg een case voor de literal `\"status\"` toe die Ready afdrukt. Zet deze vóór de wildcard en test door command te veranderen. Verbeter daarna de fallback zodat de onbekende opdracht in het bericht staat, zoals in het voorbeeld hierboven. Test start, stop, status en pause.\n\nDenk tot slot aan een windscherm met grenzen bij 10, 25 en 40. Een if/elif-keten drukt die vergelijkingen direct uit. Match ondersteunt ook geavanceerdere patterns, maar je hoeft er niet elke voorwaarde door te vervangen. Kies de structuur die je vraag duidelijk beschrijft."
+          }
+        }
+      ],
       "files": {
         "main.py": "command = \"start\"\nmatch command:\n    case \"start\":\n        print(\"Starting\")\n    case \"stop\":\n        print(\"Stopping\")\n    case _:\n        print(\"Unknown command\")\n"
       },
       "solution": {
-        "main.py": "command = \"start\"\nmatch command:\n    case \"start\":\n        print(\"Starting\")\n    case \"stop\":\n        print(\"Stopping\")\n    case _:\n        print(\"Unknown command\")\n"
+        "main.py": "command = \"status\"\nmatch command:\n    case \"start\":\n        print(\"Starting\")\n    case \"stop\":\n        print(\"Stopping\")\n    case \"status\":\n        print(\"Ready\")\n    case _:\n        print(\"Unknown command: \" + command)\n"
       },
       "checkpoints": [],
       "solutionNote": {
-        "en": "This is an exploration activity. Run the example, change one input, and explain the new result in your own words.",
-        "nl": "Dit is een verkenningsactiviteit. Voer het voorbeeld uit, verander één invoer en leg het nieuwe resultaat in je eigen woorden uit."
+        "en": "Each quoted literal tests one command value. The added status branch belongs before the wildcard because case _ accepts every remaining value. Keeping command in the fallback message helps a person see what the program did not recognise. Use if/elif when your main decision is about numeric ranges rather than exact command values.",
+        "nl": "Elke literal tussen aanhalingstekens test één opdrachtwaarde. De toegevoegde status-branch staat vóór de wildcard omdat case _ elke resterende waarde accepteert. Door command in het fallback-bericht te gebruiken ziet iemand wat het programma niet herkende. Gebruik if/elif wanneer de beslissing vooral over numerieke bereiken gaat in plaats van exacte opdrachtwaarden."
       },
       "estimatedMinutes": 2
     },

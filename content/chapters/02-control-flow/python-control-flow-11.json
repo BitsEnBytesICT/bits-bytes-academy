@@ -4,38 +4,158 @@
   "group": "python-control-flow",
   "title": {
     "en": "Multiple branches",
-    "nl": "Meerdere branches"
+    "nl": "Meerdere uitkomsten met elif"
   },
   "kind": "coding",
   "optional": false,
   "explanation": {
-    "en": "An if/elif/else chain tests conditions from top to bottom. The first true branch wins; later branches are skipped. Order narrow conditions before broader ones that would also match.",
-    "nl": "Een if/elif/else-reeks controleert voorwaarden van boven naar beneden. De eerste ware voorwaarde bepaalt welk blok wordt uitgevoerd. Zet specifieke voorwaarden vóór bredere voorwaarden die ook zouden passen."
+    "en": "An `if`/`elif`/`else` chain chooses one result from several possibilities. Python checks conditions in order and stops at the first true one. The order matters whenever conditions overlap: a broad early test can hide a more specific later test.",
+    "nl": "Een `if`/`elif`/`else`-reeks kiest één resultaat uit meerdere mogelijkheden. Python controleert de voorwaarden op volgorde en stopt bij de eerste ware. De volgorde telt wanneer voorwaarden overlappen: een brede test vooraan kan een specifiekere test verderop verbergen."
   },
   "example": "",
+  "sections": [
+    {
+      "heading": {
+        "en": "First match wins",
+        "nl": "De eerste passende tak wint"
+      },
+      "body": {
+        "en": "A score of 95 is also at least 70. Test the higher threshold first when using >=. Replacing elif with separate if statements could print more than one classification.",
+        "nl": "Een score van 95 is ook minstens 70. Test bij >= eerst de hogere grens. Vervang je elif door losse if-instructies, dan kunnen meerdere classificaties worden afgedrukt."
+      },
+      "code": "score = 95\nif score >= 90:\n    print(\"Excellent\")\nelif score >= 70:\n    print(\"Pass\")\nelse:\n    print(\"Practise again\")",
+      "output": "Excellent"
+    },
+    {
+      "heading": {
+        "en": "Build ordered ranges",
+        "nl": "Bouw geordende bereiken"
+      },
+      "body": {
+        "en": "Our fictional wind display uses these categories: below 10 is calm, 10 up to but not including 25 is breezy, 25 up to 40 is strong, and 40 or more is storm. With less-than comparisons, test the lowest threshold first. A later branch already knows the earlier conditions were false.",
+        "nl": "Ons fictieve windscherm gebruikt deze categorieën: onder 10 is calm, van 10 tot maar niet inclusief 25 is breezy, van 25 tot 40 is strong en vanaf 40 is storm. Test bij kleiner-dan-vergelijkingen eerst de laagste grens. Een latere tak weet al dat eerdere voorwaarden onwaar waren."
+      }
+    }
+  ],
   "files": {
-    "main.py": "wind = 18\n"
+    "main.py": "# The first two thresholds are in the wrong order.\nwind = 18\n\nif wind < 25:\n    category = \"calm\"\nelif wind < 10:\n    category = \"breezy\"\nelse:\n    category = \"unclassified\"\n\nprint(category)\n# Add a labelled summary after the category.\n"
   },
   "solution": {
-    "main.py": "wind = 18\nif wind < 10:\n    category = \"calm\"\nelif wind < 25:\n    category = \"breezy\"\nelse:\n    category = \"strong\"\nprint(category)\n"
+    "main.py": "wind = 18\nif wind < 10:\n    category = \"calm\"\nelif wind < 25:\n    category = \"breezy\"\nelif wind < 40:\n    category = \"strong\"\nelse:\n    category = \"storm\"\nprint(category)\nprint(\"Wind: \" + str(wind) + \" | \" + category)\n"
   },
   "checkpoints": [
     {
-      "id": "python-control-flow-11-step-1",
+      "id": "python-control-flow-11-v2-step-1",
       "task": {
-        "en": "With wind = 18, set category to calm below 10, breezy below 25, and strong otherwise. Print category.",
-        "nl": "Gebruik wind = 18. Geef category de waarde calm onder 10, breezy onder 25 en anders strong. Druk category af."
+        "en": "Repair the first two conditions so values below 10 become calm and values from 10 to below 25 become breezy. The starter's 18 should print breezy.",
+        "nl": "Herstel de eerste twee voorwaarden zodat waarden onder 10 calm worden en waarden van 10 tot onder 25 breezy. De startwaarde 18 moet breezy afdrukken."
       },
-      "check": "category == 'breezy' and 'elif' in _source",
+      "check": "category == 'breezy' and _stdout.splitlines()[:1] == ['breezy']",
+      "feedback": {
+        "en": "Check the ordering at 9, 10 and 24; only the first matching branch runs.",
+        "nl": "Controleer de volgorde bij 9, 10 en 24; alleen de eerste passende tak draait."
+      },
+      "cases": [
+        {
+          "inputs": {
+            "wind": 9
+          },
+          "check": "category == 'calm'"
+        },
+        {
+          "inputs": {
+            "wind": 10
+          },
+          "check": "category == 'breezy'"
+        },
+        {
+          "inputs": {
+            "wind": 24
+          },
+          "check": "category == 'breezy'"
+        }
+      ],
       "hint": {
-        "en": "Start with wind = 18. Then compare the values with the task.",
-        "nl": "Begin met wind = 18. Vergelijk de waarden daarna met de opdracht."
+        "en": "Test wind < 10 before wind < 25. Otherwise the broader condition catches the smaller values too.",
+        "nl": "Test wind < 10 vóór wind < 25. Anders vangt de bredere voorwaarde ook de lagere waarden op."
+      }
+    },
+    {
+      "id": "python-control-flow-11-v2-step-2",
+      "task": {
+        "en": "Add an elif for wind below 40 with category strong. Change the fallback to storm. At exactly 25 the category must be strong; at exactly 40 it must be storm.",
+        "nl": "Voeg een elif toe voor wind onder 40 met categorie strong. Verander het alternatief naar storm. Precies 25 moet strong geven; precies 40 moet storm geven."
+      },
+      "check": "category == 'breezy'",
+      "feedback": {
+        "en": "Test both boundaries: 25 and 39 are strong; 40 and above are storm.",
+        "nl": "Test beide grenzen: 25 en 39 zijn strong; 40 en hoger zijn storm."
+      },
+      "cases": [
+        {
+          "inputs": {
+            "wind": 25
+          },
+          "check": "category == 'strong'"
+        },
+        {
+          "inputs": {
+            "wind": 39
+          },
+          "check": "category == 'strong'"
+        },
+        {
+          "inputs": {
+            "wind": 40
+          },
+          "check": "category == 'storm'"
+        },
+        {
+          "inputs": {
+            "wind": 65
+          },
+          "check": "category == 'storm'"
+        }
+      ],
+      "hint": {
+        "en": "Place the new elif after the below-25 branch and before else.",
+        "nl": "Zet de nieuwe elif na de tak voor onder 25 en vóór else."
+      }
+    },
+    {
+      "id": "python-control-flow-11-v2-step-3",
+      "task": {
+        "en": "After the category, print a summary in the form `Wind: 18 | breezy`, using the current wind and category variables. Keep wind = 18 for the normal run.",
+        "nl": "Druk na de categorie een samenvatting af in de vorm `Wind: 18 | breezy`, met de huidige variabelen wind en category. Laat wind voor de gewone uitvoering op 18 staan."
+      },
+      "check": "_stdout.splitlines() == ['breezy','Wind: 18 | breezy']",
+      "feedback": {
+        "en": "Use the variables in the summary so it stays correct for other wind values.",
+        "nl": "Gebruik de variabelen in de samenvatting zodat deze bij andere windwaarden blijft kloppen."
+      },
+      "cases": [
+        {
+          "inputs": {
+            "wind": 9
+          },
+          "check": "_stdout.splitlines() == ['calm','Wind: 9 | calm']"
+        },
+        {
+          "inputs": {
+            "wind": 40
+          },
+          "check": "_stdout.splitlines() == ['storm','Wind: 40 | storm']"
+        }
+      ],
+      "hint": {
+        "en": "Build the message after the whole chain so every branch shares the same output code.",
+        "nl": "Bouw het bericht na de hele reeks op zodat elke tak dezelfde outputcode gebruikt."
       }
     }
   ],
   "solutionNote": {
-    "en": "An if/elif/else chain tests conditions from top to bottom. The first true branch wins; later branches are skipped. Order narrow conditions before broader ones that would also match.\n\nTrace the solution one line at a time. Try a different input to see which parts change.",
-    "nl": "Een if/elif/else-reeks controleert voorwaarden van boven naar beneden. De eerste ware voorwaarde bepaalt welk blok wordt uitgevoerd. Zet specifieke voorwaarden vóór bredere voorwaarden die ook zouden passen.\n\nVolg de oplossing regel voor regel. Probeer een andere invoer en bekijk welke onderdelen veranderen."
+    "en": "The ascending upper bounds form non-overlapping ranges because each later branch is reached only after earlier tests fail. The summary sits outside the chain, which avoids repeating presentation code in every branch.",
+    "nl": "De oplopende bovengrenzen vormen niet-overlappende bereiken, omdat een latere tak pas wordt bereikt nadat eerdere tests onwaar zijn. De samenvatting staat buiten de reeks, zodat je de presentatiecode niet in elke tak herhaalt."
   },
   "sourcePosition": 11,
   "sourceUrl": "https://www.codecademy.com/courses/learn-python-3/lessons/python-control-flow/exercises/else-if-statements",

@@ -4,25 +4,49 @@
   "group": "python-control-flow",
   "title": {
     "en": "Decision review",
-    "nl": "Terugblik: beslissingen"
+    "nl": "Terugblik: een adviesprogramma uitbreiden"
   },
   "kind": "reading",
   "optional": false,
   "explanation": {
-    "en": "Try changing the input values in this decision program. Predict which branch runs before you press Run. Compare separate if statements with an if/elif chain: independent if statements can run more than one block.",
-    "nl": "Verander de invoerwaarden in dit beslisprogramma. Voorspel vóór het uitvoeren welke branch wordt gekozen. Vergelijk losse if statements met een if/elif-reeks: meerdere losse if-blokken kunnen worden uitgevoerd."
+    "en": "You now have the parts of a decision program: comparisons create Boolean answers, and/or/not combine or reverse them, and if/elif/else chooses which instructions run. This optional playground combines those parts in a fictional outdoor-session planner.",
+    "nl": "Je kent nu de onderdelen van een beslisprogramma: vergelijkingen maken Boolean-antwoorden, and/or/not combineren of ontkennen deze en if/elif/else kiest welke instructies draaien. Deze optionele oefenruimte combineert de onderdelen in een fictieve planner voor een buitenactiviteit."
   },
   "example": "",
+  "sections": [
+    {
+      "heading": {
+        "en": "Trace before editing",
+        "nl": "Volg de code voordat je wijzigt"
+      },
+      "body": {
+        "en": "With rain = True and wind = 12, the first condition fails because both requirements are not met. The second condition matches, so only its message appears. If the first branch matched, Python would skip the later elif even though rain is also true there.",
+        "nl": "Bij rain = True en wind = 12 faalt de eerste voorwaarde, omdat niet aan beide eisen is voldaan. De tweede voorwaarde past, dus alleen dat bericht verschijnt. Als de eerste tak wel paste, zou Python de latere elif overslaan, ook al is rain daar eveneens waar."
+      },
+      "code": "rain = True\nwind = 12\nif rain and wind > 20:\n    print(\"Indoor session\")\nelif rain:\n    print(\"Bring a jacket\")\nelse:\n    print(\"Enjoy the trail\")",
+      "output": "Bring a jacket"
+    },
+    {
+      "heading": {
+        "en": "Make the missing route explicit",
+        "nl": "Maak de ontbrekende route expliciet"
+      },
+      "body": {
+        "en": "Run the supplied program with these inputs and predict each result: rainy with wind 25; rainy with wind 12; dry with wind 12; dry with wind 25. The last case currently falls through to Enjoy the trail.\n\nAdd an elif for a dry day with wind above 20 that prints `Choose a sheltered route`. Place it before the fallback and keep the rainy-day outcomes unchanged. Test wind = 20 too: the requirement says above 20, so equality should still use the ordinary dry-day message.\n\nFinally, explain why turning each elif into an independent if can produce extra messages. This is an exploration: your completion does not depend on matching one solution.",
+        "nl": "Voer het gegeven programma uit met deze invoer en voorspel telkens het resultaat: regen met wind 25; regen met wind 12; droog met wind 12; droog met wind 25. Het laatste geval valt nu terug op Enjoy the trail.\n\nVoeg een elif toe voor een droge dag met wind boven 20 die `Choose a sheltered route` afdrukt. Plaats deze vóór het alternatief en laat de uitkomsten bij regen gelijk. Test ook wind = 20: de eis zegt boven 20, dus gelijkheid moet nog het gewone bericht voor droog weer geven.\n\nLeg tot slot uit waarom losse if-instructies in plaats van elke elif extra berichten kunnen produceren. Dit is een verkenning: je voltooiing hangt niet af van één specifieke oplossing."
+      }
+    }
+  ],
   "files": {
-    "main.py": "rain = True\nwind = 12\nif rain and wind > 20:\n    print(\"Indoor session\")\nelif rain:\n    print(\"Bring a jacket\")\nelse:\n    print(\"Enjoy the trail\")\n"
+    "main.py": "rain = True\nwind = 12\n\nif rain and wind > 20:\n    print(\"Indoor session\")\nelif rain:\n    print(\"Bring a jacket\")\n# Add the missing dry, windy route here.\nelse:\n    print(\"Enjoy the trail\")\n"
   },
   "solution": {
-    "main.py": "rain = True\nwind = 12\nif rain and wind > 20:\n    print(\"Indoor session\")\nelif rain:\n    print(\"Bring a jacket\")\nelse:\n    print(\"Enjoy the trail\")\n"
+    "main.py": "rain = True\nwind = 12\nif rain and wind > 20:\n    print(\"Indoor session\")\nelif rain:\n    print(\"Bring a jacket\")\nelif wind > 20:\n    print(\"Choose a sheltered route\")\nelse:\n    print(\"Enjoy the trail\")\n"
   },
   "checkpoints": [],
   "solutionNote": {
-    "en": "Try changing the input values in this decision program. Predict which branch runs before you press Run. Compare separate if statements with an if/elif chain: independent if statements can run more than one block.\n\nTrace the solution one line at a time. Try a different input to see which parts change.",
-    "nl": "Verander de invoerwaarden in dit beslisprogramma. Voorspel vóór het uitvoeren welke branch wordt gekozen. Vergelijk losse if statements met een if/elif-reeks: meerdere losse if-blokken kunnen worden uitgevoerd.\n\nVolg de oplossing regel voor regel. Probeer een andere invoer en bekijk welke onderdelen veranderen."
+    "en": "The new elif only runs after both rainy-day branches fail, so rain is already false. It can simply test wind > 20. Writing not rain and wind > 20 there is also correct, but repeats information the earlier branches established.",
+    "nl": "De nieuwe elif wordt pas bereikt nadat beide regentakken falen; rain is dus al onwaar. Daarom volstaat wind > 20. Daar not rain and wind > 20 schrijven is ook correct, maar herhaalt informatie die de eerdere takken al gaven."
   },
   "sourcePosition": 12,
   "sourceUrl": "https://www.codecademy.com/courses/learn-python-3/lessons/python-control-flow/exercises/review",
