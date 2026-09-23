@@ -34,6 +34,10 @@ Before any application edits, a full snapshot was created at `../../backups/pyth
 
 ## Teaching and assessment rules
 
+User addition: verify multi-file projects end to end and include one small practical lesson if not already covered. Keep this inside the planned local-imports module rather than adding a duplicate. The lesson is authored as `python-v2-7-04` (One program, two files) and awaits the remaining module-7 activities before assembly. Cover creating a helper file, both import styles, main.py as the Run entry point, save/reload, editing an imported file, and understandable import failures. Also check file-creation validation and use multiple saved files in real pygame. At final delivery, answer whether this is covered and ask the requested follow-up question.
+
+Multi-file implementation evidence: four import styles (module, function, and aliases of each) pass the new lesson checker. Numeric display formatting remains flexible. Tests confirm edits to imported files take effect on the next full run, removed helpers produce ModuleNotFoundError, missing functions fail understandably, repaired modules recover, and probe substitutions do not alter learner files. A behavioral helper substitution catches code that imports the file but duplicates its calculation instead of using it. File creation now reports duplicate/invalid names and the 40-file limit, instead of silently doing nothing or creating an unsavable workspace. Browser file-tab/save/reload and multi-file pygame checks remain pending.
+
 Consolidate retained overlapping lessons; record old-to-new mapping separately from deferral. Support fades through guided, adaptation/debugging, and independent activities. Independent tasks describe behavior, not the algorithm. Useful starter code except explicit fresh-build tasks. Three hint levels: concept, approach/docs, small example. Full solutions remain a deliberate separate reveal. Both final projects have optional milestones and suggested manual tests, no grader; completion is the learner's decision.
 
 ## Runtime decision

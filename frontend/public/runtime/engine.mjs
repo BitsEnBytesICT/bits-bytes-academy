@@ -1,6 +1,6 @@
 // One namespace per activity; every graded run starts fresh.
 export const harness = String.raw`
-import sys, os, json, io, traceback, ast, contextlib, shutil, re, math, random
+import sys, os, json, io, traceback, ast, contextlib, shutil, re, math, random, importlib
 from pyodide.console import Console, repr_shorten
 _lab_root = '/home/pyodide/workspace'
 _lab_ns = None
@@ -10,6 +10,7 @@ _lab_names = set()
 def _lab_probe(files, probe):
     # Real Python, fresh files/modules/input for every case. A test must not
     # alter the learner's variables, random generator, imports, or saved files.
+    files = dict(files, **probe.get('files', {}))
     root = '/home/pyodide/behavior-probe'
     original_cwd, original_path = os.getcwd(), sys.path[:]
     original_stdin, original_random = sys.stdin, random.getstate()
@@ -51,7 +52,8 @@ def _lab_probe(files, probe):
                 exec(compile(ast.fix_missing_locations(tree), 'main.py', 'exec'), namespace)
                 if probe.get('call'):
                     call = probe['call']
-                    result = namespace[call['name']](*call.get('args', []), **call.get('kwargs', {}))
+                    function = getattr(importlib.import_module(call['module']), call['name']) if call.get('module') else namespace[call['name']]
+                    result = function(*call.get('args', []), **call.get('kwargs', {}))
             except BaseException as exc:
                 error = type(exc).__name__
         namespace.update(_return=result, _error=error, _stdout=stdout.getvalue(), _stderr=stderr.getvalue(), _remaining_input=sys.stdin.read(), _close=math.isclose)

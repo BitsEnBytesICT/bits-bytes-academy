@@ -8,9 +8,11 @@ export type CheckInput =
   | CheckInput[]
   | { [key: string]: CheckInput };
 export interface BehaviorProbe {
+  files?: Record<string, string>;
   inputs?: Record<string, CheckInput>;
   stdin?: string[];
   call?: {
+    module?: string;
     name: string;
     args?: CheckInput[];
     kwargs?: Record<string, CheckInput>;

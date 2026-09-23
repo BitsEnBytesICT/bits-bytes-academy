@@ -14,6 +14,7 @@ import type {
 } from "../../shared/types";
 import { api, WorkspaceStore } from "./api";
 import { recordLessonRun } from "./lesson-progress";
+import { newFileError } from "./workspace-files";
 const Editor = lazy(() =>
   import("./Editor").then((module) => ({ default: module.Editor })),
 );
@@ -971,20 +972,42 @@ function App() {
                       className="add-file"
                       title={tr("Create a file", "Maak een bestand")}
                       onClick={() => {
-                        const name = window.prompt(
+                        const entered = window.prompt(
                           tr(
                             "Filename, for example helpers.py",
                             "Bestandsnaam, bijvoorbeeld helpers.py",
                           ),
                         );
-                        if (
-                          name &&
-                          /^[a-zA-Z0-9_][a-zA-Z0-9_.-]*$/.test(name) &&
-                          !Object.hasOwn(files, name)
-                        ) {
-                          editFiles({ ...files, [name]: "" });
-                          setFile(name);
+                        if (entered === null) return;
+                        const name = entered.trim();
+                        const issue = newFileError(name, files);
+                        if (issue) {
+                          setError(
+                            issue === "duplicate"
+                              ? tr(
+                                  "That file already exists. Select its tab to edit it.",
+                                  "Dat bestand bestaat al. Selecteer de tab om het te bewerken.",
+                                )
+                              : issue === "limit"
+                                ? tr(
+                                    "This workspace already has 40 files.",
+                                    "Deze werkruimte heeft al 40 bestanden.",
+                                  )
+                                : issue === "python-module"
+                                  ? tr(
+                                      "Use a Python module name such as shipping.py: letters, digits and underscores, starting with a letter or underscore. Python keywords cannot be module names.",
+                                      "Gebruik een Pythonmodulenaam zoals shipping.py: letters, cijfers en underscores, beginnend met een letter of underscore. Python-trefwoorden kunnen geen modulenaam zijn.",
+                                    )
+                                  : tr(
+                                      "Enter a filename of at most 100 characters using letters, digits, underscores, dots or hyphens. Folder paths are not supported.",
+                                      "Gebruik een bestandsnaam van maximaal 100 tekens met letters, cijfers, underscores, punten of streepjes. Mappaden worden niet ondersteund.",
+                                    ),
+                          );
+                          return;
                         }
+                        setError("");
+                        editFiles({ ...files, [name]: "" });
+                        setFile(name);
                       }}
                     >
                       +
