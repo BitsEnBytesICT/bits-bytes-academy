@@ -1,0 +1,178 @@
+{
+  "id": "python-v4-06-not-equal",
+  "chapter": 6,
+  "group": "python-v4-module-6",
+  "title": {
+    "en": "Compare with !=",
+    "nl": "Vergelijk met !="
+  },
+  "kind": "coding",
+  "optional": false,
+  "runtime": "terminal",
+  "guidance": "guided",
+  "checkpointMode": "sequential",
+  "estimatedMinutes": 13,
+  "topicIds": [
+    "inequality"
+  ],
+  "practices": [],
+  "requiredConcepts": [
+    "equality"
+  ],
+  "explanation": {
+    "en": "Sometimes the useful condition is that two values differ.",
+    "nl": "Soms is de nuttige voorwaarde dat twee waarden verschillen."
+  },
+  "example": "",
+  "sections": [
+    {
+      "id": "python-v4-06-not-equal-example",
+      "topicIds": [
+        "inequality"
+      ],
+      "heading": {
+        "en": "Follow a working example",
+        "nl": "Volg een werkend voorbeeld"
+      },
+      "body": {
+        "en": "The != operator means not equal. It is True when the compared values differ and False when they match. It still compares; it does not change either value.\n\nA familiar use is checking whether a typed command differs from a stop word. For now we only compute the Boolean. Later a decision or loop will use it to choose what happens next.",
+        "nl": "De operator != betekent niet gelijk. Hij is True wanneer de vergeleken waarden verschillen en False wanneer ze overeenkomen. Hij vergelijkt nog steeds; geen van beide waarden wordt veranderd.\n\nEen bekende toepassing is controleren of een getypte opdracht van een stopwoord verschilt. Nu berekenen we alleen de booleaanse waarde. Later gebruikt een beslissing of lus haar om te kiezen wat er daarna gebeurt."
+      },
+      "code": "command = \"help\"\nprint(command != \"quit\")\nprint(command != \"help\")",
+      "output": "True\nFalse\n",
+      "prediction": {
+        "en": "Which comparison has equal values on both sides?",
+        "nl": "Welke vergelijking heeft gelijke waarden aan beide kanten?"
+      },
+      "takeaway": {
+        "en": "!= is True when its two values are different.",
+        "nl": "!= is True wanneer de twee waarden verschillend zijn."
+      }
+    },
+    {
+      "id": "python-v4-06-not-equal-experiment",
+      "topicIds": [],
+      "heading": {
+        "en": "Try one change",
+        "nl": "Probeer één wijziging"
+      },
+      "body": {
+        "en": "Try an empty string. Does it equal quit?",
+        "nl": "Probeer een lege string. Is die gelijk aan quit?"
+      }
+    }
+  ],
+  "files": {
+    "main.py": "choice = \"play\"\n"
+  },
+  "solution": {
+    "main.py": "choice = \"play\"\nresult = choice != \"quit\"\nprint(result)\n"
+  },
+  "checkpoints": [
+    {
+      "id": "python-v4-06-not-equal-step-1",
+      "objectiveIds": [
+        "inequality"
+      ],
+      "task": {
+        "en": "Store whether choice differs from \"quit\" in result.",
+        "nl": "Bewaar in result of choice verschilt van \"quit\"."
+      },
+      "check": "type(result) is bool and result == (choice != \"quit\")",
+      "probes": [
+        {
+          "inputs": {
+            "choice": "quit"
+          },
+          "check": "type(result) is bool and result == (choice != \"quit\")"
+        },
+        {
+          "inputs": {
+            "choice": "help"
+          },
+          "check": "type(result) is bool and result == (choice != \"quit\")"
+        },
+        {
+          "inputs": {
+            "choice": ""
+          },
+          "check": "type(result) is bool and result == (choice != \"quit\")"
+        }
+      ],
+      "hint": {
+        "en": "!= is True when its two values are different.",
+        "nl": "!= is True wanneer de twee waarden verschillend zijn."
+      },
+      "hints": [
+        {
+          "en": "!= is True when its two values are different.",
+          "nl": "!= is True wanneer de twee waarden verschillend zijn."
+        },
+        {
+          "en": "Use the not-equal comparison against the stop word.",
+          "nl": "Gebruik de niet-gelijkvergelijking met het stopwoord."
+        },
+        {
+          "en": "A small fragment to adapt: `choice != \"quit\"`",
+          "nl": "Een klein fragment om aan te passen: `choice != \"quit\"`"
+        }
+      ],
+      "feedback": {
+        "en": "Use the not-equal comparison against the stop word.",
+        "nl": "Gebruik de niet-gelijkvergelijking met het stopwoord."
+      }
+    },
+    {
+      "id": "python-v4-06-not-equal-step-2",
+      "objectiveIds": [
+        "inequality"
+      ],
+      "task": {
+        "en": "Print the Boolean result.",
+        "nl": "Druk het booleaanse resultaat af."
+      },
+      "check": "_stdout.strip() == str(result)",
+      "probes": [],
+      "hint": {
+        "en": "!= is True when its two values are different.",
+        "nl": "!= is True wanneer de twee waarden verschillend zijn."
+      },
+      "hints": [
+        {
+          "en": "!= is True when its two values are different.",
+          "nl": "!= is True wanneer de twee waarden verschillend zijn."
+        },
+        {
+          "en": "Print result itself, so changes to the comparison appear in the output.",
+          "nl": "Druk result zelf af zodat veranderingen in de vergelijking in de uitvoer verschijnen."
+        },
+        {
+          "en": "A small fragment to adapt: `print(result)`",
+          "nl": "Een klein fragment om aan te passen: `print(result)`"
+        }
+      ],
+      "feedback": {
+        "en": "Print result itself, so changes to the comparison appear in the output.",
+        "nl": "Druk result zelf af zodat veranderingen in de vergelijking in de uitvoer verschijnen."
+      }
+    }
+  ],
+  "solutionNote": {
+    "en": "Only the exact stop word makes this comparison False.",
+    "nl": "Alleen het exacte stopwoord maakt deze vergelijking False."
+  },
+  "inputs": [],
+  "retrievals": [
+    {
+      "id": "recall-python-v4-04-print-values",
+      "sourceActivityId": "python-v4-04-print-values",
+      "objectiveIds": [
+        "print-arguments"
+      ],
+      "prompt": {
+        "en": "Recall “Print several values together”. Where do the spaces in the output come from? Try the earlier example from memory, then check it. Try a negative temperature. Compare the code with concatenation using str().",
+        "nl": "Haal “Druk meerdere waarden samen af” terug. Waar komen de spaties in de uitvoer vandaan? Probeer het eerdere voorbeeld uit je geheugen en controleer daarna. Probeer een negatieve temperatuur. Vergelijk de code met concatenatie via str()."
+      }
+    }
+  ]
+}

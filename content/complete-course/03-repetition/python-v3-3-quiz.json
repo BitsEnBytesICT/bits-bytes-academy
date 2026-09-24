@@ -1,0 +1,774 @@
+{
+  "id": "python-v3-3-quiz",
+  "chapter": 3,
+  "group": "python-v3-module-3",
+  "kind": "quiz",
+  "optional": false,
+  "estimatedMinutes": 6,
+  "title": {
+    "en": "Repetition: review",
+    "nl": "Herhaling: herhaling"
+  },
+  "questions": [
+    {
+      "objectiveIds": [
+        "range-start-stop-step",
+        "accumulators"
+      ],
+      "reviewActivityIds": [
+        "python-v3-3-02"
+      ],
+      "category": "prediction",
+      "prompt": {
+        "en": "What does this program print?",
+        "nl": "Wat drukt dit programma af?"
+      },
+      "code": "total = 0\nfor n in range(0, 4, 2):\n    total += n\nprint(total)",
+      "answer": "a",
+      "choices": [
+        {
+          "id": "a",
+          "label": {
+            "en": "2",
+            "nl": "2"
+          },
+          "reason": {
+            "en": "The stop is excluded; accumulate only 0, 2 and any next value below it.",
+            "nl": "Het einde is uitgesloten; tel alleen 0, 2 en eventuele volgende lagere waarden op."
+          }
+        },
+        {
+          "id": "b",
+          "label": {
+            "en": "6",
+            "nl": "6"
+          },
+          "reason": {
+            "en": "This includes the excluded stop value.",
+            "nl": "Dit neemt de uitgesloten eindwaarde mee."
+          }
+        },
+        {
+          "id": "c",
+          "label": {
+            "en": "0",
+            "nl": "0"
+          },
+          "reason": {
+            "en": "The range is not empty, so the accumulator does change.",
+            "nl": "De range is niet leeg, dus het totaal verandert wel."
+          }
+        }
+      ],
+      "expectedOutput": "2\n",
+      "id": "python-v3-3-quiz-a-1"
+    },
+    {
+      "objectiveIds": [
+        "while",
+        "counters"
+      ],
+      "reviewActivityIds": [
+        "python-v3-3-03"
+      ],
+      "category": "prediction",
+      "prompt": {
+        "en": "What does this program print?",
+        "nl": "Wat drukt dit programma af?"
+      },
+      "code": "remaining = 4\ncount = 0\nwhile remaining > 0:\n    remaining -= 2\n    count += 1\nprint(count)",
+      "answer": "a",
+      "choices": [
+        {
+          "id": "a",
+          "label": {
+            "en": "2",
+            "nl": "2"
+          },
+          "reason": {
+            "en": "Each iteration removes 2 and adds 1 to the count.",
+            "nl": "Elke iteratie haalt 2 weg en telt 1 bij de teller op."
+          }
+        },
+        {
+          "id": "b",
+          "label": {
+            "en": "4",
+            "nl": "4"
+          },
+          "reason": {
+            "en": "The loop counts iterations, not removed units.",
+            "nl": "De lus telt iteraties, niet verwijderde eenheden."
+          }
+        },
+        {
+          "id": "c",
+          "label": {
+            "en": "3",
+            "nl": "3"
+          },
+          "reason": {
+            "en": "The condition is checked before a zero-remaining iteration.",
+            "nl": "De voorwaarde wordt vóór een iteratie met nul resterend gecontroleerd."
+          }
+        }
+      ],
+      "expectedOutput": "2\n",
+      "id": "python-v3-3-quiz-a-2"
+    },
+    {
+      "objectiveIds": [
+        "break"
+      ],
+      "reviewActivityIds": [
+        "python-v3-3-04"
+      ],
+      "category": "completion",
+      "prompt": {
+        "en": "Stop at the selected number.",
+        "nl": "Stop bij het gekozen getal."
+      },
+      "code": "for n in range(5):\n    if n == 1:\n        ___\n    print(n)",
+      "answer": "a",
+      "choices": [
+        {
+          "id": "a",
+          "label": {
+            "en": "break",
+            "nl": "break"
+          },
+          "reason": {
+            "en": "break exits the loop; continue skips only this iteration and pass does nothing.",
+            "nl": "break verlaat de lus; continue slaat alleen deze iteratie over en pass doet niets."
+          }
+        },
+        {
+          "id": "b",
+          "label": {
+            "en": "continue",
+            "nl": "continue"
+          },
+          "reason": {
+            "en": "break exits the loop; continue skips only this iteration and pass does nothing.",
+            "nl": "break verlaat de lus; continue slaat alleen deze iteratie over en pass doet niets."
+          }
+        },
+        {
+          "id": "c",
+          "label": {
+            "en": "pass",
+            "nl": "pass"
+          },
+          "reason": {
+            "en": "break exits the loop; continue skips only this iteration and pass does nothing.",
+            "nl": "break verlaat de lus; continue slaat alleen deze iteratie over en pass doet niets."
+          }
+        }
+      ],
+      "codeBlank": {
+        "prompt": {
+          "en": "Stop at the selected number.",
+          "nl": "Stop bij het gekozen getal."
+        },
+        "segments": [
+          "for n in range(5):\n    if n == 1:\n        ",
+          "\n    print(n)"
+        ],
+        "tokens": [
+          {
+            "id": "token-1",
+            "code": "break"
+          },
+          {
+            "id": "token-2",
+            "code": "continue"
+          },
+          {
+            "id": "token-3",
+            "code": "pass"
+          }
+        ],
+        "blanks": [
+          {
+            "answer": "break",
+            "reason": {
+              "en": "break exits the loop; continue skips only this iteration and pass does nothing.",
+              "nl": "break verlaat de lus; continue slaat alleen deze iteratie over en pass doet niets."
+            }
+          }
+        ],
+        "output": "0\n"
+      },
+      "id": "python-v3-3-quiz-a-3"
+    },
+    {
+      "objectiveIds": [
+        "continue"
+      ],
+      "reviewActivityIds": [
+        "python-v3-3-04"
+      ],
+      "category": "completion",
+      "prompt": {
+        "en": "Skip one number and keep looping.",
+        "nl": "Sla één getal over en blijf herhalen."
+      },
+      "code": "for n in range(3):\n    if n == 1:\n        ___\n    print(n)",
+      "answer": "a",
+      "choices": [
+        {
+          "id": "a",
+          "label": {
+            "en": "continue",
+            "nl": "continue"
+          },
+          "reason": {
+            "en": "continue skips the remaining body for one iteration.",
+            "nl": "continue slaat het resterende blok voor één iteratie over."
+          }
+        },
+        {
+          "id": "b",
+          "label": {
+            "en": "break",
+            "nl": "break"
+          },
+          "reason": {
+            "en": "continue skips the remaining body for one iteration.",
+            "nl": "continue slaat het resterende blok voor één iteratie over."
+          }
+        },
+        {
+          "id": "c",
+          "label": {
+            "en": "pass",
+            "nl": "pass"
+          },
+          "reason": {
+            "en": "continue skips the remaining body for one iteration.",
+            "nl": "continue slaat het resterende blok voor één iteratie over."
+          }
+        }
+      ],
+      "codeBlank": {
+        "prompt": {
+          "en": "Skip one number and keep looping.",
+          "nl": "Sla één getal over en blijf herhalen."
+        },
+        "segments": [
+          "for n in range(3):\n    if n == 1:\n        ",
+          "\n    print(n)"
+        ],
+        "tokens": [
+          {
+            "id": "token-1",
+            "code": "continue"
+          },
+          {
+            "id": "token-2",
+            "code": "break"
+          },
+          {
+            "id": "token-3",
+            "code": "pass"
+          }
+        ],
+        "blanks": [
+          {
+            "answer": "continue",
+            "reason": {
+              "en": "continue skips the remaining body for one iteration.",
+              "nl": "continue slaat het resterende blok voor één iteratie over."
+            }
+          }
+        ],
+        "output": "0\n2\n"
+      },
+      "id": "python-v3-3-quiz-a-4"
+    },
+    {
+      "objectiveIds": [
+        "relational-operators"
+      ],
+      "reviewActivityIds": [
+        "python-v3-2-02"
+      ],
+      "category": "debugging",
+      "prompt": {
+        "en": "Which comparison includes the exact threshold?",
+        "nl": "Welke vergelijking neemt de exacte grens mee?"
+      },
+      "code": "height = 140\nminimum = height",
+      "answer": "a",
+      "choices": [
+        {
+          "id": "a",
+          "label": {
+            "en": "height >= minimum",
+            "nl": "height >= minimum"
+          },
+          "reason": {
+            "en": "At least includes equality.",
+            "nl": "Minstens omvat gelijkheid."
+          }
+        },
+        {
+          "id": "b",
+          "label": {
+            "en": "height > minimum",
+            "nl": "height > minimum"
+          },
+          "reason": {
+            "en": "> rejects exactly equal values.",
+            "nl": "> wijst precies gelijke waarden af."
+          }
+        },
+        {
+          "id": "c",
+          "label": {
+            "en": "height != minimum",
+            "nl": "height != minimum"
+          },
+          "reason": {
+            "en": "Inequality does not describe a minimum threshold.",
+            "nl": "Ongelijkheid beschrijft geen minimumgrens."
+          }
+        }
+      ],
+      "id": "python-v3-3-quiz-a-5"
+    },
+    {
+      "objectiveIds": [
+        "variables",
+        "changing-numbers"
+      ],
+      "reviewActivityIds": [
+        "python-v3-1-01",
+        "python-v3-1-03"
+      ],
+      "category": "application",
+      "prompt": {
+        "en": "A loop accumulates points. Where should points = 0 go?",
+        "nl": "Een lus telt punten op. Waar hoort points = 0?"
+      },
+      "answer": "a",
+      "choices": [
+        {
+          "id": "a",
+          "label": {
+            "en": "Before the loop.",
+            "nl": "Vóór de lus."
+          },
+          "reason": {
+            "en": "Initialise once so later updates preserve earlier work.",
+            "nl": "Initialiseer één keer zodat latere updates eerder werk behouden."
+          }
+        },
+        {
+          "id": "b",
+          "label": {
+            "en": "At the start of every iteration.",
+            "nl": "Aan het begin van elke iteratie."
+          },
+          "reason": {
+            "en": "That resets accumulated state repeatedly.",
+            "nl": "Dat reset verzamelde toestand herhaaldelijk."
+          }
+        },
+        {
+          "id": "c",
+          "label": {
+            "en": "Only after printing the total.",
+            "nl": "Pas na het totaal afdrukken."
+          },
+          "reason": {
+            "en": "The value must exist before it can be updated or printed.",
+            "nl": "De waarde moet bestaan vóór bijwerken of afdrukken."
+          }
+        }
+      ],
+      "id": "python-v3-3-quiz-a-6"
+    }
+  ],
+  "alternateQuestions": [
+    {
+      "objectiveIds": [
+        "range-start-stop-step",
+        "accumulators"
+      ],
+      "reviewActivityIds": [
+        "python-v3-3-02"
+      ],
+      "category": "prediction",
+      "prompt": {
+        "en": "What does this program print?",
+        "nl": "Wat drukt dit programma af?"
+      },
+      "code": "total = 0\nfor n in range(0, 6, 2):\n    total += n\nprint(total)",
+      "answer": "a",
+      "choices": [
+        {
+          "id": "a",
+          "label": {
+            "en": "6",
+            "nl": "6"
+          },
+          "reason": {
+            "en": "The stop is excluded; accumulate only 0, 2 and any next value below it.",
+            "nl": "Het einde is uitgesloten; tel alleen 0, 2 en eventuele volgende lagere waarden op."
+          }
+        },
+        {
+          "id": "b",
+          "label": {
+            "en": "12",
+            "nl": "12"
+          },
+          "reason": {
+            "en": "This includes the excluded stop value.",
+            "nl": "Dit neemt de uitgesloten eindwaarde mee."
+          }
+        },
+        {
+          "id": "c",
+          "label": {
+            "en": "0",
+            "nl": "0"
+          },
+          "reason": {
+            "en": "The range is not empty, so the accumulator does change.",
+            "nl": "De range is niet leeg, dus het totaal verandert wel."
+          }
+        }
+      ],
+      "expectedOutput": "6\n",
+      "id": "python-v3-3-quiz-b-1"
+    },
+    {
+      "objectiveIds": [
+        "while",
+        "counters"
+      ],
+      "reviewActivityIds": [
+        "python-v3-3-03"
+      ],
+      "category": "prediction",
+      "prompt": {
+        "en": "What does this program print?",
+        "nl": "Wat drukt dit programma af?"
+      },
+      "code": "remaining = 6\ncount = 0\nwhile remaining > 0:\n    remaining -= 2\n    count += 1\nprint(count)",
+      "answer": "a",
+      "choices": [
+        {
+          "id": "a",
+          "label": {
+            "en": "3",
+            "nl": "3"
+          },
+          "reason": {
+            "en": "Each iteration removes 2 and adds 1 to the count.",
+            "nl": "Elke iteratie haalt 2 weg en telt 1 bij de teller op."
+          }
+        },
+        {
+          "id": "b",
+          "label": {
+            "en": "6",
+            "nl": "6"
+          },
+          "reason": {
+            "en": "The loop counts iterations, not removed units.",
+            "nl": "De lus telt iteraties, niet verwijderde eenheden."
+          }
+        },
+        {
+          "id": "c",
+          "label": {
+            "en": "4",
+            "nl": "4"
+          },
+          "reason": {
+            "en": "The condition is checked before a zero-remaining iteration.",
+            "nl": "De voorwaarde wordt vóór een iteratie met nul resterend gecontroleerd."
+          }
+        }
+      ],
+      "expectedOutput": "3\n",
+      "id": "python-v3-3-quiz-b-2"
+    },
+    {
+      "objectiveIds": [
+        "break"
+      ],
+      "reviewActivityIds": [
+        "python-v3-3-04"
+      ],
+      "category": "completion",
+      "prompt": {
+        "en": "Stop at the selected number.",
+        "nl": "Stop bij het gekozen getal."
+      },
+      "code": "for n in range(5):\n    if n == 2:\n        ___\n    print(n)",
+      "answer": "a",
+      "choices": [
+        {
+          "id": "a",
+          "label": {
+            "en": "break",
+            "nl": "break"
+          },
+          "reason": {
+            "en": "break exits the loop; continue skips only this iteration and pass does nothing.",
+            "nl": "break verlaat de lus; continue slaat alleen deze iteratie over en pass doet niets."
+          }
+        },
+        {
+          "id": "b",
+          "label": {
+            "en": "continue",
+            "nl": "continue"
+          },
+          "reason": {
+            "en": "break exits the loop; continue skips only this iteration and pass does nothing.",
+            "nl": "break verlaat de lus; continue slaat alleen deze iteratie over en pass doet niets."
+          }
+        },
+        {
+          "id": "c",
+          "label": {
+            "en": "pass",
+            "nl": "pass"
+          },
+          "reason": {
+            "en": "break exits the loop; continue skips only this iteration and pass does nothing.",
+            "nl": "break verlaat de lus; continue slaat alleen deze iteratie over en pass doet niets."
+          }
+        }
+      ],
+      "codeBlank": {
+        "prompt": {
+          "en": "Stop at the selected number.",
+          "nl": "Stop bij het gekozen getal."
+        },
+        "segments": [
+          "for n in range(5):\n    if n == 2:\n        ",
+          "\n    print(n)"
+        ],
+        "tokens": [
+          {
+            "id": "token-1",
+            "code": "break"
+          },
+          {
+            "id": "token-2",
+            "code": "continue"
+          },
+          {
+            "id": "token-3",
+            "code": "pass"
+          }
+        ],
+        "blanks": [
+          {
+            "answer": "break",
+            "reason": {
+              "en": "break exits the loop; continue skips only this iteration and pass does nothing.",
+              "nl": "break verlaat de lus; continue slaat alleen deze iteratie over en pass doet niets."
+            }
+          }
+        ],
+        "output": "0\n1\n"
+      },
+      "id": "python-v3-3-quiz-b-3"
+    },
+    {
+      "objectiveIds": [
+        "continue"
+      ],
+      "reviewActivityIds": [
+        "python-v3-3-04"
+      ],
+      "category": "completion",
+      "prompt": {
+        "en": "Skip one number and keep looping.",
+        "nl": "Sla één getal over en blijf herhalen."
+      },
+      "code": "for n in range(3):\n    if n == 0:\n        ___\n    print(n)",
+      "answer": "a",
+      "choices": [
+        {
+          "id": "a",
+          "label": {
+            "en": "continue",
+            "nl": "continue"
+          },
+          "reason": {
+            "en": "continue skips the remaining body for one iteration.",
+            "nl": "continue slaat het resterende blok voor één iteratie over."
+          }
+        },
+        {
+          "id": "b",
+          "label": {
+            "en": "break",
+            "nl": "break"
+          },
+          "reason": {
+            "en": "continue skips the remaining body for one iteration.",
+            "nl": "continue slaat het resterende blok voor één iteratie over."
+          }
+        },
+        {
+          "id": "c",
+          "label": {
+            "en": "pass",
+            "nl": "pass"
+          },
+          "reason": {
+            "en": "continue skips the remaining body for one iteration.",
+            "nl": "continue slaat het resterende blok voor één iteratie over."
+          }
+        }
+      ],
+      "codeBlank": {
+        "prompt": {
+          "en": "Skip one number and keep looping.",
+          "nl": "Sla één getal over en blijf herhalen."
+        },
+        "segments": [
+          "for n in range(3):\n    if n == 0:\n        ",
+          "\n    print(n)"
+        ],
+        "tokens": [
+          {
+            "id": "token-1",
+            "code": "continue"
+          },
+          {
+            "id": "token-2",
+            "code": "break"
+          },
+          {
+            "id": "token-3",
+            "code": "pass"
+          }
+        ],
+        "blanks": [
+          {
+            "answer": "continue",
+            "reason": {
+              "en": "continue skips the remaining body for one iteration.",
+              "nl": "continue slaat het resterende blok voor één iteratie over."
+            }
+          }
+        ],
+        "output": "1\n2\n"
+      },
+      "id": "python-v3-3-quiz-b-4"
+    },
+    {
+      "objectiveIds": [
+        "relational-operators"
+      ],
+      "reviewActivityIds": [
+        "python-v3-2-02"
+      ],
+      "category": "debugging",
+      "prompt": {
+        "en": "Which comparison includes the exact threshold?",
+        "nl": "Welke vergelijking neemt de exacte grens mee?"
+      },
+      "code": "height = 150\nminimum = height",
+      "answer": "a",
+      "choices": [
+        {
+          "id": "a",
+          "label": {
+            "en": "height >= minimum",
+            "nl": "height >= minimum"
+          },
+          "reason": {
+            "en": "At least includes equality.",
+            "nl": "Minstens omvat gelijkheid."
+          }
+        },
+        {
+          "id": "b",
+          "label": {
+            "en": "height > minimum",
+            "nl": "height > minimum"
+          },
+          "reason": {
+            "en": "> rejects exactly equal values.",
+            "nl": "> wijst precies gelijke waarden af."
+          }
+        },
+        {
+          "id": "c",
+          "label": {
+            "en": "height != minimum",
+            "nl": "height != minimum"
+          },
+          "reason": {
+            "en": "Inequality does not describe a minimum threshold.",
+            "nl": "Ongelijkheid beschrijft geen minimumgrens."
+          }
+        }
+      ],
+      "id": "python-v3-3-quiz-b-5"
+    },
+    {
+      "objectiveIds": [
+        "variables",
+        "changing-numbers"
+      ],
+      "reviewActivityIds": [
+        "python-v3-1-01",
+        "python-v3-1-03"
+      ],
+      "category": "application",
+      "prompt": {
+        "en": "A loop changes stock each turn. Where should its initial stock be assigned?",
+        "nl": "Een lus verandert stock elke beurt. Waar moet de beginvoorraad worden toegewezen?"
+      },
+      "answer": "a",
+      "choices": [
+        {
+          "id": "a",
+          "label": {
+            "en": "Before the loop.",
+            "nl": "Vóór de lus."
+          },
+          "reason": {
+            "en": "Initialise once so later updates preserve earlier work.",
+            "nl": "Initialiseer één keer zodat latere updates eerder werk behouden."
+          }
+        },
+        {
+          "id": "b",
+          "label": {
+            "en": "At the start of every iteration.",
+            "nl": "Aan het begin van elke iteratie."
+          },
+          "reason": {
+            "en": "That resets accumulated state repeatedly.",
+            "nl": "Dat reset verzamelde toestand herhaaldelijk."
+          }
+        },
+        {
+          "id": "c",
+          "label": {
+            "en": "Only after printing the total.",
+            "nl": "Pas na het totaal afdrukken."
+          },
+          "reason": {
+            "en": "The value must exist before it can be updated or printed.",
+            "nl": "De waarde moet bestaan vóór bijwerken of afdrukken."
+          }
+        }
+      ],
+      "id": "python-v3-3-quiz-b-6"
+    }
+  ]
+}

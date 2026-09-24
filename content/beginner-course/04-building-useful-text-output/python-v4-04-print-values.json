@@ -1,0 +1,134 @@
+{
+  "id": "python-v4-04-print-values",
+  "chapter": 4,
+  "group": "python-v4-module-4",
+  "title": {
+    "en": "Print several values together",
+    "nl": "Druk meerdere waarden samen af"
+  },
+  "kind": "coding",
+  "optional": false,
+  "runtime": "terminal",
+  "guidance": "guided",
+  "checkpointMode": "sequential",
+  "estimatedMinutes": 10,
+  "topicIds": [
+    "print-arguments"
+  ],
+  "practices": [],
+  "requiredConcepts": [
+    "print",
+    "variables",
+    "floats"
+  ],
+  "explanation": {
+    "en": "You can give print more than one value. This is useful for quick readable reports.",
+    "nl": "Je kunt print meer dan één waarde geven. Dat is handig voor snelle, leesbare verslagen."
+  },
+  "example": "",
+  "sections": [
+    {
+      "id": "python-v4-04-print-values-example",
+      "topicIds": [
+        "print-arguments"
+      ],
+      "heading": {
+        "en": "Follow a working example",
+        "nl": "Volg een werkend voorbeeld"
+      },
+      "body": {
+        "en": "Commas separate the arguments passed to print. By default, print displays a space between arguments and ends with a newline. It can display different types together without you converting each number.\n\nThe commas here are Python punctuation, not characters that will appear in the output. Avoid putting trailing spaces in the label when print will already add one.",
+        "nl": "Komma's scheiden de argumenten die je aan print geeft. Standaard toont print een spatie tussen argumenten en eindigt het met een nieuwe regel. Het kan verschillende typen samen tonen zonder dat je elk getal zelf omzet.\n\nDe komma's zijn hier Pythonleestekens, geen tekens die in de uitvoer verschijnen. Zet geen spatie achter een label als print er al één toevoegt."
+      },
+      "code": "distance = 2.5\nprint(\"Distance:\", distance, \"km\")",
+      "output": "Distance: 2.5 km\n",
+      "prediction": {
+        "en": "Where do the spaces in the output come from?",
+        "nl": "Waar komen de spaties in de uitvoer vandaan?"
+      },
+      "takeaway": {
+        "en": "print(label, value) separates displayed arguments with a space.",
+        "nl": "print(label, waarde) scheidt getoonde argumenten met een spatie."
+      }
+    },
+    {
+      "id": "python-v4-04-print-values-experiment",
+      "topicIds": [],
+      "heading": {
+        "en": "Try one change",
+        "nl": "Probeer één wijziging"
+      },
+      "body": {
+        "en": "Try a negative temperature. Compare the code with concatenation using str().",
+        "nl": "Probeer een negatieve temperatuur. Vergelijk de code met concatenatie via str()."
+      }
+    }
+  ],
+  "files": {
+    "main.py": "temperature = 18\n"
+  },
+  "solution": {
+    "main.py": "temperature = 18\nprint(\"Temperature:\", temperature, \"C\")\n"
+  },
+  "checkpoints": [
+    {
+      "id": "python-v4-04-print-values-step-1",
+      "objectiveIds": [
+        "print-arguments"
+      ],
+      "task": {
+        "en": "Print \"Temperature: 18 C\" using the stored temperature.",
+        "nl": "Druk \"Temperature: 18 C\" af met de opgeslagen temperatuur."
+      },
+      "check": "_stdout.strip() == \"Temperature: \" + str(temperature) + \" C\"",
+      "probes": [
+        {
+          "inputs": {
+            "temperature": -4
+          },
+          "check": "_stdout.strip() == \"Temperature: -4 C\""
+        }
+      ],
+      "hint": {
+        "en": "print(label, value) separates displayed arguments with a space.",
+        "nl": "print(label, waarde) scheidt getoonde argumenten met een spatie."
+      },
+      "hints": [
+        {
+          "en": "print(label, value) separates displayed arguments with a space.",
+          "nl": "print(label, waarde) scheidt getoonde argumenten met een spatie."
+        },
+        {
+          "en": "Pass a label, the numeric value and the unit to print.",
+          "nl": "Geef een label, de getalswaarde en de eenheid aan print."
+        },
+        {
+          "en": "A small fragment to adapt: `print(\"Label:\", temperature, \"C\")`",
+          "nl": "Een klein fragment om aan te passen: `print(\"Label:\", temperature, \"C\")`"
+        }
+      ],
+      "feedback": {
+        "en": "Pass a label, the numeric value and the unit to print.",
+        "nl": "Geef een label, de getalswaarde en de eenheid aan print."
+      }
+    }
+  ],
+  "solutionNote": {
+    "en": "print handles the display conversion of separate arguments and inserts the separating spaces.",
+    "nl": "print verzorgt de weergaveconversie van aparte argumenten en voegt de scheidende spaties in."
+  },
+  "inputs": [],
+  "retrievals": [
+    {
+      "id": "recall-python-v4-02-names",
+      "sourceActivityId": "python-v4-02-names",
+      "objectiveIds": [
+        "variable-names"
+      ],
+      "prompt": {
+        "en": "Recall “Choose readable names”. Would Team_name refer to the same variable? Try the earlier example from memory, then check it. Change one letter to uppercase in just the print call. Read the error, then repair the name.",
+        "nl": "Haal “Kies leesbare namen” terug. Zou Team_name naar dezelfde variabele verwijzen? Probeer het eerdere voorbeeld uit je geheugen en controleer daarna. Verander alleen in de print-aanroep één letter in een hoofdletter. Lees de foutmelding en herstel de naam."
+      }
+    }
+  ]
+}

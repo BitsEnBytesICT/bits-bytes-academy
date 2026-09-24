@@ -1,0 +1,129 @@
+{
+  "id": "python-v3-pong-first",
+  "chapter": 8,
+  "estimatedMinutes": 75,
+  "group": "python-v3-pong-first",
+  "kind": "project-stage",
+  "optional": false,
+  "runtime": "pygame",
+  "guidance": "independent",
+  "title": {
+    "en": "Pong: first playable version",
+    "nl": "Pong: eerste speelbare versie"
+  },
+  "explanation": {
+    "en": "Build your first two-player rally. The supplied main.py opens the browser game, handles W/S and Up/Down, clamps the paddles and draws the court. You own game.py: combine motion, wall responses, paddle contact and a reset after a miss. Reuse and adapt your earlier helper code. You may also customise the scene or controls. Scoring, menus, classes and saved data come later. Keep the async browser entry point intact and keep your files: the final Pong visit opens this same workspace.",
+    "nl": "Bouw je eerste rally voor twee spelers. De meegeleverde main.py opent het browserspel, behandelt W/S en Omhoog/Omlaag, begrenst batjes en tekent het veld. Jij beheert game.py: combineer beweging, muurreacties, batjescontact en herstart na een misser. Hergebruik en pas je eerdere helpers aan. Je mag ook de scène of besturing aanpassen. Score, menu’s, klassen en opgeslagen gegevens komen later. Behoud het async-browserstartpunt en je bestanden: het laatste Pong-bezoek opent dezelfde werkruimte."
+  },
+  "files": {
+    "main.py": "# Browser entry point supplied by the course.\nimport asyncio\nimport pygame\nimport game\n\nasync def main():\n    pygame.init()\n    screen = pygame.display.set_mode((640, 400))\n    clock = pygame.time.Clock()\n    running = True\n    x, y = 320.0, 200.0\n    vx, vy = 200.0, 100.0\n    left_y, right_y = 170.0, 170.0\n    while running:\n        dt = min(clock.tick() / 1000, 0.05)\n        for event in pygame.event.get():\n            if event.type == pygame.QUIT:\n                running = False\n            if event.type == pygame.KEYDOWN and event.key == pygame.K_ESCAPE:\n                running = False\n        keys = pygame.key.get_pressed()\n        if keys[pygame.K_w]:\n            left_y -= 240 * dt\n        if keys[pygame.K_s]:\n            left_y += 240 * dt\n        if keys[pygame.K_UP]:\n            right_y -= 240 * dt\n        if keys[pygame.K_DOWN]:\n            right_y += 240 * dt\n        left_y = max(0, min(340, left_y))\n        right_y = max(0, min(340, right_y))\n        x, y, vx, vy = game.step(x, y, vx, vy, dt, left_y, right_y)\n        screen.fill((16, 23, 39))\n        pygame.draw.rect(screen, (235, 240, 250), (20, left_y, 10, 60))\n        pygame.draw.rect(screen, (235, 240, 250), (610, right_y, 10, 60))\n        pygame.draw.circle(screen, (255, 170, 40), (int(x), int(y)), 6)\n        pygame.display.flip()\n        await asyncio.sleep(1 / 60)\n    pygame.quit()\n\nasyncio.run(main())\n",
+    "game.py": "import pygame\n\ndef step(x, y, vx, vy, dt, left_y, right_y):\n    # Build your rally rules here. The supplied caller handles display and keys.\n    return x, y, vx, vy\n"
+  },
+  "example": "",
+  "sections": [],
+  "solution": {},
+  "checkpoints": [],
+  "solutionNote": {
+    "en": "There is no single reference solution. You choose the design and assess it with your own tests.",
+    "nl": "Er is geen enkele referentieoplossing. Jij kiest het ontwerp en beoordeelt het met je eigen tests."
+  },
+  "milestones": [
+    {
+      "id": "pong-first-controls",
+      "title": {
+        "en": "Own the court and controls",
+        "nl": "Beheer veld en besturing"
+      },
+      "description": {
+        "en": "Run the supplied entry point, try both paddles simultaneously and explain how their coordinates change. Make one deliberate visual or control adjustment.",
+        "nl": "Voer het meegeleverde startpunt uit, probeer beide batjes tegelijk en verklaar hoe coördinaten veranderen. Maak één bewuste visuele of besturingsaanpassing."
+      },
+      "hints": [
+        {
+          "en": "Separate the part you own from stable browser setup.",
+          "nl": "Onderscheid jouw deel van de vaste browseropzet."
+        },
+        {
+          "en": "The supplied drawing uses the same Rect and coordinate ideas as module 7.",
+          "nl": "Het meegeleverde tekenen gebruikt dezelfde Rect- en coördinatenideeën als module 7."
+        },
+        {
+          "en": "Try a different paddle colour or speed and test the effect.",
+          "nl": "Probeer een andere batjeskleur of snelheid en test het effect."
+        }
+      ]
+    },
+    {
+      "id": "pong-first-rally",
+      "title": {
+        "en": "Make a rally work",
+        "nl": "Laat een rally werken"
+      },
+      "description": {
+        "en": "Implement game.step to move the ball using dt, bounce from top/bottom and respond to both paddles. Keep the returned tuple in the supplied order.",
+        "nl": "Implementeer game.step om de bal met dt te bewegen, boven/onder terug te kaatsen en op beide batjes te reageren. Houd de teruggegeven tuple in de meegeleverde volgorde."
+      },
+      "hints": [
+        {
+          "en": "Assemble one tested behaviour at a time.",
+          "nl": "Stel één getest gedrag tegelijk samen."
+        },
+        {
+          "en": "Use Pygame’s colliderect and check the approach direction.",
+          "nl": "Gebruik Pygames colliderect en controleer naderingsrichting."
+        },
+        {
+          "en": "Start with x += vx * dt and y += vy * dt.",
+          "nl": "Begin met x += vx * dt en y += vy * dt."
+        }
+      ]
+    },
+    {
+      "id": "pong-first-reset",
+      "title": {
+        "en": "Recover after a miss",
+        "nl": "Herstel na een misser"
+      },
+      "description": {
+        "en": "Reset a fully missed ball to a playable starting position. Play a rally on each side and decide whether your first version feels ready.",
+        "nl": "Zet een volledig gemiste bal terug op een speelbare beginpositie. Speel een rally aan elke kant en bepaal of je eerste versie klaar voelt."
+      },
+      "hints": [
+        {
+          "en": "A centre slightly outside the court can still leave part of the ball visible.",
+          "nl": "Een middelpunt iets buiten het veld kan nog een deel van de bal zichtbaar laten."
+        },
+        {
+          "en": "Include the radius in the miss test.",
+          "nl": "Neem de straal mee in de missertest."
+        },
+        {
+          "en": "The earlier rally lesson uses x < -6 or x > 646 for this court.",
+          "nl": "De eerdere rallyles gebruikt x < -6 of x > 646 voor dit veld."
+        }
+      ]
+    }
+  ],
+  "suggestedTests": [
+    {
+      "en": "Hold W and Down together; then press opposite controls for one paddle. Check both edges and focus loss/return.",
+      "nl": "Houd W en Omlaag samen ingedrukt; druk daarna tegengestelde besturing voor één batje. Controleer beide randen en focusverlies/terugkeer."
+    },
+    {
+      "en": "Bounce from both walls and both paddles, including edge overlaps and an already retreating ball. A bounce must not flicker back and forth.",
+      "nl": "Bots tegen beide muren en batjes, inclusief randoverlap en een al teruggaande bal. Een botsing mag niet heen en weer flikkeren."
+    },
+    {
+      "en": "Miss on each side and confirm another rally can begin. Stop, Run again, and verify both controls still respond.",
+      "nl": "Mis aan elke kant en bevestig dat een nieuwe rally kan beginnen. Stop, voer opnieuw uit en controleer dat beide besturingen reageren."
+    }
+  ],
+  "references": [
+    "python-v3-5-05",
+    "python-v3-6-05",
+    "python-v3-7-04",
+    "python-v3-8-05"
+  ],
+  "projectId": "python-v3-pong-project",
+  "continueFrom": "python-v2-pong-project"
+}

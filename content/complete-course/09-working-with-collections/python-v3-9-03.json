@@ -1,0 +1,202 @@
+{
+  "id": "python-v3-9-03",
+  "chapter": 9,
+  "group": "python-v3-module-9",
+  "title": {
+    "en": "Keep the original order",
+    "nl": "Behoud de oorspronkelijke volgorde"
+  },
+  "kind": "coding",
+  "optional": false,
+  "runtime": "terminal",
+  "guidance": "adapt",
+  "estimatedMinutes": 16,
+  "explanation": {
+    "en": "Choose between changing a list and producing a sorted copy. Repair the common mistake of assigning the result of sort.",
+    "nl": "Kies tussen een lijst veranderen en een gesorteerde kopie maken. Repareer de veelgemaakte fout om het resultaat van sort toe te wijzen."
+  },
+  "example": "",
+  "topicIds": [
+    "sort",
+    "sorted"
+  ],
+  "prerequisites": [
+    "python-v3-9-02"
+  ],
+  "sections": [
+    {
+      "topicIds": [
+        "sort",
+        "sorted"
+      ],
+      "heading": {
+        "en": "Mutation has a different contract",
+        "nl": "Wijzigen heeft een andere afspraak"
+      },
+      "body": {
+        "en": "values.sort() changes values and returns None. sorted(values) returns a new list, leaving values alone. Both default to ascending order; reverse=True chooses descending order. Do not assume the return value of a mutation method is the changed list.",
+        "nl": "values.sort() verandert values en geeft None terug. sorted(values) geeft een nieuwe lijst terug en laat values ongemoeid. Beide sorteren standaard oplopend; reverse=True kiest aflopend. Neem niet aan dat de terugkeerwaarde van een wijzigingsmethode de gewijzigde lijst is."
+      },
+      "code": "scores = [5, 1, 3]\nranked = sorted(scores, reverse=True)\nresult = scores.sort()\nprint(ranked)\nprint(scores, result)",
+      "output": "[5, 3, 1]\n[1, 3, 5] None\n",
+      "prediction": {
+        "en": "Which variable holds None, and why?",
+        "nl": "Welke variabele bevat None en waarom?"
+      }
+    },
+    {
+      "topicIds": [],
+      "heading": {
+        "en": "Try a changed input",
+        "nl": "Probeer gewijzigde invoer"
+      },
+      "body": {
+        "en": "Predict what print(tidy(scores)) displays and what print(scores) displays afterward. Test duplicate and negative scores.",
+        "nl": "Voorspel wat print(tidy(scores)) toont en wat print(scores) daarna toont. Test dubbele en negatieve scores."
+      }
+    }
+  ],
+  "files": {
+    "main.py": "def ranked(scores):\n    return scores.sort()\n\ndef tidy(scores):\n    return sorted(scores)\n\nprint(ranked([4, 1, 7]))\n"
+  },
+  "solution": {
+    "main.py": "def ranked(scores):\n    return sorted(scores, reverse=True)\n\ndef tidy(scores):\n    scores.sort()\n\nprint(ranked([4, 1, 7]))\n"
+  },
+  "checkpoints": [
+    {
+      "objectiveIds": [
+        "sorted"
+      ],
+      "task": {
+        "en": "Repair ranked(scores) using sorted: return a descending sorted copy while preserving scores.",
+        "nl": "Repareer ranked(scores) met sorted: geef een aflopend gesorteerde kopie terug en behoud scores."
+      },
+      "check": "(ranked([4,1,7]) == [7,4,1]) and (any(isinstance(n,_ast.Call) and isinstance(n.func,_ast.Name) and n.func.id == \"sorted\" for n in _ast.walk(next(n for n in _ast.walk(_ast.parse(_source)) if isinstance(n,_ast.FunctionDef) and n.name == \"ranked\"))))",
+      "hints": [
+        {
+          "en": "Ranking should not destroy the original order.",
+          "nl": "Rangschikken mag de oorspronkelijke volgorde niet vernietigen."
+        },
+        {
+          "en": "Use sorted with reverse=True.",
+          "nl": "Gebruik sorted met reverse=True."
+        },
+        {
+          "en": "return sorted(scores, reverse=True)",
+          "nl": "return sorted(scores, reverse=True)"
+        }
+      ],
+      "hint": {
+        "en": "Ranking should not destroy the original order.",
+        "nl": "Rangschikken mag de oorspronkelijke volgorde niet vernietigen."
+      },
+      "feedback": {
+        "en": "Check both the returned order and the unchanged input.",
+        "nl": "Controleer de teruggegeven volgorde én de ongewijzigde invoer."
+      },
+      "probes": [
+        {
+          "call": {
+            "name": "ranked",
+            "args": [
+              [
+                2,
+                -1,
+                2
+              ]
+            ]
+          },
+          "check": "_return == [2,2,-1] and _args[0] == [2,-1,2]"
+        },
+        {
+          "call": {
+            "name": "ranked",
+            "args": [
+              []
+            ]
+          },
+          "check": "_return == [] and _return is not _args[0]"
+        }
+      ],
+      "id": "python-v3-9-03-step-1"
+    },
+    {
+      "objectiveIds": [
+        "sort"
+      ],
+      "task": {
+        "en": "Repair tidy(scores) using sort: sort the supplied list ascending in place and return None.",
+        "nl": "Repareer tidy(scores) met sort: sorteer de meegegeven lijst oplopend op zijn plek en geef None terug."
+      },
+      "check": "(callable(tidy)) and (any(isinstance(n,_ast.Call) and isinstance(n.func,_ast.Attribute) and n.func.attr == \"sort\" for n in _ast.walk(next(n for n in _ast.walk(_ast.parse(_source)) if isinstance(n,_ast.FunctionDef) and n.name == \"tidy\"))))",
+      "hints": [
+        {
+          "en": "The caller still holds the same list object.",
+          "nl": "De aanroeper heeft nog steeds hetzelfde lijstobject."
+        },
+        {
+          "en": "Call scores.sort() without replacing scores.",
+          "nl": "Roep scores.sort() aan zonder scores te vervangen."
+        },
+        {
+          "en": "scores.sort()",
+          "nl": "scores.sort()"
+        }
+      ],
+      "hint": {
+        "en": "The caller still holds the same list object.",
+        "nl": "De aanroeper heeft nog steeds hetzelfde lijstobject."
+      },
+      "feedback": {
+        "en": "A sorted local replacement does not change the caller’s list.",
+        "nl": "Een gesorteerde lokale vervanging verandert de lijst van de aanroeper niet."
+      },
+      "probes": [
+        {
+          "call": {
+            "name": "tidy",
+            "args": [
+              [
+                3,
+                1,
+                2
+              ]
+            ]
+          },
+          "check": "_return is None and _args[0] == [1,2,3]"
+        },
+        {
+          "call": {
+            "name": "tidy",
+            "args": [
+              []
+            ]
+          },
+          "check": "_return is None and _args[0] == []"
+        }
+      ],
+      "id": "python-v3-9-03-step-2"
+    }
+  ],
+  "solutionNote": {
+    "en": "ranked is a query returning new data. tidy is an action on an existing list and returns None. Their names and briefs make their different side effects visible.",
+    "nl": "ranked is een vraag die nieuwe gegevens teruggeeft. tidy is een actie op een bestaande lijst en geeft None terug. Namen en beschrijvingen maken hun verschillende neveneffecten zichtbaar."
+  },
+  "inputs": [],
+  "retrievals": [
+    {
+      "id": "recall-python-v3-7-03",
+      "sourceActivityId": "python-v3-7-03",
+      "objectiveIds": [
+        "events",
+        "close-event",
+        "key-events",
+        "browser-loop"
+      ],
+      "prompt": {
+        "en": "Explain how a close event and a key event differ. Identify the supplied browser-loop lines that let the page keep responding.",
+        "nl": "Leg uit hoe een sluitgebeurtenis en een toetsgebeurtenis verschillen. Wijs de meegeleverde browserlusregels aan die de pagina laten reageren."
+      }
+    }
+  ]
+}

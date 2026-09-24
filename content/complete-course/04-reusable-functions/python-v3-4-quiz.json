@@ -1,0 +1,782 @@
+{
+  "id": "python-v3-4-quiz",
+  "chapter": 4,
+  "group": "python-v3-module-4",
+  "kind": "quiz",
+  "optional": false,
+  "estimatedMinutes": 6,
+  "title": {
+    "en": "Reusable functions: review",
+    "nl": "Herbruikbare functies: herhaling"
+  },
+  "questions": [
+    {
+      "objectiveIds": [
+        "return",
+        "multiple-parameters"
+      ],
+      "reviewActivityIds": [
+        "python-v3-4-02"
+      ],
+      "category": "prediction",
+      "prompt": {
+        "en": "What does this program print?",
+        "nl": "Wat drukt dit programma af?"
+      },
+      "code": "def add(a, b):\n    return a + b\nprint(add(3, 2) * 2)",
+      "answer": "a",
+      "choices": [
+        {
+          "id": "a",
+          "label": {
+            "en": "10",
+            "nl": "10"
+          },
+          "reason": {
+            "en": "The returned sum is multiplied by 2 in the caller.",
+            "nl": "De teruggegeven som wordt in de aanroeper met 2 vermenigvuldigd."
+          }
+        },
+        {
+          "id": "b",
+          "label": {
+            "en": "7",
+            "nl": "7"
+          },
+          "reason": {
+            "en": "The multiplication applies after the function has returned its full sum.",
+            "nl": "Vermenigvuldiging gebeurt nadat de functie de hele som heeft teruggegeven."
+          }
+        },
+        {
+          "id": "c",
+          "label": {
+            "en": "None",
+            "nl": "None"
+          },
+          "reason": {
+            "en": "An explicit return supplies a number, not None.",
+            "nl": "Een expliciete return levert een getal, geen None."
+          }
+        }
+      ],
+      "expectedOutput": "10\n",
+      "id": "python-v3-4-quiz-a-1"
+    },
+    {
+      "objectiveIds": [
+        "local-scope"
+      ],
+      "reviewActivityIds": [
+        "python-v3-4-03"
+      ],
+      "category": "prediction",
+      "prompt": {
+        "en": "What does this program print?",
+        "nl": "Wat drukt dit programma af?"
+      },
+      "code": "value = 3\ndef change(value):\n    value += 10\n    return value\nchange(value)\nprint(value)",
+      "answer": "a",
+      "choices": [
+        {
+          "id": "a",
+          "label": {
+            "en": "3",
+            "nl": "3"
+          },
+          "reason": {
+            "en": "The local parameter changes; the outer value is not reassigned.",
+            "nl": "De lokale parameter verandert; de buitenste waarde wordt niet opnieuw toegewezen."
+          }
+        },
+        {
+          "id": "b",
+          "label": {
+            "en": "13",
+            "nl": "13"
+          },
+          "reason": {
+            "en": "A returned value changes the caller only if the caller uses it.",
+            "nl": "Een teruggegeven waarde verandert de aanroeper alleen als die haar gebruikt."
+          }
+        },
+        {
+          "id": "c",
+          "label": {
+            "en": "None",
+            "nl": "None"
+          },
+          "reason": {
+            "en": "The outer variable still contains its original number.",
+            "nl": "De buitenste variabele bevat nog zijn oorspronkelijke getal."
+          }
+        }
+      ],
+      "expectedOutput": "3\n",
+      "id": "python-v3-4-quiz-a-2"
+    },
+    {
+      "objectiveIds": [
+        "default-arguments",
+        "keyword-arguments"
+      ],
+      "reviewActivityIds": [
+        "python-v3-4-04"
+      ],
+      "category": "completion",
+      "prompt": {
+        "en": "Complete the named-argument call.",
+        "nl": "Vul de aanroep met benoemd argument aan."
+      },
+      "code": "def cost(items, fee=3):\n    return items * fee\nprint(cost(3, ___=2))",
+      "answer": "a",
+      "choices": [
+        {
+          "id": "a",
+          "label": {
+            "en": "fee",
+            "nl": "fee"
+          },
+          "reason": {
+            "en": "The keyword must match the parameter name whose default is being overridden.",
+            "nl": "Het benoemde argument moet passen bij de parameter waarvan de standaard wordt overschreven."
+          }
+        },
+        {
+          "id": "b",
+          "label": {
+            "en": "items",
+            "nl": "items"
+          },
+          "reason": {
+            "en": "The keyword must match the parameter name whose default is being overridden.",
+            "nl": "Het benoemde argument moet passen bij de parameter waarvan de standaard wordt overschreven."
+          }
+        },
+        {
+          "id": "c",
+          "label": {
+            "en": "cost",
+            "nl": "cost"
+          },
+          "reason": {
+            "en": "The keyword must match the parameter name whose default is being overridden.",
+            "nl": "Het benoemde argument moet passen bij de parameter waarvan de standaard wordt overschreven."
+          }
+        }
+      ],
+      "codeBlank": {
+        "prompt": {
+          "en": "Complete the named-argument call.",
+          "nl": "Vul de aanroep met benoemd argument aan."
+        },
+        "segments": [
+          "def cost(items, fee=3):\n    return items * fee\nprint(cost(3, ",
+          "=2))"
+        ],
+        "tokens": [
+          {
+            "id": "token-1",
+            "code": "fee"
+          },
+          {
+            "id": "token-2",
+            "code": "items"
+          },
+          {
+            "id": "token-3",
+            "code": "cost"
+          }
+        ],
+        "blanks": [
+          {
+            "answer": "fee",
+            "reason": {
+              "en": "The keyword must match the parameter name whose default is being overridden.",
+              "nl": "Het benoemde argument moet passen bij de parameter waarvan de standaard wordt overschreven."
+            }
+          }
+        ],
+        "output": "6\n"
+      },
+      "id": "python-v3-4-quiz-a-3"
+    },
+    {
+      "objectiveIds": [
+        "early-return",
+        "none"
+      ],
+      "reviewActivityIds": [
+        "python-v3-4-04",
+        "python-v3-4-02"
+      ],
+      "category": "completion",
+      "prompt": {
+        "en": "Return no result for a rejected value.",
+        "nl": "Geef geen resultaat terug bij een afgewezen waarde."
+      },
+      "code": "def accepted(n):\n    if n < 0:\n        return ___\n    return n\nprint(accepted(-3))",
+      "answer": "a",
+      "choices": [
+        {
+          "id": "a",
+          "label": {
+            "en": "None",
+            "nl": "None"
+          },
+          "reason": {
+            "en": "None explicitly represents no result; zero and False are different values.",
+            "nl": "None betekent expliciet geen resultaat; nul en False zijn andere waarden."
+          }
+        },
+        {
+          "id": "b",
+          "label": {
+            "en": "0",
+            "nl": "0"
+          },
+          "reason": {
+            "en": "None explicitly represents no result; zero and False are different values.",
+            "nl": "None betekent expliciet geen resultaat; nul en False zijn andere waarden."
+          }
+        },
+        {
+          "id": "c",
+          "label": {
+            "en": "False",
+            "nl": "False"
+          },
+          "reason": {
+            "en": "None explicitly represents no result; zero and False are different values.",
+            "nl": "None betekent expliciet geen resultaat; nul en False zijn andere waarden."
+          }
+        }
+      ],
+      "codeBlank": {
+        "prompt": {
+          "en": "Return no result for a rejected value.",
+          "nl": "Geef geen resultaat terug bij een afgewezen waarde."
+        },
+        "segments": [
+          "def accepted(n):\n    if n < 0:\n        return ",
+          "\n    return n\nprint(accepted(-3))"
+        ],
+        "tokens": [
+          {
+            "id": "token-1",
+            "code": "None"
+          },
+          {
+            "id": "token-2",
+            "code": "0"
+          },
+          {
+            "id": "token-3",
+            "code": "False"
+          }
+        ],
+        "blanks": [
+          {
+            "answer": "None",
+            "reason": {
+              "en": "None explicitly represents no result; zero and False are different values.",
+              "nl": "None betekent expliciet geen resultaat; nul en False zijn andere waarden."
+            }
+          }
+        ],
+        "output": "None\n"
+      },
+      "id": "python-v3-4-quiz-a-4"
+    },
+    {
+      "objectiveIds": [
+        "while",
+        "infinite-loops"
+      ],
+      "reviewActivityIds": [
+        "python-v3-3-03",
+        "python-v3-3-04"
+      ],
+      "category": "debugging",
+      "prompt": {
+        "en": "What missing step makes this loop stop?",
+        "nl": "Welke ontbrekende stap laat deze lus stoppen?"
+      },
+      "code": "remaining = 3\nwhile remaining > 0:\n    print(remaining)",
+      "answer": "a",
+      "choices": [
+        {
+          "id": "a",
+          "label": {
+            "en": "Decrease remaining inside the body.",
+            "nl": "Verlaag remaining binnen het blok."
+          },
+          "reason": {
+            "en": "The condition must eventually become false.",
+            "nl": "De voorwaarde moet uiteindelijk onwaar worden."
+          }
+        },
+        {
+          "id": "b",
+          "label": {
+            "en": "Print remaining again.",
+            "nl": "Druk remaining opnieuw af."
+          },
+          "reason": {
+            "en": "Printing does not change the condition.",
+            "nl": "Afdrukken verandert de voorwaarde niet."
+          }
+        },
+        {
+          "id": "c",
+          "label": {
+            "en": "Assign remaining to the same starting value each time.",
+            "nl": "Wijs elke keer dezelfde beginwaarde toe."
+          },
+          "reason": {
+            "en": "That keeps the condition true forever.",
+            "nl": "Dat houdt de voorwaarde eeuwig waar."
+          }
+        }
+      ],
+      "id": "python-v3-4-quiz-a-5"
+    },
+    {
+      "objectiveIds": [
+        "and",
+        "or",
+        "not"
+      ],
+      "reviewActivityIds": [
+        "python-v3-2-04"
+      ],
+      "category": "application",
+      "prompt": {
+        "en": "Playing needs a ready player and no pause. Which rule fits?",
+        "nl": "Spelen vereist een klaarstaande speler en geen pauze. Welke regel past?"
+      },
+      "answer": "a",
+      "choices": [
+        {
+          "id": "a",
+          "label": {
+            "en": "ready and not paused",
+            "nl": "ready and not paused"
+          },
+          "reason": {
+            "en": "Both requirements must hold, including the reversed restriction.",
+            "nl": "Beide eisen moeten gelden, inclusief de omgekeerde beperking."
+          }
+        },
+        {
+          "id": "b",
+          "label": {
+            "en": "ready or not paused",
+            "nl": "ready or not paused"
+          },
+          "reason": {
+            "en": "or allows either requirement alone, which is too permissive.",
+            "nl": "or laat één eis alleen toe, wat te ruim is."
+          }
+        },
+        {
+          "id": "c",
+          "label": {
+            "en": "ready and paused",
+            "nl": "ready and paused"
+          },
+          "reason": {
+            "en": "The restriction must be absent, not present.",
+            "nl": "De beperking moet afwezig zijn, niet aanwezig."
+          }
+        }
+      ],
+      "id": "python-v3-4-quiz-a-6"
+    }
+  ],
+  "alternateQuestions": [
+    {
+      "objectiveIds": [
+        "return",
+        "multiple-parameters"
+      ],
+      "reviewActivityIds": [
+        "python-v3-4-02"
+      ],
+      "category": "prediction",
+      "prompt": {
+        "en": "What does this program print?",
+        "nl": "Wat drukt dit programma af?"
+      },
+      "code": "def add(a, b):\n    return a + b\nprint(add(5, 2) * 2)",
+      "answer": "a",
+      "choices": [
+        {
+          "id": "a",
+          "label": {
+            "en": "14",
+            "nl": "14"
+          },
+          "reason": {
+            "en": "The returned sum is multiplied by 2 in the caller.",
+            "nl": "De teruggegeven som wordt in de aanroeper met 2 vermenigvuldigd."
+          }
+        },
+        {
+          "id": "b",
+          "label": {
+            "en": "9",
+            "nl": "9"
+          },
+          "reason": {
+            "en": "The multiplication applies after the function has returned its full sum.",
+            "nl": "Vermenigvuldiging gebeurt nadat de functie de hele som heeft teruggegeven."
+          }
+        },
+        {
+          "id": "c",
+          "label": {
+            "en": "None",
+            "nl": "None"
+          },
+          "reason": {
+            "en": "An explicit return supplies a number, not None.",
+            "nl": "Een expliciete return levert een getal, geen None."
+          }
+        }
+      ],
+      "expectedOutput": "14\n",
+      "id": "python-v3-4-quiz-b-1"
+    },
+    {
+      "objectiveIds": [
+        "local-scope"
+      ],
+      "reviewActivityIds": [
+        "python-v3-4-03"
+      ],
+      "category": "prediction",
+      "prompt": {
+        "en": "What does this program print?",
+        "nl": "Wat drukt dit programma af?"
+      },
+      "code": "value = 5\ndef change(value):\n    value += 10\n    return value\nchange(value)\nprint(value)",
+      "answer": "a",
+      "choices": [
+        {
+          "id": "a",
+          "label": {
+            "en": "5",
+            "nl": "5"
+          },
+          "reason": {
+            "en": "The local parameter changes; the outer value is not reassigned.",
+            "nl": "De lokale parameter verandert; de buitenste waarde wordt niet opnieuw toegewezen."
+          }
+        },
+        {
+          "id": "b",
+          "label": {
+            "en": "15",
+            "nl": "15"
+          },
+          "reason": {
+            "en": "A returned value changes the caller only if the caller uses it.",
+            "nl": "Een teruggegeven waarde verandert de aanroeper alleen als die haar gebruikt."
+          }
+        },
+        {
+          "id": "c",
+          "label": {
+            "en": "None",
+            "nl": "None"
+          },
+          "reason": {
+            "en": "The outer variable still contains its original number.",
+            "nl": "De buitenste variabele bevat nog zijn oorspronkelijke getal."
+          }
+        }
+      ],
+      "expectedOutput": "5\n",
+      "id": "python-v3-4-quiz-b-2"
+    },
+    {
+      "objectiveIds": [
+        "default-arguments",
+        "keyword-arguments"
+      ],
+      "reviewActivityIds": [
+        "python-v3-4-04"
+      ],
+      "category": "completion",
+      "prompt": {
+        "en": "Complete the named-argument call.",
+        "nl": "Vul de aanroep met benoemd argument aan."
+      },
+      "code": "def cost(items, fee=3):\n    return items * fee\nprint(cost(5, ___=2))",
+      "answer": "a",
+      "choices": [
+        {
+          "id": "a",
+          "label": {
+            "en": "fee",
+            "nl": "fee"
+          },
+          "reason": {
+            "en": "The keyword must match the parameter name whose default is being overridden.",
+            "nl": "Het benoemde argument moet passen bij de parameter waarvan de standaard wordt overschreven."
+          }
+        },
+        {
+          "id": "b",
+          "label": {
+            "en": "items",
+            "nl": "items"
+          },
+          "reason": {
+            "en": "The keyword must match the parameter name whose default is being overridden.",
+            "nl": "Het benoemde argument moet passen bij de parameter waarvan de standaard wordt overschreven."
+          }
+        },
+        {
+          "id": "c",
+          "label": {
+            "en": "cost",
+            "nl": "cost"
+          },
+          "reason": {
+            "en": "The keyword must match the parameter name whose default is being overridden.",
+            "nl": "Het benoemde argument moet passen bij de parameter waarvan de standaard wordt overschreven."
+          }
+        }
+      ],
+      "codeBlank": {
+        "prompt": {
+          "en": "Complete the named-argument call.",
+          "nl": "Vul de aanroep met benoemd argument aan."
+        },
+        "segments": [
+          "def cost(items, fee=3):\n    return items * fee\nprint(cost(5, ",
+          "=2))"
+        ],
+        "tokens": [
+          {
+            "id": "token-1",
+            "code": "fee"
+          },
+          {
+            "id": "token-2",
+            "code": "items"
+          },
+          {
+            "id": "token-3",
+            "code": "cost"
+          }
+        ],
+        "blanks": [
+          {
+            "answer": "fee",
+            "reason": {
+              "en": "The keyword must match the parameter name whose default is being overridden.",
+              "nl": "Het benoemde argument moet passen bij de parameter waarvan de standaard wordt overschreven."
+            }
+          }
+        ],
+        "output": "10\n"
+      },
+      "id": "python-v3-4-quiz-b-3"
+    },
+    {
+      "objectiveIds": [
+        "early-return",
+        "none"
+      ],
+      "reviewActivityIds": [
+        "python-v3-4-04",
+        "python-v3-4-02"
+      ],
+      "category": "completion",
+      "prompt": {
+        "en": "Return no result for a rejected value.",
+        "nl": "Geef geen resultaat terug bij een afgewezen waarde."
+      },
+      "code": "def accepted(n):\n    if n < 0:\n        return ___\n    return n\nprint(accepted(-5))",
+      "answer": "a",
+      "choices": [
+        {
+          "id": "a",
+          "label": {
+            "en": "None",
+            "nl": "None"
+          },
+          "reason": {
+            "en": "None explicitly represents no result; zero and False are different values.",
+            "nl": "None betekent expliciet geen resultaat; nul en False zijn andere waarden."
+          }
+        },
+        {
+          "id": "b",
+          "label": {
+            "en": "0",
+            "nl": "0"
+          },
+          "reason": {
+            "en": "None explicitly represents no result; zero and False are different values.",
+            "nl": "None betekent expliciet geen resultaat; nul en False zijn andere waarden."
+          }
+        },
+        {
+          "id": "c",
+          "label": {
+            "en": "False",
+            "nl": "False"
+          },
+          "reason": {
+            "en": "None explicitly represents no result; zero and False are different values.",
+            "nl": "None betekent expliciet geen resultaat; nul en False zijn andere waarden."
+          }
+        }
+      ],
+      "codeBlank": {
+        "prompt": {
+          "en": "Return no result for a rejected value.",
+          "nl": "Geef geen resultaat terug bij een afgewezen waarde."
+        },
+        "segments": [
+          "def accepted(n):\n    if n < 0:\n        return ",
+          "\n    return n\nprint(accepted(-5))"
+        ],
+        "tokens": [
+          {
+            "id": "token-1",
+            "code": "None"
+          },
+          {
+            "id": "token-2",
+            "code": "0"
+          },
+          {
+            "id": "token-3",
+            "code": "False"
+          }
+        ],
+        "blanks": [
+          {
+            "answer": "None",
+            "reason": {
+              "en": "None explicitly represents no result; zero and False are different values.",
+              "nl": "None betekent expliciet geen resultaat; nul en False zijn andere waarden."
+            }
+          }
+        ],
+        "output": "None\n"
+      },
+      "id": "python-v3-4-quiz-b-4"
+    },
+    {
+      "objectiveIds": [
+        "while",
+        "infinite-loops"
+      ],
+      "reviewActivityIds": [
+        "python-v3-3-03",
+        "python-v3-3-04"
+      ],
+      "category": "debugging",
+      "prompt": {
+        "en": "What missing step makes this loop stop?",
+        "nl": "Welke ontbrekende stap laat deze lus stoppen?"
+      },
+      "code": "remaining = 5\nwhile remaining > 0:\n    print(remaining)",
+      "answer": "a",
+      "choices": [
+        {
+          "id": "a",
+          "label": {
+            "en": "Decrease remaining inside the body.",
+            "nl": "Verlaag remaining binnen het blok."
+          },
+          "reason": {
+            "en": "The condition must eventually become false.",
+            "nl": "De voorwaarde moet uiteindelijk onwaar worden."
+          }
+        },
+        {
+          "id": "b",
+          "label": {
+            "en": "Print remaining again.",
+            "nl": "Druk remaining opnieuw af."
+          },
+          "reason": {
+            "en": "Printing does not change the condition.",
+            "nl": "Afdrukken verandert de voorwaarde niet."
+          }
+        },
+        {
+          "id": "c",
+          "label": {
+            "en": "Assign remaining to the same starting value each time.",
+            "nl": "Wijs elke keer dezelfde beginwaarde toe."
+          },
+          "reason": {
+            "en": "That keeps the condition true forever.",
+            "nl": "Dat houdt de voorwaarde eeuwig waar."
+          }
+        }
+      ],
+      "id": "python-v3-4-quiz-b-5"
+    },
+    {
+      "objectiveIds": [
+        "and",
+        "or",
+        "not"
+      ],
+      "reviewActivityIds": [
+        "python-v3-2-04"
+      ],
+      "category": "application",
+      "prompt": {
+        "en": "Access needs membership and no ban. Which rule fits?",
+        "nl": "Toegang vereist lidmaatschap en geen verbod. Welke regel past?"
+      },
+      "answer": "a",
+      "choices": [
+        {
+          "id": "a",
+          "label": {
+            "en": "member and not banned",
+            "nl": "member and not banned"
+          },
+          "reason": {
+            "en": "Both requirements must hold, including the reversed restriction.",
+            "nl": "Beide eisen moeten gelden, inclusief de omgekeerde beperking."
+          }
+        },
+        {
+          "id": "b",
+          "label": {
+            "en": "member or not banned",
+            "nl": "member or not banned"
+          },
+          "reason": {
+            "en": "or allows either requirement alone, which is too permissive.",
+            "nl": "or laat één eis alleen toe, wat te ruim is."
+          }
+        },
+        {
+          "id": "c",
+          "label": {
+            "en": "member and banned",
+            "nl": "member and banned"
+          },
+          "reason": {
+            "en": "The restriction must be absent, not present.",
+            "nl": "De beperking moet afwezig zijn, niet aanwezig."
+          }
+        }
+      ],
+      "id": "python-v3-4-quiz-b-6"
+    }
+  ]
+}

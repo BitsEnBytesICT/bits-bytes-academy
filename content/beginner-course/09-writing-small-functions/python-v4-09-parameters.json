@@ -1,0 +1,145 @@
+{
+  "id": "python-v4-09-parameters",
+  "chapter": 9,
+  "group": "python-v4-module-9",
+  "title": {
+    "en": "Pass a value into a function",
+    "nl": "Geef een waarde aan een functie"
+  },
+  "kind": "coding",
+  "optional": false,
+  "runtime": "terminal",
+  "guidance": "guided",
+  "checkpointMode": "sequential",
+  "estimatedMinutes": 12,
+  "topicIds": [
+    "parameters-arguments"
+  ],
+  "practices": [],
+  "requiredConcepts": [
+    "execution-flow",
+    "variables"
+  ],
+  "explanation": {
+    "en": "A parameter lets the same instructions work with different values.",
+    "nl": "Een parameter laat dezelfde instructies met verschillende waarden werken."
+  },
+  "example": "",
+  "sections": [
+    {
+      "id": "python-v4-09-parameters-example",
+      "topicIds": [
+        "parameters-arguments"
+      ],
+      "heading": {
+        "en": "Follow a working example",
+        "nl": "Volg een werkend voorbeeld"
+      },
+      "body": {
+        "en": "In def greet(name), name is a parameter: a local name waiting for a value. In greet(\"Bo\"), \"Bo\" is the argument supplied by this call. The body uses that value for this call only. Parentheses in the definition describe inputs; parentheses in the call supply inputs.",
+        "nl": "In def greet(name) is name een parameter: een lokale naam die op een waarde wacht. In greet(\"Bo\") is \"Bo\" het argument van deze aanroep. De inhoud gebruikt die waarde alleen voor deze aanroep. Haakjes in de definitie beschrijven invoer; haakjes in de aanroep leveren invoer."
+      },
+      "code": "def greet(name):\n    print(\"Hello\", name)\ngreet(\"Bo\")\ngreet(\"Mila\")",
+      "output": "Hello Bo\nHello Mila\n",
+      "prediction": {
+        "en": "Which value does name hold during the second call?",
+        "nl": "Welke waarde heeft name tijdens de tweede aanroep?"
+      },
+      "takeaway": {
+        "en": "A parameter receives the argument of each call.",
+        "nl": "Een parameter ontvangt het argument van elke aanroep."
+      }
+    },
+    {
+      "id": "python-v4-09-parameters-experiment",
+      "topicIds": [],
+      "heading": {
+        "en": "Try one change",
+        "nl": "Probeer één wijziging"
+      },
+      "body": {
+        "en": "Call label twice with different items.",
+        "nl": "Roep label tweemaal aan met verschillende items."
+      }
+    }
+  ],
+  "files": {
+    "main.py": ""
+  },
+  "solution": {
+    "main.py": "def label(item):\n    print(\"Item:\", item)\nlabel(\"Book\")\n"
+  },
+  "checkpoints": [
+    {
+      "id": "python-v4-09-parameters-step-1",
+      "objectiveIds": [
+        "parameters-arguments"
+      ],
+      "task": {
+        "en": "Define label(item) to print Item: followed by a space and the supplied item. Call it with Book.",
+        "nl": "Definieer label(item) om Item: gevolgd door een spatie en het gegeven item af te drukken. Roep aan met Book."
+      },
+      "check": "_stdout == \"Item: Book\\n\"",
+      "probes": [
+        {
+          "call": {
+            "name": "label",
+            "args": [
+              "Pen"
+            ]
+          },
+          "check": "_call_stdout == \"Item: Pen\\n\""
+        },
+        {
+          "call": {
+            "name": "label",
+            "args": [
+              ""
+            ]
+          },
+          "check": "_call_stdout == \"Item: \\n\""
+        }
+      ],
+      "hint": {
+        "en": "A parameter receives the argument of each call.",
+        "nl": "Een parameter ontvangt het argument van elke aanroep."
+      },
+      "hints": [
+        {
+          "en": "A parameter receives the argument of each call.",
+          "nl": "Een parameter ontvangt het argument van elke aanroep."
+        },
+        {
+          "en": "Use the parameter in print instead of a fixed item name.",
+          "nl": "Gebruik de parameter in print in plaats van een vaste itemnaam."
+        },
+        {
+          "en": "A small fragment to adapt: `print(\"Item:\", item)`",
+          "nl": "Een klein fragment om aan te passen: `print(\"Item:\", item)`"
+        }
+      ],
+      "feedback": {
+        "en": "Use the parameter in print instead of a fixed item name.",
+        "nl": "Gebruik de parameter in print in plaats van een vaste itemnaam."
+      }
+    }
+  ],
+  "solutionNote": {
+    "en": "item is filled by each caller, so the function does not depend on Book.",
+    "nl": "item wordt door elke aanroeper ingevuld; de functie is dus niet afhankelijk van Book."
+  },
+  "inputs": [],
+  "retrievals": [
+    {
+      "id": "recall-python-v4-07-else",
+      "sourceActivityId": "python-v4-07-else",
+      "objectiveIds": [
+        "else"
+      ],
+      "prompt": {
+        "en": "Recall “Choose between two actions”. What changes for score = 6? Try the earlier example from memory, then check it. Predict and test ages 11, 12 and 13. Explain the equality case.",
+        "nl": "Haal “Kies tussen twee acties” terug. Wat verandert bij score = 6? Probeer het eerdere voorbeeld uit je geheugen en controleer daarna. Voorspel en test leeftijden 11, 12 en 13. Leg het geval met gelijkheid uit."
+      }
+    }
+  ]
+}

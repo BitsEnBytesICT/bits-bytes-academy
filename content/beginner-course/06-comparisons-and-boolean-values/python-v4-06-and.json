@@ -1,0 +1,189 @@
+{
+  "id": "python-v4-06-and",
+  "chapter": 6,
+  "group": "python-v4-module-6",
+  "title": {
+    "en": "Require both conditions with and",
+    "nl": "Vereis beide voorwaarden met and"
+  },
+  "kind": "coding",
+  "optional": false,
+  "runtime": "terminal",
+  "guidance": "guided",
+  "checkpointMode": "sequential",
+  "estimatedMinutes": 13,
+  "topicIds": [
+    "and"
+  ],
+  "practices": [],
+  "requiredConcepts": [
+    "boolean-variables",
+    "inclusive-comparisons"
+  ],
+  "explanation": {
+    "en": "Some rules require two conditions to be satisfied together.",
+    "nl": "Sommige regels vereisen dat twee voorwaarden tegelijk zijn vervuld."
+  },
+  "example": "",
+  "sections": [
+    {
+      "id": "python-v4-06-and-example",
+      "topicIds": [
+        "and"
+      ],
+      "heading": {
+        "en": "Follow a working example",
+        "nl": "Volg een werkend voorbeeld"
+      },
+      "body": {
+        "en": "For Boolean operands, and is True only when both operands are True. Its truth table is: True and True → True; True and False → False; False and True → False; False and False → False.\n\nEvaluate each small condition first, then combine their Boolean results. Parentheses around comparisons can help you read a longer rule. Python checks the left side first and can skip the right side when the left is already False.",
+        "nl": "Voor booleaanse operanden is and alleen True als beide operanden True zijn. De waarheidstabel is: True and True → True; True and False → False; False and True → False; False and False → False.\n\nBeoordeel eerst elke kleine voorwaarde en combineer daarna hun booleaanse resultaten. Haakjes om vergelijkingen kunnen een langere regel leesbaarder maken. Python bekijkt links eerst en kan rechts overslaan wanneer links al False is."
+      },
+      "code": "has_ticket = True\ndoor_open = False\nprint(has_ticket and door_open)",
+      "output": "False\n",
+      "prediction": {
+        "en": "Is a ticket enough when the door is closed?",
+        "nl": "Is een kaartje voldoende wanneer de deur dicht is?"
+      },
+      "takeaway": {
+        "en": "Both requirements must hold for an and rule to be True.",
+        "nl": "Beide eisen moeten gelden om een and-regel True te maken."
+      }
+    },
+    {
+      "id": "python-v4-06-and-experiment",
+      "topicIds": [],
+      "heading": {
+        "en": "Try one change",
+        "nl": "Probeer één wijziging"
+      },
+      "body": {
+        "en": "Predict all four combinations of meeting and missing the two requirements.",
+        "nl": "Voorspel alle vier combinaties van wel en niet aan de twee eisen voldoen."
+      }
+    }
+  ],
+  "files": {
+    "main.py": "credits = 120\nscore = 7\n"
+  },
+  "solution": {
+    "main.py": "credits = 120\nscore = 7\nresult = credits >= 120 and score >= 6\nprint(result)\n"
+  },
+  "checkpoints": [
+    {
+      "id": "python-v4-06-and-step-1",
+      "objectiveIds": [
+        "and"
+      ],
+      "task": {
+        "en": "A learner qualifies with at least 120 credits and a score of at least 6. Store that rule in result.",
+        "nl": "Een leerling voldoet met minstens 120 punten en een cijfer van minstens 6. Bewaar die regel in result."
+      },
+      "check": "type(result) is bool and result == (credits >= 120 and score >= 6)",
+      "probes": [
+        {
+          "inputs": {
+            "credits": 119,
+            "score": 7
+          },
+          "check": "type(result) is bool and result == (credits >= 120 and score >= 6)"
+        },
+        {
+          "inputs": {
+            "credits": 120,
+            "score": 5
+          },
+          "check": "type(result) is bool and result == (credits >= 120 and score >= 6)"
+        },
+        {
+          "inputs": {
+            "credits": 119,
+            "score": 5
+          },
+          "check": "type(result) is bool and result == (credits >= 120 and score >= 6)"
+        },
+        {
+          "inputs": {
+            "credits": 120,
+            "score": 6
+          },
+          "check": "type(result) is bool and result == (credits >= 120 and score >= 6)"
+        }
+      ],
+      "hint": {
+        "en": "Both requirements must hold for an and rule to be True.",
+        "nl": "Beide eisen moeten gelden om een and-regel True te maken."
+      },
+      "hints": [
+        {
+          "en": "Both requirements must hold for an and rule to be True.",
+          "nl": "Beide eisen moeten gelden om een and-regel True te maken."
+        },
+        {
+          "en": "Write each comparison completely and connect them with and.",
+          "nl": "Schrijf elke vergelijking volledig en verbind ze met and."
+        },
+        {
+          "en": "A small fragment to adapt: `credits >= 120 and score >= 6`",
+          "nl": "Een klein fragment om aan te passen: `credits >= 120 and score >= 6`"
+        }
+      ],
+      "feedback": {
+        "en": "Write each comparison completely and connect them with and.",
+        "nl": "Schrijf elke vergelijking volledig en verbind ze met and."
+      }
+    },
+    {
+      "id": "python-v4-06-and-step-2",
+      "objectiveIds": [
+        "and"
+      ],
+      "task": {
+        "en": "Print the Boolean result.",
+        "nl": "Druk het booleaanse resultaat af."
+      },
+      "check": "_stdout.strip() == str(result)",
+      "probes": [],
+      "hint": {
+        "en": "Both requirements must hold for an and rule to be True.",
+        "nl": "Beide eisen moeten gelden om een and-regel True te maken."
+      },
+      "hints": [
+        {
+          "en": "Both requirements must hold for an and rule to be True.",
+          "nl": "Beide eisen moeten gelden om een and-regel True te maken."
+        },
+        {
+          "en": "Print result itself, so changes to the comparison appear in the output.",
+          "nl": "Druk result zelf af zodat veranderingen in de vergelijking in de uitvoer verschijnen."
+        },
+        {
+          "en": "A small fragment to adapt: `print(result)`",
+          "nl": "Een klein fragment om aan te passen: `print(result)`"
+        }
+      ],
+      "feedback": {
+        "en": "Print result itself, so changes to the comparison appear in the output.",
+        "nl": "Druk result zelf af zodat veranderingen in de vergelijking in de uitvoer verschijnen."
+      }
+    }
+  ],
+  "solutionNote": {
+    "en": "Each comparison produces a Boolean. and combines them so one successful requirement cannot compensate for a failed one.",
+    "nl": "Elke vergelijking levert een booleaanse waarde op. and combineert ze zodat één geslaagde eis een mislukte eis niet kan compenseren."
+  },
+  "inputs": [],
+  "retrievals": [
+    {
+      "id": "recall-python-v4-04-multiline",
+      "sourceActivityId": "python-v4-04-multiline",
+      "objectiveIds": [
+        "multiline-strings"
+      ],
+      "prompt": {
+        "en": "Recall “Text across several source lines”. Would a newline just after the opening quotes appear in the output? Try the earlier example from memory, then check it. Indent the second line inside the string. Observe that those spaces also become text.",
+        "nl": "Haal “Tekst over meerdere coderegels” terug. Zou een nieuwe regel direct na de openingsaanhalingstekens in de uitvoer verschijnen? Probeer het eerdere voorbeeld uit je geheugen en controleer daarna. Spring de tweede regel binnen de string in. Bekijk hoe ook die spaties tekst worden."
+      }
+    }
+  ]
+}

@@ -1,0 +1,776 @@
+{
+  "id": "python-v3-12-quiz",
+  "chapter": 12,
+  "group": "python-v3-module-12",
+  "kind": "quiz",
+  "optional": false,
+  "estimatedMinutes": 6,
+  "title": {
+    "en": "Dictionaries and records: review",
+    "nl": "Dictionaries en records: herhaling"
+  },
+  "questions": [
+    {
+      "objectiveIds": [
+        "get",
+        "get-key"
+      ],
+      "reviewActivityIds": [
+        "python-v3-12-03"
+      ],
+      "category": "prediction",
+      "prompt": {
+        "en": "What does this program print?",
+        "nl": "Wat drukt dit programma af?"
+      },
+      "code": "record = {\"score\": 0}\nprint(record.get(\"score\", 3), record.get(\"missing\", 3))",
+      "answer": "a",
+      "choices": [
+        {
+          "id": "a",
+          "label": {
+            "en": "0 3",
+            "nl": "0 3"
+          },
+          "reason": {
+            "en": "The existing zero is preserved; only the missing key uses the fallback.",
+            "nl": "De bestaande nul blijft; alleen de ontbrekende sleutel gebruikt de terugval."
+          }
+        },
+        {
+          "id": "b",
+          "label": {
+            "en": "3 3",
+            "nl": "3 3"
+          },
+          "reason": {
+            "en": "get does not replace a stored zero with the default.",
+            "nl": "get vervangt een opgeslagen nul niet door de standaard."
+          }
+        },
+        {
+          "id": "c",
+          "label": {
+            "en": "None None",
+            "nl": "None None"
+          },
+          "reason": {
+            "en": "An explicit default is returned for the absent key.",
+            "nl": "Een expliciete standaard wordt voor de ontbrekende sleutel teruggegeven."
+          }
+        }
+      ],
+      "expectedOutput": "0 3\n",
+      "id": "python-v3-12-quiz-a-1"
+    },
+    {
+      "objectiveIds": [
+        "update",
+        "overwrite"
+      ],
+      "reviewActivityIds": [
+        "python-v3-12-02"
+      ],
+      "category": "prediction",
+      "prompt": {
+        "en": "What does this program print?",
+        "nl": "Wat drukt dit programma af?"
+      },
+      "code": "record = {\"score\": 1}\nrecord.update({\"score\": 3, \"active\": True})\nprint(record[\"score\"], len(record))",
+      "answer": "a",
+      "choices": [
+        {
+          "id": "a",
+          "label": {
+            "en": "3 2",
+            "nl": "3 2"
+          },
+          "reason": {
+            "en": "The repeated score key is overwritten and active is added.",
+            "nl": "De herhaalde score-sleutel wordt overschreven en active toegevoegd."
+          }
+        },
+        {
+          "id": "b",
+          "label": {
+            "en": "1 2",
+            "nl": "1 2"
+          },
+          "reason": {
+            "en": "update replaces existing values for repeated keys.",
+            "nl": "update vervangt bestaande waarden bij herhaalde sleutels."
+          }
+        },
+        {
+          "id": "c",
+          "label": {
+            "en": "3 3",
+            "nl": "3 3"
+          },
+          "reason": {
+            "en": "A repeated key does not create a duplicate entry.",
+            "nl": "Een herhaalde sleutel maakt geen dubbel item."
+          }
+        }
+      ],
+      "expectedOutput": "3 2\n",
+      "id": "python-v3-12-quiz-a-2"
+    },
+    {
+      "objectiveIds": [
+        "items",
+        "dictionary-iteration"
+      ],
+      "reviewActivityIds": [
+        "python-v3-12-04"
+      ],
+      "category": "completion",
+      "prompt": {
+        "en": "Iterate paired names and scores.",
+        "nl": "Doorloop gekoppelde namen en scores."
+      },
+      "code": "scores = {\"Ada\": 3}\nfor name, score in scores.___():\n    print(name, score)",
+      "answer": "a",
+      "choices": [
+        {
+          "id": "a",
+          "label": {
+            "en": "items",
+            "nl": "items"
+          },
+          "reason": {
+            "en": "items provides two-component pairs for unpacking.",
+            "nl": "items levert paren met twee onderdelen om uit te pakken."
+          }
+        },
+        {
+          "id": "b",
+          "label": {
+            "en": "keys",
+            "nl": "keys"
+          },
+          "reason": {
+            "en": "items provides two-component pairs for unpacking.",
+            "nl": "items levert paren met twee onderdelen om uit te pakken."
+          }
+        },
+        {
+          "id": "c",
+          "label": {
+            "en": "values",
+            "nl": "values"
+          },
+          "reason": {
+            "en": "items provides two-component pairs for unpacking.",
+            "nl": "items levert paren met twee onderdelen om uit te pakken."
+          }
+        }
+      ],
+      "codeBlank": {
+        "prompt": {
+          "en": "Iterate paired names and scores.",
+          "nl": "Doorloop gekoppelde namen en scores."
+        },
+        "segments": [
+          "scores = {\"Ada\": 3}\nfor name, score in scores.",
+          "():\n    print(name, score)"
+        ],
+        "tokens": [
+          {
+            "id": "token-1",
+            "code": "items"
+          },
+          {
+            "id": "token-2",
+            "code": "keys"
+          },
+          {
+            "id": "token-3",
+            "code": "values"
+          }
+        ],
+        "blanks": [
+          {
+            "answer": "items",
+            "reason": {
+              "en": "items provides two-component pairs for unpacking.",
+              "nl": "items levert paren met twee onderdelen om uit te pakken."
+            }
+          }
+        ],
+        "output": "Ada 3\n"
+      },
+      "id": "python-v3-12-quiz-a-3"
+    },
+    {
+      "objectiveIds": [
+        "dictionary-comprehensions"
+      ],
+      "reviewActivityIds": [
+        "python-v3-12-05"
+      ],
+      "category": "completion",
+      "prompt": {
+        "en": "Complete the key/value separator in the comprehension.",
+        "nl": "Vul het sleutel/waarde-scheidingsteken in de comprehensie aan."
+      },
+      "code": "scores = {\"A\": 3}\nboosted = {name ___ score + 1 for name, score in scores.items()}\nprint(boosted[\"A\"])",
+      "answer": "a",
+      "choices": [
+        {
+          "id": "a",
+          "label": {
+            "en": ":",
+            "nl": ":"
+          },
+          "reason": {
+            "en": "A dictionary comprehension specifies key: value before its iteration.",
+            "nl": "Een dictionarycomprehensie zet sleutel: waarde vóór zijn herhaling."
+          }
+        },
+        {
+          "id": "b",
+          "label": {
+            "en": "=",
+            "nl": "="
+          },
+          "reason": {
+            "en": "A dictionary comprehension specifies key: value before its iteration.",
+            "nl": "Een dictionarycomprehensie zet sleutel: waarde vóór zijn herhaling."
+          }
+        },
+        {
+          "id": "c",
+          "label": {
+            "en": ",",
+            "nl": ","
+          },
+          "reason": {
+            "en": "A dictionary comprehension specifies key: value before its iteration.",
+            "nl": "Een dictionarycomprehensie zet sleutel: waarde vóór zijn herhaling."
+          }
+        }
+      ],
+      "codeBlank": {
+        "prompt": {
+          "en": "Complete the key/value separator in the comprehension.",
+          "nl": "Vul het sleutel/waarde-scheidingsteken in de comprehensie aan."
+        },
+        "segments": [
+          "scores = {\"A\": 3}\nboosted = {name ",
+          " score + 1 for name, score in scores.items()}\nprint(boosted[\"A\"])"
+        ],
+        "tokens": [
+          {
+            "id": "token-1",
+            "code": ":"
+          },
+          {
+            "id": "token-2",
+            "code": "="
+          },
+          {
+            "id": "token-3",
+            "code": ","
+          }
+        ],
+        "blanks": [
+          {
+            "answer": ":",
+            "reason": {
+              "en": "A dictionary comprehension specifies key: value before its iteration.",
+              "nl": "Een dictionarycomprehensie zet sleutel: waarde vóór zijn herhaling."
+            }
+          }
+        ],
+        "output": "4\n"
+      },
+      "id": "python-v3-12-quiz-a-4"
+    },
+    {
+      "objectiveIds": [
+        "retry",
+        "validation"
+      ],
+      "reviewActivityIds": [
+        "python-v3-11-04",
+        "python-v3-11-03"
+      ],
+      "category": "debugging",
+      "prompt": {
+        "en": "Why does valid input after a failure never get read?",
+        "nl": "Waarom wordt geldige invoer na een mislukking nooit gelezen?"
+      },
+      "code": "def read_number():\n    while True:\n        text = input(\"Count: \")\n        try:\n            return int(text)\n        except ValueError:\n            return None",
+      "answer": "a",
+      "choices": [
+        {
+          "id": "a",
+          "label": {
+            "en": "return exits the helper; retry needs feedback and another iteration.",
+            "nl": "return verlaat de helper; herhalen vereist feedback en nog een iteratie."
+          },
+          "reason": {
+            "en": "A retry path must stay in the loop.",
+            "nl": "Een herhaalroute moet in de lus blijven."
+          }
+        },
+        {
+          "id": "b",
+          "label": {
+            "en": "The loop needs another True value.",
+            "nl": "De lus heeft nog een True-waarde nodig."
+          },
+          "reason": {
+            "en": "The condition is already true; return bypasses it.",
+            "nl": "De voorwaarde is al waar; return omzeilt die."
+          }
+        },
+        {
+          "id": "c",
+          "label": {
+            "en": "int cannot parse text from input.",
+            "nl": "int kan tekst uit input niet omzetten."
+          },
+          "reason": {
+            "en": "Parsing valid integer text works; the early return prevents another chance.",
+            "nl": "Geldige getaltekst omzetten werkt; de vroege return verhindert een nieuwe kans."
+          }
+        }
+      ],
+      "id": "python-v3-12-quiz-a-5"
+    },
+    {
+      "objectiveIds": [
+        "sort"
+      ],
+      "reviewActivityIds": [
+        "python-v3-9-03"
+      ],
+      "category": "application",
+      "prompt": {
+        "en": "A list method sorts in place and returns None. How should its result be handled?",
+        "nl": "Een lijstmethode sorteert op zijn plek en geeft None. Hoe moet haar resultaat behandeld worden?"
+      },
+      "answer": "a",
+      "choices": [
+        {
+          "id": "a",
+          "label": {
+            "en": "Call values.sort(); keep using values.",
+            "nl": "Roep values.sort() aan; blijf values gebruiken."
+          },
+          "reason": {
+            "en": "The mutation happens to the object; no replacement assignment is needed.",
+            "nl": "De wijziging gebeurt aan het object; vervangende toewijzing is niet nodig."
+          }
+        },
+        {
+          "id": "b",
+          "label": {
+            "en": "Assign values = values.sort().",
+            "nl": "Wijs values = values.sort() toe."
+          },
+          "reason": {
+            "en": "This overwrites the name with None.",
+            "nl": "Dit overschrijft de naam met None."
+          }
+        },
+        {
+          "id": "c",
+          "label": {
+            "en": "Assign values = None before sorting.",
+            "nl": "Wijs values = None toe vóór sorteren."
+          },
+          "reason": {
+            "en": "None has no list sort method.",
+            "nl": "None heeft geen lijstsorteermethode."
+          }
+        }
+      ],
+      "id": "python-v3-12-quiz-a-6"
+    }
+  ],
+  "alternateQuestions": [
+    {
+      "objectiveIds": [
+        "get",
+        "get-key"
+      ],
+      "reviewActivityIds": [
+        "python-v3-12-03"
+      ],
+      "category": "prediction",
+      "prompt": {
+        "en": "What does this program print?",
+        "nl": "Wat drukt dit programma af?"
+      },
+      "code": "record = {\"score\": 0}\nprint(record.get(\"score\", 8), record.get(\"missing\", 8))",
+      "answer": "a",
+      "choices": [
+        {
+          "id": "a",
+          "label": {
+            "en": "0 8",
+            "nl": "0 8"
+          },
+          "reason": {
+            "en": "The existing zero is preserved; only the missing key uses the fallback.",
+            "nl": "De bestaande nul blijft; alleen de ontbrekende sleutel gebruikt de terugval."
+          }
+        },
+        {
+          "id": "b",
+          "label": {
+            "en": "8 8",
+            "nl": "8 8"
+          },
+          "reason": {
+            "en": "get does not replace a stored zero with the default.",
+            "nl": "get vervangt een opgeslagen nul niet door de standaard."
+          }
+        },
+        {
+          "id": "c",
+          "label": {
+            "en": "None None",
+            "nl": "None None"
+          },
+          "reason": {
+            "en": "An explicit default is returned for the absent key.",
+            "nl": "Een expliciete standaard wordt voor de ontbrekende sleutel teruggegeven."
+          }
+        }
+      ],
+      "expectedOutput": "0 8\n",
+      "id": "python-v3-12-quiz-b-1"
+    },
+    {
+      "objectiveIds": [
+        "update",
+        "overwrite"
+      ],
+      "reviewActivityIds": [
+        "python-v3-12-02"
+      ],
+      "category": "prediction",
+      "prompt": {
+        "en": "What does this program print?",
+        "nl": "Wat drukt dit programma af?"
+      },
+      "code": "record = {\"score\": 1}\nrecord.update({\"score\": 8, \"active\": True})\nprint(record[\"score\"], len(record))",
+      "answer": "a",
+      "choices": [
+        {
+          "id": "a",
+          "label": {
+            "en": "8 2",
+            "nl": "8 2"
+          },
+          "reason": {
+            "en": "The repeated score key is overwritten and active is added.",
+            "nl": "De herhaalde score-sleutel wordt overschreven en active toegevoegd."
+          }
+        },
+        {
+          "id": "b",
+          "label": {
+            "en": "1 2",
+            "nl": "1 2"
+          },
+          "reason": {
+            "en": "update replaces existing values for repeated keys.",
+            "nl": "update vervangt bestaande waarden bij herhaalde sleutels."
+          }
+        },
+        {
+          "id": "c",
+          "label": {
+            "en": "8 3",
+            "nl": "8 3"
+          },
+          "reason": {
+            "en": "A repeated key does not create a duplicate entry.",
+            "nl": "Een herhaalde sleutel maakt geen dubbel item."
+          }
+        }
+      ],
+      "expectedOutput": "8 2\n",
+      "id": "python-v3-12-quiz-b-2"
+    },
+    {
+      "objectiveIds": [
+        "items",
+        "dictionary-iteration"
+      ],
+      "reviewActivityIds": [
+        "python-v3-12-04"
+      ],
+      "category": "completion",
+      "prompt": {
+        "en": "Iterate paired names and scores.",
+        "nl": "Doorloop gekoppelde namen en scores."
+      },
+      "code": "scores = {\"Bo\": 8}\nfor name, score in scores.___():\n    print(name, score)",
+      "answer": "a",
+      "choices": [
+        {
+          "id": "a",
+          "label": {
+            "en": "items",
+            "nl": "items"
+          },
+          "reason": {
+            "en": "items provides two-component pairs for unpacking.",
+            "nl": "items levert paren met twee onderdelen om uit te pakken."
+          }
+        },
+        {
+          "id": "b",
+          "label": {
+            "en": "keys",
+            "nl": "keys"
+          },
+          "reason": {
+            "en": "items provides two-component pairs for unpacking.",
+            "nl": "items levert paren met twee onderdelen om uit te pakken."
+          }
+        },
+        {
+          "id": "c",
+          "label": {
+            "en": "values",
+            "nl": "values"
+          },
+          "reason": {
+            "en": "items provides two-component pairs for unpacking.",
+            "nl": "items levert paren met twee onderdelen om uit te pakken."
+          }
+        }
+      ],
+      "codeBlank": {
+        "prompt": {
+          "en": "Iterate paired names and scores.",
+          "nl": "Doorloop gekoppelde namen en scores."
+        },
+        "segments": [
+          "scores = {\"Bo\": 8}\nfor name, score in scores.",
+          "():\n    print(name, score)"
+        ],
+        "tokens": [
+          {
+            "id": "token-1",
+            "code": "items"
+          },
+          {
+            "id": "token-2",
+            "code": "keys"
+          },
+          {
+            "id": "token-3",
+            "code": "values"
+          }
+        ],
+        "blanks": [
+          {
+            "answer": "items",
+            "reason": {
+              "en": "items provides two-component pairs for unpacking.",
+              "nl": "items levert paren met twee onderdelen om uit te pakken."
+            }
+          }
+        ],
+        "output": "Bo 8\n"
+      },
+      "id": "python-v3-12-quiz-b-3"
+    },
+    {
+      "objectiveIds": [
+        "dictionary-comprehensions"
+      ],
+      "reviewActivityIds": [
+        "python-v3-12-05"
+      ],
+      "category": "completion",
+      "prompt": {
+        "en": "Complete the key/value separator in the comprehension.",
+        "nl": "Vul het sleutel/waarde-scheidingsteken in de comprehensie aan."
+      },
+      "code": "scores = {\"A\": 8}\nboosted = {name ___ score + 1 for name, score in scores.items()}\nprint(boosted[\"A\"])",
+      "answer": "a",
+      "choices": [
+        {
+          "id": "a",
+          "label": {
+            "en": ":",
+            "nl": ":"
+          },
+          "reason": {
+            "en": "A dictionary comprehension specifies key: value before its iteration.",
+            "nl": "Een dictionarycomprehensie zet sleutel: waarde vóór zijn herhaling."
+          }
+        },
+        {
+          "id": "b",
+          "label": {
+            "en": "=",
+            "nl": "="
+          },
+          "reason": {
+            "en": "A dictionary comprehension specifies key: value before its iteration.",
+            "nl": "Een dictionarycomprehensie zet sleutel: waarde vóór zijn herhaling."
+          }
+        },
+        {
+          "id": "c",
+          "label": {
+            "en": ",",
+            "nl": ","
+          },
+          "reason": {
+            "en": "A dictionary comprehension specifies key: value before its iteration.",
+            "nl": "Een dictionarycomprehensie zet sleutel: waarde vóór zijn herhaling."
+          }
+        }
+      ],
+      "codeBlank": {
+        "prompt": {
+          "en": "Complete the key/value separator in the comprehension.",
+          "nl": "Vul het sleutel/waarde-scheidingsteken in de comprehensie aan."
+        },
+        "segments": [
+          "scores = {\"A\": 8}\nboosted = {name ",
+          " score + 1 for name, score in scores.items()}\nprint(boosted[\"A\"])"
+        ],
+        "tokens": [
+          {
+            "id": "token-1",
+            "code": ":"
+          },
+          {
+            "id": "token-2",
+            "code": "="
+          },
+          {
+            "id": "token-3",
+            "code": ","
+          }
+        ],
+        "blanks": [
+          {
+            "answer": ":",
+            "reason": {
+              "en": "A dictionary comprehension specifies key: value before its iteration.",
+              "nl": "Een dictionarycomprehensie zet sleutel: waarde vóór zijn herhaling."
+            }
+          }
+        ],
+        "output": "9\n"
+      },
+      "id": "python-v3-12-quiz-b-4"
+    },
+    {
+      "objectiveIds": [
+        "retry",
+        "validation"
+      ],
+      "reviewActivityIds": [
+        "python-v3-11-04",
+        "python-v3-11-03"
+      ],
+      "category": "debugging",
+      "prompt": {
+        "en": "Why does valid input after a failure never get read?",
+        "nl": "Waarom wordt geldige invoer na een mislukking nooit gelezen?"
+      },
+      "code": "def read_number():\n    while True:\n        text = input(\"Age: \")\n        try:\n            return int(text)\n        except ValueError:\n            return None",
+      "answer": "a",
+      "choices": [
+        {
+          "id": "a",
+          "label": {
+            "en": "return exits the helper; retry needs feedback and another iteration.",
+            "nl": "return verlaat de helper; herhalen vereist feedback en nog een iteratie."
+          },
+          "reason": {
+            "en": "A retry path must stay in the loop.",
+            "nl": "Een herhaalroute moet in de lus blijven."
+          }
+        },
+        {
+          "id": "b",
+          "label": {
+            "en": "The loop needs another True value.",
+            "nl": "De lus heeft nog een True-waarde nodig."
+          },
+          "reason": {
+            "en": "The condition is already true; return bypasses it.",
+            "nl": "De voorwaarde is al waar; return omzeilt die."
+          }
+        },
+        {
+          "id": "c",
+          "label": {
+            "en": "int cannot parse text from input.",
+            "nl": "int kan tekst uit input niet omzetten."
+          },
+          "reason": {
+            "en": "Parsing valid integer text works; the early return prevents another chance.",
+            "nl": "Geldige getaltekst omzetten werkt; de vroege return verhindert een nieuwe kans."
+          }
+        }
+      ],
+      "id": "python-v3-12-quiz-b-5"
+    },
+    {
+      "objectiveIds": [
+        "sort"
+      ],
+      "reviewActivityIds": [
+        "python-v3-9-03"
+      ],
+      "category": "application",
+      "prompt": {
+        "en": "You want to sort a list in place and then keep using that list. Which pattern fits?",
+        "nl": "Je wilt een lijst op zijn plek sorteren en daarna blijven gebruiken. Welk patroon past?"
+      },
+      "answer": "a",
+      "choices": [
+        {
+          "id": "a",
+          "label": {
+            "en": "Call values.sort(); keep using values.",
+            "nl": "Roep values.sort() aan; blijf values gebruiken."
+          },
+          "reason": {
+            "en": "The mutation happens to the object; no replacement assignment is needed.",
+            "nl": "De wijziging gebeurt aan het object; vervangende toewijzing is niet nodig."
+          }
+        },
+        {
+          "id": "b",
+          "label": {
+            "en": "Assign values = values.sort().",
+            "nl": "Wijs values = values.sort() toe."
+          },
+          "reason": {
+            "en": "This overwrites the name with None.",
+            "nl": "Dit overschrijft de naam met None."
+          }
+        },
+        {
+          "id": "c",
+          "label": {
+            "en": "Assign values = None before sorting.",
+            "nl": "Wijs values = None toe vóór sorteren."
+          },
+          "reason": {
+            "en": "None has no list sort method.",
+            "nl": "None heeft geen lijstsorteermethode."
+          }
+        }
+      ],
+      "id": "python-v3-12-quiz-b-6"
+    }
+  ]
+}

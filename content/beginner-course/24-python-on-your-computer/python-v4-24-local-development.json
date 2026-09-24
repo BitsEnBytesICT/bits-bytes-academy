@@ -1,0 +1,273 @@
+{
+  "id": "python-v4-24-local-development",
+  "chapter": 24,
+  "group": "python-v4-module-24",
+  "kind": "reading",
+  "presentation": "article",
+  "optional": false,
+  "estimatedMinutes": 30,
+  "title": {
+    "en": "Python on your own computer",
+    "nl": "Python op je eigen computer"
+  },
+  "explanation": {
+    "en": "You can now read, change and build small Python programs. Set up a local project, then choose one useful or enjoyable idea of your own. Follow these steps in your local editor. There is no required third project. Your own idea is outside the course time estimate.",
+    "nl": "Je kunt nu kleine Python-programma’s lezen, veranderen en bouwen. Stel een lokaal project in en kies daarna zelf één nuttig of leuk idee. Volg deze stappen in je lokale editor. Er is geen verplicht derde project. Je eigen idee valt buiten de geschatte cursustijd."
+  },
+  "example": "",
+  "files": {},
+  "solution": {},
+  "checkpoints": [],
+  "solutionNote": {
+    "en": "Use the official setup guides when your system differs.",
+    "nl": "Gebruik de officiële installatiegidsen als je systeem afwijkt."
+  },
+  "sections": [
+    {
+      "topicIds": [],
+      "heading": {
+        "en": "1. Install the tools",
+        "nl": "1. Installeer de hulpmiddelen"
+      },
+      "body": {
+        "en": "Install a current Python 3 release from [python.org](https://www.python.org/downloads/), [Visual Studio Code](https://code.visualstudio.com/) and Microsoft’s Python extension from VS Code’s Extensions view. VS Code is the editor; Python is the interpreter that executes your program. Follow the [official VS Code Python tutorial](https://code.visualstudio.com/docs/python/python-tutorial). On Windows, the Python installer/manager may provide both python and py commands; open a new terminal after installation. On macOS/Linux the command is commonly python3.",
+        "nl": "Installeer een actuele Python 3-versie via [python.org](https://www.python.org/downloads/), [Visual Studio Code](https://code.visualstudio.com/) en Microsofts Python-extensie via de extensieweergave van VS Code. VS Code is de editor; Python is de interpreter die je programma uitvoert. Volg de [officiële VS Code-Pythonhandleiding](https://code.visualstudio.com/docs/python/python-tutorial). Op Windows kan de Python-installer/-beheerder zowel python als py leveren; open na installatie een nieuwe terminal. Op macOS/Linux is het commando meestal python3."
+      }
+    },
+    {
+      "topicIds": [],
+      "heading": {
+        "en": "2. Open a project folder",
+        "nl": "2. Open een projectmap"
+      },
+      "body": {
+        "en": "Create a folder such as PythonProjects/my-first-tool. In VS Code choose File → Open Folder and select it. Keep code and its data files together. Browser lesson files do not automatically become local files: copy the code you want into local files with the same names. Save a course backup before leaving your browser work; that backup is an app data export, not a ready-to-run Python project. Start with a small main.py rather than copying the whole course.",
+        "nl": "Maak een map zoals PythonProjects/my-first-tool. Kies in VS Code File → Open Folder en selecteer die. Houd code en gegevensbestanden bij elkaar. Browserlesbestanden worden niet vanzelf lokale bestanden: kopieer gewenste code naar lokale bestanden met dezelfde namen. Bewaar een cursusback-up voordat je browserwerk verlaat; die back-up is appgegevens, geen direct uitvoerbaar Python-project. Begin met een klein main.py in plaats van de hele cursus te kopiëren."
+      }
+    },
+    {
+      "topicIds": [],
+      "heading": {
+        "en": "3. Create and select an environment",
+        "nl": "3. Maak en selecteer een omgeving"
+      },
+      "body": {
+        "en": "Open the Command Palette (Ctrl+Shift+P on Windows/Linux, Cmd+Shift+P on macOS), run Python: Create Environment, choose Venv and select your installed Python. This creates a .venv folder for this project’s packages. Run Python: Select Interpreter and choose that environment if needed. Open a new integrated terminal after selecting it. The [environment guide](https://code.visualstudio.com/docs/python/environments) covers activation differences. If shell activation is blocked, you can run the environment’s interpreter directly without changing system execution policy. Windows command below; macOS/Linux uses .venv/bin/python instead.",
+        "nl": "Open het opdrachtpalet (Ctrl+Shift+P op Windows/Linux, Cmd+Shift+P op macOS), voer Python: Create Environment uit, kies Venv en selecteer de geïnstalleerde Python. Dit maakt een .venv-map voor pakketten van dit project. Voer zo nodig Python: Select Interpreter uit en kies die omgeving. Open na selecteren een nieuwe geïntegreerde terminal. De [omgevingsgids](https://code.visualstudio.com/docs/python/environments) behandelt activeringsverschillen. Als shellactivering geblokkeerd is, kun je de omgevingsinterpreter direct uitvoeren zonder systeembeleid te veranderen. Hieronder het Windows-commando; macOS/Linux gebruikt .venv/bin/python."
+      },
+      "code": ".\\.venv\\Scripts\\python.exe --version",
+      "codeLanguage": "shell"
+    },
+    {
+      "topicIds": [],
+      "heading": {
+        "en": "4. Save and run a Python file",
+        "nl": "4. Bewaar en voer een Python-bestand uit"
+      },
+      "body": {
+        "en": "Create main.py, type the small program below and save it (Ctrl+S / Cmd+S). Use Run Python File in Terminal, normally the play button in the editor. The terminal should show your message. To run explicitly from the project folder on Windows, use .\\.venv\\Scripts\\python.exe main.py. On macOS/Linux use .venv/bin/python main.py. After changing code, save and run again. Relative data filenames are resolved from the working folder where Python is started.",
+        "nl": "Maak main.py, typ het kleine programma hieronder en sla het op (Ctrl+S / Cmd+S). Gebruik Run Python File in Terminal, meestal de afspeelknop in de editor. De terminal moet je bericht tonen. Gebruik op Windows vanuit de projectmap expliciet .\\.venv\\Scripts\\python.exe main.py. Gebruik op macOS/Linux .venv/bin/python main.py. Sla na codewijzigingen op en voer opnieuw uit. Relatieve gegevensbestandsnamen worden opgelost vanaf de werkmap waarin Python is gestart."
+      },
+      "code": "name = input(\"Your name: \")\nprint(f\"Hello, {name}!\")",
+      "exampleInputs": [
+        "Ada"
+      ],
+      "output": "Your name: Hello, Ada!\n"
+    },
+    {
+      "topicIds": [],
+      "heading": {
+        "en": "5. Install a package when you need it",
+        "nl": "5. Installeer een pakket als je het nodig hebt"
+      },
+      "body": {
+        "en": "For Pong, install pygame-ce into this project’s selected environment. The command below is a terminal/shell command, not a line for main.py or a Python >>> prompt. In an activated terminal, python -m pip install pygame-ce is equivalent; using the interpreter path makes the target environment explicit. On macOS/Linux use .venv/bin/python -m pip install pygame-ce. The Python import name remains import pygame. Standard modules such as csv, json and decimal need no separate pip installation. The browser’s display setup is course-specific; locally, start from the [pygame-ce quick start](https://pyga.me/docs/) and open a native window. The supplied async loop can remain, but browser preview controls do not exist locally.",
+        "nl": "Installeer voor Pong pygame-ce in de geselecteerde projectomgeving. Het commando hieronder is een terminal-/shellcommando, geen regel voor main.py of een Python- >>>-prompt. In een geactiveerde terminal is python -m pip install pygame-ce gelijkwaardig; het interpreterpad maakt de doelomgeving expliciet. Gebruik op macOS/Linux .venv/bin/python -m pip install pygame-ce. De Python-importnaam blijft import pygame. Standaardmodules zoals csv, json en decimal vereisen geen aparte pip-installatie. De browserweergave is cursusspecifiek; begin lokaal bij de [pygame-ce-snelstart](https://pyga.me/docs/) en open een eigen venster. De meegeleverde async-lus mag blijven, maar browservoorbeeldknoppen bestaan lokaal niet."
+      },
+      "code": ".\\.venv\\Scripts\\python.exe -m pip install pygame-ce",
+      "codeLanguage": "shell"
+    },
+    {
+      "topicIds": [],
+      "heading": {
+        "en": "6. Start one idea of your own",
+        "nl": "6. Begin aan één eigen idee"
+      },
+      "body": {
+        "en": "Choose something useful or enjoyable: a reading log, a small puzzle, a practice timer or your own game. Write one sentence describing who it helps and one small behaviour you can make work today. Build that first, try an ordinary and a boundary input, then choose the next improvement. You do not need to finish a third assigned project to complete this course. You are ready to turn an idea into a small working program and grow it from there.",
+        "nl": "Kies iets nuttigs of leuks: een leeslogboek, kleine puzzel, oefentimer of eigen spel. Schrijf één zin over wie het helpt en één klein gedrag dat je vandaag werkend kunt maken. Bouw dat eerst, probeer gewone en grensinvoer en kies daarna de volgende verbetering. Je hoeft geen derde opgelegd project af te maken om deze cursus te voltooien. Je bent klaar om van een idee een klein werkend programma te maken en het verder uit te bouwen."
+      },
+      "callout": {
+        "title": {
+          "en": "Quick troubleshooting",
+          "nl": "Snel problemen oplossen"
+        },
+        "body": {
+          "en": "No interpreter → install Python, restart VS Code and select it.\n\nWrong environment → select .venv and open a new terminal.\n\nOld output → save the file and confirm you ran the correct path.\n\nModuleNotFoundError → install the package with that same interpreter’s -m pip.\n\nA >>> prompt → leave Python before entering shell commands.",
+          "nl": "Geen interpreter → installeer Python, herstart VS Code en selecteer die.\n\nVerkeerde omgeving → kies .venv en open een nieuwe terminal.\n\nOude uitvoer → sla het bestand op en controleer het uitgevoerde pad.\n\nModuleNotFoundError → installeer het pakket met -m pip van diezelfde interpreter.\n\nEen >>>-prompt → verlaat Python voordat je shellcommando’s invoert."
+        }
+      }
+    }
+  ],
+  "requiredConcepts": [],
+  "topicIds": [],
+  "retrievals": [
+    {
+      "id": "recall-python-v4-22-load",
+      "sourceActivityId": "python-v4-22-load",
+      "objectiveIds": [
+        "json",
+        "json-load",
+        "nested-records"
+      ],
+      "prompt": {
+        "en": "Recall “Load nested JSON data”. Which access selects the first player rather than a field? Try the earlier example from memory, then check it. Add a second field to each player and confirm name extraction remains stable.",
+        "nl": "Haal “Laad geneste JSON-gegevens” terug. Welke toegang kiest de eerste speler in plaats van een veld? Probeer het eerdere voorbeeld uit je geheugen en controleer daarna. Voeg een tweede veld aan elke speler toe en controleer dat namen ophalen gelijk blijft."
+      }
+    },
+    {
+      "id": "recall-python-v4-22-save",
+      "sourceActivityId": "python-v4-22-save",
+      "objectiveIds": [
+        "json-save",
+        "json-roundtrip"
+      ],
+      "prompt": {
+        "en": "Recall “Save and reopen JSON”. Why might whitespace differ while the data is equal? Try the earlier example from memory, then check it. Open the generated JSON in the workspace, navigate away, return and run a load.",
+        "nl": "Haal “Bewaar en heropen JSON” terug. Waarom kan witruimte verschillen terwijl de gegevens gelijk zijn? Probeer het eerdere voorbeeld uit je geheugen en controleer daarna. Open de gemaakte JSON in de werkruimte, navigeer weg, keer terug en laad die."
+      }
+    },
+    {
+      "id": "recall-python-v4-22-update-and-recover",
+      "sourceActivityId": "python-v4-22-update-and-recover",
+      "objectiveIds": [
+        "json-update",
+        "malformed-json"
+      ],
+      "prompt": {
+        "en": "Recall “Update saved data and recognise malformed JSON”. Does valid file encoding guarantee valid JSON syntax? Try the earlier example from memory, then check it. Use valid JSON with a missing count field and explain why that is a different error.",
+        "nl": "Haal “Wijzig opgeslagen gegevens en herken ongeldige JSON” terug. Garandeert geldige bestandscodering geldige JSON-syntax? Probeer het eerdere voorbeeld uit je geheugen en controleer daarna. Gebruik geldige JSON zonder count-veld en leg uit waarom dat een andere fout is."
+      }
+    },
+    {
+      "id": "recall-python-v4-22-club-book",
+      "sourceActivityId": "python-v4-22-club-book",
+      "objectiveIds": [
+        "club-project"
+      ],
+      "prompt": {
+        "en": "Recall “Mini project: club results book”. Why is the number of rows different from the number of keys? Try the earlier example from memory, then check it. Add duplicate players, a quoted comma in a name and a negative score; reopen the generated JSON.",
+        "nl": "Haal “Miniproject: uitslagenboek van de club” terug. Waarom verschilt het aantal rijen van het aantal sleutels? Probeer het eerdere voorbeeld uit je geheugen en controleer daarna. Voeg dubbele spelers, een aangehaalde komma in een naam en een negatieve score toe; heropen de gemaakte JSON."
+      }
+    },
+    {
+      "id": "recall-python-v4-23-class",
+      "sourceActivityId": "python-v4-23-class",
+      "objectiveIds": [
+        "classes",
+        "instantiation",
+        "oop"
+      ],
+      "prompt": {
+        "en": "Recall “Define a new type with class”. Which line defines the type and which creates an object? Try the earlier example from memory, then check it. Compare second = first with second = Ticket().",
+        "nl": "Haal “Definieer een nieuw type met class” terug. Welke regel definieert het type en welke maakt een object? Probeer het eerdere voorbeeld uit je geheugen en controleer daarna. Vergelijk second = first met second = Ticket()."
+      }
+    },
+    {
+      "id": "recall-python-v4-23-initialise",
+      "sourceActivityId": "python-v4-23-initialise",
+      "objectiveIds": [
+        "constructors",
+        "self",
+        "instance-attributes"
+      ],
+      "prompt": {
+        "en": "Recall “Give each instance initial state”. Why does the caller supply only one argument when __init__ has two parameters? Try the earlier example from memory, then check it. Create two players with different names and inspect both.",
+        "nl": "Haal “Geef elke instantie begintoestand” terug. Waarom geeft de aanroeper één argument terwijl __init__ twee parameters heeft? Probeer het eerdere voorbeeld uit je geheugen en controleer daarna. Maak twee spelers met verschillende namen en bekijk beide."
+      }
+    },
+    {
+      "id": "recall-python-v4-23-methods",
+      "sourceActivityId": "python-v4-23-methods",
+      "objectiveIds": [
+        "methods"
+      ],
+      "prompt": {
+        "en": "Recall “Let an object perform an action”. Which object’s state does self.value identify? Try the earlier example from memory, then check it. Create two lamps and toggle only one.",
+        "nl": "Haal “Laat een object een actie uitvoeren” terug. Van welk object benoemt self.value de toestand? Probeer het eerdere voorbeeld uit je geheugen en controleer daarna. Maak twee lampjes en schakel er maar één om."
+      }
+    },
+    {
+      "id": "recall-python-v4-23-method-arguments",
+      "sourceActivityId": "python-v4-23-method-arguments",
+      "objectiveIds": [
+        "method-arguments"
+      ],
+      "prompt": {
+        "en": "Recall “Pass an argument to a method”. Why is the second result five instead of two? Try the earlier example from memory, then check it. Call add with a named argument and explain how the stored state changes.",
+        "nl": "Haal “Geef een argument aan een methode” terug. Waarom is het tweede resultaat vijf in plaats van twee? Probeer het eerdere voorbeeld uit je geheugen en controleer daarna. Roep add met een benoemd argument aan en leg uit hoe de bewaarde toestand verandert."
+      }
+    },
+    {
+      "id": "recall-python-v4-23-shared-state",
+      "sourceActivityId": "python-v4-23-shared-state",
+      "objectiveIds": [
+        "class-attributes",
+        "independent-instances"
+      ],
+      "prompt": {
+        "en": "Recall “Separate shared defaults from instance data”. Why can category be shared while items must be separate? Try the earlier example from memory, then check it. Create three bags, add to just one, and inspect all three lists.",
+        "nl": "Haal “Scheid gedeelde standaarden van instantiegegevens” terug. Waarom kan category gedeeld zijn terwijl items apart moeten zijn? Probeer het eerdere voorbeeld uit je geheugen en controleer daarna. Maak drie tassen, voeg aan één toe en bekijk alle drie lijsten."
+      }
+    },
+    {
+      "id": "recall-python-v4-23-inspect",
+      "sourceActivityId": "python-v4-23-inspect",
+      "objectiveIds": [
+        "hasattr",
+        "getattr",
+        "dir"
+      ],
+      "prompt": {
+        "en": "Recall “Inspect an unfamiliar object”. Which call actually retrieves a value? Try the earlier example from memory, then check it. Use dir on a string and identify one method you already know.",
+        "nl": "Haal “Onderzoek een onbekend object” terug. Welke aanroep haalt werkelijk een waarde op? Probeer het eerdere voorbeeld uit je geheugen en controleer daarna. Gebruik dir op een string en herken één methode die je al kent."
+      }
+    },
+    {
+      "id": "recall-python-v4-23-representation",
+      "sourceActivityId": "python-v4-23-representation",
+      "objectiveIds": [
+        "repr",
+        "str-method"
+      ],
+      "prompt": {
+        "en": "Recall “Give objects useful text representations”. Which method is used by the second print? Try the earlier example from memory, then check it. Put two counters in a list and print the list to observe representations.",
+        "nl": "Haal “Geef objecten bruikbare tekstweergaven” terug. Welke methode gebruikt de tweede print? Probeer het eerdere voorbeeld uit je geheugen en controleer daarna. Zet twee tellers in een lijst en druk die af om weergaven te bekijken."
+      }
+    },
+    {
+      "id": "recall-python-v4-23-functions-as-values",
+      "sourceActivityId": "python-v4-23-functions-as-values",
+      "objectiveIds": [
+        "everything-object",
+        "function-objects"
+      ],
+      "prompt": {
+        "en": "Recall “A function is an object too”. What would action contain after action = double(3)? Try the earlier example from memory, then check it. Pass action to another function and have that function call it with a value.",
+        "nl": "Haal “Een functie is ook een object” terug. Wat bevat action na action = double(3)? Probeer het eerdere voorbeeld uit je geheugen en controleer daarna. Geef action door aan een andere functie en laat die haar met een waarde aanroepen."
+      }
+    },
+    {
+      "id": "recall-python-v4-23-virtual-pet",
+      "sourceActivityId": "python-v4-23-virtual-pet",
+      "objectiveIds": [
+        "pet-project",
+        "objects-review"
+      ],
+      "prompt": {
+        "en": "Recall “Mini project: virtual pet”. Why must the availability check come before subtraction? Try the earlier example from memory, then check it. Create two pets, play with one and feed the other; explain both final states.",
+        "nl": "Haal “Miniproject: virtueel huisdier” terug. Waarom moet beschikbaarheid vóór aftrekken worden gecontroleerd? Probeer het eerdere voorbeeld uit je geheugen en controleer daarna. Maak twee huisdieren, speel met één en voer de andere; leg beide eindtoestanden uit."
+      }
+    }
+  ]
+}

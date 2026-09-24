@@ -1,0 +1,776 @@
+{
+  "id": "python-v3-7-quiz",
+  "chapter": 7,
+  "group": "python-v3-module-7",
+  "kind": "quiz",
+  "optional": false,
+  "estimatedMinutes": 6,
+  "title": {
+    "en": "Scenes and events: review",
+    "nl": "Scènes en gebeurtenissen: herhaling"
+  },
+  "questions": [
+    {
+      "objectiveIds": [
+        "rect",
+        "attributes",
+        "coordinates"
+      ],
+      "reviewActivityIds": [
+        "python-v3-7-01"
+      ],
+      "category": "prediction",
+      "prompt": {
+        "en": "What does this program print?",
+        "nl": "Wat drukt dit programma af?"
+      },
+      "code": "import pygame\nbox = pygame.Rect(10, 20, 30, 40)\nprint(box.right, box.bottom)",
+      "answer": "a",
+      "choices": [
+        {
+          "id": "a",
+          "label": {
+            "en": "40 60",
+            "nl": "40 60"
+          },
+          "reason": {
+            "en": "Right and bottom add size to the top-left coordinates.",
+            "nl": "Rechts en onder tellen afmeting bij linksboven op."
+          }
+        },
+        {
+          "id": "b",
+          "label": {
+            "en": "10 20",
+            "nl": "10 20"
+          },
+          "reason": {
+            "en": "These are the left and top coordinates, not opposite edges.",
+            "nl": "Dit zijn links en boven, niet de tegenoverliggende randen."
+          }
+        },
+        {
+          "id": "c",
+          "label": {
+            "en": "30 40",
+            "nl": "30 40"
+          },
+          "reason": {
+            "en": "Width and height are sizes, not edge coordinates.",
+            "nl": "Breedte en hoogte zijn afmetingen, geen randcoördinaten."
+          }
+        }
+      ],
+      "expectedOutput": "40 60\n",
+      "id": "python-v3-7-quiz-a-1"
+    },
+    {
+      "objectiveIds": [
+        "surface",
+        "colours",
+        "drawing-order"
+      ],
+      "reviewActivityIds": [
+        "python-v3-7-02"
+      ],
+      "category": "prediction",
+      "prompt": {
+        "en": "What does this program print?",
+        "nl": "Wat drukt dit programma af?"
+      },
+      "code": "import pygame\ncanvas = pygame.Surface((10, 10))\ncanvas.fill((0, 0, 10))\npygame.draw.rect(canvas, (255, 0, 0), (0, 0, 5, 5))\npixel = canvas.get_at((2, 2))\nprint((pixel[0], pixel[1], pixel[2]))",
+      "answer": "a",
+      "choices": [
+        {
+          "id": "a",
+          "label": {
+            "en": "(255, 0, 0)",
+            "nl": "(255, 0, 0)"
+          },
+          "reason": {
+            "en": "The rectangle was drawn last over this pixel.",
+            "nl": "De rechthoek is als laatste over deze pixel getekend."
+          }
+        },
+        {
+          "id": "b",
+          "label": {
+            "en": "(0, 0, 10)",
+            "nl": "(0, 0, 10)"
+          },
+          "reason": {
+            "en": "The later rectangle covers the background in its region.",
+            "nl": "De latere rechthoek bedekt de achtergrond in zijn gebied."
+          }
+        },
+        {
+          "id": "c",
+          "label": {
+            "en": "(0, 0, 0)",
+            "nl": "(0, 0, 0)"
+          },
+          "reason": {
+            "en": "The initial black pixel was replaced by both drawing operations.",
+            "nl": "De aanvankelijk zwarte pixel is door beide tekenbewerkingen vervangen."
+          }
+        }
+      ],
+      "expectedOutput": "(255, 0, 0)\n",
+      "id": "python-v3-7-quiz-a-2"
+    },
+    {
+      "objectiveIds": [
+        "key-events"
+      ],
+      "reviewActivityIds": [
+        "python-v3-7-03"
+      ],
+      "category": "completion",
+      "prompt": {
+        "en": "Check the event type before reading a key.",
+        "nl": "Controleer het gebeurtenistype vóór een toets lezen."
+      },
+      "code": "import pygame\nevent = pygame.event.Event(pygame.KEYDOWN, key=pygame.K_SPACE)\nif event.type == pygame.___:\n    print(event.key == pygame.K_SPACE)",
+      "answer": "a",
+      "choices": [
+        {
+          "id": "a",
+          "label": {
+            "en": "KEYDOWN",
+            "nl": "KEYDOWN"
+          },
+          "reason": {
+            "en": "Only this KEYDOWN branch matches the supplied key-press event.",
+            "nl": "Alleen deze KEYDOWN-tak past bij de meegegeven toetsaanslag."
+          }
+        },
+        {
+          "id": "b",
+          "label": {
+            "en": "QUIT",
+            "nl": "QUIT"
+          },
+          "reason": {
+            "en": "Only this KEYDOWN branch matches the supplied key-press event.",
+            "nl": "Alleen deze KEYDOWN-tak past bij de meegegeven toetsaanslag."
+          }
+        },
+        {
+          "id": "c",
+          "label": {
+            "en": "KEYUP",
+            "nl": "KEYUP"
+          },
+          "reason": {
+            "en": "Only this KEYDOWN branch matches the supplied key-press event.",
+            "nl": "Alleen deze KEYDOWN-tak past bij de meegegeven toetsaanslag."
+          }
+        }
+      ],
+      "codeBlank": {
+        "prompt": {
+          "en": "Check the event type before reading a key.",
+          "nl": "Controleer het gebeurtenistype vóór een toets lezen."
+        },
+        "segments": [
+          "import pygame\nevent = pygame.event.Event(pygame.KEYDOWN, key=pygame.K_SPACE)\nif event.type == pygame.",
+          ":\n    print(event.key == pygame.K_SPACE)"
+        ],
+        "tokens": [
+          {
+            "id": "token-1",
+            "code": "KEYDOWN"
+          },
+          {
+            "id": "token-2",
+            "code": "QUIT"
+          },
+          {
+            "id": "token-3",
+            "code": "KEYUP"
+          }
+        ],
+        "blanks": [
+          {
+            "answer": "KEYDOWN",
+            "reason": {
+              "en": "Only this KEYDOWN branch matches the supplied key-press event.",
+              "nl": "Alleen deze KEYDOWN-tak past bij de meegegeven toetsaanslag."
+            }
+          }
+        ],
+        "output": "True\n"
+      },
+      "id": "python-v3-7-quiz-a-3"
+    },
+    {
+      "objectiveIds": [
+        "close-event"
+      ],
+      "reviewActivityIds": [
+        "python-v3-7-03"
+      ],
+      "category": "completion",
+      "prompt": {
+        "en": "Recognise a close request.",
+        "nl": "Herken een sluitverzoek."
+      },
+      "code": "import pygame\nrunning = True\nevent_type = pygame.QUIT\nif event_type == pygame.___:\n    running = False\nprint(running)",
+      "answer": "a",
+      "choices": [
+        {
+          "id": "a",
+          "label": {
+            "en": "QUIT",
+            "nl": "QUIT"
+          },
+          "reason": {
+            "en": "QUIT is the close event, independent of keyboard events.",
+            "nl": "QUIT is de sluitgebeurtenis, onafhankelijk van toetsgebeurtenissen."
+          }
+        },
+        {
+          "id": "b",
+          "label": {
+            "en": "KEYDOWN",
+            "nl": "KEYDOWN"
+          },
+          "reason": {
+            "en": "QUIT is the close event, independent of keyboard events.",
+            "nl": "QUIT is de sluitgebeurtenis, onafhankelijk van toetsgebeurtenissen."
+          }
+        },
+        {
+          "id": "c",
+          "label": {
+            "en": "KEYUP",
+            "nl": "KEYUP"
+          },
+          "reason": {
+            "en": "QUIT is the close event, independent of keyboard events.",
+            "nl": "QUIT is de sluitgebeurtenis, onafhankelijk van toetsgebeurtenissen."
+          }
+        }
+      ],
+      "codeBlank": {
+        "prompt": {
+          "en": "Recognise a close request.",
+          "nl": "Herken een sluitverzoek."
+        },
+        "segments": [
+          "import pygame\nrunning = True\nevent_type = pygame.QUIT\nif event_type == pygame.",
+          ":\n    running = False\nprint(running)"
+        ],
+        "tokens": [
+          {
+            "id": "token-1",
+            "code": "QUIT"
+          },
+          {
+            "id": "token-2",
+            "code": "KEYDOWN"
+          },
+          {
+            "id": "token-3",
+            "code": "KEYUP"
+          }
+        ],
+        "blanks": [
+          {
+            "answer": "QUIT",
+            "reason": {
+              "en": "QUIT is the close event, independent of keyboard events.",
+              "nl": "QUIT is de sluitgebeurtenis, onafhankelijk van toetsgebeurtenissen."
+            }
+          }
+        ],
+        "output": "False\n"
+      },
+      "id": "python-v3-7-quiz-a-4"
+    },
+    {
+      "objectiveIds": [
+        "random-seed"
+      ],
+      "reviewActivityIds": [
+        "python-v3-6-02"
+      ],
+      "category": "debugging",
+      "prompt": {
+        "en": "Why might every serve repeat the same random choice?",
+        "nl": "Waarom kan elke opslag dezelfde willekeurige keuze herhalen?"
+      },
+      "code": "import random\ndef serve():\n    random.seed(10)\n    return random.choice([-1, 1])",
+      "answer": "a",
+      "choices": [
+        {
+          "id": "a",
+          "label": {
+            "en": "The same seed is reset inside every call.",
+            "nl": "Dezelfde seed wordt binnen elke aanroep opnieuw ingesteld."
+          },
+          "reason": {
+            "en": "Seed once around an experiment, not before every draw.",
+            "nl": "Stel de seed één keer rond een experiment in, niet vóór elke trekking."
+          }
+        },
+        {
+          "id": "b",
+          "label": {
+            "en": "choice cannot accept negative values.",
+            "nl": "choice accepteert geen negatieve waarden."
+          },
+          "reason": {
+            "en": "choice can select any supplied item, including negative numbers.",
+            "nl": "choice kan elk meegegeven item kiezen, ook negatieve getallen."
+          }
+        },
+        {
+          "id": "c",
+          "label": {
+            "en": "Functions cannot use imported modules.",
+            "nl": "Functies kunnen geen geïmporteerde modules gebruiken."
+          },
+          "reason": {
+            "en": "Imports are available to functions in their module.",
+            "nl": "Imports zijn beschikbaar voor functies in hun module."
+          }
+        }
+      ],
+      "id": "python-v3-7-quiz-a-5"
+    },
+    {
+      "objectiveIds": [
+        "tuples",
+        "multiple-returns"
+      ],
+      "reviewActivityIds": [
+        "python-v3-5-04"
+      ],
+      "category": "application",
+      "prompt": {
+        "en": "A helper returns x, y. What does the caller receive before unpacking?",
+        "nl": "Een helper geeft x, y terug. Wat ontvangt de aanroeper vóór uitpakken?"
+      },
+      "answer": "a",
+      "choices": [
+        {
+          "id": "a",
+          "label": {
+            "en": "One tuple containing two components.",
+            "nl": "Eén tuple met twee onderdelen."
+          },
+          "reason": {
+            "en": "Comma-separated returned values are packed into one tuple.",
+            "nl": "Door komma’s gescheiden terugkeerwaarden worden in één tuple verpakt."
+          }
+        },
+        {
+          "id": "b",
+          "label": {
+            "en": "Two unrelated returns executed in sequence.",
+            "nl": "Twee losse returns achter elkaar."
+          },
+          "reason": {
+            "en": "The first return would already finish the call.",
+            "nl": "De eerste return zou de aanroep al beëindigen."
+          }
+        },
+        {
+          "id": "c",
+          "label": {
+            "en": "A string containing a comma.",
+            "nl": "Een string met een komma."
+          },
+          "reason": {
+            "en": "No string conversion is implied by tuple packing.",
+            "nl": "Tupleverpakking impliceert geen stringomzetting."
+          }
+        }
+      ],
+      "id": "python-v3-7-quiz-a-6"
+    }
+  ],
+  "alternateQuestions": [
+    {
+      "objectiveIds": [
+        "rect",
+        "attributes",
+        "coordinates"
+      ],
+      "reviewActivityIds": [
+        "python-v3-7-01"
+      ],
+      "category": "prediction",
+      "prompt": {
+        "en": "What does this program print?",
+        "nl": "Wat drukt dit programma af?"
+      },
+      "code": "import pygame\nbox = pygame.Rect(15, 20, 30, 40)\nprint(box.right, box.bottom)",
+      "answer": "a",
+      "choices": [
+        {
+          "id": "a",
+          "label": {
+            "en": "45 60",
+            "nl": "45 60"
+          },
+          "reason": {
+            "en": "Right and bottom add size to the top-left coordinates.",
+            "nl": "Rechts en onder tellen afmeting bij linksboven op."
+          }
+        },
+        {
+          "id": "b",
+          "label": {
+            "en": "15 20",
+            "nl": "15 20"
+          },
+          "reason": {
+            "en": "These are the left and top coordinates, not opposite edges.",
+            "nl": "Dit zijn links en boven, niet de tegenoverliggende randen."
+          }
+        },
+        {
+          "id": "c",
+          "label": {
+            "en": "30 40",
+            "nl": "30 40"
+          },
+          "reason": {
+            "en": "Width and height are sizes, not edge coordinates.",
+            "nl": "Breedte en hoogte zijn afmetingen, geen randcoördinaten."
+          }
+        }
+      ],
+      "expectedOutput": "45 60\n",
+      "id": "python-v3-7-quiz-b-1"
+    },
+    {
+      "objectiveIds": [
+        "surface",
+        "colours",
+        "drawing-order"
+      ],
+      "reviewActivityIds": [
+        "python-v3-7-02"
+      ],
+      "category": "prediction",
+      "prompt": {
+        "en": "What does this program print?",
+        "nl": "Wat drukt dit programma af?"
+      },
+      "code": "import pygame\ncanvas = pygame.Surface((10, 10))\ncanvas.fill((0, 0, 15))\npygame.draw.rect(canvas, (255, 0, 0), (0, 0, 5, 5))\npixel = canvas.get_at((2, 2))\nprint((pixel[0], pixel[1], pixel[2]))",
+      "answer": "a",
+      "choices": [
+        {
+          "id": "a",
+          "label": {
+            "en": "(255, 0, 0)",
+            "nl": "(255, 0, 0)"
+          },
+          "reason": {
+            "en": "The rectangle was drawn last over this pixel.",
+            "nl": "De rechthoek is als laatste over deze pixel getekend."
+          }
+        },
+        {
+          "id": "b",
+          "label": {
+            "en": "(0, 0, 15)",
+            "nl": "(0, 0, 15)"
+          },
+          "reason": {
+            "en": "The later rectangle covers the background in its region.",
+            "nl": "De latere rechthoek bedekt de achtergrond in zijn gebied."
+          }
+        },
+        {
+          "id": "c",
+          "label": {
+            "en": "(0, 0, 0)",
+            "nl": "(0, 0, 0)"
+          },
+          "reason": {
+            "en": "The initial black pixel was replaced by both drawing operations.",
+            "nl": "De aanvankelijk zwarte pixel is door beide tekenbewerkingen vervangen."
+          }
+        }
+      ],
+      "expectedOutput": "(255, 0, 0)\n",
+      "id": "python-v3-7-quiz-b-2"
+    },
+    {
+      "objectiveIds": [
+        "key-events"
+      ],
+      "reviewActivityIds": [
+        "python-v3-7-03"
+      ],
+      "category": "completion",
+      "prompt": {
+        "en": "Check the event type before reading a key.",
+        "nl": "Controleer het gebeurtenistype vóór een toets lezen."
+      },
+      "code": "import pygame\nevent = pygame.event.Event(pygame.KEYDOWN, key=pygame.K_p)\nif event.type == pygame.___:\n    print(event.key == pygame.K_p)",
+      "answer": "a",
+      "choices": [
+        {
+          "id": "a",
+          "label": {
+            "en": "KEYDOWN",
+            "nl": "KEYDOWN"
+          },
+          "reason": {
+            "en": "Only this KEYDOWN branch matches the supplied key-press event.",
+            "nl": "Alleen deze KEYDOWN-tak past bij de meegegeven toetsaanslag."
+          }
+        },
+        {
+          "id": "b",
+          "label": {
+            "en": "QUIT",
+            "nl": "QUIT"
+          },
+          "reason": {
+            "en": "Only this KEYDOWN branch matches the supplied key-press event.",
+            "nl": "Alleen deze KEYDOWN-tak past bij de meegegeven toetsaanslag."
+          }
+        },
+        {
+          "id": "c",
+          "label": {
+            "en": "KEYUP",
+            "nl": "KEYUP"
+          },
+          "reason": {
+            "en": "Only this KEYDOWN branch matches the supplied key-press event.",
+            "nl": "Alleen deze KEYDOWN-tak past bij de meegegeven toetsaanslag."
+          }
+        }
+      ],
+      "codeBlank": {
+        "prompt": {
+          "en": "Check the event type before reading a key.",
+          "nl": "Controleer het gebeurtenistype vóór een toets lezen."
+        },
+        "segments": [
+          "import pygame\nevent = pygame.event.Event(pygame.KEYDOWN, key=pygame.K_p)\nif event.type == pygame.",
+          ":\n    print(event.key == pygame.K_p)"
+        ],
+        "tokens": [
+          {
+            "id": "token-1",
+            "code": "KEYDOWN"
+          },
+          {
+            "id": "token-2",
+            "code": "QUIT"
+          },
+          {
+            "id": "token-3",
+            "code": "KEYUP"
+          }
+        ],
+        "blanks": [
+          {
+            "answer": "KEYDOWN",
+            "reason": {
+              "en": "Only this KEYDOWN branch matches the supplied key-press event.",
+              "nl": "Alleen deze KEYDOWN-tak past bij de meegegeven toetsaanslag."
+            }
+          }
+        ],
+        "output": "True\n"
+      },
+      "id": "python-v3-7-quiz-b-3"
+    },
+    {
+      "objectiveIds": [
+        "close-event"
+      ],
+      "reviewActivityIds": [
+        "python-v3-7-03"
+      ],
+      "category": "completion",
+      "prompt": {
+        "en": "Recognise a close request.",
+        "nl": "Herken een sluitverzoek."
+      },
+      "code": "import pygame\nrunning = True\nevent_type = pygame.QUIT\nif event_type == pygame.___:\n    running = False\nprint(not running)",
+      "answer": "a",
+      "choices": [
+        {
+          "id": "a",
+          "label": {
+            "en": "QUIT",
+            "nl": "QUIT"
+          },
+          "reason": {
+            "en": "QUIT is the close event, independent of keyboard events.",
+            "nl": "QUIT is de sluitgebeurtenis, onafhankelijk van toetsgebeurtenissen."
+          }
+        },
+        {
+          "id": "b",
+          "label": {
+            "en": "KEYDOWN",
+            "nl": "KEYDOWN"
+          },
+          "reason": {
+            "en": "QUIT is the close event, independent of keyboard events.",
+            "nl": "QUIT is de sluitgebeurtenis, onafhankelijk van toetsgebeurtenissen."
+          }
+        },
+        {
+          "id": "c",
+          "label": {
+            "en": "KEYUP",
+            "nl": "KEYUP"
+          },
+          "reason": {
+            "en": "QUIT is the close event, independent of keyboard events.",
+            "nl": "QUIT is de sluitgebeurtenis, onafhankelijk van toetsgebeurtenissen."
+          }
+        }
+      ],
+      "codeBlank": {
+        "prompt": {
+          "en": "Recognise a close request.",
+          "nl": "Herken een sluitverzoek."
+        },
+        "segments": [
+          "import pygame\nrunning = True\nevent_type = pygame.QUIT\nif event_type == pygame.",
+          ":\n    running = False\nprint(not running)"
+        ],
+        "tokens": [
+          {
+            "id": "token-1",
+            "code": "QUIT"
+          },
+          {
+            "id": "token-2",
+            "code": "KEYDOWN"
+          },
+          {
+            "id": "token-3",
+            "code": "KEYUP"
+          }
+        ],
+        "blanks": [
+          {
+            "answer": "QUIT",
+            "reason": {
+              "en": "QUIT is the close event, independent of keyboard events.",
+              "nl": "QUIT is de sluitgebeurtenis, onafhankelijk van toetsgebeurtenissen."
+            }
+          }
+        ],
+        "output": "True\n"
+      },
+      "id": "python-v3-7-quiz-b-4"
+    },
+    {
+      "objectiveIds": [
+        "random-seed"
+      ],
+      "reviewActivityIds": [
+        "python-v3-6-02"
+      ],
+      "category": "debugging",
+      "prompt": {
+        "en": "Why might every serve repeat the same random choice?",
+        "nl": "Waarom kan elke opslag dezelfde willekeurige keuze herhalen?"
+      },
+      "code": "import random\ndef serve():\n    random.seed(15)\n    return random.choice([-1, 1])",
+      "answer": "a",
+      "choices": [
+        {
+          "id": "a",
+          "label": {
+            "en": "The same seed is reset inside every call.",
+            "nl": "Dezelfde seed wordt binnen elke aanroep opnieuw ingesteld."
+          },
+          "reason": {
+            "en": "Seed once around an experiment, not before every draw.",
+            "nl": "Stel de seed één keer rond een experiment in, niet vóór elke trekking."
+          }
+        },
+        {
+          "id": "b",
+          "label": {
+            "en": "choice cannot accept negative values.",
+            "nl": "choice accepteert geen negatieve waarden."
+          },
+          "reason": {
+            "en": "choice can select any supplied item, including negative numbers.",
+            "nl": "choice kan elk meegegeven item kiezen, ook negatieve getallen."
+          }
+        },
+        {
+          "id": "c",
+          "label": {
+            "en": "Functions cannot use imported modules.",
+            "nl": "Functies kunnen geen geïmporteerde modules gebruiken."
+          },
+          "reason": {
+            "en": "Imports are available to functions in their module.",
+            "nl": "Imports zijn beschikbaar voor functies in hun module."
+          }
+        }
+      ],
+      "id": "python-v3-7-quiz-b-5"
+    },
+    {
+      "objectiveIds": [
+        "tuples",
+        "multiple-returns"
+      ],
+      "reviewActivityIds": [
+        "python-v3-5-04"
+      ],
+      "category": "application",
+      "prompt": {
+        "en": "A helper returns width, height. How many values does one return statement send back?",
+        "nl": "Een helper geeft width, height terug. Hoeveel waarden stuurt één return-opdracht terug?"
+      },
+      "answer": "a",
+      "choices": [
+        {
+          "id": "a",
+          "label": {
+            "en": "One tuple containing two components.",
+            "nl": "Eén tuple met twee onderdelen."
+          },
+          "reason": {
+            "en": "Comma-separated returned values are packed into one tuple.",
+            "nl": "Door komma’s gescheiden terugkeerwaarden worden in één tuple verpakt."
+          }
+        },
+        {
+          "id": "b",
+          "label": {
+            "en": "Two unrelated returns executed in sequence.",
+            "nl": "Twee losse returns achter elkaar."
+          },
+          "reason": {
+            "en": "The first return would already finish the call.",
+            "nl": "De eerste return zou de aanroep al beëindigen."
+          }
+        },
+        {
+          "id": "c",
+          "label": {
+            "en": "A string containing a comma.",
+            "nl": "Een string met een komma."
+          },
+          "reason": {
+            "en": "No string conversion is implied by tuple packing.",
+            "nl": "Tupleverpakking impliceert geen stringomzetting."
+          }
+        }
+      ],
+      "id": "python-v3-7-quiz-b-6"
+    }
+  ]
+}

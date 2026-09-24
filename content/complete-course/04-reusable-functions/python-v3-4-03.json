@@ -1,0 +1,188 @@
+{
+  "id": "python-v3-4-03",
+  "chapter": 4,
+  "group": "python-v3-module-4",
+  "title": {
+    "en": "Remove a hidden dependency",
+    "nl": "Verwijder een verborgen afhankelijkheid"
+  },
+  "kind": "coding",
+  "optional": false,
+  "runtime": "terminal",
+  "guidance": "adapt",
+  "estimatedMinutes": 16,
+  "explanation": {
+    "en": "Repair a function that depends on a global variable. Parameters make the data a function needs visible at the call site.",
+    "nl": "Repareer een functie die van een globale variabele afhangt. Parameters maken de benodigde gegevens zichtbaar op de aanroepplek."
+  },
+  "example": "",
+  "topicIds": [
+    "local-scope"
+  ],
+  "prerequisites": [
+    "python-v3-4-02"
+  ],
+  "sections": [
+    {
+      "topicIds": [
+        "local-scope"
+      ],
+      "heading": {
+        "en": "Local names",
+        "nl": "Lokale namen"
+      },
+      "body": {
+        "en": "A parameter and a name assigned inside a function belong to that call’s local scope. Reading an unrelated outer variable hides a dependency. Passing the value explicitly allows different calls to work independently. A local assignment does not replace a same-named variable outside the function.",
+        "nl": "Een parameter en een naam die binnen een functie wordt toegewezen horen bij het lokale bereik van die aanroep. Een niet-gerelateerde buitenste variabele lezen verbergt een afhankelijkheid. De waarde expliciet meegeven laat verschillende aanroepen onafhankelijk werken. Een lokale toewijzing vervangt geen gelijknamige variabele buiten de functie."
+      },
+      "code": "value = 100\ndef doubled(value):\n    result = value * 2\n    return result\nprint(doubled(3))\nprint(value)",
+      "output": "6\n100\n",
+      "prediction": {
+        "en": "Which value is used inside doubled, and why does 100 remain?",
+        "nl": "Welke waarde wordt binnen doubled gebruikt en waarom blijft 100 behouden?"
+      }
+    },
+    {
+      "topicIds": [],
+      "heading": {
+        "en": "Try a changed input",
+        "nl": "Probeer gewijzigde invoer"
+      },
+      "body": {
+        "en": "Change outer distance to -50. Call travel_cost with 5 and 2 again. Explain why its result should still be 10.",
+        "nl": "Verander de buitenste distance in -50. Roep travel_cost opnieuw aan met 5 en 2. Leg uit waarom het resultaat nog steeds 10 moet zijn."
+      }
+    }
+  ],
+  "files": {
+    "main.py": "distance = 100\ndef travel_cost(km, rate):\n    cost = distance * rate\n    return cost\n\nprint(travel_cost(5, 2))\n"
+  },
+  "solution": {
+    "main.py": "distance = 100\ndef travel_cost(km, rate):\n    cost = km * rate\n    return cost\n\nprint(travel_cost(5, 2))\n"
+  },
+  "checkpoints": [
+    {
+      "objectiveIds": [
+        "local-scope"
+      ],
+      "task": {
+        "en": "Use km and rate to calculate travel_cost. Do not read the outer distance.",
+        "nl": "Gebruik km en rate om travel_cost te berekenen. Lees niet de buitenste distance."
+      },
+      "check": "_stdout.strip() == \"10\"",
+      "hints": [
+        {
+          "en": "The parameter is the caller’s chosen distance.",
+          "nl": "De parameter is de afstand die de aanroeper kiest."
+        },
+        {
+          "en": "Replace the hidden dependency in the multiplication.",
+          "nl": "Vervang de verborgen afhankelijkheid in de vermenigvuldiging."
+        },
+        {
+          "en": "cost = km * rate",
+          "nl": "cost = km * rate"
+        }
+      ],
+      "hint": {
+        "en": "The parameter is the caller’s chosen distance.",
+        "nl": "De parameter is de afstand die de aanroeper kiest."
+      },
+      "feedback": {
+        "en": "A different outer distance should not change the function’s answer.",
+        "nl": "Een andere buitenste distance mag het functieantwoord niet veranderen."
+      },
+      "probes": [
+        {
+          "call": {
+            "name": "travel_cost",
+            "args": [
+              3,
+              4
+            ]
+          },
+          "check": "_return == 12",
+          "inputs": {
+            "distance": 999
+          }
+        },
+        {
+          "call": {
+            "name": "travel_cost",
+            "args": [
+              0,
+              10
+            ]
+          },
+          "check": "_return == 0"
+        }
+      ],
+      "id": "python-v3-4-03-step-1"
+    },
+    {
+      "objectiveIds": [
+        "local-scope"
+      ],
+      "task": {
+        "en": "Keep cost local and leave distance unchanged by calls.",
+        "nl": "Houd cost lokaal en laat distance door aanroepen ongewijzigd."
+      },
+      "check": "distance == 100 and \"cost\" not in globals()",
+      "hints": [
+        {
+          "en": "A temporary calculation belongs inside the function.",
+          "nl": "Een tijdelijke berekening hoort binnen de functie."
+        },
+        {
+          "en": "Avoid a global declaration or reassigning distance.",
+          "nl": "Vermijd een global-declaratie of opnieuw toewijzen aan distance."
+        },
+        {
+          "en": "return cost sends the value out without making its name global.",
+          "nl": "return cost geeft de waarde terug zonder de naam globaal te maken."
+        }
+      ],
+      "hint": {
+        "en": "A temporary calculation belongs inside the function.",
+        "nl": "Een tijdelijke berekening hoort binnen de functie."
+      },
+      "feedback": {
+        "en": "Keep the caller’s state independent of this calculation.",
+        "nl": "Houd de toestand van de aanroeper onafhankelijk van deze berekening."
+      },
+      "probes": [
+        {
+          "call": {
+            "name": "travel_cost",
+            "args": [
+              2,
+              3
+            ]
+          },
+          "check": "_return == 6 and distance == 100 and \"cost\" not in globals()"
+        }
+      ],
+      "id": "python-v3-4-03-step-2"
+    }
+  ],
+  "solutionNote": {
+    "en": "The calculation now depends only on its arguments. The local name cost helps explain the step but does not escape into the caller’s namespace.",
+    "nl": "De berekening hangt nu alleen van de argumenten af. De lokale naam cost verduidelijkt de stap maar komt niet in de naamruimte van de aanroeper terecht."
+  },
+  "inputs": [],
+  "retrievals": [
+    {
+      "id": "recall-python-v3-2-03",
+      "sourceActivityId": "python-v3-2-03",
+      "objectiveIds": [
+        "if",
+        "else",
+        "indentation"
+      ],
+      "prompt": {
+        "en": "Write an if/else for an exact boundary. Explain which indented block runs and why.",
+        "nl": "Schrijf een if/else voor een exacte grens. Leg uit welk ingesprongen blok loopt en waarom."
+      }
+    }
+  ]
+}

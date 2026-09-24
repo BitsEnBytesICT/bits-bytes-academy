@@ -1,0 +1,167 @@
+{
+  "id": "python-v4-17-sorting",
+  "chapter": 17,
+  "group": "python-v4-module-17",
+  "title": {
+    "en": "Sort in place or make a sorted copy",
+    "nl": "Sorteer ter plaatse of maak een gesorteerde kopie"
+  },
+  "kind": "coding",
+  "optional": false,
+  "runtime": "terminal",
+  "guidance": "adapt",
+  "checkpointMode": "sequential",
+  "estimatedMinutes": 12,
+  "topicIds": [
+    "sort",
+    "sorted"
+  ],
+  "practices": [],
+  "requiredConcepts": [
+    "copying",
+    "none"
+  ],
+  "explanation": {
+    "en": "Sorting order and preserving original order are different decisions.",
+    "nl": "Sorteervolgorde en oorspronkelijke volgorde bewaren zijn verschillende beslissingen."
+  },
+  "example": "",
+  "sections": [
+    {
+      "id": "python-v4-17-sorting-example",
+      "topicIds": [
+        "sort",
+        "sorted"
+      ],
+      "heading": {
+        "en": "Follow a working example",
+        "nl": "Volg een werkend voorbeeld"
+      },
+      "body": {
+        "en": "items.sort() rearranges the existing list and returns None. sorted(items) creates a new sorted list. Both accept reverse=True for descending order. Do not assign items = items.sort(): that loses the list reference. Use sorted when the original order matters.",
+        "nl": "items.sort() herschikt de bestaande lijst en geeft None terug. sorted(items) maakt een nieuwe gesorteerde lijst. Beide accepteren reverse=True voor aflopende volgorde. Gebruik niet items = items.sort(): daarmee verlies je de lijstverwijzing. Gebruik sorted als de oorspronkelijke volgorde telt."
+      },
+      "code": "scores = [3,1,2]\nprint(sorted(scores))\nprint(scores)\nprint(scores.sort())\nprint(scores)",
+      "output": "[1, 2, 3]\n[3, 1, 2]\nNone\n[1, 2, 3]\n",
+      "prediction": {
+        "en": "Which call changes scores itself?",
+        "nl": "Welke aanroep verandert scores zelf?"
+      },
+      "takeaway": {
+        "en": "sort mutates and returns None; sorted returns a new list.",
+        "nl": "sort verandert de lijst en geeft None; sorted geeft een nieuwe lijst."
+      }
+    },
+    {
+      "id": "python-v4-17-sorting-experiment",
+      "topicIds": [],
+      "heading": {
+        "en": "Try one change",
+        "nl": "Probeer één wijziging"
+      },
+      "body": {
+        "en": "Add duplicate values and check they remain in the result.",
+        "nl": "Voeg dubbele waarden toe en controleer dat ze behouden blijven."
+      }
+    }
+  ],
+  "files": {
+    "main.py": "def ranked(scores):\n    return scores.sort(reverse=True)\n"
+  },
+  "solution": {
+    "main.py": "def ranked(scores):\n    return sorted(scores, reverse=True)\n"
+  },
+  "checkpoints": [
+    {
+      "id": "python-v4-17-sorting-step-1",
+      "objectiveIds": [
+        "sort",
+        "sorted"
+      ],
+      "task": {
+        "en": "Repair ranked to return descending scores without changing the input.",
+        "nl": "Herstel ranked om aflopende scores terug te geven zonder de invoer te veranderen."
+      },
+      "check": "callable(ranked)",
+      "probes": [
+        {
+          "call": {
+            "name": "ranked",
+            "args": [
+              [
+                3,
+                1,
+                2
+              ]
+            ]
+          },
+          "check": "(_return == [3,2,1] and _args[0] == [3,1,2]) and _error is None"
+        },
+        {
+          "call": {
+            "name": "ranked",
+            "args": [
+              []
+            ]
+          },
+          "check": "(_return == []) and _error is None"
+        },
+        {
+          "call": {
+            "name": "ranked",
+            "args": [
+              [
+                2,
+                2,
+                -1
+              ]
+            ]
+          },
+          "check": "(_return == [2,2,-1]) and _error is None"
+        }
+      ],
+      "hint": {
+        "en": "sort mutates and returns None; sorted returns a new list.",
+        "nl": "sort verandert de lijst en geeft None; sorted geeft een nieuwe lijst."
+      },
+      "hints": [
+        {
+          "en": "sort mutates and returns None; sorted returns a new list.",
+          "nl": "sort verandert de lijst en geeft None; sorted geeft een nieuwe lijst."
+        },
+        {
+          "en": "Choose the operation that returns a separate list.",
+          "nl": "Kies de bewerking die een aparte lijst teruggeeft."
+        },
+        {
+          "en": "A small fragment to adapt: `sorted(scores, reverse=True)`",
+          "nl": "Een klein fragment om aan te passen: `sorted(scores, reverse=True)`"
+        }
+      ],
+      "feedback": {
+        "en": "Choose the operation that returns a separate list.",
+        "nl": "Kies de bewerking die een aparte lijst teruggeeft."
+      }
+    }
+  ],
+  "solutionNote": {
+    "en": "sorted supplies the list the caller expects while leaving the original order intact.",
+    "nl": "sorted levert de verwachte lijst aan de aanroeper terwijl de oorspronkelijke volgorde intact blijft."
+  },
+  "inputs": [],
+  "retrievals": [
+    {
+      "id": "recall-python-v4-15-events",
+      "sourceActivityId": "python-v4-15-events",
+      "objectiveIds": [
+        "events",
+        "keyboard-events",
+        "closing-window"
+      ],
+      "prompt": {
+        "en": "Recall “Respond to a key press”. Why should key only be read for a keyboard event? Try the earlier example from memory, then check it. Press and release Space twice; explain the two state changes.",
+        "nl": "Haal “Reageer op een toetsdruk” terug. Waarom hoort key alleen bij een toetsenbordgebeurtenis gelezen te worden? Probeer het eerdere voorbeeld uit je geheugen en controleer daarna. Druk Space tweemaal in en laat los; leg de twee toestandsveranderingen uit."
+      }
+    }
+  ]
+}

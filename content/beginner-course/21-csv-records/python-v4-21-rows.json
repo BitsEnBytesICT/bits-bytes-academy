@@ -1,0 +1,184 @@
+{
+  "id": "python-v4-21-rows",
+  "chapter": 21,
+  "group": "python-v4-module-21",
+  "title": {
+    "en": "Read rows and columns with csv.reader",
+    "nl": "Lees rijen en kolommen met csv.reader"
+  },
+  "kind": "coding",
+  "optional": false,
+  "runtime": "terminal",
+  "guidance": "guided",
+  "checkpointMode": "sequential",
+  "estimatedMinutes": 18,
+  "topicIds": [
+    "csv",
+    "csv-reader",
+    "csv-quoting"
+  ],
+  "practices": [],
+  "requiredConcepts": [
+    "read",
+    "imports",
+    "lists"
+  ],
+  "explanation": {
+    "en": "CSV stores a table as text. A real CSV reader understands quoted fields that contain commas.\n\nOpen work.py to write the requested function. main.py is a supplied caller: Run always starts there and imports your function. The other file tabs contain input data. After a successful run, open any new output file tab to inspect what your program saved.",
+    "nl": "CSV bewaart een tabel als tekst. Een echte CSV-lezer begrijpt velden tussen aanhalingstekens die komma’s bevatten.\n\nOpen work.py om de gevraagde functie te schrijven. main.py is de aangeleverde aanroeper: Uitvoeren begint daar en importeert je functie. De andere bestandstabbladen bevatten invoergegevens. Open na een geslaagde uitvoering een nieuw uitvoerbestand om te bekijken wat je programma heeft opgeslagen."
+  },
+  "example": "",
+  "sections": [
+    {
+      "id": "python-v4-21-rows-example",
+      "topicIds": [
+        "csv",
+        "csv-reader",
+        "csv-quoting"
+      ],
+      "heading": {
+        "en": "Follow a working example",
+        "nl": "Volg een werkend voorbeeld"
+      },
+      "body": {
+        "en": "Import csv, open the file with newline=\"\" and UTF-8, then pass its handle to csv.reader. Each row becomes a list of strings. A comma inside a quoted field belongs to that field. Manual split(\",\") would break it. newline=\"\" lets the CSV module handle newline conventions correctly.",
+        "nl": "Importeer csv, open het bestand met newline=\"\" en UTF-8 en geef de handle aan csv.reader. Elke rij wordt een lijst strings. Een komma binnen een aangehaald veld hoort bij dat veld. Handmatig split(\",\") breekt dat. newline=\"\" laat de CSV-module nieuwe-regelconventies correct verwerken."
+      },
+      "code": "import csv\nwith open(\"example.csv\",newline=\"\",encoding=\"utf-8\") as handle:\n    for row in csv.reader(handle):\n        print(row)",
+      "output": "['name', 'city']\n['Ada', 'Paris, France']\n",
+      "prediction": {
+        "en": "Why does the data row still have only two columns?",
+        "nl": "Waarom heeft de gegevensrij nog steeds maar twee kolommen?"
+      },
+      "takeaway": {
+        "en": "Let the CSV parser interpret delimiters and quotes.",
+        "nl": "Laat de CSV-ontleder scheidingstekens en aanhalingstekens interpreteren."
+      },
+      "exampleFiles": {
+        "example.csv": "name,city\nAda,\"Paris, France\"\n"
+      }
+    },
+    {
+      "id": "python-v4-21-rows-experiment",
+      "topicIds": [],
+      "heading": {
+        "en": "Try one change",
+        "nl": "Probeer één wijziging"
+      },
+      "body": {
+        "en": "Put a quoted comma inside another field and compare with naive splitting.",
+        "nl": "Zet een aangehaalde komma in een ander veld en vergelijk met eenvoudig splitsen."
+      }
+    }
+  ],
+  "files": {
+    "table.csv": "name,score\n\"Bo, Jr\",4\nAda,5\n",
+    "main.py": "import work\nprint(work.rows(\"table.csv\"))\n",
+    "work.py": "def rows(path):\n    return []\n"
+  },
+  "solution": {
+    "table.csv": "name,score\n\"Bo, Jr\",4\nAda,5\n",
+    "main.py": "import work\nprint(work.rows(\"table.csv\"))\n",
+    "work.py": "import csv\ndef rows(path):\n    with open(path,newline=\"\",encoding=\"utf-8\") as handle:\n        return list(csv.reader(handle))\n"
+  },
+  "checkpoints": [
+    {
+      "id": "python-v4-21-rows-step-1",
+      "objectiveIds": [
+        "csv",
+        "csv-reader",
+        "csv-quoting"
+      ],
+      "task": {
+        "en": "Return all CSV rows, including the header, as lists of strings.",
+        "nl": "Geef alle CSV-rijen inclusief de kop terug als lijsten strings."
+      },
+      "check": "True",
+      "probes": [
+        {
+          "call": {
+            "name": "rows",
+            "args": [
+              "table.csv"
+            ],
+            "module": "work"
+          },
+          "check": "(_return == [[\"name\",\"score\"],[\"Bo, Jr\",\"4\"],[\"Ada\",\"5\"]]) and _error is None",
+          "moduleOnly": true,
+          "module": "work",
+          "files": {}
+        },
+        {
+          "call": {
+            "name": "rows",
+            "args": [
+              "empty.csv"
+            ],
+            "module": "work"
+          },
+          "check": "(_return == []) and _error is None",
+          "moduleOnly": true,
+          "module": "work",
+          "files": {
+            "empty.csv": ""
+          }
+        }
+      ],
+      "hint": {
+        "en": "Let the CSV parser interpret delimiters and quotes.",
+        "nl": "Laat de CSV-ontleder scheidingstekens en aanhalingstekens interpreteren."
+      },
+      "hints": [
+        {
+          "en": "Let the CSV parser interpret delimiters and quotes.",
+          "nl": "Laat de CSV-ontleder scheidingstekens en aanhalingstekens interpreteren."
+        },
+        {
+          "en": "Materialise the reader while the file is still open.",
+          "nl": "Maak van de lezer een lijst terwijl het bestand nog open is."
+        },
+        {
+          "en": "A small fragment to adapt: `list(csv.reader(handle))`",
+          "nl": "Een klein fragment om aan te passen: `list(csv.reader(handle))`"
+        }
+      ],
+      "feedback": {
+        "en": "Materialise the reader while the file is still open.",
+        "nl": "Maak van de lezer een lijst terwijl het bestand nog open is."
+      }
+    }
+  ],
+  "solutionNote": {
+    "en": "The reader keeps quoted commas inside their field and returns strings even for numeric-looking text.",
+    "nl": "De lezer houdt aangehaalde komma’s in hun veld en geeft strings, ook voor tekst die op getallen lijkt."
+  },
+  "inputs": [],
+  "retrievals": [
+    {
+      "id": "recall-python-v4-19-records",
+      "sourceActivityId": "python-v4-19-records",
+      "objectiveIds": [
+        "dictionaries",
+        "dictionary-creation"
+      ],
+      "prompt": {
+        "en": "Recall “Name fields with dictionary keys”. Would record[0] mean the first entry? Try the earlier example from memory, then check it. Add a Boolean active field in an experiment.",
+        "nl": "Haal “Benoem velden met dictionarysleutels” terug. Betekent record[0] de eerste invoer? Probeer het eerdere voorbeeld uit je geheugen en controleer daarna. Voeg in een experiment een booleaans active-veld toe."
+      }
+    },
+    {
+      "id": "recall-python-v4-19-views",
+      "sourceActivityId": "python-v4-19-views",
+      "objectiveIds": [
+        "keys",
+        "values",
+        "items",
+        "dictionary-iteration"
+      ],
+      "prompt": {
+        "en": "Recall “Visit keys, values and pairs”. What does a plain for name in scores visit? Try the earlier example from memory, then check it. Compare returning keys only with the labelled report.",
+        "nl": "Haal “Bezoek sleutels, waarden en paren” terug. Wat bezoekt een gewone for name in scores? Probeer het eerdere voorbeeld uit je geheugen en controleer daarna. Vergelijk alleen sleutels teruggeven met het gelabelde rapport."
+      }
+    }
+  ]
+}

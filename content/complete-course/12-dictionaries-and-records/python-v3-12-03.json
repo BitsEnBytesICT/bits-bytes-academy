@@ -1,0 +1,293 @@
+{
+  "id": "python-v3-12-03",
+  "chapter": 12,
+  "group": "python-v3-module-12",
+  "title": {
+    "en": "Handle missing information",
+    "nl": "Verwerk ontbrekende informatie"
+  },
+  "kind": "coding",
+  "optional": false,
+  "runtime": "terminal",
+  "guidance": "adapt",
+  "estimatedMinutes": 15,
+  "explanation": {
+    "en": "Choose direct lookup when a key is required and safe lookup when missing information is expected. Distinguish deleting an entry from reading its value.",
+    "nl": "Kies directe toegang als een sleutel verplicht is en veilige toegang als ontbrekende informatie verwacht wordt. Onderscheid een item verwijderen van zijn waarde lezen."
+  },
+  "example": "",
+  "topicIds": [
+    "get-key",
+    "key-error",
+    "get",
+    "delete-key",
+    "dict-pop"
+  ],
+  "prerequisites": [
+    "python-v3-12-02"
+  ],
+  "sections": [
+    {
+      "topicIds": [
+        "get-key",
+        "key-error",
+        "get",
+        "delete-key",
+        "dict-pop"
+      ],
+      "heading": {
+        "en": "Missing is not zero",
+        "nl": "Ontbrekend is niet nul"
+      },
+      "body": {
+        "en": "record[key] raises KeyError when absent. record.get(key, default) returns a fallback without adding the key. A stored 0 or None is still an existing value. del record[key] deletes without returning a value. record.pop(key, default) removes and returns a value, or the default when absent.",
+        "nl": "record[key] geeft KeyError bij afwezigheid. record.get(key, standaard) geeft een terugvalwaarde zonder de sleutel toe te voegen. Een opgeslagen 0 of None is nog steeds een bestaande waarde. del record[key] verwijdert zonder waarde terug te geven. record.pop(key, standaard) verwijdert en geeft een waarde terug, of de standaard bij afwezigheid."
+      },
+      "code": "record = {\"score\": 0, \"temporary\": 9}\nprint(record.get(\"score\", 5))\nprint(record.get(\"missing\", 5))\nremoved = record.pop(\"temporary\")\nprint(removed, record)",
+      "output": "0\n5\n9 {'score': 0}\n",
+      "prediction": {
+        "en": "Why does the fallback not replace the stored zero?",
+        "nl": "Waarom vervangt de terugvalwaarde de opgeslagen nul niet?"
+      }
+    },
+    {
+      "topicIds": [],
+      "heading": {
+        "en": "Try a changed input",
+        "nl": "Probeer gewijzigde invoer"
+      },
+      "body": {
+        "en": "Create a dictionary with a missing key, a zero value and a None value. Explain all three optional results with fallback=9.",
+        "nl": "Maak een dictionary met een ontbrekende sleutel, een nulwaarde en een None-waarde. Verklaar alle drie optional-resultaten met fallback=9."
+      }
+    }
+  ],
+  "files": {
+    "main.py": "def required(record, key):\n    return None\n\ndef optional(record, key, fallback):\n    return None\n\ndef discard(record, key):\n    return None\n\ndef delete_note(record):\n    pass\n\nprint(optional({}, \"score\", 0))\n"
+  },
+  "solution": {
+    "main.py": "def required(record, key):\n    return record[key]\n\ndef optional(record, key, fallback):\n    return record.get(key, fallback)\n\ndef discard(record, key):\n    return record.pop(key, None)\n\ndef delete_note(record):\n    if \"note\" in record:\n        del record[\"note\"]\n\nprint(optional({}, \"score\", 0))\n"
+  },
+  "checkpoints": [
+    {
+      "objectiveIds": [
+        "get-key",
+        "key-error",
+        "get"
+      ],
+      "task": {
+        "en": "Implement required with direct lookup and optional with get(key, fallback), preserving existing zero and None values.",
+        "nl": "Implementeer required met directe toegang en optional met get(key, fallback); behoud bestaande nul- en None-waarden."
+      },
+      "check": "optional({},\"score\",0) == 0",
+      "hints": [
+        {
+          "en": "A fallback depends on absence, not truthiness.",
+          "nl": "Een terugvalwaarde hangt van afwezigheid af, niet van waarachtigheid."
+        },
+        {
+          "en": "Use record[key] for required and record.get for optional.",
+          "nl": "Gebruik record[key] voor required en record.get voor optional."
+        },
+        {
+          "en": "return record.get(key, fallback)",
+          "nl": "return record.get(key, fallback)"
+        }
+      ],
+      "hint": {
+        "en": "A fallback depends on absence, not truthiness.",
+        "nl": "Een terugvalwaarde hangt van afwezigheid af, niet van waarachtigheid."
+      },
+      "feedback": {
+        "en": "Do not use record.get(key) or fallback: it replaces valid false-like values.",
+        "nl": "Gebruik niet record.get(key) or fallback: dat vervangt geldige onwaarachtige waarden."
+      },
+      "probes": [
+        {
+          "call": {
+            "name": "required",
+            "args": [
+              {
+                "x": 2
+              },
+              "x"
+            ]
+          },
+          "check": "_return == 2"
+        },
+        {
+          "call": {
+            "name": "required",
+            "args": [
+              {},
+              "x"
+            ]
+          },
+          "check": "_error == \"KeyError\""
+        },
+        {
+          "call": {
+            "name": "optional",
+            "args": [
+              {
+                "x": 0
+              },
+              "x",
+              9
+            ]
+          },
+          "check": "_return == 0"
+        },
+        {
+          "call": {
+            "name": "optional",
+            "args": [
+              {
+                "x": null
+              },
+              "x",
+              9
+            ]
+          },
+          "check": "_return is None"
+        }
+      ],
+      "id": "python-v3-12-03-step-1"
+    },
+    {
+      "objectiveIds": [
+        "dict-pop"
+      ],
+      "task": {
+        "en": "In discard, remove key and return its value, or None if missing.",
+        "nl": "Verwijder in discard key en geef zijn waarde terug, of None als die ontbreekt."
+      },
+      "check": "callable(discard)",
+      "hints": [
+        {
+          "en": "Use the method that both removes and returns.",
+          "nl": "Gebruik de methode die verwijdert én teruggeeft."
+        },
+        {
+          "en": "Pass None as the pop fallback.",
+          "nl": "Geef None als pop-terugval mee."
+        },
+        {
+          "en": "return record.pop(key, None)",
+          "nl": "return record.pop(key, None)"
+        }
+      ],
+      "hint": {
+        "en": "Use the method that both removes and returns.",
+        "nl": "Gebruik de methode die verwijdert én teruggeeft."
+      },
+      "feedback": {
+        "en": "The removed key must no longer be present.",
+        "nl": "De verwijderde sleutel mag niet meer aanwezig zijn."
+      },
+      "probes": [
+        {
+          "call": {
+            "name": "discard",
+            "args": [
+              {
+                "x": 4,
+                "y": 2
+              },
+              "x"
+            ]
+          },
+          "check": "_return == 4 and _args[0] == {\"y\":2}"
+        },
+        {
+          "call": {
+            "name": "discard",
+            "args": [
+              {},
+              "x"
+            ]
+          },
+          "check": "_return is None and _error is None"
+        }
+      ],
+      "id": "python-v3-12-03-step-2"
+    },
+    {
+      "objectiveIds": [
+        "delete-key"
+      ],
+      "task": {
+        "en": "In delete_note, use del to remove note when present; missing note is allowed. Return no value.",
+        "nl": "Gebruik in delete_note del om note te verwijderen als aanwezig; ontbrekende note is toegestaan. Geef geen waarde terug."
+      },
+      "check": "callable(delete_note)",
+      "hints": [
+        {
+          "en": "Check membership before deleting an optional field.",
+          "nl": "Controleer lidmaatschap vóór een optioneel veld te verwijderen."
+        },
+        {
+          "en": "A dictionary membership test checks keys.",
+          "nl": "Een lidmaatschapstest bij een dictionary controleert sleutels."
+        },
+        {
+          "en": "if \"note\" in record:\n    del record[\"note\"]",
+          "nl": "if \"note\" in record:\n    del record[\"note\"]"
+        }
+      ],
+      "hint": {
+        "en": "Check membership before deleting an optional field.",
+        "nl": "Controleer lidmaatschap vóór een optioneel veld te verwijderen."
+      },
+      "feedback": {
+        "en": "Do not delete unrelated fields or raise on an absent note.",
+        "nl": "Verwijder geen andere velden en geef geen fout bij een ontbrekende notitie."
+      },
+      "probes": [
+        {
+          "call": {
+            "name": "delete_note",
+            "args": [
+              {
+                "note": "hi",
+                "score": 1
+              }
+            ]
+          },
+          "check": "_return is None and _args[0] == {\"score\":1}"
+        },
+        {
+          "call": {
+            "name": "delete_note",
+            "args": [
+              {}
+            ]
+          },
+          "check": "_return is None and _error is None"
+        }
+      ],
+      "id": "python-v3-12-03-step-3"
+    }
+  ],
+  "solutionNote": {
+    "en": "Each function states a different absence policy. get only reads, pop reads and removes, and del removes without a return value.",
+    "nl": "Elke functie verwoordt een ander afwezigheidsbeleid. get leest alleen, pop leest en verwijdert en del verwijdert zonder terugkeerwaarde."
+  },
+  "inputs": [],
+  "retrievals": [
+    {
+      "id": "recall-python-v3-10-03",
+      "sourceActivityId": "python-v3-10-03",
+      "objectiveIds": [
+        "case-methods",
+        "strip",
+        "string-iteration",
+        "string-membership"
+      ],
+      "prompt": {
+        "en": "Normalise a name with strip and case conversion, then iterate its characters and test membership.",
+        "nl": "Normaliseer een naam met strip en hoofdletteromzetting, doorloop de tekens en test lidmaatschap."
+      }
+    }
+  ]
+}

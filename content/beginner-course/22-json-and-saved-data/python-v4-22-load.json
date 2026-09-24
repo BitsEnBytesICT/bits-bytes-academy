@@ -1,0 +1,184 @@
+{
+  "id": "python-v4-22-load",
+  "chapter": 22,
+  "group": "python-v4-module-22",
+  "title": {
+    "en": "Load nested JSON data",
+    "nl": "Laad geneste JSON-gegevens"
+  },
+  "kind": "coding",
+  "optional": false,
+  "runtime": "terminal",
+  "guidance": "guided",
+  "checkpointMode": "sequential",
+  "estimatedMinutes": 18,
+  "topicIds": [
+    "json",
+    "json-load",
+    "nested-records"
+  ],
+  "practices": [],
+  "requiredConcepts": [
+    "dictionaries",
+    "2d-access",
+    "read"
+  ],
+  "explanation": {
+    "en": "JSON stores structured lists, objects and simple values, not just a table of strings.\n\nOpen work.py to write the requested function. main.py is a supplied caller: Run always starts there and imports your function. The other file tabs contain input data. After a successful run, open any new output file tab to inspect what your program saved.",
+    "nl": "JSON bewaart gestructureerde lijsten, objecten en eenvoudige waarden, niet alleen een tabel strings.\n\nOpen work.py om de gevraagde functie te schrijven. main.py is de aangeleverde aanroeper: Uitvoeren begint daar en importeert je functie. De andere bestandstabbladen bevatten invoergegevens. Open na een geslaagde uitvoering een nieuw uitvoerbestand om te bekijken wat je programma heeft opgeslagen."
+  },
+  "example": "",
+  "sections": [
+    {
+      "id": "python-v4-22-load-example",
+      "topicIds": [
+        "json",
+        "json-load",
+        "nested-records"
+      ],
+      "heading": {
+        "en": "Follow a working example",
+        "nl": "Volg een werkend voorbeeld"
+      },
+      "body": {
+        "en": "json.load(handle) parses a JSON file into Python values. JSON objects become dictionaries, arrays become lists, true/false become True/False and null becomes None. JSON text uses double-quoted strings. Numbers load as numbers, unlike CSV fields. Follow nested keys and indexes one level at a time.",
+        "nl": "json.load(handle) ontleedt een JSON-bestand naar Pythonwaarden. JSON-objecten worden dictionaries, arrays worden lijsten, true/false wordt True/False en null wordt None. JSON-tekst gebruikt strings met dubbele aanhalingstekens. Getallen worden als getallen geladen, anders dan CSV-velden. Volg geneste sleutels en indexen één niveau tegelijk."
+      },
+      "code": "import json\nwith open(\"example.json\",encoding=\"utf-8\") as handle:\n    data = json.load(handle)\nprint(data[\"players\"][0][\"name\"])\nprint(data[\"active\"])",
+      "output": "Ada\nTrue\n",
+      "prediction": {
+        "en": "Which access selects the first player rather than a field?",
+        "nl": "Welke toegang kiest de eerste speler in plaats van een veld?"
+      },
+      "takeaway": {
+        "en": "JSON decoding creates Python values with structure and types.",
+        "nl": "JSON-decodering maakt Pythonwaarden met structuur en typen."
+      },
+      "exampleFiles": {
+        "example.json": "{\"players\":[{\"name\":\"Ada\"}],\"active\":true}"
+      }
+    },
+    {
+      "id": "python-v4-22-load-experiment",
+      "topicIds": [],
+      "heading": {
+        "en": "Try one change",
+        "nl": "Probeer één wijziging"
+      },
+      "body": {
+        "en": "Add a second field to each player and confirm name extraction remains stable.",
+        "nl": "Voeg een tweede veld aan elke speler toe en controleer dat namen ophalen gelijk blijft."
+      }
+    }
+  ],
+  "files": {
+    "club.json": "{\"players\":[{\"name\":\"Ada\",\"score\":3},{\"name\":\"Bo\",\"score\":4}]}",
+    "main.py": "import work\nprint(work.names(\"club.json\"))\n",
+    "work.py": "def names(path):\n    return []\n"
+  },
+  "solution": {
+    "club.json": "{\"players\":[{\"name\":\"Ada\",\"score\":3},{\"name\":\"Bo\",\"score\":4}]}",
+    "main.py": "import work\nprint(work.names(\"club.json\"))\n",
+    "work.py": "import json\ndef names(path):\n    with open(path,encoding=\"utf-8\") as handle:\n        data = json.load(handle)\n    return [player[\"name\"] for player in data[\"players\"]]\n"
+  },
+  "checkpoints": [
+    {
+      "id": "python-v4-22-load-step-1",
+      "objectiveIds": [
+        "json",
+        "json-load",
+        "nested-records"
+      ],
+      "task": {
+        "en": "Load the file and return names from its players list in order.",
+        "nl": "Laad het bestand en geef namen uit de players-lijst op volgorde terug."
+      },
+      "check": "True",
+      "probes": [
+        {
+          "call": {
+            "name": "names",
+            "args": [
+              "club.json"
+            ],
+            "module": "work"
+          },
+          "check": "(_return == [\"Ada\",\"Bo\"]) and _error is None",
+          "moduleOnly": true,
+          "module": "work",
+          "files": {}
+        },
+        {
+          "call": {
+            "name": "names",
+            "args": [
+              "empty.json"
+            ],
+            "module": "work"
+          },
+          "check": "(_return == []) and _error is None",
+          "moduleOnly": true,
+          "module": "work",
+          "files": {
+            "empty.json": "{\"players\":[]}"
+          }
+        }
+      ],
+      "hint": {
+        "en": "JSON decoding creates Python values with structure and types.",
+        "nl": "JSON-decodering maakt Pythonwaarden met structuur en typen."
+      },
+      "hints": [
+        {
+          "en": "JSON decoding creates Python values with structure and types.",
+          "nl": "JSON-decodering maakt Pythonwaarden met structuur en typen."
+        },
+        {
+          "en": "Select the list first, then the name field of each record.",
+          "nl": "Kies eerst de lijst en daarna het name-veld van elk record."
+        },
+        {
+          "en": "A small fragment to adapt: `data[\"players\"]`",
+          "nl": "Een klein fragment om aan te passen: `data[\"players\"]`"
+        }
+      ],
+      "feedback": {
+        "en": "Select the list first, then the name field of each record.",
+        "nl": "Kies eerst de lijst en daarna het name-veld van elk record."
+      }
+    }
+  ],
+  "solutionNote": {
+    "en": "Decoding yields a dictionary containing a list of dictionaries, so each access matches one structural level.",
+    "nl": "Decoderen levert een dictionary met een lijst dictionaries; elke toegang past bij één structuurniveau."
+  },
+  "inputs": [],
+  "retrievals": [
+    {
+      "id": "recall-python-v4-20-read",
+      "sourceActivityId": "python-v4-20-read",
+      "objectiveIds": [
+        "text-files",
+        "with",
+        "utf8",
+        "read",
+        "persistence"
+      ],
+      "prompt": {
+        "en": "Recall “Read your first text file”. When is the handle closed relative to print? Try the earlier example from memory, then check it. Change the supplied file, run again, and observe the changed result.",
+        "nl": "Haal “Lees je eerste tekstbestand” terug. Wanneer wordt de handle gesloten ten opzichte van print? Probeer het eerdere voorbeeld uit je geheugen en controleer daarna. Verander het aangeleverde bestand, voer opnieuw uit en bekijk het gewijzigde resultaat."
+      }
+    },
+    {
+      "id": "recall-python-v4-20-append",
+      "sourceActivityId": "python-v4-20-append",
+      "objectiveIds": [
+        "append-files"
+      ],
+      "prompt": {
+        "en": "Recall “Append a new log entry”. What would w do to the first line? Try the earlier example from memory, then check it. Run twice, navigate away, return and inspect the saved log.",
+        "nl": "Haal “Voeg een nieuwe logregel toe” terug. Wat doet w met de eerste regel? Probeer het eerdere voorbeeld uit je geheugen en controleer daarna. Voer tweemaal uit, navigeer weg, keer terug en bekijk het opgeslagen log."
+      }
+    }
+  ]
+}

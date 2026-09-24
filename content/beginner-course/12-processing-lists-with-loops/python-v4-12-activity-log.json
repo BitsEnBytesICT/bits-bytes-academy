@@ -1,0 +1,175 @@
+{
+  "id": "python-v4-12-activity-log",
+  "chapter": 12,
+  "group": "python-v4-module-12",
+  "title": {
+    "en": "Mini project: activity-log analyser",
+    "nl": "Miniproject: activiteitenlog analyseren"
+  },
+  "kind": "challenge",
+  "optional": false,
+  "runtime": "terminal",
+  "guidance": "independent",
+  "checkpointMode": "sequential",
+  "estimatedMinutes": 35,
+  "topicIds": [
+    "activity-project"
+  ],
+  "practices": [
+    "for",
+    "accumulators",
+    "filtering",
+    "length"
+  ],
+  "requiredConcepts": [
+    "filtering",
+    "searching"
+  ],
+  "explanation": {
+    "en": "Turn a supplied log into a useful summary without altering the original records.",
+    "nl": "Zet een aangeleverd log om naar een nuttige samenvatting zonder de oorspronkelijke gegevens te veranderen."
+  },
+  "example": "",
+  "sections": [
+    {
+      "id": "python-v4-12-activity-log-example",
+      "topicIds": [
+        "activity-project",
+        "for",
+        "accumulators",
+        "filtering",
+        "length"
+      ],
+      "heading": {
+        "en": "Follow a working example",
+        "nl": "Volg een werkend voorbeeld"
+      },
+      "body": {
+        "en": "Implement summarise(minutes). Ignore negative records. Return [total, active_days]: total is the sum of valid durations; active_days counts durations strictly above zero. Zero is a valid resting day but not active. Empty input returns [0, 0]. Think through each accumulator separately before combining them.",
+        "nl": "Implementeer summarise(minutes). Negeer negatieve gegevens. Geef [total, active_days] terug: total is de som van geldige duren; active_days telt duren strikt boven nul. Nul is een geldige rustdag maar niet actief. Lege invoer geeft [0, 0]. Denk elke accumulator apart door voordat je ze combineert."
+      },
+      "code": "items = [2, 0, 4]\ncount = 0\nfor amount in items:\n    if amount > 1:\n        count += 1\nprint(count)",
+      "output": "2\n",
+      "prediction": {
+        "en": "Would counting every item answer the same question?",
+        "nl": "Beantwoordt elk item tellen dezelfde vraag?"
+      },
+      "takeaway": {
+        "en": "Each accumulator answers one clearly stated question.",
+        "nl": "Elke accumulator beantwoordt één duidelijk gestelde vraag."
+      }
+    },
+    {
+      "id": "python-v4-12-activity-log-experiment",
+      "topicIds": [],
+      "heading": {
+        "en": "Try one change",
+        "nl": "Probeer één wijziging"
+      },
+      "body": {
+        "en": "Create your own week of seven records and calculate the expected answer on paper.",
+        "nl": "Maak je eigen week met zeven gegevens en bereken het verwachte antwoord op papier."
+      }
+    }
+  ],
+  "files": {
+    "main.py": ""
+  },
+  "solution": {
+    "main.py": "def summarise(minutes):\n    total = 0\n    active_days = 0\n    for duration in minutes:\n        if duration >= 0:\n            total += duration\n        if duration > 0:\n            active_days += 1\n    return [total, active_days]\n"
+  },
+  "checkpoints": [
+    {
+      "id": "python-v4-12-activity-log-step-1",
+      "objectiveIds": [
+        "activity-project",
+        "for",
+        "accumulators",
+        "filtering",
+        "length"
+      ],
+      "task": {
+        "en": "Implement the stated summary contract, leaving the input unchanged.",
+        "nl": "Implementeer de beschreven samenvatting en laat de invoer ongewijzigd."
+      },
+      "check": "callable(summarise)",
+      "probes": [
+        {
+          "call": {
+            "name": "summarise",
+            "args": [
+              [
+                20,
+                0,
+                -4,
+                30
+              ]
+            ]
+          },
+          "check": "(_return == [50,2] and _args[0] == [20,0,-4,30]) and _error is None"
+        },
+        {
+          "call": {
+            "name": "summarise",
+            "args": [
+              []
+            ]
+          },
+          "check": "(_return == [0,0]) and _error is None"
+        },
+        {
+          "call": {
+            "name": "summarise",
+            "args": [
+              [
+                -1,
+                0
+              ]
+            ]
+          },
+          "check": "(_return == [0,0]) and _error is None"
+        },
+        {
+          "call": {
+            "name": "summarise",
+            "args": [
+              [
+                1,
+                1,
+                1
+              ]
+            ]
+          },
+          "check": "(_return == [3,3]) and _error is None"
+        }
+      ],
+      "hint": {
+        "en": "Each accumulator answers one clearly stated question.",
+        "nl": "Elke accumulator beantwoordt één duidelijk gestelde vraag."
+      },
+      "hints": [
+        {
+          "en": "Each accumulator answers one clearly stated question.",
+          "nl": "Elke accumulator beantwoordt één duidelijk gestelde vraag."
+        },
+        {
+          "en": "Start both counters at zero; a positive day contributes its duration and one active day.",
+          "nl": "Begin beide tellers bij nul; een positieve dag draagt zijn duur en één actieve dag bij."
+        },
+        {
+          "en": "A small fragment to adapt: `active_days += 1`",
+          "nl": "Een klein fragment om aan te passen: `active_days += 1`"
+        }
+      ],
+      "feedback": {
+        "en": "Start both counters at zero; a positive day contributes its duration and one active day.",
+        "nl": "Begin beide tellers bij nul; een positieve dag draagt zijn duur en één actieve dag bij."
+      }
+    }
+  ],
+  "solutionNote": {
+    "en": "The total ignores invalid negative data; the activity counter distinguishes zero from a positive duration.",
+    "nl": "Het totaal negeert ongeldige negatieve gegevens; de activiteitenteller onderscheidt nul van een positieve duur."
+  },
+  "inputs": []
+}

@@ -1,0 +1,235 @@
+{
+  "id": "python-v3-7-04",
+  "chapter": 7,
+  "group": "python-v3-module-7",
+  "title": {
+    "en": "An interactive court",
+    "nl": "Een interactief speelveld"
+  },
+  "kind": "coding",
+  "optional": false,
+  "runtime": "pygame",
+  "guidance": "independent",
+  "estimatedMinutes": 17,
+  "explanation": {
+    "en": "Build an interactive court image from a brief. Keep the supplied event handling and browser entry point; design only court(width, height, highlight). Use dimensions of at least 100 × 100.",
+    "nl": "Bouw een interactief speelveld uit een beschrijving. Behoud gebeurtenisafhandeling en browserstartpunt; ontwerp alleen court(width, height, highlight). Gebruik afmetingen van minstens 100 × 100."
+  },
+  "example": "",
+  "topicIds": [
+    "scene-review"
+  ],
+  "prerequisites": [
+    "python-v3-7-03"
+  ],
+  "sections": [
+    {
+      "topicIds": [
+        "scene-review"
+      ],
+      "heading": {
+        "en": "Anchor geometry to the size",
+        "nl": "Koppel geometrie aan de afmetingen"
+      },
+      "body": {
+        "en": "A reusable scene computes positions from width and height. Use a background first, then foreground objects. For this court, put 10 × 60 paddles at x=20 and x=width-30, both vertically centred. Put a 6 × 6 square at the centre. White is (235, 240, 250); orange is (255, 170, 40).",
+        "nl": "Een herbruikbare scène berekent posities uit width en height. Teken eerst de achtergrond en daarna voorgrondobjecten. Zet voor dit veld batjes van 10 × 60 op x=20 en x=width-30, beide verticaal gecentreerd. Zet een vierkant van 6 × 6 in het midden. Wit is (235, 240, 250); oranje is (255, 170, 40)."
+      },
+      "code": "width, height = 200, 120\nprint(width // 2, height // 2)",
+      "output": "100 60\n",
+      "prediction": {
+        "en": "How do the coordinates change for a taller court?",
+        "nl": "Hoe veranderen de coördinaten bij een hoger veld?"
+      }
+    },
+    {
+      "topicIds": [],
+      "heading": {
+        "en": "Run, observe, finish",
+        "nl": "Voer uit, bekijk, rond af"
+      },
+      "body": {
+        "en": "main.py supplies the browser entry point. Run opens a real pygame-ce preview; click it to focus the keyboard. Clicking elsewhere pauses play. Finish & check closes normally and checks your helper after at least one rendered frame. Stop cancels without grading. Run can start a fresh session afterward. Keep the supplied async definition and await asyncio.sleep(1 / 60): they let the browser draw and receive input. You are not expected to reproduce this infrastructure from memory.",
+        "nl": "main.py levert het browserstartpunt. Uitvoeren opent een echt pygame-ce-voorbeeld; klik erop om het toetsenbord te activeren. Elders klikken pauzeert het spel. Afronden en controleren sluit normaal af en controleert je helper na minstens één getekend beeld. Stop annuleert zonder beoordeling. Uitvoeren kan daarna een nieuwe sessie starten. Behoud de meegeleverde async-definitie en await asyncio.sleep(1 / 60): die laten de browser tekenen en invoer ontvangen. Je hoeft deze infrastructuur niet uit je hoofd te schrijven."
+      }
+    },
+    {
+      "topicIds": [],
+      "heading": {
+        "en": "Try a changed input",
+        "nl": "Probeer gewijzigde invoer"
+      },
+      "body": {
+        "en": "Try a wider and a taller court in the caller. Predict the paddle and centre positions, then restore 640 × 400.",
+        "nl": "Probeer een breder en een hoger veld in de aanroeper. Voorspel de posities van batjes en midden en herstel daarna 640 × 400."
+      }
+    }
+  ],
+  "files": {
+    "main.py": "# Browser entry point supplied by the course.\nimport asyncio\nimport pygame\nimport game\n\nasync def main():\n    pygame.init()\n    screen = pygame.display.set_mode((640, 400))\n    clock = pygame.time.Clock()\n    running = True\n    highlight = False\n    while running:\n        dt = min(clock.tick() / 1000, 0.05)\n        for event in pygame.event.get():\n            if event.type == pygame.QUIT:\n                running = False\n            if event.type == pygame.KEYDOWN and event.key == pygame.K_ESCAPE:\n                running = False\n            if event.type == pygame.KEYDOWN and event.key == pygame.K_SPACE:\n                highlight = not highlight\n        keys = pygame.key.get_pressed()\n        screen.fill((16, 23, 39))\n        screen.blit(game.court(640, 400, highlight), (0, 0))\n        pygame.display.flip()\n        await asyncio.sleep(1 / 60)\n    pygame.quit()\n\nasyncio.run(main())\n",
+    "game.py": "import pygame\n\ndef court(width, height, highlight=False):\n    canvas = pygame.Surface((width, height))\n    return canvas\n"
+  },
+  "solution": {
+    "main.py": "# Browser entry point supplied by the course.\nimport asyncio\nimport pygame\nimport game\n\nasync def main():\n    pygame.init()\n    screen = pygame.display.set_mode((640, 400))\n    clock = pygame.time.Clock()\n    running = True\n    highlight = False\n    while running:\n        dt = min(clock.tick() / 1000, 0.05)\n        for event in pygame.event.get():\n            if event.type == pygame.QUIT:\n                running = False\n            if event.type == pygame.KEYDOWN and event.key == pygame.K_ESCAPE:\n                running = False\n            if event.type == pygame.KEYDOWN and event.key == pygame.K_SPACE:\n                highlight = not highlight\n        keys = pygame.key.get_pressed()\n        screen.fill((16, 23, 39))\n        screen.blit(game.court(640, 400, highlight), (0, 0))\n        pygame.display.flip()\n        await asyncio.sleep(1 / 60)\n    pygame.quit()\n\nasyncio.run(main())\n",
+    "game.py": "import pygame\n\ndef court(width, height, highlight=False):\n    canvas = pygame.Surface((width, height))\n    canvas.fill((16, 23, 39))\n    pygame.draw.rect(canvas, (235, 240, 250), (20, height // 2 - 30, 10, 60))\n    pygame.draw.rect(canvas, (235, 240, 250), (width - 30, height // 2 - 30, 10, 60))\n    colour = (235, 240, 250)\n    if highlight:\n        colour = (255, 170, 40)\n    pygame.draw.rect(canvas, colour, (width // 2 - 3, height // 2 - 3, 6, 6))\n    return canvas\n"
+  },
+  "checkpoints": [
+    {
+      "objectiveIds": [
+        "scene-review"
+      ],
+      "task": {
+        "en": "Return the requested Surface with dark blue background and both white paddles positioned from its size.",
+        "nl": "Geef de gevraagde Surface met donkerblauwe achtergrond en beide witte batjes op posities uit de afmetingen terug."
+      },
+      "check": "_rendered_frames > 0",
+      "hints": [
+        {
+          "en": "Reuse the scene and Rect lessons.",
+          "nl": "Hergebruik de lessen over scènes en Rect."
+        },
+        {
+          "en": "The top of a centred 60-pixel paddle is height // 2 - 30.",
+          "nl": "De bovenkant van een gecentreerd batje van 60 pixels is height // 2 - 30."
+        },
+        {
+          "en": "pygame.draw.rect(canvas, (235, 240, 250), (width - 30, height // 2 - 30, 10, 60))",
+          "nl": "pygame.draw.rect(canvas, (235, 240, 250), (width - 30, height // 2 - 30, 10, 60))"
+        }
+      ],
+      "hint": {
+        "en": "Reuse the scene and Rect lessons.",
+        "nl": "Hergebruik de lessen over scènes en Rect."
+      },
+      "feedback": {
+        "en": "Check two court sizes and both paddle positions.",
+        "nl": "Controleer twee veldafmetingen en beide batjesposities."
+      },
+      "probes": [
+        {
+          "call": {
+            "name": "court",
+            "args": [
+              200,
+              120,
+              false
+            ],
+            "module": "game"
+          },
+          "check": "_return.get_size() == (200,120) and tuple(_return.get_at((0,0)))[:3] == (16,23,39) and tuple(_return.get_at((25,60)))[:3] == (235,240,250) and tuple(_return.get_at((175,60)))[:3] == (235,240,250)",
+          "moduleOnly": true,
+          "module": "game"
+        },
+        {
+          "call": {
+            "name": "court",
+            "args": [
+              300,
+              200,
+              false
+            ],
+            "module": "game"
+          },
+          "check": "tuple(_return.get_at((275,100)))[:3] == (235,240,250)",
+          "moduleOnly": true,
+          "module": "game"
+        }
+      ],
+      "id": "python-v3-7-04-step-1"
+    },
+    {
+      "objectiveIds": [
+        "scene-review"
+      ],
+      "task": {
+        "en": "Draw the centred square white normally and orange when highlight is True. Test Space in the preview.",
+        "nl": "Teken het gecentreerde vierkant normaal wit en oranje wanneer highlight True is. Test Space in het voorbeeld."
+      },
+      "check": "_rendered_frames > 0",
+      "hints": [
+        {
+          "en": "The Boolean chooses a colour, not a new position.",
+          "nl": "De boolean kiest een kleur, geen nieuwe positie."
+        },
+        {
+          "en": "Choose colour before drawing the centre square.",
+          "nl": "Kies colour voordat je het middelste vierkant tekent."
+        },
+        {
+          "en": "if highlight:\n    colour = (255, 170, 40)",
+          "nl": "if highlight:\n    colour = (255, 170, 40)"
+        }
+      ],
+      "hint": {
+        "en": "The Boolean chooses a colour, not a new position.",
+        "nl": "De boolean kiest een kleur, geen nieuwe positie."
+      },
+      "feedback": {
+        "en": "Both highlight states must preserve the court and paddles.",
+        "nl": "Beide highlight-toestanden moeten veld en batjes behouden."
+      },
+      "probes": [
+        {
+          "call": {
+            "name": "court",
+            "args": [
+              200,
+              120,
+              true
+            ],
+            "module": "game"
+          },
+          "check": "tuple(_return.get_at((100,60)))[:3] == (255,170,40)",
+          "moduleOnly": true,
+          "module": "game"
+        },
+        {
+          "call": {
+            "name": "court",
+            "args": [
+              200,
+              120,
+              false
+            ],
+            "module": "game"
+          },
+          "check": "tuple(_return.get_at((100,60)))[:3] == (235,240,250)",
+          "moduleOnly": true,
+          "module": "game"
+        }
+      ],
+      "id": "python-v3-7-04-step-2"
+    }
+  ],
+  "solutionNote": {
+    "en": "Geometry depends on parameters rather than the preview’s fixed size. One Boolean selects the centre colour; supplied event code changes that Boolean.",
+    "nl": "De geometrie hangt van parameters af in plaats van de vaste voorbeeldgrootte. Eén boolean kiest de middenkleur; meegeleverde gebeurteniscode verandert die boolean."
+  },
+  "inputs": [],
+  "retrievals": [
+    {
+      "id": "recall-python-v3-5-04",
+      "sourceActivityId": "python-v3-5-04",
+      "objectiveIds": [
+        "tuples",
+        "unpacking",
+        "multiple-returns"
+      ],
+      "prompt": {
+        "en": "Return two coordinates and unpack them into x and y. Explain where the tuple is created.",
+        "nl": "Geef twee coördinaten terug en pak ze uit in x en y. Leg uit waar de tuple ontstaat."
+      }
+    },
+    {
+      "id": "recall-python-v3-5-05",
+      "sourceActivityId": "python-v3-5-05",
+      "objectiveIds": [
+        "list-review"
+      ],
+      "prompt": {
+        "en": "Process a new recording with negative values and an exact threshold. Preserve its original list.",
+        "nl": "Verwerk een nieuwe opname met negatieve waarden en een exacte grens. Behoud de oorspronkelijke lijst."
+      }
+    }
+  ]
+}

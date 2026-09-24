@@ -1,0 +1,179 @@
+{
+  "id": "python-v4-06-greater-less",
+  "chapter": 6,
+  "group": "python-v4-module-6",
+  "title": {
+    "en": "Greater than and less than",
+    "nl": "Groter dan en kleiner dan"
+  },
+  "kind": "coding",
+  "optional": false,
+  "runtime": "terminal",
+  "guidance": "guided",
+  "checkpointMode": "sequential",
+  "estimatedMinutes": 13,
+  "topicIds": [
+    "strict-comparisons"
+  ],
+  "practices": [],
+  "requiredConcepts": [
+    "boolean-variables"
+  ],
+  "explanation": {
+    "en": "Compare the size of two numbers using > and <.",
+    "nl": "Vergelijk de grootte van twee getallen met > en <."
+  },
+  "example": "",
+  "sections": [
+    {
+      "id": "python-v4-06-greater-less-example",
+      "topicIds": [
+        "strict-comparisons"
+      ],
+      "heading": {
+        "en": "Follow a working example",
+        "nl": "Volg een werkend voorbeeld"
+      },
+      "body": {
+        "en": "> means strictly greater than, and < means strictly less than. The value on the left is compared with the value on the right. Neither operator includes equality.\n\nIn the example 8 is greater than 5, but 5 is not greater than itself. Always test an equal value as well as one above or below the boundary.",
+        "nl": "> betekent strikt groter dan en < betekent strikt kleiner dan. De waarde links wordt met de waarde rechts vergeleken. Geen van beide operatoren omvat gelijkheid.\n\nIn het voorbeeld is 8 groter dan 5, maar 5 is niet groter dan zichzelf. Test altijd een gelijke waarde en ook een waarde boven of onder de grens."
+      },
+      "code": "print(8 > 5)\nprint(5 > 5)\nprint(3 < 5)",
+      "output": "True\nFalse\nTrue\n",
+      "prediction": {
+        "en": "Why is the middle result False?",
+        "nl": "Waarom is het middelste resultaat False?"
+      },
+      "takeaway": {
+        "en": "Strict comparisons exclude the equal boundary.",
+        "nl": "Strikte vergelijkingen sluiten de gelijke grenswaarde uit."
+      }
+    },
+    {
+      "id": "python-v4-06-greater-less-experiment",
+      "topicIds": [],
+      "heading": {
+        "en": "Try one change",
+        "nl": "Probeer één wijziging"
+      },
+      "body": {
+        "en": "Reverse both operands and use < instead. Do the comparisons describe the same relationship?",
+        "nl": "Draai beide operanden om en gebruik <. Beschrijven de vergelijkingen hetzelfde verband?"
+      }
+    }
+  ],
+  "files": {
+    "main.py": "temperature = 21\nlimit = 20\n"
+  },
+  "solution": {
+    "main.py": "temperature = 21\nlimit = 20\nresult = temperature > limit\nprint(result)\n"
+  },
+  "checkpoints": [
+    {
+      "id": "python-v4-06-greater-less-step-1",
+      "objectiveIds": [
+        "strict-comparisons"
+      ],
+      "task": {
+        "en": "Store whether temperature is strictly above limit in result.",
+        "nl": "Bewaar in result of temperature strikt boven limit ligt."
+      },
+      "check": "type(result) is bool and result == (temperature > limit)",
+      "probes": [
+        {
+          "inputs": {
+            "temperature": 20
+          },
+          "check": "type(result) is bool and result == (temperature > limit)"
+        },
+        {
+          "inputs": {
+            "temperature": 19
+          },
+          "check": "type(result) is bool and result == (temperature > limit)"
+        },
+        {
+          "inputs": {
+            "temperature": -5,
+            "limit": -10
+          },
+          "check": "type(result) is bool and result == (temperature > limit)"
+        }
+      ],
+      "hint": {
+        "en": "Strict comparisons exclude the equal boundary.",
+        "nl": "Strikte vergelijkingen sluiten de gelijke grenswaarde uit."
+      },
+      "hints": [
+        {
+          "en": "Strict comparisons exclude the equal boundary.",
+          "nl": "Strikte vergelijkingen sluiten de gelijke grenswaarde uit."
+        },
+        {
+          "en": "The equality case must be False for this rule.",
+          "nl": "Bij gelijkheid moet deze regel False zijn."
+        },
+        {
+          "en": "A small fragment to adapt: `temperature > limit`",
+          "nl": "Een klein fragment om aan te passen: `temperature > limit`"
+        }
+      ],
+      "feedback": {
+        "en": "The equality case must be False for this rule.",
+        "nl": "Bij gelijkheid moet deze regel False zijn."
+      }
+    },
+    {
+      "id": "python-v4-06-greater-less-step-2",
+      "objectiveIds": [
+        "strict-comparisons"
+      ],
+      "task": {
+        "en": "Print the Boolean result.",
+        "nl": "Druk het booleaanse resultaat af."
+      },
+      "check": "_stdout.strip() == str(result)",
+      "probes": [],
+      "hint": {
+        "en": "Strict comparisons exclude the equal boundary.",
+        "nl": "Strikte vergelijkingen sluiten de gelijke grenswaarde uit."
+      },
+      "hints": [
+        {
+          "en": "Strict comparisons exclude the equal boundary.",
+          "nl": "Strikte vergelijkingen sluiten de gelijke grenswaarde uit."
+        },
+        {
+          "en": "Print result itself, so changes to the comparison appear in the output.",
+          "nl": "Druk result zelf af zodat veranderingen in de vergelijking in de uitvoer verschijnen."
+        },
+        {
+          "en": "A small fragment to adapt: `print(result)`",
+          "nl": "Een klein fragment om aan te passen: `print(result)`"
+        }
+      ],
+      "feedback": {
+        "en": "Print result itself, so changes to the comparison appear in the output.",
+        "nl": "Druk result zelf af zodat veranderingen in de vergelijking in de uitvoer verschijnen."
+      }
+    }
+  ],
+  "solutionNote": {
+    "en": "The initial temperature is above the limit. Equal temperatures are intentionally excluded.",
+    "nl": "De begintemperatuur ligt boven de grens. Gelijke temperaturen zijn bewust uitgesloten."
+  },
+  "inputs": [],
+  "retrievals": [
+    {
+      "id": "recall-python-v4-04-f-strings",
+      "sourceActivityId": "python-v4-04-f-strings",
+      "objectiveIds": [
+        "f-strings"
+      ],
+      "prompt": {
+        "en": "Recall “Place values inside a message”. What would the same string display without its f prefix? Try the earlier example from memory, then check it. Change both inputs and predict the message. Then remove f once to observe the difference.",
+        "nl": "Haal “Plaats waarden binnen een bericht” terug. Wat toont dezelfde string zonder de f ervoor? Probeer het eerdere voorbeeld uit je geheugen en controleer daarna. Verander beide invoerwaarden en voorspel het bericht. Verwijder daarna eenmaal f om het verschil te zien."
+      }
+    }
+  ]
+}

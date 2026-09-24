@@ -1,0 +1,189 @@
+{
+  "id": "python-v4-16-paddle-contact",
+  "chapter": 16,
+  "group": "python-v4-module-16",
+  "title": {
+    "en": "Use Rect collision detection",
+    "nl": "Gebruik Rect-botsingsdetectie"
+  },
+  "kind": "coding",
+  "optional": false,
+  "runtime": "pygame",
+  "guidance": "guided",
+  "checkpointMode": "sequential",
+  "estimatedMinutes": 18,
+  "topicIds": [
+    "paddle-collision",
+    "overlap-correction"
+  ],
+  "practices": [],
+  "requiredConcepts": [
+    "rect",
+    "object-methods",
+    "direction-aware-collision"
+  ],
+  "explanation": {
+    "en": "Pygame can detect rectangle overlap, letting you focus on the game response.",
+    "nl": "Pygame kan overlap tussen rechthoeken detecteren zodat je je op de spelreactie kunt richten."
+  },
+  "example": "",
+  "sections": [
+    {
+      "id": "python-v4-16-paddle-contact-example",
+      "topicIds": [
+        "paddle-collision",
+        "overlap-correction"
+      ],
+      "heading": {
+        "en": "Follow a working example",
+        "nl": "Volg een werkend voorbeeld"
+      },
+      "body": {
+        "en": "ball.colliderect(paddle) returns True for overlapping rectangles; touching edges alone do not overlap. Use a small Rect around the ball for this beginner game. For the left paddle, reverse only vx < 0 and move the ball centre to paddle.right + radius. The right paddle mirrors this with vx > 0 and paddle.left - radius. At very high speeds discrete checks can miss contacts, so keep this first game at modest speeds with the supplied dt cap.",
+        "nl": "ball.colliderect(paddle) geeft True bij overlappende rechthoeken; alleen rakende randen overlappen niet. Gebruik een kleine Rect rond de bal voor dit beginnersspel. Keer bij het linkerbatje alleen vx < 0 om en verplaats het balmiddelpunt naar paddle.right + radius. Het rechterbatje spiegelt dit met vx > 0 en paddle.left - radius. Bij zeer hoge snelheid kunnen losse controles contacten missen, dus houd dit eerste spel op bescheiden snelheid met de aangeleverde dt-grens."
+      },
+      "code": "import pygame\na = pygame.Rect(0,0,10,10)\nb = pygame.Rect(9,0,10,10)\nprint(a.colliderect(b))\nb.left = 10\nprint(a.colliderect(b))",
+      "output": "True\nFalse\n",
+      "prediction": {
+        "en": "Why is the second result False?",
+        "nl": "Waarom is het tweede resultaat False?"
+      },
+      "takeaway": {
+        "en": "Detect contact, correct the position, then send the ball away.",
+        "nl": "Detecteer contact, herstel de positie en stuur de bal daarna weg."
+      }
+    },
+    {
+      "topicIds": [],
+      "heading": {
+        "en": "Run, observe, finish",
+        "nl": "Voer uit, bekijk, rond af"
+      },
+      "body": {
+        "en": "main.py supplies the browser entry point. Run opens a real pygame-ce preview; click it to focus the keyboard. Clicking elsewhere pauses play. Finish & check closes normally and checks your helper after at least one rendered frame. Stop cancels without grading. Run can start a fresh session afterward. Keep the supplied async definition and await asyncio.sleep(1 / 60): they let the browser draw and receive input. You are not expected to reproduce this infrastructure from memory.",
+        "nl": "main.py levert het browserstartpunt. Uitvoeren opent een echt pygame-ce-voorbeeld; klik erop om het toetsenbord te activeren. Elders klikken pauzeert het spel. Afronden en controleren sluit normaal af en controleert je helper na minstens één getekend beeld. Stop annuleert zonder beoordeling. Uitvoeren kan daarna een nieuwe sessie starten. Behoud de meegeleverde async-definitie en await asyncio.sleep(1 / 60): die laten de browser tekenen en invoer ontvangen. Je hoeft deze infrastructuur niet uit je hoofd te schrijven."
+      }
+    },
+    {
+      "id": "python-v4-16-paddle-contact-experiment",
+      "topicIds": [],
+      "heading": {
+        "en": "Try one change",
+        "nl": "Probeer één wijziging"
+      },
+      "body": {
+        "en": "Move the paddle vertically so the same x position becomes a miss.",
+        "nl": "Verplaats het batje verticaal zodat dezelfde x-positie een misser wordt."
+      }
+    }
+  ],
+  "files": {
+    "main.py": "# Browser entry point supplied by the course.\nimport asyncio\nimport pygame\nimport game\n\nasync def main():\n    pygame.init()\n    screen = pygame.display.set_mode((640, 400))\n    clock = pygame.time.Clock()\n    running = True\n    x,y,vx = 200.0,200.0,-100.0\n    while running:\n        dt = min(clock.tick() / 1000, 0.05)\n        for event in pygame.event.get():\n            if event.type == pygame.QUIT:\n                running = False\n            if event.type == pygame.KEYDOWN and event.key == pygame.K_ESCAPE:\n                running = False\n        keys = pygame.key.get_pressed()\n        x += vx * dt\n        x,vx = game.hit_left(x,y,vx,170)\n        if x > 630:\n            vx = -100\n        screen.fill((16, 23, 39))\n        pygame.draw.circle(screen,(240,200,80),(int(x),int(y)),6)\n        pygame.draw.rect(screen,(240,240,240),(20,170,10,60))\n        pygame.display.flip()\n        await asyncio.sleep(1 / 60)\n    pygame.quit()\n\nasyncio.run(main())\n",
+    "game.py": "import pygame\n\ndef hit_left(x, y, vx, paddle_y):\n    return x, vx\n"
+  },
+  "solution": {
+    "main.py": "# Browser entry point supplied by the course.\nimport asyncio\nimport pygame\nimport game\n\nasync def main():\n    pygame.init()\n    screen = pygame.display.set_mode((640, 400))\n    clock = pygame.time.Clock()\n    running = True\n    x,y,vx = 200.0,200.0,-100.0\n    while running:\n        dt = min(clock.tick() / 1000, 0.05)\n        for event in pygame.event.get():\n            if event.type == pygame.QUIT:\n                running = False\n            if event.type == pygame.KEYDOWN and event.key == pygame.K_ESCAPE:\n                running = False\n        keys = pygame.key.get_pressed()\n        x += vx * dt\n        x,vx = game.hit_left(x,y,vx,170)\n        if x > 630:\n            vx = -100\n        screen.fill((16, 23, 39))\n        pygame.draw.circle(screen,(240,200,80),(int(x),int(y)),6)\n        pygame.draw.rect(screen,(240,240,240),(20,170,10,60))\n        pygame.display.flip()\n        await asyncio.sleep(1 / 60)\n    pygame.quit()\n\nasyncio.run(main())\n",
+    "game.py": "import pygame\n\ndef hit_left(x, y, vx, paddle_y):\n    ball = pygame.Rect(x-6,y-6,12,12)\n    paddle = pygame.Rect(20,paddle_y,10,60)\n    if ball.colliderect(paddle) and vx < 0:\n        return paddle.right + 6, -vx\n    return x, vx\n"
+  },
+  "checkpoints": [
+    {
+      "id": "python-v4-16-paddle-contact-step-1",
+      "objectiveIds": [
+        "paddle-collision",
+        "overlap-correction"
+      ],
+      "task": {
+        "en": "Handle left-paddle contact for a radius-6 ball and a paddle at x=20 with size 10×60. Return (x, vx).",
+        "nl": "Verwerk contact met het linkerbatje voor een bal met straal 6 en een batje op x=20 van 10×60. Geef (x, vx) terug."
+      },
+      "check": "_rendered_frames > 0",
+      "probes": [
+        {
+          "call": {
+            "name": "hit_left",
+            "args": [
+              32,
+              200,
+              -100,
+              170
+            ],
+            "module": "game"
+          },
+          "check": "(_return == (36,100)) and _error is None",
+          "moduleOnly": true,
+          "module": "game"
+        },
+        {
+          "call": {
+            "name": "hit_left",
+            "args": [
+              32,
+              200,
+              100,
+              170
+            ],
+            "module": "game"
+          },
+          "check": "(_return == (32,100)) and _error is None",
+          "moduleOnly": true,
+          "module": "game"
+        },
+        {
+          "call": {
+            "name": "hit_left",
+            "args": [
+              32,
+              100,
+              -100,
+              170
+            ],
+            "module": "game"
+          },
+          "check": "(_return == (32,-100)) and _error is None",
+          "moduleOnly": true,
+          "module": "game"
+        }
+      ],
+      "hint": {
+        "en": "Detect contact, correct the position, then send the ball away.",
+        "nl": "Detecteer contact, herstel de positie en stuur de bal daarna weg."
+      },
+      "hints": [
+        {
+          "en": "Detect contact, correct the position, then send the ball away.",
+          "nl": "Detecteer contact, herstel de positie en stuur de bal daarna weg."
+        },
+        {
+          "en": "Build both Rects and require leftward velocity before reversing.",
+          "nl": "Maak beide Rects en eis linkswaartse snelheid vóór omkeren."
+        },
+        {
+          "en": "A small fragment to adapt: `ball.colliderect(paddle)`",
+          "nl": "Een klein fragment om aan te passen: `ball.colliderect(paddle)`"
+        }
+      ],
+      "feedback": {
+        "en": "Build both Rects and require leftward velocity before reversing.",
+        "nl": "Maak beide Rects en eis linkswaartse snelheid vóór omkeren."
+      }
+    }
+  ],
+  "solutionNote": {
+    "en": "Both axes must overlap and the ball must approach the paddle for a bounce.",
+    "nl": "Beide assen moeten overlappen en de bal moet het batje naderen voor een stuiter."
+  },
+  "inputs": [],
+  "retrievals": [
+    {
+      "id": "recall-python-v4-14-decimal",
+      "sourceActivityId": "python-v4-14-decimal",
+      "objectiveIds": [
+        "decimal"
+      ],
+      "prompt": {
+        "en": "Recall “Use decimal arithmetic deliberately”. Why do the Decimal arguments have quotation marks? Try the earlier example from memory, then check it. Compare Decimal(\"0.1\") with Decimal(0.1) by printing both.",
+        "nl": "Haal “Gebruik decimale berekeningen bewust” terug. Waarom staan de Decimal-argumenten tussen aanhalingstekens? Probeer het eerdere voorbeeld uit je geheugen en controleer daarna. Vergelijk Decimal(\"0.1\") met Decimal(0.1) door beide af te drukken."
+      }
+    }
+  ]
+}

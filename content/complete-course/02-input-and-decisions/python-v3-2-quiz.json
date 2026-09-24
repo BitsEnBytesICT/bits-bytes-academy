@@ -1,0 +1,778 @@
+{
+  "id": "python-v3-2-quiz",
+  "chapter": 2,
+  "group": "python-v3-module-2",
+  "kind": "quiz",
+  "optional": false,
+  "estimatedMinutes": 6,
+  "title": {
+    "en": "Input and decisions: review",
+    "nl": "Invoer en beslissingen: herhaling"
+  },
+  "questions": [
+    {
+      "objectiveIds": [
+        "relational-operators",
+        "boolean-variables"
+      ],
+      "reviewActivityIds": [
+        "python-v3-2-02"
+      ],
+      "category": "prediction",
+      "prompt": {
+        "en": "What does this program print?",
+        "nl": "Wat drukt dit programma af?"
+      },
+      "code": "age = 12\nprint(age > 12, age >= 12)",
+      "answer": "a",
+      "choices": [
+        {
+          "id": "a",
+          "label": {
+            "en": "False True",
+            "nl": "False True"
+          },
+          "reason": {
+            "en": "Only >= includes equality.",
+            "nl": "Alleen >= neemt gelijkheid mee."
+          }
+        },
+        {
+          "id": "b",
+          "label": {
+            "en": "True True",
+            "nl": "True True"
+          },
+          "reason": {
+            "en": "> excludes the equal boundary.",
+            "nl": "> sluit de gelijke grens uit."
+          }
+        },
+        {
+          "id": "c",
+          "label": {
+            "en": "False False",
+            "nl": "False False"
+          },
+          "reason": {
+            "en": ">= accepts an equal value.",
+            "nl": ">= accepteert een gelijke waarde."
+          }
+        }
+      ],
+      "expectedOutput": "False True\n",
+      "id": "python-v3-2-quiz-a-1"
+    },
+    {
+      "objectiveIds": [
+        "and",
+        "or",
+        "not"
+      ],
+      "reviewActivityIds": [
+        "python-v3-2-04"
+      ],
+      "category": "prediction",
+      "prompt": {
+        "en": "What does this program print?",
+        "nl": "Wat drukt dit programma af?"
+      },
+      "code": "ticket = True\nhelper = False\nbanned = True\nprint((ticket or helper) and not banned)",
+      "answer": "a",
+      "choices": [
+        {
+          "id": "a",
+          "label": {
+            "en": "False",
+            "nl": "False"
+          },
+          "reason": {
+            "en": "The ban makes not banned False, so the and fails.",
+            "nl": "Het verbod maakt not banned False, dus and faalt."
+          }
+        },
+        {
+          "id": "b",
+          "label": {
+            "en": "True",
+            "nl": "True"
+          },
+          "reason": {
+            "en": "Eligibility cannot override the ban in this expression.",
+            "nl": "Geschiktheid kan het verbod in deze expressie niet overrulen."
+          }
+        },
+        {
+          "id": "c",
+          "label": {
+            "en": "None",
+            "nl": "None"
+          },
+          "reason": {
+            "en": "Boolean operators here produce a Boolean, not None.",
+            "nl": "Booleaanse operatoren geven hier een boolean, geen None."
+          }
+        }
+      ],
+      "expectedOutput": "False\n",
+      "id": "python-v3-2-quiz-a-2"
+    },
+    {
+      "objectiveIds": [
+        "conversion",
+        "input"
+      ],
+      "reviewActivityIds": [
+        "python-v3-2-01"
+      ],
+      "category": "completion",
+      "prompt": {
+        "en": "Convert numeric text before doing arithmetic.",
+        "nl": "Zet getaltekst om vóór rekenen."
+      },
+      "code": "text = \"12\"\nnumber = ___(text)\nprint(number + 1)",
+      "answer": "a",
+      "choices": [
+        {
+          "id": "a",
+          "label": {
+            "en": "int",
+            "nl": "int"
+          },
+          "reason": {
+            "en": "int converts text to a whole number; str keeps text and input asks for new text.",
+            "nl": "int zet tekst in een geheel getal om; str behoudt tekst en input vraagt nieuwe tekst."
+          }
+        },
+        {
+          "id": "b",
+          "label": {
+            "en": "str",
+            "nl": "str"
+          },
+          "reason": {
+            "en": "int converts text to a whole number; str keeps text and input asks for new text.",
+            "nl": "int zet tekst in een geheel getal om; str behoudt tekst en input vraagt nieuwe tekst."
+          }
+        },
+        {
+          "id": "c",
+          "label": {
+            "en": "input",
+            "nl": "input"
+          },
+          "reason": {
+            "en": "int converts text to a whole number; str keeps text and input asks for new text.",
+            "nl": "int zet tekst in een geheel getal om; str behoudt tekst en input vraagt nieuwe tekst."
+          }
+        }
+      ],
+      "codeBlank": {
+        "prompt": {
+          "en": "Convert numeric text before doing arithmetic.",
+          "nl": "Zet getaltekst om vóór rekenen."
+        },
+        "segments": [
+          "text = \"12\"\nnumber = ",
+          "(text)\nprint(number + 1)"
+        ],
+        "tokens": [
+          {
+            "id": "token-1",
+            "code": "int"
+          },
+          {
+            "id": "token-2",
+            "code": "str"
+          },
+          {
+            "id": "token-3",
+            "code": "input"
+          }
+        ],
+        "blanks": [
+          {
+            "answer": "int",
+            "reason": {
+              "en": "int converts text to a whole number; str keeps text and input asks for new text.",
+              "nl": "int zet tekst in een geheel getal om; str behoudt tekst en input vraagt nieuwe tekst."
+            }
+          }
+        ],
+        "output": "13\n"
+      },
+      "id": "python-v3-2-quiz-a-3"
+    },
+    {
+      "objectiveIds": [
+        "elif"
+      ],
+      "reviewActivityIds": [
+        "python-v3-2-05"
+      ],
+      "category": "completion",
+      "prompt": {
+        "en": "Complete the alternative decision.",
+        "nl": "Vul de alternatieve beslissing aan."
+      },
+      "code": "choice = \"tea\"\nif choice == \"water\":\n    print(0)\n___ choice == \"tea\":\n    print(2)\nelse:\n    print(-1)",
+      "answer": "a",
+      "choices": [
+        {
+          "id": "a",
+          "label": {
+            "en": "elif",
+            "nl": "elif"
+          },
+          "reason": {
+            "en": "elif takes a condition after an earlier if; else does not take a condition.",
+            "nl": "elif krijgt een voorwaarde na een eerdere if; else krijgt geen voorwaarde."
+          }
+        },
+        {
+          "id": "b",
+          "label": {
+            "en": "else",
+            "nl": "else"
+          },
+          "reason": {
+            "en": "elif takes a condition after an earlier if; else does not take a condition.",
+            "nl": "elif krijgt een voorwaarde na een eerdere if; else krijgt geen voorwaarde."
+          }
+        },
+        {
+          "id": "c",
+          "label": {
+            "en": "and",
+            "nl": "and"
+          },
+          "reason": {
+            "en": "elif takes a condition after an earlier if; else does not take a condition.",
+            "nl": "elif krijgt een voorwaarde na een eerdere if; else krijgt geen voorwaarde."
+          }
+        }
+      ],
+      "codeBlank": {
+        "prompt": {
+          "en": "Complete the alternative decision.",
+          "nl": "Vul de alternatieve beslissing aan."
+        },
+        "segments": [
+          "choice = \"tea\"\nif choice == \"water\":\n    print(0)\n",
+          " choice == \"tea\":\n    print(2)\nelse:\n    print(-1)"
+        ],
+        "tokens": [
+          {
+            "id": "token-1",
+            "code": "elif"
+          },
+          {
+            "id": "token-2",
+            "code": "else"
+          },
+          {
+            "id": "token-3",
+            "code": "and"
+          }
+        ],
+        "blanks": [
+          {
+            "answer": "elif",
+            "reason": {
+              "en": "elif takes a condition after an earlier if; else does not take a condition.",
+              "nl": "elif krijgt een voorwaarde na een eerdere if; else krijgt geen voorwaarde."
+            }
+          }
+        ],
+        "output": "2\n"
+      },
+      "id": "python-v3-2-quiz-a-4"
+    },
+    {
+      "objectiveIds": [
+        "if",
+        "else",
+        "indentation"
+      ],
+      "reviewActivityIds": [
+        "python-v3-2-03"
+      ],
+      "category": "debugging",
+      "prompt": {
+        "en": "Which input exposes the missing equality case?",
+        "nl": "Welke invoer onthult de ontbrekende gelijkheidsgrens?"
+      },
+      "code": "balance = 12\nif balance > 12:\n    print(\"Buy\")\nelse:\n    print(\"Save\")",
+      "answer": "a",
+      "choices": [
+        {
+          "id": "a",
+          "label": {
+            "en": "12",
+            "nl": "12"
+          },
+          "reason": {
+            "en": "Exactly the cost should permit buying, but > rejects it.",
+            "nl": "Precies de kosten moet kopen toestaan, maar > wijst het af."
+          }
+        },
+        {
+          "id": "b",
+          "label": {
+            "en": "13",
+            "nl": "13"
+          },
+          "reason": {
+            "en": "This already reaches Buy and does not expose the boundary error.",
+            "nl": "Dit bereikt al Buy en onthult de grensfout niet."
+          }
+        },
+        {
+          "id": "c",
+          "label": {
+            "en": "11",
+            "nl": "11"
+          },
+          "reason": {
+            "en": "This correctly reaches Save; the equality boundary is the issue.",
+            "nl": "Dit bereikt terecht Save; de gelijkheidsgrens is het probleem."
+          }
+        }
+      ],
+      "id": "python-v3-2-quiz-a-5"
+    },
+    {
+      "objectiveIds": [
+        "concatenation"
+      ],
+      "reviewActivityIds": [
+        "python-v3-1-05"
+      ],
+      "category": "application",
+      "prompt": {
+        "en": "A label uses \"Team\" + \"Ada\". What does concatenation insert automatically?",
+        "nl": "Een label gebruikt \"Team\" + \"Ada\". Wat voegt samenvoegen automatisch toe?"
+      },
+      "answer": "a",
+      "choices": [
+        {
+          "id": "a",
+          "label": {
+            "en": "Nothing; the result is TeamAda.",
+            "nl": "Niets; het resultaat is TeamAda."
+          },
+          "reason": {
+            "en": "Concatenation adds no spaces. A space must be in one string.",
+            "nl": "Samenvoegen voegt geen spaties toe. Een spatie moet in een string staan."
+          }
+        },
+        {
+          "id": "b",
+          "label": {
+            "en": "A space between the words.",
+            "nl": "Een spatie tussen de woorden."
+          },
+          "reason": {
+            "en": "+ joins exactly the existing characters.",
+            "nl": "+ voegt precies de bestaande tekens samen."
+          }
+        },
+        {
+          "id": "c",
+          "label": {
+            "en": "A newline between the words.",
+            "nl": "Een nieuwe regel tussen de woorden."
+          },
+          "reason": {
+            "en": "A newline requires an explicit newline character or separate print calls.",
+            "nl": "Een nieuwe regel vereist een expliciet regelteken of aparte print-aanroepen."
+          }
+        }
+      ],
+      "id": "python-v3-2-quiz-a-6"
+    }
+  ],
+  "alternateQuestions": [
+    {
+      "objectiveIds": [
+        "relational-operators",
+        "boolean-variables"
+      ],
+      "reviewActivityIds": [
+        "python-v3-2-02"
+      ],
+      "category": "prediction",
+      "prompt": {
+        "en": "What does this program print?",
+        "nl": "Wat drukt dit programma af?"
+      },
+      "code": "age = 18\nprint(age > 18, age >= 18)",
+      "answer": "a",
+      "choices": [
+        {
+          "id": "a",
+          "label": {
+            "en": "False True",
+            "nl": "False True"
+          },
+          "reason": {
+            "en": "Only >= includes equality.",
+            "nl": "Alleen >= neemt gelijkheid mee."
+          }
+        },
+        {
+          "id": "b",
+          "label": {
+            "en": "True True",
+            "nl": "True True"
+          },
+          "reason": {
+            "en": "> excludes the equal boundary.",
+            "nl": "> sluit de gelijke grens uit."
+          }
+        },
+        {
+          "id": "c",
+          "label": {
+            "en": "False False",
+            "nl": "False False"
+          },
+          "reason": {
+            "en": ">= accepts an equal value.",
+            "nl": ">= accepteert een gelijke waarde."
+          }
+        }
+      ],
+      "expectedOutput": "False True\n",
+      "id": "python-v3-2-quiz-b-1"
+    },
+    {
+      "objectiveIds": [
+        "and",
+        "or",
+        "not"
+      ],
+      "reviewActivityIds": [
+        "python-v3-2-04"
+      ],
+      "category": "prediction",
+      "prompt": {
+        "en": "What does this program print?",
+        "nl": "Wat drukt dit programma af?"
+      },
+      "code": "ticket = False\nhelper = True\nbanned = True\nprint((ticket or helper) and not banned)",
+      "answer": "a",
+      "choices": [
+        {
+          "id": "a",
+          "label": {
+            "en": "False",
+            "nl": "False"
+          },
+          "reason": {
+            "en": "The ban makes not banned False, so the and fails.",
+            "nl": "Het verbod maakt not banned False, dus and faalt."
+          }
+        },
+        {
+          "id": "b",
+          "label": {
+            "en": "True",
+            "nl": "True"
+          },
+          "reason": {
+            "en": "Eligibility cannot override the ban in this expression.",
+            "nl": "Geschiktheid kan het verbod in deze expressie niet overrulen."
+          }
+        },
+        {
+          "id": "c",
+          "label": {
+            "en": "None",
+            "nl": "None"
+          },
+          "reason": {
+            "en": "Boolean operators here produce a Boolean, not None.",
+            "nl": "Booleaanse operatoren geven hier een boolean, geen None."
+          }
+        }
+      ],
+      "expectedOutput": "False\n",
+      "id": "python-v3-2-quiz-b-2"
+    },
+    {
+      "objectiveIds": [
+        "conversion",
+        "input"
+      ],
+      "reviewActivityIds": [
+        "python-v3-2-01"
+      ],
+      "category": "completion",
+      "prompt": {
+        "en": "Convert numeric text before doing arithmetic.",
+        "nl": "Zet getaltekst om vóór rekenen."
+      },
+      "code": "text = \"18\"\nnumber = ___(text)\nprint(number + 1)",
+      "answer": "a",
+      "choices": [
+        {
+          "id": "a",
+          "label": {
+            "en": "int",
+            "nl": "int"
+          },
+          "reason": {
+            "en": "int converts text to a whole number; str keeps text and input asks for new text.",
+            "nl": "int zet tekst in een geheel getal om; str behoudt tekst en input vraagt nieuwe tekst."
+          }
+        },
+        {
+          "id": "b",
+          "label": {
+            "en": "str",
+            "nl": "str"
+          },
+          "reason": {
+            "en": "int converts text to a whole number; str keeps text and input asks for new text.",
+            "nl": "int zet tekst in een geheel getal om; str behoudt tekst en input vraagt nieuwe tekst."
+          }
+        },
+        {
+          "id": "c",
+          "label": {
+            "en": "input",
+            "nl": "input"
+          },
+          "reason": {
+            "en": "int converts text to a whole number; str keeps text and input asks for new text.",
+            "nl": "int zet tekst in een geheel getal om; str behoudt tekst en input vraagt nieuwe tekst."
+          }
+        }
+      ],
+      "codeBlank": {
+        "prompt": {
+          "en": "Convert numeric text before doing arithmetic.",
+          "nl": "Zet getaltekst om vóór rekenen."
+        },
+        "segments": [
+          "text = \"18\"\nnumber = ",
+          "(text)\nprint(number + 1)"
+        ],
+        "tokens": [
+          {
+            "id": "token-1",
+            "code": "int"
+          },
+          {
+            "id": "token-2",
+            "code": "str"
+          },
+          {
+            "id": "token-3",
+            "code": "input"
+          }
+        ],
+        "blanks": [
+          {
+            "answer": "int",
+            "reason": {
+              "en": "int converts text to a whole number; str keeps text and input asks for new text.",
+              "nl": "int zet tekst in een geheel getal om; str behoudt tekst en input vraagt nieuwe tekst."
+            }
+          }
+        ],
+        "output": "19\n"
+      },
+      "id": "python-v3-2-quiz-b-3"
+    },
+    {
+      "objectiveIds": [
+        "elif"
+      ],
+      "reviewActivityIds": [
+        "python-v3-2-05"
+      ],
+      "category": "completion",
+      "prompt": {
+        "en": "Complete the alternative decision.",
+        "nl": "Vul de alternatieve beslissing aan."
+      },
+      "code": "choice = \"juice\"\nif choice == \"water\":\n    print(0)\n___ choice == \"juice\":\n    print(3)\nelse:\n    print(-1)",
+      "answer": "a",
+      "choices": [
+        {
+          "id": "a",
+          "label": {
+            "en": "elif",
+            "nl": "elif"
+          },
+          "reason": {
+            "en": "elif takes a condition after an earlier if; else does not take a condition.",
+            "nl": "elif krijgt een voorwaarde na een eerdere if; else krijgt geen voorwaarde."
+          }
+        },
+        {
+          "id": "b",
+          "label": {
+            "en": "else",
+            "nl": "else"
+          },
+          "reason": {
+            "en": "elif takes a condition after an earlier if; else does not take a condition.",
+            "nl": "elif krijgt een voorwaarde na een eerdere if; else krijgt geen voorwaarde."
+          }
+        },
+        {
+          "id": "c",
+          "label": {
+            "en": "and",
+            "nl": "and"
+          },
+          "reason": {
+            "en": "elif takes a condition after an earlier if; else does not take a condition.",
+            "nl": "elif krijgt een voorwaarde na een eerdere if; else krijgt geen voorwaarde."
+          }
+        }
+      ],
+      "codeBlank": {
+        "prompt": {
+          "en": "Complete the alternative decision.",
+          "nl": "Vul de alternatieve beslissing aan."
+        },
+        "segments": [
+          "choice = \"juice\"\nif choice == \"water\":\n    print(0)\n",
+          " choice == \"juice\":\n    print(3)\nelse:\n    print(-1)"
+        ],
+        "tokens": [
+          {
+            "id": "token-1",
+            "code": "elif"
+          },
+          {
+            "id": "token-2",
+            "code": "else"
+          },
+          {
+            "id": "token-3",
+            "code": "and"
+          }
+        ],
+        "blanks": [
+          {
+            "answer": "elif",
+            "reason": {
+              "en": "elif takes a condition after an earlier if; else does not take a condition.",
+              "nl": "elif krijgt een voorwaarde na een eerdere if; else krijgt geen voorwaarde."
+            }
+          }
+        ],
+        "output": "3\n"
+      },
+      "id": "python-v3-2-quiz-b-4"
+    },
+    {
+      "objectiveIds": [
+        "if",
+        "else",
+        "indentation"
+      ],
+      "reviewActivityIds": [
+        "python-v3-2-03"
+      ],
+      "category": "debugging",
+      "prompt": {
+        "en": "Which input exposes the missing equality case?",
+        "nl": "Welke invoer onthult de ontbrekende gelijkheidsgrens?"
+      },
+      "code": "balance = 18\nif balance > 18:\n    print(\"Buy\")\nelse:\n    print(\"Save\")",
+      "answer": "a",
+      "choices": [
+        {
+          "id": "a",
+          "label": {
+            "en": "18",
+            "nl": "18"
+          },
+          "reason": {
+            "en": "Exactly the cost should permit buying, but > rejects it.",
+            "nl": "Precies de kosten moet kopen toestaan, maar > wijst het af."
+          }
+        },
+        {
+          "id": "b",
+          "label": {
+            "en": "19",
+            "nl": "19"
+          },
+          "reason": {
+            "en": "This already reaches Buy and does not expose the boundary error.",
+            "nl": "Dit bereikt al Buy en onthult de grensfout niet."
+          }
+        },
+        {
+          "id": "c",
+          "label": {
+            "en": "17",
+            "nl": "17"
+          },
+          "reason": {
+            "en": "This correctly reaches Save; the equality boundary is the issue.",
+            "nl": "Dit bereikt terecht Save; de gelijkheidsgrens is het probleem."
+          }
+        }
+      ],
+      "id": "python-v3-2-quiz-b-5"
+    },
+    {
+      "objectiveIds": [
+        "concatenation"
+      ],
+      "reviewActivityIds": [
+        "python-v3-1-05"
+      ],
+      "category": "application",
+      "prompt": {
+        "en": "A greeting loses its space: \"Hi\" + \"Bo\". Which result follows?",
+        "nl": "Een begroeting mist zijn spatie: \"Hi\" + \"Bo\". Welk resultaat volgt?"
+      },
+      "answer": "a",
+      "choices": [
+        {
+          "id": "a",
+          "label": {
+            "en": "HiBo",
+            "nl": "HiBo"
+          },
+          "reason": {
+            "en": "Concatenation adds no spaces. A space must be in one string.",
+            "nl": "Samenvoegen voegt geen spaties toe. Een spatie moet in een string staan."
+          }
+        },
+        {
+          "id": "b",
+          "label": {
+            "en": "A space between the words.",
+            "nl": "Een spatie tussen de woorden."
+          },
+          "reason": {
+            "en": "+ joins exactly the existing characters.",
+            "nl": "+ voegt precies de bestaande tekens samen."
+          }
+        },
+        {
+          "id": "c",
+          "label": {
+            "en": "A newline between the words.",
+            "nl": "Een nieuwe regel tussen de woorden."
+          },
+          "reason": {
+            "en": "A newline requires an explicit newline character or separate print calls.",
+            "nl": "Een nieuwe regel vereist een expliciet regelteken of aparte print-aanroepen."
+          }
+        }
+      ],
+      "id": "python-v3-2-quiz-b-6"
+    }
+  ]
+}

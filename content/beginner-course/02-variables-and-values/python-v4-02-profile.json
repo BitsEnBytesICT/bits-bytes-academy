@@ -1,0 +1,165 @@
+{
+  "id": "python-v4-02-profile",
+  "chapter": 2,
+  "group": "python-v4-module-2",
+  "title": {
+    "en": "Create a small profile",
+    "nl": "Maak een klein profiel"
+  },
+  "kind": "coding",
+  "optional": false,
+  "runtime": "terminal",
+  "guidance": "independent",
+  "checkpointMode": "sequential",
+  "estimatedMinutes": 18,
+  "topicIds": [
+    "values-review"
+  ],
+  "practices": [
+    "variables",
+    "integers",
+    "floats",
+    "types"
+  ],
+  "requiredConcepts": [
+    "variables",
+    "integers",
+    "floats"
+  ],
+  "explanation": {
+    "en": "Build a small profile from a brief. Choose the correct value types and print the stored information in order.",
+    "nl": "Bouw een klein profiel vanuit een opdracht. Kies de juiste waardetypen en druk de opgeslagen informatie op volgorde af."
+  },
+  "example": "",
+  "sections": [
+    {
+      "id": "python-v4-02-profile-example",
+      "topicIds": [
+        "values-review",
+        "variables",
+        "integers",
+        "floats",
+        "types"
+      ],
+      "heading": {
+        "en": "Follow a working example",
+        "nl": "Volg een werkend voorbeeld"
+      },
+      "body": {
+        "en": "Separate the data from the output: assign names and values first, then display them. Read the brief to decide whether each value represents text, a whole count or a measurement.\n\nThe example describes a shop. Your program describes a hiking trip. You can inspect types with extra temporary print calls while debugging; remove that temporary output before checking the required report.",
+        "nl": "Scheid gegevens van uitvoer: wijs eerst namen en waarden toe en toon ze daarna. Lees de opdracht om te bepalen of elke waarde tekst, een geheel aantal of een meting voorstelt.\n\nHet voorbeeld beschrijft een winkel. Jouw programma beschrijft een wandeltocht. Je kunt tijdens het onderzoeken typen afdrukken met tijdelijke print-aanroepen; verwijder die tijdelijke uitvoer voordat je het gevraagde verslag controleert."
+      },
+      "code": "shop = \"Corner shop\"\nstaff = 3\nopening_time = 8.5\nprint(shop)\nprint(staff)\nprint(opening_time)",
+      "output": "Corner shop\n3\n8.5\n",
+      "prediction": {
+        "en": "Which assignment stores text rather than a number?",
+        "nl": "Welke toewijzing bewaart tekst in plaats van een getal?"
+      },
+      "takeaway": {
+        "en": "Store each value using a type that matches what it represents.",
+        "nl": "Bewaar elke waarde met een type dat past bij wat zij voorstelt."
+      }
+    },
+    {
+      "id": "python-v4-02-profile-experiment",
+      "topicIds": [],
+      "heading": {
+        "en": "Try one change",
+        "nl": "Probeer één wijziging"
+      },
+      "body": {
+        "en": "Change the destination and both numbers. Predict the report without changing any print calls.",
+        "nl": "Verander de bestemming en beide getallen. Voorspel het verslag zonder print-aanroepen te wijzigen."
+      }
+    }
+  ],
+  "files": {
+    "main.py": ""
+  },
+  "solution": {
+    "main.py": "destination = \"Forest\"\nwalkers = 4\ndistance = 7.5\nprint(destination)\nprint(walkers)\nprint(distance)\n"
+  },
+  "checkpoints": [
+    {
+      "id": "python-v4-02-profile-step-1",
+      "objectiveIds": [
+        "values-review",
+        "variables",
+        "integers",
+        "floats",
+        "types"
+      ],
+      "task": {
+        "en": "Create destination = \"Forest\", walkers = 4 and distance = 7.5, using a string, int and float respectively.",
+        "nl": "Maak destination = \"Forest\", walkers = 4 en distance = 7.5, met respectievelijk een string, int en float."
+      },
+      "check": "destination == \"Forest\" and type(walkers) is int and walkers == 4 and type(distance) is float and distance == 7.5",
+      "probes": [],
+      "hint": {
+        "en": "Store each value using a type that matches what it represents.",
+        "nl": "Bewaar elke waarde met een type dat past bij wat zij voorstelt."
+      },
+      "hints": [
+        {
+          "en": "Store each value using a type that matches what it represents.",
+          "nl": "Bewaar elke waarde met een type dat past bij wat zij voorstelt."
+        },
+        {
+          "en": "Only the place name needs quotes. The distance needs a decimal point.",
+          "nl": "Alleen de plaatsnaam heeft aanhalingstekens nodig. De afstand heeft een decimale punt nodig."
+        },
+        {
+          "en": "A small fragment to adapt: `label = \"text\"`",
+          "nl": "Een klein fragment om aan te passen: `label = \"text\"`"
+        }
+      ],
+      "feedback": {
+        "en": "Only the place name needs quotes. The distance needs a decimal point.",
+        "nl": "Alleen de plaatsnaam heeft aanhalingstekens nodig. De afstand heeft een decimale punt nodig."
+      }
+    },
+    {
+      "id": "python-v4-02-profile-step-2",
+      "objectiveIds": [
+        "values-review",
+        "variables",
+        "integers",
+        "floats",
+        "types"
+      ],
+      "task": {
+        "en": "Print the destination, walker count and distance, one per line.",
+        "nl": "Druk bestemming, aantal wandelaars en afstand af, elk op een eigen regel."
+      },
+      "check": "_stdout == \"Forest\\n4\\n7.5\\n\"",
+      "probes": [],
+      "hint": {
+        "en": "Store each value using a type that matches what it represents.",
+        "nl": "Bewaar elke waarde met een type dat past bij wat zij voorstelt."
+      },
+      "hints": [
+        {
+          "en": "Store each value using a type that matches what it represents.",
+          "nl": "Bewaar elke waarde met een type dat past bij wat zij voorstelt."
+        },
+        {
+          "en": "Use the stored values, in the order of the brief.",
+          "nl": "Gebruik de opgeslagen waarden in de volgorde van de opdracht."
+        },
+        {
+          "en": "A small fragment to adapt: `print(destination)`",
+          "nl": "Een klein fragment om aan te passen: `print(destination)`"
+        }
+      ],
+      "feedback": {
+        "en": "Use the stored values, in the order of the brief.",
+        "nl": "Gebruik de opgeslagen waarden in de volgorde van de opdracht."
+      }
+    }
+  ],
+  "solutionNote": {
+    "en": "Names separate the information from its presentation. The same output instructions work after the data changes.",
+    "nl": "Namen scheiden informatie van de presentatie. Dezelfde uitvoerinstructies werken nadat de gegevens veranderen."
+  },
+  "inputs": []
+}

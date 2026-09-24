@@ -1,0 +1,177 @@
+{
+  "id": "python-v4-21-delimiter",
+  "chapter": 21,
+  "group": "python-v4-module-21",
+  "title": {
+    "en": "Read a different CSV dialect",
+    "nl": "Lees een ander CSV-dialect"
+  },
+  "kind": "coding",
+  "optional": false,
+  "runtime": "terminal",
+  "guidance": "guided",
+  "checkpointMode": "sequential",
+  "estimatedMinutes": 18,
+  "topicIds": [
+    "csv-delimiters"
+  ],
+  "practices": [],
+  "requiredConcepts": [
+    "dict-reader"
+  ],
+  "explanation": {
+    "en": "Some exports use semicolons or tabs instead of commas. Quoting rules still matter.\n\nOpen work.py to write the requested function. main.py is a supplied caller: Run always starts there and imports your function. The other file tabs contain input data. After a successful run, open any new output file tab to inspect what your program saved.",
+    "nl": "Sommige exports gebruiken puntkomma’s of tabs in plaats van komma’s. Regels voor aanhalingstekens blijven belangrijk.\n\nOpen work.py om de gevraagde functie te schrijven. main.py is de aangeleverde aanroeper: Uitvoeren begint daar en importeert je functie. De andere bestandstabbladen bevatten invoergegevens. Open na een geslaagde uitvoering een nieuw uitvoerbestand om te bekijken wat je programma heeft opgeslagen."
+  },
+  "example": "",
+  "sections": [
+    {
+      "id": "python-v4-21-delimiter-example",
+      "topicIds": [
+        "csv-delimiters"
+      ],
+      "heading": {
+        "en": "Follow a working example",
+        "nl": "Volg een werkend voorbeeld"
+      },
+      "body": {
+        "en": "Pass delimiter=\";\" or delimiter=\"\\t\" to the CSV reader. The delimiter must match the file and be one character. Quotes can protect that delimiter inside a field too. Do not replace delimiters globally: doing so would also alter characters inside quoted data.",
+        "nl": "Geef delimiter=\";\" of delimiter=\"\\t\" aan de CSV-lezer mee. Het scheidingsteken moet bij het bestand passen en één teken zijn. Aanhalingstekens kunnen ook dat teken binnen een veld beschermen. Vervang scheidingstekens niet overal: dat verandert ook tekens binnen aangehaalde gegevens."
+      },
+      "code": "import csv\nwith open(\"example.csv\",newline=\"\",encoding=\"utf-8\") as handle:\n    print(list(csv.reader(handle,delimiter=\";\")))",
+      "output": "[['A', 'B;C']]\n",
+      "prediction": {
+        "en": "Why does B;C remain one field?",
+        "nl": "Waarom blijft B;C één veld?"
+      },
+      "takeaway": {
+        "en": "Configure the parser to match the file’s format.",
+        "nl": "Stel de ontleder in op het bestandsformaat."
+      },
+      "exampleFiles": {
+        "example.csv": "A;\"B;C\"\n"
+      }
+    },
+    {
+      "id": "python-v4-21-delimiter-experiment",
+      "topicIds": [],
+      "heading": {
+        "en": "Try one change",
+        "nl": "Probeer één wijziging"
+      },
+      "body": {
+        "en": "Create a tab-separated fixture and retain a comma inside one field.",
+        "nl": "Maak een tabgescheiden voorbeeld en behoud een komma binnen één veld."
+      }
+    }
+  ],
+  "files": {
+    "export.csv": "name;score\n\"Bo; Jr\";3\n",
+    "main.py": "import work\nprint(work.read_export(\"export.csv\",\";\"))\n",
+    "work.py": "def read_export(path, delimiter):\n    return []\n"
+  },
+  "solution": {
+    "export.csv": "name;score\n\"Bo; Jr\";3\n",
+    "main.py": "import work\nprint(work.read_export(\"export.csv\",\";\"))\n",
+    "work.py": "import csv\ndef read_export(path, delimiter):\n    with open(path,newline=\"\",encoding=\"utf-8\") as handle:\n        return list(csv.DictReader(handle,delimiter=delimiter))\n"
+  },
+  "checkpoints": [
+    {
+      "id": "python-v4-21-delimiter-step-1",
+      "objectiveIds": [
+        "csv-delimiters"
+      ],
+      "task": {
+        "en": "Return named CSV records using the supplied delimiter.",
+        "nl": "Geef benoemde CSV-records terug met het gegeven scheidingsteken."
+      },
+      "check": "True",
+      "probes": [
+        {
+          "call": {
+            "name": "read_export",
+            "args": [
+              "export.csv",
+              ";"
+            ],
+            "module": "work"
+          },
+          "check": "(_return == [{\"name\":\"Bo; Jr\",\"score\":\"3\"}]) and _error is None",
+          "moduleOnly": true,
+          "module": "work",
+          "files": {}
+        },
+        {
+          "call": {
+            "name": "read_export",
+            "args": [
+              "tabs.tsv",
+              "\t"
+            ],
+            "module": "work"
+          },
+          "check": "(_return == [{\"name\":\"Ada\",\"score\":\"4\"}]) and _error is None",
+          "moduleOnly": true,
+          "module": "work",
+          "files": {
+            "tabs.tsv": "name\tscore\nAda\t4\n"
+          }
+        }
+      ],
+      "hint": {
+        "en": "Configure the parser to match the file’s format.",
+        "nl": "Stel de ontleder in op het bestandsformaat."
+      },
+      "hints": [
+        {
+          "en": "Configure the parser to match the file’s format.",
+          "nl": "Stel de ontleder in op het bestandsformaat."
+        },
+        {
+          "en": "Pass the delimiter to DictReader itself.",
+          "nl": "Geef het scheidingsteken aan DictReader zelf."
+        },
+        {
+          "en": "A small fragment to adapt: `csv.DictReader(handle, delimiter=delimiter)`",
+          "nl": "Een klein fragment om aan te passen: `csv.DictReader(handle, delimiter=delimiter)`"
+        }
+      ],
+      "feedback": {
+        "en": "Pass the delimiter to DictReader itself.",
+        "nl": "Geef het scheidingsteken aan DictReader zelf."
+      }
+    }
+  ],
+  "solutionNote": {
+    "en": "Reader configuration changes the separators without modifying the underlying data.",
+    "nl": "Lezerinstellingen veranderen de scheiding zonder onderliggende gegevens te wijzigen."
+  },
+  "inputs": [],
+  "retrievals": [
+    {
+      "id": "recall-python-v4-19-update",
+      "sourceActivityId": "python-v4-19-update",
+      "objectiveIds": [
+        "empty-dictionaries",
+        "adding-keys",
+        "update",
+        "overwriting"
+      ],
+      "prompt": {
+        "en": "Recall “Build and update a record”. Why is there only one score key? Try the earlier example from memory, then check it. Call again with a different score and inspect which keys remain.",
+        "nl": "Haal “Bouw en wijzig een record” terug. Waarom is er maar één score-sleutel? Probeer het eerdere voorbeeld uit je geheugen en controleer daarna. Roep opnieuw aan met een andere score en bekijk welke sleutels blijven."
+      }
+    },
+    {
+      "id": "recall-python-v4-19-registry",
+      "sourceActivityId": "python-v4-19-registry",
+      "objectiveIds": [
+        "dictionary-review"
+      ],
+      "prompt": {
+        "en": "Recall “Maintain a small scoreboard”. Why do the two dictionaries end with different values? Try the earlier example from memory, then check it. Award points twice while keeping both the original and updated versions.",
+        "nl": "Haal “Beheer een klein scorebord” terug. Waarom eindigen beide dictionaries met verschillende waarden? Probeer het eerdere voorbeeld uit je geheugen en controleer daarna. Ken tweemaal punten toe en bewaar zowel de oorspronkelijke als gewijzigde versie."
+      }
+    }
+  ]
+}

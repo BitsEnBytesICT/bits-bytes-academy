@@ -1,0 +1,768 @@
+{
+  "id": "python-v4-22-quiz",
+  "chapter": 22,
+  "group": "python-v4-module-22",
+  "kind": "quiz",
+  "optional": false,
+  "estimatedMinutes": 8,
+  "title": {
+    "en": "JSON and saved data: review",
+    "nl": "JSON en opgeslagen gegevens: herhaling"
+  },
+  "questions": [
+    {
+      "objectiveIds": [
+        "json"
+      ],
+      "category": "prediction",
+      "prompt": {
+        "en": "What does this program print?",
+        "nl": "Wat drukt dit programma af?"
+      },
+      "code": "import json\ndata = json.loads('{\"score\":4,\"active\":true}')\nprint(data[\"score\"] + 1,data[\"active\"])",
+      "answer": "a",
+      "expectedOutput": "5 True\n",
+      "choices": [
+        {
+          "id": "a",
+          "label": {
+            "en": "5 True",
+            "nl": "5 True"
+          },
+          "reason": {
+            "en": "JSON numbers and Booleans decode into Python types.",
+            "nl": "JSON-getallen en booleaanse waarden worden Python-typen."
+          }
+        },
+        {
+          "id": "b",
+          "label": {
+            "en": "41 true",
+            "nl": "41 true"
+          },
+          "reason": {
+            "en": "The number is not a string and Python prints True with a capital.",
+            "nl": "Het getal is geen string en Python drukt True met hoofdletter af."
+          }
+        },
+        {
+          "id": "c",
+          "label": {
+            "en": "5 true",
+            "nl": "5 true"
+          },
+          "reason": {
+            "en": "Python spells the Boolean value True.",
+            "nl": "Python schrijft de booleaanse waarde als True."
+          }
+        }
+      ],
+      "id": "python-v4-22-quiz-a-1",
+      "reviewActivityIds": [
+        "python-v4-22-load"
+      ]
+    },
+    {
+      "objectiveIds": [
+        "file-position"
+      ],
+      "category": "prediction",
+      "prompt": {
+        "en": "What does this program print?",
+        "nl": "Wat drukt dit programma af?"
+      },
+      "code": "with open(\"quiz.txt\",\"w\",encoding=\"utf-8\") as handle:\n    handle.write(\"Header\\nBody\")\nwith open(\"quiz.txt\",encoding=\"utf-8\") as handle:\n    header = handle.readline()\n    print(handle.read())",
+      "answer": "a",
+      "expectedOutput": "Body\n",
+      "choices": [
+        {
+          "id": "a",
+          "label": {
+            "en": "Body",
+            "nl": "Body"
+          },
+          "reason": {
+            "en": "readline consumed the header before read began.",
+            "nl": "readline gebruikte de kop vóór read begon."
+          }
+        },
+        {
+          "id": "b",
+          "label": {
+            "en": "Header\nBody",
+            "nl": "Header\nBody"
+          },
+          "reason": {
+            "en": "The handle does not rewind automatically.",
+            "nl": "De handle gaat niet automatisch terug naar het begin."
+          }
+        },
+        {
+          "id": "c",
+          "label": {
+            "en": "Header",
+            "nl": "Header"
+          },
+          "reason": {
+            "en": "The second read starts after the header.",
+            "nl": "De tweede leesactie begint na de kop."
+          }
+        }
+      ],
+      "id": "python-v4-22-quiz-a-2",
+      "reviewActivityIds": [
+        "python-v4-20-position"
+      ]
+    },
+    {
+      "objectiveIds": [
+        "json-save"
+      ],
+      "category": "completion",
+      "prompt": {
+        "en": "Complete the code to produce the shown output.",
+        "nl": "Vul de code aan om de getoonde uitvoer te maken."
+      },
+      "code": "import json\nwith open(\"quiz.json\",\"w\",encoding=\"utf-8\") as handle:\n    json.___({\"count\":4},handle)\nwith open(\"quiz.json\",encoding=\"utf-8\") as handle:\n    print(json.load(handle)[\"count\"])",
+      "answer": "a",
+      "choices": [
+        {
+          "id": "a",
+          "label": {
+            "en": "dump",
+            "nl": "dump"
+          },
+          "reason": {
+            "en": "dump writes to a handle; load reads a handle and loads reads a string.",
+            "nl": "dump schrijft naar een handle; load leest een handle en loads leest een string."
+          }
+        },
+        {
+          "id": "b",
+          "label": {
+            "en": "load",
+            "nl": "load"
+          },
+          "reason": {
+            "en": "dump writes to a handle; load reads a handle and loads reads a string.",
+            "nl": "dump schrijft naar een handle; load leest een handle en loads leest een string."
+          }
+        },
+        {
+          "id": "c",
+          "label": {
+            "en": "loads",
+            "nl": "loads"
+          },
+          "reason": {
+            "en": "dump writes to a handle; load reads a handle and loads reads a string.",
+            "nl": "dump schrijft naar een handle; load leest een handle en loads leest een string."
+          }
+        }
+      ],
+      "codeBlank": {
+        "prompt": {
+          "en": "Complete the code to produce the shown output.",
+          "nl": "Vul de code aan om de getoonde uitvoer te maken."
+        },
+        "segments": [
+          "import json\nwith open(\"quiz.json\",\"w\",encoding=\"utf-8\") as handle:\n    json.",
+          "({\"count\":4},handle)\nwith open(\"quiz.json\",encoding=\"utf-8\") as handle:\n    print(json.load(handle)[\"count\"])"
+        ],
+        "tokens": [
+          {
+            "id": "token-1",
+            "code": "dump"
+          },
+          {
+            "id": "token-2",
+            "code": "load"
+          },
+          {
+            "id": "token-3",
+            "code": "loads"
+          }
+        ],
+        "blanks": [
+          {
+            "answer": "dump",
+            "reason": {
+              "en": "dump writes to a handle; load reads a handle and loads reads a string.",
+              "nl": "dump schrijft naar een handle; load leest een handle en loads leest een string."
+            }
+          }
+        ],
+        "output": "4\n"
+      },
+      "id": "python-v4-22-quiz-a-3",
+      "reviewActivityIds": [
+        "python-v4-22-save"
+      ]
+    },
+    {
+      "objectiveIds": [
+        "write"
+      ],
+      "category": "completion",
+      "prompt": {
+        "en": "Complete the code to produce the shown output.",
+        "nl": "Vul de code aan om de getoonde uitvoer te maken."
+      },
+      "code": "with open(\"quiz.txt\",___,encoding=\"utf-8\") as handle:\n    handle.write(\"Header\")\nwith open(\"quiz.txt\",encoding=\"utf-8\") as handle:\n    print(handle.read())",
+      "answer": "a",
+      "choices": [
+        {
+          "id": "a",
+          "label": {
+            "en": "\"w\"",
+            "nl": "\"w\""
+          },
+          "reason": {
+            "en": "w creates or replaces a file for writing.",
+            "nl": "w maakt of vervangt een bestand om te schrijven."
+          }
+        },
+        {
+          "id": "b",
+          "label": {
+            "en": "\"r\"",
+            "nl": "\"r\""
+          },
+          "reason": {
+            "en": "w creates or replaces a file for writing.",
+            "nl": "w maakt of vervangt een bestand om te schrijven."
+          }
+        },
+        {
+          "id": "c",
+          "label": {
+            "en": "\"x-invalid\"",
+            "nl": "\"x-invalid\""
+          },
+          "reason": {
+            "en": "w creates or replaces a file for writing.",
+            "nl": "w maakt of vervangt een bestand om te schrijven."
+          }
+        }
+      ],
+      "codeBlank": {
+        "prompt": {
+          "en": "Complete the code to produce the shown output.",
+          "nl": "Vul de code aan om de getoonde uitvoer te maken."
+        },
+        "segments": [
+          "with open(\"quiz.txt\",",
+          ",encoding=\"utf-8\") as handle:\n    handle.write(\"Header\")\nwith open(\"quiz.txt\",encoding=\"utf-8\") as handle:\n    print(handle.read())"
+        ],
+        "tokens": [
+          {
+            "id": "token-1",
+            "code": "\"w\""
+          },
+          {
+            "id": "token-2",
+            "code": "\"r\""
+          },
+          {
+            "id": "token-3",
+            "code": "\"x-invalid\""
+          }
+        ],
+        "blanks": [
+          {
+            "answer": "\"w\"",
+            "reason": {
+              "en": "w creates or replaces a file for writing.",
+              "nl": "w maakt of vervangt een bestand om te schrijven."
+            }
+          }
+        ],
+        "output": "Header\n"
+      },
+      "id": "python-v4-22-quiz-a-4",
+      "reviewActivityIds": [
+        "python-v4-20-write"
+      ]
+    },
+    {
+      "objectiveIds": [
+        "malformed-json"
+      ],
+      "category": "debugging",
+      "prompt": {
+        "en": "Choose the repair or test that addresses the stated problem.",
+        "nl": "Kies de reparatie of test die het beschreven probleem aanpakt."
+      },
+      "code": "# Damaged existing file: {\"count\":4,}\n# Need to preserve it for diagnosis.",
+      "answer": "a",
+      "choices": [
+        {
+          "id": "a",
+          "label": {
+            "en": "Catch JSONDecodeError and do not overwrite the file.",
+            "nl": "Vang JSONDecodeError op en overschrijf het bestand niet."
+          },
+          "reason": {
+            "en": "A trailing comma is malformed JSON and should remain inspectable.",
+            "nl": "Een afsluitende komma is ongeldige JSON en moet te onderzoeken blijven."
+          }
+        },
+        {
+          "id": "b",
+          "label": {
+            "en": "Overwrite it with an empty object immediately.",
+            "nl": "Overschrijf het direct met een leeg object."
+          },
+          "reason": {
+            "en": "That loses the original evidence and data.",
+            "nl": "Dat verliest de oorspronkelijke informatie en gegevens."
+          }
+        },
+        {
+          "id": "c",
+          "label": {
+            "en": "Treat it as a missing file.",
+            "nl": "Behandel het als een ontbrekend bestand."
+          },
+          "reason": {
+            "en": "The file exists; its syntax is damaged.",
+            "nl": "Het bestand bestaat; de syntax is beschadigd."
+          }
+        }
+      ],
+      "id": "python-v4-22-quiz-a-5",
+      "reviewActivityIds": [
+        "python-v4-22-update-and-recover"
+      ]
+    },
+    {
+      "objectiveIds": [
+        "json-roundtrip"
+      ],
+      "category": "application",
+      "prompt": {
+        "en": "Which explanation applies to this example?",
+        "nl": "Welke uitleg past bij dit voorbeeld?"
+      },
+      "code": "data = {\"scores\":[4,2],\"note\":None}",
+      "answer": "a",
+      "choices": [
+        {
+          "id": "a",
+          "label": {
+            "en": "Compare loaded values with the original data after saving.",
+            "nl": "Vergelijk geladen waarden met de oorspronkelijke gegevens na opslaan."
+          },
+          "reason": {
+            "en": "A round trip tests both encoding and decoding.",
+            "nl": "Heen en terug testen controleert coderen en decoderen."
+          }
+        },
+        {
+          "id": "b",
+          "label": {
+            "en": "Require the JSON file to have identical spaces to Python code.",
+            "nl": "Eis dat JSON identieke spaties als Pythoncode heeft."
+          },
+          "reason": {
+            "en": "Whitespace layout is not the data model.",
+            "nl": "Witruimteopmaak is niet het gegevensmodel."
+          }
+        },
+        {
+          "id": "c",
+          "label": {
+            "en": "Assume every Python object can be dumped.",
+            "nl": "Neem aan dat elk Pythonobject kan worden bewaard."
+          },
+          "reason": {
+            "en": "Arbitrary objects require a chosen serialisable representation.",
+            "nl": "Willekeurige objecten vragen een gekozen serialiseerbare weergave."
+          }
+        }
+      ],
+      "id": "python-v4-22-quiz-a-6",
+      "reviewActivityIds": [
+        "python-v4-22-save"
+      ]
+    }
+  ],
+  "alternateQuestions": [
+    {
+      "objectiveIds": [
+        "json"
+      ],
+      "category": "prediction",
+      "prompt": {
+        "en": "What does this program print?",
+        "nl": "Wat drukt dit programma af?"
+      },
+      "code": "import json\ndata = json.loads('{\"score\":7,\"active\":true}')\nprint(data[\"score\"] + 1,data[\"active\"])",
+      "answer": "a",
+      "expectedOutput": "8 True\n",
+      "choices": [
+        {
+          "id": "a",
+          "label": {
+            "en": "8 True",
+            "nl": "8 True"
+          },
+          "reason": {
+            "en": "JSON numbers and Booleans decode into Python types.",
+            "nl": "JSON-getallen en booleaanse waarden worden Python-typen."
+          }
+        },
+        {
+          "id": "b",
+          "label": {
+            "en": "71 true",
+            "nl": "71 true"
+          },
+          "reason": {
+            "en": "The number is not a string and Python prints True with a capital.",
+            "nl": "Het getal is geen string en Python drukt True met hoofdletter af."
+          }
+        },
+        {
+          "id": "c",
+          "label": {
+            "en": "8 true",
+            "nl": "8 true"
+          },
+          "reason": {
+            "en": "Python spells the Boolean value True.",
+            "nl": "Python schrijft de booleaanse waarde als True."
+          }
+        }
+      ],
+      "id": "python-v4-22-quiz-b-1",
+      "reviewActivityIds": [
+        "python-v4-22-load"
+      ]
+    },
+    {
+      "objectiveIds": [
+        "file-position"
+      ],
+      "category": "prediction",
+      "prompt": {
+        "en": "What does this program print?",
+        "nl": "Wat drukt dit programma af?"
+      },
+      "code": "with open(\"quiz.txt\",\"w\",encoding=\"utf-8\") as handle:\n    handle.write(\"Top\\nBody\")\nwith open(\"quiz.txt\",encoding=\"utf-8\") as handle:\n    header = handle.readline()\n    print(handle.read())",
+      "answer": "a",
+      "expectedOutput": "Body\n",
+      "choices": [
+        {
+          "id": "a",
+          "label": {
+            "en": "Body",
+            "nl": "Body"
+          },
+          "reason": {
+            "en": "readline consumed the header before read began.",
+            "nl": "readline gebruikte de kop vóór read begon."
+          }
+        },
+        {
+          "id": "b",
+          "label": {
+            "en": "Top\nBody",
+            "nl": "Top\nBody"
+          },
+          "reason": {
+            "en": "The handle does not rewind automatically.",
+            "nl": "De handle gaat niet automatisch terug naar het begin."
+          }
+        },
+        {
+          "id": "c",
+          "label": {
+            "en": "Top",
+            "nl": "Top"
+          },
+          "reason": {
+            "en": "The second read starts after the header.",
+            "nl": "De tweede leesactie begint na de kop."
+          }
+        }
+      ],
+      "id": "python-v4-22-quiz-b-2",
+      "reviewActivityIds": [
+        "python-v4-20-position"
+      ]
+    },
+    {
+      "objectiveIds": [
+        "json-save"
+      ],
+      "category": "completion",
+      "prompt": {
+        "en": "Complete the code to produce the shown output.",
+        "nl": "Vul de code aan om de getoonde uitvoer te maken."
+      },
+      "code": "import json\nwith open(\"quiz.json\",\"w\",encoding=\"utf-8\") as handle:\n    json.___({\"count\":7},handle)\nwith open(\"quiz.json\",encoding=\"utf-8\") as handle:\n    print(json.load(handle)[\"count\"])",
+      "answer": "a",
+      "choices": [
+        {
+          "id": "a",
+          "label": {
+            "en": "dump",
+            "nl": "dump"
+          },
+          "reason": {
+            "en": "dump writes to a handle; load reads a handle and loads reads a string.",
+            "nl": "dump schrijft naar een handle; load leest een handle en loads leest een string."
+          }
+        },
+        {
+          "id": "b",
+          "label": {
+            "en": "load",
+            "nl": "load"
+          },
+          "reason": {
+            "en": "dump writes to a handle; load reads a handle and loads reads a string.",
+            "nl": "dump schrijft naar een handle; load leest een handle en loads leest een string."
+          }
+        },
+        {
+          "id": "c",
+          "label": {
+            "en": "loads",
+            "nl": "loads"
+          },
+          "reason": {
+            "en": "dump writes to a handle; load reads a handle and loads reads a string.",
+            "nl": "dump schrijft naar een handle; load leest een handle en loads leest een string."
+          }
+        }
+      ],
+      "codeBlank": {
+        "prompt": {
+          "en": "Complete the code to produce the shown output.",
+          "nl": "Vul de code aan om de getoonde uitvoer te maken."
+        },
+        "segments": [
+          "import json\nwith open(\"quiz.json\",\"w\",encoding=\"utf-8\") as handle:\n    json.",
+          "({\"count\":7},handle)\nwith open(\"quiz.json\",encoding=\"utf-8\") as handle:\n    print(json.load(handle)[\"count\"])"
+        ],
+        "tokens": [
+          {
+            "id": "token-1",
+            "code": "dump"
+          },
+          {
+            "id": "token-2",
+            "code": "load"
+          },
+          {
+            "id": "token-3",
+            "code": "loads"
+          }
+        ],
+        "blanks": [
+          {
+            "answer": "dump",
+            "reason": {
+              "en": "dump writes to a handle; load reads a handle and loads reads a string.",
+              "nl": "dump schrijft naar een handle; load leest een handle en loads leest een string."
+            }
+          }
+        ],
+        "output": "7\n"
+      },
+      "id": "python-v4-22-quiz-b-3",
+      "reviewActivityIds": [
+        "python-v4-22-save"
+      ]
+    },
+    {
+      "objectiveIds": [
+        "write"
+      ],
+      "category": "completion",
+      "prompt": {
+        "en": "Complete the code to produce the shown output.",
+        "nl": "Vul de code aan om de getoonde uitvoer te maken."
+      },
+      "code": "with open(\"quiz.txt\",___,encoding=\"utf-8\") as handle:\n    handle.write(\"Top\")\nwith open(\"quiz.txt\",encoding=\"utf-8\") as handle:\n    print(handle.read())",
+      "answer": "a",
+      "choices": [
+        {
+          "id": "a",
+          "label": {
+            "en": "\"w\"",
+            "nl": "\"w\""
+          },
+          "reason": {
+            "en": "w creates or replaces a file for writing.",
+            "nl": "w maakt of vervangt een bestand om te schrijven."
+          }
+        },
+        {
+          "id": "b",
+          "label": {
+            "en": "\"r\"",
+            "nl": "\"r\""
+          },
+          "reason": {
+            "en": "w creates or replaces a file for writing.",
+            "nl": "w maakt of vervangt een bestand om te schrijven."
+          }
+        },
+        {
+          "id": "c",
+          "label": {
+            "en": "\"x-invalid\"",
+            "nl": "\"x-invalid\""
+          },
+          "reason": {
+            "en": "w creates or replaces a file for writing.",
+            "nl": "w maakt of vervangt een bestand om te schrijven."
+          }
+        }
+      ],
+      "codeBlank": {
+        "prompt": {
+          "en": "Complete the code to produce the shown output.",
+          "nl": "Vul de code aan om de getoonde uitvoer te maken."
+        },
+        "segments": [
+          "with open(\"quiz.txt\",",
+          ",encoding=\"utf-8\") as handle:\n    handle.write(\"Top\")\nwith open(\"quiz.txt\",encoding=\"utf-8\") as handle:\n    print(handle.read())"
+        ],
+        "tokens": [
+          {
+            "id": "token-1",
+            "code": "\"w\""
+          },
+          {
+            "id": "token-2",
+            "code": "\"r\""
+          },
+          {
+            "id": "token-3",
+            "code": "\"x-invalid\""
+          }
+        ],
+        "blanks": [
+          {
+            "answer": "\"w\"",
+            "reason": {
+              "en": "w creates or replaces a file for writing.",
+              "nl": "w maakt of vervangt een bestand om te schrijven."
+            }
+          }
+        ],
+        "output": "Top\n"
+      },
+      "id": "python-v4-22-quiz-b-4",
+      "reviewActivityIds": [
+        "python-v4-20-write"
+      ]
+    },
+    {
+      "objectiveIds": [
+        "malformed-json"
+      ],
+      "category": "debugging",
+      "prompt": {
+        "en": "Choose the repair or test that addresses the stated problem.",
+        "nl": "Kies de reparatie of test die het beschreven probleem aanpakt."
+      },
+      "code": "# Damaged existing file: {\"count\":7,}\n# Need to preserve it for diagnosis.",
+      "answer": "a",
+      "choices": [
+        {
+          "id": "a",
+          "label": {
+            "en": "Catch JSONDecodeError and do not overwrite the file.",
+            "nl": "Vang JSONDecodeError op en overschrijf het bestand niet."
+          },
+          "reason": {
+            "en": "A trailing comma is malformed JSON and should remain inspectable.",
+            "nl": "Een afsluitende komma is ongeldige JSON en moet te onderzoeken blijven."
+          }
+        },
+        {
+          "id": "b",
+          "label": {
+            "en": "Overwrite it with an empty object immediately.",
+            "nl": "Overschrijf het direct met een leeg object."
+          },
+          "reason": {
+            "en": "That loses the original evidence and data.",
+            "nl": "Dat verliest de oorspronkelijke informatie en gegevens."
+          }
+        },
+        {
+          "id": "c",
+          "label": {
+            "en": "Treat it as a missing file.",
+            "nl": "Behandel het als een ontbrekend bestand."
+          },
+          "reason": {
+            "en": "The file exists; its syntax is damaged.",
+            "nl": "Het bestand bestaat; de syntax is beschadigd."
+          }
+        }
+      ],
+      "id": "python-v4-22-quiz-b-5",
+      "reviewActivityIds": [
+        "python-v4-22-update-and-recover"
+      ]
+    },
+    {
+      "objectiveIds": [
+        "json-roundtrip"
+      ],
+      "category": "application",
+      "prompt": {
+        "en": "Which explanation applies to this example?",
+        "nl": "Welke uitleg past bij dit voorbeeld?"
+      },
+      "code": "data = {\"scores\":[7,2],\"note\":None}",
+      "answer": "a",
+      "choices": [
+        {
+          "id": "a",
+          "label": {
+            "en": "Compare loaded values with the original data after saving.",
+            "nl": "Vergelijk geladen waarden met de oorspronkelijke gegevens na opslaan."
+          },
+          "reason": {
+            "en": "A round trip tests both encoding and decoding.",
+            "nl": "Heen en terug testen controleert coderen en decoderen."
+          }
+        },
+        {
+          "id": "b",
+          "label": {
+            "en": "Require the JSON file to have identical spaces to Python code.",
+            "nl": "Eis dat JSON identieke spaties als Pythoncode heeft."
+          },
+          "reason": {
+            "en": "Whitespace layout is not the data model.",
+            "nl": "Witruimteopmaak is niet het gegevensmodel."
+          }
+        },
+        {
+          "id": "c",
+          "label": {
+            "en": "Assume every Python object can be dumped.",
+            "nl": "Neem aan dat elk Pythonobject kan worden bewaard."
+          },
+          "reason": {
+            "en": "Arbitrary objects require a chosen serialisable representation.",
+            "nl": "Willekeurige objecten vragen een gekozen serialiseerbare weergave."
+          }
+        }
+      ],
+      "id": "python-v4-22-quiz-b-6",
+      "reviewActivityIds": [
+        "python-v4-22-save"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,168 @@
+{
+  "id": "python-v4-15-attributes",
+  "chapter": 15,
+  "group": "python-v4-module-15",
+  "title": {
+    "en": "Use an object’s attributes",
+    "nl": "Gebruik attributen van een object"
+  },
+  "kind": "coding",
+  "optional": false,
+  "runtime": "pygame",
+  "guidance": "guided",
+  "checkpointMode": "sequential",
+  "estimatedMinutes": 18,
+  "topicIds": [
+    "attributes",
+    "object-methods"
+  ],
+  "practices": [],
+  "requiredConcepts": [
+    "rect"
+  ],
+  "explanation": {
+    "en": "Rect provides meaningful names for edges and centres, so you do not have to repeat every geometry calculation.",
+    "nl": "Rect biedt betekenisvolle namen voor randen en middelpunten zodat je niet elke geometrieberekening hoeft te herhalen."
+  },
+  "example": "",
+  "sections": [
+    {
+      "id": "python-v4-15-attributes-example",
+      "topicIds": [
+        "attributes",
+        "object-methods"
+      ],
+      "heading": {
+        "en": "Follow a working example",
+        "nl": "Volg een werkend voorbeeld"
+      },
+      "body": {
+        "en": "box.right equals box.x + box.width. box.center is a coordinate pair. Assigning box.center moves the rectangle while preserving its size. An attribute such as center is data; a method such as box.move(dx, dy) is called with parentheses and returns a moved copy. The original rectangle stays unchanged with move.",
+        "nl": "box.right is box.x + box.width. box.center is een coördinatenpaar. Toewijzen aan box.center verplaatst de rechthoek met behoud van afmetingen. Een attribuut zoals center is een gegeven; een methode zoals box.move(dx, dy) wordt met haakjes aangeroepen en geeft een verplaatste kopie terug. Bij move blijft de oorspronkelijke rechthoek ongewijzigd."
+      },
+      "code": "import pygame\nbox = pygame.Rect(10, 20, 20, 10)\nbox.center = (50, 50)\nprint(box.left, box.top)\nprint(box.move(5, 0).left)",
+      "output": "40 45\n45\n",
+      "prediction": {
+        "en": "Does move change box.left itself?",
+        "nl": "Verandert move box.left zelf?"
+      },
+      "takeaway": {
+        "en": "Read attributes directly; call methods with parentheses.",
+        "nl": "Lees attributen direct; roep methoden met haakjes aan."
+      }
+    },
+    {
+      "topicIds": [],
+      "heading": {
+        "en": "Run, observe, finish",
+        "nl": "Voer uit, bekijk, rond af"
+      },
+      "body": {
+        "en": "main.py supplies the browser entry point. Run opens a real pygame-ce preview; click it to focus the keyboard. Clicking elsewhere pauses play. Finish & check closes normally and checks your helper after at least one rendered frame. Stop cancels without grading. Run can start a fresh session afterward. Keep the supplied async definition and await asyncio.sleep(1 / 60): they let the browser draw and receive input. You are not expected to reproduce this infrastructure from memory.",
+        "nl": "main.py levert het browserstartpunt. Uitvoeren opent een echt pygame-ce-voorbeeld; klik erop om het toetsenbord te activeren. Elders klikken pauzeert het spel. Afronden en controleren sluit normaal af en controleert je helper na minstens één getekend beeld. Stop annuleert zonder beoordeling. Uitvoeren kan daarna een nieuwe sessie starten. Behoud de meegeleverde async-definitie en await asyncio.sleep(1 / 60): die laten de browser tekenen en invoer ontvangen. Je hoeft deze infrastructuur niet uit je hoofd te schrijven."
+      }
+    },
+    {
+      "id": "python-v4-15-attributes-experiment",
+      "topicIds": [],
+      "heading": {
+        "en": "Try one change",
+        "nl": "Probeer één wijziging"
+      },
+      "body": {
+        "en": "Move the centre to (0, 0) and explain why part of the shape is outside the window.",
+        "nl": "Verplaats het middelpunt naar (0, 0) en leg uit waarom een deel buiten het venster valt."
+      }
+    }
+  ],
+  "files": {
+    "main.py": "# Browser entry point supplied by the course.\nimport asyncio\nimport pygame\nimport game\n\nasync def main():\n    pygame.init()\n    screen = pygame.display.set_mode((640, 400))\n    clock = pygame.time.Clock()\n    running = True\n    while running:\n        dt = min(clock.tick() / 1000, 0.05)\n        for event in pygame.event.get():\n            if event.type == pygame.QUIT:\n                running = False\n            if event.type == pygame.KEYDOWN and event.key == pygame.K_ESCAPE:\n                running = False\n        keys = pygame.key.get_pressed()\n        screen.fill((16, 23, 39))\n        pygame.draw.rect(screen, (240,240,240), game.centered(320,200))\n        pygame.display.flip()\n        await asyncio.sleep(1 / 60)\n    pygame.quit()\n\nasyncio.run(main())\n",
+    "game.py": "import pygame\n\ndef centered(x, y):\n    return pygame.Rect(0, 0, 20, 40)\n"
+  },
+  "solution": {
+    "main.py": "# Browser entry point supplied by the course.\nimport asyncio\nimport pygame\nimport game\n\nasync def main():\n    pygame.init()\n    screen = pygame.display.set_mode((640, 400))\n    clock = pygame.time.Clock()\n    running = True\n    while running:\n        dt = min(clock.tick() / 1000, 0.05)\n        for event in pygame.event.get():\n            if event.type == pygame.QUIT:\n                running = False\n            if event.type == pygame.KEYDOWN and event.key == pygame.K_ESCAPE:\n                running = False\n        keys = pygame.key.get_pressed()\n        screen.fill((16, 23, 39))\n        pygame.draw.rect(screen, (240,240,240), game.centered(320,200))\n        pygame.display.flip()\n        await asyncio.sleep(1 / 60)\n    pygame.quit()\n\nasyncio.run(main())\n",
+    "game.py": "import pygame\n\ndef centered(x, y):\n    box = pygame.Rect(0, 0, 20, 40)\n    box.center = (x, y)\n    return box\n"
+  },
+  "checkpoints": [
+    {
+      "id": "python-v4-15-attributes-step-1",
+      "objectiveIds": [
+        "attributes",
+        "object-methods"
+      ],
+      "task": {
+        "en": "Return a 20×40 Rect whose centre is (x, y).",
+        "nl": "Geef een Rect van 20×40 terug met middelpunt (x, y)."
+      },
+      "check": "_rendered_frames > 0",
+      "probes": [
+        {
+          "call": {
+            "name": "centered",
+            "args": [
+              100,
+              80
+            ],
+            "module": "game"
+          },
+          "check": "(_return.center == (100,80) and _return.size == (20,40)) and _error is None",
+          "moduleOnly": true,
+          "module": "game"
+        },
+        {
+          "call": {
+            "name": "centered",
+            "args": [
+              0,
+              0
+            ],
+            "module": "game"
+          },
+          "check": "(_return.topleft == (-10,-20)) and _error is None",
+          "moduleOnly": true,
+          "module": "game"
+        }
+      ],
+      "hint": {
+        "en": "Read attributes directly; call methods with parentheses.",
+        "nl": "Lees attributen direct; roep methoden met haakjes aan."
+      },
+      "hints": [
+        {
+          "en": "Read attributes directly; call methods with parentheses.",
+          "nl": "Lees attributen direct; roep methoden met haakjes aan."
+        },
+        {
+          "en": "Set center after creating the rectangle.",
+          "nl": "Stel center in nadat je de rechthoek maakt."
+        },
+        {
+          "en": "A small fragment to adapt: `box.center = (x, y)`",
+          "nl": "Een klein fragment om aan te passen: `box.center = (x, y)`"
+        }
+      ],
+      "feedback": {
+        "en": "Set center after creating the rectangle.",
+        "nl": "Stel center in nadat je de rechthoek maakt."
+      }
+    }
+  ],
+  "solutionNote": {
+    "en": "Centre assignment lets Pygame calculate the top-left position consistently.",
+    "nl": "Toewijzing aan het middelpunt laat Pygame de linkerbovenpositie consistent berekenen."
+  },
+  "inputs": [],
+  "retrievals": [
+    {
+      "id": "recall-python-v4-13-unpack",
+      "sourceActivityId": "python-v4-13-unpack",
+      "objectiveIds": [
+        "packing-unpacking"
+      ],
+      "prompt": {
+        "en": "Recall “Unpack a pair into names”. Which coordinate changed in the printed result? Try the earlier example from memory, then check it. Apply a shift and its opposite. Predict the final position.",
+        "nl": "Haal “Pak een paar uit in namen” terug. Welke coördinaat veranderde in het afgedrukte resultaat? Probeer het eerdere voorbeeld uit je geheugen en controleer daarna. Pas een verschuiving en de tegenovergestelde toe. Voorspel de eindpositie."
+      }
+    }
+  ]
+}

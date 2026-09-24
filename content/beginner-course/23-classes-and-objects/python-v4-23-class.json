@@ -1,0 +1,141 @@
+{
+  "id": "python-v4-23-class",
+  "chapter": 23,
+  "group": "python-v4-module-23",
+  "title": {
+    "en": "Define a new type with class",
+    "nl": "Definieer een nieuw type met class"
+  },
+  "kind": "coding",
+  "optional": false,
+  "runtime": "terminal",
+  "guidance": "guided",
+  "checkpointMode": "sequential",
+  "estimatedMinutes": 12,
+  "topicIds": [
+    "classes",
+    "instantiation",
+    "oop"
+  ],
+  "practices": [
+    "types",
+    "pygame-objects"
+  ],
+  "requiredConcepts": [
+    "types",
+    "attributes"
+  ],
+  "explanation": {
+    "en": "You have used objects such as lists and Rects. A class defines a type of your own, grouping state with related behaviour.",
+    "nl": "Je hebt objecten zoals lijsten en Rects gebruikt. Een class definieert een eigen type dat toestand met bijbehorend gedrag groepeert."
+  },
+  "example": "",
+  "sections": [
+    {
+      "id": "python-v4-23-class-example",
+      "topicIds": [
+        "classes",
+        "instantiation",
+        "oop",
+        "types",
+        "pygame-objects"
+      ],
+      "heading": {
+        "en": "Follow a working example",
+        "nl": "Volg een werkend voorbeeld"
+      },
+      "body": {
+        "en": "class Badge: defines a class named Badge. The colon and indentation mark its body. pass is an explicit do-nothing placeholder for an otherwise empty body. Badge() creates a new instance. Two calls create two independent objects. type(instance) identifies its type; isinstance(instance, Badge) tests membership of that type. Creating classes is useful when several objects share behaviour but have their own state. A simple function is still appropriate when no stored state is needed.",
+        "nl": "class Badge: definieert een klasse Badge. De dubbele punt en inspringing markeren de inhoud. pass is een expliciete nietsdoen-instructie voor een anders lege inhoud. Badge() maakt een nieuwe instantie. Twee aanroepen maken twee onafhankelijke objecten. type(instance) benoemt het type; isinstance(instance, Badge) test of het object bij dat type hoort. Klassen zijn nuttig wanneer meerdere objecten gedrag delen maar eigen toestand hebben. Een eenvoudige functie blijft geschikt als geen bewaarde toestand nodig is."
+      },
+      "code": "class Badge:\n    pass\nfirst = Badge()\nsecond = Badge()\nprint(isinstance(first,Badge))\nprint(first is second)",
+      "output": "True\nFalse\n",
+      "prediction": {
+        "en": "Which line defines the type and which creates an object?",
+        "nl": "Welke regel definieert het type en welke maakt een object?"
+      },
+      "takeaway": {
+        "en": "A class is a definition; an instance is one object created from it.",
+        "nl": "Een klasse is een definitie; een instantie is één daaruit gemaakt object."
+      }
+    },
+    {
+      "id": "python-v4-23-class-experiment",
+      "topicIds": [],
+      "heading": {
+        "en": "Try one change",
+        "nl": "Probeer één wijziging"
+      },
+      "body": {
+        "en": "Compare second = first with second = Ticket().",
+        "nl": "Vergelijk second = first met second = Ticket()."
+      }
+    }
+  ],
+  "files": {
+    "main.py": ""
+  },
+  "solution": {
+    "main.py": "class Ticket:\n    pass\nfirst = Ticket()\nsecond = Ticket()\n"
+  },
+  "checkpoints": [
+    {
+      "id": "python-v4-23-class-step-1",
+      "objectiveIds": [
+        "classes",
+        "instantiation",
+        "oop",
+        "types",
+        "pygame-objects"
+      ],
+      "task": {
+        "en": "Define Ticket and create two distinct instances named first and second.",
+        "nl": "Definieer Ticket en maak twee aparte instanties first en second."
+      },
+      "check": "isinstance(first,Ticket) and isinstance(second,Ticket) and first is not second",
+      "probes": [],
+      "hint": {
+        "en": "A class is a definition; an instance is one object created from it.",
+        "nl": "Een klasse is een definitie; een instantie is één daaruit gemaakt object."
+      },
+      "hints": [
+        {
+          "en": "A class is a definition; an instance is one object created from it.",
+          "nl": "Een klasse is een definitie; een instantie is één daaruit gemaakt object."
+        },
+        {
+          "en": "Call the class twice rather than assigning a second name to the first object.",
+          "nl": "Roep de klasse tweemaal aan in plaats van een tweede naam aan het eerste object te koppelen."
+        },
+        {
+          "en": "A small fragment to adapt: `second = Ticket()`",
+          "nl": "Een klein fragment om aan te passen: `second = Ticket()`"
+        }
+      ],
+      "feedback": {
+        "en": "Call the class twice rather than assigning a second name to the first object.",
+        "nl": "Roep de klasse tweemaal aan in plaats van een tweede naam aan het eerste object te koppelen."
+      }
+    }
+  ],
+  "solutionNote": {
+    "en": "Each constructor call creates a new instance, while assignment alone creates another reference.",
+    "nl": "Elke constructoraanroep maakt een nieuwe instantie, terwijl alleen toewijzing een andere verwijzing maakt."
+  },
+  "inputs": [],
+  "retrievals": [
+    {
+      "id": "recall-python-v4-21-rows",
+      "sourceActivityId": "python-v4-21-rows",
+      "objectiveIds": [
+        "csv",
+        "csv-reader",
+        "csv-quoting"
+      ],
+      "prompt": {
+        "en": "Recall “Read rows and columns with csv.reader”. Why does the data row still have only two columns? Try the earlier example from memory, then check it. Put a quoted comma inside another field and compare with naive splitting.",
+        "nl": "Haal “Lees rijen en kolommen met csv.reader” terug. Waarom heeft de gegevensrij nog steeds maar twee kolommen? Probeer het eerdere voorbeeld uit je geheugen en controleer daarna. Zet een aangehaalde komma in een ander veld en vergelijk met eenvoudig splitsen."
+      }
+    }
+  ]
+}

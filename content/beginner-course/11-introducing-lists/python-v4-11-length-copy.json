@@ -1,0 +1,150 @@
+{
+  "id": "python-v4-11-length-copy",
+  "chapter": 11,
+  "group": "python-v4-module-11",
+  "title": {
+    "en": "Count and copy a list",
+    "nl": "Tel en kopieer een lijst"
+  },
+  "kind": "coding",
+  "optional": false,
+  "runtime": "terminal",
+  "guidance": "independent",
+  "checkpointMode": "sequential",
+  "estimatedMinutes": 12,
+  "topicIds": [
+    "length",
+    "copying"
+  ],
+  "practices": [],
+  "requiredConcepts": [
+    "list-mutation"
+  ],
+  "explanation": {
+    "en": "Sometimes you want a changed result while keeping the original data intact.",
+    "nl": "Soms wil je een veranderd resultaat terwijl de oorspronkelijke gegevens intact blijven."
+  },
+  "example": "",
+  "sections": [
+    {
+      "id": "python-v4-11-length-copy-example",
+      "topicIds": [
+        "length",
+        "copying"
+      ],
+      "heading": {
+        "en": "Follow a working example",
+        "nl": "Volg een werkend voorbeeld"
+      },
+      "body": {
+        "en": "len(items) returns the number of elements; an empty list has length zero. copy = items makes another name for the same list. items.copy() makes a new outer list. This shallow copy is sufficient for the flat lists here; nested mutable elements need extra care later.",
+        "nl": "len(items) geeft het aantal elementen; een lege lijst heeft lengte nul. copy = items maakt een andere naam voor dezelfde lijst. items.copy() maakt een nieuwe buitenste lijst. Deze oppervlakkige kopie is voldoende voor de platte lijsten hier; geneste veranderbare elementen vragen later extra zorg."
+      },
+      "code": "original = [2, 4]\ncopy = original.copy()\ncopy.append(6)\nprint(len(copy))\nprint(original)",
+      "output": "3\n[2, 4]\n",
+      "prediction": {
+        "en": "What would happen if copy = original were used instead?",
+        "nl": "Wat gebeurt er als je copy = original gebruikt?"
+      },
+      "takeaway": {
+        "en": "Assignment shares a list; .copy() makes a separate outer list.",
+        "nl": "Toewijzing deelt een lijst; .copy() maakt een aparte buitenste lijst."
+      }
+    },
+    {
+      "id": "python-v4-11-length-copy-experiment",
+      "topicIds": [],
+      "heading": {
+        "en": "Try one change",
+        "nl": "Probeer één wijziging"
+      },
+      "body": {
+        "en": "Call the function twice with the same original list.",
+        "nl": "Roep de functie tweemaal aan met dezelfde oorspronkelijke lijst."
+      }
+    }
+  ],
+  "files": {
+    "main.py": ""
+  },
+  "solution": {
+    "main.py": "def with_count(items):\n    result = items.copy()\n    result.append(len(items))\n    return result\n"
+  },
+  "checkpoints": [
+    {
+      "id": "python-v4-11-length-copy-step-1",
+      "objectiveIds": [
+        "length",
+        "copying"
+      ],
+      "task": {
+        "en": "Return a copy with the original length appended. Leave items unchanged, including for an empty list.",
+        "nl": "Geef een kopie terug met de oorspronkelijke lengte achteraan. Laat items ongewijzigd, ook bij een lege lijst."
+      },
+      "check": "callable(with_count)",
+      "probes": [
+        {
+          "call": {
+            "name": "with_count",
+            "args": [
+              [
+                5,
+                9
+              ]
+            ]
+          },
+          "check": "(_return == [5,9,2] and _args[0] == [5,9]) and _error is None"
+        },
+        {
+          "call": {
+            "name": "with_count",
+            "args": [
+              []
+            ]
+          },
+          "check": "(_return == [0] and _args[0] == []) and _error is None"
+        }
+      ],
+      "hint": {
+        "en": "Assignment shares a list; .copy() makes a separate outer list.",
+        "nl": "Toewijzing deelt een lijst; .copy() maakt een aparte buitenste lijst."
+      },
+      "hints": [
+        {
+          "en": "Assignment shares a list; .copy() makes a separate outer list.",
+          "nl": "Toewijzing deelt een lijst; .copy() maakt een aparte buitenste lijst."
+        },
+        {
+          "en": "Copy first, then append the length of the original list.",
+          "nl": "Kopieer eerst en voeg dan de lengte van de oorspronkelijke lijst toe."
+        },
+        {
+          "en": "A small fragment to adapt: `result = items.copy()`",
+          "nl": "Een klein fragment om aan te passen: `result = items.copy()`"
+        }
+      ],
+      "feedback": {
+        "en": "Copy first, then append the length of the original list.",
+        "nl": "Kopieer eerst en voeg dan de lengte van de oorspronkelijke lijst toe."
+      }
+    }
+  ],
+  "solutionNote": {
+    "en": "Copying prevents an appended count from contaminating the next use of the original data.",
+    "nl": "Kopiëren voorkomt dat een toegevoegd aantal het volgende gebruik van de oorspronkelijke gegevens beïnvloedt."
+  },
+  "inputs": [],
+  "retrievals": [
+    {
+      "id": "recall-python-v4-09-none",
+      "sourceActivityId": "python-v4-09-none",
+      "objectiveIds": [
+        "none"
+      ],
+      "prompt": {
+        "en": "Recall “A function without a return value”. Which line comes from the function body? Try the earlier example from memory, then check it. Compare print(triple(0)) with triple(0) by itself.",
+        "nl": "Haal “Een functie zonder terugkeerwaarde” terug. Welke regel komt uit de functie-inhoud? Probeer het eerdere voorbeeld uit je geheugen en controleer daarna. Vergelijk print(triple(0)) met alleen triple(0)."
+      }
+    }
+  ]
+}

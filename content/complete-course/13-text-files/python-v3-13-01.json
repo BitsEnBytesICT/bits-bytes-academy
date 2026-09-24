@@ -1,0 +1,189 @@
+{
+  "id": "python-v3-13-01",
+  "chapter": 13,
+  "group": "python-v3-module-13",
+  "title": {
+    "en": "Read a supplied file",
+    "nl": "Lees een meegeleverd bestand"
+  },
+  "kind": "coding",
+  "optional": false,
+  "runtime": "terminal",
+  "guidance": "guided",
+  "estimatedMinutes": 16,
+  "explanation": {
+    "en": "Read a supplied UTF-8 text file and inspect it beside your code. Browser files live in this activity’s workspace; they are not automatically files in your computer’s folders.",
+    "nl": "Lees een meegeleverd UTF-8-tekstbestand en bekijk het naast je code. Browserbestanden staan in de werkruimte van deze activiteit; ze worden niet automatisch bestanden in de mappen op je computer."
+  },
+  "example": "",
+  "topicIds": [
+    "with",
+    "read",
+    "utf-8",
+    "browser-filesystem"
+  ],
+  "prerequisites": [
+    "python-v3-12-06"
+  ],
+  "sections": [
+    {
+      "topicIds": [
+        "with",
+        "read",
+        "utf-8",
+        "browser-filesystem"
+      ],
+      "heading": {
+        "en": "Open, use, close",
+        "nl": "Open, gebruik, sluit"
+      },
+      "body": {
+        "en": "with open(filename, \"r\", encoding=\"utf-8\") as handle opens a text file for reading and closes it when the block ends, including after an exception. handle.read() returns the remaining text, including newlines. This app restores saved workspace files before Run and captures supported generated text files afterward. Inspect file tabs and use backup export to keep a portable copy; a bare Pyodide filesystem alone would not guarantee persistence across page reloads. See [Pyodide filesystems](https://pyodide.org/en/stable/usage/file-system.html).",
+        "nl": "with open(bestandsnaam, \"r\", encoding=\"utf-8\") as handle opent een tekstbestand om te lezen en sluit het wanneer het blok eindigt, ook na een uitzondering. handle.read() geeft resterende tekst terug, inclusief nieuwe regels. Deze app herstelt opgeslagen werkruimtebestanden vóór Uitvoeren en bewaart ondersteunde gegenereerde tekstbestanden daarna. Bekijk bestandstabbladen en exporteer een back-up voor een draagbare kopie; een los Pyodide-bestandssysteem garandeert geen behoud na herladen. Zie [Pyodide-bestandssystemen](https://pyodide.org/en/stable/usage/file-system.html)."
+      },
+      "code": "with open(\"example.txt\", \"r\", encoding=\"utf-8\") as handle:\n    text = handle.read()\nprint(text, end=\"\")",
+      "output": "Café\nWelcome\n",
+      "prediction": {
+        "en": "When does the file close? Are newlines part of text?",
+        "nl": "Wanneer sluit het bestand? Zijn nieuwe regels onderdeel van text?"
+      },
+      "exampleFiles": {
+        "example.txt": "Café\nWelcome\n"
+      }
+    },
+    {
+      "topicIds": [],
+      "heading": {
+        "en": "Try a changed input",
+        "nl": "Probeer gewijzigde invoer"
+      },
+      "body": {
+        "en": "Edit one line in note.txt, Run, navigate away and return. The saved file should keep your edit. Explain why that app behaviour differs from writing directly into a desktop folder.",
+        "nl": "Bewerk één regel in note.txt, voer uit, navigeer weg en keer terug. Het opgeslagen bestand hoort je wijziging te behouden. Leg uit waarom dat appgedrag verschilt van direct schrijven in een desktopmap."
+      }
+    }
+  ],
+  "files": {
+    "note.txt": "Café lab\nBring a notebook.\n",
+    "main.py": "def read_note(filename):\n    return \"\"\n\nprint(read_note(\"note.txt\"), end=\"\")\n"
+  },
+  "solution": {
+    "note.txt": "Café lab\nBring a notebook.\n",
+    "main.py": "def read_note(filename):\n    with open(filename, \"r\", encoding=\"utf-8\") as handle:\n        return handle.read()\n\nprint(read_note(\"note.txt\"), end=\"\")\n"
+  },
+  "checkpoints": [
+    {
+      "objectiveIds": [
+        "with",
+        "read"
+      ],
+      "task": {
+        "en": "Use with to implement read_note(filename), returning the complete text without trimming it.",
+        "nl": "Gebruik with om read_note(filename) te implementeren en geef de volledige tekst zonder trimmen terug."
+      },
+      "check": "read_note(\"note.txt\") == \"Café lab\\nBring a notebook.\\n\" and any(isinstance(n,_ast.With) for n in _ast.walk(_ast.parse(_source)))",
+      "hints": [
+        {
+          "en": "Return the text while the file is open.",
+          "nl": "Geef de tekst terug terwijl het bestand open is."
+        },
+        {
+          "en": "Call read without a size limit.",
+          "nl": "Roep read zonder groottelimiet aan."
+        },
+        {
+          "en": "with open(filename, \"r\", encoding=\"utf-8\") as handle:",
+          "nl": "with open(filename, \"r\", encoding=\"utf-8\") as handle:"
+        }
+      ],
+      "hint": {
+        "en": "Return the text while the file is open.",
+        "nl": "Geef de tekst terug terwijl het bestand open is."
+      },
+      "feedback": {
+        "en": "Do not lose the final newline or hard-code the example file’s contents.",
+        "nl": "Verlies de laatste nieuwe regel niet en leg de voorbeeldinhoud niet vast in code."
+      },
+      "probes": [
+        {
+          "call": {
+            "name": "read_note",
+            "args": [
+              "other.txt"
+            ]
+          },
+          "check": "_return == \"line 1\\nline 2\\n\"",
+          "files": {
+            "other.txt": "line 1\nline 2\n"
+          }
+        }
+      ],
+      "id": "python-v3-13-01-step-1"
+    },
+    {
+      "objectiveIds": [
+        "utf-8",
+        "browser-filesystem"
+      ],
+      "task": {
+        "en": "Read accented text and an empty workspace file correctly. Open note.txt in its file tab and compare it with the terminal.",
+        "nl": "Lees tekst met accenten en een leeg werkruimtebestand correct. Open note.txt in zijn tabblad en vergelijk het met de terminal."
+      },
+      "check": "_stdout == \"Café lab\\nBring a notebook.\\n\"",
+      "hints": [
+        {
+          "en": "UTF-8 keeps the text encoding explicit.",
+          "nl": "UTF-8 maakt de tekstcodering expliciet."
+        },
+        {
+          "en": "Reading an empty file returns an empty string.",
+          "nl": "Een leeg bestand lezen geeft een lege string terug."
+        },
+        {
+          "en": "return handle.read()",
+          "nl": "return handle.read()"
+        }
+      ],
+      "hint": {
+        "en": "UTF-8 keeps the text encoding explicit.",
+        "nl": "UTF-8 maakt de tekstcodering expliciet."
+      },
+      "feedback": {
+        "en": "Use the supplied filename and preserve all characters.",
+        "nl": "Gebruik de meegegeven bestandsnaam en behoud alle tekens."
+      },
+      "probes": [
+        {
+          "call": {
+            "name": "read_note",
+            "args": [
+              "empty.txt"
+            ]
+          },
+          "check": "_return == \"\"",
+          "files": {
+            "empty.txt": ""
+          }
+        },
+        {
+          "call": {
+            "name": "read_note",
+            "args": [
+              "unicode.txt"
+            ]
+          },
+          "check": "_return == \"Zoë — welkom\\n\"",
+          "files": {
+            "unicode.txt": "Zoë — welkom\n"
+          }
+        }
+      ],
+      "id": "python-v3-13-01-step-2"
+    }
+  ],
+  "solutionNote": {
+    "en": "The context manager controls the file’s lifetime. Returning read() preserves the exact text while UTF-8 makes non-ASCII characters portable.",
+    "nl": "De contextmanager beheert de levensduur van het bestand. read() teruggeven behoudt de exacte tekst terwijl UTF-8 niet-ASCII-tekens overdraagbaar maakt."
+  },
+  "inputs": []
+}

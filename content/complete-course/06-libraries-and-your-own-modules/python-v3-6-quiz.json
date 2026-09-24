@@ -1,0 +1,772 @@
+{
+  "id": "python-v3-6-quiz",
+  "chapter": 6,
+  "group": "python-v3-module-6",
+  "kind": "quiz",
+  "optional": false,
+  "estimatedMinutes": 6,
+  "title": {
+    "en": "Libraries and your own modules: review",
+    "nl": "Bibliotheken en je eigen modules: herhaling"
+  },
+  "questions": [
+    {
+      "objectiveIds": [
+        "decimal"
+      ],
+      "reviewActivityIds": [
+        "python-v3-6-03"
+      ],
+      "category": "prediction",
+      "prompt": {
+        "en": "What does this program print?",
+        "nl": "Wat drukt dit programma af?"
+      },
+      "code": "from decimal import Decimal\nprint(Decimal(\"0.1\") * 3 == Decimal(\"0.3\"))",
+      "answer": "a",
+      "choices": [
+        {
+          "id": "a",
+          "label": {
+            "en": "True",
+            "nl": "True"
+          },
+          "reason": {
+            "en": "Decimal from text preserves these exact tenths.",
+            "nl": "Decimal uit tekst behoudt deze exacte tienden."
+          }
+        },
+        {
+          "id": "b",
+          "label": {
+            "en": "False",
+            "nl": "False"
+          },
+          "reason": {
+            "en": "These inputs are strings, not approximated floats.",
+            "nl": "Deze invoer is tekst, geen benaderde floats."
+          }
+        },
+        {
+          "id": "c",
+          "label": {
+            "en": "None",
+            "nl": "None"
+          },
+          "reason": {
+            "en": "The equality expression produces a Boolean.",
+            "nl": "De gelijkheidsexpressie geeft een boolean."
+          }
+        }
+      ],
+      "expectedOutput": "True\n",
+      "id": "python-v3-6-quiz-a-1"
+    },
+    {
+      "objectiveIds": [
+        "random",
+        "random-seed"
+      ],
+      "reviewActivityIds": [
+        "python-v3-6-02"
+      ],
+      "category": "prediction",
+      "prompt": {
+        "en": "What does this program print?",
+        "nl": "Wat drukt dit programma af?"
+      },
+      "code": "import random\nrandom.seed(3)\na = random.randint(1, 6)\nrandom.seed(3)\nb = random.randint(1, 6)\nprint(a == b)",
+      "answer": "a",
+      "choices": [
+        {
+          "id": "a",
+          "label": {
+            "en": "True",
+            "nl": "True"
+          },
+          "reason": {
+            "en": "Resetting to the same seed replays the same first draw.",
+            "nl": "Op dezelfde seed herstarten herhaalt dezelfde eerste trekking."
+          }
+        },
+        {
+          "id": "b",
+          "label": {
+            "en": "False",
+            "nl": "False"
+          },
+          "reason": {
+            "en": "The seed deliberately makes this experiment reproducible.",
+            "nl": "De seed maakt dit experiment bewust herhaalbaar."
+          }
+        },
+        {
+          "id": "c",
+          "label": {
+            "en": "None",
+            "nl": "None"
+          },
+          "reason": {
+            "en": "The comparison has a definite Boolean result.",
+            "nl": "De vergelijking heeft een bepaald booleaans resultaat."
+          }
+        }
+      ],
+      "expectedOutput": "True\n",
+      "id": "python-v3-6-quiz-a-2"
+    },
+    {
+      "objectiveIds": [
+        "imports",
+        "aliases"
+      ],
+      "reviewActivityIds": [
+        "python-v3-6-01"
+      ],
+      "category": "completion",
+      "prompt": {
+        "en": "Complete the aliased import.",
+        "nl": "Vul de import met alias aan."
+      },
+      "code": "import math ___ m\nprint(m.ceil(3.2))",
+      "answer": "a",
+      "choices": [
+        {
+          "id": "a",
+          "label": {
+            "en": "as",
+            "nl": "as"
+          },
+          "reason": {
+            "en": "as binds the imported module to another name.",
+            "nl": "as koppelt de geïmporteerde module aan een andere naam."
+          }
+        },
+        {
+          "id": "b",
+          "label": {
+            "en": "from",
+            "nl": "from"
+          },
+          "reason": {
+            "en": "as binds the imported module to another name.",
+            "nl": "as koppelt de geïmporteerde module aan een andere naam."
+          }
+        },
+        {
+          "id": "c",
+          "label": {
+            "en": "in",
+            "nl": "in"
+          },
+          "reason": {
+            "en": "as binds the imported module to another name.",
+            "nl": "as koppelt de geïmporteerde module aan een andere naam."
+          }
+        }
+      ],
+      "codeBlank": {
+        "prompt": {
+          "en": "Complete the aliased import.",
+          "nl": "Vul de import met alias aan."
+        },
+        "segments": [
+          "import math ",
+          " m\nprint(m.ceil(3.2))"
+        ],
+        "tokens": [
+          {
+            "id": "token-1",
+            "code": "as"
+          },
+          {
+            "id": "token-2",
+            "code": "from"
+          },
+          {
+            "id": "token-3",
+            "code": "in"
+          }
+        ],
+        "blanks": [
+          {
+            "answer": "as",
+            "reason": {
+              "en": "as binds the imported module to another name.",
+              "nl": "as koppelt de geïmporteerde module aan een andere naam."
+            }
+          }
+        ],
+        "output": "4\n"
+      },
+      "id": "python-v3-6-quiz-a-3"
+    },
+    {
+      "objectiveIds": [
+        "from-import"
+      ],
+      "reviewActivityIds": [
+        "python-v3-6-01"
+      ],
+      "category": "completion",
+      "prompt": {
+        "en": "Import one named function.",
+        "nl": "Importeer één benoemde functie."
+      },
+      "code": "from math ___ floor\nprint(floor(3.8))",
+      "answer": "a",
+      "choices": [
+        {
+          "id": "a",
+          "label": {
+            "en": "import",
+            "nl": "import"
+          },
+          "reason": {
+            "en": "from module import name introduces that member directly.",
+            "nl": "from module import naam introduceert dat onderdeel direct."
+          }
+        },
+        {
+          "id": "b",
+          "label": {
+            "en": "as",
+            "nl": "as"
+          },
+          "reason": {
+            "en": "from module import name introduces that member directly.",
+            "nl": "from module import naam introduceert dat onderdeel direct."
+          }
+        },
+        {
+          "id": "c",
+          "label": {
+            "en": "return",
+            "nl": "return"
+          },
+          "reason": {
+            "en": "from module import name introduces that member directly.",
+            "nl": "from module import naam introduceert dat onderdeel direct."
+          }
+        }
+      ],
+      "codeBlank": {
+        "prompt": {
+          "en": "Import one named function.",
+          "nl": "Importeer één benoemde functie."
+        },
+        "segments": [
+          "from math ",
+          " floor\nprint(floor(3.8))"
+        ],
+        "tokens": [
+          {
+            "id": "token-1",
+            "code": "import"
+          },
+          {
+            "id": "token-2",
+            "code": "as"
+          },
+          {
+            "id": "token-3",
+            "code": "return"
+          }
+        ],
+        "blanks": [
+          {
+            "answer": "import",
+            "reason": {
+              "en": "from module import name introduces that member directly.",
+              "nl": "from module import naam introduceert dat onderdeel direct."
+            }
+          }
+        ],
+        "output": "3\n"
+      },
+      "id": "python-v3-6-quiz-a-4"
+    },
+    {
+      "objectiveIds": [
+        "copying",
+        "aliasing"
+      ],
+      "reviewActivityIds": [
+        "python-v3-5-02"
+      ],
+      "category": "debugging",
+      "prompt": {
+        "en": "Why did the original history change too?",
+        "nl": "Waarom veranderde de oorspronkelijke geschiedenis ook?"
+      },
+      "code": "history = [3]\nbackup = history\nbackup.append(9)",
+      "answer": "a",
+      "choices": [
+        {
+          "id": "a",
+          "label": {
+            "en": "backup is an alias; use a copy for an independent flat snapshot.",
+            "nl": "backup is een alias; gebruik een kopie voor een onafhankelijke vlakke momentopname."
+          },
+          "reason": {
+            "en": "Assignment does not clone a list.",
+            "nl": "Toewijzing kloont een lijst niet."
+          }
+        },
+        {
+          "id": "b",
+          "label": {
+            "en": "append always updates every list in a program.",
+            "nl": "append werkt altijd elke lijst in een programma bij."
+          },
+          "reason": {
+            "en": "Only references to this same list see the mutation.",
+            "nl": "Alleen verwijzingen naar dezelfde lijst zien de wijziging."
+          }
+        },
+        {
+          "id": "c",
+          "label": {
+            "en": "Numbers inside lists are all global variables.",
+            "nl": "Getallen in lijsten zijn allemaal globale variabelen."
+          },
+          "reason": {
+            "en": "Shared list identity, not numeric scope, causes this.",
+            "nl": "Gedeelde lijstidentiteit, niet getalbereik, veroorzaakt dit."
+          }
+        }
+      ],
+      "id": "python-v3-6-quiz-a-5"
+    },
+    {
+      "objectiveIds": [
+        "local-scope"
+      ],
+      "reviewActivityIds": [
+        "python-v3-4-03"
+      ],
+      "category": "application",
+      "prompt": {
+        "en": "A helper should work with different distances. Where should distance come from?",
+        "nl": "Een helper moet met verschillende afstanden werken. Waar moet distance vandaan komen?"
+      },
+      "answer": "a",
+      "choices": [
+        {
+          "id": "a",
+          "label": {
+            "en": "An explicit parameter supplied by its caller.",
+            "nl": "Een expliciete parameter van de aanroeper."
+          },
+          "reason": {
+            "en": "Parameters expose dependencies and allow independent calls.",
+            "nl": "Parameters maken afhankelijkheden zichtbaar en laten onafhankelijke aanroepen toe."
+          }
+        },
+        {
+          "id": "b",
+          "label": {
+            "en": "A hidden unrelated global variable.",
+            "nl": "Een verborgen niet-gerelateerde globale variabele."
+          },
+          "reason": {
+            "en": "That makes the result depend on state outside the call contract.",
+            "nl": "Dat maakt het resultaat afhankelijk van toestand buiten de aanroepafspraak."
+          }
+        },
+        {
+          "id": "c",
+          "label": {
+            "en": "A fixed sample number inside the function.",
+            "nl": "Een vast voorbeeldgetal binnen de functie."
+          },
+          "reason": {
+            "en": "A fixed example ignores other caller needs.",
+            "nl": "Een vast voorbeeld negeert andere behoeften van de aanroeper."
+          }
+        }
+      ],
+      "id": "python-v3-6-quiz-a-6"
+    }
+  ],
+  "alternateQuestions": [
+    {
+      "objectiveIds": [
+        "decimal"
+      ],
+      "reviewActivityIds": [
+        "python-v3-6-03"
+      ],
+      "category": "prediction",
+      "prompt": {
+        "en": "What does this program print?",
+        "nl": "Wat drukt dit programma af?"
+      },
+      "code": "from decimal import Decimal\nprint(Decimal(\"0.1\") * 7 == Decimal(\"0.7\"))",
+      "answer": "a",
+      "choices": [
+        {
+          "id": "a",
+          "label": {
+            "en": "True",
+            "nl": "True"
+          },
+          "reason": {
+            "en": "Decimal from text preserves these exact tenths.",
+            "nl": "Decimal uit tekst behoudt deze exacte tienden."
+          }
+        },
+        {
+          "id": "b",
+          "label": {
+            "en": "False",
+            "nl": "False"
+          },
+          "reason": {
+            "en": "These inputs are strings, not approximated floats.",
+            "nl": "Deze invoer is tekst, geen benaderde floats."
+          }
+        },
+        {
+          "id": "c",
+          "label": {
+            "en": "None",
+            "nl": "None"
+          },
+          "reason": {
+            "en": "The equality expression produces a Boolean.",
+            "nl": "De gelijkheidsexpressie geeft een boolean."
+          }
+        }
+      ],
+      "expectedOutput": "True\n",
+      "id": "python-v3-6-quiz-b-1"
+    },
+    {
+      "objectiveIds": [
+        "random",
+        "random-seed"
+      ],
+      "reviewActivityIds": [
+        "python-v3-6-02"
+      ],
+      "category": "prediction",
+      "prompt": {
+        "en": "What does this program print?",
+        "nl": "Wat drukt dit programma af?"
+      },
+      "code": "import random\nrandom.seed(7)\na = random.randint(1, 6)\nrandom.seed(7)\nb = random.randint(1, 6)\nprint(a == b)",
+      "answer": "a",
+      "choices": [
+        {
+          "id": "a",
+          "label": {
+            "en": "True",
+            "nl": "True"
+          },
+          "reason": {
+            "en": "Resetting to the same seed replays the same first draw.",
+            "nl": "Op dezelfde seed herstarten herhaalt dezelfde eerste trekking."
+          }
+        },
+        {
+          "id": "b",
+          "label": {
+            "en": "False",
+            "nl": "False"
+          },
+          "reason": {
+            "en": "The seed deliberately makes this experiment reproducible.",
+            "nl": "De seed maakt dit experiment bewust herhaalbaar."
+          }
+        },
+        {
+          "id": "c",
+          "label": {
+            "en": "None",
+            "nl": "None"
+          },
+          "reason": {
+            "en": "The comparison has a definite Boolean result.",
+            "nl": "De vergelijking heeft een bepaald booleaans resultaat."
+          }
+        }
+      ],
+      "expectedOutput": "True\n",
+      "id": "python-v3-6-quiz-b-2"
+    },
+    {
+      "objectiveIds": [
+        "imports",
+        "aliases"
+      ],
+      "reviewActivityIds": [
+        "python-v3-6-01"
+      ],
+      "category": "completion",
+      "prompt": {
+        "en": "Complete the aliased import.",
+        "nl": "Vul de import met alias aan."
+      },
+      "code": "import math ___ m\nprint(m.ceil(7.2))",
+      "answer": "a",
+      "choices": [
+        {
+          "id": "a",
+          "label": {
+            "en": "as",
+            "nl": "as"
+          },
+          "reason": {
+            "en": "as binds the imported module to another name.",
+            "nl": "as koppelt de geïmporteerde module aan een andere naam."
+          }
+        },
+        {
+          "id": "b",
+          "label": {
+            "en": "from",
+            "nl": "from"
+          },
+          "reason": {
+            "en": "as binds the imported module to another name.",
+            "nl": "as koppelt de geïmporteerde module aan een andere naam."
+          }
+        },
+        {
+          "id": "c",
+          "label": {
+            "en": "in",
+            "nl": "in"
+          },
+          "reason": {
+            "en": "as binds the imported module to another name.",
+            "nl": "as koppelt de geïmporteerde module aan een andere naam."
+          }
+        }
+      ],
+      "codeBlank": {
+        "prompt": {
+          "en": "Complete the aliased import.",
+          "nl": "Vul de import met alias aan."
+        },
+        "segments": [
+          "import math ",
+          " m\nprint(m.ceil(7.2))"
+        ],
+        "tokens": [
+          {
+            "id": "token-1",
+            "code": "as"
+          },
+          {
+            "id": "token-2",
+            "code": "from"
+          },
+          {
+            "id": "token-3",
+            "code": "in"
+          }
+        ],
+        "blanks": [
+          {
+            "answer": "as",
+            "reason": {
+              "en": "as binds the imported module to another name.",
+              "nl": "as koppelt de geïmporteerde module aan een andere naam."
+            }
+          }
+        ],
+        "output": "8\n"
+      },
+      "id": "python-v3-6-quiz-b-3"
+    },
+    {
+      "objectiveIds": [
+        "from-import"
+      ],
+      "reviewActivityIds": [
+        "python-v3-6-01"
+      ],
+      "category": "completion",
+      "prompt": {
+        "en": "Import one named function.",
+        "nl": "Importeer één benoemde functie."
+      },
+      "code": "from math ___ floor\nprint(floor(7.8))",
+      "answer": "a",
+      "choices": [
+        {
+          "id": "a",
+          "label": {
+            "en": "import",
+            "nl": "import"
+          },
+          "reason": {
+            "en": "from module import name introduces that member directly.",
+            "nl": "from module import naam introduceert dat onderdeel direct."
+          }
+        },
+        {
+          "id": "b",
+          "label": {
+            "en": "as",
+            "nl": "as"
+          },
+          "reason": {
+            "en": "from module import name introduces that member directly.",
+            "nl": "from module import naam introduceert dat onderdeel direct."
+          }
+        },
+        {
+          "id": "c",
+          "label": {
+            "en": "return",
+            "nl": "return"
+          },
+          "reason": {
+            "en": "from module import name introduces that member directly.",
+            "nl": "from module import naam introduceert dat onderdeel direct."
+          }
+        }
+      ],
+      "codeBlank": {
+        "prompt": {
+          "en": "Import one named function.",
+          "nl": "Importeer één benoemde functie."
+        },
+        "segments": [
+          "from math ",
+          " floor\nprint(floor(7.8))"
+        ],
+        "tokens": [
+          {
+            "id": "token-1",
+            "code": "import"
+          },
+          {
+            "id": "token-2",
+            "code": "as"
+          },
+          {
+            "id": "token-3",
+            "code": "return"
+          }
+        ],
+        "blanks": [
+          {
+            "answer": "import",
+            "reason": {
+              "en": "from module import name introduces that member directly.",
+              "nl": "from module import naam introduceert dat onderdeel direct."
+            }
+          }
+        ],
+        "output": "7\n"
+      },
+      "id": "python-v3-6-quiz-b-4"
+    },
+    {
+      "objectiveIds": [
+        "copying",
+        "aliasing"
+      ],
+      "reviewActivityIds": [
+        "python-v3-5-02"
+      ],
+      "category": "debugging",
+      "prompt": {
+        "en": "Why did the original history change too?",
+        "nl": "Waarom veranderde de oorspronkelijke geschiedenis ook?"
+      },
+      "code": "history = [7]\nbackup = history\nbackup.append(9)",
+      "answer": "a",
+      "choices": [
+        {
+          "id": "a",
+          "label": {
+            "en": "backup is an alias; use a copy for an independent flat snapshot.",
+            "nl": "backup is een alias; gebruik een kopie voor een onafhankelijke vlakke momentopname."
+          },
+          "reason": {
+            "en": "Assignment does not clone a list.",
+            "nl": "Toewijzing kloont een lijst niet."
+          }
+        },
+        {
+          "id": "b",
+          "label": {
+            "en": "append always updates every list in a program.",
+            "nl": "append werkt altijd elke lijst in een programma bij."
+          },
+          "reason": {
+            "en": "Only references to this same list see the mutation.",
+            "nl": "Alleen verwijzingen naar dezelfde lijst zien de wijziging."
+          }
+        },
+        {
+          "id": "c",
+          "label": {
+            "en": "Numbers inside lists are all global variables.",
+            "nl": "Getallen in lijsten zijn allemaal globale variabelen."
+          },
+          "reason": {
+            "en": "Shared list identity, not numeric scope, causes this.",
+            "nl": "Gedeelde lijstidentiteit, niet getalbereik, veroorzaakt dit."
+          }
+        }
+      ],
+      "id": "python-v3-6-quiz-b-5"
+    },
+    {
+      "objectiveIds": [
+        "local-scope"
+      ],
+      "reviewActivityIds": [
+        "python-v3-4-03"
+      ],
+      "category": "application",
+      "prompt": {
+        "en": "A helper should work with different prices. Where should price come from?",
+        "nl": "Een helper moet met verschillende prijzen werken. Waar moet price vandaan komen?"
+      },
+      "answer": "a",
+      "choices": [
+        {
+          "id": "a",
+          "label": {
+            "en": "An explicit parameter supplied by its caller.",
+            "nl": "Een expliciete parameter van de aanroeper."
+          },
+          "reason": {
+            "en": "Parameters expose dependencies and allow independent calls.",
+            "nl": "Parameters maken afhankelijkheden zichtbaar en laten onafhankelijke aanroepen toe."
+          }
+        },
+        {
+          "id": "b",
+          "label": {
+            "en": "A hidden unrelated global variable.",
+            "nl": "Een verborgen niet-gerelateerde globale variabele."
+          },
+          "reason": {
+            "en": "That makes the result depend on state outside the call contract.",
+            "nl": "Dat maakt het resultaat afhankelijk van toestand buiten de aanroepafspraak."
+          }
+        },
+        {
+          "id": "c",
+          "label": {
+            "en": "A fixed sample number inside the function.",
+            "nl": "Een vast voorbeeldgetal binnen de functie."
+          },
+          "reason": {
+            "en": "A fixed example ignores other caller needs.",
+            "nl": "Een vast voorbeeld negeert andere behoeften van de aanroeper."
+          }
+        }
+      ],
+      "id": "python-v3-6-quiz-b-6"
+    }
+  ]
+}

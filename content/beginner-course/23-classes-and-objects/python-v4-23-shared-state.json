@@ -1,0 +1,138 @@
+{
+  "id": "python-v4-23-shared-state",
+  "chapter": 23,
+  "group": "python-v4-module-23",
+  "title": {
+    "en": "Separate shared defaults from instance data",
+    "nl": "Scheid gedeelde standaarden van instantiegegevens"
+  },
+  "kind": "coding",
+  "optional": false,
+  "runtime": "terminal",
+  "guidance": "adapt",
+  "checkpointMode": "sequential",
+  "estimatedMinutes": 12,
+  "topicIds": [
+    "class-attributes",
+    "independent-instances"
+  ],
+  "practices": [],
+  "requiredConcepts": [
+    "constructors",
+    "methods",
+    "append"
+  ],
+  "explanation": {
+    "en": "A mutable class attribute is shared by all instances. This is a common cause of one object changing another.",
+    "nl": "Een veranderbaar klasseattribuut wordt door alle instanties gedeeld. Dit veroorzaakt vaak dat één object een ander verandert."
+  },
+  "example": "",
+  "sections": [
+    {
+      "id": "python-v4-23-shared-state-example",
+      "topicIds": [
+        "class-attributes",
+        "independent-instances"
+      ],
+      "heading": {
+        "en": "Follow a working example",
+        "nl": "Volg een werkend voorbeeld"
+      },
+      "body": {
+        "en": "An attribute assigned directly in the class body belongs to the class. It is suitable for shared constants such as a category label. Instance fields assigned in __init__ belong to each object. Put a new list in self.items for every instance, not one items = [] in the class body. A shallow copy of one shared nested structure may still share inner objects.",
+        "nl": "Een attribuut direct in de klasse-inhoud hoort bij de klasse. Dat is geschikt voor gedeelde constanten zoals een categorielabel. Instantievelden in __init__ horen bij elk object. Zet voor elke instantie een nieuwe lijst in self.items, niet één items = [] in de klasse-inhoud. Een oppervlakkige kopie van één gedeelde geneste structuur kan binnenste objecten nog delen."
+      },
+      "code": "class Basket:\n    category = \"storage\"\n    def __init__(self):\n        self.items = []\na = Basket()\nb = Basket()\na.items.append(\"book\")\nprint(b.items)\nprint(Basket.category)",
+      "output": "[]\nstorage\n",
+      "prediction": {
+        "en": "Why can category be shared while items must be separate?",
+        "nl": "Waarom kan category gedeeld zijn terwijl items apart moeten zijn?"
+      },
+      "takeaway": {
+        "en": "Create mutable per-object state inside __init__.",
+        "nl": "Maak veranderbare toestand per object binnen __init__."
+      }
+    },
+    {
+      "id": "python-v4-23-shared-state-experiment",
+      "topicIds": [],
+      "heading": {
+        "en": "Try one change",
+        "nl": "Probeer één wijziging"
+      },
+      "body": {
+        "en": "Create three bags, add to just one, and inspect all three lists.",
+        "nl": "Maak drie tassen, voeg aan één toe en bekijk alle drie lijsten."
+      }
+    }
+  ],
+  "files": {
+    "main.py": "class Bag:\n    category = \"travel\"\n    items = []\n    def add(self,item):\n        self.items.append(item)\n"
+  },
+  "solution": {
+    "main.py": "class Bag:\n    category = \"travel\"\n    def __init__(self):\n        self.items = []\n    def add(self,item):\n        self.items.append(item)\n"
+  },
+  "checkpoints": [
+    {
+      "id": "python-v4-23-shared-state-step-1",
+      "objectiveIds": [
+        "class-attributes",
+        "independent-instances"
+      ],
+      "task": {
+        "en": "Repair Bag so every instance has an independent items list while category remains shared as travel.",
+        "nl": "Herstel Bag zodat elke instantie een onafhankelijke items-lijst heeft terwijl category gedeeld travel blijft."
+      },
+      "check": "callable(Bag)",
+      "probes": [
+        {
+          "call": {
+            "name": "Bag",
+            "args": []
+          },
+          "check": "Bag.category == \"travel\" and _return.add(\"map\") is None and _return.items == [\"map\"] and Bag().items == []"
+        }
+      ],
+      "hint": {
+        "en": "Create mutable per-object state inside __init__.",
+        "nl": "Maak veranderbare toestand per object binnen __init__."
+      },
+      "hints": [
+        {
+          "en": "Create mutable per-object state inside __init__.",
+          "nl": "Maak veranderbare toestand per object binnen __init__."
+        },
+        {
+          "en": "Move list creation into an initializer and assign it through self.",
+          "nl": "Verplaats lijstaanmaak naar een initializer en wijs toe via self."
+        },
+        {
+          "en": "A small fragment to adapt: `self.items = []`",
+          "nl": "Een klein fragment om aan te passen: `self.items = []`"
+        }
+      ],
+      "feedback": {
+        "en": "Move list creation into an initializer and assign it through self.",
+        "nl": "Verplaats lijstaanmaak naar een initializer en wijs toe via self."
+      }
+    }
+  ],
+  "solutionNote": {
+    "en": "Each initializer creates a fresh list; the immutable class label remains a shared description.",
+    "nl": "Elke initializer maakt een nieuwe lijst; het onveranderbare klasselabel blijft een gedeelde beschrijving."
+  },
+  "inputs": [],
+  "retrievals": [
+    {
+      "id": "recall-python-v4-21-csv-report",
+      "sourceActivityId": "python-v4-21-csv-report",
+      "objectiveIds": [
+        "csv-review"
+      ],
+      "prompt": {
+        "en": "Recall “Transform a CSV export”. Which field needs conversion before transformation? Try the earlier example from memory, then check it. Add a score of zero and verify both the count and exported value.",
+        "nl": "Haal “Bewerk een CSV-export” terug. Welk veld vraagt omzetting vóór bewerking? Probeer het eerdere voorbeeld uit je geheugen en controleer daarna. Voeg een score nul toe en controleer zowel aantal als geëxporteerde waarde."
+      }
+    }
+  ]
+}

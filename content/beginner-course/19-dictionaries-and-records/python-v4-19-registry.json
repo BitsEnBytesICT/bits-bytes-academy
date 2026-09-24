@@ -1,0 +1,178 @@
+{
+  "id": "python-v4-19-registry",
+  "chapter": 19,
+  "group": "python-v4-module-19",
+  "title": {
+    "en": "Maintain a small scoreboard",
+    "nl": "Beheer een klein scorebord"
+  },
+  "kind": "coding",
+  "optional": false,
+  "runtime": "terminal",
+  "guidance": "independent",
+  "checkpointMode": "sequential",
+  "estimatedMinutes": 25,
+  "topicIds": [
+    "dictionary-review"
+  ],
+  "practices": [
+    "get",
+    "adding-keys",
+    "overwriting",
+    "dictionary-iteration"
+  ],
+  "requiredConcepts": [
+    "get",
+    "dictionary-iteration"
+  ],
+  "explanation": {
+    "en": "Apply records to a new scoring problem with a clear update contract.",
+    "nl": "Pas records toe op een nieuw scoreprobleem met een duidelijke wijzigingsafspraak."
+  },
+  "example": "",
+  "sections": [
+    {
+      "id": "python-v4-19-registry-example",
+      "topicIds": [
+        "dictionary-review",
+        "get",
+        "adding-keys",
+        "overwriting",
+        "dictionary-iteration"
+      ],
+      "heading": {
+        "en": "Follow a working example",
+        "nl": "Volg een werkend voorbeeld"
+      },
+      "body": {
+        "en": "Implement award(scores, name, points). Create a separate outer dictionary, add points to that player’s current score or zero for a new player, and return the updated mapping. Negative points are allowed. Keep other players and leave the original mapping unchanged. dict.copy() creates the shallow copy needed for these numeric values.",
+        "nl": "Implementeer award(scores, name, points). Maak een aparte buitenste dictionary, tel points bij de huidige score van die speler of nul voor een nieuwe speler en geef de gewijzigde koppeling terug. Negatieve punten zijn toegestaan. Behoud andere spelers en laat het origineel ongewijzigd. dict.copy() maakt de oppervlakkige kopie die voor deze numerieke waarden nodig is."
+      },
+      "code": "stock = {\"pens\":2}\nupdated = stock.copy()\nupdated[\"pens\"] += 3\nprint(stock)\nprint(updated)",
+      "output": "{'pens': 2}\n{'pens': 5}\n",
+      "prediction": {
+        "en": "Why do the two dictionaries end with different values?",
+        "nl": "Waarom eindigen beide dictionaries met verschillende waarden?"
+      },
+      "takeaway": {
+        "en": "Read the previous value with a fallback, then update one key in a copy.",
+        "nl": "Lees de vorige waarde met een terugvalwaarde en wijzig daarna één sleutel in een kopie."
+      }
+    },
+    {
+      "id": "python-v4-19-registry-experiment",
+      "topicIds": [],
+      "heading": {
+        "en": "Try one change",
+        "nl": "Probeer één wijziging"
+      },
+      "body": {
+        "en": "Award points twice while keeping both the original and updated versions.",
+        "nl": "Ken tweemaal punten toe en bewaar zowel de oorspronkelijke als gewijzigde versie."
+      }
+    }
+  ],
+  "files": {
+    "main.py": ""
+  },
+  "solution": {
+    "main.py": "def award(scores, name, points):\n    result = scores.copy()\n    result[name] = result.get(name, 0) + points\n    return result\n"
+  },
+  "checkpoints": [
+    {
+      "id": "python-v4-19-registry-step-1",
+      "objectiveIds": [
+        "dictionary-review",
+        "get",
+        "adding-keys",
+        "overwriting",
+        "dictionary-iteration"
+      ],
+      "task": {
+        "en": "Implement the update contract for existing and new players.",
+        "nl": "Implementeer de wijzigingsafspraak voor bestaande en nieuwe spelers."
+      },
+      "check": "callable(award)",
+      "probes": [
+        {
+          "call": {
+            "name": "award",
+            "args": [
+              {
+                "Ada": 3
+              },
+              "Ada",
+              2
+            ]
+          },
+          "check": "(_return == {\"Ada\":5} and _args[0] == {\"Ada\":3}) and _error is None"
+        },
+        {
+          "call": {
+            "name": "award",
+            "args": [
+              {},
+              "Bo",
+              0
+            ]
+          },
+          "check": "(_return == {\"Bo\":0}) and _error is None"
+        },
+        {
+          "call": {
+            "name": "award",
+            "args": [
+              {
+                "Ada": 3
+              },
+              "Bo",
+              -1
+            ]
+          },
+          "check": "(_return == {\"Ada\":3,\"Bo\":-1}) and _error is None"
+        }
+      ],
+      "hint": {
+        "en": "Read the previous value with a fallback, then update one key in a copy.",
+        "nl": "Lees de vorige waarde met een terugvalwaarde en wijzig daarna één sleutel in een kopie."
+      },
+      "hints": [
+        {
+          "en": "Read the previous value with a fallback, then update one key in a copy.",
+          "nl": "Lees de vorige waarde met een terugvalwaarde en wijzig daarna één sleutel in een kopie."
+        },
+        {
+          "en": "Copy before changing the player’s field.",
+          "nl": "Kopieer vóór het spelersveld te veranderen."
+        },
+        {
+          "en": "A small fragment to adapt: `result.get(name, 0)`",
+          "nl": "Een klein fragment om aan te passen: `result.get(name, 0)`"
+        }
+      ],
+      "feedback": {
+        "en": "Copy before changing the player’s field.",
+        "nl": "Kopieer vóór het spelersveld te veranderen."
+      }
+    }
+  ],
+  "solutionNote": {
+    "en": "A copied mapping and an absent-key fallback keep new and existing players on the same update path.",
+    "nl": "Een gekopieerde koppeling en terugvalwaarde voor ontbrekende sleutels houden nieuwe en bestaande spelers op dezelfde wijzigingsroute."
+  },
+  "inputs": [],
+  "retrievals": [
+    {
+      "id": "recall-python-v4-17-comprehensions",
+      "sourceActivityId": "python-v4-17-comprehensions",
+      "objectiveIds": [
+        "list-comprehensions",
+        "conditional-list-comprehensions"
+      ],
+      "prompt": {
+        "en": "Recall “Express a simple transformation compactly”. Does the filter test n or n * 2? Try the earlier example from memory, then check it. Rewrite the same behaviour with an ordinary loop and compare the results.",
+        "nl": "Haal “Schrijf een eenvoudige omzetting compact” terug. Test het filter n of n * 2? Probeer het eerdere voorbeeld uit je geheugen en controleer daarna. Herschrijf hetzelfde gedrag met een gewone lus en vergelijk de resultaten."
+      }
+    }
+  ]
+}

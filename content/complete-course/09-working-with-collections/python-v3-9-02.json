@@ -1,0 +1,179 @@
+{
+  "id": "python-v3-9-02",
+  "chapter": 9,
+  "group": "python-v3-module-9",
+  "title": {
+    "en": "Extract a slice",
+    "nl": "Haal een deel eruit"
+  },
+  "kind": "coding",
+  "optional": false,
+  "runtime": "terminal",
+  "guidance": "adapt",
+  "estimatedMinutes": 16,
+  "explanation": {
+    "en": "Extract useful parts of a sequence without changing the original. Learn why range is useful without materialising a list.",
+    "nl": "Haal bruikbare delen uit een reeks zonder het origineel te veranderen. Leer waarom range bruikbaar is zonder er een lijst van te maken."
+  },
+  "example": "",
+  "topicIds": [
+    "slicing",
+    "omitted-slice-bounds",
+    "range-as-sequence"
+  ],
+  "prerequisites": [
+    "python-v3-9-01"
+  ],
+  "sections": [
+    {
+      "topicIds": [
+        "slicing",
+        "omitted-slice-bounds",
+        "range-as-sequence"
+      ],
+      "heading": {
+        "en": "Select a half-open interval",
+        "nl": "Kies een interval zonder eindpunt"
+      },
+      "body": {
+        "en": "values[start:stop] includes start and excludes stop. Omit start for the beginning, stop for the end, or both for a shallow copy. Out-of-range slice bounds are safe. range is an immutable sequence object that computes its values; list(range(...)) materialises them. Indexing and len also work on range.",
+        "nl": "values[start:stop] neemt start mee en sluit stop uit. Laat start weg voor het begin, stop voor het einde of beide voor een oppervlakkige kopie. Slice-grenzen buiten bereik zijn veilig. range is een onveranderlijk reeksobject dat zijn waarden berekent; list(range(...)) maakt er een lijst van. Indexeren en len werken ook bij range."
+      },
+      "code": "values = [2, 4, 6, 8]\nprint(values[:2], values[2:], values[1:3])\nsteps = range(2, 9, 2)\nprint(steps[1], len(steps), list(steps))",
+      "output": "[2, 4] [6, 8] [4, 6]\n4 4 [2, 4, 6, 8]\n",
+      "prediction": {
+        "en": "Is the slice stop included? Does range itself store a normal list?",
+        "nl": "Wordt het slice-einde meegenomen? Bewaart range zelf een gewone lijst?"
+      }
+    },
+    {
+      "topicIds": [],
+      "heading": {
+        "en": "Try a changed input",
+        "nl": "Probeer gewijzigde invoer"
+      },
+      "body": {
+        "en": "Try values[99:] and values[:99]. Explain why these are safe while values[99] can fail.",
+        "nl": "Probeer values[99:] en values[:99]. Leg uit waarom die veilig zijn terwijl values[99] kan mislukken."
+      }
+    }
+  ],
+  "files": {
+    "main.py": "def parts(values):\n    return [], [], []\n\n# Create steps = range(1, 8, 2), and materialise it as numbers.\n"
+  },
+  "solution": {
+    "main.py": "def parts(values):\n    return values[:2], values[2:], values[:]\n\nsteps = range(1, 8, 2)\nnumbers = list(steps)\nprint(parts(numbers))\n"
+  },
+  "checkpoints": [
+    {
+      "objectiveIds": [
+        "slicing",
+        "omitted-slice-bounds"
+      ],
+      "task": {
+        "en": "Return the first two values, all values from index 2 onward, and a full shallow copy as a tuple of three lists.",
+        "nl": "Geef de eerste twee waarden, alle waarden vanaf index 2 en een volledige oppervlakkige kopie terug als tuple van drie lijsten."
+      },
+      "check": "parts([1,2,3]) == ([1,2],[3],[1,2,3])",
+      "hints": [
+        {
+          "en": "Slices can omit either boundary.",
+          "nl": "Slices kunnen beide grenzen weglaten."
+        },
+        {
+          "en": "Use [:2], [2:] and [:].",
+          "nl": "Gebruik [:2], [2:] en [:]."
+        },
+        {
+          "en": "return values[:2], values[2:], values[:]",
+          "nl": "return values[:2], values[2:], values[:]"
+        }
+      ],
+      "hint": {
+        "en": "Slices can omit either boundary.",
+        "nl": "Slices kunnen beide grenzen weglaten."
+      },
+      "feedback": {
+        "en": "Short and empty inputs should still return three lists.",
+        "nl": "Korte en lege invoer moet nog steeds drie lijsten teruggeven."
+      },
+      "probes": [
+        {
+          "call": {
+            "name": "parts",
+            "args": [
+              []
+            ]
+          },
+          "check": "_return == ([],[],[])"
+        },
+        {
+          "call": {
+            "name": "parts",
+            "args": [
+              [
+                5
+              ]
+            ]
+          },
+          "check": "_return == ([5],[],[5]) and _return[2] is not _args[0]"
+        }
+      ],
+      "id": "python-v3-9-02-step-1"
+    },
+    {
+      "objectiveIds": [
+        "range-as-sequence"
+      ],
+      "task": {
+        "en": "Create steps as range(1, 8, 2) and numbers as list(steps); keep both objects.",
+        "nl": "Maak steps als range(1, 8, 2) en numbers als list(steps); behoud beide objecten."
+      },
+      "check": "isinstance(steps,range) and numbers == [1,3,5,7] and isinstance(numbers,list)",
+      "hints": [
+        {
+          "en": "A range can be iterated without turning it into a list.",
+          "nl": "Een range kan worden doorlopen zonder er een lijst van te maken."
+        },
+        {
+          "en": "Materialisation is an explicit conversion.",
+          "nl": "Een lijst maken is een expliciete omzetting."
+        },
+        {
+          "en": "numbers = list(steps)",
+          "nl": "numbers = list(steps)"
+        }
+      ],
+      "hint": {
+        "en": "A range can be iterated without turning it into a list.",
+        "nl": "Een range kan worden doorlopen zonder er een lijst van te maken."
+      },
+      "feedback": {
+        "en": "Do not replace steps with the list; compare their different types.",
+        "nl": "Vervang steps niet door de lijst; vergelijk hun verschillende types."
+      },
+      "probes": [],
+      "id": "python-v3-9-02-step-2"
+    }
+  ],
+  "solutionNote": {
+    "en": "Slices use the same exclusive-stop idea as range. A full slice copies a list; list(range(...)) creates a list from a different sequence type.",
+    "nl": "Slices gebruiken hetzelfde exclusieve-einde-idee als range. Een volledige slice kopieert een lijst; list(range(...)) maakt een lijst uit een ander reekstype."
+  },
+  "inputs": [],
+  "retrievals": [
+    {
+      "id": "recall-python-v3-7-02",
+      "sourceActivityId": "python-v3-7-02",
+      "objectiveIds": [
+        "surface",
+        "colours",
+        "drawing-order"
+      ],
+      "prompt": {
+        "en": "Predict the visible Surface colour when fill happens after drawing a rectangle. Repair the drawing order.",
+        "nl": "Voorspel de zichtbare Surface-kleur als fill na het tekenen van een rechthoek komt. Herstel de tekenvolgorde."
+      }
+    }
+  ]
+}

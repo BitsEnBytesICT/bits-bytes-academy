@@ -1,0 +1,179 @@
+{
+  "id": "python-v4-15-coordinates",
+  "chapter": 15,
+  "group": "python-v4-module-15",
+  "title": {
+    "en": "Meet the Pygame preview",
+    "nl": "Ontmoet het Pygame-voorbeeld"
+  },
+  "kind": "coding",
+  "optional": false,
+  "runtime": "pygame",
+  "guidance": "guided",
+  "checkpointMode": "sequential",
+  "estimatedMinutes": 18,
+  "topicIds": [
+    "browser-loop",
+    "coordinates",
+    "pygame-objects",
+    "rect"
+  ],
+  "practices": [],
+  "requiredConcepts": [
+    "helper-modules",
+    "tuples"
+  ],
+  "explanation": {
+    "en": "Pygame draws into a window instead of printing a terminal conversation. Start with one rectangle and the supplied browser loop.",
+    "nl": "Pygame tekent in een venster in plaats van een terminalgesprek af te drukken. Begin met één rechthoek en de aangeleverde browserlus."
+  },
+  "example": "",
+  "sections": [
+    {
+      "id": "python-v4-15-coordinates-example",
+      "topicIds": [
+        "browser-loop",
+        "coordinates",
+        "pygame-objects",
+        "rect"
+      ],
+      "heading": {
+        "en": "Follow a working example",
+        "nl": "Volg een werkend voorbeeld"
+      },
+      "body": {
+        "en": "Run opens the preview; Finish & check closes it normally and checks your work, while Stop cancels. main.py supplies scheduling; edit game.py. async and await let the browser draw and process input and are supplied infrastructure. Coordinates begin at (0, 0) in the top-left: x increases rightward and y downward. pygame.Rect(x, y, width, height) creates a rectangle object with integer positions and dimensions. An object groups related information and operations.",
+        "nl": "Uitvoeren opent het voorbeeld; afronden en controleren sluit normaal af en beoordeelt je werk, terwijl Stop annuleert. main.py levert de planning; bewerk game.py. async en await laten de browser tekenen en invoer verwerken en zijn aangeleverde infrastructuur. Coördinaten beginnen linksboven bij (0, 0): x neemt naar rechts toe en y naar beneden. pygame.Rect(x, y, width, height) maakt een rechthoekobject met gehele posities en afmetingen. Een object groepeert bijbehorende gegevens en bewerkingen."
+      },
+      "code": "import pygame\nbox = pygame.Rect(10, 20, 30, 40)\nprint(box.x, box.y, box.width, box.height)",
+      "output": "10 20 30 40\n",
+      "prediction": {
+        "en": "Which argument moves the rectangle downward?",
+        "nl": "Welk argument verplaatst de rechthoek naar beneden?"
+      },
+      "takeaway": {
+        "en": "Position describes the top-left corner; size describes width and height.",
+        "nl": "De positie beschrijft de linkerbovenhoek; de afmeting beschrijft breedte en hoogte."
+      }
+    },
+    {
+      "topicIds": [],
+      "heading": {
+        "en": "Run, observe, finish",
+        "nl": "Voer uit, bekijk, rond af"
+      },
+      "body": {
+        "en": "main.py supplies the browser entry point. Run opens a real pygame-ce preview; click it to focus the keyboard. Clicking elsewhere pauses play. Finish & check closes normally and checks your helper after at least one rendered frame. Stop cancels without grading. Run can start a fresh session afterward. Keep the supplied async definition and await asyncio.sleep(1 / 60): they let the browser draw and receive input. You are not expected to reproduce this infrastructure from memory.",
+        "nl": "main.py levert het browserstartpunt. Uitvoeren opent een echt pygame-ce-voorbeeld; klik erop om het toetsenbord te activeren. Elders klikken pauzeert het spel. Afronden en controleren sluit normaal af en controleert je helper na minstens één getekend beeld. Stop annuleert zonder beoordeling. Uitvoeren kan daarna een nieuwe sessie starten. Behoud de meegeleverde async-definitie en await asyncio.sleep(1 / 60): die laten de browser tekenen en invoer ontvangen. Je hoeft deze infrastructuur niet uit je hoofd te schrijven."
+      }
+    },
+    {
+      "id": "python-v4-15-coordinates-experiment",
+      "topicIds": [],
+      "heading": {
+        "en": "Try one change",
+        "nl": "Probeer één wijziging"
+      },
+      "body": {
+        "en": "Change x and then y in the supplied call; observe each direction separately.",
+        "nl": "Verander x en daarna y in de aangeleverde aanroep; bekijk elke richting apart."
+      }
+    }
+  ],
+  "files": {
+    "main.py": "# Browser entry point supplied by the course.\nimport asyncio\nimport pygame\nimport game\n\nasync def main():\n    pygame.init()\n    screen = pygame.display.set_mode((640, 400))\n    clock = pygame.time.Clock()\n    running = True\n    while running:\n        dt = min(clock.tick() / 1000, 0.05)\n        for event in pygame.event.get():\n            if event.type == pygame.QUIT:\n                running = False\n            if event.type == pygame.KEYDOWN and event.key == pygame.K_ESCAPE:\n                running = False\n        keys = pygame.key.get_pressed()\n        screen.fill((16, 23, 39))\n        pygame.draw.rect(screen, (240, 240, 240), game.rectangle(50, 80, 12, 70))\n        pygame.display.flip()\n        await asyncio.sleep(1 / 60)\n    pygame.quit()\n\nasyncio.run(main())\n",
+    "game.py": "import pygame\n\ndef rectangle(x, y, width, height):\n    return pygame.Rect(0, 0, 10, 10)\n"
+  },
+  "solution": {
+    "main.py": "# Browser entry point supplied by the course.\nimport asyncio\nimport pygame\nimport game\n\nasync def main():\n    pygame.init()\n    screen = pygame.display.set_mode((640, 400))\n    clock = pygame.time.Clock()\n    running = True\n    while running:\n        dt = min(clock.tick() / 1000, 0.05)\n        for event in pygame.event.get():\n            if event.type == pygame.QUIT:\n                running = False\n            if event.type == pygame.KEYDOWN and event.key == pygame.K_ESCAPE:\n                running = False\n        keys = pygame.key.get_pressed()\n        screen.fill((16, 23, 39))\n        pygame.draw.rect(screen, (240, 240, 240), game.rectangle(50, 80, 12, 70))\n        pygame.display.flip()\n        await asyncio.sleep(1 / 60)\n    pygame.quit()\n\nasyncio.run(main())\n",
+    "game.py": "import pygame\n\ndef rectangle(x, y, width, height):\n    return pygame.Rect(x, y, width, height)\n"
+  },
+  "checkpoints": [
+    {
+      "id": "python-v4-15-coordinates-step-1",
+      "objectiveIds": [
+        "browser-loop",
+        "coordinates",
+        "pygame-objects",
+        "rect"
+      ],
+      "task": {
+        "en": "Return a Rect using all four requested dimensions. Run and finish the preview.",
+        "nl": "Geef een Rect met alle vier gevraagde waarden terug. Voer het voorbeeld uit en rond af."
+      },
+      "check": "_rendered_frames > 0",
+      "probes": [
+        {
+          "call": {
+            "name": "rectangle",
+            "args": [
+              3,
+              7,
+              9,
+              12
+            ],
+            "module": "game"
+          },
+          "check": "(tuple(_return) == (3,7,9,12)) and _error is None",
+          "moduleOnly": true,
+          "module": "game"
+        },
+        {
+          "call": {
+            "name": "rectangle",
+            "args": [
+              -5,
+              0,
+              20,
+              10
+            ],
+            "module": "game"
+          },
+          "check": "(_return.right == 15 and _return.bottom == 10) and _error is None",
+          "moduleOnly": true,
+          "module": "game"
+        }
+      ],
+      "hint": {
+        "en": "Position describes the top-left corner; size describes width and height.",
+        "nl": "De positie beschrijft de linkerbovenhoek; de afmeting beschrijft breedte en hoogte."
+      },
+      "hints": [
+        {
+          "en": "Position describes the top-left corner; size describes width and height.",
+          "nl": "De positie beschrijft de linkerbovenhoek; de afmeting beschrijft breedte en hoogte."
+        },
+        {
+          "en": "Pass the parameters to pygame.Rect in x, y, width, height order.",
+          "nl": "Geef parameters in de volgorde x, y, width, height aan pygame.Rect."
+        },
+        {
+          "en": "A small fragment to adapt: `pygame.Rect(x, y, width, height)`",
+          "nl": "Een klein fragment om aan te passen: `pygame.Rect(x, y, width, height)`"
+        }
+      ],
+      "feedback": {
+        "en": "Pass the parameters to pygame.Rect in x, y, width, height order.",
+        "nl": "Geef parameters in de volgorde x, y, width, height aan pygame.Rect."
+      }
+    }
+  ],
+  "solutionNote": {
+    "en": "The helper supplies geometry while the browser loop handles the display lifecycle.",
+    "nl": "De hulp levert geometrie terwijl de browserlus de schermlevenscyclus regelt."
+  },
+  "inputs": [],
+  "retrievals": [
+    {
+      "id": "recall-python-v4-13-pairs",
+      "sourceActivityId": "python-v4-13-pairs",
+      "objectiveIds": [
+        "tuples"
+      ],
+      "prompt": {
+        "en": "Recall “Keep a coordinate pair in a tuple”. What does position[1] mean? Try the earlier example from memory, then check it. Compare type((5)) with type((5,)).",
+        "nl": "Haal “Bewaar een coördinatenpaar in een tuple” terug. Wat betekent position[1]? Probeer het eerdere voorbeeld uit je geheugen en controleer daarna. Vergelijk type((5)) met type((5,))."
+      }
+    }
+  ]
+}

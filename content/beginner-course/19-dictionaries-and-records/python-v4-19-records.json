@@ -1,0 +1,161 @@
+{
+  "id": "python-v4-19-records",
+  "chapter": 19,
+  "group": "python-v4-module-19",
+  "title": {
+    "en": "Name fields with dictionary keys",
+    "nl": "Benoem velden met dictionarysleutels"
+  },
+  "kind": "coding",
+  "optional": false,
+  "runtime": "terminal",
+  "guidance": "guided",
+  "checkpointMode": "sequential",
+  "estimatedMinutes": 12,
+  "topicIds": [
+    "dictionaries",
+    "dictionary-creation"
+  ],
+  "practices": [],
+  "requiredConcepts": [
+    "lists",
+    "return"
+  ],
+  "explanation": {
+    "en": "A dictionary lets you retrieve information by a meaningful key instead of remembering a numeric position.",
+    "nl": "Een dictionary laat je informatie ophalen met een betekenisvolle sleutel in plaats van een numerieke positie te onthouden."
+  },
+  "example": "",
+  "sections": [
+    {
+      "id": "python-v4-19-records-example",
+      "topicIds": [
+        "dictionaries",
+        "dictionary-creation"
+      ],
+      "heading": {
+        "en": "Follow a working example",
+        "nl": "Volg een werkend voorbeeld"
+      },
+      "body": {
+        "en": "{\"name\": \"Bo\", \"score\": 4} maps keys to values. A colon separates each key from its value; commas separate entries. record[\"score\"] looks up that key. Keys are unique: using the same key again replaces its value. Values can have different types.",
+        "nl": "{\"name\": \"Bo\", \"score\": 4} koppelt sleutels aan waarden. Een dubbele punt scheidt sleutel en waarde; komma’s scheiden invoeren. record[\"score\"] zoekt die sleutel op. Sleutels zijn uniek: dezelfde sleutel opnieuw gebruiken vervangt zijn waarde. Waarden kunnen verschillende typen hebben."
+      },
+      "code": "record = {\"name\":\"Bo\",\"score\":4}\nprint(record[\"name\"])\nprint(record[\"score\"])",
+      "output": "Bo\n4\n",
+      "prediction": {
+        "en": "Would record[0] mean the first entry?",
+        "nl": "Betekent record[0] de eerste invoer?"
+      },
+      "takeaway": {
+        "en": "Dictionary access uses a key, not an automatic list position.",
+        "nl": "Dictionarytoegang gebruikt een sleutel, niet automatisch een lijstpositie."
+      }
+    },
+    {
+      "id": "python-v4-19-records-experiment",
+      "topicIds": [],
+      "heading": {
+        "en": "Try one change",
+        "nl": "Probeer één wijziging"
+      },
+      "body": {
+        "en": "Add a Boolean active field in an experiment.",
+        "nl": "Voeg in een experiment een booleaans active-veld toe."
+      }
+    }
+  ],
+  "files": {
+    "main.py": "def player(name, score):\n    # Complete this function.\n    return None\n"
+  },
+  "solution": {
+    "main.py": "def player(name, score):\n    return {\"name\":name,\"score\":score}\n"
+  },
+  "checkpoints": [
+    {
+      "id": "python-v4-19-records-step-1",
+      "objectiveIds": [
+        "dictionaries",
+        "dictionary-creation"
+      ],
+      "task": {
+        "en": "Return a dictionary with keys name and score mapped to the supplied values.",
+        "nl": "Geef een dictionary terug met sleutels name en score gekoppeld aan de gegeven waarden."
+      },
+      "check": "callable(player)",
+      "probes": [
+        {
+          "call": {
+            "name": "player",
+            "args": [
+              "Ada",
+              3
+            ]
+          },
+          "check": "(_return == {\"name\":\"Ada\",\"score\":3}) and _error is None"
+        },
+        {
+          "call": {
+            "name": "player",
+            "args": [
+              "",
+              0
+            ]
+          },
+          "check": "(_return == {\"name\":\"\",\"score\":0}) and _error is None"
+        }
+      ],
+      "hint": {
+        "en": "Dictionary access uses a key, not an automatic list position.",
+        "nl": "Dictionarytoegang gebruikt een sleutel, niet automatisch een lijstpositie."
+      },
+      "hints": [
+        {
+          "en": "Dictionary access uses a key, not an automatic list position.",
+          "nl": "Dictionarytoegang gebruikt een sleutel, niet automatisch een lijstpositie."
+        },
+        {
+          "en": "Quote field names, but use parameter values without quotes.",
+          "nl": "Zet veldnamen tussen aanhalingstekens, maar gebruik parameterwaarden zonder."
+        },
+        {
+          "en": "A small fragment to adapt: `{\"name\": name}`",
+          "nl": "Een klein fragment om aan te passen: `{\"name\": name}`"
+        }
+      ],
+      "feedback": {
+        "en": "Quote field names, but use parameter values without quotes.",
+        "nl": "Zet veldnamen tussen aanhalingstekens, maar gebruik parameterwaarden zonder."
+      }
+    }
+  ],
+  "solutionNote": {
+    "en": "Named fields keep the record’s meaning visible when accessed later.",
+    "nl": "Benoemde velden houden de betekenis van het record zichtbaar bij latere toegang."
+  },
+  "inputs": [],
+  "retrievals": [
+    {
+      "id": "recall-python-v4-17-insert",
+      "sourceActivityId": "python-v4-17-insert",
+      "objectiveIds": [
+        "insert"
+      ],
+      "prompt": {
+        "en": "Recall “Insert at a chosen position”. Did Mila disappear or move? Try the earlier example from memory, then check it. Insert another person at position one.",
+        "nl": "Haal “Voeg op een gekozen positie in” terug. Verdween Mila of verschoof die? Probeer het eerdere voorbeeld uit je geheugen en controleer daarna. Voeg nog iemand op positie één in."
+      }
+    },
+    {
+      "id": "recall-python-v4-17-score-report",
+      "sourceActivityId": "python-v4-17-score-report",
+      "objectiveIds": [
+        "collections-review"
+      ],
+      "prompt": {
+        "en": "Recall “Build a report without losing the original”. Why does the source list keep its order? Try the earlier example from memory, then check it. Design a test that catches accidentally removing duplicates.",
+        "nl": "Haal “Bouw een rapport zonder het origineel te verliezen” terug. Waarom behoudt de bronlijst zijn volgorde? Probeer het eerdere voorbeeld uit je geheugen en controleer daarna. Ontwerp een test die onbedoeld verwijderen van duplicaten ontdekt."
+      }
+    }
+  ]
+}

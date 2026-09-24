@@ -1,0 +1,169 @@
+{
+  "id": "python-v4-16-pong-project",
+  "chapter": 16,
+  "group": "python-v4-module-16",
+  "kind": "project",
+  "runtime": "pygame",
+  "optional": false,
+  "guidance": "independent",
+  "estimatedMinutes": 150,
+  "title": {
+    "en": "Project: a complete Pong rally",
+    "nl": "Project: een complete Pong-rally"
+  },
+  "explanation": {
+    "en": "Create a minimal two-player Pong game in the supplied browser loop. Build two paddles, a moving ball, simultaneous controls, boundaries, wall and paddle responses, a score display, and a fresh serve after each miss. Keep it procedural: variables and small functions are enough. The startup already handles the browser and window lifecycle. Use your own design and mark milestones after playtesting. Classes, file saving and menus are optional later extensions.",
+    "nl": "Maak een minimaal Pong-spel voor twee spelers in de aangeleverde browserlus. Bouw twee batjes, een bewegende bal, gelijktijdige bediening, grenzen, reacties op wanden en batjes, een scoreweergave en een nieuwe service na elke misser. Houd het procedureel: variabelen en kleine functies zijn voldoende. De start regelt de browser- en vensterlevenscyclus al. Kies je eigen ontwerp en markeer mijlpalen na speeltests. Klassen, bestanden opslaan en menu’s zijn optionele latere uitbreidingen."
+  },
+  "example": "",
+  "sections": [
+    {
+      "heading": {
+        "en": "Optional extension: a computer opponent",
+        "nl": "Optionele uitbreiding: een computertegenstander"
+      },
+      "body": {
+        "en": "Keep working in these same project files. Replace one player’s input with a direction chosen from the ball’s y coordinate. Give the computer a maximum speed and a small dead zone so it does not shake or teleport. Keep the two-player version selectable with a variable. This extension is optional and has no separate project completion. Later you may apply classes or save scores after those lessons.",
+        "nl": "Werk verder in dezelfde projectbestanden. Vervang de invoer van één speler door een richting gekozen vanuit de y-coördinaat van de bal. Geef de computer een maximumsnelheid en een kleine dode zone zodat hij niet trilt of teleporteert. Houd de versie voor twee spelers selecteerbaar met een variabele. Deze uitbreiding is optioneel en heeft geen aparte projectafronding. Later kun je klassen toepassen of scores opslaan na die lessen."
+      }
+    }
+  ],
+  "files": {
+    "main.py": "# Browser entry point supplied by the course.\nimport asyncio\nimport pygame\n\nasync def main():\n    pygame.init()\n    screen = pygame.display.set_mode((640, 400))\n    clock = pygame.time.Clock()\n    running = True\n    # Create your paddles, ball, scores and font here.\n    while running:\n        dt = min(clock.tick() / 1000, 0.05)\n        for event in pygame.event.get():\n            if event.type == pygame.QUIT:\n                running = False\n            if event.type == pygame.KEYDOWN and event.key == pygame.K_ESCAPE:\n                running = False\n            # Handle a serve key here.\n        keys = pygame.key.get_pressed()\n        # Update your game here.\n        screen.fill((16, 23, 39))\n        # Draw your court, paddles, ball and score here.\n        pygame.display.flip()\n        await asyncio.sleep(1 / 60)\n    pygame.quit()\n\nasyncio.run(main())\n"
+  },
+  "solution": {},
+  "checkpoints": [],
+  "solutionNote": {
+    "en": "Choose your own design and assess it using the manual tests.",
+    "nl": "Kies je eigen ontwerp en beoordeel het met de handmatige tests."
+  },
+  "milestones": [
+    {
+      "id": "pong-court",
+      "title": {
+        "en": "Draw and control the court",
+        "nl": "Teken en bedien het veld"
+      },
+      "description": {
+        "en": "Draw two paddles and a ball. Use W/S and Up/Down, allow both players to move together, and keep paddles inside the court.",
+        "nl": "Teken twee batjes en een bal. Gebruik W/S en Up/Down, laat beide spelers tegelijk bewegen en houd batjes binnen het veld."
+      },
+      "hints": [
+        {
+          "en": "Keep setup outside the repeating loop.",
+          "nl": "Houd voorbereiding buiten de herhaallus."
+        },
+        {
+          "en": "Update each paddle independently from held keys.",
+          "nl": "Werk elk batje onafhankelijk bij vanuit vastgehouden toetsen."
+        },
+        {
+          "en": "The maximum top coordinate is court height minus paddle height.",
+          "nl": "De maximale bovenpositie is veldhoogte min batjeshoogte."
+        }
+      ]
+    },
+    {
+      "id": "pong-rally",
+      "title": {
+        "en": "Move and bounce",
+        "nl": "Beweeg en stuiter"
+      },
+      "description": {
+        "en": "Use elapsed time for the ball, bounce on top/bottom walls and both paddles, and correct overlap so contacts stay stable.",
+        "nl": "Gebruik verstreken tijd voor de bal, stuiter tegen boven-/onderwand en beide batjes en herstel overlap zodat contacten stabiel blijven."
+      },
+      "hints": [
+        {
+          "en": "Test wall responses before paddle responses.",
+          "nl": "Test wandreacties vóór batjesreacties."
+        },
+        {
+          "en": "Use colliderect and require velocity toward the paddle.",
+          "nl": "Gebruik colliderect en eis snelheid naar het batje toe."
+        },
+        {
+          "en": "After a left-paddle hit, place the ball centre at paddle.right + radius.",
+          "nl": "Zet na een treffer links het balmiddelpunt op paddle.right + radius."
+        }
+      ]
+    },
+    {
+      "id": "pong-score",
+      "title": {
+        "en": "Score once and serve again",
+        "nl": "Scoor eenmaal en serveer opnieuw"
+      },
+      "description": {
+        "en": "Award a point to the opposite player after a miss, reset the ball to the centre, wait for Space and display both scores.",
+        "nl": "Ken na een misser een punt toe aan de andere speler, zet de bal middenin, wacht op Space en toon beide scores."
+      },
+      "hints": [
+        {
+          "en": "Change the score and ball state in one update.",
+          "nl": "Verander score en baltoestand in één update."
+        },
+        {
+          "en": "Use a KEYDOWN event for a single serve request.",
+          "nl": "Gebruik een KEYDOWN-gebeurtenis voor één serviceverzoek."
+        },
+        {
+          "en": "Render a formatted score string to a Surface and blit it.",
+          "nl": "Teken een geformatteerde scorestring naar een Surface en kopieer die."
+        }
+      ]
+    },
+    {
+      "id": "pong-test",
+      "title": {
+        "en": "Playtest the game",
+        "nl": "Test het spel"
+      },
+      "description": {
+        "en": "Run the cases below with another player or control both sides. Explain one collision and one state transition.",
+        "nl": "Voer onderstaande gevallen uit met een andere speler of bedien beide kanten. Leg één botsing en één toestandsovergang uit."
+      },
+      "hints": [
+        {
+          "en": "Watch several frames after each contact.",
+          "nl": "Bekijk meerdere beelden na elk contact."
+        },
+        {
+          "en": "Test both sides, not only the left paddle.",
+          "nl": "Test beide kanten, niet alleen het linkerbatje."
+        },
+        {
+          "en": "Stop, Run again, and check that initial scores and positions are reset.",
+          "nl": "Stop, voer opnieuw uit en controleer dat beginstanden en posities teruggezet zijn."
+        }
+      ]
+    }
+  ],
+  "references": [
+    "python-v4-15-drawing-order",
+    "python-v4-15-score-label",
+    "python-v4-16-held-controls",
+    "python-v4-16-wall-bounce",
+    "python-v4-16-paddle-contact",
+    "python-v4-16-score-once",
+    "python-v4-16-serve"
+  ],
+  "suggestedTests": [
+    {
+      "en": "Hold W and Down together; hold each paddle against both boundaries. Both players should stay responsive.",
+      "nl": "Houd W en Down tegelijk vast; houd elk batje tegen beide grenzen. Beide spelers horen te blijven reageren."
+    },
+    {
+      "en": "Test both walls and both paddles, including a departing ball still near a paddle and a vertical miss. Contacts must not rapidly flip direction.",
+      "nl": "Test beide wanden en batjes, inclusief een vertrekkende bal nog dicht bij een batje en een verticale misser. Contacten mogen niet snel van richting wisselen."
+    },
+    {
+      "en": "Miss on each side. Check exactly one point, a centred waiting ball and a new Space serve. Space during play must not reset the rally.",
+      "nl": "Mis aan beide kanten. Controleer precies één punt, een wachtende bal middenin en een nieuwe Space-service. Space tijdens spelen mag de rally niet terugzetten."
+    },
+    {
+      "en": "Change focus, return to the preview, close normally, Stop, and Run again. Check keys do not remain stuck and the new session starts cleanly.",
+      "nl": "Wissel focus, keer terug naar het voorbeeld, sluit normaal af, stop en voer opnieuw uit. Controleer dat toetsen niet blijven hangen en de nieuwe sessie schoon start."
+    }
+  ]
+}

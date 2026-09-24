@@ -1,0 +1,166 @@
+{
+  "id": "python-v4-21-write",
+  "chapter": 21,
+  "group": "python-v4-module-21",
+  "title": {
+    "en": "Export records to CSV",
+    "nl": "Exporteer records naar CSV"
+  },
+  "kind": "coding",
+  "optional": false,
+  "runtime": "terminal",
+  "guidance": "guided",
+  "checkpointMode": "sequential",
+  "estimatedMinutes": 18,
+  "topicIds": [
+    "csv-write"
+  ],
+  "practices": [],
+  "requiredConcepts": [
+    "dict-reader",
+    "write"
+  ],
+  "explanation": {
+    "en": "A CSV writer quotes fields correctly so another program can read the same data back.\n\nOpen work.py to write the requested function. main.py is a supplied caller: Run always starts there and imports your function. The other file tabs contain input data. After a successful run, open any new output file tab to inspect what your program saved.",
+    "nl": "Een CSV-schrijver plaatst aanhalingstekens correct zodat een ander programma dezelfde gegevens kan teruglezen.\n\nOpen work.py om de gevraagde functie te schrijven. main.py is de aangeleverde aanroeper: Uitvoeren begint daar en importeert je functie. De andere bestandstabbladen bevatten invoergegevens. Open na een geslaagde uitvoering een nieuw uitvoerbestand om te bekijken wat je programma heeft opgeslagen."
+  },
+  "example": "",
+  "sections": [
+    {
+      "id": "python-v4-21-write-example",
+      "topicIds": [
+        "csv-write"
+      ],
+      "heading": {
+        "en": "Follow a working example",
+        "nl": "Volg een werkend voorbeeld"
+      },
+      "body": {
+        "en": "csv.writer(handle).writerow(values) writes one row. csv.DictWriter(handle, fieldnames=[...]) chooses field order for dictionary rows. Call writeheader(), then writerow(record) for each record. Open with mode \"w\", newline=\"\" and UTF-8. The writer handles quoted commas and newlines; do not hand-build a CSV row by joining values.",
+        "nl": "csv.writer(handle).writerow(values) schrijft één rij. csv.DictWriter(handle, fieldnames=[...]) kiest de veldvolgorde voor dictionaryrijen. Roep writeheader() aan en daarna writerow(record) voor elk record. Open met modus \"w\", newline=\"\" en UTF-8. De schrijver verwerkt aangehaalde komma’s en nieuwe regels; maak geen CSV-rij met handmatig samenvoegen."
+      },
+      "code": "import csv\nwith open(\"example.csv\",\"w\",newline=\"\",encoding=\"utf-8\") as handle:\n    writer = csv.writer(handle)\n    writer.writerow([\"name\",\"city\"])\n    writer.writerow([\"Ada\",\"Paris, France\"])\nwith open(\"example.csv\",newline=\"\",encoding=\"utf-8\") as handle:\n    print(list(csv.reader(handle)))",
+      "output": "[['name', 'city'], ['Ada', 'Paris, France']]\n",
+      "prediction": {
+        "en": "Why is a comma inside the city safe here?",
+        "nl": "Waarom is een komma binnen de stad hier veilig?"
+      },
+      "takeaway": {
+        "en": "Use the CSV writer for both headers and escaped fields.",
+        "nl": "Gebruik de CSV-schrijver voor zowel koppen als correct gecodeerde velden."
+      },
+      "exampleFiles": {}
+    },
+    {
+      "id": "python-v4-21-write-experiment",
+      "topicIds": [],
+      "heading": {
+        "en": "Try one change",
+        "nl": "Probeer één wijziging"
+      },
+      "body": {
+        "en": "Inspect the generated file, then read it back using csv.reader.",
+        "nl": "Bekijk het gemaakte bestand en lees het terug met csv.reader."
+      }
+    }
+  ],
+  "files": {
+    "main.py": "import work\nwork.export(\"results.csv\",[{\"name\":\"Bo, Jr\",\"score\":3}])\n",
+    "work.py": "def export(path, records):\n    return None\n"
+  },
+  "solution": {
+    "main.py": "import work\nwork.export(\"results.csv\",[{\"name\":\"Bo, Jr\",\"score\":3}])\n",
+    "work.py": "import csv\ndef export(path, records):\n    with open(path,\"w\",newline=\"\",encoding=\"utf-8\") as handle:\n        writer = csv.DictWriter(handle,fieldnames=[\"name\",\"score\"])\n        writer.writeheader()\n        for record in records:\n            writer.writerow(record)\n"
+  },
+  "checkpoints": [
+    {
+      "id": "python-v4-21-write-step-1",
+      "objectiveIds": [
+        "csv-write"
+      ],
+      "task": {
+        "en": "Export records with the header name,score and correctly quoted fields. A zero-record export still has its header.",
+        "nl": "Exporteer records met kop name,score en correct aangehaalde velden. Een export zonder records heeft nog steeds zijn kop."
+      },
+      "check": "True",
+      "probes": [
+        {
+          "call": {
+            "name": "export",
+            "args": [
+              "out.csv",
+              [
+                {
+                  "name": "A, B",
+                  "score": 2
+                }
+              ]
+            ],
+            "module": "work"
+          },
+          "check": "(list(__import__(\"csv\").reader(open(\"out.csv\",newline=\"\"))) == [[\"name\",\"score\"],[\"A, B\",\"2\"]]) and _error is None",
+          "moduleOnly": true,
+          "module": "work",
+          "files": {}
+        },
+        {
+          "call": {
+            "name": "export",
+            "args": [
+              "empty.csv",
+              []
+            ],
+            "module": "work"
+          },
+          "check": "(list(__import__(\"csv\").reader(open(\"empty.csv\",newline=\"\"))) == [[\"name\",\"score\"]]) and _error is None",
+          "moduleOnly": true,
+          "module": "work",
+          "files": {}
+        }
+      ],
+      "hint": {
+        "en": "Use the CSV writer for both headers and escaped fields.",
+        "nl": "Gebruik de CSV-schrijver voor zowel koppen als correct gecodeerde velden."
+      },
+      "hints": [
+        {
+          "en": "Use the CSV writer for both headers and escaped fields.",
+          "nl": "Gebruik de CSV-schrijver voor zowel koppen als correct gecodeerde velden."
+        },
+        {
+          "en": "Use DictWriter and write the header before iterating records.",
+          "nl": "Gebruik DictWriter en schrijf de kop vóór het doorlopen van records."
+        },
+        {
+          "en": "A small fragment to adapt: `writer.writeheader()`",
+          "nl": "Een klein fragment om aan te passen: `writer.writeheader()`"
+        }
+      ],
+      "feedback": {
+        "en": "Use DictWriter and write the header before iterating records.",
+        "nl": "Gebruik DictWriter en schrijf de kop vóór het doorlopen van records."
+      }
+    }
+  ],
+  "solutionNote": {
+    "en": "The writer preserves field boundaries even when text contains the separator.",
+    "nl": "De schrijver bewaart veldgrenzen ook wanneer tekst het scheidingsteken bevat."
+  },
+  "inputs": [],
+  "retrievals": [
+    {
+      "id": "recall-python-v4-19-lookup",
+      "sourceActivityId": "python-v4-19-lookup",
+      "objectiveIds": [
+        "lookup",
+        "key-error",
+        "get",
+        "dictionary-membership"
+      ],
+      "prompt": {
+        "en": "Recall “Handle a missing key”. Why does the first lookup return zero instead of ten? Try the earlier example from memory, then check it. Compare absent score, score 0 and score None.",
+        "nl": "Haal “Verwerk een ontbrekende sleutel” terug. Waarom geeft de eerste zoekactie nul in plaats van tien? Probeer het eerdere voorbeeld uit je geheugen en controleer daarna. Vergelijk ontbrekende score, score 0 en score None."
+      }
+    }
+  ]
+}

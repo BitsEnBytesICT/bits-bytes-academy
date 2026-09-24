@@ -1,0 +1,225 @@
+{
+  "id": "python-v3-9-04",
+  "chapter": 9,
+  "group": "python-v3-module-9",
+  "title": {
+    "en": "Update a small grid",
+    "nl": "Werk een klein raster bij"
+  },
+  "kind": "coding",
+  "optional": false,
+  "runtime": "terminal",
+  "guidance": "adapt",
+  "estimatedMinutes": 16,
+  "explanation": {
+    "en": "Represent a small grid with a list of rows. Access a cell by selecting its row first, then its column. Use nested loops when every row contains several values to process.",
+    "nl": "Stel een klein raster voor met een lijst van rijen. Selecteer voor een cel eerst de rij en dan de kolom. Gebruik geneste lussen wanneer elke rij meerdere te verwerken waarden bevat."
+  },
+  "example": "",
+  "topicIds": [
+    "2d-lists",
+    "2d-access",
+    "2d-mutation",
+    "nested-loops"
+  ],
+  "prerequisites": [
+    "python-v3-9-03"
+  ],
+  "sections": [
+    {
+      "topicIds": [
+        "2d-lists",
+        "2d-access",
+        "2d-mutation",
+        "nested-loops"
+      ],
+      "heading": {
+        "en": "Rows contain their own lists",
+        "nl": "Rijen bevatten hun eigen lijsten"
+      },
+      "body": {
+        "en": "grid[row][column] first selects a row list, then a value inside it. Assigning that expression changes one cell. Create separate row lists: repeating the same row reference shares its state. A shallow outer copy still shares inner rows. An outer loop visits rows; an inner loop visits cells. Reset a row total inside the outer loop.",
+        "nl": "grid[row][column] kiest eerst een rijlijst en dan een waarde daarin. Die expressie toewijzen verandert één cel. Maak aparte rijlijsten: dezelfde rijreferentie herhalen deelt de toestand. Een oppervlakkige buitenste kopie deelt nog de binnenste rijen. Een buitenlus bezoekt rijen; een binnenlus bezoekt cellen. Zet een rijtotaal binnen de buitenlus opnieuw op nul."
+      },
+      "code": "grid = [[1, 2], [3, 4]]\ngrid[0][1] = 8\nfor row in grid:\n    for cell in row:\n        print(cell)",
+      "output": "1\n8\n3\n4\n",
+      "prediction": {
+        "en": "Which single cell changed?",
+        "nl": "Welke ene cel veranderde?"
+      }
+    },
+    {
+      "topicIds": [],
+      "heading": {
+        "en": "Try a changed input",
+        "nl": "Probeer gewijzigde invoer"
+      },
+      "body": {
+        "en": "Create row=[0,0] and grid=[row,row], change one cell, and explain the surprising shared update. Then create two separate row lists.",
+        "nl": "Maak row=[0,0] en grid=[row,row], wijzig één cel en verklaar de verrassende gedeelde wijziging. Maak daarna twee aparte rijlijsten."
+      }
+    }
+  ],
+  "files": {
+    "main.py": "def set_cell(grid, row, column, value):\n    pass\n\ndef row_totals(grid):\n    return []\n\nprint(row_totals([[1, 2], [3, 4]]))\n"
+  },
+  "solution": {
+    "main.py": "def set_cell(grid, row, column, value):\n    grid[row][column] = value\n\ndef row_totals(grid):\n    totals = []\n    for row in grid:\n        total = 0\n        for cell in row:\n            total += cell\n        totals.append(total)\n    return totals\n\nprint(row_totals([[1, 2], [3, 4]]))\n"
+  },
+  "checkpoints": [
+    {
+      "objectiveIds": [
+        "2d-lists",
+        "2d-access",
+        "2d-mutation"
+      ],
+      "task": {
+        "en": "Implement set_cell to change only grid[row][column]. Assume the supplied indexes exist and rows are independent.",
+        "nl": "Implementeer set_cell om alleen grid[row][column] te wijzigen. Neem aan dat de indexen bestaan en rijen onafhankelijk zijn."
+      },
+      "check": "callable(set_cell)",
+      "hints": [
+        {
+          "en": "Apply indexing twice.",
+          "nl": "Pas indexeren twee keer toe."
+        },
+        {
+          "en": "The row index comes before the column index.",
+          "nl": "De rijindex komt vóór de kolomindex."
+        },
+        {
+          "en": "grid[row][column] = value",
+          "nl": "grid[row][column] = value"
+        }
+      ],
+      "hint": {
+        "en": "Apply indexing twice.",
+        "nl": "Pas indexeren twee keer toe."
+      },
+      "feedback": {
+        "en": "Do not replace an entire row when only one cell should change.",
+        "nl": "Vervang geen hele rij wanneer alleen één cel moet veranderen."
+      },
+      "probes": [
+        {
+          "call": {
+            "name": "set_cell",
+            "args": [
+              [
+                [
+                  1,
+                  2
+                ],
+                [
+                  3,
+                  4
+                ]
+              ],
+              1,
+              0,
+              9
+            ]
+          },
+          "check": "_args[0] == [[1,2],[9,4]]"
+        },
+        {
+          "call": {
+            "name": "set_cell",
+            "args": [
+              [
+                [
+                  0
+                ]
+              ],
+              0,
+              0,
+              -2
+            ]
+          },
+          "check": "_args[0] == [[-2]]"
+        }
+      ],
+      "id": "python-v3-9-04-step-1"
+    },
+    {
+      "objectiveIds": [
+        "nested-loops"
+      ],
+      "task": {
+        "en": "Return a list containing each row’s sum from row_totals using nested loops. An empty row contributes 0.",
+        "nl": "Geef vanuit row_totals een lijst met elke rijsom terug met geneste lussen. Een lege rij draagt 0 bij."
+      },
+      "check": "row_totals([[1,2],[3,4]]) == [3,7]",
+      "hints": [
+        {
+          "en": "Each row needs its own fresh total.",
+          "nl": "Elke rij heeft een eigen nieuw totaal nodig."
+        },
+        {
+          "en": "Reset total inside the row loop, before the cell loop.",
+          "nl": "Zet total binnen de rijlus opnieuw op nul, vóór de cellus."
+        },
+        {
+          "en": "for cell in row:\n    total += cell",
+          "nl": "for cell in row:\n    total += cell"
+        }
+      ],
+      "hint": {
+        "en": "Each row needs its own fresh total.",
+        "nl": "Elke rij heeft een eigen nieuw totaal nodig."
+      },
+      "feedback": {
+        "en": "Do not carry a previous row’s total into the next row.",
+        "nl": "Neem het totaal van een vorige rij niet mee naar de volgende."
+      },
+      "probes": [
+        {
+          "call": {
+            "name": "row_totals",
+            "args": [
+              [
+                [],
+                [
+                  3,
+                  -1
+                ],
+                [
+                  0
+                ]
+              ]
+            ]
+          },
+          "check": "_return == [0,2,0]"
+        },
+        {
+          "call": {
+            "name": "row_totals",
+            "args": [
+              []
+            ]
+          },
+          "check": "_return == []"
+        }
+      ],
+      "id": "python-v3-9-04-step-2"
+    }
+  ],
+  "solutionNote": {
+    "en": "One indexing operation finds a row; the next finds a cell. Resetting the accumulator once per row creates independent totals.",
+    "nl": "Eén indexbewerking vindt een rij; de volgende vindt een cel. Het totaal één keer per rij opnieuw instellen maakt onafhankelijke totalen."
+  },
+  "inputs": [],
+  "retrievals": [
+    {
+      "id": "recall-python-v3-7-04",
+      "sourceActivityId": "python-v3-7-04",
+      "objectiveIds": [
+        "scene-review"
+      ],
+      "prompt": {
+        "en": "Sketch a changed court with one interactive colour. Keep the supplied entry point and change your drawing helper.",
+        "nl": "Schets een gewijzigd veld met één interactieve kleur. Behoud het meegeleverde startpunt en wijzig je tekenhelper."
+      }
+    }
+  ]
+}

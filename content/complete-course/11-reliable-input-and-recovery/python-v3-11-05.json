@@ -1,0 +1,252 @@
+{
+  "id": "python-v3-11-05",
+  "chapter": 11,
+  "group": "python-v3-module-11",
+  "title": {
+    "en": "A reliable input helper",
+    "nl": "Een betrouwbare invoerhulp"
+  },
+  "kind": "coding",
+  "optional": false,
+  "runtime": "terminal",
+  "guidance": "independent",
+  "estimatedMinutes": 15,
+  "explanation": {
+    "en": "Build an input helper for a bounded whole-number choice. The caller supplies inclusive low and high limits. Retry with useful feedback, or return None on cancel or EOF.",
+    "nl": "Bouw een invoerhelper voor een begrensde gehele-getalkeuze. De aanroeper geeft inclusieve onder- en bovengrenzen mee. Herhaal met bruikbare feedback of geef None bij cancel of EOF."
+  },
+  "example": "",
+  "topicIds": [
+    "recovery-review"
+  ],
+  "prerequisites": [
+    "python-v3-11-04"
+  ],
+  "sections": [
+    {
+      "topicIds": [
+        "recovery-review"
+      ],
+      "heading": {
+        "en": "A reusable conversation",
+        "nl": "Een herbruikbaar gesprek"
+      },
+      "body": {
+        "en": "A reusable helper should use its supplied bounds rather than a sample range. Decide separately whether text can become an integer and whether the integer is permitted. The caller chooses what to do with the returned number or None.",
+        "nl": "Een herbruikbare helper moet de meegegeven grenzen gebruiken in plaats van een voorbeeldbereik. Bepaal apart of tekst een geheel getal kan worden en of dat getal toegestaan is. De aanroeper kiest wat te doen met het teruggegeven getal of None."
+      },
+      "code": "low, high, value = -2, 2, 0\nprint(low <= value <= high)",
+      "output": "True\n",
+      "prediction": {
+        "en": "Why must zero not mean cancellation in this helper?",
+        "nl": "Waarom mag nul bij deze helper niet annuleren betekenen?"
+      }
+    },
+    {
+      "topicIds": [],
+      "heading": {
+        "en": "Try a changed input",
+        "nl": "Probeer gewijzigde invoer"
+      },
+      "body": {
+        "en": "Use this helper from a second main.py call with bounds -5 and -1. Revisit your early menu and describe how this input helper could improve it.",
+        "nl": "Gebruik deze helper vanuit een tweede main.py-aanroep met grenzen -5 en -1. Bekijk je vroege menu opnieuw en beschrijf hoe deze invoerhelper het kan verbeteren."
+      }
+    }
+  ],
+  "files": {
+    "reader.py": "def read_between(low, high):\n    return None\n",
+    "main.py": "import reader\nresult = reader.read_between(1, 5)\nprint(result)\n"
+  },
+  "solution": {
+    "reader.py": "def read_between(low, high):\n    while True:\n        try:\n            raw = input(f\"Whole number {low}..{high}, or cancel: \")\n        except EOFError:\n            return None\n        if raw.strip().lower() == \"cancel\":\n            return None\n        try:\n            value = int(raw)\n        except ValueError:\n            print(\"Enter a whole number\")\n            continue\n        if low <= value <= high:\n            return value\n        print(f\"Use {low} through {high}\")\n",
+    "main.py": "import reader\nresult = reader.read_between(1, 5)\nprint(result)\n"
+  },
+  "checkpoints": [
+    {
+      "objectiveIds": [
+        "recovery-review"
+      ],
+      "task": {
+        "en": "Implement read_between(low, high) to retry invalid input and return an in-range integer. Give feedback on every rejected attempt.",
+        "nl": "Implementeer read_between(low, high) om ongeldige invoer te herhalen en een geheel getal binnen bereik terug te geven. Geef feedback bij elke afgewezen poging."
+      },
+      "check": "result == 3",
+      "hints": [
+        {
+          "en": "Write down the successful, rejected and cancelled paths first.",
+          "nl": "Schrijf eerst de geslaagde, afgewezen en geannuleerde routes op."
+        },
+        {
+          "en": "Use int inside a specific try/except, then compare both limits.",
+          "nl": "Gebruik int in een specifieke try/except en vergelijk daarna beide grenzen."
+        },
+        {
+          "en": "if low <= value <= high:\n    return value",
+          "nl": "if low <= value <= high:\n    return value"
+        }
+      ],
+      "hint": {
+        "en": "Write down the successful, rejected and cancelled paths first.",
+        "nl": "Schrijf eerst de geslaagde, afgewezen en geannuleerde routes op."
+      },
+      "feedback": {
+        "en": "Use the caller’s limits, including negative ranges and exact endpoints.",
+        "nl": "Gebruik de grenzen van de aanroeper, ook negatieve bereiken en exacte eindpunten."
+      },
+      "probes": [
+        {
+          "call": {
+            "name": "read_between",
+            "args": [
+              -2,
+              2
+            ],
+            "module": "reader"
+          },
+          "check": "_return == 0 and len(_call_stdout.splitlines()) >= 2",
+          "moduleOnly": true,
+          "module": "reader",
+          "stdin": [
+            "bad",
+            "3",
+            "0"
+          ]
+        },
+        {
+          "call": {
+            "name": "read_between",
+            "args": [
+              4,
+              4
+            ],
+            "module": "reader"
+          },
+          "check": "_return == 4",
+          "moduleOnly": true,
+          "module": "reader",
+          "stdin": [
+            "3",
+            "4"
+          ]
+        },
+        {
+          "call": {
+            "name": "read_between",
+            "args": [
+              1,
+              5
+            ],
+            "module": "reader"
+          },
+          "check": "_return == 1",
+          "moduleOnly": true,
+          "module": "reader",
+          "stdin": [
+            "2.5",
+            "1"
+          ]
+        }
+      ],
+      "id": "python-v3-11-05-step-1"
+    },
+    {
+      "objectiveIds": [
+        "recovery-review"
+      ],
+      "task": {
+        "en": "Handle cancel with case/whitespace normalisation, and handle EOF after any number of attempts.",
+        "nl": "Handel cancel af met hoofdletter- en witruimtenormalisatie en handel EOF na elk aantal pogingen af."
+      },
+      "check": "callable(reader.read_between)",
+      "hints": [
+        {
+          "en": "Cancellation is a command, not a bad number.",
+          "nl": "Annuleren is een commando, geen slecht getal."
+        },
+        {
+          "en": "Recognise cancel before conversion and keep EOF handling around input.",
+          "nl": "Herken cancel vóór omzetting en houd EOF-afhandeling rond input."
+        },
+        {
+          "en": "if raw.strip().lower() == \"cancel\":\n    return None",
+          "nl": "if raw.strip().lower() == \"cancel\":\n    return None"
+        }
+      ],
+      "hint": {
+        "en": "Cancellation is a command, not a bad number.",
+        "nl": "Annuleren is een commando, geen slecht getal."
+      },
+      "feedback": {
+        "en": "The helper must always provide a deliberate exit route.",
+        "nl": "De helper moet altijd een bewuste uitweg bieden."
+      },
+      "probes": [
+        {
+          "call": {
+            "name": "read_between",
+            "args": [
+              1,
+              5
+            ],
+            "module": "reader"
+          },
+          "check": "_return is None and _error is None",
+          "moduleOnly": true,
+          "module": "reader",
+          "stdin": [
+            "invalid",
+            " Cancel "
+          ]
+        },
+        {
+          "call": {
+            "name": "read_between",
+            "args": [
+              1,
+              5
+            ],
+            "module": "reader"
+          },
+          "check": "_return is None and _error is None",
+          "moduleOnly": true,
+          "module": "reader",
+          "stdin": []
+        }
+      ],
+      "id": "python-v3-11-05-step-2"
+    }
+  ],
+  "solutionNote": {
+    "en": "The helper owns the retry conversation while the caller owns the next action. Parameterised limits make the same code suitable for menus or game settings.",
+    "nl": "De helper beheert het herhaalgesprek terwijl de aanroeper de volgende actie bepaalt. Grenzen als parameters maken dezelfde code geschikt voor menu’s of spelinstellingen."
+  },
+  "inputs": [
+    "3"
+  ],
+  "retrievals": [
+    {
+      "id": "recall-python-v3-9-05",
+      "sourceActivityId": "python-v3-9-05",
+      "objectiveIds": [
+        "list-comprehensions",
+        "conditional-comprehensions"
+      ],
+      "prompt": {
+        "en": "Rewrite a doubling loop as a comprehension, then filter out negatives. Explain the order of its expression, for and if.",
+        "nl": "Herschrijf een verdubbellus als comprehension en filter negatieve waarden weg. Leg de volgorde van expressie, for en if uit."
+      }
+    },
+    {
+      "id": "recall-python-v3-9-06",
+      "sourceActivityId": "python-v3-9-06",
+      "objectiveIds": [
+        "collections-review"
+      ],
+      "prompt": {
+        "en": "Create a new collection report that retains original order while showing a sorted selection. Test empty data.",
+        "nl": "Maak een nieuw verzamelingsrapport dat de originele volgorde behoudt en een gesorteerde selectie toont. Test lege gegevens."
+      }
+    }
+  ]
+}

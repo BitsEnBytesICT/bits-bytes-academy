@@ -1,0 +1,294 @@
+{
+  "id": "python-v3-8-05",
+  "chapter": 8,
+  "group": "python-v3-module-8",
+  "title": {
+    "en": "A playable rally",
+    "nl": "Een speelbare rally"
+  },
+  "kind": "coding",
+  "optional": false,
+  "runtime": "pygame",
+  "guidance": "independent",
+  "estimatedMinutes": 16,
+  "explanation": {
+    "en": "Combine known behaviours into one playable rally. The court is 640 × 400; the ball radius is 6. The caller handles paddle controls and drawing. Your step function returns (x, y, vx, vy). No scoring or classes are needed yet.",
+    "nl": "Combineer bekende gedragingen tot één speelbare rally. Het veld is 640 × 400; de balstraal is 6. De aanroeper regelt batjesbesturing en tekenen. Jouw step-functie geeft (x, y, vx, vy) terug. Score of klassen zijn nog niet nodig."
+  },
+  "example": "",
+  "topicIds": [
+    "miss-reset",
+    "rally-review"
+  ],
+  "prerequisites": [
+    "python-v3-8-04"
+  ],
+  "sections": [
+    {
+      "topicIds": [
+        "miss-reset",
+        "rally-review"
+      ],
+      "heading": {
+        "en": "Give a miss a clear outcome",
+        "nl": "Geef een misser een duidelijke uitkomst"
+      },
+      "body": {
+        "en": "Move first, resolve top/bottom walls and paddle overlaps, then check whether the whole ball has left the court. Paddles occupy (20, left_y, 10, 60) and (610, right_y, 10, 60). On a miss (x < -6 or x > 646), reset to (320, 200, 200, 100). Separate a bounced ball from the paddle at x=36 or x=604.",
+        "nl": "Beweeg eerst, los boven-/ondermuren en batjesoverlap op en controleer daarna of de hele bal buiten het veld is. Batjes staan op (20, left_y, 10, 60) en (610, right_y, 10, 60). Herstart bij een misser (x < -6 of x > 646) naar (320, 200, 200, 100). Zet een teruggekaatste bal los van het batje op x=36 of x=604."
+      },
+      "code": "x = 651\nmissed = x < -6 or x > 646\nprint(missed)",
+      "output": "True\n",
+      "prediction": {
+        "en": "Why does a centre at x=641 not yet mean the whole ball has left?",
+        "nl": "Waarom betekent een middelpunt op x=641 nog niet dat de hele bal buiten is?"
+      }
+    },
+    {
+      "topicIds": [],
+      "heading": {
+        "en": "Run, observe, finish",
+        "nl": "Voer uit, bekijk, rond af"
+      },
+      "body": {
+        "en": "main.py supplies the browser entry point. Run opens a real pygame-ce preview; click it to focus the keyboard. Clicking elsewhere pauses play. Finish & check closes normally and checks your helper after at least one rendered frame. Stop cancels without grading. Run can start a fresh session afterward. Keep the supplied async definition and await asyncio.sleep(1 / 60): they let the browser draw and receive input. You are not expected to reproduce this infrastructure from memory.",
+        "nl": "main.py levert het browserstartpunt. Uitvoeren opent een echt pygame-ce-voorbeeld; klik erop om het toetsenbord te activeren. Elders klikken pauzeert het spel. Afronden en controleren sluit normaal af en controleert je helper na minstens één getekend beeld. Stop annuleert zonder beoordeling. Uitvoeren kan daarna een nieuwe sessie starten. Behoud de meegeleverde async-definitie en await asyncio.sleep(1 / 60): die laten de browser tekenen en invoer ontvangen. Je hoeft deze infrastructuur niet uit je hoofd te schrijven."
+      }
+    },
+    {
+      "topicIds": [],
+      "heading": {
+        "en": "Try a changed input",
+        "nl": "Probeer gewijzigde invoer"
+      },
+      "body": {
+        "en": "Test simultaneous controls, top and bottom bounces, each paddle, and a deliberate miss on each side. Record one improvement you want for your own Pong.",
+        "nl": "Test gelijktijdige besturing, boven- en onderbotsingen, elk batje en een bewuste misser aan beide kanten. Noteer één verbetering voor je eigen Pong."
+      }
+    }
+  ],
+  "files": {
+    "main.py": "# Browser entry point supplied by the course.\nimport asyncio\nimport pygame\nimport game\n\nasync def main():\n    pygame.init()\n    screen = pygame.display.set_mode((640, 400))\n    clock = pygame.time.Clock()\n    running = True\n    x, y = 320.0, 200.0\n    vx, vy = 200.0, 100.0\n    left_y, right_y = 170.0, 170.0\n    while running:\n        dt = min(clock.tick() / 1000, 0.05)\n        for event in pygame.event.get():\n            if event.type == pygame.QUIT:\n                running = False\n            if event.type == pygame.KEYDOWN and event.key == pygame.K_ESCAPE:\n                running = False\n        keys = pygame.key.get_pressed()\n        if keys[pygame.K_w]:\n            left_y -= 240 * dt\n        if keys[pygame.K_s]:\n            left_y += 240 * dt\n        if keys[pygame.K_UP]:\n            right_y -= 240 * dt\n        if keys[pygame.K_DOWN]:\n            right_y += 240 * dt\n        left_y = max(0, min(340, left_y))\n        right_y = max(0, min(340, right_y))\n        x, y, vx, vy = game.step(x, y, vx, vy, dt, left_y, right_y)\n        screen.fill((16, 23, 39))\n        pygame.draw.rect(screen, (235, 240, 250), (20, left_y, 10, 60))\n        pygame.draw.rect(screen, (235, 240, 250), (610, right_y, 10, 60))\n        pygame.draw.circle(screen, (255, 170, 40), (int(x), int(y)), 6)\n        pygame.display.flip()\n        await asyncio.sleep(1 / 60)\n    pygame.quit()\n\nasyncio.run(main())\n",
+    "game.py": "import pygame\n\ndef step(x, y, vx, vy, dt, left_y, right_y):\n    # Add movement, walls, paddle contacts and reset.\n    return x, y, vx, vy\n"
+  },
+  "solution": {
+    "main.py": "# Browser entry point supplied by the course.\nimport asyncio\nimport pygame\nimport game\n\nasync def main():\n    pygame.init()\n    screen = pygame.display.set_mode((640, 400))\n    clock = pygame.time.Clock()\n    running = True\n    x, y = 320.0, 200.0\n    vx, vy = 200.0, 100.0\n    left_y, right_y = 170.0, 170.0\n    while running:\n        dt = min(clock.tick() / 1000, 0.05)\n        for event in pygame.event.get():\n            if event.type == pygame.QUIT:\n                running = False\n            if event.type == pygame.KEYDOWN and event.key == pygame.K_ESCAPE:\n                running = False\n        keys = pygame.key.get_pressed()\n        if keys[pygame.K_w]:\n            left_y -= 240 * dt\n        if keys[pygame.K_s]:\n            left_y += 240 * dt\n        if keys[pygame.K_UP]:\n            right_y -= 240 * dt\n        if keys[pygame.K_DOWN]:\n            right_y += 240 * dt\n        left_y = max(0, min(340, left_y))\n        right_y = max(0, min(340, right_y))\n        x, y, vx, vy = game.step(x, y, vx, vy, dt, left_y, right_y)\n        screen.fill((16, 23, 39))\n        pygame.draw.rect(screen, (235, 240, 250), (20, left_y, 10, 60))\n        pygame.draw.rect(screen, (235, 240, 250), (610, right_y, 10, 60))\n        pygame.draw.circle(screen, (255, 170, 40), (int(x), int(y)), 6)\n        pygame.display.flip()\n        await asyncio.sleep(1 / 60)\n    pygame.quit()\n\nasyncio.run(main())\n",
+    "game.py": "import pygame\n\ndef step(x, y, vx, vy, dt, left_y, right_y):\n    x += vx * dt\n    y += vy * dt\n    if y <= 6 and vy < 0:\n        y, vy = 6, -vy\n    elif y >= 394 and vy > 0:\n        y, vy = 394, -vy\n    ball = pygame.Rect(x - 6, y - 6, 12, 12)\n    left = pygame.Rect(20, left_y, 10, 60)\n    right = pygame.Rect(610, right_y, 10, 60)\n    if ball.colliderect(left) and vx < 0:\n        x, vx = 36, -vx\n    elif ball.colliderect(right) and vx > 0:\n        x, vx = 604, -vx\n    if x < -6 or x > 646:\n        x, y, vx, vy = 320.0, 200.0, 200.0, 100.0\n    return x, y, vx, vy\n"
+  },
+  "checkpoints": [
+    {
+      "objectiveIds": [
+        "rally-review"
+      ],
+      "task": {
+        "en": "Update both coordinates with dt, then resolve walls and both paddles using direction-aware responses.",
+        "nl": "Werk beide coördinaten met dt bij en los daarna muren en beide batjes op met richtingsbewuste reacties."
+      },
+      "check": "_rendered_frames > 0",
+      "hints": [
+        {
+          "en": "Reuse the movement and collision rules you just practised.",
+          "nl": "Hergebruik de bewegings- en botsingsregels die je net oefende."
+        },
+        {
+          "en": "Build Rects after moving, then test left and right approaches separately.",
+          "nl": "Maak Rects na bewegen en test naderen van links en rechts apart."
+        },
+        {
+          "en": "if ball.colliderect(right) and vx > 0:\n    x, vx = 604, -vx",
+          "nl": "if ball.colliderect(right) and vx > 0:\n    x, vx = 604, -vx"
+        }
+      ],
+      "hint": {
+        "en": "Reuse the movement and collision rules you just practised.",
+        "nl": "Hergebruik de bewegings- en botsingsregels die je net oefende."
+      },
+      "feedback": {
+        "en": "Check ordinary motion, both walls and both paddle directions.",
+        "nl": "Controleer gewone beweging, beide muren en beide batjesrichtingen."
+      },
+      "probes": [
+        {
+          "call": {
+            "name": "step",
+            "args": [
+              100,
+              100,
+              20,
+              10,
+              0.5,
+              170,
+              170
+            ],
+            "module": "game"
+          },
+          "check": "_return == (110,105,20,10)",
+          "moduleOnly": true,
+          "module": "game"
+        },
+        {
+          "call": {
+            "name": "step",
+            "args": [
+              100,
+              5,
+              20,
+              -10,
+              0,
+              170,
+              170
+            ],
+            "module": "game"
+          },
+          "check": "_return == (100,6,20,10)",
+          "moduleOnly": true,
+          "module": "game"
+        },
+        {
+          "call": {
+            "name": "step",
+            "args": [
+              28,
+              190,
+              -100,
+              0,
+              0,
+              170,
+              170
+            ],
+            "module": "game"
+          },
+          "check": "_return[0] == 36 and _return[2] == 100",
+          "moduleOnly": true,
+          "module": "game"
+        },
+        {
+          "call": {
+            "name": "step",
+            "args": [
+              613,
+              190,
+              100,
+              0,
+              0,
+              170,
+              170
+            ],
+            "module": "game"
+          },
+          "check": "_return[0] == 604 and _return[2] == -100",
+          "moduleOnly": true,
+          "module": "game"
+        }
+      ],
+      "id": "python-v3-8-05-step-1"
+    },
+    {
+      "objectiveIds": [
+        "miss-reset"
+      ],
+      "task": {
+        "en": "Reset after a full miss on either side; keep a partly visible ball in play. Run a rally with both players.",
+        "nl": "Herstart na een volledige misser aan beide kanten; houd een gedeeltelijk zichtbare bal in het spel. Speel een rally met beide spelers."
+      },
+      "check": "_rendered_frames > 0",
+      "hints": [
+        {
+          "en": "Test the centre plus or minus radius.",
+          "nl": "Test het middelpunt plus of min de straal."
+        },
+        {
+          "en": "Return the reset tuple only outside the two miss boundaries.",
+          "nl": "Geef de herstarttuple alleen buiten beide missergrenzen terug."
+        },
+        {
+          "en": "if x < -6 or x > 646:\n    return 320, 200, 200, 100",
+          "nl": "if x < -6 or x > 646:\n    return 320, 200, 200, 100"
+        }
+      ],
+      "hint": {
+        "en": "Test the centre plus or minus radius.",
+        "nl": "Test het middelpunt plus of min de straal."
+      },
+      "feedback": {
+        "en": "A left miss and a right miss should both restart.",
+        "nl": "Een linkse en een rechtse misser moeten beide herstarten."
+      },
+      "probes": [
+        {
+          "call": {
+            "name": "step",
+            "args": [
+              -7,
+              100,
+              -100,
+              0,
+              0,
+              170,
+              170
+            ],
+            "module": "game"
+          },
+          "check": "_return == (320,200,200,100)",
+          "moduleOnly": true,
+          "module": "game"
+        },
+        {
+          "call": {
+            "name": "step",
+            "args": [
+              647,
+              100,
+              100,
+              0,
+              0,
+              170,
+              170
+            ],
+            "module": "game"
+          },
+          "check": "_return == (320,200,200,100)",
+          "moduleOnly": true,
+          "module": "game"
+        },
+        {
+          "call": {
+            "name": "step",
+            "args": [
+              642,
+              100,
+              100,
+              0,
+              0,
+              170,
+              170
+            ],
+            "module": "game"
+          },
+          "check": "_return == (642,100,100,0)",
+          "moduleOnly": true,
+          "module": "game"
+        }
+      ],
+      "id": "python-v3-8-05-step-2"
+    }
+  ],
+  "solutionNote": {
+    "en": "The update order keeps a frame understandable. This first game uses discrete overlap checks at modest speeds; very fast balls can skip past a paddle. Later playtesting and collision correction revisit that limitation.",
+    "nl": "De updatevolgorde houdt een beeld begrijpelijk. Dit eerste spel gebruikt discrete overlapcontroles bij gematigde snelheden; zeer snelle ballen kunnen langs een batje springen. Later keren speltests en botsingscorrectie naar die beperking terug."
+  },
+  "inputs": [],
+  "retrievals": [
+    {
+      "id": "recall-python-v3-6-05",
+      "sourceActivityId": "python-v3-6-05",
+      "objectiveIds": [
+        "module-review"
+      ],
+      "prompt": {
+        "en": "Move a reusable calculation to another file, import it and test both a default and a named argument.",
+        "nl": "Verplaats een herbruikbare berekening naar een ander bestand, importeer die en test een standaard en een benoemd argument."
+      }
+    }
+  ]
+}

@@ -1,0 +1,150 @@
+{
+  "id": "python-v4-04-convert-to-text",
+  "chapter": 4,
+  "group": "python-v4-module-4",
+  "title": {
+    "en": "Include a number in text",
+    "nl": "Neem een getal in tekst op"
+  },
+  "kind": "coding",
+  "optional": false,
+  "runtime": "terminal",
+  "guidance": "guided",
+  "checkpointMode": "sequential",
+  "estimatedMinutes": 12,
+  "topicIds": [
+    "str-conversion"
+  ],
+  "practices": [],
+  "requiredConcepts": [
+    "concatenation",
+    "integers"
+  ],
+  "explanation": {
+    "en": "Text and numbers are different types. Convert a number deliberately when joining it into a string.",
+    "nl": "Tekst en getallen zijn verschillende typen. Zet een getal bewust om als je het in een string wilt opnemen."
+  },
+  "example": "",
+  "sections": [
+    {
+      "id": "python-v4-04-convert-to-text-example",
+      "topicIds": [
+        "str-conversion"
+      ],
+      "heading": {
+        "en": "Follow a working example",
+        "nl": "Volg een werkend voorbeeld"
+      },
+      "body": {
+        "en": "The expression \"Count: \" + 4 raises TypeError because Python does not add a string and an integer together. str(4) creates the text \"4\", so both sides of + are strings.\n\nstr() returns a new value. Calling str(count) does not turn the original count variable into text. Keeping the original number is useful when you still need to calculate with it.",
+        "nl": "De expressie \"Count: \" + 4 veroorzaakt TypeError omdat Python geen string en int samen optelt. str(4) maakt de tekst \"4\", zodat beide kanten van + strings zijn.\n\nstr() geeft een nieuwe waarde terug. str(count) aanroepen verandert de oorspronkelijke variabele count niet in tekst. Het oorspronkelijke getal behouden is handig als je ermee wilt blijven rekenen."
+      },
+      "code": "count = 4\nlabel = \"Count: \" + str(count)\nprint(label)\nprint(type(count))",
+      "output": "Count: 4\n<class 'int'>\n",
+      "prediction": {
+        "en": "Does creating label change the type of count?",
+        "nl": "Verandert het maken van label het type van count?"
+      },
+      "takeaway": {
+        "en": "Use str(number) when a concatenation needs text.",
+        "nl": "Gebruik str(getal) wanneer concatenatie tekst nodig heeft."
+      }
+    },
+    {
+      "id": "python-v4-04-convert-to-text-experiment",
+      "topicIds": [],
+      "heading": {
+        "en": "Try one change",
+        "nl": "Probeer één wijziging"
+      },
+      "body": {
+        "en": "Try age = 0. Explain why the message still contains a visible zero.",
+        "nl": "Probeer age = 0. Leg uit waarom het bericht nog steeds een zichtbare nul bevat."
+      }
+    }
+  ],
+  "files": {
+    "main.py": "age = 12\n"
+  },
+  "solution": {
+    "main.py": "age = 12\nmessage = \"Age: \" + str(age)\nprint(message)\n"
+  },
+  "checkpoints": [
+    {
+      "id": "python-v4-04-convert-to-text-step-1",
+      "objectiveIds": [
+        "str-conversion"
+      ],
+      "task": {
+        "en": "Create message in the form \"Age: 12\", using age, then print it.",
+        "nl": "Maak message in de vorm \"Age: 12\" met age en druk het af."
+      },
+      "check": "message == \"Age: \" + str(age) and _stdout.strip() == message and type(age) is int",
+      "probes": [
+        {
+          "inputs": {
+            "age": 0
+          },
+          "check": "message == \"Age: 0\""
+        },
+        {
+          "inputs": {
+            "age": 21
+          },
+          "check": "message == \"Age: 21\""
+        }
+      ],
+      "hint": {
+        "en": "Use str(number) when a concatenation needs text.",
+        "nl": "Gebruik str(getal) wanneer concatenatie tekst nodig heeft."
+      },
+      "hints": [
+        {
+          "en": "Use str(number) when a concatenation needs text.",
+          "nl": "Gebruik str(getal) wanneer concatenatie tekst nodig heeft."
+        },
+        {
+          "en": "Convert the number inside the expression and leave age numeric.",
+          "nl": "Zet het getal binnen de expressie om en laat age numeriek."
+        },
+        {
+          "en": "A small fragment to adapt: `\"Age: \" + str(age)`",
+          "nl": "Een klein fragment om aan te passen: `\"Age: \" + str(age)`"
+        }
+      ],
+      "feedback": {
+        "en": "Convert the number inside the expression and leave age numeric.",
+        "nl": "Zet het getal binnen de expressie om en laat age numeriek."
+      }
+    }
+  ],
+  "solutionNote": {
+    "en": "str supplies a text representation for concatenation; age keeps its original numeric type.",
+    "nl": "str levert een tekstweergave voor concatenatie; age behoudt zijn numerieke type."
+  },
+  "inputs": [],
+  "retrievals": [
+    {
+      "id": "recall-python-v4-02-name-or-text",
+      "sourceActivityId": "python-v4-02-name-or-text",
+      "objectiveIds": [
+        "variable-vs-literal"
+      ],
+      "prompt": {
+        "en": "Recall “A name or literal text?”. Which call reads a stored value? Try the earlier example from memory, then check it. Change animal to \"fox\" without editing the print calls. Predict both lines.",
+        "nl": "Haal “Een naam of letterlijke tekst?” terug. Welke aanroep leest een opgeslagen waarde? Probeer het eerdere voorbeeld uit je geheugen en controleer daarna. Verander animal in \"fox\" zonder de print-aanroepen te wijzigen. Voorspel beide regels."
+      }
+    },
+    {
+      "id": "recall-python-v4-02-profile",
+      "sourceActivityId": "python-v4-02-profile",
+      "objectiveIds": [
+        "values-review"
+      ],
+      "prompt": {
+        "en": "Recall “Create a small profile”. Which assignment stores text rather than a number? Try the earlier example from memory, then check it. Change the destination and both numbers. Predict the report without changing any print calls.",
+        "nl": "Haal “Maak een klein profiel” terug. Welke toewijzing bewaart tekst in plaats van een getal? Probeer het eerdere voorbeeld uit je geheugen en controleer daarna. Verander de bestemming en beide getallen. Voorspel het verslag zonder print-aanroepen te wijzigen."
+      }
+    }
+  ]
+}

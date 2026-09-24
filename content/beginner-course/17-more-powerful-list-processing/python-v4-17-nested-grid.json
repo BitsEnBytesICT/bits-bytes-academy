@@ -1,0 +1,174 @@
+{
+  "id": "python-v4-17-nested-grid",
+  "chapter": 17,
+  "group": "python-v4-module-17",
+  "title": {
+    "en": "Read and change a grid",
+    "nl": "Lees en verander een raster"
+  },
+  "kind": "coding",
+  "optional": false,
+  "runtime": "terminal",
+  "guidance": "guided",
+  "checkpointMode": "sequential",
+  "estimatedMinutes": 12,
+  "topicIds": [
+    "2d-lists",
+    "2d-access",
+    "2d-mutation",
+    "aliasing"
+  ],
+  "practices": [],
+  "requiredConcepts": [
+    "list-mutation",
+    "copying"
+  ],
+  "explanation": {
+    "en": "A list can contain other lists. This represents rows in a small grid.",
+    "nl": "Een lijst kan andere lijsten bevatten. Daarmee stel je rijen in een klein raster voor."
+  },
+  "example": "",
+  "sections": [
+    {
+      "id": "python-v4-17-nested-grid-example",
+      "topicIds": [
+        "2d-lists",
+        "2d-access",
+        "2d-mutation",
+        "aliasing"
+      ],
+      "heading": {
+        "en": "Follow a working example",
+        "nl": "Volg een werkend voorbeeld"
+      },
+      "body": {
+        "en": "grid[row][column] first selects a row list, then a value in that row. Each dimension starts at zero. Assigning grid[1][0] changes the second row’s first element. A shallow outer copy still shares the inner row lists. Do not build independent rows with [[0,0]] * 2: both positions refer to the same row. Write distinct row lists or create each row separately.",
+        "nl": "grid[row][column] kiest eerst een rijlijst en daarna een waarde in die rij. Elke dimensie begint bij nul. grid[1][0] toewijzen verandert het eerste element van de tweede rij. Een oppervlakkige buitenste kopie deelt de binnenste rijlijsten nog steeds. Maak geen onafhankelijke rijen met [[0,0]] * 2: beide posities verwijzen naar dezelfde rij. Schrijf aparte rijlijsten of maak elke rij afzonderlijk."
+      },
+      "code": "grid = [[1,2],[3,4]]\ngrid[1][0] = 9\nprint(grid)",
+      "output": "[[1, 2], [9, 4]]\n",
+      "prediction": {
+        "en": "Which index selects the row?",
+        "nl": "Welke index kiest de rij?"
+      },
+      "takeaway": {
+        "en": "Nested indexing follows outer row, then inner column.",
+        "nl": "Genest indexeren volgt eerst de buitenste rij en daarna de binnenste kolom."
+      }
+    },
+    {
+      "id": "python-v4-17-nested-grid-experiment",
+      "topicIds": [],
+      "heading": {
+        "en": "Try one change",
+        "nl": "Probeer één wijziging"
+      },
+      "body": {
+        "en": "Copy only the outer grid, modify one inner row, and observe the shared row.",
+        "nl": "Kopieer alleen het buitenste raster, verander één binnenste rij en bekijk de gedeelde rij."
+      }
+    }
+  ],
+  "files": {
+    "main.py": "def mark(grid, row, column):\n    # Complete this function.\n    return None\n"
+  },
+  "solution": {
+    "main.py": "def mark(grid, row, column):\n    grid[row][column] = \"X\"\n    return grid\n"
+  },
+  "checkpoints": [
+    {
+      "id": "python-v4-17-nested-grid-step-1",
+      "objectiveIds": [
+        "2d-lists",
+        "2d-access",
+        "2d-mutation",
+        "aliasing"
+      ],
+      "task": {
+        "en": "Replace the selected cell with X and return grid. The supplied indexes are valid.",
+        "nl": "Vervang de gekozen cel door X en geef grid terug. De gegeven indexen zijn geldig."
+      },
+      "check": "callable(mark)",
+      "probes": [
+        {
+          "call": {
+            "name": "mark",
+            "args": [
+              [
+                [
+                  0,
+                  0
+                ],
+                [
+                  0,
+                  0
+                ]
+              ],
+              1,
+              0
+            ]
+          },
+          "check": "(_return == [[0,0],[\"X\",0]]) and _error is None"
+        },
+        {
+          "call": {
+            "name": "mark",
+            "args": [
+              [
+                [
+                  1,
+                  2,
+                  3
+                ]
+              ],
+              0,
+              2
+            ]
+          },
+          "check": "(_return == [[1,2,\"X\"]]) and _error is None"
+        }
+      ],
+      "hint": {
+        "en": "Nested indexing follows outer row, then inner column.",
+        "nl": "Genest indexeren volgt eerst de buitenste rij en daarna de binnenste kolom."
+      },
+      "hints": [
+        {
+          "en": "Nested indexing follows outer row, then inner column.",
+          "nl": "Genest indexeren volgt eerst de buitenste rij en daarna de binnenste kolom."
+        },
+        {
+          "en": "Apply the row index before the column index.",
+          "nl": "Pas de rij-index vóór de kolomindex toe."
+        },
+        {
+          "en": "A small fragment to adapt: `grid[row][column] = \"X\"`",
+          "nl": "Een klein fragment om aan te passen: `grid[row][column] = \"X\"`"
+        }
+      ],
+      "feedback": {
+        "en": "Apply the row index before the column index.",
+        "nl": "Pas de rij-index vóór de kolomindex toe."
+      }
+    }
+  ],
+  "solutionNote": {
+    "en": "The two indexes select one cell while preserving every other position.",
+    "nl": "De twee indexen kiezen één cel en behouden alle andere posities."
+  },
+  "inputs": [],
+  "retrievals": [
+    {
+      "id": "recall-python-v4-15-score-label",
+      "sourceActivityId": "python-v4-15-score-label",
+      "objectiveIds": [
+        "pygame-text",
+        "blit"
+      ],
+      "prompt": {
+        "en": "Recall “Draw text on the court”. Does render itself place the label on the display? Try the earlier example from memory, then check it. Change the display font size and the label position separately.",
+        "nl": "Haal “Teken tekst op het speelveld” terug. Plaatst render het label zelf op het scherm? Probeer het eerdere voorbeeld uit je geheugen en controleer daarna. Verander de schermlettergrootte en de labelpositie apart."
+      }
+    }
+  ]
+}

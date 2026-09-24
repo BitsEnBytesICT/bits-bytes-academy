@@ -1,0 +1,150 @@
+{
+  "id": "python-v4-12-indexed-while",
+  "chapter": 12,
+  "group": "python-v4-module-12",
+  "title": {
+    "en": "Traverse a list with an index",
+    "nl": "Doorloop een lijst met een index"
+  },
+  "kind": "coding",
+  "optional": false,
+  "runtime": "terminal",
+  "guidance": "guided",
+  "checkpointMode": "sequential",
+  "estimatedMinutes": 12,
+  "topicIds": [
+    "while-lists"
+  ],
+  "practices": [],
+  "requiredConcepts": [
+    "while",
+    "indexing",
+    "length",
+    "for"
+  ],
+  "explanation": {
+    "en": "An indexed while loop is useful when you need explicit control over the current position.",
+    "nl": "Een while-lus met index is nuttig wanneer je expliciet de huidige positie wilt beheren."
+  },
+  "example": "",
+  "sections": [
+    {
+      "id": "python-v4-12-indexed-while-example",
+      "topicIds": [
+        "while-lists"
+      ],
+      "heading": {
+        "en": "Follow a working example",
+        "nl": "Volg een werkend voorbeeld"
+      },
+      "body": {
+        "en": "Start the index at zero and continue while index < len(items). Read items[index], then advance index. Using <= would access one past the end. Forgetting the update can create an infinite loop. Use for over values when this extra index control is unnecessary.",
+        "nl": "Begin de index bij nul en ga door zolang index < len(items). Lees items[index] en verhoog daarna index. Met <= lees je één positie voorbij het einde. De update vergeten kan een eindeloze lus maken. Gebruik for over waarden als extra indexcontrole niet nodig is."
+      },
+      "code": "items = [4, 7]\ni = 0\nwhile i < len(items):\n    print(items[i])\n    i += 1",
+      "output": "4\n7\n",
+      "prediction": {
+        "en": "At which index does the loop stop?",
+        "nl": "Bij welke index stopt de lus?"
+      },
+      "takeaway": {
+        "en": "The last valid positive index is len(items) - 1.",
+        "nl": "De laatste geldige positieve index is len(items) - 1."
+      }
+    },
+    {
+      "id": "python-v4-12-indexed-while-experiment",
+      "topicIds": [],
+      "heading": {
+        "en": "Try one change",
+        "nl": "Probeer één wijziging"
+      },
+      "body": {
+        "en": "Compare this function with items.copy() and with a for loop.",
+        "nl": "Vergelijk deze functie met items.copy() en met een for-lus."
+      }
+    }
+  ],
+  "files": {
+    "main.py": "def copy_with_while(items):\n    # Complete this function.\n    return None\n"
+  },
+  "solution": {
+    "main.py": "def copy_with_while(items):\n    result = []\n    i = 0\n    while i < len(items):\n        result.append(items[i])\n        i += 1\n    return result\n"
+  },
+  "checkpoints": [
+    {
+      "id": "python-v4-12-indexed-while-step-1",
+      "objectiveIds": [
+        "while-lists"
+      ],
+      "task": {
+        "en": "Use an indexed while loop to return a new list with the same elements.",
+        "nl": "Gebruik een while-lus met index om een nieuwe lijst met dezelfde elementen terug te geven."
+      },
+      "check": "any(isinstance(n,_ast.While) for n in _ast.walk(_ast.parse(_source)))",
+      "probes": [
+        {
+          "call": {
+            "name": "copy_with_while",
+            "args": [
+              [
+                1,
+                3
+              ]
+            ]
+          },
+          "check": "(_return == [1,3] and _return is not _args[0]) and _error is None"
+        },
+        {
+          "call": {
+            "name": "copy_with_while",
+            "args": [
+              []
+            ]
+          },
+          "check": "(_return == []) and _error is None"
+        }
+      ],
+      "hint": {
+        "en": "The last valid positive index is len(items) - 1.",
+        "nl": "De laatste geldige positieve index is len(items) - 1."
+      },
+      "hints": [
+        {
+          "en": "The last valid positive index is len(items) - 1.",
+          "nl": "De laatste geldige positieve index is len(items) - 1."
+        },
+        {
+          "en": "Test the bound before indexing, and advance once per iteration.",
+          "nl": "Test de grens vóór toegang en verhoog eenmaal per iteratie."
+        },
+        {
+          "en": "A small fragment to adapt: `while i < len(items):`",
+          "nl": "Een klein fragment om aan te passen: `while i < len(items):`"
+        }
+      ],
+      "feedback": {
+        "en": "Test the bound before indexing, and advance once per iteration.",
+        "nl": "Test de grens vóór toegang en verhoog eenmaal per iteratie."
+      }
+    }
+  ],
+  "solutionNote": {
+    "en": "The bound prevents invalid access, including on the first check of an empty list.",
+    "nl": "De grens voorkomt ongeldige toegang, ook bij de eerste controle van een lege lijst."
+  },
+  "inputs": [],
+  "retrievals": [
+    {
+      "id": "recall-python-v4-10-validate",
+      "sourceActivityId": "python-v4-10-validate",
+      "objectiveIds": [
+        "validation"
+      ],
+      "prompt": {
+        "en": "Recall “A number can still be invalid”. Which check rejects -2? Try the earlier example from memory, then check it. Test both boundaries and one value just outside each boundary.",
+        "nl": "Haal “Een getal kan nog steeds ongeldig zijn” terug. Welke controle keurt -2 af? Probeer het eerdere voorbeeld uit je geheugen en controleer daarna. Test beide grenzen en één waarde net buiten elke grens."
+      }
+    }
+  ]
+}

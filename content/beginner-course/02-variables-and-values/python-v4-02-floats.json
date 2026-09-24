@@ -1,0 +1,113 @@
+{
+  "id": "python-v4-02-floats",
+  "chapter": 2,
+  "group": "python-v4-module-2",
+  "title": {
+    "en": "Numbers with a decimal point",
+    "nl": "Getallen met een decimale punt"
+  },
+  "kind": "coding",
+  "optional": false,
+  "runtime": "terminal",
+  "guidance": "guided",
+  "checkpointMode": "sequential",
+  "estimatedMinutes": 11,
+  "topicIds": [
+    "floats"
+  ],
+  "practices": [],
+  "requiredConcepts": [
+    "integers",
+    "variables"
+  ],
+  "explanation": {
+    "en": "Some measurements need fractional parts. Python's float type lets you work with numbers such as 2.5.",
+    "nl": "Sommige metingen hebben een deel achter de komma nodig. Met Pythons type float kun je werken met getallen zoals 2.5."
+  },
+  "example": "",
+  "sections": [
+    {
+      "id": "python-v4-02-floats-example",
+      "topicIds": [
+        "floats"
+      ],
+      "heading": {
+        "en": "Follow a working example",
+        "nl": "Volg een werkend voorbeeld"
+      },
+      "body": {
+        "en": "A float literal uses a dot as its decimal separator, even when your written language uses a comma. 2.5 is a float; 2 is an int. 2.0 is also a float even though its fractional part is zero.\n\nFloats approximate real-number values using a finite representation. They are useful for measurements, but not every decimal fraction is stored exactly. Later, Decimal will offer another choice when decimal arithmetic matters. For now, focus on choosing a number rather than a quoted numeric string.",
+        "nl": "Een float gebruikt een punt als decimaalteken, ook wanneer je schrijftaal een komma gebruikt. 2.5 is een float; 2 is een int. 2.0 is ook een float, zelfs als het deel achter de punt nul is.\n\nFloats benaderen reële getallen met een eindige representatie. Ze zijn nuttig voor metingen, maar niet elke decimale breuk wordt exact opgeslagen. Later biedt Decimal een andere keuze wanneer decimale berekeningen belangrijk zijn. Richt je nu op het kiezen van een getal in plaats van een numerieke string."
+      },
+      "code": "length = 2.5\nwhole_measurement = 3.0\nprint(length)\nprint(whole_measurement)",
+      "output": "2.5\n3.0\n",
+      "prediction": {
+        "en": "Are both assigned values floats?",
+        "nl": "Zijn beide toegewezen waarden floats?"
+      },
+      "takeaway": {
+        "en": "Use a dot for a float literal, for example 2.5.",
+        "nl": "Gebruik een punt voor een float, bijvoorbeeld 2.5."
+      }
+    },
+    {
+      "id": "python-v4-02-floats-experiment",
+      "topicIds": [],
+      "heading": {
+        "en": "Try one change",
+        "nl": "Probeer één wijziging"
+      },
+      "body": {
+        "en": "Change distance to 4.0 and then to 4. Compare the displayed values.",
+        "nl": "Verander distance eerst in 4.0 en daarna in 4. Vergelijk de getoonde waarden."
+      }
+    }
+  ],
+  "files": {
+    "main.py": ""
+  },
+  "solution": {
+    "main.py": "distance = 4.5\nprint(distance)\n"
+  },
+  "checkpoints": [
+    {
+      "id": "python-v4-02-floats-step-1",
+      "objectiveIds": [
+        "floats"
+      ],
+      "task": {
+        "en": "Store the float 4.5 in distance and print it.",
+        "nl": "Bewaar de float 4.5 in distance en druk haar af."
+      },
+      "check": "type(distance) is float and distance == 4.5 and _stdout == \"4.5\\n\"",
+      "probes": [],
+      "hint": {
+        "en": "Use a dot for a float literal, for example 2.5.",
+        "nl": "Gebruik een punt voor een float, bijvoorbeeld 2.5."
+      },
+      "hints": [
+        {
+          "en": "Use a dot for a float literal, for example 2.5.",
+          "nl": "Gebruik een punt voor een float, bijvoorbeeld 2.5."
+        },
+        {
+          "en": "Use a decimal point, no quotes, and print the variable.",
+          "nl": "Gebruik een decimale punt, geen aanhalingstekens en druk de variabele af."
+        },
+        {
+          "en": "A small fragment to adapt: `length = 2.5`",
+          "nl": "Een klein fragment om aan te passen: `length = 2.5`"
+        }
+      ],
+      "feedback": {
+        "en": "Use a decimal point, no quotes, and print the variable.",
+        "nl": "Gebruik een decimale punt, geen aanhalingstekens en druk de variabele af."
+      }
+    }
+  ],
+  "solutionNote": {
+    "en": "4.5 is stored as a float and passed directly to print. No string conversion is needed for direct printing.",
+    "nl": "4.5 wordt als float opgeslagen en rechtstreeks aan print gegeven. Voor rechtstreeks afdrukken is geen stringconversie nodig."
+  },
+  "inputs": []
+}

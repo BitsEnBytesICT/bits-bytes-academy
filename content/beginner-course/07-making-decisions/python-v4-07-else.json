@@ -1,0 +1,176 @@
+{
+  "id": "python-v4-07-else",
+  "chapter": 7,
+  "group": "python-v4-module-7",
+  "title": {
+    "en": "Choose between two actions",
+    "nl": "Kies tussen twee acties"
+  },
+  "kind": "coding",
+  "optional": false,
+  "runtime": "terminal",
+  "guidance": "guided",
+  "checkpointMode": "sequential",
+  "estimatedMinutes": 15,
+  "topicIds": [
+    "else"
+  ],
+  "practices": [],
+  "requiredConcepts": [
+    "if",
+    "indentation",
+    "inclusive-comparisons"
+  ],
+  "explanation": {
+    "en": "Use else when a program needs an action for the False case too.",
+    "nl": "Gebruik else wanneer een programma ook een actie voor het False-geval nodig heeft."
+  },
+  "example": "",
+  "sections": [
+    {
+      "id": "python-v4-07-else-example",
+      "topicIds": [
+        "else"
+      ],
+      "heading": {
+        "en": "Follow a working example",
+        "nl": "Volg een werkend voorbeeld"
+      },
+      "body": {
+        "en": "else follows an if block at the same indentation as if. It has a colon but no condition of its own. Its block runs when the if condition is False. Exactly one of the two blocks runs.\n\nChoose a boundary deliberately. In the example, a score of exactly 6 passes because the condition uses >=. Test below, at and above the boundary.",
+        "nl": "else volgt na een if-blok op dezelfde inspringing als if. Het heeft een dubbele punt maar geen eigen voorwaarde. Het blok wordt uitgevoerd wanneer de if-voorwaarde False is. Precies één van beide blokken wordt uitgevoerd.\n\nKies een grens bewust. In het voorbeeld is precies 6 voldoende omdat de voorwaarde >= gebruikt. Test onder, op en boven de grens."
+      },
+      "code": "score = 5\nif score >= 6:\n    print(\"Pass\")\nelse:\n    print(\"Try again\")",
+      "output": "Try again\n",
+      "prediction": {
+        "en": "What changes for score = 6?",
+        "nl": "Wat verandert bij score = 6?"
+      },
+      "takeaway": {
+        "en": "if/else chooses exactly one of two blocks.",
+        "nl": "if/else kiest precies één van twee blokken."
+      }
+    },
+    {
+      "id": "python-v4-07-else-experiment",
+      "topicIds": [],
+      "heading": {
+        "en": "Try one change",
+        "nl": "Probeer één wijziging"
+      },
+      "body": {
+        "en": "Predict and test ages 11, 12 and 13. Explain the equality case.",
+        "nl": "Voorspel en test leeftijden 11, 12 en 13. Leg het geval met gelijkheid uit."
+      }
+    }
+  ],
+  "files": {
+    "main.py": "age = 12\n"
+  },
+  "solution": {
+    "main.py": "age = 12\nif age >= 12:\n    print(\"Welcome\")\nelse:\n    print(\"Too young\")\n"
+  },
+  "checkpoints": [
+    {
+      "id": "python-v4-07-else-step-1",
+      "objectiveIds": [
+        "else"
+      ],
+      "task": {
+        "en": "Print \"Welcome\" when age is at least 12.",
+        "nl": "Druk \"Welcome\" af wanneer age minstens 12 is."
+      },
+      "check": "_stdout == \"Welcome\\n\"",
+      "probes": [
+        {
+          "inputs": {
+            "age": 13
+          },
+          "check": "_stdout == \"Welcome\\n\""
+        }
+      ],
+      "hint": {
+        "en": "if/else chooses exactly one of two blocks.",
+        "nl": "if/else kiest precies één van twee blokken."
+      },
+      "hints": [
+        {
+          "en": "if/else chooses exactly one of two blocks.",
+          "nl": "if/else kiest precies één van twee blokken."
+        },
+        {
+          "en": "Include the exact boundary age in the allowed branch.",
+          "nl": "Neem de exacte grensleeftijd op in de toegestane tak."
+        },
+        {
+          "en": "A small fragment to adapt: `if age >= 12:`",
+          "nl": "Een klein fragment om aan te passen: `if age >= 12:`"
+        }
+      ],
+      "feedback": {
+        "en": "Include the exact boundary age in the allowed branch.",
+        "nl": "Neem de exacte grensleeftijd op in de toegestane tak."
+      }
+    },
+    {
+      "id": "python-v4-07-else-step-2",
+      "objectiveIds": [
+        "else"
+      ],
+      "task": {
+        "en": "Add else to print \"Too young\" for a lower age.",
+        "nl": "Voeg else toe om \"Too young\" af te drukken bij een lagere leeftijd."
+      },
+      "check": "any(isinstance(n,_ast.If) and n.orelse for n in _ast.walk(_ast.parse(_source)))",
+      "probes": [
+        {
+          "inputs": {
+            "age": 11
+          },
+          "check": "_stdout == \"Too young\\n\""
+        }
+      ],
+      "hint": {
+        "en": "if/else chooses exactly one of two blocks.",
+        "nl": "if/else kiest precies één van twee blokken."
+      },
+      "hints": [
+        {
+          "en": "if/else chooses exactly one of two blocks.",
+          "nl": "if/else kiest precies één van twee blokken."
+        },
+        {
+          "en": "The fallback belongs to this if, at matching indentation.",
+          "nl": "De terugvaltak hoort bij deze if, op dezelfde inspringing."
+        },
+        {
+          "en": "A small fragment to adapt: `else:`",
+          "nl": "Een klein fragment om aan te passen: `else:`"
+        }
+      ],
+      "feedback": {
+        "en": "The fallback belongs to this if, at matching indentation.",
+        "nl": "De terugvaltak hoort bij deze if, op dezelfde inspringing."
+      }
+    }
+  ],
+  "solutionNote": {
+    "en": "The >= comparison includes 12. The else block handles every lower value.",
+    "nl": "De vergelijking >= omvat 12. Het else-blok verwerkt elke lagere waarde."
+  },
+  "inputs": [],
+  "retrievals": [
+    {
+      "id": "recall-python-v4-05-integer-input",
+      "sourceActivityId": "python-v4-05-integer-input",
+      "objectiveIds": [
+        "conversion",
+        "int-conversion"
+      ],
+      "prompt": {
+        "en": "Recall “Convert a whole-number answer”. With answer 4, why does the output end in 5 rather than 41? Try the earlier example from memory, then check it. Try 0, then -2. Finally try a word, read ValueError, and rerun with a valid number.",
+        "nl": "Haal “Zet een geheel antwoord om” terug. Waarom eindigt de uitvoer bij antwoord 4 op 5 in plaats van 41? Probeer het eerdere voorbeeld uit je geheugen en controleer daarna. Probeer 0 en daarna -2. Probeer ten slotte een woord, lees ValueError en voer opnieuw uit met een geldig getal."
+      }
+    }
+  ]
+}

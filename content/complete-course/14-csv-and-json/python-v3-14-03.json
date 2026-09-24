@@ -1,0 +1,199 @@
+{
+  "id": "python-v3-14-03",
+  "chapter": 14,
+  "group": "python-v3-module-14",
+  "title": {
+    "en": "Export CSV",
+    "nl": "Exporteer CSV"
+  },
+  "kind": "coding",
+  "optional": false,
+  "runtime": "terminal",
+  "guidance": "adapt",
+  "estimatedMinutes": 16,
+  "explanation": {
+    "en": "Export records as CSV that another program can read safely. Let the writer quote fields rather than building comma-separated lines yourself.",
+    "nl": "Exporteer records als CSV die een ander programma veilig kan lezen. Laat de schrijver velden aanhalen in plaats van zelf kommaregels samen te stellen."
+  },
+  "example": "",
+  "topicIds": [
+    "csv-writer"
+  ],
+  "prerequisites": [
+    "python-v3-14-02"
+  ],
+  "sections": [
+    {
+      "topicIds": [
+        "csv-writer"
+      ],
+      "heading": {
+        "en": "Write a stable schema",
+        "nl": "Schrijf een vaste structuur"
+      },
+      "body": {
+        "en": "csv.DictWriter needs fieldnames to choose column names and order. writeheader() writes those names; writerows(records) writes dictionaries. csv.writer instead writes sequences with writerow or writerows. Open with newline=\"\", mode=\"w\" and UTF-8. The writer adds quoting where needed.",
+        "nl": "csv.DictWriter heeft fieldnames nodig voor kolomnamen en volgorde. writeheader() schrijft die namen; writerows(records) schrijft dictionaries. csv.writer schrijft daarentegen reeksen met writerow of writerows. Open met newline=\"\", modus=\"w\" en UTF-8. De schrijver voegt waar nodig aanhalingstekens toe."
+      },
+      "code": "import csv\nwith open(\"example.csv\", \"w\", newline=\"\", encoding=\"utf-8\") as handle:\n    writer = csv.writer(handle)\n    writer.writerow([\"name\", \"score\"])\n    writer.writerow([\"Ada, A.\", 3])\nwith open(\"example.csv\", newline=\"\", encoding=\"utf-8\") as handle:\n    print(list(csv.reader(handle)))",
+      "output": "[['name', 'score'], ['Ada, A.', '3']]\n",
+      "prediction": {
+        "en": "Why is the comma inside the name safe after writing?",
+        "nl": "Waarom is de komma binnen de naam veilig na schrijven?"
+      }
+    },
+    {
+      "topicIds": [],
+      "heading": {
+        "en": "Try a changed input",
+        "nl": "Probeer gewijzigde invoer"
+      },
+      "body": {
+        "en": "Open export.csv after Run and compare its raw quoting with the parsed name. Re-run with an empty record list and check that only the header remains.",
+        "nl": "Open export.csv na Uitvoeren en vergelijk ruwe aanhalingstekens met de verwerkte naam. Voer opnieuw uit met een lege lijst en controleer dat alleen de kop overblijft."
+      }
+    }
+  ],
+  "files": {
+    "main.py": "import csv\n\ndef save_scores(filename, records):\n    pass\n\nsave_scores(\"export.csv\", [{\"name\": \"Zoë, Z.\", \"score\": 3}])\n"
+  },
+  "solution": {
+    "main.py": "import csv\n\ndef save_scores(filename, records):\n    with open(filename, \"w\", newline=\"\", encoding=\"utf-8\") as handle:\n        writer = csv.DictWriter(handle, fieldnames=[\"name\", \"score\"])\n        writer.writeheader()\n        writer.writerows(records)\n\nsave_scores(\"export.csv\", [{\"name\": \"Zoë, Z.\", \"score\": 3}])\n"
+  },
+  "checkpoints": [
+    {
+      "objectiveIds": [
+        "csv-writer"
+      ],
+      "task": {
+        "en": "Write a CSV with name,score header in that order and one row per supplied record. Replace any old output.",
+        "nl": "Schrijf een CSV met de kop name,score in die volgorde en één rij per meegegeven record. Vervang oude uitvoer."
+      },
+      "check": "list(csv.reader(open(\"export.csv\",newline=\"\",encoding=\"utf-8\")))[0] == [\"name\",\"score\"]",
+      "hints": [
+        {
+          "en": "Choose a schema before writing rows.",
+          "nl": "Kies een structuur voordat je rijen schrijft."
+        },
+        {
+          "en": "Write the header even when records is empty.",
+          "nl": "Schrijf de kop ook als records leeg is."
+        },
+        {
+          "en": "writer = csv.DictWriter(handle, fieldnames=[\"name\", \"score\"])",
+          "nl": "writer = csv.DictWriter(handle, fieldnames=[\"name\", \"score\"])"
+        }
+      ],
+      "hint": {
+        "en": "Choose a schema before writing rows.",
+        "nl": "Kies een structuur voordat je rijen schrijft."
+      },
+      "feedback": {
+        "en": "The output must remain readable when there are no data rows.",
+        "nl": "De uitvoer moet leesbaar blijven zonder gegevensrijen."
+      },
+      "probes": [
+        {
+          "call": {
+            "name": "save_scores",
+            "args": [
+              "empty.csv",
+              []
+            ]
+          },
+          "check": "list(__import__(\"csv\").reader(open(\"empty.csv\",newline=\"\",encoding=\"utf-8\"))) == [[\"name\",\"score\"]]",
+          "files": {
+            "empty.csv": "Old\nData\n"
+          }
+        }
+      ],
+      "id": "python-v3-14-03-step-1"
+    },
+    {
+      "objectiveIds": [
+        "csv-writer"
+      ],
+      "task": {
+        "en": "Preserve accented names, commas, quotes and newlines so a CSV round trip recovers the original field contents.",
+        "nl": "Behoud namen met accenten, komma’s, aanhalingstekens en nieuwe regels zodat heen-en-terug lezen de oorspronkelijke veldinhoud herstelt."
+      },
+      "check": "list(csv.DictReader(open(\"export.csv\",newline=\"\",encoding=\"utf-8\"))) == [{\"name\":\"Zoë, Z.\",\"score\":\"3\"}]",
+      "hints": [
+        {
+          "en": "The writer knows when quoting is required.",
+          "nl": "De schrijver weet wanneer aanhalen nodig is."
+        },
+        {
+          "en": "Use writerows rather than manually joining with commas.",
+          "nl": "Gebruik writerows in plaats van handmatig met komma’s samenvoegen."
+        },
+        {
+          "en": "writer.writerows(records)",
+          "nl": "writer.writerows(records)"
+        }
+      ],
+      "hint": {
+        "en": "The writer knows when quoting is required.",
+        "nl": "De schrijver weet wanneer aanhalen nodig is."
+      },
+      "feedback": {
+        "en": "Check parsed fields, not only what the raw CSV looks like.",
+        "nl": "Controleer verwerkte velden, niet alleen hoe ruwe CSV eruitziet."
+      },
+      "probes": [
+        {
+          "call": {
+            "name": "save_scores",
+            "args": [
+              "special.csv",
+              [
+                {
+                  "name": "A, \"B\"\nC",
+                  "score": -2
+                }
+              ]
+            ]
+          },
+          "check": "list(__import__(\"csv\").DictReader(open(\"special.csv\",newline=\"\",encoding=\"utf-8\"))) == [{\"name\":_args[1][0][\"name\"],\"score\":\"-2\"}]"
+        }
+      ],
+      "id": "python-v3-14-03-step-2"
+    }
+  ],
+  "solutionNote": {
+    "en": "A standard writer handles the syntax needed for a faithful round trip. Numeric scores become text fields in CSV and must be converted again by a reader.",
+    "nl": "Een standaard schrijver regelt de syntax voor betrouwbaar heen-en-terug lezen. Numerieke scores worden tekstvelden in CSV en moeten door een lezer opnieuw worden omgezet."
+  },
+  "inputs": [],
+  "retrievals": [
+    {
+      "id": "recall-python-v3-12-03",
+      "sourceActivityId": "python-v3-12-03",
+      "objectiveIds": [
+        "get-key",
+        "key-error",
+        "get",
+        "delete-key",
+        "dict-pop"
+      ],
+      "prompt": {
+        "en": "Compare direct lookup, get, del and pop for present and missing keys. Do not confuse a stored zero with missing information.",
+        "nl": "Vergelijk directe toegang, get, del en pop voor aanwezige en ontbrekende sleutels. Verwar opgeslagen nul niet met ontbrekende informatie."
+      }
+    },
+    {
+      "id": "recall-python-v3-13-03",
+      "sourceActivityId": "python-v3-13-03",
+      "objectiveIds": [
+        "write",
+        "append-file",
+        "persistence",
+        "missing-file"
+      ],
+      "prompt": {
+        "en": "Compare write and append across two runs. Explain a missing-file fallback and inspect the saved file after reopening.",
+        "nl": "Vergelijk schrijven en toevoegen over twee uitvoeringen. Leg een terugval bij een ontbrekend bestand uit en bekijk het opgeslagen bestand na heropenen."
+      }
+    }
+  ]
+}

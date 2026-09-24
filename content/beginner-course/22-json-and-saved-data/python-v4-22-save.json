@@ -1,0 +1,179 @@
+{
+  "id": "python-v4-22-save",
+  "chapter": 22,
+  "group": "python-v4-module-22",
+  "title": {
+    "en": "Save and reopen JSON",
+    "nl": "Bewaar en heropen JSON"
+  },
+  "kind": "coding",
+  "optional": false,
+  "runtime": "terminal",
+  "guidance": "guided",
+  "checkpointMode": "sequential",
+  "estimatedMinutes": 18,
+  "topicIds": [
+    "json-save",
+    "json-roundtrip"
+  ],
+  "practices": [],
+  "requiredConcepts": [
+    "json-load",
+    "write"
+  ],
+  "explanation": {
+    "en": "A round trip checks that saved structured data can be loaded back with its meaning intact.\n\nOpen work.py to write the requested function. main.py is a supplied caller: Run always starts there and imports your function. The other file tabs contain input data. After a successful run, open any new output file tab to inspect what your program saved.",
+    "nl": "Heen en terug opslaan controleert of bewaarde gegevens met dezelfde betekenis kunnen worden geladen.\n\nOpen work.py om de gevraagde functie te schrijven. main.py is de aangeleverde aanroeper: Uitvoeren begint daar en importeert je functie. De andere bestandstabbladen bevatten invoergegevens. Open na een geslaagde uitvoering een nieuw uitvoerbestand om te bekijken wat je programma heeft opgeslagen."
+  },
+  "example": "",
+  "sections": [
+    {
+      "id": "python-v4-22-save-example",
+      "topicIds": [
+        "json-save",
+        "json-roundtrip"
+      ],
+      "heading": {
+        "en": "Follow a working example",
+        "nl": "Volg een werkend voorbeeld"
+      },
+      "body": {
+        "en": "json.dump(data, handle, indent=2) writes JSON to an open file. indent makes the text readable. Use JSON-compatible values: dictionaries with string keys, lists, strings, numbers, Booleans and None. Tuples load back as lists; Decimal and arbitrary objects need an explicit conversion. A round-trip check compares the decoded data, not exact whitespace in the file.",
+        "nl": "json.dump(data, handle, indent=2) schrijft JSON naar een open bestand. indent maakt de tekst leesbaar. Gebruik JSON-geschikte waarden: dictionaries met stringsleutels, lijsten, strings, getallen, booleaanse waarden en None. Tuples komen terug als lijsten; Decimal en willekeurige objecten vragen een expliciete omzetting. Een heen-en-terugcontrole vergelijkt gedecodeerde gegevens, niet exacte witruimte in het bestand."
+      },
+      "code": "import json\ndata = {\"active\":True,\"scores\":[2,4]}\nwith open(\"example.json\",\"w\",encoding=\"utf-8\") as handle:\n    json.dump(data,handle,indent=2)\nwith open(\"example.json\",encoding=\"utf-8\") as handle:\n    print(json.load(handle) == data)",
+      "output": "True\n",
+      "prediction": {
+        "en": "Why might whitespace differ while the data is equal?",
+        "nl": "Waarom kan witruimte verschillen terwijl de gegevens gelijk zijn?"
+      },
+      "takeaway": {
+        "en": "Test the data after loading, not only the text after saving.",
+        "nl": "Test de gegevens na laden, niet alleen de tekst na opslaan."
+      },
+      "exampleFiles": {}
+    },
+    {
+      "id": "python-v4-22-save-experiment",
+      "topicIds": [],
+      "heading": {
+        "en": "Try one change",
+        "nl": "Probeer één wijziging"
+      },
+      "body": {
+        "en": "Open the generated JSON in the workspace, navigate away, return and run a load.",
+        "nl": "Open de gemaakte JSON in de werkruimte, navigeer weg, keer terug en laad die."
+      }
+    }
+  ],
+  "files": {
+    "main.py": "import work\nwork.save(\"settings.json\",{\"sound\":True,\"volume\":3})\n",
+    "work.py": "def save(path, data):\n    return None\n"
+  },
+  "solution": {
+    "main.py": "import work\nwork.save(\"settings.json\",{\"sound\":True,\"volume\":3})\n",
+    "work.py": "import json\ndef save(path, data):\n    with open(path,\"w\",encoding=\"utf-8\") as handle:\n        json.dump(data,handle,indent=2)\n"
+  },
+  "checkpoints": [
+    {
+      "id": "python-v4-22-save-step-1",
+      "objectiveIds": [
+        "json-save",
+        "json-roundtrip"
+      ],
+      "task": {
+        "en": "Save the supplied JSON-compatible data so loading it yields the same values.",
+        "nl": "Bewaar de gegeven JSON-geschikte gegevens zodat laden dezelfde waarden oplevert."
+      },
+      "check": "True",
+      "probes": [
+        {
+          "call": {
+            "name": "save",
+            "args": [
+              "out.json",
+              {
+                "name": "Café",
+                "items": [
+                  1,
+                  null,
+                  true
+                ]
+              }
+            ],
+            "module": "work"
+          },
+          "check": "(_json.load(open(\"out.json\",encoding=\"utf-8\")) == _args[1]) and _error is None",
+          "moduleOnly": true,
+          "module": "work",
+          "files": {}
+        },
+        {
+          "call": {
+            "name": "save",
+            "args": [
+              "empty.json",
+              {}
+            ],
+            "module": "work"
+          },
+          "check": "(_json.load(open(\"empty.json\")) == {}) and _error is None",
+          "moduleOnly": true,
+          "module": "work",
+          "files": {}
+        }
+      ],
+      "hint": {
+        "en": "Test the data after loading, not only the text after saving.",
+        "nl": "Test de gegevens na laden, niet alleen de tekst na opslaan."
+      },
+      "hints": [
+        {
+          "en": "Test the data after loading, not only the text after saving.",
+          "nl": "Test de gegevens na laden, niet alleen de tekst na opslaan."
+        },
+        {
+          "en": "Pass the data and open handle to json.dump.",
+          "nl": "Geef de gegevens en open handle aan json.dump."
+        },
+        {
+          "en": "A small fragment to adapt: `json.dump(data, handle, indent=2)`",
+          "nl": "Een klein fragment om aan te passen: `json.dump(data, handle, indent=2)`"
+        }
+      ],
+      "feedback": {
+        "en": "Pass the data and open handle to json.dump.",
+        "nl": "Geef de gegevens en open handle aan json.dump."
+      }
+    }
+  ],
+  "solutionNote": {
+    "en": "The encoder preserves the supported nested values; indentation only improves readability.",
+    "nl": "De encoder bewaart ondersteunde geneste waarden; inspringing verbetert alleen de leesbaarheid."
+  },
+  "inputs": [],
+  "retrievals": [
+    {
+      "id": "recall-python-v4-20-lines",
+      "sourceActivityId": "python-v4-20-lines",
+      "objectiveIds": [
+        "line-iteration"
+      ],
+      "prompt": {
+        "en": "Recall “Process one line at a time”. Why does strip avoid extra blank output lines here? Try the earlier example from memory, then check it. Try a final line without a newline and confirm it is still processed.",
+        "nl": "Haal “Verwerk één regel tegelijk” terug. Waarom voorkomt strip hier extra lege uitvoerregels? Probeer het eerdere voorbeeld uit je geheugen en controleer daarna. Probeer een laatste regel zonder nieuwe-regelteken en controleer dat die toch verwerkt wordt."
+      }
+    },
+    {
+      "id": "recall-python-v4-20-missing",
+      "sourceActivityId": "python-v4-20-missing",
+      "objectiveIds": [
+        "missing-files"
+      ],
+      "prompt": {
+        "en": "Recall “Handle a missing file explicitly”. Would this handler catch ValueError from a conversion? Try the earlier example from memory, then check it. Compare an empty existing file with a missing file; decide whether your feature needs to distinguish them.",
+        "nl": "Haal “Verwerk een ontbrekend bestand expliciet” terug. Vangt deze afhandeling ValueError van een omzetting op? Probeer het eerdere voorbeeld uit je geheugen en controleer daarna. Vergelijk een leeg bestaand bestand met een ontbrekend bestand; bepaal of je functie ze moet onderscheiden."
+      }
+    }
+  ]
+}

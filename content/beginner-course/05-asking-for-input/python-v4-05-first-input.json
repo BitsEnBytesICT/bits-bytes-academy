@@ -1,0 +1,204 @@
+{
+  "id": "python-v4-05-first-input",
+  "chapter": 5,
+  "group": "python-v4-module-5",
+  "title": {
+    "en": "Ask and wait for an answer",
+    "nl": "Stel een vraag en wacht op antwoord"
+  },
+  "kind": "coding",
+  "optional": false,
+  "runtime": "terminal",
+  "guidance": "guided",
+  "checkpointMode": "sequential",
+  "estimatedMinutes": 14,
+  "topicIds": [
+    "input"
+  ],
+  "practices": [],
+  "requiredConcepts": [
+    "variables",
+    "print",
+    "strings"
+  ],
+  "explanation": {
+    "en": "Until now, values were written in the program. input() lets the person running it supply a value through the terminal.",
+    "nl": "Tot nu toe stonden waarden in het programma. Met input() kan de gebruiker via de terminal een waarde invoeren."
+  },
+  "example": "",
+  "sections": [
+    {
+      "id": "python-v4-05-first-input-example",
+      "topicIds": [
+        "input"
+      ],
+      "heading": {
+        "en": "Follow a working example",
+        "nl": "Volg een werkend voorbeeld"
+      },
+      "body": {
+        "en": "input(\"Name: \") displays a prompt and waits. Type an answer in the terminal input and press Enter. The function returns the entered text without its final newline. Assignment stores that returned text.\n\nThe program pauses at input until an answer arrives. Click Run once, answer in the terminal, and let the program continue. A prompt is displayed without the newline that print normally adds. In the worked example, the supplied answer is Noor.",
+        "nl": "input(\"Name: \") toont een vraag en wacht. Typ een antwoord in de terminalinvoer en druk op Enter. De functie geeft de ingevoerde tekst terug zonder de laatste nieuwe regel. Toewijzing bewaart die teruggegeven tekst.\n\nHet programma wacht bij input totdat een antwoord binnenkomt. Klik eenmaal op Uitvoeren, antwoord in de terminal en laat het programma doorgaan. Een vraag verschijnt zonder de nieuwe regel die print normaal toevoegt. In het werkende voorbeeld is het meegeleverde antwoord Noor."
+      },
+      "code": "name = input(\"Name: \")\nprint(name)",
+      "output": "Name: Noor\n",
+      "prediction": {
+        "en": "Where must the person type their answer: editor or terminal?",
+        "nl": "Waar moet de gebruiker het antwoord typen: editor of terminal?"
+      },
+      "takeaway": {
+        "en": "input waits for Enter and returns the answer as text.",
+        "nl": "input wacht op Enter en geeft het antwoord als tekst terug."
+      },
+      "exampleInputs": [
+        "Noor"
+      ]
+    },
+    {
+      "id": "python-v4-05-first-input-experiment",
+      "topicIds": [],
+      "heading": {
+        "en": "Try one change",
+        "nl": "Probeer één wijziging"
+      },
+      "body": {
+        "en": "Run twice with two different names. The code stays the same; the answers change.",
+        "nl": "Voer tweemaal uit met twee verschillende namen. De code blijft hetzelfde; de antwoorden veranderen."
+      }
+    }
+  ],
+  "files": {
+    "main.py": ""
+  },
+  "solution": {
+    "main.py": "name = input(\"Name: \")\nprint(f\"Hello, {name}!\")\n"
+  },
+  "checkpoints": [
+    {
+      "id": "python-v4-05-first-input-step-1",
+      "objectiveIds": [
+        "input"
+      ],
+      "task": {
+        "en": "Ask with input(\"Name: \") and store the answer in name.",
+        "nl": "Vraag met input(\"Name: \") en bewaar het antwoord in name."
+      },
+      "check": "True",
+      "probes": [
+        {
+          "stdin": [
+            "Mila"
+          ],
+          "check": "(type(name) is str) and _remaining_input == \"\""
+        },
+        {
+          "stdin": [
+            "Bo"
+          ],
+          "check": "(name == \"Bo\") and _remaining_input == \"\""
+        }
+      ],
+      "hint": {
+        "en": "input waits for Enter and returns the answer as text.",
+        "nl": "input wacht op Enter en geeft het antwoord als tekst terug."
+      },
+      "hints": [
+        {
+          "en": "input waits for Enter and returns the answer as text.",
+          "nl": "input wacht op Enter en geeft het antwoord als tekst terug."
+        },
+        {
+          "en": "Assign the returned answer instead of assigning the prompt text.",
+          "nl": "Wijs het teruggegeven antwoord toe in plaats van de vraagtekst."
+        },
+        {
+          "en": "A small fragment to adapt: `name = input(\"Name: \")`",
+          "nl": "Een klein fragment om aan te passen: `name = input(\"Name: \")`"
+        }
+      ],
+      "feedback": {
+        "en": "Assign the returned answer instead of assigning the prompt text.",
+        "nl": "Wijs het teruggegeven antwoord toe in plaats van de vraagtekst."
+      }
+    },
+    {
+      "id": "python-v4-05-first-input-step-2",
+      "objectiveIds": [
+        "input"
+      ],
+      "task": {
+        "en": "Greet the entered name, for example \"Hello, Mila!\".",
+        "nl": "Begroet de ingevoerde naam, bijvoorbeeld \"Hello, Mila!\"."
+      },
+      "check": "True",
+      "probes": [
+        {
+          "stdin": [
+            "Mila"
+          ],
+          "check": "(_stdout.endswith(f\"Hello, {name}!\\n\")) and _remaining_input == \"\""
+        },
+        {
+          "stdin": [
+            "Bo"
+          ],
+          "check": "(_stdout.endswith(\"Hello, Bo!\\n\")) and _remaining_input == \"\""
+        }
+      ],
+      "hint": {
+        "en": "input waits for Enter and returns the answer as text.",
+        "nl": "input wacht op Enter en geeft het antwoord als tekst terug."
+      },
+      "hints": [
+        {
+          "en": "input waits for Enter and returns the answer as text.",
+          "nl": "input wacht op Enter en geeft het antwoord als tekst terug."
+        },
+        {
+          "en": "Use the stored answer in the greeting after the input call.",
+          "nl": "Gebruik het opgeslagen antwoord in de begroeting na de input-aanroep."
+        },
+        {
+          "en": "A small fragment to adapt: `print(f\"Hello, {name}!\")`",
+          "nl": "Een klein fragment om aan te passen: `print(f\"Hello, {name}!\")`"
+        }
+      ],
+      "feedback": {
+        "en": "Use the stored answer in the greeting after the input call.",
+        "nl": "Gebruik het opgeslagen antwoord in de begroeting na de input-aanroep."
+      }
+    }
+  ],
+  "solutionNote": {
+    "en": "The program waits once, stores the answer, then formats a greeting from it.",
+    "nl": "Het programma wacht eenmaal, bewaart het antwoord en maakt er daarna een begroeting van."
+  },
+  "inputs": [
+    "Mila"
+  ],
+  "retrievals": [
+    {
+      "id": "recall-python-v4-03-addition",
+      "sourceActivityId": "python-v4-03-addition",
+      "objectiveIds": [
+        "arithmetic",
+        "addition"
+      ],
+      "prompt": {
+        "en": "Recall “Add quantities”. What value is assigned to total? Try the earlier example from memory, then check it. Set morning to zero. Explain why the answer becomes the afternoon count.",
+        "nl": "Haal “Tel hoeveelheden op” terug. Welke waarde wordt aan total toegewezen? Probeer het eerdere voorbeeld uit je geheugen en controleer daarna. Zet morning op nul. Leg uit waarom het antwoord het middagaantal wordt."
+      }
+    },
+    {
+      "id": "recall-python-v4-03-powers",
+      "sourceActivityId": "python-v4-03-powers",
+      "objectiveIds": [
+        "exponents"
+      ],
+      "prompt": {
+        "en": "Recall “Repeated multiplication with **”. How many factors of side occur in the second calculation? Try the earlier example from memory, then check it. Try side = 1, then side = 2. Compare side ** 2 with side * 2.",
+        "nl": "Haal “Herhaald vermenigvuldigen met **” terug. Hoeveel factoren side staan er in de tweede berekening? Probeer het eerdere voorbeeld uit je geheugen en controleer daarna. Probeer side = 1 en daarna side = 2. Vergelijk side ** 2 met side * 2."
+      }
+    }
+  ]
+}

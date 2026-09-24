@@ -1,0 +1,150 @@
+{
+  "id": "python-v4-18-replace-find",
+  "chapter": 18,
+  "group": "python-v4-module-18",
+  "title": {
+    "en": "Search and replace text",
+    "nl": "Zoek en vervang tekst"
+  },
+  "kind": "coding",
+  "optional": false,
+  "runtime": "terminal",
+  "guidance": "guided",
+  "checkpointMode": "sequential",
+  "estimatedMinutes": 12,
+  "topicIds": [
+    "replace",
+    "find"
+  ],
+  "practices": [],
+  "requiredConcepts": [
+    "immutability",
+    "string-membership"
+  ],
+  "explanation": {
+    "en": "Searching locates a substring; replacing creates a revised string.",
+    "nl": "Zoeken vindt een substring; vervangen maakt een herziene string."
+  },
+  "example": "",
+  "sections": [
+    {
+      "id": "python-v4-18-replace-find-example",
+      "topicIds": [
+        "replace",
+        "find"
+      ],
+      "heading": {
+        "en": "Follow a working example",
+        "nl": "Volg een werkend voorbeeld"
+      },
+      "body": {
+        "en": "text.find(part) returns the first starting index, or -1 when absent. Index zero is a valid match, so do not use if text.find(part) as a presence test. Use in when you only need True/False. text.replace(old, new) returns a new string replacing all occurrences unless a count is supplied.",
+        "nl": "text.find(part) geeft de eerste beginindex of -1 bij afwezigheid. Index nul is een geldige overeenkomst, dus gebruik if text.find(part) niet als aanwezigheidscontrole. Gebruik in als je alleen True/False nodig hebt. text.replace(old, new) geeft een nieuwe string die alle voorkomens vervangt tenzij je een aantal meegeeft."
+      },
+      "code": "text = \"red-red\"\nprint(text.find(\"red\"))\nprint(text.find(\"blue\"))\nprint(text.replace(\"red\",\"green\"))",
+      "output": "0\n-1\ngreen-green\n",
+      "prediction": {
+        "en": "Why is a match at zero easy to mishandle in a Boolean test?",
+        "nl": "Waarom wordt een overeenkomst op nul gemakkelijk verkeerd behandeld in een booleaanse test?"
+      },
+      "takeaway": {
+        "en": "find returns a position, including valid zero; -1 means absent.",
+        "nl": "find geeft een positie, inclusief geldige nul; -1 betekent afwezig."
+      }
+    },
+    {
+      "id": "python-v4-18-replace-find-experiment",
+      "topicIds": [],
+      "heading": {
+        "en": "Try one change",
+        "nl": "Probeer één wijziging"
+      },
+      "body": {
+        "en": "Replace only the first occurrence by trying the optional count argument.",
+        "nl": "Vervang alleen het eerste voorkomen door het optionele aantalargument te proberen."
+      }
+    }
+  ],
+  "files": {
+    "main.py": "def rename(text, old, new):\n    # Complete this function.\n    return None\n"
+  },
+  "solution": {
+    "main.py": "def rename(text, old, new):\n    return text.replace(old, new), text.find(old)\n"
+  },
+  "checkpoints": [
+    {
+      "id": "python-v4-18-replace-find-step-1",
+      "objectiveIds": [
+        "replace",
+        "find"
+      ],
+      "task": {
+        "en": "Return (replaced_text, first_original_match_index). Assume old is nonempty.",
+        "nl": "Geef (replaced_text, first_original_match_index) terug. Neem aan dat old niet leeg is."
+      },
+      "check": "callable(rename)",
+      "probes": [
+        {
+          "call": {
+            "name": "rename",
+            "args": [
+              "cat cat",
+              "cat",
+              "dog"
+            ]
+          },
+          "check": "(_return == (\"dog dog\",0)) and _error is None"
+        },
+        {
+          "call": {
+            "name": "rename",
+            "args": [
+              "hello",
+              "x",
+              "y"
+            ]
+          },
+          "check": "(_return == (\"hello\",-1)) and _error is None"
+        },
+        {
+          "call": {
+            "name": "rename",
+            "args": [
+              "a-b",
+              "b",
+              "c"
+            ]
+          },
+          "check": "(_return == (\"a-c\",2)) and _error is None"
+        }
+      ],
+      "hint": {
+        "en": "find returns a position, including valid zero; -1 means absent.",
+        "nl": "find geeft een positie, inclusief geldige nul; -1 betekent afwezig."
+      },
+      "hints": [
+        {
+          "en": "find returns a position, including valid zero; -1 means absent.",
+          "nl": "find geeft een positie, inclusief geldige nul; -1 betekent afwezig."
+        },
+        {
+          "en": "Search the original text, not the already changed result.",
+          "nl": "Zoek in de oorspronkelijke tekst, niet in het al veranderde resultaat."
+        },
+        {
+          "en": "A small fragment to adapt: `text.find(old)`",
+          "nl": "Een klein fragment om aan te passen: `text.find(old)`"
+        }
+      ],
+      "feedback": {
+        "en": "Search the original text, not the already changed result.",
+        "nl": "Zoek in de oorspronkelijke tekst, niet in het al veranderde resultaat."
+      }
+    }
+  ],
+  "solutionNote": {
+    "en": "Both answers use the original input, so replacing cannot change the reported search index.",
+    "nl": "Beide antwoorden gebruiken de oorspronkelijke invoer; vervangen verandert de gemelde zoekindex dus niet."
+  },
+  "inputs": []
+}

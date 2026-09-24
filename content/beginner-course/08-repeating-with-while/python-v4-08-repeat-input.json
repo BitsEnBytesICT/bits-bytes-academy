@@ -1,0 +1,201 @@
+{
+  "id": "python-v4-08-repeat-input",
+  "chapter": 8,
+  "group": "python-v4-module-8",
+  "title": {
+    "en": "Keep asking until a stop word",
+    "nl": "Blijf vragen tot een stopwoord"
+  },
+  "kind": "coding",
+  "optional": false,
+  "runtime": "terminal",
+  "guidance": "guided",
+  "checkpointMode": "sequential",
+  "estimatedMinutes": 17,
+  "topicIds": [
+    "repeated-input"
+  ],
+  "practices": [],
+  "requiredConcepts": [
+    "while",
+    "input",
+    "inequality",
+    "normalisation"
+  ],
+  "explanation": {
+    "en": "Use a changing answer as the loop condition. This is the foundation of a repeated menu.",
+    "nl": "Gebruik een veranderend antwoord als lusvoorwaarde. Dit is de basis van een herhaald menu."
+  },
+  "example": "",
+  "sections": [
+    {
+      "id": "python-v4-08-repeat-input-example",
+      "topicIds": [
+        "repeated-input"
+      ],
+      "heading": {
+        "en": "Follow a working example",
+        "nl": "Volg een werkend voorbeeld"
+      },
+      "body": {
+        "en": "Read the first answer before the loop. While it differs from the stop word, respond and read another answer inside the body. The second input updates the value used by the next condition check.\n\nForgetting that second input repeats the same response forever. Keep the stop word out of the ordinary response: when it arrives, the next test should skip the body. The example uses answers tea and quit.",
+        "nl": "Lees het eerste antwoord vóór de lus. Zolang het verschilt van het stopwoord, reageer je en lees je binnen het blok een nieuw antwoord. De tweede input wijzigt de waarde voor de volgende voorwaardecontrole.\n\nAls je die tweede input vergeet, herhaalt steeds dezelfde reactie. Houd het stopwoord buiten de gewone reactie: zodra het binnenkomt moet de volgende test het blok overslaan. Het voorbeeld gebruikt de antwoorden tea en quit."
+      },
+      "code": "choice = input(\"Drink: \").strip().lower()\nwhile choice != \"quit\":\n    print(f\"You chose {choice}\")\n    choice = input(\"Drink: \").strip().lower()\nprint(\"Bye\")",
+      "output": "Drink: You chose tea\nDrink: Bye\n",
+      "prediction": {
+        "en": "What happens if the very first answer is quit?",
+        "nl": "Wat gebeurt er als het allereerste antwoord quit is?"
+      },
+      "takeaway": {
+        "en": "Refresh the answer inside a loop whose condition depends on that answer.",
+        "nl": "Ververs het antwoord binnen een lus waarvan de voorwaarde van dat antwoord afhangt."
+      },
+      "exampleInputs": [
+        "tea",
+        "quit"
+      ]
+    },
+    {
+      "id": "python-v4-08-repeat-input-experiment",
+      "topicIds": [],
+      "heading": {
+        "en": "Try one change",
+        "nl": "Probeer één wijziging"
+      },
+      "body": {
+        "en": "Quit immediately, then try two items before quitting. Trace where each answer is read.",
+        "nl": "Stop onmiddellijk en probeer daarna twee artikelen vóór het stoppen. Volg waar elk antwoord wordt gelezen."
+      }
+    }
+  ],
+  "files": {
+    "main.py": ""
+  },
+  "solution": {
+    "main.py": "choice = input(\"Item: \").strip().lower()\nwhile choice != \"quit\":\n    print(f\"Added {choice}\")\n    choice = input(\"Item: \").strip().lower()\nprint(\"Done\")\n"
+  },
+  "checkpoints": [
+    {
+      "id": "python-v4-08-repeat-input-step-1",
+      "objectiveIds": [
+        "repeated-input"
+      ],
+      "task": {
+        "en": "Read Item: repeatedly; print \"Added \" plus each normalised item until quit.",
+        "nl": "Lees Item: herhaaldelijk; druk \"Added \" plus elk genormaliseerd artikel af tot quit."
+      },
+      "check": "True",
+      "probes": [
+        {
+          "stdin": [
+            "book",
+            "pen",
+            "quit"
+          ],
+          "check": "(_stdout == \"Item: Added book\\nItem: Added pen\\nItem: Done\\n\") and _remaining_input == \"\""
+        },
+        {
+          "stdin": [
+            " MAP ",
+            "quit"
+          ],
+          "check": "(_stdout == \"Item: Added map\\nItem: Done\\n\") and _remaining_input == \"\""
+        }
+      ],
+      "hint": {
+        "en": "Refresh the answer inside a loop whose condition depends on that answer.",
+        "nl": "Ververs het antwoord binnen een lus waarvan de voorwaarde van dat antwoord afhangt."
+      },
+      "hints": [
+        {
+          "en": "Refresh the answer inside a loop whose condition depends on that answer.",
+          "nl": "Ververs het antwoord binnen een lus waarvan de voorwaarde van dat antwoord afhangt."
+        },
+        {
+          "en": "Read another answer inside the body so the condition can change.",
+          "nl": "Lees een nieuw antwoord binnen het blok zodat de voorwaarde kan veranderen."
+        },
+        {
+          "en": "A small fragment to adapt: `choice = input(\"Item: \").strip().lower()`",
+          "nl": "Een klein fragment om aan te passen: `choice = input(\"Item: \").strip().lower()`"
+        }
+      ],
+      "feedback": {
+        "en": "Read another answer inside the body so the condition can change.",
+        "nl": "Lees een nieuw antwoord binnen het blok zodat de voorwaarde kan veranderen."
+      }
+    },
+    {
+      "id": "python-v4-08-repeat-input-step-2",
+      "objectiveIds": [
+        "repeated-input"
+      ],
+      "task": {
+        "en": "Print \"Done\" once after stopping and never add quit as an item.",
+        "nl": "Druk eenmaal \"Done\" af na het stoppen en voeg quit nooit als artikel toe."
+      },
+      "check": "True",
+      "probes": [
+        {
+          "stdin": [
+            "book",
+            "pen",
+            "quit"
+          ],
+          "check": "(_stdout.endswith(\"Done\\n\") and \"Added quit\" not in _stdout) and _remaining_input == \"\""
+        },
+        {
+          "stdin": [
+            " QUIT "
+          ],
+          "check": "(_stdout == \"Item: Done\\n\") and _remaining_input == \"\""
+        }
+      ],
+      "hint": {
+        "en": "Refresh the answer inside a loop whose condition depends on that answer.",
+        "nl": "Ververs het antwoord binnen een lus waarvan de voorwaarde van dat antwoord afhangt."
+      },
+      "hints": [
+        {
+          "en": "Refresh the answer inside a loop whose condition depends on that answer.",
+          "nl": "Ververs het antwoord binnen een lus waarvan de voorwaarde van dat antwoord afhangt."
+        },
+        {
+          "en": "Place the finishing message after the loop, with no indentation.",
+          "nl": "Zet het eindbericht na de lus, zonder inspringing."
+        },
+        {
+          "en": "A small fragment to adapt: `print(\"Done\")`",
+          "nl": "Een klein fragment om aan te passen: `print(\"Done\")`"
+        }
+      ],
+      "feedback": {
+        "en": "Place the finishing message after the loop, with no indentation.",
+        "nl": "Zet het eindbericht na de lus, zonder inspringing."
+      }
+    }
+  ],
+  "solutionNote": {
+    "en": "Both input calls use the same normalisation. The loop condition excludes the stop word from processing.",
+    "nl": "Beide input-aanroepen gebruiken dezelfde normalisatie. De lusvoorwaarde sluit het stopwoord uit van verwerking."
+  },
+  "inputs": [
+    "book",
+    "pen",
+    "quit"
+  ],
+  "retrievals": [
+    {
+      "id": "recall-python-v4-06-inclusive-boundaries",
+      "sourceActivityId": "python-v4-06-inclusive-boundaries",
+      "objectiveIds": [
+        "inclusive-comparisons"
+      ],
+      "prompt": {
+        "en": "Recall “Include the boundary”. Which symbol represents at most? Try the earlier example from memory, then check it. Write a three-row table for weights 4, 5 and 6, then verify it.",
+        "nl": "Haal “Neem de grenswaarde mee” terug. Welk symbool betekent hoogstens? Probeer het eerdere voorbeeld uit je geheugen en controleer daarna. Schrijf een tabel met drie regels voor gewichten 4, 5 en 6 en controleer die."
+      }
+    }
+  ]
+}

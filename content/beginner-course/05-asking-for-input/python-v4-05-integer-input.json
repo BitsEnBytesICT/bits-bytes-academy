@@ -1,0 +1,207 @@
+{
+  "id": "python-v4-05-integer-input",
+  "chapter": 5,
+  "group": "python-v4-module-5",
+  "title": {
+    "en": "Convert a whole-number answer",
+    "nl": "Zet een geheel antwoord om"
+  },
+  "kind": "coding",
+  "optional": false,
+  "runtime": "terminal",
+  "guidance": "guided",
+  "checkpointMode": "sequential",
+  "estimatedMinutes": 14,
+  "topicIds": [
+    "conversion",
+    "int-conversion"
+  ],
+  "practices": [],
+  "requiredConcepts": [
+    "input",
+    "integers",
+    "addition"
+  ],
+  "explanation": {
+    "en": "Use int() when the answer is meant to be a whole number. Keep reading and converting as separate steps while learning.",
+    "nl": "Gebruik int() wanneer het antwoord een geheel getal moet zijn. Houd lezen en omzetten tijdens het leren als aparte stappen."
+  },
+  "example": "",
+  "sections": [
+    {
+      "id": "python-v4-05-integer-input-example",
+      "topicIds": [
+        "conversion",
+        "int-conversion"
+      ],
+      "heading": {
+        "en": "Follow a working example",
+        "nl": "Volg een werkend voorbeeld"
+      },
+      "body": {
+        "en": "int(\"12\") interprets whole-number text and returns the integer 12. Store the converted result under a new name so you can distinguish it from the original text. Then numeric operators perform arithmetic.\n\nText such as \"twelve\" or \"2.5\" cannot be interpreted by int as a whole-number string and raises ValueError. This exercise assumes a valid whole-number answer. You will learn how to retry after errors in module 10.",
+        "nl": "int(\"12\") interpreteert tekst met een geheel getal en geeft de int 12 terug. Bewaar het omgezette resultaat onder een nieuwe naam zodat je het van de oorspronkelijke tekst kunt onderscheiden. Daarna rekenen numerieke operatoren met het getal.\n\nTekst zoals \"twelve\" of \"2.5\" kan int niet als een string met een geheel getal lezen en veroorzaakt ValueError. Deze oefening gaat uit van een geldig geheel antwoord. In module 10 leer je na fouten opnieuw vragen."
+      },
+      "code": "raw = input(\"Boxes: \")\nboxes = int(raw)\nprint(boxes + 1)",
+      "output": "Boxes: 5\n",
+      "prediction": {
+        "en": "With answer 4, why does the output end in 5 rather than 41?",
+        "nl": "Waarom eindigt de uitvoer bij antwoord 4 op 5 in plaats van 41?"
+      },
+      "takeaway": {
+        "en": "Read text, convert it with int, then calculate with the number.",
+        "nl": "Lees tekst, zet haar om met int en reken daarna met het getal."
+      },
+      "exampleInputs": [
+        "4"
+      ]
+    },
+    {
+      "id": "python-v4-05-integer-input-experiment",
+      "topicIds": [],
+      "heading": {
+        "en": "Try one change",
+        "nl": "Probeer één wijziging"
+      },
+      "body": {
+        "en": "Try 0, then -2. Finally try a word, read ValueError, and rerun with a valid number.",
+        "nl": "Probeer 0 en daarna -2. Probeer ten slotte een woord, lees ValueError en voer opnieuw uit met een geldig getal."
+      }
+    }
+  ],
+  "files": {
+    "main.py": ""
+  },
+  "solution": {
+    "main.py": "raw = input(\"Visitors: \")\nvisitors = int(raw)\nprint(visitors + 2)\n"
+  },
+  "checkpoints": [
+    {
+      "id": "python-v4-05-integer-input-step-1",
+      "objectiveIds": [
+        "conversion",
+        "int-conversion"
+      ],
+      "task": {
+        "en": "Read Visitors: into raw and convert it to the integer visitors.",
+        "nl": "Lees Visitors: in raw en zet het om naar de int visitors."
+      },
+      "check": "True",
+      "probes": [
+        {
+          "stdin": [
+            "3"
+          ],
+          "check": "(type(visitors) is int and visitors == int(raw)) and _remaining_input == \"\""
+        },
+        {
+          "stdin": [
+            "0"
+          ],
+          "check": "(visitors == 0) and _remaining_input == \"\""
+        }
+      ],
+      "hint": {
+        "en": "Read text, convert it with int, then calculate with the number.",
+        "nl": "Lees tekst, zet haar om met int en reken daarna met het getal."
+      },
+      "hints": [
+        {
+          "en": "Read text, convert it with int, then calculate with the number.",
+          "nl": "Lees tekst, zet haar om met int en reken daarna met het getal."
+        },
+        {
+          "en": "Assign the result of int(raw); calling it without assignment does not change raw.",
+          "nl": "Wijs het resultaat van int(raw) toe; aanroepen zonder toewijzing verandert raw niet."
+        },
+        {
+          "en": "A small fragment to adapt: `visitors = int(raw)`",
+          "nl": "Een klein fragment om aan te passen: `visitors = int(raw)`"
+        }
+      ],
+      "feedback": {
+        "en": "Assign the result of int(raw); calling it without assignment does not change raw.",
+        "nl": "Wijs het resultaat van int(raw) toe; aanroepen zonder toewijzing verandert raw niet."
+      }
+    },
+    {
+      "id": "python-v4-05-integer-input-step-2",
+      "objectiveIds": [
+        "conversion",
+        "int-conversion"
+      ],
+      "task": {
+        "en": "Print the count after two more visitors arrive.",
+        "nl": "Druk het aantal af nadat er nog twee bezoekers bijkomen."
+      },
+      "check": "True",
+      "probes": [
+        {
+          "stdin": [
+            "3"
+          ],
+          "check": "(_stdout.endswith(str(visitors + 2) + \"\\n\")) and _remaining_input == \"\""
+        },
+        {
+          "stdin": [
+            "10"
+          ],
+          "check": "(_stdout.endswith(\"12\\n\")) and _remaining_input == \"\""
+        }
+      ],
+      "hint": {
+        "en": "Read text, convert it with int, then calculate with the number.",
+        "nl": "Lees tekst, zet haar om met int en reken daarna met het getal."
+      },
+      "hints": [
+        {
+          "en": "Read text, convert it with int, then calculate with the number.",
+          "nl": "Lees tekst, zet haar om met int en reken daarna met het getal."
+        },
+        {
+          "en": "Calculate with visitors, which is numeric, instead of raw, which is text.",
+          "nl": "Reken met visitors, dat numeriek is, in plaats van raw, dat tekst is."
+        },
+        {
+          "en": "A small fragment to adapt: `print(visitors + 2)`",
+          "nl": "Een klein fragment om aan te passen: `print(visitors + 2)`"
+        }
+      ],
+      "feedback": {
+        "en": "Calculate with visitors, which is numeric, instead of raw, which is text.",
+        "nl": "Reken met visitors, dat numeriek is, in plaats van raw, dat tekst is."
+      }
+    }
+  ],
+  "solutionNote": {
+    "en": "The input remains text in raw while visitors holds the converted whole number.",
+    "nl": "De invoer blijft tekst in raw terwijl visitors het omgezette gehele getal bevat."
+  },
+  "inputs": [
+    "3"
+  ],
+  "retrievals": [
+    {
+      "id": "recall-python-v4-03-multiplication",
+      "sourceActivityId": "python-v4-03-multiplication",
+      "objectiveIds": [
+        "multiplication"
+      ],
+      "prompt": {
+        "en": "Recall “Multiply equal groups”. How many apples are there altogether? Try the earlier example from memory, then check it. Double quantity and predict the new result. Then set quantity to zero.",
+        "nl": "Haal “Vermenigvuldig gelijke groepen” terug. Hoeveel appels zijn er samen? Probeer het eerdere voorbeeld uit je geheugen en controleer daarna. Verdubbel quantity en voorspel het nieuwe resultaat. Zet quantity daarna op nul."
+      }
+    },
+    {
+      "id": "recall-python-v4-03-remainder",
+      "sourceActivityId": "python-v4-03-remainder",
+      "objectiveIds": [
+        "modulo"
+      ],
+      "prompt": {
+        "en": "Recall “Find the leftovers with %”. Why does the second calculation leave nothing? Try the earlier example from memory, then check it. Try 10 % 2 and 11 % 2. Explain how the results identify even and odd numbers.",
+        "nl": "Haal “Vind de rest met %” terug. Waarom laat de tweede berekening niets over? Probeer het eerdere voorbeeld uit je geheugen en controleer daarna. Probeer 10 % 2 en 11 % 2. Leg uit hoe de resultaten even en oneven getallen herkennen."
+      }
+    }
+  ]
+}

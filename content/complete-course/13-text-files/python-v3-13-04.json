@@ -1,0 +1,168 @@
+{
+  "id": "python-v3-13-04",
+  "chapter": 13,
+  "group": "python-v3-module-13",
+  "title": {
+    "en": "Generate a report",
+    "nl": "Maak een rapport"
+  },
+  "kind": "coding",
+  "optional": false,
+  "runtime": "terminal",
+  "guidance": "independent",
+  "estimatedMinutes": 16,
+  "explanation": {
+    "en": "Generate a text report from a list of names stored in a file. Trim each line, ignore empty lines, title-case names, and write a count followed by one name per line.",
+    "nl": "Maak een tekstrapport van namen in een bestand. Trim elke regel, negeer lege regels, geef namen titelnotatie en schrijf een aantal gevolgd door één naam per regel."
+  },
+  "example": "",
+  "topicIds": [
+    "files-review"
+  ],
+  "prerequisites": [
+    "python-v3-13-03"
+  ],
+  "sections": [
+    {
+      "topicIds": [
+        "files-review"
+      ],
+      "heading": {
+        "en": "Keep input and output separate",
+        "nl": "Houd invoer en uitvoer apart"
+      },
+      "body": {
+        "en": "Read from source and write to a different target filename. This preserves the source for another report. Assemble the meaningful data before formatting the output. A report with no names still has a count line. All text files in this task use UTF-8.",
+        "nl": "Lees uit source en schrijf naar een andere target-bestandsnaam. Dit bewaart de bron voor een ander rapport. Verzamel de betekenisvolle gegevens vóór opmaak van de uitvoer. Een rapport zonder namen heeft nog steeds een telregel. Alle tekstbestanden in deze taak gebruiken UTF-8."
+      },
+      "code": "names = [\"Ada\", \"Bo\"]\nreport = f\"Participants: {len(names)}\\n\"\nfor name in names:\n    report += name + \"\\n\"\nprint(report, end=\"\")",
+      "output": "Participants: 2\nAda\nBo\n",
+      "prediction": {
+        "en": "Why should the original file remain unchanged?",
+        "nl": "Waarom moet het oorspronkelijke bestand ongewijzigd blijven?"
+      }
+    },
+    {
+      "topicIds": [],
+      "heading": {
+        "en": "Try a changed input",
+        "nl": "Probeer gewijzigde invoer"
+      },
+      "body": {
+        "en": "Inspect report.txt after Run, then add a name to guests.txt and Run again. Confirm the count changes once and the report does not accumulate duplicate old runs.",
+        "nl": "Bekijk report.txt na Uitvoeren, voeg een naam aan guests.txt toe en voer opnieuw uit. Bevestig dat het aantal één keer verandert en het rapport geen dubbele oude uitvoeringen verzamelt."
+      }
+    }
+  ],
+  "files": {
+    "guests.txt": " ada \n\nBO\nzoë\n",
+    "main.py": "def write_report(source, target):\n    return 0\n\nprint(write_report(\"guests.txt\", \"report.txt\"))\n"
+  },
+  "solution": {
+    "guests.txt": " ada \n\nBO\nzoë\n",
+    "main.py": "def write_report(source, target):\n    names = []\n    with open(source, encoding=\"utf-8\") as handle:\n        for line in handle:\n            name = line.strip().title()\n            if name != \"\":\n                names.append(name)\n    with open(target, \"w\", encoding=\"utf-8\") as handle:\n        handle.write(f\"Participants: {len(names)}\\n\")\n        for name in names:\n            handle.write(name + \"\\n\")\n    return len(names)\n\nprint(write_report(\"guests.txt\", \"report.txt\"))\n"
+  },
+  "checkpoints": [
+    {
+      "objectiveIds": [
+        "files-review"
+      ],
+      "task": {
+        "en": "Write the cleaned report to target and return the number of names. Its first line is Participants: count; every line ends with a newline.",
+        "nl": "Schrijf het opgeschoonde rapport naar target en geef het aantal namen terug. De eerste regel is Participants: aantal; elke regel eindigt met een nieuwe regel."
+      },
+      "check": "__import__(\"pathlib\").Path(\"report.txt\").read_text(encoding=\"utf-8\") == \"Participants: 3\\nAda\\nBo\\nZoë\\n\"",
+      "hints": [
+        {
+          "en": "Read and clean before opening the report for writing.",
+          "nl": "Lees en schoon op voordat je het rapport opent om te schrijven."
+        },
+        {
+          "en": "Keep a list so its length gives the count.",
+          "nl": "Houd een lijst bij zodat de lengte het aantal geeft."
+        },
+        {
+          "en": "handle.write(f\"Participants: {len(names)}\\n\")",
+          "nl": "handle.write(f\"Participants: {len(names)}\\n\")"
+        }
+      ],
+      "hint": {
+        "en": "Read and clean before opening the report for writing.",
+        "nl": "Lees en schoon op voordat je het rapport opent om te schrijven."
+      },
+      "feedback": {
+        "en": "The generated file, not only the terminal output, must contain the report.",
+        "nl": "Het gegenereerde bestand moet het rapport bevatten, niet alleen de terminaluitvoer."
+      },
+      "probes": [
+        {
+          "call": {
+            "name": "write_report",
+            "args": [
+              "source.txt",
+              "target.txt"
+            ]
+          },
+          "check": "_return == 1 and __import__(\"pathlib\").Path(\"target.txt\").read_text(encoding=\"utf-8\") == \"Participants: 1\\nÉva\\n\"",
+          "files": {
+            "source.txt": " éva \n"
+          }
+        }
+      ],
+      "id": "python-v3-13-04-step-1"
+    },
+    {
+      "objectiveIds": [
+        "files-review"
+      ],
+      "task": {
+        "en": "Preserve source and handle an empty or whitespace-only source with Participants: 0 and no name lines.",
+        "nl": "Behoud source en handel een lege bron of alleen witruimte af met Participants: 0 en zonder naamregels."
+      },
+      "check": "__import__(\"pathlib\").Path(\"guests.txt\").read_text(encoding=\"utf-8\") == \" ada \\n\\nBO\\nzoë\\n\"",
+      "hints": [
+        {
+          "en": "The input must remain available for future processing.",
+          "nl": "De invoer moet beschikbaar blijven voor latere verwerking."
+        },
+        {
+          "en": "Open source only for reading; write only to target.",
+          "nl": "Open source alleen voor lezen; schrijf alleen naar target."
+        },
+        {
+          "en": "with open(target, \"w\", encoding=\"utf-8\") as handle:",
+          "nl": "with open(target, \"w\", encoding=\"utf-8\") as handle:"
+        }
+      ],
+      "hint": {
+        "en": "The input must remain available for future processing.",
+        "nl": "De invoer moet beschikbaar blijven voor latere verwerking."
+      },
+      "feedback": {
+        "en": "Check both the empty report and unchanged source file.",
+        "nl": "Controleer zowel het lege rapport als het ongewijzigde bronbestand."
+      },
+      "probes": [
+        {
+          "call": {
+            "name": "write_report",
+            "args": [
+              "empty.txt",
+              "target.txt"
+            ]
+          },
+          "check": "_return == 0 and __import__(\"pathlib\").Path(\"target.txt\").read_text(encoding=\"utf-8\") == \"Participants: 0\\n\" and __import__(\"pathlib\").Path(\"empty.txt\").read_text(encoding=\"utf-8\") == \" \\n\"",
+          "files": {
+            "empty.txt": " \n"
+          }
+        }
+      ],
+      "id": "python-v3-13-04-step-2"
+    }
+  ],
+  "solutionNote": {
+    "en": "The source and target have separate roles. Cleaning happens before counting, so blank lines do not inflate the report.",
+    "nl": "Bron en doel hebben aparte rollen. Opschonen gebeurt vóór tellen zodat lege regels het rapport niet opblazen."
+  },
+  "inputs": []
+}

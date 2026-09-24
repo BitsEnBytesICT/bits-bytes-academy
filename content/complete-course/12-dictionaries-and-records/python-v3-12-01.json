@@ -1,0 +1,197 @@
+{
+  "id": "python-v3-12-01",
+  "chapter": 12,
+  "group": "python-v3-module-12",
+  "title": {
+    "en": "Model a record",
+    "nl": "Modelleer een record"
+  },
+  "kind": "coding",
+  "optional": false,
+  "runtime": "terminal",
+  "guidance": "guided",
+  "estimatedMinutes": 15,
+  "explanation": {
+    "en": "Use dictionary keys to name information instead of remembering positions. A dictionary maps unique hashable keys to values.",
+    "nl": "Gebruik dictionarysleutels om informatie te benoemen in plaats van posities te onthouden. Een dictionary koppelt unieke hashbare sleutels aan waarden."
+  },
+  "example": "",
+  "topicIds": [
+    "dictionaries",
+    "empty-dictionaries",
+    "valid-keys",
+    "invalid-keys"
+  ],
+  "prerequisites": [
+    "python-v3-11-05"
+  ],
+  "sections": [
+    {
+      "topicIds": [
+        "dictionaries",
+        "empty-dictionaries",
+        "valid-keys",
+        "invalid-keys"
+      ],
+      "heading": {
+        "en": "Names instead of positions",
+        "nl": "Namen in plaats van posities"
+      },
+      "body": {
+        "en": "{} creates an empty dictionary. {\"name\": \"Ada\", \"score\": 2} pairs keys with values using colons. Strings and integers can be keys. A tuple can be a key if all its parts are hashable; a list or dictionary cannot. Invalid keys raise TypeError. A key identifies one entry, so repeating it replaces that entry rather than adding a duplicate.",
+        "nl": "{} maakt een lege dictionary. {\"name\": \"Ada\", \"score\": 2} koppelt sleutels aan waarden met dubbele punten. Strings en gehele getallen kunnen sleutels zijn. Een tuple kan een sleutel zijn als alle onderdelen hashbaar zijn; een lijst of dictionary kan dat niet. Ongeldige sleutels geven TypeError. Een sleutel identificeert één item, dus herhalen vervangt dat item in plaats van een duplicaat toe te voegen."
+      },
+      "code": "record = {}\nrecord[\"name\"] = \"Ada\"\nrecord[(0, 0)] = \"origin\"\nprint(record[\"name\"], record[(0, 0)])",
+      "output": "Ada origin\n",
+      "prediction": {
+        "en": "Why might a coordinate tuple work as a key while a coordinate list does not?",
+        "nl": "Waarom kan een coördinatentuple als sleutel werken maar een coördinatenlijst niet?"
+      }
+    },
+    {
+      "topicIds": [],
+      "heading": {
+        "en": "Try a changed input",
+        "nl": "Probeer gewijzigde invoer"
+      },
+      "body": {
+        "en": "Try a string, an integer, a tuple and a list as keys. Explain why immutability of the outer tuple alone is not sufficient.",
+        "nl": "Probeer een string, een geheel getal, een tuple en een lijst als sleutel. Leg uit waarom onveranderlijkheid van de buitenste tuple alleen niet volstaat."
+      }
+    }
+  ],
+  "files": {
+    "main.py": "def make_record(name):\n    return {}\n\ndef accepts_key(key):\n    return True\n\nprint(make_record(\"Jo\"))\n"
+  },
+  "solution": {
+    "main.py": "def make_record(name):\n    record = {}\n    record[\"name\"] = name\n    record[\"score\"] = 0\n    return record\n\ndef accepts_key(key):\n    try:\n        sample = {key: \"value\"}\n        return True\n    except TypeError:\n        return False\n\nprint(make_record(\"Jo\"))\n"
+  },
+  "checkpoints": [
+    {
+      "objectiveIds": [
+        "dictionaries",
+        "empty-dictionaries"
+      ],
+      "task": {
+        "en": "Build and return a record with name from the argument and score=0. Create a fresh dictionary per call.",
+        "nl": "Maak en geef een record terug met name uit het argument en score=0. Maak per aanroep een nieuwe dictionary."
+      },
+      "check": "make_record(\"Jo\") == {\"name\":\"Jo\",\"score\":0}",
+      "hints": [
+        {
+          "en": "Use keys to describe what each value means.",
+          "nl": "Gebruik sleutels om te beschrijven wat elke waarde betekent."
+        },
+        {
+          "en": "Start from {} and assign the two keys, or use a literal.",
+          "nl": "Begin met {} en wijs twee sleutels toe of gebruik een literal."
+        },
+        {
+          "en": "record[\"name\"] = name",
+          "nl": "record[\"name\"] = name"
+        }
+      ],
+      "hint": {
+        "en": "Use keys to describe what each value means.",
+        "nl": "Gebruik sleutels om te beschrijven wat elke waarde betekent."
+      },
+      "feedback": {
+        "en": "Different calls should not share a record accidentally.",
+        "nl": "Verschillende aanroepen mogen niet per ongeluk een record delen."
+      },
+      "probes": [
+        {
+          "call": {
+            "name": "make_record",
+            "args": [
+              "Mia"
+            ]
+          },
+          "check": "_return == {\"name\":\"Mia\",\"score\":0} and _return is not make_record(\"Mia\")"
+        }
+      ],
+      "id": "python-v3-12-01-step-1"
+    },
+    {
+      "objectiveIds": [
+        "valid-keys",
+        "invalid-keys"
+      ],
+      "task": {
+        "en": "Implement accepts_key by attempting a one-entry dictionary and catching TypeError; return a Boolean.",
+        "nl": "Implementeer accepts_key door een dictionary met één item te proberen en TypeError op te vangen; geef een boolean terug."
+      },
+      "check": "accepts_key(\"name\") is True",
+      "hints": [
+        {
+          "en": "Let Python test the key’s actual contract.",
+          "nl": "Laat Python de echte sleutelafspraak testen."
+        },
+        {
+          "en": "Try {key: \"value\"}; reject TypeError.",
+          "nl": "Probeer {key: \"value\"}; wijs TypeError af."
+        },
+        {
+          "en": "except TypeError:\n    return False",
+          "nl": "except TypeError:\n    return False"
+        }
+      ],
+      "hint": {
+        "en": "Let Python test the key’s actual contract.",
+        "nl": "Laat Python de echte sleutelafspraak testen."
+      },
+      "feedback": {
+        "en": "Checking only whether the object is a tuple is insufficient: its contents matter too.",
+        "nl": "Alleen controleren of het object een tuple is volstaat niet: de inhoud telt ook."
+      },
+      "probes": [
+        {
+          "call": {
+            "name": "accepts_key",
+            "args": [
+              [
+                1,
+                2
+              ]
+            ]
+          },
+          "check": "_return is False"
+        },
+        {
+          "call": {
+            "name": "accepts_key",
+            "args": [
+              3
+            ]
+          },
+          "check": "_return is True"
+        },
+        {
+          "check": "accepts_key((1,2)) is True and accepts_key(([1],2)) is False"
+        }
+      ],
+      "id": "python-v3-12-01-step-2"
+    }
+  ],
+  "solutionNote": {
+    "en": "Named fields make the record readable. The key test delegates hashability to the dictionary operation, covering nested invalid tuple contents correctly.",
+    "nl": "Benoemde velden maken het record leesbaar. De sleuteltest laat hashbaarheid aan de dictionarybewerking over en behandelt ongeldige geneste tuple-inhoud correct."
+  },
+  "inputs": [],
+  "retrievals": [
+    {
+      "id": "recall-python-v3-10-01",
+      "sourceActivityId": "python-v3-10-01",
+      "objectiveIds": [
+        "string-indexing",
+        "string-slicing",
+        "string-length",
+        "string-negative-indices"
+      ],
+      "prompt": {
+        "en": "Inspect a new identifier using its first character, last character, len and a slice. What happens at an invalid index?",
+        "nl": "Bekijk een nieuwe code met het eerste teken, laatste teken, len en een slice. Wat gebeurt er bij een ongeldige index?"
+      }
+    }
+  ]
+}

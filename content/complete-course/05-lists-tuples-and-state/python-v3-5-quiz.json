@@ -1,0 +1,778 @@
+{
+  "id": "python-v3-5-quiz",
+  "chapter": 5,
+  "group": "python-v3-module-5",
+  "kind": "quiz",
+  "optional": false,
+  "estimatedMinutes": 6,
+  "title": {
+    "en": "Lists, tuples, and state: review",
+    "nl": "Lijsten, tuples en toestand: herhaling"
+  },
+  "questions": [
+    {
+      "objectiveIds": [
+        "aliasing",
+        "copying",
+        "list-mutation"
+      ],
+      "reviewActivityIds": [
+        "python-v3-5-02"
+      ],
+      "category": "prediction",
+      "prompt": {
+        "en": "What does this program print?",
+        "nl": "Wat drukt dit programma af?"
+      },
+      "code": "values = [4, 2]\nalias = values\ncopy = values.copy()\nalias[0] = 9\nprint(values[0], copy[0])",
+      "answer": "a",
+      "choices": [
+        {
+          "id": "a",
+          "label": {
+            "en": "9 4",
+            "nl": "9 4"
+          },
+          "reason": {
+            "en": "The alias shares the changed list; the copy retains its earlier value.",
+            "nl": "De alias deelt de gewijzigde lijst; de kopie behoudt de eerdere waarde."
+          }
+        },
+        {
+          "id": "b",
+          "label": {
+            "en": "9 9",
+            "nl": "9 9"
+          },
+          "reason": {
+            "en": "A separate flat copy is not changed by alias mutation.",
+            "nl": "Een aparte vlakke kopie verandert niet door aliasmutatie."
+          }
+        },
+        {
+          "id": "c",
+          "label": {
+            "en": "4 4",
+            "nl": "4 4"
+          },
+          "reason": {
+            "en": "The alias and original refer to the same list.",
+            "nl": "Alias en origineel verwijzen naar dezelfde lijst."
+          }
+        }
+      ],
+      "expectedOutput": "9 4\n",
+      "id": "python-v3-5-quiz-a-1"
+    },
+    {
+      "objectiveIds": [
+        "negative-indexing",
+        "len"
+      ],
+      "reviewActivityIds": [
+        "python-v3-5-02"
+      ],
+      "category": "prediction",
+      "prompt": {
+        "en": "What does this program print?",
+        "nl": "Wat drukt dit programma af?"
+      },
+      "code": "values = [4, 2, 7]\nprint(values[-1], len(values))",
+      "answer": "a",
+      "choices": [
+        {
+          "id": "a",
+          "label": {
+            "en": "7 3",
+            "nl": "7 3"
+          },
+          "reason": {
+            "en": "-1 selects the last item; length counts all three items.",
+            "nl": "-1 kiest het laatste item; lengte telt alle drie items."
+          }
+        },
+        {
+          "id": "b",
+          "label": {
+            "en": "4 3",
+            "nl": "4 3"
+          },
+          "reason": {
+            "en": "Negative indexes count from the end, not the beginning.",
+            "nl": "Negatieve indexen tellen vanaf het einde, niet het begin."
+          }
+        },
+        {
+          "id": "c",
+          "label": {
+            "en": "7 2",
+            "nl": "7 2"
+          },
+          "reason": {
+            "en": "The last positive index is 2, but length is 3.",
+            "nl": "De laatste positieve index is 2, maar de lengte is 3."
+          }
+        }
+      ],
+      "expectedOutput": "7 3\n",
+      "id": "python-v3-5-quiz-a-2"
+    },
+    {
+      "objectiveIds": [
+        "append"
+      ],
+      "reviewActivityIds": [
+        "python-v3-5-01"
+      ],
+      "category": "completion",
+      "prompt": {
+        "en": "Add one item without replacing the list.",
+        "nl": "Voeg één item toe zonder de lijst te vervangen."
+      },
+      "code": "values = []\nvalues.___(4)\nprint(values)",
+      "answer": "a",
+      "choices": [
+        {
+          "id": "a",
+          "label": {
+            "en": "append",
+            "nl": "append"
+          },
+          "reason": {
+            "en": "append adds one item in place. copy and clear do not add the supplied item.",
+            "nl": "append voegt één item op zijn plek toe. copy en clear voegen het meegegeven item niet toe."
+          }
+        },
+        {
+          "id": "b",
+          "label": {
+            "en": "copy",
+            "nl": "copy"
+          },
+          "reason": {
+            "en": "append adds one item in place. copy and clear do not add the supplied item.",
+            "nl": "append voegt één item op zijn plek toe. copy en clear voegen het meegegeven item niet toe."
+          }
+        },
+        {
+          "id": "c",
+          "label": {
+            "en": "clear",
+            "nl": "clear"
+          },
+          "reason": {
+            "en": "append adds one item in place. copy and clear do not add the supplied item.",
+            "nl": "append voegt één item op zijn plek toe. copy en clear voegen het meegegeven item niet toe."
+          }
+        }
+      ],
+      "codeBlank": {
+        "prompt": {
+          "en": "Add one item without replacing the list.",
+          "nl": "Voeg één item toe zonder de lijst te vervangen."
+        },
+        "segments": [
+          "values = []\nvalues.",
+          "(4)\nprint(values)"
+        ],
+        "tokens": [
+          {
+            "id": "token-1",
+            "code": "append"
+          },
+          {
+            "id": "token-2",
+            "code": "copy"
+          },
+          {
+            "id": "token-3",
+            "code": "clear"
+          }
+        ],
+        "blanks": [
+          {
+            "answer": "append",
+            "reason": {
+              "en": "append adds one item in place. copy and clear do not add the supplied item.",
+              "nl": "append voegt één item op zijn plek toe. copy en clear voegen het meegegeven item niet toe."
+            }
+          }
+        ],
+        "output": "[4]\n"
+      },
+      "id": "python-v3-5-quiz-a-3"
+    },
+    {
+      "objectiveIds": [
+        "tuples",
+        "unpacking",
+        "multiple-returns"
+      ],
+      "reviewActivityIds": [
+        "python-v3-5-04"
+      ],
+      "category": "completion",
+      "prompt": {
+        "en": "Unpack the returned coordinates.",
+        "nl": "Pak de teruggegeven coördinaten uit."
+      },
+      "code": "def point():\n    return 4, 2\nx, ___ = point()\nprint(x, y)",
+      "answer": "a",
+      "choices": [
+        {
+          "id": "a",
+          "label": {
+            "en": "y",
+            "nl": "y"
+          },
+          "reason": {
+            "en": "The two names receive the two tuple components in order.",
+            "nl": "De twee namen ontvangen de twee tuple-onderdelen op volgorde."
+          }
+        },
+        {
+          "id": "b",
+          "label": {
+            "en": "point",
+            "nl": "point"
+          },
+          "reason": {
+            "en": "The two names receive the two tuple components in order.",
+            "nl": "De twee namen ontvangen de twee tuple-onderdelen op volgorde."
+          }
+        },
+        {
+          "id": "c",
+          "label": {
+            "en": "x",
+            "nl": "x"
+          },
+          "reason": {
+            "en": "The two names receive the two tuple components in order.",
+            "nl": "De twee namen ontvangen de twee tuple-onderdelen op volgorde."
+          }
+        }
+      ],
+      "codeBlank": {
+        "prompt": {
+          "en": "Unpack the returned coordinates.",
+          "nl": "Pak de teruggegeven coördinaten uit."
+        },
+        "segments": [
+          "def point():\n    return 4, 2\nx, ",
+          " = point()\nprint(x, y)"
+        ],
+        "tokens": [
+          {
+            "id": "token-1",
+            "code": "y"
+          },
+          {
+            "id": "token-2",
+            "code": "point"
+          },
+          {
+            "id": "token-3",
+            "code": "x"
+          }
+        ],
+        "blanks": [
+          {
+            "answer": "y",
+            "reason": {
+              "en": "The two names receive the two tuple components in order.",
+              "nl": "De twee namen ontvangen de twee tuple-onderdelen op volgorde."
+            }
+          }
+        ],
+        "output": "4 2\n"
+      },
+      "id": "python-v3-5-quiz-a-4"
+    },
+    {
+      "objectiveIds": [
+        "return",
+        "none"
+      ],
+      "reviewActivityIds": [
+        "python-v3-4-02"
+      ],
+      "category": "debugging",
+      "prompt": {
+        "en": "Why is result None?",
+        "nl": "Waarom is result None?"
+      },
+      "code": "def calculate():\n    print(4 * 2)\nresult = calculate()",
+      "answer": "a",
+      "choices": [
+        {
+          "id": "a",
+          "label": {
+            "en": "The function prints but does not return the number.",
+            "nl": "De functie drukt af maar geeft het getal niet terug."
+          },
+          "reason": {
+            "en": "Add return for a value the caller can use.",
+            "nl": "Voeg return toe voor een waarde die de aanroeper kan gebruiken."
+          }
+        },
+        {
+          "id": "b",
+          "label": {
+            "en": "Multiplication cannot be used in a function.",
+            "nl": "Vermenigvuldigen kan niet in een functie."
+          },
+          "reason": {
+            "en": "Arithmetic is allowed; the missing return is the issue.",
+            "nl": "Rekenen is toegestaan; de ontbrekende return is het probleem."
+          }
+        },
+        {
+          "id": "c",
+          "label": {
+            "en": "The call needs an extra pair of parentheses.",
+            "nl": "De aanroep heeft extra haakjes nodig."
+          },
+          "reason": {
+            "en": "The function is already called correctly.",
+            "nl": "De functie wordt al correct aangeroepen."
+          }
+        }
+      ],
+      "id": "python-v3-5-quiz-a-5"
+    },
+    {
+      "objectiveIds": [
+        "range-start-stop-step"
+      ],
+      "reviewActivityIds": [
+        "python-v3-3-02"
+      ],
+      "category": "application",
+      "prompt": {
+        "en": "Which range counts 5, 3, 1?",
+        "nl": "Welke range telt 5, 3, 1?"
+      },
+      "answer": "a",
+      "choices": [
+        {
+          "id": "a",
+          "label": {
+            "en": "range(5, 0, -2)",
+            "nl": "range(5, 0, -2)"
+          },
+          "reason": {
+            "en": "A negative step moves toward the excluded lower stop.",
+            "nl": "Een negatieve stap gaat naar het uitgesloten lagere einde."
+          }
+        },
+        {
+          "id": "b",
+          "label": {
+            "en": "range(5, 0, 2)",
+            "nl": "range(5, 0, 2)"
+          },
+          "reason": {
+            "en": "A positive step cannot move from this start down to the stop.",
+            "nl": "Een positieve stap kan niet vanaf dit begin naar het lagere einde gaan."
+          }
+        },
+        {
+          "id": "c",
+          "label": {
+            "en": "range(0, 5, -2)",
+            "nl": "range(0, 5, -2)"
+          },
+          "reason": {
+            "en": "The start and stop are reversed for this negative step.",
+            "nl": "Begin en einde zijn omgedraaid voor deze negatieve stap."
+          }
+        }
+      ],
+      "id": "python-v3-5-quiz-a-6"
+    }
+  ],
+  "alternateQuestions": [
+    {
+      "objectiveIds": [
+        "aliasing",
+        "copying",
+        "list-mutation"
+      ],
+      "reviewActivityIds": [
+        "python-v3-5-02"
+      ],
+      "category": "prediction",
+      "prompt": {
+        "en": "What does this program print?",
+        "nl": "Wat drukt dit programma af?"
+      },
+      "code": "values = [8, 2]\nalias = values\ncopy = values.copy()\nalias[0] = 9\nprint(values[0], copy[0])",
+      "answer": "a",
+      "choices": [
+        {
+          "id": "a",
+          "label": {
+            "en": "9 8",
+            "nl": "9 8"
+          },
+          "reason": {
+            "en": "The alias shares the changed list; the copy retains its earlier value.",
+            "nl": "De alias deelt de gewijzigde lijst; de kopie behoudt de eerdere waarde."
+          }
+        },
+        {
+          "id": "b",
+          "label": {
+            "en": "9 9",
+            "nl": "9 9"
+          },
+          "reason": {
+            "en": "A separate flat copy is not changed by alias mutation.",
+            "nl": "Een aparte vlakke kopie verandert niet door aliasmutatie."
+          }
+        },
+        {
+          "id": "c",
+          "label": {
+            "en": "8 8",
+            "nl": "8 8"
+          },
+          "reason": {
+            "en": "The alias and original refer to the same list.",
+            "nl": "Alias en origineel verwijzen naar dezelfde lijst."
+          }
+        }
+      ],
+      "expectedOutput": "9 8\n",
+      "id": "python-v3-5-quiz-b-1"
+    },
+    {
+      "objectiveIds": [
+        "negative-indexing",
+        "len"
+      ],
+      "reviewActivityIds": [
+        "python-v3-5-02"
+      ],
+      "category": "prediction",
+      "prompt": {
+        "en": "What does this program print?",
+        "nl": "Wat drukt dit programma af?"
+      },
+      "code": "values = [8, 2, 7]\nprint(values[-1], len(values))",
+      "answer": "a",
+      "choices": [
+        {
+          "id": "a",
+          "label": {
+            "en": "7 3",
+            "nl": "7 3"
+          },
+          "reason": {
+            "en": "-1 selects the last item; length counts all three items.",
+            "nl": "-1 kiest het laatste item; lengte telt alle drie items."
+          }
+        },
+        {
+          "id": "b",
+          "label": {
+            "en": "8 3",
+            "nl": "8 3"
+          },
+          "reason": {
+            "en": "Negative indexes count from the end, not the beginning.",
+            "nl": "Negatieve indexen tellen vanaf het einde, niet het begin."
+          }
+        },
+        {
+          "id": "c",
+          "label": {
+            "en": "7 2",
+            "nl": "7 2"
+          },
+          "reason": {
+            "en": "The last positive index is 2, but length is 3.",
+            "nl": "De laatste positieve index is 2, maar de lengte is 3."
+          }
+        }
+      ],
+      "expectedOutput": "7 3\n",
+      "id": "python-v3-5-quiz-b-2"
+    },
+    {
+      "objectiveIds": [
+        "append"
+      ],
+      "reviewActivityIds": [
+        "python-v3-5-01"
+      ],
+      "category": "completion",
+      "prompt": {
+        "en": "Add one item without replacing the list.",
+        "nl": "Voeg één item toe zonder de lijst te vervangen."
+      },
+      "code": "values = []\nvalues.___(8)\nprint(values)",
+      "answer": "a",
+      "choices": [
+        {
+          "id": "a",
+          "label": {
+            "en": "append",
+            "nl": "append"
+          },
+          "reason": {
+            "en": "append adds one item in place. copy and clear do not add the supplied item.",
+            "nl": "append voegt één item op zijn plek toe. copy en clear voegen het meegegeven item niet toe."
+          }
+        },
+        {
+          "id": "b",
+          "label": {
+            "en": "copy",
+            "nl": "copy"
+          },
+          "reason": {
+            "en": "append adds one item in place. copy and clear do not add the supplied item.",
+            "nl": "append voegt één item op zijn plek toe. copy en clear voegen het meegegeven item niet toe."
+          }
+        },
+        {
+          "id": "c",
+          "label": {
+            "en": "clear",
+            "nl": "clear"
+          },
+          "reason": {
+            "en": "append adds one item in place. copy and clear do not add the supplied item.",
+            "nl": "append voegt één item op zijn plek toe. copy en clear voegen het meegegeven item niet toe."
+          }
+        }
+      ],
+      "codeBlank": {
+        "prompt": {
+          "en": "Add one item without replacing the list.",
+          "nl": "Voeg één item toe zonder de lijst te vervangen."
+        },
+        "segments": [
+          "values = []\nvalues.",
+          "(8)\nprint(values)"
+        ],
+        "tokens": [
+          {
+            "id": "token-1",
+            "code": "append"
+          },
+          {
+            "id": "token-2",
+            "code": "copy"
+          },
+          {
+            "id": "token-3",
+            "code": "clear"
+          }
+        ],
+        "blanks": [
+          {
+            "answer": "append",
+            "reason": {
+              "en": "append adds one item in place. copy and clear do not add the supplied item.",
+              "nl": "append voegt één item op zijn plek toe. copy en clear voegen het meegegeven item niet toe."
+            }
+          }
+        ],
+        "output": "[8]\n"
+      },
+      "id": "python-v3-5-quiz-b-3"
+    },
+    {
+      "objectiveIds": [
+        "tuples",
+        "unpacking",
+        "multiple-returns"
+      ],
+      "reviewActivityIds": [
+        "python-v3-5-04"
+      ],
+      "category": "completion",
+      "prompt": {
+        "en": "Unpack the returned coordinates.",
+        "nl": "Pak de teruggegeven coördinaten uit."
+      },
+      "code": "def point():\n    return 8, 2\nx, ___ = point()\nprint(x, y)",
+      "answer": "a",
+      "choices": [
+        {
+          "id": "a",
+          "label": {
+            "en": "y",
+            "nl": "y"
+          },
+          "reason": {
+            "en": "The two names receive the two tuple components in order.",
+            "nl": "De twee namen ontvangen de twee tuple-onderdelen op volgorde."
+          }
+        },
+        {
+          "id": "b",
+          "label": {
+            "en": "point",
+            "nl": "point"
+          },
+          "reason": {
+            "en": "The two names receive the two tuple components in order.",
+            "nl": "De twee namen ontvangen de twee tuple-onderdelen op volgorde."
+          }
+        },
+        {
+          "id": "c",
+          "label": {
+            "en": "x",
+            "nl": "x"
+          },
+          "reason": {
+            "en": "The two names receive the two tuple components in order.",
+            "nl": "De twee namen ontvangen de twee tuple-onderdelen op volgorde."
+          }
+        }
+      ],
+      "codeBlank": {
+        "prompt": {
+          "en": "Unpack the returned coordinates.",
+          "nl": "Pak de teruggegeven coördinaten uit."
+        },
+        "segments": [
+          "def point():\n    return 8, 2\nx, ",
+          " = point()\nprint(x, y)"
+        ],
+        "tokens": [
+          {
+            "id": "token-1",
+            "code": "y"
+          },
+          {
+            "id": "token-2",
+            "code": "point"
+          },
+          {
+            "id": "token-3",
+            "code": "x"
+          }
+        ],
+        "blanks": [
+          {
+            "answer": "y",
+            "reason": {
+              "en": "The two names receive the two tuple components in order.",
+              "nl": "De twee namen ontvangen de twee tuple-onderdelen op volgorde."
+            }
+          }
+        ],
+        "output": "8 2\n"
+      },
+      "id": "python-v3-5-quiz-b-4"
+    },
+    {
+      "objectiveIds": [
+        "return",
+        "none"
+      ],
+      "reviewActivityIds": [
+        "python-v3-4-02"
+      ],
+      "category": "debugging",
+      "prompt": {
+        "en": "Why is result None?",
+        "nl": "Waarom is result None?"
+      },
+      "code": "def calculate():\n    print(8 * 2)\nresult = calculate()",
+      "answer": "a",
+      "choices": [
+        {
+          "id": "a",
+          "label": {
+            "en": "The function prints but does not return the number.",
+            "nl": "De functie drukt af maar geeft het getal niet terug."
+          },
+          "reason": {
+            "en": "Add return for a value the caller can use.",
+            "nl": "Voeg return toe voor een waarde die de aanroeper kan gebruiken."
+          }
+        },
+        {
+          "id": "b",
+          "label": {
+            "en": "Multiplication cannot be used in a function.",
+            "nl": "Vermenigvuldigen kan niet in een functie."
+          },
+          "reason": {
+            "en": "Arithmetic is allowed; the missing return is the issue.",
+            "nl": "Rekenen is toegestaan; de ontbrekende return is het probleem."
+          }
+        },
+        {
+          "id": "c",
+          "label": {
+            "en": "The call needs an extra pair of parentheses.",
+            "nl": "De aanroep heeft extra haakjes nodig."
+          },
+          "reason": {
+            "en": "The function is already called correctly.",
+            "nl": "De functie wordt al correct aangeroepen."
+          }
+        }
+      ],
+      "id": "python-v3-5-quiz-b-5"
+    },
+    {
+      "objectiveIds": [
+        "range-start-stop-step"
+      ],
+      "reviewActivityIds": [
+        "python-v3-3-02"
+      ],
+      "category": "application",
+      "prompt": {
+        "en": "Which range counts 6, 4, 2?",
+        "nl": "Welke range telt 6, 4, 2?"
+      },
+      "answer": "a",
+      "choices": [
+        {
+          "id": "a",
+          "label": {
+            "en": "range(6, 0, -2)",
+            "nl": "range(6, 0, -2)"
+          },
+          "reason": {
+            "en": "A negative step moves toward the excluded lower stop.",
+            "nl": "Een negatieve stap gaat naar het uitgesloten lagere einde."
+          }
+        },
+        {
+          "id": "b",
+          "label": {
+            "en": "range(6, 0, 2)",
+            "nl": "range(6, 0, 2)"
+          },
+          "reason": {
+            "en": "A positive step cannot move from this start down to the stop.",
+            "nl": "Een positieve stap kan niet vanaf dit begin naar het lagere einde gaan."
+          }
+        },
+        {
+          "id": "c",
+          "label": {
+            "en": "range(0, 6, -2)",
+            "nl": "range(0, 6, -2)"
+          },
+          "reason": {
+            "en": "The start and stop are reversed for this negative step.",
+            "nl": "Begin en einde zijn omgedraaid voor deze negatieve stap."
+          }
+        }
+      ],
+      "id": "python-v3-5-quiz-b-6"
+    }
+  ]
+}

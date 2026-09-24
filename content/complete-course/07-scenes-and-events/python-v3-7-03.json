@@ -1,0 +1,205 @@
+{
+  "id": "python-v3-7-03",
+  "chapter": 7,
+  "group": "python-v3-module-7",
+  "title": {
+    "en": "Respond to events",
+    "nl": "Reageer op gebeurtenissen"
+  },
+  "kind": "coding",
+  "optional": false,
+  "runtime": "pygame",
+  "guidance": "adapt",
+  "estimatedMinutes": 17,
+  "explanation": {
+    "en": "Respond once to a keyboard event and handle a close request. The supplied loop reads the event queue; your helper decides the response.",
+    "nl": "Reageer één keer op een toetsenbordgebeurtenis en handel een sluitverzoek af. De meegeleverde lus leest de gebeurtenissen; jouw helper bepaalt de reactie."
+  },
+  "example": "",
+  "topicIds": [
+    "events",
+    "close-event",
+    "key-events",
+    "browser-loop"
+  ],
+  "prerequisites": [
+    "python-v3-7-02"
+  ],
+  "sections": [
+    {
+      "topicIds": [
+        "events",
+        "close-event",
+        "key-events",
+        "browser-loop"
+      ],
+      "heading": {
+        "en": "Events describe changes",
+        "nl": "Gebeurtenissen beschrijven veranderingen"
+      },
+      "body": {
+        "en": "pygame.event.get() removes queued events. A QUIT event asks the program to close. KEYDOWN indicates a key press and has a key attribute; other event types may not. Compare event.type before reading event.key. The browser loop yields with await so events and rendering can proceed. Keep that supplied line.",
+        "nl": "pygame.event.get() haalt wachtende gebeurtenissen op. Een QUIT-gebeurtenis vraagt het programma te sluiten. KEYDOWN betekent een toetsaanslag en heeft een key-attribuut; andere gebeurtenistypes mogelijk niet. Vergelijk event.type voordat je event.key leest. De browserlus geeft met await ruimte zodat gebeurtenissen en tekenen doorgaan. Behoud die meegeleverde regel."
+      },
+      "code": "import pygame\ntype_id = pygame.KEYDOWN\nkey = pygame.K_SPACE\nprint(type_id == pygame.KEYDOWN and key == pygame.K_SPACE)",
+      "output": "True\n",
+      "prediction": {
+        "en": "Why should key not be read for every event type?",
+        "nl": "Waarom moet key niet bij elk gebeurtenistype worden gelezen?"
+      }
+    },
+    {
+      "topicIds": [],
+      "heading": {
+        "en": "Run, observe, finish",
+        "nl": "Voer uit, bekijk, rond af"
+      },
+      "body": {
+        "en": "main.py supplies the browser entry point. Run opens a real pygame-ce preview; click it to focus the keyboard. Clicking elsewhere pauses play. Finish & check closes normally and checks your helper after at least one rendered frame. Stop cancels without grading. Run can start a fresh session afterward. Keep the supplied async definition and await asyncio.sleep(1 / 60): they let the browser draw and receive input. You are not expected to reproduce this infrastructure from memory.",
+        "nl": "main.py levert het browserstartpunt. Uitvoeren opent een echt pygame-ce-voorbeeld; klik erop om het toetsenbord te activeren. Elders klikken pauzeert het spel. Afronden en controleren sluit normaal af en controleert je helper na minstens één getekend beeld. Stop annuleert zonder beoordeling. Uitvoeren kan daarna een nieuwe sessie starten. Behoud de meegeleverde async-definitie en await asyncio.sleep(1 / 60): die laten de browser tekenen en invoer ontvangen. Je hoeft deze infrastructuur niet uit je hoofd te schrijven."
+      }
+    },
+    {
+      "topicIds": [],
+      "heading": {
+        "en": "Try a changed input",
+        "nl": "Probeer gewijzigde invoer"
+      },
+      "body": {
+        "en": "Press Space, release it, then press again. Click outside and return focus. Finish normally, Run again, then practise Stop.",
+        "nl": "Druk Space in, laat los en druk opnieuw. Klik buiten het voorbeeld en keer terug. Rond normaal af, voer opnieuw uit en oefen daarna Stop."
+      }
+    }
+  ],
+  "files": {
+    "main.py": "# Browser entry point supplied by the course.\nimport asyncio\nimport pygame\nimport game\n\nasync def main():\n    pygame.init()\n    screen = pygame.display.set_mode((640, 400))\n    clock = pygame.time.Clock()\n    running = True\n    highlight = False\n    while running:\n        dt = min(clock.tick() / 1000, 0.05)\n        for event in pygame.event.get():\n            if event.type == pygame.QUIT:\n                running = False\n            if event.type == pygame.KEYDOWN and event.key == pygame.K_ESCAPE:\n                running = False\n            key = None\n            if event.type == pygame.KEYDOWN:\n                key = event.key\n            keep_open, highlight = game.handle_event(event.type, key, highlight)\n            if not keep_open:\n                running = False\n        keys = pygame.key.get_pressed()\n        screen.fill((16, 23, 39))\n        screen.blit(game.court(640, 400, highlight), (0, 0))\n        pygame.display.flip()\n        await asyncio.sleep(1 / 60)\n    pygame.quit()\n\nasyncio.run(main())\n",
+    "game.py": "import pygame\n\ndef handle_event(type_id, key, highlight):\n    return True, highlight\n\ndef court(width, height, highlight=False):\n    canvas = pygame.Surface((width, height))\n    canvas.fill((16, 23, 39))\n    pygame.draw.rect(canvas, (235, 240, 250), (20, height // 2 - 30, 10, 60))\n    pygame.draw.rect(canvas, (235, 240, 250), (width - 30, height // 2 - 30, 10, 60))\n    colour = (255, 170, 40) if highlight else (235, 240, 250)\n    pygame.draw.rect(canvas, colour, (width // 2 - 3, height // 2 - 3, 6, 6))\n    return canvas\n"
+  },
+  "solution": {
+    "main.py": "# Browser entry point supplied by the course.\nimport asyncio\nimport pygame\nimport game\n\nasync def main():\n    pygame.init()\n    screen = pygame.display.set_mode((640, 400))\n    clock = pygame.time.Clock()\n    running = True\n    highlight = False\n    while running:\n        dt = min(clock.tick() / 1000, 0.05)\n        for event in pygame.event.get():\n            if event.type == pygame.QUIT:\n                running = False\n            if event.type == pygame.KEYDOWN and event.key == pygame.K_ESCAPE:\n                running = False\n            key = None\n            if event.type == pygame.KEYDOWN:\n                key = event.key\n            keep_open, highlight = game.handle_event(event.type, key, highlight)\n            if not keep_open:\n                running = False\n        keys = pygame.key.get_pressed()\n        screen.fill((16, 23, 39))\n        screen.blit(game.court(640, 400, highlight), (0, 0))\n        pygame.display.flip()\n        await asyncio.sleep(1 / 60)\n    pygame.quit()\n\nasyncio.run(main())\n",
+    "game.py": "import pygame\n\ndef handle_event(type_id, key, highlight):\n    if type_id == pygame.QUIT:\n        return False, highlight\n    if type_id == pygame.KEYDOWN:\n        if key == pygame.K_ESCAPE:\n            return False, highlight\n        if key == pygame.K_SPACE:\n            return True, not highlight\n    return True, highlight\n\ndef court(width, height, highlight=False):\n    canvas = pygame.Surface((width, height))\n    canvas.fill((16, 23, 39))\n    pygame.draw.rect(canvas, (235, 240, 250), (20, height // 2 - 30, 10, 60))\n    pygame.draw.rect(canvas, (235, 240, 250), (width - 30, height // 2 - 30, 10, 60))\n    colour = (255, 170, 40) if highlight else (235, 240, 250)\n    pygame.draw.rect(canvas, colour, (width // 2 - 3, height // 2 - 3, 6, 6))\n    return canvas\n"
+  },
+  "checkpoints": [
+    {
+      "objectiveIds": [
+        "events",
+        "close-event"
+      ],
+      "task": {
+        "en": "Return (False, highlight) on QUIT or Escape KEYDOWN; otherwise keep running.",
+        "nl": "Geef (False, highlight) terug bij QUIT of Escape KEYDOWN; blijf anders actief."
+      },
+      "check": "_rendered_frames > 0",
+      "hints": [
+        {
+          "en": "Return running state and highlight as a pair.",
+          "nl": "Geef actiefstatus en highlight als paar terug."
+        },
+        {
+          "en": "Check QUIT independently from key events.",
+          "nl": "Controleer QUIT los van toetsgebeurtenissen."
+        },
+        {
+          "en": "if type_id == pygame.QUIT:\n    return False, highlight",
+          "nl": "if type_id == pygame.QUIT:\n    return False, highlight"
+        }
+      ],
+      "hint": {
+        "en": "Return running state and highlight as a pair.",
+        "nl": "Geef actiefstatus en highlight als paar terug."
+      },
+      "feedback": {
+        "en": "A close request must leave the loop; unrelated events must not close it.",
+        "nl": "Een sluitverzoek moet de lus verlaten; niet-gerelateerde gebeurtenissen mogen die niet sluiten."
+      },
+      "probes": [
+        {
+          "moduleOnly": true,
+          "check": "__import__(\"game\").handle_event(__import__(\"pygame\").QUIT,None,True) == (False,True)"
+        },
+        {
+          "moduleOnly": true,
+          "check": "__import__(\"game\").handle_event(__import__(\"pygame\").KEYDOWN,__import__(\"pygame\").K_ESCAPE,False) == (False,False)"
+        }
+      ],
+      "id": "python-v3-7-03-step-1"
+    },
+    {
+      "objectiveIds": [
+        "key-events",
+        "browser-loop"
+      ],
+      "task": {
+        "en": "Toggle highlight on Space KEYDOWN only. Preserve it for KEYUP and unrelated events; observe the change in the running preview.",
+        "nl": "Wissel highlight alleen bij Space KEYDOWN. Behoud het bij KEYUP en niet-gerelateerde gebeurtenissen; bekijk de wijziging in het actieve voorbeeld."
+      },
+      "check": "_rendered_frames > 0",
+      "hints": [
+        {
+          "en": "A toggle reverses a Boolean once.",
+          "nl": "Een wissel keert een boolean één keer om."
+        },
+        {
+          "en": "Check both the event type and the key.",
+          "nl": "Controleer zowel gebeurtenistype als toets."
+        },
+        {
+          "en": "return True, not highlight",
+          "nl": "return True, not highlight"
+        }
+      ],
+      "hint": {
+        "en": "A toggle reverses a Boolean once.",
+        "nl": "Een wissel keert een boolean één keer om."
+      },
+      "feedback": {
+        "en": "Releasing Space should not toggle a second time.",
+        "nl": "Space loslaten mag niet opnieuw wisselen."
+      },
+      "probes": [
+        {
+          "moduleOnly": true,
+          "check": "__import__(\"game\").handle_event(__import__(\"pygame\").KEYDOWN,__import__(\"pygame\").K_SPACE,False) == (True,True)"
+        },
+        {
+          "moduleOnly": true,
+          "check": "__import__(\"game\").handle_event(__import__(\"pygame\").KEYUP,__import__(\"pygame\").K_SPACE,True) == (True,True)"
+        },
+        {
+          "call": {
+            "name": "handle_event",
+            "args": [
+              0,
+              null,
+              false
+            ],
+            "module": "game"
+          },
+          "check": "_return == (True,False)",
+          "moduleOnly": true,
+          "module": "game"
+        }
+      ],
+      "id": "python-v3-7-03-step-2"
+    }
+  ],
+  "solutionNote": {
+    "en": "A guarded key branch avoids treating every event as a keyboard event. The returned running flag and highlight value have separate roles.",
+    "nl": "Een afgeschermde toetstak voorkomt dat elke gebeurtenis als toetsenbordgebeurtenis wordt behandeld. De teruggegeven actiefstatus en highlight hebben aparte rollen."
+  },
+  "inputs": [],
+  "retrievals": [
+    {
+      "id": "recall-python-v3-5-03",
+      "sourceActivityId": "python-v3-5-03",
+      "objectiveIds": [
+        "list-for",
+        "list-while"
+      ],
+      "prompt": {
+        "en": "Sum the same list with for and indexed while. Test an empty list and explain the while boundary.",
+        "nl": "Tel dezelfde lijst op met for en een geïndexeerde while. Test een lege lijst en verklaar de while-grens."
+      }
+    }
+  ]
+}

@@ -1,0 +1,177 @@
+{
+  "id": "python-v4-06-equal",
+  "chapter": 6,
+  "group": "python-v4-module-6",
+  "title": {
+    "en": "Compare with ==",
+    "nl": "Vergelijk met =="
+  },
+  "kind": "coding",
+  "optional": false,
+  "runtime": "terminal",
+  "guidance": "guided",
+  "checkpointMode": "sequential",
+  "estimatedMinutes": 13,
+  "topicIds": [
+    "relational-operators",
+    "equality"
+  ],
+  "practices": [],
+  "requiredConcepts": [
+    "boolean-variables",
+    "variables"
+  ],
+  "explanation": {
+    "en": "Assignment and comparison use different symbols. Compare values without changing them.",
+    "nl": "Toewijzing en vergelijking gebruiken verschillende symbolen. Vergelijk waarden zonder ze te veranderen."
+  },
+  "example": "",
+  "sections": [
+    {
+      "id": "python-v4-06-equal-example",
+      "topicIds": [
+        "relational-operators",
+        "equality"
+      ],
+      "heading": {
+        "en": "Follow a working example",
+        "nl": "Volg een werkend voorbeeld"
+      },
+      "body": {
+        "en": "One equals sign assigns: score = 5 stores a value. Two equals signs compare: score == 5 evaluates to True when the values are equal. You can assign that Boolean result to another variable.\n\nNumeric 5 and text \"5\" are not equal. Comparing them gives False rather than converting the text for you. Read the example from the right side of each assignment first.",
+        "nl": "Eén gelijkteken wijst toe: score = 5 bewaart een waarde. Twee gelijktekens vergelijken: score == 5 levert True op wanneer de waarden gelijk zijn. Je kunt dat booleaanse resultaat aan een andere variabele toewijzen.\n\nHet getal 5 en de tekst \"5\" zijn niet gelijk. Ze vergelijken geeft False in plaats van de tekst automatisch om te zetten. Lees bij het voorbeeld eerst de rechterkant van elke toewijzing."
+      },
+      "code": "score = 5\nprint(score == 5)\nprint(score == \"5\")",
+      "output": "True\nFalse\n",
+      "prediction": {
+        "en": "Why is the second comparison False?",
+        "nl": "Waarom is de tweede vergelijking False?"
+      },
+      "takeaway": {
+        "en": "= stores a value; == asks whether two values are equal.",
+        "nl": "= bewaart een waarde; == vraagt of twee waarden gelijk zijn."
+      }
+    },
+    {
+      "id": "python-v4-06-equal-experiment",
+      "topicIds": [],
+      "heading": {
+        "en": "Try one change",
+        "nl": "Probeer één wijziging"
+      },
+      "body": {
+        "en": "Change only the capitalisation of entered. Is string equality case-sensitive?",
+        "nl": "Verander alleen de hoofdletters van entered. Is stringgelijkheid hoofdlettergevoelig?"
+      }
+    }
+  ],
+  "files": {
+    "main.py": "entered = \"open\"\nexpected = \"open\"\n"
+  },
+  "solution": {
+    "main.py": "entered = \"open\"\nexpected = \"open\"\nresult = entered == expected\nprint(result)\n"
+  },
+  "checkpoints": [
+    {
+      "id": "python-v4-06-equal-step-1",
+      "objectiveIds": [
+        "relational-operators",
+        "equality"
+      ],
+      "task": {
+        "en": "Compare entered with expected and store the Boolean in result.",
+        "nl": "Vergelijk entered met expected en bewaar de booleaanse waarde in result."
+      },
+      "check": "type(result) is bool and result == (entered == expected)",
+      "probes": [
+        {
+          "inputs": {
+            "entered": "close"
+          },
+          "check": "type(result) is bool and result == (entered == expected)"
+        },
+        {
+          "inputs": {
+            "entered": "OPEN"
+          },
+          "check": "type(result) is bool and result == (entered == expected)"
+        }
+      ],
+      "hint": {
+        "en": "= stores a value; == asks whether two values are equal.",
+        "nl": "= bewaart een waarde; == vraagt of twee waarden gelijk zijn."
+      },
+      "hints": [
+        {
+          "en": "= stores a value; == asks whether two values are equal.",
+          "nl": "= bewaart een waarde; == vraagt of twee waarden gelijk zijn."
+        },
+        {
+          "en": "Use comparison, leaving both input strings unchanged.",
+          "nl": "Gebruik vergelijking en laat beide invoerstrings ongewijzigd."
+        },
+        {
+          "en": "A small fragment to adapt: `entered == expected`",
+          "nl": "Een klein fragment om aan te passen: `entered == expected`"
+        }
+      ],
+      "feedback": {
+        "en": "Use comparison, leaving both input strings unchanged.",
+        "nl": "Gebruik vergelijking en laat beide invoerstrings ongewijzigd."
+      }
+    },
+    {
+      "id": "python-v4-06-equal-step-2",
+      "objectiveIds": [
+        "relational-operators",
+        "equality"
+      ],
+      "task": {
+        "en": "Print the Boolean result.",
+        "nl": "Druk het booleaanse resultaat af."
+      },
+      "check": "_stdout.strip() == str(result)",
+      "probes": [],
+      "hint": {
+        "en": "= stores a value; == asks whether two values are equal.",
+        "nl": "= bewaart een waarde; == vraagt of twee waarden gelijk zijn."
+      },
+      "hints": [
+        {
+          "en": "= stores a value; == asks whether two values are equal.",
+          "nl": "= bewaart een waarde; == vraagt of twee waarden gelijk zijn."
+        },
+        {
+          "en": "Print result itself, so changes to the comparison appear in the output.",
+          "nl": "Druk result zelf af zodat veranderingen in de vergelijking in de uitvoer verschijnen."
+        },
+        {
+          "en": "A small fragment to adapt: `print(result)`",
+          "nl": "Een klein fragment om aan te passen: `print(result)`"
+        }
+      ],
+      "feedback": {
+        "en": "Print result itself, so changes to the comparison appear in the output.",
+        "nl": "Druk result zelf af zodat veranderingen in de vergelijking in de uitvoer verschijnen."
+      }
+    }
+  ],
+  "solutionNote": {
+    "en": "The comparison produces a Boolean value and does not replace either string.",
+    "nl": "De vergelijking levert een booleaanse waarde op en vervangt geen van de strings."
+  },
+  "inputs": [],
+  "retrievals": [
+    {
+      "id": "recall-python-v4-04-convert-to-text",
+      "sourceActivityId": "python-v4-04-convert-to-text",
+      "objectiveIds": [
+        "str-conversion"
+      ],
+      "prompt": {
+        "en": "Recall “Include a number in text”. Does creating label change the type of count? Try the earlier example from memory, then check it. Try age = 0. Explain why the message still contains a visible zero.",
+        "nl": "Haal “Neem een getal in tekst op” terug. Verandert het maken van label het type van count? Probeer het eerdere voorbeeld uit je geheugen en controleer daarna. Probeer age = 0. Leg uit waarom het bericht nog steeds een zichtbare nul bevat."
+      }
+    }
+  ]
+}

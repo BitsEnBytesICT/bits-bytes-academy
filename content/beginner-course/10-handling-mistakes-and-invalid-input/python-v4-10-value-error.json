@@ -1,0 +1,177 @@
+{
+  "id": "python-v4-10-value-error",
+  "chapter": 10,
+  "group": "python-v4-module-10",
+  "title": {
+    "en": "Recover from a conversion failure",
+    "nl": "Herstel een mislukte omzetting"
+  },
+  "kind": "coding",
+  "optional": false,
+  "runtime": "terminal",
+  "guidance": "guided",
+  "checkpointMode": "sequential",
+  "estimatedMinutes": 12,
+  "topicIds": [
+    "try-except",
+    "value-error"
+  ],
+  "practices": [],
+  "requiredConcepts": [
+    "float-conversion",
+    "indentation"
+  ],
+  "explanation": {
+    "en": "People sometimes type text where a number is expected. Handle this expected failure with a specific exception.",
+    "nl": "Mensen typen soms tekst waar een getal wordt verwacht. Vang deze verwachte fout op met een specifieke uitzondering."
+  },
+  "example": "",
+  "sections": [
+    {
+      "id": "python-v4-10-value-error-example",
+      "topicIds": [
+        "try-except",
+        "value-error"
+      ],
+      "heading": {
+        "en": "Follow a working example",
+        "nl": "Volg een werkend voorbeeld"
+      },
+      "body": {
+        "en": "try: starts a block whose statements may fail. except ValueError: runs only if that block raises ValueError. A successful try skips this handler. Keep the try block small so its purpose is clear. Do not use a bare except: it hides unrelated programming mistakes. Code after the handler continues normally.",
+        "nl": "try: begint een blok waarvan instructies kunnen mislukken. except ValueError: draait alleen als dat blok ValueError veroorzaakt. Een geslaagde try slaat deze afhandeling over. Houd het try-blok klein zodat het doel duidelijk is. Gebruik geen losse except: die verbergt andere programmeerfouten. Code na de afhandeling gaat gewoon verder."
+      },
+      "code": "text = \"oops\"\ntry:\n    number = int(text)\n    print(number)\nexcept ValueError:\n    print(\"Whole number needed\")\nprint(\"Still running\")",
+      "output": "Whole number needed\nStill running\n",
+      "prediction": {
+        "en": "Which print in the try block is skipped?",
+        "nl": "Welke print in het try-blok wordt overgeslagen?"
+      },
+      "takeaway": {
+        "en": "Catch the failure you expect where it can happen.",
+        "nl": "Vang de verwachte fout op waar die kan ontstaan."
+      }
+    },
+    {
+      "id": "python-v4-10-value-error-experiment",
+      "topicIds": [],
+      "heading": {
+        "en": "Try one change",
+        "nl": "Probeer één wijziging"
+      },
+      "body": {
+        "en": "Try \" 0 \" and explain why spaces around a numeric string can still convert.",
+        "nl": "Probeer \" 0 \" en leg uit waarom spaties rond getaltekst omzetting niet verhinderen."
+      }
+    }
+  ],
+  "files": {
+    "main.py": "def parse_price(text):\n    return float(text)\n"
+  },
+  "solution": {
+    "main.py": "def parse_price(text):\n    try:\n        return float(text)\n    except ValueError:\n        return None\n"
+  },
+  "checkpoints": [
+    {
+      "id": "python-v4-10-value-error-step-1",
+      "objectiveIds": [
+        "try-except",
+        "value-error"
+      ],
+      "task": {
+        "en": "Make parse_price(text) return a float for numeric text and None for invalid numeric text.",
+        "nl": "Laat parse_price(text) een float teruggeven bij numerieke tekst en None bij ongeldige getaltekst."
+      },
+      "check": "callable(parse_price)",
+      "probes": [
+        {
+          "call": {
+            "name": "parse_price",
+            "args": [
+              "2.5"
+            ]
+          },
+          "check": "_return == 2.5"
+        },
+        {
+          "call": {
+            "name": "parse_price",
+            "args": [
+              "-3"
+            ]
+          },
+          "check": "_return == -3"
+        },
+        {
+          "call": {
+            "name": "parse_price",
+            "args": [
+              "cat"
+            ]
+          },
+          "check": "_return is None and _error is None"
+        },
+        {
+          "call": {
+            "name": "parse_price",
+            "args": [
+              ""
+            ]
+          },
+          "check": "_return is None"
+        }
+      ],
+      "hint": {
+        "en": "Catch the failure you expect where it can happen.",
+        "nl": "Vang de verwachte fout op waar die kan ontstaan."
+      },
+      "hints": [
+        {
+          "en": "Catch the failure you expect where it can happen.",
+          "nl": "Vang de verwachte fout op waar die kan ontstaan."
+        },
+        {
+          "en": "Wrap only the conversion in try and catch ValueError.",
+          "nl": "Zet alleen de omzetting in try en vang ValueError op."
+        },
+        {
+          "en": "A small fragment to adapt: `except ValueError:`",
+          "nl": "Een klein fragment om aan te passen: `except ValueError:`"
+        }
+      ],
+      "feedback": {
+        "en": "Wrap only the conversion in try and catch ValueError.",
+        "nl": "Zet alleen de omzetting in try en vang ValueError op."
+      }
+    }
+  ],
+  "solutionNote": {
+    "en": "float accepts valid numeric strings; only its expected ValueError becomes None.",
+    "nl": "float accepteert geldige getaltekst; alleen de verwachte ValueError wordt None."
+  },
+  "inputs": [],
+  "retrievals": [
+    {
+      "id": "recall-python-v4-08-trace-counter",
+      "sourceActivityId": "python-v4-08-trace-counter",
+      "objectiveIds": [
+        "loop-tracing"
+      ],
+      "prompt": {
+        "en": "Recall “Trace the counter”. Would moving the update before print change the output? Try the earlier example from memory, then check it. Write a trace for start = 2 before running. Compare each row to the output.",
+        "nl": "Haal “Volg de teller” terug. Verandert de uitvoer als de wijziging vóór print komt? Probeer het eerdere voorbeeld uit je geheugen en controleer daarna. Schrijf vóór het uitvoeren een spoor voor start = 2. Vergelijk elke regel met de uitvoer."
+      }
+    },
+    {
+      "id": "recall-python-v4-08-session-summary",
+      "sourceActivityId": "python-v4-08-session-summary",
+      "objectiveIds": [
+        "loop-review"
+      ],
+      "prompt": {
+        "en": "Recall “Summarise a short session”. Why is the summary outside the loop? Try the earlier example from memory, then check it. Quit immediately, then after one answer. Explain why the stop command is excluded from the count.",
+        "nl": "Haal “Vat een korte sessie samen” terug. Waarom staat de samenvatting buiten de lus? Probeer het eerdere voorbeeld uit je geheugen en controleer daarna. Stop onmiddellijk en daarna na één antwoord. Leg uit waarom de stopopdracht niet wordt meegeteld."
+      }
+    }
+  ]
+}

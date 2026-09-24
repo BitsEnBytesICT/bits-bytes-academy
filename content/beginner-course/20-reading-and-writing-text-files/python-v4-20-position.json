@@ -1,0 +1,179 @@
+{
+  "id": "python-v4-20-position",
+  "chapter": 20,
+  "group": "python-v4-module-20",
+  "title": {
+    "en": "Read a header, then the remaining file",
+    "nl": "Lees een kop en daarna de rest"
+  },
+  "kind": "coding",
+  "optional": false,
+  "runtime": "terminal",
+  "guidance": "guided",
+  "checkpointMode": "sequential",
+  "estimatedMinutes": 18,
+  "topicIds": [
+    "readline",
+    "file-position"
+  ],
+  "practices": [],
+  "requiredConcepts": [
+    "read",
+    "line-iteration",
+    "multiple-returns"
+  ],
+  "explanation": {
+    "en": "Reading advances a file’s current position. This is useful when the first line is a header.\n\nOpen work.py to write the requested function. main.py is a supplied caller: Run always starts there and imports your function. The other file tabs contain input data. After a successful run, open any new output file tab to inspect what your program saved.",
+    "nl": "Lezen verplaatst de huidige bestandspositie. Dat is nuttig als de eerste regel een kop is.\n\nOpen work.py om de gevraagde functie te schrijven. main.py is de aangeleverde aanroeper: Uitvoeren begint daar en importeert je functie. De andere bestandstabbladen bevatten invoergegevens. Open na een geslaagde uitvoering een nieuw uitvoerbestand om te bekijken wat je programma heeft opgeslagen."
+  },
+  "example": "",
+  "sections": [
+    {
+      "id": "python-v4-20-position-example",
+      "topicIds": [
+        "readline",
+        "file-position"
+      ],
+      "heading": {
+        "en": "Follow a working example",
+        "nl": "Volg een werkend voorbeeld"
+      },
+      "body": {
+        "en": "readline() reads one line, including its newline when present. read() after it reads only the remainder, not the whole file again. At end-of-file these methods return an empty string; a blank line is \"\\n\" and is different. Reopening the file starts at the beginning.",
+        "nl": "readline() leest één regel, inclusief het nieuwe-regelteken wanneer aanwezig. read() daarna leest alleen de rest, niet opnieuw het hele bestand. Aan het einde geven deze methoden een lege string; een lege regel is \"\\n\" en is iets anders. Het bestand opnieuw openen begint aan het begin."
+      },
+      "code": "with open(\"example.txt\",encoding=\"utf-8\") as handle:\n    print(handle.readline().strip())\n    print(handle.read().strip())\n    print(handle.read() == \"\")",
+      "output": "Title\nBody\nTrue\n",
+      "prediction": {
+        "en": "Why is the final read empty?",
+        "nl": "Waarom is de laatste leesactie leeg?"
+      },
+      "takeaway": {
+        "en": "Each read starts where the previous read stopped.",
+        "nl": "Elke leesactie begint waar de vorige stopte."
+      },
+      "exampleFiles": {
+        "example.txt": "Title\nBody\n"
+      }
+    },
+    {
+      "id": "python-v4-20-position-experiment",
+      "topicIds": [],
+      "heading": {
+        "en": "Try one change",
+        "nl": "Probeer één wijziging"
+      },
+      "body": {
+        "en": "Use a file whose first line is blank. Explain how that differs from an empty file.",
+        "nl": "Gebruik een bestand met een lege eerste regel. Leg uit hoe dat verschilt van een leeg bestand."
+      }
+    }
+  ],
+  "files": {
+    "report.txt": "Scores\n2\n4\n",
+    "main.py": "import work\nprint(work.header_and_body(\"report.txt\"))\n",
+    "work.py": "def header_and_body(path):\n    return \"\", \"\"\n"
+  },
+  "solution": {
+    "report.txt": "Scores\n2\n4\n",
+    "main.py": "import work\nprint(work.header_and_body(\"report.txt\"))\n",
+    "work.py": "def header_and_body(path):\n    with open(path,encoding=\"utf-8\") as handle:\n        header = handle.readline().strip()\n        body = handle.read()\n    return header, body\n"
+  },
+  "checkpoints": [
+    {
+      "id": "python-v4-20-position-step-1",
+      "objectiveIds": [
+        "readline",
+        "file-position"
+      ],
+      "task": {
+        "en": "Return (trimmed_first_line, unchanged_remaining_text). An empty file returns two empty strings.",
+        "nl": "Geef (getrimde_eerste_regel, ongewijzigde_resttekst) terug. Een leeg bestand geeft twee lege strings."
+      },
+      "check": "True",
+      "probes": [
+        {
+          "call": {
+            "name": "header_and_body",
+            "args": [
+              "report.txt"
+            ],
+            "module": "work"
+          },
+          "check": "(_return == (\"Scores\",\"2\\n4\\n\")) and _error is None",
+          "moduleOnly": true,
+          "module": "work",
+          "files": {}
+        },
+        {
+          "call": {
+            "name": "header_and_body",
+            "args": [
+              "empty.txt"
+            ],
+            "module": "work"
+          },
+          "check": "(_return == (\"\",\"\")) and _error is None",
+          "moduleOnly": true,
+          "module": "work",
+          "files": {
+            "empty.txt": ""
+          }
+        }
+      ],
+      "hint": {
+        "en": "Each read starts where the previous read stopped.",
+        "nl": "Elke leesactie begint waar de vorige stopte."
+      },
+      "hints": [
+        {
+          "en": "Each read starts where the previous read stopped.",
+          "nl": "Elke leesactie begint waar de vorige stopte."
+        },
+        {
+          "en": "Read the header once, then read from the current position.",
+          "nl": "Lees de kop eenmaal en lees daarna vanaf de huidige positie."
+        },
+        {
+          "en": "A small fragment to adapt: `header = handle.readline().strip()`",
+          "nl": "Een klein fragment om aan te passen: `header = handle.readline().strip()`"
+        }
+      ],
+      "feedback": {
+        "en": "Read the header once, then read from the current position.",
+        "nl": "Lees de kop eenmaal en lees daarna vanaf de huidige positie."
+      }
+    }
+  ],
+  "solutionNote": {
+    "en": "The first call consumes exactly one line, leaving all remaining characters for read.",
+    "nl": "De eerste aanroep gebruikt precies één regel en laat alle overige tekens voor read."
+  },
+  "inputs": [],
+  "retrievals": [
+    {
+      "id": "recall-python-v4-18-immutable",
+      "sourceActivityId": "python-v4-18-immutable",
+      "objectiveIds": [
+        "immutability"
+      ],
+      "prompt": {
+        "en": "Recall “Build a changed string”. Why does name still contain lowercase b? Try the earlier example from memory, then check it. Try assigning to text[0] in an experiment and read the TypeError.",
+        "nl": "Haal “Maak een veranderde string” terug. Waarom bevat name nog steeds een kleine b? Probeer het eerdere voorbeeld uit je geheugen en controleer daarna. Probeer in een experiment aan text[0] toe te wijzen en lees de TypeError."
+      }
+    },
+    {
+      "id": "recall-python-v4-18-format",
+      "sourceActivityId": "python-v4-18-format",
+      "objectiveIds": [
+        "format",
+        "positional-format",
+        "named-format"
+      ],
+      "prompt": {
+        "en": "Recall “Fill a text template with format”. Which positional argument does {1} select? Try the earlier example from memory, then check it. Write an equivalent f-string and explain where its values are supplied.",
+        "nl": "Haal “Vul een tekstsjabloon met format” terug. Welk positioneel argument kiest {1}? Probeer het eerdere voorbeeld uit je geheugen en controleer daarna. Schrijf een gelijkwaardige f-string en leg uit waar de waarden worden geleverd."
+      }
+    }
+  ]
+}

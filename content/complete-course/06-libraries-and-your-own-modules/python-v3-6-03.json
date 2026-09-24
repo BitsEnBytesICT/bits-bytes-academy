@@ -1,0 +1,182 @@
+{
+  "id": "python-v3-6-03",
+  "chapter": 6,
+  "group": "python-v3-module-6",
+  "title": {
+    "en": "Exact decimal amounts",
+    "nl": "Exacte decimale bedragen"
+  },
+  "kind": "coding",
+  "optional": false,
+  "runtime": "terminal",
+  "guidance": "adapt",
+  "estimatedMinutes": 14,
+  "explanation": {
+    "en": "Compare binary floating-point arithmetic with decimal arithmetic. For exact decimal inputs, create Decimal values from strings.",
+    "nl": "Vergelijk binaire drijvende-kommaberekeningen met decimale berekeningen. Maak Decimal-waarden uit strings voor exacte decimale invoer."
+  },
+  "example": "",
+  "topicIds": [
+    "decimal"
+  ],
+  "prerequisites": [
+    "python-v3-6-02"
+  ],
+  "sections": [
+    {
+      "topicIds": [
+        "decimal"
+      ],
+      "heading": {
+        "en": "Represent the intended value",
+        "nl": "Stel de bedoelde waarde voor"
+      },
+      "body": {
+        "en": "Some decimal fractions have no exact finite binary float representation. This is why 0.1 + 0.2 is not exactly 0.3. Decimal(\"0.1\") starts from decimal text; Decimal(0.1) starts from an already approximated float. Decimal arithmetic uses a configurable precision, so it is not unlimited exact mathematics. Do not mix Decimal and float operands.",
+        "nl": "Sommige decimale breuken hebben geen exacte eindige binaire floatvoorstelling. Daarom is 0.1 + 0.2 niet precies 0.3. Decimal(\"0.1\") begint met decimale tekst; Decimal(0.1) begint met een al benaderde float. Decimal-berekeningen gebruiken instelbare precisie, dus geen onbeperkt exacte wiskunde. Meng Decimal en float niet als operanden."
+      },
+      "code": "from decimal import Decimal\nprint(0.1 + 0.2 == 0.3)\nprint(Decimal(\"0.1\") + Decimal(\"0.2\") == Decimal(\"0.3\"))",
+      "output": "False\nTrue\n",
+      "prediction": {
+        "en": "Which conversion preserves the typed decimal digits?",
+        "nl": "Welke omzetting behoudt de getypte decimale cijfers?"
+      }
+    },
+    {
+      "topicIds": [],
+      "heading": {
+        "en": "Try a changed input",
+        "nl": "Probeer gewijzigde invoer"
+      },
+      "body": {
+        "en": "Compare Decimal(\"0.1\") with Decimal(0.1). Print both to see the effect of converting through float first. Keep the string version in your function.",
+        "nl": "Vergelijk Decimal(\"0.1\") met Decimal(0.1). Druk beide af om het effect van eerst via float omzetten te zien. Behoud de stringversie in je functie."
+      }
+    }
+  ],
+  "files": {
+    "main.py": "from decimal import Decimal\n\ndef decimal_total(price_text, quantity):\n    return 0\n\nprint(decimal_total(\"0.10\", 3))\n"
+  },
+  "solution": {
+    "main.py": "from decimal import Decimal\n\ndef decimal_total(price_text, quantity):\n    return Decimal(price_text) * quantity\n\nfloat_equal = 0.1 + 0.2 == 0.3\ndecimal_equal = Decimal(\"0.1\") + Decimal(\"0.2\") == Decimal(\"0.3\")\nprint(decimal_total(\"0.10\", 3))\n"
+  },
+  "checkpoints": [
+    {
+      "objectiveIds": [
+        "decimal"
+      ],
+      "task": {
+        "en": "Return a Decimal total from price_text times quantity, converting directly from the string.",
+        "nl": "Geef een Decimal-totaal terug van price_text maal quantity en zet direct uit de string om."
+      },
+      "check": "decimal_total(\"0.10\",3) == Decimal(\"0.30\")",
+      "hints": [
+        {
+          "en": "Preserve the original text until Decimal reads it.",
+          "nl": "Behoud de oorspronkelijke tekst totdat Decimal die leest."
+        },
+        {
+          "en": "Do not call float before Decimal.",
+          "nl": "Roep float niet vóór Decimal aan."
+        },
+        {
+          "en": "return Decimal(price_text) * quantity",
+          "nl": "return Decimal(price_text) * quantity"
+        }
+      ],
+      "hint": {
+        "en": "Preserve the original text until Decimal reads it.",
+        "nl": "Behoud de oorspronkelijke tekst totdat Decimal die leest."
+      },
+      "feedback": {
+        "en": "A float conversion first introduces the approximation you are trying to avoid.",
+        "nl": "Eerst naar float omzetten introduceert de benadering die je wilt vermijden."
+      },
+      "probes": [
+        {
+          "call": {
+            "name": "decimal_total",
+            "args": [
+              "0.10",
+              3
+            ]
+          },
+          "check": "isinstance(_return, Decimal) and _return == Decimal(\"0.30\")"
+        },
+        {
+          "call": {
+            "name": "decimal_total",
+            "args": [
+              "1.25",
+              0
+            ]
+          },
+          "check": "_return == Decimal(\"0\")"
+        },
+        {
+          "call": {
+            "name": "decimal_total",
+            "args": [
+              "-0.2",
+              2
+            ]
+          },
+          "check": "_return == Decimal(\"-0.4\")"
+        }
+      ],
+      "id": "python-v3-6-03-step-1"
+    },
+    {
+      "objectiveIds": [
+        "decimal"
+      ],
+      "task": {
+        "en": "Store the equality tests from the example in float_equal and decimal_equal. Keep the printed total from the function call.",
+        "nl": "Bewaar de gelijkheidstests uit het voorbeeld in float_equal en decimal_equal. Behoud het afgedrukte totaal van de functieaanroep."
+      },
+      "check": "float_equal is False and decimal_equal is True and _stdout.strip() == \"0.30\"",
+      "hints": [
+        {
+          "en": "Both expressions ask the same decimal-looking question.",
+          "nl": "Beide expressies stellen dezelfde decimaal ogende vraag."
+        },
+        {
+          "en": "Use == rather than = within the assigned expression.",
+          "nl": "Gebruik == in plaats van = binnen de toegewezen expressie."
+        },
+        {
+          "en": "float_equal = 0.1 + 0.2 == 0.3",
+          "nl": "float_equal = 0.1 + 0.2 == 0.3"
+        }
+      ],
+      "hint": {
+        "en": "Both expressions ask the same decimal-looking question.",
+        "nl": "Beide expressies stellen dezelfde decimaal ogende vraag."
+      },
+      "feedback": {
+        "en": "Compare values using each representation; do not just store literal True and False.",
+        "nl": "Vergelijk waarden met elke voorstelling; bewaar niet alleen letterlijk True en False."
+      },
+      "probes": [],
+      "id": "python-v3-6-03-step-2"
+    }
+  ],
+  "solutionNote": {
+    "en": "The function converts once at its boundary. Integer quantities multiply Decimal values safely, and the representation retains the price’s decimal scale in this example.",
+    "nl": "De functie zet één keer aan de grens om. Gehele aantallen vermenigvuldigen veilig met Decimal-waarden en de voorstelling behoudt in dit voorbeeld de decimale schaal van de prijs."
+  },
+  "inputs": [],
+  "retrievals": [
+    {
+      "id": "recall-python-v3-4-03",
+      "sourceActivityId": "python-v3-4-03",
+      "objectiveIds": [
+        "local-scope"
+      ],
+      "prompt": {
+        "en": "Give two calls different arguments while a similarly named global exists. Explain which value a local parameter uses.",
+        "nl": "Geef twee aanroepen verschillende argumenten terwijl er een gelijknamige globale variabele bestaat. Leg uit welke waarde een lokale parameter gebruikt."
+      }
+    }
+  ]
+}

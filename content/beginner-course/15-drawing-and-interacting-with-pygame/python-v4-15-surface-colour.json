@@ -1,0 +1,156 @@
+{
+  "id": "python-v4-15-surface-colour",
+  "chapter": 15,
+  "group": "python-v4-module-15",
+  "title": {
+    "en": "Paint an image on a Surface",
+    "nl": "Teken een afbeelding op een Surface"
+  },
+  "kind": "coding",
+  "optional": false,
+  "runtime": "pygame",
+  "guidance": "guided",
+  "checkpointMode": "sequential",
+  "estimatedMinutes": 18,
+  "topicIds": [
+    "surface",
+    "colours"
+  ],
+  "practices": [],
+  "requiredConcepts": [
+    "rect",
+    "tuples"
+  ],
+  "explanation": {
+    "en": "A Surface is an image in memory. You draw onto it before showing it on the screen.",
+    "nl": "Een Surface is een afbeelding in het geheugen. Je tekent erop voordat je die op het scherm toont."
+  },
+  "example": "",
+  "sections": [
+    {
+      "id": "python-v4-15-surface-colour-example",
+      "topicIds": [
+        "surface",
+        "colours"
+      ],
+      "heading": {
+        "en": "Follow a working example",
+        "nl": "Volg een werkend voorbeeld"
+      },
+      "body": {
+        "en": "pygame.Surface((width, height)) creates an image. fill((red, green, blue)) paints every pixel with RGB channel values from 0 through 255. screen.blit(image, (x, y)) copies an image onto the display; display.flip() presents the frame. Those display operations are supplied in main.py. get_at((x, y)) reads a pixel and returns its red, green, blue and alpha channels.",
+        "nl": "pygame.Surface((width, height)) maakt een afbeelding. fill((red, green, blue)) kleurt elke pixel met RGB-kanaalwaarden van 0 tot en met 255. screen.blit(image, (x, y)) kopieert een afbeelding naar het scherm; display.flip() toont het beeld. Die schermbewerkingen staan in main.py. get_at((x, y)) leest een pixel en geeft de rood-, groen-, blauw- en alfakanalen terug."
+      },
+      "code": "import pygame\nimage = pygame.Surface((8, 6))\nimage.fill((0, 0, 120))\npixel = image.get_at((2, 2))\nprint(pixel[2])",
+      "output": "120\n",
+      "prediction": {
+        "en": "Which RGB channel makes this image blue?",
+        "nl": "Welk RGB-kanaal maakt deze afbeelding blauw?"
+      },
+      "takeaway": {
+        "en": "Make the Surface, paint it, then return it for display.",
+        "nl": "Maak de Surface, kleur die en geef die terug voor weergave."
+      }
+    },
+    {
+      "topicIds": [],
+      "heading": {
+        "en": "Run, observe, finish",
+        "nl": "Voer uit, bekijk, rond af"
+      },
+      "body": {
+        "en": "main.py supplies the browser entry point. Run opens a real pygame-ce preview; click it to focus the keyboard. Clicking elsewhere pauses play. Finish & check closes normally and checks your helper after at least one rendered frame. Stop cancels without grading. Run can start a fresh session afterward. Keep the supplied async definition and await asyncio.sleep(1 / 60): they let the browser draw and receive input. You are not expected to reproduce this infrastructure from memory.",
+        "nl": "main.py levert het browserstartpunt. Uitvoeren opent een echt pygame-ce-voorbeeld; klik erop om het toetsenbord te activeren. Elders klikken pauzeert het spel. Afronden en controleren sluit normaal af en controleert je helper na minstens één getekend beeld. Stop annuleert zonder beoordeling. Uitvoeren kan daarna een nieuwe sessie starten. Behoud de meegeleverde async-definitie en await asyncio.sleep(1 / 60): die laten de browser tekenen en invoer ontvangen. Je hoeft deze infrastructuur niet uit je hoofd te schrijven."
+      }
+    },
+    {
+      "id": "python-v4-15-surface-colour-experiment",
+      "topicIds": [],
+      "heading": {
+        "en": "Try one change",
+        "nl": "Probeer één wijziging"
+      },
+      "body": {
+        "en": "Change one colour channel at a time and describe the change.",
+        "nl": "Verander één kleurkanaal tegelijk en beschrijf de verandering."
+      }
+    }
+  ],
+  "files": {
+    "main.py": "# Browser entry point supplied by the course.\nimport asyncio\nimport pygame\nimport game\n\nasync def main():\n    pygame.init()\n    screen = pygame.display.set_mode((640, 400))\n    clock = pygame.time.Clock()\n    running = True\n    while running:\n        dt = min(clock.tick() / 1000, 0.05)\n        for event in pygame.event.get():\n            if event.type == pygame.QUIT:\n                running = False\n            if event.type == pygame.KEYDOWN and event.key == pygame.K_ESCAPE:\n                running = False\n        keys = pygame.key.get_pressed()\n        screen.fill((16, 23, 39))\n        screen.blit(game.background(640,400), (0,0))\n        pygame.display.flip()\n        await asyncio.sleep(1 / 60)\n    pygame.quit()\n\nasyncio.run(main())\n",
+    "game.py": "import pygame\n\ndef background(width, height):\n    return pygame.Surface((width,height))\n"
+  },
+  "solution": {
+    "main.py": "# Browser entry point supplied by the course.\nimport asyncio\nimport pygame\nimport game\n\nasync def main():\n    pygame.init()\n    screen = pygame.display.set_mode((640, 400))\n    clock = pygame.time.Clock()\n    running = True\n    while running:\n        dt = min(clock.tick() / 1000, 0.05)\n        for event in pygame.event.get():\n            if event.type == pygame.QUIT:\n                running = False\n            if event.type == pygame.KEYDOWN and event.key == pygame.K_ESCAPE:\n                running = False\n        keys = pygame.key.get_pressed()\n        screen.fill((16, 23, 39))\n        screen.blit(game.background(640,400), (0,0))\n        pygame.display.flip()\n        await asyncio.sleep(1 / 60)\n    pygame.quit()\n\nasyncio.run(main())\n",
+    "game.py": "import pygame\n\ndef background(width, height):\n    canvas = pygame.Surface((width,height))\n    canvas.fill((20,40,80))\n    return canvas\n"
+  },
+  "checkpoints": [
+    {
+      "id": "python-v4-15-surface-colour-step-1",
+      "objectiveIds": [
+        "surface",
+        "colours"
+      ],
+      "task": {
+        "en": "Return a Surface of the requested size filled with RGB (20, 40, 80).",
+        "nl": "Geef een Surface van de gevraagde afmetingen terug gevuld met RGB (20, 40, 80)."
+      },
+      "check": "_rendered_frames > 0",
+      "probes": [
+        {
+          "call": {
+            "name": "background",
+            "args": [
+              40,
+              20
+            ],
+            "module": "game"
+          },
+          "check": "(_return.get_size() == (40,20) and tuple(_return.get_at((0,0)))[:3] == (20,40,80) and tuple(_return.get_at((39,19)))[:3] == (20,40,80)) and _error is None",
+          "moduleOnly": true,
+          "module": "game"
+        }
+      ],
+      "hint": {
+        "en": "Make the Surface, paint it, then return it for display.",
+        "nl": "Maak de Surface, kleur die en geef die terug voor weergave."
+      },
+      "hints": [
+        {
+          "en": "Make the Surface, paint it, then return it for display.",
+          "nl": "Maak de Surface, kleur die en geef die terug voor weergave."
+        },
+        {
+          "en": "Call fill on the created image before returning it.",
+          "nl": "Roep fill op de gemaakte afbeelding aan voordat je die teruggeeft."
+        },
+        {
+          "en": "A small fragment to adapt: `canvas.fill((20,40,80))`",
+          "nl": "Een klein fragment om aan te passen: `canvas.fill((20,40,80))`"
+        }
+      ],
+      "feedback": {
+        "en": "Call fill on the created image before returning it.",
+        "nl": "Roep fill op de gemaakte afbeelding aan voordat je die teruggeeft."
+      }
+    }
+  ],
+  "solutionNote": {
+    "en": "Filling the returned image makes its pixels visible when main.py blits it.",
+    "nl": "De teruggegeven afbeelding vullen maakt de pixels zichtbaar wanneer main.py die kopieert."
+  },
+  "inputs": [],
+  "retrievals": [
+    {
+      "id": "recall-python-v4-13-multiple-results",
+      "sourceActivityId": "python-v4-13-multiple-results",
+      "objectiveIds": [
+        "multiple-returns"
+      ],
+      "prompt": {
+        "en": "Recall “Return two related answers”. What would a single variable receive from split_hours? Try the earlier example from memory, then check it. Unpack the result in a caller and print each part with a label.",
+        "nl": "Haal “Geef twee bijbehorende antwoorden terug” terug. Wat ontvangt één variabele van split_hours? Probeer het eerdere voorbeeld uit je geheugen en controleer daarna. Pak het resultaat bij de aanroeper uit en druk elk deel met een label af."
+      }
+    }
+  ]
+}

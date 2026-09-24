@@ -1,0 +1,768 @@
+{
+  "id": "python-v4-05-quiz",
+  "chapter": 5,
+  "group": "python-v4-module-5",
+  "kind": "quiz",
+  "optional": false,
+  "estimatedMinutes": 8,
+  "title": {
+    "en": "Asking for input: review",
+    "nl": "Om invoer vragen: herhaling"
+  },
+  "questions": [
+    {
+      "objectiveIds": [
+        "input-string-type"
+      ],
+      "category": "prediction",
+      "prompt": {
+        "en": "What does this program print?",
+        "nl": "Wat drukt dit programma af?"
+      },
+      "code": "answer = \"5\" # value returned by input\nprint(answer + \"2\")",
+      "answer": "a",
+      "expectedOutput": "52\n",
+      "choices": [
+        {
+          "id": "a",
+          "label": {
+            "en": "52",
+            "nl": "52"
+          },
+          "reason": {
+            "en": "Both operands are strings, so + concatenates.",
+            "nl": "Beide kanten zijn strings, dus + voegt samen."
+          }
+        },
+        {
+          "id": "b",
+          "label": {
+            "en": "7",
+            "nl": "7"
+          },
+          "reason": {
+            "en": "Numeric addition requires conversion first.",
+            "nl": "Numeriek optellen vereist eerst omzetting."
+          }
+        },
+        {
+          "id": "c",
+          "label": {
+            "en": "TypeError",
+            "nl": "TypeError"
+          },
+          "reason": {
+            "en": "Adding two strings is valid.",
+            "nl": "Twee strings samenvoegen is geldig."
+          }
+        }
+      ],
+      "id": "python-v4-05-quiz-a-1",
+      "reviewActivityIds": [
+        "python-v4-05-input-is-text"
+      ]
+    },
+    {
+      "objectiveIds": [
+        "precedence"
+      ],
+      "category": "prediction",
+      "prompt": {
+        "en": "What does this program print?",
+        "nl": "Wat drukt dit programma af?"
+      },
+      "code": "print(3 + 2 * 5)",
+      "answer": "a",
+      "expectedOutput": "13\n",
+      "choices": [
+        {
+          "id": "a",
+          "label": {
+            "en": "13",
+            "nl": "13"
+          },
+          "reason": {
+            "en": "Multiplication comes before addition.",
+            "nl": "Vermenigvuldigen komt vóór optellen."
+          }
+        },
+        {
+          "id": "b",
+          "label": {
+            "en": "25",
+            "nl": "25"
+          },
+          "reason": {
+            "en": "That needs parentheses around the addition.",
+            "nl": "Dat vereist haakjes rond het optellen."
+          }
+        },
+        {
+          "id": "c",
+          "label": {
+            "en": "10",
+            "nl": "10"
+          },
+          "reason": {
+            "en": "2 * 5 is ten, not seven.",
+            "nl": "2 * 5 is tien, geen zeven."
+          }
+        }
+      ],
+      "id": "python-v4-05-quiz-a-2",
+      "reviewActivityIds": [
+        "python-v4-03-precedence"
+      ]
+    },
+    {
+      "objectiveIds": [
+        "int-conversion"
+      ],
+      "category": "completion",
+      "prompt": {
+        "en": "Complete the code to produce the shown output.",
+        "nl": "Vul de code aan om de getoonde uitvoer te maken."
+      },
+      "code": "answer = \"5\"\nprint(___ + 2)",
+      "answer": "a",
+      "choices": [
+        {
+          "id": "a",
+          "label": {
+            "en": "int(answer)",
+            "nl": "int(answer)"
+          },
+          "reason": {
+            "en": "int converts whole-number text before addition.",
+            "nl": "int zet tekst met een geheel getal om vóór optellen."
+          }
+        },
+        {
+          "id": "b",
+          "label": {
+            "en": "answer",
+            "nl": "answer"
+          },
+          "reason": {
+            "en": "int converts whole-number text before addition.",
+            "nl": "int zet tekst met een geheel getal om vóór optellen."
+          }
+        },
+        {
+          "id": "c",
+          "label": {
+            "en": "str(answer)",
+            "nl": "str(answer)"
+          },
+          "reason": {
+            "en": "int converts whole-number text before addition.",
+            "nl": "int zet tekst met een geheel getal om vóór optellen."
+          }
+        }
+      ],
+      "codeBlank": {
+        "prompt": {
+          "en": "Complete the code to produce the shown output.",
+          "nl": "Vul de code aan om de getoonde uitvoer te maken."
+        },
+        "segments": [
+          "answer = \"5\"\nprint(",
+          " + 2)"
+        ],
+        "tokens": [
+          {
+            "id": "token-1",
+            "code": "int(answer)"
+          },
+          {
+            "id": "token-2",
+            "code": "answer"
+          },
+          {
+            "id": "token-3",
+            "code": "str(answer)"
+          }
+        ],
+        "blanks": [
+          {
+            "answer": "int(answer)",
+            "reason": {
+              "en": "int converts whole-number text before addition.",
+              "nl": "int zet tekst met een geheel getal om vóór optellen."
+            }
+          }
+        ],
+        "output": "7\n"
+      },
+      "id": "python-v4-05-quiz-a-3",
+      "reviewActivityIds": [
+        "python-v4-05-integer-input"
+      ]
+    },
+    {
+      "objectiveIds": [
+        "exponents"
+      ],
+      "category": "completion",
+      "prompt": {
+        "en": "Complete the code to produce the shown output.",
+        "nl": "Vul de code aan om de getoonde uitvoer te maken."
+      },
+      "code": "print(3 ___ 2)",
+      "answer": "a",
+      "choices": [
+        {
+          "id": "a",
+          "label": {
+            "en": "**",
+            "nl": "**"
+          },
+          "reason": {
+            "en": "** raises to a power; * multiplies and % returns a remainder.",
+            "nl": "** verheft tot een macht; * vermenigvuldigt en % geeft een rest."
+          }
+        },
+        {
+          "id": "b",
+          "label": {
+            "en": "*",
+            "nl": "*"
+          },
+          "reason": {
+            "en": "** raises to a power; * multiplies and % returns a remainder.",
+            "nl": "** verheft tot een macht; * vermenigvuldigt en % geeft een rest."
+          }
+        },
+        {
+          "id": "c",
+          "label": {
+            "en": "%",
+            "nl": "%"
+          },
+          "reason": {
+            "en": "** raises to a power; * multiplies and % returns a remainder.",
+            "nl": "** verheft tot een macht; * vermenigvuldigt en % geeft een rest."
+          }
+        }
+      ],
+      "codeBlank": {
+        "prompt": {
+          "en": "Complete the code to produce the shown output.",
+          "nl": "Vul de code aan om de getoonde uitvoer te maken."
+        },
+        "segments": [
+          "print(3 ",
+          " 2)"
+        ],
+        "tokens": [
+          {
+            "id": "token-1",
+            "code": "**"
+          },
+          {
+            "id": "token-2",
+            "code": "*"
+          },
+          {
+            "id": "token-3",
+            "code": "%"
+          }
+        ],
+        "blanks": [
+          {
+            "answer": "**",
+            "reason": {
+              "en": "** raises to a power; * multiplies and % returns a remainder.",
+              "nl": "** verheft tot een macht; * vermenigvuldigt en % geeft een rest."
+            }
+          }
+        ],
+        "output": "9\n"
+      },
+      "id": "python-v4-05-quiz-a-4",
+      "reviewActivityIds": [
+        "python-v4-03-powers"
+      ]
+    },
+    {
+      "objectiveIds": [
+        "float-conversion"
+      ],
+      "category": "debugging",
+      "prompt": {
+        "en": "Choose the repair or test that addresses the stated problem.",
+        "nl": "Kies de reparatie of test die het beschreven probleem aanpakt."
+      },
+      "code": "# Accept decimal input such as 5.5\nvalue = int(\"5.5\")",
+      "answer": "a",
+      "choices": [
+        {
+          "id": "a",
+          "label": {
+            "en": "Use float on the numeric text.",
+            "nl": "Gebruik float op de getaltekst."
+          },
+          "reason": {
+            "en": "float accepts a decimal point.",
+            "nl": "float accepteert een decimale punt."
+          }
+        },
+        {
+          "id": "b",
+          "label": {
+            "en": "Strip the decimal point away.",
+            "nl": "Verwijder de decimale punt."
+          },
+          "reason": {
+            "en": "That changes the numeric meaning.",
+            "nl": "Dat verandert de numerieke betekenis."
+          }
+        },
+        {
+          "id": "c",
+          "label": {
+            "en": "Put another pair of quotes around it.",
+            "nl": "Zet er nog een paar aanhalingstekens om."
+          },
+          "reason": {
+            "en": "More quotes do not perform numeric conversion.",
+            "nl": "Meer aanhalingstekens voeren geen getalomzetting uit."
+          }
+        }
+      ],
+      "id": "python-v4-05-quiz-a-5",
+      "reviewActivityIds": [
+        "python-v4-05-float-input"
+      ]
+    },
+    {
+      "objectiveIds": [
+        "normalisation"
+      ],
+      "category": "application",
+      "prompt": {
+        "en": "Which explanation applies to this example?",
+        "nl": "Welke uitleg past bij dit voorbeeld?"
+      },
+      "code": "command = \" HELP \".strip().lower()",
+      "answer": "a",
+      "choices": [
+        {
+          "id": "a",
+          "label": {
+            "en": "Outer spaces are removed and letters become lowercase.",
+            "nl": "Buitenste spaties verdwijnen en letters worden klein."
+          },
+          "reason": {
+            "en": "The returned text from strip is passed to lower.",
+            "nl": "De teruggegeven tekst van strip gaat naar lower."
+          }
+        },
+        {
+          "id": "b",
+          "label": {
+            "en": "Every space inside the string is removed.",
+            "nl": "Elke spatie binnen de string verdwijnt."
+          },
+          "reason": {
+            "en": "strip affects only the ends.",
+            "nl": "strip verandert alleen de uiteinden."
+          }
+        },
+        {
+          "id": "c",
+          "label": {
+            "en": "The command is executed by lower.",
+            "nl": "lower voert het commando uit."
+          },
+          "reason": {
+            "en": "lower changes text case; it does not execute commands.",
+            "nl": "lower verandert hoofdletters; het voert geen opdrachten uit."
+          }
+        }
+      ],
+      "id": "python-v4-05-quiz-a-6",
+      "reviewActivityIds": [
+        "python-v4-05-normalise-command"
+      ]
+    }
+  ],
+  "alternateQuestions": [
+    {
+      "objectiveIds": [
+        "input-string-type"
+      ],
+      "category": "prediction",
+      "prompt": {
+        "en": "What does this program print?",
+        "nl": "Wat drukt dit programma af?"
+      },
+      "code": "answer = \"8\" # value returned by input\nprint(answer + \"2\")",
+      "answer": "a",
+      "expectedOutput": "82\n",
+      "choices": [
+        {
+          "id": "a",
+          "label": {
+            "en": "82",
+            "nl": "82"
+          },
+          "reason": {
+            "en": "Both operands are strings, so + concatenates.",
+            "nl": "Beide kanten zijn strings, dus + voegt samen."
+          }
+        },
+        {
+          "id": "b",
+          "label": {
+            "en": "10",
+            "nl": "10"
+          },
+          "reason": {
+            "en": "Numeric addition requires conversion first.",
+            "nl": "Numeriek optellen vereist eerst omzetting."
+          }
+        },
+        {
+          "id": "c",
+          "label": {
+            "en": "TypeError",
+            "nl": "TypeError"
+          },
+          "reason": {
+            "en": "Adding two strings is valid.",
+            "nl": "Twee strings samenvoegen is geldig."
+          }
+        }
+      ],
+      "id": "python-v4-05-quiz-b-1",
+      "reviewActivityIds": [
+        "python-v4-05-input-is-text"
+      ]
+    },
+    {
+      "objectiveIds": [
+        "precedence"
+      ],
+      "category": "prediction",
+      "prompt": {
+        "en": "What does this program print?",
+        "nl": "Wat drukt dit programma af?"
+      },
+      "code": "print(4 + 2 * 5)",
+      "answer": "a",
+      "expectedOutput": "14\n",
+      "choices": [
+        {
+          "id": "a",
+          "label": {
+            "en": "14",
+            "nl": "14"
+          },
+          "reason": {
+            "en": "Multiplication comes before addition.",
+            "nl": "Vermenigvuldigen komt vóór optellen."
+          }
+        },
+        {
+          "id": "b",
+          "label": {
+            "en": "30",
+            "nl": "30"
+          },
+          "reason": {
+            "en": "That needs parentheses around the addition.",
+            "nl": "Dat vereist haakjes rond het optellen."
+          }
+        },
+        {
+          "id": "c",
+          "label": {
+            "en": "11",
+            "nl": "11"
+          },
+          "reason": {
+            "en": "2 * 5 is ten, not seven.",
+            "nl": "2 * 5 is tien, geen zeven."
+          }
+        }
+      ],
+      "id": "python-v4-05-quiz-b-2",
+      "reviewActivityIds": [
+        "python-v4-03-precedence"
+      ]
+    },
+    {
+      "objectiveIds": [
+        "int-conversion"
+      ],
+      "category": "completion",
+      "prompt": {
+        "en": "Complete the code to produce the shown output.",
+        "nl": "Vul de code aan om de getoonde uitvoer te maken."
+      },
+      "code": "answer = \"8\"\nprint(___ + 2)",
+      "answer": "a",
+      "choices": [
+        {
+          "id": "a",
+          "label": {
+            "en": "int(answer)",
+            "nl": "int(answer)"
+          },
+          "reason": {
+            "en": "int converts whole-number text before addition.",
+            "nl": "int zet tekst met een geheel getal om vóór optellen."
+          }
+        },
+        {
+          "id": "b",
+          "label": {
+            "en": "answer",
+            "nl": "answer"
+          },
+          "reason": {
+            "en": "int converts whole-number text before addition.",
+            "nl": "int zet tekst met een geheel getal om vóór optellen."
+          }
+        },
+        {
+          "id": "c",
+          "label": {
+            "en": "str(answer)",
+            "nl": "str(answer)"
+          },
+          "reason": {
+            "en": "int converts whole-number text before addition.",
+            "nl": "int zet tekst met een geheel getal om vóór optellen."
+          }
+        }
+      ],
+      "codeBlank": {
+        "prompt": {
+          "en": "Complete the code to produce the shown output.",
+          "nl": "Vul de code aan om de getoonde uitvoer te maken."
+        },
+        "segments": [
+          "answer = \"8\"\nprint(",
+          " + 2)"
+        ],
+        "tokens": [
+          {
+            "id": "token-1",
+            "code": "int(answer)"
+          },
+          {
+            "id": "token-2",
+            "code": "answer"
+          },
+          {
+            "id": "token-3",
+            "code": "str(answer)"
+          }
+        ],
+        "blanks": [
+          {
+            "answer": "int(answer)",
+            "reason": {
+              "en": "int converts whole-number text before addition.",
+              "nl": "int zet tekst met een geheel getal om vóór optellen."
+            }
+          }
+        ],
+        "output": "10\n"
+      },
+      "id": "python-v4-05-quiz-b-3",
+      "reviewActivityIds": [
+        "python-v4-05-integer-input"
+      ]
+    },
+    {
+      "objectiveIds": [
+        "exponents"
+      ],
+      "category": "completion",
+      "prompt": {
+        "en": "Complete the code to produce the shown output.",
+        "nl": "Vul de code aan om de getoonde uitvoer te maken."
+      },
+      "code": "print(4 ___ 2)",
+      "answer": "a",
+      "choices": [
+        {
+          "id": "a",
+          "label": {
+            "en": "**",
+            "nl": "**"
+          },
+          "reason": {
+            "en": "** raises to a power; * multiplies and % returns a remainder.",
+            "nl": "** verheft tot een macht; * vermenigvuldigt en % geeft een rest."
+          }
+        },
+        {
+          "id": "b",
+          "label": {
+            "en": "*",
+            "nl": "*"
+          },
+          "reason": {
+            "en": "** raises to a power; * multiplies and % returns a remainder.",
+            "nl": "** verheft tot een macht; * vermenigvuldigt en % geeft een rest."
+          }
+        },
+        {
+          "id": "c",
+          "label": {
+            "en": "%",
+            "nl": "%"
+          },
+          "reason": {
+            "en": "** raises to a power; * multiplies and % returns a remainder.",
+            "nl": "** verheft tot een macht; * vermenigvuldigt en % geeft een rest."
+          }
+        }
+      ],
+      "codeBlank": {
+        "prompt": {
+          "en": "Complete the code to produce the shown output.",
+          "nl": "Vul de code aan om de getoonde uitvoer te maken."
+        },
+        "segments": [
+          "print(4 ",
+          " 2)"
+        ],
+        "tokens": [
+          {
+            "id": "token-1",
+            "code": "**"
+          },
+          {
+            "id": "token-2",
+            "code": "*"
+          },
+          {
+            "id": "token-3",
+            "code": "%"
+          }
+        ],
+        "blanks": [
+          {
+            "answer": "**",
+            "reason": {
+              "en": "** raises to a power; * multiplies and % returns a remainder.",
+              "nl": "** verheft tot een macht; * vermenigvuldigt en % geeft een rest."
+            }
+          }
+        ],
+        "output": "16\n"
+      },
+      "id": "python-v4-05-quiz-b-4",
+      "reviewActivityIds": [
+        "python-v4-03-powers"
+      ]
+    },
+    {
+      "objectiveIds": [
+        "float-conversion"
+      ],
+      "category": "debugging",
+      "prompt": {
+        "en": "Choose the repair or test that addresses the stated problem.",
+        "nl": "Kies de reparatie of test die het beschreven probleem aanpakt."
+      },
+      "code": "# Accept decimal input such as 8.5\nvalue = int(\"8.5\")",
+      "answer": "a",
+      "choices": [
+        {
+          "id": "a",
+          "label": {
+            "en": "Use float on the numeric text.",
+            "nl": "Gebruik float op de getaltekst."
+          },
+          "reason": {
+            "en": "float accepts a decimal point.",
+            "nl": "float accepteert een decimale punt."
+          }
+        },
+        {
+          "id": "b",
+          "label": {
+            "en": "Strip the decimal point away.",
+            "nl": "Verwijder de decimale punt."
+          },
+          "reason": {
+            "en": "That changes the numeric meaning.",
+            "nl": "Dat verandert de numerieke betekenis."
+          }
+        },
+        {
+          "id": "c",
+          "label": {
+            "en": "Put another pair of quotes around it.",
+            "nl": "Zet er nog een paar aanhalingstekens om."
+          },
+          "reason": {
+            "en": "More quotes do not perform numeric conversion.",
+            "nl": "Meer aanhalingstekens voeren geen getalomzetting uit."
+          }
+        }
+      ],
+      "id": "python-v4-05-quiz-b-5",
+      "reviewActivityIds": [
+        "python-v4-05-float-input"
+      ]
+    },
+    {
+      "objectiveIds": [
+        "normalisation"
+      ],
+      "category": "application",
+      "prompt": {
+        "en": "Which explanation applies to this example?",
+        "nl": "Welke uitleg past bij dit voorbeeld?"
+      },
+      "code": "command = \" GO \".strip().lower()",
+      "answer": "a",
+      "choices": [
+        {
+          "id": "a",
+          "label": {
+            "en": "Outer spaces are removed and letters become lowercase.",
+            "nl": "Buitenste spaties verdwijnen en letters worden klein."
+          },
+          "reason": {
+            "en": "The returned text from strip is passed to lower.",
+            "nl": "De teruggegeven tekst van strip gaat naar lower."
+          }
+        },
+        {
+          "id": "b",
+          "label": {
+            "en": "Every space inside the string is removed.",
+            "nl": "Elke spatie binnen de string verdwijnt."
+          },
+          "reason": {
+            "en": "strip affects only the ends.",
+            "nl": "strip verandert alleen de uiteinden."
+          }
+        },
+        {
+          "id": "c",
+          "label": {
+            "en": "The command is executed by lower.",
+            "nl": "lower voert het commando uit."
+          },
+          "reason": {
+            "en": "lower changes text case; it does not execute commands.",
+            "nl": "lower verandert hoofdletters; het voert geen opdrachten uit."
+          }
+        }
+      ],
+      "id": "python-v4-05-quiz-b-6",
+      "reviewActivityIds": [
+        "python-v4-05-normalise-command"
+      ]
+    }
+  ]
+}

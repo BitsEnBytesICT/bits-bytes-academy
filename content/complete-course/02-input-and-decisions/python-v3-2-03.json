@@ -1,0 +1,171 @@
+{
+  "id": "python-v3-2-03",
+  "chapter": 2,
+  "group": "python-v3-module-2",
+  "title": {
+    "en": "Choose an action",
+    "nl": "Kies een actie"
+  },
+  "kind": "coding",
+  "optional": false,
+  "runtime": "terminal",
+  "guidance": "adapt",
+  "estimatedMinutes": 15,
+  "explanation": {
+    "en": "Turn a Boolean decision into exactly one action. Indentation tells Python which statements belong to a branch.",
+    "nl": "Zet een booleaanse beslissing om in precies één actie. Inspringing vertelt Python welke opdrachten bij een tak horen."
+  },
+  "example": "",
+  "topicIds": [
+    "if",
+    "else",
+    "indentation"
+  ],
+  "prerequisites": [
+    "python-v3-2-02"
+  ],
+  "sections": [
+    {
+      "topicIds": [
+        "if",
+        "else",
+        "indentation"
+      ],
+      "heading": {
+        "en": "Two routes, one program",
+        "nl": "Twee routes, één programma"
+      },
+      "body": {
+        "en": "if evaluates its condition. An indented block runs only when that condition is true. else runs when it is false. End the if and else lines with a colon and indent their bodies consistently, conventionally four spaces. Statements after the branches resume at the outer indentation.",
+        "nl": "if berekent zijn voorwaarde. Een ingesprongen blok wordt alleen uitgevoerd als die waar is. else wordt uitgevoerd als die onwaar is. Sluit if en else af met een dubbele punt en spring consequent in, gewoonlijk vier spaties. Opdrachten na de takken gaan verder op het buitenste inspringniveau."
+      },
+      "code": "temperature = 8\nif temperature < 10:\n    print(\"Bring a coat\")\nelse:\n    print(\"Light jacket\")\nprint(\"Ready\")",
+      "output": "Bring a coat\nReady\n",
+      "prediction": {
+        "en": "Which line runs regardless of the temperature?",
+        "nl": "Welke regel wordt ongeacht de temperatuur uitgevoerd?"
+      }
+    },
+    {
+      "topicIds": [],
+      "heading": {
+        "en": "Try a changed input",
+        "nl": "Probeer gewijzigde invoer"
+      },
+      "body": {
+        "en": "Indent print inside else temporarily. Which input now produces no output? Restore it and test that counterexample.",
+        "nl": "Spring print tijdelijk in binnen else. Welke invoer geeft nu geen uitvoer? Herstel de regel en test dat tegenvoorbeeld."
+      }
+    }
+  ],
+  "files": {
+    "main.py": "balance = 8\ncost = 8\n# Set message to \"Buy\" or \"Save\".\n"
+  },
+  "solution": {
+    "main.py": "balance = 8\ncost = 8\nif balance >= cost:\n    message = \"Buy\"\nelse:\n    message = \"Save\"\nprint(message)\n"
+  },
+  "checkpoints": [
+    {
+      "objectiveIds": [
+        "if",
+        "else"
+      ],
+      "task": {
+        "en": "Set message to \"Buy\" if balance covers cost, otherwise \"Save\".",
+        "nl": "Stel message in op \"Buy\" als balance cost dekt, anders op \"Save\"."
+      },
+      "check": "message == \"Buy\"",
+      "hints": [
+        {
+          "en": "Covering the cost includes an equal balance.",
+          "nl": "De kosten dekken omvat een gelijk saldo."
+        },
+        {
+          "en": "Use if for the purchase and else for the other case.",
+          "nl": "Gebruik if voor kopen en else voor het andere geval."
+        },
+        {
+          "en": "if balance >= cost:",
+          "nl": "if balance >= cost:"
+        }
+      ],
+      "hint": {
+        "en": "Covering the cost includes an equal balance.",
+        "nl": "De kosten dekken omvat een gelijk saldo."
+      },
+      "feedback": {
+        "en": "Try a balance just below, equal to, and above the cost.",
+        "nl": "Probeer een saldo net onder, gelijk aan en boven de kosten."
+      },
+      "probes": [
+        {
+          "inputs": {
+            "balance": 7
+          },
+          "check": "message == \"Save\""
+        },
+        {
+          "inputs": {
+            "balance": 9
+          },
+          "check": "message == \"Buy\""
+        }
+      ],
+      "id": "python-v3-2-03-step-1"
+    },
+    {
+      "objectiveIds": [
+        "indentation"
+      ],
+      "task": {
+        "en": "Print message once after the branches.",
+        "nl": "Druk message één keer af na de takken."
+      },
+      "check": "_stdout.strip() == message",
+      "hints": [
+        {
+          "en": "A shared action belongs after both alternatives.",
+          "nl": "Een gedeelde actie hoort na beide alternatieven."
+        },
+        {
+          "en": "Move print to the outer indentation.",
+          "nl": "Zet print op het buitenste inspringniveau."
+        },
+        {
+          "en": "print(message)",
+          "nl": "print(message)"
+        }
+      ],
+      "hint": {
+        "en": "A shared action belongs after both alternatives.",
+        "nl": "Een gedeelde actie hoort na beide alternatieven."
+      },
+      "feedback": {
+        "en": "Both paths should print exactly one message.",
+        "nl": "Beide routes moeten precies één bericht afdrukken."
+      },
+      "probes": [
+        {
+          "inputs": {
+            "balance": 0,
+            "cost": 2
+          },
+          "check": "_stdout.strip() == \"Save\""
+        },
+        {
+          "inputs": {
+            "balance": 0,
+            "cost": 0
+          },
+          "check": "_stdout.strip() == \"Buy\""
+        }
+      ],
+      "id": "python-v3-2-03-step-2"
+    }
+  ],
+  "solutionNote": {
+    "en": "One if/else selects exactly one message; the shared print runs afterward. This avoids accidentally printing only for an accepted purchase.",
+    "nl": "Eén if/else kiest precies één bericht; de gedeelde print wordt daarna uitgevoerd. Zo druk je niet per ongeluk alleen iets af bij een toegestane aankoop."
+  },
+  "inputs": []
+}

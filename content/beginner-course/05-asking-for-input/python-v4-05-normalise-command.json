@@ -1,0 +1,156 @@
+{
+  "id": "python-v4-05-normalise-command",
+  "chapter": 5,
+  "group": "python-v4-module-5",
+  "title": {
+    "en": "Clean a typed command",
+    "nl": "Schoon een getypte opdracht op"
+  },
+  "kind": "coding",
+  "optional": false,
+  "runtime": "terminal",
+  "guidance": "guided",
+  "checkpointMode": "sequential",
+  "estimatedMinutes": 14,
+  "topicIds": [
+    "normalisation",
+    "strip",
+    "case-methods"
+  ],
+  "practices": [],
+  "requiredConcepts": [
+    "input",
+    "strings"
+  ],
+  "explanation": {
+    "en": "People sometimes type extra spaces or capital letters. Normalise a command so these small differences do not matter later.",
+    "nl": "Mensen typen soms extra spaties of hoofdletters. Normaliseer een opdracht zodat die kleine verschillen later niet uitmaken."
+  },
+  "example": "",
+  "sections": [
+    {
+      "id": "python-v4-05-normalise-command-example",
+      "topicIds": [
+        "normalisation",
+        "strip",
+        "case-methods"
+      ],
+      "heading": {
+        "en": "Follow a working example",
+        "nl": "Volg een werkend voorbeeld"
+      },
+      "body": {
+        "en": "A string method is a tool attached to a string value. The dot in raw.strip() selects the method named strip; parentheses call it. strip returns a new string without leading or trailing whitespace. It does not remove spaces in the middle.\n\nlower returns a lowercase copy. In the example we use two assignments so each transformation is visible. Strings do not change themselves: keep the returned values. The supplied input is two spaces, GO, then two spaces.",
+        "nl": "Een stringmethode is een hulpmiddel dat bij een stringwaarde hoort. De punt in raw.strip() kiest de methode strip; de haakjes roepen haar aan. strip geeft een nieuwe string zonder witruimte aan het begin of einde. Spaties middenin worden niet verwijderd.\n\nlower geeft een kopie met kleine letters terug. In het voorbeeld gebruiken we twee toewijzingen zodat elke verandering zichtbaar is. Strings veranderen zichzelf niet: bewaar de teruggegeven waarden. De meegeleverde invoer is twee spaties, GO en daarna twee spaties."
+      },
+      "code": "raw = input(\"Command: \")\ntrimmed = raw.strip()\ncommand = trimmed.lower()\nprint(command)",
+      "output": "Command: go\n",
+      "prediction": {
+        "en": "What would happen if you called lower without storing its result?",
+        "nl": "Wat gebeurt er als je lower aanroept zonder het resultaat te bewaren?"
+      },
+      "takeaway": {
+        "en": "Store the new string returned by strip and lower.",
+        "nl": "Bewaar de nieuwe string die strip en lower teruggeven."
+      },
+      "exampleInputs": [
+        "  GO  "
+      ]
+    },
+    {
+      "id": "python-v4-05-normalise-command-experiment",
+      "topicIds": [],
+      "heading": {
+        "en": "Try one change",
+        "nl": "Probeer één wijziging"
+      },
+      "body": {
+        "en": "Enter SAVE FILE with outer spaces. Which space remains after strip?",
+        "nl": "Voer SAVE FILE in met spaties eromheen. Welke spatie blijft na strip over?"
+      }
+    }
+  ],
+  "files": {
+    "main.py": ""
+  },
+  "solution": {
+    "main.py": "raw = input(\"Choice: \")\nchoice = raw.strip().lower()\nprint(choice)\n"
+  },
+  "checkpoints": [
+    {
+      "id": "python-v4-05-normalise-command-step-1",
+      "objectiveIds": [
+        "normalisation",
+        "strip",
+        "case-methods"
+      ],
+      "task": {
+        "en": "Read Choice: and store a trimmed, lowercase version in choice. Print choice.",
+        "nl": "Lees Choice: en bewaar een versie zonder randspaties en met kleine letters in choice. Druk choice af."
+      },
+      "check": "True",
+      "probes": [
+        {
+          "stdin": [
+            "  HELP  "
+          ],
+          "check": "(choice == raw.strip().lower() and _stdout.endswith(choice + \"\\n\")) and _remaining_input == \"\""
+        },
+        {
+          "stdin": [
+            "  Quit "
+          ],
+          "check": "(choice == \"quit\") and _remaining_input == \"\""
+        },
+        {
+          "stdin": [
+            " SAVE FILE "
+          ],
+          "check": "(choice == \"save file\") and _remaining_input == \"\""
+        }
+      ],
+      "hint": {
+        "en": "Store the new string returned by strip and lower.",
+        "nl": "Bewaar de nieuwe string die strip en lower teruggeven."
+      },
+      "hints": [
+        {
+          "en": "Store the new string returned by strip and lower.",
+          "nl": "Bewaar de nieuwe string die strip en lower teruggeven."
+        },
+        {
+          "en": "Apply both transformations and assign their returned text. You can use separate assignments.",
+          "nl": "Pas beide veranderingen toe en wijs de teruggegeven tekst toe. Je mag aparte toewijzingen gebruiken."
+        },
+        {
+          "en": "A small fragment to adapt: `trimmed = raw.strip()`",
+          "nl": "Een klein fragment om aan te passen: `trimmed = raw.strip()`"
+        }
+      ],
+      "feedback": {
+        "en": "Apply both transformations and assign their returned text. You can use separate assignments.",
+        "nl": "Pas beide veranderingen toe en wijs de teruggegeven tekst toe. Je mag aparte toewijzingen gebruiken."
+      }
+    }
+  ],
+  "solutionNote": {
+    "en": "The method chain feeds the trimmed result into lower. A two-assignment version produces the same behaviour.",
+    "nl": "De keten van methoden geeft het getrimde resultaat aan lower. Een versie met twee toewijzingen levert hetzelfde gedrag."
+  },
+  "inputs": [
+    "  HELP  "
+  ],
+  "retrievals": [
+    {
+      "id": "recall-python-v4-03-update-a-number",
+      "sourceActivityId": "python-v4-03-update-a-number",
+      "objectiveIds": [
+        "changing-numbers"
+      ],
+      "prompt": {
+        "en": "Recall “Update a number step by step”. Which line actually changes points? Try the earlier example from memory, then check it. Try no delivery and no sales. Explain why both printed values match.",
+        "nl": "Haal “Werk een getal stap voor stap bij” terug. Welke regel verandert points werkelijk? Probeer het eerdere voorbeeld uit je geheugen en controleer daarna. Probeer geen levering en geen verkoop. Leg uit waarom beide afgedrukte waarden gelijk zijn."
+      }
+    }
+  ]
+}

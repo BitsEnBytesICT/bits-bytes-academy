@@ -1,0 +1,212 @@
+{
+  "id": "python-v3-4-04",
+  "chapter": 4,
+  "group": "python-v3-module-4",
+  "title": {
+    "en": "Defaults and named arguments",
+    "nl": "Standaarden en benoemde argumenten"
+  },
+  "kind": "coding",
+  "optional": false,
+  "runtime": "terminal",
+  "guidance": "adapt",
+  "estimatedMinutes": 16,
+  "explanation": {
+    "en": "Give a function a useful default while allowing callers to name arguments. Use an early return for a simple special case.",
+    "nl": "Geef een functie een nuttige standaard terwijl aanroepers argumenten kunnen benoemen. Gebruik een vroege return voor een eenvoudig bijzonder geval."
+  },
+  "example": "",
+  "topicIds": [
+    "positional-arguments",
+    "keyword-arguments",
+    "default-arguments",
+    "early-return"
+  ],
+  "prerequisites": [
+    "python-v3-4-03"
+  ],
+  "sections": [
+    {
+      "topicIds": [
+        "positional-arguments",
+        "keyword-arguments",
+        "default-arguments",
+        "early-return"
+      ],
+      "heading": {
+        "en": "Choose how to call",
+        "nl": "Kies hoe je aanroept"
+      },
+      "body": {
+        "en": "Positional arguments match parameters by order. Keyword arguments match by name. A default is used only when the argument is omitted. Required parameters precede default parameters. return ends the call immediately, so an early return can handle a special case before the main calculation.",
+        "nl": "Positionele argumenten passen op volgorde bij parameters. Benoemde argumenten passen op naam. Een standaard wordt alleen gebruikt als het argument ontbreekt. Verplichte parameters staan vóór standaardparameters. return beëindigt de aanroep direct, dus een vroege return kan een bijzonder geval vóór de hoofdberekening afhandelen."
+      },
+      "code": "def label(name, prefix=\"Hi\"):\n    if name == \"\":\n        return \"Guest\"\n    return prefix + \" \" + name\nprint(label(\"Ada\"))\nprint(label(prefix=\"Hello\", name=\"Bo\"))\nprint(label(\"\"))",
+      "output": "Hi Ada\nHello Bo\nGuest\n",
+      "prediction": {
+        "en": "Which call uses the default? Which does not reach concatenation?",
+        "nl": "Welke aanroep gebruikt de standaard? Welke bereikt het samenvoegen niet?"
+      }
+    },
+    {
+      "topicIds": [],
+      "heading": {
+        "en": "Try a changed input",
+        "nl": "Probeer gewijzigde invoer"
+      },
+      "body": {
+        "en": "Compare delivery(3), delivery(3, 0) and delivery(fee=2, items=3). Explain how each parameter gets its value.",
+        "nl": "Vergelijk delivery(3), delivery(3, 0) en delivery(fee=2, items=3). Leg uit hoe elke parameter zijn waarde krijgt."
+      }
+    }
+  ],
+  "files": {
+    "main.py": "def delivery(items, fee=3):\n    # Return zero for no items; otherwise items * fee.\n    return -1\n\nprint(delivery(2))\n"
+  },
+  "solution": {
+    "main.py": "def delivery(items, fee=3):\n    if items <= 0:\n        return 0\n    return items * fee\n\nprint(delivery(2))\n"
+  },
+  "checkpoints": [
+    {
+      "objectiveIds": [
+        "default-arguments",
+        "positional-arguments",
+        "keyword-arguments"
+      ],
+      "task": {
+        "en": "Return items * fee, using fee=3 when omitted. Accept calls by position or by parameter name.",
+        "nl": "Geef items * fee terug, met fee=3 als die ontbreekt. Accepteer aanroepen op positie of parameternaam."
+      },
+      "check": "_stdout.strip() == \"6\"",
+      "hints": [
+        {
+          "en": "Defaults belong in the definition, not in every call.",
+          "nl": "Standaarden horen in de definitie, niet in elke aanroep."
+        },
+        {
+          "en": "Use the provided parameter fee rather than a fixed multiplier.",
+          "nl": "Gebruik de parameter fee in plaats van een vaste vermenigvuldiger."
+        },
+        {
+          "en": "def delivery(items, fee=3):",
+          "nl": "def delivery(items, fee=3):"
+        }
+      ],
+      "hint": {
+        "en": "Defaults belong in the definition, not in every call.",
+        "nl": "Standaarden horen in de definitie, niet in elke aanroep."
+      },
+      "feedback": {
+        "en": "Check both an omitted fee and an explicitly supplied fee of zero.",
+        "nl": "Controleer zowel een ontbrekende fee als een expliciete fee van nul."
+      },
+      "probes": [
+        {
+          "call": {
+            "name": "delivery",
+            "args": [
+              4
+            ]
+          },
+          "check": "_return == 12"
+        },
+        {
+          "call": {
+            "name": "delivery",
+            "args": [
+              4,
+              0
+            ]
+          },
+          "check": "_return == 0"
+        },
+        {
+          "call": {
+            "name": "delivery",
+            "args": [],
+            "kwargs": {
+              "fee": 2,
+              "items": 5
+            }
+          },
+          "check": "_return == 10"
+        }
+      ],
+      "id": "python-v3-4-04-step-1"
+    },
+    {
+      "objectiveIds": [
+        "early-return"
+      ],
+      "task": {
+        "en": "Return 0 for items <= 0 before doing the ordinary calculation.",
+        "nl": "Geef 0 terug voor items <= 0 voordat je de gewone berekening uitvoert."
+      },
+      "check": "delivery(0) == 0",
+      "hints": [
+        {
+          "en": "The special case covers zero and negative counts.",
+          "nl": "Het bijzondere geval omvat nul en negatieve aantallen."
+        },
+        {
+          "en": "Put an if and return at the top of the body.",
+          "nl": "Zet if en return boven in het blok."
+        },
+        {
+          "en": "if items <= 0:\n    return 0",
+          "nl": "if items <= 0:\n    return 0"
+        }
+      ],
+      "hint": {
+        "en": "The special case covers zero and negative counts.",
+        "nl": "Het bijzondere geval omvat nul en negatieve aantallen."
+      },
+      "feedback": {
+        "en": "Negative item counts should not create a negative charge.",
+        "nl": "Negatieve aantallen mogen geen negatieve kosten geven."
+      },
+      "probes": [
+        {
+          "call": {
+            "name": "delivery",
+            "args": [
+              -3,
+              5
+            ]
+          },
+          "check": "_return == 0"
+        },
+        {
+          "call": {
+            "name": "delivery",
+            "args": [
+              0
+            ]
+          },
+          "check": "_return == 0"
+        }
+      ],
+      "id": "python-v3-4-04-step-2"
+    }
+  ],
+  "solutionNote": {
+    "en": "A default handles omission, not falsiness: an explicit fee of 0 is honoured. The early return prevents the ordinary calculation for nonpositive item counts.",
+    "nl": "Een standaard behandelt ontbreken, niet onwaarheid: een expliciete fee van 0 blijft gelden. De vroege return voorkomt de gewone berekening bij niet-positieve aantallen."
+  },
+  "inputs": [],
+  "retrievals": [
+    {
+      "id": "recall-python-v3-2-04",
+      "sourceActivityId": "python-v3-2-04",
+      "objectiveIds": [
+        "and",
+        "or",
+        "not"
+      ],
+      "prompt": {
+        "en": "Predict (False or True) and not True. Give one input where replacing or with and changes an entrance rule.",
+        "nl": "Voorspel (False or True) and not True. Geef invoer waarbij and in plaats van or een toegangsregel verandert."
+      }
+    }
+  ]
+}

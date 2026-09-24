@@ -1,0 +1,157 @@
+{
+  "id": "python-v4-09-local-scope",
+  "chapter": 9,
+  "group": "python-v4-module-9",
+  "title": {
+    "en": "Keep a function independent",
+    "nl": "Houd een functie onafhankelijk"
+  },
+  "kind": "coding",
+  "optional": false,
+  "runtime": "terminal",
+  "guidance": "adapt",
+  "checkpointMode": "sequential",
+  "estimatedMinutes": 12,
+  "topicIds": [
+    "scope"
+  ],
+  "practices": [],
+  "requiredConcepts": [
+    "return",
+    "parameters-arguments"
+  ],
+  "explanation": {
+    "en": "A function should use the inputs its caller supplies. An unrelated outside variable can hide a mistake.",
+    "nl": "Een functie hoort de invoer van haar aanroeper te gebruiken. Een andere variabele buiten de functie kan een fout verbergen."
+  },
+  "example": "",
+  "sections": [
+    {
+      "id": "python-v4-09-local-scope-example",
+      "topicIds": [
+        "scope"
+      ],
+      "heading": {
+        "en": "Follow a working example",
+        "nl": "Volg een werkend voorbeeld"
+      },
+      "body": {
+        "en": "A parameter and a name assigned inside a function are local to that call. The caller cannot read those local names directly. Python can read an outer name if no local name shadows it, but that can make a calculation depend on unrelated state. Pass needed values as arguments and return the answer.",
+        "nl": "Een parameter en een naam die binnen een functie wordt toegewezen zijn lokaal voor die aanroep. De aanroeper kan die namen niet rechtstreeks lezen. Python kan een buitenliggende naam lezen als geen lokale naam die verbergt, maar daardoor kan een berekening afhankelijk worden van andere toestand. Geef benodigde waarden als argumenten mee en geef het antwoord terug."
+      },
+      "code": "value = 100\ndef increment(value):\n    value += 1\n    return value\nprint(increment(4))\nprint(value)",
+      "output": "5\n100\n",
+      "prediction": {
+        "en": "Why does the outer value remain 100?",
+        "nl": "Waarom blijft de buitenliggende value 100?"
+      },
+      "takeaway": {
+        "en": "Make the result depend on parameters, not an accidental outside value.",
+        "nl": "Laat het resultaat afhangen van parameters, niet van een toevallige buitenliggende waarde."
+      }
+    },
+    {
+      "id": "python-v4-09-local-scope-experiment",
+      "topicIds": [],
+      "heading": {
+        "en": "Try one change",
+        "nl": "Probeer één wijziging"
+      },
+      "body": {
+        "en": "Change the outer rate to 999. The function result should stay tied to its arguments.",
+        "nl": "Verander de buitenliggende rate naar 999. Het functieresultaat hoort gekoppeld te blijven aan zijn argumenten."
+      }
+    }
+  ],
+  "files": {
+    "main.py": "rate = 10\ndef charge(hours, hourly_rate):\n    return hours * rate\n"
+  },
+  "solution": {
+    "main.py": "rate = 10\ndef charge(hours, hourly_rate):\n    return hours * hourly_rate\n"
+  },
+  "checkpoints": [
+    {
+      "id": "python-v4-09-local-scope-step-1",
+      "objectiveIds": [
+        "scope"
+      ],
+      "task": {
+        "en": "Repair charge to use its hourly_rate argument.",
+        "nl": "Herstel charge zodat die het argument hourly_rate gebruikt."
+      },
+      "check": "callable(charge)",
+      "probes": [
+        {
+          "call": {
+            "name": "charge",
+            "args": [
+              2,
+              7
+            ]
+          },
+          "check": "_return == 14"
+        },
+        {
+          "call": {
+            "name": "charge",
+            "args": [
+              0,
+              20
+            ]
+          },
+          "check": "_return == 0"
+        },
+        {
+          "call": {
+            "name": "charge",
+            "args": [
+              1.5,
+              4
+            ]
+          },
+          "check": "_return == 6"
+        }
+      ],
+      "hint": {
+        "en": "Make the result depend on parameters, not an accidental outside value.",
+        "nl": "Laat het resultaat afhangen van parameters, niet van een toevallige buitenliggende waarde."
+      },
+      "hints": [
+        {
+          "en": "Make the result depend on parameters, not an accidental outside value.",
+          "nl": "Laat het resultaat afhangen van parameters, niet van een toevallige buitenliggende waarde."
+        },
+        {
+          "en": "Find the outside name in the expression and use the matching parameter.",
+          "nl": "Zoek de buitenliggende naam in de uitdrukking en gebruik de bijbehorende parameter."
+        },
+        {
+          "en": "A small fragment to adapt: `hours * hourly_rate`",
+          "nl": "Een klein fragment om aan te passen: `hours * hourly_rate`"
+        }
+      ],
+      "feedback": {
+        "en": "Find the outside name in the expression and use the matching parameter.",
+        "nl": "Zoek de buitenliggende naam in de uitdrukking en gebruik de bijbehorende parameter."
+      }
+    }
+  ],
+  "solutionNote": {
+    "en": "hourly_rate is local input; rate no longer influences this calculation.",
+    "nl": "hourly_rate is lokale invoer; rate beïnvloedt deze berekening niet meer."
+  },
+  "inputs": [],
+  "retrievals": [
+    {
+      "id": "recall-python-v4-07-delivery-adviser",
+      "sourceActivityId": "python-v4-07-delivery-adviser",
+      "objectiveIds": [
+        "delivery-project"
+      ],
+      "prompt": {
+        "en": "Recall “Mini project: delivery-price adviser”. Why is the weekend check separate from the price chain? Try the earlier example from memory, then check it. Write a six-case test table from the suggested weights and destinations. Check every predicted cost.",
+        "nl": "Haal “Miniproject: bezorgprijsadviseur” terug. Waarom staat de weekendcontrole los van de prijsketen? Probeer het eerdere voorbeeld uit je geheugen en controleer daarna. Schrijf een testtabel met zes gevallen uit de voorgestelde gewichten en bestemmingen. Controleer elke voorspelde prijs."
+      }
+    }
+  ]
+}

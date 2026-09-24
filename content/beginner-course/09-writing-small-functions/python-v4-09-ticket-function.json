@@ -1,0 +1,164 @@
+{
+  "id": "python-v4-09-ticket-function",
+  "chapter": 9,
+  "group": "python-v4-module-9",
+  "title": {
+    "en": "Build a reusable ticket calculation",
+    "nl": "Bouw een herbruikbare ticketberekening"
+  },
+  "kind": "coding",
+  "optional": false,
+  "runtime": "terminal",
+  "guidance": "independent",
+  "checkpointMode": "sequential",
+  "estimatedMinutes": 22,
+  "topicIds": [
+    "functions-review"
+  ],
+  "practices": [
+    "return",
+    "default-arguments",
+    "scope",
+    "early-return"
+  ],
+  "requiredConcepts": [
+    "early-return",
+    "default-arguments"
+  ],
+  "explanation": {
+    "en": "Combine parameters, decisions and returns in a function another program could use.",
+    "nl": "Combineer parameters, beslissingen en terugkeerwaarden in een functie die een ander programma kan gebruiken."
+  },
+  "example": "",
+  "sections": [
+    {
+      "id": "python-v4-09-ticket-function-example",
+      "topicIds": [
+        "functions-review",
+        "return",
+        "default-arguments",
+        "scope",
+        "early-return"
+      ],
+      "heading": {
+        "en": "Follow a working example",
+        "nl": "Volg een werkend voorbeeld"
+      },
+      "body": {
+        "en": "Write down the input rules first. For ticket_total(count, price=4), a negative count is invalid and returns None; zero is valid and returns zero; otherwise multiply count by price. The function reads no input and prints nothing. Test the returned value from separate caller code. The example shows the same guard pattern in a different context.",
+        "nl": "Schrijf eerst de invoerregels op. Voor ticket_total(count, price=4) is een negatief aantal ongeldig en geeft None; nul is geldig en geeft nul; vermenigvuldig anders count met price. De functie leest geen invoer en drukt niets af. Test de teruggegeven waarde vanuit aparte aanroepcode. Het voorbeeld toont hetzelfde bewakingspatroon in een andere context."
+      },
+      "code": "def remaining(stock, used=1):\n    if used < 0:\n        return None\n    return stock - used\nprint(remaining(8))",
+      "output": "7\n",
+      "prediction": {
+        "en": "What would remaining(8, -1) return?",
+        "nl": "Wat geeft remaining(8, -1) terug?"
+      },
+      "takeaway": {
+        "en": "A clear function contract names its inputs, output and exceptional cases.",
+        "nl": "Een duidelijke functieafspraak benoemt invoer, uitvoer en uitzonderlijke gevallen."
+      }
+    },
+    {
+      "id": "python-v4-09-ticket-function-experiment",
+      "topicIds": [],
+      "heading": {
+        "en": "Try one change",
+        "nl": "Probeer één wijziging"
+      },
+      "body": {
+        "en": "Add a named-argument test that overrides price.",
+        "nl": "Voeg een test met benoemde argumenten toe die price vervangt."
+      }
+    }
+  ],
+  "files": {
+    "main.py": ""
+  },
+  "solution": {
+    "main.py": "def ticket_total(count, price=4):\n    if count < 0:\n        return None\n    return count * price\n"
+  },
+  "checkpoints": [
+    {
+      "id": "python-v4-09-ticket-function-step-1",
+      "objectiveIds": [
+        "functions-review",
+        "return",
+        "default-arguments",
+        "scope",
+        "early-return"
+      ],
+      "task": {
+        "en": "Implement ticket_total(count, price=4) using the stated contract.",
+        "nl": "Implementeer ticket_total(count, price=4) volgens de beschreven afspraak."
+      },
+      "check": "callable(ticket_total)",
+      "probes": [
+        {
+          "call": {
+            "name": "ticket_total",
+            "args": [
+              3
+            ]
+          },
+          "check": "_return == 12 and _call_stdout == \"\""
+        },
+        {
+          "call": {
+            "name": "ticket_total",
+            "args": [
+              0
+            ]
+          },
+          "check": "_return == 0"
+        },
+        {
+          "call": {
+            "name": "ticket_total",
+            "args": [
+              -1
+            ]
+          },
+          "check": "_return is None"
+        },
+        {
+          "call": {
+            "name": "ticket_total",
+            "args": [
+              2,
+              2.5
+            ]
+          },
+          "check": "_return == 5"
+        }
+      ],
+      "hint": {
+        "en": "A clear function contract names its inputs, output and exceptional cases.",
+        "nl": "Een duidelijke functieafspraak benoemt invoer, uitvoer en uitzonderlijke gevallen."
+      },
+      "hints": [
+        {
+          "en": "A clear function contract names its inputs, output and exceptional cases.",
+          "nl": "Een duidelijke functieafspraak benoemt invoer, uitvoer en uitzonderlijke gevallen."
+        },
+        {
+          "en": "Separate the invalid-count guard from the normal product.",
+          "nl": "Scheid de bewaking voor ongeldige aantallen van het gewone product."
+        },
+        {
+          "en": "A small fragment to adapt: `if count < 0:`",
+          "nl": "Een klein fragment om aan te passen: `if count < 0:`"
+        }
+      ],
+      "feedback": {
+        "en": "Separate the invalid-count guard from the normal product.",
+        "nl": "Scheid de bewaking voor ongeldige aantallen van het gewone product."
+      }
+    }
+  ],
+  "solutionNote": {
+    "en": "The independent function has one early exit and one reusable calculation, with no dependence on terminal input.",
+    "nl": "De onafhankelijke functie heeft één vroege uitgang en één herbruikbare berekening, zonder afhankelijkheid van terminalinvoer."
+  },
+  "inputs": []
+}

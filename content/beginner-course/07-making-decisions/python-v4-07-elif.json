@@ -1,0 +1,145 @@
+{
+  "id": "python-v4-07-elif",
+  "chapter": 7,
+  "group": "python-v4-module-7",
+  "title": {
+    "en": "Choose among several actions",
+    "nl": "Kies tussen meerdere acties"
+  },
+  "kind": "coding",
+  "optional": false,
+  "runtime": "terminal",
+  "guidance": "guided",
+  "checkpointMode": "sequential",
+  "estimatedMinutes": 16,
+  "topicIds": [
+    "elif"
+  ],
+  "practices": [],
+  "requiredConcepts": [
+    "else",
+    "relational-operators"
+  ],
+  "explanation": {
+    "en": "When there are more than two categories, an elif chain keeps the alternatives together.",
+    "nl": "Wanneer er meer dan twee categorieën zijn, houdt een elif-keten de alternatieven bij elkaar."
+  },
+  "example": "",
+  "sections": [
+    {
+      "id": "python-v4-07-elif-example",
+      "topicIds": [
+        "elif"
+      ],
+      "heading": {
+        "en": "Follow a working example",
+        "nl": "Volg een werkend voorbeeld"
+      },
+      "body": {
+        "en": "elif means else if. Python checks the if condition first, then each elif only if earlier conditions were False. Once one branch matches, the remaining alternatives are skipped. The final else handles everything not matched.\n\nOrder broad thresholds carefully. The example checks the highest score first. Otherwise a high score could match a lower category before Python reaches the intended branch.",
+        "nl": "elif betekent else if. Python controleert eerst de if-voorwaarde en daarna elke elif alleen als eerdere voorwaarden False waren. Zodra één tak past, worden de overige alternatieven overgeslagen. De laatste else verwerkt alles wat nog niet paste.\n\nZet brede grenzen zorgvuldig op volgorde. Het voorbeeld controleert eerst het hoogste cijfer. Anders kan een hoog cijfer een lagere categorie raken voordat Python de bedoelde tak bereikt."
+      },
+      "code": "score = 8\nif score >= 9:\n    print(\"Excellent\")\nelif score >= 6:\n    print(\"Pass\")\nelse:\n    print(\"Review\")",
+      "output": "Pass\n",
+      "prediction": {
+        "en": "Why is the first comparison checked before the second?",
+        "nl": "Waarom wordt de eerste vergelijking vóór de tweede gecontroleerd?"
+      },
+      "takeaway": {
+        "en": "An if/elif/else chain runs the first matching branch only.",
+        "nl": "Een if/elif/else-keten voert alleen de eerste passende tak uit."
+      }
+    },
+    {
+      "id": "python-v4-07-elif-experiment",
+      "topicIds": [],
+      "heading": {
+        "en": "Try one change",
+        "nl": "Probeer één wijziging"
+      },
+      "body": {
+        "en": "Test 9, 10, 19 and 20. Explain why 20 belongs to Warm.",
+        "nl": "Test 9, 10, 19 en 20. Leg uit waarom 20 bij Warm hoort."
+      }
+    }
+  ],
+  "files": {
+    "main.py": "temperature = 15\n"
+  },
+  "solution": {
+    "main.py": "temperature = 15\nif temperature < 10:\n    print(\"Cold\")\nelif temperature < 20:\n    print(\"Mild\")\nelse:\n    print(\"Warm\")\n"
+  },
+  "checkpoints": [
+    {
+      "id": "python-v4-07-elif-step-1",
+      "objectiveIds": [
+        "elif"
+      ],
+      "task": {
+        "en": "Print \"Cold\" below 10, \"Mild\" from 10 up to but not including 20, otherwise \"Warm\".",
+        "nl": "Druk \"Cold\" af onder 10, \"Mild\" vanaf 10 tot maar niet inclusief 20, anders \"Warm\"."
+      },
+      "check": "_stdout == \"Mild\\n\"",
+      "probes": [
+        {
+          "inputs": {
+            "temperature": 9
+          },
+          "check": "_stdout == \"Cold\\n\""
+        },
+        {
+          "inputs": {
+            "temperature": 10
+          },
+          "check": "_stdout == \"Mild\\n\""
+        },
+        {
+          "inputs": {
+            "temperature": 20
+          },
+          "check": "_stdout == \"Warm\\n\""
+        }
+      ],
+      "hint": {
+        "en": "An if/elif/else chain runs the first matching branch only.",
+        "nl": "Een if/elif/else-keten voert alleen de eerste passende tak uit."
+      },
+      "hints": [
+        {
+          "en": "An if/elif/else chain runs the first matching branch only.",
+          "nl": "Een if/elif/else-keten voert alleen de eerste passende tak uit."
+        },
+        {
+          "en": "Use an ordered chain. The second branch is reached only after the first condition failed.",
+          "nl": "Gebruik een geordende keten. De tweede tak wordt pas bereikt nadat de eerste voorwaarde niet gold."
+        },
+        {
+          "en": "A small fragment to adapt: `elif temperature < 20:`",
+          "nl": "Een klein fragment om aan te passen: `elif temperature < 20:`"
+        }
+      ],
+      "feedback": {
+        "en": "Use an ordered chain. The second branch is reached only after the first condition failed.",
+        "nl": "Gebruik een geordende keten. De tweede tak wordt pas bereikt nadat de eerste voorwaarde niet gold."
+      }
+    }
+  ],
+  "solutionNote": {
+    "en": "The earlier failed condition already tells the elif branch that temperature is at least 10.",
+    "nl": "De eerder mislukte voorwaarde vertelt de elif-tak al dat temperature minstens 10 is."
+  },
+  "inputs": [],
+  "retrievals": [
+    {
+      "id": "recall-python-v4-05-float-input",
+      "sourceActivityId": "python-v4-05-float-input",
+      "objectiveIds": [
+        "float-conversion"
+      ],
+      "prompt": {
+        "en": "Recall “Read a decimal measurement”. With answer 2.5, does multiplication preserve the fraction? Try the earlier example from memory, then check it. Enter 2 and then 2.5. Compare the converted types and answers.",
+        "nl": "Haal “Lees een decimale meting” terug. Blijft bij antwoord 2.5 het breukdeel behouden tijdens vermenigvuldigen? Probeer het eerdere voorbeeld uit je geheugen en controleer daarna. Voer 2 in en daarna 2.5. Vergelijk de omgezette typen en antwoorden."
+      }
+    }
+  ]
+}

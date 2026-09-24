@@ -1,0 +1,174 @@
+{
+  "id": "python-v4-20-report",
+  "chapter": 20,
+  "group": "python-v4-module-20",
+  "title": {
+    "en": "Generate a text report from a file",
+    "nl": "Maak een tekstrapport vanuit een bestand"
+  },
+  "kind": "coding",
+  "optional": false,
+  "runtime": "terminal",
+  "guidance": "independent",
+  "checkpointMode": "sequential",
+  "estimatedMinutes": 25,
+  "topicIds": [
+    "file-review"
+  ],
+  "practices": [
+    "read",
+    "line-iteration",
+    "write"
+  ],
+  "requiredConcepts": [
+    "write",
+    "line-iteration"
+  ],
+  "explanation": {
+    "en": "Combine reading, processing and writing in one small file workflow.\n\nOpen work.py to write the requested function. main.py is a supplied caller: Run always starts there and imports your function. The other file tabs contain input data. After a successful run, open any new output file tab to inspect what your program saved.",
+    "nl": "Combineer lezen, verwerken en schrijven in één kleine bestandswerkwijze.\n\nOpen work.py om de gevraagde functie te schrijven. main.py is de aangeleverde aanroeper: Uitvoeren begint daar en importeert je functie. De andere bestandstabbladen bevatten invoergegevens. Open na een geslaagde uitvoering een nieuw uitvoerbestand om te bekijken wat je programma heeft opgeslagen."
+  },
+  "example": "",
+  "sections": [
+    {
+      "id": "python-v4-20-report-example",
+      "topicIds": [
+        "file-review",
+        "read",
+        "line-iteration",
+        "write"
+      ],
+      "heading": {
+        "en": "Follow a working example",
+        "nl": "Volg een werkend voorbeeld"
+      },
+      "body": {
+        "en": "The input contains one valid integer per nonempty line. Ignore blank lines. Write a report to a different output path containing count=<number> then total=<sum>, each ending with newline. Return the sum as well. Keep the source file unchanged. For an empty source both numbers are zero.",
+        "nl": "De invoer bevat één geldig geheel getal per niet-lege regel. Negeer lege regels. Schrijf naar een ander uitvoerpad een rapport met count=<aantal> en daarna total=<som>, elk met nieuwe regel. Geef ook de som terug. Laat het bronbestand ongewijzigd. Bij een lege bron zijn beide getallen nul."
+      },
+      "code": "values = [2,5]\ntotal = 0\nfor value in values:\n    total += value\nprint(f\"count={len(values)}\")\nprint(f\"total={total}\")",
+      "output": "count=2\ntotal=7\n",
+      "prediction": {
+        "en": "Why does the output path need to differ from the source?",
+        "nl": "Waarom moet het uitvoerpad verschillen van de bron?"
+      },
+      "takeaway": {
+        "en": "Keep source, processing and destination responsibilities clear.",
+        "nl": "Houd bron, verwerking en bestemming duidelijk gescheiden."
+      },
+      "exampleFiles": {}
+    },
+    {
+      "id": "python-v4-20-report-experiment",
+      "topicIds": [],
+      "heading": {
+        "en": "Try one change",
+        "nl": "Probeer één wijziging"
+      },
+      "body": {
+        "en": "Add another negative number to the source and predict both report fields.",
+        "nl": "Voeg nog een negatief getal aan de bron toe en voorspel beide rapportvelden."
+      }
+    }
+  ],
+  "files": {
+    "values.txt": "2\n\n-1\n4\n",
+    "main.py": "import work\nprint(work.report(\"values.txt\",\"summary.txt\"))\n",
+    "work.py": "def report(source, destination):\n    return None\n"
+  },
+  "solution": {
+    "values.txt": "2\n\n-1\n4\n",
+    "main.py": "import work\nprint(work.report(\"values.txt\",\"summary.txt\"))\n",
+    "work.py": "def report(source, destination):\n    count = 0\n    total = 0\n    with open(source,encoding=\"utf-8\") as handle:\n        for line in handle:\n            if line.strip() != \"\":\n                count += 1\n                total += int(line)\n    with open(destination,\"w\",encoding=\"utf-8\") as handle:\n        handle.write(f\"count={count}\\ntotal={total}\\n\")\n    return total\n"
+  },
+  "checkpoints": [
+    {
+      "id": "python-v4-20-report-step-1",
+      "objectiveIds": [
+        "file-review",
+        "read",
+        "line-iteration",
+        "write"
+      ],
+      "task": {
+        "en": "Implement the report contract for empty and nonempty files. Inspect the generated summary.",
+        "nl": "Implementeer de rapportafspraak voor lege en niet-lege bestanden. Bekijk de gemaakte samenvatting."
+      },
+      "check": "True",
+      "probes": [
+        {
+          "call": {
+            "name": "report",
+            "args": [
+              "values.txt",
+              "summary.txt"
+            ],
+            "module": "work"
+          },
+          "check": "(_return == 5 and open(\"summary.txt\").read() == \"count=3\\ntotal=5\\n\" and open(\"values.txt\").read() == \"2\\n\\n-1\\n4\\n\") and _error is None",
+          "moduleOnly": true,
+          "module": "work",
+          "files": {}
+        },
+        {
+          "call": {
+            "name": "report",
+            "args": [
+              "empty.txt",
+              "out.txt"
+            ],
+            "module": "work"
+          },
+          "check": "(_return == 0 and open(\"out.txt\").read() == \"count=0\\ntotal=0\\n\") and _error is None",
+          "moduleOnly": true,
+          "module": "work",
+          "files": {
+            "empty.txt": ""
+          }
+        }
+      ],
+      "hint": {
+        "en": "Keep source, processing and destination responsibilities clear.",
+        "nl": "Houd bron, verwerking en bestemming duidelijk gescheiden."
+      },
+      "hints": [
+        {
+          "en": "Keep source, processing and destination responsibilities clear.",
+          "nl": "Houd bron, verwerking en bestemming duidelijk gescheiden."
+        },
+        {
+          "en": "Accumulate while reading; write the formatted report only after reading finishes.",
+          "nl": "Verzamel tijdens lezen; schrijf het geformatteerde rapport pas nadat lezen klaar is."
+        },
+        {
+          "en": "A small fragment to adapt: `total += int(line)`",
+          "nl": "Een klein fragment om aan te passen: `total += int(line)`"
+        }
+      ],
+      "feedback": {
+        "en": "Accumulate while reading; write the formatted report only after reading finishes.",
+        "nl": "Verzamel tijdens lezen; schrijf het geformatteerde rapport pas nadat lezen klaar is."
+      }
+    }
+  ],
+  "solutionNote": {
+    "en": "Reading completes before writing the separate output; the original file is never opened in write mode.",
+    "nl": "Lezen is klaar vóór schrijven naar de aparte uitvoer; het origineel wordt nooit in schrijfmodus geopend."
+  },
+  "inputs": [],
+  "retrievals": [
+    {
+      "id": "recall-python-v4-18-split-delimiter",
+      "sourceActivityId": "python-v4-18-split-delimiter",
+      "objectiveIds": [
+        "split-delimiters",
+        "split-newlines",
+        "split-tabs"
+      ],
+      "prompt": {
+        "en": "Recall “Split a known separator”. What information would removing the empty field lose? Try the earlier example from memory, then check it. Compare splitting the same newline-terminated text with splitlines and split(\"\\n\").",
+        "nl": "Haal “Splits een bekend scheidingsteken” terug. Welke informatie verdwijnt als je het lege veld verwijdert? Probeer het eerdere voorbeeld uit je geheugen en controleer daarna. Vergelijk dezelfde tekst met een nieuwe regel aan het einde via splitlines en split(\"\\n\")."
+      }
+    }
+  ]
+}

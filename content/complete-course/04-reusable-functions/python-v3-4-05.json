@@ -1,0 +1,207 @@
+{
+  "id": "python-v3-4-05",
+  "chapter": 4,
+  "group": "python-v3-module-4",
+  "title": {
+    "en": "A reusable calculation",
+    "nl": "Een herbruikbare berekening"
+  },
+  "kind": "coding",
+  "optional": false,
+  "runtime": "terminal",
+  "guidance": "independent",
+  "estimatedMinutes": 15,
+  "explanation": {
+    "en": "Implement a reusable booking calculation. A booking has seats at a price, with a discount applied once. A nonpositive seat count costs zero; the final total must never be negative.",
+    "nl": "Implementeer een herbruikbare boekingsberekening. Een boeking heeft plaatsen met een prijs en een eenmalige korting. Een niet-positief aantal plaatsen kost nul; het eindtotaal mag nooit negatief zijn."
+  },
+  "example": "",
+  "topicIds": [
+    "function-review"
+  ],
+  "prerequisites": [
+    "python-v3-4-04"
+  ],
+  "sections": [
+    {
+      "topicIds": [
+        "function-review"
+      ],
+      "heading": {
+        "en": "Define a contract",
+        "nl": "Definieer een afspraak"
+      },
+      "body": {
+        "en": "A function contract describes inputs and an observable result. Decide which boundary cases follow from that description before coding. Keep input and printing outside a reusable calculation; that makes the function easy to call from a calculator later.",
+        "nl": "Een functieafspraak beschrijft invoer en een waarneembaar resultaat. Bepaal vóór het coderen welke grensgevallen uit die beschrijving volgen. Houd input en print buiten een herbruikbare berekening; daardoor kan een rekenmachine de functie later gemakkelijk aanroepen."
+      },
+      "code": "def remaining(capacity, used):\n    amount = capacity - used\n    if amount < 0:\n        return 0\n    return amount\nprint(remaining(5, 8))",
+      "output": "0\n",
+      "prediction": {
+        "en": "Which boundary prevents an impossible negative result?",
+        "nl": "Welke grens voorkomt een onmogelijk negatief resultaat?"
+      }
+    },
+    {
+      "topicIds": [],
+      "heading": {
+        "en": "Try a changed input",
+        "nl": "Probeer gewijzigde invoer"
+      },
+      "body": {
+        "en": "Write four calls covering ordinary, omitted discount, no seats and an excessive discount. Explain the expected result before running each.",
+        "nl": "Schrijf vier aanroepen voor gewoon, ontbrekende korting, geen plaatsen en te hoge korting. Leg het verwachte resultaat vóór elke uitvoering uit."
+      }
+    }
+  ],
+  "files": {
+    "main.py": "def booking_total(seats, price, discount=0):\n    pass\n\nprint(booking_total(3, 4, 2))\n"
+  },
+  "solution": {
+    "main.py": "def booking_total(seats, price, discount=0):\n    if seats <= 0:\n        return 0\n    total = seats * price - discount\n    if total < 0:\n        return 0\n    return total\n\nprint(booking_total(3, 4, 2))\n"
+  },
+  "checkpoints": [
+    {
+      "objectiveIds": [
+        "function-review"
+      ],
+      "task": {
+        "en": "Implement booking_total(seats, price, discount=0) with the described calculation, returning the number without printing inside the function.",
+        "nl": "Implementeer booking_total(seats, price, discount=0) met de beschreven berekening en geef het getal terug zonder binnen de functie af te drukken."
+      },
+      "check": "_stdout.strip() == \"10\"",
+      "hints": [
+        {
+          "en": "Reuse the receipt calculation, now with parameters.",
+          "nl": "Hergebruik de bonberekening, nu met parameters."
+        },
+        {
+          "en": "Subtract the discount once from the whole booking.",
+          "nl": "Trek de korting één keer van de hele boeking af."
+        },
+        {
+          "en": "total = seats * price - discount",
+          "nl": "total = seats * price - discount"
+        }
+      ],
+      "hint": {
+        "en": "Reuse the receipt calculation, now with parameters.",
+        "nl": "Hergebruik de bonberekening, nu met parameters."
+      },
+      "feedback": {
+        "en": "The result must depend on the supplied arguments and remain available to the caller.",
+        "nl": "Het resultaat moet afhangen van de argumenten en beschikbaar blijven voor de aanroeper."
+      },
+      "probes": [
+        {
+          "call": {
+            "name": "booking_total",
+            "args": [
+              2,
+              3
+            ]
+          },
+          "check": "_return == 6 and _call_stdout == \"\""
+        },
+        {
+          "call": {
+            "name": "booking_total",
+            "args": [],
+            "kwargs": {
+              "price": 2.5,
+              "seats": 4,
+              "discount": 1
+            }
+          },
+          "check": "_return == 9"
+        }
+      ],
+      "id": "python-v3-4-05-step-1"
+    },
+    {
+      "objectiveIds": [
+        "function-review"
+      ],
+      "task": {
+        "en": "Handle zero or negative seats and discounts larger than the subtotal by returning 0.",
+        "nl": "Handel nul of negatieve plaatsen en kortingen groter dan het subtotaal af door 0 terug te geven."
+      },
+      "check": "booking_total(0,4,0) == 0",
+      "hints": [
+        {
+          "en": "There are two different paths to a zero result.",
+          "nl": "Er zijn twee verschillende routes naar een nulresultaat."
+        },
+        {
+          "en": "Check seats first, then check the calculated total.",
+          "nl": "Controleer eerst seats en daarna het berekende totaal."
+        },
+        {
+          "en": "if total < 0:\n    return 0",
+          "nl": "if total < 0:\n    return 0"
+        }
+      ],
+      "hint": {
+        "en": "There are two different paths to a zero result.",
+        "nl": "Er zijn twee verschillende routes naar een nulresultaat."
+      },
+      "feedback": {
+        "en": "A valid ordinary case is not enough: check an empty booking and an excessive discount.",
+        "nl": "Een geldig gewoon geval is niet genoeg: controleer een lege boeking en een te hoge korting."
+      },
+      "probes": [
+        {
+          "call": {
+            "name": "booking_total",
+            "args": [
+              -1,
+              8
+            ]
+          },
+          "check": "_return == 0"
+        },
+        {
+          "call": {
+            "name": "booking_total",
+            "args": [
+              1,
+              2,
+              5
+            ]
+          },
+          "check": "_return == 0"
+        },
+        {
+          "call": {
+            "name": "booking_total",
+            "args": [
+              1,
+              2,
+              2
+            ]
+          },
+          "check": "_return == 0"
+        }
+      ],
+      "id": "python-v3-4-05-step-2"
+    }
+  ],
+  "solutionNote": {
+    "en": "The two guards state the boundary rules; the normal path computes the price once. max(0, ...) can also express the lower bound when the seat-count rule is preserved.",
+    "nl": "De twee controles verwoorden de grensregels; de normale route berekent de prijs één keer. max(0, ...) kan ook de ondergrens uitdrukken als de regel voor het aantal plaatsen behouden blijft."
+  },
+  "inputs": [],
+  "retrievals": [
+    {
+      "id": "recall-python-v3-2-05",
+      "sourceActivityId": "python-v3-2-05",
+      "objectiveIds": [
+        "elif"
+      ],
+      "prompt": {
+        "en": "Sketch a three-choice menu using elif, including an unknown choice. Can more than one branch run?",
+        "nl": "Schets een menu met drie keuzes met elif, inclusief een onbekende keuze. Kunnen meerdere takken lopen?"
+      }
+    }
+  ]
+}

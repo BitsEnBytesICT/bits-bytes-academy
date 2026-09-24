@@ -1,0 +1,246 @@
+{
+  "id": "python-v4-15-events",
+  "chapter": 15,
+  "group": "python-v4-module-15",
+  "title": {
+    "en": "Respond to a key press",
+    "nl": "Reageer op een toetsdruk"
+  },
+  "kind": "coding",
+  "optional": false,
+  "runtime": "pygame",
+  "guidance": "guided",
+  "checkpointMode": "sequential",
+  "estimatedMinutes": 18,
+  "topicIds": [
+    "events",
+    "keyboard-events",
+    "closing-window"
+  ],
+  "practices": [],
+  "requiredConcepts": [
+    "boolean-variables",
+    "for",
+    "rect"
+  ],
+  "explanation": {
+    "en": "An event represents something that happened, such as pressing a key or closing the window.",
+    "nl": "Een gebeurtenis stelt iets voor dat gebeurde, zoals een toets indrukken of het venster sluiten."
+  },
+  "example": "",
+  "sections": [
+    {
+      "id": "python-v4-15-events-example",
+      "topicIds": [
+        "events",
+        "keyboard-events",
+        "closing-window"
+      ],
+      "heading": {
+        "en": "Follow a working example",
+        "nl": "Volg een werkend voorbeeld"
+      },
+      "body": {
+        "en": "The supplied for event in pygame.event.get() consumes waiting events every frame. event.type identifies the kind. Check event.type == pygame.KEYDOWN before reading event.key; not every event has a key attribute. QUIT requests closing. Use a KEYDOWN event for a single action such as toggling a colour. Holding a key for movement is taught next.",
+        "nl": "De aangeleverde for event in pygame.event.get() verwerkt wachtende gebeurtenissen bij elk beeld. event.type benoemt het soort. Controleer event.type == pygame.KEYDOWN vóór je event.key leest; niet elke gebeurtenis heeft een key-attribuut. QUIT vraagt om sluiten. Gebruik een KEYDOWN-gebeurtenis voor één actie zoals een kleur omschakelen. Een toets vasthouden voor beweging leer je hierna."
+      },
+      "code": "import pygame\nevent = pygame.event.Event(pygame.KEYDOWN, key=pygame.K_SPACE)\nprint(event.type == pygame.KEYDOWN)\nprint(event.key == pygame.K_SPACE)",
+      "output": "True\nTrue\n",
+      "prediction": {
+        "en": "Why should key only be read for a keyboard event?",
+        "nl": "Waarom hoort key alleen bij een toetsenbordgebeurtenis gelezen te worden?"
+      },
+      "takeaway": {
+        "en": "Check an event’s type before reading type-specific attributes.",
+        "nl": "Controleer het gebeurtenistype vóór je bijbehorende attributen leest."
+      }
+    },
+    {
+      "topicIds": [],
+      "heading": {
+        "en": "Run, observe, finish",
+        "nl": "Voer uit, bekijk, rond af"
+      },
+      "body": {
+        "en": "main.py supplies the browser entry point. Run opens a real pygame-ce preview; click it to focus the keyboard. Clicking elsewhere pauses play. Finish & check closes normally and checks your helper after at least one rendered frame. Stop cancels without grading. Run can start a fresh session afterward. Keep the supplied async definition and await asyncio.sleep(1 / 60): they let the browser draw and receive input. You are not expected to reproduce this infrastructure from memory.",
+        "nl": "main.py levert het browserstartpunt. Uitvoeren opent een echt pygame-ce-voorbeeld; klik erop om het toetsenbord te activeren. Elders klikken pauzeert het spel. Afronden en controleren sluit normaal af en controleert je helper na minstens één getekend beeld. Stop annuleert zonder beoordeling. Uitvoeren kan daarna een nieuwe sessie starten. Behoud de meegeleverde async-definitie en await asyncio.sleep(1 / 60): die laten de browser tekenen en invoer ontvangen. Je hoeft deze infrastructuur niet uit je hoofd te schrijven."
+      }
+    },
+    {
+      "id": "python-v4-15-events-experiment",
+      "topicIds": [],
+      "heading": {
+        "en": "Try one change",
+        "nl": "Probeer één wijziging"
+      },
+      "body": {
+        "en": "Press and release Space twice; explain the two state changes.",
+        "nl": "Druk Space tweemaal in en laat los; leg de twee toestandsveranderingen uit."
+      }
+    }
+  ],
+  "files": {
+    "main.py": "# Browser entry point supplied by the course.\nimport asyncio\nimport pygame\nimport game\n\nasync def main():\n    pygame.init()\n    screen = pygame.display.set_mode((640, 400))\n    clock = pygame.time.Clock()\n    running = True\n    bright = False\n    while running:\n        dt = min(clock.tick() / 1000, 0.05)\n        for event in pygame.event.get():\n            if event.type == pygame.QUIT:\n                running = False\n            if event.type == pygame.KEYDOWN and event.key == pygame.K_ESCAPE:\n                running = False\n            if game.should_close(event.type):\n                running = False\n            if event.type == pygame.KEYDOWN:\n                bright = game.toggle(bright, event.key)\n        keys = pygame.key.get_pressed()\n        screen.fill((16, 23, 39))\n        if bright:\n            screen.fill((240,240,240))\n        pygame.display.flip()\n        await asyncio.sleep(1 / 60)\n    pygame.quit()\n\nasyncio.run(main())\n",
+    "game.py": "import pygame\n\ndef toggle(bright, key):\n    return bright\n\ndef should_close(event_type):\n    return False\n"
+  },
+  "solution": {
+    "main.py": "# Browser entry point supplied by the course.\nimport asyncio\nimport pygame\nimport game\n\nasync def main():\n    pygame.init()\n    screen = pygame.display.set_mode((640, 400))\n    clock = pygame.time.Clock()\n    running = True\n    bright = False\n    while running:\n        dt = min(clock.tick() / 1000, 0.05)\n        for event in pygame.event.get():\n            if event.type == pygame.QUIT:\n                running = False\n            if event.type == pygame.KEYDOWN and event.key == pygame.K_ESCAPE:\n                running = False\n            if game.should_close(event.type):\n                running = False\n            if event.type == pygame.KEYDOWN:\n                bright = game.toggle(bright, event.key)\n        keys = pygame.key.get_pressed()\n        screen.fill((16, 23, 39))\n        if bright:\n            screen.fill((240,240,240))\n        pygame.display.flip()\n        await asyncio.sleep(1 / 60)\n    pygame.quit()\n\nasyncio.run(main())\n",
+    "game.py": "import pygame\n\ndef toggle(bright, key):\n    if key == pygame.K_SPACE:\n        return not bright\n    return bright\n\ndef should_close(event_type):\n    return event_type == pygame.QUIT\n"
+  },
+  "checkpoints": [
+    {
+      "id": "python-v4-15-events-step-1",
+      "objectiveIds": [
+        "events",
+        "keyboard-events",
+        "closing-window"
+      ],
+      "task": {
+        "en": "Toggle bright only for the Space key. Keep other keys unchanged; use Escape or Finish & check to close.",
+        "nl": "Schakel bright alleen om voor de spatiebalk. Laat andere toetsen onveranderd; gebruik Escape of afronden en controleren om te sluiten."
+      },
+      "check": "_rendered_frames > 0",
+      "probes": [
+        {
+          "call": {
+            "name": "toggle",
+            "args": [
+              false,
+              32
+            ],
+            "module": "game"
+          },
+          "check": "(_return is True) and _error is None",
+          "moduleOnly": true,
+          "module": "game"
+        },
+        {
+          "call": {
+            "name": "toggle",
+            "args": [
+              true,
+              32
+            ],
+            "module": "game"
+          },
+          "check": "(_return is False) and _error is None",
+          "moduleOnly": true,
+          "module": "game"
+        },
+        {
+          "call": {
+            "name": "toggle",
+            "args": [
+              false,
+              97
+            ],
+            "module": "game"
+          },
+          "check": "(_return is False) and _error is None",
+          "moduleOnly": true,
+          "module": "game"
+        }
+      ],
+      "hint": {
+        "en": "Check an event’s type before reading type-specific attributes.",
+        "nl": "Controleer het gebeurtenistype vóór je bijbehorende attributen leest."
+      },
+      "hints": [
+        {
+          "en": "Check an event’s type before reading type-specific attributes.",
+          "nl": "Controleer het gebeurtenistype vóór je bijbehorende attributen leest."
+        },
+        {
+          "en": "Compare key with pygame.K_SPACE and return not bright only on a match.",
+          "nl": "Vergelijk key met pygame.K_SPACE en geef alleen bij een overeenkomst not bright terug."
+        },
+        {
+          "en": "A small fragment to adapt: `return not bright`",
+          "nl": "Een klein fragment om aan te passen: `return not bright`"
+        }
+      ],
+      "feedback": {
+        "en": "Compare key with pygame.K_SPACE and return not bright only on a match.",
+        "nl": "Vergelijk key met pygame.K_SPACE en geef alleen bij een overeenkomst not bright terug."
+      }
+    },
+    {
+      "id": "python-v4-15-events-step-2",
+      "objectiveIds": [
+        "events",
+        "keyboard-events",
+        "closing-window"
+      ],
+      "task": {
+        "en": "Return True for pygame.QUIT and False for other event types. The supplied loop keeps an emergency close path while you finish this helper.",
+        "nl": "Geef True voor pygame.QUIT en False voor andere gebeurtenistypen. De aangeleverde lus bewaart een nooduitgang terwijl je deze hulp afmaakt."
+      },
+      "check": "_rendered_frames > 0",
+      "probes": [
+        {
+          "call": {
+            "name": "should_close",
+            "args": [
+              256
+            ],
+            "module": "game"
+          },
+          "check": "(_return is True) and _error is None",
+          "moduleOnly": true,
+          "module": "game"
+        },
+        {
+          "call": {
+            "name": "should_close",
+            "args": [
+              768
+            ],
+            "module": "game"
+          },
+          "check": "(_return is False) and _error is None",
+          "moduleOnly": true,
+          "module": "game"
+        },
+        {
+          "call": {
+            "name": "should_close",
+            "args": [
+              1024
+            ],
+            "module": "game"
+          },
+          "check": "(_return is False) and _error is None",
+          "moduleOnly": true,
+          "module": "game"
+        }
+      ],
+      "hint": {
+        "en": "Check an event’s type before reading type-specific attributes.",
+        "nl": "Controleer het gebeurtenistype vóór je bijbehorende attributen leest."
+      },
+      "hints": [
+        {
+          "en": "Check an event’s type before reading type-specific attributes.",
+          "nl": "Controleer het gebeurtenistype vóór je bijbehorende attributen leest."
+        },
+        {
+          "en": "Compare event_type with pygame.QUIT; the comparison itself returns a Boolean.",
+          "nl": "Vergelijk event_type met pygame.QUIT; de vergelijking zelf geeft een booleaanse waarde terug."
+        },
+        {
+          "en": "A small fragment to adapt: `event_type == pygame.QUIT`",
+          "nl": "Een klein fragment om aan te passen: `event_type == pygame.QUIT`"
+        }
+      ],
+      "feedback": {
+        "en": "Compare event_type with pygame.QUIT; the comparison itself returns a Boolean.",
+        "nl": "Vergelijk event_type met pygame.QUIT; de vergelijking zelf geeft een booleaanse waarde terug."
+      }
+    }
+  ],
+  "solutionNote": {
+    "en": "The loop filters keyboard events; the helper decides the effect of one key press.",
+    "nl": "De lus filtert toetsenbordgebeurtenissen; de hulp beslist het gevolg van één toetsdruk."
+  },
+  "inputs": []
+}

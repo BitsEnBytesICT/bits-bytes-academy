@@ -1,0 +1,159 @@
+{
+  "id": "python-v4-19-update",
+  "chapter": 19,
+  "group": "python-v4-module-19",
+  "title": {
+    "en": "Build and update a record",
+    "nl": "Bouw en wijzig een record"
+  },
+  "kind": "coding",
+  "optional": false,
+  "runtime": "terminal",
+  "guidance": "guided",
+  "checkpointMode": "sequential",
+  "estimatedMinutes": 12,
+  "topicIds": [
+    "empty-dictionaries",
+    "adding-keys",
+    "update",
+    "overwriting"
+  ],
+  "practices": [],
+  "requiredConcepts": [
+    "dictionaries",
+    "variables"
+  ],
+  "explanation": {
+    "en": "Start with an empty mapping when fields become available over time.",
+    "nl": "Begin met een lege koppeling wanneer velden gaandeweg beschikbaar komen."
+  },
+  "example": "",
+  "sections": [
+    {
+      "id": "python-v4-19-update-example",
+      "topicIds": [
+        "empty-dictionaries",
+        "adding-keys",
+        "update",
+        "overwriting"
+      ],
+      "heading": {
+        "en": "Follow a working example",
+        "nl": "Volg een werkend voorbeeld"
+      },
+      "body": {
+        "en": "{} creates an empty dictionary. record[key] = value adds a missing key or overwrites its current value. update(other) applies several entries and returns None. If a key appears in both mappings, the incoming value wins. Existing unrelated fields remain present.",
+        "nl": "{} maakt een lege dictionary. record[key] = value voegt een ontbrekende sleutel toe of overschrijft de huidige waarde. update(other) past meerdere invoeren toe en geeft None terug. Staat een sleutel in beide koppelingen, dan wint de inkomende waarde. Andere bestaande velden blijven aanwezig."
+      },
+      "code": "record = {}\nrecord[\"score\"] = 2\nrecord.update({\"score\":5,\"active\":True})\nprint(record)",
+      "output": "{'score': 5, 'active': True}\n",
+      "prediction": {
+        "en": "Why is there only one score key?",
+        "nl": "Waarom is er maar één score-sleutel?"
+      },
+      "takeaway": {
+        "en": "Assignment adds or replaces one key; update applies several entries.",
+        "nl": "Toewijzing voegt één sleutel toe of vervangt die; update past meerdere invoeren toe."
+      }
+    },
+    {
+      "id": "python-v4-19-update-experiment",
+      "topicIds": [],
+      "heading": {
+        "en": "Try one change",
+        "nl": "Probeer één wijziging"
+      },
+      "body": {
+        "en": "Call again with a different score and inspect which keys remain.",
+        "nl": "Roep opnieuw aan met een andere score en bekijk welke sleutels blijven."
+      }
+    }
+  ],
+  "files": {
+    "main.py": "def update_player(record, score):\n    # Complete this function.\n    return None\n"
+  },
+  "solution": {
+    "main.py": "def update_player(record, score):\n    record.update({\"score\":score,\"active\":True})\n    return record\n"
+  },
+  "checkpoints": [
+    {
+      "id": "python-v4-19-update-step-1",
+      "objectiveIds": [
+        "empty-dictionaries",
+        "adding-keys",
+        "update",
+        "overwriting"
+      ],
+      "task": {
+        "en": "Set score to the supplied value and active to True, preserving other fields. Return the same record.",
+        "nl": "Zet score op de gegeven waarde en active op True, behoud andere velden. Geef hetzelfde record terug."
+      },
+      "check": "callable(update_player)",
+      "probes": [
+        {
+          "call": {
+            "name": "update_player",
+            "args": [
+              {
+                "name": "Bo",
+                "score": 2
+              },
+              5
+            ]
+          },
+          "check": "(_return == {\"name\":\"Bo\",\"score\":5,\"active\":True} and _return is _args[0]) and _error is None"
+        },
+        {
+          "call": {
+            "name": "update_player",
+            "args": [
+              {},
+              0
+            ]
+          },
+          "check": "(_return == {\"score\":0,\"active\":True}) and _error is None"
+        }
+      ],
+      "hint": {
+        "en": "Assignment adds or replaces one key; update applies several entries.",
+        "nl": "Toewijzing voegt één sleutel toe of vervangt die; update past meerdere invoeren toe."
+      },
+      "hints": [
+        {
+          "en": "Assignment adds or replaces one key; update applies several entries.",
+          "nl": "Toewijzing voegt één sleutel toe of vervangt die; update past meerdere invoeren toe."
+        },
+        {
+          "en": "Apply both new fields without replacing the entire dictionary.",
+          "nl": "Pas beide nieuwe velden toe zonder de hele dictionary te vervangen."
+        },
+        {
+          "en": "A small fragment to adapt: `record.update({\"score\": score, \"active\": True})`",
+          "nl": "Een klein fragment om aan te passen: `record.update({\"score\": score, \"active\": True})`"
+        }
+      ],
+      "feedback": {
+        "en": "Apply both new fields without replacing the entire dictionary.",
+        "nl": "Pas beide nieuwe velden toe zonder de hele dictionary te vervangen."
+      }
+    }
+  ],
+  "solutionNote": {
+    "en": "Updating entries changes only the selected keys and preserves the remaining record.",
+    "nl": "Invoeren bijwerken verandert alleen de gekozen sleutels en behoudt het overige record."
+  },
+  "inputs": [],
+  "retrievals": [
+    {
+      "id": "recall-python-v4-17-pop",
+      "sourceActivityId": "python-v4-17-pop",
+      "objectiveIds": [
+        "pop"
+      ],
+      "prompt": {
+        "en": "Recall “Remove by index and keep the value”. What would pop() without 0 remove? Try the earlier example from memory, then check it. Explain the different results of pop(0) and remove(0) on [5, 0].",
+        "nl": "Haal “Verwijder op index en bewaar de waarde” terug. Wat verwijdert pop() zonder 0? Probeer het eerdere voorbeeld uit je geheugen en controleer daarna. Leg de verschillende resultaten uit van pop(0) en remove(0) op [5, 0]."
+      }
+    }
+  ]
+}

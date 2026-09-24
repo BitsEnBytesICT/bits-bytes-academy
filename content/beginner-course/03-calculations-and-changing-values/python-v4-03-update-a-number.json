@@ -1,0 +1,169 @@
+{
+  "id": "python-v4-03-update-a-number",
+  "chapter": 3,
+  "group": "python-v4-module-3",
+  "title": {
+    "en": "Update a number step by step",
+    "nl": "Werk een getal stap voor stap bij"
+  },
+  "kind": "coding",
+  "optional": false,
+  "runtime": "terminal",
+  "guidance": "guided",
+  "checkpointMode": "sequential",
+  "estimatedMinutes": 13,
+  "topicIds": [
+    "changing-numbers"
+  ],
+  "practices": [],
+  "requiredConcepts": [
+    "variables",
+    "addition",
+    "subtraction"
+  ],
+  "explanation": {
+    "en": "Calculating with a variable does not automatically change it. Assign the new result back when you want an update.",
+    "nl": "Rekenen met een variabele verandert haar niet automatisch. Wijs het nieuwe resultaat terug toe als je een wijziging wilt."
+  },
+  "example": "",
+  "sections": [
+    {
+      "id": "python-v4-03-update-a-number-example",
+      "topicIds": [
+        "changing-numbers"
+      ],
+      "heading": {
+        "en": "Follow a working example",
+        "nl": "Volg een werkend voorbeeld"
+      },
+      "body": {
+        "en": "In points = points + 2, Python reads the old points on the right, adds 2, then binds points to the new result on the left. This is an instruction over time, not a mathematical equation that must hold forever.\n\nBy contrast, print(points + 2) displays a larger number but leaves points unchanged. Trace the two print calls in the example to see the difference.",
+        "nl": "In points = points + 2 leest Python rechts de oude points, telt er 2 bij op en koppelt points links daarna aan het nieuwe resultaat. Dit is een instructie in de tijd, geen wiskundige vergelijking die altijd moet gelden.\n\nprint(points + 2) toont daarentegen een groter getal maar laat points onveranderd. Volg de twee print-aanroepen in het voorbeeld om het verschil te zien."
+      },
+      "code": "points = 5\nprint(points + 2)\nprint(points)\npoints = points + 2\nprint(points)",
+      "output": "7\n5\n7\n",
+      "prediction": {
+        "en": "Which line actually changes points?",
+        "nl": "Welke regel verandert points werkelijk?"
+      },
+      "takeaway": {
+        "en": "An update needs assignment: calculate from the old value, then store the result.",
+        "nl": "Een wijziging vereist toewijzing: reken met de oude waarde en bewaar daarna het resultaat."
+      }
+    },
+    {
+      "id": "python-v4-03-update-a-number-experiment",
+      "topicIds": [],
+      "heading": {
+        "en": "Try one change",
+        "nl": "Probeer één wijziging"
+      },
+      "body": {
+        "en": "Try no delivery and no sales. Explain why both printed values match.",
+        "nl": "Probeer geen levering en geen verkoop. Leg uit waarom beide afgedrukte waarden gelijk zijn."
+      }
+    }
+  ],
+  "files": {
+    "main.py": "stock = 10\ndelivered = 4\nsold = 3\n"
+  },
+  "solution": {
+    "main.py": "stock = 10\ndelivered = 4\nsold = 3\nstock = stock + delivered\nprint(stock)\nstock = stock - sold\nprint(stock)\n"
+  },
+  "checkpoints": [
+    {
+      "id": "python-v4-03-update-a-number-step-1",
+      "objectiveIds": [
+        "changing-numbers"
+      ],
+      "task": {
+        "en": "Add delivered to stock and print the updated stock.",
+        "nl": "Tel delivered bij stock op en druk de bijgewerkte voorraad af."
+      },
+      "check": "_stdout.splitlines()[0] == \"14\"",
+      "probes": [],
+      "hint": {
+        "en": "An update needs assignment: calculate from the old value, then store the result.",
+        "nl": "Een wijziging vereist toewijzing: reken met de oude waarde en bewaar daarna het resultaat."
+      },
+      "hints": [
+        {
+          "en": "An update needs assignment: calculate from the old value, then store the result.",
+          "nl": "Een wijziging vereist toewijzing: reken met de oude waarde en bewaar daarna het resultaat."
+        },
+        {
+          "en": "Assign the sum back to stock before the first print.",
+          "nl": "Wijs de som terug aan stock toe vóór de eerste print."
+        },
+        {
+          "en": "A small fragment to adapt: `stock = stock + delivered`",
+          "nl": "Een klein fragment om aan te passen: `stock = stock + delivered`"
+        }
+      ],
+      "feedback": {
+        "en": "Assign the sum back to stock before the first print.",
+        "nl": "Wijs de som terug aan stock toe vóór de eerste print."
+      }
+    },
+    {
+      "id": "python-v4-03-update-a-number-step-2",
+      "objectiveIds": [
+        "changing-numbers"
+      ],
+      "task": {
+        "en": "Then subtract sold from stock and print it again.",
+        "nl": "Trek daarna sold van stock af en druk opnieuw af."
+      },
+      "check": "stock == 11 and _stdout == \"14\\n11\\n\"",
+      "probes": [
+        {
+          "inputs": {
+            "delivered": 0,
+            "sold": 2
+          },
+          "check": "stock == 8 and _stdout == \"10\\n8\\n\""
+        }
+      ],
+      "hint": {
+        "en": "An update needs assignment: calculate from the old value, then store the result.",
+        "nl": "Een wijziging vereist toewijzing: reken met de oude waarde en bewaar daarna het resultaat."
+      },
+      "hints": [
+        {
+          "en": "An update needs assignment: calculate from the old value, then store the result.",
+          "nl": "Een wijziging vereist toewijzing: reken met de oude waarde en bewaar daarna het resultaat."
+        },
+        {
+          "en": "Use the already updated stock. Do not restart from 10 for the sale.",
+          "nl": "Gebruik de al bijgewerkte voorraad. Begin voor de verkoop niet opnieuw bij 10."
+        },
+        {
+          "en": "A small fragment to adapt: `stock = stock - sold`",
+          "nl": "Een klein fragment om aan te passen: `stock = stock - sold`"
+        }
+      ],
+      "feedback": {
+        "en": "Use the already updated stock. Do not restart from 10 for the sale.",
+        "nl": "Gebruik de al bijgewerkte voorraad. Begin voor de verkoop niet opnieuw bij 10."
+      }
+    }
+  ],
+  "solutionNote": {
+    "en": "Each assignment uses the most recent stock value. The two prints expose the intermediate and final state.",
+    "nl": "Elke toewijzing gebruikt de meest recente voorraad. De twee prints tonen de tussenstand en eindstand."
+  },
+  "inputs": [],
+  "retrievals": [
+    {
+      "id": "recall-python-v4-01-comments",
+      "sourceActivityId": "python-v4-01-comments",
+      "objectiveIds": [
+        "comments"
+      ],
+      "prompt": {
+        "en": "Recall “Comments are for readers”. Which print call is disabled? Try the earlier example from memory, then check it. Add print(\"# is visible here\"). Explain why the # is printed.",
+        "nl": "Haal “Commentaar is voor lezers” terug. Welke print-aanroep is uitgeschakeld? Probeer het eerdere voorbeeld uit je geheugen en controleer daarna. Voeg print(\"# is visible here\") toe. Leg uit waarom # wordt afgedrukt."
+      }
+    }
+  ]
+}

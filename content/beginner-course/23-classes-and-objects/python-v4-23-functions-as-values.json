@@ -1,0 +1,116 @@
+{
+  "id": "python-v4-23-functions-as-values",
+  "chapter": 23,
+  "group": "python-v4-module-23",
+  "title": {
+    "en": "A function is an object too",
+    "nl": "Een functie is ook een object"
+  },
+  "kind": "coding",
+  "optional": false,
+  "runtime": "terminal",
+  "guidance": "adapt",
+  "checkpointMode": "sequential",
+  "estimatedMinutes": 12,
+  "topicIds": [
+    "everything-object",
+    "function-objects"
+  ],
+  "practices": [],
+  "requiredConcepts": [
+    "functions-review",
+    "types"
+  ],
+  "explanation": {
+    "en": "Functions can be stored and passed around without calling them immediately.",
+    "nl": "Functies kunnen worden bewaard en doorgegeven zonder ze direct aan te roepen."
+  },
+  "example": "",
+  "sections": [
+    {
+      "id": "python-v4-23-functions-as-values-example",
+      "topicIds": [
+        "everything-object",
+        "function-objects"
+      ],
+      "heading": {
+        "en": "Follow a working example",
+        "nl": "Volg een werkend voorbeeld"
+      },
+      "body": {
+        "en": "double names a function object; double(3) calls it and yields its result. Assigning action = double keeps a reference to that function. action(3) then calls it. Numbers, strings, lists, class instances and functions are all objects with a type. This does not mean they support the same operations.",
+        "nl": "double benoemt een functieobject; double(3) roept het aan en levert het resultaat. action = double toewijzen bewaart een verwijzing naar die functie. action(3) roept die vervolgens aan. Getallen, strings, lijsten, klasse-instanties en functies zijn allemaal objecten met een type. Dat betekent niet dat ze dezelfde bewerkingen ondersteunen."
+      },
+      "code": "def double(value):\n    return value * 2\naction = double\nprint(action(3))\nprint(callable(action))",
+      "output": "6\nTrue\n",
+      "prediction": {
+        "en": "What would action contain after action = double(3)?",
+        "nl": "Wat bevat action na action = double(3)?"
+      },
+      "takeaway": {
+        "en": "Without parentheses you pass the function; with parentheses you call it.",
+        "nl": "Zonder haakjes geef je de functie door; met haakjes roep je die aan."
+      }
+    },
+    {
+      "id": "python-v4-23-functions-as-values-experiment",
+      "topicIds": [],
+      "heading": {
+        "en": "Try one change",
+        "nl": "Probeer één wijziging"
+      },
+      "body": {
+        "en": "Pass action to another function and have that function call it with a value.",
+        "nl": "Geef action door aan een andere functie en laat die haar met een waarde aanroepen."
+      }
+    }
+  ],
+  "files": {
+    "main.py": "def square(value):\n    return value ** 2\naction = square(3)\n"
+  },
+  "solution": {
+    "main.py": "def square(value):\n    return value ** 2\naction = square\n"
+  },
+  "checkpoints": [
+    {
+      "id": "python-v4-23-functions-as-values-step-1",
+      "objectiveIds": [
+        "everything-object",
+        "function-objects"
+      ],
+      "task": {
+        "en": "Repair action so it stores square itself and can be called with different arguments.",
+        "nl": "Herstel action zodat die square zelf bewaart en met verschillende argumenten kan worden aangeroepen."
+      },
+      "check": "callable(action) and action(3) == 9 and action(-2) == 4",
+      "probes": [],
+      "hint": {
+        "en": "Without parentheses you pass the function; with parentheses you call it.",
+        "nl": "Zonder haakjes geef je de functie door; met haakjes roep je die aan."
+      },
+      "hints": [
+        {
+          "en": "Without parentheses you pass the function; with parentheses you call it.",
+          "nl": "Zonder haakjes geef je de functie door; met haakjes roep je die aan."
+        },
+        {
+          "en": "Remove the call when assigning the function object.",
+          "nl": "Verwijder de aanroep wanneer je het functieobject toewijst."
+        },
+        {
+          "en": "A small fragment to adapt: `action = square`",
+          "nl": "Een klein fragment om aan te passen: `action = square`"
+        }
+      ],
+      "feedback": {
+        "en": "Remove the call when assigning the function object.",
+        "nl": "Verwijder de aanroep wanneer je het functieobject toewijst."
+      }
+    }
+  ],
+  "solutionNote": {
+    "en": "Keeping the function object postpones execution until the later call.",
+    "nl": "Het functieobject bewaren stelt uitvoering uit tot de latere aanroep."
+  },
+  "inputs": []
+}

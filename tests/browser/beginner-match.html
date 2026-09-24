@@ -1,0 +1,199 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>Beginner Pong interaction checks</title>
+    <style>
+      body {
+        font: 16px system-ui;
+      }
+      iframe {
+        width: 640px;
+        height: 400px;
+        border: 0;
+      }
+      li {
+        margin: 8px;
+      }
+      pre {
+        white-space: pre-wrap;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Beginner Pong interaction checks</h1>
+    <p>
+      Runs the version 4 procedural match fixture in the real browser
+      interpreter. Test-only keys place the ball at precise boundary cases.
+      Keyboard events pass through the preview's browser input handlers.
+    </p>
+    <button id="run">Run interaction checks</button>
+    <p id="status" role="status">Ready</p>
+    <div id="preview"></div>
+    <ol id="results"></ol>
+    <pre id="errors"></pre>
+    <script type="module">
+      import { GameRunner } from "/game-runtime.js";
+      const runner = new GameRunner(),
+        button = document.querySelector("#run"),
+        status = document.querySelector("#status"),
+        list = document.querySelector("#results"),
+        container = document.querySelector("#preview");
+      let last,
+        ticks = 0,
+        buffer = "",
+        done,
+        failure;
+      const delay = (ms) => new Promise((r) => setTimeout(r, ms));
+      async function until(predicate, label) {
+        const end = Date.now() + 12000;
+        while (Date.now() < end) {
+          if (failure) throw Error(failure);
+          if (predicate()) return;
+          await delay(25);
+        }
+        throw Error("Timeout: " + label);
+      }
+      function key(type, key, code, keyCode) {
+        runner.frame.contentDocument.getElementById("canvas").dispatchEvent(
+          new runner.frame.contentWindow.KeyboardEvent(type, {
+            key,
+            code,
+            keyCode,
+            which: keyCode,
+            bubbles: true,
+          }),
+        );
+      }
+      async function press(value, code, keyCode) {
+        const before = ticks;
+        key("keydown", value, code, keyCode);
+        await until(() => ticks > before + 2, code);
+        key("keyup", value, code, keyCode);
+      }
+      function pass(label) {
+        const item = document.createElement("li");
+        item.textContent = "PASS " + label;
+        list.append(item);
+      }
+      button.onclick = async () => {
+        button.disabled = true;
+        list.replaceChildren();
+        document.querySelector("#errors").textContent = "";
+        status.textContent = "Running";
+        last = null;
+        failure = null;
+        try {
+          const files = await fetch("/beginner-match-fixture").then((r) =>
+            r.json(),
+          );
+          runner.onEvent = (e) => {
+            if (e.type === "output" && e.channel === "stdout") {
+              buffer += e.text;
+              const lines = buffer.split("\n");
+              buffer = lines.pop();
+              for (const line of lines)
+                if (line.startsWith("@@QA")) {
+                  last = JSON.parse(line.slice(4));
+                  ticks++;
+                }
+            }
+            if (e.type === "output" && e.channel === "stderr")
+              document.querySelector("#errors").textContent += e.text;
+            if (e.type === "failure") failure = e.message;
+            if (e.type === "done") done = e.result;
+          };
+          runner.execute(container, files, []);
+          await until(() => last, "initial rendered frame");
+          await press(" ", "Space", 32);
+          await until(() => last.state === "playing", "serve");
+          pass("Serve enters playing");
+          key("keydown", "w", "KeyW", 87);
+          key("keydown", "ArrowDown", "ArrowDown", 40);
+          await until(
+            () => last.left < 160 && last.right > 180,
+            "simultaneous controls",
+          );
+          key("keyup", "w", "KeyW", 87);
+          key("keyup", "ArrowDown", "ArrowDown", 40);
+          pass("Both paddles respond to simultaneous held keys");
+          key("keydown", "w", "KeyW", 87);
+          key("keydown", "ArrowDown", "ArrowDown", 40);
+          await until(
+            () => last.left === 0 && last.right === 340,
+            "paddle boundaries",
+          );
+          key("keyup", "w", "KeyW", 87);
+          key("keyup", "ArrowDown", "ArrowDown", 40);
+          pass("Paddles stay within the court at both boundaries");
+          const count = ticks;
+          runner.frame.contentWindow.dispatchEvent(new Event("blur"));
+          await delay(150);
+          const pausedCount = ticks;
+          await delay(150);
+          if (ticks !== pausedCount)
+            throw Error("Focus loss did not pause frame loop");
+          runner.frame.contentDocument
+            .getElementById("canvas")
+            .dispatchEvent(new Event("focus"));
+          await until(() => ticks > count, "focus return");
+          pass("Focus loss pauses and focus return resumes");
+          await press("1", "Digit1", 49);
+          if (last.vy <= 0) throw Error("Wall did not reflect");
+          pass("Top wall reflects toward the court");
+          await press("2", "Digit2", 50);
+          if (last.vx <= 0 || last.x < 36)
+            throw Error("Paddle contact not corrected");
+          pass("Paddle contact separates and reverses approaching ball");
+          await press("3", "Digit3", 51);
+          if (last.vx <= 0) throw Error("Moving-away contact reversed");
+          pass("Moving-away contact keeps direction");
+          await press("5", "Digit5", 53);
+          if (last.vx >= 0 || last.x > 604)
+            throw Error("Right paddle contact not corrected");
+          pass("Right paddle reverses and separates the approaching ball");
+          await press("6", "Digit6", 54);
+          if (last.vy >= 0) throw Error("Bottom wall did not reflect");
+          pass("Bottom wall reflects toward the court");
+          const beforeMiss = last.scores[0];
+          await press("4", "Digit4", 52);
+          await until(
+            () => last.scores[0] === beforeMiss + 1 && last.state === "serve",
+            "miss",
+          );
+          const score = JSON.stringify(last.scores);
+          await delay(200);
+          if (JSON.stringify(last.scores) !== score)
+            throw Error("Duplicate score");
+          pass("Miss scores once and waits for serve");
+          await press(" ", "Space", 32);
+          if (last.state !== "playing") throw Error("New rally did not serve");
+          pass("Space starts the next rally with scores preserved");
+          const rightBefore = last.scores[1];
+          await press("7", "Digit7", 55);
+          if (last.scores[1] !== rightBefore + 1 || last.state !== "serve")
+            throw Error("Left miss not scored");
+          pass("A left miss awards the right player exactly one point");
+          runner.cancel();
+          last = null;
+          done = null;
+          runner.execute(container, files, []);
+          await until(() => last?.state === "serve", "Run after Stop");
+          pass("Stop followed by Run creates a working preview");
+          runner.finish();
+          await until(() => done, "normal finish");
+          if (done.error || !done.files["rules.py"])
+            throw Error("Workspace files not captured");
+          pass("Normal finish preserves both Python files");
+          status.textContent = `${list.children.length} interaction checks passed`;
+        } catch (e) {
+          status.textContent = "FAIL " + e.message;
+          document.querySelector("#errors").textContent += e.stack;
+        } finally {
+          runner.cancel();
+          button.disabled = false;
+        }
+      };
+    </script>
+  </body>
+</html>

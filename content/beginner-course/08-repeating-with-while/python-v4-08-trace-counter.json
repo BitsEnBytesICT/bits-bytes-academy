@@ -1,0 +1,140 @@
+{
+  "id": "python-v4-08-trace-counter",
+  "chapter": 8,
+  "group": "python-v4-module-8",
+  "title": {
+    "en": "Trace the counter",
+    "nl": "Volg de teller"
+  },
+  "kind": "coding",
+  "optional": false,
+  "runtime": "terminal",
+  "guidance": "guided",
+  "checkpointMode": "sequential",
+  "estimatedMinutes": 14,
+  "topicIds": [
+    "loop-tracing"
+  ],
+  "practices": [],
+  "requiredConcepts": [
+    "while",
+    "counters"
+  ],
+  "explanation": {
+    "en": "Follow a loop one iteration at a time. The order of printing and updating determines which numbers appear.",
+    "nl": "Volg een lus één iteratie tegelijk. De volgorde van afdrukken en bijwerken bepaalt welke getallen verschijnen."
+  },
+  "example": "",
+  "sections": [
+    {
+      "id": "python-v4-08-trace-counter-example",
+      "topicIds": [
+        "loop-tracing"
+      ],
+      "heading": {
+        "en": "Follow a working example",
+        "nl": "Volg een werkend voorbeeld"
+      },
+      "body": {
+        "en": "Create a trace with columns for the counter before the test, the condition, the printed value and the counter after the update. In the example, printing happens before subtraction, so 3 appears and 0 does not.\n\nDo not reset the counter inside the loop: it would lose its progress. The initial assignment belongs before while. Test the smallest useful case to catch an extra or missing iteration.",
+        "nl": "Maak een spoor met kolommen voor de teller vóór de test, de voorwaarde, de afgedrukte waarde en de teller na de wijziging. In het voorbeeld komt afdrukken vóór aftrekken, zodat 3 verschijnt en 0 niet.\n\nZet de teller niet binnen de lus terug: dan gaat de voortgang verloren. De begintoewijzing hoort vóór while. Test het kleinste nuttige geval om een extra of ontbrekende herhaling te vinden."
+      },
+      "code": "count = 3\nwhile count > 0:\n    print(count)\n    count -= 1",
+      "output": "3\n2\n1\n",
+      "prediction": {
+        "en": "Would moving the update before print change the output?",
+        "nl": "Verandert de uitvoer als de wijziging vóór print komt?"
+      },
+      "takeaway": {
+        "en": "Track the counter at the exact line where it is used.",
+        "nl": "Volg de teller op de precieze regel waar hij wordt gebruikt."
+      }
+    },
+    {
+      "id": "python-v4-08-trace-counter-experiment",
+      "topicIds": [],
+      "heading": {
+        "en": "Try one change",
+        "nl": "Probeer één wijziging"
+      },
+      "body": {
+        "en": "Write a trace for start = 2 before running. Compare each row to the output.",
+        "nl": "Schrijf vóór het uitvoeren een spoor voor start = 2. Vergelijk elke regel met de uitvoer."
+      }
+    }
+  ],
+  "files": {
+    "main.py": "start = 4\ncount = start\n"
+  },
+  "solution": {
+    "main.py": "start = 4\ncount = start\nwhile count > 0:\n    print(count)\n    count -= 1\nprint(\"Go\")\n"
+  },
+  "checkpoints": [
+    {
+      "id": "python-v4-08-trace-counter-step-1",
+      "objectiveIds": [
+        "loop-tracing"
+      ],
+      "task": {
+        "en": "Count down from start to 1, then print \"Go\" once outside the loop.",
+        "nl": "Tel terug van start tot 1 en druk daarna eenmaal \"Go\" af buiten de lus."
+      },
+      "check": "count == 0 and _stdout == \"4\\n3\\n2\\n1\\nGo\\n\"",
+      "probes": [
+        {
+          "inputs": {
+            "start": 1
+          },
+          "check": "_stdout == \"1\\nGo\\n\""
+        },
+        {
+          "inputs": {
+            "start": 0
+          },
+          "check": "_stdout == \"Go\\n\""
+        }
+      ],
+      "hint": {
+        "en": "Track the counter at the exact line where it is used.",
+        "nl": "Volg de teller op de precieze regel waar hij wordt gebruikt."
+      },
+      "hints": [
+        {
+          "en": "Track the counter at the exact line where it is used.",
+          "nl": "Volg de teller op de precieze regel waar hij wordt gebruikt."
+        },
+        {
+          "en": "Print the positive counter before decreasing it. The final message is unindented.",
+          "nl": "Druk de positieve teller af voordat je hem verlaagt. Het laatste bericht staat zonder inspringing."
+        },
+        {
+          "en": "A small fragment to adapt: `count -= 1`",
+          "nl": "Een klein fragment om aan te passen: `count -= 1`"
+        }
+      ],
+      "feedback": {
+        "en": "Print the positive counter before decreasing it. The final message is unindented.",
+        "nl": "Druk de positieve teller af voordat je hem verlaagt. Het laatste bericht staat zonder inspringing."
+      }
+    }
+  ],
+  "solutionNote": {
+    "en": "The loop includes the starting value and excludes zero. Go is outside the repeated block.",
+    "nl": "De lus omvat de beginwaarde en sluit nul uit. Go staat buiten het herhaalde blok."
+  },
+  "inputs": [],
+  "retrievals": [
+    {
+      "id": "recall-python-v4-06-equal",
+      "sourceActivityId": "python-v4-06-equal",
+      "objectiveIds": [
+        "relational-operators",
+        "equality"
+      ],
+      "prompt": {
+        "en": "Recall “Compare with ==”. Why is the second comparison False? Try the earlier example from memory, then check it. Change only the capitalisation of entered. Is string equality case-sensitive?",
+        "nl": "Haal “Vergelijk met ==” terug. Waarom is de tweede vergelijking False? Probeer het eerdere voorbeeld uit je geheugen en controleer daarna. Verander alleen de hoofdletters van entered. Is stringgelijkheid hoofdlettergevoelig?"
+      }
+    }
+  ]
+}

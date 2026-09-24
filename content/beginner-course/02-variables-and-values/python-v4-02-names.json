@@ -1,0 +1,112 @@
+{
+  "id": "python-v4-02-names",
+  "chapter": 2,
+  "group": "python-v4-module-2",
+  "title": {
+    "en": "Choose readable names",
+    "nl": "Kies leesbare namen"
+  },
+  "kind": "coding",
+  "optional": false,
+  "runtime": "terminal",
+  "guidance": "guided",
+  "checkpointMode": "sequential",
+  "estimatedMinutes": 10,
+  "topicIds": [
+    "variable-names"
+  ],
+  "practices": [],
+  "requiredConcepts": [
+    "variables"
+  ],
+  "explanation": {
+    "en": "A name helps readers understand a value's purpose. Python also has rules for which names are valid.",
+    "nl": "Een naam helpt lezers het doel van een waarde te begrijpen. Python heeft ook regels voor geldige namen."
+  },
+  "example": "",
+  "sections": [
+    {
+      "id": "python-v4-02-names-example",
+      "topicIds": [
+        "variable-names"
+      ],
+      "heading": {
+        "en": "Follow a working example",
+        "nl": "Volg een werkend voorbeeld"
+      },
+      "body": {
+        "en": "Use letters, digits and underscores in a variable name, but do not begin it with a digit. Spaces are not allowed. Python distinguishes team_name from Team_name. Names such as if are reserved language words; you will meet them later.\n\nPython programmers usually use lowercase words separated by underscores. team_name is easier to understand than x when it stores a team's name. Choose a name and use the same spelling each time.",
+        "nl": "Gebruik letters, cijfers en underscores in een variabelenaam, maar begin niet met een cijfer. Spaties zijn niet toegestaan. Python maakt onderscheid tussen team_name en Team_name. Namen zoals if zijn gereserveerde taalwoorden; die kom je later tegen.\n\nPythonprogrammeurs gebruiken meestal kleine letters met underscores tussen woorden. team_name is duidelijker dan x als de variabele een teamnaam bewaart. Kies een naam en gebruik steeds dezelfde spelling."
+      },
+      "code": "team_name = \"Robins\"\nprint(team_name)",
+      "output": "Robins\n",
+      "prediction": {
+        "en": "Would Team_name refer to the same variable?",
+        "nl": "Zou Team_name naar dezelfde variabele verwijzen?"
+      },
+      "takeaway": {
+        "en": "Use a descriptive, consistently spelled name such as team_name.",
+        "nl": "Gebruik een beschrijvende, consequent gespelde naam zoals team_name."
+      }
+    },
+    {
+      "id": "python-v4-02-names-experiment",
+      "topicIds": [],
+      "heading": {
+        "en": "Try one change",
+        "nl": "Probeer één wijziging"
+      },
+      "body": {
+        "en": "Change one letter to uppercase in just the print call. Read the error, then repair the name.",
+        "nl": "Verander alleen in de print-aanroep één letter in een hoofdletter. Lees de foutmelding en herstel de naam."
+      }
+    }
+  ],
+  "files": {
+    "main.py": ""
+  },
+  "solution": {
+    "main.py": "favourite_colour = \"blue\"\nprint(favourite_colour)\n"
+  },
+  "checkpoints": [
+    {
+      "id": "python-v4-02-names-step-1",
+      "objectiveIds": [
+        "variable-names"
+      ],
+      "task": {
+        "en": "Store \"blue\" in favourite_colour and print that variable.",
+        "nl": "Bewaar \"blue\" in favourite_colour en druk die variabele af."
+      },
+      "check": "favourite_colour == \"blue\" and _stdout == \"blue\\n\"",
+      "probes": [],
+      "hint": {
+        "en": "Use a descriptive, consistently spelled name such as team_name.",
+        "nl": "Gebruik een beschrijvende, consequent gespelde naam zoals team_name."
+      },
+      "hints": [
+        {
+          "en": "Use a descriptive, consistently spelled name such as team_name.",
+          "nl": "Gebruik een beschrijvende, consequent gespelde naam zoals team_name."
+        },
+        {
+          "en": "Use an underscore between the two words and spell the name identically in both statements.",
+          "nl": "Gebruik een underscore tussen de twee woorden en spel de naam in beide instructies hetzelfde."
+        },
+        {
+          "en": "A small fragment to adapt: `team_name = \"Robins\"`",
+          "nl": "Een klein fragment om aan te passen: `team_name = \"Robins\"`"
+        }
+      ],
+      "feedback": {
+        "en": "Use an underscore between the two words and spell the name identically in both statements.",
+        "nl": "Gebruik een underscore tussen de twee woorden en spel de naam in beide instructies hetzelfde."
+      }
+    }
+  ],
+  "solutionNote": {
+    "en": "The two statements use one consistent name. A readable name explains the stored value's role.",
+    "nl": "De twee instructies gebruiken één consequente naam. Een leesbare naam verklaart de rol van de opgeslagen waarde."
+  },
+  "inputs": []
+}

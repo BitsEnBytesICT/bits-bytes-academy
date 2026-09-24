@@ -1,20 +1,29 @@
 import type { Question, Quiz, Workspace } from "../../shared/types";
 export type QuizState = NonNullable<Workspace["quiz"]>;
+export function questionsFor(quiz: Quiz, state?: Pick<QuizState, "formId">) {
+  return state?.formId === "b" && quiz.alternateQuestions
+    ? quiz.alternateQuestions
+    : quiz.questions;
+}
 
 export function createQuizState(
   quiz: Quiz,
   previousAttempt: number,
   shuffle: (values: string[]) => string[],
 ): QuizState {
-  const blanks = quiz.questions.some((q) => q.codeBlank);
+  const formId =
+    quiz.alternateQuestions && previousAttempt % 2 === 1 ? "b" : "a";
+  const questions = questionsFor(quiz, { formId });
+  const blanks = questions.some((q) => q.codeBlank);
   return {
     index: 0,
-    orders: quiz.questions.map((q) =>
+    orders: questions.map((q) =>
       shuffle((q.codeBlank?.tokens || q.choices).map((c) => c.id)),
     ),
     answers: {},
     finished: false,
     attempt: previousAttempt + 1,
+    ...(quiz.alternateQuestions ? { formId } : {}),
     ...(blanks ? { format: 2 as const, placements: {} } : {}),
   };
 }

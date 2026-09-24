@@ -1,0 +1,146 @@
+{
+  "id": "python-v4-01-print-order",
+  "chapter": 1,
+  "group": "python-v4-module-1",
+  "title": {
+    "en": "One line after another",
+    "nl": "De ene regel na de andere"
+  },
+  "kind": "coding",
+  "optional": false,
+  "runtime": "terminal",
+  "guidance": "guided",
+  "checkpointMode": "sequential",
+  "estimatedMinutes": 8,
+  "topicIds": [
+    "execution-order"
+  ],
+  "practices": [],
+  "requiredConcepts": [
+    "print"
+  ],
+  "explanation": {
+    "en": "A program can contain more than one instruction. Python starts at the top and follows them in order.",
+    "nl": "Een programma kan meer dan één instructie bevatten. Python begint bovenaan en volgt ze op volgorde."
+  },
+  "example": "",
+  "sections": [
+    {
+      "id": "python-v4-01-print-order-example",
+      "topicIds": [
+        "execution-order"
+      ],
+      "heading": {
+        "en": "Follow a working example",
+        "nl": "Volg een werkend voorbeeld"
+      },
+      "body": {
+        "en": "Each print call below displays one line. The first call finishes before the second begins. A blank line in the editor can make code easier to read, but it does not print an empty line.\n\nOrder is part of a program's behaviour. Switching these calls changes the order of the messages. You do not need numbers or punctuation between instructions: place each call on its own line.",
+        "nl": "Elke print-aanroep hieronder toont één regel. De eerste aanroep is klaar voordat de tweede begint. Een lege regel in de editor kan code leesbaarder maken, maar drukt geen lege regel af.\n\nVolgorde hoort bij het gedrag van een programma. Als je deze aanroepen verwisselt, verandert de volgorde van de berichten. Je hebt geen nummers of leestekens tussen instructies nodig: zet elke aanroep op een eigen regel."
+      },
+      "code": "print(\"Open the door\")\nprint(\"Come inside\")",
+      "output": "Open the door\nCome inside\n",
+      "prediction": {
+        "en": "Which message appears first?",
+        "nl": "Welk bericht verschijnt eerst?"
+      },
+      "takeaway": {
+        "en": "Python executes these statements from top to bottom.",
+        "nl": "Python voert deze instructies van boven naar beneden uit."
+      }
+    },
+    {
+      "id": "python-v4-01-print-order-experiment",
+      "topicIds": [],
+      "heading": {
+        "en": "Try one change",
+        "nl": "Probeer één wijziging"
+      },
+      "body": {
+        "en": "Swap the calls and run again. Add a blank editor line between them and compare the output.",
+        "nl": "Verwissel de aanroepen en voer opnieuw uit. Voeg een lege editorregel ertussen toe en vergelijk de uitvoer."
+      }
+    }
+  ],
+  "files": {
+    "main.py": "print(\"Ready\")\n"
+  },
+  "solution": {
+    "main.py": "print(\"Ready\")\nprint(\"Start\")\n"
+  },
+  "checkpoints": [
+    {
+      "id": "python-v4-01-print-order-step-1",
+      "objectiveIds": [
+        "execution-order"
+      ],
+      "task": {
+        "en": "Keep the line that prints \"Ready\".",
+        "nl": "Behoud de regel die \"Ready\" afdrukt."
+      },
+      "check": "_stdout.splitlines()[0] == \"Ready\"",
+      "probes": [],
+      "hint": {
+        "en": "Python executes these statements from top to bottom.",
+        "nl": "Python voert deze instructies van boven naar beneden uit."
+      },
+      "hints": [
+        {
+          "en": "Python executes these statements from top to bottom.",
+          "nl": "Python voert deze instructies van boven naar beneden uit."
+        },
+        {
+          "en": "The first line should still be Ready, including its capital R.",
+          "nl": "De eerste regel moet Ready blijven, met hoofdletter R."
+        },
+        {
+          "en": "A small fragment to adapt: `print(\"Ready\")`",
+          "nl": "Een klein fragment om aan te passen: `print(\"Ready\")`"
+        }
+      ],
+      "feedback": {
+        "en": "The first line should still be Ready, including its capital R.",
+        "nl": "De eerste regel moet Ready blijven, met hoofdletter R."
+      }
+    },
+    {
+      "id": "python-v4-01-print-order-step-2",
+      "objectiveIds": [
+        "execution-order"
+      ],
+      "task": {
+        "en": "Add a second call that prints \"Start\" on the next line.",
+        "nl": "Voeg een tweede aanroep toe die \"Start\" op de volgende regel afdrukt."
+      },
+      "check": "_stdout == \"Ready\\nStart\\n\"",
+      "probes": [],
+      "hint": {
+        "en": "Python executes these statements from top to bottom.",
+        "nl": "Python voert deze instructies van boven naar beneden uit."
+      },
+      "hints": [
+        {
+          "en": "Python executes these statements from top to bottom.",
+          "nl": "Python voert deze instructies van boven naar beneden uit."
+        },
+        {
+          "en": "Add a new call underneath the first one; do not join both messages into one string.",
+          "nl": "Voeg een nieuwe aanroep onder de eerste toe; plak beide berichten niet in één string."
+        },
+        {
+          "en": "A small fragment to adapt: `print(\"second line\")`",
+          "nl": "Een klein fragment om aan te passen: `print(\"second line\")`"
+        }
+      ],
+      "feedback": {
+        "en": "Add a new call underneath the first one; do not join both messages into one string.",
+        "nl": "Voeg een nieuwe aanroep onder de eerste toe; plak beide berichten niet in één string."
+      }
+    }
+  ],
+  "solutionNote": {
+    "en": "The first instruction already works. Adding the second preserves it, so both requirements are true in the finished program.",
+    "nl": "De eerste instructie werkt al. De tweede toevoegen behoudt haar, zodat beide eisen gelden in het uiteindelijke programma."
+  },
+  "inputs": []
+}

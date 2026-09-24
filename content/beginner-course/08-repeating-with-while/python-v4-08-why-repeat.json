@@ -1,0 +1,146 @@
+{
+  "id": "python-v4-08-why-repeat",
+  "chapter": 8,
+  "group": "python-v4-module-8",
+  "title": {
+    "en": "Repeat a small block",
+    "nl": "Herhaal een klein blok"
+  },
+  "kind": "coding",
+  "optional": false,
+  "runtime": "terminal",
+  "guidance": "guided",
+  "checkpointMode": "sequential",
+  "estimatedMinutes": 16,
+  "topicIds": [
+    "why-loops",
+    "while",
+    "counters"
+  ],
+  "practices": [],
+  "requiredConcepts": [
+    "if",
+    "changing-numbers"
+  ],
+  "explanation": {
+    "en": "A loop repeats instructions. Use it when the number of repetitions can change or repeated lines would be awkward to maintain.",
+    "nl": "Een lus herhaalt instructies. Gebruik haar als het aantal herhalingen kan veranderen of herhaalde regels lastig te onderhouden worden."
+  },
+  "example": "",
+  "sections": [
+    {
+      "id": "python-v4-08-why-repeat-example",
+      "topicIds": [
+        "why-loops",
+        "while",
+        "counters"
+      ],
+      "heading": {
+        "en": "Follow a working example",
+        "nl": "Volg een werkend voorbeeld"
+      },
+      "body": {
+        "en": "while checks a condition before each repetition. If it is True, the indented body runs; Python then checks again. When it is False, execution continues after the loop.\n\nThe example starts count at 0. Each repetition prints a message and increases count by 1. Counts 0, 1 and 2 enter the body; count 3 stops it. The update gives the loop a way to finish. An iteration means one execution of the body.",
+        "nl": "while controleert vóór elke herhaling een voorwaarde. Bij True wordt het ingesprongen blok uitgevoerd; daarna controleert Python opnieuw. Bij False gaat de uitvoering verder na de lus.\n\nHet voorbeeld begint count op 0. Elke herhaling drukt een bericht af en verhoogt count met 1. Bij 0, 1 en 2 wordt het blok uitgevoerd; 3 stopt de lus. De wijziging geeft de lus een manier om te eindigen. Een iteratie is één uitvoering van het blok."
+      },
+      "code": "count = 0\nwhile count < 3:\n    print(\"Hello\")\n    count += 1\nprint(\"Done\")",
+      "output": "Hello\nHello\nHello\nDone\n",
+      "prediction": {
+        "en": "How many times is the body entered, and why?",
+        "nl": "Hoe vaak wordt het blok betreden en waarom?"
+      },
+      "takeaway": {
+        "en": "A while loop rechecks its condition before every iteration.",
+        "nl": "Een while-lus controleert haar voorwaarde vóór elke iteratie opnieuw."
+      }
+    },
+    {
+      "id": "python-v4-08-why-repeat-experiment",
+      "topicIds": [],
+      "heading": {
+        "en": "Try one change",
+        "nl": "Probeer één wijziging"
+      },
+      "body": {
+        "en": "Try limits 0, 1 and 4. Explain why zero repetitions are possible.",
+        "nl": "Probeer grenzen 0, 1 en 4. Leg uit waarom nul herhalingen mogelijk zijn."
+      }
+    }
+  ],
+  "files": {
+    "main.py": "count = 0\nlimit = 3\n"
+  },
+  "solution": {
+    "main.py": "count = 0\nlimit = 3\nwhile count < limit:\n    print(\"Ready\")\n    count += 1\n"
+  },
+  "checkpoints": [
+    {
+      "id": "python-v4-08-why-repeat-step-1",
+      "objectiveIds": [
+        "why-loops",
+        "while",
+        "counters"
+      ],
+      "task": {
+        "en": "Use while to print \"Ready\" limit times, updating count each time.",
+        "nl": "Gebruik while om \"Ready\" limit keer af te drukken en count elke keer bij te werken."
+      },
+      "check": "any(isinstance(n, _ast.While) for n in _ast.walk(_ast.parse(_source))) and count == limit and _stdout == \"Ready\\n\" * limit",
+      "probes": [
+        {
+          "inputs": {
+            "limit": 0
+          },
+          "check": "count == 0 and _stdout == \"\""
+        },
+        {
+          "inputs": {
+            "limit": 2
+          },
+          "check": "_stdout == \"Ready\\nReady\\n\""
+        }
+      ],
+      "hint": {
+        "en": "A while loop rechecks its condition before every iteration.",
+        "nl": "Een while-lus controleert haar voorwaarde vóór elke iteratie opnieuw."
+      },
+      "hints": [
+        {
+          "en": "A while loop rechecks its condition before every iteration.",
+          "nl": "Een while-lus controleert haar voorwaarde vóór elke iteratie opnieuw."
+        },
+        {
+          "en": "Start the counter once, test it before each repetition, and update it inside the body.",
+          "nl": "Begin de teller eenmaal, test hem vóór elke herhaling en werk hem binnen het blok bij."
+        },
+        {
+          "en": "A small fragment to adapt: `while count < limit:`",
+          "nl": "Een klein fragment om aan te passen: `while count < limit:`"
+        }
+      ],
+      "feedback": {
+        "en": "Start the counter once, test it before each repetition, and update it inside the body.",
+        "nl": "Begin de teller eenmaal, test hem vóór elke herhaling en werk hem binnen het blok bij."
+      }
+    }
+  ],
+  "solutionNote": {
+    "en": "The update eventually makes count < limit false. A false initial condition skips the body entirely.",
+    "nl": "De wijziging maakt count < limit uiteindelijk onwaar. Een aanvankelijk onware voorwaarde slaat het hele blok over."
+  },
+  "inputs": [],
+  "retrievals": [
+    {
+      "id": "recall-python-v4-06-boolean-values",
+      "sourceActivityId": "python-v4-06-boolean-values",
+      "objectiveIds": [
+        "boolean-expressions",
+        "boolean-variables"
+      ],
+      "prompt": {
+        "en": "Recall “Two Boolean values”. Do the last two calls report the same type? Try the earlier example from memory, then check it. Assign the string False to finished and inspect its type. Restore the Boolean afterward.",
+        "nl": "Haal “Twee booleaanse waarden” terug. Melden de laatste twee aanroepen hetzelfde type? Probeer het eerdere voorbeeld uit je geheugen en controleer daarna. Wijs de string False aan finished toe en onderzoek het type. Herstel daarna de booleaanse waarde."
+      }
+    }
+  ]
+}

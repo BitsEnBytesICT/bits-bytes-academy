@@ -1,0 +1,192 @@
+{
+  "id": "python-v4-22-club-book",
+  "chapter": 22,
+  "group": "python-v4-module-22",
+  "title": {
+    "en": "Mini project: club results book",
+    "nl": "Miniproject: uitslagenboek van de club"
+  },
+  "kind": "challenge",
+  "optional": false,
+  "runtime": "terminal",
+  "guidance": "independent",
+  "checkpointMode": "sequential",
+  "estimatedMinutes": 45,
+  "topicIds": [
+    "club-project"
+  ],
+  "practices": [
+    "csv-numeric-conversion",
+    "json-save",
+    "get",
+    "dictionary-iteration"
+  ],
+  "requiredConcepts": [
+    "json-save",
+    "csv-review",
+    "dictionary-review"
+  ],
+  "explanation": {
+    "en": "Import a table, aggregate named records and save a structured result that another program can reopen.\n\nOpen work.py to write the requested function. main.py is a supplied caller: Run always starts there and imports your function. The other file tabs contain input data. After a successful run, open any new output file tab to inspect what your program saved.",
+    "nl": "Importeer een tabel, verzamel benoemde gegevens en bewaar een gestructureerd resultaat dat een ander programma kan heropenen.\n\nOpen work.py om de gevraagde functie te schrijven. main.py is de aangeleverde aanroeper: Uitvoeren begint daar en importeert je functie. De andere bestandstabbladen bevatten invoergegevens. Open na een geslaagde uitvoering een nieuw uitvoerbestand om te bekijken wat je programma heeft opgeslagen."
+  },
+  "example": "",
+  "sections": [
+    {
+      "id": "python-v4-22-club-book-example",
+      "topicIds": [
+        "club-project",
+        "csv-numeric-conversion",
+        "json-save",
+        "get",
+        "dictionary-iteration"
+      ],
+      "heading": {
+        "en": "Follow a working example",
+        "nl": "Volg een werkend voorbeeld"
+      },
+      "body": {
+        "en": "Read a CSV with name and score headers. Trim names; skip blank names and scores that cannot convert to int. Add all valid scores for each name, preserving case. Save {\"totals\": {...}, \"accepted\": N} to a separate JSON path and return the same dictionary. N counts valid rows, not distinct players. Negative and zero scores are valid. Do not modify the source CSV.",
+        "nl": "Lees een CSV met kopvelden name en score. Trim namen; sla lege namen en scores over die niet naar int kunnen worden omgezet. Tel alle geldige scores per naam op en behoud hoofdletters. Bewaar {\"totals\": {...}, \"accepted\": N} naar een apart JSON-pad en geef dezelfde dictionary terug. N telt geldige rijen, niet verschillende spelers. Negatieve scores en nul zijn geldig. Verander de bron-CSV niet."
+      },
+      "code": "totals = {}\nfor name,points in [(\"Ada\",2),(\"Ada\",3)]:\n    totals[name] = totals.get(name,0) + points\nprint(totals)",
+      "output": "{'Ada': 5}\n",
+      "prediction": {
+        "en": "Why is the number of rows different from the number of keys?",
+        "nl": "Waarom verschilt het aantal rijen van het aantal sleutels?"
+      },
+      "takeaway": {
+        "en": "Validate one record, aggregate accepted data, then save the summary.",
+        "nl": "Valideer één record, verzamel geaccepteerde gegevens en bewaar daarna de samenvatting."
+      },
+      "exampleFiles": {}
+    },
+    {
+      "id": "python-v4-22-club-book-experiment",
+      "topicIds": [],
+      "heading": {
+        "en": "Try one change",
+        "nl": "Probeer één wijziging"
+      },
+      "body": {
+        "en": "Add duplicate players, a quoted comma in a name and a negative score; reopen the generated JSON.",
+        "nl": "Voeg dubbele spelers, een aangehaalde komma in een naam en een negatieve score toe; heropen de gemaakte JSON."
+      }
+    }
+  ],
+  "files": {
+    "results.csv": "name,score\nAda,3\nBo,2\nAda,4\n,9\nBo,bad\n",
+    "main.py": "import work\nprint(work.build_book(\"results.csv\",\"book.json\"))\n",
+    "work.py": "def build_book(source, destination):\n    return None\n"
+  },
+  "solution": {
+    "results.csv": "name,score\nAda,3\nBo,2\nAda,4\n,9\nBo,bad\n",
+    "main.py": "import work\nprint(work.build_book(\"results.csv\",\"book.json\"))\n",
+    "work.py": "import csv\nimport json\ndef build_book(source, destination):\n    totals = {}\n    accepted = 0\n    with open(source,newline=\"\",encoding=\"utf-8\") as handle:\n        for row in csv.DictReader(handle):\n            name = row[\"name\"].strip()\n            if name == \"\":\n                continue\n            try:\n                score = int(row[\"score\"])\n            except ValueError:\n                continue\n            totals[name] = totals.get(name,0) + score\n            accepted += 1\n    result = {\"totals\":totals,\"accepted\":accepted}\n    with open(destination,\"w\",encoding=\"utf-8\") as handle:\n        json.dump(result,handle,indent=2)\n    return result\n"
+  },
+  "checkpoints": [
+    {
+      "id": "python-v4-22-club-book-step-1",
+      "objectiveIds": [
+        "club-project",
+        "csv-numeric-conversion",
+        "json-save",
+        "get",
+        "dictionary-iteration"
+      ],
+      "task": {
+        "en": "Implement validation, aggregation and JSON saving from the brief.",
+        "nl": "Implementeer validatie, verzamelen en JSON-opslag volgens de opdracht."
+      },
+      "check": "True",
+      "probes": [
+        {
+          "call": {
+            "name": "build_book",
+            "args": [
+              "results.csv",
+              "book.json"
+            ],
+            "module": "work"
+          },
+          "check": "(_return == {\"totals\":{\"Ada\":7,\"Bo\":2},\"accepted\":3} and _json.load(open(\"book.json\")) == _return) and _error is None",
+          "moduleOnly": true,
+          "module": "work",
+          "files": {}
+        },
+        {
+          "call": {
+            "name": "build_book",
+            "args": [
+              "other.csv",
+              "out.json"
+            ],
+            "module": "work"
+          },
+          "check": "(_return == {\"totals\":{\"A, B\":-2,\"A\":3},\"accepted\":3} and _json.load(open(\"out.json\")) == _return) and _error is None",
+          "moduleOnly": true,
+          "module": "work",
+          "files": {
+            "other.csv": "name,score\n\" A, B \",-2\nA,0\nA,3\n"
+          }
+        },
+        {
+          "call": {
+            "name": "build_book",
+            "args": [
+              "empty.csv",
+              "out.json"
+            ],
+            "module": "work"
+          },
+          "check": "(_return == {\"totals\":{},\"accepted\":0}) and _error is None",
+          "moduleOnly": true,
+          "module": "work",
+          "files": {
+            "empty.csv": "name,score\n"
+          }
+        }
+      ],
+      "hint": {
+        "en": "Validate one record, aggregate accepted data, then save the summary.",
+        "nl": "Valideer één record, verzamel geaccepteerde gegevens en bewaar daarna de samenvatting."
+      },
+      "hints": [
+        {
+          "en": "Validate one record, aggregate accepted data, then save the summary.",
+          "nl": "Valideer één record, verzamel geaccepteerde gegevens en bewaar daarna de samenvatting."
+        },
+        {
+          "en": "Keep the valid-row counter separate from the mapping of player totals.",
+          "nl": "Houd de teller voor geldige rijen apart van de koppeling met spelerstotalen."
+        },
+        {
+          "en": "A small fragment to adapt: `totals[name] = totals.get(name, 0) + score`",
+          "nl": "Een klein fragment om aan te passen: `totals[name] = totals.get(name, 0) + score`"
+        }
+      ],
+      "feedback": {
+        "en": "Keep the valid-row counter separate from the mapping of player totals.",
+        "nl": "Houd de teller voor geldige rijen apart van de koppeling met spelerstotalen."
+      }
+    }
+  ],
+  "solutionNote": {
+    "en": "Valid rows contribute to both a player total and the accepted count, then the same structure is returned and encoded.",
+    "nl": "Geldige rijen dragen bij aan zowel een spelertotaal als het aantal geaccepteerde rijen; daarna wordt dezelfde structuur teruggegeven en gecodeerd."
+  },
+  "inputs": [],
+  "retrievals": [
+    {
+      "id": "recall-python-v4-20-write",
+      "sourceActivityId": "python-v4-20-write",
+      "objectiveIds": [
+        "write"
+      ],
+      "prompt": {
+        "en": "Recall “Create or replace a text file”. Does write add a second newline? Try the earlier example from memory, then check it. Save an empty string and explain the resulting file size.",
+        "nl": "Haal “Maak of vervang een tekstbestand” terug. Voegt write een tweede nieuwe regel toe? Probeer het eerdere voorbeeld uit je geheugen en controleer daarna. Bewaar een lege string en leg de resulterende bestandsgrootte uit."
+      }
+    }
+  ]
+}

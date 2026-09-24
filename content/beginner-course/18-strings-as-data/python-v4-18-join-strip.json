@@ -1,0 +1,154 @@
+{
+  "id": "python-v4-18-join-strip",
+  "chapter": 18,
+  "group": "python-v4-module-18",
+  "title": {
+    "en": "Join cleaned pieces of text",
+    "nl": "Voeg opgeschoonde tekstdelen samen"
+  },
+  "kind": "coding",
+  "optional": false,
+  "runtime": "terminal",
+  "guidance": "guided",
+  "checkpointMode": "sequential",
+  "estimatedMinutes": 12,
+  "topicIds": [
+    "join",
+    "strip-characters"
+  ],
+  "practices": [
+    "strip"
+  ],
+  "requiredConcepts": [
+    "split-delimiters",
+    "list-comprehensions"
+  ],
+  "explanation": {
+    "en": "join rebuilds text from a sequence of strings using a chosen separator.",
+    "nl": "join bouwt tekst opnieuw op vanuit een reeks strings met een gekozen scheidingsteken."
+  },
+  "example": "",
+  "sections": [
+    {
+      "id": "python-v4-18-join-strip-example",
+      "topicIds": [
+        "join",
+        "strip-characters",
+        "strip"
+      ],
+      "heading": {
+        "en": "Follow a working example",
+        "nl": "Volg een werkend voorbeeld"
+      },
+      "body": {
+        "en": "\" - \".join(parts) places the separator between strings, with no extra separator at either end. Every element must already be a string. strip() removes outer whitespace, not inner spaces. strip(\"!\") removes exclamation marks from both ends; its argument is a set of characters, not a complete prefix to remove.",
+        "nl": "\" - \".join(parts) zet het scheidingsteken tussen strings, zonder extra scheiding aan de uiteinden. Elk element moet al een string zijn. strip() verwijdert buitenste witruimte, geen binnenste spaties. strip(\"!\") verwijdert uitroeptekens van beide uiteinden; zijn argument is een tekenverzameling, geen volledig te verwijderen voorvoegsel."
+      },
+      "code": "parts = [\"  Ada \",\" Bo\"]\nclean = [part.strip() for part in parts]\nprint(\" / \".join(clean))",
+      "output": "Ada / Bo\n",
+      "prediction": {
+        "en": "What does joining an empty list produce?",
+        "nl": "Wat levert een lege lijst samenvoegen op?"
+      },
+      "takeaway": {
+        "en": "Call join on the separator and pass the strings to combine.",
+        "nl": "Roep join aan op het scheidingsteken en geef de te combineren strings mee."
+      }
+    },
+    {
+      "id": "python-v4-18-join-strip-experiment",
+      "topicIds": [],
+      "heading": {
+        "en": "Try one change",
+        "nl": "Probeer één wijziging"
+      },
+      "body": {
+        "en": "Use a newline as the join separator to create a multiline report.",
+        "nl": "Gebruik een nieuwe regel als samenvoegscheiding om een rapport met meerdere regels te maken."
+      }
+    }
+  ],
+  "files": {
+    "main.py": "def line(parts):\n    # Complete this function.\n    return None\n"
+  },
+  "solution": {
+    "main.py": "def line(parts):\n    clean = [part.strip() for part in parts]\n    return \", \".join(clean)\n"
+  },
+  "checkpoints": [
+    {
+      "id": "python-v4-18-join-strip-step-1",
+      "objectiveIds": [
+        "join",
+        "strip-characters",
+        "strip"
+      ],
+      "task": {
+        "en": "Trim outer whitespace from each part, then join with comma-space. Preserve empty parts.",
+        "nl": "Verwijder buitenste witruimte van elk deel en voeg samen met komma-spatie. Behoud lege delen."
+      },
+      "check": "callable(line)",
+      "probes": [
+        {
+          "call": {
+            "name": "line",
+            "args": [
+              [
+                " A ",
+                " B"
+              ]
+            ]
+          },
+          "check": "(_return == \"A, B\") and _error is None"
+        },
+        {
+          "call": {
+            "name": "line",
+            "args": [
+              []
+            ]
+          },
+          "check": "(_return == \"\") and _error is None"
+        },
+        {
+          "call": {
+            "name": "line",
+            "args": [
+              [
+                "",
+                " B "
+              ]
+            ]
+          },
+          "check": "(_return == \", B\") and _error is None"
+        }
+      ],
+      "hint": {
+        "en": "Call join on the separator and pass the strings to combine.",
+        "nl": "Roep join aan op het scheidingsteken en geef de te combineren strings mee."
+      },
+      "hints": [
+        {
+          "en": "Call join on the separator and pass the strings to combine.",
+          "nl": "Roep join aan op het scheidingsteken en geef de te combineren strings mee."
+        },
+        {
+          "en": "Clean each string before joining the resulting list.",
+          "nl": "Schoon elke string op vóór je de resulterende lijst samenvoegt."
+        },
+        {
+          "en": "A small fragment to adapt: `\", \".join(clean)`",
+          "nl": "Een klein fragment om aan te passen: `\", \".join(clean)`"
+        }
+      ],
+      "feedback": {
+        "en": "Clean each string before joining the resulting list.",
+        "nl": "Schoon elke string op vóór je de resulterende lijst samenvoegt."
+      }
+    }
+  ],
+  "solutionNote": {
+    "en": "Cleaning and joining are separate operations so internal content is preserved.",
+    "nl": "Opschonen en samenvoegen zijn aparte bewerkingen zodat interne inhoud bewaard blijft."
+  },
+  "inputs": []
+}

@@ -1,0 +1,161 @@
+{
+  "id": "python-v4-13-pairs",
+  "chapter": 13,
+  "group": "python-v4-module-13",
+  "title": {
+    "en": "Keep a coordinate pair in a tuple",
+    "nl": "Bewaar een coördinatenpaar in een tuple"
+  },
+  "kind": "coding",
+  "optional": false,
+  "runtime": "terminal",
+  "guidance": "guided",
+  "checkpointMode": "sequential",
+  "estimatedMinutes": 12,
+  "topicIds": [
+    "tuples"
+  ],
+  "practices": [],
+  "requiredConcepts": [
+    "lists",
+    "indexing",
+    "return"
+  ],
+  "explanation": {
+    "en": "A position has two related coordinates. A tuple keeps them together without allowing element replacement.",
+    "nl": "Een positie heeft twee bijbehorende coördinaten. Een tuple houdt ze samen zonder vervanging van elementen toe te staan."
+  },
+  "example": "",
+  "sections": [
+    {
+      "id": "python-v4-13-pairs-example",
+      "topicIds": [
+        "tuples"
+      ],
+      "heading": {
+        "en": "Follow a working example",
+        "nl": "Volg een werkend voorbeeld"
+      },
+      "body": {
+        "en": "(20, 30) is a tuple. Like a list it is ordered, supports indexing and has a length. Unlike a list, you cannot assign to one of its positions. Tuples are useful for fixed groupings such as (x, y). A one-element tuple needs a comma: (20,). Parentheses alone around a number do not create a tuple.",
+        "nl": "(20, 30) is een tuple. Net als een lijst is deze geordend, ondersteunt indexen en heeft een lengte. Anders dan bij een lijst kun je niet aan één positie toewijzen. Tuples zijn nuttig voor vaste groepen zoals (x, y). Een tuple met één element heeft een komma nodig: (20,). Alleen haakjes rond een getal maken geen tuple."
+      },
+      "code": "position = (20, 30)\nprint(position[0])\nprint(len(position))",
+      "output": "20\n2\n",
+      "prediction": {
+        "en": "What does position[1] mean?",
+        "nl": "Wat betekent position[1]?"
+      },
+      "takeaway": {
+        "en": "Use a tuple for an ordered grouping that will not be edited by index.",
+        "nl": "Gebruik een tuple voor een geordende groep die niet via index wordt bewerkt."
+      }
+    },
+    {
+      "id": "python-v4-13-pairs-experiment",
+      "topicIds": [],
+      "heading": {
+        "en": "Try one change",
+        "nl": "Probeer één wijziging"
+      },
+      "body": {
+        "en": "Compare type((5)) with type((5,)).",
+        "nl": "Vergelijk type((5)) met type((5,))."
+      }
+    }
+  ],
+  "files": {
+    "main.py": "def position(x, y):\n    # Complete this function.\n    return None\n"
+  },
+  "solution": {
+    "main.py": "def position(x, y):\n    return (x, y)\n"
+  },
+  "checkpoints": [
+    {
+      "id": "python-v4-13-pairs-step-1",
+      "objectiveIds": [
+        "tuples"
+      ],
+      "task": {
+        "en": "Return x and y as a two-element tuple.",
+        "nl": "Geef x en y terug als een tuple met twee elementen."
+      },
+      "check": "callable(position)",
+      "probes": [
+        {
+          "call": {
+            "name": "position",
+            "args": [
+              2,
+              3
+            ]
+          },
+          "check": "(_return == (2,3) and type(_return) is tuple) and _error is None"
+        },
+        {
+          "call": {
+            "name": "position",
+            "args": [
+              -1,
+              0
+            ]
+          },
+          "check": "(_return == (-1,0)) and _error is None"
+        }
+      ],
+      "hint": {
+        "en": "Use a tuple for an ordered grouping that will not be edited by index.",
+        "nl": "Gebruik een tuple voor een geordende groep die niet via index wordt bewerkt."
+      },
+      "hints": [
+        {
+          "en": "Use a tuple for an ordered grouping that will not be edited by index.",
+          "nl": "Gebruik een tuple voor een geordende groep die niet via index wordt bewerkt."
+        },
+        {
+          "en": "Use a comma-separated pair, not square brackets.",
+          "nl": "Gebruik een paar met komma, geen vierkante haakjes."
+        },
+        {
+          "en": "A small fragment to adapt: `return (x, y)`",
+          "nl": "Een klein fragment om aan te passen: `return (x, y)`"
+        }
+      ],
+      "feedback": {
+        "en": "Use a comma-separated pair, not square brackets.",
+        "nl": "Gebruik een paar met komma, geen vierkante haakjes."
+      }
+    }
+  ],
+  "solutionNote": {
+    "en": "The comma forms the tuple; the two values keep their order.",
+    "nl": "De komma vormt de tuple; de twee waarden behouden hun volgorde."
+  },
+  "inputs": [],
+  "retrievals": [
+    {
+      "id": "recall-python-v4-11-create",
+      "sourceActivityId": "python-v4-11-create",
+      "objectiveIds": [
+        "lists",
+        "list-contents"
+      ],
+      "prompt": {
+        "en": "Recall “Keep several values in a list”. How many elements are in this list? Try the earlier example from memory, then check it. Swap two elements and explain why this changes the record.",
+        "nl": "Haal “Bewaar meerdere waarden in een lijst” terug. Hoeveel elementen staan in deze lijst? Probeer het eerdere voorbeeld uit je geheugen en controleer daarna. Wissel twee elementen om en leg uit waarom dit het record verandert."
+      }
+    },
+    {
+      "id": "recall-python-v4-11-indexes",
+      "sourceActivityId": "python-v4-11-indexes",
+      "objectiveIds": [
+        "indexing",
+        "negative-indexing"
+      ],
+      "prompt": {
+        "en": "Recall “Select a position”. What does colours[1] select? Try the earlier example from memory, then check it. Explain why the single-element case repeats the same value.",
+        "nl": "Haal “Kies een positie” terug. Wat kiest colours[1]? Probeer het eerdere voorbeeld uit je geheugen en controleer daarna. Leg uit waarom het geval met één element dezelfde waarde herhaalt."
+      }
+    }
+  ]
+}

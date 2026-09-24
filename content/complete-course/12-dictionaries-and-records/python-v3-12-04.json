@@ -1,0 +1,198 @@
+{
+  "id": "python-v3-12-04",
+  "chapter": 12,
+  "group": "python-v3-module-12",
+  "title": {
+    "en": "Iterate over records",
+    "nl": "Doorloop records"
+  },
+  "kind": "coding",
+  "optional": false,
+  "runtime": "terminal",
+  "guidance": "adapt",
+  "estimatedMinutes": 15,
+  "explanation": {
+    "en": "Inspect keys and values separately, then process their associations together. Use items to keep each label paired with its own score.",
+    "nl": "Bekijk sleutels en waarden apart en verwerk daarna hun koppelingen samen. Gebruik items om elk label bij zijn eigen score te houden."
+  },
+  "example": "",
+  "topicIds": [
+    "keys",
+    "values",
+    "items",
+    "dictionary-iteration"
+  ],
+  "prerequisites": [
+    "python-v3-12-03"
+  ],
+  "sections": [
+    {
+      "topicIds": [
+        "keys",
+        "values",
+        "items",
+        "dictionary-iteration"
+      ],
+      "heading": {
+        "en": "Views and pairs",
+        "nl": "Weergaven en paren"
+      },
+      "body": {
+        "en": "keys(), values() and items() return views of a dictionary. Convert with list(...) when a snapshot list is needed. Iterating a dictionary directly visits keys; iterating items() gives (key, value) pairs that can be unpacked. Python dictionaries preserve insertion order. Do not add or remove keys while traversing a live view.",
+        "nl": "keys(), values() en items() geven weergaven van een dictionary terug. Zet om met list(...) als een momentopnamelijst nodig is. Een dictionary direct doorlopen bezoekt sleutels; items() doorlopen geeft (sleutel, waarde)-paren die uitgepakt kunnen worden. Python-dictionaries behouden invoegvolgorde. Voeg geen sleutels toe en verwijder ze niet terwijl je een actuele weergave doorloopt."
+      },
+      "code": "scores = {\"Ada\": 2, \"Bo\": 4}\nprint(list(scores.keys()))\nfor name, score in scores.items():\n    print(name, score)",
+      "output": "['Ada', 'Bo']\nAda 2\nBo 4\n",
+      "prediction": {
+        "en": "What does each loop variable hold?",
+        "nl": "Wat bevat elke lusvariabele?"
+      }
+    },
+    {
+      "topicIds": [],
+      "heading": {
+        "en": "Try a changed input",
+        "nl": "Probeer gewijzigde invoer"
+      },
+      "body": {
+        "en": "Create a keys view and a list snapshot, then add a key after iteration ends. Compare the view and snapshot and explain the difference.",
+        "nl": "Maak een keys-weergave en een lijstkopie en voeg na het doorlopen een sleutel toe. Vergelijk weergave en kopie en verklaar het verschil."
+      }
+    }
+  ],
+  "files": {
+    "main.py": "def describe(scores):\n    return [], [], []\n\nprint(describe({\"Ada\": 2, \"Bo\": 4}))\n"
+  },
+  "solution": {
+    "main.py": "def describe(scores):\n    names = list(scores.keys())\n    values = list(scores.values())\n    lines = []\n    for name, score in scores.items():\n        lines.append(f\"{name}: {score}\")\n    return names, values, lines\n\nprint(describe({\"Ada\": 2, \"Bo\": 4}))\n"
+  },
+  "checkpoints": [
+    {
+      "objectiveIds": [
+        "keys",
+        "values"
+      ],
+      "task": {
+        "en": "Return names and values as snapshot lists in dictionary order, as the first two tuple items.",
+        "nl": "Geef names en values als momentopnamelijsten in dictionaryvolgorde terug als eerste twee tuple-items."
+      },
+      "check": "describe({\"Ada\":2,\"Bo\":4})[:2] == ([\"Ada\",\"Bo\"],[2,4])",
+      "hints": [
+        {
+          "en": "Views are not lists until converted.",
+          "nl": "Weergaven zijn pas lijsten na omzetting."
+        },
+        {
+          "en": "Use list(scores.keys()) and list(scores.values()).",
+          "nl": "Gebruik list(scores.keys()) en list(scores.values())."
+        },
+        {
+          "en": "names = list(scores.keys())",
+          "nl": "names = list(scores.keys())"
+        }
+      ],
+      "hint": {
+        "en": "Views are not lists until converted.",
+        "nl": "Weergaven zijn pas lijsten na omzetting."
+      },
+      "feedback": {
+        "en": "Keep labels and values in their shared insertion order.",
+        "nl": "Houd labels en waarden in hun gedeelde invoegvolgorde."
+      },
+      "probes": [
+        {
+          "call": {
+            "name": "describe",
+            "args": [
+              {
+                "z": 0,
+                "a": 2
+              }
+            ]
+          },
+          "check": "_return[:2] == ([\"z\",\"a\"],[0,2])"
+        }
+      ],
+      "id": "python-v3-12-04-step-1"
+    },
+    {
+      "objectiveIds": [
+        "items",
+        "dictionary-iteration"
+      ],
+      "task": {
+        "en": "Build lines using items and return them as the third item, each formatted \"name: score\".",
+        "nl": "Maak lines met items en geef die als derde item terug, elk geformatteerd als \"naam: score\"."
+      },
+      "check": "describe({\"Ada\":2,\"Bo\":4})[2] == [\"Ada: 2\",\"Bo: 4\"]",
+      "hints": [
+        {
+          "en": "Each pair already contains both needed values.",
+          "nl": "Elk paar bevat beide benodigde waarden al."
+        },
+        {
+          "en": "Unpack name and score in the for header.",
+          "nl": "Pak name en score in de for-kop uit."
+        },
+        {
+          "en": "for name, score in scores.items():",
+          "nl": "for name, score in scores.items():"
+        }
+      ],
+      "hint": {
+        "en": "Each pair already contains both needed values.",
+        "nl": "Elk paar bevat beide benodigde waarden al."
+      },
+      "feedback": {
+        "en": "Do not zip independently sorted names and scores; that breaks associations.",
+        "nl": "Combineer geen apart gesorteerde namen en scores; dat verbreekt koppelingen."
+      },
+      "probes": [
+        {
+          "call": {
+            "name": "describe",
+            "args": [
+              {}
+            ]
+          },
+          "check": "_return == ([],[],[])"
+        },
+        {
+          "call": {
+            "name": "describe",
+            "args": [
+              {
+                "B": -1,
+                "A": 5
+              }
+            ]
+          },
+          "check": "_return[2] == [\"B: -1\",\"A: 5\"]"
+        }
+      ],
+      "id": "python-v3-12-04-step-2"
+    }
+  ],
+  "solutionNote": {
+    "en": "The snapshots are useful for separate inspection. items preserves the relationship for reporting without repeated lookups or parallel-index bookkeeping.",
+    "nl": "De momentopnamen zijn nuttig voor apart bekijken. items behoudt de relatie voor rapportage zonder herhaalde toegang of parallelle indexadministratie."
+  },
+  "inputs": [],
+  "retrievals": [
+    {
+      "id": "recall-python-v3-10-04",
+      "sourceActivityId": "python-v3-10-04",
+      "objectiveIds": [
+        "split-whitespace",
+        "split-delimiter",
+        "split-newlines",
+        "split-tabs",
+        "join"
+      ],
+      "prompt": {
+        "en": "Split spaces, a comma, newline and tab deliberately. Join the pieces with a different separator. Why can split() and split(\" \") differ?",
+        "nl": "Splits bewust op witruimte, komma, nieuwe regel en tab. Voeg de delen samen met een ander scheidingsteken. Waarom kunnen split() en split(\" \") verschillen?"
+      }
+    }
+  ]
+}

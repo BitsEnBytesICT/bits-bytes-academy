@@ -1,0 +1,178 @@
+{
+  "id": "python-v3-3-01",
+  "chapter": 3,
+  "group": "python-v3-module-3",
+  "title": {
+    "en": "Replace repetition",
+    "nl": "Vervang herhaling"
+  },
+  "kind": "coding",
+  "optional": false,
+  "runtime": "terminal",
+  "guidance": "guided",
+  "estimatedMinutes": 15,
+  "explanation": {
+    "en": "Replace repeated statements with one loop. Repetition is useful when the number of actions changes with the data.",
+    "nl": "Vervang herhaalde opdrachten door één lus. Herhaling is nuttig wanneer het aantal acties met de gegevens verandert."
+  },
+  "example": "",
+  "topicIds": [
+    "why-loops",
+    "for"
+  ],
+  "prerequisites": [
+    "python-v3-2-05"
+  ],
+  "sections": [
+    {
+      "topicIds": [
+        "why-loops",
+        "for"
+      ],
+      "heading": {
+        "en": "One body, several executions",
+        "nl": "Eén blok, meerdere uitvoeringen"
+      },
+      "body": {
+        "en": "for assigns the next value to its loop variable, then executes the indented body. range(3) supplies 0, 1, 2; it stops before 3. Code after the loop runs once. The loop variable is a changing value, not a list you must create first.",
+        "nl": "for geeft de volgende waarde aan de lusvariabele en voert dan het ingesprongen blok uit. range(3) levert 0, 1, 2; het stopt vóór 3. Code na de lus wordt één keer uitgevoerd. De lusvariabele is een veranderende waarde, geen lijst die je eerst moet maken."
+      },
+      "code": "for number in range(3):\n    print(number + 1)\nprint(\"Ready\")",
+      "output": "1\n2\n3\nReady\n",
+      "prediction": {
+        "en": "How many times is each print executed?",
+        "nl": "Hoe vaak wordt elke print uitgevoerd?"
+      }
+    },
+    {
+      "topicIds": [],
+      "heading": {
+        "en": "Try a changed input",
+        "nl": "Probeer gewijzigde invoer"
+      },
+      "body": {
+        "en": "Try count = 0 and count = 7. Explain how this differs from copying a print statement seven times.",
+        "nl": "Probeer count = 0 en count = 7. Leg uit hoe dit verschilt van zeven keer een print-opdracht kopiëren."
+      }
+    }
+  ],
+  "files": {
+    "main.py": "count = 4\nprint(\"Ticket 1\")\nprint(\"Ticket 2\")\n# Replace these repeated statements.\n"
+  },
+  "solution": {
+    "main.py": "count = 4\nfor number in range(count):\n    print(f\"Ticket {number + 1}\")\nprint(\"Done\")\n"
+  },
+  "checkpoints": [
+    {
+      "objectiveIds": [
+        "why-loops",
+        "for"
+      ],
+      "task": {
+        "en": "Print Ticket 1 through Ticket count with a for loop.",
+        "nl": "Druk Ticket 1 tot en met Ticket count af met een for-lus."
+      },
+      "check": "_stdout.splitlines()[:-1] == [f\"Ticket {i + 1}\" for i in range(count)] and any(isinstance(n,_ast.For) for n in _ast.walk(_ast.parse(_source)))",
+      "hints": [
+        {
+          "en": "One changing number can label every ticket.",
+          "nl": "Eén veranderend getal kan elk kaartje benoemen."
+        },
+        {
+          "en": "range(count) starts at zero, so display number + 1.",
+          "nl": "range(count) begint bij nul, dus toon number + 1."
+        },
+        {
+          "en": "for number in range(count):",
+          "nl": "for number in range(count):"
+        }
+      ],
+      "hint": {
+        "en": "One changing number can label every ticket.",
+        "nl": "Eén veranderend getal kan elk kaartje benoemen."
+      },
+      "feedback": {
+        "en": "Check the first and last labels. There should be count tickets.",
+        "nl": "Controleer de eerste en laatste labels. Er moeten count kaartjes zijn."
+      },
+      "probes": [
+        {
+          "inputs": {
+            "count": 1
+          },
+          "check": "_stdout.splitlines() == [\"Ticket 1\", \"Done\"]"
+        },
+        {
+          "inputs": {
+            "count": 6
+          },
+          "check": "len(_stdout.splitlines()) == 7"
+        }
+      ],
+      "id": "python-v3-3-01-step-1"
+    },
+    {
+      "objectiveIds": [
+        "for"
+      ],
+      "task": {
+        "en": "Print Done once after the loop, including when count is zero.",
+        "nl": "Druk Done één keer na de lus af, ook als count nul is."
+      },
+      "check": "_stdout.splitlines()[-1] == \"Done\" and _stdout.splitlines().count(\"Done\") == 1",
+      "hints": [
+        {
+          "en": "A shared finishing action is outside the repeated block.",
+          "nl": "Een afsluitende actie staat buiten het herhaalde blok."
+        },
+        {
+          "en": "Remove indentation from the final print.",
+          "nl": "Haal de inspringing bij de laatste print weg."
+        },
+        {
+          "en": "print(\"Done\")",
+          "nl": "print(\"Done\")"
+        }
+      ],
+      "hint": {
+        "en": "A shared finishing action is outside the repeated block.",
+        "nl": "Een afsluitende actie staat buiten het herhaalde blok."
+      },
+      "feedback": {
+        "en": "Done belongs after the loop, not inside it.",
+        "nl": "Done hoort na de lus, niet erin."
+      },
+      "probes": [
+        {
+          "inputs": {
+            "count": 0
+          },
+          "check": "_stdout.strip() == \"Done\""
+        }
+      ],
+      "id": "python-v3-3-01-step-2"
+    }
+  ],
+  "solutionNote": {
+    "en": "The loop generates labels from data; Done is outside the body. range(0) performs no iterations but still reaches the final print.",
+    "nl": "De lus maakt labels uit gegevens; Done staat buiten het blok. range(0) voert geen iteraties uit maar bereikt wel de laatste print."
+  },
+  "inputs": [],
+  "retrievals": [
+    {
+      "id": "recall-python-v3-1-01",
+      "sourceActivityId": "python-v3-1-01",
+      "objectiveIds": [
+        "welcome",
+        "comments",
+        "print",
+        "strings",
+        "variables"
+      ],
+      "prompt": {
+        "en": "Without copying, write a comment and print a welcome using a string variable. Explain how Run and an error message help you.",
+        "nl": "Schrijf zonder kopiëren een commentaarregel en druk een begroeting af met een stringvariabele. Leg uit hoe Uitvoeren en een foutmelding helpen."
+      }
+    }
+  ]
+}

@@ -1,0 +1,195 @@
+{
+  "id": "python-v4-03-addition",
+  "chapter": 3,
+  "group": "python-v4-module-3",
+  "title": {
+    "en": "Add quantities",
+    "nl": "Tel hoeveelheden op"
+  },
+  "kind": "coding",
+  "optional": false,
+  "runtime": "terminal",
+  "guidance": "guided",
+  "checkpointMode": "sequential",
+  "estimatedMinutes": 12,
+  "topicIds": [
+    "arithmetic",
+    "addition"
+  ],
+  "practices": [],
+  "requiredConcepts": [
+    "variables",
+    "integers",
+    "floats"
+  ],
+  "explanation": {
+    "en": "Use Python to combine two counts. A calculation produces a value that can be stored or printed.",
+    "nl": "Gebruik Python om twee aantallen samen te voegen. Een berekening levert een waarde op die je kunt bewaren of afdrukken."
+  },
+  "example": "",
+  "sections": [
+    {
+      "id": "python-v4-03-addition-example",
+      "topicIds": [
+        "arithmetic",
+        "addition"
+      ],
+      "heading": {
+        "en": "Follow a working example",
+        "nl": "Volg een werkend voorbeeld"
+      },
+      "body": {
+        "en": "The + operator adds numeric values. In total = apples + pears, Python first reads the two values, adds them, then assigns the result to total. The original counts stay unchanged.\n\nYou can also put an expression directly inside print. Storing the result first is useful when you want to use it again. Here, an expression means a piece of code that produces a value.",
+        "nl": "De operator + telt getalswaarden op. In total = apples + pears leest Python eerst beide waarden, telt ze op en wijst het resultaat daarna aan total toe. De oorspronkelijke aantallen blijven onveranderd.\n\nJe kunt een expressie ook direct binnen print zetten. Het resultaat eerst bewaren is handig als je het opnieuw wilt gebruiken. Een expressie is hier een stukje code dat een waarde oplevert."
+      },
+      "code": "apples = 3\npears = 2\ntotal = apples + pears\nprint(total)",
+      "output": "5\n",
+      "prediction": {
+        "en": "What value is assigned to total?",
+        "nl": "Welke waarde wordt aan total toegewezen?"
+      },
+      "takeaway": {
+        "en": "Addition reads two numbers and produces their sum without changing them.",
+        "nl": "Optellen leest twee getallen en levert hun som op zonder ze te wijzigen."
+      }
+    },
+    {
+      "id": "python-v4-03-addition-experiment",
+      "topicIds": [],
+      "heading": {
+        "en": "Try one change",
+        "nl": "Probeer één wijziging"
+      },
+      "body": {
+        "en": "Set morning to zero. Explain why the answer becomes the afternoon count.",
+        "nl": "Zet morning op nul. Leg uit waarom het antwoord het middagaantal wordt."
+      }
+    }
+  ],
+  "files": {
+    "main.py": "morning = 7\nafternoon = 5\n"
+  },
+  "solution": {
+    "main.py": "morning = 7\nafternoon = 5\nresult = morning + afternoon\nprint(result)\n"
+  },
+  "checkpoints": [
+    {
+      "id": "python-v4-03-addition-step-1",
+      "objectiveIds": [
+        "arithmetic",
+        "addition"
+      ],
+      "task": {
+        "en": "Calculate the total number of visitors and store it in result.",
+        "nl": "Bereken het totale aantal bezoekers en bewaar het in result."
+      },
+      "check": "result == (morning + afternoon)",
+      "probes": [
+        {
+          "inputs": {
+            "morning": 0,
+            "afternoon": 4
+          },
+          "check": "result == (morning + afternoon)"
+        },
+        {
+          "inputs": {
+            "morning": 9,
+            "afternoon": 2
+          },
+          "check": "result == (morning + afternoon)"
+        }
+      ],
+      "hint": {
+        "en": "Addition reads two numbers and produces their sum without changing them.",
+        "nl": "Optellen leest twee getallen en levert hun som op zonder ze te wijzigen."
+      },
+      "hints": [
+        {
+          "en": "Addition reads two numbers and produces their sum without changing them.",
+          "nl": "Optellen leest twee getallen en levert hun som op zonder ze te wijzigen."
+        },
+        {
+          "en": "Add the two existing counts. Both visits contribute to the total.",
+          "nl": "Tel de twee bestaande aantallen op. Beide bezoeken dragen bij aan het totaal."
+        },
+        {
+          "en": "A small fragment to adapt: `result = morning + afternoon`",
+          "nl": "Een klein fragment om aan te passen: `result = morning + afternoon`"
+        }
+      ],
+      "feedback": {
+        "en": "Add the two existing counts. Both visits contribute to the total.",
+        "nl": "Tel de twee bestaande aantallen op. Beide bezoeken dragen bij aan het totaal."
+      }
+    },
+    {
+      "id": "python-v4-03-addition-step-2",
+      "objectiveIds": [
+        "arithmetic",
+        "addition"
+      ],
+      "task": {
+        "en": "Print result after calculating it.",
+        "nl": "Druk result af nadat je het hebt berekend."
+      },
+      "check": "float(_stdout.strip()) == result",
+      "probes": [
+        {
+          "inputs": {
+            "morning": 0,
+            "afternoon": 4
+          },
+          "check": "float(_stdout.strip()) == (morning + afternoon)"
+        },
+        {
+          "inputs": {
+            "morning": 9,
+            "afternoon": 2
+          },
+          "check": "float(_stdout.strip()) == (morning + afternoon)"
+        }
+      ],
+      "hint": {
+        "en": "Addition reads two numbers and produces their sum without changing them.",
+        "nl": "Optellen leest twee getallen en levert hun som op zonder ze te wijzigen."
+      },
+      "hints": [
+        {
+          "en": "Addition reads two numbers and produces their sum without changing them.",
+          "nl": "Optellen leest twee getallen en levert hun som op zonder ze te wijzigen."
+        },
+        {
+          "en": "Display the variable that holds the calculation, rather than typing the expected answer.",
+          "nl": "Toon de variabele met de berekening in plaats van het verwachte antwoord te typen."
+        },
+        {
+          "en": "A small fragment to adapt: `print(result)`",
+          "nl": "Een klein fragment om aan te passen: `print(result)`"
+        }
+      ],
+      "feedback": {
+        "en": "Display the variable that holds the calculation, rather than typing the expected answer.",
+        "nl": "Toon de variabele met de berekening in plaats van het verwachte antwoord te typen."
+      }
+    }
+  ],
+  "solutionNote": {
+    "en": "The program combines the current counts. It also works when one group has no visitors.",
+    "nl": "Het programma combineert de huidige aantallen. Het werkt ook wanneer één groep geen bezoekers heeft."
+  },
+  "inputs": [],
+  "retrievals": [
+    {
+      "id": "recall-python-v4-01-welcome",
+      "sourceActivityId": "python-v4-01-welcome",
+      "objectiveIds": [
+        "welcome"
+      ],
+      "prompt": {
+        "en": "Recall “Hello, world!”. Will the quotation marks appear in the output? Try the earlier example from memory, then check it. Change world to your name and run again. Then continue to write your first line yourself.",
+        "nl": "Haal “Hallo, wereld!” terug. Verschijnen de aanhalingstekens in de uitvoer? Probeer het eerdere voorbeeld uit je geheugen en controleer daarna. Verander world in je naam en voer opnieuw uit. Ga daarna verder om zelf je eerste regel te schrijven."
+      }
+    }
+  ]
+}

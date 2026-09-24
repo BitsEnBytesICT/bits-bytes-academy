@@ -1,0 +1,155 @@
+{
+  "id": "python-v4-05-input-is-text",
+  "chapter": 5,
+  "group": "python-v4-module-5",
+  "title": {
+    "en": "Digits entered are still text",
+    "nl": "Ingevoerde cijfers zijn nog steeds tekst"
+  },
+  "kind": "coding",
+  "optional": false,
+  "runtime": "terminal",
+  "guidance": "guided",
+  "checkpointMode": "sequential",
+  "estimatedMinutes": 12,
+  "topicIds": [
+    "input-string-type"
+  ],
+  "practices": [],
+  "requiredConcepts": [
+    "input",
+    "types"
+  ],
+  "explanation": {
+    "en": "Typing digits does not make input return a number. Inspect the type before calculating.",
+    "nl": "Cijfers typen zorgt er niet voor dat input een getal teruggeeft. Onderzoek het type voordat je rekent."
+  },
+  "example": "",
+  "sections": [
+    {
+      "id": "python-v4-05-input-is-text-example",
+      "topicIds": [
+        "input-string-type"
+      ],
+      "heading": {
+        "en": "Follow a working example",
+        "nl": "Volg een werkend voorbeeld"
+      },
+      "body": {
+        "en": "If someone enters 12, input returns \"12\", a string. It also returns a string for -3 or 2.5. That is why a numeric-looking answer cannot simply be added to an integer.\n\nFirst capture the raw answer and inspect it. In this example the supplied answer is 12, and type reports str. The next lessons introduce explicit conversion so the intended type is clear.",
+        "nl": "Als iemand 12 invoert, geeft input \"12\" terug, een string. Ook bij -3 of 2.5 krijg je een string. Daarom kun je een antwoord dat op een getal lijkt niet zomaar bij een int optellen.\n\nBewaar eerst het onbewerkte antwoord en onderzoek het. In dit voorbeeld is het meegeleverde antwoord 12 en meldt type str. De volgende lessen introduceren expliciete conversie zodat het bedoelde type duidelijk is."
+      },
+      "code": "answer = input(\"Count: \")\nprint(type(answer))",
+      "output": "Count: <class 'str'>\n",
+      "prediction": {
+        "en": "Would typing 0 instead change the returned type?",
+        "nl": "Verandert het teruggegeven type als je 0 typt?"
+      },
+      "takeaway": {
+        "en": "input always returns a string when it successfully reads an answer.",
+        "nl": "input geeft altijd een string terug wanneer het succesvol een antwoord leest."
+      },
+      "exampleInputs": [
+        "12"
+      ]
+    },
+    {
+      "id": "python-v4-05-input-is-text-experiment",
+      "topicIds": [],
+      "heading": {
+        "en": "Try one change",
+        "nl": "Probeer één wijziging"
+      },
+      "body": {
+        "en": "Enter a word, then a decimal number. Explain why both have the same type.",
+        "nl": "Voer een woord in en daarna een kommagetal. Leg uit waarom beide hetzelfde type hebben."
+      }
+    }
+  ],
+  "files": {
+    "main.py": ""
+  },
+  "solution": {
+    "main.py": "answer = input(\"Count: \")\nprint(type(answer))\n"
+  },
+  "checkpoints": [
+    {
+      "id": "python-v4-05-input-is-text-step-1",
+      "objectiveIds": [
+        "input-string-type"
+      ],
+      "task": {
+        "en": "Read an answer with the prompt Count: and store it in answer. Print its type.",
+        "nl": "Lees een antwoord met de vraag Count: en bewaar het in answer. Druk het type af."
+      },
+      "check": "True",
+      "probes": [
+        {
+          "stdin": [
+            "7"
+          ],
+          "check": "(type(answer) is str and _stdout.endswith(\"<class 'str'>\\n\")) and _remaining_input == \"\""
+        },
+        {
+          "stdin": [
+            "2.5"
+          ],
+          "check": "(answer == \"2.5\") and _remaining_input == \"\""
+        }
+      ],
+      "hint": {
+        "en": "input always returns a string when it successfully reads an answer.",
+        "nl": "input geeft altijd een string terug wanneer het succesvol een antwoord leest."
+      },
+      "hints": [
+        {
+          "en": "input always returns a string when it successfully reads an answer.",
+          "nl": "input geeft altijd een string terug wanneer het succesvol een antwoord leest."
+        },
+        {
+          "en": "Inspect the answer returned by input, not the prompt string.",
+          "nl": "Onderzoek het antwoord van input, niet de vraagstring."
+        },
+        {
+          "en": "A small fragment to adapt: `print(type(answer))`",
+          "nl": "Een klein fragment om aan te passen: `print(type(answer))`"
+        }
+      ],
+      "feedback": {
+        "en": "Inspect the answer returned by input, not the prompt string.",
+        "nl": "Onderzoek het antwoord van input, niet de vraagstring."
+      }
+    }
+  ],
+  "solutionNote": {
+    "en": "The digits belong to text until a conversion function interprets them as a number.",
+    "nl": "De cijfers horen bij tekst totdat een conversiefunctie ze als een getal interpreteert."
+  },
+  "inputs": [
+    "7"
+  ],
+  "retrievals": [
+    {
+      "id": "recall-python-v4-03-subtraction",
+      "sourceActivityId": "python-v4-03-subtraction",
+      "objectiveIds": [
+        "subtraction"
+      ],
+      "prompt": {
+        "en": "Recall “Find what remains”. What would borrowed - books produce? Try the earlier example from memory, then check it. Try selling exactly all the tickets. Then try one more than available and interpret the negative answer.",
+        "nl": "Haal “Bepaal wat overblijft” terug. Wat zou borrowed - books opleveren? Probeer het eerdere voorbeeld uit je geheugen en controleer daarna. Probeer precies alle kaartjes te verkopen. Probeer daarna één meer dan beschikbaar en verklaar het negatieve antwoord."
+      }
+    },
+    {
+      "id": "recall-python-v4-03-whole-groups",
+      "sourceActivityId": "python-v4-03-whole-groups",
+      "objectiveIds": [
+        "floor-division"
+      ],
+      "prompt": {
+        "en": "Recall “Count complete groups with //”. Why is the first result a smaller whole number? Try the earlier example from memory, then check it. Try one fewer item than box_size. How many complete boxes can you fill?",
+        "nl": "Haal “Tel volledige groepen met //” terug. Waarom is het eerste resultaat een kleiner geheel getal? Probeer het eerdere voorbeeld uit je geheugen en controleer daarna. Probeer één artikel minder dan box_size. Hoeveel volledige dozen kun je vullen?"
+      }
+    }
+  ]
+}

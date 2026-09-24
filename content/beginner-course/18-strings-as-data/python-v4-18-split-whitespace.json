@@ -1,0 +1,155 @@
+{
+  "id": "python-v4-18-split-whitespace",
+  "chapter": 18,
+  "group": "python-v4-module-18",
+  "title": {
+    "en": "Split ordinary whitespace",
+    "nl": "Splits gewone witruimte"
+  },
+  "kind": "coding",
+  "optional": false,
+  "runtime": "terminal",
+  "guidance": "guided",
+  "checkpointMode": "sequential",
+  "estimatedMinutes": 12,
+  "topicIds": [
+    "split-whitespace"
+  ],
+  "practices": [],
+  "requiredConcepts": [
+    "lists",
+    "string-iteration"
+  ],
+  "explanation": {
+    "en": "Text often arrives as a line containing several words separated by uneven spaces.",
+    "nl": "Tekst komt vaak als een regel met meerdere woorden gescheiden door ongelijke spaties."
+  },
+  "example": "",
+  "sections": [
+    {
+      "id": "python-v4-18-split-whitespace-example",
+      "topicIds": [
+        "split-whitespace"
+      ],
+      "heading": {
+        "en": "Follow a working example",
+        "nl": "Volg een werkend voorbeeld"
+      },
+      "body": {
+        "en": "text.split() with no separator groups consecutive whitespace and discards whitespace at either end. Spaces, tabs and newlines can all separate words. It returns a list of strings. Empty or whitespace-only text returns an empty list. The original text stays unchanged.",
+        "nl": "text.split() zonder scheidingsteken groepeert opeenvolgende witruimte en negeert witruimte aan beide uiteinden. Spaties, tabs en nieuwe regels kunnen allemaal woorden scheiden. Het geeft een lijst strings terug. Lege tekst of alleen witruimte geeft een lege lijst. De oorspronkelijke tekst blijft ongewijzigd."
+      },
+      "code": "text = \"  one\\t two\\nthree  \"\nprint(text.split())",
+      "output": "['one', 'two', 'three']\n",
+      "prediction": {
+        "en": "Why are there no empty strings in the result?",
+        "nl": "Waarom staan er geen lege strings in het resultaat?"
+      },
+      "takeaway": {
+        "en": "split() without arguments treats runs of whitespace as separators.",
+        "nl": "split() zonder argumenten behandelt reeksen witruimte als scheiding."
+      }
+    },
+    {
+      "id": "python-v4-18-split-whitespace-experiment",
+      "topicIds": [],
+      "heading": {
+        "en": "Try one change",
+        "nl": "Probeer één wijziging"
+      },
+      "body": {
+        "en": "Compare a tab character with the two literal characters backslash and t.",
+        "nl": "Vergelijk een tabteken met de twee letterlijke tekens backslash en t."
+      }
+    }
+  ],
+  "files": {
+    "main.py": "def word_count(text):\n    # Complete this function.\n    return None\n"
+  },
+  "solution": {
+    "main.py": "def word_count(text):\n    return len(text.split())\n"
+  },
+  "checkpoints": [
+    {
+      "id": "python-v4-18-split-whitespace-step-1",
+      "objectiveIds": [
+        "split-whitespace"
+      ],
+      "task": {
+        "en": "Return the number of whitespace-separated words.",
+        "nl": "Geef het aantal door witruimte gescheiden woorden terug."
+      },
+      "check": "callable(word_count)",
+      "probes": [
+        {
+          "call": {
+            "name": "word_count",
+            "args": [
+              " a\t b\nc "
+            ]
+          },
+          "check": "(_return == 3) and _error is None"
+        },
+        {
+          "call": {
+            "name": "word_count",
+            "args": [
+              "  "
+            ]
+          },
+          "check": "(_return == 0) and _error is None"
+        },
+        {
+          "call": {
+            "name": "word_count",
+            "args": [
+              "one"
+            ]
+          },
+          "check": "(_return == 1) and _error is None"
+        }
+      ],
+      "hint": {
+        "en": "split() without arguments treats runs of whitespace as separators.",
+        "nl": "split() zonder argumenten behandelt reeksen witruimte als scheiding."
+      },
+      "hints": [
+        {
+          "en": "split() without arguments treats runs of whitespace as separators.",
+          "nl": "split() zonder argumenten behandelt reeksen witruimte als scheiding."
+        },
+        {
+          "en": "Split without a separator and count the resulting elements.",
+          "nl": "Splits zonder scheidingsteken en tel de resulterende elementen."
+        },
+        {
+          "en": "A small fragment to adapt: `text.split()`",
+          "nl": "Een klein fragment om aan te passen: `text.split()`"
+        }
+      ],
+      "feedback": {
+        "en": "Split without a separator and count the resulting elements.",
+        "nl": "Splits zonder scheidingsteken en tel de resulterende elementen."
+      }
+    }
+  ],
+  "solutionNote": {
+    "en": "The default split handles varied whitespace without creating empty word entries.",
+    "nl": "Standaard split verwerkt verschillende witruimte zonder lege woorden te maken."
+  },
+  "inputs": [],
+  "retrievals": [
+    {
+      "id": "recall-python-v4-16-score-once",
+      "sourceActivityId": "python-v4-16-score-once",
+      "objectiveIds": [
+        "scoring",
+        "misses"
+      ],
+      "prompt": {
+        "en": "Recall “Score a miss once”. Would this condition still match on the next frame? Try the earlier example from memory, then check it. Leave the preview running after the miss. Check that the score stops increasing.",
+        "nl": "Haal “Tel een misser eenmaal” terug. Geldt deze voorwaarde in het volgende beeld nog steeds? Probeer het eerdere voorbeeld uit je geheugen en controleer daarna. Laat het voorbeeld na de misser draaien. Controleer dat de score niet verder stijgt."
+      }
+    }
+  ]
+}

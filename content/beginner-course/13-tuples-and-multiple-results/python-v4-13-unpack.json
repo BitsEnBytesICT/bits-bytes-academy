@@ -1,0 +1,167 @@
+{
+  "id": "python-v4-13-unpack",
+  "chapter": 13,
+  "group": "python-v4-module-13",
+  "title": {
+    "en": "Unpack a pair into names",
+    "nl": "Pak een paar uit in namen"
+  },
+  "kind": "coding",
+  "optional": false,
+  "runtime": "terminal",
+  "guidance": "guided",
+  "checkpointMode": "sequential",
+  "estimatedMinutes": 12,
+  "topicIds": [
+    "packing-unpacking"
+  ],
+  "practices": [],
+  "requiredConcepts": [
+    "tuples"
+  ],
+  "explanation": {
+    "en": "Descriptive names make coordinate calculations easier to follow than repeated indexes.",
+    "nl": "Beschrijvende namen maken coördinaatberekeningen eenvoudiger te volgen dan herhaalde indexen."
+  },
+  "example": "",
+  "sections": [
+    {
+      "id": "python-v4-13-unpack-example",
+      "topicIds": [
+        "packing-unpacking"
+      ],
+      "heading": {
+        "en": "Follow a working example",
+        "nl": "Volg een werkend voorbeeld"
+      },
+      "body": {
+        "en": "x, y = point unpacks two elements into two names. The number of target names must match the number of elements. Packing combines values into a tuple; unpacking gives each element a name again. This also works with a two-element list, but it does not change the original object.",
+        "nl": "x, y = point pakt twee elementen uit in twee namen. Het aantal doelnamen moet overeenkomen met het aantal elementen. Inpakken combineert waarden tot een tuple; uitpakken geeft elk element weer een naam. Dit werkt ook met een lijst van twee elementen, maar verandert het oorspronkelijke object niet."
+      },
+      "code": "point = (4, 7)\nx, y = point\nprint(x + 2, y)",
+      "output": "6 7\n",
+      "prediction": {
+        "en": "Which coordinate changed in the printed result?",
+        "nl": "Welke coördinaat veranderde in het afgedrukte resultaat?"
+      },
+      "takeaway": {
+        "en": "Match the number and order of unpacked names to the values.",
+        "nl": "Laat aantal en volgorde van uitgepakte namen bij de waarden passen."
+      }
+    },
+    {
+      "id": "python-v4-13-unpack-experiment",
+      "topicIds": [],
+      "heading": {
+        "en": "Try one change",
+        "nl": "Probeer één wijziging"
+      },
+      "body": {
+        "en": "Apply a shift and its opposite. Predict the final position.",
+        "nl": "Pas een verschuiving en de tegenovergestelde toe. Voorspel de eindpositie."
+      }
+    }
+  ],
+  "files": {
+    "main.py": "def shift(point, dx, dy):\n    # Complete this function.\n    return None\n"
+  },
+  "solution": {
+    "main.py": "def shift(point, dx, dy):\n    x, y = point\n    return (x + dx, y + dy)\n"
+  },
+  "checkpoints": [
+    {
+      "id": "python-v4-13-unpack-step-1",
+      "objectiveIds": [
+        "packing-unpacking"
+      ],
+      "task": {
+        "en": "Unpack point and return a new tuple moved by dx and dy.",
+        "nl": "Pak point uit en geef een nieuwe tuple terug die dx en dy is verschoven."
+      },
+      "check": "callable(shift)",
+      "probes": [
+        {
+          "call": {
+            "name": "shift",
+            "args": [
+              [
+                4,
+                7
+              ],
+              2,
+              -1
+            ]
+          },
+          "check": "(_return == (6,6)) and _error is None"
+        },
+        {
+          "call": {
+            "name": "shift",
+            "args": [
+              [
+                0,
+                0
+              ],
+              -3,
+              5
+            ]
+          },
+          "check": "(_return == (-3,5)) and _error is None"
+        }
+      ],
+      "hint": {
+        "en": "Match the number and order of unpacked names to the values.",
+        "nl": "Laat aantal en volgorde van uitgepakte namen bij de waarden passen."
+      },
+      "hints": [
+        {
+          "en": "Match the number and order of unpacked names to the values.",
+          "nl": "Laat aantal en volgorde van uitgepakte namen bij de waarden passen."
+        },
+        {
+          "en": "Name both coordinates before adding their corresponding changes.",
+          "nl": "Benoem beide coördinaten voordat je de bijbehorende veranderingen optelt."
+        },
+        {
+          "en": "A small fragment to adapt: `x, y = point`",
+          "nl": "Een klein fragment om aan te passen: `x, y = point`"
+        }
+      ],
+      "feedback": {
+        "en": "Name both coordinates before adding their corresponding changes.",
+        "nl": "Benoem beide coördinaten voordat je de bijbehorende veranderingen optelt."
+      }
+    }
+  ],
+  "solutionNote": {
+    "en": "Unpacking gives meaningful local names; returning a new tuple preserves the source position.",
+    "nl": "Uitpakken geeft betekenisvolle lokale namen; een nieuwe tuple teruggeven bewaart de bronpositie."
+  },
+  "inputs": [],
+  "retrievals": [
+    {
+      "id": "recall-python-v4-11-append",
+      "sourceActivityId": "python-v4-11-append",
+      "objectiveIds": [
+        "empty-lists",
+        "list-methods",
+        "append"
+      ],
+      "prompt": {
+        "en": "Recall “Start empty and append”. What would printing history.append(9) display? Try the earlier example from memory, then check it. Append an empty string and explain why the list is no longer empty.",
+        "nl": "Haal “Begin leeg en voeg achteraan toe” terug. Wat toont het afdrukken van history.append(9)? Probeer het eerdere voorbeeld uit je geheugen en controleer daarna. Voeg een lege string toe en leg uit waarom de lijst niet meer leeg is."
+      }
+    },
+    {
+      "id": "recall-python-v4-11-change-element",
+      "sourceActivityId": "python-v4-11-change-element",
+      "objectiveIds": [
+        "list-mutation"
+      ],
+      "prompt": {
+        "en": "Recall “Replace an element”. Did the number of elements change? Try the earlier example from memory, then check it. Have the caller print its original variable after the call.",
+        "nl": "Haal “Vervang een element” terug. Is het aantal elementen veranderd? Probeer het eerdere voorbeeld uit je geheugen en controleer daarna. Laat de aanroeper zijn oorspronkelijke variabele na de aanroep afdrukken."
+      }
+    }
+  ]
+}

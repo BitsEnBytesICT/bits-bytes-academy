@@ -1,0 +1,134 @@
+{
+  "id": "python-v4-23-methods",
+  "chapter": 23,
+  "group": "python-v4-module-23",
+  "title": {
+    "en": "Let an object perform an action",
+    "nl": "Laat een object een actie uitvoeren"
+  },
+  "kind": "coding",
+  "optional": false,
+  "runtime": "terminal",
+  "guidance": "guided",
+  "checkpointMode": "sequential",
+  "estimatedMinutes": 12,
+  "topicIds": [
+    "methods"
+  ],
+  "practices": [],
+  "requiredConcepts": [
+    "self",
+    "instance-attributes"
+  ],
+  "explanation": {
+    "en": "Methods keep operations close to the state they use.",
+    "nl": "Methoden houden bewerkingen dicht bij de toestand die ze gebruiken."
+  },
+  "example": "",
+  "sections": [
+    {
+      "id": "python-v4-23-methods-example",
+      "topicIds": [
+        "methods"
+      ],
+      "heading": {
+        "en": "Follow a working example",
+        "nl": "Volg een werkend voorbeeld"
+      },
+      "body": {
+        "en": "A method is a function defined in a class. In counter.increment(), Python supplies counter as self to increment(self). The body can read or change self.value. A method with no explicit return returns None, just like an ordinary function. Keep the method definition at the same class-body indentation as __init__.",
+        "nl": "Een methode is een functie binnen een klasse. In counter.increment() levert Python counter als self aan increment(self). De inhoud kan self.value lezen of veranderen. Een methode zonder expliciete return geeft None, net als een gewone functie. Zet de methodedefinitie op dezelfde klasse-inspringing als __init__."
+      },
+      "code": "class Counter:\n    def __init__(self):\n        self.value = 0\n    def increment(self):\n        self.value += 1\ncounter = Counter()\ncounter.increment()\nprint(counter.value)",
+      "output": "1\n",
+      "prediction": {
+        "en": "Which object’s state does self.value identify?",
+        "nl": "Van welk object benoemt self.value de toestand?"
+      },
+      "takeaway": {
+        "en": "Calling instance.method() supplies the instance as self.",
+        "nl": "instance.method() aanroepen levert de instantie als self."
+      }
+    },
+    {
+      "id": "python-v4-23-methods-experiment",
+      "topicIds": [],
+      "heading": {
+        "en": "Try one change",
+        "nl": "Probeer één wijziging"
+      },
+      "body": {
+        "en": "Create two lamps and toggle only one.",
+        "nl": "Maak twee lampjes en schakel er maar één om."
+      }
+    }
+  ],
+  "files": {
+    "main.py": "class Lamp:\n    def __init__(self):\n        self.on = False\n    def toggle(self):\n        pass\n"
+  },
+  "solution": {
+    "main.py": "class Lamp:\n    def __init__(self):\n        self.on = False\n    def toggle(self):\n        self.on = not self.on\n"
+  },
+  "checkpoints": [
+    {
+      "id": "python-v4-23-methods-step-1",
+      "objectiveIds": [
+        "methods"
+      ],
+      "task": {
+        "en": "Make toggle() reverse this lamp’s on state on every call.",
+        "nl": "Laat toggle() de on-toestand van dit lampje bij elke aanroep omkeren."
+      },
+      "check": "callable(Lamp)",
+      "probes": [
+        {
+          "call": {
+            "name": "Lamp",
+            "args": []
+          },
+          "check": "_return.on is False and _return.toggle() is None and _return.on is True and _return.toggle() is None and _return.on is False"
+        }
+      ],
+      "hint": {
+        "en": "Calling instance.method() supplies the instance as self.",
+        "nl": "instance.method() aanroepen levert de instantie als self."
+      },
+      "hints": [
+        {
+          "en": "Calling instance.method() supplies the instance as self.",
+          "nl": "instance.method() aanroepen levert de instantie als self."
+        },
+        {
+          "en": "Use not on the instance’s current Boolean value.",
+          "nl": "Gebruik not op de huidige booleaanse waarde van de instantie."
+        },
+        {
+          "en": "A small fragment to adapt: `self.on = not self.on`",
+          "nl": "Een klein fragment om aan te passen: `self.on = not self.on`"
+        }
+      ],
+      "feedback": {
+        "en": "Use not on the instance’s current Boolean value.",
+        "nl": "Gebruik not op de huidige booleaanse waarde van de instantie."
+      }
+    }
+  ],
+  "solutionNote": {
+    "en": "The method updates its own instance, and applying not twice restores the original state.",
+    "nl": "De methode verandert zijn eigen instantie en tweemaal not herstelt de oorspronkelijke toestand."
+  },
+  "inputs": [],
+  "retrievals": [
+    {
+      "id": "recall-python-v4-21-delimiter",
+      "sourceActivityId": "python-v4-21-delimiter",
+      "objectiveIds": [
+        "csv-delimiters"
+      ],
+      "prompt": {
+        "en": "Recall “Read a different CSV dialect”. Why does B;C remain one field? Try the earlier example from memory, then check it. Create a tab-separated fixture and retain a comma inside one field.",
+        "nl": "Haal “Lees een ander CSV-dialect” terug. Waarom blijft B;C één veld? Probeer het eerdere voorbeeld uit je geheugen en controleer daarna. Maak een tabgescheiden voorbeeld en behoud een komma binnen één veld."
+      }
+    }
+  ]
+}

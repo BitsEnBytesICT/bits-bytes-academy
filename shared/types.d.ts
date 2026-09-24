@@ -36,13 +36,25 @@ export interface Checkpoint {
   }[];
 }
 export interface LessonSection {
+  exampleInputs?: string[];
+  exampleFiles?: Record<string, string>;
   heading: Localized;
   body: Localized;
   code?: string;
   output?: string;
   takeaway?: Localized;
+  prediction?: Localized;
+  codeLanguage?: "python" | "shell";
+  callout?: { title: Localized; body: Localized };
 }
 export interface Exercise {
+  checkpointMode?: "sequential" | "all-at-once";
+  retrievals?: {
+    id: string;
+    sourceActivityId: string;
+    objectiveIds: string[];
+    prompt: Localized;
+  }[];
   estimatedMinutes: number;
   id: string;
   chapter: number;
@@ -73,7 +85,12 @@ export interface Project extends Omit<Exercise, "kind" | "checkpoints"> {
     hints: Localized[];
   }[];
   suggestedTests: Localized[];
+  manualTests?: { input: Localized; expected: Localized }[];
   references: string[];
+}
+export interface ProjectStage extends Omit<Project, "kind"> {
+  kind: "project-stage";
+  projectId: string;
 }
 export interface Question {
   id: string;
@@ -81,6 +98,9 @@ export interface Question {
   code?: string;
   choices: { id: string; label: Localized; reason: Localized }[];
   answer: string;
+  objectiveIds?: string[];
+  reviewActivityIds?: string[];
+  category?: "prediction" | "completion" | "debugging" | "application";
   codeBlank?: {
     prompt: Localized;
     segments: string[];
@@ -98,13 +118,15 @@ export interface Quiz {
   kind: "quiz";
   optional: boolean;
   questions: Question[];
+  alternateQuestions?: Question[];
 }
-export type Activity = Exercise | Quiz | Project;
+export type Activity = Exercise | Quiz | Project | ProjectStage;
 export interface Chapter {
   number: number;
   slug: string;
   title: Localized;
   outcome: string;
+  outcomes?: Localized[];
   activityIds: string[];
   pathId?: string;
 }
@@ -120,6 +142,8 @@ export interface Course {
     projectId: string;
   }[];
   availability?: "available";
+  description?: Localized;
+  reviewMinutes?: [number, number];
   groups: {
     id: string;
     chapter: number;
@@ -153,6 +177,7 @@ export interface Workspace {
     finished: boolean;
     attempt: number;
     format?: 2;
+    formId?: "a" | "b";
     placements?: Record<string, (string | null)[]>;
   };
 }

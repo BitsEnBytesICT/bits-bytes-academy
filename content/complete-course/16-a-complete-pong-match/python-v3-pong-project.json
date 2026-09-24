@@ -1,0 +1,221 @@
+{
+  "id": "python-v3-pong-project",
+  "chapter": 16,
+  "estimatedMinutes": 150,
+  "group": "python-v3-pong-project",
+  "kind": "project",
+  "optional": false,
+  "runtime": "pygame",
+  "guidance": "independent",
+  "title": {
+    "en": "Pong: finish your game",
+    "nl": "Pong: maak je spel af"
+  },
+  "explanation": {
+    "en": "Reopen your earlier Pong and turn rallies into a complete match. Your saved files are shared with the first visit. Preserve a playable version while adding scoring, serving, winning, restarting, reliable collisions and one personal enhancement. Classes and saved settings/results are available design choices, not a prescribed architecture. You decide how to organise the program and when it is finished. Use your playtest table from module 16 and explain one design decision in a comment or notes file.",
+    "nl": "Open je eerdere Pong opnieuw en maak van rally’s een volledige wedstrijd. Je opgeslagen bestanden worden met het eerste bezoek gedeeld. Behoud een speelbare versie terwijl je score, serveren, winnen, herstarten, betrouwbare botsingen en één persoonlijke uitbreiding toevoegt. Klassen en opgeslagen instellingen/resultaten zijn beschikbare ontwerpkeuzes, geen verplichte architectuur. Jij bepaalt de programmaorganisatie en wanneer het af is. Gebruik je speltesttabel uit module 16 en verklaar één ontwerpkeuze in commentaar of een notitiebestand."
+  },
+  "files": {
+    "main.py": "# Browser entry point supplied by the course.\nimport asyncio\nimport pygame\nimport game\n\nasync def main():\n    pygame.init()\n    screen = pygame.display.set_mode((640, 400))\n    clock = pygame.time.Clock()\n    running = True\n    x, y = 320.0, 200.0\n    vx, vy = 200.0, 100.0\n    left_y, right_y = 170.0, 170.0\n    while running:\n        dt = min(clock.tick() / 1000, 0.05)\n        for event in pygame.event.get():\n            if event.type == pygame.QUIT:\n                running = False\n            if event.type == pygame.KEYDOWN and event.key == pygame.K_ESCAPE:\n                running = False\n        keys = pygame.key.get_pressed()\n        if keys[pygame.K_w]:\n            left_y -= 240 * dt\n        if keys[pygame.K_s]:\n            left_y += 240 * dt\n        if keys[pygame.K_UP]:\n            right_y -= 240 * dt\n        if keys[pygame.K_DOWN]:\n            right_y += 240 * dt\n        left_y = max(0, min(340, left_y))\n        right_y = max(0, min(340, right_y))\n        x, y, vx, vy = game.step(x, y, vx, vy, dt, left_y, right_y)\n        screen.fill((16, 23, 39))\n        pygame.draw.rect(screen, (235, 240, 250), (20, left_y, 10, 60))\n        pygame.draw.rect(screen, (235, 240, 250), (610, right_y, 10, 60))\n        pygame.draw.circle(screen, (255, 170, 40), (int(x), int(y)), 6)\n        pygame.display.flip()\n        await asyncio.sleep(1 / 60)\n    pygame.quit()\n\nasyncio.run(main())\n",
+    "game.py": "import pygame\n\ndef step(x, y, vx, vy, dt, left_y, right_y):\n    # Build your rally rules here. The supplied caller handles display and keys.\n    return x, y, vx, vy\n"
+  },
+  "example": "",
+  "sections": [],
+  "solution": {},
+  "checkpoints": [],
+  "solutionNote": {
+    "en": "There is no single reference solution. You choose the design and assess it with your own tests.",
+    "nl": "Er is geen enkele referentieoplossing. Jij kiest het ontwerp en beoordeelt het met je eigen tests."
+  },
+  "milestones": [
+    {
+      "id": "pong-upgrade-match",
+      "title": {
+        "en": "A complete match",
+        "nl": "Een volledige wedstrijd"
+      },
+      "description": {
+        "en": "Add one point per miss, a serve phase, a winning target and a deliberate restart. Keep the current result visible.",
+        "nl": "Voeg één punt per misser, een serveerfase, een winstdoel en een bewuste herstart toe. Houd het huidige resultaat zichtbaar."
+      },
+      "hints": [
+        {
+          "en": "Draw the phase transitions before changing the loop.",
+          "nl": "Teken de faseovergangen vóór je de lus wijzigt."
+        },
+        {
+          "en": "Scoring must leave the playing phase.",
+          "nl": "Scoren moet de speelfase verlaten."
+        },
+        {
+          "en": "Test a target of 1 to reach the winning state quickly.",
+          "nl": "Test een doel van 1 om snel de winsttoestand te bereiken."
+        }
+      ]
+    },
+    {
+      "id": "pong-upgrade-contact",
+      "title": {
+        "en": "Reliable control and contact",
+        "nl": "Betrouwbare besturing en contact"
+      },
+      "description": {
+        "en": "Support simultaneous controls, keep paddles inside the court, correct overlap and check approach direction before reflecting. Playtest both sides and several frame timings.",
+        "nl": "Ondersteun gelijktijdige besturing, houd batjes binnen het veld, corrigeer overlap en controleer naderingsrichting vóór terugkaatsen. Test beide kanten en verschillende beeldtijden."
+      },
+      "hints": [
+        {
+          "en": "Test position and direction together at contact.",
+          "nl": "Test positie en richting samen bij contact."
+        },
+        {
+          "en": "Separate the ball just beyond the contacted edge.",
+          "nl": "Zet de bal net voorbij de geraakte rand."
+        },
+        {
+          "en": "If you raise speed, consider smaller physics steps to avoid skipping a paddle.",
+          "nl": "Overweeg bij hogere snelheid kleinere simulatiestappen om overslaan van een batje te voorkomen."
+        }
+      ]
+    },
+    {
+      "id": "pong-upgrade-design",
+      "title": {
+        "en": "Make the structure explainable",
+        "nl": "Maak de structuur uitlegbaar"
+      },
+      "description": {
+        "en": "Separate drawing, controls and rules where useful. Choose functions, modules and/or small classes based on the responsibilities you can name. Preserve independent object state if using classes.",
+        "nl": "Scheid tekenen, besturing en regels waar nuttig. Kies functies, modules en/of kleine klassen op basis van benoembare verantwoordelijkheden. Behoud onafhankelijke objecttoestand bij klassen."
+      },
+      "hints": [
+        {
+          "en": "Look for repeated groups of state and behaviour.",
+          "nl": "Zoek herhaalde groepen toestand en gedrag."
+        },
+        {
+          "en": "Refactor one responsibility at a time and replay baseline tests.",
+          "nl": "Refactor één verantwoordelijkheid tegelijk en herhaal uitgangstests."
+        },
+        {
+          "en": "A paddle object can own position and movement without owning the entire match.",
+          "nl": "Een batjesobject kan positie en beweging beheren zonder de hele wedstrijd te beheren."
+        }
+      ]
+    },
+    {
+      "id": "pong-upgrade-personal",
+      "title": {
+        "en": "Make it yours",
+        "nl": "Maak het van jou"
+      },
+      "description": {
+        "en": "Add one personal feature: a pause menu, configurable target, saved results, a visual theme or another idea you can test. Explain its controls and test its interaction with restart.",
+        "nl": "Voeg één persoonlijke functie toe: pauzemenu, instelbaar doel, opgeslagen resultaten, een visueel thema of een ander testbaar idee. Leg de bediening uit en test de samenhang met herstart."
+      },
+      "hints": [
+        {
+          "en": "Keep the feature small enough to complete and explain.",
+          "nl": "Houd de functie klein genoeg om af te maken en uit te leggen."
+        },
+        {
+          "en": "Define a normal case and a boundary case before implementation.",
+          "nl": "Definieer een gewoon geval en een grensgeval vóór implementatie."
+        },
+        {
+          "en": "For saved settings, validate loaded values before applying them to the game.",
+          "nl": "Valideer bij opgeslagen instellingen de geladen waarden vóór toepassen in het spel."
+        }
+      ]
+    }
+  ],
+  "suggestedTests": [
+    {
+      "en": "Hold W and Down together; then press opposite controls for one paddle. Check both edges and focus loss/return.",
+      "nl": "Houd W en Omlaag samen ingedrukt; druk daarna tegengestelde besturing voor één batje. Controleer beide randen en focusverlies/terugkeer."
+    },
+    {
+      "en": "Bounce from both walls and both paddles, including edge overlaps and an already retreating ball. A bounce must not flicker back and forth.",
+      "nl": "Bots tegen beide muren en batjes, inclusief randoverlap en een al teruggaande bal. Een botsing mag niet heen en weer flikkeren."
+    },
+    {
+      "en": "Miss on each side, wait before serving, reach a winning target, and restart. Each miss counts once; restart clears the intended state.",
+      "nl": "Mis aan beide kanten, wacht vóór serveren, bereik een winstdoel en herstart. Elke misser telt één keer; herstart wist de bedoelde toestand."
+    },
+    {
+      "en": "Finish normally, Stop during play, then Run again. If using saved data, reopen its file after navigation and reload.",
+      "nl": "Rond normaal af, gebruik Stop tijdens spelen en voer opnieuw uit. Gebruik je opgeslagen gegevens, heropen het bestand na navigatie en herladen."
+    }
+  ],
+  "references": [
+    "python-v3-8-05",
+    "python-v3-14-06",
+    "python-v3-15-06",
+    "python-v3-16-02",
+    "python-v3-16-03",
+    "python-v3-16-05"
+  ],
+  "continueFrom": "python-v2-pong-project",
+  "retrievals": [
+    {
+      "id": "recall-python-v3-16-01",
+      "sourceActivityId": "python-v3-16-01",
+      "objectiveIds": [
+        "game-state",
+        "serving",
+        "winning",
+        "restarting"
+      ],
+      "prompt": {
+        "en": "Trace serve, playing and won through space, point and restart. State what must reset and what persists.",
+        "nl": "Volg serve, playing en won bij spatie, punt en herstart. Benoem wat reset en wat bewaard blijft."
+      }
+    },
+    {
+      "id": "recall-python-v3-16-02",
+      "sourceActivityId": "python-v3-16-02",
+      "objectiveIds": [
+        "scoring-once"
+      ],
+      "prompt": {
+        "en": "Test the same missed-ball position twice. Explain why the match must award exactly one point.",
+        "nl": "Test dezelfde positie van een gemiste bal tweemaal. Leg uit waarom de wedstrijd precies één punt moet toekennen."
+      }
+    },
+    {
+      "id": "recall-python-v3-16-03",
+      "sourceActivityId": "python-v3-16-03",
+      "objectiveIds": [
+        "game-classes",
+        "collision-correction"
+      ],
+      "prompt": {
+        "en": "Explain the responsibilities of a paddle class and collision helper. Test overlap while approaching and while moving away.",
+        "nl": "Leg de verantwoordelijkheden van een batjesklasse en botsingshelper uit. Test overlap bij naderen en bij wegbewegen."
+      }
+    },
+    {
+      "id": "recall-python-v3-16-04",
+      "sourceActivityId": "python-v3-16-04",
+      "objectiveIds": [
+        "game-persistence"
+      ],
+      "prompt": {
+        "en": "Load a saved setting with missing, malformed and out-of-range data; save a result and reopen it.",
+        "nl": "Laad een instelling met ontbrekende, ongeldige en buiten-bereikgegevens; bewaar een resultaat en heropen het."
+      }
+    },
+    {
+      "id": "recall-python-v3-16-05",
+      "sourceActivityId": "python-v3-16-05",
+      "objectiveIds": [
+        "playtesting",
+        "game-review"
+      ],
+      "prompt": {
+        "en": "Playtest your personal change, pause/focus, simultaneous controls, Stop and another Run. Record one reproducible bug and its repair.",
+        "nl": "Test je eigen wijziging, pauze/focus, gelijktijdige besturing, Stop en opnieuw Uitvoeren. Noteer één reproduceerbare fout en de reparatie."
+      }
+    }
+  ]
+}

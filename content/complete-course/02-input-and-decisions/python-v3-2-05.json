@@ -1,0 +1,172 @@
+{
+  "id": "python-v3-2-05",
+  "chapter": 2,
+  "group": "python-v3-module-2",
+  "title": {
+    "en": "A small menu",
+    "nl": "Een klein menu"
+  },
+  "kind": "coding",
+  "optional": false,
+  "runtime": "terminal",
+  "guidance": "independent",
+  "estimatedMinutes": 14,
+  "explanation": {
+    "en": "Build a tiny menu from a behaviour brief. Read an exact lowercase command: tea costs 2, juice costs 3, and water costs 0. Any other command is unavailable.",
+    "nl": "Bouw een klein menu uit een gedragsbeschrijving. Lees een exact commando in kleine letters: tea kost 2, juice kost 3 en water kost 0. Elk ander commando is niet beschikbaar."
+  },
+  "example": "",
+  "topicIds": [
+    "elif"
+  ],
+  "prerequisites": [
+    "python-v3-2-04"
+  ],
+  "sections": [
+    {
+      "topicIds": [
+        "elif"
+      ],
+      "heading": {
+        "en": "Several alternatives",
+        "nl": "Meerdere alternatieven"
+      },
+      "body": {
+        "en": "elif means “otherwise, if”. Python tests branches in order and runs only the first matching branch. The final else handles everything remaining. Two separate if statements would be two independent decisions.",
+        "nl": "elif betekent “anders, als”. Python test takken op volgorde en voert alleen de eerste passende tak uit. De laatste else handelt alle overige gevallen af. Twee losse if-opdrachten zouden twee onafhankelijke beslissingen zijn."
+      },
+      "code": "mode = \"walk\"\nif mode == \"bike\":\n    print(10)\nelif mode == \"walk\":\n    print(30)\nelse:\n    print(\"Unknown\")",
+      "output": "30\n",
+      "prediction": {
+        "en": "Would the final else run after the matching elif?",
+        "nl": "Zou de laatste else na de passende elif worden uitgevoerd?"
+      }
+    },
+    {
+      "topicIds": [],
+      "heading": {
+        "en": "Try a changed input",
+        "nl": "Probeer gewijzigde invoer"
+      },
+      "body": {
+        "en": "Try tea, juice, water, an empty line and Tea. Explain why Tea is unknown here. Later you will learn how to normalise text.",
+        "nl": "Probeer tea, juice, water, een lege regel en Tea. Leg uit waarom Tea hier onbekend is. Later leer je tekst normaliseren."
+      }
+    }
+  ],
+  "files": {
+    "main.py": "# Read command, choose a price, and display a result.\n"
+  },
+  "solution": {
+    "main.py": "command = input(\"Drink: \")\nif command == \"tea\":\n    price = 2\nelif command == \"juice\":\n    price = 3\nelif command == \"water\":\n    price = 0\nelse:\n    price = -1\nif price >= 0:\n    print(f\"Price: {price}\")\nelse:\n    print(\"Unavailable\")\n"
+  },
+  "checkpoints": [
+    {
+      "objectiveIds": [
+        "elif"
+      ],
+      "task": {
+        "en": "Read command. Set price to 2 for tea, 3 for juice, 0 for water, or -1 for any other command.",
+        "nl": "Lees command. Geef price 2 voor tea, 3 voor juice, 0 voor water of -1 voor elk ander commando."
+      },
+      "check": "price == 2",
+      "hints": [
+        {
+          "en": "Use one ordered selection for mutually exclusive drinks.",
+          "nl": "Gebruik één geordende keuze voor elkaar uitsluitende dranken."
+        },
+        {
+          "en": "Use if, then elif branches, then an else fallback.",
+          "nl": "Gebruik if, dan elif-takken en daarna een else-terugval."
+        },
+        {
+          "en": "elif command == \"juice\":\n    price = 3",
+          "nl": "elif command == \"juice\":\n    price = 3"
+        }
+      ],
+      "hint": {
+        "en": "Use one ordered selection for mutually exclusive drinks.",
+        "nl": "Gebruik één geordende keuze voor elkaar uitsluitende dranken."
+      },
+      "feedback": {
+        "en": "Water is free, not unavailable. Unknown commands use -1.",
+        "nl": "Water is gratis, niet onbeschikbaar. Onbekende commando’s gebruiken -1."
+      },
+      "probes": [
+        {
+          "stdin": [
+            "juice"
+          ],
+          "check": "price == 3"
+        },
+        {
+          "stdin": [
+            "water"
+          ],
+          "check": "price == 0"
+        },
+        {
+          "stdin": [
+            "coffee"
+          ],
+          "check": "price == -1"
+        }
+      ],
+      "id": "python-v3-2-05-step-1"
+    },
+    {
+      "objectiveIds": [
+        "elif"
+      ],
+      "task": {
+        "en": "For a known drink, display \"Price: \" followed by price. Otherwise display \"Unavailable\".",
+        "nl": "Toon bij een bekende drank \"Price: \" gevolgd door price. Toon anders \"Unavailable\"."
+      },
+      "check": "\"Price: 2\" in _stdout",
+      "hints": [
+        {
+          "en": "The sentinel -1 is not a price to display.",
+          "nl": "De signaalwaarde -1 is geen prijs om te tonen."
+        },
+        {
+          "en": "A price of zero is valid: include the equality boundary.",
+          "nl": "Een prijs van nul is geldig: neem de gelijkheidsgrens mee."
+        },
+        {
+          "en": "if price >= 0:\n    print(f\"Price: {price}\")",
+          "nl": "if price >= 0:\n    print(f\"Price: {price}\")"
+        }
+      ],
+      "hint": {
+        "en": "The sentinel -1 is not a price to display.",
+        "nl": "De signaalwaarde -1 is geen prijs om te tonen."
+      },
+      "feedback": {
+        "en": "Check a free drink and an unknown command separately.",
+        "nl": "Controleer een gratis drank en een onbekend commando apart."
+      },
+      "probes": [
+        {
+          "stdin": [
+            "water"
+          ],
+          "check": "\"Price: 0\" in _stdout and \"Unavailable\" not in _stdout"
+        },
+        {
+          "stdin": [
+            ""
+          ],
+          "check": "\"Unavailable\" in _stdout and \"Price:\" not in _stdout"
+        }
+      ],
+      "id": "python-v3-2-05-step-2"
+    }
+  ],
+  "solutionNote": {
+    "en": "The menu stores a result first and then displays it. Using >= 0 preserves the free-water case. Equivalent branch arrangements are accepted when they keep the same behaviour.",
+    "nl": "Het menu bewaart eerst een resultaat en toont het daarna. >= 0 behoudt het geval van gratis water. Andere vertakkingen zijn toegestaan als ze hetzelfde gedrag hebben."
+  },
+  "inputs": [
+    "tea"
+  ]
+}

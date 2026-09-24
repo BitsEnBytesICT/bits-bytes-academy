@@ -1,0 +1,165 @@
+{
+  "id": "python-v4-11-indexes",
+  "chapter": 11,
+  "group": "python-v4-module-11",
+  "title": {
+    "en": "Select a position",
+    "nl": "Kies een positie"
+  },
+  "kind": "coding",
+  "optional": false,
+  "runtime": "terminal",
+  "guidance": "guided",
+  "checkpointMode": "sequential",
+  "estimatedMinutes": 12,
+  "topicIds": [
+    "indexing",
+    "negative-indexing"
+  ],
+  "practices": [],
+  "requiredConcepts": [
+    "lists"
+  ],
+  "explanation": {
+    "en": "An index selects one item from an ordered list.",
+    "nl": "Een index kiest één item uit een geordende lijst."
+  },
+  "example": "",
+  "sections": [
+    {
+      "id": "python-v4-11-indexes-example",
+      "topicIds": [
+        "indexing",
+        "negative-indexing"
+      ],
+      "heading": {
+        "en": "Follow a working example",
+        "nl": "Volg een werkend voorbeeld"
+      },
+      "body": {
+        "en": "items[0] selects the first element: Python counts forward from zero. items[-1] selects the last element and [-2] the one before it. The brackets after a list mean access, unlike brackets used to create a list. An index outside the list raises IndexError. An empty list has no first or last item.",
+        "nl": "items[0] kiest het eerste element: Python telt vooruit vanaf nul. items[-1] kiest het laatste element en [-2] het element daarvoor. Haakjes na een lijst betekenen toegang, anders dan haakjes om een lijst te maken. Een index buiten de lijst veroorzaakt IndexError. Een lege lijst heeft geen eerste of laatste item."
+      },
+      "code": "colours = [\"red\", \"green\", \"blue\"]\nprint(colours[0])\nprint(colours[-1])",
+      "output": "red\nblue\n",
+      "prediction": {
+        "en": "What does colours[1] select?",
+        "nl": "Wat kiest colours[1]?"
+      },
+      "takeaway": {
+        "en": "Positive indexes start at zero; negative indexes count back from the end.",
+        "nl": "Positieve indexen beginnen bij nul; negatieve indexen tellen terug vanaf het einde."
+      }
+    },
+    {
+      "id": "python-v4-11-indexes-experiment",
+      "topicIds": [],
+      "heading": {
+        "en": "Try one change",
+        "nl": "Probeer één wijziging"
+      },
+      "body": {
+        "en": "Explain why the single-element case repeats the same value.",
+        "nl": "Leg uit waarom het geval met één element dezelfde waarde herhaalt."
+      }
+    }
+  ],
+  "files": {
+    "main.py": "def ends(items):\n    # Complete this function.\n    return None\n"
+  },
+  "solution": {
+    "main.py": "def ends(items):\n    return [items[0], items[-1]]\n"
+  },
+  "checkpoints": [
+    {
+      "id": "python-v4-11-indexes-step-1",
+      "objectiveIds": [
+        "indexing",
+        "negative-indexing"
+      ],
+      "task": {
+        "en": "For a nonempty list, return a list containing its first and last elements.",
+        "nl": "Geef voor een niet-lege lijst een lijst terug met het eerste en laatste element."
+      },
+      "check": "callable(ends)",
+      "probes": [
+        {
+          "call": {
+            "name": "ends",
+            "args": [
+              [
+                2,
+                4,
+                8
+              ]
+            ]
+          },
+          "check": "(_return == [2,8]) and _error is None"
+        },
+        {
+          "call": {
+            "name": "ends",
+            "args": [
+              [
+                "only"
+              ]
+            ]
+          },
+          "check": "(_return == [\"only\",\"only\"]) and _error is None"
+        }
+      ],
+      "hint": {
+        "en": "Positive indexes start at zero; negative indexes count back from the end.",
+        "nl": "Positieve indexen beginnen bij nul; negatieve indexen tellen terug vanaf het einde."
+      },
+      "hints": [
+        {
+          "en": "Positive indexes start at zero; negative indexes count back from the end.",
+          "nl": "Positieve indexen beginnen bij nul; negatieve indexen tellen terug vanaf het einde."
+        },
+        {
+          "en": "Use one forward index and one index relative to the end.",
+          "nl": "Gebruik één voorwaartse index en één index vanaf het einde."
+        },
+        {
+          "en": "A small fragment to adapt: `items[-1]`",
+          "nl": "Een klein fragment om aan te passen: `items[-1]`"
+        }
+      ],
+      "feedback": {
+        "en": "Use one forward index and one index relative to the end.",
+        "nl": "Gebruik één voorwaartse index en één index vanaf het einde."
+      }
+    }
+  ],
+  "solutionNote": {
+    "en": "The first and last position may refer to the same element.",
+    "nl": "De eerste en laatste positie kunnen hetzelfde element aanwijzen."
+  },
+  "inputs": [],
+  "retrievals": [
+    {
+      "id": "recall-python-v4-09-multiple-parameters",
+      "sourceActivityId": "python-v4-09-multiple-parameters",
+      "objectiveIds": [
+        "multiple-parameters",
+        "positional-arguments"
+      ],
+      "prompt": {
+        "en": "Recall “Use two arguments”. Why does swapping the arguments change the result? Try the earlier example from memory, then check it. Try quantity zero and explain the result.",
+        "nl": "Haal “Gebruik twee argumenten” terug. Waarom verandert het resultaat als je argumenten omwisselt? Probeer het eerdere voorbeeld uit je geheugen en controleer daarna. Probeer hoeveelheid nul en leg het resultaat uit."
+      }
+    },
+    {
+      "id": "recall-python-v4-09-ticket-function",
+      "sourceActivityId": "python-v4-09-ticket-function",
+      "objectiveIds": [
+        "functions-review"
+      ],
+      "prompt": {
+        "en": "Recall “Build a reusable ticket calculation”. What would remaining(8, -1) return? Try the earlier example from memory, then check it. Add a named-argument test that overrides price.",
+        "nl": "Haal “Bouw een herbruikbare ticketberekening” terug. Wat geeft remaining(8, -1) terug? Probeer het eerdere voorbeeld uit je geheugen en controleer daarna. Voeg een test met benoemde argumenten toe die price vervangt."
+      }
+    }
+  ]
+}

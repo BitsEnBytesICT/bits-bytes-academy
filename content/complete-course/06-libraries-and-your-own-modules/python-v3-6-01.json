@@ -1,0 +1,194 @@
+{
+  "id": "python-v3-6-01",
+  "chapter": 6,
+  "group": "python-v3-module-6",
+  "title": {
+    "en": "Use a library",
+    "nl": "Gebruik een bibliotheek"
+  },
+  "kind": "coding",
+  "optional": false,
+  "runtime": "terminal",
+  "guidance": "guided",
+  "estimatedMinutes": 14,
+  "explanation": {
+    "en": "Use a standard-library function instead of inventing a rounding rule. Imports make a module’s tools available to your program.",
+    "nl": "Gebruik een standaardbibliotheekfunctie in plaats van zelf een afrondregel te verzinnen. Imports maken hulpmiddelen van een module beschikbaar voor je programma."
+  },
+  "example": "",
+  "topicIds": [
+    "imports",
+    "from-import",
+    "aliases",
+    "documentation",
+    "install-vs-import"
+  ],
+  "prerequisites": [
+    "python-v3-5-05"
+  ],
+  "sections": [
+    {
+      "topicIds": [
+        "imports",
+        "from-import",
+        "aliases",
+        "documentation",
+        "install-vs-import"
+      ],
+      "heading": {
+        "en": "Read a small API contract",
+        "nl": "Lees een kleine API-afspraak"
+      },
+      "body": {
+        "en": "import math gives you math.ceil(x), which returns the smallest integer at least x. from math import ceil lets you call ceil(x) directly; import math as m uses m.ceil(x). These are naming choices, not different calculations. math is included with Python. Third-party packages must be installed in an environment before importing them; this course already bundles pygame-ce. Read the argument and return descriptions in the [official math documentation](https://docs.python.org/3/library/math.html#math.ceil).",
+        "nl": "import math geeft je math.ceil(x), het kleinste gehele getal dat minstens x is. from math import ceil laat je direct ceil(x) aanroepen; import math as m gebruikt m.ceil(x). Dit zijn naamkeuzes, geen andere berekeningen. math zit bij Python. Externe pakketten moeten vóór importeren in een omgeving zijn geïnstalleerd; deze cursus bundelt pygame-ce al. Lees de argument- en terugkeerbeschrijvingen in de [officiële math-documentatie](https://docs.python.org/3/library/math.html#math.ceil)."
+      },
+      "code": "import math as m\nfrom math import floor\nprint(m.ceil(2.2))\nprint(floor(2.2))",
+      "output": "3\n2\n",
+      "prediction": {
+        "en": "Which tool rounds upward? What would both return for 2.0?",
+        "nl": "Welk hulpmiddel rondt omhoog af? Wat zouden beide voor 2.0 geven?"
+      }
+    },
+    {
+      "topicIds": [],
+      "heading": {
+        "en": "Try a changed input",
+        "nl": "Probeer gewijzigde invoer"
+      },
+      "body": {
+        "en": "Look up floor in the linked documentation. Predict floor(-2.2) and ceil(-2.2), then try them outside the nonnegative billing function.",
+        "nl": "Zoek floor op in de gekoppelde documentatie. Voorspel floor(-2.2) en ceil(-2.2) en probeer ze buiten de factuurfunctie voor niet-negatieve waarden."
+      }
+    }
+  ],
+  "files": {
+    "main.py": "# Import a math tool.\ndef billed_minutes(seconds):\n    return 0\n\nprint(billed_minutes(61))\n"
+  },
+  "solution": {
+    "main.py": "import math as m\nfrom math import floor\n\ndef billed_minutes(seconds):\n    return m.ceil(seconds / 60)\n\nwhole = floor(2.8)\nprint(billed_minutes(61))\n"
+  },
+  "checkpoints": [
+    {
+      "objectiveIds": [
+        "imports",
+        "aliases",
+        "documentation"
+      ],
+      "task": {
+        "en": "Import math as m. Return m.ceil(seconds / 60) from billed_minutes for nonnegative seconds.",
+        "nl": "Importeer math als m. Geef m.ceil(seconds / 60) terug vanuit billed_minutes voor niet-negatieve seconden."
+      },
+      "check": "callable(billed_minutes) and m.__name__ == \"math\"",
+      "hints": [
+        {
+          "en": "Convert seconds to minutes before rounding upward.",
+          "nl": "Zet seconden om naar minuten voordat je omhoog afrondt."
+        },
+        {
+          "en": "The module alias is used before the dot.",
+          "nl": "De modulealias wordt vóór de punt gebruikt."
+        },
+        {
+          "en": "return m.ceil(seconds / 60)",
+          "nl": "return m.ceil(seconds / 60)"
+        }
+      ],
+      "hint": {
+        "en": "Convert seconds to minutes before rounding upward.",
+        "nl": "Zet seconden om naar minuten voordat je omhoog afrondt."
+      },
+      "feedback": {
+        "en": "An exact minute should stay one minute; zero stays zero.",
+        "nl": "Een exacte minuut moet één minuut blijven; nul blijft nul."
+      },
+      "probes": [
+        {
+          "call": {
+            "name": "billed_minutes",
+            "args": [
+              60
+            ]
+          },
+          "check": "_return == 1"
+        },
+        {
+          "call": {
+            "name": "billed_minutes",
+            "args": [
+              61
+            ]
+          },
+          "check": "_return == 2"
+        },
+        {
+          "call": {
+            "name": "billed_minutes",
+            "args": [
+              0
+            ]
+          },
+          "check": "_return == 0"
+        }
+      ],
+      "id": "python-v3-6-01-step-1"
+    },
+    {
+      "objectiveIds": [
+        "from-import",
+        "install-vs-import"
+      ],
+      "task": {
+        "en": "Also import floor directly from math and store floor(2.8) in whole. Run without installing a package.",
+        "nl": "Importeer ook floor rechtstreeks uit math en bewaar floor(2.8) in whole. Voer uit zonder een pakket te installeren."
+      },
+      "check": "whole == 2 and callable(floor) and _stdout.strip() == \"2\"",
+      "hints": [
+        {
+          "en": "This tool is already in Python’s standard library.",
+          "nl": "Dit hulpmiddel zit al in Pythons standaardbibliotheek."
+        },
+        {
+          "en": "Use from math import floor.",
+          "nl": "Gebruik from math import floor."
+        },
+        {
+          "en": "whole = floor(2.8)",
+          "nl": "whole = floor(2.8)"
+        }
+      ],
+      "hint": {
+        "en": "This tool is already in Python’s standard library.",
+        "nl": "Dit hulpmiddel zit al in Pythons standaardbibliotheek."
+      },
+      "feedback": {
+        "en": "Direct imports introduce the function name itself. Installation commands are not Python statements.",
+        "nl": "Directe imports introduceren de functienaam zelf. Installatiecommando’s zijn geen Python-opdrachten."
+      },
+      "probes": [],
+      "id": "python-v3-6-01-step-2"
+    }
+  ],
+  "solutionNote": {
+    "en": "The two import styles name the same module’s tools differently. Dividing before ceil expresses charging per started minute without a special integer formula.",
+    "nl": "De twee importvormen benoemen hulpmiddelen van dezelfde module anders. Delen vóór ceil drukt kosten per begonnen minuut uit zonder speciale geheeltallige formule."
+  },
+  "inputs": [],
+  "retrievals": [
+    {
+      "id": "recall-python-v3-4-01",
+      "sourceActivityId": "python-v3-4-01",
+      "objectiveIds": [
+        "why-functions",
+        "defining-functions",
+        "calling-functions",
+        "execution-flow",
+        "builtins-vs-user-functions"
+      ],
+      "prompt": {
+        "en": "Define and call a small function twice. Contrast it with the built-in print and trace when its body executes.",
+        "nl": "Definieer een kleine functie en roep die tweemaal aan. Vergelijk die met de ingebouwde print en volg wanneer de inhoud wordt uitgevoerd."
+      }
+    }
+  ]
+}

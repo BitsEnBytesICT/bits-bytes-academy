@@ -1,0 +1,162 @@
+{
+  "id": "python-v4-18-sequence",
+  "chapter": 18,
+  "group": "python-v4-module-18",
+  "title": {
+    "en": "Read characters by position",
+    "nl": "Lees tekens op positie"
+  },
+  "kind": "coding",
+  "optional": false,
+  "runtime": "terminal",
+  "guidance": "guided",
+  "checkpointMode": "sequential",
+  "estimatedMinutes": 12,
+  "topicIds": [
+    "string-indexing",
+    "string-length",
+    "string-negative-index"
+  ],
+  "practices": [],
+  "requiredConcepts": [
+    "strings",
+    "indexing",
+    "length"
+  ],
+  "explanation": {
+    "en": "Strings are ordered sequences of characters. Some familiar list operations work on them too.",
+    "nl": "Strings zijn geordende tekenreeksen. Sommige bekende lijstbewerkingen werken er ook op."
+  },
+  "example": "",
+  "sections": [
+    {
+      "id": "python-v4-18-sequence-example",
+      "topicIds": [
+        "string-indexing",
+        "string-length",
+        "string-negative-index"
+      ],
+      "heading": {
+        "en": "Follow a working example",
+        "nl": "Volg een werkend voorbeeld"
+      },
+      "body": {
+        "en": "text[0] selects the first character and text[-1] the last. len(text) counts characters in the string, including spaces and escapes after interpretation. A selected character is itself a string. An empty string has no index 0. Strings share sequence operations with lists; they are not lists.",
+        "nl": "text[0] kiest het eerste teken en text[-1] het laatste. len(text) telt tekens in de string, inclusief spaties en geïnterpreteerde escapes. Een gekozen teken is zelf een string. Een lege string heeft geen index 0. Strings delen reeksbewerkingen met lijsten; ze zijn geen lijsten."
+      },
+      "code": "text = \"Code!\"\nprint(text[0],text[-1],len(text))",
+      "output": "C ! 5\n",
+      "prediction": {
+        "en": "What is the index of the exclamation mark?",
+        "nl": "Wat is de index van het uitroepteken?"
+      },
+      "takeaway": {
+        "en": "Indexing reads one character; guard an empty string.",
+        "nl": "Indexeren leest één teken; bewaak een lege string."
+      }
+    },
+    {
+      "id": "python-v4-18-sequence-experiment",
+      "topicIds": [],
+      "heading": {
+        "en": "Try one change",
+        "nl": "Probeer één wijziging"
+      },
+      "body": {
+        "en": "Test a string containing one space.",
+        "nl": "Test een string met één spatie."
+      }
+    }
+  ],
+  "files": {
+    "main.py": "def edges(text):\n    # Complete this function.\n    return None\n"
+  },
+  "solution": {
+    "main.py": "def edges(text):\n    if len(text) == 0:\n        return \"\"\n    return text[0] + text[-1]\n"
+  },
+  "checkpoints": [
+    {
+      "id": "python-v4-18-sequence-step-1",
+      "objectiveIds": [
+        "string-indexing",
+        "string-length",
+        "string-negative-index"
+      ],
+      "task": {
+        "en": "Return first and last characters concatenated, or an empty string for empty text.",
+        "nl": "Geef het eerste en laatste teken samengevoegd terug, of een lege string bij lege tekst."
+      },
+      "check": "callable(edges)",
+      "probes": [
+        {
+          "call": {
+            "name": "edges",
+            "args": [
+              "Python"
+            ]
+          },
+          "check": "(_return == \"Pn\") and _error is None"
+        },
+        {
+          "call": {
+            "name": "edges",
+            "args": [
+              "a"
+            ]
+          },
+          "check": "(_return == \"aa\") and _error is None"
+        },
+        {
+          "call": {
+            "name": "edges",
+            "args": [
+              ""
+            ]
+          },
+          "check": "(_return == \"\") and _error is None"
+        }
+      ],
+      "hint": {
+        "en": "Indexing reads one character; guard an empty string.",
+        "nl": "Indexeren leest één teken; bewaak een lege string."
+      },
+      "hints": [
+        {
+          "en": "Indexing reads one character; guard an empty string.",
+          "nl": "Indexeren leest één teken; bewaak een lege string."
+        },
+        {
+          "en": "Check the length before reading either endpoint.",
+          "nl": "Controleer de lengte vóór je een uiteinde leest."
+        },
+        {
+          "en": "A small fragment to adapt: `text[-1]`",
+          "nl": "Een klein fragment om aan te passen: `text[-1]`"
+        }
+      ],
+      "feedback": {
+        "en": "Check the length before reading either endpoint.",
+        "nl": "Controleer de lengte vóór je een uiteinde leest."
+      }
+    }
+  ],
+  "solutionNote": {
+    "en": "The guard handles absence; a one-character string has the same first and last character.",
+    "nl": "De bewaking verwerkt afwezigheid; bij één teken zijn eerste en laatste hetzelfde teken."
+  },
+  "inputs": [],
+  "retrievals": [
+    {
+      "id": "recall-python-v4-16-velocity",
+      "sourceActivityId": "python-v4-16-velocity",
+      "objectiveIds": [
+        "velocity",
+        "elapsed-time"
+      ],
+      "prompt": {
+        "en": "Recall “Move by elapsed time”. How far would the object move in half as much time? Try the earlier example from memory, then check it. Compare one 0.1-second step with two 0.05-second steps.",
+        "nl": "Haal “Beweeg met verstreken tijd” terug. Hoe ver beweegt het object in half zoveel tijd? Probeer het eerdere voorbeeld uit je geheugen en controleer daarna. Vergelijk één stap van 0,1 seconde met twee stappen van 0,05 seconde."
+      }
+    }
+  ]
+}

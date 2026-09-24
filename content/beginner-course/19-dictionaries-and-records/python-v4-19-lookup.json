@@ -1,0 +1,169 @@
+{
+  "id": "python-v4-19-lookup",
+  "chapter": 19,
+  "group": "python-v4-module-19",
+  "title": {
+    "en": "Handle a missing key",
+    "nl": "Verwerk een ontbrekende sleutel"
+  },
+  "kind": "coding",
+  "optional": false,
+  "runtime": "terminal",
+  "guidance": "guided",
+  "checkpointMode": "sequential",
+  "estimatedMinutes": 12,
+  "topicIds": [
+    "lookup",
+    "key-error",
+    "get",
+    "dictionary-membership"
+  ],
+  "practices": [],
+  "requiredConcepts": [
+    "dictionaries",
+    "none"
+  ],
+  "explanation": {
+    "en": "A missing field is different from a field whose value is zero or None.",
+    "nl": "Een ontbrekend veld verschilt van een veld met waarde nul of None."
+  },
+  "example": "",
+  "sections": [
+    {
+      "id": "python-v4-19-lookup-example",
+      "topicIds": [
+        "lookup",
+        "key-error",
+        "get",
+        "dictionary-membership"
+      ],
+      "heading": {
+        "en": "Follow a working example",
+        "nl": "Volg een werkend voorbeeld"
+      },
+      "body": {
+        "en": "record[key] raises KeyError if key is absent. record.get(key, default) returns the default only when key is absent; an existing zero or None is preserved. Without an explicit default, get returns None for an absent key. key in record tests keys, not values. Use direct access when missing data is an error and get when a fallback is part of the design.",
+        "nl": "record[key] veroorzaakt KeyError als key ontbreekt. record.get(key, default) geeft de standaardwaarde alleen bij afwezigheid; een bestaande nul of None blijft behouden. Zonder expliciete standaard geeft get None bij een ontbrekende sleutel. key in record test sleutels, geen waarden. Gebruik directe toegang wanneer ontbrekende gegevens een fout zijn en get wanneer een terugvalwaarde bij het ontwerp hoort."
+      },
+      "code": "record = {\"score\":0}\nprint(record.get(\"score\",10))\nprint(record.get(\"lives\",3))\nprint(\"score\" in record)",
+      "output": "0\n3\nTrue\n",
+      "prediction": {
+        "en": "Why does the first lookup return zero instead of ten?",
+        "nl": "Waarom geeft de eerste zoekactie nul in plaats van tien?"
+      },
+      "takeaway": {
+        "en": "A fallback applies to absence, not to every false-like value.",
+        "nl": "Een terugvalwaarde geldt bij afwezigheid, niet bij elke onwaarachtige waarde."
+      }
+    },
+    {
+      "id": "python-v4-19-lookup-experiment",
+      "topicIds": [],
+      "heading": {
+        "en": "Try one change",
+        "nl": "Probeer één wijziging"
+      },
+      "body": {
+        "en": "Compare absent score, score 0 and score None.",
+        "nl": "Vergelijk ontbrekende score, score 0 en score None."
+      }
+    }
+  ],
+  "files": {
+    "main.py": "def score_of(record):\n    # Complete this function.\n    return None\n"
+  },
+  "solution": {
+    "main.py": "def score_of(record):\n    return record.get(\"score\", 0)\n"
+  },
+  "checkpoints": [
+    {
+      "id": "python-v4-19-lookup-step-1",
+      "objectiveIds": [
+        "lookup",
+        "key-error",
+        "get",
+        "dictionary-membership"
+      ],
+      "task": {
+        "en": "Return the stored score or 0 if the key is absent. Preserve an explicitly stored None.",
+        "nl": "Geef de bewaarde score terug of 0 als de sleutel ontbreekt. Behoud een expliciet bewaarde None."
+      },
+      "check": "callable(score_of)",
+      "probes": [
+        {
+          "call": {
+            "name": "score_of",
+            "args": [
+              {
+                "score": 4
+              }
+            ]
+          },
+          "check": "(_return == 4) and _error is None"
+        },
+        {
+          "call": {
+            "name": "score_of",
+            "args": [
+              {}
+            ]
+          },
+          "check": "(_return == 0) and _error is None"
+        },
+        {
+          "call": {
+            "name": "score_of",
+            "args": [
+              {
+                "score": null
+              }
+            ]
+          },
+          "check": "(_return is None) and _error is None"
+        }
+      ],
+      "hint": {
+        "en": "A fallback applies to absence, not to every false-like value.",
+        "nl": "Een terugvalwaarde geldt bij afwezigheid, niet bij elke onwaarachtige waarde."
+      },
+      "hints": [
+        {
+          "en": "A fallback applies to absence, not to every false-like value.",
+          "nl": "Een terugvalwaarde geldt bij afwezigheid, niet bij elke onwaarachtige waarde."
+        },
+        {
+          "en": "Use get with a default; do not use an or fallback.",
+          "nl": "Gebruik get met standaardwaarde; gebruik geen or-terugvalwaarde."
+        },
+        {
+          "en": "A small fragment to adapt: `record.get(\"score\", 0)`",
+          "nl": "Een klein fragment om aan te passen: `record.get(\"score\", 0)`"
+        }
+      ],
+      "feedback": {
+        "en": "Use get with a default; do not use an or fallback.",
+        "nl": "Gebruik get met standaardwaarde; gebruik geen or-terugvalwaarde."
+      }
+    }
+  ],
+  "solutionNote": {
+    "en": "get distinguishes missing keys from present keys with special values.",
+    "nl": "get onderscheidt ontbrekende sleutels van aanwezige sleutels met speciale waarden."
+  },
+  "inputs": [],
+  "retrievals": [
+    {
+      "id": "recall-python-v4-17-slicing",
+      "sourceActivityId": "python-v4-17-slicing",
+      "objectiveIds": [
+        "slicing",
+        "omitted-slice-bounds",
+        "count"
+      ],
+      "prompt": {
+        "en": "Recall “Take a slice of a list”. Why does [1:3] contain two elements? Try the earlier example from memory, then check it. Compare [:3], [3:] and [-3:] on the same list.",
+        "nl": "Haal “Neem een deel van een lijst” terug. Waarom bevat [1:3] twee elementen? Probeer het eerdere voorbeeld uit je geheugen en controleer daarna. Vergelijk [:3], [3:] en [-3:] op dezelfde lijst."
+      }
+    }
+  ]
+}

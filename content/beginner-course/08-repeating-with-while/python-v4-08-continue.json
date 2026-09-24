@@ -1,0 +1,140 @@
+{
+  "id": "python-v4-08-continue",
+  "chapter": 8,
+  "group": "python-v4-module-8",
+  "title": {
+    "en": "Skip one iteration with continue",
+    "nl": "Sla één iteratie over met continue"
+  },
+  "kind": "coding",
+  "optional": false,
+  "runtime": "terminal",
+  "guidance": "guided",
+  "checkpointMode": "sequential",
+  "estimatedMinutes": 16,
+  "topicIds": [
+    "continue"
+  ],
+  "practices": [],
+  "requiredConcepts": [
+    "break",
+    "while",
+    "modulo"
+  ],
+  "explanation": {
+    "en": "continue skips the rest of the current iteration and returns to the loop's next condition check.",
+    "nl": "continue slaat de rest van de huidige iteratie over en keert terug naar de volgende voorwaardecontrole."
+  },
+  "example": "",
+  "sections": [
+    {
+      "id": "python-v4-08-continue-example",
+      "topicIds": [
+        "continue"
+      ],
+      "heading": {
+        "en": "Follow a working example",
+        "nl": "Volg een werkend voorbeeld"
+      },
+      "body": {
+        "en": "Unlike break, continue does not leave the loop. It is useful when one value should be ignored but later values should still be processed.\n\nUpdate a counter before a continue can skip that update. Otherwise the same rejected value may repeat forever. The example advances first, then skips the value 2 and prints the other values.",
+        "nl": "Anders dan break verlaat continue de lus niet. Het is nuttig wanneer één waarde moet worden genegeerd maar latere waarden nog verwerkt moeten worden.\n\nWerk een teller bij voordat continue die wijziging kan overslaan. Anders kan dezelfde afgewezen waarde altijd terugkomen. Het voorbeeld verhoogt eerst, slaat daarna 2 over en drukt de andere waarden af."
+      },
+      "code": "number = 0\nwhile number < 4:\n    number += 1\n    if number == 2:\n        continue\n    print(number)",
+      "output": "1\n3\n4\n",
+      "prediction": {
+        "en": "Why does 3 still appear after 2 is skipped?",
+        "nl": "Waarom verschijnt 3 nog nadat 2 is overgeslagen?"
+      },
+      "takeaway": {
+        "en": "continue skips this iteration's remaining work, not the entire loop.",
+        "nl": "continue slaat het resterende werk van deze iteratie over, niet de hele lus."
+      }
+    },
+    {
+      "id": "python-v4-08-continue-experiment",
+      "topicIds": [],
+      "heading": {
+        "en": "Try one change",
+        "nl": "Probeer één wijziging"
+      },
+      "body": {
+        "en": "Replace continue with break and compare the output. Explain why later odd values disappear.",
+        "nl": "Vervang continue door break en vergelijk de uitvoer. Leg uit waarom latere oneven waarden verdwijnen."
+      }
+    }
+  ],
+  "files": {
+    "main.py": "number = 0\nlimit = 6\n"
+  },
+  "solution": {
+    "main.py": "number = 0\nlimit = 6\nwhile number < limit:\n    number += 1\n    if number % 2 == 0:\n        continue\n    print(number)\n"
+  },
+  "checkpoints": [
+    {
+      "id": "python-v4-08-continue-step-1",
+      "objectiveIds": [
+        "continue"
+      ],
+      "task": {
+        "en": "Count from 1 through limit. Use continue to skip even numbers and print only odd ones.",
+        "nl": "Tel van 1 tot en met limit. Gebruik continue om even getallen over te slaan en druk alleen oneven getallen af."
+      },
+      "check": "any(isinstance(n, _ast.Continue) for n in _ast.walk(_ast.parse(_source))) and _stdout == \"1\\n3\\n5\\n\" and number == limit",
+      "probes": [
+        {
+          "inputs": {
+            "limit": 1
+          },
+          "check": "_stdout == \"1\\n\""
+        },
+        {
+          "inputs": {
+            "limit": 0
+          },
+          "check": "_stdout == \"\""
+        }
+      ],
+      "hint": {
+        "en": "continue skips this iteration's remaining work, not the entire loop.",
+        "nl": "continue slaat het resterende werk van deze iteratie over, niet de hele lus."
+      },
+      "hints": [
+        {
+          "en": "continue skips this iteration's remaining work, not the entire loop.",
+          "nl": "continue slaat het resterende werk van deze iteratie over, niet de hele lus."
+        },
+        {
+          "en": "Advance number first. An even number has remainder zero when divided by two.",
+          "nl": "Verhoog number eerst. Een even getal heeft rest nul bij delen door twee."
+        },
+        {
+          "en": "A small fragment to adapt: `if number % 2 == 0:`",
+          "nl": "Een klein fragment om aan te passen: `if number % 2 == 0:`"
+        }
+      ],
+      "feedback": {
+        "en": "Advance number first. An even number has remainder zero when divided by two.",
+        "nl": "Verhoog number eerst. Een even getal heeft rest nul bij delen door twee."
+      }
+    }
+  ],
+  "solutionNote": {
+    "en": "Updating before the skip guarantees progress. The remainder test selects the values to ignore.",
+    "nl": "Bijwerken vóór het overslaan garandeert voortgang. De resttest selecteert de waarden die worden genegeerd."
+  },
+  "inputs": [],
+  "retrievals": [
+    {
+      "id": "recall-python-v4-06-or",
+      "sourceActivityId": "python-v4-06-or",
+      "objectiveIds": [
+        "or"
+      ],
+      "prompt": {
+        "en": "Recall “Allow either condition with or”. What if both values were True? Try the earlier example from memory, then check it. Try a different command. Explain why the rule should now be False.",
+        "nl": "Haal “Sta een van beide voorwaarden toe met or” terug. Wat als beide waarden True waren? Probeer het eerdere voorbeeld uit je geheugen en controleer daarna. Probeer een andere opdracht. Leg uit waarom de regel nu False moet zijn."
+      }
+    }
+  ]
+}

@@ -1,0 +1,183 @@
+{
+  "id": "python-v3-2-04",
+  "chapter": 2,
+  "group": "python-v3-module-2",
+  "title": {
+    "en": "Combine the rules",
+    "nl": "Combineer de regels"
+  },
+  "kind": "coding",
+  "optional": false,
+  "runtime": "terminal",
+  "guidance": "adapt",
+  "estimatedMinutes": 15,
+  "explanation": {
+    "en": "Combine simple rules for a workshop entrance. Name each fact first so you can explain why the final decision is true or false.",
+    "nl": "Combineer eenvoudige regels voor toegang tot een workshop. Geef elk feit eerst een naam zodat je kunt verklaren waarom de eindbeslissing waar of onwaar is."
+  },
+  "example": "",
+  "topicIds": [
+    "and",
+    "or",
+    "not"
+  ],
+  "prerequisites": [
+    "python-v3-2-03"
+  ],
+  "sections": [
+    {
+      "topicIds": [
+        "and",
+        "or",
+        "not"
+      ],
+      "heading": {
+        "en": "Combine Boolean facts",
+        "nl": "Combineer booleaanse feiten"
+      },
+      "body": {
+        "en": "and requires both sides to be true. or needs at least one true side. not reverses a Boolean. Parentheses make the intended grouping visible. Trace every input combination; a happy-path test alone cannot tell and from or.",
+        "nl": "and vereist dat beide kanten waar zijn. or heeft minstens één ware kant nodig. not keert een boolean om. Haakjes maken de bedoelde groepering zichtbaar. Volg elke invoercombinatie; één geslaagd voorbeeld kan and niet van or onderscheiden."
+      },
+      "code": "member = False\nguest = True\nclosed = False\nprint(member and guest)\nprint(member or guest)\nprint((member or guest) and not closed)",
+      "output": "False\nTrue\nTrue\n",
+      "prediction": {
+        "en": "What changes if closed becomes True?",
+        "nl": "Wat verandert als closed True wordt?"
+      }
+    },
+    {
+      "topicIds": [],
+      "heading": {
+        "en": "Try a changed input",
+        "nl": "Probeer gewijzigde invoer"
+      },
+      "body": {
+        "en": "Make a table of all eight True/False combinations. Predict eligible and allowed for each, then check the cases you found hardest.",
+        "nl": "Maak een tabel van alle acht True/False-combinaties. Voorspel voor elke combinatie eligible en allowed en controleer daarna de moeilijkste gevallen."
+      }
+    }
+  ],
+  "files": {
+    "main.py": "has_ticket = True\nis_helper = False\nis_banned = False\n# Decide whether entrance is allowed.\n"
+  },
+  "solution": {
+    "main.py": "has_ticket = True\nis_helper = False\nis_banned = False\neligible = has_ticket or is_helper\nallowed = eligible and not is_banned\nprint(allowed)\n"
+  },
+  "checkpoints": [
+    {
+      "objectiveIds": [
+        "or"
+      ],
+      "task": {
+        "en": "Set eligible when someone has a ticket OR is a helper.",
+        "nl": "Stel eligible in als iemand een kaartje heeft OF helper is."
+      },
+      "check": "eligible is True",
+      "hints": [
+        {
+          "en": "Either of two reasons is enough.",
+          "nl": "Eén van twee redenen is voldoende."
+        },
+        {
+          "en": "Combine the first two facts with or.",
+          "nl": "Combineer de eerste twee feiten met or."
+        },
+        {
+          "en": "eligible = has_ticket or is_helper",
+          "nl": "eligible = has_ticket or is_helper"
+        }
+      ],
+      "hint": {
+        "en": "Either of two reasons is enough.",
+        "nl": "Eén van twee redenen is voldoende."
+      },
+      "feedback": {
+        "en": "A helper without a ticket is still eligible.",
+        "nl": "Een helper zonder kaartje is nog steeds geschikt."
+      },
+      "probes": [
+        {
+          "inputs": {
+            "has_ticket": false,
+            "is_helper": true
+          },
+          "check": "eligible is True"
+        },
+        {
+          "inputs": {
+            "has_ticket": false,
+            "is_helper": false
+          },
+          "check": "eligible is False"
+        }
+      ],
+      "id": "python-v3-2-04-step-1"
+    },
+    {
+      "objectiveIds": [
+        "and",
+        "not"
+      ],
+      "task": {
+        "en": "Set allowed only for eligible people who are NOT banned. Print allowed.",
+        "nl": "Geef alleen eligible personen die NIET verbannen zijn allowed. Druk allowed af."
+      },
+      "check": "allowed is True and _stdout.strip() == \"True\"",
+      "hints": [
+        {
+          "en": "Eligibility and absence of a ban must both hold.",
+          "nl": "Geschiktheid en afwezigheid van een verbod moeten beide gelden."
+        },
+        {
+          "en": "Reverse is_banned, then combine with eligible.",
+          "nl": "Keer is_banned om en combineer met eligible."
+        },
+        {
+          "en": "allowed = eligible and not is_banned",
+          "nl": "allowed = eligible and not is_banned"
+        }
+      ],
+      "hint": {
+        "en": "Eligibility and absence of a ban must both hold.",
+        "nl": "Geschiktheid en afwezigheid van een verbod moeten beide gelden."
+      },
+      "feedback": {
+        "en": "The ban must override both a ticket and helper status.",
+        "nl": "Het verbod moet zowel een kaartje als de helperstatus overrulen."
+      },
+      "probes": [
+        {
+          "inputs": {
+            "has_ticket": true,
+            "is_helper": true,
+            "is_banned": true
+          },
+          "check": "allowed is False"
+        },
+        {
+          "inputs": {
+            "has_ticket": false,
+            "is_helper": false,
+            "is_banned": false
+          },
+          "check": "allowed is False"
+        },
+        {
+          "inputs": {
+            "has_ticket": false,
+            "is_helper": true,
+            "is_banned": false
+          },
+          "check": "allowed is True"
+        }
+      ],
+      "id": "python-v3-2-04-step-2"
+    }
+  ],
+  "solutionNote": {
+    "en": "The named eligible value isolates the or rule. Combining it with not is_banned keeps a ban effective for every eligible visitor.",
+    "nl": "De benoemde waarde eligible isoleert de or-regel. De combinatie met not is_banned houdt het verbod geldig voor elke geschikte bezoeker."
+  },
+  "inputs": []
+}

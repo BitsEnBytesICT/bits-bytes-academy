@@ -1,0 +1,154 @@
+{
+  "id": "python-v4-12-for-values",
+  "chapter": 12,
+  "group": "python-v4-module-12",
+  "title": {
+    "en": "Visit every value with for",
+    "nl": "Bezoek elke waarde met for"
+  },
+  "kind": "coding",
+  "optional": false,
+  "runtime": "terminal",
+  "guidance": "guided",
+  "checkpointMode": "sequential",
+  "estimatedMinutes": 12,
+  "topicIds": [
+    "for",
+    "list-iteration"
+  ],
+  "practices": [],
+  "requiredConcepts": [
+    "lists",
+    "accumulators"
+  ],
+  "explanation": {
+    "en": "A for loop visits each element without requiring you to manage an index.",
+    "nl": "Een for-lus bezoekt elk element zonder dat je zelf een index beheert."
+  },
+  "example": "",
+  "sections": [
+    {
+      "id": "python-v4-12-for-values-example",
+      "topicIds": [
+        "for",
+        "list-iteration"
+      ],
+      "heading": {
+        "en": "Follow a working example",
+        "nl": "Volg een werkend voorbeeld"
+      },
+      "body": {
+        "en": "In for value in values:, value receives one element at a time. The colon and indentation mark the repeated body. Elements are visited in list order; an empty list runs the body zero times. The loop variable contains an element, not automatically an index.",
+        "nl": "In for value in values: krijgt value telkens één element. De dubbele punt en inspringing markeren het herhaalde blok. Elementen worden op lijstvolgorde bezocht; een lege lijst voert de inhoud nul keer uit. De lusvariabele bevat een element, niet automatisch een index."
+      },
+      "code": "total = 0\nfor amount in [2, 5, 3]:\n    total += amount\nprint(total)",
+      "output": "10\n",
+      "prediction": {
+        "en": "What would total be for an empty list?",
+        "nl": "Wat is total bij een lege lijst?"
+      },
+      "takeaway": {
+        "en": "for over a list gives its values in order.",
+        "nl": "for over een lijst geeft zijn waarden op volgorde."
+      }
+    },
+    {
+      "id": "python-v4-12-for-values-experiment",
+      "topicIds": [],
+      "heading": {
+        "en": "Try one change",
+        "nl": "Probeer één wijziging"
+      },
+      "body": {
+        "en": "Trace the accumulator after each element of [3, 0, -2].",
+        "nl": "Volg de accumulator na elk element van [3, 0, -2]."
+      }
+    }
+  ],
+  "files": {
+    "main.py": "def total(values):\n    # Complete this function.\n    return None\n"
+  },
+  "solution": {
+    "main.py": "def total(values):\n    result = 0\n    for value in values:\n        result += value\n    return result\n"
+  },
+  "checkpoints": [
+    {
+      "id": "python-v4-12-for-values-step-1",
+      "objectiveIds": [
+        "for",
+        "list-iteration"
+      ],
+      "task": {
+        "en": "Use a for loop to return the sum of values; return 0 for an empty list.",
+        "nl": "Gebruik een for-lus om de som van values terug te geven; geef 0 bij een lege lijst."
+      },
+      "check": "any(isinstance(n,_ast.For) for n in _ast.walk(_ast.parse(_source)))",
+      "probes": [
+        {
+          "call": {
+            "name": "total",
+            "args": [
+              [
+                2,
+                -1,
+                4
+              ]
+            ]
+          },
+          "check": "(_return == 5) and _error is None"
+        },
+        {
+          "call": {
+            "name": "total",
+            "args": [
+              []
+            ]
+          },
+          "check": "(_return == 0) and _error is None"
+        }
+      ],
+      "hint": {
+        "en": "for over a list gives its values in order.",
+        "nl": "for over een lijst geeft zijn waarden op volgorde."
+      },
+      "hints": [
+        {
+          "en": "for over a list gives its values in order.",
+          "nl": "for over een lijst geeft zijn waarden op volgorde."
+        },
+        {
+          "en": "Initialise the accumulator before the loop and return after it.",
+          "nl": "Initialiseer de accumulator vóór de lus en keer pas erna terug."
+        },
+        {
+          "en": "A small fragment to adapt: `for value in values:`",
+          "nl": "Een klein fragment om aan te passen: `for value in values:`"
+        }
+      ],
+      "feedback": {
+        "en": "Initialise the accumulator before the loop and return after it.",
+        "nl": "Initialiseer de accumulator vóór de lus en keer pas erna terug."
+      }
+    }
+  ],
+  "solutionNote": {
+    "en": "The accumulator survives between iterations and starts at the additive identity zero.",
+    "nl": "De accumulator blijft tussen iteraties bestaan en begint bij nul."
+  },
+  "inputs": [],
+  "retrievals": [
+    {
+      "id": "recall-python-v4-10-diagnose",
+      "sourceActivityId": "python-v4-10-diagnose",
+      "objectiveIds": [
+        "runtime-errors",
+        "logic-errors",
+        "tracebacks"
+      ],
+      "prompt": {
+        "en": "Recall “Name the kind of mistake”. Which operator preserves the fractional average? Try the earlier example from memory, then check it. Explain why changing the test from 7/2 to 8/2 could hide this bug.",
+        "nl": "Haal “Benoem het soort fout” terug. Welke operator bewaart het gebroken gemiddelde? Probeer het eerdere voorbeeld uit je geheugen en controleer daarna. Leg uit waarom een test met 8/2 in plaats van 7/2 deze fout kan verbergen."
+      }
+    }
+  ]
+}

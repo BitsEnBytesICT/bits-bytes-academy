@@ -1,0 +1,772 @@
+{
+  "id": "python-v3-9-quiz",
+  "chapter": 9,
+  "group": "python-v3-module-9",
+  "kind": "quiz",
+  "optional": false,
+  "estimatedMinutes": 6,
+  "title": {
+    "en": "Working with collections: review",
+    "nl": "Werken met verzamelingen: herhaling"
+  },
+  "questions": [
+    {
+      "objectiveIds": [
+        "sort",
+        "sorted"
+      ],
+      "reviewActivityIds": [
+        "python-v3-9-03"
+      ],
+      "category": "prediction",
+      "prompt": {
+        "en": "What does this program print?",
+        "nl": "Wat drukt dit programma af?"
+      },
+      "code": "values = [4, 1, 3]\nresult = values.sort()\nprint(result, values[0])",
+      "answer": "a",
+      "choices": [
+        {
+          "id": "a",
+          "label": {
+            "en": "None 1",
+            "nl": "None 1"
+          },
+          "reason": {
+            "en": "sort changes the list and returns None; its first item becomes 1.",
+            "nl": "sort verandert de lijst en geeft None terug; het eerste item wordt 1."
+          }
+        },
+        {
+          "id": "b",
+          "label": {
+            "en": "[1, 3, 4] 1",
+            "nl": "[1, 3, 4] 1"
+          },
+          "reason": {
+            "en": "That return contract belongs to sorted, not sort.",
+            "nl": "Die terugkeerafspraak hoort bij sorted, niet bij sort."
+          }
+        },
+        {
+          "id": "c",
+          "label": {
+            "en": "4 1",
+            "nl": "4 1"
+          },
+          "reason": {
+            "en": "sort does not return the old first value.",
+            "nl": "sort geeft niet de oude eerste waarde terug."
+          }
+        }
+      ],
+      "expectedOutput": "None 1\n",
+      "id": "python-v3-9-quiz-a-1"
+    },
+    {
+      "objectiveIds": [
+        "slicing",
+        "omitted-slice-bounds"
+      ],
+      "reviewActivityIds": [
+        "python-v3-9-02"
+      ],
+      "category": "prediction",
+      "prompt": {
+        "en": "What does this program print?",
+        "nl": "Wat drukt dit programma af?"
+      },
+      "code": "values = [1, 2, 4, 9]\nprint(values[1:3])",
+      "answer": "a",
+      "choices": [
+        {
+          "id": "a",
+          "label": {
+            "en": "[2, 4]",
+            "nl": "[2, 4]"
+          },
+          "reason": {
+            "en": "The slice includes index 1 and excludes index 3.",
+            "nl": "De slice neemt index 1 mee en sluit index 3 uit."
+          }
+        },
+        {
+          "id": "b",
+          "label": {
+            "en": "[2, 4, 9]",
+            "nl": "[2, 4, 9]"
+          },
+          "reason": {
+            "en": "The stop index is excluded.",
+            "nl": "De eindindex is uitgesloten."
+          }
+        },
+        {
+          "id": "c",
+          "label": {
+            "en": "[1, 2, 4]",
+            "nl": "[1, 2, 4]"
+          },
+          "reason": {
+            "en": "The slice begins at index 1, not the first item.",
+            "nl": "De slice begint bij index 1, niet het eerste item."
+          }
+        }
+      ],
+      "expectedOutput": "[2, 4]\n",
+      "id": "python-v3-9-quiz-a-2"
+    },
+    {
+      "objectiveIds": [
+        "pop",
+        "remove"
+      ],
+      "reviewActivityIds": [
+        "python-v3-9-01"
+      ],
+      "category": "completion",
+      "prompt": {
+        "en": "Remove by index and keep the removed item.",
+        "nl": "Verwijder op index en bewaar het verwijderde item."
+      },
+      "code": "queue = [\"A\", \"B\"]\nlast = queue.___()\nprint(last)",
+      "answer": "a",
+      "choices": [
+        {
+          "id": "a",
+          "label": {
+            "en": "pop",
+            "nl": "pop"
+          },
+          "reason": {
+            "en": "pop without an index removes and returns the last item. remove selects a value and returns None.",
+            "nl": "pop zonder index verwijdert en retourneert het laatste item. remove kiest een waarde en geeft None."
+          }
+        },
+        {
+          "id": "b",
+          "label": {
+            "en": "remove",
+            "nl": "remove"
+          },
+          "reason": {
+            "en": "pop without an index removes and returns the last item. remove selects a value and returns None.",
+            "nl": "pop zonder index verwijdert en retourneert het laatste item. remove kiest een waarde en geeft None."
+          }
+        },
+        {
+          "id": "c",
+          "label": {
+            "en": "count",
+            "nl": "count"
+          },
+          "reason": {
+            "en": "pop without an index removes and returns the last item. remove selects a value and returns None.",
+            "nl": "pop zonder index verwijdert en retourneert het laatste item. remove kiest een waarde en geeft None."
+          }
+        }
+      ],
+      "codeBlank": {
+        "prompt": {
+          "en": "Remove by index and keep the removed item.",
+          "nl": "Verwijder op index en bewaar het verwijderde item."
+        },
+        "segments": [
+          "queue = [\"A\", \"B\"]\nlast = queue.",
+          "()\nprint(last)"
+        ],
+        "tokens": [
+          {
+            "id": "token-1",
+            "code": "pop"
+          },
+          {
+            "id": "token-2",
+            "code": "remove"
+          },
+          {
+            "id": "token-3",
+            "code": "count"
+          }
+        ],
+        "blanks": [
+          {
+            "answer": "pop",
+            "reason": {
+              "en": "pop without an index removes and returns the last item. remove selects a value and returns None.",
+              "nl": "pop zonder index verwijdert en retourneert het laatste item. remove kiest een waarde en geeft None."
+            }
+          }
+        ],
+        "output": "B\n"
+      },
+      "id": "python-v3-9-quiz-a-3"
+    },
+    {
+      "objectiveIds": [
+        "conditional-comprehensions"
+      ],
+      "reviewActivityIds": [
+        "python-v3-9-05"
+      ],
+      "category": "completion",
+      "prompt": {
+        "en": "Keep only positive doubled values.",
+        "nl": "Behoud alleen positieve verdubbelde waarden."
+      },
+      "code": "values = [-1, 0, 4]\nprint([v * 2 for v in values ___ v > 0])",
+      "answer": "a",
+      "choices": [
+        {
+          "id": "a",
+          "label": {
+            "en": "if",
+            "nl": "if"
+          },
+          "reason": {
+            "en": "A trailing if filters a comprehension’s input values.",
+            "nl": "Een afsluitende if filtert invoerwaarden van een comprehensie."
+          }
+        },
+        {
+          "id": "b",
+          "label": {
+            "en": "else",
+            "nl": "else"
+          },
+          "reason": {
+            "en": "A trailing if filters a comprehension’s input values.",
+            "nl": "Een afsluitende if filtert invoerwaarden van een comprehensie."
+          }
+        },
+        {
+          "id": "c",
+          "label": {
+            "en": "while",
+            "nl": "while"
+          },
+          "reason": {
+            "en": "A trailing if filters a comprehension’s input values.",
+            "nl": "Een afsluitende if filtert invoerwaarden van een comprehensie."
+          }
+        }
+      ],
+      "codeBlank": {
+        "prompt": {
+          "en": "Keep only positive doubled values.",
+          "nl": "Behoud alleen positieve verdubbelde waarden."
+        },
+        "segments": [
+          "values = [-1, 0, 4]\nprint([v * 2 for v in values ",
+          " v > 0])"
+        ],
+        "tokens": [
+          {
+            "id": "token-1",
+            "code": "if"
+          },
+          {
+            "id": "token-2",
+            "code": "else"
+          },
+          {
+            "id": "token-3",
+            "code": "while"
+          }
+        ],
+        "blanks": [
+          {
+            "answer": "if",
+            "reason": {
+              "en": "A trailing if filters a comprehension’s input values.",
+              "nl": "Een afsluitende if filtert invoerwaarden van een comprehensie."
+            }
+          }
+        ],
+        "output": "[8]\n"
+      },
+      "id": "python-v3-9-quiz-a-4"
+    },
+    {
+      "objectiveIds": [
+        "wall-bounce"
+      ],
+      "reviewActivityIds": [
+        "python-v3-8-04"
+      ],
+      "category": "debugging",
+      "prompt": {
+        "en": "What extra condition prevents a second bounce while already moving away?",
+        "nl": "Welke extra voorwaarde voorkomt een tweede botsing terwijl de bal al weg beweegt?"
+      },
+      "code": "y, radius, vy = 6, 6, 4\nif y <= radius:\n    vy = -vy",
+      "answer": "a",
+      "choices": [
+        {
+          "id": "a",
+          "label": {
+            "en": "Require vy < 0 at the top wall.",
+            "nl": "Vereis vy < 0 bij de bovenmuur."
+          },
+          "reason": {
+            "en": "Only upward motion approaches the top edge.",
+            "nl": "Alleen omhoog bewegen nadert de bovenrand."
+          }
+        },
+        {
+          "id": "b",
+          "label": {
+            "en": "Require vy > 0 at the top wall.",
+            "nl": "Vereis vy > 0 bij de bovenmuur."
+          },
+          "reason": {
+            "en": "Positive vy is already moving back into the court.",
+            "nl": "Positieve vy beweegt al terug het veld in."
+          }
+        },
+        {
+          "id": "c",
+          "label": {
+            "en": "Reverse vy twice.",
+            "nl": "Keer vy twee keer om."
+          },
+          "reason": {
+            "en": "Two reversals cancel and do not resolve the collision rule.",
+            "nl": "Twee omkeringen heffen elkaar op en lossen de botsingsregel niet op."
+          }
+        }
+      ],
+      "id": "python-v3-9-quiz-a-5"
+    },
+    {
+      "objectiveIds": [
+        "decimal"
+      ],
+      "reviewActivityIds": [
+        "python-v3-6-03"
+      ],
+      "category": "application",
+      "prompt": {
+        "en": "A typed price is \"0.10\". Which construction starts with that exact decimal value?",
+        "nl": "Een getypte prijs is \"0.10\". Welke constructie begint met die exacte decimale waarde?"
+      },
+      "answer": "a",
+      "choices": [
+        {
+          "id": "a",
+          "label": {
+            "en": "Decimal(\"0.10\")",
+            "nl": "Decimal(\"0.10\")"
+          },
+          "reason": {
+            "en": "Constructing from text avoids a prior binary float approximation.",
+            "nl": "Uit tekst construeren vermijdt een voorafgaande binaire floatbenadering."
+          }
+        },
+        {
+          "id": "b",
+          "label": {
+            "en": "Decimal(0.10)",
+            "nl": "Decimal(0.10)"
+          },
+          "reason": {
+            "en": "The float argument is already approximated before Decimal sees it.",
+            "nl": "Het floatargument is al benaderd voordat Decimal het ziet."
+          }
+        },
+        {
+          "id": "c",
+          "label": {
+            "en": "Decimal(float(\"0.10\"))",
+            "nl": "Decimal(float(\"0.10\"))"
+          },
+          "reason": {
+            "en": "Converting through float first defeats the purpose of the text input.",
+            "nl": "Eerst via float omzetten doet het voordeel van tekstinvoer teniet."
+          }
+        }
+      ],
+      "id": "python-v3-9-quiz-a-6"
+    }
+  ],
+  "alternateQuestions": [
+    {
+      "objectiveIds": [
+        "sort",
+        "sorted"
+      ],
+      "reviewActivityIds": [
+        "python-v3-9-03"
+      ],
+      "category": "prediction",
+      "prompt": {
+        "en": "What does this program print?",
+        "nl": "Wat drukt dit programma af?"
+      },
+      "code": "values = [7, 1, 3]\nresult = values.sort()\nprint(result, values[0])",
+      "answer": "a",
+      "choices": [
+        {
+          "id": "a",
+          "label": {
+            "en": "None 1",
+            "nl": "None 1"
+          },
+          "reason": {
+            "en": "sort changes the list and returns None; its first item becomes 1.",
+            "nl": "sort verandert de lijst en geeft None terug; het eerste item wordt 1."
+          }
+        },
+        {
+          "id": "b",
+          "label": {
+            "en": "[1, 3, 7] 1",
+            "nl": "[1, 3, 7] 1"
+          },
+          "reason": {
+            "en": "That return contract belongs to sorted, not sort.",
+            "nl": "Die terugkeerafspraak hoort bij sorted, niet bij sort."
+          }
+        },
+        {
+          "id": "c",
+          "label": {
+            "en": "7 1",
+            "nl": "7 1"
+          },
+          "reason": {
+            "en": "sort does not return the old first value.",
+            "nl": "sort geeft niet de oude eerste waarde terug."
+          }
+        }
+      ],
+      "expectedOutput": "None 1\n",
+      "id": "python-v3-9-quiz-b-1"
+    },
+    {
+      "objectiveIds": [
+        "slicing",
+        "omitted-slice-bounds"
+      ],
+      "reviewActivityIds": [
+        "python-v3-9-02"
+      ],
+      "category": "prediction",
+      "prompt": {
+        "en": "What does this program print?",
+        "nl": "Wat drukt dit programma af?"
+      },
+      "code": "values = [1, 2, 7, 9]\nprint(values[1:3])",
+      "answer": "a",
+      "choices": [
+        {
+          "id": "a",
+          "label": {
+            "en": "[2, 7]",
+            "nl": "[2, 7]"
+          },
+          "reason": {
+            "en": "The slice includes index 1 and excludes index 3.",
+            "nl": "De slice neemt index 1 mee en sluit index 3 uit."
+          }
+        },
+        {
+          "id": "b",
+          "label": {
+            "en": "[2, 7, 9]",
+            "nl": "[2, 7, 9]"
+          },
+          "reason": {
+            "en": "The stop index is excluded.",
+            "nl": "De eindindex is uitgesloten."
+          }
+        },
+        {
+          "id": "c",
+          "label": {
+            "en": "[1, 2, 7]",
+            "nl": "[1, 2, 7]"
+          },
+          "reason": {
+            "en": "The slice begins at index 1, not the first item.",
+            "nl": "De slice begint bij index 1, niet het eerste item."
+          }
+        }
+      ],
+      "expectedOutput": "[2, 7]\n",
+      "id": "python-v3-9-quiz-b-2"
+    },
+    {
+      "objectiveIds": [
+        "pop",
+        "remove"
+      ],
+      "reviewActivityIds": [
+        "python-v3-9-01"
+      ],
+      "category": "completion",
+      "prompt": {
+        "en": "Remove by index and keep the removed item.",
+        "nl": "Verwijder op index en bewaar het verwijderde item."
+      },
+      "code": "queue = [\"A\", \"C\"]\nlast = queue.___()\nprint(last)",
+      "answer": "a",
+      "choices": [
+        {
+          "id": "a",
+          "label": {
+            "en": "pop",
+            "nl": "pop"
+          },
+          "reason": {
+            "en": "pop without an index removes and returns the last item. remove selects a value and returns None.",
+            "nl": "pop zonder index verwijdert en retourneert het laatste item. remove kiest een waarde en geeft None."
+          }
+        },
+        {
+          "id": "b",
+          "label": {
+            "en": "remove",
+            "nl": "remove"
+          },
+          "reason": {
+            "en": "pop without an index removes and returns the last item. remove selects a value and returns None.",
+            "nl": "pop zonder index verwijdert en retourneert het laatste item. remove kiest een waarde en geeft None."
+          }
+        },
+        {
+          "id": "c",
+          "label": {
+            "en": "count",
+            "nl": "count"
+          },
+          "reason": {
+            "en": "pop without an index removes and returns the last item. remove selects a value and returns None.",
+            "nl": "pop zonder index verwijdert en retourneert het laatste item. remove kiest een waarde en geeft None."
+          }
+        }
+      ],
+      "codeBlank": {
+        "prompt": {
+          "en": "Remove by index and keep the removed item.",
+          "nl": "Verwijder op index en bewaar het verwijderde item."
+        },
+        "segments": [
+          "queue = [\"A\", \"C\"]\nlast = queue.",
+          "()\nprint(last)"
+        ],
+        "tokens": [
+          {
+            "id": "token-1",
+            "code": "pop"
+          },
+          {
+            "id": "token-2",
+            "code": "remove"
+          },
+          {
+            "id": "token-3",
+            "code": "count"
+          }
+        ],
+        "blanks": [
+          {
+            "answer": "pop",
+            "reason": {
+              "en": "pop without an index removes and returns the last item. remove selects a value and returns None.",
+              "nl": "pop zonder index verwijdert en retourneert het laatste item. remove kiest een waarde en geeft None."
+            }
+          }
+        ],
+        "output": "C\n"
+      },
+      "id": "python-v3-9-quiz-b-3"
+    },
+    {
+      "objectiveIds": [
+        "conditional-comprehensions"
+      ],
+      "reviewActivityIds": [
+        "python-v3-9-05"
+      ],
+      "category": "completion",
+      "prompt": {
+        "en": "Keep only positive doubled values.",
+        "nl": "Behoud alleen positieve verdubbelde waarden."
+      },
+      "code": "values = [-1, 0, 7]\nprint([v * 2 for v in values ___ v > 0])",
+      "answer": "a",
+      "choices": [
+        {
+          "id": "a",
+          "label": {
+            "en": "if",
+            "nl": "if"
+          },
+          "reason": {
+            "en": "A trailing if filters a comprehension’s input values.",
+            "nl": "Een afsluitende if filtert invoerwaarden van een comprehensie."
+          }
+        },
+        {
+          "id": "b",
+          "label": {
+            "en": "else",
+            "nl": "else"
+          },
+          "reason": {
+            "en": "A trailing if filters a comprehension’s input values.",
+            "nl": "Een afsluitende if filtert invoerwaarden van een comprehensie."
+          }
+        },
+        {
+          "id": "c",
+          "label": {
+            "en": "while",
+            "nl": "while"
+          },
+          "reason": {
+            "en": "A trailing if filters a comprehension’s input values.",
+            "nl": "Een afsluitende if filtert invoerwaarden van een comprehensie."
+          }
+        }
+      ],
+      "codeBlank": {
+        "prompt": {
+          "en": "Keep only positive doubled values.",
+          "nl": "Behoud alleen positieve verdubbelde waarden."
+        },
+        "segments": [
+          "values = [-1, 0, 7]\nprint([v * 2 for v in values ",
+          " v > 0])"
+        ],
+        "tokens": [
+          {
+            "id": "token-1",
+            "code": "if"
+          },
+          {
+            "id": "token-2",
+            "code": "else"
+          },
+          {
+            "id": "token-3",
+            "code": "while"
+          }
+        ],
+        "blanks": [
+          {
+            "answer": "if",
+            "reason": {
+              "en": "A trailing if filters a comprehension’s input values.",
+              "nl": "Een afsluitende if filtert invoerwaarden van een comprehensie."
+            }
+          }
+        ],
+        "output": "[14]\n"
+      },
+      "id": "python-v3-9-quiz-b-4"
+    },
+    {
+      "objectiveIds": [
+        "wall-bounce"
+      ],
+      "reviewActivityIds": [
+        "python-v3-8-04"
+      ],
+      "category": "debugging",
+      "prompt": {
+        "en": "What extra condition prevents a second bounce while already moving away?",
+        "nl": "Welke extra voorwaarde voorkomt een tweede botsing terwijl de bal al weg beweegt?"
+      },
+      "code": "y, radius, vy = 6, 6, 7\nif y <= radius:\n    vy = -vy",
+      "answer": "a",
+      "choices": [
+        {
+          "id": "a",
+          "label": {
+            "en": "Require vy < 0 at the top wall.",
+            "nl": "Vereis vy < 0 bij de bovenmuur."
+          },
+          "reason": {
+            "en": "Only upward motion approaches the top edge.",
+            "nl": "Alleen omhoog bewegen nadert de bovenrand."
+          }
+        },
+        {
+          "id": "b",
+          "label": {
+            "en": "Require vy > 0 at the top wall.",
+            "nl": "Vereis vy > 0 bij de bovenmuur."
+          },
+          "reason": {
+            "en": "Positive vy is already moving back into the court.",
+            "nl": "Positieve vy beweegt al terug het veld in."
+          }
+        },
+        {
+          "id": "c",
+          "label": {
+            "en": "Reverse vy twice.",
+            "nl": "Keer vy twee keer om."
+          },
+          "reason": {
+            "en": "Two reversals cancel and do not resolve the collision rule.",
+            "nl": "Twee omkeringen heffen elkaar op en lossen de botsingsregel niet op."
+          }
+        }
+      ],
+      "id": "python-v3-9-quiz-b-5"
+    },
+    {
+      "objectiveIds": [
+        "decimal"
+      ],
+      "reviewActivityIds": [
+        "python-v3-6-03"
+      ],
+      "category": "application",
+      "prompt": {
+        "en": "A typed price is \"0.20\". Which construction starts with that exact decimal value?",
+        "nl": "Een getypte prijs is \"0.20\". Welke constructie begint met die exacte decimale waarde?"
+      },
+      "answer": "a",
+      "choices": [
+        {
+          "id": "a",
+          "label": {
+            "en": "Decimal(\"0.20\")",
+            "nl": "Decimal(\"0.20\")"
+          },
+          "reason": {
+            "en": "Constructing from text avoids a prior binary float approximation.",
+            "nl": "Uit tekst construeren vermijdt een voorafgaande binaire floatbenadering."
+          }
+        },
+        {
+          "id": "b",
+          "label": {
+            "en": "Decimal(0.20)",
+            "nl": "Decimal(0.20)"
+          },
+          "reason": {
+            "en": "The float argument is already approximated before Decimal sees it.",
+            "nl": "Het floatargument is al benaderd voordat Decimal het ziet."
+          }
+        },
+        {
+          "id": "c",
+          "label": {
+            "en": "Decimal(float(\"0.20\"))",
+            "nl": "Decimal(float(\"0.20\"))"
+          },
+          "reason": {
+            "en": "Converting through float first defeats the purpose of the text input.",
+            "nl": "Eerst via float omzetten doet het voordeel van tekstinvoer teniet."
+          }
+        }
+      ],
+      "id": "python-v3-9-quiz-b-6"
+    }
+  ]
+}

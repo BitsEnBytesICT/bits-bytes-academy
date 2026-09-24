@@ -1,0 +1,129 @@
+{
+  "id": "python-v4-23-inspect",
+  "chapter": 23,
+  "group": "python-v4-module-23",
+  "title": {
+    "en": "Inspect an unfamiliar object",
+    "nl": "Onderzoek een onbekend object"
+  },
+  "kind": "coding",
+  "optional": false,
+  "runtime": "terminal",
+  "guidance": "guided",
+  "checkpointMode": "sequential",
+  "estimatedMinutes": 12,
+  "topicIds": [
+    "hasattr",
+    "getattr",
+    "dir"
+  ],
+  "practices": [],
+  "requiredConcepts": [
+    "attributes",
+    "classes"
+  ],
+  "explanation": {
+    "en": "Inspection tools help you understand objects when reading examples or documentation.",
+    "nl": "Onderzoeksgereedschappen helpen objecten begrijpen bij het lezen van voorbeelden of documentatie."
+  },
+  "example": "",
+  "sections": [
+    {
+      "id": "python-v4-23-inspect-example",
+      "topicIds": [
+        "hasattr",
+        "getattr",
+        "dir"
+      ],
+      "heading": {
+        "en": "Follow a working example",
+        "nl": "Volg een werkend voorbeeld"
+      },
+      "body": {
+        "en": "hasattr(obj, \"name\") returns whether attribute access succeeds. getattr(obj, \"name\", default) reads an attribute with a fallback when it is absent. dir(obj) lists discoverable attribute names, including many special names; it is an aid, not a full API specification. Prefer direct obj.name when the field is known and required.",
+        "nl": "hasattr(obj, \"name\") geeft of attribuuttoegang lukt. getattr(obj, \"name\", default) leest een attribuut met een terugval bij afwezigheid. dir(obj) toont vindbare attribuutnamen, inclusief veel speciale namen; het is een hulpmiddel, geen volledige API-specificatie. Gebruik liever direct obj.name als het veld bekend en verplicht is."
+      },
+      "code": "class Badge:\n    name = \"Visitor\"\nbadge = Badge()\nprint(hasattr(badge,\"name\"))\nprint(getattr(badge,\"score\",0))\nprint(\"name\" in dir(badge))",
+      "output": "True\n0\nTrue\n",
+      "prediction": {
+        "en": "Which call actually retrieves a value?",
+        "nl": "Welke aanroep haalt werkelijk een waarde op?"
+      },
+      "takeaway": {
+        "en": "Inspect deliberately; do not silently hide a missing required field.",
+        "nl": "Onderzoek bewust; verberg een ontbrekend verplicht veld niet stilzwijgend."
+      }
+    },
+    {
+      "id": "python-v4-23-inspect-experiment",
+      "topicIds": [],
+      "heading": {
+        "en": "Try one change",
+        "nl": "Probeer één wijziging"
+      },
+      "body": {
+        "en": "Use dir on a string and identify one method you already know.",
+        "nl": "Gebruik dir op een string en herken één methode die je al kent."
+      }
+    }
+  ],
+  "files": {
+    "main.py": "class Record:\n    def __init__(self):\n        self.name = \"Bo\"\ndef inspect_name(obj):\n    return None\n"
+  },
+  "solution": {
+    "main.py": "class Record:\n    def __init__(self):\n        self.name = \"Bo\"\ndef inspect_name(obj):\n    return hasattr(obj,\"name\"), getattr(obj,\"name\",\"unknown\"), \"name\" in dir(obj)\n"
+  },
+  "checkpoints": [
+    {
+      "id": "python-v4-23-inspect-step-1",
+      "objectiveIds": [
+        "hasattr",
+        "getattr",
+        "dir"
+      ],
+      "task": {
+        "en": "Return a tuple containing whether name exists, its value or unknown, and whether dir lists name.",
+        "nl": "Geef een tuple met of name bestaat, de waarde of unknown en of dir name vermeldt."
+      },
+      "check": "inspect_name(Record()) == (True,\"Bo\",True) and inspect_name(3) == (False,\"unknown\",False)",
+      "probes": [
+        {
+          "call": {
+            "name": "inspect_name",
+            "args": [
+              "text"
+            ]
+          },
+          "check": "_return == (False,\"unknown\",False)"
+        }
+      ],
+      "hint": {
+        "en": "Inspect deliberately; do not silently hide a missing required field.",
+        "nl": "Onderzoek bewust; verberg een ontbrekend verplicht veld niet stilzwijgend."
+      },
+      "hints": [
+        {
+          "en": "Inspect deliberately; do not silently hide a missing required field.",
+          "nl": "Onderzoek bewust; verberg een ontbrekend verplicht veld niet stilzwijgend."
+        },
+        {
+          "en": "Use the three inspection operations for their distinct questions.",
+          "nl": "Gebruik de drie onderzoeksbewerkingen voor hun verschillende vragen."
+        },
+        {
+          "en": "A small fragment to adapt: `getattr(obj, \"name\", \"unknown\")`",
+          "nl": "Een klein fragment om aan te passen: `getattr(obj, \"name\", \"unknown\")`"
+        }
+      ],
+      "feedback": {
+        "en": "Use the three inspection operations for their distinct questions.",
+        "nl": "Gebruik de drie onderzoeksbewerkingen voor hun verschillende vragen."
+      }
+    }
+  ],
+  "solutionNote": {
+    "en": "Existence, retrieval and discovery are related but separate operations.",
+    "nl": "Bestaan, ophalen en ontdekken zijn verwante maar aparte bewerkingen."
+  },
+  "inputs": []
+}

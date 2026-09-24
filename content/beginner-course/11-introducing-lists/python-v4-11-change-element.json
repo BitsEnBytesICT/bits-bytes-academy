@@ -1,0 +1,152 @@
+{
+  "id": "python-v4-11-change-element",
+  "chapter": 11,
+  "group": "python-v4-module-11",
+  "title": {
+    "en": "Replace an element",
+    "nl": "Vervang een element"
+  },
+  "kind": "coding",
+  "optional": false,
+  "runtime": "terminal",
+  "guidance": "guided",
+  "checkpointMode": "sequential",
+  "estimatedMinutes": 12,
+  "topicIds": [
+    "list-mutation"
+  ],
+  "practices": [],
+  "requiredConcepts": [
+    "indexing",
+    "variables"
+  ],
+  "explanation": {
+    "en": "Lists are mutable: you can update one position without rebuilding the whole list.",
+    "nl": "Lijsten zijn veranderbaar: je kunt één positie bijwerken zonder de hele lijst opnieuw te maken."
+  },
+  "example": "",
+  "sections": [
+    {
+      "id": "python-v4-11-change-element-example",
+      "topicIds": [
+        "list-mutation"
+      ],
+      "heading": {
+        "en": "Follow a working example",
+        "nl": "Volg een werkend voorbeeld"
+      },
+      "body": {
+        "en": "scores[1] = 9 assigns a new value to an existing position. It replaces rather than inserts; the length stays the same. The index must already exist. This mutates the caller’s list when passed into a function, because the function and caller refer to the same list object.",
+        "nl": "scores[1] = 9 wijst een nieuwe waarde toe aan een bestaande positie. Het vervangt in plaats van invoegen; de lengte blijft gelijk. De index moet al bestaan. Dit verandert de lijst van de aanroeper wanneer die aan een functie is meegegeven, omdat functie en aanroeper naar hetzelfde lijstobject verwijzen."
+      },
+      "code": "scores = [3, 5, 7]\nscores[1] = 9\nprint(scores)",
+      "output": "[3, 9, 7]\n",
+      "prediction": {
+        "en": "Did the number of elements change?",
+        "nl": "Is het aantal elementen veranderd?"
+      },
+      "takeaway": {
+        "en": "Indexed assignment replaces an existing element in place.",
+        "nl": "Toewijzing via een index vervangt een bestaand element in de lijst."
+      }
+    },
+    {
+      "id": "python-v4-11-change-element-experiment",
+      "topicIds": [],
+      "heading": {
+        "en": "Try one change",
+        "nl": "Probeer één wijziging"
+      },
+      "body": {
+        "en": "Have the caller print its original variable after the call.",
+        "nl": "Laat de aanroeper zijn oorspronkelijke variabele na de aanroep afdrukken."
+      }
+    }
+  ],
+  "files": {
+    "main.py": "def replace_last(items, value):\n    # Complete this function.\n    return None\n"
+  },
+  "solution": {
+    "main.py": "def replace_last(items, value):\n    items[-1] = value\n    return items\n"
+  },
+  "checkpoints": [
+    {
+      "id": "python-v4-11-change-element-step-1",
+      "objectiveIds": [
+        "list-mutation"
+      ],
+      "task": {
+        "en": "Replace the last element of nonempty items with value and return the same list.",
+        "nl": "Vervang het laatste element van niet-lege items door value en geef dezelfde lijst terug."
+      },
+      "check": "callable(replace_last)",
+      "probes": [
+        {
+          "call": {
+            "name": "replace_last",
+            "args": [
+              [
+                1,
+                2
+              ],
+              9
+            ]
+          },
+          "check": "(_return == [1,9] and _return is _args[0]) and _error is None"
+        },
+        {
+          "call": {
+            "name": "replace_last",
+            "args": [
+              [
+                4
+              ],
+              0
+            ]
+          },
+          "check": "(_return == [0]) and _error is None"
+        }
+      ],
+      "hint": {
+        "en": "Indexed assignment replaces an existing element in place.",
+        "nl": "Toewijzing via een index vervangt een bestaand element in de lijst."
+      },
+      "hints": [
+        {
+          "en": "Indexed assignment replaces an existing element in place.",
+          "nl": "Toewijzing via een index vervangt een bestaand element in de lijst."
+        },
+        {
+          "en": "Assign to the final position before returning the list.",
+          "nl": "Wijs toe aan de laatste positie voordat je de lijst teruggeeft."
+        },
+        {
+          "en": "A small fragment to adapt: `items[-1] = value`",
+          "nl": "Een klein fragment om aan te passen: `items[-1] = value`"
+        }
+      ],
+      "feedback": {
+        "en": "Assign to the final position before returning the list.",
+        "nl": "Wijs toe aan de laatste positie voordat je de lijst teruggeeft."
+      }
+    }
+  ],
+  "solutionNote": {
+    "en": "The method changes the existing object, so the caller observes the replacement.",
+    "nl": "De functie verandert het bestaande object; de aanroeper ziet daardoor de vervanging."
+  },
+  "inputs": [],
+  "retrievals": [
+    {
+      "id": "recall-python-v4-09-return-values",
+      "sourceActivityId": "python-v4-09-return-values",
+      "objectiveIds": [
+        "return"
+      ],
+      "prompt": {
+        "en": "Recall “Return an answer to the caller”. What is stored in answer before the print? Try the earlier example from memory, then check it. Store an area result and add a separate print in the caller.",
+        "nl": "Haal “Geef een antwoord terug aan de aanroeper” terug. Wat staat in answer vóór de print? Probeer het eerdere voorbeeld uit je geheugen en controleer daarna. Bewaar een area-resultaat en voeg een aparte print toe bij de aanroeper."
+      }
+    }
+  ]
+}

@@ -1,0 +1,134 @@
+{
+  "id": "python-v4-04-f-strings",
+  "chapter": 4,
+  "group": "python-v4-module-4",
+  "title": {
+    "en": "Place values inside a message",
+    "nl": "Plaats waarden binnen een bericht"
+  },
+  "kind": "coding",
+  "optional": false,
+  "runtime": "terminal",
+  "guidance": "guided",
+  "checkpointMode": "sequential",
+  "estimatedMinutes": 13,
+  "topicIds": [
+    "f-strings"
+  ],
+  "practices": [],
+  "requiredConcepts": [
+    "variables",
+    "strings"
+  ],
+  "explanation": {
+    "en": "An f-string makes the shape of a message visible while inserting changing values.",
+    "nl": "Een f-string maakt de vorm van een bericht zichtbaar en voegt veranderende waarden in."
+  },
+  "example": "",
+  "sections": [
+    {
+      "id": "python-v4-04-f-strings-example",
+      "topicIds": [
+        "f-strings"
+      ],
+      "heading": {
+        "en": "Follow a working example",
+        "nl": "Volg een werkend voorbeeld"
+      },
+      "body": {
+        "en": "Put f immediately before the opening quote. Inside the string, {name} evaluates the expression name and inserts its displayed value. Ordinary text outside braces stays literal.\n\nThe example inserts a string and an integer into one message. You do not need str() around each value in an f-string. Without the f prefix, Python would print the braces and names as ordinary text.",
+        "nl": "Zet f direct vóór het openingsaanhalingsteken. Binnen de string berekent {name} de expressie name en voegt de getoonde waarde in. Gewone tekst buiten de accolades blijft letterlijk.\n\nHet voorbeeld voegt een string en een int in één bericht in. Je hebt in een f-string geen str() om elke waarde nodig. Zonder de f ervoor drukt Python de accolades en namen als gewone tekst af."
+      },
+      "code": "name = \"Noor\"\npoints = 8\nprint(f\"{name} has {points} points\")",
+      "output": "Noor has 8 points\n",
+      "prediction": {
+        "en": "What would the same string display without its f prefix?",
+        "nl": "Wat toont dezelfde string zonder de f ervoor?"
+      },
+      "takeaway": {
+        "en": "The f prefix activates value expressions inside braces.",
+        "nl": "De f ervoor activeert waarde-expressies binnen accolades."
+      }
+    },
+    {
+      "id": "python-v4-04-f-strings-experiment",
+      "topicIds": [],
+      "heading": {
+        "en": "Try one change",
+        "nl": "Probeer één wijziging"
+      },
+      "body": {
+        "en": "Change both inputs and predict the message. Then remove f once to observe the difference.",
+        "nl": "Verander beide invoerwaarden en voorspel het bericht. Verwijder daarna eenmaal f om het verschil te zien."
+      }
+    }
+  ],
+  "files": {
+    "main.py": "name = \"Mila\"\nbooks = 3\n"
+  },
+  "solution": {
+    "main.py": "name = \"Mila\"\nbooks = 3\nmessage = f\"{name} borrowed {books} books\"\nprint(message)\n"
+  },
+  "checkpoints": [
+    {
+      "id": "python-v4-04-f-strings-step-1",
+      "objectiveIds": [
+        "f-strings"
+      ],
+      "task": {
+        "en": "Use an f-string to create and print message, such as \"Mila borrowed 3 books\".",
+        "nl": "Gebruik een f-string om message te maken en af te drukken, bijvoorbeeld \"Mila borrowed 3 books\"."
+      },
+      "check": "message == f\"{name} borrowed {books} books\" and _stdout.strip() == message and any(isinstance(n, _ast.JoinedStr) for n in _ast.walk(_ast.parse(_source)))",
+      "probes": [
+        {
+          "inputs": {
+            "name": "Bo",
+            "books": 0
+          },
+          "check": "message == \"Bo borrowed 0 books\""
+        }
+      ],
+      "hint": {
+        "en": "The f prefix activates value expressions inside braces.",
+        "nl": "De f ervoor activeert waarde-expressies binnen accolades."
+      },
+      "hints": [
+        {
+          "en": "The f prefix activates value expressions inside braces.",
+          "nl": "De f ervoor activeert waarde-expressies binnen accolades."
+        },
+        {
+          "en": "Put f before the quotes and both variable names inside their own braces.",
+          "nl": "Zet f vóór de aanhalingstekens en beide variabelenamen binnen hun eigen accolades."
+        },
+        {
+          "en": "A small fragment to adapt: `f\"{name} borrowed {books} books\"`",
+          "nl": "Een klein fragment om aan te passen: `f\"{name} borrowed {books} books\"`"
+        }
+      ],
+      "feedback": {
+        "en": "Put f before the quotes and both variable names inside their own braces.",
+        "nl": "Zet f vóór de aanhalingstekens en beide variabelenamen binnen hun eigen accolades."
+      }
+    }
+  ],
+  "solutionNote": {
+    "en": "The braces insert current values when the f-string is created. The result is a normal string stored in message.",
+    "nl": "De accolades voegen huidige waarden in wanneer de f-string wordt gemaakt. Het resultaat is een gewone string in message."
+  },
+  "inputs": [],
+  "retrievals": [
+    {
+      "id": "recall-python-v4-02-reassignment",
+      "sourceActivityId": "python-v4-02-reassignment",
+      "objectiveIds": [
+        "reassignment"
+      ],
+      "prompt": {
+        "en": "Recall “Change a stored value”. Why does the first line still say Morning? Try the earlier example from memory, then check it. Move the update above the first print. Predict the new two-line output.",
+        "nl": "Haal “Verander een opgeslagen waarde” terug. Waarom staat op de eerste regel nog Morning? Probeer het eerdere voorbeeld uit je geheugen en controleer daarna. Verplaats de wijziging tot boven de eerste print. Voorspel de nieuwe uitvoer van twee regels."
+      }
+    }
+  ]
+}

@@ -1,0 +1,274 @@
+{
+  "id": "python-v3-16-01",
+  "chapter": 16,
+  "group": "python-v3-module-16",
+  "title": {
+    "en": "Trace match transitions",
+    "nl": "Volg wedstrijdtoestanden"
+  },
+  "kind": "coding",
+  "optional": false,
+  "runtime": "pygame",
+  "guidance": "guided",
+  "estimatedMinutes": 19,
+  "explanation": {
+    "en": "Trace a match through serve, playing and won states. The supplied game fixture is complete around your transition helper, so you can focus on the rules. Space serves, R restarts, and P pauses.",
+    "nl": "Volg een wedstrijd door de toestanden serve, playing en won. De meegeleverde spelfixture is compleet rond je overgangshelper zodat je op de regels kunt focussen. Space serveert, R herstart en P pauzeert."
+  },
+  "example": "",
+  "topicIds": [
+    "game-state",
+    "serving",
+    "winning",
+    "restarting"
+  ],
+  "prerequisites": [
+    "python-v3-15-06"
+  ],
+  "sections": [
+    {
+      "topicIds": [
+        "game-state",
+        "serving",
+        "winning",
+        "restarting"
+      ],
+      "heading": {
+        "en": "Write down allowed transitions",
+        "nl": "Schrijf toegestane overgangen op"
+      },
+      "body": {
+        "en": "From serve, space enters playing. From playing, a point enters won if either score reaches target, otherwise serve. A restart always returns serve; the caller resets scores and positions. Other actions preserve state. Keeping these transitions in one function prevents input handling and scoring from disagreeing.",
+        "nl": "Vanuit serve gaat space naar playing. Vanuit playing gaat een punt naar won als één score target bereikt, anders naar serve. Een herstart geeft altijd serve; de aanroeper reset scores en posities. Andere acties behouden toestand. Deze overgangen in één functie houden voorkomt dat invoer en score elkaar tegenspreken."
+      },
+      "code": "state = \"serve\"\naction = \"space\"\nif state == \"serve\" and action == \"space\":\n    state = \"playing\"\nprint(state)",
+      "output": "playing\n",
+      "prediction": {
+        "en": "Why should Space after winning not accidentally resume the old match?",
+        "nl": "Waarom mag Space na winst niet per ongeluk de oude wedstrijd hervatten?"
+      }
+    },
+    {
+      "topicIds": [],
+      "heading": {
+        "en": "Run, observe, finish",
+        "nl": "Voer uit, bekijk, rond af"
+      },
+      "body": {
+        "en": "main.py supplies the browser entry point. Run opens a real pygame-ce preview; click it to focus the keyboard. Clicking elsewhere pauses play. Finish & check closes normally and checks your helper after at least one rendered frame. Stop cancels without grading. Run can start a fresh session afterward. Keep the supplied async definition and await asyncio.sleep(1 / 60): they let the browser draw and receive input. You are not expected to reproduce this infrastructure from memory.",
+        "nl": "main.py levert het browserstartpunt. Uitvoeren opent een echt pygame-ce-voorbeeld; klik erop om het toetsenbord te activeren. Elders klikken pauzeert het spel. Afronden en controleren sluit normaal af en controleert je helper na minstens één getekend beeld. Stop annuleert zonder beoordeling. Uitvoeren kan daarna een nieuwe sessie starten. Behoud de meegeleverde async-definitie en await asyncio.sleep(1 / 60): die laten de browser tekenen en invoer ontvangen. Je hoeft deze infrastructuur niet uit je hoofd te schrijven."
+      }
+    },
+    {
+      "topicIds": [],
+      "heading": {
+        "en": "Try a changed input",
+        "nl": "Probeer gewijzigde invoer"
+      },
+      "body": {
+        "en": "Trace serve → playing → serve → playing → won → restart on paper. Play a short target-1 match and confirm the same sequence.",
+        "nl": "Volg serve → playing → serve → playing → won → restart op papier. Speel een korte wedstrijd tot 1 en bevestig dezelfde reeks."
+      }
+    }
+  ],
+  "files": {
+    "main.py": "# Supplied match fixture. Edit the named responsibility in game.py.\nimport asyncio\nimport pygame\nimport game\n\nasync def main():\n    pygame.init()\n    screen = pygame.display.set_mode((640, 400))\n    clock = pygame.time.Clock()\n    font = pygame.font.Font(None, 24)\n    left = game.Paddle(20, 170)\n    right = game.Paddle(610, 170)\n    control = game.PauseControl()\n    target = game.load_target(\"settings.json\")\n    state = \"serve\"\n    left_score, right_score = 0, 0\n    x, y, vx, vy = 320.0, 200.0, 200.0, 100.0\n    running = True\n    while running:\n        dt = min(clock.tick() / 1000, 0.05)\n        for event in pygame.event.get():\n            if event.type == pygame.QUIT:\n                running = False\n            if event.type == pygame.KEYDOWN:\n                if event.key == pygame.K_ESCAPE:\n                    running = False\n                if event.key == pygame.K_SPACE:\n                    state = game.next_state(state, \"space\", left_score, right_score, target)\n                if event.key == pygame.K_r:\n                    state = game.next_state(state, \"restart\", left_score, right_score, target)\n                    left_score, right_score = 0, 0\n                    x, y, vx, vy = 320.0, 200.0, 200.0, 100.0\n                    control.reset()\n                control.handle_key(event.key)\n        keys = pygame.key.get_pressed()\n        if control.should_update(state):\n            left.move(keys[pygame.K_w], keys[pygame.K_s], dt)\n            right.move(keys[pygame.K_UP], keys[pygame.K_DOWN], dt)\n            x += vx * dt\n            y += vy * dt\n            if y <= 6 and vy < 0:\n                y, vy = 6, -vy\n            elif y >= 394 and vy > 0:\n                y, vy = 394, -vy\n            x, vx = game.reflect(x, y, vx, tuple(left.rect()))\n            x, vx = game.reflect(x, y, vx, tuple(right.rect()))\n            state, left_score, right_score = game.score_miss(state, x, left_score, right_score, target)\n            if state != \"playing\":\n                x, y, vx, vy = 320.0, 200.0, 200.0, 100.0\n        screen.fill((16, 23, 39))\n        pygame.draw.rect(screen, (235, 240, 250), left.rect())\n        pygame.draw.rect(screen, (235, 240, 250), right.rect())\n        pygame.draw.circle(screen, (255, 170, 40), (int(x), int(y)), 6)\n        label = f\"{left_score} : {right_score}   / {target}   {state}\"\n        if control.paused:\n            label += \"   PAUSED\"\n        screen.blit(font.render(label, True, (235, 240, 250)), (160, 20))\n        screen.blit(font.render(\"W/S | Up/Down | Space serve | P pause | R restart\", True, (235, 240, 250)), (80, 372))\n        pygame.display.flip()\n        await asyncio.sleep(1 / 60)\n    game.save_result(\"result.json\", left_score, right_score)\n    pygame.quit()\n\nasyncio.run(main())\n",
+    "game.py": "import pygame\nimport json\n\ndef next_state(state, action, left, right, target):\n    return state\n\ndef score_miss(state, x, left, right, target):\n    if state != \"playing\":\n        return state, left, right\n    if x < -6:\n        right += 1\n    elif x > 646:\n        left += 1\n    else:\n        return state, left, right\n    return next_state(state, \"point\", left, right, target), left, right\n\nclass Paddle:\n    def __init__(self, x, y, height=60):\n        self.x = x\n        self.y = y\n        self.height = height\n\n    def move(self, up, down, dt):\n        if up:\n            self.y -= 240 * dt\n        if down:\n            self.y += 240 * dt\n        self.y = max(0, min(400 - self.height, self.y))\n\n    def rect(self):\n        return pygame.Rect(self.x, self.y, 10, self.height)\n\ndef reflect(x, y, vx, paddle):\n    ball = pygame.Rect(x - 6, y - 6, 12, 12)\n    target = pygame.Rect(paddle)\n    if ball.colliderect(target):\n        if target.centerx < 320 and vx < 0:\n            return target.right + 6, -vx\n        if target.centerx >= 320 and vx > 0:\n            return target.left - 6, -vx\n    return x, vx\n\ndef load_target(filename):\n    try:\n        with open(filename, encoding=\"utf-8\") as handle:\n            settings = json.load(handle)\n    except (FileNotFoundError, json.JSONDecodeError):\n        return 5\n    if not isinstance(settings, dict):\n        return 5\n    value = settings.get(\"target\", 5)\n    if type(value) is int and 1 <= value <= 21:\n        return value\n    return 5\n\ndef save_result(filename, left, right):\n    with open(filename, \"w\", encoding=\"utf-8\") as handle:\n        json.dump({\"left\": left, \"right\": right}, handle, indent=2)\n\nclass PauseControl:\n    def __init__(self):\n        self.paused = False\n\n    def handle_key(self, key):\n        if key == pygame.K_p:\n            self.paused = not self.paused\n\n    def should_update(self, state):\n        return state == \"playing\" and not self.paused\n\n    def reset(self):\n        self.paused = False\n",
+    "settings.json": "{\n  \"target\": 3\n}\n"
+  },
+  "solution": {
+    "main.py": "# Supplied match fixture. Edit the named responsibility in game.py.\nimport asyncio\nimport pygame\nimport game\n\nasync def main():\n    pygame.init()\n    screen = pygame.display.set_mode((640, 400))\n    clock = pygame.time.Clock()\n    font = pygame.font.Font(None, 24)\n    left = game.Paddle(20, 170)\n    right = game.Paddle(610, 170)\n    control = game.PauseControl()\n    target = game.load_target(\"settings.json\")\n    state = \"serve\"\n    left_score, right_score = 0, 0\n    x, y, vx, vy = 320.0, 200.0, 200.0, 100.0\n    running = True\n    while running:\n        dt = min(clock.tick() / 1000, 0.05)\n        for event in pygame.event.get():\n            if event.type == pygame.QUIT:\n                running = False\n            if event.type == pygame.KEYDOWN:\n                if event.key == pygame.K_ESCAPE:\n                    running = False\n                if event.key == pygame.K_SPACE:\n                    state = game.next_state(state, \"space\", left_score, right_score, target)\n                if event.key == pygame.K_r:\n                    state = game.next_state(state, \"restart\", left_score, right_score, target)\n                    left_score, right_score = 0, 0\n                    x, y, vx, vy = 320.0, 200.0, 200.0, 100.0\n                    control.reset()\n                control.handle_key(event.key)\n        keys = pygame.key.get_pressed()\n        if control.should_update(state):\n            left.move(keys[pygame.K_w], keys[pygame.K_s], dt)\n            right.move(keys[pygame.K_UP], keys[pygame.K_DOWN], dt)\n            x += vx * dt\n            y += vy * dt\n            if y <= 6 and vy < 0:\n                y, vy = 6, -vy\n            elif y >= 394 and vy > 0:\n                y, vy = 394, -vy\n            x, vx = game.reflect(x, y, vx, tuple(left.rect()))\n            x, vx = game.reflect(x, y, vx, tuple(right.rect()))\n            state, left_score, right_score = game.score_miss(state, x, left_score, right_score, target)\n            if state != \"playing\":\n                x, y, vx, vy = 320.0, 200.0, 200.0, 100.0\n        screen.fill((16, 23, 39))\n        pygame.draw.rect(screen, (235, 240, 250), left.rect())\n        pygame.draw.rect(screen, (235, 240, 250), right.rect())\n        pygame.draw.circle(screen, (255, 170, 40), (int(x), int(y)), 6)\n        label = f\"{left_score} : {right_score}   / {target}   {state}\"\n        if control.paused:\n            label += \"   PAUSED\"\n        screen.blit(font.render(label, True, (235, 240, 250)), (160, 20))\n        screen.blit(font.render(\"W/S | Up/Down | Space serve | P pause | R restart\", True, (235, 240, 250)), (80, 372))\n        pygame.display.flip()\n        await asyncio.sleep(1 / 60)\n    game.save_result(\"result.json\", left_score, right_score)\n    pygame.quit()\n\nasyncio.run(main())\n",
+    "game.py": "import pygame\nimport json\n\ndef next_state(state, action, left, right, target):\n    if action == \"restart\":\n        return \"serve\"\n    if state == \"serve\" and action == \"space\":\n        return \"playing\"\n    if state == \"playing\" and action == \"point\":\n        if left >= target or right >= target:\n            return \"won\"\n        return \"serve\"\n    return state\n\ndef score_miss(state, x, left, right, target):\n    if state != \"playing\":\n        return state, left, right\n    if x < -6:\n        right += 1\n    elif x > 646:\n        left += 1\n    else:\n        return state, left, right\n    return next_state(state, \"point\", left, right, target), left, right\n\nclass Paddle:\n    def __init__(self, x, y, height=60):\n        self.x = x\n        self.y = y\n        self.height = height\n\n    def move(self, up, down, dt):\n        if up:\n            self.y -= 240 * dt\n        if down:\n            self.y += 240 * dt\n        self.y = max(0, min(400 - self.height, self.y))\n\n    def rect(self):\n        return pygame.Rect(self.x, self.y, 10, self.height)\n\ndef reflect(x, y, vx, paddle):\n    ball = pygame.Rect(x - 6, y - 6, 12, 12)\n    target = pygame.Rect(paddle)\n    if ball.colliderect(target):\n        if target.centerx < 320 and vx < 0:\n            return target.right + 6, -vx\n        if target.centerx >= 320 and vx > 0:\n            return target.left - 6, -vx\n    return x, vx\n\ndef load_target(filename):\n    try:\n        with open(filename, encoding=\"utf-8\") as handle:\n            settings = json.load(handle)\n    except (FileNotFoundError, json.JSONDecodeError):\n        return 5\n    if not isinstance(settings, dict):\n        return 5\n    value = settings.get(\"target\", 5)\n    if type(value) is int and 1 <= value <= 21:\n        return value\n    return 5\n\ndef save_result(filename, left, right):\n    with open(filename, \"w\", encoding=\"utf-8\") as handle:\n        json.dump({\"left\": left, \"right\": right}, handle, indent=2)\n\nclass PauseControl:\n    def __init__(self):\n        self.paused = False\n\n    def handle_key(self, key):\n        if key == pygame.K_p:\n            self.paused = not self.paused\n\n    def should_update(self, state):\n        return state == \"playing\" and not self.paused\n\n    def reset(self):\n        self.paused = False\n",
+    "settings.json": "{\n  \"target\": 3\n}\n"
+  },
+  "checkpoints": [
+    {
+      "objectiveIds": [
+        "game-state",
+        "serving",
+        "restarting"
+      ],
+      "task": {
+        "en": "Implement next_state for serve+space, any restart, and unchanged unrelated actions.",
+        "nl": "Implementeer next_state voor serve+space, elke restart en ongewijzigde niet-gerelateerde acties."
+      },
+      "check": "_rendered_frames > 0",
+      "hints": [
+        {
+          "en": "Treat state and action as separate inputs.",
+          "nl": "Behandel toestand en actie als aparte invoer."
+        },
+        {
+          "en": "Check restart first, then a serve-to-playing transition.",
+          "nl": "Controleer eerst restart en dan een overgang van serve naar playing."
+        },
+        {
+          "en": "if action == \"restart\":\n    return \"serve\"",
+          "nl": "if action == \"restart\":\n    return \"serve\""
+        }
+      ],
+      "hint": {
+        "en": "Treat state and action as separate inputs.",
+        "nl": "Behandel toestand en actie als aparte invoer."
+      },
+      "feedback": {
+        "en": "Space must not restart a won match; R is the explicit restart.",
+        "nl": "Space mag een gewonnen wedstrijd niet herstarten; R is de expliciete herstart."
+      },
+      "probes": [
+        {
+          "call": {
+            "name": "next_state",
+            "args": [
+              "serve",
+              "space",
+              0,
+              0,
+              3
+            ],
+            "module": "game"
+          },
+          "check": "_return == \"playing\"",
+          "moduleOnly": true,
+          "module": "game"
+        },
+        {
+          "call": {
+            "name": "next_state",
+            "args": [
+              "won",
+              "space",
+              3,
+              1,
+              3
+            ],
+            "module": "game"
+          },
+          "check": "_return == \"won\"",
+          "moduleOnly": true,
+          "module": "game"
+        },
+        {
+          "call": {
+            "name": "next_state",
+            "args": [
+              "won",
+              "restart",
+              3,
+              1,
+              3
+            ],
+            "module": "game"
+          },
+          "check": "_return == \"serve\"",
+          "moduleOnly": true,
+          "module": "game"
+        }
+      ],
+      "id": "python-v3-16-01-step-1"
+    },
+    {
+      "objectiveIds": [
+        "winning"
+      ],
+      "task": {
+        "en": "On a point while playing, return won if either score is at least target; otherwise return serve.",
+        "nl": "Geef bij een punt tijdens playing won als één score minstens target is, anders serve."
+      },
+      "check": "_rendered_frames > 0",
+      "hints": [
+        {
+          "en": "Test both players against the same goal.",
+          "nl": "Test beide spelers tegen hetzelfde doel."
+        },
+        {
+          "en": "Use or to combine the two winning conditions.",
+          "nl": "Gebruik or om beide winstvoorwaarden te combineren."
+        },
+        {
+          "en": "if left >= target or right >= target:\n    return \"won\"",
+          "nl": "if left >= target or right >= target:\n    return \"won\""
+        }
+      ],
+      "hint": {
+        "en": "Test both players against the same goal.",
+        "nl": "Test beide spelers tegen hetzelfde doel."
+      },
+      "feedback": {
+        "en": "Winning must work for either side and for a changed target.",
+        "nl": "Winnen moet voor beide kanten en een gewijzigd doel werken."
+      },
+      "probes": [
+        {
+          "call": {
+            "name": "next_state",
+            "args": [
+              "playing",
+              "point",
+              2,
+              1,
+              3
+            ],
+            "module": "game"
+          },
+          "check": "_return == \"serve\"",
+          "moduleOnly": true,
+          "module": "game"
+        },
+        {
+          "call": {
+            "name": "next_state",
+            "args": [
+              "playing",
+              "point",
+              3,
+              0,
+              3
+            ],
+            "module": "game"
+          },
+          "check": "_return == \"won\"",
+          "moduleOnly": true,
+          "module": "game"
+        },
+        {
+          "call": {
+            "name": "next_state",
+            "args": [
+              "playing",
+              "point",
+              0,
+              1,
+              1
+            ],
+            "module": "game"
+          },
+          "check": "_return == \"won\"",
+          "moduleOnly": true,
+          "module": "game"
+        }
+      ],
+      "id": "python-v3-16-01-step-2"
+    }
+  ],
+  "solutionNote": {
+    "en": "The helper selects a state; the caller performs reset actions. This separates the rule “what happens next” from changing every piece of game data.",
+    "nl": "De helper kiest een toestand; de aanroeper voert resetacties uit. Dit scheidt de regel “wat gebeurt hierna” van elk spelgegeven wijzigen."
+  },
+  "inputs": [],
+  "retrievals": [
+    {
+      "id": "recall-python-v3-15-01",
+      "sourceActivityId": "python-v3-15-01",
+      "objectiveIds": [
+        "types",
+        "everything-is-object",
+        "functions-as-objects"
+      ],
+      "prompt": {
+        "en": "Inspect the type of a function and pass it as an argument. Explain how familiar strings, lists and functions are objects.",
+        "nl": "Bekijk het type van een functie en geef die als argument door. Leg uit hoe bekende strings, lijsten en functies objecten zijn."
+      }
+    }
+  ]
+}

@@ -1,0 +1,164 @@
+{
+  "id": "python-v4-12-filter",
+  "chapter": 12,
+  "group": "python-v4-module-12",
+  "title": {
+    "en": "Build a list of matching values",
+    "nl": "Bouw een lijst van passende waarden"
+  },
+  "kind": "coding",
+  "optional": false,
+  "runtime": "terminal",
+  "guidance": "guided",
+  "checkpointMode": "sequential",
+  "estimatedMinutes": 12,
+  "topicIds": [
+    "filtering"
+  ],
+  "practices": [],
+  "requiredConcepts": [
+    "for",
+    "append",
+    "relational-operators"
+  ],
+  "explanation": {
+    "en": "Filtering keeps every matching value, so it must inspect the whole input.",
+    "nl": "Filteren bewaart elke passende waarde en moet daarom de hele invoer bekijken."
+  },
+  "example": "",
+  "sections": [
+    {
+      "id": "python-v4-12-filter-example",
+      "topicIds": [
+        "filtering"
+      ],
+      "heading": {
+        "en": "Follow a working example",
+        "nl": "Volg een werkend voorbeeld"
+      },
+      "body": {
+        "en": "Create an empty result before the loop. For each value, append only if its condition is True. Return the result after all input values have been considered. Build a new list rather than removing items from the list you are traversing. This preserves both order and the original data.",
+        "nl": "Maak vóór de lus een leeg resultaat. Voeg voor elke waarde alleen toe als de voorwaarde True is. Geef het resultaat terug nadat alle invoerwaarden zijn bekeken. Bouw een nieuwe lijst in plaats van items te verwijderen uit de lijst die je doorloopt. Dit bewaart zowel volgorde als oorspronkelijke gegevens."
+      },
+      "code": "result = []\nfor score in [3, 8, 6]:\n    if score >= 6:\n        result.append(score)\nprint(result)",
+      "output": "[8, 6]\n",
+      "prediction": {
+        "en": "Why must return happen after the loop in a filtering function?",
+        "nl": "Waarom moet return na de lus komen in een filterfunctie?"
+      },
+      "takeaway": {
+        "en": "Filtering collects all matches without changing the source.",
+        "nl": "Filteren verzamelt alle overeenkomsten zonder de bron te wijzigen."
+      }
+    },
+    {
+      "id": "python-v4-12-filter-experiment",
+      "topicIds": [],
+      "heading": {
+        "en": "Try one change",
+        "nl": "Probeer één wijziging"
+      },
+      "body": {
+        "en": "Test a list where every value is negative.",
+        "nl": "Test een lijst waarin elke waarde negatief is."
+      }
+    }
+  ],
+  "files": {
+    "main.py": "def nonnegative(values):\n    # Complete this function.\n    return None\n"
+  },
+  "solution": {
+    "main.py": "def nonnegative(values):\n    result = []\n    for value in values:\n        if value >= 0:\n            result.append(value)\n    return result\n"
+  },
+  "checkpoints": [
+    {
+      "id": "python-v4-12-filter-step-1",
+      "objectiveIds": [
+        "filtering"
+      ],
+      "task": {
+        "en": "Return the nonnegative values in their original order, keeping values unchanged.",
+        "nl": "Geef de niet-negatieve waarden in oorspronkelijke volgorde terug en laat values ongewijzigd."
+      },
+      "check": "callable(nonnegative)",
+      "probes": [
+        {
+          "call": {
+            "name": "nonnegative",
+            "args": [
+              [
+                -1,
+                0,
+                2,
+                2
+              ]
+            ]
+          },
+          "check": "(_return == [0,2,2] and _args[0] == [-1,0,2,2]) and _error is None"
+        },
+        {
+          "call": {
+            "name": "nonnegative",
+            "args": [
+              [
+                -1
+              ]
+            ]
+          },
+          "check": "(_return == []) and _error is None"
+        },
+        {
+          "call": {
+            "name": "nonnegative",
+            "args": [
+              []
+            ]
+          },
+          "check": "(_return == []) and _error is None"
+        }
+      ],
+      "hint": {
+        "en": "Filtering collects all matches without changing the source.",
+        "nl": "Filteren verzamelt alle overeenkomsten zonder de bron te wijzigen."
+      },
+      "hints": [
+        {
+          "en": "Filtering collects all matches without changing the source.",
+          "nl": "Filteren verzamelt alle overeenkomsten zonder de bron te wijzigen."
+        },
+        {
+          "en": "Include zero and retain duplicate matches.",
+          "nl": "Neem nul op en behoud dubbele overeenkomsten."
+        },
+        {
+          "en": "A small fragment to adapt: `if value >= 0:`",
+          "nl": "Een klein fragment om aan te passen: `if value >= 0:`"
+        }
+      ],
+      "feedback": {
+        "en": "Include zero and retain duplicate matches.",
+        "nl": "Neem nul op en behoud dubbele overeenkomsten."
+      }
+    }
+  ],
+  "solutionNote": {
+    "en": "The result starts empty and contains only values that pass the comparison.",
+    "nl": "Het resultaat begint leeg en bevat alleen waarden die de vergelijking doorstaan."
+  },
+  "inputs": [],
+  "retrievals": [
+    {
+      "id": "recall-python-v4-10-cancel-safely",
+      "sourceActivityId": "python-v4-10-cancel-safely",
+      "objectiveIds": [
+        "cancellation",
+        "end-of-input",
+        "recovery-review"
+      ],
+      "prompt": {
+        "en": "Recall “Give every retry a way out”. Why must the quit check come before float? Try the earlier example from memory, then check it. Try invalid text followed by quit, and test end-of-input at the first prompt.",
+        "nl": "Haal “Geef elke herhaling een uitgang” terug. Waarom moet de quit-controle vóór float komen? Probeer het eerdere voorbeeld uit je geheugen en controleer daarna. Probeer verkeerde tekst gevolgd door quit en test einde invoer bij de eerste vraag."
+      }
+    }
+  ]
+}

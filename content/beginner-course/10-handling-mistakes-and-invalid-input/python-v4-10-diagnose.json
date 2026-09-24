@@ -1,0 +1,183 @@
+{
+  "id": "python-v4-10-diagnose",
+  "chapter": 10,
+  "group": "python-v4-module-10",
+  "title": {
+    "en": "Name the kind of mistake",
+    "nl": "Benoem het soort fout"
+  },
+  "kind": "coding",
+  "optional": false,
+  "runtime": "terminal",
+  "guidance": "adapt",
+  "checkpointMode": "sequential",
+  "estimatedMinutes": 12,
+  "topicIds": [
+    "runtime-errors",
+    "logic-errors",
+    "tracebacks"
+  ],
+  "practices": [
+    "syntax-errors",
+    "name-error"
+  ],
+  "requiredConcepts": [
+    "functions-review",
+    "floor-division"
+  ],
+  "explanation": {
+    "en": "Different mistakes need different investigations. A running program can still give the wrong answer.",
+    "nl": "Verschillende fouten vragen om verschillend onderzoek. Een werkend programma kan nog steeds het verkeerde antwoord geven."
+  },
+  "example": "",
+  "sections": [
+    {
+      "id": "python-v4-10-diagnose-example",
+      "topicIds": [
+        "runtime-errors",
+        "logic-errors",
+        "tracebacks",
+        "syntax-errors",
+        "name-error"
+      ],
+      "heading": {
+        "en": "Follow a working example",
+        "nl": "Volg een werkend voorbeeld"
+      },
+      "body": {
+        "en": "Syntax errors prevent Python from understanding the program. Runtime errors happen while executing a valid statement. Logic errors give an unintended result without necessarily raising an exception. For a traceback, read the final exception type and message, then the nearest line in your code. For example, calling int(\"cat\") ends with ValueError; its location points to the failed conversion. A NameError names an unavailable variable. Reproduce one small case before editing.",
+        "nl": "Syntaxfouten verhinderen dat Python het programma begrijpt. Uitvoeringsfouten ontstaan tijdens een geldige instructie. Logische fouten geven een onbedoeld resultaat zonder noodzakelijk een uitzondering. Lees bij een traceback het laatste uitzonderingstype en bericht, daarna de dichtstbijzijnde regel in je code. int(\"cat\") eindigt bijvoorbeeld met ValueError; de locatie wijst naar de mislukte omzetting. Een NameError benoemt een niet-beschikbare variabele. Herhaal één klein geval voordat je wijzigt."
+      },
+      "code": "print(7 // 2)\nprint(7 / 2)",
+      "output": "3\n3.5\n",
+      "prediction": {
+        "en": "Which operator preserves the fractional average?",
+        "nl": "Welke operator bewaart het gebroken gemiddelde?"
+      },
+      "takeaway": {
+        "en": "A wrong result with no exception is still a bug.",
+        "nl": "Een verkeerd resultaat zonder uitzondering is nog steeds een fout."
+      }
+    },
+    {
+      "id": "python-v4-10-diagnose-experiment",
+      "topicIds": [],
+      "heading": {
+        "en": "Try one change",
+        "nl": "Probeer één wijziging"
+      },
+      "body": {
+        "en": "Explain why changing the test from 7/2 to 8/2 could hide this bug.",
+        "nl": "Leg uit waarom een test met 8/2 in plaats van 7/2 deze fout kan verbergen."
+      }
+    }
+  ],
+  "files": {
+    "main.py": "def average(total, count):\n    return total // count\n"
+  },
+  "solution": {
+    "main.py": "def average(total, count):\n    return total / count\n"
+  },
+  "checkpoints": [
+    {
+      "id": "python-v4-10-diagnose-step-1",
+      "objectiveIds": [
+        "runtime-errors",
+        "logic-errors",
+        "tracebacks",
+        "syntax-errors",
+        "name-error"
+      ],
+      "task": {
+        "en": "Repair average(total, count) for count > 0 so fractional results are preserved.",
+        "nl": "Herstel average(total, count) voor count > 0 zodat gebroken resultaten behouden blijven."
+      },
+      "check": "callable(average)",
+      "probes": [
+        {
+          "call": {
+            "name": "average",
+            "args": [
+              7,
+              2
+            ]
+          },
+          "check": "_return == 3.5"
+        },
+        {
+          "call": {
+            "name": "average",
+            "args": [
+              1,
+              4
+            ]
+          },
+          "check": "_return == 0.25"
+        },
+        {
+          "call": {
+            "name": "average",
+            "args": [
+              -3,
+              2
+            ]
+          },
+          "check": "_return == -1.5"
+        }
+      ],
+      "hint": {
+        "en": "A wrong result with no exception is still a bug.",
+        "nl": "Een verkeerd resultaat zonder uitzondering is nog steeds een fout."
+      },
+      "hints": [
+        {
+          "en": "A wrong result with no exception is still a bug.",
+          "nl": "Een verkeerd resultaat zonder uitzondering is nog steeds een fout."
+        },
+        {
+          "en": "This is a logic error: compare what / and // mean.",
+          "nl": "Dit is een logische fout: vergelijk de betekenis van / en //."
+        },
+        {
+          "en": "A small fragment to adapt: `return total / count`",
+          "nl": "Een klein fragment om aan te passen: `return total / count`"
+        }
+      ],
+      "feedback": {
+        "en": "This is a logic error: compare what / and // mean.",
+        "nl": "Dit is een logische fout: vergelijk de betekenis van / en //."
+      }
+    }
+  ],
+  "solutionNote": {
+    "en": "Both divisions run, but floor division discards the fractional part needed for an average.",
+    "nl": "Beide delingen werken, maar gehele deling verliest het gebroken deel dat een gemiddelde nodig heeft."
+  },
+  "inputs": [],
+  "retrievals": [
+    {
+      "id": "recall-python-v4-08-why-repeat",
+      "sourceActivityId": "python-v4-08-why-repeat",
+      "objectiveIds": [
+        "why-loops",
+        "while",
+        "counters"
+      ],
+      "prompt": {
+        "en": "Recall “Repeat a small block”. How many times is the body entered, and why? Try the earlier example from memory, then check it. Try limits 0, 1 and 4. Explain why zero repetitions are possible.",
+        "nl": "Haal “Herhaal een klein blok” terug. Hoe vaak wordt het blok betreden en waarom? Probeer het eerdere voorbeeld uit je geheugen en controleer daarna. Probeer grenzen 0, 1 en 4. Leg uit waarom nul herhalingen mogelijk zijn."
+      }
+    },
+    {
+      "id": "recall-python-v4-08-repair-exit",
+      "sourceActivityId": "python-v4-08-repair-exit",
+      "objectiveIds": [
+        "loop-debugging"
+      ],
+      "prompt": {
+        "en": "Recall “Repair a loop that exits too soon”. Where does control go immediately after break? Try the earlier example from memory, then check it. Change the skipped value to 1, then 5. Predict which lines remain.",
+        "nl": "Haal “Herstel een lus die te vroeg stopt” terug. Waar gaat de uitvoering direct na break heen? Probeer het eerdere voorbeeld uit je geheugen en controleer daarna. Verander de overgeslagen waarde in 1 en daarna 5. Voorspel welke regels overblijven."
+      }
+    }
+  ]
+}

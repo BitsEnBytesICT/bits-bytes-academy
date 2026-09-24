@@ -1,0 +1,210 @@
+{
+  "id": "python-v3-14-04",
+  "chapter": 14,
+  "group": "python-v3-module-14",
+  "title": {
+    "en": "Inspect JSON",
+    "nl": "Bekijk JSON"
+  },
+  "kind": "coding",
+  "optional": false,
+  "runtime": "terminal",
+  "guidance": "adapt",
+  "estimatedMinutes": 16,
+  "explanation": {
+    "en": "Load nested records from JSON. The decoder converts JSON arrays and objects into familiar Python lists and dictionaries.",
+    "nl": "Laad geneste records uit JSON. De decoder zet JSON-arrays en -objecten om naar bekende Python-lijsten en -dictionaries."
+  },
+  "example": "",
+  "topicIds": [
+    "json-load",
+    "nested-data"
+  ],
+  "prerequisites": [
+    "python-v3-14-03"
+  ],
+  "sections": [
+    {
+      "topicIds": [
+        "json-load",
+        "nested-data"
+      ],
+      "heading": {
+        "en": "Follow the structure",
+        "nl": "Volg de structuur"
+      },
+      "body": {
+        "en": "json.load(handle) reads one complete JSON document. Arrays become lists, objects become dictionaries with string keys, true/false become True/False, and null becomes None. Access one layer at a time and inspect the type of each layer. JSONDecodeError reports malformed JSON; a filename is not itself the document.",
+        "nl": "json.load(handle) leest één volledig JSON-document. Arrays worden lijsten, objecten dictionaries met stringsleutels, true/false worden True/False en null wordt None. Bekijk één laag tegelijk en inspecteer het type van elke laag. JSONDecodeError meldt ongeldige JSON; een bestandsnaam is niet het document zelf."
+      },
+      "code": "import json\nwith open(\"example.json\", encoding=\"utf-8\") as handle:\n    state = json.load(handle)\nprint(state[\"players\"][0][\"name\"])\nprint(state[\"paused\"], state[\"winner\"])",
+      "output": "Ada\nFalse None\n",
+      "prediction": {
+        "en": "Which access selects a list item, and which selects a named field?",
+        "nl": "Welke toegang kiest een lijstitem en welke een benoemd veld?"
+      },
+      "exampleFiles": {
+        "example.json": "{\"players\":[{\"name\":\"Ada\"}],\"paused\":false,\"winner\":null}"
+      }
+    },
+    {
+      "topicIds": [],
+      "heading": {
+        "en": "Try a changed input",
+        "nl": "Probeer gewijzigde invoer"
+      },
+      "body": {
+        "en": "Add a third player in state.json, Run and inspect the result. Temporarily remove a comma to read the JSONDecodeError, then repair the file.",
+        "nl": "Voeg een derde speler toe in state.json, voer uit en bekijk het resultaat. Verwijder tijdelijk een komma om JSONDecodeError te lezen en herstel daarna het bestand."
+      }
+    }
+  ],
+  "files": {
+    "state.json": "{\"players\":[{\"name\":\"Ada\",\"score\":2},{\"name\":\"Bo\",\"score\":0}],\"paused\":false,\"winner\":null}",
+    "main.py": "import json\n\ndef load_state(filename):\n    return {}\n\ndef player_names(state):\n    return []\n\nstate = load_state(\"state.json\")\nprint(player_names(state))\n"
+  },
+  "solution": {
+    "state.json": "{\"players\":[{\"name\":\"Ada\",\"score\":2},{\"name\":\"Bo\",\"score\":0}],\"paused\":false,\"winner\":null}",
+    "main.py": "import json\n\ndef load_state(filename):\n    with open(filename, encoding=\"utf-8\") as handle:\n        return json.load(handle)\n\ndef player_names(state):\n    return [player[\"name\"] for player in state.get(\"players\", [])]\n\nstate = load_state(\"state.json\")\nprint(player_names(state))\n"
+  },
+  "checkpoints": [
+    {
+      "objectiveIds": [
+        "json-load"
+      ],
+      "task": {
+        "en": "Load and return the full JSON document from filename, preserving its decoded values.",
+        "nl": "Laad en geef het volledige JSON-document uit filename terug en behoud de gedecodeerde waarden."
+      },
+      "check": "state[\"paused\"] is False and state[\"winner\"] is None",
+      "hints": [
+        {
+          "en": "Use json.load on an open text handle.",
+          "nl": "Gebruik json.load op een geopende teksthandle."
+        },
+        {
+          "en": "Do not evaluate JSON as Python source.",
+          "nl": "Voer JSON niet uit als Python-code."
+        },
+        {
+          "en": "return json.load(handle)",
+          "nl": "return json.load(handle)"
+        }
+      ],
+      "hint": {
+        "en": "Use json.load on an open text handle.",
+        "nl": "Gebruik json.load op een geopende teksthandle."
+      },
+      "feedback": {
+        "en": "JSON booleans and null become Python values, not strings.",
+        "nl": "JSON-booleans en null worden Python-waarden, geen strings."
+      },
+      "probes": [
+        {
+          "call": {
+            "name": "load_state",
+            "args": [
+              "other.json"
+            ]
+          },
+          "check": "_return == {\"enabled\":True,\"values\":[1,2],\"empty\":None}",
+          "files": {
+            "other.json": "{\"enabled\":true,\"values\":[1,2],\"empty\":null}"
+          }
+        }
+      ],
+      "id": "python-v3-14-04-step-1"
+    },
+    {
+      "objectiveIds": [
+        "nested-data"
+      ],
+      "task": {
+        "en": "Return player names in order; a missing or empty players list gives []. Assume listed players have name fields.",
+        "nl": "Geef spelersnamen op volgorde terug; een ontbrekende of lege players-lijst geeft []. Neem aan dat genoemde spelers name-velden hebben."
+      },
+      "check": "player_names(state) == [\"Ada\",\"Bo\"]",
+      "hints": [
+        {
+          "en": "The outer dictionary contains a list of inner dictionaries.",
+          "nl": "De buitenste dictionary bevat een lijst binnenste dictionaries."
+        },
+        {
+          "en": "Iterate state.get(\"players\", []).",
+          "nl": "Doorloop state.get(\"players\", [])."
+        },
+        {
+          "en": "player[\"name\"]",
+          "nl": "player[\"name\"]"
+        }
+      ],
+      "hint": {
+        "en": "The outer dictionary contains a list of inner dictionaries.",
+        "nl": "De buitenste dictionary bevat een lijst binnenste dictionaries."
+      },
+      "feedback": {
+        "en": "Do not try to read a name directly from the players list.",
+        "nl": "Probeer een naam niet rechtstreeks uit de players-lijst te lezen."
+      },
+      "probes": [
+        {
+          "call": {
+            "name": "player_names",
+            "args": [
+              {}
+            ]
+          },
+          "check": "_return == []"
+        },
+        {
+          "call": {
+            "name": "player_names",
+            "args": [
+              {
+                "players": [
+                  {
+                    "name": "Zoë"
+                  }
+                ]
+              }
+            ]
+          },
+          "check": "_return == [\"Zoë\"]"
+        }
+      ],
+      "id": "python-v3-14-04-step-2"
+    }
+  ],
+  "solutionNote": {
+    "en": "The decoder builds the nested Python structures. The second function processes those structures without needing to know how the file was read.",
+    "nl": "De decoder maakt de geneste Python-structuren. De tweede functie verwerkt die structuren zonder te hoeven weten hoe het bestand is gelezen."
+  },
+  "inputs": [],
+  "retrievals": [
+    {
+      "id": "recall-python-v3-12-04",
+      "sourceActivityId": "python-v3-12-04",
+      "objectiveIds": [
+        "keys",
+        "values",
+        "items",
+        "dictionary-iteration"
+      ],
+      "prompt": {
+        "en": "Iterate over keys, values and items. Explain what an items loop unpacks and how a view differs from a snapshot list.",
+        "nl": "Doorloop keys, values en items. Leg uit wat een items-lus uitpakt en hoe een view van een momentopnamelijst verschilt."
+      }
+    },
+    {
+      "id": "recall-python-v3-13-04",
+      "sourceActivityId": "python-v3-13-04",
+      "objectiveIds": [
+        "files-review"
+      ],
+      "prompt": {
+        "en": "Generate a report from a different source, including empty and Unicode text. Check that the input file remains unchanged.",
+        "nl": "Maak een rapport van een andere bron, inclusief lege en Unicode-tekst. Controleer dat het invoerbestand ongewijzigd blijft."
+      }
+    }
+  ]
+}

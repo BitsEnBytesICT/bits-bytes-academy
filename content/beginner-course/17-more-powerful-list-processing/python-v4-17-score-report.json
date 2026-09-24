@@ -1,0 +1,174 @@
+{
+  "id": "python-v4-17-score-report",
+  "chapter": 17,
+  "group": "python-v4-module-17",
+  "title": {
+    "en": "Build a report without losing the original",
+    "nl": "Bouw een rapport zonder het origineel te verliezen"
+  },
+  "kind": "coding",
+  "optional": false,
+  "runtime": "terminal",
+  "guidance": "independent",
+  "checkpointMode": "sequential",
+  "estimatedMinutes": 25,
+  "topicIds": [
+    "collections-review"
+  ],
+  "practices": [
+    "sorted",
+    "slicing",
+    "copying",
+    "filtering"
+  ],
+  "requiredConcepts": [
+    "sorted",
+    "slicing",
+    "filtering"
+  ],
+  "explanation": {
+    "en": "Combine selection and sorting for a changed problem without relying on a required implementation.",
+    "nl": "Combineer selectie en sorteren voor een nieuw probleem zonder verplichte implementatie."
+  },
+  "example": "",
+  "sections": [
+    {
+      "id": "python-v4-17-score-report-example",
+      "topicIds": [
+        "collections-review",
+        "sorted",
+        "slicing",
+        "copying",
+        "filtering"
+      ],
+      "heading": {
+        "en": "Follow a working example",
+        "nl": "Volg een werkend voorbeeld"
+      },
+      "body": {
+        "en": "Return the highest three nonnegative scores in descending order. Preserve duplicate scores and leave the input unchanged. If fewer than three valid scores exist, return all of them. Choose a loop or comprehension yourself. Test with an unsorted source so mutation mistakes remain visible.",
+        "nl": "Geef de hoogste drie niet-negatieve scores in aflopende volgorde terug. Behoud dubbele scores en laat de invoer ongewijzigd. Zijn er minder dan drie geldige scores, geef ze allemaal terug. Kies zelf een lus of comprehension. Test met een ongesorteerde bron zodat onbedoelde wijzigingen zichtbaar blijven."
+      },
+      "code": "names = [\"Bo\",\"Ada\",\"Mila\"]\nprint(sorted(names)[:2])\nprint(names)",
+      "output": "['Ada', 'Bo']\n['Bo', 'Ada', 'Mila']\n",
+      "prediction": {
+        "en": "Why does the source list keep its order?",
+        "nl": "Waarom behoudt de bronlijst zijn volgorde?"
+      },
+      "takeaway": {
+        "en": "Select, order and limit are separate decisions.",
+        "nl": "Selecteren, ordenen en begrenzen zijn aparte beslissingen."
+      }
+    },
+    {
+      "id": "python-v4-17-score-report-experiment",
+      "topicIds": [],
+      "heading": {
+        "en": "Try one change",
+        "nl": "Probeer één wijziging"
+      },
+      "body": {
+        "en": "Design a test that catches accidentally removing duplicates.",
+        "nl": "Ontwerp een test die onbedoeld verwijderen van duplicaten ontdekt."
+      }
+    }
+  ],
+  "files": {
+    "main.py": ""
+  },
+  "solution": {
+    "main.py": "def leaders(scores):\n    valid = [score for score in scores if score >= 0]\n    return sorted(valid, reverse=True)[:3]\n"
+  },
+  "checkpoints": [
+    {
+      "id": "python-v4-17-score-report-step-1",
+      "objectiveIds": [
+        "collections-review",
+        "sorted",
+        "slicing",
+        "copying",
+        "filtering"
+      ],
+      "task": {
+        "en": "Implement leaders(scores) according to the report rules.",
+        "nl": "Implementeer leaders(scores) volgens de rapportregels."
+      },
+      "check": "callable(leaders)",
+      "probes": [
+        {
+          "call": {
+            "name": "leaders",
+            "args": [
+              [
+                5,
+                -1,
+                9,
+                9,
+                3
+              ]
+            ]
+          },
+          "check": "(_return == [9,9,5] and _args[0] == [5,-1,9,9,3]) and _error is None"
+        },
+        {
+          "call": {
+            "name": "leaders",
+            "args": [
+              [
+                0
+              ]
+            ]
+          },
+          "check": "(_return == [0]) and _error is None"
+        },
+        {
+          "call": {
+            "name": "leaders",
+            "args": [
+              [
+                -1
+              ]
+            ]
+          },
+          "check": "(_return == []) and _error is None"
+        },
+        {
+          "call": {
+            "name": "leaders",
+            "args": [
+              []
+            ]
+          },
+          "check": "(_return == []) and _error is None"
+        }
+      ],
+      "hint": {
+        "en": "Select, order and limit are separate decisions.",
+        "nl": "Selecteren, ordenen en begrenzen zijn aparte beslissingen."
+      },
+      "hints": [
+        {
+          "en": "Select, order and limit are separate decisions.",
+          "nl": "Selecteren, ordenen en begrenzen zijn aparte beslissingen."
+        },
+        {
+          "en": "Filter invalid values, sort a separate result, then take at most three.",
+          "nl": "Filter ongeldige waarden, sorteer een apart resultaat en neem daarna maximaal drie."
+        },
+        {
+          "en": "A small fragment to adapt: `[:3]`",
+          "nl": "Een klein fragment om aan te passen: `[:3]`"
+        }
+      ],
+      "feedback": {
+        "en": "Filter invalid values, sort a separate result, then take at most three.",
+        "nl": "Filter ongeldige waarden, sorteer een apart resultaat en neem daarna maximaal drie."
+      }
+    }
+  ],
+  "solutionNote": {
+    "en": "The pipeline keeps valid scores, orders them and slices without mutating the source.",
+    "nl": "De stappen bewaren geldige scores, ordenen ze en nemen een deel zonder de bron te wijzigen."
+  },
+  "inputs": []
+}

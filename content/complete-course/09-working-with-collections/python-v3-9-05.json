@@ -1,0 +1,188 @@
+{
+  "id": "python-v3-9-05",
+  "chapter": 9,
+  "group": "python-v3-module-9",
+  "title": {
+    "en": "Translate a loop",
+    "nl": "Vertaal een lus"
+  },
+  "kind": "coding",
+  "optional": false,
+  "runtime": "terminal",
+  "guidance": "adapt",
+  "estimatedMinutes": 15,
+  "explanation": {
+    "en": "Translate a familiar build-a-list loop into a list comprehension. Use this compact form when the transformation and condition remain easy to read.",
+    "nl": "Vertaal een bekende lijst-opbouwlus naar een lijstcomprehensie. Gebruik deze compacte vorm als de transformatie en voorwaarde leesbaar blijven."
+  },
+  "example": "",
+  "topicIds": [
+    "list-comprehensions",
+    "conditional-comprehensions"
+  ],
+  "prerequisites": [
+    "python-v3-9-04"
+  ],
+  "sections": [
+    {
+      "topicIds": [
+        "list-comprehensions",
+        "conditional-comprehensions"
+      ],
+      "heading": {
+        "en": "Expression, iteration, condition",
+        "nl": "Expressie, herhaling, voorwaarde"
+      },
+      "body": {
+        "en": "[expression for value in values] evaluates the expression once per value. Adding if condition at the end filters which values are included. The expression comes first in the syntax but is evaluated after choosing each value. Keep complicated state changes in ordinary loops.",
+        "nl": "[expressie for value in values] berekent de expressie één keer per waarde. if voorwaarde achteraan filtert welke waarden worden opgenomen. De expressie staat syntactisch vooraan maar wordt berekend na het kiezen van elke waarde. Houd ingewikkelde toestandswijzigingen in gewone lussen."
+      },
+      "code": "values = [-1, 0, 3]\nprint([v + 1 for v in values])\nprint([v + 1 for v in values if v >= 0])",
+      "output": "[0, 1, 4]\n[1, 4]\n",
+      "prediction": {
+        "en": "Does the condition inspect v or v + 1?",
+        "nl": "Bekijkt de voorwaarde v of v + 1?"
+      }
+    },
+    {
+      "topicIds": [],
+      "heading": {
+        "en": "Try a changed input",
+        "nl": "Probeer gewijzigde invoer"
+      },
+      "body": {
+        "en": "Rewrite positive_doubles as a loop in a scratch file. Compare the order of operations and results on the same inputs.",
+        "nl": "Herschrijf positive_doubles als lus in een kladbestand. Vergelijk uitvoervolgorde en resultaten bij dezelfde invoer."
+      }
+    }
+  ],
+  "files": {
+    "main.py": "def double_all(values):\n    return []\n\ndef positive_doubles(values):\n    return []\n\nprint(double_all([-1, 0, 3]))\nprint(positive_doubles([-1, 0, 3]))\n"
+  },
+  "solution": {
+    "main.py": "def double_all(values):\n    return [value * 2 for value in values]\n\ndef positive_doubles(values):\n    return [value * 2 for value in values if value > 0]\n\nprint(double_all([-1, 0, 3]))\nprint(positive_doubles([-1, 0, 3]))\n"
+  },
+  "checkpoints": [
+    {
+      "objectiveIds": [
+        "list-comprehensions"
+      ],
+      "task": {
+        "en": "Use a list comprehension to return twice every value from double_all.",
+        "nl": "Gebruik een lijstcomprehensie om het dubbele van elke waarde vanuit double_all terug te geven."
+      },
+      "check": "double_all([-1,0,3]) == [-2,0,6] and any(isinstance(n,_ast.ListComp) for n in _ast.walk(next(n for n in _ast.walk(_ast.parse(_source)) if isinstance(n,_ast.FunctionDef) and n.name == \"double_all\")))",
+      "hints": [
+        {
+          "en": "Put the transformation before for.",
+          "nl": "Zet de transformatie vóór for."
+        },
+        {
+          "en": "Use a new variable to name each input value.",
+          "nl": "Gebruik een nieuwe variabele voor elke invoerwaarde."
+        },
+        {
+          "en": "[value * 2 for value in values]",
+          "nl": "[value * 2 for value in values]"
+        }
+      ],
+      "hint": {
+        "en": "Put the transformation before for.",
+        "nl": "Zet de transformatie vóór for."
+      },
+      "feedback": {
+        "en": "The ordinary comprehension must keep zero and negative inputs.",
+        "nl": "De gewone comprehensie moet nul en negatieve invoer behouden."
+      },
+      "probes": [
+        {
+          "call": {
+            "name": "double_all",
+            "args": [
+              []
+            ]
+          },
+          "check": "_return == []"
+        },
+        {
+          "call": {
+            "name": "double_all",
+            "args": [
+              [
+                2,
+                -3
+              ]
+            ]
+          },
+          "check": "_return == [4,-6] and _args[0] == [2,-3]"
+        }
+      ],
+      "id": "python-v3-9-05-step-1"
+    },
+    {
+      "objectiveIds": [
+        "conditional-comprehensions"
+      ],
+      "task": {
+        "en": "Use a conditional comprehension in positive_doubles to double only values strictly above zero.",
+        "nl": "Gebruik in positive_doubles een voorwaardelijke comprehensie om alleen waarden strikt boven nul te verdubbelen."
+      },
+      "check": "positive_doubles([-1,0,3]) == [6] and any(isinstance(n,_ast.ListComp) and n.generators[0].ifs for n in _ast.walk(_ast.parse(_source)))",
+      "hints": [
+        {
+          "en": "Filter the input before including its transformed value.",
+          "nl": "Filter de invoer voordat de getransformeerde waarde wordt opgenomen."
+        },
+        {
+          "en": "Put if value > 0 at the end.",
+          "nl": "Zet if value > 0 achteraan."
+        },
+        {
+          "en": "[value * 2 for value in values if value > 0]",
+          "nl": "[value * 2 for value in values if value > 0]"
+        }
+      ],
+      "hint": {
+        "en": "Filter the input before including its transformed value.",
+        "nl": "Filter de invoer voordat de getransformeerde waarde wordt opgenomen."
+      },
+      "feedback": {
+        "en": "The boundary zero must be excluded.",
+        "nl": "De grens nul moet worden uitgesloten."
+      },
+      "probes": [
+        {
+          "call": {
+            "name": "positive_doubles",
+            "args": [
+              [
+                0,
+                -3
+              ]
+            ]
+          },
+          "check": "_return == []"
+        },
+        {
+          "call": {
+            "name": "positive_doubles",
+            "args": [
+              [
+                4,
+                1,
+                4
+              ]
+            ]
+          },
+          "check": "_return == [8,2,8]"
+        }
+      ],
+      "id": "python-v3-9-05-step-2"
+    }
+  ],
+  "solutionNote": {
+    "en": "Both forms create new lists. Filtering does not replace rejected values with zero; it leaves them out completely.",
+    "nl": "Beide vormen maken nieuwe lijsten. Filteren vervangt afgewezen waarden niet door nul; het laat ze helemaal weg."
+  },
+  "inputs": []
+}

@@ -1,4 +1,4 @@
-import { Fragment } from 'react';
+import { Fragment } from "react";
 import type {
   Activity,
   Course,
@@ -33,7 +33,9 @@ export function CourseOverview({
   const percent = required.length
     ? Math.round((done / required.length) * 100)
     : 0;
-  const started = course.activities.some(a => a.id === state.settings.lastActivity || state.progress[a.id]);
+  const started = course.activities.some(
+    (a) => a.id === state.settings.lastActivity || state.progress[a.id],
+  );
   const activitySummary = (items: Activity[]) => {
     const labels = [
       ["coding", "exercise", "exercises", "oefening", "oefeningen"],
@@ -41,6 +43,13 @@ export function CourseOverview({
       ["reading", "reading", "readings", "leesonderdeel", "leesonderdelen"],
       ["challenge", "challenge", "challenges", "uitdaging", "uitdagingen"],
       ["project", "project", "projects", "project", "projecten"],
+      [
+        "project-stage",
+        "early project stage",
+        "early project stages",
+        "eerste projectstap",
+        "eerste projectstappen",
+      ],
     ];
     return labels
       .flatMap(([kind, enOne, enMany, nlOne, nlMany]) => {
@@ -94,11 +103,25 @@ export function CourseOverview({
             </p>
             <div className="course-meta">
               <span>{tr("Beginner", "Beginner")}</span>
-              <span>{tr(`Approximately ${summary.estimatedHours} hours`, `Ongeveer ${summary.estimatedHours} uur`)}</span>
+              <span>
+                {tr(
+                  `Approximately ${summary.estimatedHours} hours`,
+                  `Ongeveer ${summary.estimatedHours} uur`,
+                )}
+              </span>
               <span>
                 {course.chapters.length} {tr("modules", "modules")}
               </span>
             </div>
+            <p>{activitySummary(required)}</p>
+            {course.reviewMinutes && (
+              <p>
+                {tr(
+                  `Allow another ${course.reviewMinutes[0] / 60}–${course.reviewMinutes[1] / 60} hours for review. These are provisional estimates.`,
+                  `Reken op nog ${course.reviewMinutes[0] / 60}–${course.reviewMinutes[1] / 60} uur voor herhaling. Dit zijn voorlopige schattingen.`,
+                )}
+              </p>
+            )}
             <details className="course-topics">
               <summary>
                 {tr("What you will learn", "Wat je gaat leren")}
@@ -158,11 +181,13 @@ export function CourseOverview({
             <h2 id="syllabus-title">{tr("Syllabus", "Curriculum")}</h2>
             <div className="overview-chapters">
               {course.chapters.map((chapter) => {
-                const path = course.paths?.find(p => p.chapterNumbers[0] === chapter.number);
+                const path = course.paths?.find(
+                  (p) => p.chapterNumbers[0] === chapter.number,
+                );
                 const items = course.activities.filter(
                   (a) => a.chapter === chapter.number,
                 );
-                const requiredItems = items.filter(a => !a.optional);
+                const requiredItems = items.filter((a) => !a.optional);
                 const completed = requiredItems.filter(
                   (a) => state.progress[a.id]?.complete,
                 ).length;
@@ -171,81 +196,113 @@ export function CourseOverview({
                   : 0;
                 return (
                   <Fragment key={chapter.number}>
-                  {path && <div className="learning-path-heading"><h3>{path.title[language]}</h3><p>{path.description[language]}</p></div>}
-                  <details>
-                    <summary>
-                      <span
-                        className={
-                          "chapter-completion" +
-                          (chapterPercent === 100 ? " complete" : "")
-                        }
-                        aria-hidden="true"
-                      >
-                        <svg width="42" height="42" viewBox="0 0 42 42">
-                          <circle
-                            className="chapter-ring-track"
-                            cx="21"
-                            cy="21"
-                            r="18"
-                          />
-                          <circle
-                            className="chapter-ring-fill"
-                            cx="21"
-                            cy="21"
-                            r="18"
-                            pathLength="100"
-                            strokeDasharray={`${chapterPercent} 100`}
-                            transform="rotate(-90 21 21)"
-                          />
-                        </svg>
-                        <span>
-                          {chapterPercent === 100 ? (
-                            <Icon name="check" size={16} />
-                          ) : completed ? (
-                            `${chapterPercent}%`
-                          ) : (
-                            String(chapter.number).padStart(2, "0")
-                          )}
-                        </span>
-                      </span>
-                      <span className="syllabus-chapter-text">
-                        <span className="syllabus-chapter-title">
-                          {chapter.title[language]}
-                        </span>
-                        <small>
-                          {activitySummary(items)}
-                          {items.every((a) => a.optional)
-                            ? " · " + tr("Optional", "Optioneel")
-                            : ""}
-                        </small>
-                        <small className="syllabus-chapter-status">
-                          {completed} / {requiredItems.length}{" "}
-                          {tr("complete", "afgerond")}
-                        </small>
-                      </span>
-                      <Icon name="arrow" size={14} />
-                    </summary>
-                    <div className="overview-activities">
-                      {items.map((a) => (
-                        <button key={a.id} onClick={() => onActivity(a)}>
-                          <span
-                            className={
-                              state.progress[a.id]?.complete ? "good" : ""
-                            }
-                          >
-                            {state.progress[a.id]?.complete ? "✓" : "○"}
+                    {path && (
+                      <div className="learning-path-heading">
+                        <h3>{path.title[language]}</h3>
+                        <p>{path.description[language]}</p>
+                      </div>
+                    )}
+                    <details>
+                      <summary>
+                        <span
+                          className={
+                            "chapter-completion" +
+                            (chapterPercent === 100 ? " complete" : "")
+                          }
+                          aria-hidden="true"
+                        >
+                          <svg width="42" height="42" viewBox="0 0 42 42">
+                            <circle
+                              className="chapter-ring-track"
+                              cx="21"
+                              cy="21"
+                              r="18"
+                            />
+                            <circle
+                              className="chapter-ring-fill"
+                              cx="21"
+                              cy="21"
+                              r="18"
+                              pathLength="100"
+                              strokeDasharray={`${chapterPercent} 100`}
+                              transform="rotate(-90 21 21)"
+                            />
+                          </svg>
+                          <span>
+                            {chapterPercent === 100 ? (
+                              <Icon name="check" size={16} />
+                            ) : completed ? (
+                              `${chapterPercent}%`
+                            ) : (
+                              String(chapter.number).padStart(2, "0")
+                            )}
                           </span>
-                          <span>{a.title[language]}</span>
-                          <small>{a.estimatedMinutes} min</small>
-                        </button>
-                      ))}
-                    </div>
-                  </details>
+                        </span>
+                        <span className="syllabus-chapter-text">
+                          <span className="syllabus-chapter-title">
+                            {chapter.title[language]}
+                          </span>
+                          <small>
+                            {activitySummary(requiredItems)}
+                            {items.some((a) => a.optional)
+                              ? " · " +
+                                tr(
+                                  "Optional extension",
+                                  "Optionele uitbreiding",
+                                )
+                              : ""}
+                          </small>
+                          <small className="syllabus-chapter-status">
+                            {completed} / {requiredItems.length}{" "}
+                            {tr("complete", "afgerond")}
+                          </small>
+                        </span>
+                        <Icon name="arrow" size={14} />
+                      </summary>
+                      <div className="overview-activities">
+                        {chapter.outcomes && (
+                          <ul>
+                            {chapter.outcomes.map((outcome, i) => (
+                              <li key={i}>{outcome[language]}</li>
+                            ))}
+                          </ul>
+                        )}
+                        {items.map((a) => (
+                          <button key={a.id} onClick={() => onActivity(a)}>
+                            <span
+                              className={
+                                state.progress[a.id]?.complete ? "good" : ""
+                              }
+                            >
+                              {state.progress[a.id]?.complete ? "✓" : "○"}
+                            </span>
+                            <span>
+                              {a.title[language]}
+                              {a.optional
+                                ? ` (${tr("optional", "optioneel")})`
+                                : ""}
+                            </span>
+                            <small>{a.estimatedMinutes} min</small>
+                          </button>
+                        ))}
+                      </div>
+                    </details>
                   </Fragment>
                 );
               })}
             </div>
-            {course.paths && <div className="future-path"><Icon name="lock" size={18}/><div><h3>{tr('More to come', 'Later meer')}</h3><p>{tr('The next learning path is not available yet.', 'Het volgende leerpad is nog niet beschikbaar.')}</p></div></div>}
+            <div className="future-path">
+              <Icon name="code" size={18} />
+              <div>
+                <h3>{tr("Your next idea", "Jouw volgende idee")}</h3>
+                <p>
+                  {tr(
+                    "Finish by setting up Python locally, then choose something useful or enjoyable to build yourself.",
+                    "Sluit af door Python lokaal in te stellen en kies daarna iets nuttigs of leuks om zelf te bouwen.",
+                  )}
+                </p>
+              </div>
+            </div>
           </section>
         </>
       ) : (

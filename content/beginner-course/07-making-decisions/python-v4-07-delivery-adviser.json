@@ -1,0 +1,233 @@
+{
+  "id": "python-v4-07-delivery-adviser",
+  "chapter": 7,
+  "group": "python-v4-module-7",
+  "title": {
+    "en": "Mini project: delivery-price adviser",
+    "nl": "Miniproject: bezorgprijsadviseur"
+  },
+  "kind": "challenge",
+  "optional": false,
+  "runtime": "terminal",
+  "guidance": "independent",
+  "checkpointMode": "sequential",
+  "estimatedMinutes": 35,
+  "topicIds": [
+    "delivery-project"
+  ],
+  "practices": [
+    "input",
+    "conversion",
+    "if",
+    "else",
+    "inclusive-comparisons",
+    "plus-equals"
+  ],
+  "requiredConcepts": [
+    "decision-review",
+    "float-conversion",
+    "plus-equals"
+  ],
+  "explanation": {
+    "en": "Build a price adviser from a small set of rules. All inputs in this project are valid: weight is positive and the destination is local or remote.",
+    "nl": "Bouw een prijsadviseur vanuit een kleine verzameling regels. Alle invoer in dit project is geldig: het gewicht is positief en de bestemming is local of remote."
+  },
+  "example": "",
+  "sections": [
+    {
+      "id": "python-v4-07-delivery-adviser-example",
+      "topicIds": [
+        "delivery-project",
+        "input",
+        "conversion",
+        "if",
+        "else",
+        "inclusive-comparisons",
+        "plus-equals"
+      ],
+      "heading": {
+        "en": "Follow a working example",
+        "nl": "Volg een werkend voorbeeld"
+      },
+      "body": {
+        "en": "Read the rules before writing code. A parcel up to and including 2 kg costs 3.0; a heavier parcel costs 6.0. A remote destination adds 2.0 once. First select the base cost, then apply the independent remote surcharge.\n\nThe example uses the same pattern for a different service. Your program must read Weight: and Destination:, store weight and destination, calculate cost, and print the numeric cost. Normalise the destination. Test 1 kg, exactly 2 kg, and 3 kg with both destinations.",
+        "nl": "Lees de regels voordat je code schrijft. Een pakket tot en met 2 kg kost 3.0; een zwaarder pakket kost 6.0. Een afgelegen bestemming voegt eenmaal 2.0 toe. Kies eerst de basisprijs en pas daarna de onafhankelijke toeslag toe.\n\nHet voorbeeld gebruikt hetzelfde patroon voor een andere dienst. Jouw programma leest Weight: en Destination:, bewaart weight en destination, berekent cost en drukt de numerieke prijs af. Normaliseer de bestemming. Test 1 kg, precies 2 kg en 3 kg met beide bestemmingen."
+      },
+      "code": "hours = 3\nweekend = True\nif hours <= 2:\n    cost = 4.0\nelse:\n    cost = 7.0\nif weekend:\n    cost += 1.0\nprint(cost)",
+      "output": "8.0\n",
+      "prediction": {
+        "en": "Why is the weekend check separate from the price chain?",
+        "nl": "Waarom staat de weekendcontrole los van de prijsketen?"
+      },
+      "takeaway": {
+        "en": "Choose a base price with a chain, then apply a separate optional surcharge.",
+        "nl": "Kies een basisprijs met een keten en pas daarna een aparte mogelijke toeslag toe."
+      }
+    },
+    {
+      "id": "python-v4-07-delivery-adviser-experiment",
+      "topicIds": [],
+      "heading": {
+        "en": "Try one change",
+        "nl": "Probeer één wijziging"
+      },
+      "body": {
+        "en": "Write a six-case test table from the suggested weights and destinations. Check every predicted cost.",
+        "nl": "Schrijf een testtabel met zes gevallen uit de voorgestelde gewichten en bestemmingen. Controleer elke voorspelde prijs."
+      }
+    }
+  ],
+  "files": {
+    "main.py": ""
+  },
+  "solution": {
+    "main.py": "weight = float(input(\"Weight: \"))\ndestination = input(\"Destination: \").strip().lower()\nif weight <= 2:\n    cost = 3.0\nelse:\n    cost = 6.0\nif destination == \"remote\":\n    cost += 2.0\nprint(cost)\n"
+  },
+  "checkpoints": [
+    {
+      "id": "python-v4-07-delivery-adviser-step-1",
+      "objectiveIds": [
+        "delivery-project",
+        "input",
+        "conversion",
+        "if",
+        "else",
+        "inclusive-comparisons",
+        "plus-equals"
+      ],
+      "task": {
+        "en": "Read and store the weight and normalised destination.",
+        "nl": "Lees het gewicht en de genormaliseerde bestemming en bewaar ze."
+      },
+      "check": "True",
+      "probes": [
+        {
+          "stdin": [
+            "3",
+            "local"
+          ],
+          "check": "(type(weight) is float and destination in (\"local\", \"remote\")) and _remaining_input == \"\""
+        },
+        {
+          "stdin": [
+            "1.5",
+            " REMOTE "
+          ],
+          "check": "(weight == 1.5 and destination == \"remote\") and _remaining_input == \"\""
+        }
+      ],
+      "hint": {
+        "en": "Choose a base price with a chain, then apply a separate optional surcharge.",
+        "nl": "Kies een basisprijs met een keten en pas daarna een aparte mogelijke toeslag toe."
+      },
+      "hints": [
+        {
+          "en": "Choose a base price with a chain, then apply a separate optional surcharge.",
+          "nl": "Kies een basisprijs met een keten en pas daarna een aparte mogelijke toeslag toe."
+        },
+        {
+          "en": "Convert weight to float and clean only the text destination.",
+          "nl": "Zet weight om naar float en schoon alleen de tekstbestemming op."
+        },
+        {
+          "en": "A small fragment to adapt: `weight = float(input(\"Weight: \"))`",
+          "nl": "Een klein fragment om aan te passen: `weight = float(input(\"Weight: \"))`"
+        }
+      ],
+      "feedback": {
+        "en": "Convert weight to float and clean only the text destination.",
+        "nl": "Zet weight om naar float en schoon alleen de tekstbestemming op."
+      }
+    },
+    {
+      "id": "python-v4-07-delivery-adviser-step-2",
+      "objectiveIds": [
+        "delivery-project",
+        "input",
+        "conversion",
+        "if",
+        "else",
+        "inclusive-comparisons",
+        "plus-equals"
+      ],
+      "task": {
+        "en": "Calculate cost from the two rules, then print it.",
+        "nl": "Bereken cost met de twee regels en druk het af."
+      },
+      "check": "True",
+      "probes": [
+        {
+          "stdin": [
+            "3",
+            "local"
+          ],
+          "check": "(cost == (3.0 if weight <= 2 else 6.0) + (2.0 if destination == \"remote\" else 0.0) and _stdout.endswith(str(cost) + \"\\n\")) and _remaining_input == \"\""
+        },
+        {
+          "stdin": [
+            "2",
+            "local"
+          ],
+          "check": "(cost == 3.0) and _remaining_input == \"\""
+        },
+        {
+          "stdin": [
+            "1",
+            "remote"
+          ],
+          "check": "(cost == 5.0) and _remaining_input == \"\""
+        },
+        {
+          "stdin": [
+            "3",
+            "remote"
+          ],
+          "check": "(cost == 8.0) and _remaining_input == \"\""
+        }
+      ],
+      "hint": {
+        "en": "Choose a base price with a chain, then apply a separate optional surcharge.",
+        "nl": "Kies een basisprijs met een keten en pas daarna een aparte mogelijke toeslag toe."
+      },
+      "hints": [
+        {
+          "en": "Choose a base price with a chain, then apply a separate optional surcharge.",
+          "nl": "Kies een basisprijs met een keten en pas daarna een aparte mogelijke toeslag toe."
+        },
+        {
+          "en": "Include 2 kg in the cheaper category and add the remote charge once.",
+          "nl": "Neem 2 kg op in de goedkopere categorie en voeg de afgelegentoeslag eenmaal toe."
+        },
+        {
+          "en": "A small fragment to adapt: `if weight <= 2:`",
+          "nl": "Een klein fragment om aan te passen: `if weight <= 2:`"
+        }
+      ],
+      "feedback": {
+        "en": "Include 2 kg in the cheaper category and add the remote charge once.",
+        "nl": "Neem 2 kg op in de goedkopere categorie en voeg de afgelegentoeslag eenmaal toe."
+      }
+    }
+  ],
+  "solutionNote": {
+    "en": "The base-price branches are alternatives. The surcharge is an independent condition that can apply to either base price.",
+    "nl": "De takken voor de basisprijs zijn alternatieven. De toeslag is een onafhankelijke voorwaarde die bij beide basisprijzen kan gelden."
+  },
+  "inputs": [
+    "3",
+    "local"
+  ],
+  "retrievals": [
+    {
+      "id": "recall-python-v4-05-trip-report",
+      "sourceActivityId": "python-v4-05-trip-report",
+      "objectiveIds": [
+        "input-review"
+      ],
+      "prompt": {
+        "en": "Recall “Make an interactive trip report”. Does the shop name need numeric conversion? Try the earlier example from memory, then check it. Try a new destination and a fractional distance. Explain the four stages of the conversation.",
+        "nl": "Haal “Maak een interactief reisverslag” terug. Moet de winkelnaam naar een getal worden omgezet? Probeer het eerdere voorbeeld uit je geheugen en controleer daarna. Probeer een nieuwe bestemming en een afstand met een breukdeel. Leg de vier stappen van het gesprek uit."
+      }
+    }
+  ]
+}

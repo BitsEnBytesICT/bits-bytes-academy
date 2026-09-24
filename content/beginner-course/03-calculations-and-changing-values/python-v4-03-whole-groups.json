@@ -1,0 +1,192 @@
+{
+  "id": "python-v4-03-whole-groups",
+  "chapter": 3,
+  "group": "python-v4-module-3",
+  "title": {
+    "en": "Count complete groups with //",
+    "nl": "Tel volledige groepen met //"
+  },
+  "kind": "coding",
+  "optional": false,
+  "runtime": "terminal",
+  "guidance": "guided",
+  "checkpointMode": "sequential",
+  "estimatedMinutes": 12,
+  "topicIds": [
+    "floor-division"
+  ],
+  "practices": [],
+  "requiredConcepts": [
+    "variables",
+    "integers",
+    "floats"
+  ],
+  "explanation": {
+    "en": "Sometimes you need a count of complete groups rather than a fractional share.",
+    "nl": "Soms heb je een aantal volledige groepen nodig in plaats van een deel achter de komma."
+  },
+  "example": "",
+  "sections": [
+    {
+      "id": "python-v4-03-whole-groups-example",
+      "topicIds": [
+        "floor-division"
+      ],
+      "heading": {
+        "en": "Follow a working example",
+        "nl": "Volg een werkend voorbeeld"
+      },
+      "body": {
+        "en": "If 17 stickers go into packs of 5, you can fill three complete packs. 17 // 5 gives 3. For positive values, floor division tells you how many complete groups fit. / instead gives 3.4.\n\nMore precisely, // rounds the quotient down toward negative infinity. That distinction matters for negative numbers: -7 // 3 is -3, not -2. Use nonnegative stock quantities in the current exercise.",
+        "nl": "Als 17 stickers in pakjes van 5 gaan, kun je drie volledige pakjes vullen. 17 // 5 geeft 3. Voor positieve waarden vertelt gehele deling hoeveel volledige groepen passen. / geeft in plaats daarvan 3.4.\n\nNauwkeuriger gezegd rondt // het quotiënt naar beneden af, richting negatief oneindig. Dat telt bij negatieve getallen: -7 // 3 is -3, niet -2. Gebruik in deze oefening niet-negatieve voorraadaantallen."
+      },
+      "code": "stickers = 17\npack_size = 5\nprint(stickers // pack_size)\nprint(stickers / pack_size)",
+      "output": "3\n3.4\n",
+      "prediction": {
+        "en": "Why is the first result a smaller whole number?",
+        "nl": "Waarom is het eerste resultaat een kleiner geheel getal?"
+      },
+      "takeaway": {
+        "en": "For nonnegative stock, // counts the complete groups that fit.",
+        "nl": "Bij niet-negatieve voorraad telt // hoeveel volledige groepen passen."
+      }
+    },
+    {
+      "id": "python-v4-03-whole-groups-experiment",
+      "topicIds": [],
+      "heading": {
+        "en": "Try one change",
+        "nl": "Probeer één wijziging"
+      },
+      "body": {
+        "en": "Try one fewer item than box_size. How many complete boxes can you fill?",
+        "nl": "Probeer één artikel minder dan box_size. Hoeveel volledige dozen kun je vullen?"
+      }
+    }
+  ],
+  "files": {
+    "main.py": "items = 23\nbox_size = 6\n"
+  },
+  "solution": {
+    "main.py": "items = 23\nbox_size = 6\nresult = items // box_size\nprint(result)\n"
+  },
+  "checkpoints": [
+    {
+      "id": "python-v4-03-whole-groups-step-1",
+      "objectiveIds": [
+        "floor-division"
+      ],
+      "task": {
+        "en": "Store the number of completely filled boxes in result.",
+        "nl": "Bewaar het aantal volledig gevulde dozen in result."
+      },
+      "check": "result == (items // box_size)",
+      "probes": [
+        {
+          "inputs": {
+            "items": 0,
+            "box_size": 4
+          },
+          "check": "result == (items // box_size)"
+        },
+        {
+          "inputs": {
+            "items": 12,
+            "box_size": 6
+          },
+          "check": "result == (items // box_size)"
+        },
+        {
+          "inputs": {
+            "items": 5,
+            "box_size": 6
+          },
+          "check": "result == (items // box_size)"
+        }
+      ],
+      "hint": {
+        "en": "For nonnegative stock, // counts the complete groups that fit.",
+        "nl": "Bij niet-negatieve voorraad telt // hoeveel volledige groepen passen."
+      },
+      "hints": [
+        {
+          "en": "For nonnegative stock, // counts the complete groups that fit.",
+          "nl": "Bij niet-negatieve voorraad telt // hoeveel volledige groepen passen."
+        },
+        {
+          "en": "Count complete boxes only. A leftover item does not fill another box.",
+          "nl": "Tel alleen volledige dozen. Een overgebleven artikel vult geen nieuwe doos."
+        },
+        {
+          "en": "A small fragment to adapt: `items // box_size`",
+          "nl": "Een klein fragment om aan te passen: `items // box_size`"
+        }
+      ],
+      "feedback": {
+        "en": "Count complete boxes only. A leftover item does not fill another box.",
+        "nl": "Tel alleen volledige dozen. Een overgebleven artikel vult geen nieuwe doos."
+      }
+    },
+    {
+      "id": "python-v4-03-whole-groups-step-2",
+      "objectiveIds": [
+        "floor-division"
+      ],
+      "task": {
+        "en": "Print result after calculating it.",
+        "nl": "Druk result af nadat je het hebt berekend."
+      },
+      "check": "float(_stdout.strip()) == result",
+      "probes": [
+        {
+          "inputs": {
+            "items": 0,
+            "box_size": 4
+          },
+          "check": "float(_stdout.strip()) == (items // box_size)"
+        },
+        {
+          "inputs": {
+            "items": 12,
+            "box_size": 6
+          },
+          "check": "float(_stdout.strip()) == (items // box_size)"
+        },
+        {
+          "inputs": {
+            "items": 5,
+            "box_size": 6
+          },
+          "check": "float(_stdout.strip()) == (items // box_size)"
+        }
+      ],
+      "hint": {
+        "en": "For nonnegative stock, // counts the complete groups that fit.",
+        "nl": "Bij niet-negatieve voorraad telt // hoeveel volledige groepen passen."
+      },
+      "hints": [
+        {
+          "en": "For nonnegative stock, // counts the complete groups that fit.",
+          "nl": "Bij niet-negatieve voorraad telt // hoeveel volledige groepen passen."
+        },
+        {
+          "en": "Display the variable that holds the calculation, rather than typing the expected answer.",
+          "nl": "Toon de variabele met de berekening in plaats van het verwachte antwoord te typen."
+        },
+        {
+          "en": "A small fragment to adapt: `print(result)`",
+          "nl": "Een klein fragment om aan te passen: `print(result)`"
+        }
+      ],
+      "feedback": {
+        "en": "Display the variable that holds the calculation, rather than typing the expected answer.",
+        "nl": "Toon de variabele met de berekening in plaats van het verwachte antwoord te typen."
+      }
+    }
+  ],
+  "solutionNote": {
+    "en": "The result is 3 complete boxes. This task deliberately does not ask for rounding up or packing a partial box.",
+    "nl": "Het resultaat is 3 volledige dozen. Deze opdracht vraagt bewust niet om naar boven afronden of een gedeeltelijk gevulde doos inpakken."
+  },
+  "inputs": []
+}

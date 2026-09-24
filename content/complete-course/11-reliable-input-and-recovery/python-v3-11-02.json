@@ -1,0 +1,210 @@
+{
+  "id": "python-v3-11-02",
+  "chapter": 11,
+  "group": "python-v3-module-11",
+  "title": {
+    "en": "Handle conversion failure",
+    "nl": "Vang conversiefouten op"
+  },
+  "kind": "coding",
+  "optional": false,
+  "runtime": "terminal",
+  "guidance": "adapt",
+  "estimatedMinutes": 16,
+  "explanation": {
+    "en": "Handle expected conversion and division failures with specific exceptions. Keep unexpected programming errors visible so they can be repaired.",
+    "nl": "Handel verwachte omzettings- en deelfouten af met specifieke uitzonderingen. Houd onverwachte programmeerfouten zichtbaar zodat je ze kunt repareren."
+  },
+  "example": "",
+  "topicIds": [
+    "value-error",
+    "try-except",
+    "zero-division-error"
+  ],
+  "prerequisites": [
+    "python-v3-11-01"
+  ],
+  "sections": [
+    {
+      "topicIds": [
+        "value-error",
+        "try-except",
+        "zero-division-error"
+      ],
+      "heading": {
+        "en": "Protect a small operation",
+        "nl": "Bescherm een kleine bewerking"
+      },
+      "body": {
+        "en": "try runs its indented block. If a matching exception occurs, the corresponding except block runs instead of the remaining try statements. float can raise ValueError for invalid numeric text; division by zero raises ZeroDivisionError. Catch these named failures rather than using a bare except that would hide unrelated bugs.",
+        "nl": "try voert zijn ingesprongen blok uit. Bij een passende uitzondering wordt het bijbehorende except-blok uitgevoerd in plaats van de resterende try-opdrachten. float kan ValueError geven bij ongeldige getaltekst; delen door nul geeft ZeroDivisionError. Vang deze benoemde fouten op in plaats van een kale except die niet-gerelateerde fouten zou verbergen."
+      },
+      "code": "try:\n    value = int(\"ten\")\nexcept ValueError:\n    value = None\nprint(value)",
+      "output": "None\n",
+      "prediction": {
+        "en": "Which statement is skipped after conversion fails?",
+        "nl": "Welke opdracht wordt overgeslagen nadat omzetting mislukt?"
+      }
+    },
+    {
+      "topicIds": [],
+      "heading": {
+        "en": "Try a changed input",
+        "nl": "Probeer gewijzigde invoer"
+      },
+      "body": {
+        "en": "Compare divide(\"0\", \"2\") and divide(\"2\", \"0\"). Explain why a caller should compare with None rather than treating all false-like results as failure.",
+        "nl": "Vergelijk divide(\"0\", \"2\") en divide(\"2\", \"0\"). Leg uit waarom een aanroeper met None moet vergelijken in plaats van alle onwaarachtige resultaten als fout te zien."
+      }
+    }
+  ],
+  "files": {
+    "main.py": "def divide(left, right):\n    return float(left) / float(right)\n\nprint(divide(\"6\", \"2\"))\n"
+  },
+  "solution": {
+    "main.py": "def divide(left, right):\n    try:\n        return float(left) / float(right)\n    except ValueError:\n        return None\n    except ZeroDivisionError:\n        return None\n\nprint(divide(\"6\", \"2\"))\n"
+  },
+  "checkpoints": [
+    {
+      "objectiveIds": [
+        "value-error",
+        "try-except"
+      ],
+      "task": {
+        "en": "Convert both text arguments to floats and return their quotient. Return None for ValueError.",
+        "nl": "Zet beide tekstargumenten om naar floats en geef hun quotiënt terug. Geef None bij ValueError."
+      },
+      "check": "divide(\"6\",\"2\") == 3",
+      "hints": [
+        {
+          "en": "Wrap the operation that can fail.",
+          "nl": "Zet de bewerking die kan mislukken in het beschermde blok."
+        },
+        {
+          "en": "Handle a ValueError from either conversion.",
+          "nl": "Handel ValueError van beide omzettingen af."
+        },
+        {
+          "en": "except ValueError:\n    return None",
+          "nl": "except ValueError:\n    return None"
+        }
+      ],
+      "hint": {
+        "en": "Wrap the operation that can fail.",
+        "nl": "Zet de bewerking die kan mislukken in het beschermde blok."
+      },
+      "feedback": {
+        "en": "Try malformed text in the first and second argument.",
+        "nl": "Probeer ongeldige tekst in het eerste en tweede argument."
+      },
+      "probes": [
+        {
+          "call": {
+            "name": "divide",
+            "args": [
+              "oops",
+              "2"
+            ]
+          },
+          "check": "_return is None and _error is None"
+        },
+        {
+          "call": {
+            "name": "divide",
+            "args": [
+              "3",
+              ""
+            ]
+          },
+          "check": "_return is None and _error is None"
+        },
+        {
+          "call": {
+            "name": "divide",
+            "args": [
+              "-5",
+              "2"
+            ]
+          },
+          "check": "_return == -2.5"
+        }
+      ],
+      "id": "python-v3-11-02-step-1"
+    },
+    {
+      "objectiveIds": [
+        "zero-division-error"
+      ],
+      "task": {
+        "en": "Also return None for ZeroDivisionError, while allowing unrelated TypeError failures to remain visible.",
+        "nl": "Geef ook None bij ZeroDivisionError, maar laat niet-gerelateerde TypeError-fouten zichtbaar blijven."
+      },
+      "check": "divide(\"3\",\"0\") is None",
+      "hints": [
+        {
+          "en": "Use another specific exception branch.",
+          "nl": "Gebruik nog een specifieke uitzonderingstak."
+        },
+        {
+          "en": "Do not catch Exception or use a bare except.",
+          "nl": "Vang niet Exception op en gebruik geen kale except."
+        },
+        {
+          "en": "except ZeroDivisionError:\n    return None",
+          "nl": "except ZeroDivisionError:\n    return None"
+        }
+      ],
+      "hint": {
+        "en": "Use another specific exception branch.",
+        "nl": "Gebruik nog een specifieke uitzonderingstak."
+      },
+      "feedback": {
+        "en": "A zero divisor is expected input; a wrong argument type can be a caller bug.",
+        "nl": "Een nuldeler is verwachte invoer; een verkeerd argumenttype kan een fout van de aanroeper zijn."
+      },
+      "probes": [
+        {
+          "call": {
+            "name": "divide",
+            "args": [
+              "2",
+              "0"
+            ]
+          },
+          "check": "_return is None and _error is None"
+        },
+        {
+          "call": {
+            "name": "divide",
+            "args": [
+              [],
+              "2"
+            ]
+          },
+          "check": "_error == \"TypeError\""
+        }
+      ],
+      "id": "python-v3-11-02-step-2"
+    }
+  ],
+  "solutionNote": {
+    "en": "The two except branches cover different failure causes. Returning None signals no numeric result; it is different from a legitimate quotient of zero.",
+    "nl": "De twee except-takken behandelen verschillende foutoorzaken. None teruggeven betekent geen numeriek resultaat; dat verschilt van een geldig quotiënt nul."
+  },
+  "inputs": [],
+  "retrievals": [
+    {
+      "id": "recall-python-v3-9-02",
+      "sourceActivityId": "python-v3-9-02",
+      "objectiveIds": [
+        "slicing",
+        "omitted-slice-bounds",
+        "range-as-sequence"
+      ],
+      "prompt": {
+        "en": "Predict values[:2], values[2:] and values[-2:]. Explain range(5) versus list(range(5)).",
+        "nl": "Voorspel values[:2], values[2:] en values[-2:]. Leg range(5) tegenover list(range(5)) uit."
+      }
+    }
+  ]
+}

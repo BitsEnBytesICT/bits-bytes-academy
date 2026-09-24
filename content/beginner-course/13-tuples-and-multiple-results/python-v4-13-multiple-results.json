@@ -1,0 +1,183 @@
+{
+  "id": "python-v4-13-multiple-results",
+  "chapter": 13,
+  "group": "python-v4-module-13",
+  "title": {
+    "en": "Return two related answers",
+    "nl": "Geef twee bijbehorende antwoorden terug"
+  },
+  "kind": "coding",
+  "optional": false,
+  "runtime": "terminal",
+  "guidance": "independent",
+  "checkpointMode": "sequential",
+  "estimatedMinutes": 12,
+  "topicIds": [
+    "multiple-returns"
+  ],
+  "practices": [
+    "return",
+    "packing-unpacking",
+    "modulo",
+    "floor-division"
+  ],
+  "requiredConcepts": [
+    "packing-unpacking",
+    "modulo",
+    "floor-division"
+  ],
+  "explanation": {
+    "en": "A function can return one tuple containing several results, which the caller then unpacks.",
+    "nl": "Een functie kan één tuple met meerdere resultaten teruggeven die de aanroeper vervolgens uitpakt."
+  },
+  "example": "",
+  "sections": [
+    {
+      "id": "python-v4-13-multiple-results-example",
+      "topicIds": [
+        "multiple-returns",
+        "return",
+        "packing-unpacking",
+        "modulo",
+        "floor-division"
+      ],
+      "heading": {
+        "en": "Follow a working example",
+        "nl": "Volg een werkend voorbeeld"
+      },
+      "body": {
+        "en": "return total, count packs two values into one tuple. The caller can store that tuple or unpack it with total, count = summarise(...). This is often called returning multiple values, but one object is returned. Separate return statements are different: only the first reached return runs.",
+        "nl": "return total, count pakt twee waarden in één tuple. De aanroeper kan die tuple bewaren of uitpakken met total, count = summarise(...). Dit heet vaak meerdere waarden teruggeven, maar er wordt één object teruggegeven. Aparte return-instructies zijn anders: alleen de eerst bereikte return wordt uitgevoerd."
+      },
+      "code": "def split_hours(minutes):\n    return minutes // 60, minutes % 60\nhours, remaining = split_hours(95)\nprint(hours, remaining)",
+      "output": "1 35\n",
+      "prediction": {
+        "en": "What would a single variable receive from split_hours?",
+        "nl": "Wat ontvangt één variabele van split_hours?"
+      },
+      "takeaway": {
+        "en": "One returned tuple can carry several named results.",
+        "nl": "Eén teruggegeven tuple kan meerdere benoemde resultaten bevatten."
+      }
+    },
+    {
+      "id": "python-v4-13-multiple-results-experiment",
+      "topicIds": [],
+      "heading": {
+        "en": "Try one change",
+        "nl": "Probeer één wijziging"
+      },
+      "body": {
+        "en": "Unpack the result in a caller and print each part with a label.",
+        "nl": "Pak het resultaat bij de aanroeper uit en druk elk deel met een label af."
+      }
+    }
+  ],
+  "files": {
+    "main.py": ""
+  },
+  "solution": {
+    "main.py": "def pack_groups(items, size):\n    return items // size, items % size\n"
+  },
+  "checkpoints": [
+    {
+      "id": "python-v4-13-multiple-results-step-1",
+      "objectiveIds": [
+        "multiple-returns",
+        "return",
+        "packing-unpacking",
+        "modulo",
+        "floor-division"
+      ],
+      "task": {
+        "en": "For nonnegative items and positive size, return (full_groups, leftover).",
+        "nl": "Geef voor niet-negatieve items en positieve size (full_groups, leftover) terug."
+      },
+      "check": "callable(pack_groups)",
+      "probes": [
+        {
+          "call": {
+            "name": "pack_groups",
+            "args": [
+              14,
+              4
+            ]
+          },
+          "check": "(_return == (3,2)) and _error is None"
+        },
+        {
+          "call": {
+            "name": "pack_groups",
+            "args": [
+              0,
+              3
+            ]
+          },
+          "check": "(_return == (0,0)) and _error is None"
+        },
+        {
+          "call": {
+            "name": "pack_groups",
+            "args": [
+              12,
+              4
+            ]
+          },
+          "check": "(_return == (3,0)) and _error is None"
+        }
+      ],
+      "hint": {
+        "en": "One returned tuple can carry several named results.",
+        "nl": "Eén teruggegeven tuple kan meerdere benoemde resultaten bevatten."
+      },
+      "hints": [
+        {
+          "en": "One returned tuple can carry several named results.",
+          "nl": "Eén teruggegeven tuple kan meerdere benoemde resultaten bevatten."
+        },
+        {
+          "en": "Use floor division for complete groups and remainder for what stays over.",
+          "nl": "Gebruik gehele deling voor volledige groepen en restdeling voor wat overblijft."
+        },
+        {
+          "en": "A small fragment to adapt: `items % size`",
+          "nl": "Een klein fragment om aan te passen: `items % size`"
+        }
+      ],
+      "feedback": {
+        "en": "Use floor division for complete groups and remainder for what stays over.",
+        "nl": "Gebruik gehele deling voor volledige groepen en restdeling voor wat overblijft."
+      }
+    }
+  ],
+  "solutionNote": {
+    "en": "Both results describe the same grouping calculation and travel together in one tuple.",
+    "nl": "Beide resultaten beschrijven dezelfde groepering en reizen samen in één tuple."
+  },
+  "inputs": [],
+  "retrievals": [
+    {
+      "id": "recall-python-v4-11-combine",
+      "sourceActivityId": "python-v4-11-combine",
+      "objectiveIds": [
+        "list-concatenation"
+      ],
+      "prompt": {
+        "en": "Recall “Combine two lists”. Does left gain a third element? Try the earlier example from memory, then check it. Compare combining with [] to appending [] as one element.",
+        "nl": "Haal “Combineer twee lijsten” terug. Krijgt left een derde element? Probeer het eerdere voorbeeld uit je geheugen en controleer daarna. Vergelijk samenvoegen met [] met [] als één element toevoegen."
+      }
+    },
+    {
+      "id": "recall-python-v4-11-length-copy",
+      "sourceActivityId": "python-v4-11-length-copy",
+      "objectiveIds": [
+        "length",
+        "copying"
+      ],
+      "prompt": {
+        "en": "Recall “Count and copy a list”. What would happen if copy = original were used instead? Try the earlier example from memory, then check it. Call the function twice with the same original list.",
+        "nl": "Haal “Tel en kopieer een lijst” terug. Wat gebeurt er als je copy = original gebruikt? Probeer het eerdere voorbeeld uit je geheugen en controleer daarna. Roep de functie tweemaal aan met dezelfde oorspronkelijke lijst."
+      }
+    }
+  ]
+}

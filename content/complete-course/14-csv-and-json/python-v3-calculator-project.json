@@ -1,0 +1,291 @@
+{
+  "id": "python-v3-calculator-project",
+  "chapter": 14,
+  "estimatedMinutes": 90,
+  "group": "python-v3-calculator-project",
+  "kind": "project",
+  "optional": false,
+  "runtime": "terminal",
+  "guidance": "independent",
+  "title": {
+    "en": "Calculator: reliable and reusable",
+    "nl": "Rekenmachine: betrouwbaar en herbruikbaar"
+  },
+  "explanation": {
+    "en": "Reopen the calculator you made after module 2. These are the same saved files; build on your working version. First record a baseline of ordinary calculations, then improve one behaviour at a time. Suggested milestones cover reusable calculations, repeated use, recovery, a readable history and saving/loading it. You decide when the project is complete. Classes are not required and have not been taught yet. If you used an older course, you can explicitly copy that archived calculator instead; this replaces the current project files only after you choose the copy action.",
+    "nl": "Open de rekenmachine van na module 2 opnieuw. Dit zijn dezelfde opgeslagen bestanden; bouw voort op je werkende versie. Noteer eerst een uitgangstabel met gewone berekeningen en verbeter dan één gedrag tegelijk. Voorgestelde mijlpalen omvatten herbruikbare berekeningen, herhaald gebruik, herstel, leesbare geschiedenis en opslaan/laden. Jij bepaalt wanneer het project af is. Klassen zijn niet vereist en nog niet behandeld. Gebruikte je een oudere cursus, dan kun je die gearchiveerde rekenmachine expliciet kopiëren; dit vervangt de huidige projectbestanden pas nadat je de kopieeractie kiest."
+  },
+  "files": {
+    "main.py": "# Your calculator. Keep and improve this program across both visits.\n"
+  },
+  "example": "",
+  "sections": [],
+  "solution": {},
+  "checkpoints": [],
+  "solutionNote": {
+    "en": "There is no single reference solution. You choose the design and assess it with your own tests.",
+    "nl": "Er is geen enkele referentieoplossing. Jij kiest het ontwerp en beoordeelt het met je eigen tests."
+  },
+  "milestones": [
+    {
+      "id": "calculator-upgrade-functions",
+      "title": {
+        "en": "Keep arithmetic reusable",
+        "nl": "Houd berekeningen herbruikbaar"
+      },
+      "description": {
+        "en": "Move calculations into functions with clear arguments and returned values. Keep your baseline results working after each change.",
+        "nl": "Verplaats berekeningen naar functies met duidelijke argumenten en terugkeerwaarden. Houd je uitgangsresultaten na elke wijziging werkend."
+      },
+      "hints": [
+        {
+          "en": "Identify calculations that do not need input or printing.",
+          "nl": "Bepaal welke berekeningen geen input of print nodig hebben."
+        },
+        {
+          "en": "Let the caller read text and display the returned answer.",
+          "nl": "Laat de aanroeper tekst lezen en het teruggegeven antwoord tonen."
+        },
+        {
+          "en": "Start by extracting just one operation and test it independently.",
+          "nl": "Begin met één bewerking uit te pakken en test die apart."
+        }
+      ]
+    },
+    {
+      "id": "calculator-upgrade-recovery",
+      "title": {
+        "en": "Repeat and recover",
+        "nl": "Herhaal en herstel"
+      },
+      "description": {
+        "en": "Support another calculation, cancellation, malformed numeric text and division by zero. Decide how to handle unknown commands and end-of-input.",
+        "nl": "Ondersteun nog een berekening, annuleren, ongeldige getaltekst en delen door nul. Bepaal hoe je onbekende commando’s en einde invoer behandelt."
+      },
+      "hints": [
+        {
+          "en": "Sketch the conversation, including an exit from every retry.",
+          "nl": "Schets het gesprek met een uitweg uit elke herhaling."
+        },
+        {
+          "en": "Separate conversion failures from domain rules.",
+          "nl": "Scheid omzettingsfouten van inhoudelijke regels."
+        },
+        {
+          "en": "Revisit read_between for the pattern, then adapt it to calculator operations.",
+          "nl": "Bekijk read_between voor het patroon en pas het aan voor rekenbewerkingen."
+        }
+      ]
+    },
+    {
+      "id": "calculator-upgrade-history",
+      "title": {
+        "en": "Keep useful history",
+        "nl": "Bewaar bruikbare geschiedenis"
+      },
+      "description": {
+        "en": "Record successful calculations with their operands, operation and result. Format a readable view without altering the original records.",
+        "nl": "Leg geslaagde berekeningen vast met getallen, bewerking en resultaat. Formatteer een leesbare weergave zonder oorspronkelijke records te veranderen."
+      },
+      "hints": [
+        {
+          "en": "Choose a record shape you can explain.",
+          "nl": "Kies een recordvorm die je kunt uitleggen."
+        },
+        {
+          "en": "A list of dictionaries can keep named fields in order.",
+          "nl": "Een lijst dictionaries kan benoemde velden op volgorde bewaren."
+        },
+        {
+          "en": "Format one record first, then apply that formatter to the history.",
+          "nl": "Formatteer eerst één record en pas die formatter daarna op de geschiedenis toe."
+        }
+      ]
+    },
+    {
+      "id": "calculator-upgrade-files",
+      "title": {
+        "en": "Save and reopen",
+        "nl": "Bewaar en heropen"
+      },
+      "description": {
+        "en": "Save and load history using JSON or CSV. Keep a text export if useful. Define what happens for missing or damaged files; do not silently overwrite a damaged history. Choose float or Decimal deliberately for your context.",
+        "nl": "Bewaar en laad geschiedenis via JSON of CSV. Houd zo nodig een tekstexport bij. Bepaal wat bij ontbrekende of beschadigde bestanden gebeurt; overschrijf beschadigde geschiedenis niet stilzwijgend. Kies bewust float of Decimal voor je context."
+      },
+      "hints": [
+        {
+          "en": "A file format needs a clear data model.",
+          "nl": "Een bestandsformaat heeft een duidelijk gegevensmodel nodig."
+        },
+        {
+          "en": "Store Decimal amounts as strings if you choose them; JSON does not directly encode Decimal.",
+          "nl": "Bewaar Decimal-bedragen als strings als je die kiest; JSON codeert Decimal niet direct."
+        },
+        {
+          "en": "Test a save/load round trip on two records before connecting the whole conversation.",
+          "nl": "Test heen-en-terug opslaan/laden met twee records voordat je het hele gesprek aansluit."
+        }
+      ]
+    }
+  ],
+  "suggestedTests": [
+    {
+      "en": "Baseline: 2 + 3 → 5; 7 - 10 → -3; -2 × 4 → -8; 9 / 2 → 4.5; 0 × 5 → 0; 5 / 0 → a handled message. Repeat after every refactor.",
+      "nl": "Uitgangstests: 2 + 3 → 5; 7 - 10 → -3; -2 × 4 → -8; 9 / 2 → 4.5; 0 × 5 → 0; 5 / 0 → een afgehandeld bericht. Herhaal na elke refactor."
+    },
+    {
+      "en": "Try invalid input, an empty line, cancellation after one operand, end-input and another successful calculation afterward.",
+      "nl": "Probeer ongeldige invoer, een lege regel, annuleren na één getal, einde invoer en daarna nog een geslaagde berekening."
+    },
+    {
+      "en": "Save two calculations, close the activity, reopen it and load them. Try an empty history, a missing file and deliberately malformed data in a copy.",
+      "nl": "Bewaar twee berekeningen, sluit de activiteit, heropen en laad ze. Probeer lege geschiedenis, een ontbrekend bestand en bewust ongeldige gegevens in een kopie."
+    }
+  ],
+  "references": [
+    "python-v3-4-05",
+    "python-v3-6-03",
+    "python-v3-9-06",
+    "python-v3-10-06",
+    "python-v3-11-05",
+    "python-v3-12-06",
+    "python-v3-14-06"
+  ],
+  "continueFrom": "python-v2-calculator-project",
+  "retrievals": [
+    {
+      "id": "recall-python-v3-11-01",
+      "sourceActivityId": "python-v3-11-01",
+      "objectiveIds": [
+        "tracebacks",
+        "syntax-errors",
+        "runtime-errors",
+        "logic-errors"
+      ],
+      "prompt": {
+        "en": "Distinguish a syntax failure, runtime traceback and plausible but wrong output. Which line would you inspect first in a traceback?",
+        "nl": "Onderscheid een syntaxisfout, runtime-traceback en aannemelijke maar foute uitvoer. Welke regel bekijk je eerst in een traceback?"
+      }
+    },
+    {
+      "id": "recall-python-v3-11-02",
+      "sourceActivityId": "python-v3-11-02",
+      "objectiveIds": [
+        "value-error",
+        "try-except",
+        "zero-division-error"
+      ],
+      "prompt": {
+        "en": "Explain why a converter catches ValueError and division catches ZeroDivisionError. Why avoid catching every exception?",
+        "nl": "Leg uit waarom een omzetter ValueError vangt en een deling ZeroDivisionError. Waarom niet alle uitzonderingen opvangen?"
+      }
+    },
+    {
+      "id": "recall-python-v3-11-03",
+      "sourceActivityId": "python-v3-11-03",
+      "objectiveIds": [
+        "validation"
+      ],
+      "prompt": {
+        "en": "Give one input that cannot be parsed and one that parses but is outside the allowed range.",
+        "nl": "Geef invoer die niet kan worden omgezet en invoer die wel wordt omgezet maar buiten het toegestane bereik ligt."
+      }
+    },
+    {
+      "id": "recall-python-v3-11-04",
+      "sourceActivityId": "python-v3-11-04",
+      "objectiveIds": [
+        "retry",
+        "cancel",
+        "end-of-input"
+      ],
+      "prompt": {
+        "en": "Trace invalid input, a valid retry, cancel and end-of-input. Explain how each route ends or continues the conversation.",
+        "nl": "Volg ongeldige invoer, een geldige herhaling, annuleren en einde-invoer. Leg uit hoe elke route het gesprek beëindigt of voortzet."
+      }
+    },
+    {
+      "id": "recall-python-v3-11-05",
+      "sourceActivityId": "python-v3-11-05",
+      "objectiveIds": [
+        "recovery-review"
+      ],
+      "prompt": {
+        "en": "Adapt your reliable reader to different bounds. Include exactly the endpoints and verify that cancellation is not confused with zero.",
+        "nl": "Pas je betrouwbare lezer aan voor andere grenzen. Neem de eindpunten mee en controleer dat annuleren niet met nul wordt verward."
+      }
+    },
+    {
+      "id": "recall-python-v3-14-01",
+      "sourceActivityId": "python-v3-14-01",
+      "objectiveIds": [
+        "csv-structure",
+        "csv-reader",
+        "csv-dictreader",
+        "csv-conversion"
+      ],
+      "prompt": {
+        "en": "Read new CSV rows both positionally and by header. Explain why numeric-looking fields need conversion.",
+        "nl": "Lees nieuwe CSV-rijen positioneel en met kopnamen. Leg uit waarom numeriek ogende velden omzetting nodig hebben."
+      }
+    },
+    {
+      "id": "recall-python-v3-14-02",
+      "sourceActivityId": "python-v3-14-02",
+      "objectiveIds": [
+        "csv-quoting",
+        "csv-delimiters"
+      ],
+      "prompt": {
+        "en": "Predict how a CSV reader handles a quoted comma and a semicolon delimiter. Why is plain split unreliable here?",
+        "nl": "Voorspel hoe een CSV-lezer een komma tussen aanhalingstekens en een puntkommascheiding behandelt. Waarom is gewone split hier onbetrouwbaar?"
+      }
+    },
+    {
+      "id": "recall-python-v3-14-03",
+      "sourceActivityId": "python-v3-14-03",
+      "objectiveIds": [
+        "csv-writer"
+      ],
+      "prompt": {
+        "en": "Export a row containing a comma and newline using a CSV writer, then read it back.",
+        "nl": "Exporteer een rij met een komma en nieuwe regel met een CSV-schrijver en lees die terug."
+      }
+    },
+    {
+      "id": "recall-python-v3-14-04",
+      "sourceActivityId": "python-v3-14-04",
+      "objectiveIds": [
+        "json-load",
+        "nested-data"
+      ],
+      "prompt": {
+        "en": "Load nested JSON and identify the Python types of arrays, objects, false and null.",
+        "nl": "Laad geneste JSON en benoem de Python-types van arrays, objecten, false en null."
+      }
+    },
+    {
+      "id": "recall-python-v3-14-05",
+      "sourceActivityId": "python-v3-14-05",
+      "objectiveIds": [
+        "json-dump",
+        "round-trips"
+      ],
+      "prompt": {
+        "en": "Save and reload a setting. Contrast one JSON document with appending two objects; distinguish missing from damaged data.",
+        "nl": "Bewaar en herlaad een instelling. Vergelijk één JSON-document met twee objecten achter elkaar; onderscheid ontbrekende van beschadigde gegevens."
+      }
+    },
+    {
+      "id": "recall-python-v3-14-06",
+      "sourceActivityId": "python-v3-14-06",
+      "objectiveIds": [
+        "structured-files-review"
+      ],
+      "prompt": {
+        "en": "Plan a CSV-to-JSON transformation with malformed and empty records, preserving its source.",
+        "nl": "Plan een CSV-naar-JSON-transformatie met ongeldige en lege records en behoud de bron."
+      }
+    }
+  ]
+}

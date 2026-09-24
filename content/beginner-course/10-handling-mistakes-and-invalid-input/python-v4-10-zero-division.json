@@ -1,0 +1,161 @@
+{
+  "id": "python-v4-10-zero-division",
+  "chapter": 10,
+  "group": "python-v4-module-10",
+  "title": {
+    "en": "Handle division by zero",
+    "nl": "Vang delen door nul op"
+  },
+  "kind": "coding",
+  "optional": false,
+  "runtime": "terminal",
+  "guidance": "guided",
+  "checkpointMode": "sequential",
+  "estimatedMinutes": 12,
+  "topicIds": [
+    "zero-division-recovery"
+  ],
+  "practices": [
+    "zero-division-error"
+  ],
+  "requiredConcepts": [
+    "try-except",
+    "return"
+  ],
+  "explanation": {
+    "en": "Conversion is not the only runtime failure. Division by a numeric zero raises a different exception.",
+    "nl": "Omzetting is niet de enige uitvoeringsfout. Delen door numerieke nul veroorzaakt een andere uitzondering."
+  },
+  "example": "",
+  "sections": [
+    {
+      "id": "python-v4-10-zero-division-example",
+      "topicIds": [
+        "zero-division-recovery",
+        "zero-division-error"
+      ],
+      "heading": {
+        "en": "Follow a working example",
+        "nl": "Volg een werkend voorbeeld"
+      },
+      "body": {
+        "en": "ZeroDivisionError is separate from ValueError. A zero denominator is valid numeric data, but the division is undefined. You can prevent the operation with an if guard or handle this specific exception. Here practise the exception form; later choose the clearest form for your program.",
+        "nl": "ZeroDivisionError is iets anders dan ValueError. Een noemer nul is geldige numerieke invoer, maar de deling is niet gedefinieerd. Je kunt de bewerking voorkomen met een if-bewaking of deze specifieke uitzondering afhandelen. Oefen hier de uitzonderingsvorm; kies later de duidelijkste vorm voor je programma."
+      },
+      "code": "try:\n    print(6 / 0)\nexcept ZeroDivisionError:\n    print(\"Cannot divide by zero\")",
+      "output": "Cannot divide by zero\n",
+      "prediction": {
+        "en": "Would except ValueError catch this failure?",
+        "nl": "Vangt except ValueError deze fout op?"
+      },
+      "takeaway": {
+        "en": "Different operations can fail with different exception types.",
+        "nl": "Verschillende bewerkingen kunnen verschillende uitzonderingstypen veroorzaken."
+      }
+    },
+    {
+      "id": "python-v4-10-zero-division-experiment",
+      "topicIds": [],
+      "heading": {
+        "en": "Try one change",
+        "nl": "Probeer één wijziging"
+      },
+      "body": {
+        "en": "Compare 0/2 and 2/0: which operand makes the difference?",
+        "nl": "Vergelijk 0/2 en 2/0: welk getal maakt het verschil?"
+      }
+    }
+  ],
+  "files": {
+    "main.py": "def portion(total, people):\n    return total / people\n"
+  },
+  "solution": {
+    "main.py": "def portion(total, people):\n    try:\n        return total / people\n    except ZeroDivisionError:\n        return None\n"
+  },
+  "checkpoints": [
+    {
+      "id": "python-v4-10-zero-division-step-1",
+      "objectiveIds": [
+        "zero-division-recovery",
+        "zero-division-error"
+      ],
+      "task": {
+        "en": "Use except ZeroDivisionError in portion to return None for zero people; keep ordinary division working.",
+        "nl": "Gebruik except ZeroDivisionError in portion om None terug te geven bij nul personen; behoud gewone deling."
+      },
+      "check": "any(isinstance(n,_ast.ExceptHandler) and isinstance(n.type,_ast.Name) and n.type.id == \"ZeroDivisionError\" for n in _ast.walk(_ast.parse(_source)))",
+      "probes": [
+        {
+          "call": {
+            "name": "portion",
+            "args": [
+              8,
+              0
+            ]
+          },
+          "check": "_error is None and _return is None"
+        },
+        {
+          "call": {
+            "name": "portion",
+            "args": [
+              0,
+              2
+            ]
+          },
+          "check": "_return == 0"
+        },
+        {
+          "call": {
+            "name": "portion",
+            "args": [
+              7,
+              2
+            ]
+          },
+          "check": "_return == 3.5"
+        }
+      ],
+      "hint": {
+        "en": "Different operations can fail with different exception types.",
+        "nl": "Verschillende bewerkingen kunnen verschillende uitzonderingstypen veroorzaken."
+      },
+      "hints": [
+        {
+          "en": "Different operations can fail with different exception types.",
+          "nl": "Verschillende bewerkingen kunnen verschillende uitzonderingstypen veroorzaken."
+        },
+        {
+          "en": "Keep the division in try and return None from the specific handler.",
+          "nl": "Houd de deling in try en geef None terug vanuit de specifieke afhandeling."
+        },
+        {
+          "en": "A small fragment to adapt: `except ZeroDivisionError:`",
+          "nl": "Een klein fragment om aan te passen: `except ZeroDivisionError:`"
+        }
+      ],
+      "feedback": {
+        "en": "Keep the division in try and return None from the specific handler.",
+        "nl": "Houd de deling in try en geef None terug vanuit de specifieke afhandeling."
+      }
+    }
+  ],
+  "solutionNote": {
+    "en": "The denominator, not the numerator, determines whether division is defined.",
+    "nl": "De noemer bepaalt of delen mogelijk is, niet de teller."
+  },
+  "inputs": [],
+  "retrievals": [
+    {
+      "id": "recall-python-v4-08-accumulate",
+      "sourceActivityId": "python-v4-08-accumulate",
+      "objectiveIds": [
+        "accumulators"
+      ],
+      "prompt": {
+        "en": "Recall “Keep a running total”. What is total just after adding 2? Try the earlier example from memory, then check it. Temporarily move total = 0 into the body. Predict why the accumulated history disappears.",
+        "nl": "Haal “Houd een lopend totaal bij” terug. Wat is total direct nadat 2 is toegevoegd? Probeer het eerdere voorbeeld uit je geheugen en controleer daarna. Verplaats total = 0 tijdelijk naar het blok. Voorspel waarom de opgebouwde geschiedenis verdwijnt."
+      }
+    }
+  ]
+}

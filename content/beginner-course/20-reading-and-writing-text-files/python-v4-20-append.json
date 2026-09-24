@@ -1,0 +1,161 @@
+{
+  "id": "python-v4-20-append",
+  "chapter": 20,
+  "group": "python-v4-module-20",
+  "title": {
+    "en": "Append a new log entry",
+    "nl": "Voeg een nieuwe logregel toe"
+  },
+  "kind": "coding",
+  "optional": false,
+  "runtime": "terminal",
+  "guidance": "guided",
+  "checkpointMode": "sequential",
+  "estimatedMinutes": 18,
+  "topicIds": [
+    "append-files"
+  ],
+  "practices": [],
+  "requiredConcepts": [
+    "write"
+  ],
+  "explanation": {
+    "en": "A log usually preserves previous entries when adding a new one.\n\nOpen work.py to write the requested function. main.py is a supplied caller: Run always starts there and imports your function. The other file tabs contain input data. After a successful run, open any new output file tab to inspect what your program saved.",
+    "nl": "Een log bewaart eerdere invoeren meestal wanneer een nieuwe wordt toegevoegd.\n\nOpen work.py om de gevraagde functie te schrijven. main.py is de aangeleverde aanroeper: Uitvoeren begint daar en importeert je functie. De andere bestandstabbladen bevatten invoergegevens. Open na een geslaagde uitvoering een nieuw uitvoerbestand om te bekijken wat je programma heeft opgeslagen."
+  },
+  "example": "",
+  "sections": [
+    {
+      "id": "python-v4-20-append-example",
+      "topicIds": [
+        "append-files"
+      ],
+      "heading": {
+        "en": "Follow a working example",
+        "nl": "Volg een werkend voorbeeld"
+      },
+      "body": {
+        "en": "Mode \"a\" writes at the end and creates the file if it is missing. It does not automatically insert a separator. For this activity each existing entry already ends in a newline, and the new message contains no newline. Write message + \"\\n\" to add exactly one entry.\n\nThe optional print argument end=\"\" prevents print from adding its own newline. This is useful when the text already contains line endings.",
+        "nl": "Modus \"a\" schrijft achteraan en maakt het bestand als het ontbreekt. Het voegt niet automatisch een scheiding toe. In deze activiteit eindigt elke bestaande invoer al met een nieuwe regel en bevat het nieuwe bericht geen nieuwe regel. Schrijf message + \"\\n\" om precies één invoer toe te voegen.\n\nHet optionele print-argument end=\"\" voorkomt dat print zelf een nieuwe regel toevoegt. Dat is handig als de tekst al regeleinden bevat."
+      },
+      "code": "with open(\"example.txt\",\"a\",encoding=\"utf-8\") as handle:\n    handle.write(\"second\\n\")\nwith open(\"example.txt\",encoding=\"utf-8\") as handle:\n    print(handle.read(),end=\"\")",
+      "output": "first\nsecond\n",
+      "prediction": {
+        "en": "What would w do to the first line?",
+        "nl": "Wat doet w met de eerste regel?"
+      },
+      "takeaway": {
+        "en": "Append preserves previous bytes; provide the separator yourself.",
+        "nl": "Toevoegen bewaart eerdere bytes; lever zelf de scheiding."
+      },
+      "exampleFiles": {
+        "example.txt": "first\n"
+      }
+    },
+    {
+      "id": "python-v4-20-append-experiment",
+      "topicIds": [],
+      "heading": {
+        "en": "Try one change",
+        "nl": "Probeer één wijziging"
+      },
+      "body": {
+        "en": "Run twice, navigate away, return and inspect the saved log.",
+        "nl": "Voer tweemaal uit, navigeer weg, keer terug en bekijk het opgeslagen log."
+      }
+    }
+  ],
+  "files": {
+    "log.txt": "Started\n",
+    "main.py": "import work\nwork.add_entry(\"log.txt\",\"Played\")\n",
+    "work.py": "def add_entry(path, message):\n    return None\n"
+  },
+  "solution": {
+    "log.txt": "Started\n",
+    "main.py": "import work\nwork.add_entry(\"log.txt\",\"Played\")\n",
+    "work.py": "def add_entry(path, message):\n    with open(path,\"a\",encoding=\"utf-8\") as handle:\n        handle.write(message + \"\\n\")\n"
+  },
+  "checkpoints": [
+    {
+      "id": "python-v4-20-append-step-1",
+      "objectiveIds": [
+        "append-files"
+      ],
+      "task": {
+        "en": "Append message and one newline while preserving the existing log.",
+        "nl": "Voeg message en één nieuwe regel toe met behoud van het bestaande log."
+      },
+      "check": "True",
+      "probes": [
+        {
+          "call": {
+            "name": "add_entry",
+            "args": [
+              "log.txt",
+              "Finished"
+            ],
+            "module": "work"
+          },
+          "check": "(open(\"log.txt\").read() == \"Started\\nFinished\\n\") and _error is None",
+          "moduleOnly": true,
+          "module": "work",
+          "files": {}
+        },
+        {
+          "call": {
+            "name": "add_entry",
+            "args": [
+              "new.txt",
+              "Hi"
+            ],
+            "module": "work"
+          },
+          "check": "(open(\"new.txt\").read() == \"Hi\\n\") and _error is None",
+          "moduleOnly": true,
+          "module": "work",
+          "files": {}
+        }
+      ],
+      "hint": {
+        "en": "Append preserves previous bytes; provide the separator yourself.",
+        "nl": "Toevoegen bewaart eerdere bytes; lever zelf de scheiding."
+      },
+      "hints": [
+        {
+          "en": "Append preserves previous bytes; provide the separator yourself.",
+          "nl": "Toevoegen bewaart eerdere bytes; lever zelf de scheiding."
+        },
+        {
+          "en": "Use append mode instead of write mode.",
+          "nl": "Gebruik toevoegmodus in plaats van schrijfmodus."
+        },
+        {
+          "en": "A small fragment to adapt: `open(path, \"a\", encoding=\"utf-8\")`",
+          "nl": "Een klein fragment om aan te passen: `open(path, \"a\", encoding=\"utf-8\")`"
+        }
+      ],
+      "feedback": {
+        "en": "Use append mode instead of write mode.",
+        "nl": "Gebruik toevoegmodus in plaats van schrijfmodus."
+      }
+    }
+  ],
+  "solutionNote": {
+    "en": "Appending adds one new line without truncating the old entries.",
+    "nl": "Toevoegen plaatst één nieuwe regel zonder eerdere invoeren te wissen."
+  },
+  "inputs": [],
+  "retrievals": [
+    {
+      "id": "recall-python-v4-18-case",
+      "sourceActivityId": "python-v4-18-case",
+      "objectiveIds": [
+        "case-conversion"
+      ],
+      "prompt": {
+        "en": "Recall “Return differently cased text”. Which variable was reassigned? Try the earlier example from memory, then check it. Compare lower, upper and title on text with punctuation.",
+        "nl": "Haal “Geef tekst met andere hoofdletters terug” terug. Welke variabele werd opnieuw toegewezen? Probeer het eerdere voorbeeld uit je geheugen en controleer daarna. Vergelijk lower, upper en title op tekst met leestekens."
+      }
+    }
+  ]
+}

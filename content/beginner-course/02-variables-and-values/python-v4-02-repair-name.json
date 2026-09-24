@@ -1,0 +1,114 @@
+{
+  "id": "python-v4-02-repair-name",
+  "chapter": 2,
+  "group": "python-v4-module-2",
+  "title": {
+    "en": "Read a NameError",
+    "nl": "Lees een NameError"
+  },
+  "kind": "coding",
+  "optional": false,
+  "runtime": "terminal",
+  "guidance": "adapt",
+  "checkpointMode": "sequential",
+  "estimatedMinutes": 10,
+  "topicIds": [
+    "name-error"
+  ],
+  "practices": [],
+  "requiredConcepts": [
+    "variables",
+    "variable-names"
+  ],
+  "explanation": {
+    "en": "A correctly shaped statement can still refer to a name that does not exist. This starter contains one misspelled name.",
+    "nl": "Een correct gevormde instructie kan toch verwijzen naar een naam die niet bestaat. Deze startcode bevat één verkeerd gespelde naam."
+  },
+  "example": "",
+  "sections": [
+    {
+      "id": "python-v4-02-repair-name-example",
+      "topicIds": [
+        "name-error"
+      ],
+      "heading": {
+        "en": "Follow a working example",
+        "nl": "Volg een werkend voorbeeld"
+      },
+      "body": {
+        "en": "A NameError means Python could not find a name when it tried to use it. Check the name in the final error line against earlier assignments. Capitalisation and underscores matter.\n\nA different cause is using a variable before its assignment executes. The working example stores the value first, then prints it. Follow that order and use the same spelling in both places.",
+        "nl": "Een NameError betekent dat Python een naam niet kon vinden toen het die wilde gebruiken. Vergelijk de naam op de laatste foutregel met eerdere toewijzingen. Hoofdletters en underscores tellen mee.\n\nEen andere oorzaak is een variabele gebruiken voordat de toewijzing wordt uitgevoerd. Het werkende voorbeeld bewaart eerst de waarde en drukt die daarna af. Volg die volgorde en gebruik op beide plaatsen dezelfde spelling."
+      },
+      "code": "city = \"Delft\"\nprint(city)",
+      "output": "Delft\n",
+      "prediction": {
+        "en": "What would happen if these lines were reversed?",
+        "nl": "Wat gebeurt er als je deze regels omdraait?"
+      },
+      "takeaway": {
+        "en": "Define a variable before using it and spell its name consistently.",
+        "nl": "Definieer een variabele vóór gebruik en spel de naam consequent."
+      }
+    },
+    {
+      "id": "python-v4-02-repair-name-experiment",
+      "topicIds": [],
+      "heading": {
+        "en": "Try one change",
+        "nl": "Probeer één wijziging"
+      },
+      "body": {
+        "en": "Move the print above the assignment. Read the error and explain why the spelling is now correct but the order is wrong.",
+        "nl": "Verplaats de print boven de toewijzing. Lees de fout en leg uit waarom de spelling nu klopt maar de volgorde niet."
+      }
+    }
+  ],
+  "files": {
+    "main.py": "animal = \"otter\"\nprint(Animal)\n"
+  },
+  "solution": {
+    "main.py": "animal = \"otter\"\nprint(animal)\n"
+  },
+  "checkpoints": [
+    {
+      "id": "python-v4-02-repair-name-step-1",
+      "objectiveIds": [
+        "name-error"
+      ],
+      "task": {
+        "en": "Repair the name lookup so the stored animal is printed.",
+        "nl": "Herstel het opzoeken van de naam zodat het opgeslagen dier wordt afgedrukt."
+      },
+      "check": "animal == \"otter\" and _stdout == \"otter\\n\"",
+      "probes": [],
+      "hint": {
+        "en": "Define a variable before using it and spell its name consistently.",
+        "nl": "Definieer een variabele vóór gebruik en spel de naam consequent."
+      },
+      "hints": [
+        {
+          "en": "Define a variable before using it and spell its name consistently.",
+          "nl": "Definieer een variabele vóór gebruik en spel de naam consequent."
+        },
+        {
+          "en": "Compare the capital letter in the print call with the lowercase assignment.",
+          "nl": "Vergelijk de hoofdletter in de print-aanroep met de toewijzing in kleine letters."
+        },
+        {
+          "en": "A small fragment to adapt: `print(city)`",
+          "nl": "Een klein fragment om aan te passen: `print(city)`"
+        }
+      ],
+      "feedback": {
+        "en": "Compare the capital letter in the print call with the lowercase assignment.",
+        "nl": "Vergelijk de hoofdletter in de print-aanroep met de toewijzing in kleine letters."
+      }
+    }
+  ],
+  "solutionNote": {
+    "en": "Python treats animal and Animal as different names. The repaired call looks up the name that was actually assigned.",
+    "nl": "Python behandelt animal en Animal als verschillende namen. De herstelde aanroep zoekt de naam op waaraan werkelijk een waarde is toegewezen."
+  },
+  "inputs": [],
+  "expectedStarterError": "NameError"
+}

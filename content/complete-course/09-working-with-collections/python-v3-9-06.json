@@ -1,0 +1,191 @@
+{
+  "id": "python-v3-9-06",
+  "chapter": 9,
+  "group": "python-v3-module-9",
+  "title": {
+    "en": "Report from unfamiliar data",
+    "nl": "Rapporteer over nieuwe gegevens"
+  },
+  "kind": "coding",
+  "optional": false,
+  "runtime": "terminal",
+  "guidance": "independent",
+  "estimatedMinutes": 15,
+  "explanation": {
+    "en": "Produce a report from recordings grouped by round. Return all round totals in original order and the three largest totals in descending order. Preserve all input rows; empty rounds total zero.",
+    "nl": "Maak een rapport van opnames per ronde. Geef alle rondetotalen in oorspronkelijke volgorde en de drie grootste totalen in aflopende volgorde terug. Behoud alle invoerrijen; lege rondes tellen als nul."
+  },
+  "example": "",
+  "topicIds": [
+    "collections-review"
+  ],
+  "prerequisites": [
+    "python-v3-9-05"
+  ],
+  "sections": [
+    {
+      "topicIds": [
+        "collections-review"
+      ],
+      "heading": {
+        "en": "Combine familiar operations",
+        "nl": "Combineer bekende bewerkingen"
+      },
+      "body": {
+        "en": "Separate processing from presentation. First derive one total per row. Then choose a sorted copy for the ranking and a slice for the top three. The report’s original-order totals remain useful even after ranking. Equivalent loop or comprehension approaches are welcome.",
+        "nl": "Scheid verwerken van presenteren. Leid eerst één totaal per rij af. Kies daarna een gesorteerde kopie voor de rangschikking en een slice voor de beste drie. De totalen in oorspronkelijke volgorde blijven ook na rangschikken bruikbaar. Gelijkwaardige lussen of comprehensies zijn welkom."
+      },
+      "code": "totals = [4, 9, 2, 6]\nprint(sorted(totals, reverse=True)[:2])\nprint(totals)",
+      "output": "[9, 6]\n[4, 9, 2, 6]\n",
+      "prediction": {
+        "en": "Which operation protects the original order?",
+        "nl": "Welke bewerking beschermt de oorspronkelijke volgorde?"
+      }
+    },
+    {
+      "topicIds": [],
+      "heading": {
+        "en": "Try a changed input",
+        "nl": "Probeer gewijzigde invoer"
+      },
+      "body": {
+        "en": "Change the requirement to the top two and then to ascending order. Explain which single step changes for each request.",
+        "nl": "Verander de eis naar de beste twee en daarna naar oplopende volgorde. Leg uit welke ene stap voor elk verzoek verandert."
+      }
+    }
+  ],
+  "files": {
+    "main.py": "def round_report(rounds):\n    pass\n\nprint(round_report([[3, -1], [], [4, 2], [1]]))\n"
+  },
+  "solution": {
+    "main.py": "def round_report(rounds):\n    totals = []\n    for row in rounds:\n        total = 0\n        for value in row:\n            total += value\n        totals.append(total)\n    leaders = sorted(totals, reverse=True)[:3]\n    return totals, leaders\n\nprint(round_report([[3, -1], [], [4, 2], [1]]))\n"
+  },
+  "checkpoints": [
+    {
+      "objectiveIds": [
+        "collections-review"
+      ],
+      "task": {
+        "en": "Return (totals, leaders), preserving round order in totals and selecting at most three descending leaders.",
+        "nl": "Geef (totals, leaders) terug met de rondevolgorde in totals en maximaal drie aflopende leiders."
+      },
+      "check": "round_report([[3,-1],[],[4,2],[1]]) == ([2,0,6,1],[6,2,1])",
+      "hints": [
+        {
+          "en": "Build the totals before ranking them.",
+          "nl": "Maak de totalen voordat je ze rangschikt."
+        },
+        {
+          "en": "Sort a copy, then slice its first three items.",
+          "nl": "Sorteer een kopie en neem de eerste drie items."
+        },
+        {
+          "en": "leaders = sorted(totals, reverse=True)[:3]",
+          "nl": "leaders = sorted(totals, reverse=True)[:3]"
+        }
+      ],
+      "hint": {
+        "en": "Build the totals before ranking them.",
+        "nl": "Maak de totalen voordat je ze rangschikt."
+      },
+      "feedback": {
+        "en": "Sorting totals in place would lose the original round order.",
+        "nl": "totalen op hun plek sorteren zou de oorspronkelijke rondevolgorde verliezen."
+      },
+      "probes": [
+        {
+          "call": {
+            "name": "round_report",
+            "args": [
+              [
+                [
+                  2
+                ],
+                [
+                  9
+                ],
+                [
+                  3
+                ],
+                [
+                  7
+                ],
+                [
+                  1
+                ]
+              ]
+            ]
+          },
+          "check": "_return == ([2,9,3,7,1],[9,7,3])"
+        }
+      ],
+      "id": "python-v3-9-06-step-1"
+    },
+    {
+      "objectiveIds": [
+        "collections-review"
+      ],
+      "task": {
+        "en": "Handle empty input, empty rows, duplicate and negative totals without mutating rounds.",
+        "nl": "Handel lege invoer, lege rijen, dubbele en negatieve totalen af zonder rounds te wijzigen."
+      },
+      "check": "round_report([]) == ([],[])",
+      "hints": [
+        {
+          "en": "The same rules apply even when there are fewer than three rounds.",
+          "nl": "Dezelfde regels gelden ook bij minder dan drie rondes."
+        },
+        {
+          "en": "A slice can safely stop beyond the list length.",
+          "nl": "Een slice mag veilig voorbij de lijstlengte eindigen."
+        },
+        {
+          "en": "Start totals as [], and each row total as 0.",
+          "nl": "Begin totals als [] en elk rijtotaal als 0."
+        }
+      ],
+      "hint": {
+        "en": "The same rules apply even when there are fewer than three rounds.",
+        "nl": "Dezelfde regels gelden ook bij minder dan drie rondes."
+      },
+      "feedback": {
+        "en": "Do not invent extra rounds or discard equal scores.",
+        "nl": "Verzin geen extra rondes en verwijder geen gelijke scores."
+      },
+      "probes": [
+        {
+          "call": {
+            "name": "round_report",
+            "args": [
+              [
+                [],
+                [
+                  -4
+                ],
+                [
+                  -4
+                ]
+              ]
+            ]
+          },
+          "check": "_return == ([0,-4,-4],[0,-4,-4]) and _args[0] == [[],[-4],[-4]]"
+        },
+        {
+          "call": {
+            "name": "round_report",
+            "args": [
+              []
+            ]
+          },
+          "check": "_return == ([],[])"
+        }
+      ],
+      "id": "python-v3-9-06-step-2"
+    }
+  ],
+  "solutionNote": {
+    "en": "The reference separates aggregation, ordering and selection. This makes each step easy to inspect and keeps the original data reusable for a different report.",
+    "nl": "De referentie scheidt optellen, ordenen en selecteren. Dat maakt elke stap controleerbaar en houdt de oorspronkelijke gegevens herbruikbaar voor een ander rapport."
+  },
+  "inputs": []
+}

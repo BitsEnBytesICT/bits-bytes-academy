@@ -1,0 +1,126 @@
+{
+  "id": "python-v4-04-multiline",
+  "chapter": 4,
+  "group": "python-v4-module-4",
+  "title": {
+    "en": "Text across several source lines",
+    "nl": "Tekst over meerdere coderegels"
+  },
+  "kind": "coding",
+  "optional": false,
+  "runtime": "terminal",
+  "guidance": "guided",
+  "checkpointMode": "sequential",
+  "estimatedMinutes": 12,
+  "topicIds": [
+    "multiline-strings"
+  ],
+  "practices": [],
+  "requiredConcepts": [
+    "strings",
+    "comments"
+  ],
+  "explanation": {
+    "en": "Triple quotes let a string span several lines in the editor.",
+    "nl": "Met drievoudige aanhalingstekens kan een string meerdere regels in de editor beslaan."
+  },
+  "example": "",
+  "sections": [
+    {
+      "id": "python-v4-04-multiline-example",
+      "topicIds": [
+        "multiline-strings"
+      ],
+      "heading": {
+        "en": "Follow a working example",
+        "nl": "Volg een werkend voorbeeld"
+      },
+      "body": {
+        "en": "Use three matching quotes to open and close a multiline string. Newlines between the quotes become part of the value. Starting the text immediately after the opening quotes avoids an unwanted first blank line.\n\nTriple-quoted text is a string, not a # comment. A string used as the first statement of a module or function can become its documentation string. For ordinary explanatory comments, continue to use #.",
+        "nl": "Gebruik drie bijpassende aanhalingstekens om een meerregelige string te openen en sluiten. Nieuwe regels tussen de aanhalingstekens worden onderdeel van de waarde. Als je de tekst direct na de opening begint, voorkom je een ongewenste eerste lege regel.\n\nTekst tussen drievoudige aanhalingstekens is een string, geen #-commentaar. Een string als eerste instructie van een module of functie kan de documentatiestring worden. Gebruik voor gewoon verklarend commentaar #."
+      },
+      "code": "notice = \"\"\"Open today\nCome inside\"\"\"\nprint(notice)",
+      "output": "Open today\nCome inside\n",
+      "prediction": {
+        "en": "Would a newline just after the opening quotes appear in the output?",
+        "nl": "Zou een nieuwe regel direct na de openingsaanhalingstekens in de uitvoer verschijnen?"
+      },
+      "takeaway": {
+        "en": "Triple quotes preserve text and newlines as a string value.",
+        "nl": "Drievoudige aanhalingstekens bewaren tekst en nieuwe regels als een stringwaarde."
+      }
+    },
+    {
+      "id": "python-v4-04-multiline-experiment",
+      "topicIds": [],
+      "heading": {
+        "en": "Try one change",
+        "nl": "Probeer één wijziging"
+      },
+      "body": {
+        "en": "Indent the second line inside the string. Observe that those spaces also become text.",
+        "nl": "Spring de tweede regel binnen de string in. Bekijk hoe ook die spaties tekst worden."
+      }
+    }
+  ],
+  "files": {
+    "main.py": ""
+  },
+  "solution": {
+    "main.py": "notice = \"\"\"Workshop\nSaturday\nBring a notebook\"\"\"\nprint(notice)\n"
+  },
+  "checkpoints": [
+    {
+      "id": "python-v4-04-multiline-step-1",
+      "objectiveIds": [
+        "multiline-strings"
+      ],
+      "task": {
+        "en": "Create notice with exactly three lines: \"Workshop\", \"Saturday\", \"Bring a notebook\". Print it.",
+        "nl": "Maak notice met precies drie regels: \"Workshop\", \"Saturday\", \"Bring a notebook\". Druk het af."
+      },
+      "check": "notice == \"Workshop\\nSaturday\\nBring a notebook\" and _stdout == notice + \"\\n\"",
+      "probes": [],
+      "hint": {
+        "en": "Triple quotes preserve text and newlines as a string value.",
+        "nl": "Drievoudige aanhalingstekens bewaren tekst en nieuwe regels als een stringwaarde."
+      },
+      "hints": [
+        {
+          "en": "Triple quotes preserve text and newlines as a string value.",
+          "nl": "Drievoudige aanhalingstekens bewaren tekst en nieuwe regels als een stringwaarde."
+        },
+        {
+          "en": "Keep all three lines inside one string and avoid leading or trailing blank lines.",
+          "nl": "Houd alle drie regels binnen één string en vermijd lege regels ervoor of erna."
+        },
+        {
+          "en": "A small fragment to adapt: `notice = \"\"\"first\nsecond\"\"\"`",
+          "nl": "Een klein fragment om aan te passen: `notice = \"\"\"first\nsecond\"\"\"`"
+        }
+      ],
+      "feedback": {
+        "en": "Keep all three lines inside one string and avoid leading or trailing blank lines.",
+        "nl": "Houd alle drie regels binnen één string en vermijd lege regels ervoor of erna."
+      }
+    }
+  ],
+  "solutionNote": {
+    "en": "The line breaks are part of notice. The final print newline comes after the string's final line.",
+    "nl": "De regeleinden horen bij notice. De laatste print-nieuwe-regel komt na de laatste regel van de string."
+  },
+  "inputs": [],
+  "retrievals": [
+    {
+      "id": "recall-python-v4-02-floats",
+      "sourceActivityId": "python-v4-02-floats",
+      "objectiveIds": [
+        "floats"
+      ],
+      "prompt": {
+        "en": "Recall “Numbers with a decimal point”. Are both assigned values floats? Try the earlier example from memory, then check it. Change distance to 4.0 and then to 4. Compare the displayed values.",
+        "nl": "Haal “Getallen met een decimale punt” terug. Zijn beide toegewezen waarden floats? Probeer het eerdere voorbeeld uit je geheugen en controleer daarna. Verander distance eerst in 4.0 en daarna in 4. Vergelijk de getoonde waarden."
+      }
+    }
+  ]
+}

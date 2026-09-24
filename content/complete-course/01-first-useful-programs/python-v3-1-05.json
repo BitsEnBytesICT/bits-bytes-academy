@@ -1,0 +1,159 @@
+{
+  "id": "python-v3-1-05",
+  "chapter": 1,
+  "group": "python-v3-module-1",
+  "title": {
+    "en": "A small report",
+    "nl": "Een klein rapport"
+  },
+  "kind": "coding",
+  "optional": false,
+  "runtime": "terminal",
+  "guidance": "independent",
+  "estimatedMinutes": 12,
+  "explanation": {
+    "en": "Build a short event report yourself. Use only familiar calculations and text. The supplied data is the input to your program; you choose the steps. If Python reports an error, read the last line for its kind and the indicated line number before changing code.",
+    "nl": "Bouw zelf een kort evenementenrapport. Gebruik alleen bekende berekeningen en tekst. De meegeleverde gegevens vormen de invoer; jij kiest de stappen. Meldt Python een fout, lees dan eerst de laatste regel voor de soort fout en het aangegeven regelnummer voordat je code wijzigt."
+  },
+  "example": "",
+  "topicIds": [
+    "concatenation",
+    "multiline-strings",
+    "errors"
+  ],
+  "prerequisites": [
+    "python-v3-1-04"
+  ],
+  "sections": [
+    {
+      "topicIds": [
+        "concatenation",
+        "multiline-strings",
+        "errors"
+      ],
+      "heading": {
+        "en": "Assemble text carefully",
+        "nl": "Stel tekst zorgvuldig samen"
+      },
+      "body": {
+        "en": "+ concatenates strings: it joins them without adding spaces. Triple quotes hold multiline text. Names are case-sensitive: using a name before assigning it causes NameError. A missing closing quote causes SyntaxError. Text plus a number causes TypeError; for now print them as separate comma-separated arguments.",
+        "nl": "+ plakt strings aan elkaar zonder spaties toe te voegen. Drievoudige aanhalingstekens bevatten tekst met meerdere regels. Namen zijn hoofdlettergevoelig: een naam gebruiken vóór toewijzing veroorzaakt NameError. Een ontbrekend sluitend aanhalingsteken veroorzaakt SyntaxError. Tekst plus een getal veroorzaakt TypeError; druk ze voorlopig af als aparte argumenten met komma’s."
+      },
+      "code": "name = \"Makers\"\nheading = \"Hello \" + name\nnotes = \"\"\"Open\nCome inside\"\"\"\nprint(heading)\nprint(notes)\nprint(\"Seats:\", 3 + 2)",
+      "output": "Hello Makers\nOpen\nCome inside\nSeats: 5\n",
+      "prediction": {
+        "en": "Where does the space after Hello come from?",
+        "nl": "Waar komt de spatie na Hello vandaan?"
+      }
+    },
+    {
+      "topicIds": [],
+      "heading": {
+        "en": "Try a changed input",
+        "nl": "Probeer gewijzigde invoer"
+      },
+      "body": {
+        "en": "Temporarily change print(heading) to print(Heading). Read the error, explain the case difference, then repair it. Change reserved to the total seat count and predict the report.",
+        "nl": "Verander print(heading) tijdelijk in print(Heading). Lees de fout, verklaar het verschil in hoofdletters en herstel het. Verander reserved in het totale aantal plaatsen en voorspel het rapport."
+      }
+    }
+  ],
+  "files": {
+    "main.py": "event = \"Code cafe\"\ntables = 4\nseats_per_table = 3\nreserved = 2\n"
+  },
+  "solution": {
+    "main.py": "event = \"Code cafe\"\ntables = 4\nseats_per_table = 3\nreserved = 2\nheading = \"Welcome to \" + event\nnotes = \"\"\"Bring curiosity\nAsk questions\"\"\"\navailable = tables * seats_per_table - reserved\nprint(heading)\nprint(notes)\nprint(available)\n"
+  },
+  "checkpoints": [
+    {
+      "objectiveIds": [
+        "concatenation",
+        "multiline-strings"
+      ],
+      "task": {
+        "en": "Create heading by joining \"Welcome to \" and event. Set notes to two lines: \"Bring curiosity\" and \"Ask questions\" using triple quotes.",
+        "nl": "Maak heading door \"Welcome to \" en event samen te voegen. Geef notes twee regels: \"Bring curiosity\" en \"Ask questions\" met drievoudige aanhalingstekens."
+      },
+      "check": "heading == \"Welcome to \" + event and notes == \"Bring curiosity\\nAsk questions\" and (chr(34) * 3 in _source or chr(39) * 3 in _source)",
+      "hints": [
+        {
+          "en": "Keep the greeting separate from the event name.",
+          "nl": "Houd de begroeting apart van de evenementnaam."
+        },
+        {
+          "en": "A space belongs inside the first string. Triple quotes can enclose a newline.",
+          "nl": "Een spatie hoort binnen de eerste string. Drievoudige aanhalingstekens kunnen een nieuwe regel omsluiten."
+        },
+        {
+          "en": "heading = \"Welcome to \" + event",
+          "nl": "heading = \"Welcome to \" + event"
+        }
+      ],
+      "hint": {
+        "en": "Keep the greeting separate from the event name.",
+        "nl": "Houd de begroeting apart van de evenementnaam."
+      },
+      "feedback": {
+        "en": "Compare the two text values and preserve the newline between the notes.",
+        "nl": "Vergelijk de twee tekstwaarden en behoud de nieuwe regel tussen de notities."
+      },
+      "probes": [
+        {
+          "inputs": {
+            "event": "Night lab"
+          },
+          "check": "heading == \"Welcome to Night lab\""
+        }
+      ],
+      "id": "python-v3-1-05-step-1"
+    },
+    {
+      "objectiveIds": [
+        "errors"
+      ],
+      "task": {
+        "en": "Calculate available seats after reservations. Print heading, notes and available in that order without errors.",
+        "nl": "Bereken beschikbare plaatsen na reserveringen. Druk heading, notes en available in die volgorde foutloos af."
+      },
+      "check": "available == 10 and _stdout == heading + \"\\n\" + notes + \"\\n10\\n\"",
+      "hints": [
+        {
+          "en": "Read the data names exactly as spelled.",
+          "nl": "Lees de namen precies zoals ze gespeld zijn."
+        },
+        {
+          "en": "Calculate all seats, then subtract reserved. Print each result separately.",
+          "nl": "Bereken alle plaatsen en trek reserved af. Druk elk resultaat apart af."
+        },
+        {
+          "en": "available = tables * seats_per_table - reserved",
+          "nl": "available = tables * seats_per_table - reserved"
+        }
+      ],
+      "hint": {
+        "en": "Read the data names exactly as spelled.",
+        "nl": "Lees de namen precies zoals ze gespeld zijn."
+      },
+      "feedback": {
+        "en": "Check the error line first, then the order of your print calls and calculations.",
+        "nl": "Controleer eerst de foutregel, daarna de volgorde van print-aanroepen en berekeningen."
+      },
+      "probes": [
+        {
+          "inputs": {
+            "tables": 2,
+            "seats_per_table": 5,
+            "reserved": 10
+          },
+          "check": "available == 0 and _stdout.endswith(\"\\n0\\n\")"
+        }
+      ],
+      "id": "python-v3-1-05-step-2"
+    }
+  ],
+  "solutionNote": {
+    "en": "The heading depends on event, the notes use one multiline string, and available follows multiplication before subtraction. No branch or unfamiliar packing formula is required.",
+    "nl": "De kop hangt af van event, de notities gebruiken één meerregelige string en available vermenigvuldigt vóór het aftrekken. Er is geen vertakking of onbekende verpakkingsformule nodig."
+  },
+  "inputs": []
+}

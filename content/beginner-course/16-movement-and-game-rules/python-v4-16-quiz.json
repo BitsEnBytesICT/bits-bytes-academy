@@ -1,0 +1,768 @@
+{
+  "id": "python-v4-16-quiz",
+  "chapter": 16,
+  "group": "python-v4-module-16",
+  "kind": "quiz",
+  "optional": false,
+  "estimatedMinutes": 8,
+  "title": {
+    "en": "Movement and game rules: review",
+    "nl": "Beweging en spelregels: herhaling"
+  },
+  "questions": [
+    {
+      "objectiveIds": [
+        "elapsed-time"
+      ],
+      "category": "prediction",
+      "prompt": {
+        "en": "What does this program print?",
+        "nl": "Wat drukt dit programma af?"
+      },
+      "code": "x = 10\nx += 100 * 0.5\nprint(x)",
+      "answer": "a",
+      "expectedOutput": "60.0\n",
+      "choices": [
+        {
+          "id": "a",
+          "label": {
+            "en": "60.0",
+            "nl": "60.0"
+          },
+          "reason": {
+            "en": "Velocity times seconds gives this frame’s displacement.",
+            "nl": "Snelheid maal seconden geeft de verplaatsing in dit beeld."
+          }
+        },
+        {
+          "id": "b",
+          "label": {
+            "en": "110",
+            "nl": "110"
+          },
+          "reason": {
+            "en": "That would correspond to a full second.",
+            "nl": "Dat komt overeen met een volle seconde."
+          }
+        },
+        {
+          "id": "c",
+          "label": {
+            "en": "50",
+            "nl": "50"
+          },
+          "reason": {
+            "en": "The old position must also be added.",
+            "nl": "De oude positie moet ook worden opgeteld."
+          }
+        }
+      ],
+      "id": "python-v4-16-quiz-a-1",
+      "reviewActivityIds": [
+        "python-v4-16-velocity"
+      ]
+    },
+    {
+      "objectiveIds": [
+        "random-seed"
+      ],
+      "category": "prediction",
+      "prompt": {
+        "en": "What does this program print?",
+        "nl": "Wat drukt dit programma af?"
+      },
+      "code": "import random\nrandom.seed(12)\nfirst = random.random()\nrandom.seed(12)\nprint(first == random.random())",
+      "answer": "a",
+      "expectedOutput": "True\n",
+      "choices": [
+        {
+          "id": "a",
+          "label": {
+            "en": "True",
+            "nl": "True"
+          },
+          "reason": {
+            "en": "The seed and call sequence repeat.",
+            "nl": "De seed en aanroepreeks worden herhaald."
+          }
+        },
+        {
+          "id": "b",
+          "label": {
+            "en": "False",
+            "nl": "False"
+          },
+          "reason": {
+            "en": "Resetting the same generator state reproduces the draw.",
+            "nl": "Dezelfde generatortoestand herstellen reproduceert de trekking."
+          }
+        },
+        {
+          "id": "c",
+          "label": {
+            "en": "12",
+            "nl": "12"
+          },
+          "reason": {
+            "en": "The seed is not the random output.",
+            "nl": "De seed is niet de willekeurige uitvoer."
+          }
+        }
+      ],
+      "id": "python-v4-16-quiz-a-2",
+      "reviewActivityIds": [
+        "python-v4-14-repeatable-random"
+      ]
+    },
+    {
+      "objectiveIds": [
+        "wall-collision"
+      ],
+      "category": "completion",
+      "prompt": {
+        "en": "Complete the code to produce the shown output.",
+        "nl": "Vul de code aan om de getoonde uitvoer te maken."
+      },
+      "code": "y,vy = 3,-100\nif y <= 6 and ___:\n    y,vy = 6,-vy\nprint(vy)",
+      "answer": "a",
+      "choices": [
+        {
+          "id": "a",
+          "label": {
+            "en": "vy < 0",
+            "nl": "vy < 0"
+          },
+          "reason": {
+            "en": "Reverse only a velocity pointing into the top wall.",
+            "nl": "Keer alleen een snelheid naar de bovenwand om."
+          }
+        },
+        {
+          "id": "b",
+          "label": {
+            "en": "vy > 0",
+            "nl": "vy > 0"
+          },
+          "reason": {
+            "en": "Reverse only a velocity pointing into the top wall.",
+            "nl": "Keer alleen een snelheid naar de bovenwand om."
+          }
+        },
+        {
+          "id": "c",
+          "label": {
+            "en": "vy == 0",
+            "nl": "vy == 0"
+          },
+          "reason": {
+            "en": "Reverse only a velocity pointing into the top wall.",
+            "nl": "Keer alleen een snelheid naar de bovenwand om."
+          }
+        }
+      ],
+      "codeBlank": {
+        "prompt": {
+          "en": "Complete the code to produce the shown output.",
+          "nl": "Vul de code aan om de getoonde uitvoer te maken."
+        },
+        "segments": [
+          "y,vy = 3,-100\nif y <= 6 and ",
+          ":\n    y,vy = 6,-vy\nprint(vy)"
+        ],
+        "tokens": [
+          {
+            "id": "token-1",
+            "code": "vy < 0"
+          },
+          {
+            "id": "token-2",
+            "code": "vy > 0"
+          },
+          {
+            "id": "token-3",
+            "code": "vy == 0"
+          }
+        ],
+        "blanks": [
+          {
+            "answer": "vy < 0",
+            "reason": {
+              "en": "Reverse only a velocity pointing into the top wall.",
+              "nl": "Keer alleen een snelheid naar de bovenwand om."
+            }
+          }
+        ],
+        "output": "100\n"
+      },
+      "id": "python-v4-16-quiz-a-3",
+      "reviewActivityIds": [
+        "python-v4-16-wall-bounce"
+      ]
+    },
+    {
+      "objectiveIds": [
+        "decimal"
+      ],
+      "category": "completion",
+      "prompt": {
+        "en": "Complete the code to produce the shown output.",
+        "nl": "Vul de code aan om de getoonde uitvoer te maken."
+      },
+      "code": "from decimal import Decimal\nprint(Decimal(___) + Decimal(\"0.2\"))",
+      "answer": "a",
+      "choices": [
+        {
+          "id": "a",
+          "label": {
+            "en": "\"0.1\"",
+            "nl": "\"0.1\""
+          },
+          "reason": {
+            "en": "A string preserves the written decimal exactly; a float may already be approximate.",
+            "nl": "Een string bewaart de geschreven decimaal exact; een float kan al benaderd zijn."
+          }
+        },
+        {
+          "id": "b",
+          "label": {
+            "en": "0.1",
+            "nl": "0.1"
+          },
+          "reason": {
+            "en": "A string preserves the written decimal exactly; a float may already be approximate.",
+            "nl": "Een string bewaart de geschreven decimaal exact; een float kan al benaderd zijn."
+          }
+        },
+        {
+          "id": "c",
+          "label": {
+            "en": "1",
+            "nl": "1"
+          },
+          "reason": {
+            "en": "A string preserves the written decimal exactly; a float may already be approximate.",
+            "nl": "Een string bewaart de geschreven decimaal exact; een float kan al benaderd zijn."
+          }
+        }
+      ],
+      "codeBlank": {
+        "prompt": {
+          "en": "Complete the code to produce the shown output.",
+          "nl": "Vul de code aan om de getoonde uitvoer te maken."
+        },
+        "segments": [
+          "from decimal import Decimal\nprint(Decimal(",
+          ") + Decimal(\"0.2\"))"
+        ],
+        "tokens": [
+          {
+            "id": "token-1",
+            "code": "\"0.1\""
+          },
+          {
+            "id": "token-2",
+            "code": "0.1"
+          },
+          {
+            "id": "token-3",
+            "code": "1"
+          }
+        ],
+        "blanks": [
+          {
+            "answer": "\"0.1\"",
+            "reason": {
+              "en": "A string preserves the written decimal exactly; a float may already be approximate.",
+              "nl": "Een string bewaart de geschreven decimaal exact; een float kan al benaderd zijn."
+            }
+          }
+        ],
+        "output": "0.3\n"
+      },
+      "id": "python-v4-16-quiz-a-4",
+      "reviewActivityIds": [
+        "python-v4-14-decimal"
+      ]
+    },
+    {
+      "objectiveIds": [
+        "scoring"
+      ],
+      "category": "debugging",
+      "prompt": {
+        "en": "Choose the repair or test that addresses the stated problem.",
+        "nl": "Kies de reparatie of test die het beschreven probleem aanpakt."
+      },
+      "code": "# Scores every frame while x stays outside.\nif x < -6:\n    right_score += 1 # speed 100",
+      "answer": "a",
+      "choices": [
+        {
+          "id": "a",
+          "label": {
+            "en": "Reset position and enter a waiting state in the same update.",
+            "nl": "Herstel positie en ga in dezelfde update naar de wachttoestand."
+          },
+          "reason": {
+            "en": "This removes the scoring condition before the next frame.",
+            "nl": "Dit verwijdert de scorevoorwaarde vóór het volgende beeld."
+          }
+        },
+        {
+          "id": "b",
+          "label": {
+            "en": "Make the score increment larger.",
+            "nl": "Maak de scoreverhoging groter."
+          },
+          "reason": {
+            "en": "The repeat-scoring cause remains.",
+            "nl": "De oorzaak van herhaald scoren blijft."
+          }
+        },
+        {
+          "id": "c",
+          "label": {
+            "en": "Hide the score text.",
+            "nl": "Verberg de scoretekst."
+          },
+          "reason": {
+            "en": "The data still increments even when invisible.",
+            "nl": "De gegevens stijgen nog steeds wanneer ze onzichtbaar zijn."
+          }
+        }
+      ],
+      "id": "python-v4-16-quiz-a-5",
+      "reviewActivityIds": [
+        "python-v4-16-score-once"
+      ]
+    },
+    {
+      "objectiveIds": [
+        "simultaneous-controls"
+      ],
+      "category": "application",
+      "prompt": {
+        "en": "Which explanation applies to this example?",
+        "nl": "Welke uitleg past bij dit voorbeeld?"
+      },
+      "code": "if keys[pygame.K_w]:\n    left_y -= 100 * dt\nif keys[pygame.K_DOWN]:\n    right_y += 100 * dt",
+      "answer": "a",
+      "choices": [
+        {
+          "id": "a",
+          "label": {
+            "en": "Both players can move in the same frame.",
+            "nl": "Beide spelers kunnen in hetzelfde beeld bewegen."
+          },
+          "reason": {
+            "en": "Independent checks allow both actions.",
+            "nl": "Onafhankelijke controles laten beide acties toe."
+          }
+        },
+        {
+          "id": "b",
+          "label": {
+            "en": "Only the first matching key can move.",
+            "nl": "Alleen de eerste passende toets kan bewegen."
+          },
+          "reason": {
+            "en": "That would require an alternative chain.",
+            "nl": "Dat vereist een alternatievenketen."
+          }
+        },
+        {
+          "id": "c",
+          "label": {
+            "en": "dt must always be one.",
+            "nl": "dt moet altijd één zijn."
+          },
+          "reason": {
+            "en": "dt measures the actual elapsed seconds.",
+            "nl": "dt meet de werkelijk verstreken seconden."
+          }
+        }
+      ],
+      "id": "python-v4-16-quiz-a-6",
+      "reviewActivityIds": [
+        "python-v4-16-held-controls"
+      ]
+    }
+  ],
+  "alternateQuestions": [
+    {
+      "objectiveIds": [
+        "elapsed-time"
+      ],
+      "category": "prediction",
+      "prompt": {
+        "en": "What does this program print?",
+        "nl": "Wat drukt dit programma af?"
+      },
+      "code": "x = 10\nx += 120 * 0.5\nprint(x)",
+      "answer": "a",
+      "expectedOutput": "70.0\n",
+      "choices": [
+        {
+          "id": "a",
+          "label": {
+            "en": "70.0",
+            "nl": "70.0"
+          },
+          "reason": {
+            "en": "Velocity times seconds gives this frame’s displacement.",
+            "nl": "Snelheid maal seconden geeft de verplaatsing in dit beeld."
+          }
+        },
+        {
+          "id": "b",
+          "label": {
+            "en": "130",
+            "nl": "130"
+          },
+          "reason": {
+            "en": "That would correspond to a full second.",
+            "nl": "Dat komt overeen met een volle seconde."
+          }
+        },
+        {
+          "id": "c",
+          "label": {
+            "en": "60",
+            "nl": "60"
+          },
+          "reason": {
+            "en": "The old position must also be added.",
+            "nl": "De oude positie moet ook worden opgeteld."
+          }
+        }
+      ],
+      "id": "python-v4-16-quiz-b-1",
+      "reviewActivityIds": [
+        "python-v4-16-velocity"
+      ]
+    },
+    {
+      "objectiveIds": [
+        "random-seed"
+      ],
+      "category": "prediction",
+      "prompt": {
+        "en": "What does this program print?",
+        "nl": "Wat drukt dit programma af?"
+      },
+      "code": "import random\nrandom.seed(17)\nfirst = random.random()\nrandom.seed(17)\nprint(first == random.random())",
+      "answer": "a",
+      "expectedOutput": "True\n",
+      "choices": [
+        {
+          "id": "a",
+          "label": {
+            "en": "True",
+            "nl": "True"
+          },
+          "reason": {
+            "en": "The seed and call sequence repeat.",
+            "nl": "De seed en aanroepreeks worden herhaald."
+          }
+        },
+        {
+          "id": "b",
+          "label": {
+            "en": "False",
+            "nl": "False"
+          },
+          "reason": {
+            "en": "Resetting the same generator state reproduces the draw.",
+            "nl": "Dezelfde generatortoestand herstellen reproduceert de trekking."
+          }
+        },
+        {
+          "id": "c",
+          "label": {
+            "en": "17",
+            "nl": "17"
+          },
+          "reason": {
+            "en": "The seed is not the random output.",
+            "nl": "De seed is niet de willekeurige uitvoer."
+          }
+        }
+      ],
+      "id": "python-v4-16-quiz-b-2",
+      "reviewActivityIds": [
+        "python-v4-14-repeatable-random"
+      ]
+    },
+    {
+      "objectiveIds": [
+        "wall-collision"
+      ],
+      "category": "completion",
+      "prompt": {
+        "en": "Complete the code to produce the shown output.",
+        "nl": "Vul de code aan om de getoonde uitvoer te maken."
+      },
+      "code": "y,vy = 3,-120\nif y <= 6 and ___:\n    y,vy = 6,-vy\nprint(vy)",
+      "answer": "a",
+      "choices": [
+        {
+          "id": "a",
+          "label": {
+            "en": "vy < 0",
+            "nl": "vy < 0"
+          },
+          "reason": {
+            "en": "Reverse only a velocity pointing into the top wall.",
+            "nl": "Keer alleen een snelheid naar de bovenwand om."
+          }
+        },
+        {
+          "id": "b",
+          "label": {
+            "en": "vy > 0",
+            "nl": "vy > 0"
+          },
+          "reason": {
+            "en": "Reverse only a velocity pointing into the top wall.",
+            "nl": "Keer alleen een snelheid naar de bovenwand om."
+          }
+        },
+        {
+          "id": "c",
+          "label": {
+            "en": "vy == 0",
+            "nl": "vy == 0"
+          },
+          "reason": {
+            "en": "Reverse only a velocity pointing into the top wall.",
+            "nl": "Keer alleen een snelheid naar de bovenwand om."
+          }
+        }
+      ],
+      "codeBlank": {
+        "prompt": {
+          "en": "Complete the code to produce the shown output.",
+          "nl": "Vul de code aan om de getoonde uitvoer te maken."
+        },
+        "segments": [
+          "y,vy = 3,-120\nif y <= 6 and ",
+          ":\n    y,vy = 6,-vy\nprint(vy)"
+        ],
+        "tokens": [
+          {
+            "id": "token-1",
+            "code": "vy < 0"
+          },
+          {
+            "id": "token-2",
+            "code": "vy > 0"
+          },
+          {
+            "id": "token-3",
+            "code": "vy == 0"
+          }
+        ],
+        "blanks": [
+          {
+            "answer": "vy < 0",
+            "reason": {
+              "en": "Reverse only a velocity pointing into the top wall.",
+              "nl": "Keer alleen een snelheid naar de bovenwand om."
+            }
+          }
+        ],
+        "output": "120\n"
+      },
+      "id": "python-v4-16-quiz-b-3",
+      "reviewActivityIds": [
+        "python-v4-16-wall-bounce"
+      ]
+    },
+    {
+      "objectiveIds": [
+        "decimal"
+      ],
+      "category": "completion",
+      "prompt": {
+        "en": "Complete the code to produce the shown output.",
+        "nl": "Vul de code aan om de getoonde uitvoer te maken."
+      },
+      "code": "from decimal import Decimal\nprint(Decimal(___) + Decimal(\"0.4\"))",
+      "answer": "a",
+      "choices": [
+        {
+          "id": "a",
+          "label": {
+            "en": "\"0.2\"",
+            "nl": "\"0.2\""
+          },
+          "reason": {
+            "en": "A string preserves the written decimal exactly; a float may already be approximate.",
+            "nl": "Een string bewaart de geschreven decimaal exact; een float kan al benaderd zijn."
+          }
+        },
+        {
+          "id": "b",
+          "label": {
+            "en": "0.2",
+            "nl": "0.2"
+          },
+          "reason": {
+            "en": "A string preserves the written decimal exactly; a float may already be approximate.",
+            "nl": "Een string bewaart de geschreven decimaal exact; een float kan al benaderd zijn."
+          }
+        },
+        {
+          "id": "c",
+          "label": {
+            "en": "1",
+            "nl": "1"
+          },
+          "reason": {
+            "en": "A string preserves the written decimal exactly; a float may already be approximate.",
+            "nl": "Een string bewaart de geschreven decimaal exact; een float kan al benaderd zijn."
+          }
+        }
+      ],
+      "codeBlank": {
+        "prompt": {
+          "en": "Complete the code to produce the shown output.",
+          "nl": "Vul de code aan om de getoonde uitvoer te maken."
+        },
+        "segments": [
+          "from decimal import Decimal\nprint(Decimal(",
+          ") + Decimal(\"0.4\"))"
+        ],
+        "tokens": [
+          {
+            "id": "token-1",
+            "code": "\"0.2\""
+          },
+          {
+            "id": "token-2",
+            "code": "0.2"
+          },
+          {
+            "id": "token-3",
+            "code": "1"
+          }
+        ],
+        "blanks": [
+          {
+            "answer": "\"0.2\"",
+            "reason": {
+              "en": "A string preserves the written decimal exactly; a float may already be approximate.",
+              "nl": "Een string bewaart de geschreven decimaal exact; een float kan al benaderd zijn."
+            }
+          }
+        ],
+        "output": "0.6\n"
+      },
+      "id": "python-v4-16-quiz-b-4",
+      "reviewActivityIds": [
+        "python-v4-14-decimal"
+      ]
+    },
+    {
+      "objectiveIds": [
+        "scoring"
+      ],
+      "category": "debugging",
+      "prompt": {
+        "en": "Choose the repair or test that addresses the stated problem.",
+        "nl": "Kies de reparatie of test die het beschreven probleem aanpakt."
+      },
+      "code": "# Scores every frame while x stays outside.\nif x < -6:\n    right_score += 1 # speed 120",
+      "answer": "a",
+      "choices": [
+        {
+          "id": "a",
+          "label": {
+            "en": "Reset position and enter a waiting state in the same update.",
+            "nl": "Herstel positie en ga in dezelfde update naar de wachttoestand."
+          },
+          "reason": {
+            "en": "This removes the scoring condition before the next frame.",
+            "nl": "Dit verwijdert de scorevoorwaarde vóór het volgende beeld."
+          }
+        },
+        {
+          "id": "b",
+          "label": {
+            "en": "Make the score increment larger.",
+            "nl": "Maak de scoreverhoging groter."
+          },
+          "reason": {
+            "en": "The repeat-scoring cause remains.",
+            "nl": "De oorzaak van herhaald scoren blijft."
+          }
+        },
+        {
+          "id": "c",
+          "label": {
+            "en": "Hide the score text.",
+            "nl": "Verberg de scoretekst."
+          },
+          "reason": {
+            "en": "The data still increments even when invisible.",
+            "nl": "De gegevens stijgen nog steeds wanneer ze onzichtbaar zijn."
+          }
+        }
+      ],
+      "id": "python-v4-16-quiz-b-5",
+      "reviewActivityIds": [
+        "python-v4-16-score-once"
+      ]
+    },
+    {
+      "objectiveIds": [
+        "simultaneous-controls"
+      ],
+      "category": "application",
+      "prompt": {
+        "en": "Which explanation applies to this example?",
+        "nl": "Welke uitleg past bij dit voorbeeld?"
+      },
+      "code": "if keys[pygame.K_w]:\n    left_y -= 120 * dt\nif keys[pygame.K_DOWN]:\n    right_y += 120 * dt",
+      "answer": "a",
+      "choices": [
+        {
+          "id": "a",
+          "label": {
+            "en": "Both players can move in the same frame.",
+            "nl": "Beide spelers kunnen in hetzelfde beeld bewegen."
+          },
+          "reason": {
+            "en": "Independent checks allow both actions.",
+            "nl": "Onafhankelijke controles laten beide acties toe."
+          }
+        },
+        {
+          "id": "b",
+          "label": {
+            "en": "Only the first matching key can move.",
+            "nl": "Alleen de eerste passende toets kan bewegen."
+          },
+          "reason": {
+            "en": "That would require an alternative chain.",
+            "nl": "Dat vereist een alternatievenketen."
+          }
+        },
+        {
+          "id": "c",
+          "label": {
+            "en": "dt must always be one.",
+            "nl": "dt moet altijd één zijn."
+          },
+          "reason": {
+            "en": "dt measures the actual elapsed seconds.",
+            "nl": "dt meet de werkelijk verstreken seconden."
+          }
+        }
+      ],
+      "id": "python-v4-16-quiz-b-6",
+      "reviewActivityIds": [
+        "python-v4-16-held-controls"
+      ]
+    }
+  ]
+}

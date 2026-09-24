@@ -1,0 +1,205 @@
+{
+  "id": "python-v3-12-06",
+  "chapter": 12,
+  "group": "python-v3-module-12",
+  "title": {
+    "en": "Maintain a registry",
+    "nl": "Beheer een register"
+  },
+  "kind": "coding",
+  "optional": false,
+  "runtime": "terminal",
+  "guidance": "independent",
+  "estimatedMinutes": 14,
+  "explanation": {
+    "en": "Maintain a scoreboard from a batch of (name, delta) updates. Start missing names at zero, apply repeated names in order, and return a new dictionary without changing the original. Negative and zero deltas are valid.",
+    "nl": "Beheer een scorebord uit een reeks (naam, wijziging)-updates. Begin ontbrekende namen op nul, pas herhaalde namen op volgorde toe en geef een nieuwe dictionary terug zonder het origineel te veranderen. Negatieve en nulwijzigingen zijn geldig."
+  },
+  "example": "",
+  "topicIds": [
+    "dictionary-review"
+  ],
+  "prerequisites": [
+    "python-v3-12-05"
+  ],
+  "sections": [
+    {
+      "topicIds": [
+        "dictionary-review"
+      ],
+      "heading": {
+        "en": "Accumulate by name",
+        "nl": "Tel per naam op"
+      },
+      "body": {
+        "en": "A dictionary lets each name keep its own total. A copied dictionary provides an independent result for flat numeric values. Use the old value or a missing-key default before adding a delta. Tuple unpacking makes each update easy to read.",
+        "nl": "Een dictionary laat elke naam een eigen totaal bijhouden. Een gekopieerde dictionary geeft een onafhankelijk resultaat bij vlakke numerieke waarden. Gebruik de oude waarde of een standaard voor een ontbrekende sleutel voordat je een wijziging optelt. Tuples uitpakken maakt elke update leesbaar."
+      },
+      "code": "counts = {\"red\": 2}\ncounts[\"blue\"] = counts.get(\"blue\", 0) + 1\nprint(counts)",
+      "output": "{'red': 2, 'blue': 1}\n",
+      "prediction": {
+        "en": "How would the same expression behave for red?",
+        "nl": "Hoe zou dezelfde expressie werken voor red?"
+      }
+    },
+    {
+      "topicIds": [],
+      "heading": {
+        "en": "Try a changed input",
+        "nl": "Probeer gewijzigde invoer"
+      },
+      "body": {
+        "en": "Apply the same batch twice, once using the original scores and once using the first result. Explain why the totals differ.",
+        "nl": "Pas dezelfde reeks twee keer toe, één keer met de oorspronkelijke scores en één keer met het eerste resultaat. Leg uit waarom de totalen verschillen."
+      }
+    }
+  ],
+  "files": {
+    "main.py": "def apply_updates(scores, updates):\n    pass\n\nprint(apply_updates({\"Ada\": 2}, [(\"Bo\", 3), (\"Ada\", -1), (\"Bo\", 2)]))\n"
+  },
+  "solution": {
+    "main.py": "def apply_updates(scores, updates):\n    result = scores.copy()\n    for name, delta in updates:\n        result[name] = result.get(name, 0) + delta\n    return result\n\nprint(apply_updates({\"Ada\": 2}, [(\"Bo\", 3), (\"Ada\", -1), (\"Bo\", 2)]))\n"
+  },
+  "checkpoints": [
+    {
+      "objectiveIds": [
+        "dictionary-review"
+      ],
+      "task": {
+        "en": "Apply all updates and return totals for old and newly encountered names.",
+        "nl": "Pas alle updates toe en geef totalen terug voor oude en nieuw aangetroffen namen."
+      },
+      "check": "apply_updates({\"Ada\":2},[(\"Bo\",3),(\"Ada\",-1),(\"Bo\",2)]) == {\"Ada\":1,\"Bo\":5}",
+      "hints": [
+        {
+          "en": "Each update builds on the latest total for that name.",
+          "nl": "Elke update bouwt voort op het nieuwste totaal voor die naam."
+        },
+        {
+          "en": "Read from result, not the original scores, inside the loop.",
+          "nl": "Lees binnen de lus uit result, niet uit het oorspronkelijke scores."
+        },
+        {
+          "en": "result[name] = result.get(name, 0) + delta",
+          "nl": "result[name] = result.get(name, 0) + delta"
+        }
+      ],
+      "hint": {
+        "en": "Each update builds on the latest total for that name.",
+        "nl": "Elke update bouwt voort op het nieuwste totaal voor die naam."
+      },
+      "feedback": {
+        "en": "Repeated names must accumulate rather than overwrite with the last delta.",
+        "nl": "Herhaalde namen moeten optellen in plaats van overschrijven met de laatste wijziging."
+      },
+      "probes": [
+        {
+          "call": {
+            "name": "apply_updates",
+            "args": [
+              {},
+              [
+                [
+                  "X",
+                  2
+                ],
+                [
+                  "X",
+                  -3
+                ],
+                [
+                  "Y",
+                  0
+                ]
+              ]
+            ]
+          },
+          "check": "_return == {\"X\":-1,\"Y\":0}"
+        }
+      ],
+      "id": "python-v3-12-06-step-1"
+    },
+    {
+      "objectiveIds": [
+        "dictionary-review"
+      ],
+      "task": {
+        "en": "Preserve both inputs and return an independent dictionary even for an empty update batch.",
+        "nl": "Behoud beide invoerwaarden en geef ook bij een lege updatereeks een onafhankelijke dictionary terug."
+      },
+      "check": "apply_updates({},[]) == {}",
+      "hints": [
+        {
+          "en": "Make the result before processing updates.",
+          "nl": "Maak het resultaat voordat je updates verwerkt."
+        },
+        {
+          "en": "A shallow copy is enough for these numeric values.",
+          "nl": "Een oppervlakkige kopie volstaat voor deze numerieke waarden."
+        },
+        {
+          "en": "result = scores.copy()",
+          "nl": "result = scores.copy()"
+        }
+      ],
+      "hint": {
+        "en": "Make the result before processing updates.",
+        "nl": "Maak het resultaat voordat je updates verwerkt."
+      },
+      "feedback": {
+        "en": "Do not accidentally turn an alias into a destructive update.",
+        "nl": "Maak van een alias niet per ongeluk een vernietigende update."
+      },
+      "probes": [
+        {
+          "call": {
+            "name": "apply_updates",
+            "args": [
+              {
+                "A": 2
+              },
+              [
+                [
+                  "A",
+                  3
+                ]
+              ]
+            ]
+          },
+          "check": "_return == {\"A\":5} and _args[0] == {\"A\":2} and _args[1] == [[\"A\",3]]"
+        },
+        {
+          "call": {
+            "name": "apply_updates",
+            "args": [
+              {
+                "A": 2
+              },
+              []
+            ]
+          },
+          "check": "_return == {\"A\":2} and _return is not _args[0]"
+        }
+      ],
+      "id": "python-v3-12-06-step-2"
+    }
+  ],
+  "solutionNote": {
+    "en": "The result dictionary becomes the evolving state during the batch. Missing names get a starting value only once, and the caller’s earlier snapshot remains intact.",
+    "nl": "De resultaatdictionary wordt de veranderende toestand tijdens de reeks. Ontbrekende namen krijgen slechts één keer een beginwaarde en de eerdere momentopname van de aanroeper blijft intact."
+  },
+  "inputs": [],
+  "retrievals": [
+    {
+      "id": "recall-python-v3-10-06",
+      "sourceActivityId": "python-v3-10-06",
+      "objectiveIds": [
+        "strings-review"
+      ],
+      "prompt": {
+        "en": "Clean a new set of tags, including blank text and duplicates. Explain each transformation without copying your solution.",
+        "nl": "Schoon een nieuwe set tags op, inclusief lege tekst en dubbele waarden. Leg elke stap uit zonder je oplossing te kopiëren."
+      }
+    }
+  ]
+}

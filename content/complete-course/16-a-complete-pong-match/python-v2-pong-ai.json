@@ -1,0 +1,126 @@
+{
+  "id": "python-v2-pong-ai",
+  "chapter": 16,
+  "group": "python-v2-pong-ai",
+  "kind": "project",
+  "optional": true,
+  "runtime": "pygame",
+  "guidance": "independent",
+  "estimatedMinutes": 60,
+  "title": {
+    "en": "Optional: a computer opponent",
+    "nl": "Optioneel: een computertegenstander"
+  },
+  "explanation": {
+    "en": "Extend your own Pong with a computer-controlled paddle. Use “Copy my Pong” to start from your saved project, including all helper files. This creates an independent copy; your two-player version stays yours to revisit. Choose your own design and mark the extension complete when you are satisfied. No automated checker or mandatory function names are involved.",
+    "nl": "Breid je eigen Pong uit met een computergestuurde paddle. Gebruik “Kopieer mijn Pong” om te beginnen met je opgeslagen project, inclusief alle hulpbestanden. Dit maakt een onafhankelijke kopie; je tweespelerversie blijft beschikbaar. Kies je eigen ontwerp en markeer de uitbreiding als afgerond wanneer je tevreden bent. Er zijn geen automatische checker of verplichte functienamen."
+  },
+  "example": "",
+  "sections": [],
+  "files": {
+    "main.py": "import asyncio\nimport pygame\n\nasync def main():\n    pygame.init()\n    # Create your game here.\n    # Give the browser a turn inside your game loop:\n    # await asyncio.sleep(1 / 60)\n    pygame.quit()\n\nasyncio.run(main())\n"
+  },
+  "solution": {},
+  "checkpoints": [],
+  "solutionNote": {
+    "en": "The browser entry point is provided, but there is no prescribed game structure or project checker.",
+    "nl": "Het browserstartpunt is gegeven, maar er is geen voorgeschreven spelstructuur of projectcontrole."
+  },
+  "milestones": [
+    {
+      "id": "tracking",
+      "title": {
+        "en": "Let it choose a direction",
+        "nl": "Laat hem een richting kiezen"
+      },
+      "description": {
+        "en": "Replace one player’s input with a decision based on the ball and paddle positions. Start with a simple follower you can explain.",
+        "nl": "Vervang de invoer van één speler door een beslissing op basis van bal- en paddleposities. Begin met een eenvoudige volger die je kunt uitleggen."
+      },
+      "hints": [
+        {
+          "en": "Compare the target with the paddle centre.",
+          "nl": "Vergelijk het doel met het paddlemiddelpunt."
+        },
+        {
+          "en": "The controller can produce the same direction values as your keyboard controls.",
+          "nl": "De besturing kan dezelfde richtingswaarden leveren als je toetsenbordbesturing."
+        },
+        {
+          "en": "A small difference near the centre can count as “stay still” to avoid jitter.",
+          "nl": "Een klein verschil bij het middelpunt kan “blijf stil” betekenen om trillen te vermijden."
+        }
+      ]
+    },
+    {
+      "id": "fairness",
+      "title": {
+        "en": "Make it beatable",
+        "nl": "Maak hem verslaanbaar"
+      },
+      "description": {
+        "en": "Limit its speed and consider when it should react. Test whether a human has a fair chance rather than making it teleport to every ball.",
+        "nl": "Beperk zijn snelheid en bedenk wanneer hij reageert. Test of een mens een eerlijke kans heeft in plaats van de paddle naar elke bal te laten teleporteren."
+      },
+      "hints": [
+        {
+          "en": "A computer can obey the same movement limits as a player.",
+          "nl": "Een computer kan dezelfde bewegingsgrenzen volgen als een speler."
+        },
+        {
+          "en": "Try a slower maximum speed or a delay between decisions.",
+          "nl": "Probeer een lagere maximumsnelheid of vertraging tussen beslissingen."
+        },
+        {
+          "en": "Keep actual movement time-based even if decisions update less often.",
+          "nl": "Houd de beweging tijdsafhankelijk, ook als beslissingen minder vaak worden bijgewerkt."
+        }
+      ]
+    },
+    {
+      "id": "playtest",
+      "title": {
+        "en": "Compare two difficulty settings",
+        "nl": "Vergelijk twee moeilijkheidsinstellingen"
+      },
+      "description": {
+        "en": "Choose two configurations, play both, and note what makes each feel easier or harder. Keep a way to return to two-player control if you want.",
+        "nl": "Kies twee instellingen, speel beide en noteer wat elke instelling makkelijker of moeilijker maakt. Behoud desgewenst een manier om terug te gaan naar tweespelerbesturing."
+      },
+      "hints": [
+        {
+          "en": "Change one design variable at a time.",
+          "nl": "Verander één ontwerpvariabele tegelijk."
+        },
+        {
+          "en": "Test serves, corners, long rallies, and a ball moving away from the computer.",
+          "nl": "Test services, hoeken, lange rally’s en een bal die van de computer af beweegt."
+        },
+        {
+          "en": "A short note about what you changed helps you compare later versions.",
+          "nl": "Een korte notitie over je wijziging helpt latere versies vergelijken."
+        }
+      ]
+    }
+  ],
+  "suggestedTests": [
+    {
+      "en": "Try the centre, the top and bottom edges, and a fast diagonal ball.",
+      "nl": "Probeer het midden, boven- en onderranden en een snelle diagonale bal."
+    },
+    {
+      "en": "Check that the computer stays inside the court and respects its speed limit.",
+      "nl": "Controleer dat de computer binnen het veld blijft en zijn snelheidslimiet respecteert."
+    },
+    {
+      "en": "Restart after a win and switch focus away from and back to the preview.",
+      "nl": "Herstart na winst en verplaats de focus van het voorbeeld weg en terug."
+    }
+  ],
+  "references": [
+    "python-v3-8-02",
+    "python-v3-16-03",
+    "python-v3-16-05"
+  ],
+  "continueFrom": "python-v3-pong-project"
+}

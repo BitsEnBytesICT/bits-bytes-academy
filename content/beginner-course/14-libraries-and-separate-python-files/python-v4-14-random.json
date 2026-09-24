@@ -1,0 +1,135 @@
+{
+  "id": "python-v4-14-random",
+  "chapter": 14,
+  "group": "python-v4-module-14",
+  "title": {
+    "en": "Generate a random choice",
+    "nl": "Maak een willekeurige keuze"
+  },
+  "kind": "coding",
+  "optional": false,
+  "runtime": "terminal",
+  "guidance": "guided",
+  "checkpointMode": "sequential",
+  "estimatedMinutes": 12,
+  "topicIds": [
+    "random"
+  ],
+  "practices": [],
+  "requiredConcepts": [
+    "imports",
+    "return",
+    "lists"
+  ],
+  "explanation": {
+    "en": "Random values make games less predictable. Tests should check the allowed outcomes rather than demand one lucky draw.",
+    "nl": "Willekeurige waarden maken spellen minder voorspelbaar. Tests horen toegestane uitkomsten te controleren in plaats van één gelukkige trekking te eisen."
+  },
+  "example": "",
+  "sections": [
+    {
+      "id": "python-v4-14-random-example",
+      "topicIds": [
+        "random"
+      ],
+      "heading": {
+        "en": "Follow a working example",
+        "nl": "Volg een werkend voorbeeld"
+      },
+      "body": {
+        "en": "random.randint(low, high) includes both endpoints. random.choice(items) selects one element from a nonempty sequence. Calling again may produce the same value: random does not mean always different. These tools are for games and simulations, not passwords or security.",
+        "nl": "random.randint(low, high) omvat beide grenzen. random.choice(items) kiest één element uit een niet-lege reeks. Opnieuw aanroepen kan dezelfde waarde opleveren: willekeurig betekent niet altijd anders. Deze gereedschappen zijn voor spellen en simulaties, niet voor wachtwoorden of beveiliging."
+      },
+      "code": "import random\nvalue = random.randint(1, 6)\nprint(1 <= value <= 6)",
+      "output": "True\n",
+      "prediction": {
+        "en": "Could two consecutive rolls both be 6?",
+        "nl": "Kunnen twee opeenvolgende worpen beide 6 zijn?"
+      },
+      "takeaway": {
+        "en": "Test the set or range of valid outcomes.",
+        "nl": "Test de verzameling of het bereik van geldige uitkomsten."
+      }
+    },
+    {
+      "id": "python-v4-14-random-experiment",
+      "topicIds": [],
+      "heading": {
+        "en": "Try one change",
+        "nl": "Probeer één wijziging"
+      },
+      "body": {
+        "en": "Roll ten times and record repeats instead of treating them as failures.",
+        "nl": "Werp tienmaal en noteer herhalingen in plaats van ze als fouten te zien."
+      }
+    }
+  ],
+  "files": {
+    "main.py": "import random\ndef roll():\n    return None\n"
+  },
+  "solution": {
+    "main.py": "import random\ndef roll():\n    return random.randint(1, 6)\n"
+  },
+  "checkpoints": [
+    {
+      "id": "python-v4-14-random-step-1",
+      "objectiveIds": [
+        "random"
+      ],
+      "task": {
+        "en": "Implement roll() with random.randint to return an integer from 1 through 6.",
+        "nl": "Implementeer roll() met random.randint om een geheel getal van 1 tot en met 6 terug te geven."
+      },
+      "check": "callable(roll) and any(isinstance(n,_ast.Attribute) and n.attr == \"randint\" for n in _ast.walk(_ast.parse(_source)))",
+      "probes": [
+        {
+          "call": {
+            "name": "roll",
+            "args": []
+          },
+          "check": "type(_return) is int and 1 <= _return <= 6 and len({roll() for _ in range(30)}) > 1"
+        }
+      ],
+      "hint": {
+        "en": "Test the set or range of valid outcomes.",
+        "nl": "Test de verzameling of het bereik van geldige uitkomsten."
+      },
+      "hints": [
+        {
+          "en": "Test the set or range of valid outcomes.",
+          "nl": "Test de verzameling of het bereik van geldige uitkomsten."
+        },
+        {
+          "en": "Both bounds belong in the randint call.",
+          "nl": "Beide grenzen horen in de randint-aanroep."
+        },
+        {
+          "en": "A small fragment to adapt: `random.randint(1, 6)`",
+          "nl": "Een klein fragment om aan te passen: `random.randint(1, 6)`"
+        }
+      ],
+      "feedback": {
+        "en": "Both bounds belong in the randint call.",
+        "nl": "Beide grenzen horen in de randint-aanroep."
+      }
+    }
+  ],
+  "solutionNote": {
+    "en": "randint chooses from the inclusive integer range; repeated results are allowed.",
+    "nl": "randint kiest uit het inclusieve bereik van gehele getallen; herhaalde resultaten zijn toegestaan."
+  },
+  "inputs": [],
+  "retrievals": [
+    {
+      "id": "recall-python-v4-12-range-step",
+      "sourceActivityId": "python-v4-12-range-step",
+      "objectiveIds": [
+        "range-start-stop-step"
+      ],
+      "prompt": {
+        "en": "Recall “Choose the start and step”. Why is 9 absent from the first list? Try the earlier example from memory, then check it. Write down a range for the even values 2, 4, 6, 8.",
+        "nl": "Haal “Kies begin en stap” terug. Waarom ontbreekt 9 in de eerste lijst? Probeer het eerdere voorbeeld uit je geheugen en controleer daarna. Schrijf een range voor de even waarden 2, 4, 6, 8."
+      }
+    }
+  ]
+}

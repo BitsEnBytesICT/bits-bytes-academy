@@ -1,0 +1,144 @@
+{
+  "id": "python-v4-09-none",
+  "chapter": 9,
+  "group": "python-v4-module-9",
+  "title": {
+    "en": "A function without a return value",
+    "nl": "Een functie zonder terugkeerwaarde"
+  },
+  "kind": "coding",
+  "optional": false,
+  "runtime": "terminal",
+  "guidance": "adapt",
+  "checkpointMode": "sequential",
+  "estimatedMinutes": 12,
+  "topicIds": [
+    "none"
+  ],
+  "practices": [],
+  "requiredConcepts": [
+    "return"
+  ],
+  "explanation": {
+    "en": "Understanding None explains why assigning the result of print does not store the printed text.",
+    "nl": "None begrijpen verklaart waarom het resultaat van print toewijzen de afgedrukte tekst niet bewaart."
+  },
+  "example": "",
+  "sections": [
+    {
+      "id": "python-v4-09-none-example",
+      "topicIds": [
+        "none"
+      ],
+      "heading": {
+        "en": "Follow a working example",
+        "nl": "Volg een werkend voorbeeld"
+      },
+      "body": {
+        "en": "A function that reaches the end without return gives back None, Python’s value for absence. print also returns None. None is not zero or the string \"None\". Use is None to test this special value. A bare return ends a function with None as well.",
+        "nl": "Een functie die eindigt zonder return geeft None terug: Pythons waarde voor afwezigheid. print geeft ook None terug. None is niet nul of de string \"None\". Gebruik is None om deze speciale waarde te testen. Een losse return beëindigt een functie ook met None."
+      },
+      "code": "def announce():\n    print(\"Ready\")\nresult = announce()\nprint(result is None)",
+      "output": "Ready\nTrue\n",
+      "prediction": {
+        "en": "Which line comes from the function body?",
+        "nl": "Welke regel komt uit de functie-inhoud?"
+      },
+      "takeaway": {
+        "en": "Displaying a value and returning it are separate actions.",
+        "nl": "Een waarde tonen en teruggeven zijn aparte acties."
+      }
+    },
+    {
+      "id": "python-v4-09-none-experiment",
+      "topicIds": [],
+      "heading": {
+        "en": "Try one change",
+        "nl": "Probeer één wijziging"
+      },
+      "body": {
+        "en": "Compare print(triple(0)) with triple(0) by itself.",
+        "nl": "Vergelijk print(triple(0)) met alleen triple(0)."
+      }
+    }
+  ],
+  "files": {
+    "main.py": "def triple(number):\n    print(number * 3)\n"
+  },
+  "solution": {
+    "main.py": "def triple(number):\n    return number * 3\n"
+  },
+  "checkpoints": [
+    {
+      "id": "python-v4-09-none-step-1",
+      "objectiveIds": [
+        "none"
+      ],
+      "task": {
+        "en": "Repair triple so its caller receives the numeric result and no output is printed.",
+        "nl": "Herstel triple zodat de aanroeper het numerieke resultaat ontvangt en niets wordt afgedrukt."
+      },
+      "check": "callable(triple)",
+      "probes": [
+        {
+          "call": {
+            "name": "triple",
+            "args": [
+              4
+            ]
+          },
+          "check": "_return == 12 and _call_stdout == \"\""
+        },
+        {
+          "call": {
+            "name": "triple",
+            "args": [
+              -2
+            ]
+          },
+          "check": "_return == -6"
+        }
+      ],
+      "hint": {
+        "en": "Displaying a value and returning it are separate actions.",
+        "nl": "Een waarde tonen en teruggeven zijn aparte acties."
+      },
+      "hints": [
+        {
+          "en": "Displaying a value and returning it are separate actions.",
+          "nl": "Een waarde tonen en teruggeven zijn aparte acties."
+        },
+        {
+          "en": "The current function prints, then implicitly returns None.",
+          "nl": "De huidige functie drukt af en geeft daarna impliciet None terug."
+        },
+        {
+          "en": "A small fragment to adapt: `return number * 3`",
+          "nl": "Een klein fragment om aan te passen: `return number * 3`"
+        }
+      ],
+      "feedback": {
+        "en": "The current function prints, then implicitly returns None.",
+        "nl": "De huidige functie drukt af en geeft daarna impliciet None terug."
+      }
+    }
+  ],
+  "solutionNote": {
+    "en": "Replacing print with return makes the function useful in expressions.",
+    "nl": "print vervangen door return maakt de functie bruikbaar in uitdrukkingen."
+  },
+  "inputs": [],
+  "retrievals": [
+    {
+      "id": "recall-python-v4-07-command-menu",
+      "sourceActivityId": "python-v4-07-command-menu",
+      "objectiveIds": [
+        "decision-review"
+      ],
+      "prompt": {
+        "en": "Recall “Respond to a typed choice”. Why does the uppercase input match lowercase help? Try the earlier example from memory, then check it. Test both commands with spaces and mixed case. Try an empty answer too.",
+        "nl": "Haal “Reageer op een getypte keuze” terug. Waarom komt invoer in hoofdletters overeen met help in kleine letters? Probeer het eerdere voorbeeld uit je geheugen en controleer daarna. Test beide opdrachten met spaties en gemengde hoofdletters. Probeer ook een leeg antwoord."
+      }
+    }
+  ]
+}

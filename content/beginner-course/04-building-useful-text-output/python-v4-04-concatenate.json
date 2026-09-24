@@ -1,0 +1,148 @@
+{
+  "id": "python-v4-04-concatenate",
+  "chapter": 4,
+  "group": "python-v4-module-4",
+  "title": {
+    "en": "Join two pieces of text",
+    "nl": "Voeg twee stukken tekst samen"
+  },
+  "kind": "coding",
+  "optional": false,
+  "runtime": "terminal",
+  "guidance": "guided",
+  "checkpointMode": "sequential",
+  "estimatedMinutes": 12,
+  "topicIds": [
+    "concatenation",
+    "string-concatenation"
+  ],
+  "practices": [],
+  "requiredConcepts": [
+    "strings",
+    "variables"
+  ],
+  "explanation": {
+    "en": "Build a message from smaller text values. Joining strings is called concatenation.",
+    "nl": "Bouw een bericht uit kleinere tekstwaarden. Strings samenvoegen heet concatenatie."
+  },
+  "example": "",
+  "sections": [
+    {
+      "id": "python-v4-04-concatenate-example",
+      "topicIds": [
+        "concatenation",
+        "string-concatenation"
+      ],
+      "heading": {
+        "en": "Follow a working example",
+        "nl": "Volg een werkend voorbeeld"
+      },
+      "body": {
+        "en": "Between two strings, + joins the text in order. It does not insert spaces automatically. The example adds a separate string containing one space between the two words.\n\nConcatenation produces a new string. It does not alter either original value. You can store the new result in another variable. This is the same + symbol used for numeric addition, but its behaviour depends on the value types.",
+        "nl": "Tussen twee strings voegt + de tekst op volgorde samen. Het voegt niet automatisch spaties in. Het voorbeeld voegt een aparte string met één spatie toe tussen beide woorden.\n\nConcatenatie levert een nieuwe string op. Zij verandert geen van de oorspronkelijke waarden. Je kunt het nieuwe resultaat in een andere variabele bewaren. Dit is hetzelfde +-teken als bij optellen, maar het gedrag hangt af van de waardetypen."
+      },
+      "code": "first = \"Good\"\nsecond = \"morning\"\nmessage = first + \" \" + second\nprint(message)",
+      "output": "Good morning\n",
+      "prediction": {
+        "en": "What would happen without the middle space string?",
+        "nl": "Wat gebeurt er zonder de middelste string met een spatie?"
+      },
+      "takeaway": {
+        "en": "String + joins text exactly as written, including spaces.",
+        "nl": "String + voegt tekst precies samen zoals geschreven, inclusief spaties."
+      }
+    },
+    {
+      "id": "python-v4-04-concatenate-experiment",
+      "topicIds": [],
+      "heading": {
+        "en": "Try one change",
+        "nl": "Probeer één wijziging"
+      },
+      "body": {
+        "en": "Change both names. Then remove the separator and observe the result.",
+        "nl": "Verander beide namen. Verwijder daarna het scheidingsteken en bekijk het resultaat."
+      }
+    }
+  ],
+  "files": {
+    "main.py": "first = \"Ada\"\nlast = \"Lovelace\"\n"
+  },
+  "solution": {
+    "main.py": "first = \"Ada\"\nlast = \"Lovelace\"\nfull_name = first + \" \" + last\nprint(full_name)\n"
+  },
+  "checkpoints": [
+    {
+      "id": "python-v4-04-concatenate-step-1",
+      "objectiveIds": [
+        "concatenation",
+        "string-concatenation"
+      ],
+      "task": {
+        "en": "Combine first and last with one space into full_name, then print it.",
+        "nl": "Combineer first en last met één spatie tot full_name en druk die af."
+      },
+      "check": "full_name == first + \" \" + last and _stdout.strip() == full_name",
+      "probes": [
+        {
+          "inputs": {
+            "first": "Sam",
+            "last": "Lee"
+          },
+          "check": "full_name == \"Sam Lee\""
+        }
+      ],
+      "hint": {
+        "en": "String + joins text exactly as written, including spaces.",
+        "nl": "String + voegt tekst precies samen zoals geschreven, inclusief spaties."
+      },
+      "hints": [
+        {
+          "en": "String + joins text exactly as written, including spaces.",
+          "nl": "String + voegt tekst precies samen zoals geschreven, inclusief spaties."
+        },
+        {
+          "en": "Include the separator yourself; + does not add it.",
+          "nl": "Voeg het scheidingsteken zelf toe; + doet dat niet."
+        },
+        {
+          "en": "A small fragment to adapt: `first + \" \" + last`",
+          "nl": "Een klein fragment om aan te passen: `first + \" \" + last`"
+        }
+      ],
+      "feedback": {
+        "en": "Include the separator yourself; + does not add it.",
+        "nl": "Voeg het scheidingsteken zelf toe; + doet dat niet."
+      }
+    }
+  ],
+  "solutionNote": {
+    "en": "The middle string supplies the space, and full_name stores a new string. The two input variables are unchanged.",
+    "nl": "De middelste string levert de spatie en full_name bewaart een nieuwe string. De twee invoervariabelen blijven gelijk."
+  },
+  "inputs": [],
+  "retrievals": [
+    {
+      "id": "recall-python-v4-02-assignment",
+      "sourceActivityId": "python-v4-02-assignment",
+      "objectiveIds": [
+        "variables"
+      ],
+      "prompt": {
+        "en": "Recall “Give a value a name”. Does the first line itself display anything? Try the earlier example from memory, then check it. Change only the assigned string. Does the same print call display the new value?",
+        "nl": "Haal “Geef een waarde een naam” terug. Toont de eerste regel zelf iets? Probeer het eerdere voorbeeld uit je geheugen en controleer daarna. Verander alleen de toegewezen string. Toont dezelfde print-aanroep de nieuwe waarde?"
+      }
+    },
+    {
+      "id": "recall-python-v4-02-repair-name",
+      "sourceActivityId": "python-v4-02-repair-name",
+      "objectiveIds": [
+        "name-error"
+      ],
+      "prompt": {
+        "en": "Recall “Read a NameError”. What would happen if these lines were reversed? Try the earlier example from memory, then check it. Move the print above the assignment. Read the error and explain why the spelling is now correct but the order is wrong.",
+        "nl": "Haal “Lees een NameError” terug. Wat gebeurt er als je deze regels omdraait? Probeer het eerdere voorbeeld uit je geheugen en controleer daarna. Verplaats de print boven de toewijzing. Lees de fout en leg uit waarom de spelling nu klopt maar de volgorde niet."
+      }
+    }
+  ]
+}

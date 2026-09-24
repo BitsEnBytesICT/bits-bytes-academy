@@ -1,0 +1,200 @@
+{
+  "id": "python-v3-5-03",
+  "chapter": 5,
+  "group": "python-v3-module-5",
+  "title": {
+    "en": "Two ways to iterate",
+    "nl": "Twee manieren om te doorlopen"
+  },
+  "kind": "coding",
+  "optional": false,
+  "runtime": "terminal",
+  "guidance": "adapt",
+  "estimatedMinutes": 15,
+  "explanation": {
+    "en": "Compare direct iteration with an indexed while loop. Both can process a list, but the while version requires you to manage a position.",
+    "nl": "Vergelijk rechtstreeks doorlopen met een while-lus via indexen. Beide kunnen een lijst verwerken, maar bij while moet je zelf een positie bijhouden."
+  },
+  "example": "",
+  "topicIds": [
+    "list-for",
+    "list-while"
+  ],
+  "prerequisites": [
+    "python-v3-5-02"
+  ],
+  "sections": [
+    {
+      "topicIds": [
+        "list-for",
+        "list-while"
+      ],
+      "heading": {
+        "en": "Values or positions",
+        "nl": "Waarden of posities"
+      },
+      "body": {
+        "en": "for value in items visits each value. An indexed while uses i < len(items), reads items[i], then advances i. Starting at zero and stopping before len avoids an out-of-range index. Both loop forms naturally do nothing for an empty list.",
+        "nl": "for value in items bezoekt elke waarde. Een while met index gebruikt i < len(items), leest items[i] en verhoogt daarna i. Beginnen bij nul en stoppen vóór len voorkomt een index buiten bereik. Beide lusvormen doen vanzelf niets bij een lege lijst."
+      },
+      "code": "values = [2, 4]\nfor value in values:\n    print(value)\ni = 0\nwhile i < len(values):\n    print(values[i])\n    i += 1",
+      "output": "2\n4\n2\n4\n",
+      "prediction": {
+        "en": "Where does the while loop advance?",
+        "nl": "Waar gaat de while-lus naar de volgende positie?"
+      }
+    },
+    {
+      "topicIds": [],
+      "heading": {
+        "en": "Try a changed input",
+        "nl": "Probeer gewijzigde invoer"
+      },
+      "body": {
+        "en": "Call both with [], [0] and [4, -4]. Explain why all return zero for different reasons.",
+        "nl": "Roep beide aan met [], [0] en [4, -4]. Leg uit waarom ze allemaal nul teruggeven om verschillende redenen."
+      }
+    }
+  ],
+  "files": {
+    "main.py": "def total_for(values):\n    return 0\n\ndef total_while(values):\n    return 0\n\nprint(total_for([3, 6]), total_while([3, 6]))\n"
+  },
+  "solution": {
+    "main.py": "def total_for(values):\n    total = 0\n    for value in values:\n        total += value\n    return total\n\ndef total_while(values):\n    total = 0\n    i = 0\n    while i < len(values):\n        total += values[i]\n        i += 1\n    return total\n\nprint(total_for([3, 6]), total_while([3, 6]))\n"
+  },
+  "checkpoints": [
+    {
+      "objectiveIds": [
+        "list-for"
+      ],
+      "task": {
+        "en": "Implement total_for(values) using a for loop and return the sum.",
+        "nl": "Implementeer total_for(values) met een for-lus en geef de som terug."
+      },
+      "check": "total_for([3,6]) == 9 and any(isinstance(n,_ast.For) for n in _ast.walk(next(n for n in _ast.walk(_ast.parse(_source)) if isinstance(n,_ast.FunctionDef) and n.name == \"total_for\")))",
+      "hints": [
+        {
+          "en": "Use one accumulator for all values.",
+          "nl": "Gebruik één totaal voor alle waarden."
+        },
+        {
+          "en": "Initialise total, loop over values, then return total.",
+          "nl": "Initialiseer total, doorloop values en geef total terug."
+        },
+        {
+          "en": "for value in values:\n    total += value",
+          "nl": "for value in values:\n    total += value"
+        }
+      ],
+      "hint": {
+        "en": "Use one accumulator for all values.",
+        "nl": "Gebruik één totaal voor alle waarden."
+      },
+      "feedback": {
+        "en": "Return after the loop, not during its first iteration.",
+        "nl": "Geef het resultaat na de lus terug, niet tijdens de eerste iteratie."
+      },
+      "probes": [
+        {
+          "call": {
+            "name": "total_for",
+            "args": [
+              [
+                1,
+                -2,
+                5
+              ]
+            ]
+          },
+          "check": "_return == 4"
+        },
+        {
+          "call": {
+            "name": "total_for",
+            "args": [
+              []
+            ]
+          },
+          "check": "_return == 0"
+        }
+      ],
+      "id": "python-v3-5-03-step-1"
+    },
+    {
+      "objectiveIds": [
+        "list-while"
+      ],
+      "task": {
+        "en": "Implement total_while(values) using an indexed while loop, with the same behaviour.",
+        "nl": "Implementeer total_while(values) met een while-lus via indexen en hetzelfde gedrag."
+      },
+      "check": "total_while([3,6]) == 9 and any(isinstance(n,_ast.While) for n in _ast.walk(_ast.parse(_source)))",
+      "hints": [
+        {
+          "en": "The index must reach the stopping boundary.",
+          "nl": "De index moet de stopgrens bereiken."
+        },
+        {
+          "en": "Use i < len(values), not <=, and increment i.",
+          "nl": "Gebruik i < len(values), niet <=, en verhoog i."
+        },
+        {
+          "en": "i += 1",
+          "nl": "i += 1"
+        }
+      ],
+      "hint": {
+        "en": "The index must reach the stopping boundary.",
+        "nl": "De index moet de stopgrens bereiken."
+      },
+      "feedback": {
+        "en": "Check both the empty list and the final valid index.",
+        "nl": "Controleer zowel de lege lijst als de laatste geldige index."
+      },
+      "probes": [
+        {
+          "call": {
+            "name": "total_while",
+            "args": [
+              []
+            ]
+          },
+          "check": "_return == 0"
+        },
+        {
+          "call": {
+            "name": "total_while",
+            "args": [
+              [
+                -3,
+                2,
+                8
+              ]
+            ]
+          },
+          "check": "_return == 7"
+        }
+      ],
+      "id": "python-v3-5-03-step-2"
+    }
+  ],
+  "solutionNote": {
+    "en": "The two functions implement the same contract. The for version handles advancing automatically; the while version exposes that extra responsibility.",
+    "nl": "De twee functies voeren dezelfde afspraak uit. De for-versie regelt de volgende waarde automatisch; de while-versie maakt die extra verantwoordelijkheid zichtbaar."
+  },
+  "inputs": [],
+  "retrievals": [
+    {
+      "id": "recall-python-v3-3-03",
+      "sourceActivityId": "python-v3-3-03",
+      "objectiveIds": [
+        "while",
+        "counters"
+      ],
+      "prompt": {
+        "en": "Trace a while menu with two commands and quit. Where is its counter updated?",
+        "nl": "Volg een while-menu met twee opdrachten en quit. Waar verandert de teller?"
+      }
+    }
+  ]
+}

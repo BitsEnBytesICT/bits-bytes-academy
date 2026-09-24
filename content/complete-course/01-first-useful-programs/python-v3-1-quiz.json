@@ -1,0 +1,778 @@
+{
+  "id": "python-v3-1-quiz",
+  "chapter": 1,
+  "group": "python-v3-module-1",
+  "kind": "quiz",
+  "optional": false,
+  "estimatedMinutes": 6,
+  "title": {
+    "en": "First useful programs: review",
+    "nl": "Eerste nuttige programma’s: herhaling"
+  },
+  "questions": [
+    {
+      "objectiveIds": [
+        "arithmetic",
+        "precedence"
+      ],
+      "reviewActivityIds": [
+        "python-v3-1-02"
+      ],
+      "category": "prediction",
+      "prompt": {
+        "en": "What does this program print?",
+        "nl": "Wat drukt dit programma af?"
+      },
+      "code": "print(3 + 2 * 5)",
+      "answer": "a",
+      "choices": [
+        {
+          "id": "a",
+          "label": {
+            "en": "13",
+            "nl": "13"
+          },
+          "reason": {
+            "en": "Multiplication happens before addition.",
+            "nl": "Vermenigvuldigen gaat vóór optellen."
+          }
+        },
+        {
+          "id": "b",
+          "label": {
+            "en": "25",
+            "nl": "25"
+          },
+          "reason": {
+            "en": "That result would require parentheses around the addition.",
+            "nl": "Dat resultaat vereist haakjes rond het optellen."
+          }
+        },
+        {
+          "id": "c",
+          "label": {
+            "en": "10",
+            "nl": "10"
+          },
+          "reason": {
+            "en": "Multiplying 2 by 5 gives 10, not adding them to get 7.",
+            "nl": "2 maal 5 geeft 10, niet 7 door optellen."
+          }
+        }
+      ],
+      "expectedOutput": "13\n",
+      "id": "python-v3-1-quiz-a-1"
+    },
+    {
+      "objectiveIds": [
+        "plus-equals",
+        "changing-numbers"
+      ],
+      "reviewActivityIds": [
+        "python-v3-1-03"
+      ],
+      "category": "prediction",
+      "prompt": {
+        "en": "What does this program print?",
+        "nl": "Wat drukt dit programma af?"
+      },
+      "code": "stock = 3\nstock += 2\nprint(stock)",
+      "answer": "a",
+      "choices": [
+        {
+          "id": "a",
+          "label": {
+            "en": "5",
+            "nl": "5"
+          },
+          "reason": {
+            "en": "+= replaces stock with its old value plus 2.",
+            "nl": "+= vervangt stock door de oude waarde plus 2."
+          }
+        },
+        {
+          "id": "b",
+          "label": {
+            "en": "3",
+            "nl": "3"
+          },
+          "reason": {
+            "en": "The update happens before printing.",
+            "nl": "De update gebeurt vóór afdrukken."
+          }
+        },
+        {
+          "id": "c",
+          "label": {
+            "en": "6",
+            "nl": "6"
+          },
+          "reason": {
+            "en": "+= adds; it does not multiply.",
+            "nl": "+= telt op; het vermenigvuldigt niet."
+          }
+        }
+      ],
+      "expectedOutput": "5\n",
+      "id": "python-v3-1-quiz-a-2"
+    },
+    {
+      "objectiveIds": [
+        "exponents"
+      ],
+      "reviewActivityIds": [
+        "python-v3-1-04"
+      ],
+      "category": "completion",
+      "prompt": {
+        "en": "Complete the power calculation.",
+        "nl": "Vul de machtsberekening aan."
+      },
+      "code": "print(3 ___ 2)",
+      "answer": "a",
+      "choices": [
+        {
+          "id": "a",
+          "label": {
+            "en": "**",
+            "nl": "**"
+          },
+          "reason": {
+            "en": "** means exponentiation; * multiplies and % finds a remainder.",
+            "nl": "** betekent machtsverheffen; * vermenigvuldigt en % geeft de rest."
+          }
+        },
+        {
+          "id": "b",
+          "label": {
+            "en": "*",
+            "nl": "*"
+          },
+          "reason": {
+            "en": "** means exponentiation; * multiplies and % finds a remainder.",
+            "nl": "** betekent machtsverheffen; * vermenigvuldigt en % geeft de rest."
+          }
+        },
+        {
+          "id": "c",
+          "label": {
+            "en": "%",
+            "nl": "%"
+          },
+          "reason": {
+            "en": "** means exponentiation; * multiplies and % finds a remainder.",
+            "nl": "** betekent machtsverheffen; * vermenigvuldigt en % geeft de rest."
+          }
+        }
+      ],
+      "codeBlank": {
+        "prompt": {
+          "en": "Complete the power calculation.",
+          "nl": "Vul de machtsberekening aan."
+        },
+        "segments": [
+          "print(3 ",
+          " 2)"
+        ],
+        "tokens": [
+          {
+            "id": "token-1",
+            "code": "**"
+          },
+          {
+            "id": "token-2",
+            "code": "*"
+          },
+          {
+            "id": "token-3",
+            "code": "%"
+          }
+        ],
+        "blanks": [
+          {
+            "answer": "**",
+            "reason": {
+              "en": "** means exponentiation; * multiplies and % finds a remainder.",
+              "nl": "** betekent machtsverheffen; * vermenigvuldigt en % geeft de rest."
+            }
+          }
+        ],
+        "output": "9\n"
+      },
+      "id": "python-v3-1-quiz-a-3"
+    },
+    {
+      "objectiveIds": [
+        "modulo",
+        "floor-division"
+      ],
+      "reviewActivityIds": [
+        "python-v3-1-04"
+      ],
+      "category": "completion",
+      "prompt": {
+        "en": "Complete the expression for leftover items.",
+        "nl": "Vul de expressie voor overgebleven items aan."
+      },
+      "code": "items = 17\nprint(items ___ 5)",
+      "answer": "a",
+      "choices": [
+        {
+          "id": "a",
+          "label": {
+            "en": "%",
+            "nl": "%"
+          },
+          "reason": {
+            "en": "% gives the remainder; // gives complete groups and / a quotient.",
+            "nl": "% geeft de rest; // geeft volledige groepen en / een quotiënt."
+          }
+        },
+        {
+          "id": "b",
+          "label": {
+            "en": "//",
+            "nl": "//"
+          },
+          "reason": {
+            "en": "% gives the remainder; // gives complete groups and / a quotient.",
+            "nl": "% geeft de rest; // geeft volledige groepen en / een quotiënt."
+          }
+        },
+        {
+          "id": "c",
+          "label": {
+            "en": "/",
+            "nl": "/"
+          },
+          "reason": {
+            "en": "% gives the remainder; // gives complete groups and / a quotient.",
+            "nl": "% geeft de rest; // geeft volledige groepen en / een quotiënt."
+          }
+        }
+      ],
+      "codeBlank": {
+        "prompt": {
+          "en": "Complete the expression for leftover items.",
+          "nl": "Vul de expressie voor overgebleven items aan."
+        },
+        "segments": [
+          "items = 17\nprint(items ",
+          " 5)"
+        ],
+        "tokens": [
+          {
+            "id": "token-1",
+            "code": "%"
+          },
+          {
+            "id": "token-2",
+            "code": "//"
+          },
+          {
+            "id": "token-3",
+            "code": "/"
+          }
+        ],
+        "blanks": [
+          {
+            "answer": "%",
+            "reason": {
+              "en": "% gives the remainder; // gives complete groups and / a quotient.",
+              "nl": "% geeft de rest; // geeft volledige groepen en / een quotiënt."
+            }
+          }
+        ],
+        "output": "2\n"
+      },
+      "id": "python-v3-1-quiz-a-4"
+    },
+    {
+      "objectiveIds": [
+        "errors",
+        "variables"
+      ],
+      "reviewActivityIds": [
+        "python-v3-1-05",
+        "python-v3-1-01"
+      ],
+      "category": "debugging",
+      "prompt": {
+        "en": "Which change repairs this NameError?",
+        "nl": "Welke wijziging herstelt deze NameError?"
+      },
+      "code": "name = \"Ada\"\nprint(Name)",
+      "answer": "a",
+      "choices": [
+        {
+          "id": "a",
+          "label": {
+            "en": "Use print(name).",
+            "nl": "Gebruik print(name)."
+          },
+          "reason": {
+            "en": "Names are case-sensitive; the defined name is lowercase.",
+            "nl": "Namen zijn hoofdlettergevoelig; de gedefinieerde naam is klein geschreven."
+          }
+        },
+        {
+          "id": "b",
+          "label": {
+            "en": "Use print(\"Name\").",
+            "nl": "Gebruik print(\"Name\")."
+          },
+          "reason": {
+            "en": "That prints literal text instead of the stored name.",
+            "nl": "Dat drukt letterlijke tekst af in plaats van de opgeslagen naam."
+          }
+        },
+        {
+          "id": "c",
+          "label": {
+            "en": "Add another print before it.",
+            "nl": "Voeg ervoor nog een print toe."
+          },
+          "reason": {
+            "en": "Another print does not define the missing variable.",
+            "nl": "Nog een print definieert de ontbrekende variabele niet."
+          }
+        }
+      ],
+      "id": "python-v3-1-quiz-a-5"
+    },
+    {
+      "objectiveIds": [
+        "comments",
+        "welcome"
+      ],
+      "reviewActivityIds": [
+        "python-v3-1-01"
+      ],
+      "category": "application",
+      "prompt": {
+        "en": "You want a note for someone reading your program, not a displayed message. What should you use?",
+        "nl": "Je wilt een notitie voor iemand die je programma leest, geen getoond bericht. Wat gebruik je?"
+      },
+      "answer": "a",
+      "choices": [
+        {
+          "id": "a",
+          "label": {
+            "en": "A # comment.",
+            "nl": "Een #-commentaar."
+          },
+          "reason": {
+            "en": "Comments explain source code without being executed as output.",
+            "nl": "Commentaar verklaart broncode zonder als uitvoer te worden uitgevoerd."
+          }
+        },
+        {
+          "id": "b",
+          "label": {
+            "en": "A print call.",
+            "nl": "Een print-aanroep."
+          },
+          "reason": {
+            "en": "print changes the terminal output.",
+            "nl": "print verandert de terminaluitvoer."
+          }
+        },
+        {
+          "id": "c",
+          "label": {
+            "en": "An undefined variable.",
+            "nl": "Een ongedefinieerde variabele."
+          },
+          "reason": {
+            "en": "Reading an undefined name raises an error; it is not documentation.",
+            "nl": "Een ongedefinieerde naam lezen geeft een fout; het is geen documentatie."
+          }
+        }
+      ],
+      "id": "python-v3-1-quiz-a-6"
+    }
+  ],
+  "alternateQuestions": [
+    {
+      "objectiveIds": [
+        "arithmetic",
+        "precedence"
+      ],
+      "reviewActivityIds": [
+        "python-v3-1-02"
+      ],
+      "category": "prediction",
+      "prompt": {
+        "en": "What does this program print?",
+        "nl": "Wat drukt dit programma af?"
+      },
+      "code": "print(4 + 2 * 5)",
+      "answer": "a",
+      "choices": [
+        {
+          "id": "a",
+          "label": {
+            "en": "14",
+            "nl": "14"
+          },
+          "reason": {
+            "en": "Multiplication happens before addition.",
+            "nl": "Vermenigvuldigen gaat vóór optellen."
+          }
+        },
+        {
+          "id": "b",
+          "label": {
+            "en": "30",
+            "nl": "30"
+          },
+          "reason": {
+            "en": "That result would require parentheses around the addition.",
+            "nl": "Dat resultaat vereist haakjes rond het optellen."
+          }
+        },
+        {
+          "id": "c",
+          "label": {
+            "en": "11",
+            "nl": "11"
+          },
+          "reason": {
+            "en": "Multiplying 2 by 5 gives 10, not adding them to get 7.",
+            "nl": "2 maal 5 geeft 10, niet 7 door optellen."
+          }
+        }
+      ],
+      "expectedOutput": "14\n",
+      "id": "python-v3-1-quiz-b-1"
+    },
+    {
+      "objectiveIds": [
+        "plus-equals",
+        "changing-numbers"
+      ],
+      "reviewActivityIds": [
+        "python-v3-1-03"
+      ],
+      "category": "prediction",
+      "prompt": {
+        "en": "What does this program print?",
+        "nl": "Wat drukt dit programma af?"
+      },
+      "code": "stock = 4\nstock += 2\nprint(stock)",
+      "answer": "a",
+      "choices": [
+        {
+          "id": "a",
+          "label": {
+            "en": "6",
+            "nl": "6"
+          },
+          "reason": {
+            "en": "+= replaces stock with its old value plus 2.",
+            "nl": "+= vervangt stock door de oude waarde plus 2."
+          }
+        },
+        {
+          "id": "b",
+          "label": {
+            "en": "4",
+            "nl": "4"
+          },
+          "reason": {
+            "en": "The update happens before printing.",
+            "nl": "De update gebeurt vóór afdrukken."
+          }
+        },
+        {
+          "id": "c",
+          "label": {
+            "en": "8",
+            "nl": "8"
+          },
+          "reason": {
+            "en": "+= adds; it does not multiply.",
+            "nl": "+= telt op; het vermenigvuldigt niet."
+          }
+        }
+      ],
+      "expectedOutput": "6\n",
+      "id": "python-v3-1-quiz-b-2"
+    },
+    {
+      "objectiveIds": [
+        "exponents"
+      ],
+      "reviewActivityIds": [
+        "python-v3-1-04"
+      ],
+      "category": "completion",
+      "prompt": {
+        "en": "Complete the power calculation.",
+        "nl": "Vul de machtsberekening aan."
+      },
+      "code": "print(4 ___ 2)",
+      "answer": "a",
+      "choices": [
+        {
+          "id": "a",
+          "label": {
+            "en": "**",
+            "nl": "**"
+          },
+          "reason": {
+            "en": "** means exponentiation; * multiplies and % finds a remainder.",
+            "nl": "** betekent machtsverheffen; * vermenigvuldigt en % geeft de rest."
+          }
+        },
+        {
+          "id": "b",
+          "label": {
+            "en": "*",
+            "nl": "*"
+          },
+          "reason": {
+            "en": "** means exponentiation; * multiplies and % finds a remainder.",
+            "nl": "** betekent machtsverheffen; * vermenigvuldigt en % geeft de rest."
+          }
+        },
+        {
+          "id": "c",
+          "label": {
+            "en": "%",
+            "nl": "%"
+          },
+          "reason": {
+            "en": "** means exponentiation; * multiplies and % finds a remainder.",
+            "nl": "** betekent machtsverheffen; * vermenigvuldigt en % geeft de rest."
+          }
+        }
+      ],
+      "codeBlank": {
+        "prompt": {
+          "en": "Complete the power calculation.",
+          "nl": "Vul de machtsberekening aan."
+        },
+        "segments": [
+          "print(4 ",
+          " 2)"
+        ],
+        "tokens": [
+          {
+            "id": "token-1",
+            "code": "**"
+          },
+          {
+            "id": "token-2",
+            "code": "*"
+          },
+          {
+            "id": "token-3",
+            "code": "%"
+          }
+        ],
+        "blanks": [
+          {
+            "answer": "**",
+            "reason": {
+              "en": "** means exponentiation; * multiplies and % finds a remainder.",
+              "nl": "** betekent machtsverheffen; * vermenigvuldigt en % geeft de rest."
+            }
+          }
+        ],
+        "output": "16\n"
+      },
+      "id": "python-v3-1-quiz-b-3"
+    },
+    {
+      "objectiveIds": [
+        "modulo",
+        "floor-division"
+      ],
+      "reviewActivityIds": [
+        "python-v3-1-04"
+      ],
+      "category": "completion",
+      "prompt": {
+        "en": "Complete the expression for leftover items.",
+        "nl": "Vul de expressie voor overgebleven items aan."
+      },
+      "code": "items = 22\nprint(items ___ 5)",
+      "answer": "a",
+      "choices": [
+        {
+          "id": "a",
+          "label": {
+            "en": "%",
+            "nl": "%"
+          },
+          "reason": {
+            "en": "% gives the remainder; // gives complete groups and / a quotient.",
+            "nl": "% geeft de rest; // geeft volledige groepen en / een quotiënt."
+          }
+        },
+        {
+          "id": "b",
+          "label": {
+            "en": "//",
+            "nl": "//"
+          },
+          "reason": {
+            "en": "% gives the remainder; // gives complete groups and / a quotient.",
+            "nl": "% geeft de rest; // geeft volledige groepen en / een quotiënt."
+          }
+        },
+        {
+          "id": "c",
+          "label": {
+            "en": "/",
+            "nl": "/"
+          },
+          "reason": {
+            "en": "% gives the remainder; // gives complete groups and / a quotient.",
+            "nl": "% geeft de rest; // geeft volledige groepen en / een quotiënt."
+          }
+        }
+      ],
+      "codeBlank": {
+        "prompt": {
+          "en": "Complete the expression for leftover items.",
+          "nl": "Vul de expressie voor overgebleven items aan."
+        },
+        "segments": [
+          "items = 22\nprint(items ",
+          " 5)"
+        ],
+        "tokens": [
+          {
+            "id": "token-1",
+            "code": "%"
+          },
+          {
+            "id": "token-2",
+            "code": "//"
+          },
+          {
+            "id": "token-3",
+            "code": "/"
+          }
+        ],
+        "blanks": [
+          {
+            "answer": "%",
+            "reason": {
+              "en": "% gives the remainder; // gives complete groups and / a quotient.",
+              "nl": "% geeft de rest; // geeft volledige groepen en / een quotiënt."
+            }
+          }
+        ],
+        "output": "2\n"
+      },
+      "id": "python-v3-1-quiz-b-4"
+    },
+    {
+      "objectiveIds": [
+        "errors",
+        "variables"
+      ],
+      "reviewActivityIds": [
+        "python-v3-1-05",
+        "python-v3-1-01"
+      ],
+      "category": "debugging",
+      "prompt": {
+        "en": "Which change repairs this NameError?",
+        "nl": "Welke wijziging herstelt deze NameError?"
+      },
+      "code": "name = \"Bo\"\nprint(Name)",
+      "answer": "a",
+      "choices": [
+        {
+          "id": "a",
+          "label": {
+            "en": "Use print(name).",
+            "nl": "Gebruik print(name)."
+          },
+          "reason": {
+            "en": "Names are case-sensitive; the defined name is lowercase.",
+            "nl": "Namen zijn hoofdlettergevoelig; de gedefinieerde naam is klein geschreven."
+          }
+        },
+        {
+          "id": "b",
+          "label": {
+            "en": "Use print(\"Name\").",
+            "nl": "Gebruik print(\"Name\")."
+          },
+          "reason": {
+            "en": "That prints literal text instead of the stored name.",
+            "nl": "Dat drukt letterlijke tekst af in plaats van de opgeslagen naam."
+          }
+        },
+        {
+          "id": "c",
+          "label": {
+            "en": "Add another print before it.",
+            "nl": "Voeg ervoor nog een print toe."
+          },
+          "reason": {
+            "en": "Another print does not define the missing variable.",
+            "nl": "Nog een print definieert de ontbrekende variabele niet."
+          }
+        }
+      ],
+      "id": "python-v3-1-quiz-b-5"
+    },
+    {
+      "objectiveIds": [
+        "comments",
+        "welcome"
+      ],
+      "reviewActivityIds": [
+        "python-v3-1-01"
+      ],
+      "category": "application",
+      "prompt": {
+        "en": "You want to explain why a report exists without adding output. What belongs in the source?",
+        "nl": "Je wilt uitleggen waarom een rapport bestaat zonder uitvoer toe te voegen. Wat hoort in de bron?"
+      },
+      "answer": "a",
+      "choices": [
+        {
+          "id": "a",
+          "label": {
+            "en": "A # comment.",
+            "nl": "Een #-commentaar."
+          },
+          "reason": {
+            "en": "Comments explain source code without being executed as output.",
+            "nl": "Commentaar verklaart broncode zonder als uitvoer te worden uitgevoerd."
+          }
+        },
+        {
+          "id": "b",
+          "label": {
+            "en": "A print call.",
+            "nl": "Een print-aanroep."
+          },
+          "reason": {
+            "en": "print changes the terminal output.",
+            "nl": "print verandert de terminaluitvoer."
+          }
+        },
+        {
+          "id": "c",
+          "label": {
+            "en": "An undefined variable.",
+            "nl": "Een ongedefinieerde variabele."
+          },
+          "reason": {
+            "en": "Reading an undefined name raises an error; it is not documentation.",
+            "nl": "Een ongedefinieerde naam lezen geeft een fout; het is geen documentatie."
+          }
+        }
+      ],
+      "id": "python-v3-1-quiz-b-6"
+    }
+  ]
+}

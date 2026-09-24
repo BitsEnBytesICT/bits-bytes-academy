@@ -1,0 +1,768 @@
+{
+  "id": "python-v4-07-quiz",
+  "chapter": 7,
+  "group": "python-v4-module-7",
+  "kind": "quiz",
+  "optional": false,
+  "estimatedMinutes": 8,
+  "title": {
+    "en": "Making decisions: review",
+    "nl": "Beslissingen nemen: herhaling"
+  },
+  "questions": [
+    {
+      "objectiveIds": [
+        "elif"
+      ],
+      "category": "prediction",
+      "prompt": {
+        "en": "What does this program print?",
+        "nl": "Wat drukt dit programma af?"
+      },
+      "code": "score = 6\nif score >= 6:\n    print(\"Pass\")\nelif score >= 0:\n    print(\"Try\")",
+      "answer": "a",
+      "expectedOutput": "Pass\n",
+      "choices": [
+        {
+          "id": "a",
+          "label": {
+            "en": "Pass",
+            "nl": "Pass"
+          },
+          "reason": {
+            "en": "The first matching branch runs alone.",
+            "nl": "Alleen de eerste passende tak draait."
+          }
+        },
+        {
+          "id": "b",
+          "label": {
+            "en": "Pass\nTry",
+            "nl": "Pass\nTry"
+          },
+          "reason": {
+            "en": "elif is skipped after a match.",
+            "nl": "elif wordt na een overeenkomst overgeslagen."
+          }
+        },
+        {
+          "id": "c",
+          "label": {
+            "en": "Try",
+            "nl": "Try"
+          },
+          "reason": {
+            "en": "The equality boundary meets >=.",
+            "nl": "De gelijkheidsgrens voldoet aan >=."
+          }
+        }
+      ],
+      "id": "python-v4-07-quiz-a-1",
+      "reviewActivityIds": [
+        "python-v4-07-elif"
+      ]
+    },
+    {
+      "objectiveIds": [
+        "input-string-type"
+      ],
+      "category": "prediction",
+      "prompt": {
+        "en": "What does this program print?",
+        "nl": "Wat drukt dit programma af?"
+      },
+      "code": "answer = \"5\" # value returned by input\nprint(answer + \"2\")",
+      "answer": "a",
+      "expectedOutput": "52\n",
+      "choices": [
+        {
+          "id": "a",
+          "label": {
+            "en": "52",
+            "nl": "52"
+          },
+          "reason": {
+            "en": "Both operands are strings, so + concatenates.",
+            "nl": "Beide kanten zijn strings, dus + voegt samen."
+          }
+        },
+        {
+          "id": "b",
+          "label": {
+            "en": "7",
+            "nl": "7"
+          },
+          "reason": {
+            "en": "Numeric addition requires conversion first.",
+            "nl": "Numeriek optellen vereist eerst omzetting."
+          }
+        },
+        {
+          "id": "c",
+          "label": {
+            "en": "TypeError",
+            "nl": "TypeError"
+          },
+          "reason": {
+            "en": "Adding two strings is valid.",
+            "nl": "Twee strings samenvoegen is geldig."
+          }
+        }
+      ],
+      "id": "python-v4-07-quiz-a-2",
+      "reviewActivityIds": [
+        "python-v4-05-input-is-text"
+      ]
+    },
+    {
+      "objectiveIds": [
+        "else"
+      ],
+      "category": "completion",
+      "prompt": {
+        "en": "Complete the code to produce the shown output.",
+        "nl": "Vul de code aan om de getoonde uitvoer te maken."
+      },
+      "code": "age = 5\nif age >= 6:\n    print(\"Allowed\")\n___:\n    print(\"Wait\")",
+      "answer": "a",
+      "choices": [
+        {
+          "id": "a",
+          "label": {
+            "en": "else",
+            "nl": "else"
+          },
+          "reason": {
+            "en": "else needs no condition and covers the failed if.",
+            "nl": "else heeft geen voorwaarde nodig en verwerkt de onware if."
+          }
+        },
+        {
+          "id": "b",
+          "label": {
+            "en": "elif",
+            "nl": "elif"
+          },
+          "reason": {
+            "en": "else needs no condition and covers the failed if.",
+            "nl": "else heeft geen voorwaarde nodig en verwerkt de onware if."
+          }
+        },
+        {
+          "id": "c",
+          "label": {
+            "en": "if",
+            "nl": "if"
+          },
+          "reason": {
+            "en": "else needs no condition and covers the failed if.",
+            "nl": "else heeft geen voorwaarde nodig en verwerkt de onware if."
+          }
+        }
+      ],
+      "codeBlank": {
+        "prompt": {
+          "en": "Complete the code to produce the shown output.",
+          "nl": "Vul de code aan om de getoonde uitvoer te maken."
+        },
+        "segments": [
+          "age = 5\nif age >= 6:\n    print(\"Allowed\")\n",
+          ":\n    print(\"Wait\")"
+        ],
+        "tokens": [
+          {
+            "id": "token-1",
+            "code": "else"
+          },
+          {
+            "id": "token-2",
+            "code": "elif"
+          },
+          {
+            "id": "token-3",
+            "code": "if"
+          }
+        ],
+        "blanks": [
+          {
+            "answer": "else",
+            "reason": {
+              "en": "else needs no condition and covers the failed if.",
+              "nl": "else heeft geen voorwaarde nodig en verwerkt de onware if."
+            }
+          }
+        ],
+        "output": "Wait\n"
+      },
+      "id": "python-v4-07-quiz-a-3",
+      "reviewActivityIds": [
+        "python-v4-07-else"
+      ]
+    },
+    {
+      "objectiveIds": [
+        "int-conversion"
+      ],
+      "category": "completion",
+      "prompt": {
+        "en": "Complete the code to produce the shown output.",
+        "nl": "Vul de code aan om de getoonde uitvoer te maken."
+      },
+      "code": "answer = \"5\"\nprint(___ + 2)",
+      "answer": "a",
+      "choices": [
+        {
+          "id": "a",
+          "label": {
+            "en": "int(answer)",
+            "nl": "int(answer)"
+          },
+          "reason": {
+            "en": "int converts whole-number text before addition.",
+            "nl": "int zet tekst met een geheel getal om vóór optellen."
+          }
+        },
+        {
+          "id": "b",
+          "label": {
+            "en": "answer",
+            "nl": "answer"
+          },
+          "reason": {
+            "en": "int converts whole-number text before addition.",
+            "nl": "int zet tekst met een geheel getal om vóór optellen."
+          }
+        },
+        {
+          "id": "c",
+          "label": {
+            "en": "str(answer)",
+            "nl": "str(answer)"
+          },
+          "reason": {
+            "en": "int converts whole-number text before addition.",
+            "nl": "int zet tekst met een geheel getal om vóór optellen."
+          }
+        }
+      ],
+      "codeBlank": {
+        "prompt": {
+          "en": "Complete the code to produce the shown output.",
+          "nl": "Vul de code aan om de getoonde uitvoer te maken."
+        },
+        "segments": [
+          "answer = \"5\"\nprint(",
+          " + 2)"
+        ],
+        "tokens": [
+          {
+            "id": "token-1",
+            "code": "int(answer)"
+          },
+          {
+            "id": "token-2",
+            "code": "answer"
+          },
+          {
+            "id": "token-3",
+            "code": "str(answer)"
+          }
+        ],
+        "blanks": [
+          {
+            "answer": "int(answer)",
+            "reason": {
+              "en": "int converts whole-number text before addition.",
+              "nl": "int zet tekst met een geheel getal om vóór optellen."
+            }
+          }
+        ],
+        "output": "7\n"
+      },
+      "id": "python-v4-07-quiz-a-4",
+      "reviewActivityIds": [
+        "python-v4-05-integer-input"
+      ]
+    },
+    {
+      "objectiveIds": [
+        "branch-order"
+      ],
+      "category": "debugging",
+      "prompt": {
+        "en": "Choose the repair or test that addresses the stated problem.",
+        "nl": "Kies de reparatie of test die het beschreven probleem aanpakt."
+      },
+      "code": "# Need one label.\nscore = 6\nif score >= 0:\n    print(\"Some\")\nif score >= 6:\n    print(\"High\")",
+      "answer": "a",
+      "choices": [
+        {
+          "id": "a",
+          "label": {
+            "en": "Test High first and make Some an elif alternative.",
+            "nl": "Test High eerst en maak Some een elif-alternatief."
+          },
+          "reason": {
+            "en": "This selects the most specific matching category once.",
+            "nl": "Dit kiest de specifiekste passende categorie eenmaal."
+          }
+        },
+        {
+          "id": "b",
+          "label": {
+            "en": "Indent both prints further.",
+            "nl": "Laat beide prints verder inspringen."
+          },
+          "reason": {
+            "en": "Whitespace alone does not connect separate if statements.",
+            "nl": "Alleen witruimte verbindt aparte if-instructies niet."
+          }
+        },
+        {
+          "id": "c",
+          "label": {
+            "en": "Use == for both comparisons.",
+            "nl": "Gebruik == voor beide vergelijkingen."
+          },
+          "reason": {
+            "en": "That changes the threshold rules instead of fixing alternatives.",
+            "nl": "Dat verandert de grensregels in plaats van alternatieven te herstellen."
+          }
+        }
+      ],
+      "id": "python-v4-07-quiz-a-5",
+      "reviewActivityIds": [
+        "python-v4-07-separate-or-chain"
+      ]
+    },
+    {
+      "objectiveIds": [
+        "inclusive-comparisons"
+      ],
+      "category": "application",
+      "prompt": {
+        "en": "Which explanation applies to this example?",
+        "nl": "Welke uitleg past bij dit voorbeeld?"
+      },
+      "code": "if weight <= 6:\n    price = 3\nelse:\n    price = 6",
+      "answer": "a",
+      "choices": [
+        {
+          "id": "a",
+          "label": {
+            "en": "Test 5, 6 and 7.",
+            "nl": "Test 5, 6 en 7."
+          },
+          "reason": {
+            "en": "These cases surround and include the boundary.",
+            "nl": "Deze gevallen omringen en omvatten de grens."
+          }
+        },
+        {
+          "id": "b",
+          "label": {
+            "en": "Test only a very small weight.",
+            "nl": "Test alleen een heel klein gewicht."
+          },
+          "reason": {
+            "en": "That does not exercise the boundary or else.",
+            "nl": "Dat oefent de grens of else niet."
+          }
+        },
+        {
+          "id": "c",
+          "label": {
+            "en": "Test the same weight three times.",
+            "nl": "Test hetzelfde gewicht driemaal."
+          },
+          "reason": {
+            "en": "Repetition does not cover another branch.",
+            "nl": "Herhaling dekt geen andere tak."
+          }
+        }
+      ],
+      "id": "python-v4-07-quiz-a-6",
+      "reviewActivityIds": [
+        "python-v4-06-inclusive-boundaries"
+      ]
+    }
+  ],
+  "alternateQuestions": [
+    {
+      "objectiveIds": [
+        "elif"
+      ],
+      "category": "prediction",
+      "prompt": {
+        "en": "What does this program print?",
+        "nl": "Wat drukt dit programma af?"
+      },
+      "code": "score = 8\nif score >= 8:\n    print(\"Pass\")\nelif score >= 0:\n    print(\"Try\")",
+      "answer": "a",
+      "expectedOutput": "Pass\n",
+      "choices": [
+        {
+          "id": "a",
+          "label": {
+            "en": "Pass",
+            "nl": "Pass"
+          },
+          "reason": {
+            "en": "The first matching branch runs alone.",
+            "nl": "Alleen de eerste passende tak draait."
+          }
+        },
+        {
+          "id": "b",
+          "label": {
+            "en": "Pass\nTry",
+            "nl": "Pass\nTry"
+          },
+          "reason": {
+            "en": "elif is skipped after a match.",
+            "nl": "elif wordt na een overeenkomst overgeslagen."
+          }
+        },
+        {
+          "id": "c",
+          "label": {
+            "en": "Try",
+            "nl": "Try"
+          },
+          "reason": {
+            "en": "The equality boundary meets >=.",
+            "nl": "De gelijkheidsgrens voldoet aan >=."
+          }
+        }
+      ],
+      "id": "python-v4-07-quiz-b-1",
+      "reviewActivityIds": [
+        "python-v4-07-elif"
+      ]
+    },
+    {
+      "objectiveIds": [
+        "input-string-type"
+      ],
+      "category": "prediction",
+      "prompt": {
+        "en": "What does this program print?",
+        "nl": "Wat drukt dit programma af?"
+      },
+      "code": "answer = \"8\" # value returned by input\nprint(answer + \"2\")",
+      "answer": "a",
+      "expectedOutput": "82\n",
+      "choices": [
+        {
+          "id": "a",
+          "label": {
+            "en": "82",
+            "nl": "82"
+          },
+          "reason": {
+            "en": "Both operands are strings, so + concatenates.",
+            "nl": "Beide kanten zijn strings, dus + voegt samen."
+          }
+        },
+        {
+          "id": "b",
+          "label": {
+            "en": "10",
+            "nl": "10"
+          },
+          "reason": {
+            "en": "Numeric addition requires conversion first.",
+            "nl": "Numeriek optellen vereist eerst omzetting."
+          }
+        },
+        {
+          "id": "c",
+          "label": {
+            "en": "TypeError",
+            "nl": "TypeError"
+          },
+          "reason": {
+            "en": "Adding two strings is valid.",
+            "nl": "Twee strings samenvoegen is geldig."
+          }
+        }
+      ],
+      "id": "python-v4-07-quiz-b-2",
+      "reviewActivityIds": [
+        "python-v4-05-input-is-text"
+      ]
+    },
+    {
+      "objectiveIds": [
+        "else"
+      ],
+      "category": "completion",
+      "prompt": {
+        "en": "Complete the code to produce the shown output.",
+        "nl": "Vul de code aan om de getoonde uitvoer te maken."
+      },
+      "code": "age = 7\nif age >= 8:\n    print(\"Allowed\")\n___:\n    print(\"Wait\")",
+      "answer": "a",
+      "choices": [
+        {
+          "id": "a",
+          "label": {
+            "en": "else",
+            "nl": "else"
+          },
+          "reason": {
+            "en": "else needs no condition and covers the failed if.",
+            "nl": "else heeft geen voorwaarde nodig en verwerkt de onware if."
+          }
+        },
+        {
+          "id": "b",
+          "label": {
+            "en": "elif",
+            "nl": "elif"
+          },
+          "reason": {
+            "en": "else needs no condition and covers the failed if.",
+            "nl": "else heeft geen voorwaarde nodig en verwerkt de onware if."
+          }
+        },
+        {
+          "id": "c",
+          "label": {
+            "en": "if",
+            "nl": "if"
+          },
+          "reason": {
+            "en": "else needs no condition and covers the failed if.",
+            "nl": "else heeft geen voorwaarde nodig en verwerkt de onware if."
+          }
+        }
+      ],
+      "codeBlank": {
+        "prompt": {
+          "en": "Complete the code to produce the shown output.",
+          "nl": "Vul de code aan om de getoonde uitvoer te maken."
+        },
+        "segments": [
+          "age = 7\nif age >= 8:\n    print(\"Allowed\")\n",
+          ":\n    print(\"Wait\")"
+        ],
+        "tokens": [
+          {
+            "id": "token-1",
+            "code": "else"
+          },
+          {
+            "id": "token-2",
+            "code": "elif"
+          },
+          {
+            "id": "token-3",
+            "code": "if"
+          }
+        ],
+        "blanks": [
+          {
+            "answer": "else",
+            "reason": {
+              "en": "else needs no condition and covers the failed if.",
+              "nl": "else heeft geen voorwaarde nodig en verwerkt de onware if."
+            }
+          }
+        ],
+        "output": "Wait\n"
+      },
+      "id": "python-v4-07-quiz-b-3",
+      "reviewActivityIds": [
+        "python-v4-07-else"
+      ]
+    },
+    {
+      "objectiveIds": [
+        "int-conversion"
+      ],
+      "category": "completion",
+      "prompt": {
+        "en": "Complete the code to produce the shown output.",
+        "nl": "Vul de code aan om de getoonde uitvoer te maken."
+      },
+      "code": "answer = \"8\"\nprint(___ + 2)",
+      "answer": "a",
+      "choices": [
+        {
+          "id": "a",
+          "label": {
+            "en": "int(answer)",
+            "nl": "int(answer)"
+          },
+          "reason": {
+            "en": "int converts whole-number text before addition.",
+            "nl": "int zet tekst met een geheel getal om vóór optellen."
+          }
+        },
+        {
+          "id": "b",
+          "label": {
+            "en": "answer",
+            "nl": "answer"
+          },
+          "reason": {
+            "en": "int converts whole-number text before addition.",
+            "nl": "int zet tekst met een geheel getal om vóór optellen."
+          }
+        },
+        {
+          "id": "c",
+          "label": {
+            "en": "str(answer)",
+            "nl": "str(answer)"
+          },
+          "reason": {
+            "en": "int converts whole-number text before addition.",
+            "nl": "int zet tekst met een geheel getal om vóór optellen."
+          }
+        }
+      ],
+      "codeBlank": {
+        "prompt": {
+          "en": "Complete the code to produce the shown output.",
+          "nl": "Vul de code aan om de getoonde uitvoer te maken."
+        },
+        "segments": [
+          "answer = \"8\"\nprint(",
+          " + 2)"
+        ],
+        "tokens": [
+          {
+            "id": "token-1",
+            "code": "int(answer)"
+          },
+          {
+            "id": "token-2",
+            "code": "answer"
+          },
+          {
+            "id": "token-3",
+            "code": "str(answer)"
+          }
+        ],
+        "blanks": [
+          {
+            "answer": "int(answer)",
+            "reason": {
+              "en": "int converts whole-number text before addition.",
+              "nl": "int zet tekst met een geheel getal om vóór optellen."
+            }
+          }
+        ],
+        "output": "10\n"
+      },
+      "id": "python-v4-07-quiz-b-4",
+      "reviewActivityIds": [
+        "python-v4-05-integer-input"
+      ]
+    },
+    {
+      "objectiveIds": [
+        "branch-order"
+      ],
+      "category": "debugging",
+      "prompt": {
+        "en": "Choose the repair or test that addresses the stated problem.",
+        "nl": "Kies de reparatie of test die het beschreven probleem aanpakt."
+      },
+      "code": "# Need one label.\nscore = 8\nif score >= 0:\n    print(\"Some\")\nif score >= 8:\n    print(\"High\")",
+      "answer": "a",
+      "choices": [
+        {
+          "id": "a",
+          "label": {
+            "en": "Test High first and make Some an elif alternative.",
+            "nl": "Test High eerst en maak Some een elif-alternatief."
+          },
+          "reason": {
+            "en": "This selects the most specific matching category once.",
+            "nl": "Dit kiest de specifiekste passende categorie eenmaal."
+          }
+        },
+        {
+          "id": "b",
+          "label": {
+            "en": "Indent both prints further.",
+            "nl": "Laat beide prints verder inspringen."
+          },
+          "reason": {
+            "en": "Whitespace alone does not connect separate if statements.",
+            "nl": "Alleen witruimte verbindt aparte if-instructies niet."
+          }
+        },
+        {
+          "id": "c",
+          "label": {
+            "en": "Use == for both comparisons.",
+            "nl": "Gebruik == voor beide vergelijkingen."
+          },
+          "reason": {
+            "en": "That changes the threshold rules instead of fixing alternatives.",
+            "nl": "Dat verandert de grensregels in plaats van alternatieven te herstellen."
+          }
+        }
+      ],
+      "id": "python-v4-07-quiz-b-5",
+      "reviewActivityIds": [
+        "python-v4-07-separate-or-chain"
+      ]
+    },
+    {
+      "objectiveIds": [
+        "inclusive-comparisons"
+      ],
+      "category": "application",
+      "prompt": {
+        "en": "Which explanation applies to this example?",
+        "nl": "Welke uitleg past bij dit voorbeeld?"
+      },
+      "code": "if weight <= 8:\n    price = 3\nelse:\n    price = 6",
+      "answer": "a",
+      "choices": [
+        {
+          "id": "a",
+          "label": {
+            "en": "Test 7, 8 and 9.",
+            "nl": "Test 7, 8 en 9."
+          },
+          "reason": {
+            "en": "These cases surround and include the boundary.",
+            "nl": "Deze gevallen omringen en omvatten de grens."
+          }
+        },
+        {
+          "id": "b",
+          "label": {
+            "en": "Test only a very small weight.",
+            "nl": "Test alleen een heel klein gewicht."
+          },
+          "reason": {
+            "en": "That does not exercise the boundary or else.",
+            "nl": "Dat oefent de grens of else niet."
+          }
+        },
+        {
+          "id": "c",
+          "label": {
+            "en": "Test the same weight three times.",
+            "nl": "Test hetzelfde gewicht driemaal."
+          },
+          "reason": {
+            "en": "Repetition does not cover another branch.",
+            "nl": "Herhaling dekt geen andere tak."
+          }
+        }
+      ],
+      "id": "python-v4-07-quiz-b-6",
+      "reviewActivityIds": [
+        "python-v4-06-inclusive-boundaries"
+      ]
+    }
+  ]
+}

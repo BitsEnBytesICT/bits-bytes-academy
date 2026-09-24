@@ -1,0 +1,126 @@
+{
+  "id": "python-v4-08-repair-exit",
+  "chapter": 8,
+  "group": "python-v4-module-8",
+  "title": {
+    "en": "Repair a loop that exits too soon",
+    "nl": "Herstel een lus die te vroeg stopt"
+  },
+  "kind": "coding",
+  "optional": false,
+  "runtime": "terminal",
+  "guidance": "adapt",
+  "checkpointMode": "sequential",
+  "estimatedMinutes": 14,
+  "topicIds": [
+    "loop-debugging"
+  ],
+  "practices": [],
+  "requiredConcepts": [
+    "continue",
+    "break"
+  ],
+  "explanation": {
+    "en": "This program finishes, but its output is incomplete. Diagnose the difference between skipping and stopping.",
+    "nl": "Dit programma eindigt, maar de uitvoer is onvolledig. Onderzoek het verschil tussen overslaan en stoppen."
+  },
+  "example": "",
+  "sections": [
+    {
+      "id": "python-v4-08-repair-exit-example",
+      "topicIds": [
+        "loop-debugging"
+      ],
+      "heading": {
+        "en": "Follow a working example",
+        "nl": "Volg een werkend voorbeeld"
+      },
+      "body": {
+        "en": "A logic error can produce valid Python and incorrect behaviour. Run the starter, compare its output with the intended sequence, then locate the first iteration where they differ.\n\nThe example shows an intentional early exit at 3. Your starter should skip only 3 and continue to 4 and 5. Change the control statement that does not match that requirement.",
+        "nl": "Een logische fout kan geldige Python en onjuist gedrag opleveren. Voer de startcode uit, vergelijk de uitvoer met de bedoelde reeks en zoek de eerste iteratie waarin ze verschillen.\n\nHet voorbeeld laat bewust een vroege uitgang bij 3 zien. Jouw startcode moet alleen 3 overslaan en verdergaan met 4 en 5. Verander de besturingsinstructie die niet bij die eis past."
+      },
+      "code": "n = 0\nwhile n < 5:\n    n += 1\n    if n == 3:\n        break\n    print(n)",
+      "output": "1\n2\n",
+      "prediction": {
+        "en": "Where does control go immediately after break?",
+        "nl": "Waar gaat de uitvoering direct na break heen?"
+      },
+      "takeaway": {
+        "en": "Compare the first unexpected iteration with the intended behaviour.",
+        "nl": "Vergelijk de eerste onverwachte iteratie met het bedoelde gedrag."
+      }
+    },
+    {
+      "id": "python-v4-08-repair-exit-experiment",
+      "topicIds": [],
+      "heading": {
+        "en": "Try one change",
+        "nl": "Probeer één wijziging"
+      },
+      "body": {
+        "en": "Change the skipped value to 1, then 5. Predict which lines remain.",
+        "nl": "Verander de overgeslagen waarde in 1 en daarna 5. Voorspel welke regels overblijven."
+      }
+    }
+  ],
+  "files": {
+    "main.py": "n = 0\nwhile n < 5:\n    n += 1\n    if n == 3:\n        break\n    print(n)\n"
+  },
+  "solution": {
+    "main.py": "n = 0\nwhile n < 5:\n    n += 1\n    if n == 3:\n        continue\n    print(n)\n"
+  },
+  "checkpoints": [
+    {
+      "id": "python-v4-08-repair-exit-step-1",
+      "objectiveIds": [
+        "loop-debugging"
+      ],
+      "task": {
+        "en": "Repair the program so it prints 1, 2, 4 and 5, each on a new line.",
+        "nl": "Herstel het programma zodat het 1, 2, 4 en 5 afdrukt, elk op een nieuwe regel."
+      },
+      "check": "_stdout == \"1\\n2\\n4\\n5\\n\"",
+      "probes": [],
+      "hint": {
+        "en": "Compare the first unexpected iteration with the intended behaviour.",
+        "nl": "Vergelijk de eerste onverwachte iteratie met het bedoelde gedrag."
+      },
+      "hints": [
+        {
+          "en": "Compare the first unexpected iteration with the intended behaviour.",
+          "nl": "Vergelijk de eerste onverwachte iteratie met het bedoelde gedrag."
+        },
+        {
+          "en": "Only the current iteration should end at 3; the whole loop should keep going.",
+          "nl": "Alleen de huidige iteratie moet bij 3 eindigen; de hele lus moet doorgaan."
+        },
+        {
+          "en": "A small fragment to adapt: `continue`",
+          "nl": "Een klein fragment om aan te passen: `continue`"
+        }
+      ],
+      "feedback": {
+        "en": "Only the current iteration should end at 3; the whole loop should keep going.",
+        "nl": "Alleen de huidige iteratie moet bij 3 eindigen; de hele lus moet doorgaan."
+      }
+    }
+  ],
+  "solutionNote": {
+    "en": "continue transfers control to the next loop test. The counter has already advanced, so the repaired loop still terminates.",
+    "nl": "continue brengt de uitvoering naar de volgende lustest. De teller is al verhoogd, dus de herstelde lus eindigt nog steeds."
+  },
+  "inputs": [],
+  "retrievals": [
+    {
+      "id": "recall-python-v4-06-not",
+      "sourceActivityId": "python-v4-06-not",
+      "objectiveIds": [
+        "not"
+      ],
+      "prompt": {
+        "en": "Recall “Reverse a Boolean with not”. Does evaluating not change the original variable? Try the earlier example from memory, then check it. Set paused to False and trace both values.",
+        "nl": "Haal “Keer een booleaanse waarde om met not” terug. Verandert not berekenen de oorspronkelijke variabele? Probeer het eerdere voorbeeld uit je geheugen en controleer daarna. Zet paused op False en volg beide waarden."
+      }
+    }
+  ]
+}

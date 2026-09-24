@@ -1,0 +1,148 @@
+{
+  "id": "python-v4-08-break",
+  "chapter": 8,
+  "group": "python-v4-module-8",
+  "title": {
+    "en": "Exit a loop with break",
+    "nl": "Verlaat een lus met break"
+  },
+  "kind": "coding",
+  "optional": false,
+  "runtime": "terminal",
+  "guidance": "guided",
+  "checkpointMode": "sequential",
+  "estimatedMinutes": 16,
+  "topicIds": [
+    "break"
+  ],
+  "practices": [],
+  "requiredConcepts": [
+    "while",
+    "if",
+    "input"
+  ],
+  "explanation": {
+    "en": "break exits the nearest enclosing loop immediately. It lets you put the input and stop test together.",
+    "nl": "break verlaat onmiddellijk de dichtstbijzijnde omvattende lus. Daarmee kun je invoer en stoptest bij elkaar zetten."
+  },
+  "example": "",
+  "sections": [
+    {
+      "id": "python-v4-08-break-example",
+      "topicIds": [
+        "break"
+      ],
+      "heading": {
+        "en": "Follow a working example",
+        "nl": "Volg een werkend voorbeeld"
+      },
+      "body": {
+        "en": "while True repeats until something inside exits it. Read a command at the top of the body, then use if to recognise the stop word and break. Statements later in that iteration are skipped when break executes.\n\nThe statement after the loop still runs. Make the exit reachable; while True without a working break is endless. This pattern avoids repeating the input call before and inside the loop.",
+        "nl": "while True herhaalt totdat iets binnenin de lus verlaat. Lees een opdracht bovenaan het blok en herken daarna met if het stopwoord en gebruik break. Instructies later in die iteratie worden overgeslagen wanneer break wordt uitgevoerd.\n\nDe instructie na de lus wordt nog steeds uitgevoerd. Zorg dat de uitgang bereikbaar is; while True zonder werkende break is eindeloos. Dit patroon voorkomt een dubbele input-aanroep vóór en binnen de lus."
+      },
+      "code": "while True:\n    command = input(\"Command: \")\n    if command == \"quit\":\n        break\n    print(command)\nprint(\"Stopped\")",
+      "output": "Command: help\nCommand: Stopped\n",
+      "prediction": {
+        "en": "Does the stop word reach the print inside the loop?",
+        "nl": "Bereikt het stopwoord de print binnen de lus?"
+      },
+      "takeaway": {
+        "en": "break exits the loop and continues with the statement after it.",
+        "nl": "break verlaat de lus en gaat verder met de instructie erna."
+      },
+      "exampleInputs": [
+        "help",
+        "quit"
+      ]
+    },
+    {
+      "id": "python-v4-08-break-experiment",
+      "topicIds": [],
+      "heading": {
+        "en": "Try one change",
+        "nl": "Probeer één wijziging"
+      },
+      "body": {
+        "en": "Enter two work commands before quit. Explain which print is repeated and which runs once.",
+        "nl": "Voer twee werkopdrachten in vóór quit. Leg uit welke print wordt herhaald en welke eenmaal draait."
+      }
+    }
+  ],
+  "files": {
+    "main.py": ""
+  },
+  "solution": {
+    "main.py": "while True:\n    command = input(\"Command: \").strip().lower()\n    if command == \"quit\":\n        break\n    print(\"Working\")\nprint(\"Stopped\")\n"
+  },
+  "checkpoints": [
+    {
+      "id": "python-v4-08-break-step-1",
+      "objectiveIds": [
+        "break"
+      ],
+      "task": {
+        "en": "Use while True and break to stop on quit; other commands print \"Working\". After the loop print \"Stopped\".",
+        "nl": "Gebruik while True en break om bij quit te stoppen; andere opdrachten drukken \"Working\" af. Druk na de lus \"Stopped\" af."
+      },
+      "check": "True",
+      "probes": [
+        {
+          "stdin": [
+            "go",
+            "quit"
+          ],
+          "check": "(any(isinstance(n, _ast.Break) for n in _ast.walk(_ast.parse(_source))) and _stdout == \"Command: Working\\nCommand: Stopped\\n\") and _remaining_input == \"\""
+        },
+        {
+          "stdin": [
+            " QUIT "
+          ],
+          "check": "(_stdout == \"Command: Stopped\\n\") and _remaining_input == \"\""
+        }
+      ],
+      "hint": {
+        "en": "break exits the loop and continues with the statement after it.",
+        "nl": "break verlaat de lus en gaat verder met de instructie erna."
+      },
+      "hints": [
+        {
+          "en": "break exits the loop and continues with the statement after it.",
+          "nl": "break verlaat de lus en gaat verder met de instructie erna."
+        },
+        {
+          "en": "Check for quitting before doing ordinary work in the loop.",
+          "nl": "Controleer stoppen voordat je gewoon werk binnen de lus uitvoert."
+        },
+        {
+          "en": "A small fragment to adapt: `if command == \"quit\":`",
+          "nl": "Een klein fragment om aan te passen: `if command == \"quit\":`"
+        }
+      ],
+      "feedback": {
+        "en": "Check for quitting before doing ordinary work in the loop.",
+        "nl": "Controleer stoppen voordat je gewoon werk binnen de lus uitvoert."
+      }
+    }
+  ],
+  "solutionNote": {
+    "en": "The stop test comes before Working, so the quit command ends the loop without ordinary work.",
+    "nl": "De stoptest staat vóór Working, zodat quit de lus beëindigt zonder gewoon werk."
+  },
+  "inputs": [
+    "go",
+    "quit"
+  ],
+  "retrievals": [
+    {
+      "id": "recall-python-v4-06-and",
+      "sourceActivityId": "python-v4-06-and",
+      "objectiveIds": [
+        "and"
+      ],
+      "prompt": {
+        "en": "Recall “Require both conditions with and”. Is a ticket enough when the door is closed? Try the earlier example from memory, then check it. Predict all four combinations of meeting and missing the two requirements.",
+        "nl": "Haal “Vereis beide voorwaarden met and” terug. Is een kaartje voldoende wanneer de deur dicht is? Probeer het eerdere voorbeeld uit je geheugen en controleer daarna. Voorspel alle vier combinaties van wel en niet aan de twee eisen voldoen."
+      }
+    }
+  ]
+}

@@ -1,0 +1,182 @@
+{
+  "id": "python-v3-3-02",
+  "chapter": 3,
+  "group": "python-v3-module-3",
+  "title": {
+    "en": "Count in steps",
+    "nl": "Tel in stappen"
+  },
+  "kind": "coding",
+  "optional": false,
+  "runtime": "terminal",
+  "guidance": "adapt",
+  "estimatedMinutes": 15,
+  "explanation": {
+    "en": "Use a range with a start, exclusive stop and step. Keep an accumulated total as the loop progresses.",
+    "nl": "Gebruik een range met een begin, exclusief einde en stap. Houd een oplopend totaal bij terwijl de lus doorgaat."
+  },
+  "example": "",
+  "topicIds": [
+    "range-start-stop-step",
+    "accumulators"
+  ],
+  "prerequisites": [
+    "python-v3-3-01"
+  ],
+  "sections": [
+    {
+      "topicIds": [
+        "range-start-stop-step",
+        "accumulators"
+      ],
+      "heading": {
+        "en": "Trace before running",
+        "nl": "Volg voordat je uitvoert"
+      },
+      "body": {
+        "en": "range(stop) starts at 0 with step 1. range(start, stop) changes the start; range(start, stop, step) also changes the step. A negative step counts down. Zero is not a valid step. Initialise an accumulator before the loop so it is not reset on every iteration.",
+        "nl": "range(stop) begint bij 0 met stap 1. range(start, stop) verandert het begin; range(start, stop, step) verandert ook de stap. Een negatieve stap telt terug. Nul is geen geldige stap. Initialiseer een totaal vóór de lus zodat het niet bij elke iteratie opnieuw begint."
+      },
+      "code": "total = 0\nfor n in range(6, 0, -2):\n    total += n\n    print(n, total)",
+      "output": "6 6\n4 10\n2 12\n",
+      "prediction": {
+        "en": "Write the next n and total for each iteration. Is zero included?",
+        "nl": "Schrijf voor elke iteratie de volgende n en total op. Wordt nul meegenomen?"
+      }
+    },
+    {
+      "topicIds": [],
+      "heading": {
+        "en": "Try a changed input",
+        "nl": "Probeer gewijzigde invoer"
+      },
+      "body": {
+        "en": "Predict range(2, 8, 2) and range(8, 2, -2). Explain why their sums differ even though the boundaries are swapped.",
+        "nl": "Voorspel range(2, 8, 2) en range(8, 2, -2). Leg uit waarom hun sommen verschillen hoewel de grenzen omgewisseld zijn."
+      }
+    }
+  ],
+  "files": {
+    "main.py": "start = 2\nstop = 9\nstep = 2\ntotal = 0\n# Print each number, then the total.\n"
+  },
+  "solution": {
+    "main.py": "start = 2\nstop = 9\nstep = 2\ntotal = 0\nfor number in range(start, stop, step):\n    total += number\n    print(number)\nprint(f\"Total: {total}\")\n"
+  },
+  "checkpoints": [
+    {
+      "objectiveIds": [
+        "range-start-stop-step"
+      ],
+      "task": {
+        "en": "Loop over range(start, stop, step) and print each number.",
+        "nl": "Doorloop range(start, stop, step) en druk elk getal af."
+      },
+      "check": "_stdout.splitlines()[:-1] == [str(n) for n in range(start,stop,step)]",
+      "hints": [
+        {
+          "en": "The stop is a boundary, not another item.",
+          "nl": "Het einde is een grens, geen extra item."
+        },
+        {
+          "en": "Pass all three supplied values to range.",
+          "nl": "Geef de drie meegeleverde waarden aan range."
+        },
+        {
+          "en": "for number in range(start, stop, step):",
+          "nl": "for number in range(start, stop, step):"
+        }
+      ],
+      "hint": {
+        "en": "The stop is a boundary, not another item.",
+        "nl": "Het einde is een grens, geen extra item."
+      },
+      "feedback": {
+        "en": "Check the exclusive stop and a negative step.",
+        "nl": "Controleer het exclusieve einde en een negatieve stap."
+      },
+      "probes": [
+        {
+          "inputs": {
+            "start": 5,
+            "stop": 0,
+            "step": -2
+          },
+          "check": "_stdout.splitlines()[:-1] == [\"5\",\"3\",\"1\"]"
+        }
+      ],
+      "id": "python-v3-3-02-step-1"
+    },
+    {
+      "objectiveIds": [
+        "accumulators"
+      ],
+      "task": {
+        "en": "Add each number to total and print Total: followed by total after the loop.",
+        "nl": "Tel elk getal bij total op en druk na de lus Total: gevolgd door total af."
+      },
+      "check": "total == 20 and _stdout.splitlines()[-1] == \"Total: 20\"",
+      "hints": [
+        {
+          "en": "The running total must survive each iteration.",
+          "nl": "Het lopende totaal moet elke iteratie blijven bestaan."
+        },
+        {
+          "en": "Set total = 0 before the loop and update it inside.",
+          "nl": "Zet total = 0 vóór de lus en werk het binnen de lus bij."
+        },
+        {
+          "en": "total += number",
+          "nl": "total += number"
+        }
+      ],
+      "hint": {
+        "en": "The running total must survive each iteration.",
+        "nl": "Het lopende totaal moet elke iteratie blijven bestaan."
+      },
+      "feedback": {
+        "en": "Resetting total inside the loop loses earlier numbers.",
+        "nl": "total binnen de lus opnieuw instellen verliest eerdere getallen."
+      },
+      "probes": [
+        {
+          "inputs": {
+            "start": 3,
+            "stop": 3,
+            "step": 1
+          },
+          "check": "total == 0 and _stdout.strip() == \"Total: 0\""
+        },
+        {
+          "inputs": {
+            "start": -2,
+            "stop": 3,
+            "step": 2
+          },
+          "check": "total == 0"
+        }
+      ],
+      "id": "python-v3-3-02-step-2"
+    }
+  ],
+  "solutionNote": {
+    "en": "The loop body prints individual values and updates one accumulator. An empty range leaves that accumulator at its initial value.",
+    "nl": "Het lusblok drukt losse waarden af en werkt één totaal bij. Een lege range laat dat totaal op zijn beginwaarde staan."
+  },
+  "inputs": [],
+  "retrievals": [
+    {
+      "id": "recall-python-v3-1-02",
+      "sourceActivityId": "python-v3-1-02",
+      "objectiveIds": [
+        "integers",
+        "floats",
+        "arithmetic",
+        "precedence"
+      ],
+      "prompt": {
+        "en": "Predict 3 + 2 * 1.5, then add parentheses to change it. Which values are integers and which are floats?",
+        "nl": "Voorspel 3 + 2 * 1.5 en verander de uitkomst met haakjes. Welke waarden zijn integers en welke floats?"
+      }
+    }
+  ]
+}

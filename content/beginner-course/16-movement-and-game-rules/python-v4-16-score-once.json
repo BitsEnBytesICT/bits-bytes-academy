@@ -1,0 +1,190 @@
+{
+  "id": "python-v4-16-score-once",
+  "chapter": 16,
+  "group": "python-v4-module-16",
+  "title": {
+    "en": "Score a miss once",
+    "nl": "Tel een misser eenmaal"
+  },
+  "kind": "coding",
+  "optional": false,
+  "runtime": "pygame",
+  "guidance": "guided",
+  "checkpointMode": "sequential",
+  "estimatedMinutes": 18,
+  "topicIds": [
+    "scoring",
+    "misses"
+  ],
+  "practices": [],
+  "requiredConcepts": [
+    "multiple-returns",
+    "elif"
+  ],
+  "explanation": {
+    "en": "A ball outside the field stays outside on later frames unless the game changes its state. Reset it when awarding a point.",
+    "nl": "Een bal buiten het veld blijft in latere beelden buiten tenzij het spel zijn toestand verandert. Zet de bal terug wanneer je een punt toekent."
+  },
+  "example": "",
+  "sections": [
+    {
+      "id": "python-v4-16-score-once-example",
+      "topicIds": [
+        "scoring",
+        "misses"
+      ],
+      "heading": {
+        "en": "Follow a working example",
+        "nl": "Volg een werkend voorbeeld"
+      },
+      "body": {
+        "en": "When the centre is beyond -radius, the right player scores; beyond width + radius, the left player scores. In the same update, put the ball at the centre and set horizontal velocity to zero. On the next frame it is inside the court, so no second point is awarded. Waiting for a serve is a simple state represented here by zero velocity.",
+        "nl": "Wanneer het middelpunt voorbij -radius is, scoort de rechterspeler; voorbij width + radius scoort de linkerspeler. Zet in dezelfde update de bal in het midden en horizontale snelheid op nul. In het volgende beeld staat hij binnen het veld en wordt geen tweede punt toegekend. Wachten op een service is hier een eenvoudige toestand voorgesteld door snelheid nul."
+      },
+      "code": "x, score = -8, 0\nif x < -6:\n    score += 1\n    x = 320\nprint(score,x)",
+      "output": "1 320\n",
+      "prediction": {
+        "en": "Would this condition still match on the next frame?",
+        "nl": "Geldt deze voorwaarde in het volgende beeld nog steeds?"
+      },
+      "takeaway": {
+        "en": "Award the point and leave the scoring condition in the same update.",
+        "nl": "Ken het punt toe en verlaat de scorevoorwaarde in dezelfde update."
+      }
+    },
+    {
+      "topicIds": [],
+      "heading": {
+        "en": "Run, observe, finish",
+        "nl": "Voer uit, bekijk, rond af"
+      },
+      "body": {
+        "en": "main.py supplies the browser entry point. Run opens a real pygame-ce preview; click it to focus the keyboard. Clicking elsewhere pauses play. Finish & check closes normally and checks your helper after at least one rendered frame. Stop cancels without grading. Run can start a fresh session afterward. Keep the supplied async definition and await asyncio.sleep(1 / 60): they let the browser draw and receive input. You are not expected to reproduce this infrastructure from memory.",
+        "nl": "main.py levert het browserstartpunt. Uitvoeren opent een echt pygame-ce-voorbeeld; klik erop om het toetsenbord te activeren. Elders klikken pauzeert het spel. Afronden en controleren sluit normaal af en controleert je helper na minstens één getekend beeld. Stop annuleert zonder beoordeling. Uitvoeren kan daarna een nieuwe sessie starten. Behoud de meegeleverde async-definitie en await asyncio.sleep(1 / 60): die laten de browser tekenen en invoer ontvangen. Je hoeft deze infrastructuur niet uit je hoofd te schrijven."
+      }
+    },
+    {
+      "id": "python-v4-16-score-once-experiment",
+      "topicIds": [],
+      "heading": {
+        "en": "Try one change",
+        "nl": "Probeer één wijziging"
+      },
+      "body": {
+        "en": "Leave the preview running after the miss. Check that the score stops increasing.",
+        "nl": "Laat het voorbeeld na de misser draaien. Controleer dat de score niet verder stijgt."
+      }
+    }
+  ],
+  "files": {
+    "main.py": "# Browser entry point supplied by the course.\nimport asyncio\nimport pygame\nimport game\n\nasync def main():\n    pygame.init()\n    screen = pygame.display.set_mode((640, 400))\n    clock = pygame.time.Clock()\n    running = True\n    x,y,vx,left,right = 320.0,200.0,-180.0,0,0\n    while running:\n        dt = min(clock.tick() / 1000, 0.05)\n        for event in pygame.event.get():\n            if event.type == pygame.QUIT:\n                running = False\n            if event.type == pygame.KEYDOWN and event.key == pygame.K_ESCAPE:\n                running = False\n        keys = pygame.key.get_pressed()\n        x += vx * dt\n        x,vx,left,right = game.miss(x,vx,left,right)\n        screen.fill((16, 23, 39))\n        pygame.draw.circle(screen,(240,200,80),(int(x),int(y)),6)\n        font = pygame.font.Font(None,30)\n        screen.blit(font.render(f\"{left} : {right}\",True,(240,240,240)),(280,20))\n        pygame.display.flip()\n        await asyncio.sleep(1 / 60)\n    pygame.quit()\n\nasyncio.run(main())\n",
+    "game.py": "import pygame\n\ndef miss(x, vx, left, right):\n    return x, vx, left, right\n"
+  },
+  "solution": {
+    "main.py": "# Browser entry point supplied by the course.\nimport asyncio\nimport pygame\nimport game\n\nasync def main():\n    pygame.init()\n    screen = pygame.display.set_mode((640, 400))\n    clock = pygame.time.Clock()\n    running = True\n    x,y,vx,left,right = 320.0,200.0,-180.0,0,0\n    while running:\n        dt = min(clock.tick() / 1000, 0.05)\n        for event in pygame.event.get():\n            if event.type == pygame.QUIT:\n                running = False\n            if event.type == pygame.KEYDOWN and event.key == pygame.K_ESCAPE:\n                running = False\n        keys = pygame.key.get_pressed()\n        x += vx * dt\n        x,vx,left,right = game.miss(x,vx,left,right)\n        screen.fill((16, 23, 39))\n        pygame.draw.circle(screen,(240,200,80),(int(x),int(y)),6)\n        font = pygame.font.Font(None,30)\n        screen.blit(font.render(f\"{left} : {right}\",True,(240,240,240)),(280,20))\n        pygame.display.flip()\n        await asyncio.sleep(1 / 60)\n    pygame.quit()\n\nasyncio.run(main())\n",
+    "game.py": "import pygame\n\ndef miss(x, vx, left, right):\n    if x < -6:\n        return 320, 0, left, right + 1\n    if x > 646:\n        return 320, 0, left + 1, right\n    return x, vx, left, right\n"
+  },
+  "checkpoints": [
+    {
+      "id": "python-v4-16-score-once-step-1",
+      "objectiveIds": [
+        "scoring",
+        "misses"
+      ],
+      "task": {
+        "en": "Implement a single point and centre reset for misses on either side of the 640-wide court. Return (x, vx, left, right).",
+        "nl": "Implementeer één punt en een terugzetting naar het midden bij missers aan beide kanten van het 640 brede veld. Geef (x, vx, left, right) terug."
+      },
+      "check": "_rendered_frames > 0",
+      "probes": [
+        {
+          "call": {
+            "name": "miss",
+            "args": [
+              -7,
+              -100,
+              2,
+              3
+            ],
+            "module": "game"
+          },
+          "check": "(_return == (320,0,2,4)) and _error is None",
+          "moduleOnly": true,
+          "module": "game"
+        },
+        {
+          "call": {
+            "name": "miss",
+            "args": [
+              647,
+              100,
+              2,
+              3
+            ],
+            "module": "game"
+          },
+          "check": "(_return == (320,0,3,3)) and _error is None",
+          "moduleOnly": true,
+          "module": "game"
+        },
+        {
+          "call": {
+            "name": "miss",
+            "args": [
+              320,
+              0,
+              2,
+              4
+            ],
+            "module": "game"
+          },
+          "check": "(_return == (320,0,2,4)) and _error is None",
+          "moduleOnly": true,
+          "module": "game"
+        }
+      ],
+      "hint": {
+        "en": "Award the point and leave the scoring condition in the same update.",
+        "nl": "Ken het punt toe en verlaat de scorevoorwaarde in dezelfde update."
+      },
+      "hints": [
+        {
+          "en": "Award the point and leave the scoring condition in the same update.",
+          "nl": "Ken het punt toe en verlaat de scorevoorwaarde in dezelfde update."
+        },
+        {
+          "en": "Change score and position together; preserve state while the ball is still in bounds.",
+          "nl": "Verander score en positie samen; behoud toestand zolang de bal nog binnen is."
+        },
+        {
+          "en": "A small fragment to adapt: `return 320, 0, left, right + 1`",
+          "nl": "Een klein fragment om aan te passen: `return 320, 0, left, right + 1`"
+        }
+      ],
+      "feedback": {
+        "en": "Change score and position together; preserve state while the ball is still in bounds.",
+        "nl": "Verander score en positie samen; behoud toestand zolang de bal nog binnen is."
+      }
+    }
+  ],
+  "solutionNote": {
+    "en": "Resetting x removes the condition that awarded the point; zero velocity keeps the ball waiting.",
+    "nl": "x terugzetten verwijdert de voorwaarde die het punt opleverde; snelheid nul laat de bal wachten."
+  },
+  "inputs": [],
+  "retrievals": [
+    {
+      "id": "recall-python-v4-14-helper-files",
+      "sourceActivityId": "python-v4-14-helper-files",
+      "objectiveIds": [
+        "helper-modules",
+        "module-scope",
+        "installing"
+      ],
+      "prompt": {
+        "en": "Recall “Put reusable code in another file”. Does import copy every math name into this file? Try the earlier example from memory, then check it. Add another call in main.py with a different argument. Explain which file owns the function.",
+        "nl": "Haal “Zet herbruikbare code in een ander bestand” terug. Kopieert import elke math-naam naar dit bestand? Probeer het eerdere voorbeeld uit je geheugen en controleer daarna. Voeg in main.py nog een aanroep toe met een ander argument. Leg uit welk bestand de functie bevat."
+      }
+    }
+  ]
+}

@@ -1,0 +1,175 @@
+{
+  "id": "python-v3-1-04",
+  "chapter": 1,
+  "group": "python-v3-module-1",
+  "title": {
+    "en": "Powers and leftovers",
+    "nl": "Machten en restanten"
+  },
+  "kind": "coding",
+  "optional": false,
+  "runtime": "terminal",
+  "guidance": "adapt",
+  "estimatedMinutes": 13,
+  "explanation": {
+    "en": "Use powers for repeated multiplication and quotient/remainder for grouping. These operations describe a result; no rounding-up formula is needed.",
+    "nl": "Gebruik machten voor herhaald vermenigvuldigen en quotiënt/rest voor groeperen. Deze bewerkingen beschrijven een resultaat; er is geen formule voor naar boven afronden nodig."
+  },
+  "example": "",
+  "topicIds": [
+    "exponents",
+    "floor-division",
+    "modulo"
+  ],
+  "prerequisites": [
+    "python-v3-1-03"
+  ],
+  "sections": [
+    {
+      "topicIds": [
+        "exponents",
+        "floor-division",
+        "modulo"
+      ],
+      "heading": {
+        "en": "Three different questions",
+        "nl": "Drie verschillende vragen"
+      },
+      "body": {
+        "en": "a ** b raises a to a power. // finds the floor quotient; % finds the remainder. For positive group sizes, items == groups * size + leftover. // rounds downward, so -7 // 3 is -3 and -7 % 3 is 2. Use parentheses when experimenting with negative bases.",
+        "nl": "a ** b verheft a tot een macht. // geeft het naar beneden afgeronde quotiënt; % geeft de rest. Bij positieve groepsgrootte geldt items == groups * size + leftover. // rondt naar beneden af, dus -7 // 3 is -3 en -7 % 3 is 2. Gebruik haakjes bij negatieve grondtallen."
+      },
+      "code": "print(3 ** 2)\nprint(17 // 5)\nprint(17 % 5)",
+      "output": "9\n3\n2\n",
+      "prediction": {
+        "en": "How many complete groups fit, and what remains?",
+        "nl": "Hoeveel volledige groepen passen en wat blijft over?"
+      }
+    },
+    {
+      "topicIds": [],
+      "heading": {
+        "en": "Try a changed input",
+        "nl": "Probeer gewijzigde invoer"
+      },
+      "body": {
+        "en": "Try items = 19, 20, 21. Explain why groups changes only once while leftover resets to zero.",
+        "nl": "Probeer items = 19, 20, 21. Leg uit waarom groups maar één keer verandert terwijl leftover op nul terugkomt."
+      }
+    }
+  ],
+  "files": {
+    "main.py": "side = 6\nitems = 23\nsize = 5\n# Calculate area, groups, and leftover.\n"
+  },
+  "solution": {
+    "main.py": "side = 6\nitems = 23\nsize = 5\narea = side ** 2\ngroups = items // size\nleftover = items % size\nprint(area, groups, leftover)\n"
+  },
+  "checkpoints": [
+    {
+      "objectiveIds": [
+        "exponents"
+      ],
+      "task": {
+        "en": "Set area to side squared using **.",
+        "nl": "Stel area in op side in het kwadraat met **."
+      },
+      "check": "area == side ** 2 and any(isinstance(n,_ast.BinOp) and isinstance(n.op,_ast.Pow) for n in _ast.walk(_ast.parse(_source)))",
+      "hints": [
+        {
+          "en": "A square’s area is side times side.",
+          "nl": "De oppervlakte van een vierkant is zijde maal zijde."
+        },
+        {
+          "en": "The exponent is 2, not the group size.",
+          "nl": "De exponent is 2, niet de groepsgrootte."
+        },
+        {
+          "en": "area = side ** 2",
+          "nl": "area = side ** 2"
+        }
+      ],
+      "hint": {
+        "en": "A square’s area is side times side.",
+        "nl": "De oppervlakte van een vierkant is zijde maal zijde."
+      },
+      "feedback": {
+        "en": "Use Python’s power operator, **. ^ is a different operation.",
+        "nl": "Gebruik Pythons machtsoperator **. ^ is een andere bewerking."
+      },
+      "probes": [
+        {
+          "inputs": {
+            "side": 0
+          },
+          "check": "area == 0"
+        },
+        {
+          "inputs": {
+            "side": 3
+          },
+          "check": "area == 9"
+        }
+      ],
+      "id": "python-v3-1-04-step-1"
+    },
+    {
+      "objectiveIds": [
+        "floor-division",
+        "modulo"
+      ],
+      "task": {
+        "en": "Calculate complete groups and leftover items. Print area, groups, leftover on one line.",
+        "nl": "Bereken volledige groepen en overgebleven items. Druk area, groups, leftover op één regel af."
+      },
+      "check": "groups == 4 and leftover == 3 and _stdout.strip() == \"36 4 3\"",
+      "hints": [
+        {
+          "en": "Complete groups exclude the remainder.",
+          "nl": "Volledige groepen bevatten de rest niet."
+        },
+        {
+          "en": "Use // for groups and % for leftover.",
+          "nl": "Gebruik // voor groups en % voor leftover."
+        },
+        {
+          "en": "leftover = items % size",
+          "nl": "leftover = items % size"
+        }
+      ],
+      "hint": {
+        "en": "Complete groups exclude the remainder.",
+        "nl": "Volledige groepen bevatten de rest niet."
+      },
+      "feedback": {
+        "en": "For 23 items of size 5, there are 4 complete groups and 3 left.",
+        "nl": "Bij 23 items en grootte 5 zijn er 4 volledige groepen en 3 over."
+      },
+      "probes": [
+        {
+          "inputs": {
+            "items": 20
+          },
+          "check": "groups == 4 and leftover == 0"
+        },
+        {
+          "inputs": {
+            "items": 0
+          },
+          "check": "groups == 0 and leftover == 0"
+        },
+        {
+          "inputs": {
+            "items": 3
+          },
+          "check": "groups == 0 and leftover == 3"
+        }
+      ],
+      "id": "python-v3-1-04-step-2"
+    }
+  ],
+  "solutionNote": {
+    "en": "The program answers three independent questions. A partial group is reported as leftover instead of silently counted as a complete group.",
+    "nl": "Het programma beantwoordt drie onafhankelijke vragen. Een gedeeltelijke groep wordt als rest gemeld en niet stilzwijgend als volledige groep geteld."
+  },
+  "inputs": []
+}

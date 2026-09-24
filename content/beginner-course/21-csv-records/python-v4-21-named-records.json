@@ -1,0 +1,193 @@
+{
+  "id": "python-v4-21-named-records",
+  "chapter": 21,
+  "group": "python-v4-module-21",
+  "title": {
+    "en": "Use a header as field names",
+    "nl": "Gebruik een kop als veldnamen"
+  },
+  "kind": "coding",
+  "optional": false,
+  "runtime": "terminal",
+  "guidance": "guided",
+  "checkpointMode": "sequential",
+  "estimatedMinutes": 18,
+  "topicIds": [
+    "dict-reader",
+    "csv-numeric-conversion"
+  ],
+  "practices": [],
+  "requiredConcepts": [
+    "csv-reader",
+    "dictionaries",
+    "conversion"
+  ],
+  "explanation": {
+    "en": "Dictionary rows make column meaning explicit and avoid depending on a remembered index.\n\nOpen work.py to write the requested function. main.py is a supplied caller: Run always starts there and imports your function. The other file tabs contain input data. After a successful run, open any new output file tab to inspect what your program saved.",
+    "nl": "Dictionaryrijen maken kolombetekenis expliciet en vermijden afhankelijkheid van een onthouden index.\n\nOpen work.py om de gevraagde functie te schrijven. main.py is de aangeleverde aanroeper: Uitvoeren begint daar en importeert je functie. De andere bestandstabbladen bevatten invoergegevens. Open na een geslaagde uitvoering een nieuw uitvoerbestand om te bekijken wat je programma heeft opgeslagen."
+  },
+  "example": "",
+  "sections": [
+    {
+      "id": "python-v4-21-named-records-example",
+      "topicIds": [
+        "dict-reader",
+        "csv-numeric-conversion"
+      ],
+      "heading": {
+        "en": "Follow a working example",
+        "nl": "Volg een werkend voorbeeld"
+      },
+      "body": {
+        "en": "csv.DictReader uses the first row as field names and produces dictionaries for later rows. Values remain strings. Convert a numeric field explicitly before adding it; otherwise + concatenates text or raises a type error. This task’s score values are valid integers and its required headers are present.",
+        "nl": "csv.DictReader gebruikt de eerste rij als veldnamen en maakt dictionaries voor latere rijen. Waarden blijven strings. Zet een numeriek veld expliciet om vóór optellen; anders voegt + tekst samen of ontstaat een typefout. De scores van deze taak zijn geldige gehele getallen en de verplichte kopvelden zijn aanwezig."
+      },
+      "code": "import csv\nwith open(\"example.csv\",newline=\"\",encoding=\"utf-8\") as handle:\n    for row in csv.DictReader(handle):\n        print(row[\"name\"],int(row[\"score\"]) + 1)",
+      "output": "Ada 5\n",
+      "prediction": {
+        "en": "What type does row[\"score\"] have before conversion?",
+        "nl": "Welk type heeft row[\"score\"] vóór omzetting?"
+      },
+      "takeaway": {
+        "en": "A CSV reader parses fields, not application-specific numeric types.",
+        "nl": "Een CSV-lezer ontleedt velden, geen toepassingsspecifieke getaltypen."
+      },
+      "exampleFiles": {
+        "example.csv": "name,score\nAda,4\n"
+      }
+    },
+    {
+      "id": "python-v4-21-named-records-experiment",
+      "topicIds": [],
+      "heading": {
+        "en": "Try one change",
+        "nl": "Probeer één wijziging"
+      },
+      "body": {
+        "en": "Reverse the column order but preserve the headers. The result should stay correct.",
+        "nl": "Draai de kolomvolgorde om maar behoud de kopvelden. Het resultaat hoort juist te blijven."
+      }
+    }
+  ],
+  "files": {
+    "scores.csv": "name,score\nAda,4\nBo,-1\n",
+    "main.py": "import work\nprint(work.total(\"scores.csv\"))\n",
+    "work.py": "def total(path):\n    return 0\n"
+  },
+  "solution": {
+    "scores.csv": "name,score\nAda,4\nBo,-1\n",
+    "main.py": "import work\nprint(work.total(\"scores.csv\"))\n",
+    "work.py": "import csv\ndef total(path):\n    result = 0\n    with open(path,newline=\"\",encoding=\"utf-8\") as handle:\n        for row in csv.DictReader(handle):\n            result += int(row[\"score\"])\n    return result\n"
+  },
+  "checkpoints": [
+    {
+      "id": "python-v4-21-named-records-step-1",
+      "objectiveIds": [
+        "dict-reader",
+        "csv-numeric-conversion"
+      ],
+      "task": {
+        "en": "Return the sum of the score column. A header-only file returns zero.",
+        "nl": "Geef de som van de scorekolom terug. Een bestand met alleen een kop geeft nul."
+      },
+      "check": "True",
+      "probes": [
+        {
+          "call": {
+            "name": "total",
+            "args": [
+              "scores.csv"
+            ],
+            "module": "work"
+          },
+          "check": "(_return == 3) and _error is None",
+          "moduleOnly": true,
+          "module": "work",
+          "files": {}
+        },
+        {
+          "call": {
+            "name": "total",
+            "args": [
+              "other.csv"
+            ],
+            "module": "work"
+          },
+          "check": "(_return == 7) and _error is None",
+          "moduleOnly": true,
+          "module": "work",
+          "files": {
+            "other.csv": "score,name\n5,A\n2,B\n"
+          }
+        },
+        {
+          "call": {
+            "name": "total",
+            "args": [
+              "empty.csv"
+            ],
+            "module": "work"
+          },
+          "check": "(_return == 0) and _error is None",
+          "moduleOnly": true,
+          "module": "work",
+          "files": {
+            "empty.csv": "name,score\n"
+          }
+        }
+      ],
+      "hint": {
+        "en": "A CSV reader parses fields, not application-specific numeric types.",
+        "nl": "Een CSV-lezer ontleedt velden, geen toepassingsspecifieke getaltypen."
+      },
+      "hints": [
+        {
+          "en": "A CSV reader parses fields, not application-specific numeric types.",
+          "nl": "Een CSV-lezer ontleedt velden, geen toepassingsspecifieke getaltypen."
+        },
+        {
+          "en": "Read named fields and convert each score before accumulation.",
+          "nl": "Lees benoemde velden en zet elke score om vóór optellen."
+        },
+        {
+          "en": "A small fragment to adapt: `int(row[\"score\"])`",
+          "nl": "Een klein fragment om aan te passen: `int(row[\"score\"])`"
+        }
+      ],
+      "feedback": {
+        "en": "Read named fields and convert each score before accumulation.",
+        "nl": "Lees benoemde velden en zet elke score om vóór optellen."
+      }
+    }
+  ],
+  "solutionNote": {
+    "en": "Named access follows the header, and explicit int conversion makes arithmetic meaningful.",
+    "nl": "Benoemde toegang volgt de kop en expliciete int-omzetting maakt rekenkunde zinvol."
+  },
+  "inputs": [],
+  "retrievals": [
+    {
+      "id": "recall-python-v4-19-keys",
+      "sourceActivityId": "python-v4-19-keys",
+      "objectiveIds": [
+        "dictionary-keys",
+        "invalid-keys"
+      ],
+      "prompt": {
+        "en": "Recall “Choose valid keys”. Why is the coordinate written as a tuple? Try the earlier example from memory, then check it. Try using the original list as a key and read the resulting TypeError.",
+        "nl": "Haal “Kies geldige sleutels” terug. Waarom is de coördinaat als tuple geschreven? Probeer het eerdere voorbeeld uit je geheugen en controleer daarna. Probeer de oorspronkelijke lijst als sleutel te gebruiken en lees de TypeError."
+      }
+    },
+    {
+      "id": "recall-python-v4-19-comprehension",
+      "sourceActivityId": "python-v4-19-comprehension",
+      "objectiveIds": [
+        "dictionary-comprehensions"
+      ],
+      "prompt": {
+        "en": "Recall “Derive a new mapping”. Why is Bo missing from the new mapping? Try the earlier example from memory, then check it. Rewrite the comprehension as an ordinary loop.",
+        "nl": "Haal “Leid een nieuwe koppeling af” terug. Waarom ontbreekt Bo in de nieuwe koppeling? Probeer het eerdere voorbeeld uit je geheugen en controleer daarna. Herschrijf de comprehension als een gewone lus."
+      }
+    }
+  ]
+}

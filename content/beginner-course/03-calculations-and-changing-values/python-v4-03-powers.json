@@ -1,0 +1,187 @@
+{
+  "id": "python-v4-03-powers",
+  "chapter": 3,
+  "group": "python-v4-module-3",
+  "title": {
+    "en": "Repeated multiplication with **",
+    "nl": "Herhaald vermenigvuldigen met **"
+  },
+  "kind": "coding",
+  "optional": false,
+  "runtime": "terminal",
+  "guidance": "guided",
+  "checkpointMode": "sequential",
+  "estimatedMinutes": 12,
+  "topicIds": [
+    "exponents"
+  ],
+  "practices": [],
+  "requiredConcepts": [
+    "variables",
+    "integers",
+    "floats"
+  ],
+  "explanation": {
+    "en": "An exponent repeats multiplication. Start with squares so the arithmetic stays visible.",
+    "nl": "Een macht herhaalt vermenigvuldigen. Begin met kwadraten zodat de berekening zichtbaar blijft."
+  },
+  "example": "",
+  "sections": [
+    {
+      "id": "python-v4-03-powers-example",
+      "topicIds": [
+        "exponents"
+      ],
+      "heading": {
+        "en": "Follow a working example",
+        "nl": "Volg een werkend voorbeeld"
+      },
+      "body": {
+        "en": "A square with sides of length 3 has area 3 * 3. Python can write this as 3 ** 2: three to the power of two. A cube with side 3 uses 3 ** 3, which is 3 * 3 * 3.\n\nThe ** operator is not the same as multiplying by the exponent. 3 ** 2 gives 9; 3 * 2 gives 6. Read the example aloud before running it.",
+        "nl": "Een vierkant met zijden van lengte 3 heeft oppervlakte 3 * 3. Python kan dit schrijven als 3 ** 2: drie tot de tweede macht. Een kubus met zijde 3 gebruikt 3 ** 3, oftewel 3 * 3 * 3.\n\nDe operator ** is niet hetzelfde als vermenigvuldigen met de exponent. 3 ** 2 geeft 9; 3 * 2 geeft 6. Lees het voorbeeld hardop voordat je het uitvoert."
+      },
+      "code": "side = 3\nprint(side ** 2)\nprint(side ** 3)",
+      "output": "9\n27\n",
+      "prediction": {
+        "en": "How many factors of side occur in the second calculation?",
+        "nl": "Hoeveel factoren side staan er in de tweede berekening?"
+      },
+      "takeaway": {
+        "en": "side ** 2 squares side; it does not double it.",
+        "nl": "side ** 2 kwadrateert side; het verdubbelt de waarde niet."
+      }
+    },
+    {
+      "id": "python-v4-03-powers-experiment",
+      "topicIds": [],
+      "heading": {
+        "en": "Try one change",
+        "nl": "Probeer één wijziging"
+      },
+      "body": {
+        "en": "Try side = 1, then side = 2. Compare side ** 2 with side * 2.",
+        "nl": "Probeer side = 1 en daarna side = 2. Vergelijk side ** 2 met side * 2."
+      }
+    }
+  ],
+  "files": {
+    "main.py": "side = 6\n"
+  },
+  "solution": {
+    "main.py": "side = 6\nresult = side ** 2\nprint(result)\n"
+  },
+  "checkpoints": [
+    {
+      "id": "python-v4-03-powers-step-1",
+      "objectiveIds": [
+        "exponents"
+      ],
+      "task": {
+        "en": "Calculate the square's area in result, using **.",
+        "nl": "Bereken de oppervlakte van het vierkant in result met **."
+      },
+      "check": "result == (side ** 2)",
+      "probes": [
+        {
+          "inputs": {
+            "side": 0
+          },
+          "check": "result == (side ** 2)"
+        },
+        {
+          "inputs": {
+            "side": 4
+          },
+          "check": "result == (side ** 2)"
+        }
+      ],
+      "hint": {
+        "en": "side ** 2 squares side; it does not double it.",
+        "nl": "side ** 2 kwadrateert side; het verdubbelt de waarde niet."
+      },
+      "hints": [
+        {
+          "en": "side ** 2 squares side; it does not double it.",
+          "nl": "side ** 2 kwadrateert side; het verdubbelt de waarde niet."
+        },
+        {
+          "en": "Square the side length rather than multiplying it by two.",
+          "nl": "Kwadrateer de zijlengte in plaats van haar met twee te vermenigvuldigen."
+        },
+        {
+          "en": "A small fragment to adapt: `side ** 2`",
+          "nl": "Een klein fragment om aan te passen: `side ** 2`"
+        }
+      ],
+      "feedback": {
+        "en": "Square the side length rather than multiplying it by two.",
+        "nl": "Kwadrateer de zijlengte in plaats van haar met twee te vermenigvuldigen."
+      }
+    },
+    {
+      "id": "python-v4-03-powers-step-2",
+      "objectiveIds": [
+        "exponents"
+      ],
+      "task": {
+        "en": "Print result after calculating it.",
+        "nl": "Druk result af nadat je het hebt berekend."
+      },
+      "check": "float(_stdout.strip()) == result",
+      "probes": [
+        {
+          "inputs": {
+            "side": 0
+          },
+          "check": "float(_stdout.strip()) == (side ** 2)"
+        },
+        {
+          "inputs": {
+            "side": 4
+          },
+          "check": "float(_stdout.strip()) == (side ** 2)"
+        }
+      ],
+      "hint": {
+        "en": "side ** 2 squares side; it does not double it.",
+        "nl": "side ** 2 kwadrateert side; het verdubbelt de waarde niet."
+      },
+      "hints": [
+        {
+          "en": "side ** 2 squares side; it does not double it.",
+          "nl": "side ** 2 kwadrateert side; het verdubbelt de waarde niet."
+        },
+        {
+          "en": "Display the variable that holds the calculation, rather than typing the expected answer.",
+          "nl": "Toon de variabele met de berekening in plaats van het verwachte antwoord te typen."
+        },
+        {
+          "en": "A small fragment to adapt: `print(result)`",
+          "nl": "Een klein fragment om aan te passen: `print(result)`"
+        }
+      ],
+      "feedback": {
+        "en": "Display the variable that holds the calculation, rather than typing the expected answer.",
+        "nl": "Toon de variabele met de berekening in plaats van het verwachte antwoord te typen."
+      }
+    }
+  ],
+  "solutionNote": {
+    "en": "A square has the same width and height, so squaring its side gives its area.",
+    "nl": "Een vierkant heeft dezelfde breedte en hoogte, dus het kwadraat van de zijde geeft de oppervlakte."
+  },
+  "inputs": [],
+  "retrievals": [
+    {
+      "id": "recall-python-v4-01-announcement",
+      "sourceActivityId": "python-v4-01-announcement",
+      "objectiveIds": [
+        "first-program-review"
+      ],
+      "prompt": {
+        "en": "Recall “Make a terminal announcement”. How many output lines does the comment add? Try the earlier example from memory, then check it. Change the final line to your own invitation. Explain what Python does from the first line to the last.",
+        "nl": "Haal “Maak een terminalaankondiging” terug. Hoeveel uitvoerregels voegt het commentaar toe? Probeer het eerdere voorbeeld uit je geheugen en controleer daarna. Verander de laatste regel in je eigen uitnodiging. Leg uit wat Python van de eerste tot de laatste regel doet."
+      }
+    }
+  ]
+}

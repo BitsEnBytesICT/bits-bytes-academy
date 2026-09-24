@@ -1,16 +1,19 @@
 import { useState } from "react";
-import type { Exercise, Language } from "../../../shared/types";
+import type { Course, Exercise, Language } from "../../../shared/types";
+import { RetrievalPrompts } from "./RetrievalPrompts";
 import { LessonText } from "./LessonText";
 import { CodeBlock } from "./CodeBlock";
 import { Icon } from "../Icon";
 
 export function ReadingPane({
   activity,
+  course,
   language,
   complete,
   onComplete,
 }: {
   activity: Exercise;
+  course: Course;
   language: Language;
   complete: boolean;
   onComplete: () => Promise<void>;
@@ -28,11 +31,32 @@ export function ReadingPane({
           <h1>{activity.title[language]}</h1>
           <p className="lesson-estimate">{activity.estimatedMinutes} min</p>
           <LessonText text={activity.explanation[language]} />
+          <RetrievalPrompts
+            activity={activity}
+            course={course}
+            language={language}
+          />
           {activity.sections?.map((section, i) => (
             <section className="worked-example explanation" key={i}>
               <h2>{section.heading[language]}</h2>
               <LessonText text={section.body[language]} />
-              {section.code !== undefined && <CodeBlock code={section.code} />}
+              {section.code !== undefined &&
+                (section.codeLanguage === "shell" ? (
+                  <div>
+                    <small>{tr("Terminal command", "Terminalcommando")}</small>
+                    <pre className="python-code">
+                      <code>{section.code}</code>
+                    </pre>
+                  </div>
+                ) : (
+                  <CodeBlock code={section.code} />
+                ))}
+              {section.callout && (
+                <aside className="lesson-callout">
+                  <h3>{section.callout.title[language]}</h3>
+                  <LessonText text={section.callout.body[language]} />
+                </aside>
+              )}
             </section>
           ))}
           <button

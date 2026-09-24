@@ -1,0 +1,126 @@
+{
+  "id": "python-v4-08-stop-endless-loop",
+  "chapter": 8,
+  "group": "python-v4-module-8",
+  "title": {
+    "en": "Recognise and stop an endless loop",
+    "nl": "Herken en stop een eindeloze lus"
+  },
+  "kind": "coding",
+  "optional": false,
+  "runtime": "terminal",
+  "guidance": "adapt",
+  "checkpointMode": "sequential",
+  "estimatedMinutes": 14,
+  "topicIds": [
+    "infinite-loops"
+  ],
+  "practices": [],
+  "requiredConcepts": [
+    "while",
+    "counters"
+  ],
+  "explanation": {
+    "en": "A loop needs a reason to stop. Learn to notice a missing update and use the Stop control if a program keeps running.",
+    "nl": "Een lus heeft een reden nodig om te stoppen. Leer een ontbrekende wijziging herkennen en gebruik Stoppen als een programma blijft draaien."
+  },
+  "example": "",
+  "sections": [
+    {
+      "id": "python-v4-08-stop-endless-loop-example",
+      "topicIds": [
+        "infinite-loops"
+      ],
+      "heading": {
+        "en": "Follow a working example",
+        "nl": "Volg een werkend voorbeeld"
+      },
+      "body": {
+        "en": "If count begins at 0 and the body never changes it, the condition count < 3 stays True forever. Repeated output may flood the terminal. Press Stop; wait for execution to end; then repair the code and Run again. The browser also has execution limits, but those limits are not a program's intended stopping rule.\n\nThe working example deliberately changes the counter toward its boundary. Ask two questions for every while loop: can the condition become False, and does the body actually make that happen? If you experiment by removing the update, restore it after using Stop.",
+        "nl": "Als count op 0 begint en het blok het nooit verandert, blijft count < 3 altijd True. Herhaalde uitvoer kan de terminal overspoelen. Klik op Stoppen, wacht tot de uitvoering eindigt, herstel de code en kies opnieuw Uitvoeren. De browser heeft ook uitvoeringsgrenzen, maar die zijn niet de bedoelde stopregel van een programma.\n\nHet werkende voorbeeld verandert de teller bewust richting de grens. Stel bij elke while-lus twee vragen: kan de voorwaarde False worden en zorgt het blok daar werkelijk voor? Als je experimenteert door de wijziging te verwijderen, herstel die dan nadat je Stoppen hebt gebruikt."
+      },
+      "code": "count = 0\nwhile count < 3:\n    print(count)\n    count += 1",
+      "output": "0\n1\n2\n",
+      "prediction": {
+        "en": "Which line prevents this loop from running forever?",
+        "nl": "Welke regel voorkomt dat deze lus altijd blijft draaien?"
+      },
+      "takeaway": {
+        "en": "A stopping condition only helps if execution can reach it.",
+        "nl": "Een stopvoorwaarde helpt alleen als de uitvoering haar kan bereiken."
+      }
+    },
+    {
+      "id": "python-v4-08-stop-endless-loop-experiment",
+      "topicIds": [],
+      "heading": {
+        "en": "Try one change",
+        "nl": "Probeer één wijziging"
+      },
+      "body": {
+        "en": "With the Stop button in view, remove the update and try the program. Stop it, restore the update and verify a subsequent Run works.",
+        "nl": "Verwijder met de knop Stoppen in beeld de wijziging en probeer het programma. Stop het, herstel de wijziging en controleer of opnieuw Uitvoeren werkt."
+      }
+    }
+  ],
+  "files": {
+    "main.py": "count = 0\n# Write a loop that reaches 3, then finishes.\n"
+  },
+  "solution": {
+    "main.py": "count = 0\nwhile count < 3:\n    print(count)\n    count += 1\n"
+  },
+  "checkpoints": [
+    {
+      "id": "python-v4-08-stop-endless-loop-step-1",
+      "objectiveIds": [
+        "infinite-loops"
+      ],
+      "task": {
+        "en": "Write a terminating loop that prints 0, 1 and 2 and leaves count at 3.",
+        "nl": "Schrijf een eindigende lus die 0, 1 en 2 afdrukt en count op 3 achterlaat."
+      },
+      "check": "any(isinstance(n, _ast.While) for n in _ast.walk(_ast.parse(_source))) and count == 3 and _stdout == \"0\\n1\\n2\\n\"",
+      "probes": [],
+      "hint": {
+        "en": "A stopping condition only helps if execution can reach it.",
+        "nl": "Een stopvoorwaarde helpt alleen als de uitvoering haar kan bereiken."
+      },
+      "hints": [
+        {
+          "en": "A stopping condition only helps if execution can reach it.",
+          "nl": "Een stopvoorwaarde helpt alleen als de uitvoering haar kan bereiken."
+        },
+        {
+          "en": "Advance the variable used in the condition on every iteration.",
+          "nl": "Verhoog de variabele uit de voorwaarde tijdens elke herhaling."
+        },
+        {
+          "en": "A small fragment to adapt: `count += 1`",
+          "nl": "Een klein fragment om aan te passen: `count += 1`"
+        }
+      ],
+      "feedback": {
+        "en": "Advance the variable used in the condition on every iteration.",
+        "nl": "Verhoog de variabele uit de voorwaarde tijdens elke herhaling."
+      }
+    }
+  ],
+  "solutionNote": {
+    "en": "The finite version advances count until the condition becomes False. Stop interrupts execution; it does not repair the source.",
+    "nl": "De eindige versie verhoogt count totdat de voorwaarde False wordt. Stoppen onderbreekt de uitvoering; het repareert de broncode niet."
+  },
+  "inputs": [],
+  "retrievals": [
+    {
+      "id": "recall-python-v4-06-greater-less",
+      "sourceActivityId": "python-v4-06-greater-less",
+      "objectiveIds": [
+        "strict-comparisons"
+      ],
+      "prompt": {
+        "en": "Recall “Greater than and less than”. Why is the middle result False? Try the earlier example from memory, then check it. Reverse both operands and use < instead. Do the comparisons describe the same relationship?",
+        "nl": "Haal “Groter dan en kleiner dan” terug. Waarom is het middelste resultaat False? Probeer het eerdere voorbeeld uit je geheugen en controleer daarna. Draai beide operanden om en gebruik <. Beschrijven de vergelijkingen hetzelfde verband?"
+      }
+    }
+  ]
+}

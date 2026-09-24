@@ -1,0 +1,768 @@
+{
+  "id": "python-v4-15-quiz",
+  "chapter": 15,
+  "group": "python-v4-module-15",
+  "kind": "quiz",
+  "optional": false,
+  "estimatedMinutes": 8,
+  "title": {
+    "en": "Drawing and interacting with Pygame: review",
+    "nl": "Tekenen en interactie met Pygame: herhaling"
+  },
+  "questions": [
+    {
+      "objectiveIds": [
+        "rect"
+      ],
+      "category": "prediction",
+      "prompt": {
+        "en": "What does this program print?",
+        "nl": "Wat drukt dit programma af?"
+      },
+      "code": "import pygame\nbox = pygame.Rect(10,20,30,40)\nprint(box.right,box.bottom)",
+      "answer": "a",
+      "expectedOutput": "40 60\n",
+      "choices": [
+        {
+          "id": "a",
+          "label": {
+            "en": "40 60",
+            "nl": "40 60"
+          },
+          "reason": {
+            "en": "Edges combine the position and dimensions.",
+            "nl": "Randen combineren positie en afmetingen."
+          }
+        },
+        {
+          "id": "b",
+          "label": {
+            "en": "30 40",
+            "nl": "30 40"
+          },
+          "reason": {
+            "en": "Width and height are not right and bottom.",
+            "nl": "Breedte en hoogte zijn niet rechterrand en onderkant."
+          }
+        },
+        {
+          "id": "c",
+          "label": {
+            "en": "10 20",
+            "nl": "10 20"
+          },
+          "reason": {
+            "en": "Those are the top-left coordinates.",
+            "nl": "Dat zijn de linkerbovencoördinaten."
+          }
+        }
+      ],
+      "id": "python-v4-15-quiz-a-1",
+      "reviewActivityIds": [
+        "python-v4-15-coordinates"
+      ]
+    },
+    {
+      "objectiveIds": [
+        "packing-unpacking"
+      ],
+      "category": "prediction",
+      "prompt": {
+        "en": "What does this program print?",
+        "nl": "Wat drukt dit programma af?"
+      },
+      "code": "point = (4,2)\nx,y = point\nprint(y,x)",
+      "answer": "a",
+      "expectedOutput": "2 4\n",
+      "choices": [
+        {
+          "id": "a",
+          "label": {
+            "en": "2 4",
+            "nl": "2 4"
+          },
+          "reason": {
+            "en": "The print reverses the order of the named values.",
+            "nl": "De print keert de volgorde van de benoemde waarden om."
+          }
+        },
+        {
+          "id": "b",
+          "label": {
+            "en": "4 2",
+            "nl": "4 2"
+          },
+          "reason": {
+            "en": "The caller prints y first.",
+            "nl": "De aanroeper drukt y eerst af."
+          }
+        },
+        {
+          "id": "c",
+          "label": {
+            "en": "(4, 2)",
+            "nl": "(4, 2)"
+          },
+          "reason": {
+            "en": "It prints two arguments rather than the tuple object.",
+            "nl": "Het drukt twee argumenten af in plaats van het tupleobject."
+          }
+        }
+      ],
+      "id": "python-v4-15-quiz-a-2",
+      "reviewActivityIds": [
+        "python-v4-13-unpack"
+      ]
+    },
+    {
+      "objectiveIds": [
+        "surface"
+      ],
+      "category": "completion",
+      "prompt": {
+        "en": "Complete the code to produce the shown output.",
+        "nl": "Vul de code aan om de getoonde uitvoer te maken."
+      },
+      "code": "import pygame\nimage = pygame.Surface((10,10))\nimage.___((20,40,80))\nprint(image.get_at((0,0))[2])",
+      "answer": "a",
+      "choices": [
+        {
+          "id": "a",
+          "label": {
+            "en": "fill",
+            "nl": "fill"
+          },
+          "reason": {
+            "en": "fill paints the Surface; append belongs to lists.",
+            "nl": "fill kleurt de Surface; append hoort bij lijsten."
+          }
+        },
+        {
+          "id": "b",
+          "label": {
+            "en": "print",
+            "nl": "print"
+          },
+          "reason": {
+            "en": "fill paints the Surface; append belongs to lists.",
+            "nl": "fill kleurt de Surface; append hoort bij lijsten."
+          }
+        },
+        {
+          "id": "c",
+          "label": {
+            "en": "append",
+            "nl": "append"
+          },
+          "reason": {
+            "en": "fill paints the Surface; append belongs to lists.",
+            "nl": "fill kleurt de Surface; append hoort bij lijsten."
+          }
+        }
+      ],
+      "codeBlank": {
+        "prompt": {
+          "en": "Complete the code to produce the shown output.",
+          "nl": "Vul de code aan om de getoonde uitvoer te maken."
+        },
+        "segments": [
+          "import pygame\nimage = pygame.Surface((10,10))\nimage.",
+          "((20,40,80))\nprint(image.get_at((0,0))[2])"
+        ],
+        "tokens": [
+          {
+            "id": "token-1",
+            "code": "fill"
+          },
+          {
+            "id": "token-2",
+            "code": "print"
+          },
+          {
+            "id": "token-3",
+            "code": "append"
+          }
+        ],
+        "blanks": [
+          {
+            "answer": "fill",
+            "reason": {
+              "en": "fill paints the Surface; append belongs to lists.",
+              "nl": "fill kleurt de Surface; append hoort bij lijsten."
+            }
+          }
+        ],
+        "output": "80\n"
+      },
+      "id": "python-v4-15-quiz-a-3",
+      "reviewActivityIds": [
+        "python-v4-15-surface-colour"
+      ]
+    },
+    {
+      "objectiveIds": [
+        "multiple-returns"
+      ],
+      "category": "completion",
+      "prompt": {
+        "en": "Complete the code to produce the shown output.",
+        "nl": "Vul de code aan om de getoonde uitvoer te maken."
+      },
+      "code": "def pair():\n    return 4,2\nx, y = ___\nprint(x + y)",
+      "answer": "a",
+      "choices": [
+        {
+          "id": "a",
+          "label": {
+            "en": "pair()",
+            "nl": "pair()"
+          },
+          "reason": {
+            "en": "Call the function, then unpack its returned tuple.",
+            "nl": "Roep de functie aan en pak daarna de teruggegeven tuple uit."
+          }
+        },
+        {
+          "id": "b",
+          "label": {
+            "en": "pair",
+            "nl": "pair"
+          },
+          "reason": {
+            "en": "Call the function, then unpack its returned tuple.",
+            "nl": "Roep de functie aan en pak daarna de teruggegeven tuple uit."
+          }
+        },
+        {
+          "id": "c",
+          "label": {
+            "en": "2",
+            "nl": "2"
+          },
+          "reason": {
+            "en": "Call the function, then unpack its returned tuple.",
+            "nl": "Roep de functie aan en pak daarna de teruggegeven tuple uit."
+          }
+        }
+      ],
+      "codeBlank": {
+        "prompt": {
+          "en": "Complete the code to produce the shown output.",
+          "nl": "Vul de code aan om de getoonde uitvoer te maken."
+        },
+        "segments": [
+          "def pair():\n    return 4,2\nx, y = ",
+          "\nprint(x + y)"
+        ],
+        "tokens": [
+          {
+            "id": "token-1",
+            "code": "pair()"
+          },
+          {
+            "id": "token-2",
+            "code": "pair"
+          },
+          {
+            "id": "token-3",
+            "code": "2"
+          }
+        ],
+        "blanks": [
+          {
+            "answer": "pair()",
+            "reason": {
+              "en": "Call the function, then unpack its returned tuple.",
+              "nl": "Roep de functie aan en pak daarna de teruggegeven tuple uit."
+            }
+          }
+        ],
+        "output": "6\n"
+      },
+      "id": "python-v4-15-quiz-a-4",
+      "reviewActivityIds": [
+        "python-v4-13-multiple-results"
+      ]
+    },
+    {
+      "objectiveIds": [
+        "drawing-order"
+      ],
+      "category": "debugging",
+      "prompt": {
+        "en": "Choose the repair or test that addresses the stated problem.",
+        "nl": "Kies de reparatie of test die het beschreven probleem aanpakt."
+      },
+      "code": "# Paddle should be visible.\npygame.draw.rect(screen,(255,255,255),(20,20,10,60))\nscreen.fill((0,0,0))",
+      "answer": "a",
+      "choices": [
+        {
+          "id": "a",
+          "label": {
+            "en": "Fill before drawing the paddle.",
+            "nl": "Vul vóór het batje tekenen."
+          },
+          "reason": {
+            "en": "The later fill currently covers the paddle.",
+            "nl": "De latere fill bedekt nu het batje."
+          }
+        },
+        {
+          "id": "b",
+          "label": {
+            "en": "Make the paddle colour black.",
+            "nl": "Maak het batje zwart."
+          },
+          "reason": {
+            "en": "That makes it blend into the background.",
+            "nl": "Daardoor valt het samen met de achtergrond."
+          }
+        },
+        {
+          "id": "c",
+          "label": {
+            "en": "Call fill twice afterward.",
+            "nl": "Roep fill daarna tweemaal aan."
+          },
+          "reason": {
+            "en": "More background painting still covers it.",
+            "nl": "Meer achtergrond tekenen blijft het bedekken."
+          }
+        }
+      ],
+      "id": "python-v4-15-quiz-a-5",
+      "reviewActivityIds": [
+        "python-v4-15-drawing-order"
+      ]
+    },
+    {
+      "objectiveIds": [
+        "events"
+      ],
+      "category": "application",
+      "prompt": {
+        "en": "Which explanation applies to this example?",
+        "nl": "Welke uitleg past bij dit voorbeeld?"
+      },
+      "code": "if event.type == pygame.KEYDOWN:\n    print(event.key) # 20",
+      "answer": "a",
+      "choices": [
+        {
+          "id": "a",
+          "label": {
+            "en": "The type check ensures this is a keyboard event before reading key.",
+            "nl": "De typecontrole zorgt dat dit een toetsenbordgebeurtenis is vóór key lezen."
+          },
+          "reason": {
+            "en": "Not all events have a key attribute.",
+            "nl": "Niet alle gebeurtenissen hebben een key-attribuut."
+          }
+        },
+        {
+          "id": "b",
+          "label": {
+            "en": "Every event always has key.",
+            "nl": "Elke gebeurtenis heeft altijd key."
+          },
+          "reason": {
+            "en": "Window events can have different attributes.",
+            "nl": "Venstergebeurtenissen kunnen andere attributen hebben."
+          }
+        },
+        {
+          "id": "c",
+          "label": {
+            "en": "The check installs keyboard support.",
+            "nl": "De controle installeert toetsenbordondersteuning."
+          },
+          "reason": {
+            "en": "It selects an event branch; it installs nothing.",
+            "nl": "Het kiest een gebeurtenistak en installeert niets."
+          }
+        }
+      ],
+      "id": "python-v4-15-quiz-a-6",
+      "reviewActivityIds": [
+        "python-v4-15-events"
+      ]
+    }
+  ],
+  "alternateQuestions": [
+    {
+      "objectiveIds": [
+        "rect"
+      ],
+      "category": "prediction",
+      "prompt": {
+        "en": "What does this program print?",
+        "nl": "Wat drukt dit programma af?"
+      },
+      "code": "import pygame\nbox = pygame.Rect(10,30,30,40)\nprint(box.right,box.bottom)",
+      "answer": "a",
+      "expectedOutput": "40 70\n",
+      "choices": [
+        {
+          "id": "a",
+          "label": {
+            "en": "40 70",
+            "nl": "40 70"
+          },
+          "reason": {
+            "en": "Edges combine the position and dimensions.",
+            "nl": "Randen combineren positie en afmetingen."
+          }
+        },
+        {
+          "id": "b",
+          "label": {
+            "en": "30 40",
+            "nl": "30 40"
+          },
+          "reason": {
+            "en": "Width and height are not right and bottom.",
+            "nl": "Breedte en hoogte zijn niet rechterrand en onderkant."
+          }
+        },
+        {
+          "id": "c",
+          "label": {
+            "en": "10 30",
+            "nl": "10 30"
+          },
+          "reason": {
+            "en": "Those are the top-left coordinates.",
+            "nl": "Dat zijn de linkerbovencoördinaten."
+          }
+        }
+      ],
+      "id": "python-v4-15-quiz-b-1",
+      "reviewActivityIds": [
+        "python-v4-15-coordinates"
+      ]
+    },
+    {
+      "objectiveIds": [
+        "packing-unpacking"
+      ],
+      "category": "prediction",
+      "prompt": {
+        "en": "What does this program print?",
+        "nl": "Wat drukt dit programma af?"
+      },
+      "code": "point = (7,2)\nx,y = point\nprint(y,x)",
+      "answer": "a",
+      "expectedOutput": "2 7\n",
+      "choices": [
+        {
+          "id": "a",
+          "label": {
+            "en": "2 7",
+            "nl": "2 7"
+          },
+          "reason": {
+            "en": "The print reverses the order of the named values.",
+            "nl": "De print keert de volgorde van de benoemde waarden om."
+          }
+        },
+        {
+          "id": "b",
+          "label": {
+            "en": "7 2",
+            "nl": "7 2"
+          },
+          "reason": {
+            "en": "The caller prints y first.",
+            "nl": "De aanroeper drukt y eerst af."
+          }
+        },
+        {
+          "id": "c",
+          "label": {
+            "en": "(7, 2)",
+            "nl": "(7, 2)"
+          },
+          "reason": {
+            "en": "It prints two arguments rather than the tuple object.",
+            "nl": "Het drukt twee argumenten af in plaats van het tupleobject."
+          }
+        }
+      ],
+      "id": "python-v4-15-quiz-b-2",
+      "reviewActivityIds": [
+        "python-v4-13-unpack"
+      ]
+    },
+    {
+      "objectiveIds": [
+        "surface"
+      ],
+      "category": "completion",
+      "prompt": {
+        "en": "Complete the code to produce the shown output.",
+        "nl": "Vul de code aan om de getoonde uitvoer te maken."
+      },
+      "code": "import pygame\nimage = pygame.Surface((10,10))\nimage.___((20,40,120))\nprint(image.get_at((0,0))[2])",
+      "answer": "a",
+      "choices": [
+        {
+          "id": "a",
+          "label": {
+            "en": "fill",
+            "nl": "fill"
+          },
+          "reason": {
+            "en": "fill paints the Surface; append belongs to lists.",
+            "nl": "fill kleurt de Surface; append hoort bij lijsten."
+          }
+        },
+        {
+          "id": "b",
+          "label": {
+            "en": "print",
+            "nl": "print"
+          },
+          "reason": {
+            "en": "fill paints the Surface; append belongs to lists.",
+            "nl": "fill kleurt de Surface; append hoort bij lijsten."
+          }
+        },
+        {
+          "id": "c",
+          "label": {
+            "en": "append",
+            "nl": "append"
+          },
+          "reason": {
+            "en": "fill paints the Surface; append belongs to lists.",
+            "nl": "fill kleurt de Surface; append hoort bij lijsten."
+          }
+        }
+      ],
+      "codeBlank": {
+        "prompt": {
+          "en": "Complete the code to produce the shown output.",
+          "nl": "Vul de code aan om de getoonde uitvoer te maken."
+        },
+        "segments": [
+          "import pygame\nimage = pygame.Surface((10,10))\nimage.",
+          "((20,40,120))\nprint(image.get_at((0,0))[2])"
+        ],
+        "tokens": [
+          {
+            "id": "token-1",
+            "code": "fill"
+          },
+          {
+            "id": "token-2",
+            "code": "print"
+          },
+          {
+            "id": "token-3",
+            "code": "append"
+          }
+        ],
+        "blanks": [
+          {
+            "answer": "fill",
+            "reason": {
+              "en": "fill paints the Surface; append belongs to lists.",
+              "nl": "fill kleurt de Surface; append hoort bij lijsten."
+            }
+          }
+        ],
+        "output": "120\n"
+      },
+      "id": "python-v4-15-quiz-b-3",
+      "reviewActivityIds": [
+        "python-v4-15-surface-colour"
+      ]
+    },
+    {
+      "objectiveIds": [
+        "multiple-returns"
+      ],
+      "category": "completion",
+      "prompt": {
+        "en": "Complete the code to produce the shown output.",
+        "nl": "Vul de code aan om de getoonde uitvoer te maken."
+      },
+      "code": "def pair():\n    return 7,2\nx, y = ___\nprint(x + y)",
+      "answer": "a",
+      "choices": [
+        {
+          "id": "a",
+          "label": {
+            "en": "pair()",
+            "nl": "pair()"
+          },
+          "reason": {
+            "en": "Call the function, then unpack its returned tuple.",
+            "nl": "Roep de functie aan en pak daarna de teruggegeven tuple uit."
+          }
+        },
+        {
+          "id": "b",
+          "label": {
+            "en": "pair",
+            "nl": "pair"
+          },
+          "reason": {
+            "en": "Call the function, then unpack its returned tuple.",
+            "nl": "Roep de functie aan en pak daarna de teruggegeven tuple uit."
+          }
+        },
+        {
+          "id": "c",
+          "label": {
+            "en": "2",
+            "nl": "2"
+          },
+          "reason": {
+            "en": "Call the function, then unpack its returned tuple.",
+            "nl": "Roep de functie aan en pak daarna de teruggegeven tuple uit."
+          }
+        }
+      ],
+      "codeBlank": {
+        "prompt": {
+          "en": "Complete the code to produce the shown output.",
+          "nl": "Vul de code aan om de getoonde uitvoer te maken."
+        },
+        "segments": [
+          "def pair():\n    return 7,2\nx, y = ",
+          "\nprint(x + y)"
+        ],
+        "tokens": [
+          {
+            "id": "token-1",
+            "code": "pair()"
+          },
+          {
+            "id": "token-2",
+            "code": "pair"
+          },
+          {
+            "id": "token-3",
+            "code": "2"
+          }
+        ],
+        "blanks": [
+          {
+            "answer": "pair()",
+            "reason": {
+              "en": "Call the function, then unpack its returned tuple.",
+              "nl": "Roep de functie aan en pak daarna de teruggegeven tuple uit."
+            }
+          }
+        ],
+        "output": "9\n"
+      },
+      "id": "python-v4-15-quiz-b-4",
+      "reviewActivityIds": [
+        "python-v4-13-multiple-results"
+      ]
+    },
+    {
+      "objectiveIds": [
+        "drawing-order"
+      ],
+      "category": "debugging",
+      "prompt": {
+        "en": "Choose the repair or test that addresses the stated problem.",
+        "nl": "Kies de reparatie of test die het beschreven probleem aanpakt."
+      },
+      "code": "# Paddle should be visible.\npygame.draw.rect(screen,(255,255,255),(20,30,10,60))\nscreen.fill((0,0,0))",
+      "answer": "a",
+      "choices": [
+        {
+          "id": "a",
+          "label": {
+            "en": "Fill before drawing the paddle.",
+            "nl": "Vul vóór het batje tekenen."
+          },
+          "reason": {
+            "en": "The later fill currently covers the paddle.",
+            "nl": "De latere fill bedekt nu het batje."
+          }
+        },
+        {
+          "id": "b",
+          "label": {
+            "en": "Make the paddle colour black.",
+            "nl": "Maak het batje zwart."
+          },
+          "reason": {
+            "en": "That makes it blend into the background.",
+            "nl": "Daardoor valt het samen met de achtergrond."
+          }
+        },
+        {
+          "id": "c",
+          "label": {
+            "en": "Call fill twice afterward.",
+            "nl": "Roep fill daarna tweemaal aan."
+          },
+          "reason": {
+            "en": "More background painting still covers it.",
+            "nl": "Meer achtergrond tekenen blijft het bedekken."
+          }
+        }
+      ],
+      "id": "python-v4-15-quiz-b-5",
+      "reviewActivityIds": [
+        "python-v4-15-drawing-order"
+      ]
+    },
+    {
+      "objectiveIds": [
+        "events"
+      ],
+      "category": "application",
+      "prompt": {
+        "en": "Which explanation applies to this example?",
+        "nl": "Welke uitleg past bij dit voorbeeld?"
+      },
+      "code": "if event.type == pygame.KEYDOWN:\n    print(event.key) # 30",
+      "answer": "a",
+      "choices": [
+        {
+          "id": "a",
+          "label": {
+            "en": "The type check ensures this is a keyboard event before reading key.",
+            "nl": "De typecontrole zorgt dat dit een toetsenbordgebeurtenis is vóór key lezen."
+          },
+          "reason": {
+            "en": "Not all events have a key attribute.",
+            "nl": "Niet alle gebeurtenissen hebben een key-attribuut."
+          }
+        },
+        {
+          "id": "b",
+          "label": {
+            "en": "Every event always has key.",
+            "nl": "Elke gebeurtenis heeft altijd key."
+          },
+          "reason": {
+            "en": "Window events can have different attributes.",
+            "nl": "Venstergebeurtenissen kunnen andere attributen hebben."
+          }
+        },
+        {
+          "id": "c",
+          "label": {
+            "en": "The check installs keyboard support.",
+            "nl": "De controle installeert toetsenbordondersteuning."
+          },
+          "reason": {
+            "en": "It selects an event branch; it installs nothing.",
+            "nl": "Het kiest een gebeurtenistak en installeert niets."
+          }
+        }
+      ],
+      "id": "python-v4-15-quiz-b-6",
+      "reviewActivityIds": [
+        "python-v4-15-events"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,145 @@
+{
+  "id": "python-v4-09-early-return",
+  "chapter": 9,
+  "group": "python-v4-module-9",
+  "title": {
+    "en": "Stop a function at a guard",
+    "nl": "Stop een functie bij een bewaking"
+  },
+  "kind": "coding",
+  "optional": false,
+  "runtime": "terminal",
+  "guidance": "adapt",
+  "checkpointMode": "sequential",
+  "estimatedMinutes": 12,
+  "topicIds": [
+    "early-return"
+  ],
+  "practices": [],
+  "requiredConcepts": [
+    "return",
+    "if",
+    "none"
+  ],
+  "explanation": {
+    "en": "A guard handles a special case before the normal calculation.",
+    "nl": "Een bewaking verwerkt een speciaal geval vóór de normale berekening."
+  },
+  "example": "",
+  "sections": [
+    {
+      "id": "python-v4-09-early-return-example",
+      "topicIds": [
+        "early-return"
+      ],
+      "heading": {
+        "en": "Follow a working example",
+        "nl": "Volg een werkend voorbeeld"
+      },
+      "body": {
+        "en": "return immediately ends the current function call. Statements below that return do not run for that call. A guard can return None when no numeric answer is meaningful. This does not stop the whole program: the caller continues and can decide how to display the absence.",
+        "nl": "return beëindigt direct de huidige functieaanroep. Instructies onder die return worden voor die aanroep niet uitgevoerd. Een bewaking kan None teruggeven wanneer geen numeriek antwoord zinvol is. Dit stopt niet het hele programma: de aanroeper gaat verder en kan beslissen hoe afwezigheid wordt getoond."
+      },
+      "code": "def average(total, count):\n    if count == 0:\n        return None\n    return total / count\nprint(average(10, 0))\nprint(average(10, 2))",
+      "output": "None\n5.0\n",
+      "prediction": {
+        "en": "Is division reached for count zero?",
+        "nl": "Wordt delen bereikt als count nul is?"
+      },
+      "takeaway": {
+        "en": "Check the invalid case before the operation that needs valid data.",
+        "nl": "Controleer het ongeldige geval vóór de bewerking die geldige gegevens nodig heeft."
+      }
+    },
+    {
+      "id": "python-v4-09-early-return-experiment",
+      "topicIds": [],
+      "heading": {
+        "en": "Try one change",
+        "nl": "Probeer één wijziging"
+      },
+      "body": {
+        "en": "Store speed(0, 2). Explain why zero is a valid answer unlike None.",
+        "nl": "Bewaar speed(0, 2). Leg uit waarom nul een geldig antwoord is, anders dan None."
+      }
+    }
+  ],
+  "files": {
+    "main.py": "def speed(distance, hours):\n    return distance / hours\n"
+  },
+  "solution": {
+    "main.py": "def speed(distance, hours):\n    if hours <= 0:\n        return None\n    return distance / hours\n"
+  },
+  "checkpoints": [
+    {
+      "id": "python-v4-09-early-return-step-1",
+      "objectiveIds": [
+        "early-return"
+      ],
+      "task": {
+        "en": "Return None for hours at or below zero; otherwise return distance / hours.",
+        "nl": "Geef None terug voor hours kleiner dan of gelijk aan nul; geef anders distance / hours terug."
+      },
+      "check": "callable(speed)",
+      "probes": [
+        {
+          "call": {
+            "name": "speed",
+            "args": [
+              12,
+              0
+            ]
+          },
+          "check": "_return is None and _error is None"
+        },
+        {
+          "call": {
+            "name": "speed",
+            "args": [
+              12,
+              -1
+            ]
+          },
+          "check": "_return is None"
+        },
+        {
+          "call": {
+            "name": "speed",
+            "args": [
+              12,
+              2
+            ]
+          },
+          "check": "_return == 6"
+        }
+      ],
+      "hint": {
+        "en": "Check the invalid case before the operation that needs valid data.",
+        "nl": "Controleer het ongeldige geval vóór de bewerking die geldige gegevens nodig heeft."
+      },
+      "hints": [
+        {
+          "en": "Check the invalid case before the operation that needs valid data.",
+          "nl": "Controleer het ongeldige geval vóór de bewerking die geldige gegevens nodig heeft."
+        },
+        {
+          "en": "Add a guard before the division.",
+          "nl": "Voeg een bewaking vóór de deling toe."
+        },
+        {
+          "en": "A small fragment to adapt: `if hours <= 0:`",
+          "nl": "Een klein fragment om aan te passen: `if hours <= 0:`"
+        }
+      ],
+      "feedback": {
+        "en": "Add a guard before the division.",
+        "nl": "Voeg een bewaking vóór de deling toe."
+      }
+    }
+  ],
+  "solutionNote": {
+    "en": "The guard exits before division; valid zero distance still returns numeric zero.",
+    "nl": "De bewaking stopt vóór de deling; geldige afstand nul geeft nog steeds numerieke nul terug."
+  },
+  "inputs": []
+}

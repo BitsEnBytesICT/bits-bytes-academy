@@ -1,0 +1,132 @@
+{
+  "id": "python-v4-07-indentation",
+  "chapter": 7,
+  "group": "python-v4-module-7",
+  "title": {
+    "en": "See which lines belong together",
+    "nl": "Zie welke regels bij elkaar horen"
+  },
+  "kind": "coding",
+  "optional": false,
+  "runtime": "terminal",
+  "guidance": "adapt",
+  "checkpointMode": "sequential",
+  "estimatedMinutes": 13,
+  "topicIds": [
+    "indentation"
+  ],
+  "practices": [],
+  "requiredConcepts": [
+    "if"
+  ],
+  "explanation": {
+    "en": "A block can contain more than one statement. Repair a program whose indentation puts a message in the wrong place.",
+    "nl": "Een blok kan meer dan één instructie bevatten. Herstel een programma waarin inspringing een bericht op de verkeerde plaats zet."
+  },
+  "example": "",
+  "sections": [
+    {
+      "id": "python-v4-07-indentation-example",
+      "topicIds": [
+        "indentation"
+      ],
+      "heading": {
+        "en": "Follow a working example",
+        "nl": "Volg een werkend voorbeeld"
+      },
+      "body": {
+        "en": "All statements in one block use the same indentation. Returning to the previous indentation ends that block. Python does not use braces to group these statements.\n\nUse four spaces consistently and let the editor help with indentation. A program can have valid syntax but the wrong block structure: a message outside an if will run even when the condition is False. Trace the False case to find that mistake.",
+        "nl": "Alle instructies in één blok gebruiken dezelfde inspringing. Terugkeren naar de vorige inspringing beëindigt het blok. Python gebruikt geen accolades om deze instructies te groeperen.\n\nGebruik consequent vier spaties en laat de editor helpen met inspringen. Een programma kan geldige syntaxis maar een verkeerde blokstructuur hebben: een bericht buiten een if verschijnt ook als de voorwaarde False is. Volg het False-geval om die fout te vinden."
+      },
+      "code": "sunny = False\nif sunny:\n    print(\"Take sunglasses\")\n    print(\"Enjoy the sun\")\nprint(\"Have a good day\")",
+      "output": "Have a good day\n",
+      "prediction": {
+        "en": "Which statements are skipped together?",
+        "nl": "Welke instructies worden samen overgeslagen?"
+      },
+      "takeaway": {
+        "en": "Indentation determines which statements the condition controls.",
+        "nl": "Inspringing bepaalt welke instructies door de voorwaarde worden bestuurd."
+      }
+    },
+    {
+      "id": "python-v4-07-indentation-experiment",
+      "topicIds": [],
+      "heading": {
+        "en": "Try one change",
+        "nl": "Probeer één wijziging"
+      },
+      "body": {
+        "en": "Move Ready inside the block, test False, then restore the intended behaviour.",
+        "nl": "Verplaats Ready naar het blok, test False en herstel daarna het bedoelde gedrag."
+      }
+    }
+  ],
+  "files": {
+    "main.py": "raining = True\nif raining:\n    print(\"Take a coat\")\nprint(\"Take an umbrella\")\nprint(\"Ready\")\n"
+  },
+  "solution": {
+    "main.py": "raining = True\nif raining:\n    print(\"Take a coat\")\n    print(\"Take an umbrella\")\nprint(\"Ready\")\n"
+  },
+  "checkpoints": [
+    {
+      "id": "python-v4-07-indentation-step-1",
+      "objectiveIds": [
+        "indentation"
+      ],
+      "task": {
+        "en": "Make both weather tips conditional on raining. Keep \"Ready\" unconditional.",
+        "nl": "Maak beide weertips afhankelijk van raining. Laat \"Ready\" altijd verschijnen."
+      },
+      "check": "_stdout == \"Take a coat\\nTake an umbrella\\nReady\\n\"",
+      "probes": [
+        {
+          "inputs": {
+            "raining": false
+          },
+          "check": "_stdout == \"Ready\\n\""
+        }
+      ],
+      "hint": {
+        "en": "Indentation determines which statements the condition controls.",
+        "nl": "Inspringing bepaalt welke instructies door de voorwaarde worden bestuurd."
+      },
+      "hints": [
+        {
+          "en": "Indentation determines which statements the condition controls.",
+          "nl": "Inspringing bepaalt welke instructies door de voorwaarde worden bestuurd."
+        },
+        {
+          "en": "Align the two tips inside the block and keep the final print at the left margin.",
+          "nl": "Lijn de twee tips binnen het blok uit en houd de laatste print aan de linkermarge."
+        },
+        {
+          "en": "A small fragment to adapt: `    print(\"Take an umbrella\")`",
+          "nl": "Een klein fragment om aan te passen: `    print(\"Take an umbrella\")`"
+        }
+      ],
+      "feedback": {
+        "en": "Align the two tips inside the block and keep the final print at the left margin.",
+        "nl": "Lijn de twee tips binnen het blok uit en houd de laatste print aan de linkermarge."
+      }
+    }
+  ],
+  "solutionNote": {
+    "en": "Both tips share the if block. The final status line stays outside it.",
+    "nl": "Beide tips delen het if-blok. De laatste statusregel blijft erbuiten."
+  },
+  "inputs": [],
+  "retrievals": [
+    {
+      "id": "recall-python-v4-05-input-is-text",
+      "sourceActivityId": "python-v4-05-input-is-text",
+      "objectiveIds": [
+        "input-string-type"
+      ],
+      "prompt": {
+        "en": "Recall “Digits entered are still text”. Would typing 0 instead change the returned type? Try the earlier example from memory, then check it. Enter a word, then a decimal number. Explain why both have the same type.",
+        "nl": "Haal “Ingevoerde cijfers zijn nog steeds tekst” terug. Verandert het teruggegeven type als je 0 typt? Probeer het eerdere voorbeeld uit je geheugen en controleer daarna. Voer een woord in en daarna een kommagetal. Leg uit waarom beide hetzelfde type hebben."
+      }
+    }
+  ]
+}

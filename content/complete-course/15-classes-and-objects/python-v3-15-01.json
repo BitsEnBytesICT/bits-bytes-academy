@@ -1,0 +1,175 @@
+{
+  "id": "python-v3-15-01",
+  "chapter": 15,
+  "group": "python-v3-module-15",
+  "title": {
+    "en": "Inspect familiar objects",
+    "nl": "Bekijk bekende objecten"
+  },
+  "kind": "coding",
+  "optional": false,
+  "runtime": "terminal",
+  "guidance": "guided",
+  "estimatedMinutes": 18,
+  "explanation": {
+    "en": "Inspect familiar Python values as objects. Every value has a type; functions are values too, so they can be stored and passed to other functions.",
+    "nl": "Bekijk bekende Python-waarden als objecten. Elke waarde heeft een type; functies zijn ook waarden en kunnen dus bewaard en aan andere functies meegegeven worden."
+  },
+  "example": "",
+  "topicIds": [
+    "types",
+    "everything-is-object",
+    "functions-as-objects"
+  ],
+  "prerequisites": [
+    "python-v3-14-06"
+  ],
+  "sections": [
+    {
+      "topicIds": [
+        "types",
+        "everything-is-object",
+        "functions-as-objects"
+      ],
+      "heading": {
+        "en": "A function without parentheses",
+        "nl": "Een functie zonder haakjes"
+      },
+      "body": {
+        "en": "type(value) returns its type object. The type’s __name__ attribute gives a readable name. Lists, numbers, strings and functions are all objects, although their supported operations differ. Writing double refers to a function object; double(3) calls it. A function parameter can receive another function and call it later.",
+        "nl": "type(waarde) geeft het typeobject terug. Het __name__-attribuut van dat type geeft een leesbare naam. Lijsten, getallen, strings en functies zijn allemaal objecten, hoewel hun bewerkingen verschillen. double verwijst naar een functieobject; double(3) roept het aan. Een functieparameter kan een andere functie ontvangen en die later aanroepen."
+      },
+      "code": "def double(value):\n    return value * 2\noperation = double\nprint(type(3).__name__)\nprint(type(operation).__name__)\nprint(operation(4))",
+      "output": "int\nfunction\n8\n",
+      "prediction": {
+        "en": "Why is operation = double different from operation = double(4)?",
+        "nl": "Waarom verschilt operation = double van operation = double(4)?"
+      }
+    },
+    {
+      "topicIds": [],
+      "heading": {
+        "en": "Try a changed input",
+        "nl": "Probeer gewijzigde invoer"
+      },
+      "body": {
+        "en": "Pass str as the operation with a numeric value. Explain why its second application still returns a string. Compare callable(double) with callable(double(2)).",
+        "nl": "Geef str mee als operation met een numerieke waarde. Leg uit waarom de tweede toepassing nog een string teruggeeft. Vergelijk callable(double) met callable(double(2))."
+      }
+    }
+  ],
+  "files": {
+    "main.py": "def type_name(value):\n    return \"unknown\"\n\ndef apply_twice(operation, value):\n    return value\n\ndef double(value):\n    return value * 2\n\nprint(type_name([1, 2]))\nprint(apply_twice(double, 3))\n"
+  },
+  "solution": {
+    "main.py": "def type_name(value):\n    return type(value).__name__\n\ndef apply_twice(operation, value):\n    return operation(operation(value))\n\ndef double(value):\n    return value * 2\n\nprint(type_name([1, 2]))\nprint(apply_twice(double, 3))\n"
+  },
+  "checkpoints": [
+    {
+      "objectiveIds": [
+        "types",
+        "everything-is-object"
+      ],
+      "task": {
+        "en": "Return the actual type name from type_name(value), without a hand-written list of cases.",
+        "nl": "Geef de echte typenaam terug vanuit type_name(value), zonder handgeschreven gevallenlijst."
+      },
+      "check": "type_name([1,2]) == \"list\"",
+      "hints": [
+        {
+          "en": "Ask the object’s type rather than guessing from its printed value.",
+          "nl": "Vraag het objecttype in plaats van te raden op basis van uitvoer."
+        },
+        {
+          "en": "Read __name__ from type(value).",
+          "nl": "Lees __name__ van type(value)."
+        },
+        {
+          "en": "return type(value).__name__",
+          "nl": "return type(value).__name__"
+        }
+      ],
+      "hint": {
+        "en": "Ask the object’s type rather than guessing from its printed value.",
+        "nl": "Vraag het objecttype in plaats van te raden op basis van uitvoer."
+      },
+      "feedback": {
+        "en": "A numeric-looking string must still report str.",
+        "nl": "Een numeriek ogende string moet nog steeds str melden."
+      },
+      "probes": [
+        {
+          "call": {
+            "name": "type_name",
+            "args": [
+              "12"
+            ]
+          },
+          "check": "_return == \"str\""
+        },
+        {
+          "call": {
+            "name": "type_name",
+            "args": [
+              true
+            ]
+          },
+          "check": "_return == \"bool\""
+        },
+        {
+          "call": {
+            "name": "type_name",
+            "args": [
+              null
+            ]
+          },
+          "check": "_return == \"NoneType\""
+        }
+      ],
+      "id": "python-v3-15-01-step-1"
+    },
+    {
+      "objectiveIds": [
+        "functions-as-objects"
+      ],
+      "task": {
+        "en": "Apply the supplied operation twice, using the first result as the next input.",
+        "nl": "Pas de meegegeven operation twee keer toe en gebruik het eerste resultaat als volgende invoer."
+      },
+      "check": "apply_twice(double,3) == 12",
+      "hints": [
+        {
+          "en": "The parameter is callable, not its result.",
+          "nl": "De parameter is aanroepbaar, niet het resultaat ervan."
+        },
+        {
+          "en": "Call operation once, then call it again on that result.",
+          "nl": "Roep operation één keer aan en daarna opnieuw met dat resultaat."
+        },
+        {
+          "en": "return operation(operation(value))",
+          "nl": "return operation(operation(value))"
+        }
+      ],
+      "hint": {
+        "en": "The parameter is callable, not its result.",
+        "nl": "De parameter is aanroepbaar, niet het resultaat ervan."
+      },
+      "feedback": {
+        "en": "Do not hard-code doubling: a different function must also work.",
+        "nl": "Leg verdubbelen niet vast: een andere functie moet ook werken."
+      },
+      "probes": [
+        {
+          "check": "apply_twice(abs,-4) == 4 and apply_twice(lambda n: n+1,5) == 7"
+        }
+      ],
+      "id": "python-v3-15-01-step-2"
+    }
+  ],
+  "solutionNote": {
+    "en": "Type inspection works uniformly because values are objects. Passing the function itself keeps apply_twice independent of the particular operation.",
+    "nl": "Type-inspectie werkt uniform omdat waarden objecten zijn. De functie zelf meegeven houdt apply_twice onafhankelijk van de specifieke bewerking."
+  },
+  "inputs": []
+}

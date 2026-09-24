@@ -1,0 +1,147 @@
+{
+  "id": "python-v4-01-comments",
+  "chapter": 1,
+  "group": "python-v4-module-1",
+  "title": {
+    "en": "Comments are for readers",
+    "nl": "Commentaar is voor lezers"
+  },
+  "kind": "coding",
+  "optional": false,
+  "runtime": "terminal",
+  "guidance": "guided",
+  "checkpointMode": "sequential",
+  "estimatedMinutes": 9,
+  "topicIds": [
+    "comments"
+  ],
+  "practices": [],
+  "requiredConcepts": [
+    "print",
+    "strings"
+  ],
+  "explanation": {
+    "en": "Comments help a person understand your code. They can also temporarily disable an instruction while you investigate a program.",
+    "nl": "Commentaar helpt een lezer je code te begrijpen. Je kunt er ook tijdelijk een instructie mee uitschakelen terwijl je een programma onderzoekt."
+  },
+  "example": "",
+  "sections": [
+    {
+      "id": "python-v4-01-comments-example",
+      "topicIds": [
+        "comments"
+      ],
+      "heading": {
+        "en": "Follow a working example",
+        "nl": "Volg een werkend voorbeeld"
+      },
+      "body": {
+        "en": "Outside a string, # starts a comment. Python ignores everything from that mark to the end of the line. A comment on its own line produces no output. An inline comment can explain a statement beside it.\n\nPutting # before an entire print call disables that call. The symbol inside a quoted string is ordinary text, so print(\"#hello\") would display #hello. Good comments explain an intention or a useful detail rather than repeat every word of the code.",
+        "nl": "Buiten een string begint # een commentaar. Python negeert alles vanaf dat teken tot het einde van de regel. Commentaar op een eigen regel produceert geen uitvoer. Commentaar achter een instructie kan een nuttige uitleg geven.\n\nAls je # voor een hele print-aanroep zet, wordt die uitgeschakeld. Het teken binnen een string is gewone tekst, dus print(\"#hello\") toont #hello. Goed commentaar legt een bedoeling of nuttig detail uit in plaats van elk woord van de code te herhalen."
+      },
+      "code": "# Welcome visitors\nprint(\"Come in\")\n# print(\"Closed\")",
+      "output": "Come in\n",
+      "prediction": {
+        "en": "Which print call is disabled?",
+        "nl": "Welke print-aanroep is uitgeschakeld?"
+      },
+      "takeaway": {
+        "en": "A # comment outside a string is ignored for the rest of that line.",
+        "nl": "Een #-commentaar buiten een string wordt tot het einde van die regel genegeerd."
+      }
+    },
+    {
+      "id": "python-v4-01-comments-experiment",
+      "topicIds": [],
+      "heading": {
+        "en": "Try one change",
+        "nl": "Probeer één wijziging"
+      },
+      "body": {
+        "en": "Add print(\"# is visible here\"). Explain why the # is printed.",
+        "nl": "Voeg print(\"# is visible here\") toe. Leg uit waarom # wordt afgedrukt."
+      }
+    }
+  ],
+  "files": {
+    "main.py": "print(\"Opening soon\")\nprint(\"Test message\")\n"
+  },
+  "solution": {
+    "main.py": "# Announce the opening\nprint(\"Opening soon\")\n# print(\"Test message\")\n"
+  },
+  "checkpoints": [
+    {
+      "id": "python-v4-01-comments-step-1",
+      "objectiveIds": [
+        "comments"
+      ],
+      "task": {
+        "en": "Add a comment explaining the announcement.",
+        "nl": "Voeg commentaar toe dat de aankondiging uitlegt."
+      },
+      "check": "any(line.lstrip().startswith(\"#\") for line in _source.splitlines())",
+      "probes": [],
+      "hint": {
+        "en": "A # comment outside a string is ignored for the rest of that line.",
+        "nl": "Een #-commentaar buiten een string wordt tot het einde van die regel genegeerd."
+      },
+      "hints": [
+        {
+          "en": "A # comment outside a string is ignored for the rest of that line.",
+          "nl": "Een #-commentaar buiten een string wordt tot het einde van die regel genegeerd."
+        },
+        {
+          "en": "Put # and a short explanation on a separate line.",
+          "nl": "Zet # met een korte uitleg op een eigen regel."
+        },
+        {
+          "en": "A small fragment to adapt: `# Explain the purpose`",
+          "nl": "Een klein fragment om aan te passen: `# Explain the purpose`"
+        }
+      ],
+      "feedback": {
+        "en": "Put # and a short explanation on a separate line.",
+        "nl": "Zet # met een korte uitleg op een eigen regel."
+      }
+    },
+    {
+      "id": "python-v4-01-comments-step-2",
+      "objectiveIds": [
+        "comments"
+      ],
+      "task": {
+        "en": "Comment out the test message so only \"Opening soon\" is displayed.",
+        "nl": "Zet het testbericht in commentaar zodat alleen \"Opening soon\" verschijnt."
+      },
+      "check": "_stdout == \"Opening soon\\n\"",
+      "probes": [],
+      "hint": {
+        "en": "A # comment outside a string is ignored for the rest of that line.",
+        "nl": "Een #-commentaar buiten een string wordt tot het einde van die regel genegeerd."
+      },
+      "hints": [
+        {
+          "en": "A # comment outside a string is ignored for the rest of that line.",
+          "nl": "Een #-commentaar buiten een string wordt tot het einde van die regel genegeerd."
+        },
+        {
+          "en": "Keep the useful print call active. Place # before the unwanted call.",
+          "nl": "Laat de nuttige print-aanroep actief. Zet # voor de ongewenste aanroep."
+        },
+        {
+          "en": "A small fragment to adapt: `# print(\"temporary message\")`",
+          "nl": "Een klein fragment om aan te passen: `# print(\"temporary message\")`"
+        }
+      ],
+      "feedback": {
+        "en": "Keep the useful print call active. Place # before the unwanted call.",
+        "nl": "Laat de nuttige print-aanroep actief. Zet # voor de ongewenste aanroep."
+      }
+    }
+  ],
+  "solutionNote": {
+    "en": "The comment describes the intention. The disabled print remains available for experimentation, but Python does not execute it.",
+    "nl": "Het commentaar beschrijft de bedoeling. De uitgeschakelde print blijft beschikbaar om mee te experimenteren, maar Python voert haar niet uit."
+  },
+  "inputs": []
+}

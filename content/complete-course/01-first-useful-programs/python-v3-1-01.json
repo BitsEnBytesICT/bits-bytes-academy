@@ -1,0 +1,147 @@
+{
+  "id": "python-v3-1-01",
+  "chapter": 1,
+  "group": "python-v3-module-1",
+  "title": {
+    "en": "An announcement",
+    "nl": "Een aankondiging"
+  },
+  "kind": "coding",
+  "optional": false,
+  "runtime": "terminal",
+  "guidance": "guided",
+  "estimatedMinutes": 13,
+  "explanation": {
+    "en": "Make a useful announcement. The editor holds your instructions; Run asks Python to execute them from top to bottom. Output appears in the terminal. Your edits save automatically. Read the example, predict its output, then type your own two-line version in the editor.",
+    "nl": "Maak een nuttige aankondiging. De editor bevat je instructies; Uitvoeren laat Python ze van boven naar beneden uitvoeren. De uitvoer verschijnt in de terminal. Je wijzigingen worden automatisch opgeslagen. Lees het voorbeeld, voorspel de uitvoer en typ daarna je eigen versie van twee regels in de editor."
+  },
+  "example": "",
+  "topicIds": [
+    "welcome",
+    "comments",
+    "print",
+    "strings",
+    "variables"
+  ],
+  "prerequisites": [],
+  "sections": [
+    {
+      "topicIds": [
+        "welcome",
+        "comments",
+        "print",
+        "strings",
+        "variables"
+      ],
+      "heading": {
+        "en": "Names and values",
+        "nl": "Namen en waarden"
+      },
+      "body": {
+        "en": "A string is text inside matching quotes. Assignment (=) gives a value a name. print(...) displays a value. A # comment explains an intention to a reader; Python ignores the rest of that line. Change code in the editor, not in the output area.",
+        "nl": "Een string is tekst tussen bijpassende aanhalingstekens. Toewijzing (=) geeft een waarde een naam. print(...) toont een waarde. Een #-commentaar legt een bedoeling uit aan de lezer; Python negeert de rest van die regel. Wijzig code in de editor, niet in het uitvoervak."
+      },
+      "code": "# Announce a meeting\nplace = \"Library\"\nprint(place)\nprint(\"Doors open\")",
+      "output": "Library\nDoors open\n",
+      "prediction": {
+        "en": "Which line gives a name a value, and which lines display text?",
+        "nl": "Welke regel geeft een naam een waarde en welke regels tonen tekst?"
+      }
+    },
+    {
+      "topicIds": [],
+      "heading": {
+        "en": "Try a changed input",
+        "nl": "Probeer gewijzigde invoer"
+      },
+      "body": {
+        "en": "After passing, change Studio to your own location. Predict which output line changes, then run it.",
+        "nl": "Wijzig na het slagen Studio in je eigen locatie. Voorspel welke uitvoerregel verandert en voer uit."
+      }
+    }
+  ],
+  "files": {
+    "main.py": ""
+  },
+  "solution": {
+    "main.py": "# Welcome visitors\nplace = \"Studio\"\nprint(place)\nprint(\"Welcome!\")\n"
+  },
+  "checkpoints": [
+    {
+      "objectiveIds": [
+        "comments",
+        "variables",
+        "strings"
+      ],
+      "task": {
+        "en": "Create a string variable place with the value \"Studio\" and add a comment explaining the announcement.",
+        "nl": "Maak een stringvariabele place met de waarde \"Studio\" en voeg commentaar toe dat de aankondiging uitlegt."
+      },
+      "check": "place == \"Studio\" and any(line.lstrip().startswith(\"#\") for line in _source.splitlines())",
+      "hints": [
+        {
+          "en": "Text values need quotes; variable names do not.",
+          "nl": "Tekstwaarden hebben aanhalingstekens nodig; variabelenamen niet."
+        },
+        {
+          "en": "Assign the location before printing it. A comment begins with #.",
+          "nl": "Wijs de locatie toe voordat je die afdrukt. Commentaar begint met #."
+        },
+        {
+          "en": "Start with place = \"Studio\".",
+          "nl": "Begin met place = \"Studio\"."
+        }
+      ],
+      "hint": {
+        "en": "Text values need quotes; variable names do not.",
+        "nl": "Tekstwaarden hebben aanhalingstekens nodig; variabelenamen niet."
+      },
+      "feedback": {
+        "en": "Check the spelling and quotes around Studio.",
+        "nl": "Controleer de spelling en de aanhalingstekens rond Studio."
+      },
+      "probes": [],
+      "id": "python-v3-1-01-step-1"
+    },
+    {
+      "objectiveIds": [
+        "welcome",
+        "print"
+      ],
+      "task": {
+        "en": "Print place, then print \"Welcome!\" on a new line. Run your program.",
+        "nl": "Druk place af en druk daarna \"Welcome!\" af op een nieuwe regel. Voer je programma uit."
+      },
+      "check": "_stdout == \"Studio\\nWelcome!\\n\"",
+      "hints": [
+        {
+          "en": "Each print call ends a line by default.",
+          "nl": "Elke print-aanroep eindigt standaard een regel."
+        },
+        {
+          "en": "Use two print calls, in the requested order.",
+          "nl": "Gebruik twee print-aanroepen, in de gevraagde volgorde."
+        },
+        {
+          "en": "print(place) displays the variable’s value.",
+          "nl": "print(place) toont de waarde van de variabele."
+        }
+      ],
+      "hint": {
+        "en": "Each print call ends a line by default.",
+        "nl": "Elke print-aanroep eindigt standaard een regel."
+      },
+      "feedback": {
+        "en": "The terminal should contain exactly two lines: the location and the greeting.",
+        "nl": "De terminal moet precies twee regels bevatten: de locatie en de begroeting."
+      },
+      "probes": [],
+      "id": "python-v3-1-01-step-2"
+    }
+  ],
+  "solutionNote": {
+    "en": "The variable stores the location, so print(place) follows any later change to it. The comment is for people and produces no output.",
+    "nl": "De variabele bewaart de locatie, zodat print(place) een latere wijziging volgt. Het commentaar is voor mensen en geeft geen uitvoer."
+  },
+  "inputs": []
+}

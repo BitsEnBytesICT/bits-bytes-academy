@@ -1,0 +1,199 @@
+{
+  "id": "python-v3-6-04",
+  "chapter": 6,
+  "group": "python-v3-module-6",
+  "title": {
+    "en": "Create a helper module",
+    "nl": "Maak een hulpmodule"
+  },
+  "kind": "coding",
+  "optional": false,
+  "runtime": "terminal",
+  "guidance": "adapt",
+  "estimatedMinutes": 14,
+  "explanation": {
+    "en": "Create a helper file that can be imported without starting a conversation. Each module has its own namespace.",
+    "nl": "Maak een hulpbestand dat geïmporteerd kan worden zonder een gesprek te starten. Elke module heeft zijn eigen naamruimte."
+  },
+  "example": "",
+  "topicIds": [
+    "local-modules",
+    "module-scope"
+  ],
+  "prerequisites": [
+    "python-v3-6-03"
+  ],
+  "sections": [
+    {
+      "topicIds": [
+        "local-modules",
+        "module-scope"
+      ],
+      "heading": {
+        "en": "Two files, one program",
+        "nl": "Twee bestanden, één programma"
+      },
+      "body": {
+        "en": "A file named labels.py can be imported as labels. Top-level statements run when the module is first imported. Put reusable definitions there, and input or display in main.py. Access a module variable as labels.prefix; a same-named variable in main.py is separate. Imports in this workspace use flat filenames next to main.py.",
+        "nl": "Een bestand labels.py kan als labels worden geïmporteerd. Opdrachten op het hoogste niveau worden uitgevoerd wanneer de module voor het eerst geïmporteerd wordt. Zet daar herbruikbare definities en plaats input of uitvoer in main.py. Lees een modulevariabele als labels.prefix; een gelijknamige variabele in main.py is apart. Imports in deze werkruimte gebruiken bestandsnamen naast main.py."
+      },
+      "code": "import labels\nprefix = \"Local\"\nprint(labels.label(\"Ada\"))\nprint(prefix)",
+      "output": "Hello Ada\nLocal\n",
+      "prediction": {
+        "en": "Why does the local prefix not change labels.prefix?",
+        "nl": "Waarom verandert de lokale prefix labels.prefix niet?"
+      },
+      "exampleFiles": {
+        "labels.py": "prefix = \"Hello\"\ndef label(name):\n    return prefix + \" \" + name\n"
+      }
+    },
+    {
+      "topicIds": [],
+      "heading": {
+        "en": "Try a changed input",
+        "nl": "Probeer gewijzigde invoer"
+      },
+      "body": {
+        "en": "Change base_fee only in main.py, then only in helpers.py. Predict which printed line changes in each experiment.",
+        "nl": "Wijzig base_fee alleen in main.py en daarna alleen in helpers.py. Voorspel welke uitvoerregel bij elk experiment verandert."
+      }
+    }
+  ],
+  "files": {
+    "main.py": "# Open helpers.py, add the helper, then import it here.\n",
+    "helpers.py": "# Define base_fee and shipping here.\n"
+  },
+  "solution": {
+    "main.py": "import helpers\nbase_fee = 99\nprint(helpers.shipping(3))\nprint(base_fee)\n",
+    "helpers.py": "base_fee = 2\ndef shipping(items):\n    return base_fee + items\n"
+  },
+  "checkpoints": [
+    {
+      "objectiveIds": [
+        "local-modules"
+      ],
+      "task": {
+        "en": "In helpers.py set base_fee = 2 and define shipping(items), returning base_fee + items. Import helpers in main.py.",
+        "nl": "Zet in helpers.py base_fee = 2 en definieer shipping(items), die base_fee + items teruggeeft. Importeer helpers in main.py."
+      },
+      "check": "helpers.shipping(3) == 5",
+      "hints": [
+        {
+          "en": "The module name is the filename without .py.",
+          "nl": "De modulenaam is de bestandsnaam zonder .py."
+        },
+        {
+          "en": "Use the file tab to edit definitions in helpers.py.",
+          "nl": "Gebruik het bestandstabblad om definities in helpers.py te bewerken."
+        },
+        {
+          "en": "def shipping(items):\n    return base_fee + items",
+          "nl": "def shipping(items):\n    return base_fee + items"
+        }
+      ],
+      "hint": {
+        "en": "The module name is the filename without .py.",
+        "nl": "De modulenaam is de bestandsnaam zonder .py."
+      },
+      "feedback": {
+        "en": "Check the filename and keep importable code free of input calls.",
+        "nl": "Controleer de bestandsnaam en houd importeerbare code vrij van input-aanroepen."
+      },
+      "probes": [
+        {
+          "call": {
+            "name": "shipping",
+            "args": [
+              0
+            ],
+            "module": "helpers"
+          },
+          "check": "_return == 2 and _stdout == \"\"",
+          "moduleOnly": true,
+          "module": "helpers"
+        },
+        {
+          "call": {
+            "name": "shipping",
+            "args": [
+              7
+            ],
+            "module": "helpers"
+          },
+          "check": "_return == 9",
+          "moduleOnly": true,
+          "module": "helpers"
+        }
+      ],
+      "id": "python-v3-6-04-step-1"
+    },
+    {
+      "objectiveIds": [
+        "module-scope"
+      ],
+      "task": {
+        "en": "In main.py set a separate base_fee = 99. Print helpers.shipping(3), then this local base_fee. Importing helpers must not print.",
+        "nl": "Stel in main.py een aparte base_fee = 99 in. Druk helpers.shipping(3) af en daarna deze lokale base_fee. helpers importeren mag niets afdrukken."
+      },
+      "check": "base_fee == 99 and helpers.base_fee == 2 and _stdout == \"5\\n99\\n\"",
+      "hints": [
+        {
+          "en": "The two names belong to different modules.",
+          "nl": "De twee namen horen bij verschillende modules."
+        },
+        {
+          "en": "Do not assign helpers.base_fee from main.py.",
+          "nl": "Wijs helpers.base_fee niet vanuit main.py toe."
+        },
+        {
+          "en": "print(helpers.shipping(3))",
+          "nl": "print(helpers.shipping(3))"
+        }
+      ],
+      "hint": {
+        "en": "The two names belong to different modules.",
+        "nl": "De twee namen horen bij verschillende modules."
+      },
+      "feedback": {
+        "en": "Changing main.py’s variable should leave the helper’s default untouched.",
+        "nl": "De variabele van main.py wijzigen moet de standaard van de helper ongemoeid laten."
+      },
+      "probes": [
+        {
+          "call": {
+            "name": "shipping",
+            "args": [
+              1
+            ],
+            "module": "helpers"
+          },
+          "check": "__import__(\"helpers\").base_fee == 2 and _return == 3 and _stdout == \"\"",
+          "moduleOnly": true,
+          "module": "helpers"
+        }
+      ],
+      "id": "python-v3-6-04-step-2"
+    }
+  ],
+  "solutionNote": {
+    "en": "Importing creates a namespace for the helper. main.py controls display; helpers.py provides a reusable calculation with its own module variable.",
+    "nl": "Importeren maakt een naamruimte voor de helper. main.py beheert uitvoer; helpers.py levert een herbruikbare berekening met een eigen modulevariabele."
+  },
+  "inputs": [],
+  "retrievals": [
+    {
+      "id": "recall-python-v3-4-04",
+      "sourceActivityId": "python-v3-4-04",
+      "objectiveIds": [
+        "positional-arguments",
+        "keyword-arguments",
+        "default-arguments",
+        "early-return"
+      ],
+      "prompt": {
+        "en": "Call a function once positionally and once with named arguments, omitting its default in one call. Add an early return for empty input.",
+        "nl": "Roep een functie eenmaal positioneel en eenmaal met benoemde argumenten aan en laat eenmaal de standaard weg. Voeg een vroege return voor lege invoer toe."
+      }
+    }
+  ]
+}

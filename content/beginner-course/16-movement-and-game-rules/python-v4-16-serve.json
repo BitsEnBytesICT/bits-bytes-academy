@@ -1,0 +1,209 @@
+{
+  "id": "python-v4-16-serve",
+  "chapter": 16,
+  "group": "python-v4-module-16",
+  "title": {
+    "en": "Start the next rally deliberately",
+    "nl": "Begin de volgende rally bewust"
+  },
+  "kind": "coding",
+  "optional": false,
+  "runtime": "pygame",
+  "guidance": "independent",
+  "checkpointMode": "sequential",
+  "estimatedMinutes": 22,
+  "topicIds": [
+    "serving",
+    "game-state",
+    "game-review"
+  ],
+  "practices": [
+    "events",
+    "velocity",
+    "scoring"
+  ],
+  "requiredConcepts": [
+    "scoring",
+    "keyboard-events",
+    "wall-collision"
+  ],
+  "explanation": {
+    "en": "A serve starts a waiting ball without resetting an already active rally.",
+    "nl": "Een service start een wachtende bal zonder een al actieve rally terug te zetten."
+  },
+  "example": "",
+  "sections": [
+    {
+      "id": "python-v4-16-serve-example",
+      "topicIds": [
+        "serving",
+        "game-state",
+        "game-review",
+        "events",
+        "velocity",
+        "scoring"
+      ],
+      "heading": {
+        "en": "Follow a working example",
+        "nl": "Volg een werkend voorbeeld"
+      },
+      "body": {
+        "en": "Treat vx == 0 as waiting and a nonzero vx as playing. A Space KEYDOWN event may start a waiting ball; pressing Space during play leaves its velocity unchanged. Keep the event as a one-frame request. The supplied scene stops the ball after a miss. Add this transition and test repeated key presses, a miss, then a new serve.",
+        "nl": "Beschouw vx == 0 als wachten en niet-nul vx als spelen. Een Space KEYDOWN-gebeurtenis mag een wachtende bal starten; Space tijdens spelen laat de snelheid ongewijzigd. Houd de gebeurtenis als een verzoek voor één beeld. De aangeleverde scène stopt de bal na een misser. Voeg deze overgang toe en test herhaalde toetsdrukken, een misser en daarna een nieuwe service."
+      },
+      "code": "waiting = True\npressed = True\nif waiting and pressed:\n    waiting = False\nprint(waiting)",
+      "output": "False\n",
+      "prediction": {
+        "en": "Why should a second press not reset an active rally?",
+        "nl": "Waarom hoort een tweede druk een actieve rally niet terug te zetten?"
+      },
+      "takeaway": {
+        "en": "A control’s effect depends on both the event and the current state.",
+        "nl": "Het gevolg van bediening hangt af van zowel gebeurtenis als huidige toestand."
+      }
+    },
+    {
+      "topicIds": [],
+      "heading": {
+        "en": "Run, observe, finish",
+        "nl": "Voer uit, bekijk, rond af"
+      },
+      "body": {
+        "en": "main.py supplies the browser entry point. Run opens a real pygame-ce preview; click it to focus the keyboard. Clicking elsewhere pauses play. Finish & check closes normally and checks your helper after at least one rendered frame. Stop cancels without grading. Run can start a fresh session afterward. Keep the supplied async definition and await asyncio.sleep(1 / 60): they let the browser draw and receive input. You are not expected to reproduce this infrastructure from memory.",
+        "nl": "main.py levert het browserstartpunt. Uitvoeren opent een echt pygame-ce-voorbeeld; klik erop om het toetsenbord te activeren. Elders klikken pauzeert het spel. Afronden en controleren sluit normaal af en controleert je helper na minstens één getekend beeld. Stop annuleert zonder beoordeling. Uitvoeren kan daarna een nieuwe sessie starten. Behoud de meegeleverde async-definitie en await asyncio.sleep(1 / 60): die laten de browser tekenen en invoer ontvangen. Je hoeft deze infrastructuur niet uit je hoofd te schrijven."
+      }
+    },
+    {
+      "id": "python-v4-16-serve-experiment",
+      "topicIds": [],
+      "heading": {
+        "en": "Try one change",
+        "nl": "Probeer één wijziging"
+      },
+      "body": {
+        "en": "Click outside the preview, return focus, and serve again. Stop, then start a fresh run.",
+        "nl": "Klik buiten het voorbeeld, keer terug en serveer opnieuw. Stop en start daarna een nieuwe uitvoering."
+      }
+    }
+  ],
+  "files": {
+    "main.py": "# Browser entry point supplied by the course.\nimport asyncio\nimport pygame\nimport game\n\nasync def main():\n    pygame.init()\n    screen = pygame.display.set_mode((640, 400))\n    clock = pygame.time.Clock()\n    running = True\n    x,y,vx = 320.0,200.0,0.0\n    while running:\n        dt = min(clock.tick() / 1000, 0.05)\n        for event in pygame.event.get():\n            if event.type == pygame.QUIT:\n                running = False\n            if event.type == pygame.KEYDOWN and event.key == pygame.K_ESCAPE:\n                running = False\n            if event.type == pygame.KEYDOWN:\n                vx = game.serve(vx,event.key == pygame.K_SPACE)\n        keys = pygame.key.get_pressed()\n        x += vx * dt\n        if x > 646:\n            x,vx = 320.0,0.0\n        screen.fill((16, 23, 39))\n        pygame.draw.circle(screen,(240,200,80),(int(x),int(y)),6)\n        pygame.display.flip()\n        await asyncio.sleep(1 / 60)\n    pygame.quit()\n\nasyncio.run(main())\n",
+    "game.py": "import pygame\n\ndef serve(vx, pressed):\n    return vx\n"
+  },
+  "solution": {
+    "main.py": "# Browser entry point supplied by the course.\nimport asyncio\nimport pygame\nimport game\n\nasync def main():\n    pygame.init()\n    screen = pygame.display.set_mode((640, 400))\n    clock = pygame.time.Clock()\n    running = True\n    x,y,vx = 320.0,200.0,0.0\n    while running:\n        dt = min(clock.tick() / 1000, 0.05)\n        for event in pygame.event.get():\n            if event.type == pygame.QUIT:\n                running = False\n            if event.type == pygame.KEYDOWN and event.key == pygame.K_ESCAPE:\n                running = False\n            if event.type == pygame.KEYDOWN:\n                vx = game.serve(vx,event.key == pygame.K_SPACE)\n        keys = pygame.key.get_pressed()\n        x += vx * dt\n        if x > 646:\n            x,vx = 320.0,0.0\n        screen.fill((16, 23, 39))\n        pygame.draw.circle(screen,(240,200,80),(int(x),int(y)),6)\n        pygame.display.flip()\n        await asyncio.sleep(1 / 60)\n    pygame.quit()\n\nasyncio.run(main())\n",
+    "game.py": "import pygame\n\ndef serve(vx, pressed):\n    if vx == 0 and pressed:\n        return 180\n    return vx\n"
+  },
+  "checkpoints": [
+    {
+      "id": "python-v4-16-serve-step-1",
+      "objectiveIds": [
+        "serving",
+        "game-state",
+        "game-review",
+        "events",
+        "velocity",
+        "scoring"
+      ],
+      "task": {
+        "en": "Return velocity 180 only when the ball is waiting and Space was pressed; otherwise preserve vx.",
+        "nl": "Geef snelheid 180 alleen als de bal wacht en Space is ingedrukt; behoud anders vx."
+      },
+      "check": "_rendered_frames > 0",
+      "probes": [
+        {
+          "call": {
+            "name": "serve",
+            "args": [
+              0,
+              true
+            ],
+            "module": "game"
+          },
+          "check": "(_return == 180) and _error is None",
+          "moduleOnly": true,
+          "module": "game"
+        },
+        {
+          "call": {
+            "name": "serve",
+            "args": [
+              0,
+              false
+            ],
+            "module": "game"
+          },
+          "check": "(_return == 0) and _error is None",
+          "moduleOnly": true,
+          "module": "game"
+        },
+        {
+          "call": {
+            "name": "serve",
+            "args": [
+              -120,
+              true
+            ],
+            "module": "game"
+          },
+          "check": "(_return == -120) and _error is None",
+          "moduleOnly": true,
+          "module": "game"
+        },
+        {
+          "call": {
+            "name": "serve",
+            "args": [
+              180,
+              false
+            ],
+            "module": "game"
+          },
+          "check": "(_return == 180) and _error is None",
+          "moduleOnly": true,
+          "module": "game"
+        }
+      ],
+      "hint": {
+        "en": "A control’s effect depends on both the event and the current state.",
+        "nl": "Het gevolg van bediening hangt af van zowel gebeurtenis als huidige toestand."
+      },
+      "hints": [
+        {
+          "en": "A control’s effect depends on both the event and the current state.",
+          "nl": "Het gevolg van bediening hangt af van zowel gebeurtenis als huidige toestand."
+        },
+        {
+          "en": "Combine the waiting-state test with the event flag.",
+          "nl": "Combineer de wachttoestandstest met de gebeurteniswaarde."
+        },
+        {
+          "en": "A small fragment to adapt: `if vx == 0 and pressed:`",
+          "nl": "Een klein fragment om aan te passen: `if vx == 0 and pressed:`"
+        }
+      ],
+      "feedback": {
+        "en": "Combine the waiting-state test with the event flag.",
+        "nl": "Combineer de wachttoestandstest met de gebeurteniswaarde."
+      }
+    }
+  ],
+  "solutionNote": {
+    "en": "The guard restricts serving to a waiting ball, preserving an active rally.",
+    "nl": "De bewaking beperkt serveren tot een wachtende bal en bewaart een actieve rally."
+  },
+  "inputs": [],
+  "retrievals": [
+    {
+      "id": "recall-python-v4-14-guessing-game",
+      "sourceActivityId": "python-v4-14-guessing-game",
+      "objectiveIds": [
+        "guessing-project"
+      ],
+      "prompt": {
+        "en": "Recall “Mini project: number-guessing game”. Which comparison handles an exact match? Try the earlier example from memory, then check it. Play with a range of 1–20 by editing only the supplied caller.",
+        "nl": "Haal “Miniproject: raad het getal” terug. Welke vergelijking verwerkt een exacte overeenkomst? Probeer het eerdere voorbeeld uit je geheugen en controleer daarna. Speel met een bereik van 1–20 door alleen de aangeleverde aanroeper te wijzigen."
+      }
+    }
+  ]
+}

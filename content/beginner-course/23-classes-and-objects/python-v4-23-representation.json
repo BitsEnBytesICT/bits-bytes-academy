@@ -1,0 +1,135 @@
+{
+  "id": "python-v4-23-representation",
+  "chapter": 23,
+  "group": "python-v4-module-23",
+  "title": {
+    "en": "Give objects useful text representations",
+    "nl": "Geef objecten bruikbare tekstweergaven"
+  },
+  "kind": "coding",
+  "optional": false,
+  "runtime": "terminal",
+  "guidance": "guided",
+  "checkpointMode": "sequential",
+  "estimatedMinutes": 12,
+  "topicIds": [
+    "repr",
+    "str-method"
+  ],
+  "practices": [],
+  "requiredConcepts": [
+    "methods",
+    "f-strings"
+  ],
+  "explanation": {
+    "en": "Readable object text helps both debugging and user-facing output.",
+    "nl": "Leesbare objecttekst helpt zowel bij foutonderzoek als bij uitvoer voor gebruikers."
+  },
+  "example": "",
+  "sections": [
+    {
+      "id": "python-v4-23-representation-example",
+      "topicIds": [
+        "repr",
+        "str-method"
+      ],
+      "heading": {
+        "en": "Follow a working example",
+        "nl": "Volg een werkend voorbeeld"
+      },
+      "body": {
+        "en": "__repr__(self) returns a developer-oriented description used by repr(obj) and often when objects appear inside collections. __str__(self) returns friendly text for str(obj) and print(obj). Both must return strings. When __str__ is absent, Python can fall back to __repr__. Neither method should print the description itself.",
+        "nl": "__repr__(self) geeft een beschrijving voor ontwikkelaars, gebruikt door repr(obj) en vaak wanneer objecten in verzamelingen staan. __str__(self) geeft vriendelijke tekst voor str(obj) en print(obj). Beide moeten strings teruggeven. Zonder __str__ kan Python terugvallen op __repr__. Geen van beide methoden hoort de beschrijving zelf af te drukken."
+      },
+      "code": "class Score:\n    def __init__(self,value):\n        self.value = value\n    def __repr__(self):\n        return f\"Score({self.value})\"\n    def __str__(self):\n        return f\"{self.value} points\"\nscore = Score(4)\nprint(repr(score))\nprint(score)",
+      "output": "Score(4)\n4 points\n",
+      "prediction": {
+        "en": "Which method is used by the second print?",
+        "nl": "Welke methode gebruikt de tweede print?"
+      },
+      "takeaway": {
+        "en": "Return a string representation instead of printing inside the special method.",
+        "nl": "Geef een stringweergave terug in plaats van binnen de speciale methode af te drukken."
+      }
+    },
+    {
+      "id": "python-v4-23-representation-experiment",
+      "topicIds": [],
+      "heading": {
+        "en": "Try one change",
+        "nl": "Probeer één wijziging"
+      },
+      "body": {
+        "en": "Put two counters in a list and print the list to observe representations.",
+        "nl": "Zet twee tellers in een lijst en druk die af om weergaven te bekijken."
+      }
+    }
+  ],
+  "files": {
+    "main.py": "class Counter:\n    def __init__(self,value):\n        self.value = value\n"
+  },
+  "solution": {
+    "main.py": "class Counter:\n    def __init__(self,value):\n        self.value = value\n    def __repr__(self):\n        return f\"Counter({self.value})\"\n    def __str__(self):\n        return f\"Count: {self.value}\"\n"
+  },
+  "checkpoints": [
+    {
+      "id": "python-v4-23-representation-step-1",
+      "objectiveIds": [
+        "repr",
+        "str-method"
+      ],
+      "task": {
+        "en": "Add __repr__ returning Counter(value) and __str__ returning Count: value using the actual stored value.",
+        "nl": "Voeg __repr__ toe die Counter(value) geeft en __str__ die Count: value geeft met de werkelijk bewaarde waarde."
+      },
+      "check": "callable(Counter)",
+      "probes": [
+        {
+          "call": {
+            "name": "Counter",
+            "args": [
+              3
+            ]
+          },
+          "check": "repr(_return) == \"Counter(3)\" and str(_return) == \"Count: 3\""
+        },
+        {
+          "call": {
+            "name": "Counter",
+            "args": [
+              -1
+            ]
+          },
+          "check": "repr(_return) == \"Counter(-1)\" and str(_return) == \"Count: -1\""
+        }
+      ],
+      "hint": {
+        "en": "Return a string representation instead of printing inside the special method.",
+        "nl": "Geef een stringweergave terug in plaats van binnen de speciale methode af te drukken."
+      },
+      "hints": [
+        {
+          "en": "Return a string representation instead of printing inside the special method.",
+          "nl": "Geef een stringweergave terug in plaats van binnen de speciale methode af te drukken."
+        },
+        {
+          "en": "Both methods take self and return formatted text.",
+          "nl": "Beide methoden nemen self en geven geformatteerde tekst terug."
+        },
+        {
+          "en": "A small fragment to adapt: `def __repr__(self):`",
+          "nl": "Een klein fragment om aan te passen: `def __repr__(self):`"
+        }
+      ],
+      "feedback": {
+        "en": "Both methods take self and return formatted text.",
+        "nl": "Beide methoden nemen self en geven geformatteerde tekst terug."
+      }
+    }
+  ],
+  "solutionNote": {
+    "en": "Separate representations serve different readers while sharing the same underlying state.",
+    "nl": "Aparte weergaven bedienen verschillende lezers terwijl ze dezelfde onderliggende toestand gebruiken."
+  },
+  "inputs": []
+}

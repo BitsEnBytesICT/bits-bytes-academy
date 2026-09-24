@@ -1,0 +1,157 @@
+{
+  "id": "python-v4-19-keys",
+  "chapter": 19,
+  "group": "python-v4-module-19",
+  "title": {
+    "en": "Choose valid keys",
+    "nl": "Kies geldige sleutels"
+  },
+  "kind": "coding",
+  "optional": false,
+  "runtime": "terminal",
+  "guidance": "guided",
+  "checkpointMode": "sequential",
+  "estimatedMinutes": 12,
+  "topicIds": [
+    "dictionary-keys",
+    "invalid-keys"
+  ],
+  "practices": [],
+  "requiredConcepts": [
+    "dictionaries",
+    "tuples"
+  ],
+  "explanation": {
+    "en": "Keys must remain suitable for finding their associated values. Not every Python value can be a key.",
+    "nl": "Sleutels moeten geschikt blijven om de bijbehorende waarden te vinden. Niet elke Pythonwaarde kan een sleutel zijn."
+  },
+  "example": "",
+  "sections": [
+    {
+      "id": "python-v4-19-keys-example",
+      "topicIds": [
+        "dictionary-keys",
+        "invalid-keys"
+      ],
+      "heading": {
+        "en": "Follow a working example",
+        "nl": "Volg een werkend voorbeeld"
+      },
+      "body": {
+        "en": "Dictionary keys must be hashable. Strings and numbers are common keys; tuples containing only hashable values work too. Lists and dictionaries are mutable and cannot be keys: Python raises TypeError. tuple(coordinates) converts a coordinate list to an immutable tuple. Values do not have this restriction.",
+        "nl": "Dictionarysleutels moeten hashbaar zijn. Strings en getallen zijn gebruikelijke sleutels; tuples met alleen hashbare waarden werken ook. Lijsten en dictionaries zijn veranderbaar en kunnen geen sleutel zijn: Python geeft TypeError. tuple(coordinates) zet een coördinatenlijst om in een onveranderbare tuple. Waarden hebben deze beperking niet."
+      },
+      "code": "places = {(2,3):\"start\"}\nprint(places[(2,3)])",
+      "output": "start\n",
+      "prediction": {
+        "en": "Why is the coordinate written as a tuple?",
+        "nl": "Waarom is de coördinaat als tuple geschreven?"
+      },
+      "takeaway": {
+        "en": "A mutable list may be a value, but cannot be a dictionary key.",
+        "nl": "Een veranderbare lijst mag een waarde zijn, maar geen dictionarysleutel."
+      }
+    },
+    {
+      "id": "python-v4-19-keys-experiment",
+      "topicIds": [],
+      "heading": {
+        "en": "Try one change",
+        "nl": "Probeer één wijziging"
+      },
+      "body": {
+        "en": "Try using the original list as a key and read the resulting TypeError.",
+        "nl": "Probeer de oorspronkelijke lijst als sleutel te gebruiken en lees de TypeError."
+      }
+    }
+  ],
+  "files": {
+    "main.py": "def location(coordinates, label):\n    # Complete this function.\n    return None\n"
+  },
+  "solution": {
+    "main.py": "def location(coordinates, label):\n    return {tuple(coordinates): label}\n"
+  },
+  "checkpoints": [
+    {
+      "id": "python-v4-19-keys-step-1",
+      "objectiveIds": [
+        "dictionary-keys",
+        "invalid-keys"
+      ],
+      "task": {
+        "en": "Given a list of two integer coordinates, return a dictionary mapping its tuple to label.",
+        "nl": "Geef van een lijst met twee gehele coördinaten een dictionary terug die de tuple aan label koppelt."
+      },
+      "check": "callable(location)",
+      "probes": [
+        {
+          "call": {
+            "name": "location",
+            "args": [
+              [
+                2,
+                3
+              ],
+              "home"
+            ]
+          },
+          "check": "(_return == {(2,3):\"home\"}) and _error is None"
+        },
+        {
+          "call": {
+            "name": "location",
+            "args": [
+              [
+                0,
+                -1
+              ],
+              "edge"
+            ]
+          },
+          "check": "(_return == {(0,-1):\"edge\"}) and _error is None"
+        }
+      ],
+      "hint": {
+        "en": "A mutable list may be a value, but cannot be a dictionary key.",
+        "nl": "Een veranderbare lijst mag een waarde zijn, maar geen dictionarysleutel."
+      },
+      "hints": [
+        {
+          "en": "A mutable list may be a value, but cannot be a dictionary key.",
+          "nl": "Een veranderbare lijst mag een waarde zijn, maar geen dictionarysleutel."
+        },
+        {
+          "en": "Convert only the key to a tuple.",
+          "nl": "Zet alleen de sleutel om naar een tuple."
+        },
+        {
+          "en": "A small fragment to adapt: `tuple(coordinates)`",
+          "nl": "Een klein fragment om aan te passen: `tuple(coordinates)`"
+        }
+      ],
+      "feedback": {
+        "en": "Convert only the key to a tuple.",
+        "nl": "Zet alleen de sleutel om naar een tuple."
+      }
+    }
+  ],
+  "solutionNote": {
+    "en": "The tuple of integers is hashable and keeps the pair together as one key.",
+    "nl": "De tuple van gehele getallen is hashbaar en houdt het paar als één sleutel samen."
+  },
+  "inputs": [],
+  "retrievals": [
+    {
+      "id": "recall-python-v4-17-remove",
+      "sourceActivityId": "python-v4-17-remove",
+      "objectiveIds": [
+        "remove",
+        "membership-lists"
+      ],
+      "prompt": {
+        "en": "Recall “Remove by value”. Why is one 4 still present? Try the earlier example from memory, then check it. Call twice on a list with two copies of the target.",
+        "nl": "Haal “Verwijder op waarde” terug. Waarom is er nog één 4 aanwezig? Probeer het eerdere voorbeeld uit je geheugen en controleer daarna. Roep tweemaal aan bij een lijst met twee kopieën van het doel."
+      }
+    }
+  ]
+}

@@ -50,7 +50,7 @@ export function CodeBlankQuestion({
           )}
         </p>
       )}
-      <pre className="python-code blank-program">
+      <pre className="python-code quiz-code blank-program">
         <code>
           {spec.segments.map((segment, i) => (
             <span key={i}>
@@ -79,6 +79,12 @@ export function CodeBlankQuestion({
           ))}
         </code>
       </pre>
+      {!review && (
+        <div className="quiz-expected-output">
+          <p>{tr("Expected output", "Verwachte uitvoer")}</p>
+          <pre>{spec.output}</pre>
+        </div>
+      )}
       {!review && (
         <>
           <div
@@ -151,7 +157,7 @@ export function CodeBlankQuestion({
           {review && (
             <>
               <p>{tr("Completed code", "Volledige code")}</p>
-              <CodeBlock code={blankCode(q)} />
+              <CodeBlock code={blankCode(q)} className="quiz-code" />
               <p>{tr("Output", "Uitvoer")}</p>
               <pre>{spec.output}</pre>
             </>

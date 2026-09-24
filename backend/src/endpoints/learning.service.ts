@@ -22,6 +22,7 @@ const quiz = z
     finished: z.boolean(),
     attempt: z.number().int().min(1),
     format: z.literal(2).optional(),
+    formId: z.enum(["a", "b"]).optional(),
     placements: z
       .record(
         z.string().max(120),
@@ -73,13 +74,15 @@ export class LearningService {
   constructor(
     public dao: LearningDAO,
     public course: Course,
-    legacy?: Course,
+    legacy?: Course | Course[],
   ) {
     this.registry = new Map(
-      [...(legacy?.activities || []), ...course.activities].map((a) => [
-        a.id,
-        a,
-      ]),
+      [
+        ...(Array.isArray(legacy) ? legacy : legacy ? [legacy] : []).flatMap(
+          (c) => c.activities,
+        ),
+        ...course.activities,
+      ].map((a) => [a.id, a]),
     );
     this.ids = new Set(this.registry.keys());
   }
@@ -89,25 +92,43 @@ export class LearningService {
     return id;
   }
   workspace(id: string) {
-    this.id(id);
-    return this.dao.getWorkspace(id);
+    return this.dao.getWorkspace(this.workspaceId(id));
+  }
+  workspaceId(id: string) {
+    const activity = this.registry.get(this.id(id))!;
+    if (activity.kind !== "project-stage") return id;
+    const canonical = this.registry.get(activity.projectId);
+    if (canonical?.kind !== "project")
+      throw new Error("Invalid canonical project");
+    return canonical.id;
   }
   save(id: string, body: unknown) {
     this.id(id);
     const workspace = workspaceSchema.parse(body);
     this.validateWorkspace(id, workspace);
     const { revision, ...data } = workspace;
-    return this.dao.saveWorkspace(id, revision, data);
+    return this.dao.saveWorkspace(this.workspaceId(id), revision, data);
   }
   validateWorkspace(id: string, workspace: Workspace) {
-    const activity = this.registry.get(id)!;
+    const activity = this.registry.get(this.workspaceId(id))!;
+    const milestones =
+      activity.kind === "project"
+        ? [
+            ...activity.milestones,
+            ...[...this.registry.values()].flatMap((a) =>
+              a.kind === "project-stage" && a.projectId === activity.id
+                ? a.milestones
+                : [],
+            ),
+          ]
+        : [];
     if (
       workspace.project &&
       (activity.kind !== "project" ||
         new Set(workspace.project.milestones).size !==
           workspace.project.milestones.length ||
         workspace.project.milestones.some(
-          (id) => !activity.milestones.some((m) => m.id === id),
+          (id) => !milestones.some((m) => m.id === id),
         ))
     ) {
       throw Object.assign(
@@ -123,12 +144,15 @@ export class LearningService {
       });
     };
     if (activity.kind !== "quiz") return invalid();
+    if (state.formId === "b" && !activity.alternateQuestions) return invalid();
+    const questions =
+      state.formId === "b" ? activity.alternateQuestions! : activity.questions;
     if (
-      state.index >= activity.questions.length ||
-      state.orders.length !== activity.questions.length
+      state.index >= questions.length ||
+      state.orders.length !== questions.length
     )
       return invalid();
-    for (const [i, question] of activity.questions.entries()) {
+    for (const [i, question] of questions.entries()) {
       const order = state.orders[i];
       const options =
         state.format === 2 && question.codeBlank
@@ -142,7 +166,7 @@ export class LearningService {
         return invalid();
     }
     for (const [questionId, answerId] of Object.entries(state.answers)) {
-      const question = activity.questions.find((q) => q.id === questionId);
+      const question = questions.find((q) => q.id === questionId);
       if (!question) return invalid();
       if (state.format === 2 && question.codeBlank) {
         let values;
@@ -157,7 +181,7 @@ export class LearningService {
         return invalid();
     }
     for (const [questionId, values] of Object.entries(state.placements || {})) {
-      const question = activity.questions.find((q) => q.id === questionId);
+      const question = questions.find((q) => q.id === questionId);
       if (
         state.format !== 2 ||
         !question?.codeBlank ||
@@ -170,7 +194,7 @@ export class LearningService {
       )
         return invalid();
     }
-    if (state.finished && activity.questions.some((q) => !state.answers[q.id]))
+    if (state.finished && questions.some((q) => !state.answers[q.id]))
       return invalid();
   }
   validPlacement(
@@ -231,7 +255,7 @@ export class LearningService {
       .filter(
         (a) =>
           !this.course.activities.some((current) => current.id === a.id) &&
-          (state.progress[a.id] || this.dao.getWorkspace(a.id)),
+          (state.progress[a.id] || this.dao.getWorkspace(this.workspaceId(a.id))),
       )
       .map((a) => ({
         id: a.id,
@@ -252,7 +276,7 @@ export class LearningService {
       id,
       title: activity.title,
       kind: activity.kind,
-      workspace: this.dao.getWorkspace(id),
+      workspace: this.dao.getWorkspace(this.workspaceId(id)),
       progress: this.dao.getProgress(id),
     };
   }
@@ -267,6 +291,17 @@ export class LearningService {
       this.id(id);
     for (const [id, workspace] of Object.entries(data.workspaces))
       this.validateWorkspace(id, workspace);
+    const canonical: Record<string, Workspace> = {};
+    for (const [id, workspace] of Object.entries(data.workspaces)) {
+      const key = this.workspaceId(id);
+      if (canonical[key])
+        throw Object.assign(
+          new Error("Backup has duplicate project workspaces"),
+          { status: 422 },
+        );
+      canonical[key] = workspace;
+    }
+    data.workspaces = canonical;
     if (data.settings.lastActivity) this.id(data.settings.lastActivity);
     return data;
   }

@@ -1,0 +1,186 @@
+{
+  "id": "python-v3-13-02",
+  "chapter": 13,
+  "group": "python-v3-module-13",
+  "title": {
+    "en": "Read a header and lines",
+    "nl": "Lees een kop en regels"
+  },
+  "kind": "coding",
+  "optional": false,
+  "runtime": "terminal",
+  "guidance": "adapt",
+  "estimatedMinutes": 16,
+  "explanation": {
+    "en": "Read a header and then process the remaining lines. Reading advances a file position; the next operation continues from there.",
+    "nl": "Lees een kop en verwerk daarna de resterende regels. Lezen verplaatst een bestandspositie; de volgende bewerking gaat daar verder."
+  },
+  "example": "",
+  "topicIds": [
+    "line-iteration",
+    "readline",
+    "file-position"
+  ],
+  "prerequisites": [
+    "python-v3-13-01"
+  ],
+  "sections": [
+    {
+      "topicIds": [
+        "line-iteration",
+        "readline",
+        "file-position"
+      ],
+      "heading": {
+        "en": "The cursor moves forward",
+        "nl": "De positie gaat vooruit"
+      },
+      "body": {
+        "en": "readline() reads one line, including its newline if present. At end-of-file it returns \"\"; a blank line is \"\\n\", which is different. Iterating for line in handle reads remaining lines from the current position. read() also starts at the current position, not automatically at the beginning. Reopening a file creates a new reading position.",
+        "nl": "readline() leest één regel, inclusief zijn nieuwe regel als die aanwezig is. Aan het einde geeft het \"\" terug; een lege regel is \"\\n\", wat anders is. for line in handle leest resterende regels vanaf de huidige positie. read() begint ook bij de huidige positie, niet vanzelf aan het begin. Een bestand opnieuw openen maakt een nieuwe leespositie."
+      },
+      "code": "with open(\"example.txt\", encoding=\"utf-8\") as handle:\n    first = handle.readline()\n    rest = handle.read()\n    end = handle.readline()\nprint(first.strip())\nprint(rest.strip())\nprint(end == \"\")",
+      "output": "Names\nAda\nBo\nTrue\n",
+      "prediction": {
+        "en": "Why does rest not include Names?",
+        "nl": "Waarom bevat rest niet Names?"
+      },
+      "exampleFiles": {
+        "example.txt": "Names\nAda\nBo\n"
+      }
+    },
+    {
+      "topicIds": [],
+      "heading": {
+        "en": "Try a changed input",
+        "nl": "Probeer gewijzigde invoer"
+      },
+      "body": {
+        "en": "Add a second read() after the loop and predict its result. Then reopen the file and explain why reading starts over.",
+        "nl": "Voeg na de lus nog een read() toe en voorspel het resultaat. Open daarna het bestand opnieuw en leg uit waarom lezen opnieuw begint."
+      }
+    }
+  ],
+  "files": {
+    "guests.txt": "Guests\n Ada \n\nBo\n",
+    "main.py": "def load_lines(filename):\n    return \"\", []\n\nprint(load_lines(\"guests.txt\"))\n"
+  },
+  "solution": {
+    "guests.txt": "Guests\n Ada \n\nBo\n",
+    "main.py": "def load_lines(filename):\n    with open(filename, encoding=\"utf-8\") as handle:\n        header = handle.readline().strip()\n        entries = []\n        for line in handle:\n            entry = line.strip()\n            if entry != \"\":\n                entries.append(entry)\n    return header, entries\n\nprint(load_lines(\"guests.txt\"))\n"
+  },
+  "checkpoints": [
+    {
+      "objectiveIds": [
+        "readline",
+        "file-position"
+      ],
+      "task": {
+        "en": "Use readline for the stripped header, then read only the remaining lines. Return (header, entries).",
+        "nl": "Gebruik readline voor de getrimde kop en lees daarna alleen resterende regels. Geef (header, entries) terug."
+      },
+      "check": "load_lines(\"guests.txt\") == (\"Guests\",[\"Ada\",\"Bo\"])",
+      "hints": [
+        {
+          "en": "The first read already consumes the header.",
+          "nl": "De eerste leesactie verbruikt de kop al."
+        },
+        {
+          "en": "Do not reopen the file before iterating over its remaining lines.",
+          "nl": "Open het bestand niet opnieuw voordat je de resterende regels doorloopt."
+        },
+        {
+          "en": "header = handle.readline().strip()",
+          "nl": "header = handle.readline().strip()"
+        }
+      ],
+      "hint": {
+        "en": "The first read already consumes the header.",
+        "nl": "De eerste leesactie verbruikt de kop al."
+      },
+      "feedback": {
+        "en": "The header should not appear again as an entry.",
+        "nl": "De kop mag niet opnieuw als item verschijnen."
+      },
+      "probes": [
+        {
+          "call": {
+            "name": "load_lines",
+            "args": [
+              "one.txt"
+            ]
+          },
+          "check": "_return == (\"Header\",[])",
+          "files": {
+            "one.txt": "Header\n"
+          }
+        }
+      ],
+      "id": "python-v3-13-02-step-1"
+    },
+    {
+      "objectiveIds": [
+        "line-iteration"
+      ],
+      "task": {
+        "en": "Strip each remaining line, skip empty entries and handle an empty file as (\"\", []).",
+        "nl": "Trim elke resterende regel, sla lege items over en handel een leeg bestand af als (\"\", [])."
+      },
+      "check": "load_lines(\"guests.txt\")[1] == [\"Ada\",\"Bo\"]",
+      "hints": [
+        {
+          "en": "A blank data line is not end-of-file.",
+          "nl": "Een lege gegevensregel is niet het einde van het bestand."
+        },
+        {
+          "en": "Keep iterating after blank lines.",
+          "nl": "Blijf na lege regels doorlopen."
+        },
+        {
+          "en": "if entry != \"\":\n    entries.append(entry)",
+          "nl": "if entry != \"\":\n    entries.append(entry)"
+        }
+      ],
+      "hint": {
+        "en": "A blank data line is not end-of-file.",
+        "nl": "Een lege gegevensregel is niet het einde van het bestand."
+      },
+      "feedback": {
+        "en": "Blank lines in the middle must not hide later entries.",
+        "nl": "Lege regels in het midden mogen latere items niet verbergen."
+      },
+      "probes": [
+        {
+          "call": {
+            "name": "load_lines",
+            "args": [
+              "empty.txt"
+            ]
+          },
+          "check": "_return == (\"\",[])",
+          "files": {
+            "empty.txt": ""
+          }
+        },
+        {
+          "call": {
+            "name": "load_lines",
+            "args": [
+              "extra.txt"
+            ]
+          },
+          "check": "_return == (\"People\",[\"A\",\"B\"])",
+          "files": {
+            "extra.txt": "People\nA\n\nB"
+          }
+        }
+      ],
+      "id": "python-v3-13-02-step-2"
+    }
+  ],
+  "solutionNote": {
+    "en": "One file handle has one advancing position. Reading the header first and iterating afterward naturally separates metadata from data lines.",
+    "nl": "Eén bestandshandle heeft één voortgaande positie. Eerst de kop lezen en daarna doorlopen scheidt vanzelf metadata van gegevensregels."
+  },
+  "inputs": []
+}

@@ -1,0 +1,140 @@
+{
+  "id": "python-v4-17-comprehensions",
+  "chapter": 17,
+  "group": "python-v4-module-17",
+  "title": {
+    "en": "Express a simple transformation compactly",
+    "nl": "Schrijf een eenvoudige omzetting compact"
+  },
+  "kind": "coding",
+  "optional": false,
+  "runtime": "terminal",
+  "guidance": "guided",
+  "checkpointMode": "sequential",
+  "estimatedMinutes": 12,
+  "topicIds": [
+    "list-comprehensions",
+    "conditional-list-comprehensions"
+  ],
+  "practices": [],
+  "requiredConcepts": [
+    "filtering",
+    "nested-loops"
+  ],
+  "explanation": {
+    "en": "A comprehension is a compact way to build a new list from a simple loop.",
+    "nl": "Een comprehension is een compacte manier om vanuit een eenvoudige lus een nieuwe lijst te maken."
+  },
+  "example": "",
+  "sections": [
+    {
+      "id": "python-v4-17-comprehensions-example",
+      "topicIds": [
+        "list-comprehensions",
+        "conditional-list-comprehensions"
+      ],
+      "heading": {
+        "en": "Follow a working example",
+        "nl": "Volg een werkend voorbeeld"
+      },
+      "body": {
+        "en": "[expression for value in values] evaluates expression for each value. A final if condition keeps only matching inputs: [n * 2 for n in values if n > 0]. Read the for and if first, then the expression. Prefer ordinary loops when several actions or complex branches would make a comprehension hard to read.",
+        "nl": "[uitdrukking for waarde in waarden] berekent de uitdrukking voor elke waarde. Een afsluitende if-voorwaarde bewaart alleen passende invoer: [n * 2 for n in values if n > 0]. Lees eerst for en if en daarna de uitdrukking. Gebruik gewone lussen als meerdere acties of complexe takken een comprehension moeilijk leesbaar maken."
+      },
+      "code": "values = [-1,0,3]\nprint([n * 2 for n in values])\nprint([n * 2 for n in values if n > 0])",
+      "output": "[-2, 0, 6]\n[6]\n",
+      "prediction": {
+        "en": "Does the filter test n or n * 2?",
+        "nl": "Test het filter n of n * 2?"
+      },
+      "takeaway": {
+        "en": "A comprehension builds a list; its optional if filters inputs.",
+        "nl": "Een comprehension bouwt een lijst; de optionele if filtert invoer."
+      }
+    },
+    {
+      "id": "python-v4-17-comprehensions-experiment",
+      "topicIds": [],
+      "heading": {
+        "en": "Try one change",
+        "nl": "Probeer één wijziging"
+      },
+      "body": {
+        "en": "Rewrite the same behaviour with an ordinary loop and compare the results.",
+        "nl": "Herschrijf hetzelfde gedrag met een gewone lus en vergelijk de resultaten."
+      }
+    }
+  ],
+  "files": {
+    "main.py": "def positive_squares(values):\n    # Complete this function.\n    return None\n"
+  },
+  "solution": {
+    "main.py": "def positive_squares(values):\n    return [n ** 2 for n in values if n > 0]\n"
+  },
+  "checkpoints": [
+    {
+      "id": "python-v4-17-comprehensions-step-1",
+      "objectiveIds": [
+        "list-comprehensions",
+        "conditional-list-comprehensions"
+      ],
+      "task": {
+        "en": "Use a conditional list comprehension to return squares of strictly positive values.",
+        "nl": "Gebruik een voorwaardelijke list comprehension om kwadraten van strikt positieve waarden terug te geven."
+      },
+      "check": "any(isinstance(n,_ast.ListComp) and n.generators[0].ifs for n in _ast.walk(_ast.parse(_source)))",
+      "probes": [
+        {
+          "call": {
+            "name": "positive_squares",
+            "args": [
+              [
+                -2,
+                0,
+                3,
+                2
+              ]
+            ]
+          },
+          "check": "(_return == [9,4]) and _error is None"
+        },
+        {
+          "call": {
+            "name": "positive_squares",
+            "args": [
+              []
+            ]
+          },
+          "check": "(_return == []) and _error is None"
+        }
+      ],
+      "hint": {
+        "en": "A comprehension builds a list; its optional if filters inputs.",
+        "nl": "Een comprehension bouwt een lijst; de optionele if filtert invoer."
+      },
+      "hints": [
+        {
+          "en": "A comprehension builds a list; its optional if filters inputs.",
+          "nl": "Een comprehension bouwt een lijst; de optionele if filtert invoer."
+        },
+        {
+          "en": "Put the squared expression first and the positive-input condition last.",
+          "nl": "Zet de kwadraatuitdrukking vooraan en de voorwaarde voor positieve invoer achteraan."
+        },
+        {
+          "en": "A small fragment to adapt: `[n ** 2 for n in values if n > 0]`",
+          "nl": "Een klein fragment om aan te passen: `[n ** 2 for n in values if n > 0]`"
+        }
+      ],
+      "feedback": {
+        "en": "Put the squared expression first and the positive-input condition last.",
+        "nl": "Zet de kwadraatuitdrukking vooraan en de voorwaarde voor positieve invoer achteraan."
+      }
+    }
+  ],
+  "solutionNote": {
+    "en": "The filter excludes zero and negative inputs before their square enters the result.",
+    "nl": "Het filter sluit nul en negatieve invoer uit voordat hun kwadraat in het resultaat komt."
+  },
+  "inputs": []
+}

@@ -1,0 +1,160 @@
+{
+  "id": "python-v4-19-views",
+  "chapter": 19,
+  "group": "python-v4-module-19",
+  "title": {
+    "en": "Visit keys, values and pairs",
+    "nl": "Bezoek sleutels, waarden en paren"
+  },
+  "kind": "coding",
+  "optional": false,
+  "runtime": "terminal",
+  "guidance": "guided",
+  "checkpointMode": "sequential",
+  "estimatedMinutes": 12,
+  "topicIds": [
+    "keys",
+    "values",
+    "items",
+    "dictionary-iteration"
+  ],
+  "practices": [],
+  "requiredConcepts": [
+    "for",
+    "packing-unpacking"
+  ],
+  "explanation": {
+    "en": "Choose the dictionary view that matches the information your loop needs.",
+    "nl": "Kies de dictionaryweergave die past bij de informatie die je lus nodig heeft."
+  },
+  "example": "",
+  "sections": [
+    {
+      "id": "python-v4-19-views-example",
+      "topicIds": [
+        "keys",
+        "values",
+        "items",
+        "dictionary-iteration"
+      ],
+      "heading": {
+        "en": "Follow a working example",
+        "nl": "Volg een werkend voorbeeld"
+      },
+      "body": {
+        "en": "Looping over a dictionary visits its keys. keys() exposes keys, values() values, and items() (key, value) pairs. In for name, score in scores.items(), tuple unpacking names both parts. These are live views, not independent list copies. Use list(...) when a separate sequence is needed. Do not add or remove keys while iterating the same mapping.",
+        "nl": "Een dictionary doorlopen bezoekt zijn sleutels. keys() toont sleutels, values() waarden en items() (sleutel, waarde)-paren. In for name, score in scores.items() benoemt tuple-uitpakken beide delen. Dit zijn levende weergaven, geen onafhankelijke lijstkopieën. Gebruik list(...) als een aparte reeks nodig is. Voeg geen sleutels toe en verwijder ze niet tijdens het doorlopen van dezelfde koppeling."
+      },
+      "code": "scores = {\"Ada\":3,\"Bo\":5}\nprint(list(scores.keys()))\nprint(list(scores.values()))\nfor name,score in scores.items():\n    print(name,score)",
+      "output": "['Ada', 'Bo']\n[3, 5]\nAda 3\nBo 5\n",
+      "prediction": {
+        "en": "What does a plain for name in scores visit?",
+        "nl": "Wat bezoekt een gewone for name in scores?"
+      },
+      "takeaway": {
+        "en": "items supplies both key and value to each iteration.",
+        "nl": "items levert bij elke iteratie zowel sleutel als waarde."
+      }
+    },
+    {
+      "id": "python-v4-19-views-experiment",
+      "topicIds": [],
+      "heading": {
+        "en": "Try one change",
+        "nl": "Probeer één wijziging"
+      },
+      "body": {
+        "en": "Compare returning keys only with the labelled report.",
+        "nl": "Vergelijk alleen sleutels teruggeven met het gelabelde rapport."
+      }
+    }
+  ],
+  "files": {
+    "main.py": "def labels(scores):\n    # Complete this function.\n    return None\n"
+  },
+  "solution": {
+    "main.py": "def labels(scores):\n    result = []\n    for name, score in scores.items():\n        result.append(f\"{name}: {score}\")\n    return result\n"
+  },
+  "checkpoints": [
+    {
+      "id": "python-v4-19-views-step-1",
+      "objectiveIds": [
+        "keys",
+        "values",
+        "items",
+        "dictionary-iteration"
+      ],
+      "task": {
+        "en": "Return one name: score string per entry, preserving dictionary insertion order.",
+        "nl": "Geef per invoer één name: score-string terug met behoud van dictionary-invoegvolgorde."
+      },
+      "check": "callable(labels)",
+      "probes": [
+        {
+          "call": {
+            "name": "labels",
+            "args": [
+              {
+                "Ada": 3,
+                "Bo": 0
+              }
+            ]
+          },
+          "check": "(_return == [\"Ada: 3\",\"Bo: 0\"]) and _error is None"
+        },
+        {
+          "call": {
+            "name": "labels",
+            "args": [
+              {}
+            ]
+          },
+          "check": "(_return == []) and _error is None"
+        }
+      ],
+      "hint": {
+        "en": "items supplies both key and value to each iteration.",
+        "nl": "items levert bij elke iteratie zowel sleutel als waarde."
+      },
+      "hints": [
+        {
+          "en": "items supplies both key and value to each iteration.",
+          "nl": "items levert bij elke iteratie zowel sleutel als waarde."
+        },
+        {
+          "en": "Unpack items pairs and format both values.",
+          "nl": "Pak items-paren uit en formatteer beide waarden."
+        },
+        {
+          "en": "A small fragment to adapt: `for name, score in scores.items():`",
+          "nl": "Een klein fragment om aan te passen: `for name, score in scores.items():`"
+        }
+      ],
+      "feedback": {
+        "en": "Unpack items pairs and format both values.",
+        "nl": "Pak items-paren uit en formatteer beide waarden."
+      }
+    }
+  ],
+  "solutionNote": {
+    "en": "items avoids a separate lookup for each key because each pair already contains its value.",
+    "nl": "items voorkomt een aparte zoekactie voor elke sleutel omdat elk paar de waarde al bevat."
+  },
+  "inputs": [],
+  "retrievals": [
+    {
+      "id": "recall-python-v4-17-nested-grid",
+      "sourceActivityId": "python-v4-17-nested-grid",
+      "objectiveIds": [
+        "2d-lists",
+        "2d-access",
+        "2d-mutation",
+        "aliasing"
+      ],
+      "prompt": {
+        "en": "Recall “Read and change a grid”. Which index selects the row? Try the earlier example from memory, then check it. Copy only the outer grid, modify one inner row, and observe the shared row.",
+        "nl": "Haal “Lees en verander een raster” terug. Welke index kiest de rij? Probeer het eerdere voorbeeld uit je geheugen en controleer daarna. Kopieer alleen het buitenste raster, verander één binnenste rij en bekijk de gedeelde rij."
+      }
+    }
+  ]
+}

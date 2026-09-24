@@ -1,0 +1,768 @@
+{
+  "id": "python-v4-14-quiz",
+  "chapter": 14,
+  "group": "python-v4-module-14",
+  "kind": "quiz",
+  "optional": false,
+  "estimatedMinutes": 8,
+  "title": {
+    "en": "Libraries and separate Python files: review",
+    "nl": "Bibliotheken en aparte Pythonbestanden: herhaling"
+  },
+  "questions": [
+    {
+      "objectiveIds": [
+        "random-seed"
+      ],
+      "category": "prediction",
+      "prompt": {
+        "en": "What does this program print?",
+        "nl": "Wat drukt dit programma af?"
+      },
+      "code": "import random\nrandom.seed(12)\nfirst = random.random()\nrandom.seed(12)\nprint(first == random.random())",
+      "answer": "a",
+      "expectedOutput": "True\n",
+      "choices": [
+        {
+          "id": "a",
+          "label": {
+            "en": "True",
+            "nl": "True"
+          },
+          "reason": {
+            "en": "The seed and call sequence repeat.",
+            "nl": "De seed en aanroepreeks worden herhaald."
+          }
+        },
+        {
+          "id": "b",
+          "label": {
+            "en": "False",
+            "nl": "False"
+          },
+          "reason": {
+            "en": "Resetting the same generator state reproduces the draw.",
+            "nl": "Dezelfde generatortoestand herstellen reproduceert de trekking."
+          }
+        },
+        {
+          "id": "c",
+          "label": {
+            "en": "12",
+            "nl": "12"
+          },
+          "reason": {
+            "en": "The seed is not the random output.",
+            "nl": "De seed is niet de willekeurige uitvoer."
+          }
+        }
+      ],
+      "id": "python-v4-14-quiz-a-1",
+      "reviewActivityIds": [
+        "python-v4-14-repeatable-random"
+      ]
+    },
+    {
+      "objectiveIds": [
+        "range"
+      ],
+      "category": "prediction",
+      "prompt": {
+        "en": "What does this program print?",
+        "nl": "Wat drukt dit programma af?"
+      },
+      "code": "print(list(range(3)))",
+      "answer": "a",
+      "expectedOutput": "[0, 1, 2]\n",
+      "choices": [
+        {
+          "id": "a",
+          "label": {
+            "en": "[0, 1, 2]",
+            "nl": "[0, 1, 2]"
+          },
+          "reason": {
+            "en": "range starts at zero and excludes stop.",
+            "nl": "range begint bij nul en sluit stop uit."
+          }
+        },
+        {
+          "id": "b",
+          "label": {
+            "en": "[1, 2, 3]",
+            "nl": "[1, 2, 3]"
+          },
+          "reason": {
+            "en": "Starting at one requires an explicit start argument.",
+            "nl": "Bij één beginnen vereist een expliciet beginargument."
+          }
+        },
+        {
+          "id": "c",
+          "label": {
+            "en": "3",
+            "nl": "3"
+          },
+          "reason": {
+            "en": "list materialises every range value.",
+            "nl": "list maakt elke range-waarde concreet."
+          }
+        }
+      ],
+      "id": "python-v4-14-quiz-a-2",
+      "reviewActivityIds": [
+        "python-v4-12-range-stop"
+      ]
+    },
+    {
+      "objectiveIds": [
+        "decimal"
+      ],
+      "category": "completion",
+      "prompt": {
+        "en": "Complete the code to produce the shown output.",
+        "nl": "Vul de code aan om de getoonde uitvoer te maken."
+      },
+      "code": "from decimal import Decimal\nprint(Decimal(___) + Decimal(\"0.2\"))",
+      "answer": "a",
+      "choices": [
+        {
+          "id": "a",
+          "label": {
+            "en": "\"0.1\"",
+            "nl": "\"0.1\""
+          },
+          "reason": {
+            "en": "A string preserves the written decimal exactly; a float may already be approximate.",
+            "nl": "Een string bewaart de geschreven decimaal exact; een float kan al benaderd zijn."
+          }
+        },
+        {
+          "id": "b",
+          "label": {
+            "en": "0.1",
+            "nl": "0.1"
+          },
+          "reason": {
+            "en": "A string preserves the written decimal exactly; a float may already be approximate.",
+            "nl": "Een string bewaart de geschreven decimaal exact; een float kan al benaderd zijn."
+          }
+        },
+        {
+          "id": "c",
+          "label": {
+            "en": "1",
+            "nl": "1"
+          },
+          "reason": {
+            "en": "A string preserves the written decimal exactly; a float may already be approximate.",
+            "nl": "Een string bewaart de geschreven decimaal exact; een float kan al benaderd zijn."
+          }
+        }
+      ],
+      "codeBlank": {
+        "prompt": {
+          "en": "Complete the code to produce the shown output.",
+          "nl": "Vul de code aan om de getoonde uitvoer te maken."
+        },
+        "segments": [
+          "from decimal import Decimal\nprint(Decimal(",
+          ") + Decimal(\"0.2\"))"
+        ],
+        "tokens": [
+          {
+            "id": "token-1",
+            "code": "\"0.1\""
+          },
+          {
+            "id": "token-2",
+            "code": "0.1"
+          },
+          {
+            "id": "token-3",
+            "code": "1"
+          }
+        ],
+        "blanks": [
+          {
+            "answer": "\"0.1\"",
+            "reason": {
+              "en": "A string preserves the written decimal exactly; a float may already be approximate.",
+              "nl": "Een string bewaart de geschreven decimaal exact; een float kan al benaderd zijn."
+            }
+          }
+        ],
+        "output": "0.3\n"
+      },
+      "id": "python-v4-14-quiz-a-3",
+      "reviewActivityIds": [
+        "python-v4-14-decimal"
+      ]
+    },
+    {
+      "objectiveIds": [
+        "for"
+      ],
+      "category": "completion",
+      "prompt": {
+        "en": "Complete the code to produce the shown output.",
+        "nl": "Vul de code aan om de getoonde uitvoer te maken."
+      },
+      "code": "total = 0\nfor value ___ [3,2]:\n    total += value\nprint(total)",
+      "answer": "a",
+      "choices": [
+        {
+          "id": "a",
+          "label": {
+            "en": "in",
+            "nl": "in"
+          },
+          "reason": {
+            "en": "for uses in to select successive values from a sequence.",
+            "nl": "for gebruikt in om opeenvolgende waarden uit een reeks te kiezen."
+          }
+        },
+        {
+          "id": "b",
+          "label": {
+            "en": "is",
+            "nl": "is"
+          },
+          "reason": {
+            "en": "for uses in to select successive values from a sequence.",
+            "nl": "for gebruikt in om opeenvolgende waarden uit een reeks te kiezen."
+          }
+        },
+        {
+          "id": "c",
+          "label": {
+            "en": "==",
+            "nl": "=="
+          },
+          "reason": {
+            "en": "for uses in to select successive values from a sequence.",
+            "nl": "for gebruikt in om opeenvolgende waarden uit een reeks te kiezen."
+          }
+        }
+      ],
+      "codeBlank": {
+        "prompt": {
+          "en": "Complete the code to produce the shown output.",
+          "nl": "Vul de code aan om de getoonde uitvoer te maken."
+        },
+        "segments": [
+          "total = 0\nfor value ",
+          " [3,2]:\n    total += value\nprint(total)"
+        ],
+        "tokens": [
+          {
+            "id": "token-1",
+            "code": "in"
+          },
+          {
+            "id": "token-2",
+            "code": "is"
+          },
+          {
+            "id": "token-3",
+            "code": "=="
+          }
+        ],
+        "blanks": [
+          {
+            "answer": "in",
+            "reason": {
+              "en": "for uses in to select successive values from a sequence.",
+              "nl": "for gebruikt in om opeenvolgende waarden uit een reeks te kiezen."
+            }
+          }
+        ],
+        "output": "5\n"
+      },
+      "id": "python-v4-14-quiz-a-4",
+      "reviewActivityIds": [
+        "python-v4-12-for-values"
+      ]
+    },
+    {
+      "objectiveIds": [
+        "aliases"
+      ],
+      "category": "debugging",
+      "prompt": {
+        "en": "Choose the repair or test that addresses the stated problem.",
+        "nl": "Kies de reparatie of test die het beschreven probleem aanpakt."
+      },
+      "code": "import math as m\nprint(math.sqrt(144))",
+      "answer": "a",
+      "choices": [
+        {
+          "id": "a",
+          "label": {
+            "en": "Use m.sqrt with the chosen alias.",
+            "nl": "Gebruik m.sqrt met de gekozen alias."
+          },
+          "reason": {
+            "en": "The local module name is m.",
+            "nl": "De lokale modulenaam is m."
+          }
+        },
+        {
+          "id": "b",
+          "label": {
+            "en": "Install math with pip.",
+            "nl": "Installeer math met pip."
+          },
+          "reason": {
+            "en": "math is in the standard library; the issue is its local name.",
+            "nl": "math zit in de standaardbibliotheek; het probleem is de lokale naam."
+          }
+        },
+        {
+          "id": "c",
+          "label": {
+            "en": "Put the call in quotes.",
+            "nl": "Zet de aanroep tussen aanhalingstekens."
+          },
+          "reason": {
+            "en": "That prints code text instead of computing.",
+            "nl": "Dat drukt codetekst af in plaats van te rekenen."
+          }
+        }
+      ],
+      "id": "python-v4-14-quiz-a-5",
+      "reviewActivityIds": [
+        "python-v4-14-selected-and-alias"
+      ]
+    },
+    {
+      "objectiveIds": [
+        "installing"
+      ],
+      "category": "application",
+      "prompt": {
+        "en": "Which explanation applies to this example?",
+        "nl": "Welke uitleg past bij dit voorbeeld?"
+      },
+      "code": "import random",
+      "answer": "a",
+      "choices": [
+        {
+          "id": "a",
+          "label": {
+            "en": "Import makes an available module usable in this file.",
+            "nl": "Import maakt een beschikbare module bruikbaar in dit bestand."
+          },
+          "reason": {
+            "en": "It does not download a missing package.",
+            "nl": "Het downloadt geen ontbrekend pakket."
+          }
+        },
+        {
+          "id": "b",
+          "label": {
+            "en": "Import installs any missing package automatically.",
+            "nl": "Import installeert elk ontbrekend pakket automatisch."
+          },
+          "reason": {
+            "en": "Installation is a separate operation.",
+            "nl": "Installeren is een aparte bewerking."
+          }
+        },
+        {
+          "id": "c",
+          "label": {
+            "en": "Every module requires a pip install.",
+            "nl": "Elke module vereist pip-installatie."
+          },
+          "reason": {
+            "en": "Standard-library modules are included with Python.",
+            "nl": "Standaardbibliotheekmodules zitten bij Python."
+          }
+        }
+      ],
+      "id": "python-v4-14-quiz-a-6",
+      "reviewActivityIds": [
+        "python-v4-14-helper-files"
+      ]
+    }
+  ],
+  "alternateQuestions": [
+    {
+      "objectiveIds": [
+        "random-seed"
+      ],
+      "category": "prediction",
+      "prompt": {
+        "en": "What does this program print?",
+        "nl": "Wat drukt dit programma af?"
+      },
+      "code": "import random\nrandom.seed(17)\nfirst = random.random()\nrandom.seed(17)\nprint(first == random.random())",
+      "answer": "a",
+      "expectedOutput": "True\n",
+      "choices": [
+        {
+          "id": "a",
+          "label": {
+            "en": "True",
+            "nl": "True"
+          },
+          "reason": {
+            "en": "The seed and call sequence repeat.",
+            "nl": "De seed en aanroepreeks worden herhaald."
+          }
+        },
+        {
+          "id": "b",
+          "label": {
+            "en": "False",
+            "nl": "False"
+          },
+          "reason": {
+            "en": "Resetting the same generator state reproduces the draw.",
+            "nl": "Dezelfde generatortoestand herstellen reproduceert de trekking."
+          }
+        },
+        {
+          "id": "c",
+          "label": {
+            "en": "17",
+            "nl": "17"
+          },
+          "reason": {
+            "en": "The seed is not the random output.",
+            "nl": "De seed is niet de willekeurige uitvoer."
+          }
+        }
+      ],
+      "id": "python-v4-14-quiz-b-1",
+      "reviewActivityIds": [
+        "python-v4-14-repeatable-random"
+      ]
+    },
+    {
+      "objectiveIds": [
+        "range"
+      ],
+      "category": "prediction",
+      "prompt": {
+        "en": "What does this program print?",
+        "nl": "Wat drukt dit programma af?"
+      },
+      "code": "print(list(range(4)))",
+      "answer": "a",
+      "expectedOutput": "[0, 1, 2, 3]\n",
+      "choices": [
+        {
+          "id": "a",
+          "label": {
+            "en": "[0, 1, 2, 3]",
+            "nl": "[0, 1, 2, 3]"
+          },
+          "reason": {
+            "en": "range starts at zero and excludes stop.",
+            "nl": "range begint bij nul en sluit stop uit."
+          }
+        },
+        {
+          "id": "b",
+          "label": {
+            "en": "[1, 2, 3, 4]",
+            "nl": "[1, 2, 3, 4]"
+          },
+          "reason": {
+            "en": "Starting at one requires an explicit start argument.",
+            "nl": "Bij één beginnen vereist een expliciet beginargument."
+          }
+        },
+        {
+          "id": "c",
+          "label": {
+            "en": "4",
+            "nl": "4"
+          },
+          "reason": {
+            "en": "list materialises every range value.",
+            "nl": "list maakt elke range-waarde concreet."
+          }
+        }
+      ],
+      "id": "python-v4-14-quiz-b-2",
+      "reviewActivityIds": [
+        "python-v4-12-range-stop"
+      ]
+    },
+    {
+      "objectiveIds": [
+        "decimal"
+      ],
+      "category": "completion",
+      "prompt": {
+        "en": "Complete the code to produce the shown output.",
+        "nl": "Vul de code aan om de getoonde uitvoer te maken."
+      },
+      "code": "from decimal import Decimal\nprint(Decimal(___) + Decimal(\"0.4\"))",
+      "answer": "a",
+      "choices": [
+        {
+          "id": "a",
+          "label": {
+            "en": "\"0.2\"",
+            "nl": "\"0.2\""
+          },
+          "reason": {
+            "en": "A string preserves the written decimal exactly; a float may already be approximate.",
+            "nl": "Een string bewaart de geschreven decimaal exact; een float kan al benaderd zijn."
+          }
+        },
+        {
+          "id": "b",
+          "label": {
+            "en": "0.2",
+            "nl": "0.2"
+          },
+          "reason": {
+            "en": "A string preserves the written decimal exactly; a float may already be approximate.",
+            "nl": "Een string bewaart de geschreven decimaal exact; een float kan al benaderd zijn."
+          }
+        },
+        {
+          "id": "c",
+          "label": {
+            "en": "1",
+            "nl": "1"
+          },
+          "reason": {
+            "en": "A string preserves the written decimal exactly; a float may already be approximate.",
+            "nl": "Een string bewaart de geschreven decimaal exact; een float kan al benaderd zijn."
+          }
+        }
+      ],
+      "codeBlank": {
+        "prompt": {
+          "en": "Complete the code to produce the shown output.",
+          "nl": "Vul de code aan om de getoonde uitvoer te maken."
+        },
+        "segments": [
+          "from decimal import Decimal\nprint(Decimal(",
+          ") + Decimal(\"0.4\"))"
+        ],
+        "tokens": [
+          {
+            "id": "token-1",
+            "code": "\"0.2\""
+          },
+          {
+            "id": "token-2",
+            "code": "0.2"
+          },
+          {
+            "id": "token-3",
+            "code": "1"
+          }
+        ],
+        "blanks": [
+          {
+            "answer": "\"0.2\"",
+            "reason": {
+              "en": "A string preserves the written decimal exactly; a float may already be approximate.",
+              "nl": "Een string bewaart de geschreven decimaal exact; een float kan al benaderd zijn."
+            }
+          }
+        ],
+        "output": "0.6\n"
+      },
+      "id": "python-v4-14-quiz-b-3",
+      "reviewActivityIds": [
+        "python-v4-14-decimal"
+      ]
+    },
+    {
+      "objectiveIds": [
+        "for"
+      ],
+      "category": "completion",
+      "prompt": {
+        "en": "Complete the code to produce the shown output.",
+        "nl": "Vul de code aan om de getoonde uitvoer te maken."
+      },
+      "code": "total = 0\nfor value ___ [4,2]:\n    total += value\nprint(total)",
+      "answer": "a",
+      "choices": [
+        {
+          "id": "a",
+          "label": {
+            "en": "in",
+            "nl": "in"
+          },
+          "reason": {
+            "en": "for uses in to select successive values from a sequence.",
+            "nl": "for gebruikt in om opeenvolgende waarden uit een reeks te kiezen."
+          }
+        },
+        {
+          "id": "b",
+          "label": {
+            "en": "is",
+            "nl": "is"
+          },
+          "reason": {
+            "en": "for uses in to select successive values from a sequence.",
+            "nl": "for gebruikt in om opeenvolgende waarden uit een reeks te kiezen."
+          }
+        },
+        {
+          "id": "c",
+          "label": {
+            "en": "==",
+            "nl": "=="
+          },
+          "reason": {
+            "en": "for uses in to select successive values from a sequence.",
+            "nl": "for gebruikt in om opeenvolgende waarden uit een reeks te kiezen."
+          }
+        }
+      ],
+      "codeBlank": {
+        "prompt": {
+          "en": "Complete the code to produce the shown output.",
+          "nl": "Vul de code aan om de getoonde uitvoer te maken."
+        },
+        "segments": [
+          "total = 0\nfor value ",
+          " [4,2]:\n    total += value\nprint(total)"
+        ],
+        "tokens": [
+          {
+            "id": "token-1",
+            "code": "in"
+          },
+          {
+            "id": "token-2",
+            "code": "is"
+          },
+          {
+            "id": "token-3",
+            "code": "=="
+          }
+        ],
+        "blanks": [
+          {
+            "answer": "in",
+            "reason": {
+              "en": "for uses in to select successive values from a sequence.",
+              "nl": "for gebruikt in om opeenvolgende waarden uit een reeks te kiezen."
+            }
+          }
+        ],
+        "output": "6\n"
+      },
+      "id": "python-v4-14-quiz-b-4",
+      "reviewActivityIds": [
+        "python-v4-12-for-values"
+      ]
+    },
+    {
+      "objectiveIds": [
+        "aliases"
+      ],
+      "category": "debugging",
+      "prompt": {
+        "en": "Choose the repair or test that addresses the stated problem.",
+        "nl": "Kies de reparatie of test die het beschreven probleem aanpakt."
+      },
+      "code": "import math as m\nprint(math.sqrt(289))",
+      "answer": "a",
+      "choices": [
+        {
+          "id": "a",
+          "label": {
+            "en": "Use m.sqrt with the chosen alias.",
+            "nl": "Gebruik m.sqrt met de gekozen alias."
+          },
+          "reason": {
+            "en": "The local module name is m.",
+            "nl": "De lokale modulenaam is m."
+          }
+        },
+        {
+          "id": "b",
+          "label": {
+            "en": "Install math with pip.",
+            "nl": "Installeer math met pip."
+          },
+          "reason": {
+            "en": "math is in the standard library; the issue is its local name.",
+            "nl": "math zit in de standaardbibliotheek; het probleem is de lokale naam."
+          }
+        },
+        {
+          "id": "c",
+          "label": {
+            "en": "Put the call in quotes.",
+            "nl": "Zet de aanroep tussen aanhalingstekens."
+          },
+          "reason": {
+            "en": "That prints code text instead of computing.",
+            "nl": "Dat drukt codetekst af in plaats van te rekenen."
+          }
+        }
+      ],
+      "id": "python-v4-14-quiz-b-5",
+      "reviewActivityIds": [
+        "python-v4-14-selected-and-alias"
+      ]
+    },
+    {
+      "objectiveIds": [
+        "installing"
+      ],
+      "category": "application",
+      "prompt": {
+        "en": "Which explanation applies to this example?",
+        "nl": "Welke uitleg past bij dit voorbeeld?"
+      },
+      "code": "import csv",
+      "answer": "a",
+      "choices": [
+        {
+          "id": "a",
+          "label": {
+            "en": "Import makes an available module usable in this file.",
+            "nl": "Import maakt een beschikbare module bruikbaar in dit bestand."
+          },
+          "reason": {
+            "en": "It does not download a missing package.",
+            "nl": "Het downloadt geen ontbrekend pakket."
+          }
+        },
+        {
+          "id": "b",
+          "label": {
+            "en": "Import installs any missing package automatically.",
+            "nl": "Import installeert elk ontbrekend pakket automatisch."
+          },
+          "reason": {
+            "en": "Installation is a separate operation.",
+            "nl": "Installeren is een aparte bewerking."
+          }
+        },
+        {
+          "id": "c",
+          "label": {
+            "en": "Every module requires a pip install.",
+            "nl": "Elke module vereist pip-installatie."
+          },
+          "reason": {
+            "en": "Standard-library modules are included with Python.",
+            "nl": "Standaardbibliotheekmodules zitten bij Python."
+          }
+        }
+      ],
+      "id": "python-v4-14-quiz-b-6",
+      "reviewActivityIds": [
+        "python-v4-14-helper-files"
+      ]
+    }
+  ]
+}

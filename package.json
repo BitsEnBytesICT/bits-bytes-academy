@@ -6,7 +6,8 @@
   "scripts": {
     "dev": "concurrently -k -n API,WEB \"tsx watch backend/src/index.ts\" \"vite --config frontend/vite.config.ts\"",
     "setup:runtime": "node scripts/setup-runtime.mjs",
-    "content": "node scripts/build-project-content.mjs",
+    "content": "node scripts/build-beginner-content.mjs",
+    "test:beginner-course": "npm run content && node tests/beginner-course-assembly.test.mjs && node tests/beginner-course-runtime.test.mjs && node tests/beginner-course-quizzes.test.mjs && node tests/beginner-course-behavior.test.mjs && tsx --test tests/lesson-progress.test.ts tests/curriculum-persistence.test.ts tests/quiz-contrast.test.ts && tsx --tsconfig frontend/tsconfig.json --test tests/project-presentation.test.ts",
     "typecheck": "tsc -p frontend/tsconfig.json --noEmit && tsc -p backend/tsconfig.json --noEmit",
     "build": "npm run content && npm run setup:runtime && npm run typecheck && vite build --config frontend/vite.config.ts && tsc -p backend/tsconfig.json",
     "start": "node dist-server/index.js",
@@ -14,7 +15,8 @@
     "test:rework": "node tests/course-assembly.test.mjs && node tests/behavior-probes.test.mjs && node tests/packages.test.mjs && node tests/graphical-grading.test.mjs && node tests/project-course.test.mjs && node tests/foundations-behavior.test.mjs && node tests/game-state.test.mjs && node tests/library-lessons.test.mjs && node tests/multifile.test.mjs && tsx --test tests/project-persistence.test.ts tests/workspace-files.test.ts && tsx --test tests/game-runner.test.ts && node tests/game-lessons.test.mjs",
     "pretest:rework": "npm run setup:runtime",
     "launch": "node scripts/start.mjs",
-    "test:browser": "node scripts/serve-browser-checks.mjs"
+    "test:browser": "node scripts/serve-browser-checks.mjs",
+    "test:complete-course": "npm run content && node tests/course-assembly.test.mjs && node tests/complete-course-runtime.test.mjs && tsx --test tests/curriculum-persistence.test.ts"
   },
   "dependencies": {
     "@codemirror/commands": "^6.8.1",

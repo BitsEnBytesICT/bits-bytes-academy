@@ -1,0 +1,165 @@
+{
+  "id": "python-v4-18-split-delimiter",
+  "chapter": 18,
+  "group": "python-v4-module-18",
+  "title": {
+    "en": "Split a known separator",
+    "nl": "Splits een bekend scheidingsteken"
+  },
+  "kind": "coding",
+  "optional": false,
+  "runtime": "terminal",
+  "guidance": "guided",
+  "checkpointMode": "sequential",
+  "estimatedMinutes": 12,
+  "topicIds": [
+    "split-delimiters",
+    "split-newlines",
+    "split-tabs"
+  ],
+  "practices": [],
+  "requiredConcepts": [
+    "split-whitespace",
+    "escapes"
+  ],
+  "explanation": {
+    "en": "A delimiter can carry structure, including an intentionally empty field.",
+    "nl": "Een scheidingsteken kan structuur geven, inclusief een bewust leeg veld."
+  },
+  "example": "",
+  "sections": [
+    {
+      "id": "python-v4-18-split-delimiter-example",
+      "topicIds": [
+        "split-delimiters",
+        "split-newlines",
+        "split-tabs"
+      ],
+      "heading": {
+        "en": "Follow a working example",
+        "nl": "Volg een werkend voorbeeld"
+      },
+      "body": {
+        "en": "split(\",\") separates only commas and preserves empty fields. split(\"\\t\") separates tabs; split(\"\\n\") separates newline characters and keeps a trailing empty field if the text ends with a newline. splitlines() understands line boundaries and normally omits that final empty field. Do not use comma splitting for CSV with quoting; a proper CSV reader is taught later.",
+        "nl": "split(\",\") scheidt alleen komma’s en bewaart lege velden. split(\"\\t\") scheidt tabs; split(\"\\n\") scheidt nieuwe-regeltekens en bewaart een leeg eindveld als tekst op een nieuwe regel eindigt. splitlines() begrijpt regelgrenzen en laat dat laatste lege veld meestal weg. Gebruik geen kommasplitsing voor CSV met aanhalingstekens; later leer je een echte CSV-lezer."
+      },
+      "code": "print(\"a,,b\".split(\",\"))\nprint(\"a\tb\".split(\"\t\"))\nprint(\"a\\nb\\n\".splitlines())",
+      "output": "['a', '', 'b']\n['a', 'b']\n['a', 'b']\n",
+      "prediction": {
+        "en": "What information would removing the empty field lose?",
+        "nl": "Welke informatie verdwijnt als je het lege veld verwijdert?"
+      },
+      "takeaway": {
+        "en": "An explicit delimiter preserves empty fields between separators.",
+        "nl": "Een expliciet scheidingsteken bewaart lege velden tussen scheidingen."
+      }
+    },
+    {
+      "id": "python-v4-18-split-delimiter-experiment",
+      "topicIds": [],
+      "heading": {
+        "en": "Try one change",
+        "nl": "Probeer één wijziging"
+      },
+      "body": {
+        "en": "Compare splitting the same newline-terminated text with splitlines and split(\"\\n\").",
+        "nl": "Vergelijk dezelfde tekst met een nieuwe regel aan het einde via splitlines en split(\"\\n\")."
+      }
+    }
+  ],
+  "files": {
+    "main.py": "def fields(text, separator):\n    # Complete this function.\n    return None\n"
+  },
+  "solution": {
+    "main.py": "def fields(text, separator):\n    return text.split(separator)\n"
+  },
+  "checkpoints": [
+    {
+      "id": "python-v4-18-split-delimiter-step-1",
+      "objectiveIds": [
+        "split-delimiters",
+        "split-newlines",
+        "split-tabs"
+      ],
+      "task": {
+        "en": "Split text by the supplied nonempty separator and preserve empty fields.",
+        "nl": "Splits text op het gegeven niet-lege scheidingsteken en behoud lege velden."
+      },
+      "check": "callable(fields)",
+      "probes": [
+        {
+          "call": {
+            "name": "fields",
+            "args": [
+              "a,,b",
+              ","
+            ]
+          },
+          "check": "(_return == [\"a\",\"\",\"b\"]) and _error is None"
+        },
+        {
+          "call": {
+            "name": "fields",
+            "args": [
+              "a\tb",
+              "\t"
+            ]
+          },
+          "check": "(_return == [\"a\",\"b\"]) and _error is None"
+        },
+        {
+          "call": {
+            "name": "fields",
+            "args": [
+              "a\n",
+              "\n"
+            ]
+          },
+          "check": "(_return == [\"a\",\"\"]) and _error is None"
+        }
+      ],
+      "hint": {
+        "en": "An explicit delimiter preserves empty fields between separators.",
+        "nl": "Een expliciet scheidingsteken bewaart lege velden tussen scheidingen."
+      },
+      "hints": [
+        {
+          "en": "An explicit delimiter preserves empty fields between separators.",
+          "nl": "Een expliciet scheidingsteken bewaart lege velden tussen scheidingen."
+        },
+        {
+          "en": "Pass the separator to split instead of using the no-argument form.",
+          "nl": "Geef het scheidingsteken aan split in plaats van de vorm zonder argumenten."
+        },
+        {
+          "en": "A small fragment to adapt: `text.split(separator)`",
+          "nl": "Een klein fragment om aan te passen: `text.split(separator)`"
+        }
+      ],
+      "feedback": {
+        "en": "Pass the separator to split instead of using the no-argument form.",
+        "nl": "Geef het scheidingsteken aan split in plaats van de vorm zonder argumenten."
+      }
+    }
+  ],
+  "solutionNote": {
+    "en": "The supplied separator makes field boundaries explicit, including empty fields.",
+    "nl": "Het opgegeven scheidingsteken maakt veldgrenzen expliciet, inclusief lege velden."
+  },
+  "inputs": [],
+  "retrievals": [
+    {
+      "id": "recall-python-v4-16-serve",
+      "sourceActivityId": "python-v4-16-serve",
+      "objectiveIds": [
+        "serving",
+        "game-state",
+        "game-review"
+      ],
+      "prompt": {
+        "en": "Recall “Start the next rally deliberately”. Why should a second press not reset an active rally? Try the earlier example from memory, then check it. Click outside the preview, return focus, and serve again. Stop, then start a fresh run.",
+        "nl": "Haal “Begin de volgende rally bewust” terug. Waarom hoort een tweede druk een actieve rally niet terug te zetten? Probeer het eerdere voorbeeld uit je geheugen en controleer daarna. Klik buiten het voorbeeld, keer terug en serveer opnieuw. Stop en start daarna een nieuwe uitvoering."
+      }
+    }
+  ]
+}

@@ -1,0 +1,171 @@
+{
+  "id": "python-v3-1-02",
+  "chapter": 1,
+  "group": "python-v3-module-1",
+  "title": {
+    "en": "A receipt",
+    "nl": "Een kassabon"
+  },
+  "kind": "coding",
+  "optional": false,
+  "runtime": "terminal",
+  "guidance": "adapt",
+  "estimatedMinutes": 13,
+  "explanation": {
+    "en": "Calculate a receipt from quantities instead of typing a fixed total. This lets the same program handle changed prices.",
+    "nl": "Bereken een kassabon uit aantallen in plaats van een vast totaal te typen. Zo werkt hetzelfde programma met gewijzigde prijzen."
+  },
+  "example": "",
+  "topicIds": [
+    "integers",
+    "floats",
+    "arithmetic",
+    "precedence"
+  ],
+  "prerequisites": [
+    "python-v3-1-01"
+  ],
+  "sections": [
+    {
+      "topicIds": [
+        "integers",
+        "floats",
+        "arithmetic",
+        "precedence"
+      ],
+      "heading": {
+        "en": "Follow the calculation",
+        "nl": "Volg de berekening"
+      },
+      "body": {
+        "en": "An int is a whole number; a float has a decimal point. Python uses +, -, *, / for addition, subtraction, multiplication and division. Multiplication and division happen before addition and subtraction; parentheses group a calculation. / returns a float, even when the division is exact.",
+        "nl": "Een int is een geheel getal; een float heeft een decimale punt. Python gebruikt +, -, *, / voor optellen, aftrekken, vermenigvuldigen en delen. Vermenigvuldigen en delen gaan vóór optellen en aftrekken; haakjes groeperen een berekening. / geeft een float terug, ook als de deling exact is."
+      },
+      "code": "books = 3\nprice = 4.5\nprint(books * price + 2)\nprint((books + 1) * price)\nprint(9 / 2)",
+      "output": "15.5\n18.0\n4.5\n",
+      "prediction": {
+        "en": "Why do the first two totals differ?",
+        "nl": "Waarom verschillen de eerste twee totalen?"
+      }
+    },
+    {
+      "topicIds": [],
+      "heading": {
+        "en": "Try a changed input",
+        "nl": "Probeer gewijzigde invoer"
+      },
+      "body": {
+        "en": "Set quantity to 1, then to 0 with discount also 0. Explain both totals before running.",
+        "nl": "Zet quantity op 1 en daarna op 0 met ook discount op 0. Verklaar beide totalen voordat je uitvoert."
+      }
+    }
+  ],
+  "files": {
+    "main.py": "quantity = 4\nprice = 2.5\ndiscount = 1.0\n# Calculate subtotal and total, then print total.\n"
+  },
+  "solution": {
+    "main.py": "quantity = 4\nprice = 2.5\ndiscount = 1.0\nsubtotal = quantity * price\ntotal = subtotal - discount\nprint(total)\n"
+  },
+  "checkpoints": [
+    {
+      "objectiveIds": [
+        "integers",
+        "floats",
+        "arithmetic"
+      ],
+      "task": {
+        "en": "Calculate subtotal as quantity times price.",
+        "nl": "Bereken subtotal als quantity maal price."
+      },
+      "check": "subtotal == quantity * price",
+      "hints": [
+        {
+          "en": "Separate the item cost from the discount.",
+          "nl": "Scheid de artikelkosten van de korting."
+        },
+        {
+          "en": "Multiply the two existing variables.",
+          "nl": "Vermenigvuldig de twee bestaande variabelen."
+        },
+        {
+          "en": "subtotal = quantity * price",
+          "nl": "subtotal = quantity * price"
+        }
+      ],
+      "hint": {
+        "en": "Separate the item cost from the discount.",
+        "nl": "Scheid de artikelkosten van de korting."
+      },
+      "feedback": {
+        "en": "Check that a different quantity changes the subtotal.",
+        "nl": "Controleer dat een ander aantal het subtotaal verandert."
+      },
+      "probes": [
+        {
+          "inputs": {
+            "quantity": 0,
+            "price": 3.25
+          },
+          "check": "subtotal == 0"
+        },
+        {
+          "inputs": {
+            "quantity": 3,
+            "price": 1.5
+          },
+          "check": "subtotal == 4.5"
+        }
+      ],
+      "id": "python-v3-1-02-step-1"
+    },
+    {
+      "objectiveIds": [
+        "precedence",
+        "arithmetic"
+      ],
+      "task": {
+        "en": "Subtract discount from subtotal to obtain total; print total.",
+        "nl": "Trek discount van subtotal af voor total; druk total af."
+      },
+      "check": "total == subtotal - discount and _stdout.strip() == str(total)",
+      "hints": [
+        {
+          "en": "The discount applies once to the whole receipt.",
+          "nl": "De korting geldt één keer voor de hele bon."
+        },
+        {
+          "en": "Subtract after the multiplication.",
+          "nl": "Trek af na de vermenigvuldiging."
+        },
+        {
+          "en": "total = subtotal - discount",
+          "nl": "total = subtotal - discount"
+        }
+      ],
+      "hint": {
+        "en": "The discount applies once to the whole receipt.",
+        "nl": "De korting geldt één keer voor de hele bon."
+      },
+      "feedback": {
+        "en": "Do not subtract the discount from each item price.",
+        "nl": "Trek de korting niet van elke artikelprijs af."
+      },
+      "probes": [
+        {
+          "inputs": {
+            "quantity": 2,
+            "price": 4,
+            "discount": 3
+          },
+          "check": "total == 5 and _stdout.strip() == str(total)"
+        }
+      ],
+      "id": "python-v3-1-02-step-2"
+    }
+  ],
+  "solutionNote": {
+    "en": "Computing subtotal first makes the two steps visible. quantity * (price - discount) would apply the discount repeatedly and answer a different question.",
+    "nl": "Door eerst subtotal te berekenen worden de twee stappen zichtbaar. quantity * (price - discount) zou de korting herhaaldelijk toepassen en een andere vraag beantwoorden."
+  },
+  "inputs": []
+}

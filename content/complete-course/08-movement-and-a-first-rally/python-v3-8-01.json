@@ -1,0 +1,228 @@
+{
+  "id": "python-v3-8-01",
+  "chapter": 8,
+  "group": "python-v3-module-8",
+  "title": {
+    "en": "Movement over time",
+    "nl": "Bewegen in de tijd"
+  },
+  "kind": "coding",
+  "optional": false,
+  "runtime": "pygame",
+  "guidance": "guided",
+  "estimatedMinutes": 17,
+  "explanation": {
+    "en": "Convert velocity into movement using elapsed time. Keep positions as floats so small movements accumulate smoothly; the supplied renderer converts only when drawing.",
+    "nl": "Zet snelheid om in beweging met verstreken tijd. Houd posities als floats zodat kleine bewegingen vloeiend optellen; de meegeleverde tekenaar zet alleen bij het tekenen om."
+  },
+  "example": "",
+  "topicIds": [
+    "velocity",
+    "elapsed-time"
+  ],
+  "prerequisites": [
+    "python-v3-7-04"
+  ],
+  "sections": [
+    {
+      "topicIds": [
+        "velocity",
+        "elapsed-time"
+      ],
+      "heading": {
+        "en": "Pixels per second",
+        "nl": "Pixels per seconde"
+      },
+      "body": {
+        "en": "Velocity says how far a position changes per second. Multiply by dt in seconds to obtain this frame’s displacement. Add that displacement to the old position. A negative velocity moves in the opposite direction. Rounding every step loses small movements.",
+        "nl": "Snelheid zegt hoeveel een positie per seconde verandert. Vermenigvuldig met dt in seconden voor de verplaatsing in dit beeld. Tel die verplaatsing bij de oude positie op. Een negatieve snelheid beweegt in de tegengestelde richting. Elke stap afronden verliest kleine bewegingen."
+      },
+      "code": "position = 10.0\nvelocity = 80.0\ndt = 0.25\nprint(position + velocity * dt)",
+      "output": "30.0\n",
+      "prediction": {
+        "en": "What happens when dt is zero or velocity is negative?",
+        "nl": "Wat gebeurt er als dt nul of snelheid negatief is?"
+      }
+    },
+    {
+      "topicIds": [],
+      "heading": {
+        "en": "Run, observe, finish",
+        "nl": "Voer uit, bekijk, rond af"
+      },
+      "body": {
+        "en": "main.py supplies the browser entry point. Run opens a real pygame-ce preview; click it to focus the keyboard. Clicking elsewhere pauses play. Finish & check closes normally and checks your helper after at least one rendered frame. Stop cancels without grading. Run can start a fresh session afterward. Keep the supplied async definition and await asyncio.sleep(1 / 60): they let the browser draw and receive input. You are not expected to reproduce this infrastructure from memory.",
+        "nl": "main.py levert het browserstartpunt. Uitvoeren opent een echt pygame-ce-voorbeeld; klik erop om het toetsenbord te activeren. Elders klikken pauzeert het spel. Afronden en controleren sluit normaal af en controleert je helper na minstens één getekend beeld. Stop annuleert zonder beoordeling. Uitvoeren kan daarna een nieuwe sessie starten. Behoud de meegeleverde async-definitie en await asyncio.sleep(1 / 60): die laten de browser tekenen en invoer ontvangen. Je hoeft deze infrastructuur niet uit je hoofd te schrijven."
+      }
+    },
+    {
+      "topicIds": [],
+      "heading": {
+        "en": "Try a changed input",
+        "nl": "Probeer gewijzigde invoer"
+      },
+      "body": {
+        "en": "Compare two 0.1-second updates with one 0.2-second update. They should reach the same position at constant velocity.",
+        "nl": "Vergelijk twee updates van 0.1 seconde met één update van 0.2 seconde. Ze moeten bij constante snelheid dezelfde positie bereiken."
+      }
+    }
+  ],
+  "files": {
+    "main.py": "# Browser entry point supplied by the course.\nimport asyncio\nimport pygame\nimport game\n\nasync def main():\n    pygame.init()\n    screen = pygame.display.set_mode((640, 400))\n    clock = pygame.time.Clock()\n    running = True\n    x, y = 320.0, 200.0\n    vx, vy = 200.0, 100.0\n    left_y, right_y = 170.0, 170.0\n    while running:\n        dt = min(clock.tick() / 1000, 0.05)\n        for event in pygame.event.get():\n            if event.type == pygame.QUIT:\n                running = False\n            if event.type == pygame.KEYDOWN and event.key == pygame.K_ESCAPE:\n                running = False\n        keys = pygame.key.get_pressed()\n        x = game.advance(x, vx, dt)\n        if x > 640:\n            x = 0\n        screen.fill((16, 23, 39))\n        pygame.draw.rect(screen, (235, 240, 250), (20, left_y, 10, 60))\n        pygame.draw.rect(screen, (235, 240, 250), (610, right_y, 10, 60))\n        pygame.draw.circle(screen, (255, 170, 40), (int(x), int(y)), 6)\n        pygame.display.flip()\n        await asyncio.sleep(1 / 60)\n    pygame.quit()\n\nasyncio.run(main())\n",
+    "game.py": "import pygame\n\ndef advance(position, velocity, dt):\n    return position\n"
+  },
+  "solution": {
+    "main.py": "# Browser entry point supplied by the course.\nimport asyncio\nimport pygame\nimport game\n\nasync def main():\n    pygame.init()\n    screen = pygame.display.set_mode((640, 400))\n    clock = pygame.time.Clock()\n    running = True\n    x, y = 320.0, 200.0\n    vx, vy = 200.0, 100.0\n    left_y, right_y = 170.0, 170.0\n    while running:\n        dt = min(clock.tick() / 1000, 0.05)\n        for event in pygame.event.get():\n            if event.type == pygame.QUIT:\n                running = False\n            if event.type == pygame.KEYDOWN and event.key == pygame.K_ESCAPE:\n                running = False\n        keys = pygame.key.get_pressed()\n        x = game.advance(x, vx, dt)\n        if x > 640:\n            x = 0\n        screen.fill((16, 23, 39))\n        pygame.draw.rect(screen, (235, 240, 250), (20, left_y, 10, 60))\n        pygame.draw.rect(screen, (235, 240, 250), (610, right_y, 10, 60))\n        pygame.draw.circle(screen, (255, 170, 40), (int(x), int(y)), 6)\n        pygame.display.flip()\n        await asyncio.sleep(1 / 60)\n    pygame.quit()\n\nasyncio.run(main())\n",
+    "game.py": "import pygame\n\ndef advance(position, velocity, dt):\n    return position + velocity * dt\n"
+  },
+  "checkpoints": [
+    {
+      "objectiveIds": [
+        "velocity"
+      ],
+      "task": {
+        "en": "Return the new position from position + velocity * dt in advance.",
+        "nl": "Geef de nieuwe positie uit position + velocity * dt terug in advance."
+      },
+      "check": "_rendered_frames > 0",
+      "hints": [
+        {
+          "en": "Multiply rate by duration.",
+          "nl": "Vermenigvuldig snelheid met tijdsduur."
+        },
+        {
+          "en": "Add displacement to the existing position.",
+          "nl": "Tel de verplaatsing bij de bestaande positie op."
+        },
+        {
+          "en": "return position + velocity * dt",
+          "nl": "return position + velocity * dt"
+        }
+      ],
+      "hint": {
+        "en": "Multiply rate by duration.",
+        "nl": "Vermenigvuldig snelheid met tijdsduur."
+      },
+      "feedback": {
+        "en": "A movement calculation needs the old position as well as the displacement.",
+        "nl": "Een bewegingsberekening heeft de oude positie én de verplaatsing nodig."
+      },
+      "probes": [
+        {
+          "call": {
+            "name": "advance",
+            "args": [
+              10,
+              80,
+              0.25
+            ],
+            "module": "game"
+          },
+          "check": "_return == 30",
+          "moduleOnly": true,
+          "module": "game"
+        },
+        {
+          "call": {
+            "name": "advance",
+            "args": [
+              10,
+              -80,
+              0.25
+            ],
+            "module": "game"
+          },
+          "check": "_return == -10",
+          "moduleOnly": true,
+          "module": "game"
+        }
+      ],
+      "id": "python-v3-8-01-step-1"
+    },
+    {
+      "objectiveIds": [
+        "elapsed-time"
+      ],
+      "task": {
+        "en": "Preserve fractional movement and leave the position unchanged for dt=0. Watch the moving ball.",
+        "nl": "Behoud beweging met decimalen en laat de positie ongewijzigd bij dt=0. Bekijk de bewegende bal."
+      },
+      "check": "_rendered_frames > 0",
+      "hints": [
+        {
+          "en": "Do not round the simulated position.",
+          "nl": "Rond de gesimuleerde positie niet af."
+        },
+        {
+          "en": "Let the drawing code decide how to display it.",
+          "nl": "Laat de tekencode beslissen hoe die wordt getoond."
+        },
+        {
+          "en": "A 0.1-second step at 0.5 pixels/second moves 0.05 pixels.",
+          "nl": "Een stap van 0.1 seconde bij 0.5 pixels/seconde verplaatst 0.05 pixels."
+        }
+      ],
+      "hint": {
+        "en": "Do not round the simulated position.",
+        "nl": "Rond de gesimuleerde positie niet af."
+      },
+      "feedback": {
+        "en": "Small valid steps must not vanish through integer conversion.",
+        "nl": "Kleine geldige stappen mogen niet verdwijnen door omzetting naar int."
+      },
+      "probes": [
+        {
+          "call": {
+            "name": "advance",
+            "args": [
+              1,
+              0.5,
+              0.1
+            ],
+            "module": "game"
+          },
+          "check": "_close(_return,1.05)",
+          "moduleOnly": true,
+          "module": "game"
+        },
+        {
+          "call": {
+            "name": "advance",
+            "args": [
+              3,
+              7,
+              0
+            ],
+            "module": "game"
+          },
+          "check": "_return == 3",
+          "moduleOnly": true,
+          "module": "game"
+        }
+      ],
+      "id": "python-v3-8-01-step-2"
+    }
+  ],
+  "solutionNote": {
+    "en": "Multiplication by dt makes speed independent of the number of frames. The renderer can use int(x) without discarding the stored fractional position.",
+    "nl": "Vermenigvuldigen met dt maakt snelheid onafhankelijk van het aantal beelden. De tekenaar kan int(x) gebruiken zonder de opgeslagen fractie te verliezen."
+  },
+  "inputs": [],
+  "retrievals": [
+    {
+      "id": "recall-python-v3-6-01",
+      "sourceActivityId": "python-v3-6-01",
+      "objectiveIds": [
+        "imports",
+        "from-import",
+        "aliases",
+        "documentation",
+        "install-vs-import"
+      ],
+      "prompt": {
+        "en": "Show import math, from math import floor and an alias. Find one function in official documentation; explain why installing and importing are different actions.",
+        "nl": "Toon import math, from math import floor en een alias. Zoek een functie in officiële documentatie; leg uit waarom installeren en importeren verschillende handelingen zijn."
+      }
+    }
+  ]
+}

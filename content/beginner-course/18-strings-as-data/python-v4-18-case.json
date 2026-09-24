@@ -1,0 +1,161 @@
+{
+  "id": "python-v4-18-case",
+  "chapter": 18,
+  "group": "python-v4-module-18",
+  "title": {
+    "en": "Return differently cased text",
+    "nl": "Geef tekst met andere hoofdletters terug"
+  },
+  "kind": "coding",
+  "optional": false,
+  "runtime": "terminal",
+  "guidance": "adapt",
+  "checkpointMode": "sequential",
+  "estimatedMinutes": 12,
+  "topicIds": [
+    "case-conversion"
+  ],
+  "practices": [
+    "case-methods",
+    "normalisation"
+  ],
+  "requiredConcepts": [
+    "immutability"
+  ],
+  "explanation": {
+    "en": "Case methods help compare or display text consistently. Their returned value must be used.",
+    "nl": "Hoofdlettermethoden helpen tekst consistent vergelijken of tonen. Hun terugkeerwaarde moet worden gebruikt."
+  },
+  "example": "",
+  "sections": [
+    {
+      "id": "python-v4-18-case-example",
+      "topicIds": [
+        "case-conversion",
+        "case-methods",
+        "normalisation"
+      ],
+      "heading": {
+        "en": "Follow a working example",
+        "nl": "Volg een werkend voorbeeld"
+      },
+      "body": {
+        "en": "lower() returns lowercase text; upper() returns uppercase text; title() capitalises word starts using Python’s rule. None edits the original string. title() is a formatting tool, not a guarantee of correct spelling for every person’s name. Store or return the new value.",
+        "nl": "lower() geeft kleine letters; upper() geeft hoofdletters; title() maakt woordbeginnen hoofdletters volgens Pythons regel. Geen ervan bewerkt de oorspronkelijke string. title() is een opmaakhulp, geen garantie op correcte spelling van elke persoonsnaam. Bewaar of geef de nieuwe waarde terug."
+      },
+      "code": "name = \"ada lovelace\"\nprint(name.title())\nprint(name.upper())\nprint(name)",
+      "output": "Ada Lovelace\nADA LOVELACE\nada lovelace\n",
+      "prediction": {
+        "en": "Which variable was reassigned?",
+        "nl": "Welke variabele werd opnieuw toegewezen?"
+      },
+      "takeaway": {
+        "en": "String methods return changed text that you must keep.",
+        "nl": "Stringmethoden geven veranderde tekst terug die je moet bewaren."
+      }
+    },
+    {
+      "id": "python-v4-18-case-experiment",
+      "topicIds": [],
+      "heading": {
+        "en": "Try one change",
+        "nl": "Probeer één wijziging"
+      },
+      "body": {
+        "en": "Compare lower, upper and title on text with punctuation.",
+        "nl": "Vergelijk lower, upper en title op tekst met leestekens."
+      }
+    }
+  ],
+  "files": {
+    "main.py": "def shout(text):\n    text.upper()\n    return text\n"
+  },
+  "solution": {
+    "main.py": "def shout(text):\n    return text.upper()\n"
+  },
+  "checkpoints": [
+    {
+      "id": "python-v4-18-case-step-1",
+      "objectiveIds": [
+        "case-conversion",
+        "case-methods",
+        "normalisation"
+      ],
+      "task": {
+        "en": "Repair shout so it returns uppercase text.",
+        "nl": "Herstel shout zodat die tekst in hoofdletters teruggeeft."
+      },
+      "check": "callable(shout)",
+      "probes": [
+        {
+          "call": {
+            "name": "shout",
+            "args": [
+              "Hello"
+            ]
+          },
+          "check": "(_return == \"HELLO\") and _error is None"
+        },
+        {
+          "call": {
+            "name": "shout",
+            "args": [
+              "123!"
+            ]
+          },
+          "check": "(_return == \"123!\") and _error is None"
+        },
+        {
+          "call": {
+            "name": "shout",
+            "args": [
+              ""
+            ]
+          },
+          "check": "(_return == \"\") and _error is None"
+        }
+      ],
+      "hint": {
+        "en": "String methods return changed text that you must keep.",
+        "nl": "Stringmethoden geven veranderde tekst terug die je moet bewaren."
+      },
+      "hints": [
+        {
+          "en": "String methods return changed text that you must keep.",
+          "nl": "Stringmethoden geven veranderde tekst terug die je moet bewaren."
+        },
+        {
+          "en": "Use the value returned by upper instead of discarding it.",
+          "nl": "Gebruik de waarde die upper teruggeeft in plaats van die weg te gooien."
+        },
+        {
+          "en": "A small fragment to adapt: `return text.upper()`",
+          "nl": "Een klein fragment om aan te passen: `return text.upper()`"
+        }
+      ],
+      "feedback": {
+        "en": "Use the value returned by upper instead of discarding it.",
+        "nl": "Gebruik de waarde die upper teruggeeft in plaats van die weg te gooien."
+      }
+    }
+  ],
+  "solutionNote": {
+    "en": "Returning the method result fixes the discarded-value bug.",
+    "nl": "Het methoderesultaat teruggeven herstelt de fout van de weggegooide waarde."
+  },
+  "inputs": [],
+  "retrievals": [
+    {
+      "id": "recall-python-v4-16-paddle-contact",
+      "sourceActivityId": "python-v4-16-paddle-contact",
+      "objectiveIds": [
+        "paddle-collision",
+        "overlap-correction"
+      ],
+      "prompt": {
+        "en": "Recall “Use Rect collision detection”. Why is the second result False? Try the earlier example from memory, then check it. Move the paddle vertically so the same x position becomes a miss.",
+        "nl": "Haal “Gebruik Rect-botsingsdetectie” terug. Waarom is het tweede resultaat False? Probeer het eerdere voorbeeld uit je geheugen en controleer daarna. Verplaats het batje verticaal zodat dezelfde x-positie een misser wordt."
+      }
+    }
+  ]
+}

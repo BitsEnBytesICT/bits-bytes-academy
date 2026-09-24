@@ -1,0 +1,125 @@
+{
+  "id": "python-v4-09-flow",
+  "chapter": 9,
+  "group": "python-v4-module-9",
+  "title": {
+    "en": "Follow a function call",
+    "nl": "Volg een functieaanroep"
+  },
+  "kind": "coding",
+  "optional": false,
+  "runtime": "terminal",
+  "guidance": "adapt",
+  "checkpointMode": "sequential",
+  "estimatedMinutes": 12,
+  "topicIds": [
+    "execution-flow"
+  ],
+  "practices": [],
+  "requiredConcepts": [
+    "function-calls"
+  ],
+  "explanation": {
+    "en": "A function temporarily changes where Python is executing. Trace the caller and body before adding code.",
+    "nl": "Een functie verandert tijdelijk waar Python uitvoert. Volg de aanroeper en de inhoud voordat je code toevoegt."
+  },
+  "example": "",
+  "sections": [
+    {
+      "id": "python-v4-09-flow-example",
+      "topicIds": [
+        "execution-flow"
+      ],
+      "heading": {
+        "en": "Follow a working example",
+        "nl": "Volg een werkend voorbeeld"
+      },
+      "body": {
+        "en": "Python reads top-level statements in order. At a call it enters the already defined function, executes its indented body, then returns to the next caller statement. A print indented inside the body runs on every call; an unindented print runs when top-level execution reaches it.",
+        "nl": "Python leest hoofdinstructies op volgorde. Bij een aanroep gaat het de al gedefinieerde functie binnen, voert de ingesprongen inhoud uit en keert terug naar de volgende instructie van de aanroeper. Een ingesprongen print draait bij elke aanroep; een niet-ingesprongen print draait wanneer de hoofduitvoering die bereikt."
+      },
+      "code": "def bell():\n    print(\"Ring\")\nprint(\"Start\")\nbell()\nprint(\"End\")",
+      "output": "Start\nRing\nEnd\n",
+      "prediction": {
+        "en": "Does defining bell print Ring immediately?",
+        "nl": "Drukt het definiëren van bell direct Ring af?"
+      },
+      "takeaway": {
+        "en": "Indentation decides which instructions belong to the function.",
+        "nl": "Inspringing bepaalt welke instructies bij de functie horen."
+      }
+    },
+    {
+      "id": "python-v4-09-flow-experiment",
+      "topicIds": [],
+      "heading": {
+        "en": "Try one change",
+        "nl": "Probeer één wijziging"
+      },
+      "body": {
+        "en": "Predict what happens if the final print moves before the calls.",
+        "nl": "Voorspel wat gebeurt als de laatste print vóór de aanroepen komt."
+      }
+    }
+  ],
+  "files": {
+    "main.py": "def show():\n    print(\"Inside\")\n    print(\"Finished\")\nshow()\nshow()\n"
+  },
+  "solution": {
+    "main.py": "def show():\n    print(\"Inside\")\nshow()\nshow()\nprint(\"Finished\")\n"
+  },
+  "checkpoints": [
+    {
+      "id": "python-v4-09-flow-step-1",
+      "objectiveIds": [
+        "execution-flow"
+      ],
+      "task": {
+        "en": "Move Finished so it prints once, after both Inside lines.",
+        "nl": "Verplaats Finished zodat het eenmaal verschijnt, na beide Inside-regels."
+      },
+      "check": "_stdout == \"Inside\\nInside\\nFinished\\n\"",
+      "probes": [],
+      "hint": {
+        "en": "Indentation decides which instructions belong to the function.",
+        "nl": "Inspringing bepaalt welke instructies bij de functie horen."
+      },
+      "hints": [
+        {
+          "en": "Indentation decides which instructions belong to the function.",
+          "nl": "Inspringing bepaalt welke instructies bij de functie horen."
+        },
+        {
+          "en": "Keep only Inside in the function; place Finished after both calls.",
+          "nl": "Houd alleen Inside in de functie; zet Finished na beide aanroepen."
+        },
+        {
+          "en": "A small fragment to adapt: `show()`",
+          "nl": "Een klein fragment om aan te passen: `show()`"
+        }
+      ],
+      "feedback": {
+        "en": "Keep only Inside in the function; place Finished after both calls.",
+        "nl": "Houd alleen Inside in de functie; zet Finished na beide aanroepen."
+      }
+    }
+  ],
+  "solutionNote": {
+    "en": "The shared action stays in show; the finishing message belongs to the caller.",
+    "nl": "De gedeelde actie blijft in show; het afsluitbericht hoort bij de aanroeper."
+  },
+  "inputs": [],
+  "retrievals": [
+    {
+      "id": "recall-python-v4-07-indentation",
+      "sourceActivityId": "python-v4-07-indentation",
+      "objectiveIds": [
+        "indentation"
+      ],
+      "prompt": {
+        "en": "Recall “See which lines belong together”. Which statements are skipped together? Try the earlier example from memory, then check it. Move Ready inside the block, test False, then restore the intended behaviour.",
+        "nl": "Haal “Zie welke regels bij elkaar horen” terug. Welke instructies worden samen overgeslagen? Probeer het eerdere voorbeeld uit je geheugen en controleer daarna. Verplaats Ready naar het blok, test False en herstel daarna het bedoelde gedrag."
+      }
+    }
+  ]
+}

@@ -1,0 +1,160 @@
+{
+  "id": "python-v3-15-04",
+  "chapter": 15,
+  "group": "python-v3-module-15",
+  "title": {
+    "en": "Repair shared state",
+    "nl": "Repareer gedeelde toestand"
+  },
+  "kind": "coding",
+  "optional": false,
+  "runtime": "terminal",
+  "guidance": "adapt",
+  "estimatedMinutes": 17,
+  "explanation": {
+    "en": "Repair notebooks that accidentally share one list. Use a class attribute for shared descriptive information and instance attributes for each notebook’s changing contents.",
+    "nl": "Repareer notitieboeken die per ongeluk één lijst delen. Gebruik een klasseattribuut voor gedeelde beschrijvende informatie en instantieattributen voor de veranderende inhoud van elk notitieboek."
+  },
+  "example": "",
+  "topicIds": [
+    "class-variables",
+    "independent-instances"
+  ],
+  "prerequisites": [
+    "python-v3-15-03"
+  ],
+  "sections": [
+    {
+      "topicIds": [
+        "class-variables",
+        "independent-instances"
+      ],
+      "heading": {
+        "en": "Shared by design or by mistake",
+        "nl": "Bewust of per ongeluk gedeeld"
+      },
+      "body": {
+        "en": "Assignments in the class body create class attributes. Instances can read those shared defaults. A mutable list placed there is one list shared by every instance unless overridden. Create per-instance collections inside __init__ with self.notes = []. A class attribute such as category = \"practice\" is appropriate when the same label describes all notebooks.",
+        "nl": "Toewijzingen in het klasseblok maken klasseattributen. Instanties kunnen die gedeelde standaarden lezen. Een veranderlijke lijst daar is één lijst die elke instantie deelt tenzij overschreven. Maak verzamelingen per instantie binnen __init__ met self.notes = []. Een klasseattribuut zoals category = \"practice\" is geschikt wanneer hetzelfde label alle notitieboeken beschrijft."
+      },
+      "code": "class Card:\n    category = \"study\"\n    def __init__(self, title):\n        self.title = title\n\na = Card(\"Loops\")\nb = Card(\"Files\")\nprint(a.category, b.category)\nprint(a.title, b.title)",
+      "output": "study study\nLoops Files\n",
+      "prediction": {
+        "en": "Which value is deliberately shared?",
+        "nl": "Welke waarde wordt bewust gedeeld?"
+      }
+    },
+    {
+      "topicIds": [],
+      "heading": {
+        "en": "Try a changed input",
+        "nl": "Probeer gewijzigde invoer"
+      },
+      "body": {
+        "en": "Create a third notebook after adding several notes to the first. Confirm the earlier notes survive and the new notebook begins empty.",
+        "nl": "Maak een derde notitieboek nadat je meerdere notities aan het eerste hebt toegevoegd. Bevestig dat eerdere notities blijven en het nieuwe boek leeg begint."
+      }
+    }
+  ],
+  "files": {
+    "main.py": "class Notebook:\n    category = \"practice\"\n    notes = []\n\n    def __init__(self, name):\n        self.name = name\n\n    def add_note(self, text):\n        self.notes.append(text)\n\nfirst = Notebook(\"A\")\nsecond = Notebook(\"B\")\nfirst.add_note(\"Loops\")\nprint(first.notes, second.notes)\n"
+  },
+  "solution": {
+    "main.py": "class Notebook:\n    category = \"practice\"\n\n    def __init__(self, name):\n        self.name = name\n        self.notes = []\n\n    def add_note(self, text):\n        self.notes.append(text)\n\nfirst = Notebook(\"A\")\nsecond = Notebook(\"B\")\nfirst.add_note(\"Loops\")\nprint(first.notes, second.notes)\n"
+  },
+  "checkpoints": [
+    {
+      "objectiveIds": [
+        "independent-instances"
+      ],
+      "task": {
+        "en": "Give every Notebook its own empty notes list so additions do not leak to another instance.",
+        "nl": "Geef elke Notebook een eigen lege notes-lijst zodat toevoegingen niet naar een andere instantie lekken."
+      },
+      "check": "first.notes == [\"Loops\"] and second.notes == [] and first.notes is not second.notes",
+      "hints": [
+        {
+          "en": "Mutable collections usually belong to individual objects.",
+          "nl": "Veranderlijke verzamelingen horen meestal bij afzonderlijke objecten."
+        },
+        {
+          "en": "Create self.notes inside __init__.",
+          "nl": "Maak self.notes binnen __init__."
+        },
+        {
+          "en": "self.notes = []",
+          "nl": "self.notes = []"
+        }
+      ],
+      "hint": {
+        "en": "Mutable collections usually belong to individual objects.",
+        "nl": "Veranderlijke verzamelingen horen meestal bij afzonderlijke objecten."
+      },
+      "feedback": {
+        "en": "Resetting one shared class list whenever an instance is made still breaks earlier notebooks.",
+        "nl": "Eén gedeelde klasselijst bij elke nieuwe instantie resetten breekt eerdere notitieboeken nog steeds."
+      },
+      "probes": [
+        {
+          "call": {
+            "name": "Notebook",
+            "args": [
+              "C"
+            ]
+          },
+          "check": "_return.add_note(\"one\") is None and Notebook(\"D\").notes == [] and _return.notes == [\"one\"]"
+        }
+      ],
+      "id": "python-v3-15-04-step-1"
+    },
+    {
+      "objectiveIds": [
+        "class-variables"
+      ],
+      "task": {
+        "en": "Keep category=\"practice\" on the class, shared by all notebooks, while names remain instance-specific.",
+        "nl": "Behoud category=\"practice\" op de klasse, gedeeld door alle notitieboeken, terwijl namen per instantie verschillen."
+      },
+      "check": "Notebook.category == \"practice\" and first.name == \"A\" and second.name == \"B\"",
+      "hints": [
+        {
+          "en": "Shared labels and shared mutable state have different uses.",
+          "nl": "Gedeelde labels en gedeelde veranderlijke toestand dienen verschillende doelen."
+        },
+        {
+          "en": "Leave category in the class body and name on self.",
+          "nl": "Laat category in het klasseblok en name op self."
+        },
+        {
+          "en": "category = \"practice\"",
+          "nl": "category = \"practice\""
+        }
+      ],
+      "hint": {
+        "en": "Shared labels and shared mutable state have different uses.",
+        "nl": "Gedeelde labels en gedeelde veranderlijke toestand dienen verschillende doelen."
+      },
+      "feedback": {
+        "en": "Do not remove the class-level description when repairing the list.",
+        "nl": "Verwijder de beschrijving op klasseniveau niet bij het repareren van de lijst."
+      },
+      "probes": [
+        {
+          "call": {
+            "name": "Notebook",
+            "args": [
+              "E"
+            ]
+          },
+          "check": "_return.category == \"practice\" and _return.name == \"E\""
+        }
+      ],
+      "id": "python-v3-15-04-step-2"
+    }
+  ],
+  "solutionNote": {
+    "en": "The repair changes where the list is created, not how append works. Each constructor call now allocates its own list while the category remains shared.",
+    "nl": "De reparatie verandert waar de lijst wordt gemaakt, niet hoe append werkt. Elke constructoraanroep maakt nu een eigen lijst terwijl de categorie gedeeld blijft."
+  },
+  "inputs": []
+}

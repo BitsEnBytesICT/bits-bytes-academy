@@ -1,0 +1,233 @@
+{
+  "id": "python-v3-8-02",
+  "chapter": 8,
+  "group": "python-v3-module-8",
+  "title": {
+    "en": "Hold a control",
+    "nl": "Houd een toets ingedrukt"
+  },
+  "kind": "coding",
+  "optional": false,
+  "runtime": "pygame",
+  "guidance": "adapt",
+  "estimatedMinutes": 17,
+  "explanation": {
+    "en": "Held-key state supports continuous movement. Use independent controls for both paddles; opposite directions pressed together should cancel.",
+    "nl": "Ingedrukte-toetsstatus ondersteunt doorlopende beweging. Gebruik onafhankelijke besturing voor beide batjes; tegengestelde richtingen tegelijk moeten elkaar opheffen."
+  },
+  "example": "",
+  "topicIds": [
+    "held-keys",
+    "simultaneous-controls"
+  ],
+  "prerequisites": [
+    "python-v3-8-01"
+  ],
+  "sections": [
+    {
+      "topicIds": [
+        "held-keys",
+        "simultaneous-controls"
+      ],
+      "heading": {
+        "en": "A state is different from an event",
+        "nl": "Een toestand verschilt van een gebeurtenis"
+      },
+      "body": {
+        "en": "KEYDOWN describes a press. pygame.key.get_pressed() reports which keys are currently held, so the loop can move every frame. Use separate if checks for up and down: an elif would give one direction priority when both are held. The supplied caller checks W/S and Up/Down separately.",
+        "nl": "KEYDOWN beschrijft een aanslag. pygame.key.get_pressed() meldt welke toetsen nu ingedrukt zijn, zodat de lus elk beeld kan bewegen. Gebruik aparte if-controles voor omhoog en omlaag: elif zou één richting voorrang geven als beide ingedrukt zijn. De meegeleverde aanroeper controleert W/S en Omhoog/Omlaag apart."
+      },
+      "code": "y = 50\nup, down = True, True\nif up:\n    y -= 5\nif down:\n    y += 5\nprint(y)",
+      "output": "50\n",
+      "prediction": {
+        "en": "Why does the paddle stay still when both are True?",
+        "nl": "Waarom blijft het batje stil als beide True zijn?"
+      }
+    },
+    {
+      "topicIds": [],
+      "heading": {
+        "en": "Run, observe, finish",
+        "nl": "Voer uit, bekijk, rond af"
+      },
+      "body": {
+        "en": "main.py supplies the browser entry point. Run opens a real pygame-ce preview; click it to focus the keyboard. Clicking elsewhere pauses play. Finish & check closes normally and checks your helper after at least one rendered frame. Stop cancels without grading. Run can start a fresh session afterward. Keep the supplied async definition and await asyncio.sleep(1 / 60): they let the browser draw and receive input. You are not expected to reproduce this infrastructure from memory.",
+        "nl": "main.py levert het browserstartpunt. Uitvoeren opent een echt pygame-ce-voorbeeld; klik erop om het toetsenbord te activeren. Elders klikken pauzeert het spel. Afronden en controleren sluit normaal af en controleert je helper na minstens één getekend beeld. Stop annuleert zonder beoordeling. Uitvoeren kan daarna een nieuwe sessie starten. Behoud de meegeleverde async-definitie en await asyncio.sleep(1 / 60): die laten de browser tekenen en invoer ontvangen. Je hoeft deze infrastructuur niet uit je hoofd te schrijven."
+      }
+    },
+    {
+      "topicIds": [],
+      "heading": {
+        "en": "Try a changed input",
+        "nl": "Probeer gewijzigde invoer"
+      },
+      "body": {
+        "en": "Hold W and Down together, then W and S together. Explain the different outcomes. Leave the court if needed; boundaries are the next lesson.",
+        "nl": "Houd W en Omlaag samen ingedrukt en daarna W en S. Leg de verschillende uitkomsten uit. Buiten het veld bewegen kan hier nog; grenzen komen in de volgende les."
+      }
+    }
+  ],
+  "files": {
+    "main.py": "# Browser entry point supplied by the course.\nimport asyncio\nimport pygame\nimport game\n\nasync def main():\n    pygame.init()\n    screen = pygame.display.set_mode((640, 400))\n    clock = pygame.time.Clock()\n    running = True\n    x, y = 320.0, 200.0\n    vx, vy = 200.0, 100.0\n    left_y, right_y = 170.0, 170.0\n    while running:\n        dt = min(clock.tick() / 1000, 0.05)\n        for event in pygame.event.get():\n            if event.type == pygame.QUIT:\n                running = False\n            if event.type == pygame.KEYDOWN and event.key == pygame.K_ESCAPE:\n                running = False\n        keys = pygame.key.get_pressed()\n        left_y = game.paddle_y(left_y, keys[pygame.K_w], keys[pygame.K_s], 240, dt)\n        right_y = game.paddle_y(right_y, keys[pygame.K_UP], keys[pygame.K_DOWN], 240, dt)\n        screen.fill((16, 23, 39))\n        pygame.draw.rect(screen, (235, 240, 250), (20, left_y, 10, 60))\n        pygame.draw.rect(screen, (235, 240, 250), (610, right_y, 10, 60))\n        pygame.draw.circle(screen, (255, 170, 40), (int(x), int(y)), 6)\n        pygame.display.flip()\n        await asyncio.sleep(1 / 60)\n    pygame.quit()\n\nasyncio.run(main())\n",
+    "game.py": "import pygame\n\ndef paddle_y(y, up, down, speed, dt):\n    return y\n"
+  },
+  "solution": {
+    "main.py": "# Browser entry point supplied by the course.\nimport asyncio\nimport pygame\nimport game\n\nasync def main():\n    pygame.init()\n    screen = pygame.display.set_mode((640, 400))\n    clock = pygame.time.Clock()\n    running = True\n    x, y = 320.0, 200.0\n    vx, vy = 200.0, 100.0\n    left_y, right_y = 170.0, 170.0\n    while running:\n        dt = min(clock.tick() / 1000, 0.05)\n        for event in pygame.event.get():\n            if event.type == pygame.QUIT:\n                running = False\n            if event.type == pygame.KEYDOWN and event.key == pygame.K_ESCAPE:\n                running = False\n        keys = pygame.key.get_pressed()\n        left_y = game.paddle_y(left_y, keys[pygame.K_w], keys[pygame.K_s], 240, dt)\n        right_y = game.paddle_y(right_y, keys[pygame.K_UP], keys[pygame.K_DOWN], 240, dt)\n        screen.fill((16, 23, 39))\n        pygame.draw.rect(screen, (235, 240, 250), (20, left_y, 10, 60))\n        pygame.draw.rect(screen, (235, 240, 250), (610, right_y, 10, 60))\n        pygame.draw.circle(screen, (255, 170, 40), (int(x), int(y)), 6)\n        pygame.display.flip()\n        await asyncio.sleep(1 / 60)\n    pygame.quit()\n\nasyncio.run(main())\n",
+    "game.py": "import pygame\n\ndef paddle_y(y, up, down, speed, dt):\n    if up:\n        y -= speed * dt\n    if down:\n        y += speed * dt\n    return y\n"
+  },
+  "checkpoints": [
+    {
+      "objectiveIds": [
+        "held-keys"
+      ],
+      "task": {
+        "en": "Move y up or down by speed * dt when that direction is held. Return the new y.",
+        "nl": "Verplaats y omhoog of omlaag met speed * dt als die richting ingedrukt is. Geef de nieuwe y terug."
+      },
+      "check": "_rendered_frames > 0",
+      "hints": [
+        {
+          "en": "Screen y grows downward.",
+          "nl": "Scherm-y neemt naar beneden toe."
+        },
+        {
+          "en": "Subtract for up, add for down.",
+          "nl": "Trek af voor omhoog, tel op voor omlaag."
+        },
+        {
+          "en": "if up:\n    y -= speed * dt",
+          "nl": "if up:\n    y -= speed * dt"
+        }
+      ],
+      "hint": {
+        "en": "Screen y grows downward.",
+        "nl": "Scherm-y neemt naar beneden toe."
+      },
+      "feedback": {
+        "en": "Use both speed and elapsed time.",
+        "nl": "Gebruik zowel snelheid als verstreken tijd."
+      },
+      "probes": [
+        {
+          "call": {
+            "name": "paddle_y",
+            "args": [
+              50,
+              true,
+              false,
+              100,
+              0.1
+            ],
+            "module": "game"
+          },
+          "check": "_return == 40",
+          "moduleOnly": true,
+          "module": "game"
+        },
+        {
+          "call": {
+            "name": "paddle_y",
+            "args": [
+              50,
+              false,
+              true,
+              100,
+              0.1
+            ],
+            "module": "game"
+          },
+          "check": "_return == 60",
+          "moduleOnly": true,
+          "module": "game"
+        }
+      ],
+      "id": "python-v3-8-02-step-1"
+    },
+    {
+      "objectiveIds": [
+        "simultaneous-controls"
+      ],
+      "task": {
+        "en": "Keep y unchanged when neither or both directions are held. Test both paddles simultaneously.",
+        "nl": "Houd y gelijk als geen of beide richtingen ingedrukt zijn. Test beide batjes tegelijkertijd."
+      },
+      "check": "_rendered_frames > 0",
+      "hints": [
+        {
+          "en": "Opposite updates can cancel.",
+          "nl": "Tegengestelde updates kunnen elkaar opheffen."
+        },
+        {
+          "en": "Use two independent if statements.",
+          "nl": "Gebruik twee onafhankelijke if-opdrachten."
+        },
+        {
+          "en": "if down:\n    y += speed * dt",
+          "nl": "if down:\n    y += speed * dt"
+        }
+      ],
+      "hint": {
+        "en": "Opposite updates can cancel.",
+        "nl": "Tegengestelde updates kunnen elkaar opheffen."
+      },
+      "feedback": {
+        "en": "An if/elif gives priority to one direction instead of cancelling.",
+        "nl": "Een if/elif geeft één richting voorrang in plaats van opheffen."
+      },
+      "probes": [
+        {
+          "call": {
+            "name": "paddle_y",
+            "args": [
+              50,
+              true,
+              true,
+              100,
+              0.1
+            ],
+            "module": "game"
+          },
+          "check": "_return == 50",
+          "moduleOnly": true,
+          "module": "game"
+        },
+        {
+          "call": {
+            "name": "paddle_y",
+            "args": [
+              50,
+              false,
+              false,
+              100,
+              0.1
+            ],
+            "module": "game"
+          },
+          "check": "_return == 50",
+          "moduleOnly": true,
+          "module": "game"
+        }
+      ],
+      "id": "python-v3-8-02-step-2"
+    }
+  ],
+  "solutionNote": {
+    "en": "Independent conditions model independent controls. Both players can move in the same frame, and a player’s opposite inputs cancel.",
+    "nl": "Onafhankelijke voorwaarden modelleren onafhankelijke besturing. Beide spelers kunnen in hetzelfde beeld bewegen en tegengestelde invoer van één speler heft elkaar op."
+  },
+  "inputs": [],
+  "retrievals": [
+    {
+      "id": "recall-python-v3-6-02",
+      "sourceActivityId": "python-v3-6-02",
+      "objectiveIds": [
+        "random",
+        "random-seed"
+      ],
+      "prompt": {
+        "en": "Explain where to place a random seed to repeat an experiment without forcing every call to return the same roll.",
+        "nl": "Leg uit waar een random-seed hoort om een experiment te herhalen zonder elke aanroep dezelfde worp te geven."
+      }
+    }
+  ]
+}

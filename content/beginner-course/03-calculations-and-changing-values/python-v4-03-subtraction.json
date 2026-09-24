@@ -1,0 +1,191 @@
+{
+  "id": "python-v4-03-subtraction",
+  "chapter": 3,
+  "group": "python-v4-module-3",
+  "title": {
+    "en": "Find what remains",
+    "nl": "Bepaal wat overblijft"
+  },
+  "kind": "coding",
+  "optional": false,
+  "runtime": "terminal",
+  "guidance": "guided",
+  "checkpointMode": "sequential",
+  "estimatedMinutes": 12,
+  "topicIds": [
+    "subtraction"
+  ],
+  "practices": [],
+  "requiredConcepts": [
+    "variables",
+    "integers",
+    "floats"
+  ],
+  "explanation": {
+    "en": "Subtraction is useful for stock, remaining time and differences. The order of its two numbers matters.",
+    "nl": "Aftrekken is nuttig voor voorraad, resterende tijd en verschillen. De volgorde van de twee getallen telt."
+  },
+  "example": "",
+  "sections": [
+    {
+      "id": "python-v4-03-subtraction-example",
+      "topicIds": [
+        "subtraction"
+      ],
+      "heading": {
+        "en": "Follow a working example",
+        "nl": "Volg een werkend voorbeeld"
+      },
+      "body": {
+        "en": "The - operator subtracts the right value from the left value. If a shelf holds 10 books and 3 are borrowed, 10 - 3 leaves 7. Reversing the operands gives 3 - 10, which is -7.\n\nA negative result is a number, not a Python error. Whether it is sensible depends on your problem. Later you will use decisions to reject impossible quantities.",
+        "nl": "De operator - trekt de rechterwaarde van de linkerwaarde af. Als een plank 10 boeken bevat en er 3 worden geleend, blijven er met 10 - 3 nog 7 over. Omkeren geeft 3 - 10, oftewel -7.\n\nEen negatief resultaat is een getal, geen Pythonfout. Of het zinvol is, hangt van je probleem af. Later gebruik je beslissingen om onmogelijke hoeveelheden af te wijzen."
+      },
+      "code": "books = 10\nborrowed = 3\nprint(books - borrowed)",
+      "output": "7\n",
+      "prediction": {
+        "en": "What would borrowed - books produce?",
+        "nl": "Wat zou borrowed - books opleveren?"
+      },
+      "takeaway": {
+        "en": "Start with the available quantity and subtract the quantity used.",
+        "nl": "Begin met de beschikbare hoeveelheid en trek de gebruikte hoeveelheid af."
+      }
+    },
+    {
+      "id": "python-v4-03-subtraction-experiment",
+      "topicIds": [],
+      "heading": {
+        "en": "Try one change",
+        "nl": "Probeer één wijziging"
+      },
+      "body": {
+        "en": "Try selling exactly all the tickets. Then try one more than available and interpret the negative answer.",
+        "nl": "Probeer precies alle kaartjes te verkopen. Probeer daarna één meer dan beschikbaar en verklaar het negatieve antwoord."
+      }
+    }
+  ],
+  "files": {
+    "main.py": "tickets = 20\nsold = 8\n"
+  },
+  "solution": {
+    "main.py": "tickets = 20\nsold = 8\nresult = tickets - sold\nprint(result)\n"
+  },
+  "checkpoints": [
+    {
+      "id": "python-v4-03-subtraction-step-1",
+      "objectiveIds": [
+        "subtraction"
+      ],
+      "task": {
+        "en": "Store the unsold ticket count in result.",
+        "nl": "Bewaar het aantal onverkochte kaartjes in result."
+      },
+      "check": "result == (tickets - sold)",
+      "probes": [
+        {
+          "inputs": {
+            "tickets": 4,
+            "sold": 4
+          },
+          "check": "result == (tickets - sold)"
+        },
+        {
+          "inputs": {
+            "tickets": 10,
+            "sold": 2
+          },
+          "check": "result == (tickets - sold)"
+        }
+      ],
+      "hint": {
+        "en": "Start with the available quantity and subtract the quantity used.",
+        "nl": "Begin met de beschikbare hoeveelheid en trek de gebruikte hoeveelheid af."
+      },
+      "hints": [
+        {
+          "en": "Start with the available quantity and subtract the quantity used.",
+          "nl": "Begin met de beschikbare hoeveelheid en trek de gebruikte hoeveelheid af."
+        },
+        {
+          "en": "Subtract sold from tickets, in that order.",
+          "nl": "Trek sold van tickets af, in die volgorde."
+        },
+        {
+          "en": "A small fragment to adapt: `result = tickets - sold`",
+          "nl": "Een klein fragment om aan te passen: `result = tickets - sold`"
+        }
+      ],
+      "feedback": {
+        "en": "Subtract sold from tickets, in that order.",
+        "nl": "Trek sold van tickets af, in die volgorde."
+      }
+    },
+    {
+      "id": "python-v4-03-subtraction-step-2",
+      "objectiveIds": [
+        "subtraction"
+      ],
+      "task": {
+        "en": "Print result after calculating it.",
+        "nl": "Druk result af nadat je het hebt berekend."
+      },
+      "check": "float(_stdout.strip()) == result",
+      "probes": [
+        {
+          "inputs": {
+            "tickets": 4,
+            "sold": 4
+          },
+          "check": "float(_stdout.strip()) == (tickets - sold)"
+        },
+        {
+          "inputs": {
+            "tickets": 10,
+            "sold": 2
+          },
+          "check": "float(_stdout.strip()) == (tickets - sold)"
+        }
+      ],
+      "hint": {
+        "en": "Start with the available quantity and subtract the quantity used.",
+        "nl": "Begin met de beschikbare hoeveelheid en trek de gebruikte hoeveelheid af."
+      },
+      "hints": [
+        {
+          "en": "Start with the available quantity and subtract the quantity used.",
+          "nl": "Begin met de beschikbare hoeveelheid en trek de gebruikte hoeveelheid af."
+        },
+        {
+          "en": "Display the variable that holds the calculation, rather than typing the expected answer.",
+          "nl": "Toon de variabele met de berekening in plaats van het verwachte antwoord te typen."
+        },
+        {
+          "en": "A small fragment to adapt: `print(result)`",
+          "nl": "Een klein fragment om aan te passen: `print(result)`"
+        }
+      ],
+      "feedback": {
+        "en": "Display the variable that holds the calculation, rather than typing the expected answer.",
+        "nl": "Toon de variabele met de berekening in plaats van het verwachte antwoord te typen."
+      }
+    }
+  ],
+  "solutionNote": {
+    "en": "The starting stock is the left operand. Selling every ticket leaves zero.",
+    "nl": "De beginvoorraad is de linkeroperand. Alle kaartjes verkopen laat nul over."
+  },
+  "inputs": [],
+  "retrievals": [
+    {
+      "id": "recall-python-v4-01-first-print",
+      "sourceActivityId": "python-v4-01-first-print",
+      "objectiveIds": [
+        "print"
+      ],
+      "prompt": {
+        "en": "Recall “Write your first print”. Which part of this line will appear in the terminal? Try the earlier example from memory, then check it. Change the greeting and predict the output before running. Is anything printed without a print call?",
+        "nl": "Haal “Schrijf je eerste print” terug. Welk deel van deze regel verschijnt in de terminal? Probeer het eerdere voorbeeld uit je geheugen en controleer daarna. Verander de begroeting en voorspel de uitvoer. Wordt er iets getoond zonder een print-aanroep?"
+      }
+    }
+  ]
+}

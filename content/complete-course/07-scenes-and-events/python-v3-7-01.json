@@ -1,0 +1,209 @@
+{
+  "id": "python-v3-7-01",
+  "chapter": 7,
+  "group": "python-v3-module-7",
+  "title": {
+    "en": "Inspect a rectangle",
+    "nl": "Bekijk een rechthoek"
+  },
+  "kind": "coding",
+  "optional": false,
+  "runtime": "pygame",
+  "guidance": "guided",
+  "estimatedMinutes": 18,
+  "explanation": {
+    "en": "Use an existing Pygame object before defining your own classes. A Rect represents a rectangle; its attributes expose useful positions and sizes. Edit game.py and inspect the preview.",
+    "nl": "Gebruik een bestaand Pygame-object voordat je eigen klassen definieert. Een Rect stelt een rechthoek voor; attributen geven bruikbare posities en afmetingen. Bewerk game.py en bekijk het voorbeeld."
+  },
+  "example": "",
+  "topicIds": [
+    "pygame-objects",
+    "attributes",
+    "rect",
+    "coordinates"
+  ],
+  "prerequisites": [
+    "python-v3-6-05"
+  ],
+  "sections": [
+    {
+      "topicIds": [
+        "pygame-objects",
+        "attributes",
+        "rect",
+        "coordinates"
+      ],
+      "heading": {
+        "en": "An object with named information",
+        "nl": "Een object met benoemde informatie"
+      },
+      "body": {
+        "en": "pygame.Rect(x, y, width, height) stores an integer rectangle. x increases rightward, y downward; (0, 0) is the top-left of the screen. rect.left, rect.right, rect.top, rect.bottom and rect.center describe the same rectangle. Changing rect.center moves it while preserving its size. These attributes belong to an existing object, not a dictionary.",
+        "nl": "pygame.Rect(x, y, width, height) bewaart een geheeltallige rechthoek. x neemt naar rechts toe, y naar beneden; (0, 0) is linksboven op het scherm. rect.left, rect.right, rect.top, rect.bottom en rect.center beschrijven dezelfde rechthoek. rect.center wijzigen verplaatst die zonder de grootte te veranderen. Deze attributen horen bij een bestaand object, niet bij een dictionary."
+      },
+      "code": "import pygame\nbox = pygame.Rect(10, 20, 30, 40)\nprint(box.right, box.bottom)\nbox.center = (100, 100)\nprint(box.left, box.top)",
+      "output": "40 60\n85 80\n",
+      "prediction": {
+        "en": "Why is bottom 60 instead of 40?",
+        "nl": "Waarom is bottom 60 in plaats van 40?"
+      }
+    },
+    {
+      "topicIds": [],
+      "heading": {
+        "en": "Run, observe, finish",
+        "nl": "Voer uit, bekijk, rond af"
+      },
+      "body": {
+        "en": "main.py supplies the browser entry point. Run opens a real pygame-ce preview; click it to focus the keyboard. Clicking elsewhere pauses play. Finish & check closes normally and checks your helper after at least one rendered frame. Stop cancels without grading. Run can start a fresh session afterward. Keep the supplied async definition and await asyncio.sleep(1 / 60): they let the browser draw and receive input. You are not expected to reproduce this infrastructure from memory.",
+        "nl": "main.py levert het browserstartpunt. Uitvoeren opent een echt pygame-ce-voorbeeld; klik erop om het toetsenbord te activeren. Elders klikken pauzeert het spel. Afronden en controleren sluit normaal af en controleert je helper na minstens één getekend beeld. Stop annuleert zonder beoordeling. Uitvoeren kan daarna een nieuwe sessie starten. Behoud de meegeleverde async-definitie en await asyncio.sleep(1 / 60): die laten de browser tekenen en invoer ontvangen. Je hoeft deze infrastructuur niet uit je hoofd te schrijven."
+      }
+    },
+    {
+      "topicIds": [],
+      "heading": {
+        "en": "Try a changed input",
+        "nl": "Probeer gewijzigde invoer"
+      },
+      "body": {
+        "en": "Change the preview’s x and y arguments separately. Explain which direction each change moves the paddle. Restore them before checking.",
+        "nl": "Wijzig de x- en y-argumenten van het voorbeeld apart. Leg uit in welke richting elke wijziging het batje verplaatst. Herstel ze vóór controleren."
+      }
+    }
+  ],
+  "files": {
+    "main.py": "# Browser entry point supplied by the course.\nimport asyncio\nimport pygame\nimport game\n\nasync def main():\n    pygame.init()\n    screen = pygame.display.set_mode((640, 400))\n    clock = pygame.time.Clock()\n    running = True\n    while running:\n        dt = min(clock.tick() / 1000, 0.05)\n        for event in pygame.event.get():\n            if event.type == pygame.QUIT:\n                running = False\n            if event.type == pygame.KEYDOWN and event.key == pygame.K_ESCAPE:\n                running = False\n        keys = pygame.key.get_pressed()\n        screen.fill((16, 23, 39))\n        pygame.draw.rect(screen, (235, 240, 250), game.make_rect(20, 130, 10, 60))\n        pygame.display.flip()\n        await asyncio.sleep(1 / 60)\n    pygame.quit()\n\nasyncio.run(main())\n",
+    "game.py": "import pygame\n\ndef make_rect(x, y, width, height):\n    return pygame.Rect(0, 0, 20, 20)\n"
+  },
+  "solution": {
+    "main.py": "# Browser entry point supplied by the course.\nimport asyncio\nimport pygame\nimport game\n\nasync def main():\n    pygame.init()\n    screen = pygame.display.set_mode((640, 400))\n    clock = pygame.time.Clock()\n    running = True\n    while running:\n        dt = min(clock.tick() / 1000, 0.05)\n        for event in pygame.event.get():\n            if event.type == pygame.QUIT:\n                running = False\n            if event.type == pygame.KEYDOWN and event.key == pygame.K_ESCAPE:\n                running = False\n        keys = pygame.key.get_pressed()\n        screen.fill((16, 23, 39))\n        pygame.draw.rect(screen, (235, 240, 250), game.make_rect(20, 130, 10, 60))\n        pygame.display.flip()\n        await asyncio.sleep(1 / 60)\n    pygame.quit()\n\nasyncio.run(main())\n",
+    "game.py": "import pygame\n\ndef make_rect(x, y, width, height):\n    return pygame.Rect(x, y, width, height)\n"
+  },
+  "checkpoints": [
+    {
+      "objectiveIds": [
+        "pygame-objects",
+        "rect"
+      ],
+      "task": {
+        "en": "Return a pygame.Rect with the requested x, y, width and height from make_rect.",
+        "nl": "Geef een pygame.Rect met de gevraagde x, y, width en height terug vanuit make_rect."
+      },
+      "check": "_rendered_frames > 0",
+      "hints": [
+        {
+          "en": "Create a rectangle from the arguments.",
+          "nl": "Maak een rechthoek van de argumenten."
+        },
+        {
+          "en": "Return the object, not a printed description.",
+          "nl": "Geef het object terug, geen afgedrukte beschrijving."
+        },
+        {
+          "en": "return pygame.Rect(x, y, width, height)",
+          "nl": "return pygame.Rect(x, y, width, height)"
+        }
+      ],
+      "hint": {
+        "en": "Create a rectangle from the arguments.",
+        "nl": "Maak een rechthoek van de argumenten."
+      },
+      "feedback": {
+        "en": "Check both position and size for a different call.",
+        "nl": "Controleer positie én afmeting voor een andere aanroep."
+      },
+      "probes": [
+        {
+          "call": {
+            "name": "make_rect",
+            "args": [
+              3,
+              7,
+              9,
+              12
+            ],
+            "module": "game"
+          },
+          "check": "isinstance(_return,__import__(\"pygame\").Rect) and tuple(_return) == (3,7,9,12)",
+          "moduleOnly": true,
+          "module": "game"
+        }
+      ],
+      "id": "python-v3-7-01-step-1"
+    },
+    {
+      "objectiveIds": [
+        "attributes",
+        "coordinates"
+      ],
+      "task": {
+        "en": "Preserve edge and centre relationships. Run the preview and finish normally to check.",
+        "nl": "Behoud de relaties tussen randen en middelpunt. Voer het voorbeeld uit en rond normaal af om te controleren."
+      },
+      "check": "_rendered_frames > 0",
+      "hints": [
+        {
+          "en": "Edges are derived from position plus size.",
+          "nl": "Randen zijn afgeleid van positie plus grootte."
+        },
+        {
+          "en": "Use the supplied arguments even for negative positions.",
+          "nl": "Gebruik de argumenten ook bij negatieve posities."
+        },
+        {
+          "en": "A rectangle at x=-5 with width=20 has right=15.",
+          "nl": "Een rechthoek op x=-5 met width=20 heeft right=15."
+        }
+      ],
+      "hint": {
+        "en": "Edges are derived from position plus size.",
+        "nl": "Randen zijn afgeleid van positie plus grootte."
+      },
+      "feedback": {
+        "en": "Do not replace an object with a tuple that only looks similar when printed.",
+        "nl": "Vervang een object niet door een tuple die er alleen bij afdrukken hetzelfde uitziet."
+      },
+      "probes": [
+        {
+          "call": {
+            "name": "make_rect",
+            "args": [
+              -5,
+              2,
+              20,
+              10
+            ],
+            "module": "game"
+          },
+          "check": "_return.right == 15 and _return.bottom == 12 and _return.center == (5,7)",
+          "moduleOnly": true,
+          "module": "game"
+        }
+      ],
+      "id": "python-v3-7-01-step-2"
+    }
+  ],
+  "solutionNote": {
+    "en": "The constructor receives all four arguments, so its derived attributes stay consistent. Pygame handles the object’s details; your function supplies the geometry.",
+    "nl": "De constructor ontvangt alle vier argumenten, zodat afgeleide attributen consistent blijven. Pygame regelt de objectdetails; jouw functie levert de geometrie."
+  },
+  "inputs": [],
+  "retrievals": [
+    {
+      "id": "recall-python-v3-5-01",
+      "sourceActivityId": "python-v3-5-01",
+      "objectiveIds": [
+        "lists",
+        "mixed-lists",
+        "empty-lists",
+        "list-methods",
+        "append",
+        "list-concatenation"
+      ],
+      "prompt": {
+        "en": "Create an empty history, append two results and concatenate a third list. Explain a method call and why a mixed list can contain a name and a score.",
+        "nl": "Maak een lege geschiedenis, voeg twee resultaten toe met append en voeg een derde lijst samen. Leg een methodeaanroep uit en waarom een gemengde lijst een naam en score kan bevatten."
+      }
+    }
+  ]
+}

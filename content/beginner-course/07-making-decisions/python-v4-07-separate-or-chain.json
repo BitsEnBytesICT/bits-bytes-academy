@@ -1,0 +1,138 @@
+{
+  "id": "python-v4-07-separate-or-chain",
+  "chapter": 7,
+  "group": "python-v4-module-7",
+  "title": {
+    "en": "Separate checks or one choice?",
+    "nl": "Aparte controles of één keuze?"
+  },
+  "kind": "coding",
+  "optional": false,
+  "runtime": "terminal",
+  "guidance": "adapt",
+  "checkpointMode": "sequential",
+  "estimatedMinutes": 15,
+  "topicIds": [
+    "branch-order"
+  ],
+  "practices": [],
+  "requiredConcepts": [
+    "elif"
+  ],
+  "explanation": {
+    "en": "Separate if statements can all run. A chain represents alternatives. Repair a program that accidentally gives two labels.",
+    "nl": "Aparte if-instructies kunnen allemaal worden uitgevoerd. Een keten stelt alternatieven voor. Herstel een programma dat per ongeluk twee labels geeft."
+  },
+  "example": "",
+  "sections": [
+    {
+      "id": "python-v4-07-separate-or-chain-example",
+      "topicIds": [
+        "branch-order"
+      ],
+      "heading": {
+        "en": "Follow a working example",
+        "nl": "Volg een werkend voorbeeld"
+      },
+      "body": {
+        "en": "Python treats two separate if statements independently. If both conditions are True, both blocks run. This is useful for independent warnings but wrong when exactly one category should be chosen.\n\nThe example intentionally prints two observations. Your task needs just one award. Check the highest threshold first and connect the lower threshold as an alternative.",
+        "nl": "Python behandelt twee aparte if-instructies onafhankelijk. Als beide voorwaarden True zijn, worden beide blokken uitgevoerd. Dat is nuttig voor onafhankelijke waarschuwingen maar verkeerd als precies één categorie moet worden gekozen.\n\nHet voorbeeld drukt bewust twee observaties af. Jouw opdracht heeft maar één onderscheiding nodig. Controleer de hoogste grens eerst en verbind de lagere grens als alternatief."
+      },
+      "code": "score = 9\nif score >= 6:\n    print(\"Passed\")\nif score >= 8:\n    print(\"High score\")",
+      "output": "Passed\nHigh score\n",
+      "prediction": {
+        "en": "Why are two messages correct in this example?",
+        "nl": "Waarom zijn twee berichten juist in dit voorbeeld?"
+      },
+      "takeaway": {
+        "en": "Use separate if statements for independent actions and elif for alternatives.",
+        "nl": "Gebruik aparte if-instructies voor onafhankelijke acties en elif voor alternatieven."
+      }
+    },
+    {
+      "id": "python-v4-07-separate-or-chain-experiment",
+      "topicIds": [],
+      "heading": {
+        "en": "Try one change",
+        "nl": "Probeer één wijziging"
+      },
+      "body": {
+        "en": "Try score = 8 and explain why Silver is skipped.",
+        "nl": "Probeer score = 8 en leg uit waarom Silver wordt overgeslagen."
+      }
+    }
+  ],
+  "files": {
+    "main.py": "score = 9\nif score >= 8:\n    print(\"Gold\")\nif score >= 6:\n    print(\"Silver\")\nelse:\n    print(\"Practice\")\n"
+  },
+  "solution": {
+    "main.py": "score = 9\nif score >= 8:\n    print(\"Gold\")\nelif score >= 6:\n    print(\"Silver\")\nelse:\n    print(\"Practice\")\n"
+  },
+  "checkpoints": [
+    {
+      "id": "python-v4-07-separate-or-chain-step-1",
+      "objectiveIds": [
+        "branch-order"
+      ],
+      "task": {
+        "en": "Repair the selection: Gold from 8, Silver from 6, otherwise Practice. Print one label only.",
+        "nl": "Herstel de selectie: Gold vanaf 8, Silver vanaf 6, anders Practice. Druk maar één label af."
+      },
+      "check": "_stdout == \"Gold\\n\"",
+      "probes": [
+        {
+          "inputs": {
+            "score": 6
+          },
+          "check": "_stdout == \"Silver\\n\""
+        },
+        {
+          "inputs": {
+            "score": 5
+          },
+          "check": "_stdout == \"Practice\\n\""
+        }
+      ],
+      "hint": {
+        "en": "Use separate if statements for independent actions and elif for alternatives.",
+        "nl": "Gebruik aparte if-instructies voor onafhankelijke acties en elif voor alternatieven."
+      },
+      "hints": [
+        {
+          "en": "Use separate if statements for independent actions and elif for alternatives.",
+          "nl": "Gebruik aparte if-instructies voor onafhankelijke acties en elif voor alternatieven."
+        },
+        {
+          "en": "The second threshold is an alternative to the first, so connect it to the same chain.",
+          "nl": "De tweede grens is een alternatief voor de eerste, dus verbind die met dezelfde keten."
+        },
+        {
+          "en": "A small fragment to adapt: `elif score >= 6:`",
+          "nl": "Een klein fragment om aan te passen: `elif score >= 6:`"
+        }
+      ],
+      "feedback": {
+        "en": "The second threshold is an alternative to the first, so connect it to the same chain.",
+        "nl": "De tweede grens is een alternatief voor de eerste, dus verbind die met dezelfde keten."
+      }
+    }
+  ],
+  "solutionNote": {
+    "en": "Changing the second if to elif prevents a high score from receiving both awards.",
+    "nl": "De tweede if in elif veranderen voorkomt dat een hoog cijfer beide onderscheidingen krijgt."
+  },
+  "inputs": [],
+  "retrievals": [
+    {
+      "id": "recall-python-v4-05-two-answers",
+      "sourceActivityId": "python-v4-05-two-answers",
+      "objectiveIds": [
+        "multiple-inputs"
+      ],
+      "prompt": {
+        "en": "Recall “Ask two questions in order”. With answers 3 then 2, which value becomes width? Try the earlier example from memory, then check it. Use the same distance with twice the time. Predict the change in speed.",
+        "nl": "Haal “Stel twee vragen op volgorde” terug. Welke waarde wordt width bij antwoorden 3 en daarna 2? Probeer het eerdere voorbeeld uit je geheugen en controleer daarna. Gebruik dezelfde afstand met tweemaal de tijd. Voorspel de verandering in snelheid."
+      }
+    }
+  ]
+}

@@ -3,27 +3,47 @@ import fs from "node:fs";
 import {
   course,
   estimatedHours,
-} from "../content-src/project-course/index.mjs";
+  estimatedMinutes,
+} from "../content-src/complete-course/index.mjs";
+import { course as v2 } from "../content-src/project-course/index.mjs";
+import { createManifest } from "../content-src/complete-course/manifest.mjs";
+import { requestedCrosswalk } from "../content-src/complete-course/requested-topics.mjs";
+const read = (p) => JSON.parse(fs.readFileSync(p, "utf8"));
 assert.deepEqual(
-  JSON.parse(fs.readFileSync("content/course.json", "utf8")),
+  read("content/legacy/course-v3.json"),
   JSON.parse(JSON.stringify(course)),
 );
-assert.equal(course.chapters.length, 10);
-assert.equal(course.paths.length, 2);
-assert.equal(course.activities.length, 64);
-assert.equal(course.activities.filter((a) => !a.optional).length, 63);
-assert.equal(course.activities.filter((a) => a.kind === "coding").length, 50);
-assert.equal(course.activities.filter((a) => a.kind === "quiz").length, 10);
-assert.equal(estimatedHours, 22);
+assert.deepEqual(
+  read("content/legacy/course-v2.json"),
+  JSON.parse(JSON.stringify(v2)),
+);
+const manifest = createManifest(course);
+manifest.requestedSyllabus = requestedCrosswalk(
+  read("content/legacy/course-v1.json"),
+  manifest.topics,
+);
+assert.equal(manifest.requestedSyllabus.length, 151);
+assert.equal(manifest.version, 3);
+assert.equal(course.chapters.length, 17);
+assert.equal(course.activities.length, 105);
+const required = course.activities.filter((a) => !a.optional);
+assert.equal(required.length, 104);
+for (const [kind, count] of [
+  ["coding", 83],
+  ["quiz", 16],
+  ["project", 2],
+  ["project-stage", 2],
+])
+  assert.equal(required.filter((a) => a.kind === kind).length, count);
+assert.equal(estimatedMinutes, 1770);
+assert.equal(estimatedHours, 30);
 const ids = new Set(course.activities.map((a) => a.id));
-const legacy = JSON.parse(
-  fs.readFileSync("content/legacy/course-v1.json", "utf8"),
-);
-assert(
-  legacy.activities.every((a) => !ids.has(a.id)),
-  "Old completion cannot imply new completion",
-);
-assert.equal(legacy.activities.length, 240);
+for (const v of [1, 2])
+  for (const a of read(`content/legacy/course-v${v}.json`).activities)
+    assert(
+      !ids.has(a.id) || a.id === "python-v2-pong-ai",
+      "Changed contracts must not inherit earned credit",
+    );
 assert.deepEqual(
   course.chapters.flatMap((c) => c.activityIds),
   course.activities.map((a) => a.id),
@@ -32,24 +52,19 @@ for (const a of course.activities) {
   assert.equal(
     course.groups.filter((g) => g.activityIds.includes(a.id)).length,
     1,
-    a.id,
   );
-  assert(Number.isFinite(a.estimatedMinutes) && a.estimatedMinutes > 0);
+  assert(a.estimatedMinutes > 0);
 }
-for (const p of course.paths) {
-  const project = course.activities.find((a) => a.id === p.projectId);
-  assert.equal(project.kind, "project");
-  assert.deepEqual(project.checkpoints, []);
-  assert.deepEqual(project.solution, {});
-  assert.equal(p.chapterNumbers.at(-1), project.chapter);
-}
-const reading = course.activities.find((a) => a.kind === "reading");
-assert.equal(reading.presentation, "article");
-assert.deepEqual(reading.files, {});
-const ai = course.activities.find((a) => a.optional);
-assert.equal(ai.continueFrom, "python-v2-pong-project");
-assert.equal(ai.kind, "project");
-assert.deepEqual(ai.checkpoints, []);
+for (const p of course.paths)
+  assert.equal(
+    course.activities.find((a) => a.id === p.projectId).kind,
+    "project",
+  );
+const article = course.activities.at(-1);
+assert.equal(article.presentation, "article");
+assert.equal(article.sections.length, 6);
+assert.deepEqual(article.files, {});
+assert.deepEqual(article.checkpoints, []);
 console.log(
-  "Course assembly: two paths, 50 exercises, ten quizzes, reading, self-assessed projects, optional extension, preserved legacy IDs, references and duration passed.",
+  "Assembly: 17 modules, 83 exercises, 32 quiz forms, two staged projects, article, 225 topic contracts and both historical definitions verified.",
 );

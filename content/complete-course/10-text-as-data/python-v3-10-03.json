@@ -1,0 +1,206 @@
+{
+  "id": "python-v3-10-03",
+  "chapter": 10,
+  "group": "python-v3-module-10",
+  "title": {
+    "en": "Normalise names",
+    "nl": "Normaliseer namen"
+  },
+  "kind": "coding",
+  "optional": false,
+  "runtime": "terminal",
+  "guidance": "adapt",
+  "estimatedMinutes": 15,
+  "explanation": {
+    "en": "Normalise text before comparing it. Create different case forms and inspect characters without changing the original string.",
+    "nl": "Normaliseer tekst voordat je die vergelijkt. Maak verschillende hoofdlettervormen en bekijk tekens zonder de oorspronkelijke string te wijzigen."
+  },
+  "example": "",
+  "topicIds": [
+    "case-methods",
+    "strip",
+    "string-iteration",
+    "string-membership"
+  ],
+  "prerequisites": [
+    "python-v3-10-02"
+  ],
+  "sections": [
+    {
+      "topicIds": [
+        "case-methods",
+        "strip",
+        "string-iteration",
+        "string-membership"
+      ],
+      "heading": {
+        "en": "Normalise and inspect",
+        "nl": "Normaliseer en bekijk"
+      },
+      "body": {
+        "en": "strip() removes leading and trailing whitespace, not spaces in the middle. lower(), upper() and title() return new strings. for char in text iterates characters. char in \"0123456789\" asks whether a character belongs to that string; \"ab\" in text can also test a whole substring. not in reverses membership.",
+        "nl": "strip() verwijdert witruimte voor en achter, niet spaties in het midden. lower(), upper() en title() geven nieuwe strings terug. for char in text doorloopt tekens. char in \"0123456789\" vraagt of een teken in die string zit; \"ab\" in text kan ook een hele deelstring testen. not in keert lidmaatschap om."
+      },
+      "code": "name = \"  aDa lovelace  \"\nprint(name.strip().title())\nprint(\"ada\" in name.lower())\nfor char in \"a2\":\n    print(char in \"0123456789\")",
+      "output": "Ada Lovelace\nTrue\nFalse\nTrue\n",
+      "prediction": {
+        "en": "Why does lower() alone leave the surrounding spaces?",
+        "nl": "Waarom laat lower() alleen de omliggende spaties staan?"
+      }
+    },
+    {
+      "topicIds": [],
+      "heading": {
+        "en": "Try a changed input",
+        "nl": "Probeer gewijzigde invoer"
+      },
+      "body": {
+        "en": "Compare \" room \" == \"room\" before and after strip. Try membership with a whole substring, then with a different case.",
+        "nl": "Vergelijk \" room \" == \"room\" vóór en na strip. Probeer lidmaatschap met een hele deelstring en daarna met een andere hoofdlettervorm."
+      }
+    }
+  ],
+  "files": {
+    "main.py": "def forms(text):\n    return \"\", \"\", \"\"\n\ndef has_digit(text):\n    return False\n\nprint(forms(\"  aDa  \"))\nprint(has_digit(\"Room 2\"))\n"
+  },
+  "solution": {
+    "main.py": "def forms(text):\n    clean = text.strip()\n    return clean.lower(), clean.upper(), clean.title()\n\ndef has_digit(text):\n    for char in text:\n        if char in \"0123456789\":\n            return True\n    return False\n\nprint(forms(\"  aDa  \"))\nprint(has_digit(\"Room 2\"))\n"
+  },
+  "checkpoints": [
+    {
+      "objectiveIds": [
+        "case-methods",
+        "strip"
+      ],
+      "task": {
+        "en": "Return stripped lower, upper and title forms from forms(text), in that order.",
+        "nl": "Geef vanuit forms(text) de getrimde kleineletter-, hoofdletter- en titelvorm terug, in die volgorde."
+      },
+      "check": "forms(\"  aDa  \") == (\"ada\",\"ADA\",\"Ada\")",
+      "hints": [
+        {
+          "en": "Clean the edges once, then make the three versions.",
+          "nl": "Schoon de randen één keer op en maak dan de drie versies."
+        },
+        {
+          "en": "Each string method returns a value you can use.",
+          "nl": "Elke stringmethode geeft een bruikbare waarde terug."
+        },
+        {
+          "en": "clean = text.strip()",
+          "nl": "clean = text.strip()"
+        }
+      ],
+      "hint": {
+        "en": "Clean the edges once, then make the three versions.",
+        "nl": "Schoon de randen één keer op en maak dan de drie versies."
+      },
+      "feedback": {
+        "en": "Preserve internal spaces and remove leading or trailing tabs too.",
+        "nl": "Behoud interne spaties en verwijder ook tabs voor of achter."
+      },
+      "probes": [
+        {
+          "call": {
+            "name": "forms",
+            "args": [
+              "\tjo bo \n"
+            ]
+          },
+          "check": "_return == (\"jo bo\",\"JO BO\",\"Jo Bo\")"
+        },
+        {
+          "call": {
+            "name": "forms",
+            "args": [
+              "  "
+            ]
+          },
+          "check": "_return == (\"\",\"\",\"\")"
+        }
+      ],
+      "id": "python-v3-10-03-step-1"
+    },
+    {
+      "objectiveIds": [
+        "string-iteration",
+        "string-membership"
+      ],
+      "task": {
+        "en": "In has_digit, iterate characters and return True if any is in \"0123456789\"; otherwise return False.",
+        "nl": "Doorloop in has_digit tekens en geef True als er één in \"0123456789\" staat; geef anders False."
+      },
+      "check": "has_digit(\"Room 2\") is True",
+      "hints": [
+        {
+          "en": "A successful character can end the search early.",
+          "nl": "Een gevonden teken kan het zoeken vroeg beëindigen."
+        },
+        {
+          "en": "Return False only after every character was checked.",
+          "nl": "Geef False pas nadat elk teken is gecontroleerd."
+        },
+        {
+          "en": "if char in \"0123456789\":\n    return True",
+          "nl": "if char in \"0123456789\":\n    return True"
+        }
+      ],
+      "hint": {
+        "en": "A successful character can end the search early.",
+        "nl": "Een gevonden teken kan het zoeken vroeg beëindigen."
+      },
+      "feedback": {
+        "en": "Do not return False after only the first nondigit.",
+        "nl": "Geef niet na alleen het eerste niet-cijfer False terug."
+      },
+      "probes": [
+        {
+          "call": {
+            "name": "has_digit",
+            "args": [
+              "abc9"
+            ]
+          },
+          "check": "_return is True"
+        },
+        {
+          "call": {
+            "name": "has_digit",
+            "args": [
+              ""
+            ]
+          },
+          "check": "_return is False"
+        },
+        {
+          "call": {
+            "name": "has_digit",
+            "args": [
+              "abc"
+            ]
+          },
+          "check": "_return is False"
+        }
+      ],
+      "id": "python-v3-10-03-step-2"
+    }
+  ],
+  "solutionNote": {
+    "en": "String methods create new values, so chaining them is natural. The early True and final False handle a match anywhere, including at the last character.",
+    "nl": "Stringmethoden maken nieuwe waarden, dus ze combineren is logisch. De vroege True en laatste False behandelen een match overal, ook bij het laatste teken."
+  },
+  "inputs": [],
+  "retrievals": [
+    {
+      "id": "recall-python-v3-8-03",
+      "sourceActivityId": "python-v3-8-03",
+      "objectiveIds": [
+        "boundaries"
+      ],
+      "prompt": {
+        "en": "Derive the largest legal paddle y from court height and paddle height. Test both edges.",
+        "nl": "Leid de hoogste geldige batjes-y af uit veldhoogte en batjeshoogte. Test beide randen."
+      }
+    }
+  ]
+}

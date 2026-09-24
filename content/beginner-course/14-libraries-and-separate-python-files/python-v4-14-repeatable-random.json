@@ -1,0 +1,147 @@
+{
+  "id": "python-v4-14-repeatable-random",
+  "chapter": 14,
+  "group": "python-v4-module-14",
+  "title": {
+    "en": "Repeat a random experiment",
+    "nl": "Herhaal een willekeurig experiment"
+  },
+  "kind": "coding",
+  "optional": false,
+  "runtime": "terminal",
+  "guidance": "guided",
+  "checkpointMode": "sequential",
+  "estimatedMinutes": 12,
+  "topicIds": [
+    "random-seed"
+  ],
+  "practices": [],
+  "requiredConcepts": [
+    "random",
+    "for"
+  ],
+  "explanation": {
+    "en": "A repeatable random sequence helps reproduce a game bug or compare experiments.",
+    "nl": "Een herhaalbare willekeurige reeks helpt een spelfout te reproduceren of experimenten te vergelijken."
+  },
+  "example": "",
+  "sections": [
+    {
+      "id": "python-v4-14-repeatable-random-example",
+      "topicIds": [
+        "random-seed"
+      ],
+      "heading": {
+        "en": "Follow a working example",
+        "nl": "Volg een werkend voorbeeld"
+      },
+      "body": {
+        "en": "random.seed(value) restarts the generator from a known state. Repeating the same seed and calls in the same environment repeats the sequence. Seed once at the beginning of an experiment, not before every draw: reseeding each time repeatedly draws the first result.",
+        "nl": "random.seed(value) herstart de generator vanuit een bekende toestand. Dezelfde seed en aanroepen in dezelfde omgeving herhalen de reeks. Stel de seed eenmaal aan het begin van een experiment in, niet vóór elke trekking: telkens opnieuw instellen trekt steeds het eerste resultaat."
+      },
+      "code": "import random\nrandom.seed(12)\nfirst = random.random()\nrandom.seed(12)\nprint(first == random.random())",
+      "output": "True\n",
+      "prediction": {
+        "en": "What is being reset by the second seed call?",
+        "nl": "Wat wordt door de tweede seed-aanroep teruggezet?"
+      },
+      "takeaway": {
+        "en": "Seed once, then let the generator advance.",
+        "nl": "Stel de seed eenmaal in en laat de generator daarna doorgaan."
+      }
+    },
+    {
+      "id": "python-v4-14-repeatable-random-experiment",
+      "topicIds": [],
+      "heading": {
+        "en": "Try one change",
+        "nl": "Probeer één wijziging"
+      },
+      "body": {
+        "en": "Compare two seeds, keeping the number of draws fixed.",
+        "nl": "Vergelijk twee seeds en houd het aantal trekkingen gelijk."
+      }
+    }
+  ],
+  "files": {
+    "main.py": "import random\ndef draws(seed, count):\n    return []\n"
+  },
+  "solution": {
+    "main.py": "import random\ndef draws(seed, count):\n    random.seed(seed)\n    result = []\n    for i in range(count):\n        result.append(random.randint(1, 6))\n    return result\n"
+  },
+  "checkpoints": [
+    {
+      "id": "python-v4-14-repeatable-random-step-1",
+      "objectiveIds": [
+        "random-seed"
+      ],
+      "task": {
+        "en": "Return count die rolls after setting the supplied seed once.",
+        "nl": "Geef count dobbelsteenworpen terug nadat je de gegeven seed eenmaal hebt ingesteld."
+      },
+      "check": "callable(draws)",
+      "probes": [
+        {
+          "call": {
+            "name": "draws",
+            "args": [
+              12,
+              6
+            ]
+          },
+          "check": "_return == draws(12,6) and len(_return) == 6 and len(set(_return)) > 1 and all(1 <= v <= 6 for v in _return)"
+        },
+        {
+          "call": {
+            "name": "draws",
+            "args": [
+              1,
+              0
+            ]
+          },
+          "check": "_return == []"
+        }
+      ],
+      "hint": {
+        "en": "Seed once, then let the generator advance.",
+        "nl": "Stel de seed eenmaal in en laat de generator daarna doorgaan."
+      },
+      "hints": [
+        {
+          "en": "Seed once, then let the generator advance.",
+          "nl": "Stel de seed eenmaal in en laat de generator daarna doorgaan."
+        },
+        {
+          "en": "Set the seed before the loop, and append each new draw.",
+          "nl": "Stel de seed vóór de lus in en voeg elke nieuwe trekking toe."
+        },
+        {
+          "en": "A small fragment to adapt: `random.seed(seed)`",
+          "nl": "Een klein fragment om aan te passen: `random.seed(seed)`"
+        }
+      ],
+      "feedback": {
+        "en": "Set the seed before the loop, and append each new draw.",
+        "nl": "Stel de seed vóór de lus in en voeg elke nieuwe trekking toe."
+      }
+    }
+  ],
+  "solutionNote": {
+    "en": "Reinitialising once reproduces an entire sequence while still allowing varied draws.",
+    "nl": "Eenmaal opnieuw instellen reproduceert een hele reeks terwijl trekkingen kunnen variëren."
+  },
+  "inputs": [],
+  "retrievals": [
+    {
+      "id": "recall-python-v4-12-indexed-while",
+      "sourceActivityId": "python-v4-12-indexed-while",
+      "objectiveIds": [
+        "while-lists"
+      ],
+      "prompt": {
+        "en": "Recall “Traverse a list with an index”. At which index does the loop stop? Try the earlier example from memory, then check it. Compare this function with items.copy() and with a for loop.",
+        "nl": "Haal “Doorloop een lijst met een index” terug. Bij welke index stopt de lus? Probeer het eerdere voorbeeld uit je geheugen en controleer daarna. Vergelijk deze functie met items.copy() en met een for-lus."
+      }
+    }
+  ]
+}

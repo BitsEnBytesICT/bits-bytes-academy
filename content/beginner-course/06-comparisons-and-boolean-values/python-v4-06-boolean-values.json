@@ -1,0 +1,165 @@
+{
+  "id": "python-v4-06-boolean-values",
+  "chapter": 6,
+  "group": "python-v4-module-6",
+  "title": {
+    "en": "Two Boolean values",
+    "nl": "Twee booleaanse waarden"
+  },
+  "kind": "coding",
+  "optional": false,
+  "runtime": "terminal",
+  "guidance": "guided",
+  "checkpointMode": "sequential",
+  "estimatedMinutes": 12,
+  "topicIds": [
+    "boolean-expressions",
+    "boolean-variables"
+  ],
+  "practices": [],
+  "requiredConcepts": [
+    "variables",
+    "types"
+  ],
+  "explanation": {
+    "en": "Programs need values that represent yes/no conditions. Python's bool type has the values True and False.",
+    "nl": "Programma's hebben waarden nodig voor ja/nee-voorwaarden. Pythons type bool heeft de waarden True en False."
+  },
+  "example": "",
+  "sections": [
+    {
+      "id": "python-v4-06-boolean-values-example",
+      "topicIds": [
+        "boolean-expressions",
+        "boolean-variables"
+      ],
+      "heading": {
+        "en": "Follow a working example",
+        "nl": "Volg een werkend voorbeeld"
+      },
+      "body": {
+        "en": "Write True and False with capital initials and without quotes. They are Boolean values. \"True\" is a string containing four letters. A Boolean variable stores one of these values and can be printed or inspected with type.\n\nA Boolean expression evaluates a condition and produces a truth value. Start with concrete questions such as whether a door is open. The value False is a valid answer; it does not mean the program failed.",
+        "nl": "Schrijf True en False met een hoofdletter aan het begin en zonder aanhalingstekens. Het zijn booleaanse waarden. \"True\" is een string met vier letters. Een booleaanse variabele bewaart zo'n waarde en kan met print of type worden onderzocht.\n\nEen booleaanse expressie beoordeelt een voorwaarde en levert een waarheidswaarde op. Begin met concrete vragen zoals of een deur open is. False is een geldig antwoord; het betekent niet dat het programma is mislukt."
+      },
+      "code": "door_open = True\nprint(door_open)\nprint(type(door_open))\nprint(type(\"True\"))",
+      "output": "True\n<class 'bool'>\n<class 'str'>\n",
+      "prediction": {
+        "en": "Do the last two calls report the same type?",
+        "nl": "Melden de laatste twee aanroepen hetzelfde type?"
+      },
+      "takeaway": {
+        "en": "True and False are bool values; their quoted versions are strings.",
+        "nl": "True en False zijn bool-waarden; hun versies tussen aanhalingstekens zijn strings."
+      }
+    },
+    {
+      "id": "python-v4-06-boolean-values-experiment",
+      "topicIds": [],
+      "heading": {
+        "en": "Try one change",
+        "nl": "Probeer één wijziging"
+      },
+      "body": {
+        "en": "Assign the string False to finished and inspect its type. Restore the Boolean afterward.",
+        "nl": "Wijs de string False aan finished toe en onderzoek het type. Herstel daarna de booleaanse waarde."
+      }
+    }
+  ],
+  "files": {
+    "main.py": ""
+  },
+  "solution": {
+    "main.py": "ready = True\nfinished = False\nprint(ready)\nprint(finished)\n"
+  },
+  "checkpoints": [
+    {
+      "id": "python-v4-06-boolean-values-step-1",
+      "objectiveIds": [
+        "boolean-expressions",
+        "boolean-variables"
+      ],
+      "task": {
+        "en": "Create ready as True and finished as False, using Boolean values.",
+        "nl": "Maak ready als True en finished als False, met booleaanse waarden."
+      },
+      "check": "ready is True and finished is False",
+      "probes": [],
+      "hint": {
+        "en": "True and False are bool values; their quoted versions are strings.",
+        "nl": "True en False zijn bool-waarden; hun versies tussen aanhalingstekens zijn strings."
+      },
+      "hints": [
+        {
+          "en": "True and False are bool values; their quoted versions are strings.",
+          "nl": "True en False zijn bool-waarden; hun versies tussen aanhalingstekens zijn strings."
+        },
+        {
+          "en": "Use capital initials and no quotes.",
+          "nl": "Gebruik hoofdletters aan het begin en geen aanhalingstekens."
+        },
+        {
+          "en": "A small fragment to adapt: `ready = True`",
+          "nl": "Een klein fragment om aan te passen: `ready = True`"
+        }
+      ],
+      "feedback": {
+        "en": "Use capital initials and no quotes.",
+        "nl": "Gebruik hoofdletters aan het begin en geen aanhalingstekens."
+      }
+    },
+    {
+      "id": "python-v4-06-boolean-values-step-2",
+      "objectiveIds": [
+        "boolean-expressions",
+        "boolean-variables"
+      ],
+      "task": {
+        "en": "Print ready, then finished.",
+        "nl": "Druk ready af en daarna finished."
+      },
+      "check": "_stdout == \"True\\nFalse\\n\"",
+      "probes": [],
+      "hint": {
+        "en": "True and False are bool values; their quoted versions are strings.",
+        "nl": "True en False zijn bool-waarden; hun versies tussen aanhalingstekens zijn strings."
+      },
+      "hints": [
+        {
+          "en": "True and False are bool values; their quoted versions are strings.",
+          "nl": "True en False zijn bool-waarden; hun versies tussen aanhalingstekens zijn strings."
+        },
+        {
+          "en": "Both values are legitimate results to display.",
+          "nl": "Beide waarden zijn geldige resultaten om te tonen."
+        },
+        {
+          "en": "A small fragment to adapt: `print(finished)`",
+          "nl": "Een klein fragment om aan te passen: `print(finished)`"
+        }
+      ],
+      "feedback": {
+        "en": "Both values are legitimate results to display.",
+        "nl": "Beide waarden zijn geldige resultaten om te tonen."
+      }
+    }
+  ],
+  "solutionNote": {
+    "en": "The values have type bool. Quoting either word would change the type and meaning.",
+    "nl": "De waarden hebben type bool. Aanhalingstekens om een van de woorden veranderen het type en de betekenis."
+  },
+  "inputs": [],
+  "retrievals": [
+    {
+      "id": "recall-python-v4-04-concatenate",
+      "sourceActivityId": "python-v4-04-concatenate",
+      "objectiveIds": [
+        "concatenation",
+        "string-concatenation"
+      ],
+      "prompt": {
+        "en": "Recall “Join two pieces of text”. What would happen without the middle space string? Try the earlier example from memory, then check it. Change both names. Then remove the separator and observe the result.",
+        "nl": "Haal “Voeg twee stukken tekst samen” terug. Wat gebeurt er zonder de middelste string met een spatie? Probeer het eerdere voorbeeld uit je geheugen en controleer daarna. Verander beide namen. Verwijder daarna het scheidingsteken en bekijk het resultaat."
+      }
+    }
+  ]
+}

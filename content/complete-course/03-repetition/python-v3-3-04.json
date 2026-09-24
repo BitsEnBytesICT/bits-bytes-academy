@@ -1,0 +1,187 @@
+{
+  "id": "python-v3-3-04",
+  "chapter": 3,
+  "group": "python-v3-module-3",
+  "title": {
+    "en": "Repair an exit",
+    "nl": "Repareer het stoppen"
+  },
+  "kind": "coding",
+  "optional": false,
+  "runtime": "terminal",
+  "guidance": "adapt",
+  "estimatedMinutes": 15,
+  "explanation": {
+    "en": "Repair a loop that exits for skip instead of ignoring that command. Learn the difference between leaving a loop and starting its next iteration.",
+    "nl": "Repareer een lus die bij skip stopt in plaats van dat commando te negeren. Leer het verschil tussen een lus verlaten en de volgende iteratie beginnen."
+  },
+  "example": "",
+  "topicIds": [
+    "infinite-loops",
+    "break",
+    "continue"
+  ],
+  "prerequisites": [
+    "python-v3-3-03"
+  ],
+  "sections": [
+    {
+      "topicIds": [
+        "infinite-loops",
+        "break",
+        "continue"
+      ],
+      "heading": {
+        "en": "Leave or skip",
+        "nl": "Verlaat of sla over"
+      },
+      "body": {
+        "en": "break exits the nearest loop immediately. continue skips the rest of the current iteration. In a while loop, skipping a necessary update can create an infinite loop. Stop cancels a running program; repair the cause before Run again. while True is intentional when an input branch can break.",
+        "nl": "break verlaat onmiddellijk de dichtstbijzijnde lus. continue slaat de rest van de huidige iteratie over. In een while-lus kan het overslaan van een nodige update een oneindige lus maken. Stop annuleert een actief programma; herstel de oorzaak vóór opnieuw Uitvoeren. while True is bewust als een invoertak kan stoppen met break."
+      },
+      "code": "for n in range(5):\n    if n == 1:\n        continue\n    if n == 3:\n        break\n    print(n)",
+      "output": "0\n2\n",
+      "prediction": {
+        "en": "Why are neither 1 nor 3 printed? Why is 4 never reached?",
+        "nl": "Waarom worden noch 1 noch 3 afgedrukt? Waarom wordt 4 nooit bereikt?"
+      }
+    },
+    {
+      "topicIds": [],
+      "heading": {
+        "en": "Try a changed input",
+        "nl": "Probeer gewijzigde invoer"
+      },
+      "body": {
+        "en": "Explain what would happen if input moved below the skip branch. Do not run an intentional infinite loop; practise Stop on a waiting-input program, then Run again.",
+        "nl": "Leg uit wat zou gebeuren als input onder de skip-tak kwam. Voer niet bewust een oneindige lus uit; oefen Stop bij een programma dat op invoer wacht en voer daarna opnieuw uit."
+      }
+    }
+  ],
+  "files": {
+    "main.py": "count = 0\nwhile True:\n    command = input(\"Command: \")\n    if command == \"quit\":\n        break\n    if command == \"skip\":\n        break  # Wrong action: repair it.\n    count += 1\nprint(count)\n"
+  },
+  "solution": {
+    "main.py": "count = 0\nwhile True:\n    command = input(\"Command: \")\n    if command == \"quit\":\n        break\n    if command == \"skip\":\n        continue\n    count += 1\nprint(count)\n"
+  },
+  "checkpoints": [
+    {
+      "objectiveIds": [
+        "break",
+        "continue"
+      ],
+      "task": {
+        "en": "Ignore skip and continue reading, but exit on quit. Count all other commands.",
+        "nl": "Negeer skip en blijf lezen, maar stop bij quit. Tel alle andere commando’s."
+      },
+      "check": "count == 1",
+      "hints": [
+        {
+          "en": "Skipping one action is different from ending the session.",
+          "nl": "Eén actie overslaan is anders dan de sessie beëindigen."
+        },
+        {
+          "en": "Keep break for quit; use continue for skip.",
+          "nl": "Behoud break voor quit; gebruik continue voor skip."
+        },
+        {
+          "en": "if command == \"skip\":\n    continue",
+          "nl": "if command == \"skip\":\n    continue"
+        }
+      ],
+      "hint": {
+        "en": "Skipping one action is different from ending the session.",
+        "nl": "Eén actie overslaan is anders dan de sessie beëindigen."
+      },
+      "feedback": {
+        "en": "A skip must not prevent later commands from being counted.",
+        "nl": "Een skip mag het tellen van latere commando’s niet verhinderen."
+      },
+      "probes": [
+        {
+          "stdin": [
+            "skip",
+            "skip",
+            "play",
+            "play",
+            "quit"
+          ],
+          "check": "count == 2"
+        },
+        {
+          "stdin": [
+            "quit"
+          ],
+          "check": "count == 0"
+        }
+      ],
+      "id": "python-v3-3-04-step-1"
+    },
+    {
+      "objectiveIds": [
+        "infinite-loops"
+      ],
+      "task": {
+        "en": "Keep the input at the start of the body so skipped commands still reach a fresh read. Print the count once after stopping.",
+        "nl": "Houd input aan het begin van het blok zodat overgeslagen commando’s weer nieuwe invoer bereiken. Druk de teller één keer na het stoppen af."
+      },
+      "check": "_stdout.rstrip().endswith(\"1\")",
+      "hints": [
+        {
+          "en": "Every path that repeats must reach a new input.",
+          "nl": "Elke herhalende route moet nieuwe invoer bereiken."
+        },
+        {
+          "en": "Do not put the only input after continue.",
+          "nl": "Zet de enige invoer niet na continue."
+        },
+        {
+          "en": "while True:\n    command = input(\"Command: \")",
+          "nl": "while True:\n    command = input(\"Command: \")"
+        }
+      ],
+      "hint": {
+        "en": "Every path that repeats must reach a new input.",
+        "nl": "Elke herhalende route moet nieuwe invoer bereiken."
+      },
+      "feedback": {
+        "en": "Trace the skip path back to input, then the quit path out of the loop.",
+        "nl": "Volg de skip-route terug naar input en de quit-route uit de lus."
+      },
+      "probes": [
+        {
+          "stdin": [
+            "skip",
+            "quit"
+          ],
+          "check": "count == 0 and _stdout.rstrip().endswith(\"0\") and _remaining_input == \"\""
+        }
+      ],
+      "id": "python-v3-3-04-step-2"
+    }
+  ],
+  "solutionNote": {
+    "en": "continue returns to the top where input reads another command; break bypasses that next read and reaches the final print. This placement prevents a skipped-input loop.",
+    "nl": "continue gaat terug naar boven waar input een nieuw commando leest; break slaat die volgende leesactie over en bereikt de laatste print. Deze plaatsing voorkomt een lus die invoer overslaat."
+  },
+  "inputs": [
+    "skip",
+    "play",
+    "quit"
+  ],
+  "retrievals": [
+    {
+      "id": "recall-python-v3-1-04",
+      "sourceActivityId": "python-v3-1-04",
+      "objectiveIds": [
+        "exponents",
+        "floor-division",
+        "modulo"
+      ],
+      "prompt": {
+        "en": "For 17 items in groups of 4, predict // and %. Compare 4 ** 2 with 4 * 2.",
+        "nl": "Voorspel // en % voor 17 artikelen in groepen van 4. Vergelijk 4 ** 2 met 4 * 2."
+      }
+    }
+  ]
+}

@@ -1,0 +1,222 @@
+{
+  "id": "python-v3-14-02",
+  "chapter": 14,
+  "group": "python-v3-module-14",
+  "title": {
+    "en": "Quoted fields and delimiters",
+    "nl": "Velden met aanhalingstekens en scheidingstekens"
+  },
+  "kind": "coding",
+  "optional": false,
+  "runtime": "terminal",
+  "guidance": "adapt",
+  "estimatedMinutes": 16,
+  "explanation": {
+    "en": "Read quoted fields and different delimiters without splitting the raw lines yourself. A quoted field may contain a delimiter or even a newline.",
+    "nl": "Lees velden met aanhalingstekens en verschillende scheidingstekens zonder zelf ruwe regels te splitsen. Een veld met aanhalingstekens kan een scheidingsteken of zelfs een nieuwe regel bevatten."
+  },
+  "example": "",
+  "topicIds": [
+    "csv-quoting",
+    "csv-delimiters"
+  ],
+  "prerequisites": [
+    "python-v3-14-01"
+  ],
+  "sections": [
+    {
+      "topicIds": [
+        "csv-quoting",
+        "csv-delimiters"
+      ],
+      "heading": {
+        "en": "Let the CSV parser find boundaries",
+        "nl": "Laat de CSV-parser grenzen vinden"
+      },
+      "body": {
+        "en": "A semicolon-separated file is still parsed by csv when delimiter=\";\" is supplied. Quotes group field contents, so \"North; Hall\" is one field. Doubled quotes inside a quoted field represent one literal quote. Use newline=\"\" and do not splitlines before passing data to the reader: that can break multiline fields.",
+        "nl": "Een puntkomma-gescheiden bestand wordt ook door csv verwerkt met delimiter=\";\". Aanhalingstekens groeperen veldinhoud, dus \"North; Hall\" is één veld. Dubbele aanhalingstekens binnen een aangehaald veld stellen één letterlijk aanhalingsteken voor. Gebruik newline=\"\" en pas niet eerst splitlines toe: dat kan meerregelige velden breken."
+      },
+      "code": "import csv\nwith open(\"example.csv\", newline=\"\", encoding=\"utf-8\") as handle:\n    for row in csv.DictReader(handle, delimiter=\";\"):\n        print(row[\"label\"])",
+      "output": "North; Hall\n",
+      "prediction": {
+        "en": "Why would split(\";\") produce too many pieces?",
+        "nl": "Waarom zou split(\";\") te veel delen geven?"
+      },
+      "exampleFiles": {
+        "example.csv": "label;count\n\"North; Hall\";2\n"
+      }
+    },
+    {
+      "topicIds": [],
+      "heading": {
+        "en": "Try a changed input",
+        "nl": "Probeer gewijzigde invoer"
+      },
+      "body": {
+        "en": "Inspect the supplied doubled quotes. Add a label containing both a semicolon and a quote, then predict the parsed value.",
+        "nl": "Bekijk de meegeleverde dubbele aanhalingstekens. Voeg een label met zowel puntkomma als aanhalingsteken toe en voorspel de verwerkte waarde."
+      }
+    }
+  ],
+  "files": {
+    "labels.csv": "label;count\n\"North; Hall\";2\n\"Say \"\"Hi\"\"\";3\n",
+    "main.py": "import csv\n\ndef read_labels(filename, delimiter=\";\"):\n    return []\n\nprint(read_labels(\"labels.csv\"))\n"
+  },
+  "solution": {
+    "labels.csv": "label;count\n\"North; Hall\";2\n\"Say \"\"Hi\"\"\";3\n",
+    "main.py": "import csv\n\ndef read_labels(filename, delimiter=\";\"):\n    records = []\n    with open(filename, newline=\"\", encoding=\"utf-8\") as handle:\n        for row in csv.DictReader(handle, delimiter=delimiter):\n            records.append((row[\"label\"], int(row[\"count\"])))\n    return records\n\nprint(read_labels(\"labels.csv\"))\n"
+  },
+  "checkpoints": [
+    {
+      "objectiveIds": [
+        "csv-quoting"
+      ],
+      "task": {
+        "en": "Return (label, count) tuples, preserving delimiters, quotes and newlines inside quoted labels.",
+        "nl": "Geef (label, count)-tuples terug en behoud scheidingstekens, aanhalingstekens en nieuwe regels binnen aangehaalde labels."
+      },
+      "check": "read_labels(\"labels.csv\")[0] == (\"North; Hall\",2)",
+      "hints": [
+        {
+          "en": "CSV quoting defines the field boundaries.",
+          "nl": "CSV-aanhalingstekens bepalen veldgrenzen."
+        },
+        {
+          "en": "Pass the file handle directly to DictReader.",
+          "nl": "Geef de bestandshandle direct aan DictReader."
+        },
+        {
+          "en": "csv.DictReader(handle, delimiter=delimiter)",
+          "nl": "csv.DictReader(handle, delimiter=delimiter)"
+        }
+      ],
+      "hint": {
+        "en": "CSV quoting defines the field boundaries.",
+        "nl": "CSV-aanhalingstekens bepalen veldgrenzen."
+      },
+      "feedback": {
+        "en": "A raw string split cannot reliably handle quoted fields.",
+        "nl": "Een ruwe stringsplit kan aangehaalde velden niet betrouwbaar afhandelen."
+      },
+      "probes": [
+        {
+          "call": {
+            "name": "read_labels",
+            "args": [
+              "quoted.csv"
+            ]
+          },
+          "check": "_return == [(\"Line 1\\nLine 2\",4)]",
+          "files": {
+            "quoted.csv": "label;count\n\"Line 1\nLine 2\";4\n"
+          }
+        },
+        {
+          "call": {
+            "name": "read_labels",
+            "args": [
+              "labels.csv"
+            ]
+          },
+          "check": "_return[1][0] == \"Say \" + chr(34) + \"Hi\" + chr(34)"
+        }
+      ],
+      "id": "python-v3-14-02-step-1"
+    },
+    {
+      "objectiveIds": [
+        "csv-delimiters"
+      ],
+      "task": {
+        "en": "Honour a supplied delimiter argument, including comma and tab, and convert counts to integers.",
+        "nl": "Respecteer een meegegeven delimiter-argument, inclusief komma en tab, en zet aantallen om naar gehele getallen."
+      },
+      "check": "callable(read_labels)",
+      "hints": [
+        {
+          "en": "The default is only used when omitted.",
+          "nl": "De standaard geldt alleen als het argument ontbreekt."
+        },
+        {
+          "en": "Forward delimiter to the reader unchanged.",
+          "nl": "Geef delimiter ongewijzigd aan de reader door."
+        },
+        {
+          "en": "for row in csv.DictReader(handle, delimiter=delimiter):",
+          "nl": "for row in csv.DictReader(handle, delimiter=delimiter):"
+        }
+      ],
+      "hint": {
+        "en": "The default is only used when omitted.",
+        "nl": "De standaard geldt alleen als het argument ontbreekt."
+      },
+      "feedback": {
+        "en": "Do not hard-code semicolons in a function that accepts a delimiter.",
+        "nl": "Leg puntkomma’s niet vast in een functie die een scheidingsteken accepteert."
+      },
+      "probes": [
+        {
+          "call": {
+            "name": "read_labels",
+            "args": [
+              "tabs.csv",
+              "\t"
+            ]
+          },
+          "check": "_return == [(\"A\",0)]",
+          "files": {
+            "tabs.csv": "label\tcount\nA\t0\n"
+          }
+        },
+        {
+          "call": {
+            "name": "read_labels",
+            "args": [
+              "comma.csv",
+              ","
+            ]
+          },
+          "check": "_return == [(\"A, B\",2)]",
+          "files": {
+            "comma.csv": "label,count\n\"A, B\",2\n"
+          }
+        }
+      ],
+      "id": "python-v3-14-02-step-2"
+    }
+  ],
+  "solutionNote": {
+    "en": "The delimiter is configuration for the parser, not a reason to write a new splitting algorithm. CSV quoting is preserved across physical line breaks.",
+    "nl": "Het scheidingsteken is parserinstelling, geen reden voor een nieuw splitsalgoritme. CSV-aanhaling blijft over fysieke regeleinden heen behouden."
+  },
+  "inputs": [],
+  "retrievals": [
+    {
+      "id": "recall-python-v3-12-02",
+      "sourceActivityId": "python-v3-12-02",
+      "objectiveIds": [
+        "add-key",
+        "update",
+        "overwrite"
+      ],
+      "prompt": {
+        "en": "Add a field, overwrite it and use update for several changes. Which value wins when a key already exists?",
+        "nl": "Voeg een veld toe, overschrijf het en gebruik update voor meerdere wijzigingen. Welke waarde wint bij een bestaande sleutel?"
+      }
+    },
+    {
+      "id": "recall-python-v3-13-02",
+      "sourceActivityId": "python-v3-13-02",
+      "objectiveIds": [
+        "line-iteration",
+        "readline",
+        "file-position"
+      ],
+      "prompt": {
+        "en": "Use readline for a header, then iterate remaining lines. Predict a second read at the end of the file.",
+        "nl": "Gebruik readline voor een kop en doorloop de overige regels. Voorspel een tweede read aan het einde van het bestand."
+      }
+    }
+  ]
+}

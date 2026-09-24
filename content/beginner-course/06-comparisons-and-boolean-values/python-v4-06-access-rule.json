@@ -1,0 +1,198 @@
+{
+  "id": "python-v4-06-access-rule",
+  "chapter": 6,
+  "group": "python-v4-module-6",
+  "title": {
+    "en": "Combine a complete access rule",
+    "nl": "Combineer een volledige toegangsregel"
+  },
+  "kind": "coding",
+  "optional": false,
+  "runtime": "terminal",
+  "guidance": "independent",
+  "checkpointMode": "sequential",
+  "estimatedMinutes": 13,
+  "topicIds": [
+    "boolean-review"
+  ],
+  "practices": [
+    "and",
+    "or",
+    "not",
+    "relational-operators"
+  ],
+  "requiredConcepts": [
+    "and",
+    "or",
+    "not"
+  ],
+  "explanation": {
+    "en": "Translate a short rule into small Boolean expressions. Test both ordinary and boundary cases.",
+    "nl": "Vertaal een korte regel in kleine booleaanse expressies. Test gewone gevallen en grensgevallen."
+  },
+  "example": "",
+  "sections": [
+    {
+      "id": "python-v4-06-access-rule-example",
+      "topicIds": [
+        "boolean-review",
+        "and",
+        "or",
+        "not",
+        "relational-operators"
+      ],
+      "heading": {
+        "en": "Follow a working example",
+        "nl": "Volg een werkend voorbeeld"
+      },
+      "body": {
+        "en": "Separate the positive requirements from a reason to refuse access. The example requires a ticket and an open door. Your task adds an alternative credential and a blocked-account condition.\n\nUse parentheses to show which alternatives belong together. Test one requirement at a time: remove a credential, set the account to blocked, and finally test both credentials together.",
+        "nl": "Scheid positieve eisen van een reden om toegang te weigeren. Het voorbeeld vereist een kaartje en een open deur. Jouw opdracht voegt een alternatief toegangsbewijs en een geblokkeerde account toe.\n\nGebruik haakjes om te tonen welke alternatieven samen horen. Test één eis tegelijk: verwijder een toegangsbewijs, blokkeer de account en test ten slotte beide toegangsbewijzen tegelijk."
+      },
+      "code": "ticket = True\nopen_now = True\nallowed = ticket and open_now\nprint(allowed)",
+      "output": "True\n",
+      "prediction": {
+        "en": "Which single changed input would make this example False?",
+        "nl": "Welke ene gewijzigde invoer maakt dit voorbeeld False?"
+      },
+      "takeaway": {
+        "en": "Combine alternatives first, then apply the requirement shared by all alternatives.",
+        "nl": "Combineer eerst alternatieven en pas daarna de eis toe die voor alle alternatieven geldt."
+      }
+    },
+    {
+      "id": "python-v4-06-access-rule-experiment",
+      "topicIds": [],
+      "heading": {
+        "en": "Try one change",
+        "nl": "Probeer één wijziging"
+      },
+      "body": {
+        "en": "Write the eight possible combinations of these three Boolean inputs and predict each result.",
+        "nl": "Schrijf de acht mogelijke combinaties van deze drie booleaanse invoerwaarden op en voorspel elk resultaat."
+      }
+    }
+  ],
+  "files": {
+    "main.py": "member = True\nguest_pass = False\nblocked = False\n"
+  },
+  "solution": {
+    "main.py": "member = True\nguest_pass = False\nblocked = False\nresult = (member or guest_pass) and not blocked\nprint(result)\n"
+  },
+  "checkpoints": [
+    {
+      "id": "python-v4-06-access-rule-step-1",
+      "objectiveIds": [
+        "boolean-review",
+        "and",
+        "or",
+        "not",
+        "relational-operators"
+      ],
+      "task": {
+        "en": "Access requires membership or a guest pass, and a non-blocked account. Store the decision in result.",
+        "nl": "Toegang vereist lidmaatschap of een gastenpas en een niet-geblokkeerde account. Bewaar de beslissing in result."
+      },
+      "check": "type(result) is bool and result == ((member or guest_pass) and not blocked)",
+      "probes": [
+        {
+          "inputs": {
+            "member": false,
+            "guest_pass": true,
+            "blocked": false
+          },
+          "check": "type(result) is bool and result == ((member or guest_pass) and not blocked)"
+        },
+        {
+          "inputs": {
+            "member": true,
+            "guest_pass": false,
+            "blocked": true
+          },
+          "check": "type(result) is bool and result == ((member or guest_pass) and not blocked)"
+        },
+        {
+          "inputs": {
+            "member": false,
+            "guest_pass": false,
+            "blocked": false
+          },
+          "check": "type(result) is bool and result == ((member or guest_pass) and not blocked)"
+        },
+        {
+          "inputs": {
+            "member": true,
+            "guest_pass": true,
+            "blocked": false
+          },
+          "check": "type(result) is bool and result == ((member or guest_pass) and not blocked)"
+        }
+      ],
+      "hint": {
+        "en": "Combine alternatives first, then apply the requirement shared by all alternatives.",
+        "nl": "Combineer eerst alternatieven en pas daarna de eis toe die voor alle alternatieven geldt."
+      },
+      "hints": [
+        {
+          "en": "Combine alternatives first, then apply the requirement shared by all alternatives.",
+          "nl": "Combineer eerst alternatieven en pas daarna de eis toe die voor alle alternatieven geldt."
+        },
+        {
+          "en": "Group the two credentials with or. Every successful case must also satisfy not blocked.",
+          "nl": "Groepeer beide toegangsbewijzen met or. Elk succesvol geval moet ook voldoen aan not blocked."
+        },
+        {
+          "en": "A small fragment to adapt: `(member or guest_pass) and not blocked`",
+          "nl": "Een klein fragment om aan te passen: `(member or guest_pass) and not blocked`"
+        }
+      ],
+      "feedback": {
+        "en": "Group the two credentials with or. Every successful case must also satisfy not blocked.",
+        "nl": "Groepeer beide toegangsbewijzen met or. Elk succesvol geval moet ook voldoen aan not blocked."
+      }
+    },
+    {
+      "id": "python-v4-06-access-rule-step-2",
+      "objectiveIds": [
+        "boolean-review",
+        "and",
+        "or",
+        "not",
+        "relational-operators"
+      ],
+      "task": {
+        "en": "Print the Boolean result.",
+        "nl": "Druk het booleaanse resultaat af."
+      },
+      "check": "_stdout.strip() == str(result)",
+      "probes": [],
+      "hint": {
+        "en": "Combine alternatives first, then apply the requirement shared by all alternatives.",
+        "nl": "Combineer eerst alternatieven en pas daarna de eis toe die voor alle alternatieven geldt."
+      },
+      "hints": [
+        {
+          "en": "Combine alternatives first, then apply the requirement shared by all alternatives.",
+          "nl": "Combineer eerst alternatieven en pas daarna de eis toe die voor alle alternatieven geldt."
+        },
+        {
+          "en": "Print result itself, so changes to the comparison appear in the output.",
+          "nl": "Druk result zelf af zodat veranderingen in de vergelijking in de uitvoer verschijnen."
+        },
+        {
+          "en": "A small fragment to adapt: `print(result)`",
+          "nl": "Een klein fragment om aan te passen: `print(result)`"
+        }
+      ],
+      "feedback": {
+        "en": "Print result itself, so changes to the comparison appear in the output.",
+        "nl": "Druk result zelf af zodat veranderingen in de vergelijking in de uitvoer verschijnen."
+      }
+    }
+  ],
+  "solutionNote": {
+    "en": "Either credential is enough, but blocking overrides both. The grouped expression makes that shared restriction explicit.",
+    "nl": "Elk toegangsbewijs is voldoende, maar blokkeren geldt voor beide. De gegroepeerde expressie maakt die gedeelde beperking duidelijk."
+  },
+  "inputs": []
+}

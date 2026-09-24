@@ -1,0 +1,194 @@
+{
+  "id": "python-v3-14-06",
+  "chapter": 14,
+  "group": "python-v3-module-14",
+  "title": {
+    "en": "Transform a dataset",
+    "nl": "Transformeer een dataset"
+  },
+  "kind": "coding",
+  "optional": false,
+  "runtime": "terminal",
+  "guidance": "independent",
+  "estimatedMinutes": 15,
+  "explanation": {
+    "en": "Transform a CSV of team point changes into a JSON report. Normalise team names with strip and lower. Add valid integer points by team; count rows with a blank team or invalid/missing points as rejected exactly once.",
+    "nl": "Transformeer een CSV met puntenwijzigingen per team tot een JSON-rapport. Normaliseer teamnamen met strip en lower. Tel geldige gehele punten per team op; tel rijen met leeg team of ongeldige/ontbrekende punten precies één keer als afgewezen."
+  },
+  "example": "",
+  "topicIds": [
+    "structured-files-review"
+  ],
+  "prerequisites": [
+    "python-v3-14-05"
+  ],
+  "sections": [
+    {
+      "topicIds": [
+        "structured-files-review"
+      ],
+      "heading": {
+        "en": "Parse, validate, aggregate, save",
+        "nl": "Lees, valideer, tel op, bewaar"
+      },
+      "body": {
+        "en": "Use the CSV parser for fields, a specific conversion check for points, a dictionary for totals and the JSON writer for the report. The output is {\"totals\": {...}, \"rejected\": number}. Negative and zero points are valid. Return the same report that you save, and preserve the CSV source.",
+        "nl": "Gebruik de CSV-parser voor velden, een specifieke omzettingscontrole voor punten, een dictionary voor totalen en de JSON-schrijver voor het rapport. De uitvoer is {\"totals\": {...}, \"rejected\": aantal}. Negatieve en nulpunten zijn geldig. Geef hetzelfde rapport terug dat je bewaart en behoud de CSV-bron."
+      },
+      "code": "totals = {}\nteam, points = \"blue\", 3\ntotals[team] = totals.get(team, 0) + points\nprint({\"totals\": totals, \"rejected\": 0})",
+      "output": "{'totals': {'blue': 3}, 'rejected': 0}\n",
+      "prediction": {
+        "en": "Which parts of the final task concern file syntax, and which concern domain rules?",
+        "nl": "Welke delen van de eindtaak gaan over bestandssyntax en welke over inhoudelijke regels?"
+      }
+    },
+    {
+      "topicIds": [],
+      "heading": {
+        "en": "Try a changed input",
+        "nl": "Probeer gewijzigde invoer"
+      },
+      "body": {
+        "en": "Add a quoted team containing a comma, a missing score and an exact duplicate team in different case. Predict totals and rejected before running.",
+        "nl": "Voeg een aangehaald team met komma, een ontbrekende score en een gelijk team in andere hoofdletters toe. Voorspel totals en rejected voordat je uitvoert."
+      }
+    }
+  ],
+  "files": {
+    "points.csv": "team,points\n Red ,3\nblue,2\nred,-1\nblue,bad\n,4\n",
+    "main.py": "import csv\nimport json\n\ndef summarise_file(source, target):\n    return {}\n\nprint(summarise_file(\"points.csv\", \"summary.json\"))\n"
+  },
+  "solution": {
+    "points.csv": "team,points\n Red ,3\nblue,2\nred,-1\nblue,bad\n,4\n",
+    "main.py": "import csv\nimport json\n\ndef summarise_file(source, target):\n    totals = {}\n    rejected = 0\n    with open(source, newline=\"\", encoding=\"utf-8\") as handle:\n        for row in csv.DictReader(handle):\n            team = (row.get(\"team\") or \"\").strip().lower()\n            try:\n                points = int(row.get(\"points\") or \"\")\n            except ValueError:\n                rejected += 1\n                continue\n            if team == \"\":\n                rejected += 1\n                continue\n            totals[team] = totals.get(team, 0) + points\n    report = {\"totals\": totals, \"rejected\": rejected}\n    with open(target, \"w\", encoding=\"utf-8\") as handle:\n        json.dump(report, handle, ensure_ascii=False, indent=2)\n    return report\n\nprint(summarise_file(\"points.csv\", \"summary.json\"))\n"
+  },
+  "checkpoints": [
+    {
+      "objectiveIds": [
+        "structured-files-review"
+      ],
+      "task": {
+        "en": "Aggregate normalised teams and count invalid rows once. Return a report with totals and rejected.",
+        "nl": "Tel genormaliseerde teams op en tel ongeldige rijen één keer. Geef een rapport met totals en rejected terug."
+      },
+      "check": "__import__(\"json\").loads(__import__(\"pathlib\").Path(\"summary.json\").read_text(encoding=\"utf-8\")) == {\"totals\":{\"red\":2,\"blue\":2},\"rejected\":2}",
+      "hints": [
+        {
+          "en": "Separate field parsing from validation and accumulation.",
+          "nl": "Scheid velden lezen van validatie en optellen."
+        },
+        {
+          "en": "A rejected row must continue before it updates totals.",
+          "nl": "Een afgewezen rij moet met continue doorgaan vóór die totals bijwerkt."
+        },
+        {
+          "en": "totals[team] = totals.get(team, 0) + points",
+          "nl": "totals[team] = totals.get(team, 0) + points"
+        }
+      ],
+      "hint": {
+        "en": "Separate field parsing from validation and accumulation.",
+        "nl": "Scheid velden lezen van validatie en optellen."
+      },
+      "feedback": {
+        "en": "Normalise before grouping and do not count the same bad row twice.",
+        "nl": "Normaliseer vóór groeperen en tel dezelfde slechte rij niet twee keer."
+      },
+      "probes": [
+        {
+          "call": {
+            "name": "summarise_file",
+            "args": [
+              "case.csv",
+              "out.json"
+            ]
+          },
+          "check": "_return == {\"totals\":{\"a\":0},\"rejected\":3}",
+          "files": {
+            "case.csv": "team,points\nA,0\n,bad\nB,2.5\nC,\n"
+          }
+        }
+      ],
+      "id": "python-v3-14-06-step-1"
+    },
+    {
+      "objectiveIds": [
+        "structured-files-review"
+      ],
+      "task": {
+        "en": "Save the returned report as JSON without changing source. A header-only CSV gives empty totals and zero rejected.",
+        "nl": "Bewaar het teruggegeven rapport als JSON zonder source te wijzigen. Een CSV met alleen kop geeft lege totalen en nul afgewezen."
+      },
+      "check": "__import__(\"pathlib\").Path(\"points.csv\").read_text(encoding=\"utf-8\") == \"team,points\\n Red ,3\\nblue,2\\nred,-1\\nblue,bad\\n,4\\n\"",
+      "hints": [
+        {
+          "en": "The in-memory result and saved result must agree.",
+          "nl": "Het resultaat in het geheugen en het opgeslagen resultaat moeten overeenkomen."
+        },
+        {
+          "en": "Use json.dump with a separate target file.",
+          "nl": "Gebruik json.dump met een apart doelbestand."
+        },
+        {
+          "en": "json.dump(report, handle, ensure_ascii=False, indent=2)",
+          "nl": "json.dump(report, handle, ensure_ascii=False, indent=2)"
+        }
+      ],
+      "hint": {
+        "en": "The in-memory result and saved result must agree.",
+        "nl": "Het resultaat in het geheugen en het opgeslagen resultaat moeten overeenkomen."
+      },
+      "feedback": {
+        "en": "Inspect the generated JSON as well as the printed dictionary.",
+        "nl": "Bekijk de gegenereerde JSON én de afgedrukte dictionary."
+      },
+      "probes": [
+        {
+          "call": {
+            "name": "summarise_file",
+            "args": [
+              "empty.csv",
+              "out.json"
+            ]
+          },
+          "check": "_return == {\"totals\":{},\"rejected\":0} and __import__(\"json\").loads(__import__(\"pathlib\").Path(\"out.json\").read_text(encoding=\"utf-8\")) == _return and __import__(\"pathlib\").Path(\"empty.csv\").read_text(encoding=\"utf-8\") == \"team,points\\n\"",
+          "files": {
+            "empty.csv": "team,points\n"
+          }
+        },
+        {
+          "call": {
+            "name": "summarise_file",
+            "args": [
+              "quoted.csv",
+              "out.json"
+            ]
+          },
+          "check": "__import__(\"json\").loads(__import__(\"pathlib\").Path(\"out.json\").read_text(encoding=\"utf-8\")) == {\"totals\":{\"a, b\":3},\"rejected\":0}",
+          "files": {
+            "quoted.csv": "team,points\n\"A, B\",3\n"
+          }
+        }
+      ],
+      "id": "python-v3-14-06-step-2"
+    }
+  ],
+  "solutionNote": {
+    "en": "Each stage has one role, making failures easier to locate. One continue per rejected path ensures a row cannot both count as rejected and affect team totals.",
+    "nl": "Elke stap heeft één rol, waardoor fouten makkelijker te vinden zijn. Eén continue per afgewezen route zorgt dat een rij niet zowel afgewezen kan tellen als teamtotalen beïnvloeden."
+  },
+  "inputs": [],
+  "retrievals": [
+    {
+      "id": "recall-python-v3-12-06",
+      "sourceActivityId": "python-v3-12-06",
+      "objectiveIds": [
+        "dictionary-review"
+      ],
+      "prompt": {
+        "en": "Update a new registry without changing the caller’s dictionary. Test an empty update and a missing record.",
+        "nl": "Werk een nieuw register bij zonder de dictionary van de aanroeper te wijzigen. Test een lege wijziging en een ontbrekend record."
+      }
+    }
+  ]
+}

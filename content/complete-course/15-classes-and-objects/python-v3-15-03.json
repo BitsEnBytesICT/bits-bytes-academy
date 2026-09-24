@@ -1,0 +1,161 @@
+{
+  "id": "python-v3-15-03",
+  "chapter": 15,
+  "group": "python-v3-module-15",
+  "title": {
+    "en": "Add behaviour",
+    "nl": "Voeg gedrag toe"
+  },
+  "kind": "coding",
+  "optional": false,
+  "runtime": "terminal",
+  "guidance": "adapt",
+  "estimatedMinutes": 17,
+  "explanation": {
+    "en": "Add methods that operate on an instance’s own state. The object supplies self automatically when a method is called through that object.",
+    "nl": "Voeg methoden toe die op de eigen toestand van een instantie werken. Het object levert self automatisch wanneer een methode via dat object wordt aangeroepen."
+  },
+  "example": "",
+  "topicIds": [
+    "methods",
+    "method-arguments"
+  ],
+  "prerequisites": [
+    "python-v3-15-02"
+  ],
+  "sections": [
+    {
+      "topicIds": [
+        "methods",
+        "method-arguments"
+      ],
+      "heading": {
+        "en": "Behaviour next to state",
+        "nl": "Gedrag naast toestand"
+      },
+      "body": {
+        "en": "A method is a function defined in a class. counter.add(3) calls add with counter as self and 3 as amount. Use self.value to read and update that instance. Methods can take defaults, return values or return None, just like other functions. Decide which behaviour the caller needs.",
+        "nl": "Een methode is een functie die in een klasse is gedefinieerd. counter.add(3) roept add aan met counter als self en 3 als amount. Gebruik self.value om die instantie te lezen en bij te werken. Methoden kunnen standaarden en terugkeerwaarden hebben of None teruggeven, net als andere functies. Bepaal welk gedrag de aanroeper nodig heeft."
+      },
+      "code": "class Meter:\n    def __init__(self):\n        self.value = 0\n    def add(self, amount):\n        self.value += amount\n        return self.value\n\nmeter = Meter()\nprint(meter.add(3))\nprint(meter.add(2))",
+      "output": "3\n5\n",
+      "prediction": {
+        "en": "Where is the total stored between the two calls?",
+        "nl": "Waar wordt het totaal tussen de twee aanroepen bewaard?"
+      }
+    },
+    {
+      "topicIds": [],
+      "heading": {
+        "en": "Try a changed input",
+        "nl": "Probeer gewijzigde invoer"
+      },
+      "body": {
+        "en": "Make two counters, add to one and reset the other. Explain how Python supplies self for each call.",
+        "nl": "Maak twee tellers, tel bij één op en reset de andere. Leg uit hoe Python self voor elke aanroep meegeeft."
+      }
+    }
+  ],
+  "files": {
+    "main.py": "class Counter:\n    def __init__(self, start=0):\n        self.value = start\n\n    def add(self, amount=1):\n        return self.value\n\n    def reset(self):\n        pass\n\ncounter = Counter(2)\nprint(counter.add())\n"
+  },
+  "solution": {
+    "main.py": "class Counter:\n    def __init__(self, start=0):\n        self.value = start\n\n    def add(self, amount=1):\n        self.value += amount\n        return self.value\n\n    def reset(self):\n        self.value = 0\n\ncounter = Counter(2)\nprint(counter.add())\n"
+  },
+  "checkpoints": [
+    {
+      "objectiveIds": [
+        "methods",
+        "method-arguments"
+      ],
+      "task": {
+        "en": "Implement add(amount=1) to update this counter and return its new value. Negative and zero amounts are allowed.",
+        "nl": "Implementeer add(amount=1) om deze teller bij te werken en zijn nieuwe waarde terug te geven. Negatieve en nulbedragen zijn toegestaan."
+      },
+      "check": "counter.value == 3 and _stdout.strip() == \"3\"",
+      "hints": [
+        {
+          "en": "Read and write the same instance attribute.",
+          "nl": "Lees en schrijf hetzelfde instantieattribuut."
+        },
+        {
+          "en": "Update self.value before returning it.",
+          "nl": "Werk self.value bij voordat je die teruggeeft."
+        },
+        {
+          "en": "self.value += amount\nreturn self.value",
+          "nl": "self.value += amount\nreturn self.value"
+        }
+      ],
+      "hint": {
+        "en": "Read and write the same instance attribute.",
+        "nl": "Lees en schrijf hetzelfde instantieattribuut."
+      },
+      "feedback": {
+        "en": "Returning a changed local number without updating self loses the state.",
+        "nl": "Een gewijzigd lokaal getal teruggeven zonder self bij te werken verliest de toestand."
+      },
+      "probes": [
+        {
+          "call": {
+            "name": "Counter",
+            "args": [
+              5
+            ]
+          },
+          "check": "_return.add(-2) == 3 and _return.add(0) == 3 and _return.add() == 4 and _return.value == 4"
+        }
+      ],
+      "id": "python-v3-15-03-step-1"
+    },
+    {
+      "objectiveIds": [
+        "methods"
+      ],
+      "task": {
+        "en": "Implement reset() to set this counter to zero and return None.",
+        "nl": "Implementeer reset() om deze teller op nul te zetten en None terug te geven."
+      },
+      "check": "callable(counter.reset)",
+      "hints": [
+        {
+          "en": "Reset is an action on an existing object.",
+          "nl": "Reset is een actie op een bestaand object."
+        },
+        {
+          "en": "Assign zero to self.value.",
+          "nl": "Wijs nul aan self.value toe."
+        },
+        {
+          "en": "self.value = 0",
+          "nl": "self.value = 0"
+        }
+      ],
+      "hint": {
+        "en": "Reset is an action on an existing object.",
+        "nl": "Reset is een actie op een bestaand object."
+      },
+      "feedback": {
+        "en": "Do not create a new Counter instead of resetting this one.",
+        "nl": "Maak geen nieuwe Counter in plaats van deze te resetten."
+      },
+      "probes": [
+        {
+          "call": {
+            "name": "Counter",
+            "args": [
+              7
+            ]
+          },
+          "check": "_return.reset() is None and _return.value == 0 and _return.add(2) == 2"
+        }
+      ],
+      "id": "python-v3-15-03-step-2"
+    }
+  ],
+  "solutionNote": {
+    "en": "Both methods act on the same instance. add returns a useful new total; reset communicates its effect through state and returns None.",
+    "nl": "Beide methoden werken op dezelfde instantie. add geeft een bruikbaar nieuw totaal; reset communiceert zijn effect via toestand en geeft None terug."
+  },
+  "inputs": []
+}

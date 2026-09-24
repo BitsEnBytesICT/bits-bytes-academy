@@ -1,0 +1,154 @@
+{
+  "id": "python-v4-12-range-stop",
+  "chapter": 12,
+  "group": "python-v4-module-12",
+  "title": {
+    "en": "Repeat a known number of times",
+    "nl": "Herhaal een bekend aantal keren"
+  },
+  "kind": "coding",
+  "optional": false,
+  "runtime": "terminal",
+  "guidance": "guided",
+  "checkpointMode": "sequential",
+  "estimatedMinutes": 12,
+  "topicIds": [
+    "range"
+  ],
+  "practices": [],
+  "requiredConcepts": [
+    "for"
+  ],
+  "explanation": {
+    "en": "range supplies a sequence of integer positions when there is no existing list to traverse.",
+    "nl": "range levert een reeks gehele posities wanneer er geen bestaande lijst is om te doorlopen."
+  },
+  "example": "",
+  "sections": [
+    {
+      "id": "python-v4-12-range-stop-example",
+      "topicIds": [
+        "range"
+      ],
+      "heading": {
+        "en": "Follow a working example",
+        "nl": "Volg een werkend voorbeeld"
+      },
+      "body": {
+        "en": "range(stop) starts at zero and stops before stop. range(3) therefore supplies 0, 1, 2. range is a sequence object, not a ready-made list. Use list(range(3)) when you need a materialised list; a for loop can use range directly. Negative or zero stops produce no values in this form.",
+        "nl": "range(stop) begint bij nul en stopt vóór stop. range(3) levert dus 0, 1, 2. range is een reeksobject, geen kant-en-klare lijst. Gebruik list(range(3)) als je een echte lijst nodig hebt; een for-lus kan range direct gebruiken. Een negatieve of nul-stop levert in deze vorm geen waarden."
+      },
+      "code": "print(list(range(3)))\nfor position in range(2):\n    print(position)",
+      "output": "[0, 1, 2]\n0\n1\n",
+      "prediction": {
+        "en": "How many values does range(0) produce?",
+        "nl": "Hoeveel waarden produceert range(0)?"
+      },
+      "takeaway": {
+        "en": "The stop value is excluded.",
+        "nl": "De stopwaarde doet niet mee."
+      }
+    },
+    {
+      "id": "python-v4-12-range-stop-experiment",
+      "topicIds": [],
+      "heading": {
+        "en": "Try one change",
+        "nl": "Probeer één wijziging"
+      },
+      "body": {
+        "en": "Compare printing range(3) with printing list(range(3)).",
+        "nl": "Vergelijk range(3) afdrukken met list(range(3)) afdrukken."
+      }
+    }
+  ],
+  "files": {
+    "main.py": "def positions(count):\n    # Complete this function.\n    return None\n"
+  },
+  "solution": {
+    "main.py": "def positions(count):\n    return list(range(count))\n"
+  },
+  "checkpoints": [
+    {
+      "id": "python-v4-12-range-stop-step-1",
+      "objectiveIds": [
+        "range"
+      ],
+      "task": {
+        "en": "Return a list of positions from 0 up to but not including count, using range.",
+        "nl": "Geef met range een lijst van posities van 0 tot maar niet inclusief count terug."
+      },
+      "check": "callable(positions)",
+      "probes": [
+        {
+          "call": {
+            "name": "positions",
+            "args": [
+              4
+            ]
+          },
+          "check": "(_return == [0,1,2,3]) and _error is None"
+        },
+        {
+          "call": {
+            "name": "positions",
+            "args": [
+              0
+            ]
+          },
+          "check": "(_return == []) and _error is None"
+        },
+        {
+          "call": {
+            "name": "positions",
+            "args": [
+              -1
+            ]
+          },
+          "check": "(_return == []) and _error is None"
+        }
+      ],
+      "hint": {
+        "en": "The stop value is excluded.",
+        "nl": "De stopwaarde doet niet mee."
+      },
+      "hints": [
+        {
+          "en": "The stop value is excluded.",
+          "nl": "De stopwaarde doet niet mee."
+        },
+        {
+          "en": "Convert the range object to a list for the requested return type.",
+          "nl": "Zet het range-object om naar een lijst voor het gevraagde terugkeertype."
+        },
+        {
+          "en": "A small fragment to adapt: `list(range(count))`",
+          "nl": "Een klein fragment om aan te passen: `list(range(count))`"
+        }
+      ],
+      "feedback": {
+        "en": "Convert the range object to a list for the requested return type.",
+        "nl": "Zet het range-object om naar een lijst voor het gevraagde terugkeertype."
+      }
+    }
+  ],
+  "solutionNote": {
+    "en": "The conversion materialises the range values; it does not change the excluded stop.",
+    "nl": "De omzetting maakt de range-waarden concreet; ze verandert de uitgesloten stop niet."
+  },
+  "inputs": [],
+  "retrievals": [
+    {
+      "id": "recall-python-v4-10-value-error",
+      "sourceActivityId": "python-v4-10-value-error",
+      "objectiveIds": [
+        "try-except",
+        "value-error"
+      ],
+      "prompt": {
+        "en": "Recall “Recover from a conversion failure”. Which print in the try block is skipped? Try the earlier example from memory, then check it. Try \" 0 \" and explain why spaces around a numeric string can still convert.",
+        "nl": "Haal “Herstel een mislukte omzetting” terug. Welke print in het try-blok wordt overgeslagen? Probeer het eerdere voorbeeld uit je geheugen en controleer daarna. Probeer \" 0 \" en leg uit waarom spaties rond getaltekst omzetting niet verhinderen."
+      }
+    }
+  ]
+}

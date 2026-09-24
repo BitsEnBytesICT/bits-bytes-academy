@@ -1,0 +1,140 @@
+{
+  "id": "python-v4-15-drawing-order",
+  "chapter": 15,
+  "group": "python-v4-module-15",
+  "title": {
+    "en": "Draw the background before the foreground",
+    "nl": "Teken de achtergrond vóór de voorgrond"
+  },
+  "kind": "coding",
+  "optional": false,
+  "runtime": "pygame",
+  "guidance": "adapt",
+  "checkpointMode": "sequential",
+  "estimatedMinutes": 18,
+  "topicIds": [
+    "drawing-order",
+    "drawing"
+  ],
+  "practices": [],
+  "requiredConcepts": [
+    "surface",
+    "colours"
+  ],
+  "explanation": {
+    "en": "A later drawing operation covers earlier pixels. Repair a scene whose shape is hidden.",
+    "nl": "Een latere tekenbewerking bedekt eerdere pixels. Herstel een scène waarvan de vorm verborgen is."
+  },
+  "example": "",
+  "sections": [
+    {
+      "id": "python-v4-15-drawing-order-example",
+      "topicIds": [
+        "drawing-order",
+        "drawing"
+      ],
+      "heading": {
+        "en": "Follow a working example",
+        "nl": "Volg een werkend voorbeeld"
+      },
+      "body": {
+        "en": "pygame.draw.rect(surface, colour, rectangle) paints a rectangle on a Surface. Drawing an opaque background after the shape erases the shape. The normal frame order is clear the background, draw objects, then present the image. Redrawing each frame also removes objects from their old positions.",
+        "nl": "pygame.draw.rect(surface, colour, rectangle) tekent een rechthoek op een Surface. Een dekkende achtergrond na de vorm tekenen wist de vorm. De gewone beeldvolgorde is achtergrond wissen, objecten tekenen en daarna de afbeelding tonen. Elk beeld opnieuw tekenen verwijdert ook objecten op hun oude posities."
+      },
+      "code": "import pygame\nimage = pygame.Surface((10,10))\nimage.fill((0,0,0))\npygame.draw.rect(image,(255,0,0),(2,2,4,4))\nprint(image.get_at((3,3))[0])",
+      "output": "255\n",
+      "prediction": {
+        "en": "What would the pixel be if fill ran last?",
+        "nl": "Wat is de pixel als fill als laatste draait?"
+      },
+      "takeaway": {
+        "en": "Later pixels cover earlier pixels.",
+        "nl": "Latere pixels bedekken eerdere pixels."
+      }
+    },
+    {
+      "topicIds": [],
+      "heading": {
+        "en": "Run, observe, finish",
+        "nl": "Voer uit, bekijk, rond af"
+      },
+      "body": {
+        "en": "main.py supplies the browser entry point. Run opens a real pygame-ce preview; click it to focus the keyboard. Clicking elsewhere pauses play. Finish & check closes normally and checks your helper after at least one rendered frame. Stop cancels without grading. Run can start a fresh session afterward. Keep the supplied async definition and await asyncio.sleep(1 / 60): they let the browser draw and receive input. You are not expected to reproduce this infrastructure from memory.",
+        "nl": "main.py levert het browserstartpunt. Uitvoeren opent een echt pygame-ce-voorbeeld; klik erop om het toetsenbord te activeren. Elders klikken pauzeert het spel. Afronden en controleren sluit normaal af en controleert je helper na minstens één getekend beeld. Stop annuleert zonder beoordeling. Uitvoeren kan daarna een nieuwe sessie starten. Behoud de meegeleverde async-definitie en await asyncio.sleep(1 / 60): die laten de browser tekenen en invoer ontvangen. Je hoeft deze infrastructuur niet uit je hoofd te schrijven."
+      }
+    },
+    {
+      "id": "python-v4-15-drawing-order-experiment",
+      "topicIds": [],
+      "heading": {
+        "en": "Try one change",
+        "nl": "Probeer één wijziging"
+      },
+      "body": {
+        "en": "Add a second overlapping rectangle and swap their drawing order.",
+        "nl": "Voeg een tweede overlappende rechthoek toe en wissel de tekenvolgorde."
+      }
+    }
+  ],
+  "files": {
+    "main.py": "# Browser entry point supplied by the course.\nimport asyncio\nimport pygame\nimport game\n\nasync def main():\n    pygame.init()\n    screen = pygame.display.set_mode((640, 400))\n    clock = pygame.time.Clock()\n    running = True\n    while running:\n        dt = min(clock.tick() / 1000, 0.05)\n        for event in pygame.event.get():\n            if event.type == pygame.QUIT:\n                running = False\n            if event.type == pygame.KEYDOWN and event.key == pygame.K_ESCAPE:\n                running = False\n        keys = pygame.key.get_pressed()\n        screen.fill((16, 23, 39))\n        screen.blit(game.scene(),(0,0))\n        pygame.display.flip()\n        await asyncio.sleep(1 / 60)\n    pygame.quit()\n\nasyncio.run(main())\n",
+    "game.py": "import pygame\n\ndef scene():\n    canvas = pygame.Surface((640,400))\n    pygame.draw.rect(canvas,(240,240,240),(20,100,10,60))\n    canvas.fill((20,40,80))\n    return canvas\n"
+  },
+  "solution": {
+    "main.py": "# Browser entry point supplied by the course.\nimport asyncio\nimport pygame\nimport game\n\nasync def main():\n    pygame.init()\n    screen = pygame.display.set_mode((640, 400))\n    clock = pygame.time.Clock()\n    running = True\n    while running:\n        dt = min(clock.tick() / 1000, 0.05)\n        for event in pygame.event.get():\n            if event.type == pygame.QUIT:\n                running = False\n            if event.type == pygame.KEYDOWN and event.key == pygame.K_ESCAPE:\n                running = False\n        keys = pygame.key.get_pressed()\n        screen.fill((16, 23, 39))\n        screen.blit(game.scene(),(0,0))\n        pygame.display.flip()\n        await asyncio.sleep(1 / 60)\n    pygame.quit()\n\nasyncio.run(main())\n",
+    "game.py": "import pygame\n\ndef scene():\n    canvas = pygame.Surface((640,400))\n    canvas.fill((20,40,80))\n    pygame.draw.rect(canvas,(240,240,240),(20,100,10,60))\n    return canvas\n"
+  },
+  "checkpoints": [
+    {
+      "id": "python-v4-15-drawing-order-step-1",
+      "objectiveIds": [
+        "drawing-order",
+        "drawing"
+      ],
+      "task": {
+        "en": "Repair the drawing order so the white paddle stays visible on the blue background.",
+        "nl": "Herstel de tekenvolgorde zodat het witte batje zichtbaar blijft op de blauwe achtergrond."
+      },
+      "check": "_rendered_frames > 0",
+      "probes": [
+        {
+          "call": {
+            "name": "scene",
+            "args": [],
+            "module": "game"
+          },
+          "check": "(tuple(_return.get_at((25,120)))[:3] == (240,240,240) and tuple(_return.get_at((0,0)))[:3] == (20,40,80)) and _error is None",
+          "moduleOnly": true,
+          "module": "game"
+        }
+      ],
+      "hint": {
+        "en": "Later pixels cover earlier pixels.",
+        "nl": "Latere pixels bedekken eerdere pixels."
+      },
+      "hints": [
+        {
+          "en": "Later pixels cover earlier pixels.",
+          "nl": "Latere pixels bedekken eerdere pixels."
+        },
+        {
+          "en": "Fill before drawing the paddle.",
+          "nl": "Vul vóór het tekenen van het batje."
+        },
+        {
+          "en": "A small fragment to adapt: `canvas.fill((20,40,80))`",
+          "nl": "Een klein fragment om aan te passen: `canvas.fill((20,40,80))`"
+        }
+      ],
+      "feedback": {
+        "en": "Fill before drawing the paddle.",
+        "nl": "Vul vóór het tekenen van het batje."
+      }
+    }
+  ],
+  "solutionNote": {
+    "en": "Moving fill before the paddle preserves the foreground pixels.",
+    "nl": "fill vóór het batje plaatsen bewaart de voorgrondpixels."
+  },
+  "inputs": []
+}

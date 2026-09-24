@@ -1,0 +1,185 @@
+{
+  "id": "python-v3-6-05",
+  "chapter": 6,
+  "group": "python-v3-module-6",
+  "title": {
+    "en": "Connect two files",
+    "nl": "Verbind twee bestanden"
+  },
+  "kind": "coding",
+  "optional": false,
+  "runtime": "terminal",
+  "guidance": "independent",
+  "estimatedMinutes": 13,
+  "explanation": {
+    "en": "Connect a caller to a helper you design. A movement helper will be reusable in the upcoming game: it must know nothing about input, drawing or printing.",
+    "nl": "Verbind een aanroeper met een helper die je ontwerpt. Een bewegingshelper wordt herbruikbaar in het komende spel: die mag niets weten over invoer, tekenen of afdrukken."
+  },
+  "example": "",
+  "topicIds": [
+    "module-review"
+  ],
+  "prerequisites": [
+    "python-v3-6-04"
+  ],
+  "sections": [
+    {
+      "topicIds": [
+        "module-review"
+      ],
+      "heading": {
+        "en": "Keep a module focused",
+        "nl": "Houd een module gericht"
+      },
+      "body": {
+        "en": "A module boundary works best when the caller supplies the data and the helper returns an answer. Import through an alias when a short name makes calls easier to read. Test the helper with different arguments before connecting a user interface.",
+        "nl": "Een modulegrens werkt het best als de aanroeper gegevens meegeeft en de helper een antwoord teruggeeft. Importeer met een alias wanneer een korte naam aanroepen leesbaarder maakt. Test de helper met verschillende argumenten voordat je een gebruikersinterface aansluit."
+      },
+      "code": "import measures as m\nprint(m.double(4))",
+      "output": "8\n",
+      "prediction": {
+        "en": "Which file owns printing?",
+        "nl": "Welk bestand beheert het afdrukken?"
+      },
+      "exampleFiles": {
+        "measures.py": "def double(value):\n    return value * 2\n"
+      }
+    },
+    {
+      "topicIds": [],
+      "heading": {
+        "en": "Try a changed input",
+        "nl": "Probeer gewijzigde invoer"
+      },
+      "body": {
+        "en": "Call the helper twice with different defaults and print both results. Reopen the Decimal lesson and explain why converting to float first changes its arithmetic contract.",
+        "nl": "Roep de helper twee keer aan met verschillende standaarden en druk beide resultaten af. Open de Decimal-les opnieuw en leg uit waarom eerst naar float omzetten de rekenafspraak verandert."
+      }
+    }
+  ],
+  "files": {
+    "main.py": "# Import motion as m, call moved, unpack and print the position.\n",
+    "motion.py": "def moved(x, y, dx=0, dy=0):\n    pass\n"
+  },
+  "solution": {
+    "motion.py": "def moved(x, y, dx=0, dy=0):\n    return x + dx, y + dy\n",
+    "main.py": "import motion as m\nx, y = m.moved(10, 20, dy=-3)\nprint(x, y)\n"
+  },
+  "checkpoints": [
+    {
+      "objectiveIds": [
+        "module-review"
+      ],
+      "task": {
+        "en": "In motion.py implement moved(x, y, dx=0, dy=0), returning a tuple with displaced coordinates and no printed output.",
+        "nl": "Implementeer in motion.py moved(x, y, dx=0, dy=0), die een tuple met verplaatste coördinaten teruggeeft zonder uitvoer af te drukken."
+      },
+      "check": "m.moved(1,2) == (1,2)",
+      "hints": [
+        {
+          "en": "Combine the tuple-return and default-argument ideas.",
+          "nl": "Combineer tupleteruggave en standaardargumenten."
+        },
+        {
+          "en": "Use only parameters inside the helper.",
+          "nl": "Gebruik alleen parameters binnen de helper."
+        },
+        {
+          "en": "return x + dx, y + dy",
+          "nl": "return x + dx, y + dy"
+        }
+      ],
+      "hint": {
+        "en": "Combine the tuple-return and default-argument ideas.",
+        "nl": "Combineer tupleteruggave en standaardargumenten."
+      },
+      "feedback": {
+        "en": "A module import should not start a program or print.",
+        "nl": "Een module-import mag geen programma starten of afdrukken."
+      },
+      "probes": [
+        {
+          "call": {
+            "name": "moved",
+            "args": [
+              2,
+              3,
+              -5,
+              4
+            ],
+            "module": "motion"
+          },
+          "check": "_return == (-3,7) and _stdout == \"\"",
+          "moduleOnly": true,
+          "module": "motion"
+        },
+        {
+          "call": {
+            "name": "moved",
+            "args": [
+              0,
+              0
+            ],
+            "module": "motion"
+          },
+          "check": "_return == (0,0)",
+          "moduleOnly": true,
+          "module": "motion"
+        }
+      ],
+      "id": "python-v3-6-05-step-1"
+    },
+    {
+      "objectiveIds": [
+        "module-review"
+      ],
+      "task": {
+        "en": "Import motion as m in main.py. Unpack m.moved(10, 20, dy=-3) into x and y, then print them.",
+        "nl": "Importeer motion als m in main.py. Pak m.moved(10, 20, dy=-3) uit in x en y en druk ze af."
+      },
+      "check": "x == 10 and y == 17 and _stdout.strip() == \"10 17\"",
+      "hints": [
+        {
+          "en": "The named argument skips the default dx.",
+          "nl": "Het benoemde argument slaat de standaard dx over."
+        },
+        {
+          "en": "Use module.function to call through the alias.",
+          "nl": "Gebruik module.functie om via de alias aan te roepen."
+        },
+        {
+          "en": "x, y = m.moved(10, 20, dy=-3)",
+          "nl": "x, y = m.moved(10, 20, dy=-3)"
+        }
+      ],
+      "hint": {
+        "en": "The named argument skips the default dx.",
+        "nl": "Het benoemde argument slaat de standaard dx over."
+      },
+      "feedback": {
+        "en": "Keep the helper in its own file and display only in the caller.",
+        "nl": "Houd de helper in zijn eigen bestand en uitvoer alleen in de aanroeper."
+      },
+      "probes": [],
+      "id": "python-v3-6-05-step-2"
+    }
+  ],
+  "solutionNote": {
+    "en": "The helper accepts any numeric coordinates and optional displacements. Its caller chooses one example and owns presentation, so the same helper can later serve a game.",
+    "nl": "De helper accepteert alle numerieke coördinaten en optionele verplaatsingen. De aanroeper kiest een voorbeeld en beheert de presentatie, zodat dezelfde helper later een spel kan dienen."
+  },
+  "inputs": [],
+  "retrievals": [
+    {
+      "id": "recall-python-v3-4-05",
+      "sourceActivityId": "python-v3-4-05",
+      "objectiveIds": [
+        "function-review"
+      ],
+      "prompt": {
+        "en": "Adapt your booking calculation to a new price and a discount larger than the total. Explain your zero boundary.",
+        "nl": "Pas je boekingsberekening aan voor een nieuwe prijs en een korting groter dan het totaal. Verklaar je nulgrens."
+      }
+    }
+  ]
+}

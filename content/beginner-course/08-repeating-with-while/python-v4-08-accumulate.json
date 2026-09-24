@@ -1,0 +1,145 @@
+{
+  "id": "python-v4-08-accumulate",
+  "chapter": 8,
+  "group": "python-v4-module-8",
+  "title": {
+    "en": "Keep a running total",
+    "nl": "Houd een lopend totaal bij"
+  },
+  "kind": "coding",
+  "optional": false,
+  "runtime": "terminal",
+  "guidance": "guided",
+  "checkpointMode": "sequential",
+  "estimatedMinutes": 16,
+  "topicIds": [
+    "accumulators"
+  ],
+  "practices": [],
+  "requiredConcepts": [
+    "while",
+    "plus-equals"
+  ],
+  "explanation": {
+    "en": "A counter tracks repetitions; an accumulator combines results across those repetitions.",
+    "nl": "Een teller volgt herhalingen; een accumulator combineert resultaten over die herhalingen."
+  },
+  "example": "",
+  "sections": [
+    {
+      "id": "python-v4-08-accumulate-example",
+      "topicIds": [
+        "accumulators"
+      ],
+      "heading": {
+        "en": "Follow a working example",
+        "nl": "Volg een werkend voorbeeld"
+      },
+      "body": {
+        "en": "Initialise total before the loop so it starts once. Add the current contribution during each iteration. The example sums 1, 2 and 3: total changes from 0 to 1, then 3, then 6.\n\nThe counter and total have different jobs. Updating one does not update the other. Print the final total after the loop if you want one summary rather than a line for every intermediate value.",
+        "nl": "Initialiseer total vóór de lus zodat het eenmaal begint. Voeg tijdens elke iteratie de huidige bijdrage toe. Het voorbeeld telt 1, 2 en 3 op: total verandert van 0 naar 1, dan 3 en dan 6.\n\nDe teller en het totaal hebben verschillende taken. De ene bijwerken verandert de andere niet. Druk het eindtotaal na de lus af als je één samenvatting wilt in plaats van een regel voor elke tussenwaarde."
+      },
+      "code": "number = 1\ntotal = 0\nwhile number <= 3:\n    total += number\n    number += 1\nprint(total)",
+      "output": "6\n",
+      "prediction": {
+        "en": "What is total just after adding 2?",
+        "nl": "Wat is total direct nadat 2 is toegevoegd?"
+      },
+      "takeaway": {
+        "en": "Initialise an accumulator once and update it inside the loop.",
+        "nl": "Initialiseer een accumulator eenmaal en werk hem binnen de lus bij."
+      }
+    },
+    {
+      "id": "python-v4-08-accumulate-experiment",
+      "topicIds": [],
+      "heading": {
+        "en": "Try one change",
+        "nl": "Probeer één wijziging"
+      },
+      "body": {
+        "en": "Temporarily move total = 0 into the body. Predict why the accumulated history disappears.",
+        "nl": "Verplaats total = 0 tijdelijk naar het blok. Voorspel waarom de opgebouwde geschiedenis verdwijnt."
+      }
+    }
+  ],
+  "files": {
+    "main.py": "limit = 4\nnumber = 1\ntotal = 0\n"
+  },
+  "solution": {
+    "main.py": "limit = 4\nnumber = 1\ntotal = 0\nwhile number <= limit:\n    total += number\n    number += 1\nprint(total)\n"
+  },
+  "checkpoints": [
+    {
+      "id": "python-v4-08-accumulate-step-1",
+      "objectiveIds": [
+        "accumulators"
+      ],
+      "task": {
+        "en": "Add every whole number from 1 through limit into total, then print total.",
+        "nl": "Tel elk geheel getal van 1 tot en met limit op in total en druk total af."
+      },
+      "check": "total == limit * (limit + 1) // 2 and _stdout.strip() == str(total)",
+      "probes": [
+        {
+          "inputs": {
+            "limit": 0
+          },
+          "check": "total == 0"
+        },
+        {
+          "inputs": {
+            "limit": 1
+          },
+          "check": "total == 1"
+        },
+        {
+          "inputs": {
+            "limit": 5
+          },
+          "check": "total == 15"
+        }
+      ],
+      "hint": {
+        "en": "Initialise an accumulator once and update it inside the loop.",
+        "nl": "Initialiseer een accumulator eenmaal en werk hem binnen de lus bij."
+      },
+      "hints": [
+        {
+          "en": "Initialise an accumulator once and update it inside the loop.",
+          "nl": "Initialiseer een accumulator eenmaal en werk hem binnen de lus bij."
+        },
+        {
+          "en": "Include limit with <=, add the current number, then advance it.",
+          "nl": "Neem limit mee met <=, tel het huidige getal op en verhoog het daarna."
+        },
+        {
+          "en": "A small fragment to adapt: `total += number`",
+          "nl": "Een klein fragment om aan te passen: `total += number`"
+        }
+      ],
+      "feedback": {
+        "en": "Include limit with <=, add the current number, then advance it.",
+        "nl": "Neem limit mee met <=, tel het huidige getal op en verhoog het daarna."
+      }
+    }
+  ],
+  "solutionNote": {
+    "en": "The accumulator keeps earlier contributions. The counter advances independently toward the stopping condition.",
+    "nl": "De accumulator behoudt eerdere bijdragen. De teller gaat onafhankelijk verder richting de stopvoorwaarde."
+  },
+  "inputs": [],
+  "retrievals": [
+    {
+      "id": "recall-python-v4-06-not-equal",
+      "sourceActivityId": "python-v4-06-not-equal",
+      "objectiveIds": [
+        "inequality"
+      ],
+      "prompt": {
+        "en": "Recall “Compare with !=”. Which comparison has equal values on both sides? Try the earlier example from memory, then check it. Try an empty string. Does it equal quit?",
+        "nl": "Haal “Vergelijk met !=” terug. Welke vergelijking heeft gelijke waarden aan beide kanten? Probeer het eerdere voorbeeld uit je geheugen en controleer daarna. Probeer een lege string. Is die gelijk aan quit?"
+      }
+    }
+  ]
+}

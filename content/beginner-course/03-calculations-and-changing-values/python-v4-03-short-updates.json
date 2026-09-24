@@ -1,0 +1,172 @@
+{
+  "id": "python-v4-03-short-updates",
+  "chapter": 3,
+  "group": "python-v4-module-3",
+  "title": {
+    "en": "The += and -= shortcuts",
+    "nl": "De afkortingen += en -="
+  },
+  "kind": "coding",
+  "optional": false,
+  "runtime": "terminal",
+  "guidance": "guided",
+  "checkpointMode": "sequential",
+  "estimatedMinutes": 11,
+  "topicIds": [
+    "plus-equals",
+    "minus-equals"
+  ],
+  "practices": [],
+  "requiredConcepts": [
+    "changing-numbers"
+  ],
+  "explanation": {
+    "en": "Once you understand an update, Python offers a shorter way to write it.",
+    "nl": "Wanneer je een wijziging begrijpt, biedt Python een kortere schrijfwijze."
+  },
+  "example": "",
+  "sections": [
+    {
+      "id": "python-v4-03-short-updates-example",
+      "topicIds": [
+        "plus-equals",
+        "minus-equals"
+      ],
+      "heading": {
+        "en": "Follow a working example",
+        "nl": "Volg een werkend voorbeeld"
+      },
+      "body": {
+        "en": "For numbers, score += 3 means score = score + 3. Similarly, score -= 2 subtracts 2 and stores the result in score. The name must already have a value.\n\nRead the symbols together. score =+ 3 is a different statement that assigns positive 3; it does not add to the old value. First trace the longer form mentally, then use the shortcut.",
+        "nl": "Voor getallen betekent score += 3 hetzelfde als score = score + 3. Op dezelfde manier trekt score -= 2 er 2 af en bewaart het resultaat in score. De naam moet al een waarde hebben.\n\nLees de symbolen samen. score =+ 3 is een andere instructie die positieve 3 toewijst; zij telt niet bij de oude waarde op. Volg eerst de lange vorm in gedachten en gebruik daarna de afkorting."
+      },
+      "code": "score = 8\nscore += 3\nscore -= 2\nprint(score)",
+      "output": "9\n",
+      "prediction": {
+        "en": "What is score after each update?",
+        "nl": "Wat is score na elke wijziging?"
+      },
+      "takeaway": {
+        "en": "+= and -= read and update the same existing number.",
+        "nl": "+= en -= lezen en wijzigen hetzelfde bestaande getal."
+      }
+    },
+    {
+      "id": "python-v4-03-short-updates-experiment",
+      "topicIds": [],
+      "heading": {
+        "en": "Try one change",
+        "nl": "Probeer één wijziging"
+      },
+      "body": {
+        "en": "Replace += with =+ temporarily and trace the changed result. Restore += afterward.",
+        "nl": "Vervang += tijdelijk door =+ en volg het veranderde resultaat. Herstel daarna +=."
+      }
+    }
+  ],
+  "files": {
+    "main.py": "balance = 20\ndeposit = 6\npurchase = 4\n"
+  },
+  "solution": {
+    "main.py": "balance = 20\ndeposit = 6\npurchase = 4\nbalance += deposit\nbalance -= purchase\nprint(balance)\n"
+  },
+  "checkpoints": [
+    {
+      "id": "python-v4-03-short-updates-step-1",
+      "objectiveIds": [
+        "plus-equals",
+        "minus-equals"
+      ],
+      "task": {
+        "en": "Use += to add deposit to balance.",
+        "nl": "Gebruik += om deposit bij balance op te tellen."
+      },
+      "check": "any(isinstance(n, _ast.AugAssign) and isinstance(n.op, _ast.Add) and isinstance(n.target, _ast.Name) and n.target.id == \"balance\" for n in _ast.walk(_ast.parse(_source)))",
+      "probes": [],
+      "hint": {
+        "en": "+= and -= read and update the same existing number.",
+        "nl": "+= en -= lezen en wijzigen hetzelfde bestaande getal."
+      },
+      "hints": [
+        {
+          "en": "+= and -= read and update the same existing number.",
+          "nl": "+= en -= lezen en wijzigen hetzelfde bestaande getal."
+        },
+        {
+          "en": "Put the shortcut after the starting values. Its left side is balance.",
+          "nl": "Zet de afkorting na de beginwaarden. Links staat balance."
+        },
+        {
+          "en": "A small fragment to adapt: `balance += deposit`",
+          "nl": "Een klein fragment om aan te passen: `balance += deposit`"
+        }
+      ],
+      "feedback": {
+        "en": "Put the shortcut after the starting values. Its left side is balance.",
+        "nl": "Zet de afkorting na de beginwaarden. Links staat balance."
+      }
+    },
+    {
+      "id": "python-v4-03-short-updates-step-2",
+      "objectiveIds": [
+        "plus-equals",
+        "minus-equals"
+      ],
+      "task": {
+        "en": "Use -= for the purchase, then print the final balance.",
+        "nl": "Gebruik -= voor de aankoop en druk daarna het eindsaldo af."
+      },
+      "check": "balance == 22 and _stdout == \"22\\n\" and any(isinstance(n, _ast.AugAssign) and isinstance(n.op, _ast.Sub) for n in _ast.walk(_ast.parse(_source)))",
+      "probes": [
+        {
+          "inputs": {
+            "deposit": 0,
+            "purchase": 20
+          },
+          "check": "balance == 0"
+        }
+      ],
+      "hint": {
+        "en": "+= and -= read and update the same existing number.",
+        "nl": "+= en -= lezen en wijzigen hetzelfde bestaande getal."
+      },
+      "hints": [
+        {
+          "en": "+= and -= read and update the same existing number.",
+          "nl": "+= en -= lezen en wijzigen hetzelfde bestaande getal."
+        },
+        {
+          "en": "Subtract purchase after adding deposit. The starting balance must still contribute.",
+          "nl": "Trek purchase af nadat je deposit hebt toegevoegd. Het beginsaldo moet blijven meetellen."
+        },
+        {
+          "en": "A small fragment to adapt: `balance -= purchase`",
+          "nl": "Een klein fragment om aan te passen: `balance -= purchase`"
+        }
+      ],
+      "feedback": {
+        "en": "Subtract purchase after adding deposit. The starting balance must still contribute.",
+        "nl": "Trek purchase af nadat je deposit hebt toegevoegd. Het beginsaldo moet blijven meetellen."
+      }
+    }
+  ],
+  "solutionNote": {
+    "en": "The two update operators retain the starting balance and apply each change once.",
+    "nl": "De twee wijzigingsoperatoren behouden het beginsaldo en passen elke verandering één keer toe."
+  },
+  "inputs": [],
+  "retrievals": [
+    {
+      "id": "recall-python-v4-01-repair-syntax",
+      "sourceActivityId": "python-v4-01-repair-syntax",
+      "objectiveIds": [
+        "errors",
+        "syntax-errors"
+      ],
+      "prompt": {
+        "en": "Recall “Your first error message”. What closes the quoted text, and what closes the call? Try the earlier example from memory, then check it. After passing, deliberately remove a quote. Read the new error, then undo your change.",
+        "nl": "Haal “Je eerste foutmelding” terug. Wat sluit de tekst af en wat sluit de aanroep af? Probeer het eerdere voorbeeld uit je geheugen en controleer daarna. Verwijder na het slagen bewust een aanhalingsteken. Lees de nieuwe foutmelding en maak je wijziging ongedaan."
+      }
+    }
+  ]
+}

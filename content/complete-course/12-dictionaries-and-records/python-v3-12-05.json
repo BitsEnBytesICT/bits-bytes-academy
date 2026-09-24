@@ -1,0 +1,197 @@
+{
+  "id": "python-v3-12-05",
+  "chapter": 12,
+  "group": "python-v3-module-12",
+  "title": {
+    "en": "Derive a mapping",
+    "nl": "Leid een mapping af"
+  },
+  "kind": "coding",
+  "optional": false,
+  "runtime": "terminal",
+  "guidance": "adapt",
+  "estimatedMinutes": 15,
+  "explanation": {
+    "en": "Derive a new dictionary using a comprehension. Keep the original mapping available for comparison.",
+    "nl": "Leid met een comprehensie een nieuwe dictionary af. Houd de oorspronkelijke mapping beschikbaar voor vergelijking."
+  },
+  "example": "",
+  "topicIds": [
+    "dictionary-comprehensions"
+  ],
+  "prerequisites": [
+    "python-v3-12-04"
+  ],
+  "sections": [
+    {
+      "topicIds": [
+        "dictionary-comprehensions"
+      ],
+      "heading": {
+        "en": "Transform pairs",
+        "nl": "Transformeer paren"
+      },
+      "body": {
+        "en": "{key_expression: value_expression for key, value in mapping.items()} creates a new dictionary. A trailing if filters entries. Unlike a list comprehension, the result specifies both a key and a value separated by a colon. If produced keys repeat, the later value wins.",
+        "nl": "{sleutelexpressie: waardeexpressie for sleutel, waarde in mapping.items()} maakt een nieuwe dictionary. Een afsluitende if filtert items. Anders dan een lijstcomprehensie bevat het resultaat zowel een sleutel als een waarde gescheiden door een dubbele punt. Bij herhaalde sleutels wint de latere waarde."
+      },
+      "code": "scores = {\"Ada\": 2, \"Bo\": 5}\nboosted = {name: score + 1 for name, score in scores.items() if score >= 3}\nprint(boosted)",
+      "output": "{'Bo': 6}\n",
+      "prediction": {
+        "en": "Is filtering done before or after the bonus is applied?",
+        "nl": "Wordt er vóór of na toepassing van de bonus gefilterd?"
+      }
+    },
+    {
+      "topicIds": [],
+      "heading": {
+        "en": "Try a changed input",
+        "nl": "Probeer gewijzigde invoer"
+      },
+      "body": {
+        "en": "Change bonus without changing minimum. Explain why the set of retained names must stay the same.",
+        "nl": "Wijzig bonus zonder minimum te wijzigen. Leg uit waarom de verzameling behouden namen gelijk moet blijven."
+      }
+    }
+  ],
+  "files": {
+    "main.py": "def qualified(scores, minimum, bonus):\n    return {}\n\nprint(qualified({\"A\": 2, \"B\": 5}, 3, 10))\n"
+  },
+  "solution": {
+    "main.py": "def qualified(scores, minimum, bonus):\n    return {name: score + bonus for name, score in scores.items() if score >= minimum}\n\nprint(qualified({\"A\": 2, \"B\": 5}, 3, 10))\n"
+  },
+  "checkpoints": [
+    {
+      "objectiveIds": [
+        "dictionary-comprehensions"
+      ],
+      "task": {
+        "en": "Use a dictionary comprehension to keep scores >= minimum, retaining names and adding bonus to each retained score.",
+        "nl": "Gebruik een dictionarycomprehensie om scores >= minimum te behouden, met dezelfde namen en bonus bij elke behouden score."
+      },
+      "check": "qualified({\"A\":2,\"B\":5},3,10) == {\"B\":15} and any(isinstance(n,_ast.DictComp) for n in _ast.walk(_ast.parse(_source)))",
+      "hints": [
+        {
+          "en": "The result needs a key:value pair.",
+          "nl": "Het resultaat heeft een sleutel:waarde-paar nodig."
+        },
+        {
+          "en": "Filter the original score, not the boosted score.",
+          "nl": "Filter de oorspronkelijke score, niet de verhoogde score."
+        },
+        {
+          "en": "{name: score + bonus for name, score in scores.items() if score >= minimum}",
+          "nl": "{name: score + bonus for name, score in scores.items() if score >= minimum}"
+        }
+      ],
+      "hint": {
+        "en": "The result needs a key:value pair.",
+        "nl": "Het resultaat heeft een sleutel:waarde-paar nodig."
+      },
+      "feedback": {
+        "en": "The exact minimum qualifies; a bonus must not rescue an otherwise excluded score.",
+        "nl": "Het exacte minimum voldoet; een bonus mag een anders uitgesloten score niet redden."
+      },
+      "probes": [
+        {
+          "call": {
+            "name": "qualified",
+            "args": [
+              {
+                "A": 3,
+                "B": 2
+              },
+              3,
+              10
+            ]
+          },
+          "check": "_return == {\"A\":13}"
+        },
+        {
+          "call": {
+            "name": "qualified",
+            "args": [
+              {
+                "A": -2,
+                "B": 0
+              },
+              -2,
+              -1
+            ]
+          },
+          "check": "_return == {\"A\":-3,\"B\":-1}"
+        }
+      ],
+      "id": "python-v3-12-05-step-1"
+    },
+    {
+      "objectiveIds": [
+        "dictionary-comprehensions"
+      ],
+      "task": {
+        "en": "Return a new mapping, preserving the input even when nothing qualifies.",
+        "nl": "Geef een nieuwe mapping terug en behoud de invoer ook als niets voldoet."
+      },
+      "check": "qualified({},0,1) == {}",
+      "hints": [
+        {
+          "en": "Comprehensions create a result instead of modifying the source.",
+          "nl": "Comprehensies maken een resultaat in plaats van de bron te wijzigen."
+        },
+        {
+          "en": "Do not assign new scores back into scores.",
+          "nl": "Wijs nieuwe scores niet terug aan scores toe."
+        },
+        {
+          "en": "Return the comprehension directly.",
+          "nl": "Geef de comprehensie direct terug."
+        }
+      ],
+      "hint": {
+        "en": "Comprehensions create a result instead of modifying the source.",
+        "nl": "Comprehensies maken een resultaat in plaats van de bron te wijzigen."
+      },
+      "feedback": {
+        "en": "A filtered-out entry must remain in the original dictionary.",
+        "nl": "Een weggefilterd item moet in de oorspronkelijke dictionary blijven."
+      },
+      "probes": [
+        {
+          "call": {
+            "name": "qualified",
+            "args": [
+              {
+                "A": 1
+              },
+              5,
+              2
+            ]
+          },
+          "check": "_return == {} and _args[0] == {\"A\":1} and _return is not _args[0]"
+        }
+      ],
+      "id": "python-v3-12-05-step-2"
+    }
+  ],
+  "solutionNote": {
+    "en": "The original score controls inclusion; the bonus changes only the returned value. This separation makes filtering and transformation predictable.",
+    "nl": "De oorspronkelijke score bepaalt opname; de bonus verandert alleen de teruggegeven waarde. Deze scheiding maakt filteren en transformeren voorspelbaar."
+  },
+  "inputs": [],
+  "retrievals": [
+    {
+      "id": "recall-python-v3-10-05",
+      "sourceActivityId": "python-v3-10-05",
+      "objectiveIds": [
+        "replace",
+        "find",
+        "format-positional",
+        "format-named"
+      ],
+      "prompt": {
+        "en": "Replace a label, test find on an absent word, and format one result with positional .format, named .format and an f-string.",
+        "nl": "Vervang een label, test find met een afwezig woord en formatteer een resultaat met positionele .format, benoemde .format en een f-string."
+      }
+    }
+  ]
+}

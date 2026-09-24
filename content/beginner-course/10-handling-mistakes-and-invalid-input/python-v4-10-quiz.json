@@ -1,0 +1,768 @@
+{
+  "id": "python-v4-10-quiz",
+  "chapter": 10,
+  "group": "python-v4-module-10",
+  "kind": "quiz",
+  "optional": false,
+  "estimatedMinutes": 8,
+  "title": {
+    "en": "Handling mistakes and invalid input: review",
+    "nl": "Fouten en ongeldige invoer afhandelen: herhaling"
+  },
+  "questions": [
+    {
+      "objectiveIds": [
+        "value-error"
+      ],
+      "category": "prediction",
+      "prompt": {
+        "en": "What does this program print?",
+        "nl": "Wat drukt dit programma af?"
+      },
+      "code": "try:\n    value = int(\"3.5\")\n    print(\"OK\")\nexcept ValueError:\n    print(\"Retry\")",
+      "answer": "a",
+      "expectedOutput": "Retry\n",
+      "choices": [
+        {
+          "id": "a",
+          "label": {
+            "en": "Retry",
+            "nl": "Retry"
+          },
+          "reason": {
+            "en": "int does not accept decimal-point text.",
+            "nl": "int accepteert geen tekst met decimale punt."
+          }
+        },
+        {
+          "id": "b",
+          "label": {
+            "en": "OK",
+            "nl": "OK"
+          },
+          "reason": {
+            "en": "The conversion fails before OK.",
+            "nl": "De omzetting mislukt vóór OK."
+          }
+        },
+        {
+          "id": "c",
+          "label": {
+            "en": "OK\nRetry",
+            "nl": "OK\nRetry"
+          },
+          "reason": {
+            "en": "The failed statement skips the rest of try.",
+            "nl": "De mislukte instructie slaat de rest van try over."
+          }
+        }
+      ],
+      "id": "python-v4-10-quiz-a-1",
+      "reviewActivityIds": [
+        "python-v4-10-value-error"
+      ]
+    },
+    {
+      "objectiveIds": [
+        "while"
+      ],
+      "category": "prediction",
+      "prompt": {
+        "en": "What does this program print?",
+        "nl": "Wat drukt dit programma af?"
+      },
+      "code": "count = 0\nwhile count < 3:\n    count += 1\nprint(count)",
+      "answer": "a",
+      "expectedOutput": "3\n",
+      "choices": [
+        {
+          "id": "a",
+          "label": {
+            "en": "3",
+            "nl": "3"
+          },
+          "reason": {
+            "en": "The final update reaches the excluded bound.",
+            "nl": "De laatste update bereikt de uitgesloten grens."
+          }
+        },
+        {
+          "id": "b",
+          "label": {
+            "en": "2",
+            "nl": "2"
+          },
+          "reason": {
+            "en": "The loop tests again after the last increment.",
+            "nl": "De lus test opnieuw na de laatste verhoging."
+          }
+        },
+        {
+          "id": "c",
+          "label": {
+            "en": "0",
+            "nl": "0"
+          },
+          "reason": {
+            "en": "The body updates count each iteration.",
+            "nl": "De inhoud wijzigt count elke iteratie."
+          }
+        }
+      ],
+      "id": "python-v4-10-quiz-a-2",
+      "reviewActivityIds": [
+        "python-v4-08-why-repeat"
+      ]
+    },
+    {
+      "objectiveIds": [
+        "zero-division-recovery"
+      ],
+      "category": "completion",
+      "prompt": {
+        "en": "Complete the code to produce the shown output.",
+        "nl": "Vul de code aan om de getoonde uitvoer te maken."
+      },
+      "code": "try:\n    print(3 / 0)\nexcept ___:\n    print(\"No division\")",
+      "answer": "a",
+      "choices": [
+        {
+          "id": "a",
+          "label": {
+            "en": "ZeroDivisionError",
+            "nl": "ZeroDivisionError"
+          },
+          "reason": {
+            "en": "Dividing a number by zero raises ZeroDivisionError.",
+            "nl": "Een getal delen door nul veroorzaakt ZeroDivisionError."
+          }
+        },
+        {
+          "id": "b",
+          "label": {
+            "en": "ValueError",
+            "nl": "ValueError"
+          },
+          "reason": {
+            "en": "Dividing a number by zero raises ZeroDivisionError.",
+            "nl": "Een getal delen door nul veroorzaakt ZeroDivisionError."
+          }
+        },
+        {
+          "id": "c",
+          "label": {
+            "en": "NameError",
+            "nl": "NameError"
+          },
+          "reason": {
+            "en": "Dividing a number by zero raises ZeroDivisionError.",
+            "nl": "Een getal delen door nul veroorzaakt ZeroDivisionError."
+          }
+        }
+      ],
+      "codeBlank": {
+        "prompt": {
+          "en": "Complete the code to produce the shown output.",
+          "nl": "Vul de code aan om de getoonde uitvoer te maken."
+        },
+        "segments": [
+          "try:\n    print(3 / 0)\nexcept ",
+          ":\n    print(\"No division\")"
+        ],
+        "tokens": [
+          {
+            "id": "token-1",
+            "code": "ZeroDivisionError"
+          },
+          {
+            "id": "token-2",
+            "code": "ValueError"
+          },
+          {
+            "id": "token-3",
+            "code": "NameError"
+          }
+        ],
+        "blanks": [
+          {
+            "answer": "ZeroDivisionError",
+            "reason": {
+              "en": "Dividing a number by zero raises ZeroDivisionError.",
+              "nl": "Een getal delen door nul veroorzaakt ZeroDivisionError."
+            }
+          }
+        ],
+        "output": "No division\n"
+      },
+      "id": "python-v4-10-quiz-a-3",
+      "reviewActivityIds": [
+        "python-v4-10-zero-division"
+      ]
+    },
+    {
+      "objectiveIds": [
+        "break"
+      ],
+      "category": "completion",
+      "prompt": {
+        "en": "Complete the code to produce the shown output.",
+        "nl": "Vul de code aan om de getoonde uitvoer te maken."
+      },
+      "code": "while True:\n    print(\"3\")\n    ___",
+      "answer": "a",
+      "choices": [
+        {
+          "id": "a",
+          "label": {
+            "en": "break",
+            "nl": "break"
+          },
+          "reason": {
+            "en": "break leaves the loop; continue would repeat it.",
+            "nl": "break verlaat de lus; continue zou herhalen."
+          }
+        },
+        {
+          "id": "b",
+          "label": {
+            "en": "continue",
+            "nl": "continue"
+          },
+          "reason": {
+            "en": "break leaves the loop; continue would repeat it.",
+            "nl": "break verlaat de lus; continue zou herhalen."
+          }
+        },
+        {
+          "id": "c",
+          "label": {
+            "en": "True",
+            "nl": "True"
+          },
+          "reason": {
+            "en": "break leaves the loop; continue would repeat it.",
+            "nl": "break verlaat de lus; continue zou herhalen."
+          }
+        }
+      ],
+      "codeBlank": {
+        "prompt": {
+          "en": "Complete the code to produce the shown output.",
+          "nl": "Vul de code aan om de getoonde uitvoer te maken."
+        },
+        "segments": [
+          "while True:\n    print(\"3\")\n    ",
+          ""
+        ],
+        "tokens": [
+          {
+            "id": "token-1",
+            "code": "break"
+          },
+          {
+            "id": "token-2",
+            "code": "continue"
+          },
+          {
+            "id": "token-3",
+            "code": "True"
+          }
+        ],
+        "blanks": [
+          {
+            "answer": "break",
+            "reason": {
+              "en": "break leaves the loop; continue would repeat it.",
+              "nl": "break verlaat de lus; continue zou herhalen."
+            }
+          }
+        ],
+        "output": "3\n"
+      },
+      "id": "python-v4-10-quiz-a-4",
+      "reviewActivityIds": [
+        "python-v4-08-break"
+      ]
+    },
+    {
+      "objectiveIds": [
+        "retry-loops"
+      ],
+      "category": "debugging",
+      "prompt": {
+        "en": "Choose the repair or test that addresses the stated problem.",
+        "nl": "Kies de reparatie of test die het beschreven probleem aanpakt."
+      },
+      "code": "# Need a fresh answer after failure.\ntext = input(\"Number: \")\nwhile True:\n    try:\n        value = int(text)\n        break\n    except ValueError:\n        print(\"Retry 3\")",
+      "answer": "a",
+      "choices": [
+        {
+          "id": "a",
+          "label": {
+            "en": "Move input inside the loop.",
+            "nl": "Verplaats input naar binnen de lus."
+          },
+          "reason": {
+            "en": "Each retry must read new text.",
+            "nl": "Elke herhaling moet nieuwe tekst lezen."
+          }
+        },
+        {
+          "id": "b",
+          "label": {
+            "en": "Remove the ValueError handler.",
+            "nl": "Verwijder de ValueError-afhandeling."
+          },
+          "reason": {
+            "en": "Then invalid input crashes instead of retrying.",
+            "nl": "Dan crasht ongeldige invoer in plaats van opnieuw te vragen."
+          }
+        },
+        {
+          "id": "c",
+          "label": {
+            "en": "Print Retry twice.",
+            "nl": "Druk Retry tweemaal af."
+          },
+          "reason": {
+            "en": "More output does not change text.",
+            "nl": "Meer uitvoer verandert text niet."
+          }
+        }
+      ],
+      "id": "python-v4-10-quiz-a-5",
+      "reviewActivityIds": [
+        "python-v4-10-retry"
+      ]
+    },
+    {
+      "objectiveIds": [
+        "cancellation"
+      ],
+      "category": "application",
+      "prompt": {
+        "en": "Which explanation applies to this example?",
+        "nl": "Welke uitleg past bij dit voorbeeld?"
+      },
+      "code": "value = None\nif value is None:\n    print(\"Cancelled\")",
+      "answer": "a",
+      "choices": [
+        {
+          "id": "a",
+          "label": {
+            "en": "This distinguishes cancellation from a valid zero.",
+            "nl": "Dit onderscheidt annuleren van een geldige nul."
+          },
+          "reason": {
+            "en": "is None checks the explicit absence value.",
+            "nl": "is None controleert de expliciete afwezigheidswaarde."
+          }
+        },
+        {
+          "id": "b",
+          "label": {
+            "en": "Zero must also mean cancelled.",
+            "nl": "Nul moet ook annuleren betekenen."
+          },
+          "reason": {
+            "en": "Zero is a valid calculator operand.",
+            "nl": "Nul is een geldig rekenmachinegetal."
+          }
+        },
+        {
+          "id": "c",
+          "label": {
+            "en": "Any negative number is cancelled.",
+            "nl": "Elk negatief getal is geannuleerd."
+          },
+          "reason": {
+            "en": "The condition tests None, not sign.",
+            "nl": "De voorwaarde test None, niet het teken."
+          }
+        }
+      ],
+      "id": "python-v4-10-quiz-a-6",
+      "reviewActivityIds": [
+        "python-v4-10-cancel-safely"
+      ]
+    }
+  ],
+  "alternateQuestions": [
+    {
+      "objectiveIds": [
+        "value-error"
+      ],
+      "category": "prediction",
+      "prompt": {
+        "en": "What does this program print?",
+        "nl": "Wat drukt dit programma af?"
+      },
+      "code": "try:\n    value = int(\"5.5\")\n    print(\"OK\")\nexcept ValueError:\n    print(\"Retry\")",
+      "answer": "a",
+      "expectedOutput": "Retry\n",
+      "choices": [
+        {
+          "id": "a",
+          "label": {
+            "en": "Retry",
+            "nl": "Retry"
+          },
+          "reason": {
+            "en": "int does not accept decimal-point text.",
+            "nl": "int accepteert geen tekst met decimale punt."
+          }
+        },
+        {
+          "id": "b",
+          "label": {
+            "en": "OK",
+            "nl": "OK"
+          },
+          "reason": {
+            "en": "The conversion fails before OK.",
+            "nl": "De omzetting mislukt vóór OK."
+          }
+        },
+        {
+          "id": "c",
+          "label": {
+            "en": "OK\nRetry",
+            "nl": "OK\nRetry"
+          },
+          "reason": {
+            "en": "The failed statement skips the rest of try.",
+            "nl": "De mislukte instructie slaat de rest van try over."
+          }
+        }
+      ],
+      "id": "python-v4-10-quiz-b-1",
+      "reviewActivityIds": [
+        "python-v4-10-value-error"
+      ]
+    },
+    {
+      "objectiveIds": [
+        "while"
+      ],
+      "category": "prediction",
+      "prompt": {
+        "en": "What does this program print?",
+        "nl": "Wat drukt dit programma af?"
+      },
+      "code": "count = 0\nwhile count < 4:\n    count += 1\nprint(count)",
+      "answer": "a",
+      "expectedOutput": "4\n",
+      "choices": [
+        {
+          "id": "a",
+          "label": {
+            "en": "4",
+            "nl": "4"
+          },
+          "reason": {
+            "en": "The final update reaches the excluded bound.",
+            "nl": "De laatste update bereikt de uitgesloten grens."
+          }
+        },
+        {
+          "id": "b",
+          "label": {
+            "en": "3",
+            "nl": "3"
+          },
+          "reason": {
+            "en": "The loop tests again after the last increment.",
+            "nl": "De lus test opnieuw na de laatste verhoging."
+          }
+        },
+        {
+          "id": "c",
+          "label": {
+            "en": "0",
+            "nl": "0"
+          },
+          "reason": {
+            "en": "The body updates count each iteration.",
+            "nl": "De inhoud wijzigt count elke iteratie."
+          }
+        }
+      ],
+      "id": "python-v4-10-quiz-b-2",
+      "reviewActivityIds": [
+        "python-v4-08-why-repeat"
+      ]
+    },
+    {
+      "objectiveIds": [
+        "zero-division-recovery"
+      ],
+      "category": "completion",
+      "prompt": {
+        "en": "Complete the code to produce the shown output.",
+        "nl": "Vul de code aan om de getoonde uitvoer te maken."
+      },
+      "code": "try:\n    print(5 / 0)\nexcept ___:\n    print(\"No division\")",
+      "answer": "a",
+      "choices": [
+        {
+          "id": "a",
+          "label": {
+            "en": "ZeroDivisionError",
+            "nl": "ZeroDivisionError"
+          },
+          "reason": {
+            "en": "Dividing a number by zero raises ZeroDivisionError.",
+            "nl": "Een getal delen door nul veroorzaakt ZeroDivisionError."
+          }
+        },
+        {
+          "id": "b",
+          "label": {
+            "en": "ValueError",
+            "nl": "ValueError"
+          },
+          "reason": {
+            "en": "Dividing a number by zero raises ZeroDivisionError.",
+            "nl": "Een getal delen door nul veroorzaakt ZeroDivisionError."
+          }
+        },
+        {
+          "id": "c",
+          "label": {
+            "en": "NameError",
+            "nl": "NameError"
+          },
+          "reason": {
+            "en": "Dividing a number by zero raises ZeroDivisionError.",
+            "nl": "Een getal delen door nul veroorzaakt ZeroDivisionError."
+          }
+        }
+      ],
+      "codeBlank": {
+        "prompt": {
+          "en": "Complete the code to produce the shown output.",
+          "nl": "Vul de code aan om de getoonde uitvoer te maken."
+        },
+        "segments": [
+          "try:\n    print(5 / 0)\nexcept ",
+          ":\n    print(\"No division\")"
+        ],
+        "tokens": [
+          {
+            "id": "token-1",
+            "code": "ZeroDivisionError"
+          },
+          {
+            "id": "token-2",
+            "code": "ValueError"
+          },
+          {
+            "id": "token-3",
+            "code": "NameError"
+          }
+        ],
+        "blanks": [
+          {
+            "answer": "ZeroDivisionError",
+            "reason": {
+              "en": "Dividing a number by zero raises ZeroDivisionError.",
+              "nl": "Een getal delen door nul veroorzaakt ZeroDivisionError."
+            }
+          }
+        ],
+        "output": "No division\n"
+      },
+      "id": "python-v4-10-quiz-b-3",
+      "reviewActivityIds": [
+        "python-v4-10-zero-division"
+      ]
+    },
+    {
+      "objectiveIds": [
+        "break"
+      ],
+      "category": "completion",
+      "prompt": {
+        "en": "Complete the code to produce the shown output.",
+        "nl": "Vul de code aan om de getoonde uitvoer te maken."
+      },
+      "code": "while True:\n    print(\"4\")\n    ___",
+      "answer": "a",
+      "choices": [
+        {
+          "id": "a",
+          "label": {
+            "en": "break",
+            "nl": "break"
+          },
+          "reason": {
+            "en": "break leaves the loop; continue would repeat it.",
+            "nl": "break verlaat de lus; continue zou herhalen."
+          }
+        },
+        {
+          "id": "b",
+          "label": {
+            "en": "continue",
+            "nl": "continue"
+          },
+          "reason": {
+            "en": "break leaves the loop; continue would repeat it.",
+            "nl": "break verlaat de lus; continue zou herhalen."
+          }
+        },
+        {
+          "id": "c",
+          "label": {
+            "en": "True",
+            "nl": "True"
+          },
+          "reason": {
+            "en": "break leaves the loop; continue would repeat it.",
+            "nl": "break verlaat de lus; continue zou herhalen."
+          }
+        }
+      ],
+      "codeBlank": {
+        "prompt": {
+          "en": "Complete the code to produce the shown output.",
+          "nl": "Vul de code aan om de getoonde uitvoer te maken."
+        },
+        "segments": [
+          "while True:\n    print(\"4\")\n    ",
+          ""
+        ],
+        "tokens": [
+          {
+            "id": "token-1",
+            "code": "break"
+          },
+          {
+            "id": "token-2",
+            "code": "continue"
+          },
+          {
+            "id": "token-3",
+            "code": "True"
+          }
+        ],
+        "blanks": [
+          {
+            "answer": "break",
+            "reason": {
+              "en": "break leaves the loop; continue would repeat it.",
+              "nl": "break verlaat de lus; continue zou herhalen."
+            }
+          }
+        ],
+        "output": "4\n"
+      },
+      "id": "python-v4-10-quiz-b-4",
+      "reviewActivityIds": [
+        "python-v4-08-break"
+      ]
+    },
+    {
+      "objectiveIds": [
+        "retry-loops"
+      ],
+      "category": "debugging",
+      "prompt": {
+        "en": "Choose the repair or test that addresses the stated problem.",
+        "nl": "Kies de reparatie of test die het beschreven probleem aanpakt."
+      },
+      "code": "# Need a fresh answer after failure.\ntext = input(\"Number: \")\nwhile True:\n    try:\n        value = int(text)\n        break\n    except ValueError:\n        print(\"Retry 5\")",
+      "answer": "a",
+      "choices": [
+        {
+          "id": "a",
+          "label": {
+            "en": "Move input inside the loop.",
+            "nl": "Verplaats input naar binnen de lus."
+          },
+          "reason": {
+            "en": "Each retry must read new text.",
+            "nl": "Elke herhaling moet nieuwe tekst lezen."
+          }
+        },
+        {
+          "id": "b",
+          "label": {
+            "en": "Remove the ValueError handler.",
+            "nl": "Verwijder de ValueError-afhandeling."
+          },
+          "reason": {
+            "en": "Then invalid input crashes instead of retrying.",
+            "nl": "Dan crasht ongeldige invoer in plaats van opnieuw te vragen."
+          }
+        },
+        {
+          "id": "c",
+          "label": {
+            "en": "Print Retry twice.",
+            "nl": "Druk Retry tweemaal af."
+          },
+          "reason": {
+            "en": "More output does not change text.",
+            "nl": "Meer uitvoer verandert text niet."
+          }
+        }
+      ],
+      "id": "python-v4-10-quiz-b-5",
+      "reviewActivityIds": [
+        "python-v4-10-retry"
+      ]
+    },
+    {
+      "objectiveIds": [
+        "cancellation"
+      ],
+      "category": "application",
+      "prompt": {
+        "en": "Which explanation applies to this example?",
+        "nl": "Welke uitleg past bij dit voorbeeld?"
+      },
+      "code": "value = 0.0\nif value is None:\n    print(\"Cancelled\")",
+      "answer": "a",
+      "choices": [
+        {
+          "id": "a",
+          "label": {
+            "en": "This distinguishes cancellation from a valid zero.",
+            "nl": "Dit onderscheidt annuleren van een geldige nul."
+          },
+          "reason": {
+            "en": "is None checks the explicit absence value.",
+            "nl": "is None controleert de expliciete afwezigheidswaarde."
+          }
+        },
+        {
+          "id": "b",
+          "label": {
+            "en": "Zero must also mean cancelled.",
+            "nl": "Nul moet ook annuleren betekenen."
+          },
+          "reason": {
+            "en": "Zero is a valid calculator operand.",
+            "nl": "Nul is een geldig rekenmachinegetal."
+          }
+        },
+        {
+          "id": "c",
+          "label": {
+            "en": "Any negative number is cancelled.",
+            "nl": "Elk negatief getal is geannuleerd."
+          },
+          "reason": {
+            "en": "The condition tests None, not sign.",
+            "nl": "De voorwaarde test None, niet het teken."
+          }
+        }
+      ],
+      "id": "python-v4-10-quiz-b-6",
+      "reviewActivityIds": [
+        "python-v4-10-cancel-safely"
+      ]
+    }
+  ]
+}

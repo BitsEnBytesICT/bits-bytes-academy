@@ -1,0 +1,170 @@
+{
+  "id": "python-v4-18-characters",
+  "chapter": 18,
+  "group": "python-v4-module-18",
+  "title": {
+    "en": "Loop over characters and test membership",
+    "nl": "Doorloop tekens en test aanwezigheid"
+  },
+  "kind": "coding",
+  "optional": false,
+  "runtime": "terminal",
+  "guidance": "guided",
+  "checkpointMode": "sequential",
+  "estimatedMinutes": 12,
+  "topicIds": [
+    "string-iteration",
+    "string-membership",
+    "string-conditionals"
+  ],
+  "practices": [],
+  "requiredConcepts": [
+    "for",
+    "membership-lists"
+  ],
+  "explanation": {
+    "en": "A character loop can inspect text without managing indexes. Membership can test a character or a whole substring.",
+    "nl": "Een tekenlus kan tekst onderzoeken zonder indexen te beheren. Aanwezigheid kan een teken of een hele substring testen."
+  },
+  "example": "",
+  "sections": [
+    {
+      "id": "python-v4-18-characters-example",
+      "topicIds": [
+        "string-iteration",
+        "string-membership",
+        "string-conditionals"
+      ],
+      "heading": {
+        "en": "Follow a working example",
+        "nl": "Volg een werkend voorbeeld"
+      },
+      "body": {
+        "en": "for character in text visits characters in order. character in \"aeiou\" checks whether it is one of those letters. \"cat\" in text instead searches for that consecutive substring. These tests are case-sensitive. Use a loop for per-character counting and direct membership when you only need existence.",
+        "nl": "for character in text bezoekt tekens op volgorde. character in \"aeiou\" controleert of het een van die letters is. \"cat\" in text zoekt juist die opeenvolgende substring. Deze tests zijn hoofdlettergevoelig. Gebruik een lus om per teken te tellen en directe aanwezigheid wanneer je alleen bestaan hoeft te weten."
+      },
+      "code": "count = 0\nfor character in \"banana\":\n    if character == \"a\":\n        count += 1\nprint(count)\nprint(\"ana\" in \"banana\")",
+      "output": "3\nTrue\n",
+      "prediction": {
+        "en": "Does the substring test count how many matches exist?",
+        "nl": "Telt de substringtest hoeveel overeenkomsten bestaan?"
+      },
+      "takeaway": {
+        "en": "Iteration gives characters; membership tests a sequence or a substring.",
+        "nl": "Iteratie geeft tekens; aanwezigheid test een reeks of substring."
+      }
+    },
+    {
+      "id": "python-v4-18-characters-experiment",
+      "topicIds": [],
+      "heading": {
+        "en": "Try one change",
+        "nl": "Probeer één wijziging"
+      },
+      "body": {
+        "en": "Explain why y is not counted under this particular brief.",
+        "nl": "Leg uit waarom y volgens deze specifieke opdracht niet meetelt."
+      }
+    }
+  ],
+  "files": {
+    "main.py": "def vowels(text):\n    # Complete this function.\n    return None\n"
+  },
+  "solution": {
+    "main.py": "def vowels(text):\n    count = 0\n    for character in text.lower():\n        if character in \"aeiou\":\n            count += 1\n    return count\n"
+  },
+  "checkpoints": [
+    {
+      "id": "python-v4-18-characters-step-1",
+      "objectiveIds": [
+        "string-iteration",
+        "string-membership",
+        "string-conditionals"
+      ],
+      "task": {
+        "en": "Count a, e, i, o and u ignoring case. All other characters contribute zero.",
+        "nl": "Tel a, e, i, o en u ongeacht hoofdletters. Alle andere tekens dragen nul bij."
+      },
+      "check": "callable(vowels)",
+      "probes": [
+        {
+          "call": {
+            "name": "vowels",
+            "args": [
+              "AEIOU!"
+            ]
+          },
+          "check": "(_return == 5) and _error is None"
+        },
+        {
+          "call": {
+            "name": "vowels",
+            "args": [
+              "sky"
+            ]
+          },
+          "check": "(_return == 0) and _error is None"
+        },
+        {
+          "call": {
+            "name": "vowels",
+            "args": [
+              ""
+            ]
+          },
+          "check": "(_return == 0) and _error is None"
+        },
+        {
+          "call": {
+            "name": "vowels",
+            "args": [
+              "banana"
+            ]
+          },
+          "check": "(_return == 3) and _error is None"
+        }
+      ],
+      "hint": {
+        "en": "Iteration gives characters; membership tests a sequence or a substring.",
+        "nl": "Iteratie geeft tekens; aanwezigheid test een reeks of substring."
+      },
+      "hints": [
+        {
+          "en": "Iteration gives characters; membership tests a sequence or a substring.",
+          "nl": "Iteratie geeft tekens; aanwezigheid test een reeks of substring."
+        },
+        {
+          "en": "Normalise case before testing each character against the vowel string.",
+          "nl": "Normaliseer hoofdletters voordat je elk teken tegen de klinkerstring test."
+        },
+        {
+          "en": "A small fragment to adapt: `if character in \"aeiou\":`",
+          "nl": "Een klein fragment om aan te passen: `if character in \"aeiou\":`"
+        }
+      ],
+      "feedback": {
+        "en": "Normalise case before testing each character against the vowel string.",
+        "nl": "Normaliseer hoofdletters voordat je elk teken tegen de klinkerstring test."
+      }
+    }
+  ],
+  "solutionNote": {
+    "en": "The function applies the stated character set consistently rather than guessing a language rule.",
+    "nl": "De functie past de beschreven tekenverzameling consequent toe in plaats van een taalregel te gokken."
+  },
+  "inputs": [],
+  "retrievals": [
+    {
+      "id": "recall-python-v4-16-wall-bounce",
+      "sourceActivityId": "python-v4-16-wall-bounce",
+      "objectiveIds": [
+        "wall-collision",
+        "direction-aware-collision"
+      ],
+      "prompt": {
+        "en": "Recall “Bounce once at a wall”. What happens on the next check when vy is positive? Try the earlier example from memory, then check it. Call bounce twice on the first corrected result and check that direction stays stable.",
+        "nl": "Haal “Stuiter eenmaal tegen een wand” terug. Wat gebeurt er bij de volgende controle wanneer vy positief is? Probeer het eerdere voorbeeld uit je geheugen en controleer daarna. Roep bounce tweemaal aan op het eerste herstelde resultaat en controleer dat de richting stabiel blijft."
+      }
+    }
+  ]
+}

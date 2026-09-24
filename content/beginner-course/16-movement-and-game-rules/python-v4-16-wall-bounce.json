@@ -1,0 +1,204 @@
+{
+  "id": "python-v4-16-wall-bounce",
+  "chapter": 16,
+  "group": "python-v4-module-16",
+  "title": {
+    "en": "Bounce once at a wall",
+    "nl": "Stuiter eenmaal tegen een wand"
+  },
+  "kind": "coding",
+  "optional": false,
+  "runtime": "pygame",
+  "guidance": "guided",
+  "checkpointMode": "sequential",
+  "estimatedMinutes": 18,
+  "topicIds": [
+    "wall-collision",
+    "direction-aware-collision"
+  ],
+  "practices": [],
+  "requiredConcepts": [
+    "velocity",
+    "boundaries",
+    "multiple-returns"
+  ],
+  "explanation": {
+    "en": "Changing direction without correcting position can leave a ball stuck bouncing repeatedly inside a wall.",
+    "nl": "Van richting veranderen zonder de positie te herstellen kan een bal in een wand laten blijven stuiteren."
+  },
+  "example": "",
+  "sections": [
+    {
+      "id": "python-v4-16-wall-bounce-example",
+      "topicIds": [
+        "wall-collision",
+        "direction-aware-collision"
+      ],
+      "heading": {
+        "en": "Follow a working example",
+        "nl": "Volg een werkend voorbeeld"
+      },
+      "body": {
+        "en": "Treat y as the ball centre and radius as its size. At the top, y must be at least radius. At the bottom, y must be at most height - radius. Reverse vy only when it points into the wall, and put the ball back on the boundary. A ball already moving away should keep its direction.",
+        "nl": "Beschouw y als het balmiddelpunt en radius als zijn grootte. Boven moet y minstens radius zijn. Onder mag y maximaal height - radius zijn. Keer vy alleen om als het naar de wand wijst en zet de bal terug op de grens. Een bal die al weg beweegt hoort zijn richting te behouden."
+      },
+      "code": "y, vy = 3, -100\nif y <= 6 and vy < 0:\n    y, vy = 6, -vy\nprint(y, vy)",
+      "output": "6 100\n",
+      "prediction": {
+        "en": "What happens on the next check when vy is positive?",
+        "nl": "Wat gebeurt er bij de volgende controle wanneer vy positief is?"
+      },
+      "takeaway": {
+        "en": "Correct overlap and reverse only an incoming velocity.",
+        "nl": "Herstel overlap en keer alleen een inkomende snelheid om."
+      }
+    },
+    {
+      "topicIds": [],
+      "heading": {
+        "en": "Run, observe, finish",
+        "nl": "Voer uit, bekijk, rond af"
+      },
+      "body": {
+        "en": "main.py supplies the browser entry point. Run opens a real pygame-ce preview; click it to focus the keyboard. Clicking elsewhere pauses play. Finish & check closes normally and checks your helper after at least one rendered frame. Stop cancels without grading. Run can start a fresh session afterward. Keep the supplied async definition and await asyncio.sleep(1 / 60): they let the browser draw and receive input. You are not expected to reproduce this infrastructure from memory.",
+        "nl": "main.py levert het browserstartpunt. Uitvoeren opent een echt pygame-ce-voorbeeld; klik erop om het toetsenbord te activeren. Elders klikken pauzeert het spel. Afronden en controleren sluit normaal af en controleert je helper na minstens één getekend beeld. Stop annuleert zonder beoordeling. Uitvoeren kan daarna een nieuwe sessie starten. Behoud de meegeleverde async-definitie en await asyncio.sleep(1 / 60): die laten de browser tekenen en invoer ontvangen. Je hoeft deze infrastructuur niet uit je hoofd te schrijven."
+      }
+    },
+    {
+      "id": "python-v4-16-wall-bounce-experiment",
+      "topicIds": [],
+      "heading": {
+        "en": "Try one change",
+        "nl": "Probeer één wijziging"
+      },
+      "body": {
+        "en": "Call bounce twice on the first corrected result and check that direction stays stable.",
+        "nl": "Roep bounce tweemaal aan op het eerste herstelde resultaat en controleer dat de richting stabiel blijft."
+      }
+    }
+  ],
+  "files": {
+    "main.py": "# Browser entry point supplied by the course.\nimport asyncio\nimport pygame\nimport game\n\nasync def main():\n    pygame.init()\n    screen = pygame.display.set_mode((640, 400))\n    clock = pygame.time.Clock()\n    running = True\n    x,y,vy = 320.0,200.0,150.0\n    while running:\n        dt = min(clock.tick() / 1000, 0.05)\n        for event in pygame.event.get():\n            if event.type == pygame.QUIT:\n                running = False\n            if event.type == pygame.KEYDOWN and event.key == pygame.K_ESCAPE:\n                running = False\n        keys = pygame.key.get_pressed()\n        y += vy * dt\n        y,vy = game.bounce(y,vy,400,6)\n        screen.fill((16, 23, 39))\n        pygame.draw.circle(screen,(240,200,80),(int(x),int(y)),6)\n        pygame.display.flip()\n        await asyncio.sleep(1 / 60)\n    pygame.quit()\n\nasyncio.run(main())\n",
+    "game.py": "import pygame\n\ndef bounce(y, vy, height, radius):\n    return y, vy\n"
+  },
+  "solution": {
+    "main.py": "# Browser entry point supplied by the course.\nimport asyncio\nimport pygame\nimport game\n\nasync def main():\n    pygame.init()\n    screen = pygame.display.set_mode((640, 400))\n    clock = pygame.time.Clock()\n    running = True\n    x,y,vy = 320.0,200.0,150.0\n    while running:\n        dt = min(clock.tick() / 1000, 0.05)\n        for event in pygame.event.get():\n            if event.type == pygame.QUIT:\n                running = False\n            if event.type == pygame.KEYDOWN and event.key == pygame.K_ESCAPE:\n                running = False\n        keys = pygame.key.get_pressed()\n        y += vy * dt\n        y,vy = game.bounce(y,vy,400,6)\n        screen.fill((16, 23, 39))\n        pygame.draw.circle(screen,(240,200,80),(int(x),int(y)),6)\n        pygame.display.flip()\n        await asyncio.sleep(1 / 60)\n    pygame.quit()\n\nasyncio.run(main())\n",
+    "game.py": "import pygame\n\ndef bounce(y, vy, height, radius):\n    if y <= radius and vy < 0:\n        return radius, -vy\n    if y >= height - radius and vy > 0:\n        return height - radius, -vy\n    return y, vy\n"
+  },
+  "checkpoints": [
+    {
+      "id": "python-v4-16-wall-bounce-step-1",
+      "objectiveIds": [
+        "wall-collision",
+        "direction-aware-collision"
+      ],
+      "task": {
+        "en": "Return corrected (y, vy) at the top and bottom, leaving a departing or interior ball unchanged.",
+        "nl": "Geef herstelde (y, vy) boven en onder terug en laat een vertrekkende of interne bal ongewijzigd."
+      },
+      "check": "_rendered_frames > 0",
+      "probes": [
+        {
+          "call": {
+            "name": "bounce",
+            "args": [
+              2,
+              -100,
+              400,
+              6
+            ],
+            "module": "game"
+          },
+          "check": "(_return == (6,100)) and _error is None",
+          "moduleOnly": true,
+          "module": "game"
+        },
+        {
+          "call": {
+            "name": "bounce",
+            "args": [
+              398,
+              100,
+              400,
+              6
+            ],
+            "module": "game"
+          },
+          "check": "(_return == (394,-100)) and _error is None",
+          "moduleOnly": true,
+          "module": "game"
+        },
+        {
+          "call": {
+            "name": "bounce",
+            "args": [
+              6,
+              100,
+              400,
+              6
+            ],
+            "module": "game"
+          },
+          "check": "(_return == (6,100)) and _error is None",
+          "moduleOnly": true,
+          "module": "game"
+        },
+        {
+          "call": {
+            "name": "bounce",
+            "args": [
+              100,
+              -50,
+              400,
+              6
+            ],
+            "module": "game"
+          },
+          "check": "(_return == (100,-50)) and _error is None",
+          "moduleOnly": true,
+          "module": "game"
+        }
+      ],
+      "hint": {
+        "en": "Correct overlap and reverse only an incoming velocity.",
+        "nl": "Herstel overlap en keer alleen een inkomende snelheid om."
+      },
+      "hints": [
+        {
+          "en": "Correct overlap and reverse only an incoming velocity.",
+          "nl": "Herstel overlap en keer alleen een inkomende snelheid om."
+        },
+        {
+          "en": "Combine each position test with the matching velocity direction.",
+          "nl": "Combineer elke positietest met de passende snelheidsrichting."
+        },
+        {
+          "en": "A small fragment to adapt: `if y <= radius and vy < 0:`",
+          "nl": "Een klein fragment om aan te passen: `if y <= radius and vy < 0:`"
+        }
+      ],
+      "feedback": {
+        "en": "Combine each position test with the matching velocity direction.",
+        "nl": "Combineer elke positietest met de passende snelheidsrichting."
+      }
+    }
+  ],
+  "solutionNote": {
+    "en": "Position correction removes overlap; the direction condition prevents a second unwanted reversal.",
+    "nl": "Positieherstel verwijdert overlap; de richtingsvoorwaarde voorkomt een tweede ongewenste omkering."
+  },
+  "inputs": [],
+  "retrievals": [
+    {
+      "id": "recall-python-v4-14-repeatable-random",
+      "sourceActivityId": "python-v4-14-repeatable-random",
+      "objectiveIds": [
+        "random-seed"
+      ],
+      "prompt": {
+        "en": "Recall “Repeat a random experiment”. What is being reset by the second seed call? Try the earlier example from memory, then check it. Compare two seeds, keeping the number of draws fixed.",
+        "nl": "Haal “Herhaal een willekeurig experiment” terug. Wat wordt door de tweede seed-aanroep teruggezet? Probeer het eerdere voorbeeld uit je geheugen en controleer daarna. Vergelijk twee seeds en houd het aantal trekkingen gelijk."
+      }
+    }
+  ]
+}

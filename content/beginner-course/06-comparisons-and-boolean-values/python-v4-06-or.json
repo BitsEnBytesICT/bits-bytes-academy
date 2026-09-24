@@ -1,0 +1,178 @@
+{
+  "id": "python-v4-06-or",
+  "chapter": 6,
+  "group": "python-v4-module-6",
+  "title": {
+    "en": "Allow either condition with or",
+    "nl": "Sta een van beide voorwaarden toe met or"
+  },
+  "kind": "coding",
+  "optional": false,
+  "runtime": "terminal",
+  "guidance": "guided",
+  "checkpointMode": "sequential",
+  "estimatedMinutes": 13,
+  "topicIds": [
+    "or"
+  ],
+  "practices": [],
+  "requiredConcepts": [
+    "and"
+  ],
+  "explanation": {
+    "en": "Other rules accept either of two reasons. Python's or also accepts both together.",
+    "nl": "Andere regels accepteren een van twee redenen. Pythons or accepteert ook beide tegelijk."
+  },
+  "example": "",
+  "sections": [
+    {
+      "id": "python-v4-06-or-example",
+      "topicIds": [
+        "or"
+      ],
+      "heading": {
+        "en": "Follow a working example",
+        "nl": "Volg een werkend voorbeeld"
+      },
+      "body": {
+        "en": "For Boolean operands, or is False only when both operands are False. Its truth table is: True or True → True; True or False → True; False or True → True; False or False → False.\n\nThis is inclusive or. It does not mean exactly one condition must hold. Also write complete comparisons: command == \"help\" or command == \"info\" checks both values. A bare nonempty string on the right would not perform the second comparison.",
+        "nl": "Voor booleaanse operanden is or alleen False als beide operanden False zijn. De waarheidstabel is: True or True → True; True or False → True; False or True → True; False or False → False.\n\nDit is inclusieve of. Het betekent niet dat precies één voorwaarde moet gelden. Schrijf ook volledige vergelijkingen: command == \"help\" or command == \"info\" controleert beide waarden. Een losse niet-lege string rechts voert de tweede vergelijking niet uit."
+      },
+      "code": "member = False\nhas_pass = True\nprint(member or has_pass)",
+      "output": "True\n",
+      "prediction": {
+        "en": "What if both values were True?",
+        "nl": "Wat als beide waarden True waren?"
+      },
+      "takeaway": {
+        "en": "or accepts either condition, including both being True.",
+        "nl": "or accepteert een van beide voorwaarden, inclusief wanneer beide True zijn."
+      }
+    },
+    {
+      "id": "python-v4-06-or-experiment",
+      "topicIds": [],
+      "heading": {
+        "en": "Try one change",
+        "nl": "Probeer één wijziging"
+      },
+      "body": {
+        "en": "Try a different command. Explain why the rule should now be False.",
+        "nl": "Probeer een andere opdracht. Leg uit waarom de regel nu False moet zijn."
+      }
+    }
+  ],
+  "files": {
+    "main.py": "command = \"help\"\n"
+  },
+  "solution": {
+    "main.py": "command = \"help\"\nresult = command == \"help\" or command == \"info\"\nprint(result)\n"
+  },
+  "checkpoints": [
+    {
+      "id": "python-v4-06-or-step-1",
+      "objectiveIds": [
+        "or"
+      ],
+      "task": {
+        "en": "Store whether command is \"help\" or \"info\" in result.",
+        "nl": "Bewaar in result of command \"help\" of \"info\" is."
+      },
+      "check": "type(result) is bool and result == (command == \"help\" or command == \"info\")",
+      "probes": [
+        {
+          "inputs": {
+            "command": "info"
+          },
+          "check": "type(result) is bool and result == (command == \"help\" or command == \"info\")"
+        },
+        {
+          "inputs": {
+            "command": "quit"
+          },
+          "check": "type(result) is bool and result == (command == \"help\" or command == \"info\")"
+        },
+        {
+          "inputs": {
+            "command": ""
+          },
+          "check": "type(result) is bool and result == (command == \"help\" or command == \"info\")"
+        }
+      ],
+      "hint": {
+        "en": "or accepts either condition, including both being True.",
+        "nl": "or accepteert een van beide voorwaarden, inclusief wanneer beide True zijn."
+      },
+      "hints": [
+        {
+          "en": "or accepts either condition, including both being True.",
+          "nl": "or accepteert een van beide voorwaarden, inclusief wanneer beide True zijn."
+        },
+        {
+          "en": "Repeat the comparison on both sides of or.",
+          "nl": "Herhaal de vergelijking aan beide kanten van or."
+        },
+        {
+          "en": "A small fragment to adapt: `command == \"help\" or command == \"info\"`",
+          "nl": "Een klein fragment om aan te passen: `command == \"help\" or command == \"info\"`"
+        }
+      ],
+      "feedback": {
+        "en": "Repeat the comparison on both sides of or.",
+        "nl": "Herhaal de vergelijking aan beide kanten van or."
+      }
+    },
+    {
+      "id": "python-v4-06-or-step-2",
+      "objectiveIds": [
+        "or"
+      ],
+      "task": {
+        "en": "Print the Boolean result.",
+        "nl": "Druk het booleaanse resultaat af."
+      },
+      "check": "_stdout.strip() == str(result)",
+      "probes": [],
+      "hint": {
+        "en": "or accepts either condition, including both being True.",
+        "nl": "or accepteert een van beide voorwaarden, inclusief wanneer beide True zijn."
+      },
+      "hints": [
+        {
+          "en": "or accepts either condition, including both being True.",
+          "nl": "or accepteert een van beide voorwaarden, inclusief wanneer beide True zijn."
+        },
+        {
+          "en": "Print result itself, so changes to the comparison appear in the output.",
+          "nl": "Druk result zelf af zodat veranderingen in de vergelijking in de uitvoer verschijnen."
+        },
+        {
+          "en": "A small fragment to adapt: `print(result)`",
+          "nl": "Een klein fragment om aan te passen: `print(result)`"
+        }
+      ],
+      "feedback": {
+        "en": "Print result itself, so changes to the comparison appear in the output.",
+        "nl": "Druk result zelf af zodat veranderingen in de vergelijking in de uitvoer verschijnen."
+      }
+    }
+  ],
+  "solutionNote": {
+    "en": "Both sides compare command with a specific value. An unrelated command fails both comparisons.",
+    "nl": "Beide kanten vergelijken command met een specifieke waarde. Een andere opdracht faalt voor beide vergelijkingen."
+  },
+  "inputs": [],
+  "retrievals": [
+    {
+      "id": "recall-python-v4-04-visitor-card",
+      "sourceActivityId": "python-v4-04-visitor-card",
+      "objectiveIds": [
+        "output-review"
+      ],
+      "prompt": {
+        "en": "Recall “Build a visitor card”. Which text stays fixed when room changes? Try the earlier example from memory, then check it. Use a longer name and no tickets. Does the same code still work?",
+        "nl": "Haal “Maak een bezoekerskaart” terug. Welke tekst blijft vast wanneer room verandert? Probeer het eerdere voorbeeld uit je geheugen en controleer daarna. Gebruik een langere naam en geen kaartjes. Werkt dezelfde code nog steeds?"
+      }
+    }
+  ]
+}

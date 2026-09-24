@@ -1,0 +1,182 @@
+{
+  "id": "python-v4-16-boundaries",
+  "chapter": 16,
+  "group": "python-v4-module-16",
+  "title": {
+    "en": "Keep a paddle inside the court",
+    "nl": "Houd een batje binnen het veld"
+  },
+  "kind": "coding",
+  "optional": false,
+  "runtime": "pygame",
+  "guidance": "guided",
+  "checkpointMode": "sequential",
+  "estimatedMinutes": 18,
+  "topicIds": [
+    "boundaries"
+  ],
+  "practices": [],
+  "requiredConcepts": [
+    "velocity",
+    "inclusive-comparisons"
+  ],
+  "explanation": {
+    "en": "A paddle has height. Its top-left coordinate must stop before its bottom leaves the court.",
+    "nl": "Een batje heeft hoogte. Zijn linkerbovenpositie moet stoppen voordat de onderkant het veld verlaat."
+  },
+  "example": "",
+  "sections": [
+    {
+      "id": "python-v4-16-boundaries-example",
+      "topicIds": [
+        "boundaries"
+      ],
+      "heading": {
+        "en": "Follow a working example",
+        "nl": "Volg een werkend voorbeeld"
+      },
+      "body": {
+        "en": "For a court height H and paddle height h, the top coordinate must remain between 0 and H - h. First calculate movement, then clamp to that interval. Clamping means replacing values below the lower bound or above the upper bound with that bound. min and max are built-in functions that can express the same rule, but ordinary if statements work too.",
+        "nl": "Voor veldhoogte H en batjeshoogte h moet de bovenpositie tussen 0 en H - h blijven. Bereken eerst beweging en begrens daarna tot dat interval. Begrenzen vervangt waarden onder de ondergrens of boven de bovengrens door die grens. min en max zijn ingebouwde functies die dezelfde regel uitdrukken, maar gewone if-instructies werken ook."
+      },
+      "code": "height = 100\npaddle_height = 20\ny = 95\nif y > height - paddle_height:\n    y = height - paddle_height\nprint(y)",
+      "output": "80\n",
+      "prediction": {
+        "en": "Why is the maximum not 100?",
+        "nl": "Waarom is het maximum niet 100?"
+      },
+      "takeaway": {
+        "en": "Limit the whole shape, not just its top coordinate.",
+        "nl": "Begrens de hele vorm, niet alleen zijn bovenpositie."
+      }
+    },
+    {
+      "topicIds": [],
+      "heading": {
+        "en": "Run, observe, finish",
+        "nl": "Voer uit, bekijk, rond af"
+      },
+      "body": {
+        "en": "main.py supplies the browser entry point. Run opens a real pygame-ce preview; click it to focus the keyboard. Clicking elsewhere pauses play. Finish & check closes normally and checks your helper after at least one rendered frame. Stop cancels without grading. Run can start a fresh session afterward. Keep the supplied async definition and await asyncio.sleep(1 / 60): they let the browser draw and receive input. You are not expected to reproduce this infrastructure from memory.",
+        "nl": "main.py levert het browserstartpunt. Uitvoeren opent een echt pygame-ce-voorbeeld; klik erop om het toetsenbord te activeren. Elders klikken pauzeert het spel. Afronden en controleren sluit normaal af en controleert je helper na minstens één getekend beeld. Stop annuleert zonder beoordeling. Uitvoeren kan daarna een nieuwe sessie starten. Behoud de meegeleverde async-definitie en await asyncio.sleep(1 / 60): die laten de browser tekenen en invoer ontvangen. Je hoeft deze infrastructuur niet uit je hoofd te schrijven."
+      }
+    },
+    {
+      "id": "python-v4-16-boundaries-experiment",
+      "topicIds": [],
+      "heading": {
+        "en": "Try one change",
+        "nl": "Probeer één wijziging"
+      },
+      "body": {
+        "en": "Test a different court and paddle height instead of hard-coding 340.",
+        "nl": "Test een andere veld- en batjeshoogte in plaats van 340 vast in te vullen."
+      }
+    }
+  ],
+  "files": {
+    "main.py": "# Browser entry point supplied by the course.\nimport asyncio\nimport pygame\nimport game\n\nasync def main():\n    pygame.init()\n    screen = pygame.display.set_mode((640, 400))\n    clock = pygame.time.Clock()\n    running = True\n    y = 170.0\n    while running:\n        dt = min(clock.tick() / 1000, 0.05)\n        for event in pygame.event.get():\n            if event.type == pygame.QUIT:\n                running = False\n            if event.type == pygame.KEYDOWN and event.key == pygame.K_ESCAPE:\n                running = False\n        keys = pygame.key.get_pressed()\n        if keys[pygame.K_UP]:\n            y -= 200 * dt\n        if keys[pygame.K_DOWN]:\n            y += 200 * dt\n        y = game.clamp(y,400,60)\n        screen.fill((16, 23, 39))\n        pygame.draw.rect(screen,(240,240,240),(20,y,10,60))\n        pygame.display.flip()\n        await asyncio.sleep(1 / 60)\n    pygame.quit()\n\nasyncio.run(main())\n",
+    "game.py": "import pygame\n\ndef clamp(y, court_height, paddle_height):\n    return y\n"
+  },
+  "solution": {
+    "main.py": "# Browser entry point supplied by the course.\nimport asyncio\nimport pygame\nimport game\n\nasync def main():\n    pygame.init()\n    screen = pygame.display.set_mode((640, 400))\n    clock = pygame.time.Clock()\n    running = True\n    y = 170.0\n    while running:\n        dt = min(clock.tick() / 1000, 0.05)\n        for event in pygame.event.get():\n            if event.type == pygame.QUIT:\n                running = False\n            if event.type == pygame.KEYDOWN and event.key == pygame.K_ESCAPE:\n                running = False\n        keys = pygame.key.get_pressed()\n        if keys[pygame.K_UP]:\n            y -= 200 * dt\n        if keys[pygame.K_DOWN]:\n            y += 200 * dt\n        y = game.clamp(y,400,60)\n        screen.fill((16, 23, 39))\n        pygame.draw.rect(screen,(240,240,240),(20,y,10,60))\n        pygame.display.flip()\n        await asyncio.sleep(1 / 60)\n    pygame.quit()\n\nasyncio.run(main())\n",
+    "game.py": "import pygame\n\ndef clamp(y, court_height, paddle_height):\n    if y < 0:\n        return 0\n    if y > court_height - paddle_height:\n        return court_height - paddle_height\n    return y\n"
+  },
+  "checkpoints": [
+    {
+      "id": "python-v4-16-boundaries-step-1",
+      "objectiveIds": [
+        "boundaries"
+      ],
+      "task": {
+        "en": "Clamp y to the allowed paddle interval. Assume the paddle fits inside the court.",
+        "nl": "Begrens y tot het toegestane batjesinterval. Neem aan dat het batje in het veld past."
+      },
+      "check": "_rendered_frames > 0",
+      "probes": [
+        {
+          "call": {
+            "name": "clamp",
+            "args": [
+              -10,
+              400,
+              60
+            ],
+            "module": "game"
+          },
+          "check": "(_return == 0) and _error is None",
+          "moduleOnly": true,
+          "module": "game"
+        },
+        {
+          "call": {
+            "name": "clamp",
+            "args": [
+              390,
+              400,
+              60
+            ],
+            "module": "game"
+          },
+          "check": "(_return == 340) and _error is None",
+          "moduleOnly": true,
+          "module": "game"
+        },
+        {
+          "call": {
+            "name": "clamp",
+            "args": [
+              25,
+              100,
+              20
+            ],
+            "module": "game"
+          },
+          "check": "(_return == 25) and _error is None",
+          "moduleOnly": true,
+          "module": "game"
+        }
+      ],
+      "hint": {
+        "en": "Limit the whole shape, not just its top coordinate.",
+        "nl": "Begrens de hele vorm, niet alleen zijn bovenpositie."
+      },
+      "hints": [
+        {
+          "en": "Limit the whole shape, not just its top coordinate.",
+          "nl": "Begrens de hele vorm, niet alleen zijn bovenpositie."
+        },
+        {
+          "en": "Subtract the paddle height when calculating the bottom limit.",
+          "nl": "Trek de batjeshoogte af bij het berekenen van de ondergrens."
+        },
+        {
+          "en": "A small fragment to adapt: `court_height - paddle_height`",
+          "nl": "Een klein fragment om aan te passen: `court_height - paddle_height`"
+        }
+      ],
+      "feedback": {
+        "en": "Subtract the paddle height when calculating the bottom limit.",
+        "nl": "Trek de batjeshoogte af bij het berekenen van de ondergrens."
+      }
+    }
+  ],
+  "solutionNote": {
+    "en": "The lower edge equals y plus paddle height, so the top’s maximum must subtract that height.",
+    "nl": "De onderrand is y plus batjeshoogte; het maximum van de bovenkant moet die hoogte dus aftrekken."
+  },
+  "inputs": [],
+  "retrievals": [
+    {
+      "id": "recall-python-v4-14-random",
+      "sourceActivityId": "python-v4-14-random",
+      "objectiveIds": [
+        "random"
+      ],
+      "prompt": {
+        "en": "Recall “Generate a random choice”. Could two consecutive rolls both be 6? Try the earlier example from memory, then check it. Roll ten times and record repeats instead of treating them as failures.",
+        "nl": "Haal “Maak een willekeurige keuze” terug. Kunnen twee opeenvolgende worpen beide 6 zijn? Probeer het eerdere voorbeeld uit je geheugen en controleer daarna. Werp tienmaal en noteer herhalingen in plaats van ze als fouten te zien."
+      }
+    }
+  ]
+}

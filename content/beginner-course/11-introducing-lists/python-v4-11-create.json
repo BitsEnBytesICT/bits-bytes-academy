@@ -1,0 +1,165 @@
+{
+  "id": "python-v4-11-create",
+  "chapter": 11,
+  "group": "python-v4-module-11",
+  "title": {
+    "en": "Keep several values in a list",
+    "nl": "Bewaar meerdere waarden in een lijst"
+  },
+  "kind": "coding",
+  "optional": false,
+  "runtime": "terminal",
+  "guidance": "guided",
+  "checkpointMode": "sequential",
+  "estimatedMinutes": 12,
+  "topicIds": [
+    "lists",
+    "list-contents"
+  ],
+  "practices": [],
+  "requiredConcepts": [
+    "return",
+    "strings",
+    "integers"
+  ],
+  "explanation": {
+    "en": "A list keeps values together in order. It can hold more than one kind of value.",
+    "nl": "Een lijst bewaart waarden samen op volgorde. Er kunnen verschillende soorten waarden in staan."
+  },
+  "example": "",
+  "sections": [
+    {
+      "id": "python-v4-11-create-example",
+      "topicIds": [
+        "lists",
+        "list-contents"
+      ],
+      "heading": {
+        "en": "Follow a working example",
+        "nl": "Volg een werkend voorbeeld"
+      },
+      "body": {
+        "en": "Square brackets [] make a list. Commas separate its elements. The order matters, and repeated values are allowed. A mixed list such as [\"Bo\", 8, True] is valid, although lists of similar records are often easier to process. A list is one value that can be stored, returned and printed.",
+        "nl": "Vierkante haakjes [] maken een lijst. Komma’s scheiden de elementen. De volgorde telt en herhaalde waarden zijn toegestaan. Een gemengde lijst zoals [\"Bo\", 8, True] is geldig, hoewel lijsten met gelijksoortige gegevens vaak eenvoudiger te verwerken zijn. Een lijst is één waarde die je kunt bewaren, teruggeven en afdrukken."
+      },
+      "code": "record = [\"Bo\", 8, True]\nprint(record)",
+      "output": "['Bo', 8, True]\n",
+      "prediction": {
+        "en": "How many elements are in this list?",
+        "nl": "Hoeveel elementen staan in deze lijst?"
+      },
+      "takeaway": {
+        "en": "Brackets group elements; commas separate them.",
+        "nl": "Haakjes groeperen elementen; komma’s scheiden ze."
+      }
+    },
+    {
+      "id": "python-v4-11-create-experiment",
+      "topicIds": [],
+      "heading": {
+        "en": "Try one change",
+        "nl": "Probeer één wijziging"
+      },
+      "body": {
+        "en": "Swap two elements and explain why this changes the record.",
+        "nl": "Wissel twee elementen om en leg uit waarom dit het record verandert."
+      }
+    }
+  ],
+  "files": {
+    "main.py": "def record(name, score):\n    # Complete this function.\n    return None\n"
+  },
+  "solution": {
+    "main.py": "def record(name, score):\n    return [name, score, True]\n"
+  },
+  "checkpoints": [
+    {
+      "id": "python-v4-11-create-step-1",
+      "objectiveIds": [
+        "lists",
+        "list-contents"
+      ],
+      "task": {
+        "en": "Return a list containing name, score and True in that order.",
+        "nl": "Geef een lijst terug met name, score en True in die volgorde."
+      },
+      "check": "callable(record)",
+      "probes": [
+        {
+          "call": {
+            "name": "record",
+            "args": [
+              "Mila",
+              5
+            ]
+          },
+          "check": "(_return == [\"Mila\",5,True]) and _error is None"
+        },
+        {
+          "call": {
+            "name": "record",
+            "args": [
+              "",
+              0
+            ]
+          },
+          "check": "(_return == [\"\",0,True]) and _error is None"
+        }
+      ],
+      "hint": {
+        "en": "Brackets group elements; commas separate them.",
+        "nl": "Haakjes groeperen elementen; komma’s scheiden ze."
+      },
+      "hints": [
+        {
+          "en": "Brackets group elements; commas separate them.",
+          "nl": "Haakjes groeperen elementen; komma’s scheiden ze."
+        },
+        {
+          "en": "Use the parameters as elements, keeping the Boolean unquoted.",
+          "nl": "Gebruik de parameters als elementen en zet het booleaanse woord niet tussen aanhalingstekens."
+        },
+        {
+          "en": "A small fragment to adapt: `[name, score, True]`",
+          "nl": "Een klein fragment om aan te passen: `[name, score, True]`"
+        }
+      ],
+      "feedback": {
+        "en": "Use the parameters as elements, keeping the Boolean unquoted.",
+        "nl": "Gebruik de parameters als elementen en zet het booleaanse woord niet tussen aanhalingstekens."
+      }
+    }
+  ],
+  "solutionNote": {
+    "en": "The list retains the supplied values and their order, including their different types.",
+    "nl": "De lijst bewaart de gegeven waarden en hun volgorde, inclusief de verschillende typen."
+  },
+  "inputs": [],
+  "retrievals": [
+    {
+      "id": "recall-python-v4-09-define-and-call",
+      "sourceActivityId": "python-v4-09-define-and-call",
+      "objectiveIds": [
+        "functions",
+        "function-definition",
+        "function-calls",
+        "builtins"
+      ],
+      "prompt": {
+        "en": "Recall “Give instructions a name”. Which line would disappear if greet() were removed? Try the earlier example from memory, then check it. Add a third call. Explain why you did not copy the function body.",
+        "nl": "Haal “Geef instructies een naam” terug. Welke regel verdwijnt als greet() wordt verwijderd? Probeer het eerdere voorbeeld uit je geheugen en controleer daarna. Voeg een derde aanroep toe. Leg uit waarom je de functie-inhoud niet kopieerde."
+      }
+    },
+    {
+      "id": "recall-python-v4-09-local-scope",
+      "sourceActivityId": "python-v4-09-local-scope",
+      "objectiveIds": [
+        "scope"
+      ],
+      "prompt": {
+        "en": "Recall “Keep a function independent”. Why does the outer value remain 100? Try the earlier example from memory, then check it. Change the outer rate to 999. The function result should stay tied to its arguments.",
+        "nl": "Haal “Houd een functie onafhankelijk” terug. Waarom blijft de buitenliggende value 100? Probeer het eerdere voorbeeld uit je geheugen en controleer daarna. Verander de buitenliggende rate naar 999. Het functieresultaat hoort gekoppeld te blijven aan zijn argumenten."
+      }
+    }
+  ]
+}

@@ -1,0 +1,180 @@
+{
+  "id": "python-v4-09-define-and-call",
+  "chapter": 9,
+  "group": "python-v4-module-9",
+  "title": {
+    "en": "Give instructions a name",
+    "nl": "Geef instructies een naam"
+  },
+  "kind": "coding",
+  "optional": false,
+  "runtime": "terminal",
+  "guidance": "guided",
+  "checkpointMode": "sequential",
+  "estimatedMinutes": 12,
+  "topicIds": [
+    "functions",
+    "function-definition",
+    "function-calls",
+    "builtins"
+  ],
+  "practices": [],
+  "requiredConcepts": [
+    "print",
+    "indentation"
+  ],
+  "explanation": {
+    "en": "Functions let you reuse a named set of instructions. You have already called built-in functions such as print and input; now define your own.",
+    "nl": "Met functies hergebruik je een benoemde reeks instructies. Je hebt ingebouwde functies zoals print en input al aangeroepen; nu maak je zelf een functie."
+  },
+  "example": "",
+  "sections": [
+    {
+      "id": "python-v4-09-define-and-call-example",
+      "topicIds": [
+        "functions",
+        "function-definition",
+        "function-calls",
+        "builtins"
+      ],
+      "heading": {
+        "en": "Follow a working example",
+        "nl": "Volg een werkend voorbeeld"
+      },
+      "body": {
+        "en": "def starts a definition. After the name, () is an empty parameter list and : starts the indented body. Defining a function stores its instructions; it does not run that body. A later name() call runs it. Execution then resumes after the call. Blank lines improve readability but do not call anything.",
+        "nl": "def begint een definitie. Na de naam is () een lege parameterlijst en : begint de ingesprongen inhoud. Een definitie bewaart instructies; de inhoud wordt nog niet uitgevoerd. Een latere aanroep naam() voert ze uit. Daarna gaat uitvoering verder na de aanroep. Lege regels verbeteren de leesbaarheid maar roepen niets aan."
+      },
+      "code": "def greet():\n    print(\"Hello\")\n\nprint(\"Before\")\ngreet()\nprint(\"After\")",
+      "output": "Before\nHello\nAfter\n",
+      "prediction": {
+        "en": "Which line would disappear if greet() were removed?",
+        "nl": "Welke regel verdwijnt als greet() wordt verwijderd?"
+      },
+      "takeaway": {
+        "en": "Define first, call when the behaviour is needed.",
+        "nl": "Definieer eerst en roep aan wanneer het gedrag nodig is."
+      }
+    },
+    {
+      "id": "python-v4-09-define-and-call-experiment",
+      "topicIds": [],
+      "heading": {
+        "en": "Try one change",
+        "nl": "Probeer één wijziging"
+      },
+      "body": {
+        "en": "Add a third call. Explain why you did not copy the function body.",
+        "nl": "Voeg een derde aanroep toe. Leg uit waarom je de functie-inhoud niet kopieerde."
+      }
+    }
+  ],
+  "files": {
+    "main.py": ""
+  },
+  "solution": {
+    "main.py": "def show_title():\n    print(\"Library\")\n\nshow_title()\nshow_title()\n"
+  },
+  "checkpoints": [
+    {
+      "id": "python-v4-09-define-and-call-step-1",
+      "objectiveIds": [
+        "functions",
+        "function-definition",
+        "function-calls",
+        "builtins"
+      ],
+      "task": {
+        "en": "Define show_title() to print Library.",
+        "nl": "Definieer show_title() om Library af te drukken."
+      },
+      "check": "callable(show_title)",
+      "probes": [
+        {
+          "call": {
+            "name": "show_title",
+            "args": []
+          },
+          "check": "_call_stdout == \"Library\\n\" and _error is None"
+        }
+      ],
+      "hint": {
+        "en": "Define first, call when the behaviour is needed.",
+        "nl": "Definieer eerst en roep aan wanneer het gedrag nodig is."
+      },
+      "hints": [
+        {
+          "en": "Define first, call when the behaviour is needed.",
+          "nl": "Definieer eerst en roep aan wanneer het gedrag nodig is."
+        },
+        {
+          "en": "Indent the print inside def, then test a call.",
+          "nl": "Laat de print inspringen binnen def en test daarna een aanroep."
+        },
+        {
+          "en": "A small fragment to adapt: `def show_title():`",
+          "nl": "Een klein fragment om aan te passen: `def show_title():`"
+        }
+      ],
+      "feedback": {
+        "en": "Indent the print inside def, then test a call.",
+        "nl": "Laat de print inspringen binnen def en test daarna een aanroep."
+      }
+    },
+    {
+      "id": "python-v4-09-define-and-call-step-2",
+      "objectiveIds": [
+        "functions",
+        "function-definition",
+        "function-calls",
+        "builtins"
+      ],
+      "task": {
+        "en": "Call your function twice.",
+        "nl": "Roep je functie tweemaal aan."
+      },
+      "check": "_stdout == \"Library\\nLibrary\\n\"",
+      "probes": [],
+      "hint": {
+        "en": "Define first, call when the behaviour is needed.",
+        "nl": "Definieer eerst en roep aan wanneer het gedrag nodig is."
+      },
+      "hints": [
+        {
+          "en": "Define first, call when the behaviour is needed.",
+          "nl": "Definieer eerst en roep aan wanneer het gedrag nodig is."
+        },
+        {
+          "en": "Place two calls outside the function body.",
+          "nl": "Plaats twee aanroepen buiten de functie."
+        },
+        {
+          "en": "A small fragment to adapt: `show_title()`",
+          "nl": "Een klein fragment om aan te passen: `show_title()`"
+        }
+      ],
+      "feedback": {
+        "en": "Place two calls outside the function body.",
+        "nl": "Plaats twee aanroepen buiten de functie."
+      }
+    }
+  ],
+  "solutionNote": {
+    "en": "The definition is stored once and the two calls each print one line.",
+    "nl": "De definitie wordt eenmaal bewaard en de twee aanroepen drukken elk één regel af."
+  },
+  "inputs": [],
+  "retrievals": [
+    {
+      "id": "recall-python-v4-07-first-if",
+      "sourceActivityId": "python-v4-07-first-if",
+      "objectiveIds": [
+        "if"
+      ],
+      "prompt": {
+        "en": "Recall “Run an instruction only when needed”. Which line still prints if door_open becomes False? Try the earlier example from memory, then check it. Change has_ticket to False. An empty output is the correct behaviour in that case.",
+        "nl": "Haal “Voer een instructie alleen uit als dat nodig is” terug. Welke regel verschijnt nog als door_open False wordt? Probeer het eerdere voorbeeld uit je geheugen en controleer daarna. Verander has_ticket in False. Lege uitvoer is in dat geval het juiste gedrag."
+      }
+    }
+  ]
+}

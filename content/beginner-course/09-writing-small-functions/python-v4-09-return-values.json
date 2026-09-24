@@ -1,0 +1,156 @@
+{
+  "id": "python-v4-09-return-values",
+  "chapter": 9,
+  "group": "python-v4-module-9",
+  "title": {
+    "en": "Return an answer to the caller",
+    "nl": "Geef een antwoord terug aan de aanroeper"
+  },
+  "kind": "coding",
+  "optional": false,
+  "runtime": "terminal",
+  "guidance": "adapt",
+  "checkpointMode": "sequential",
+  "estimatedMinutes": 12,
+  "topicIds": [
+    "return"
+  ],
+  "practices": [],
+  "requiredConcepts": [
+    "multiple-parameters"
+  ],
+  "explanation": {
+    "en": "A returned value can be stored, printed or used in another calculation. Printing alone only displays text.",
+    "nl": "Een teruggegeven waarde kun je bewaren, afdrukken of gebruiken in een berekening. Printen toont alleen tekst."
+  },
+  "example": "",
+  "sections": [
+    {
+      "id": "python-v4-09-return-values-example",
+      "topicIds": [
+        "return"
+      ],
+      "heading": {
+        "en": "Follow a working example",
+        "nl": "Volg een werkend voorbeeld"
+      },
+      "body": {
+        "en": "return expression evaluates the expression and sends its value back to the call site. In result = double(4), the call is replaced by its returned value before assignment. return does not print. Keeping calculation separate from output makes it reusable in a terminal or a game.",
+        "nl": "return uitdrukking berekent de uitdrukking en stuurt de waarde naar de aanroep terug. In result = double(4) wordt de aanroep vóór toewijzing vervangen door de teruggegeven waarde. return drukt niets af. Berekening scheiden van uitvoer maakt hergebruik in een terminal of spel mogelijk."
+      },
+      "code": "def double(value):\n    return value * 2\nanswer = double(4)\nprint(answer + 1)",
+      "output": "9\n",
+      "prediction": {
+        "en": "What is stored in answer before the print?",
+        "nl": "Wat staat in answer vóór de print?"
+      },
+      "takeaway": {
+        "en": "Return data; let the caller choose how to display it.",
+        "nl": "Geef gegevens terug; laat de aanroeper kiezen hoe ze worden getoond."
+      }
+    },
+    {
+      "id": "python-v4-09-return-values-experiment",
+      "topicIds": [],
+      "heading": {
+        "en": "Try one change",
+        "nl": "Probeer één wijziging"
+      },
+      "body": {
+        "en": "Store an area result and add a separate print in the caller.",
+        "nl": "Bewaar een area-resultaat en voeg een aparte print toe bij de aanroeper."
+      }
+    }
+  ],
+  "files": {
+    "main.py": "def area(width, height):\n    print(width * height)\n"
+  },
+  "solution": {
+    "main.py": "def area(width, height):\n    return width * height\n"
+  },
+  "checkpoints": [
+    {
+      "id": "python-v4-09-return-values-step-1",
+      "objectiveIds": [
+        "return"
+      ],
+      "task": {
+        "en": "Change area to return width × height without printing.",
+        "nl": "Verander area zodat die width × height teruggeeft zonder af te drukken."
+      },
+      "check": "callable(area)",
+      "probes": [
+        {
+          "call": {
+            "name": "area",
+            "args": [
+              3,
+              4
+            ]
+          },
+          "check": "_return == 12 and _call_stdout == \"\""
+        },
+        {
+          "call": {
+            "name": "area",
+            "args": [
+              0,
+              8
+            ]
+          },
+          "check": "_return == 0"
+        },
+        {
+          "call": {
+            "name": "area",
+            "args": [
+              1.5,
+              2
+            ]
+          },
+          "check": "_return == 3"
+        }
+      ],
+      "hint": {
+        "en": "Return data; let the caller choose how to display it.",
+        "nl": "Geef gegevens terug; laat de aanroeper kiezen hoe ze worden getoond."
+      },
+      "hints": [
+        {
+          "en": "Return data; let the caller choose how to display it.",
+          "nl": "Geef gegevens terug; laat de aanroeper kiezen hoe ze worden getoond."
+        },
+        {
+          "en": "Replace the display operation with a return statement.",
+          "nl": "Vervang de uitvoerbewerking door een return-instructie."
+        },
+        {
+          "en": "A small fragment to adapt: `return width * height`",
+          "nl": "Een klein fragment om aan te passen: `return width * height`"
+        }
+      ],
+      "feedback": {
+        "en": "Replace the display operation with a return statement.",
+        "nl": "Vervang de uitvoerbewerking door een return-instructie."
+      }
+    }
+  ],
+  "solutionNote": {
+    "en": "Returning preserves a numeric result for further work.",
+    "nl": "Teruggeven bewaart een numeriek resultaat voor verder gebruik."
+  },
+  "inputs": [],
+  "retrievals": [
+    {
+      "id": "recall-python-v4-07-separate-or-chain",
+      "sourceActivityId": "python-v4-07-separate-or-chain",
+      "objectiveIds": [
+        "branch-order"
+      ],
+      "prompt": {
+        "en": "Recall “Separate checks or one choice?”. Why are two messages correct in this example? Try the earlier example from memory, then check it. Try score = 8 and explain why Silver is skipped.",
+        "nl": "Haal “Aparte controles of één keuze?” terug. Waarom zijn twee berichten juist in dit voorbeeld? Probeer het eerdere voorbeeld uit je geheugen en controleer daarna. Probeer score = 8 en leg uit waarom Silver wordt overgeslagen."
+      }
+    }
+  ]
+}

@@ -1,0 +1,181 @@
+{
+  "id": "python-v4-03-receipt",
+  "chapter": 3,
+  "group": "python-v4-module-3",
+  "title": {
+    "en": "Calculate a simple receipt",
+    "nl": "Bereken een eenvoudige kassabon"
+  },
+  "kind": "coding",
+  "optional": false,
+  "runtime": "terminal",
+  "guidance": "independent",
+  "checkpointMode": "sequential",
+  "estimatedMinutes": 20,
+  "topicIds": [
+    "arithmetic-review"
+  ],
+  "practices": [
+    "arithmetic",
+    "multiplication",
+    "subtraction",
+    "precedence"
+  ],
+  "requiredConcepts": [
+    "multiplication",
+    "subtraction"
+  ],
+  "explanation": {
+    "en": "Combine familiar calculations in a new situation. The brief supplies all the quantities; you choose the expressions.",
+    "nl": "Combineer bekende berekeningen in een nieuwe situatie. De opdracht geeft alle hoeveelheden; jij kiest de expressies."
+  },
+  "example": "",
+  "sections": [
+    {
+      "id": "python-v4-03-receipt-example",
+      "topicIds": [
+        "arithmetic-review",
+        "arithmetic",
+        "multiplication",
+        "subtraction",
+        "precedence"
+      ],
+      "heading": {
+        "en": "Follow a working example",
+        "nl": "Volg een werkend voorbeeld"
+      },
+      "body": {
+        "en": "Break the problem into intermediate results with descriptive names. The example first calculates the cost of several notebooks, then adds a single delivery charge. Each line answers one small question.\n\nYour receipt applies a discount once to the whole purchase. Check the wording carefully: subtracting the discount from each item's price would describe a different offer.",
+        "nl": "Verdeel het probleem in tussenresultaten met duidelijke namen. Het voorbeeld berekent eerst de prijs van enkele notitieboeken en voegt daarna één bezorgbedrag toe. Elke regel beantwoordt één kleine vraag.\n\nJouw kassabon past eenmaal een korting toe op de hele aankoop. Lees de formulering zorgvuldig: korting van elk artikel aftrekken zou een andere aanbieding beschrijven."
+      },
+      "code": "books = 2\nprice = 3.5\nsubtotal = books * price\ntotal = subtotal + 2\nprint(total)",
+      "output": "9.0\n",
+      "prediction": {
+        "en": "Is delivery added once or once per book?",
+        "nl": "Wordt bezorging eenmaal toegevoegd of eenmaal per boek?"
+      },
+      "takeaway": {
+        "en": "Separate the item subtotal from the one-time change to the total.",
+        "nl": "Scheid het subtotaal van de artikelen van de eenmalige wijziging van het totaal."
+      }
+    },
+    {
+      "id": "python-v4-03-receipt-experiment",
+      "topicIds": [],
+      "heading": {
+        "en": "Try one change",
+        "nl": "Probeer één wijziging"
+      },
+      "body": {
+        "en": "Use quantity = 1 and discount = 0, then quantity = 0. Explain both receipts.",
+        "nl": "Gebruik quantity = 1 en discount = 0 en daarna quantity = 0. Leg beide kassabonnen uit."
+      }
+    }
+  ],
+  "files": {
+    "main.py": "quantity = 3\nunit_price = 4.0\ndiscount = 2.0\n"
+  },
+  "solution": {
+    "main.py": "quantity = 3\nunit_price = 4.0\ndiscount = 2.0\nsubtotal = quantity * unit_price\ntotal = subtotal - discount\nprint(subtotal)\nprint(total)\n"
+  },
+  "checkpoints": [
+    {
+      "id": "python-v4-03-receipt-step-1",
+      "objectiveIds": [
+        "arithmetic-review",
+        "arithmetic",
+        "multiplication",
+        "subtraction",
+        "precedence"
+      ],
+      "task": {
+        "en": "Calculate subtotal from quantity and unit_price.",
+        "nl": "Bereken subtotal uit quantity en unit_price."
+      },
+      "check": "subtotal == quantity * unit_price",
+      "probes": [
+        {
+          "inputs": {
+            "quantity": 0,
+            "discount": 0
+          },
+          "check": "subtotal == 0"
+        }
+      ],
+      "hint": {
+        "en": "Separate the item subtotal from the one-time change to the total.",
+        "nl": "Scheid het subtotaal van de artikelen van de eenmalige wijziging van het totaal."
+      },
+      "hints": [
+        {
+          "en": "Separate the item subtotal from the one-time change to the total.",
+          "nl": "Scheid het subtotaal van de artikelen van de eenmalige wijziging van het totaal."
+        },
+        {
+          "en": "The subtotal includes every item and no discount yet.",
+          "nl": "Het subtotaal bevat elk artikel en nog geen korting."
+        },
+        {
+          "en": "A small fragment to adapt: `subtotal = quantity * unit_price`",
+          "nl": "Een klein fragment om aan te passen: `subtotal = quantity * unit_price`"
+        }
+      ],
+      "feedback": {
+        "en": "The subtotal includes every item and no discount yet.",
+        "nl": "Het subtotaal bevat elk artikel en nog geen korting."
+      }
+    },
+    {
+      "id": "python-v4-03-receipt-step-2",
+      "objectiveIds": [
+        "arithmetic-review",
+        "arithmetic",
+        "multiplication",
+        "subtraction",
+        "precedence"
+      ],
+      "task": {
+        "en": "Subtract the discount once to calculate total. Print subtotal, then total.",
+        "nl": "Trek de korting eenmaal af voor total. Druk subtotal af en daarna total."
+      },
+      "check": "total == subtotal - discount and _stdout.splitlines() == [str(subtotal), str(total)]",
+      "probes": [
+        {
+          "inputs": {
+            "quantity": 2,
+            "unit_price": 1.5,
+            "discount": 1
+          },
+          "check": "total == 2.0"
+        }
+      ],
+      "hint": {
+        "en": "Separate the item subtotal from the one-time change to the total.",
+        "nl": "Scheid het subtotaal van de artikelen van de eenmalige wijziging van het totaal."
+      },
+      "hints": [
+        {
+          "en": "Separate the item subtotal from the one-time change to the total.",
+          "nl": "Scheid het subtotaal van de artikelen van de eenmalige wijziging van het totaal."
+        },
+        {
+          "en": "Apply the discount after calculating the full item cost.",
+          "nl": "Pas de korting toe nadat je de volledige artikelprijs hebt berekend."
+        },
+        {
+          "en": "A small fragment to adapt: `total = subtotal - discount`",
+          "nl": "Een klein fragment om aan te passen: `total = subtotal - discount`"
+        }
+      ],
+      "feedback": {
+        "en": "Apply the discount after calculating the full item cost.",
+        "nl": "Pas de korting toe nadat je de volledige artikelprijs hebt berekend."
+      }
+    }
+  ],
+  "solutionNote": {
+    "en": "The first result is 12.0; the one-time discount leaves 10.0. Named intermediate values make the order visible.",
+    "nl": "Het eerste resultaat is 12.0; de eenmalige korting laat 10.0 over. Benoemde tussenwaarden maken de volgorde zichtbaar."
+  },
+  "inputs": []
+}

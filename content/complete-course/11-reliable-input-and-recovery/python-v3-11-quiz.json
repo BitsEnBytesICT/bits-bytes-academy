@@ -1,0 +1,772 @@
+{
+  "id": "python-v3-11-quiz",
+  "chapter": 11,
+  "group": "python-v3-module-11",
+  "kind": "quiz",
+  "optional": false,
+  "estimatedMinutes": 6,
+  "title": {
+    "en": "Reliable input and recovery: review",
+    "nl": "Betrouwbare invoer en herstel: herhaling"
+  },
+  "questions": [
+    {
+      "objectiveIds": [
+        "value-error",
+        "try-except"
+      ],
+      "reviewActivityIds": [
+        "python-v3-11-02"
+      ],
+      "category": "prediction",
+      "prompt": {
+        "en": "What does this program print?",
+        "nl": "Wat drukt dit programma af?"
+      },
+      "code": "try:\n    value = int(\"three\")\nexcept ValueError:\n    value = None\nprint(value)",
+      "answer": "a",
+      "choices": [
+        {
+          "id": "a",
+          "label": {
+            "en": "None",
+            "nl": "None"
+          },
+          "reason": {
+            "en": "The matching handler assigns None and execution continues.",
+            "nl": "De passende afhandeling wijst None toe en uitvoering gaat verder."
+          }
+        },
+        {
+          "id": "b",
+          "label": {
+            "en": "0",
+            "nl": "0"
+          },
+          "reason": {
+            "en": "No statement assigns zero here.",
+            "nl": "Geen opdracht wijst hier nul toe."
+          }
+        },
+        {
+          "id": "c",
+          "label": {
+            "en": "ValueError",
+            "nl": "ValueError"
+          },
+          "reason": {
+            "en": "The exception is caught, so its name is not printed as an uncaught failure.",
+            "nl": "De uitzondering wordt opgevangen, dus de naam verschijnt niet als onafgehandelde fout."
+          }
+        }
+      ],
+      "expectedOutput": "None\n",
+      "id": "python-v3-11-quiz-a-1"
+    },
+    {
+      "objectiveIds": [
+        "validation"
+      ],
+      "reviewActivityIds": [
+        "python-v3-11-03"
+      ],
+      "category": "prediction",
+      "prompt": {
+        "en": "What does this program print?",
+        "nl": "Wat drukt dit programma af?"
+      },
+      "code": "value = 18\nprint(0 <= value <= 18)",
+      "answer": "a",
+      "choices": [
+        {
+          "id": "a",
+          "label": {
+            "en": "True",
+            "nl": "True"
+          },
+          "reason": {
+            "en": "Both comparisons include the boundary.",
+            "nl": "Beide vergelijkingen nemen de grens mee."
+          }
+        },
+        {
+          "id": "b",
+          "label": {
+            "en": "False",
+            "nl": "False"
+          },
+          "reason": {
+            "en": "<= permits equality.",
+            "nl": "<= staat gelijkheid toe."
+          }
+        },
+        {
+          "id": "c",
+          "label": {
+            "en": "None",
+            "nl": "None"
+          },
+          "reason": {
+            "en": "The range check returns a Boolean.",
+            "nl": "De bereikcontrole geeft een boolean."
+          }
+        }
+      ],
+      "expectedOutput": "True\n",
+      "id": "python-v3-11-quiz-a-2"
+    },
+    {
+      "objectiveIds": [
+        "zero-division-error"
+      ],
+      "reviewActivityIds": [
+        "python-v3-11-02"
+      ],
+      "category": "completion",
+      "prompt": {
+        "en": "Handle the specific division failure.",
+        "nl": "Handel de specifieke deelfout af."
+      },
+      "code": "try:\n    result = 18 / 0\nexcept ___:\n    result = None\nprint(result)",
+      "answer": "a",
+      "choices": [
+        {
+          "id": "a",
+          "label": {
+            "en": "ZeroDivisionError",
+            "nl": "ZeroDivisionError"
+          },
+          "reason": {
+            "en": "Division by zero has its own exception type.",
+            "nl": "Delen door nul heeft een eigen uitzonderingstype."
+          }
+        },
+        {
+          "id": "b",
+          "label": {
+            "en": "ValueError",
+            "nl": "ValueError"
+          },
+          "reason": {
+            "en": "Division by zero has its own exception type.",
+            "nl": "Delen door nul heeft een eigen uitzonderingstype."
+          }
+        },
+        {
+          "id": "c",
+          "label": {
+            "en": "KeyError",
+            "nl": "KeyError"
+          },
+          "reason": {
+            "en": "Division by zero has its own exception type.",
+            "nl": "Delen door nul heeft een eigen uitzonderingstype."
+          }
+        }
+      ],
+      "codeBlank": {
+        "prompt": {
+          "en": "Handle the specific division failure.",
+          "nl": "Handel de specifieke deelfout af."
+        },
+        "segments": [
+          "try:\n    result = 18 / 0\nexcept ",
+          ":\n    result = None\nprint(result)"
+        ],
+        "tokens": [
+          {
+            "id": "token-1",
+            "code": "ZeroDivisionError"
+          },
+          {
+            "id": "token-2",
+            "code": "ValueError"
+          },
+          {
+            "id": "token-3",
+            "code": "KeyError"
+          }
+        ],
+        "blanks": [
+          {
+            "answer": "ZeroDivisionError",
+            "reason": {
+              "en": "Division by zero has its own exception type.",
+              "nl": "Delen door nul heeft een eigen uitzonderingstype."
+            }
+          }
+        ],
+        "output": "None\n"
+      },
+      "id": "python-v3-11-quiz-a-3"
+    },
+    {
+      "objectiveIds": [
+        "cancel",
+        "retry"
+      ],
+      "reviewActivityIds": [
+        "python-v3-11-04"
+      ],
+      "category": "completion",
+      "prompt": {
+        "en": "Recognise a cancellation command despite case and spaces.",
+        "nl": "Herken een annuleringscommando ondanks hoofdletters en spaties."
+      },
+      "code": "command = \" CANCEL \"\nprint(command.strip().___() == \"cancel\")",
+      "answer": "a",
+      "choices": [
+        {
+          "id": "a",
+          "label": {
+            "en": "lower",
+            "nl": "lower"
+          },
+          "reason": {
+            "en": "lower makes the command comparable to the lowercase keyword after trimming.",
+            "nl": "lower maakt het commando na trimmen vergelijkbaar met het kleineletterwoord."
+          }
+        },
+        {
+          "id": "b",
+          "label": {
+            "en": "upper",
+            "nl": "upper"
+          },
+          "reason": {
+            "en": "lower makes the command comparable to the lowercase keyword after trimming.",
+            "nl": "lower maakt het commando na trimmen vergelijkbaar met het kleineletterwoord."
+          }
+        },
+        {
+          "id": "c",
+          "label": {
+            "en": "title",
+            "nl": "title"
+          },
+          "reason": {
+            "en": "lower makes the command comparable to the lowercase keyword after trimming.",
+            "nl": "lower maakt het commando na trimmen vergelijkbaar met het kleineletterwoord."
+          }
+        }
+      ],
+      "codeBlank": {
+        "prompt": {
+          "en": "Recognise a cancellation command despite case and spaces.",
+          "nl": "Herken een annuleringscommando ondanks hoofdletters en spaties."
+        },
+        "segments": [
+          "command = \" CANCEL \"\nprint(command.strip().",
+          "() == \"cancel\")"
+        ],
+        "tokens": [
+          {
+            "id": "token-1",
+            "code": "lower"
+          },
+          {
+            "id": "token-2",
+            "code": "upper"
+          },
+          {
+            "id": "token-3",
+            "code": "title"
+          }
+        ],
+        "blanks": [
+          {
+            "answer": "lower",
+            "reason": {
+              "en": "lower makes the command comparable to the lowercase keyword after trimming.",
+              "nl": "lower maakt het commando na trimmen vergelijkbaar met het kleineletterwoord."
+            }
+          }
+        ],
+        "output": "True\n"
+      },
+      "id": "python-v3-11-quiz-a-4"
+    },
+    {
+      "objectiveIds": [
+        "string-immutability"
+      ],
+      "reviewActivityIds": [
+        "python-v3-10-02"
+      ],
+      "category": "debugging",
+      "prompt": {
+        "en": "Why does assigning this character fail?",
+        "nl": "Waarom mislukt dit teken toewijzen?"
+      },
+      "code": "text = \"dog\"\ntext[0] = \"X\"",
+      "answer": "a",
+      "choices": [
+        {
+          "id": "a",
+          "label": {
+            "en": "Strings are immutable; construct a new string from parts.",
+            "nl": "Strings zijn onveranderlijk; maak een nieuwe string uit delen."
+          },
+          "reason": {
+            "en": "A slice plus a replacement prefix creates a new value.",
+            "nl": "Een slice plus vervangend voorvoegsel maakt een nieuwe waarde."
+          }
+        },
+        {
+          "id": "b",
+          "label": {
+            "en": "Index zero is invalid for strings.",
+            "nl": "Index nul is ongeldig voor strings."
+          },
+          "reason": {
+            "en": "Index zero can be read; assigning through it is the problem.",
+            "nl": "Index nul kan gelezen worden; erdoor toewijzen is het probleem."
+          }
+        },
+        {
+          "id": "c",
+          "label": {
+            "en": "Only lowercase characters can be assigned.",
+            "nl": "Alleen kleine letters kunnen worden toegewezen."
+          },
+          "reason": {
+            "en": "No character can be replaced by indexed string assignment.",
+            "nl": "Geen teken kan via indextoewijzing in een string vervangen worden."
+          }
+        }
+      ],
+      "id": "python-v3-11-quiz-a-5"
+    },
+    {
+      "objectiveIds": [
+        "return",
+        "none"
+      ],
+      "reviewActivityIds": [
+        "python-v3-4-02"
+      ],
+      "category": "application",
+      "prompt": {
+        "en": "A parser returns 0 for valid text and None on failure. Which check distinguishes failure?",
+        "nl": "Een parser geeft 0 bij geldige tekst en None bij mislukken. Welke controle onderscheidt mislukken?"
+      },
+      "answer": "a",
+      "choices": [
+        {
+          "id": "a",
+          "label": {
+            "en": "result is None",
+            "nl": "result is None"
+          },
+          "reason": {
+            "en": "This preserves a valid false-like numeric result.",
+            "nl": "Dit behoudt een geldig onwaarachtig numeriek resultaat."
+          }
+        },
+        {
+          "id": "b",
+          "label": {
+            "en": "not result",
+            "nl": "not result"
+          },
+          "reason": {
+            "en": "Both zero and None are false-like, so this confuses them.",
+            "nl": "Zowel nul als None is onwaarachtig, dus dit verwart ze."
+          }
+        },
+        {
+          "id": "c",
+          "label": {
+            "en": "result == 0",
+            "nl": "result == 0"
+          },
+          "reason": {
+            "en": "That recognises the valid zero instead of no result.",
+            "nl": "Dat herkent de geldige nul in plaats van geen resultaat."
+          }
+        }
+      ],
+      "id": "python-v3-11-quiz-a-6"
+    }
+  ],
+  "alternateQuestions": [
+    {
+      "objectiveIds": [
+        "value-error",
+        "try-except"
+      ],
+      "reviewActivityIds": [
+        "python-v3-11-02"
+      ],
+      "category": "prediction",
+      "prompt": {
+        "en": "What does this program print?",
+        "nl": "Wat drukt dit programma af?"
+      },
+      "code": "try:\n    value = int(\"two\")\nexcept ValueError:\n    value = None\nprint(value)",
+      "answer": "a",
+      "choices": [
+        {
+          "id": "a",
+          "label": {
+            "en": "None",
+            "nl": "None"
+          },
+          "reason": {
+            "en": "The matching handler assigns None and execution continues.",
+            "nl": "De passende afhandeling wijst None toe en uitvoering gaat verder."
+          }
+        },
+        {
+          "id": "b",
+          "label": {
+            "en": "0",
+            "nl": "0"
+          },
+          "reason": {
+            "en": "No statement assigns zero here.",
+            "nl": "Geen opdracht wijst hier nul toe."
+          }
+        },
+        {
+          "id": "c",
+          "label": {
+            "en": "ValueError",
+            "nl": "ValueError"
+          },
+          "reason": {
+            "en": "The exception is caught, so its name is not printed as an uncaught failure.",
+            "nl": "De uitzondering wordt opgevangen, dus de naam verschijnt niet als onafgehandelde fout."
+          }
+        }
+      ],
+      "expectedOutput": "None\n",
+      "id": "python-v3-11-quiz-b-1"
+    },
+    {
+      "objectiveIds": [
+        "validation"
+      ],
+      "reviewActivityIds": [
+        "python-v3-11-03"
+      ],
+      "category": "prediction",
+      "prompt": {
+        "en": "What does this program print?",
+        "nl": "Wat drukt dit programma af?"
+      },
+      "code": "value = 21\nprint(0 <= value <= 21)",
+      "answer": "a",
+      "choices": [
+        {
+          "id": "a",
+          "label": {
+            "en": "True",
+            "nl": "True"
+          },
+          "reason": {
+            "en": "Both comparisons include the boundary.",
+            "nl": "Beide vergelijkingen nemen de grens mee."
+          }
+        },
+        {
+          "id": "b",
+          "label": {
+            "en": "False",
+            "nl": "False"
+          },
+          "reason": {
+            "en": "<= permits equality.",
+            "nl": "<= staat gelijkheid toe."
+          }
+        },
+        {
+          "id": "c",
+          "label": {
+            "en": "None",
+            "nl": "None"
+          },
+          "reason": {
+            "en": "The range check returns a Boolean.",
+            "nl": "De bereikcontrole geeft een boolean."
+          }
+        }
+      ],
+      "expectedOutput": "True\n",
+      "id": "python-v3-11-quiz-b-2"
+    },
+    {
+      "objectiveIds": [
+        "zero-division-error"
+      ],
+      "reviewActivityIds": [
+        "python-v3-11-02"
+      ],
+      "category": "completion",
+      "prompt": {
+        "en": "Handle the specific division failure.",
+        "nl": "Handel de specifieke deelfout af."
+      },
+      "code": "try:\n    result = 21 / 0\nexcept ___:\n    result = None\nprint(result)",
+      "answer": "a",
+      "choices": [
+        {
+          "id": "a",
+          "label": {
+            "en": "ZeroDivisionError",
+            "nl": "ZeroDivisionError"
+          },
+          "reason": {
+            "en": "Division by zero has its own exception type.",
+            "nl": "Delen door nul heeft een eigen uitzonderingstype."
+          }
+        },
+        {
+          "id": "b",
+          "label": {
+            "en": "ValueError",
+            "nl": "ValueError"
+          },
+          "reason": {
+            "en": "Division by zero has its own exception type.",
+            "nl": "Delen door nul heeft een eigen uitzonderingstype."
+          }
+        },
+        {
+          "id": "c",
+          "label": {
+            "en": "KeyError",
+            "nl": "KeyError"
+          },
+          "reason": {
+            "en": "Division by zero has its own exception type.",
+            "nl": "Delen door nul heeft een eigen uitzonderingstype."
+          }
+        }
+      ],
+      "codeBlank": {
+        "prompt": {
+          "en": "Handle the specific division failure.",
+          "nl": "Handel de specifieke deelfout af."
+        },
+        "segments": [
+          "try:\n    result = 21 / 0\nexcept ",
+          ":\n    result = None\nprint(result)"
+        ],
+        "tokens": [
+          {
+            "id": "token-1",
+            "code": "ZeroDivisionError"
+          },
+          {
+            "id": "token-2",
+            "code": "ValueError"
+          },
+          {
+            "id": "token-3",
+            "code": "KeyError"
+          }
+        ],
+        "blanks": [
+          {
+            "answer": "ZeroDivisionError",
+            "reason": {
+              "en": "Division by zero has its own exception type.",
+              "nl": "Delen door nul heeft een eigen uitzonderingstype."
+            }
+          }
+        ],
+        "output": "None\n"
+      },
+      "id": "python-v3-11-quiz-b-3"
+    },
+    {
+      "objectiveIds": [
+        "cancel",
+        "retry"
+      ],
+      "reviewActivityIds": [
+        "python-v3-11-04"
+      ],
+      "category": "completion",
+      "prompt": {
+        "en": "Recognise a cancellation command despite case and spaces.",
+        "nl": "Herken een annuleringscommando ondanks hoofdletters en spaties."
+      },
+      "code": "command = \" CaNcEl \"\nprint(command.strip().___() == \"cancel\")",
+      "answer": "a",
+      "choices": [
+        {
+          "id": "a",
+          "label": {
+            "en": "lower",
+            "nl": "lower"
+          },
+          "reason": {
+            "en": "lower makes the command comparable to the lowercase keyword after trimming.",
+            "nl": "lower maakt het commando na trimmen vergelijkbaar met het kleineletterwoord."
+          }
+        },
+        {
+          "id": "b",
+          "label": {
+            "en": "upper",
+            "nl": "upper"
+          },
+          "reason": {
+            "en": "lower makes the command comparable to the lowercase keyword after trimming.",
+            "nl": "lower maakt het commando na trimmen vergelijkbaar met het kleineletterwoord."
+          }
+        },
+        {
+          "id": "c",
+          "label": {
+            "en": "title",
+            "nl": "title"
+          },
+          "reason": {
+            "en": "lower makes the command comparable to the lowercase keyword after trimming.",
+            "nl": "lower maakt het commando na trimmen vergelijkbaar met het kleineletterwoord."
+          }
+        }
+      ],
+      "codeBlank": {
+        "prompt": {
+          "en": "Recognise a cancellation command despite case and spaces.",
+          "nl": "Herken een annuleringscommando ondanks hoofdletters en spaties."
+        },
+        "segments": [
+          "command = \" CaNcEl \"\nprint(command.strip().",
+          "() == \"cancel\")"
+        ],
+        "tokens": [
+          {
+            "id": "token-1",
+            "code": "lower"
+          },
+          {
+            "id": "token-2",
+            "code": "upper"
+          },
+          {
+            "id": "token-3",
+            "code": "title"
+          }
+        ],
+        "blanks": [
+          {
+            "answer": "lower",
+            "reason": {
+              "en": "lower makes the command comparable to the lowercase keyword after trimming.",
+              "nl": "lower maakt het commando na trimmen vergelijkbaar met het kleineletterwoord."
+            }
+          }
+        ],
+        "output": "True\n"
+      },
+      "id": "python-v3-11-quiz-b-4"
+    },
+    {
+      "objectiveIds": [
+        "string-immutability"
+      ],
+      "reviewActivityIds": [
+        "python-v3-10-02"
+      ],
+      "category": "debugging",
+      "prompt": {
+        "en": "Why does assigning this character fail?",
+        "nl": "Waarom mislukt dit teken toewijzen?"
+      },
+      "code": "text = \"cat\"\ntext[0] = \"X\"",
+      "answer": "a",
+      "choices": [
+        {
+          "id": "a",
+          "label": {
+            "en": "Strings are immutable; construct a new string from parts.",
+            "nl": "Strings zijn onveranderlijk; maak een nieuwe string uit delen."
+          },
+          "reason": {
+            "en": "A slice plus a replacement prefix creates a new value.",
+            "nl": "Een slice plus vervangend voorvoegsel maakt een nieuwe waarde."
+          }
+        },
+        {
+          "id": "b",
+          "label": {
+            "en": "Index zero is invalid for strings.",
+            "nl": "Index nul is ongeldig voor strings."
+          },
+          "reason": {
+            "en": "Index zero can be read; assigning through it is the problem.",
+            "nl": "Index nul kan gelezen worden; erdoor toewijzen is het probleem."
+          }
+        },
+        {
+          "id": "c",
+          "label": {
+            "en": "Only lowercase characters can be assigned.",
+            "nl": "Alleen kleine letters kunnen worden toegewezen."
+          },
+          "reason": {
+            "en": "No character can be replaced by indexed string assignment.",
+            "nl": "Geen teken kan via indextoewijzing in een string vervangen worden."
+          }
+        }
+      ],
+      "id": "python-v3-11-quiz-b-5"
+    },
+    {
+      "objectiveIds": [
+        "return",
+        "none"
+      ],
+      "reviewActivityIds": [
+        "python-v3-4-02"
+      ],
+      "category": "application",
+      "prompt": {
+        "en": "A helper returns 0 for a valid amount and None on cancel. How should the caller detect cancellation?",
+        "nl": "Een helper geeft 0 bij een geldig bedrag en None bij annuleren. Hoe herkent de aanroeper annuleren?"
+      },
+      "answer": "a",
+      "choices": [
+        {
+          "id": "a",
+          "label": {
+            "en": "result is None",
+            "nl": "result is None"
+          },
+          "reason": {
+            "en": "This preserves a valid false-like numeric result.",
+            "nl": "Dit behoudt een geldig onwaarachtig numeriek resultaat."
+          }
+        },
+        {
+          "id": "b",
+          "label": {
+            "en": "not result",
+            "nl": "not result"
+          },
+          "reason": {
+            "en": "Both zero and None are false-like, so this confuses them.",
+            "nl": "Zowel nul als None is onwaarachtig, dus dit verwart ze."
+          }
+        },
+        {
+          "id": "c",
+          "label": {
+            "en": "result == 0",
+            "nl": "result == 0"
+          },
+          "reason": {
+            "en": "That recognises the valid zero instead of no result.",
+            "nl": "Dat herkent de geldige nul in plaats van geen resultaat."
+          }
+        }
+      ],
+      "id": "python-v3-11-quiz-b-6"
+    }
+  ]
+}

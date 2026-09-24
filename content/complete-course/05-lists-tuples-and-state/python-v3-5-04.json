@@ -1,0 +1,183 @@
+{
+  "id": "python-v3-5-04",
+  "chapter": 5,
+  "group": "python-v3-module-5",
+  "title": {
+    "en": "Coordinates and pairs",
+    "nl": "Coördinaten en paren"
+  },
+  "kind": "coding",
+  "optional": false,
+  "runtime": "terminal",
+  "guidance": "adapt",
+  "estimatedMinutes": 15,
+  "explanation": {
+    "en": "Represent a position as two coordinates. Return several related values by packing them into a tuple, then unpack them at the call site.",
+    "nl": "Stel een positie voor met twee coördinaten. Geef meerdere bijbehorende waarden terug door ze in een tuple te verpakken en pak ze bij de aanroep uit."
+  },
+  "example": "",
+  "topicIds": [
+    "tuples",
+    "unpacking",
+    "multiple-returns"
+  ],
+  "prerequisites": [
+    "python-v3-5-03"
+  ],
+  "sections": [
+    {
+      "topicIds": [
+        "tuples",
+        "unpacking",
+        "multiple-returns"
+      ],
+      "heading": {
+        "en": "One return value containing a pair",
+        "nl": "Eén terugkeerwaarde met een paar"
+      },
+      "body": {
+        "en": "A tuple is an ordered sequence whose items cannot be replaced. Commas create a tuple; parentheses often make it clearer. return x, y packs one tuple. a, b = result unpacks its two values. The number of names must match the number of values. This is how a function appears to return multiple values.",
+        "nl": "Een tuple is een geordende reeks waarvan items niet vervangen kunnen worden. Komma’s maken een tuple; haakjes maken dat vaak duidelijker. return x, y verpakt één tuple. a, b = result pakt de twee waarden uit. Het aantal namen moet bij het aantal waarden passen. Zo lijkt een functie meerdere waarden terug te geven."
+      },
+      "code": "def size():\n    return 80, 40\nwidth, height = size()\nprint(width, height)\npoint = (3, 7)\nx, y = point\nprint(x + 1, y)",
+      "output": "80 40\n4 7\n",
+      "prediction": {
+        "en": "How many Python values does return really send back?",
+        "nl": "Hoeveel Python-waarden stuurt return werkelijk terug?"
+      }
+    },
+    {
+      "topicIds": [],
+      "heading": {
+        "en": "Try a changed input",
+        "nl": "Probeer gewijzigde invoer"
+      },
+      "body": {
+        "en": "Try a fractional displacement and no movement. Explain why point[0] = 9 fails for a tuple but works for a list.",
+        "nl": "Probeer een verplaatsing met decimalen en geen beweging. Leg uit waarom point[0] = 9 bij een tuple mislukt maar bij een lijst werkt."
+      }
+    }
+  ],
+  "files": {
+    "main.py": "def move(x, y, dx, dy):\n    return (x, y)\n\n# Unpack the result of move(3, 4, 2, -1).\n"
+  },
+  "solution": {
+    "main.py": "def move(x, y, dx, dy):\n    return x + dx, y + dy\n\nx, y = move(3, 4, 2, -1)\nprint(x, y)\n"
+  },
+  "checkpoints": [
+    {
+      "objectiveIds": [
+        "tuples",
+        "multiple-returns"
+      ],
+      "task": {
+        "en": "Return a tuple containing the new x and y from move(x, y, dx, dy).",
+        "nl": "Geef vanuit move(x, y, dx, dy) een tuple terug met de nieuwe x en y."
+      },
+      "check": "callable(move)",
+      "hints": [
+        {
+          "en": "Each coordinate changes by its own displacement.",
+          "nl": "Elke coördinaat verandert met zijn eigen verplaatsing."
+        },
+        {
+          "en": "Add dx to x and dy to y.",
+          "nl": "Tel dx bij x en dy bij y op."
+        },
+        {
+          "en": "return x + dx, y + dy",
+          "nl": "return x + dx, y + dy"
+        }
+      ],
+      "hint": {
+        "en": "Each coordinate changes by its own displacement.",
+        "nl": "Elke coördinaat verandert met zijn eigen verplaatsing."
+      },
+      "feedback": {
+        "en": "Preserve coordinate order and support negative displacement.",
+        "nl": "Behoud de coördinatenvolgorde en ondersteun negatieve verplaatsing."
+      },
+      "probes": [
+        {
+          "call": {
+            "name": "move",
+            "args": [
+              0,
+              0,
+              -2,
+              5
+            ]
+          },
+          "check": "_return == (-2,5) and isinstance(_return,tuple)"
+        },
+        {
+          "call": {
+            "name": "move",
+            "args": [
+              3,
+              4,
+              0,
+              0
+            ]
+          },
+          "check": "_return == (3,4)"
+        }
+      ],
+      "id": "python-v3-5-04-step-1"
+    },
+    {
+      "objectiveIds": [
+        "unpacking"
+      ],
+      "task": {
+        "en": "Unpack move(3, 4, 2, -1) into x and y and print both.",
+        "nl": "Pak move(3, 4, 2, -1) uit in x en y en druk beide af."
+      },
+      "check": "x == 5 and y == 3 and _stdout.strip() == \"5 3\"",
+      "hints": [
+        {
+          "en": "Two names can receive the two components.",
+          "nl": "Twee namen kunnen de twee onderdelen ontvangen."
+        },
+        {
+          "en": "Put x, y on the left of one assignment.",
+          "nl": "Zet x, y links van één toewijzing."
+        },
+        {
+          "en": "x, y = move(3, 4, 2, -1)",
+          "nl": "x, y = move(3, 4, 2, -1)"
+        }
+      ],
+      "hint": {
+        "en": "Two names can receive the two components.",
+        "nl": "Twee namen kunnen de twee onderdelen ontvangen."
+      },
+      "feedback": {
+        "en": "Print the unpacked components, not a nested list or a single name.",
+        "nl": "Druk de uitgepakte onderdelen af, geen geneste lijst of enkele naam."
+      },
+      "probes": [],
+      "id": "python-v3-5-04-step-2"
+    }
+  ],
+  "solutionNote": {
+    "en": "return creates one tuple; assignment unpacks it. The function leaves its numeric inputs unchanged and computes a new position.",
+    "nl": "return maakt één tuple; toewijzing pakt die uit. De functie laat zijn numerieke invoer ongewijzigd en berekent een nieuwe positie."
+  },
+  "inputs": [],
+  "retrievals": [
+    {
+      "id": "recall-python-v3-3-04",
+      "sourceActivityId": "python-v3-3-04",
+      "objectiveIds": [
+        "infinite-loops",
+        "break",
+        "continue"
+      ],
+      "prompt": {
+        "en": "Explain how continue can skip an update and cause an infinite loop. Where would break exit, and how would you Stop a stuck run?",
+        "nl": "Leg uit hoe continue een wijziging kan overslaan en een oneindige lus kan veroorzaken. Waar stopt break en hoe stop je een vastgelopen uitvoering?"
+      }
+    }
+  ]
+}

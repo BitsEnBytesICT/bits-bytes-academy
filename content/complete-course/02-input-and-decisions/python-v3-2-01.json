@@ -1,0 +1,165 @@
+{
+  "id": "python-v3-2-01",
+  "chapter": 2,
+  "group": "python-v3-module-2",
+  "title": {
+    "en": "Personalise a report",
+    "nl": "Maak een persoonlijk rapport"
+  },
+  "kind": "coding",
+  "optional": false,
+  "runtime": "terminal",
+  "guidance": "guided",
+  "estimatedMinutes": 15,
+  "explanation": {
+    "en": "Ask a visitor for information and show a personalised report. input always returns text, even when the visitor types digits.",
+    "nl": "Vraag een bezoeker om informatie en toon een persoonlijk rapport. input geeft altijd tekst terug, ook wanneer de bezoeker cijfers typt."
+  },
+  "example": "",
+  "topicIds": [
+    "input",
+    "conversion",
+    "f-strings"
+  ],
+  "prerequisites": [
+    "python-v3-1-05"
+  ],
+  "sections": [
+    {
+      "topicIds": [
+        "input",
+        "conversion",
+        "f-strings"
+      ],
+      "heading": {
+        "en": "Read, convert, display",
+        "nl": "Lees, zet om, toon"
+      },
+      "body": {
+        "en": "input(prompt) pauses for a line. int(text) converts whole-number text; float(text) accepts decimal text with a dot. Assume valid numeric input in this module; recovery comes later. An f-string evaluates expressions inside braces and formats their values as text.",
+        "nl": "input(prompt) wacht op een regel. int(text) zet gehele-getaltekst om; float(text) accepteert decimale tekst met een punt. Ga in deze module uit van geldige getallen; herstel volgt later. Een f-string berekent expressies tussen accolades en toont hun waarden als tekst."
+      },
+      "code": "name = \"Ada\"\ncount = int(\"3\")\nprice = float(\"2.5\")\nprint(f\"{name}: {count * price}\")",
+      "output": "Ada: 7.5\n",
+      "prediction": {
+        "en": "How would the result differ if count stayed a string?",
+        "nl": "Hoe zou het resultaat verschillen als count een string bleef?"
+      }
+    },
+    {
+      "topicIds": [],
+      "heading": {
+        "en": "Try a changed input",
+        "nl": "Probeer gewijzigde invoer"
+      },
+      "body": {
+        "en": "Try one night and a fractional price. Then try zero nights. Explain the types of all four variables.",
+        "nl": "Probeer één nacht en een prijs met decimalen. Probeer daarna nul nachten. Leg de types van alle vier variabelen uit."
+      }
+    }
+  ],
+  "files": {
+    "main.py": "name = input(\"Name: \")\n# Read nights and price, then report the total.\n"
+  },
+  "solution": {
+    "main.py": "name = input(\"Name: \")\nnights = int(input(\"Nights: \"))\nprice = float(input(\"Price: \"))\ntotal = nights * price\nprint(f\"{name}: {total}\")\n"
+  },
+  "checkpoints": [
+    {
+      "objectiveIds": [
+        "input",
+        "conversion"
+      ],
+      "task": {
+        "en": "Read nights as an int and price as a float after name. Compute total = nights * price.",
+        "nl": "Lees na name nights als int en price als float. Bereken total = nights * price."
+      },
+      "check": "name == \"Sam\" and nights == 3 and price == 4.5 and total == 13.5",
+      "hints": [
+        {
+          "en": "Convert at the point where text becomes a number.",
+          "nl": "Zet om op het moment dat tekst een getal wordt."
+        },
+        {
+          "en": "Wrap each numeric input call in int or float.",
+          "nl": "Zet elke numerieke input-aanroep in int of float."
+        },
+        {
+          "en": "nights = int(input(\"Nights: \"))",
+          "nl": "nights = int(input(\"Nights: \"))"
+        }
+      ],
+      "hint": {
+        "en": "Convert at the point where text becomes a number.",
+        "nl": "Zet om op het moment dat tekst een getal wordt."
+      },
+      "feedback": {
+        "en": "Read name, nights, then price. Numeric strings cannot be multiplied together.",
+        "nl": "Lees name, nights en daarna price. Numerieke strings kunnen niet met elkaar vermenigvuldigd worden."
+      },
+      "probes": [
+        {
+          "stdin": [
+            "Jo",
+            "0",
+            "8.25"
+          ],
+          "check": "total == 0 and nights == 0 and price == 8.25"
+        }
+      ],
+      "id": "python-v3-2-01-step-1"
+    },
+    {
+      "objectiveIds": [
+        "f-strings"
+      ],
+      "task": {
+        "en": "Use an f-string to print the name, a colon and space, and total.",
+        "nl": "Gebruik een f-string om de naam, een dubbele punt en spatie en total af te drukken."
+      },
+      "check": "\"Sam: 13.5\" in _stdout and any(isinstance(n,_ast.JoinedStr) for n in _ast.walk(_ast.parse(_source)))",
+      "hints": [
+        {
+          "en": "Put f before the opening quote.",
+          "nl": "Zet f vóór het eerste aanhalingsteken."
+        },
+        {
+          "en": "Variable names go inside braces.",
+          "nl": "Variabelenamen komen tussen accolades."
+        },
+        {
+          "en": "print(f\"{name}: {total}\")",
+          "nl": "print(f\"{name}: {total}\")"
+        }
+      ],
+      "hint": {
+        "en": "Put f before the opening quote.",
+        "nl": "Zet f vóór het eerste aanhalingsteken."
+      },
+      "feedback": {
+        "en": "Include both values, not their literal variable names.",
+        "nl": "Neem beide waarden op, niet hun letterlijke variabelenamen."
+      },
+      "probes": [
+        {
+          "stdin": [
+            "Lee",
+            "2",
+            "3.25"
+          ],
+          "check": "\"Lee: 6.5\" in _stdout"
+        }
+      ],
+      "id": "python-v3-2-01-step-2"
+    }
+  ],
+  "solutionNote": {
+    "en": "The conversions prevent string repetition or a TypeError. The f-string converts the numeric total to display text without changing the stored total.",
+    "nl": "De omzettingen voorkomen stringherhaling of een TypeError. De f-string zet het numerieke totaal om naar schermtekst zonder de opgeslagen total te veranderen."
+  },
+  "inputs": [
+    "Sam",
+    "3",
+    "4.5"
+  ]
+}

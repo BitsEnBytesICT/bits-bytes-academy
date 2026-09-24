@@ -1,0 +1,159 @@
+{
+  "id": "python-v4-06-not",
+  "chapter": 6,
+  "group": "python-v4-module-6",
+  "title": {
+    "en": "Reverse a Boolean with not",
+    "nl": "Keer een booleaanse waarde om met not"
+  },
+  "kind": "coding",
+  "optional": false,
+  "runtime": "terminal",
+  "guidance": "guided",
+  "checkpointMode": "sequential",
+  "estimatedMinutes": 13,
+  "topicIds": [
+    "not"
+  ],
+  "practices": [],
+  "requiredConcepts": [
+    "boolean-variables"
+  ],
+  "explanation": {
+    "en": "The not operator reverses a Boolean condition. It has one operand.",
+    "nl": "De operator not keert een booleaanse voorwaarde om. Hij heeft één operand."
+  },
+  "example": "",
+  "sections": [
+    {
+      "id": "python-v4-06-not-example",
+      "topicIds": [
+        "not"
+      ],
+      "heading": {
+        "en": "Follow a working example",
+        "nl": "Volg een werkend voorbeeld"
+      },
+      "body": {
+        "en": "not True is False, and not False is True. Put not before the condition to reverse. Parentheses make the scope of a larger condition visible.\n\nA closed door can be represented by not door_open. This does not change door_open: the expression produces another Boolean. Keep that distinction between calculating a value and updating a variable.",
+        "nl": "not True is False en not False is True. Zet not vóór de voorwaarde die je omkeert. Haakjes maken bij een grotere voorwaarde zichtbaar welk deel wordt omgekeerd.\n\nEen gesloten deur kun je weergeven met not door_open. Dit verandert door_open niet: de expressie levert een andere booleaanse waarde op. Houd dat onderscheid tussen een waarde berekenen en een variabele wijzigen vast."
+      },
+      "code": "door_open = False\nprint(not door_open)\nprint(door_open)",
+      "output": "True\nFalse\n",
+      "prediction": {
+        "en": "Does evaluating not change the original variable?",
+        "nl": "Verandert not berekenen de oorspronkelijke variabele?"
+      },
+      "takeaway": {
+        "en": "not reverses the truth value of its condition.",
+        "nl": "not keert de waarheidswaarde van een voorwaarde om."
+      }
+    },
+    {
+      "id": "python-v4-06-not-experiment",
+      "topicIds": [],
+      "heading": {
+        "en": "Try one change",
+        "nl": "Probeer één wijziging"
+      },
+      "body": {
+        "en": "Set paused to False and trace both values.",
+        "nl": "Zet paused op False en volg beide waarden."
+      }
+    }
+  ],
+  "files": {
+    "main.py": "paused = True\n"
+  },
+  "solution": {
+    "main.py": "paused = True\nresult = not paused\nprint(result)\n"
+  },
+  "checkpoints": [
+    {
+      "id": "python-v4-06-not-step-1",
+      "objectiveIds": [
+        "not"
+      ],
+      "task": {
+        "en": "Store whether the activity is running, the opposite of paused, in result.",
+        "nl": "Bewaar in result of de activiteit draait: het tegenovergestelde van paused."
+      },
+      "check": "type(result) is bool and result == (not paused)",
+      "probes": [
+        {
+          "inputs": {
+            "paused": false
+          },
+          "check": "type(result) is bool and result == (not paused)"
+        },
+        {
+          "inputs": {
+            "paused": true
+          },
+          "check": "type(result) is bool and result == (not paused)"
+        }
+      ],
+      "hint": {
+        "en": "not reverses the truth value of its condition.",
+        "nl": "not keert de waarheidswaarde van een voorwaarde om."
+      },
+      "hints": [
+        {
+          "en": "not reverses the truth value of its condition.",
+          "nl": "not keert de waarheidswaarde van een voorwaarde om."
+        },
+        {
+          "en": "Reverse paused with not rather than assigning a fixed answer.",
+          "nl": "Keer paused om met not in plaats van een vast antwoord toe te wijzen."
+        },
+        {
+          "en": "A small fragment to adapt: `not paused`",
+          "nl": "Een klein fragment om aan te passen: `not paused`"
+        }
+      ],
+      "feedback": {
+        "en": "Reverse paused with not rather than assigning a fixed answer.",
+        "nl": "Keer paused om met not in plaats van een vast antwoord toe te wijzen."
+      }
+    },
+    {
+      "id": "python-v4-06-not-step-2",
+      "objectiveIds": [
+        "not"
+      ],
+      "task": {
+        "en": "Print the Boolean result.",
+        "nl": "Druk het booleaanse resultaat af."
+      },
+      "check": "_stdout.strip() == str(result)",
+      "probes": [],
+      "hint": {
+        "en": "not reverses the truth value of its condition.",
+        "nl": "not keert de waarheidswaarde van een voorwaarde om."
+      },
+      "hints": [
+        {
+          "en": "not reverses the truth value of its condition.",
+          "nl": "not keert de waarheidswaarde van een voorwaarde om."
+        },
+        {
+          "en": "Print result itself, so changes to the comparison appear in the output.",
+          "nl": "Druk result zelf af zodat veranderingen in de vergelijking in de uitvoer verschijnen."
+        },
+        {
+          "en": "A small fragment to adapt: `print(result)`",
+          "nl": "Een klein fragment om aan te passen: `print(result)`"
+        }
+      ],
+      "feedback": {
+        "en": "Print result itself, so changes to the comparison appear in the output.",
+        "nl": "Druk result zelf af zodat veranderingen in de vergelijking in de uitvoer verschijnen."
+      }
+    }
+  ],
+  "solutionNote": {
+    "en": "The result describes the opposite condition while paused retains its value.",
+    "nl": "Het resultaat beschrijft de tegenovergestelde voorwaarde terwijl paused zijn waarde behoudt."
+  },
+  "inputs": []
+}

@@ -1,0 +1,776 @@
+{
+  "id": "python-v3-16-quiz",
+  "chapter": 16,
+  "group": "python-v3-module-16",
+  "kind": "quiz",
+  "optional": false,
+  "estimatedMinutes": 6,
+  "title": {
+    "en": "A complete Pong match: review",
+    "nl": "Een complete Pong-wedstrijd: herhaling"
+  },
+  "questions": [
+    {
+      "objectiveIds": [
+        "game-state",
+        "scoring-once"
+      ],
+      "reviewActivityIds": [
+        "python-v3-16-01",
+        "python-v3-16-02"
+      ],
+      "category": "prediction",
+      "prompt": {
+        "en": "What does this program print?",
+        "nl": "Wat drukt dit programma af?"
+      },
+      "code": "state = \"serve\"\nscore = 2\nif state == \"playing\":\n    score += 1\nprint(score)",
+      "answer": "a",
+      "choices": [
+        {
+          "id": "a",
+          "label": {
+            "en": "2",
+            "nl": "2"
+          },
+          "reason": {
+            "en": "A served-but-not-playing match cannot award a point.",
+            "nl": "Een wedstrijd vóór de opslag mag geen punt toekennen."
+          }
+        },
+        {
+          "id": "b",
+          "label": {
+            "en": "3",
+            "nl": "3"
+          },
+          "reason": {
+            "en": "The playing guard is false in serve state.",
+            "nl": "De playing-controle is onwaar in serve-toestand."
+          }
+        },
+        {
+          "id": "c",
+          "label": {
+            "en": "0",
+            "nl": "0"
+          },
+          "reason": {
+            "en": "The code preserves the existing score rather than resetting it.",
+            "nl": "De code behoudt de bestaande score in plaats van die te resetten."
+          }
+        }
+      ],
+      "expectedOutput": "2\n",
+      "id": "python-v3-16-quiz-a-1"
+    },
+    {
+      "objectiveIds": [
+        "collision-correction"
+      ],
+      "reviewActivityIds": [
+        "python-v3-16-03"
+      ],
+      "category": "prediction",
+      "prompt": {
+        "en": "What does this program print?",
+        "nl": "Wat drukt dit programma af?"
+      },
+      "code": "import pygame\npaddle = pygame.Rect(20, 100, 10, 60)\nradius = 6\nprint(paddle.right + radius)",
+      "answer": "a",
+      "choices": [
+        {
+          "id": "a",
+          "label": {
+            "en": "36",
+            "nl": "36"
+          },
+          "reason": {
+            "en": "The ball centre goes one radius beyond the paddle’s right edge.",
+            "nl": "Het balmiddelpunt komt één straal voorbij de rechterrand van het batje."
+          }
+        },
+        {
+          "id": "b",
+          "label": {
+            "en": "30",
+            "nl": "30"
+          },
+          "reason": {
+            "en": "That is only the edge; the ball would still overlap it.",
+            "nl": "Dat is alleen de rand; de bal zou die nog overlappen."
+          }
+        },
+        {
+          "id": "c",
+          "label": {
+            "en": "26",
+            "nl": "26"
+          },
+          "reason": {
+            "en": "The right edge also includes the paddle width.",
+            "nl": "De rechterrand omvat ook de batjesbreedte."
+          }
+        }
+      ],
+      "expectedOutput": "36\n",
+      "id": "python-v3-16-quiz-a-2"
+    },
+    {
+      "objectiveIds": [
+        "playtesting",
+        "game-review"
+      ],
+      "reviewActivityIds": [
+        "python-v3-16-05"
+      ],
+      "category": "completion",
+      "prompt": {
+        "en": "Advance only an unpaused playing match.",
+        "nl": "Laat alleen een ongepauzeerde spelende wedstrijd doorgaan."
+      },
+      "code": "state = \"playing\"\npaused = True\nprint(state == \"playing\" and ___ paused)",
+      "answer": "a",
+      "choices": [
+        {
+          "id": "a",
+          "label": {
+            "en": "not",
+            "nl": "not"
+          },
+          "reason": {
+            "en": "not reverses the pause flag before combining the requirements.",
+            "nl": "not keert de pauzevlag om vóór de eisen te combineren."
+          }
+        },
+        {
+          "id": "b",
+          "label": {
+            "en": "bool",
+            "nl": "bool"
+          },
+          "reason": {
+            "en": "not reverses the pause flag before combining the requirements.",
+            "nl": "not keert de pauzevlag om vóór de eisen te combineren."
+          }
+        },
+        {
+          "id": "c",
+          "label": {
+            "en": "or",
+            "nl": "or"
+          },
+          "reason": {
+            "en": "not reverses the pause flag before combining the requirements.",
+            "nl": "not keert de pauzevlag om vóór de eisen te combineren."
+          }
+        }
+      ],
+      "codeBlank": {
+        "prompt": {
+          "en": "Advance only an unpaused playing match.",
+          "nl": "Laat alleen een ongepauzeerde spelende wedstrijd doorgaan."
+        },
+        "segments": [
+          "state = \"playing\"\npaused = True\nprint(state == \"playing\" and ",
+          " paused)"
+        ],
+        "tokens": [
+          {
+            "id": "token-1",
+            "code": "not"
+          },
+          {
+            "id": "token-2",
+            "code": "bool"
+          },
+          {
+            "id": "token-3",
+            "code": "or"
+          }
+        ],
+        "blanks": [
+          {
+            "answer": "not",
+            "reason": {
+              "en": "not reverses the pause flag before combining the requirements.",
+              "nl": "not keert de pauzevlag om vóór de eisen te combineren."
+            }
+          }
+        ],
+        "output": "False\n"
+      },
+      "id": "python-v3-16-quiz-a-3"
+    },
+    {
+      "objectiveIds": [
+        "game-persistence"
+      ],
+      "reviewActivityIds": [
+        "python-v3-16-04"
+      ],
+      "category": "completion",
+      "prompt": {
+        "en": "Include the maximum allowed target in validation.",
+        "nl": "Neem het maximaal toegestane doel mee in validatie."
+      },
+      "code": "target = 21\nvalid = type(target) is int and 1 <= target ___ 21\nprint(valid)",
+      "answer": "a",
+      "choices": [
+        {
+          "id": "a",
+          "label": {
+            "en": "<=",
+            "nl": "<="
+          },
+          "reason": {
+            "en": "The valid interval includes both endpoints.",
+            "nl": "Het geldige interval omvat beide eindpunten."
+          }
+        },
+        {
+          "id": "b",
+          "label": {
+            "en": "<",
+            "nl": "<"
+          },
+          "reason": {
+            "en": "The valid interval includes both endpoints.",
+            "nl": "Het geldige interval omvat beide eindpunten."
+          }
+        },
+        {
+          "id": "c",
+          "label": {
+            "en": ">",
+            "nl": ">"
+          },
+          "reason": {
+            "en": "The valid interval includes both endpoints.",
+            "nl": "Het geldige interval omvat beide eindpunten."
+          }
+        }
+      ],
+      "codeBlank": {
+        "prompt": {
+          "en": "Include the maximum allowed target in validation.",
+          "nl": "Neem het maximaal toegestane doel mee in validatie."
+        },
+        "segments": [
+          "target = 21\nvalid = type(target) is int and 1 <= target ",
+          " 21\nprint(valid)"
+        ],
+        "tokens": [
+          {
+            "id": "token-1",
+            "code": "<="
+          },
+          {
+            "id": "token-2",
+            "code": "<"
+          },
+          {
+            "id": "token-3",
+            "code": ">"
+          }
+        ],
+        "blanks": [
+          {
+            "answer": "<=",
+            "reason": {
+              "en": "The valid interval includes both endpoints.",
+              "nl": "Het geldige interval omvat beide eindpunten."
+            }
+          }
+        ],
+        "output": "True\n"
+      },
+      "id": "python-v3-16-quiz-a-4"
+    },
+    {
+      "objectiveIds": [
+        "independent-instances",
+        "class-variables"
+      ],
+      "reviewActivityIds": [
+        "python-v3-15-04"
+      ],
+      "category": "debugging",
+      "prompt": {
+        "en": "Where should a separate per-player score history be created?",
+        "nl": "Waar moet een aparte scoregeschiedenis per speler gemaakt worden?"
+      },
+      "code": "class Player:\n    history = []\n    def __init__(self, name):\n        self.name = name\na = Player(\"Ada\")",
+      "answer": "a",
+      "choices": [
+        {
+          "id": "a",
+          "label": {
+            "en": "Inside __init__ as self.history = [].",
+            "nl": "Binnen __init__ als self.history = []."
+          },
+          "reason": {
+            "en": "Each constructor call then creates its own list.",
+            "nl": "Elke constructoraanroep maakt dan een eigen lijst."
+          }
+        },
+        {
+          "id": "b",
+          "label": {
+            "en": "Keep the single mutable class list.",
+            "nl": "Behoud de ene veranderlijke klasselijst."
+          },
+          "reason": {
+            "en": "All instances continue to share it.",
+            "nl": "Alle instanties blijven die delen."
+          }
+        },
+        {
+          "id": "c",
+          "label": {
+            "en": "Reset Player.history whenever any player scores.",
+            "nl": "Reset Player.history telkens als iemand scoort."
+          },
+          "reason": {
+            "en": "That also erases other players’ shared history.",
+            "nl": "Dat wist ook gedeelde geschiedenis van andere spelers."
+          }
+        }
+      ],
+      "id": "python-v3-16-quiz-a-5"
+    },
+    {
+      "objectiveIds": [
+        "json-dump",
+        "round-trips"
+      ],
+      "reviewActivityIds": [
+        "python-v3-14-05"
+      ],
+      "category": "application",
+      "prompt": {
+        "en": "You want to save a match result. What is a suitable JSON data model?",
+        "nl": "Je wilt een wedstrijdresultaat bewaren. Wat is een geschikt JSON-model?"
+      },
+      "answer": "a",
+      "choices": [
+        {
+          "id": "a",
+          "label": {
+            "en": "A dictionary of named numeric scores.",
+            "nl": "Een dictionary met benoemde numerieke scores."
+          },
+          "reason": {
+            "en": "JSON supports ordinary data structures; loading can reconstruct the needed objects later.",
+            "nl": "JSON ondersteunt gewone gegevensstructuren; laden kan benodigde objecten later reconstrueren."
+          }
+        },
+        {
+          "id": "b",
+          "label": {
+            "en": "The live pygame.Surface object.",
+            "nl": "Het actieve pygame.Surface-object."
+          },
+          "reason": {
+            "en": "A Surface is not directly JSON-serialisable.",
+            "nl": "Een Surface kan niet direct als JSON worden bewaard."
+          }
+        },
+        {
+          "id": "c",
+          "label": {
+            "en": "Several JSON objects appended without a containing list.",
+            "nl": "Meerdere JSON-objecten achter elkaar zonder omvattende lijst."
+          },
+          "reason": {
+            "en": "That is not one valid JSON document.",
+            "nl": "Dat is niet één geldig JSON-document."
+          }
+        }
+      ],
+      "id": "python-v3-16-quiz-a-6"
+    }
+  ],
+  "alternateQuestions": [
+    {
+      "objectiveIds": [
+        "game-state",
+        "scoring-once"
+      ],
+      "reviewActivityIds": [
+        "python-v3-16-01",
+        "python-v3-16-02"
+      ],
+      "category": "prediction",
+      "prompt": {
+        "en": "What does this program print?",
+        "nl": "Wat drukt dit programma af?"
+      },
+      "code": "state = \"serve\"\nscore = 4\nif state == \"playing\":\n    score += 1\nprint(score)",
+      "answer": "a",
+      "choices": [
+        {
+          "id": "a",
+          "label": {
+            "en": "4",
+            "nl": "4"
+          },
+          "reason": {
+            "en": "A served-but-not-playing match cannot award a point.",
+            "nl": "Een wedstrijd vóór de opslag mag geen punt toekennen."
+          }
+        },
+        {
+          "id": "b",
+          "label": {
+            "en": "5",
+            "nl": "5"
+          },
+          "reason": {
+            "en": "The playing guard is false in serve state.",
+            "nl": "De playing-controle is onwaar in serve-toestand."
+          }
+        },
+        {
+          "id": "c",
+          "label": {
+            "en": "0",
+            "nl": "0"
+          },
+          "reason": {
+            "en": "The code preserves the existing score rather than resetting it.",
+            "nl": "De code behoudt de bestaande score in plaats van die te resetten."
+          }
+        }
+      ],
+      "expectedOutput": "4\n",
+      "id": "python-v3-16-quiz-b-1"
+    },
+    {
+      "objectiveIds": [
+        "collision-correction"
+      ],
+      "reviewActivityIds": [
+        "python-v3-16-03"
+      ],
+      "category": "prediction",
+      "prompt": {
+        "en": "What does this program print?",
+        "nl": "Wat drukt dit programma af?"
+      },
+      "code": "import pygame\npaddle = pygame.Rect(30, 100, 10, 60)\nradius = 6\nprint(paddle.right + radius)",
+      "answer": "a",
+      "choices": [
+        {
+          "id": "a",
+          "label": {
+            "en": "46",
+            "nl": "46"
+          },
+          "reason": {
+            "en": "The ball centre goes one radius beyond the paddle’s right edge.",
+            "nl": "Het balmiddelpunt komt één straal voorbij de rechterrand van het batje."
+          }
+        },
+        {
+          "id": "b",
+          "label": {
+            "en": "40",
+            "nl": "40"
+          },
+          "reason": {
+            "en": "That is only the edge; the ball would still overlap it.",
+            "nl": "Dat is alleen de rand; de bal zou die nog overlappen."
+          }
+        },
+        {
+          "id": "c",
+          "label": {
+            "en": "36",
+            "nl": "36"
+          },
+          "reason": {
+            "en": "The right edge also includes the paddle width.",
+            "nl": "De rechterrand omvat ook de batjesbreedte."
+          }
+        }
+      ],
+      "expectedOutput": "46\n",
+      "id": "python-v3-16-quiz-b-2"
+    },
+    {
+      "objectiveIds": [
+        "playtesting",
+        "game-review"
+      ],
+      "reviewActivityIds": [
+        "python-v3-16-05"
+      ],
+      "category": "completion",
+      "prompt": {
+        "en": "Advance only an unpaused playing match.",
+        "nl": "Laat alleen een ongepauzeerde spelende wedstrijd doorgaan."
+      },
+      "code": "state = \"playing\"\npaused = False\nprint(state == \"playing\" and ___ paused)",
+      "answer": "a",
+      "choices": [
+        {
+          "id": "a",
+          "label": {
+            "en": "not",
+            "nl": "not"
+          },
+          "reason": {
+            "en": "not reverses the pause flag before combining the requirements.",
+            "nl": "not keert de pauzevlag om vóór de eisen te combineren."
+          }
+        },
+        {
+          "id": "b",
+          "label": {
+            "en": "bool",
+            "nl": "bool"
+          },
+          "reason": {
+            "en": "not reverses the pause flag before combining the requirements.",
+            "nl": "not keert de pauzevlag om vóór de eisen te combineren."
+          }
+        },
+        {
+          "id": "c",
+          "label": {
+            "en": "or",
+            "nl": "or"
+          },
+          "reason": {
+            "en": "not reverses the pause flag before combining the requirements.",
+            "nl": "not keert de pauzevlag om vóór de eisen te combineren."
+          }
+        }
+      ],
+      "codeBlank": {
+        "prompt": {
+          "en": "Advance only an unpaused playing match.",
+          "nl": "Laat alleen een ongepauzeerde spelende wedstrijd doorgaan."
+        },
+        "segments": [
+          "state = \"playing\"\npaused = False\nprint(state == \"playing\" and ",
+          " paused)"
+        ],
+        "tokens": [
+          {
+            "id": "token-1",
+            "code": "not"
+          },
+          {
+            "id": "token-2",
+            "code": "bool"
+          },
+          {
+            "id": "token-3",
+            "code": "or"
+          }
+        ],
+        "blanks": [
+          {
+            "answer": "not",
+            "reason": {
+              "en": "not reverses the pause flag before combining the requirements.",
+              "nl": "not keert de pauzevlag om vóór de eisen te combineren."
+            }
+          }
+        ],
+        "output": "True\n"
+      },
+      "id": "python-v3-16-quiz-b-3"
+    },
+    {
+      "objectiveIds": [
+        "game-persistence"
+      ],
+      "reviewActivityIds": [
+        "python-v3-16-04"
+      ],
+      "category": "completion",
+      "prompt": {
+        "en": "Include the maximum allowed target in validation.",
+        "nl": "Neem het maximaal toegestane doel mee in validatie."
+      },
+      "code": "target = 11\nvalid = type(target) is int and 1 <= target ___ 11\nprint(valid)",
+      "answer": "a",
+      "choices": [
+        {
+          "id": "a",
+          "label": {
+            "en": "<=",
+            "nl": "<="
+          },
+          "reason": {
+            "en": "The valid interval includes both endpoints.",
+            "nl": "Het geldige interval omvat beide eindpunten."
+          }
+        },
+        {
+          "id": "b",
+          "label": {
+            "en": "<",
+            "nl": "<"
+          },
+          "reason": {
+            "en": "The valid interval includes both endpoints.",
+            "nl": "Het geldige interval omvat beide eindpunten."
+          }
+        },
+        {
+          "id": "c",
+          "label": {
+            "en": ">",
+            "nl": ">"
+          },
+          "reason": {
+            "en": "The valid interval includes both endpoints.",
+            "nl": "Het geldige interval omvat beide eindpunten."
+          }
+        }
+      ],
+      "codeBlank": {
+        "prompt": {
+          "en": "Include the maximum allowed target in validation.",
+          "nl": "Neem het maximaal toegestane doel mee in validatie."
+        },
+        "segments": [
+          "target = 11\nvalid = type(target) is int and 1 <= target ",
+          " 11\nprint(valid)"
+        ],
+        "tokens": [
+          {
+            "id": "token-1",
+            "code": "<="
+          },
+          {
+            "id": "token-2",
+            "code": "<"
+          },
+          {
+            "id": "token-3",
+            "code": ">"
+          }
+        ],
+        "blanks": [
+          {
+            "answer": "<=",
+            "reason": {
+              "en": "The valid interval includes both endpoints.",
+              "nl": "Het geldige interval omvat beide eindpunten."
+            }
+          }
+        ],
+        "output": "True\n"
+      },
+      "id": "python-v3-16-quiz-b-4"
+    },
+    {
+      "objectiveIds": [
+        "independent-instances",
+        "class-variables"
+      ],
+      "reviewActivityIds": [
+        "python-v3-15-04"
+      ],
+      "category": "debugging",
+      "prompt": {
+        "en": "Where should a separate per-player score history be created?",
+        "nl": "Waar moet een aparte scoregeschiedenis per speler gemaakt worden?"
+      },
+      "code": "class Player:\n    history = []\n    def __init__(self, name):\n        self.name = name\na = Player(\"Bo\")",
+      "answer": "a",
+      "choices": [
+        {
+          "id": "a",
+          "label": {
+            "en": "Inside __init__ as self.history = [].",
+            "nl": "Binnen __init__ als self.history = []."
+          },
+          "reason": {
+            "en": "Each constructor call then creates its own list.",
+            "nl": "Elke constructoraanroep maakt dan een eigen lijst."
+          }
+        },
+        {
+          "id": "b",
+          "label": {
+            "en": "Keep the single mutable class list.",
+            "nl": "Behoud de ene veranderlijke klasselijst."
+          },
+          "reason": {
+            "en": "All instances continue to share it.",
+            "nl": "Alle instanties blijven die delen."
+          }
+        },
+        {
+          "id": "c",
+          "label": {
+            "en": "Reset Player.history whenever any player scores.",
+            "nl": "Reset Player.history telkens als iemand scoort."
+          },
+          "reason": {
+            "en": "That also erases other players’ shared history.",
+            "nl": "Dat wist ook gedeelde geschiedenis van andere spelers."
+          }
+        }
+      ],
+      "id": "python-v3-16-quiz-b-5"
+    },
+    {
+      "objectiveIds": [
+        "json-dump",
+        "round-trips"
+      ],
+      "reviewActivityIds": [
+        "python-v3-14-05"
+      ],
+      "category": "application",
+      "prompt": {
+        "en": "You want to save a paddle’s settings. What is a suitable JSON data model?",
+        "nl": "Je wilt instellingen van een batje bewaren. Wat is een geschikt JSON-model?"
+      },
+      "answer": "a",
+      "choices": [
+        {
+          "id": "a",
+          "label": {
+            "en": "A dictionary of named numeric settings.",
+            "nl": "Een dictionary met benoemde numerieke instellingen."
+          },
+          "reason": {
+            "en": "JSON supports ordinary data structures; loading can reconstruct the needed objects later.",
+            "nl": "JSON ondersteunt gewone gegevensstructuren; laden kan benodigde objecten later reconstrueren."
+          }
+        },
+        {
+          "id": "b",
+          "label": {
+            "en": "The live pygame.Surface object.",
+            "nl": "Het actieve pygame.Surface-object."
+          },
+          "reason": {
+            "en": "A Surface is not directly JSON-serialisable.",
+            "nl": "Een Surface kan niet direct als JSON worden bewaard."
+          }
+        },
+        {
+          "id": "c",
+          "label": {
+            "en": "Several JSON objects appended without a containing list.",
+            "nl": "Meerdere JSON-objecten achter elkaar zonder omvattende lijst."
+          },
+          "reason": {
+            "en": "That is not one valid JSON document.",
+            "nl": "Dat is niet één geldig JSON-document."
+          }
+        }
+      ],
+      "id": "python-v3-16-quiz-b-6"
+    }
+  ]
+}

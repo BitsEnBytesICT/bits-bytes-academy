@@ -1,0 +1,192 @@
+{
+  "id": "python-v3-14-05",
+  "chapter": 14,
+  "group": "python-v3-module-14",
+  "title": {
+    "en": "Save JSON",
+    "nl": "Bewaar JSON"
+  },
+  "kind": "coding",
+  "optional": false,
+  "runtime": "terminal",
+  "guidance": "adapt",
+  "estimatedMinutes": 15,
+  "explanation": {
+    "en": "Save and reload settings using a JSON round trip. Keep only JSON-compatible data: strings, numbers, booleans, None, lists and dictionaries with string keys.",
+    "nl": "Bewaar en herlaad instellingen via JSON heen en terug. Gebruik alleen JSON-geschikte gegevens: strings, getallen, booleans, None, lijsten en dictionaries met stringsleutels."
+  },
+  "example": "",
+  "topicIds": [
+    "json-dump",
+    "round-trips"
+  ],
+  "prerequisites": [
+    "python-v3-14-04"
+  ],
+  "sections": [
+    {
+      "topicIds": [
+        "json-dump",
+        "round-trips"
+      ],
+      "heading": {
+        "en": "Check by loading again",
+        "nl": "Controleer door opnieuw te laden"
+      },
+      "body": {
+        "en": "For JSON held in a string, json.loads(text) decodes it and json.dumps(value) returns JSON text. The final s means string; file handles use load/dump instead. json.dump(value, handle) writes one JSON document; indent=2 makes it readable and ensure_ascii=False keeps non-ASCII text visible in UTF-8. Do not append independent JSON documents to one file: that is no longer one valid document. A round trip may change unsupported assumptions: tuples become lists and non-string object keys are converted, so choose a clear JSON-shaped model.",
+        "nl": "Voor JSON in een string decodeert json.loads(tekst) de tekst en geeft json.dumps(waarde) JSON-tekst terug. De laatste s betekent string; bestandshandles gebruiken load/dump. json.dump(waarde, handle) schrijft één JSON-document; indent=2 maakt het leesbaar en ensure_ascii=False houdt niet-ASCII-tekst zichtbaar in UTF-8. Voeg geen onafhankelijke JSON-documenten achter elkaar toe: dat is niet meer één geldig document. Heen-en-terug lezen kan ongeldige aannames veranderen: tuples worden lijsten en niet-stringobjectsleutels worden omgezet, dus kies een duidelijk JSON-geschikt model."
+      },
+      "code": "import json\nsettings = {\"name\": \"Zoë\", \"sound\": False}\nwith open(\"example.json\", \"w\", encoding=\"utf-8\") as handle:\n    json.dump(settings, handle, ensure_ascii=False, indent=2)\nwith open(\"example.json\", encoding=\"utf-8\") as handle:\n    restored = json.load(handle)\nprint(restored == settings)",
+      "output": "True\n",
+      "prediction": {
+        "en": "Why is appending a second object different from saving a list of objects?",
+        "nl": "Waarom verschilt een tweede object toevoegen van een lijst objecten bewaren?"
+      }
+    },
+    {
+      "topicIds": [],
+      "heading": {
+        "en": "Try a changed input",
+        "nl": "Probeer gewijzigde invoer"
+      },
+      "body": {
+        "en": "Save a nested list of records, reopen the generated file tab and reload it. Compare the restored Python value, not just the raw formatting.",
+        "nl": "Bewaar een geneste lijst records, open het gegenereerde bestandstabblad en herlaad die. Vergelijk de herstelde Python-waarde, niet alleen de ruwe opmaak."
+      }
+    }
+  ],
+  "files": {
+    "main.py": "import json\n\ndef save_settings(filename, settings):\n    pass\n\ndef load_settings(filename):\n    return {}\n\nsave_settings(\"settings.json\", {\"name\": \"Zoë\", \"sound\": False, \"scores\": [2, 3]})\nprint(load_settings(\"settings.json\"))\n"
+  },
+  "solution": {
+    "main.py": "import json\n\ndef save_settings(filename, settings):\n    with open(filename, \"w\", encoding=\"utf-8\") as handle:\n        json.dump(settings, handle, ensure_ascii=False, indent=2)\n\ndef load_settings(filename):\n    try:\n        with open(filename, encoding=\"utf-8\") as handle:\n            return json.load(handle)\n    except FileNotFoundError:\n        return {}\n\nsave_settings(\"settings.json\", {\"name\": \"Zoë\", \"sound\": False, \"scores\": [2, 3]})\nprint(load_settings(\"settings.json\"))\n"
+  },
+  "checkpoints": [
+    {
+      "objectiveIds": [
+        "json-dump"
+      ],
+      "task": {
+        "en": "Save settings as one UTF-8 JSON document, replacing old contents. Keep Unicode readable.",
+        "nl": "Bewaar settings als één UTF-8-JSON-document en vervang oude inhoud. Houd Unicode leesbaar."
+      },
+      "check": "__import__(\"json\").loads(__import__(\"pathlib\").Path(\"settings.json\").read_text(encoding=\"utf-8\")) == {\"name\":\"Zoë\",\"sound\":False,\"scores\":[2,3]}",
+      "hints": [
+        {
+          "en": "Use the JSON encoder for the structure.",
+          "nl": "Gebruik de JSON-encoder voor de structuur."
+        },
+        {
+          "en": "Open with w and use ensure_ascii=False.",
+          "nl": "Open met w en gebruik ensure_ascii=False."
+        },
+        {
+          "en": "json.dump(settings, handle, ensure_ascii=False, indent=2)",
+          "nl": "json.dump(settings, handle, ensure_ascii=False, indent=2)"
+        }
+      ],
+      "hint": {
+        "en": "Use the JSON encoder for the structure.",
+        "nl": "Gebruik de JSON-encoder voor de structuur."
+      },
+      "feedback": {
+        "en": "Writing str(settings) produces Python text, not reliable JSON.",
+        "nl": "str(settings) schrijven maakt Python-tekst, geen betrouwbare JSON."
+      },
+      "probes": [
+        {
+          "call": {
+            "name": "save_settings",
+            "args": [
+              "probe.json",
+              {
+                "name": "Éva",
+                "value": null
+              }
+            ]
+          },
+          "check": "__import__(\"json\").loads(__import__(\"pathlib\").Path(\"probe.json\").read_text(encoding=\"utf-8\")) == {\"name\":\"Éva\",\"value\":None} and \"Éva\" in __import__(\"pathlib\").Path(\"probe.json\").read_text(encoding=\"utf-8\")",
+          "files": {
+            "probe.json": "{\"old\": true}"
+          }
+        }
+      ],
+      "id": "python-v3-14-05-step-1"
+    },
+    {
+      "objectiveIds": [
+        "round-trips"
+      ],
+      "task": {
+        "en": "Reload saved settings unchanged. Return {} only if the file is missing; leave malformed JSON visible as JSONDecodeError.",
+        "nl": "Herlaad opgeslagen instellingen ongewijzigd. Geef alleen {} als het bestand ontbreekt; laat ongeldige JSON zichtbaar als JSONDecodeError."
+      },
+      "check": "load_settings(\"settings.json\") == {\"name\":\"Zoë\",\"sound\":False,\"scores\":[2,3]}",
+      "hints": [
+        {
+          "en": "Missing and damaged files are different situations.",
+          "nl": "Ontbrekende en beschadigde bestanden zijn verschillende situaties."
+        },
+        {
+          "en": "Catch only FileNotFoundError in this loader.",
+          "nl": "Vang alleen FileNotFoundError in deze lezer op."
+        },
+        {
+          "en": "return json.load(handle)",
+          "nl": "return json.load(handle)"
+        }
+      ],
+      "hint": {
+        "en": "Missing and damaged files are different situations.",
+        "nl": "Ontbrekende en beschadigde bestanden zijn verschillende situaties."
+      },
+      "feedback": {
+        "en": "Do not silently treat damaged saved settings as an empty dictionary.",
+        "nl": "Behandel beschadigde opgeslagen instellingen niet stilzwijgend als een lege dictionary."
+      },
+      "probes": [
+        {
+          "call": {
+            "name": "load_settings",
+            "args": [
+              "missing.json"
+            ]
+          },
+          "check": "_return == {} and _error is None"
+        },
+        {
+          "call": {
+            "name": "load_settings",
+            "args": [
+              "bad.json"
+            ]
+          },
+          "check": "_error == \"JSONDecodeError\"",
+          "files": {
+            "bad.json": "{broken"
+          }
+        }
+      ],
+      "id": "python-v3-14-05-step-2"
+    }
+  ],
+  "solutionNote": {
+    "en": "The writer replaces a complete document and the reader validates its JSON syntax. The missing-file fallback does not hide damage to an existing file.",
+    "nl": "De schrijver vervangt een volledig document en de lezer controleert zijn JSON-syntax. De terugval voor een ontbrekend bestand verbergt geen schade aan een bestaand bestand."
+  },
+  "inputs": [],
+  "retrievals": [
+    {
+      "id": "recall-python-v3-12-05",
+      "sourceActivityId": "python-v3-12-05",
+      "objectiveIds": [
+        "dictionary-comprehensions"
+      ],
+      "prompt": {
+        "en": "Build a dictionary comprehension from a mapping with one filtered-out entry. Show the equivalent ordinary loop.",
+        "nl": "Bouw een dictionarycomprehension met één weggefilterde invoer. Toon de equivalente gewone lus."
+      }
+    }
+  ]
+}

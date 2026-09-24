@@ -1,0 +1,140 @@
+{
+  "id": "python-v4-18-format",
+  "chapter": 18,
+  "group": "python-v4-module-18",
+  "title": {
+    "en": "Fill a text template with format",
+    "nl": "Vul een tekstsjabloon met format"
+  },
+  "kind": "coding",
+  "optional": false,
+  "runtime": "terminal",
+  "guidance": "guided",
+  "checkpointMode": "sequential",
+  "estimatedMinutes": 12,
+  "topicIds": [
+    "format",
+    "positional-format",
+    "named-format"
+  ],
+  "practices": [],
+  "requiredConcepts": [
+    "f-strings",
+    "keyword-arguments"
+  ],
+  "explanation": {
+    "en": "You will encounter format in existing Python code and in reusable templates.",
+    "nl": "Je komt format tegen in bestaande Pythoncode en herbruikbare sjablonen."
+  },
+  "example": "",
+  "sections": [
+    {
+      "id": "python-v4-18-format-example",
+      "topicIds": [
+        "format",
+        "positional-format",
+        "named-format"
+      ],
+      "heading": {
+        "en": "Follow a working example",
+        "nl": "Volg een werkend voorbeeld"
+      },
+      "body": {
+        "en": "\"{}: {}\".format(name, score) fills placeholders in argument order. Numbered fields such as {1} choose a position explicitly. Named fields such as {name} use keyword arguments: template.format(name=\"Bo\"). Braces mark replacement fields. f-strings put expressions directly inside braces, while format takes values in a later call. Both produce strings.",
+        "nl": "\"{}: {}\".format(name, score) vult velden op argumentvolgorde. Genummerde velden zoals {1} kiezen expliciet een positie. Benoemde velden zoals {name} gebruiken benoemde argumenten: template.format(name=\"Bo\"). Accolades markeren vervangvelden. f-strings zetten uitdrukkingen direct in accolades, terwijl format waarden in een latere aanroep krijgt. Beide maken strings."
+      },
+      "code": "print(\"{1}, {0}\".format(\"Ada\",\"Hello\"))\nprint(\"{name}: {score}\".format(name=\"Bo\",score=4))",
+      "output": "Hello, Ada\nBo: 4\n",
+      "prediction": {
+        "en": "Which positional argument does {1} select?",
+        "nl": "Welk positioneel argument kiest {1}?"
+      },
+      "takeaway": {
+        "en": "Match each placeholder to a positional or named argument.",
+        "nl": "Koppel elk vervangveld aan een positioneel of benoemd argument."
+      }
+    },
+    {
+      "id": "python-v4-18-format-experiment",
+      "topicIds": [],
+      "heading": {
+        "en": "Try one change",
+        "nl": "Probeer één wijziging"
+      },
+      "body": {
+        "en": "Write an equivalent f-string and explain where its values are supplied.",
+        "nl": "Schrijf een gelijkwaardige f-string en leg uit waar de waarden worden geleverd."
+      }
+    }
+  ],
+  "files": {
+    "main.py": "def label(name, score):\n    # Complete this function.\n    return None\n"
+  },
+  "solution": {
+    "main.py": "def label(name, score):\n    return \"{name}: {score}\".format(name=name, score=score)\n"
+  },
+  "checkpoints": [
+    {
+      "id": "python-v4-18-format-step-1",
+      "objectiveIds": [
+        "format",
+        "positional-format",
+        "named-format"
+      ],
+      "task": {
+        "en": "Use .format() to return a label such as Ada: 7 from the supplied values.",
+        "nl": "Gebruik .format() om vanuit de gegeven waarden een label zoals Ada: 7 terug te geven."
+      },
+      "check": "any(isinstance(n,_ast.Attribute) and n.attr == \"format\" for n in _ast.walk(_ast.parse(_source)))",
+      "probes": [
+        {
+          "call": {
+            "name": "label",
+            "args": [
+              "Ada",
+              7
+            ]
+          },
+          "check": "(_return == \"Ada: 7\") and _error is None"
+        },
+        {
+          "call": {
+            "name": "label",
+            "args": [
+              "Bo",
+              0
+            ]
+          },
+          "check": "(_return == \"Bo: 0\") and _error is None"
+        }
+      ],
+      "hint": {
+        "en": "Match each placeholder to a positional or named argument.",
+        "nl": "Koppel elk vervangveld aan een positioneel of benoemd argument."
+      },
+      "hints": [
+        {
+          "en": "Match each placeholder to a positional or named argument.",
+          "nl": "Koppel elk vervangveld aan een positioneel of benoemd argument."
+        },
+        {
+          "en": "Match the template’s field names to keyword arguments.",
+          "nl": "Koppel de veldnamen van het sjabloon aan benoemde argumenten."
+        },
+        {
+          "en": "A small fragment to adapt: `.format(name=name, score=score)`",
+          "nl": "Een klein fragment om aan te passen: `.format(name=name, score=score)`"
+        }
+      ],
+      "feedback": {
+        "en": "Match the template’s field names to keyword arguments.",
+        "nl": "Koppel de veldnamen van het sjabloon aan benoemde argumenten."
+      }
+    }
+  ],
+  "solutionNote": {
+    "en": "Named replacement fields make the mapping explicit while supporting changed values.",
+    "nl": "Benoemde vervangvelden maken de koppeling expliciet en ondersteunen andere waarden."
+  },
+  "inputs": []
+}

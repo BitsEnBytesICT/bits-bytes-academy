@@ -1,0 +1,219 @@
+{
+  "id": "python-v3-15-05",
+  "chapter": 15,
+  "group": "python-v3-module-15",
+  "title": {
+    "en": "Inspect and represent",
+    "nl": "Bekijk en presenteer"
+  },
+  "kind": "coding",
+  "optional": false,
+  "runtime": "terminal",
+  "guidance": "adapt",
+  "estimatedMinutes": 17,
+  "explanation": {
+    "en": "Make objects easier to inspect. Attribute tools help discover available information, while __repr__ and __str__ give objects useful textual representations.",
+    "nl": "Maak objecten makkelijker te inspecteren. Attribuuthulpmiddelen helpen beschikbare informatie ontdekken, terwijl __repr__ en __str__ bruikbare tekstvoorstellingen geven."
+  },
+  "example": "",
+  "topicIds": [
+    "hasattr",
+    "getattr",
+    "dir",
+    "repr",
+    "str"
+  ],
+  "prerequisites": [
+    "python-v3-15-04"
+  ],
+  "sections": [
+    {
+      "topicIds": [
+        "hasattr",
+        "getattr",
+        "dir",
+        "repr",
+        "str"
+      ],
+      "heading": {
+        "en": "Inspect without guessing",
+        "nl": "Bekijk zonder te raden"
+      },
+      "body": {
+        "en": "hasattr(obj, name) asks whether an attribute is available. getattr(obj, name, default) reads it with a fallback. dir(obj) lists discoverable attribute names, including many internal ones. Dictionary keys are not automatically object attributes. repr(obj) calls __repr__ for a diagnostic representation; str(obj) and print use __str__ for a friendly form. In f-strings, !r applies repr to a value so string quotes remain visible.",
+        "nl": "hasattr(obj, naam) vraagt of een attribuut beschikbaar is. getattr(obj, naam, standaard) leest het met een terugvalwaarde. dir(obj) noemt vindbare attributen, inclusief veel interne. Dictionarysleutels zijn niet automatisch objectattributen. repr(obj) roept __repr__ aan voor een diagnostische voorstelling; str(obj) en print gebruiken __str__ voor een vriendelijke vorm. In f-strings past !r repr op een waarde toe zodat stringaanhalingstekens zichtbaar blijven."
+      },
+      "code": "class Token:\n    def __init__(self, text):\n        self.text = text\n    def __repr__(self):\n        return f\"Token({self.text!r})\"\n    def __str__(self):\n        return self.text\n\ntoken = Token(\"Hi\")\nprint(repr(token))\nprint(str(token))\nprint(hasattr(token, \"text\"), getattr(token, \"missing\", 0))",
+      "output": "Token('Hi')\nHi\nTrue 0\n",
+      "prediction": {
+        "en": "Which form is useful for a user, and which reveals the stored string clearly?",
+        "nl": "Welke vorm is nuttig voor een gebruiker en welke toont de opgeslagen string duidelijk?"
+      }
+    },
+    {
+      "topicIds": [],
+      "heading": {
+        "en": "Try a changed input",
+        "nl": "Probeer gewijzigde invoer"
+      },
+      "body": {
+        "en": "Print a list of Badge objects and compare it with printing one Badge. Explain why containers often show the diagnostic representation.",
+        "nl": "Druk een lijst Badge-objecten af en vergelijk dat met één Badge afdrukken. Leg uit waarom verzamelingen vaak de diagnostische voorstelling tonen."
+      }
+    }
+  ],
+  "files": {
+    "main.py": "class Badge:\n    def __init__(self, name, score):\n        self.name = name\n        self.score = score\n\n    def __repr__(self):\n        return \"Badge\"\n\n    def __str__(self):\n        return \"Badge\"\n\ndef inspect_badge(obj):\n    return \"anonymous\", False, False\n\nprint(repr(Badge(\"Ada\", 3)))\n"
+  },
+  "solution": {
+    "main.py": "class Badge:\n    def __init__(self, name, score):\n        self.name = name\n        self.score = score\n\n    def __repr__(self):\n        return f\"Badge({self.name!r}, {self.score!r})\"\n\n    def __str__(self):\n        return f\"{self.name} ({self.score})\"\n\ndef inspect_badge(obj):\n    return getattr(obj, \"name\", \"anonymous\"), hasattr(obj, \"score\"), \"name\" in dir(obj)\n\nprint(repr(Badge(\"Ada\", 3)))\n"
+  },
+  "checkpoints": [
+    {
+      "objectiveIds": [
+        "repr"
+      ],
+      "task": {
+        "en": "Implement __repr__ as Badge(repr(name), repr(score)), for example Badge('Ada', 3).",
+        "nl": "Implementeer __repr__ als Badge(repr(name), repr(score)), bijvoorbeeld Badge('Ada', 3)."
+      },
+      "check": "repr(Badge(\"Ada\",3)) == \"Badge(\" + repr(\"Ada\") + \", 3)\"",
+      "hints": [
+        {
+          "en": "A diagnostic representation should identify type and state.",
+          "nl": "Een diagnostische voorstelling moet type en toestand tonen."
+        },
+        {
+          "en": "Use !r on the two attribute values.",
+          "nl": "Gebruik !r bij de twee attribuutwaarden."
+        },
+        {
+          "en": "return f\"Badge({self.name!r}, {self.score!r})\"",
+          "nl": "return f\"Badge({self.name!r}, {self.score!r})\""
+        }
+      ],
+      "hint": {
+        "en": "A diagnostic representation should identify type and state.",
+        "nl": "Een diagnostische voorstelling moet type en toestand tonen."
+      },
+      "feedback": {
+        "en": "Do not assume every name can be safely wrapped in hard-coded quote characters.",
+        "nl": "Neem niet aan dat elke naam veilig tussen vastgelegde aanhalingstekens past."
+      },
+      "probes": [
+        {
+          "call": {
+            "name": "Badge",
+            "args": [
+              "O'Neil",
+              -2
+            ]
+          },
+          "check": "repr(_return) == \"Badge(\" + repr(_args[0]) + \", -2)\""
+        }
+      ],
+      "id": "python-v3-15-05-step-1"
+    },
+    {
+      "objectiveIds": [
+        "str"
+      ],
+      "task": {
+        "en": "Implement __str__ as a friendly name followed by score in parentheses, such as Ada (3).",
+        "nl": "Implementeer __str__ als een vriendelijke naam gevolgd door score tussen haakjes, zoals Ada (3)."
+      },
+      "check": "str(Badge(\"Ada\",3)) == \"Ada (3)\"",
+      "hints": [
+        {
+          "en": "Friendly output need not look like source code.",
+          "nl": "Vriendelijke uitvoer hoeft niet op broncode te lijken."
+        },
+        {
+          "en": "Read the same instance values without !r.",
+          "nl": "Lees dezelfde instantiewaarden zonder !r."
+        },
+        {
+          "en": "return f\"{self.name} ({self.score})\"",
+          "nl": "return f\"{self.name} ({self.score})\""
+        }
+      ],
+      "hint": {
+        "en": "Friendly output need not look like source code.",
+        "nl": "Vriendelijke uitvoer hoeft niet op broncode te lijken."
+      },
+      "feedback": {
+        "en": "__str__ must return a string rather than print one.",
+        "nl": "__str__ moet een string teruggeven in plaats van afdrukken."
+      },
+      "probes": [
+        {
+          "call": {
+            "name": "Badge",
+            "args": [
+              "Zoë",
+              0
+            ]
+          },
+          "check": "str(_return) == \"Zoë (0)\""
+        }
+      ],
+      "id": "python-v3-15-05-step-2"
+    },
+    {
+      "objectiveIds": [
+        "hasattr",
+        "getattr",
+        "dir"
+      ],
+      "task": {
+        "en": "Return (name_or_anonymous, has_score, name_in_dir) from inspect_badge using getattr, hasattr and dir.",
+        "nl": "Geef (naam_of_anonymous, heeft_score, naam_in_dir) terug vanuit inspect_badge met getattr, hasattr en dir."
+      },
+      "check": "inspect_badge(Badge(\"Bo\",2)) == (\"Bo\",True,True)",
+      "hints": [
+        {
+          "en": "Attribute existence is different from a value being truthy.",
+          "nl": "Attribuutbestaan verschilt van een waarde die waarachtig is."
+        },
+        {
+          "en": "Use an explicit default for a missing name.",
+          "nl": "Gebruik een expliciete standaard voor een ontbrekende naam."
+        },
+        {
+          "en": "getattr(obj, \"name\", \"anonymous\")",
+          "nl": "getattr(obj, \"name\", \"anonymous\")"
+        }
+      ],
+      "hint": {
+        "en": "Attribute existence is different from a value being truthy.",
+        "nl": "Attribuutbestaan verschilt van een waarde die waarachtig is."
+      },
+      "feedback": {
+        "en": "A dictionary containing a name key does not automatically have a name attribute.",
+        "nl": "Een dictionary met een name-sleutel heeft niet automatisch een name-attribuut."
+      },
+      "probes": [
+        {
+          "call": {
+            "name": "inspect_badge",
+            "args": [
+              {
+                "name": "Ada"
+              }
+            ]
+          },
+          "check": "_return == (\"anonymous\",False,False)"
+        },
+        {
+          "check": "inspect_badge(Badge(\"\",0)) == (\"\",True,True)"
+        }
+      ],
+      "id": "python-v3-15-05-step-3"
+    }
+  ],
+  "solutionNote": {
+    "en": "Representation methods return strings for Python to display. Attribute inspection tests availability directly, so empty names and zero scores remain valid present values.",
+    "nl": "Voorstellingsmethoden geven strings terug die Python toont. Attribuutinspectie test beschikbaarheid direct, zodat lege namen en nulscores geldige aanwezige waarden blijven."
+  },
+  "inputs": []
+}

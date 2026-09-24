@@ -1,0 +1,236 @@
+{
+  "id": "python-v3-8-03",
+  "chapter": 8,
+  "group": "python-v3-module-8",
+  "title": {
+    "en": "Stay inside the court",
+    "nl": "Blijf binnen het veld"
+  },
+  "kind": "coding",
+  "optional": false,
+  "runtime": "pygame",
+  "guidance": "adapt",
+  "estimatedMinutes": 17,
+  "explanation": {
+    "en": "Clamp a paddle’s top position so its whole rectangle stays on the court. The maximum top position depends on the paddle height.",
+    "nl": "Begrens de bovenkant van een batje zodat de hele rechthoek binnen het veld blijft. De maximale bovenpositie hangt af van de batjeshoogte."
+  },
+  "example": "",
+  "topicIds": [
+    "boundaries"
+  ],
+  "prerequisites": [
+    "python-v3-8-02"
+  ],
+  "sections": [
+    {
+      "topicIds": [
+        "boundaries"
+      ],
+      "heading": {
+        "en": "Respect the whole object",
+        "nl": "Respecteer het hele object"
+      },
+      "body": {
+        "en": "For a court of height H and a paddle of height h, valid top positions run from 0 through H-h. Comparing only with H allows the bottom to disappear. You can express clamping with if/elif or with the built-in min and max functions, which choose the smaller and larger values.",
+        "nl": "Voor een veldhoogte H en batjeshoogte h lopen geldige bovenposities van 0 tot en met H-h. Alleen met H vergelijken laat de onderkant verdwijnen. Begrenzen kan met if/elif of met de ingebouwde min- en max-functies, die de kleinste en grootste waarde kiezen."
+      },
+      "code": "court_height = 120\npaddle_height = 30\nprint(court_height - paddle_height)\nprint(max(0, min(90, 110)))",
+      "output": "90\n90\n",
+      "prediction": {
+        "en": "Which part of the rectangle does y describe?",
+        "nl": "Welk deel van de rechthoek beschrijft y?"
+      }
+    },
+    {
+      "topicIds": [],
+      "heading": {
+        "en": "Run, observe, finish",
+        "nl": "Voer uit, bekijk, rond af"
+      },
+      "body": {
+        "en": "main.py supplies the browser entry point. Run opens a real pygame-ce preview; click it to focus the keyboard. Clicking elsewhere pauses play. Finish & check closes normally and checks your helper after at least one rendered frame. Stop cancels without grading. Run can start a fresh session afterward. Keep the supplied async definition and await asyncio.sleep(1 / 60): they let the browser draw and receive input. You are not expected to reproduce this infrastructure from memory.",
+        "nl": "main.py levert het browserstartpunt. Uitvoeren opent een echt pygame-ce-voorbeeld; klik erop om het toetsenbord te activeren. Elders klikken pauzeert het spel. Afronden en controleren sluit normaal af en controleert je helper na minstens één getekend beeld. Stop annuleert zonder beoordeling. Uitvoeren kan daarna een nieuwe sessie starten. Behoud de meegeleverde async-definitie en await asyncio.sleep(1 / 60): die laten de browser tekenen en invoer ontvangen. Je hoeft deze infrastructuur niet uit je hoofd te schrijven."
+      }
+    },
+    {
+      "topicIds": [],
+      "heading": {
+        "en": "Try a changed input",
+        "nl": "Probeer gewijzigde invoer"
+      },
+      "body": {
+        "en": "Make the paddle taller in a temporary call. Predict how much its maximum top position shrinks. Hold both paddles against both edges in the preview.",
+        "nl": "Maak het batje hoger in een tijdelijke aanroep. Voorspel hoeveel de maximale bovenpositie krimpt. Houd beide batjes tegen beide randen in het voorbeeld."
+      }
+    }
+  ],
+  "files": {
+    "main.py": "# Browser entry point supplied by the course.\nimport asyncio\nimport pygame\nimport game\n\nasync def main():\n    pygame.init()\n    screen = pygame.display.set_mode((640, 400))\n    clock = pygame.time.Clock()\n    running = True\n    x, y = 320.0, 200.0\n    vx, vy = 200.0, 100.0\n    left_y, right_y = 170.0, 170.0\n    while running:\n        dt = min(clock.tick() / 1000, 0.05)\n        for event in pygame.event.get():\n            if event.type == pygame.QUIT:\n                running = False\n            if event.type == pygame.KEYDOWN and event.key == pygame.K_ESCAPE:\n                running = False\n        keys = pygame.key.get_pressed()\n        if keys[pygame.K_w]:\n            left_y -= 240 * dt\n        if keys[pygame.K_s]:\n            left_y += 240 * dt\n        if keys[pygame.K_UP]:\n            right_y -= 240 * dt\n        if keys[pygame.K_DOWN]:\n            right_y += 240 * dt\n        left_y = game.clamp_y(left_y, 60, 400)\n        right_y = game.clamp_y(right_y, 60, 400)\n        screen.fill((16, 23, 39))\n        pygame.draw.rect(screen, (235, 240, 250), (20, left_y, 10, 60))\n        pygame.draw.rect(screen, (235, 240, 250), (610, right_y, 10, 60))\n        pygame.draw.circle(screen, (255, 170, 40), (int(x), int(y)), 6)\n        pygame.display.flip()\n        await asyncio.sleep(1 / 60)\n    pygame.quit()\n\nasyncio.run(main())\n",
+    "game.py": "import pygame\n\ndef clamp_y(y, paddle_height, court_height):\n    return y\n"
+  },
+  "solution": {
+    "main.py": "# Browser entry point supplied by the course.\nimport asyncio\nimport pygame\nimport game\n\nasync def main():\n    pygame.init()\n    screen = pygame.display.set_mode((640, 400))\n    clock = pygame.time.Clock()\n    running = True\n    x, y = 320.0, 200.0\n    vx, vy = 200.0, 100.0\n    left_y, right_y = 170.0, 170.0\n    while running:\n        dt = min(clock.tick() / 1000, 0.05)\n        for event in pygame.event.get():\n            if event.type == pygame.QUIT:\n                running = False\n            if event.type == pygame.KEYDOWN and event.key == pygame.K_ESCAPE:\n                running = False\n        keys = pygame.key.get_pressed()\n        if keys[pygame.K_w]:\n            left_y -= 240 * dt\n        if keys[pygame.K_s]:\n            left_y += 240 * dt\n        if keys[pygame.K_UP]:\n            right_y -= 240 * dt\n        if keys[pygame.K_DOWN]:\n            right_y += 240 * dt\n        left_y = game.clamp_y(left_y, 60, 400)\n        right_y = game.clamp_y(right_y, 60, 400)\n        screen.fill((16, 23, 39))\n        pygame.draw.rect(screen, (235, 240, 250), (20, left_y, 10, 60))\n        pygame.draw.rect(screen, (235, 240, 250), (610, right_y, 10, 60))\n        pygame.draw.circle(screen, (255, 170, 40), (int(x), int(y)), 6)\n        pygame.display.flip()\n        await asyncio.sleep(1 / 60)\n    pygame.quit()\n\nasyncio.run(main())\n",
+    "game.py": "import pygame\n\ndef clamp_y(y, paddle_height, court_height):\n    if y < 0:\n        return 0\n    if y > court_height - paddle_height:\n        return court_height - paddle_height\n    return y\n"
+  },
+  "checkpoints": [
+    {
+      "objectiveIds": [
+        "boundaries"
+      ],
+      "task": {
+        "en": "Clamp below-zero and too-large y values into 0..court_height-paddle_height. Assume 0 < paddle_height <= court_height.",
+        "nl": "Begrens negatieve en te grote y-waarden tot 0..court_height-paddle_height. Ga uit van 0 < paddle_height <= court_height."
+      },
+      "check": "_rendered_frames > 0",
+      "hints": [
+        {
+          "en": "Use the paddle’s top as the coordinate.",
+          "nl": "Gebruik de bovenkant van het batje als coördinaat."
+        },
+        {
+          "en": "Subtract paddle height from court height for the upper limit.",
+          "nl": "Trek de batjeshoogte van de veldhoogte af voor de bovengrens."
+        },
+        {
+          "en": "return court_height - paddle_height",
+          "nl": "return court_height - paddle_height"
+        }
+      ],
+      "hint": {
+        "en": "Use the paddle’s top as the coordinate.",
+        "nl": "Gebruik de bovenkant van het batje als coördinaat."
+      },
+      "feedback": {
+        "en": "The whole paddle must stay visible at the bottom.",
+        "nl": "Het hele batje moet onderaan zichtbaar blijven."
+      },
+      "probes": [
+        {
+          "call": {
+            "name": "clamp_y",
+            "args": [
+              -5,
+              20,
+              100
+            ],
+            "module": "game"
+          },
+          "check": "_return == 0",
+          "moduleOnly": true,
+          "module": "game"
+        },
+        {
+          "call": {
+            "name": "clamp_y",
+            "args": [
+              95,
+              20,
+              100
+            ],
+            "module": "game"
+          },
+          "check": "_return == 80",
+          "moduleOnly": true,
+          "module": "game"
+        },
+        {
+          "call": {
+            "name": "clamp_y",
+            "args": [
+              10,
+              100,
+              100
+            ],
+            "module": "game"
+          },
+          "check": "_return == 0",
+          "moduleOnly": true,
+          "module": "game"
+        }
+      ],
+      "id": "python-v3-8-03-step-1"
+    },
+    {
+      "objectiveIds": [
+        "boundaries"
+      ],
+      "task": {
+        "en": "Preserve valid positions, including fractional values and the exact boundaries.",
+        "nl": "Behoud geldige posities, inclusief decimalen en exacte grenzen."
+      },
+      "check": "_rendered_frames > 0",
+      "hints": [
+        {
+          "en": "Clamping is not rounding.",
+          "nl": "Begrenzen is geen afronden."
+        },
+        {
+          "en": "Return y unchanged if it is already valid.",
+          "nl": "Geef y ongewijzigd terug als die al geldig is."
+        },
+        {
+          "en": "return y",
+          "nl": "return y"
+        }
+      ],
+      "hint": {
+        "en": "Clamping is not rounding.",
+        "nl": "Begrenzen is geen afronden."
+      },
+      "feedback": {
+        "en": "Do not move an already valid paddle or truncate its fractional position.",
+        "nl": "Verplaats een geldig batje niet en kap de fractie van zijn positie niet af."
+      },
+      "probes": [
+        {
+          "call": {
+            "name": "clamp_y",
+            "args": [
+              2.5,
+              20,
+              100
+            ],
+            "module": "game"
+          },
+          "check": "_return == 2.5",
+          "moduleOnly": true,
+          "module": "game"
+        },
+        {
+          "call": {
+            "name": "clamp_y",
+            "args": [
+              80,
+              20,
+              100
+            ],
+            "module": "game"
+          },
+          "check": "_return == 80",
+          "moduleOnly": true,
+          "module": "game"
+        }
+      ],
+      "id": "python-v3-8-03-step-2"
+    }
+  ],
+  "solutionNote": {
+    "en": "The lower and upper checks handle out-of-bounds values. The remaining path returns the original value, preserving smooth movement.",
+    "nl": "De onder- en bovencontrole behandelen waarden buiten bereik. De overige route geeft de oorspronkelijke waarde terug en behoudt vloeiende beweging."
+  },
+  "inputs": [],
+  "retrievals": [
+    {
+      "id": "recall-python-v3-6-03",
+      "sourceActivityId": "python-v3-6-03",
+      "objectiveIds": [
+        "decimal"
+      ],
+      "prompt": {
+        "en": "Compare Decimal(\"0.1\") + Decimal(\"0.2\") with floating-point addition. Why start Decimal from strings?",
+        "nl": "Vergelijk Decimal(\"0.1\") + Decimal(\"0.2\") met float-optelling. Waarom begint Decimal met strings?"
+      }
+    }
+  ]
+}

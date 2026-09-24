@@ -1,0 +1,151 @@
+{
+  "id": "python-v4-19-delete",
+  "chapter": 19,
+  "group": "python-v4-module-19",
+  "title": {
+    "en": "Remove a dictionary entry",
+    "nl": "Verwijder een dictionary-invoer"
+  },
+  "kind": "coding",
+  "optional": false,
+  "runtime": "terminal",
+  "guidance": "guided",
+  "checkpointMode": "sequential",
+  "estimatedMinutes": 12,
+  "topicIds": [
+    "dictionary-delete",
+    "dictionary-pop"
+  ],
+  "practices": [],
+  "requiredConcepts": [
+    "lookup"
+  ],
+  "explanation": {
+    "en": "Removing a key and retrieving its old value can be one operation.",
+    "nl": "Een sleutel verwijderen en de oude waarde ophalen kan één bewerking zijn."
+  },
+  "example": "",
+  "sections": [
+    {
+      "id": "python-v4-19-delete-example",
+      "topicIds": [
+        "dictionary-delete",
+        "dictionary-pop"
+      ],
+      "heading": {
+        "en": "Follow a working example",
+        "nl": "Volg een werkend voorbeeld"
+      },
+      "body": {
+        "en": "del record[key] removes an entry and raises KeyError if absent. record.pop(key, default) removes and returns a present value, or returns the default when absent. Without the default, pop also raises KeyError. Dictionary pop selects by key; list pop selects by index.",
+        "nl": "del record[key] verwijdert een invoer en veroorzaakt KeyError bij afwezigheid. record.pop(key, default) verwijdert een aanwezige waarde en geeft die terug, of geeft de standaard bij afwezigheid. Zonder standaard veroorzaakt pop ook KeyError. Dictionary-pop kiest op sleutel; lijst-pop op index."
+      },
+      "code": "record = {\"name\":\"Bo\",\"temporary\":4}\ndel record[\"temporary\"]\nprint(record.pop(\"name\"))\nprint(record)",
+      "output": "Bo\n{}\n",
+      "prediction": {
+        "en": "How does del differ from an expression returning a value?",
+        "nl": "Hoe verschilt del van een uitdrukking die een waarde teruggeeft?"
+      },
+      "takeaway": {
+        "en": "Dictionary pop returns the value associated with the removed key.",
+        "nl": "Dictionary-pop geeft de waarde van de verwijderde sleutel terug."
+      }
+    },
+    {
+      "id": "python-v4-19-delete-experiment",
+      "topicIds": [],
+      "heading": {
+        "en": "Try one change",
+        "nl": "Probeer één wijziging"
+      },
+      "body": {
+        "en": "Call the function twice on the same record and explain the second answer.",
+        "nl": "Roep de functie tweemaal op hetzelfde record aan en leg het tweede antwoord uit."
+      }
+    }
+  ],
+  "files": {
+    "main.py": "def take_note(record):\n    # Complete this function.\n    return None\n"
+  },
+  "solution": {
+    "main.py": "def take_note(record):\n    return record.pop(\"note\", \"\")\n"
+  },
+  "checkpoints": [
+    {
+      "id": "python-v4-19-delete-step-1",
+      "objectiveIds": [
+        "dictionary-delete",
+        "dictionary-pop"
+      ],
+      "task": {
+        "en": "Remove note and return its old value; return an empty string if absent. Preserve other fields.",
+        "nl": "Verwijder note en geef de oude waarde terug; geef een lege string bij afwezigheid. Behoud andere velden."
+      },
+      "check": "callable(take_note)",
+      "probes": [
+        {
+          "call": {
+            "name": "take_note",
+            "args": [
+              {
+                "note": "hello",
+                "score": 2
+              }
+            ]
+          },
+          "check": "(_return == \"hello\" and _args[0] == {\"score\":2}) and _error is None"
+        },
+        {
+          "call": {
+            "name": "take_note",
+            "args": [
+              {}
+            ]
+          },
+          "check": "(_return == \"\") and _error is None"
+        }
+      ],
+      "hint": {
+        "en": "Dictionary pop returns the value associated with the removed key.",
+        "nl": "Dictionary-pop geeft de waarde van de verwijderde sleutel terug."
+      },
+      "hints": [
+        {
+          "en": "Dictionary pop returns the value associated with the removed key.",
+          "nl": "Dictionary-pop geeft de waarde van de verwijderde sleutel terug."
+        },
+        {
+          "en": "Supply a fallback directly to pop.",
+          "nl": "Geef een terugvalwaarde direct aan pop."
+        },
+        {
+          "en": "A small fragment to adapt: `record.pop(\"note\", \"\")`",
+          "nl": "Een klein fragment om aan te passen: `record.pop(\"note\", \"\")`"
+        }
+      ],
+      "feedback": {
+        "en": "Supply a fallback directly to pop.",
+        "nl": "Geef een terugvalwaarde direct aan pop."
+      }
+    }
+  ],
+  "solutionNote": {
+    "en": "The first call consumes the note; later calls use the absent-key fallback.",
+    "nl": "De eerste aanroep gebruikt de notitie; latere aanroepen gebruiken de terugvalwaarde bij afwezigheid."
+  },
+  "inputs": [],
+  "retrievals": [
+    {
+      "id": "recall-python-v4-17-sorting",
+      "sourceActivityId": "python-v4-17-sorting",
+      "objectiveIds": [
+        "sort",
+        "sorted"
+      ],
+      "prompt": {
+        "en": "Recall “Sort in place or make a sorted copy”. Which call changes scores itself? Try the earlier example from memory, then check it. Add duplicate values and check they remain in the result.",
+        "nl": "Haal “Sorteer ter plaatse of maak een gesorteerde kopie” terug. Welke aanroep verandert scores zelf? Probeer het eerdere voorbeeld uit je geheugen en controleer daarna. Voeg dubbele waarden toe en controleer dat ze behouden blijven."
+      }
+    }
+  ]
+}

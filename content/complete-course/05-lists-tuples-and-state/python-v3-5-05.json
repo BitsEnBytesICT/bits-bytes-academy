@@ -1,0 +1,203 @@
+{
+  "id": "python-v3-5-05",
+  "chapter": 5,
+  "group": "python-v3-module-5",
+  "title": {
+    "en": "Process a recording",
+    "nl": "Verwerk een opname"
+  },
+  "kind": "coding",
+  "optional": false,
+  "runtime": "terminal",
+  "guidance": "independent",
+  "estimatedMinutes": 14,
+  "explanation": {
+    "en": "Summarise an unfamiliar recording without changing it. Return its total and the count of values strictly above a supplied limit. Empty recordings return (0, 0).",
+    "nl": "Vat een nieuwe opname samen zonder die te veranderen. Geef het totaal en het aantal waarden strikt boven een meegegeven grens terug. Lege opnames geven (0, 0)."
+  },
+  "example": "",
+  "topicIds": [
+    "list-review"
+  ],
+  "prerequisites": [
+    "python-v3-5-04"
+  ],
+  "sections": [
+    {
+      "topicIds": [
+        "list-review"
+      ],
+      "heading": {
+        "en": "Two accumulators",
+        "nl": "Twee totalen"
+      },
+      "body": {
+        "en": "Different questions about the same data can share one traversal. Keep the running sum separate from the count that changes only when a condition is true. A returned pair makes the result available to a caller.",
+        "nl": "Verschillende vragen over dezelfde gegevens kunnen één doorloop delen. Houd de lopende som apart van de teller die alleen verandert als een voorwaarde waar is. Een teruggegeven paar maakt het resultaat beschikbaar voor een aanroeper."
+      },
+      "code": "count = 0\nfor value in [1, 4, 6]:\n    if value > 3:\n        count += 1\nprint(count)",
+      "output": "2\n",
+      "prediction": {
+        "en": "Would a value equal to 3 count?",
+        "nl": "Zou een waarde gelijk aan 3 meetellen?"
+      }
+    },
+    {
+      "topicIds": [],
+      "heading": {
+        "en": "Try a changed input",
+        "nl": "Probeer gewijzigde invoer"
+      },
+      "body": {
+        "en": "Unpack the result and print a sentence about it. Reuse the same recording with a different limit: which component changes?",
+        "nl": "Pak het resultaat uit en druk er een zin over af. Hergebruik dezelfde opname met een andere grens: welk onderdeel verandert?"
+      }
+    }
+  ],
+  "files": {
+    "main.py": "def recording_stats(values, limit):\n    pass\n\nprint(recording_stats([2, 6, -1, 6], 2))\n"
+  },
+  "solution": {
+    "main.py": "def recording_stats(values, limit):\n    total = 0\n    above = 0\n    for value in values:\n        total += value\n        if value > limit:\n            above += 1\n    return total, above\n\nprint(recording_stats([2, 6, -1, 6], 2))\n"
+  },
+  "checkpoints": [
+    {
+      "objectiveIds": [
+        "list-review"
+      ],
+      "task": {
+        "en": "Return (total, above) using every value and the strict > limit rule.",
+        "nl": "Geef (total, above) terug met elke waarde en de strikte regel > limit."
+      },
+      "check": "recording_stats([2,6,-1,6],2) == (13,2)",
+      "hints": [
+        {
+          "en": "Track two different outcomes.",
+          "nl": "Houd twee verschillende uitkomsten bij."
+        },
+        {
+          "en": "Sum all values but count only those above the limit.",
+          "nl": "Tel alle waarden op maar tel alleen waarden boven de grens mee in de teller."
+        },
+        {
+          "en": "if value > limit:\n    above += 1",
+          "nl": "if value > limit:\n    above += 1"
+        }
+      ],
+      "hint": {
+        "en": "Track two different outcomes.",
+        "nl": "Houd twee verschillende uitkomsten bij."
+      },
+      "feedback": {
+        "en": "Equality must not count as above. Negative values still contribute to the sum.",
+        "nl": "Gelijkheid telt niet als erboven. Negatieve waarden dragen wel bij aan de som."
+      },
+      "probes": [
+        {
+          "call": {
+            "name": "recording_stats",
+            "args": [
+              [
+                3,
+                3,
+                4
+              ],
+              3
+            ]
+          },
+          "check": "_return == (10,1)"
+        },
+        {
+          "call": {
+            "name": "recording_stats",
+            "args": [
+              [
+                -4,
+                -1
+              ],
+              -2
+            ]
+          },
+          "check": "_return == (-5,1)"
+        }
+      ],
+      "id": "python-v3-5-05-step-1"
+    },
+    {
+      "objectiveIds": [
+        "list-review"
+      ],
+      "task": {
+        "en": "Return (0, 0) for an empty list and preserve the caller’s list.",
+        "nl": "Geef (0, 0) voor een lege lijst terug en behoud de lijst van de aanroeper."
+      },
+      "check": "recording_stats([],2) == (0,0)",
+      "hints": [
+        {
+          "en": "Initial values can also be the empty answer.",
+          "nl": "Beginwaarden kunnen ook het lege antwoord zijn."
+        },
+        {
+          "en": "Do not remove items as you process them.",
+          "nl": "Verwijder geen items terwijl je ze verwerkt."
+        },
+        {
+          "en": "total = 0\nabove = 0",
+          "nl": "total = 0\nabove = 0"
+        }
+      ],
+      "hint": {
+        "en": "Initial values can also be the empty answer.",
+        "nl": "Beginwaarden kunnen ook het lege antwoord zijn."
+      },
+      "feedback": {
+        "en": "Reading a recording should not consume or rewrite it.",
+        "nl": "Een opname lezen mag die niet verbruiken of herschrijven."
+      },
+      "probes": [
+        {
+          "call": {
+            "name": "recording_stats",
+            "args": [
+              [],
+              0
+            ]
+          },
+          "check": "_return == (0,0)"
+        },
+        {
+          "call": {
+            "name": "recording_stats",
+            "args": [
+              [
+                4,
+                1
+              ],
+              2
+            ]
+          },
+          "check": "_return == (5,1) and _args[0] == [4,1]"
+        }
+      ],
+      "id": "python-v3-5-05-step-2"
+    }
+  ],
+  "solutionNote": {
+    "en": "Two accumulators answer two questions in a single pass. Returning after the loop handles the empty case and preserves the input list.",
+    "nl": "Twee totalen beantwoorden twee vragen in één doorloop. Teruggeven na de lus handelt het lege geval af en behoudt de invoerlijst."
+  },
+  "inputs": [],
+  "retrievals": [
+    {
+      "id": "recall-python-v3-3-05",
+      "sourceActivityId": "python-v3-3-05",
+      "objectiveIds": [
+        "loop-review"
+      ],
+      "prompt": {
+        "en": "Write a new session summary with a different command worth three points. Test an unknown command and immediate quit.",
+        "nl": "Schrijf een nieuwe sessiesamenvatting met een andere opdracht van drie punten. Test een onbekende opdracht en meteen quit."
+      }
+    }
+  ]
+}

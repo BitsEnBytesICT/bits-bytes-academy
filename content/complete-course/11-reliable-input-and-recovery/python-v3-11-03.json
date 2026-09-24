@@ -1,0 +1,208 @@
+{
+  "id": "python-v3-11-03",
+  "chapter": 11,
+  "group": "python-v3-module-11",
+  "title": {
+    "en": "Parse, then validate",
+    "nl": "Lees in en valideer"
+  },
+  "kind": "coding",
+  "optional": false,
+  "runtime": "terminal",
+  "guidance": "adapt",
+  "estimatedMinutes": 16,
+  "explanation": {
+    "en": "Separate parsing from validation. A value can be a valid integer but still outside the application’s allowed range.",
+    "nl": "Scheid omzetten van valideren. Een waarde kan een geldig geheel getal zijn maar toch buiten het toegestane bereik van de toepassing vallen."
+  },
+  "example": "",
+  "topicIds": [
+    "validation"
+  ],
+  "prerequisites": [
+    "python-v3-11-02"
+  ],
+  "sections": [
+    {
+      "topicIds": [
+        "validation"
+      ],
+      "heading": {
+        "en": "Two different questions",
+        "nl": "Twee verschillende vragen"
+      },
+      "body": {
+        "en": "Parsing asks whether text represents the expected type. Validation asks whether that value follows a rule. int(\"-4\") succeeds, but -4 may be an invalid age. Use an explicit inclusive range and return None for rejected input. int accepts surrounding whitespace; decimal text such as \"2.5\" is not whole-number text.",
+        "nl": "Omzetten vraagt of tekst het verwachte type voorstelt. Valideren vraagt of die waarde aan een regel voldoet. int(\"-4\") lukt, maar -4 kan een ongeldige leeftijd zijn. Gebruik een expliciet inclusief bereik en geef None bij afwijzing. int accepteert witruimte eromheen; decimale tekst zoals \"2.5\" is geen gehele-getaltekst."
+      },
+      "code": "value = int(\" -4 \")\nvalid = 0 <= value <= 120\nprint(value, valid)",
+      "output": "-4 False\n",
+      "prediction": {
+        "en": "Did parsing fail, or did the range rule reject the value?",
+        "nl": "Mislukte het omzetten of wees de bereikregel de waarde af?"
+      }
+    },
+    {
+      "topicIds": [],
+      "heading": {
+        "en": "Try a changed input",
+        "nl": "Probeer gewijzigde invoer"
+      },
+      "body": {
+        "en": "Write a test table with -1, 0, 120, 121 and \"unknown\". Label which values fail parsing and which fail validation.",
+        "nl": "Schrijf een testtabel met -1, 0, 120, 121 en \"unknown\". Benoem welke waarden bij omzetting en welke bij validatie falen."
+      }
+    }
+  ],
+  "files": {
+    "main.py": "def parse_age(text):\n    return None\n\nprint(parse_age(\"18\"))\n"
+  },
+  "solution": {
+    "main.py": "def parse_age(text):\n    try:\n        age = int(text)\n    except ValueError:\n        return None\n    if 0 <= age <= 120:\n        return age\n    return None\n\nprint(parse_age(\"18\"))\n"
+  },
+  "checkpoints": [
+    {
+      "objectiveIds": [
+        "validation"
+      ],
+      "task": {
+        "en": "Return an int for text representing an age from 0 through 120, including both boundaries.",
+        "nl": "Geef een int terug voor tekst met een leeftijd van 0 tot en met 120, inclusief beide grenzen."
+      },
+      "check": "parse_age(\"18\") == 18",
+      "hints": [
+        {
+          "en": "Parse first so comparisons use a number.",
+          "nl": "Zet eerst om zodat vergelijkingen een getal gebruiken."
+        },
+        {
+          "en": "Accept 0 <= age <= 120.",
+          "nl": "Accepteer 0 <= age <= 120."
+        },
+        {
+          "en": "if 0 <= age <= 120:\n    return age",
+          "nl": "if 0 <= age <= 120:\n    return age"
+        }
+      ],
+      "hint": {
+        "en": "Parse first so comparisons use a number.",
+        "nl": "Zet eerst om zodat vergelijkingen een getal gebruiken."
+      },
+      "feedback": {
+        "en": "Zero is valid here, even though it is false-like in a condition.",
+        "nl": "Nul is hier geldig hoewel die in een voorwaarde onwaarachtig is."
+      },
+      "probes": [
+        {
+          "call": {
+            "name": "parse_age",
+            "args": [
+              "0"
+            ]
+          },
+          "check": "_return == 0 and type(_return) is int"
+        },
+        {
+          "call": {
+            "name": "parse_age",
+            "args": [
+              " 120 "
+            ]
+          },
+          "check": "_return == 120"
+        }
+      ],
+      "id": "python-v3-11-03-step-1"
+    },
+    {
+      "objectiveIds": [
+        "validation"
+      ],
+      "task": {
+        "en": "Return None for malformed text or out-of-range integers.",
+        "nl": "Geef None voor ongeldige tekst of gehele getallen buiten bereik."
+      },
+      "check": "parse_age(\"-1\") is None",
+      "hints": [
+        {
+          "en": "Conversion success is only the first requirement.",
+          "nl": "Geslaagde omzetting is alleen de eerste eis."
+        },
+        {
+          "en": "Handle ValueError, then reject numeric values outside the range.",
+          "nl": "Handel ValueError af en wijs daarna numerieke waarden buiten bereik af."
+        },
+        {
+          "en": "except ValueError:\n    return None",
+          "nl": "except ValueError:\n    return None"
+        }
+      ],
+      "hint": {
+        "en": "Conversion success is only the first requirement.",
+        "nl": "Geslaagde omzetting is alleen de eerste eis."
+      },
+      "feedback": {
+        "en": "Do not truncate a float to make invalid whole-number text seem valid.",
+        "nl": "Kap geen float af om ongeldige gehele-getaltekst geldig te laten lijken."
+      },
+      "probes": [
+        {
+          "call": {
+            "name": "parse_age",
+            "args": [
+              "121"
+            ]
+          },
+          "check": "_return is None"
+        },
+        {
+          "call": {
+            "name": "parse_age",
+            "args": [
+              "18.5"
+            ]
+          },
+          "check": "_return is None"
+        },
+        {
+          "call": {
+            "name": "parse_age",
+            "args": [
+              "age"
+            ]
+          },
+          "check": "_return is None"
+        },
+        {
+          "call": {
+            "name": "parse_age",
+            "args": [
+              ""
+            ]
+          },
+          "check": "_return is None"
+        }
+      ],
+      "id": "python-v3-11-03-step-2"
+    }
+  ],
+  "solutionNote": {
+    "en": "The function makes conversion failure and range rejection explicit. The caller receives either a valid integer, including zero, or None.",
+    "nl": "De functie maakt omzettingsfouten en bereikafwijzing expliciet. De aanroeper ontvangt ofwel een geldig geheel getal, inclusief nul, ofwel None."
+  },
+  "inputs": [],
+  "retrievals": [
+    {
+      "id": "recall-python-v3-9-03",
+      "sourceActivityId": "python-v3-9-03",
+      "objectiveIds": [
+        "sort",
+        "sorted"
+      ],
+      "prompt": {
+        "en": "Predict the result and the original list after sort() and sorted(). Why is assigning the result of sort a mistake?",
+        "nl": "Voorspel resultaat en oorspronkelijke lijst na sort() en sorted(). Waarom is het resultaat van sort toekennen een fout?"
+      }
+    }
+  ]
+}

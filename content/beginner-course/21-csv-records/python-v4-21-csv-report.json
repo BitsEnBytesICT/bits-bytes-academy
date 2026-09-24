@@ -1,0 +1,170 @@
+{
+  "id": "python-v4-21-csv-report",
+  "chapter": 21,
+  "group": "python-v4-module-21",
+  "title": {
+    "en": "Transform a CSV export",
+    "nl": "Bewerk een CSV-export"
+  },
+  "kind": "coding",
+  "optional": false,
+  "runtime": "terminal",
+  "guidance": "independent",
+  "checkpointMode": "sequential",
+  "estimatedMinutes": 25,
+  "topicIds": [
+    "csv-review"
+  ],
+  "practices": [
+    "csv-write",
+    "csv-numeric-conversion"
+  ],
+  "requiredConcepts": [
+    "csv-write",
+    "dict-reader"
+  ],
+  "explanation": {
+    "en": "Apply reading and writing together while keeping a source export intact.\n\nOpen work.py to write the requested function. main.py is a supplied caller: Run always starts there and imports your function. The other file tabs contain input data. After a successful run, open any new output file tab to inspect what your program saved.",
+    "nl": "Pas lezen en schrijven samen toe en houd een bronexport intact.\n\nOpen work.py om de gevraagde functie te schrijven. main.py is de aangeleverde aanroeper: Uitvoeren begint daar en importeert je functie. De andere bestandstabbladen bevatten invoergegevens. Open na een geslaagde uitvoering een nieuw uitvoerbestand om te bekijken wat je programma heeft opgeslagen."
+  },
+  "example": "",
+  "sections": [
+    {
+      "id": "python-v4-21-csv-report-example",
+      "topicIds": [
+        "csv-review",
+        "csv-write",
+        "csv-numeric-conversion"
+      ],
+      "heading": {
+        "en": "Follow a working example",
+        "nl": "Volg een werkend voorbeeld"
+      },
+      "body": {
+        "en": "Read name and score columns from source. Write a separate destination CSV with name and doubled columns; doubled is twice the integer score. Preserve row order and quoted names. Return the number of data rows written. Inputs have valid integer scores and required headers.",
+        "nl": "Lees de kolommen name en score uit source. Schrijf een aparte destination-CSV met name en doubled; doubled is tweemaal de gehele score. Behoud rijvolgorde en aangehaalde namen. Geef het aantal geschreven gegevensrijen terug. Invoer heeft geldige gehele scores en verplichte kopvelden."
+      },
+      "code": "row = {\"name\":\"Ada\",\"score\":\"3\"}\nprint({\"name\":row[\"name\"],\"doubled\":int(row[\"score\"])*2})",
+      "output": "{'name': 'Ada', 'doubled': 6}\n",
+      "prediction": {
+        "en": "Which field needs conversion before transformation?",
+        "nl": "Welk veld vraagt omzetting vóór bewerking?"
+      },
+      "takeaway": {
+        "en": "Parse values, transform them, then let the writer encode them.",
+        "nl": "Ontleed waarden, bewerk ze en laat de schrijver ze daarna coderen."
+      },
+      "exampleFiles": {}
+    },
+    {
+      "id": "python-v4-21-csv-report-experiment",
+      "topicIds": [],
+      "heading": {
+        "en": "Try one change",
+        "nl": "Probeer één wijziging"
+      },
+      "body": {
+        "en": "Add a score of zero and verify both the count and exported value.",
+        "nl": "Voeg een score nul toe en controleer zowel aantal als geëxporteerde waarde."
+      }
+    }
+  ],
+  "files": {
+    "source.csv": "name,score\n\"A, B\",3\nC,-2\n",
+    "main.py": "import work\nprint(work.transform(\"source.csv\",\"doubled.csv\"))\n",
+    "work.py": "def transform(source, destination):\n    return None\n"
+  },
+  "solution": {
+    "source.csv": "name,score\n\"A, B\",3\nC,-2\n",
+    "main.py": "import work\nprint(work.transform(\"source.csv\",\"doubled.csv\"))\n",
+    "work.py": "import csv\ndef transform(source, destination):\n    rows = []\n    with open(source,newline=\"\",encoding=\"utf-8\") as handle:\n        for row in csv.DictReader(handle):\n            rows.append({\"name\":row[\"name\"],\"doubled\":int(row[\"score\"])*2})\n    with open(destination,\"w\",newline=\"\",encoding=\"utf-8\") as handle:\n        writer = csv.DictWriter(handle,fieldnames=[\"name\",\"doubled\"])\n        writer.writeheader()\n        for row in rows:\n            writer.writerow(row)\n    return len(rows)\n"
+  },
+  "checkpoints": [
+    {
+      "id": "python-v4-21-csv-report-step-1",
+      "objectiveIds": [
+        "csv-review",
+        "csv-write",
+        "csv-numeric-conversion"
+      ],
+      "task": {
+        "en": "Implement the CSV transformation and return its data-row count.",
+        "nl": "Implementeer de CSV-bewerking en geef het aantal gegevensrijen terug."
+      },
+      "check": "True",
+      "probes": [
+        {
+          "call": {
+            "name": "transform",
+            "args": [
+              "source.csv",
+              "out.csv"
+            ],
+            "module": "work"
+          },
+          "check": "(_return == 2 and list(__import__(\"csv\").DictReader(open(\"out.csv\"))) == [{\"name\":\"A, B\",\"doubled\":\"6\"},{\"name\":\"C\",\"doubled\":\"-4\"}]) and _error is None",
+          "moduleOnly": true,
+          "module": "work",
+          "files": {}
+        },
+        {
+          "call": {
+            "name": "transform",
+            "args": [
+              "empty.csv",
+              "out.csv"
+            ],
+            "module": "work"
+          },
+          "check": "(_return == 0 and list(__import__(\"csv\").reader(open(\"out.csv\"))) == [[\"name\",\"doubled\"]]) and _error is None",
+          "moduleOnly": true,
+          "module": "work",
+          "files": {
+            "empty.csv": "name,score\n"
+          }
+        }
+      ],
+      "hint": {
+        "en": "Parse values, transform them, then let the writer encode them.",
+        "nl": "Ontleed waarden, bewerk ze en laat de schrijver ze daarna coderen."
+      },
+      "hints": [
+        {
+          "en": "Parse values, transform them, then let the writer encode them.",
+          "nl": "Ontleed waarden, bewerk ze en laat de schrijver ze daarna coderen."
+        },
+        {
+          "en": "Keep reading and writing separate and use the required destination field names.",
+          "nl": "Houd lezen en schrijven apart en gebruik de vereiste uitvoerveldnamen."
+        },
+        {
+          "en": "A small fragment to adapt: `int(row[\"score\"]) * 2`",
+          "nl": "Een klein fragment om aan te passen: `int(row[\"score\"]) * 2`"
+        }
+      ],
+      "feedback": {
+        "en": "Keep reading and writing separate and use the required destination field names.",
+        "nl": "Houd lezen en schrijven apart en gebruik de vereiste uitvoerveldnamen."
+      }
+    }
+  ],
+  "solutionNote": {
+    "en": "The transformation treats score as data, not text, and delegates output quoting to CSV.",
+    "nl": "De bewerking behandelt score als getal in plaats van tekst en laat uitvoeraanhalingstekens aan CSV over."
+  },
+  "inputs": [],
+  "retrievals": [
+    {
+      "id": "recall-python-v4-19-delete",
+      "sourceActivityId": "python-v4-19-delete",
+      "objectiveIds": [
+        "dictionary-delete",
+        "dictionary-pop"
+      ],
+      "prompt": {
+        "en": "Recall “Remove a dictionary entry”. How does del differ from an expression returning a value? Try the earlier example from memory, then check it. Call the function twice on the same record and explain the second answer.",
+        "nl": "Haal “Verwijder een dictionary-invoer” terug. Hoe verschilt del van een uitdrukking die een waarde teruggeeft? Probeer het eerdere voorbeeld uit je geheugen en controleer daarna. Roep de functie tweemaal op hetzelfde record aan en leg het tweede antwoord uit."
+      }
+    }
+  ]
+}

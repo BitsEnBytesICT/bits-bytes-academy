@@ -1,0 +1,167 @@
+{
+  "id": "python-v3-15-06",
+  "chapter": 15,
+  "group": "python-v3-module-15",
+  "title": {
+    "en": "A stateful class",
+    "nl": "Een klasse met toestand"
+  },
+  "kind": "coding",
+  "optional": false,
+  "runtime": "terminal",
+  "guidance": "independent",
+  "estimatedMinutes": 17,
+  "explanation": {
+    "en": "Implement a small countdown object from a behaviour contract. Timer(duration) starts with that nonnegative duration remaining. tick(seconds=1) reduces remaining time without going below zero; negative ticks do nothing. reset restores the original duration.",
+    "nl": "Implementeer een klein aftelobject uit een gedragsafspraak. Timer(duration) begint met die niet-negatieve resterende duur. tick(seconds=1) verlaagt de resterende tijd zonder onder nul te gaan; negatieve tikken doen niets. reset herstelt de oorspronkelijke duur."
+  },
+  "example": "",
+  "topicIds": [
+    "classes-review"
+  ],
+  "prerequisites": [
+    "python-v3-15-05"
+  ],
+  "sections": [
+    {
+      "topicIds": [
+        "classes-review"
+      ],
+      "heading": {
+        "en": "Design the state before the methods",
+        "nl": "Ontwerp toestand vóór methoden"
+      },
+      "body": {
+        "en": "Identify which values persist across calls: the original duration and the current remaining time. Methods update the current time while reset needs the original value. Each timer owns both fields. The tick method returns the new remaining time; reset returns None.",
+        "nl": "Bepaal welke waarden tussen aanroepen blijven: de oorspronkelijke duur en de huidige resterende tijd. Methoden werken de huidige tijd bij terwijl reset de oorspronkelijke waarde nodig heeft. Elke timer bezit beide velden. tick geeft de nieuwe resterende tijd terug; reset geeft None terug."
+      },
+      "code": "original = 5\nremaining = max(0, original - 8)\nprint(remaining)\nremaining = original\nprint(remaining)",
+      "output": "0\n5\n",
+      "prediction": {
+        "en": "Why do reset and tick need different pieces of state?",
+        "nl": "Waarom hebben reset en tick verschillende stukjes toestand nodig?"
+      }
+    },
+    {
+      "topicIds": [],
+      "heading": {
+        "en": "Try a changed input",
+        "nl": "Probeer gewijzigde invoer"
+      },
+      "body": {
+        "en": "Create two timers with different durations and interleave tick/reset calls. Add your own diagnostic representation and use it to trace the state.",
+        "nl": "Maak twee timers met verschillende duren en wissel tick/reset-aanroepen af. Voeg een eigen diagnostische voorstelling toe en gebruik die om de toestand te volgen."
+      }
+    }
+  ],
+  "files": {
+    "main.py": "class Timer:\n    def __init__(self, duration):\n        pass\n\n    def tick(self, seconds=1):\n        pass\n\n    def reset(self):\n        pass\n\ntimer = Timer(5)\nprint(timer.tick(2))\n"
+  },
+  "solution": {
+    "main.py": "class Timer:\n    def __init__(self, duration):\n        self.duration = duration\n        self.remaining = duration\n\n    def tick(self, seconds=1):\n        if seconds >= 0:\n            self.remaining = max(0, self.remaining - seconds)\n        return self.remaining\n\n    def reset(self):\n        self.remaining = self.duration\n\ntimer = Timer(5)\nprint(timer.tick(2))\n"
+  },
+  "checkpoints": [
+    {
+      "objectiveIds": [
+        "classes-review"
+      ],
+      "task": {
+        "en": "Implement initialisation and tick with default seconds=1, clamping at zero and ignoring negative seconds.",
+        "nl": "Implementeer initialisatie en tick met standaard seconds=1, begrens op nul en negeer negatieve seconden."
+      },
+      "check": "timer.remaining == 3 and _stdout.strip() == \"3\"",
+      "hints": [
+        {
+          "en": "Store both original and current values on self.",
+          "nl": "Bewaar oorspronkelijke en huidige waarden op self."
+        },
+        {
+          "en": "Update only for nonnegative ticks, then return remaining.",
+          "nl": "Werk alleen bij voor niet-negatieve tikken en geef daarna remaining terug."
+        },
+        {
+          "en": "self.remaining = max(0, self.remaining - seconds)",
+          "nl": "self.remaining = max(0, self.remaining - seconds)"
+        }
+      ],
+      "hint": {
+        "en": "Store both original and current values on self.",
+        "nl": "Bewaar oorspronkelijke en huidige waarden op self."
+      },
+      "feedback": {
+        "en": "A large tick must not make time negative and a negative tick must not add time.",
+        "nl": "Een grote tik mag tijd niet negatief maken en een negatieve tik mag geen tijd toevoegen."
+      },
+      "probes": [
+        {
+          "call": {
+            "name": "Timer",
+            "args": [
+              3
+            ]
+          },
+          "check": "_return.tick() == 2 and _return.tick(-4) == 2 and _return.tick(9) == 0"
+        },
+        {
+          "call": {
+            "name": "Timer",
+            "args": [
+              0
+            ]
+          },
+          "check": "_return.tick() == 0"
+        }
+      ],
+      "id": "python-v3-15-06-step-1"
+    },
+    {
+      "objectiveIds": [
+        "classes-review"
+      ],
+      "task": {
+        "en": "Implement reset and keep two timer instances independent, including when one is reset.",
+        "nl": "Implementeer reset en houd twee timerinstanties onafhankelijk, ook wanneer één wordt gereset."
+      },
+      "check": "callable(timer.reset)",
+      "hints": [
+        {
+          "en": "Reset needs the original duration, not a fixed example number.",
+          "nl": "Reset heeft de oorspronkelijke duur nodig, geen vast voorbeeldgetal."
+        },
+        {
+          "en": "Read self.duration and assign self.remaining.",
+          "nl": "Lees self.duration en wijs self.remaining toe."
+        },
+        {
+          "en": "self.remaining = self.duration",
+          "nl": "self.remaining = self.duration"
+        }
+      ],
+      "hint": {
+        "en": "Reset needs the original duration, not a fixed example number.",
+        "nl": "Reset heeft de oorspronkelijke duur nodig, geen vast voorbeeldgetal."
+      },
+      "feedback": {
+        "en": "Creating another timer must not overwrite this timer’s original duration.",
+        "nl": "Een andere timer maken mag de oorspronkelijke duur van deze timer niet overschrijven."
+      },
+      "probes": [
+        {
+          "call": {
+            "name": "Timer",
+            "args": [
+              8
+            ]
+          },
+          "check": "_return.tick(3) == 5 and Timer(2).remaining == 2 and _return.reset() is None and _return.remaining == 8"
+        }
+      ],
+      "id": "python-v3-15-06-step-2"
+    }
+  ],
+  "solutionNote": {
+    "en": "The class keeps the original duration separate from changing state. Methods make the state transitions explicit and preserve object independence.",
+    "nl": "De klasse houdt de oorspronkelijke duur apart van veranderende toestand. Methoden maken toestandsovergangen expliciet en behouden objectonafhankelijkheid."
+  },
+  "inputs": []
+}

@@ -1,0 +1,188 @@
+{
+  "id": "python-v4-16-velocity",
+  "chapter": 16,
+  "group": "python-v4-module-16",
+  "title": {
+    "en": "Move by elapsed time",
+    "nl": "Beweeg met verstreken tijd"
+  },
+  "kind": "coding",
+  "optional": false,
+  "runtime": "pygame",
+  "guidance": "guided",
+  "checkpointMode": "sequential",
+  "estimatedMinutes": 18,
+  "topicIds": [
+    "velocity",
+    "elapsed-time"
+  ],
+  "practices": [],
+  "requiredConcepts": [
+    "coordinates",
+    "multiple-returns",
+    "multiplication"
+  ],
+  "explanation": {
+    "en": "Movement should depend on elapsed time, not how many frames a computer draws.",
+    "nl": "Beweging hoort af te hangen van verstreken tijd, niet van het aantal getekende beelden."
+  },
+  "example": "",
+  "sections": [
+    {
+      "id": "python-v4-16-velocity-example",
+      "topicIds": [
+        "velocity",
+        "elapsed-time"
+      ],
+      "heading": {
+        "en": "Follow a working example",
+        "nl": "Volg een werkend voorbeeld"
+      },
+      "body": {
+        "en": "Position says where an object is. Velocity says how many pixels it travels each second, with sign giving direction. dt is elapsed seconds for this frame. The supplied clock reports milliseconds, so main.py divides by 1000. Update position with velocity * dt. Keep position as a float and convert to int only when drawing. The browser loop caps very long frame gaps to avoid a huge jump.",
+        "nl": "Positie zegt waar een object is. Snelheid zegt hoeveel pixels het per seconde aflegt, met het teken voor richting. dt is het verstreken aantal seconden voor dit beeld. De aangeleverde klok geeft milliseconden, daarom deelt main.py door 1000. Werk positie bij met snelheid * dt. Bewaar positie als float en zet alleen bij tekenen om naar int. De browserlus begrenst zeer lange tussenpozen om een enorme sprong te voorkomen."
+      },
+      "code": "x = 10.0\nspeed = 120\ndt = 0.25\nx += speed * dt\nprint(x)",
+      "output": "40.0\n",
+      "prediction": {
+        "en": "How far would the object move in half as much time?",
+        "nl": "Hoe ver beweegt het object in half zoveel tijd?"
+      },
+      "takeaway": {
+        "en": "New position = old position + velocity × elapsed seconds.",
+        "nl": "Nieuwe positie = oude positie + snelheid × verstreken seconden."
+      }
+    },
+    {
+      "topicIds": [],
+      "heading": {
+        "en": "Run, observe, finish",
+        "nl": "Voer uit, bekijk, rond af"
+      },
+      "body": {
+        "en": "main.py supplies the browser entry point. Run opens a real pygame-ce preview; click it to focus the keyboard. Clicking elsewhere pauses play. Finish & check closes normally and checks your helper after at least one rendered frame. Stop cancels without grading. Run can start a fresh session afterward. Keep the supplied async definition and await asyncio.sleep(1 / 60): they let the browser draw and receive input. You are not expected to reproduce this infrastructure from memory.",
+        "nl": "main.py levert het browserstartpunt. Uitvoeren opent een echt pygame-ce-voorbeeld; klik erop om het toetsenbord te activeren. Elders klikken pauzeert het spel. Afronden en controleren sluit normaal af en controleert je helper na minstens één getekend beeld. Stop annuleert zonder beoordeling. Uitvoeren kan daarna een nieuwe sessie starten. Behoud de meegeleverde async-definitie en await asyncio.sleep(1 / 60): die laten de browser tekenen en invoer ontvangen. Je hoeft deze infrastructuur niet uit je hoofd te schrijven."
+      }
+    },
+    {
+      "id": "python-v4-16-velocity-experiment",
+      "topicIds": [],
+      "heading": {
+        "en": "Try one change",
+        "nl": "Probeer één wijziging"
+      },
+      "body": {
+        "en": "Compare one 0.1-second step with two 0.05-second steps.",
+        "nl": "Vergelijk één stap van 0,1 seconde met twee stappen van 0,05 seconde."
+      }
+    }
+  ],
+  "files": {
+    "main.py": "# Browser entry point supplied by the course.\nimport asyncio\nimport pygame\nimport game\n\nasync def main():\n    pygame.init()\n    screen = pygame.display.set_mode((640, 400))\n    clock = pygame.time.Clock()\n    running = True\n    x,y = 20.0,200.0\n    while running:\n        dt = min(clock.tick() / 1000, 0.05)\n        for event in pygame.event.get():\n            if event.type == pygame.QUIT:\n                running = False\n            if event.type == pygame.KEYDOWN and event.key == pygame.K_ESCAPE:\n                running = False\n        keys = pygame.key.get_pressed()\n        x = game.advance(x,80,dt)\n        if x > 640:\n            x = 0\n        screen.fill((16, 23, 39))\n        pygame.draw.circle(screen,(240,200,80),(int(x),int(y)),6)\n        pygame.display.flip()\n        await asyncio.sleep(1 / 60)\n    pygame.quit()\n\nasyncio.run(main())\n",
+    "game.py": "import pygame\n\ndef advance(position, velocity, dt):\n    return position\n"
+  },
+  "solution": {
+    "main.py": "# Browser entry point supplied by the course.\nimport asyncio\nimport pygame\nimport game\n\nasync def main():\n    pygame.init()\n    screen = pygame.display.set_mode((640, 400))\n    clock = pygame.time.Clock()\n    running = True\n    x,y = 20.0,200.0\n    while running:\n        dt = min(clock.tick() / 1000, 0.05)\n        for event in pygame.event.get():\n            if event.type == pygame.QUIT:\n                running = False\n            if event.type == pygame.KEYDOWN and event.key == pygame.K_ESCAPE:\n                running = False\n        keys = pygame.key.get_pressed()\n        x = game.advance(x,80,dt)\n        if x > 640:\n            x = 0\n        screen.fill((16, 23, 39))\n        pygame.draw.circle(screen,(240,200,80),(int(x),int(y)),6)\n        pygame.display.flip()\n        await asyncio.sleep(1 / 60)\n    pygame.quit()\n\nasyncio.run(main())\n",
+    "game.py": "import pygame\n\ndef advance(position, velocity, dt):\n    return position + velocity * dt\n"
+  },
+  "checkpoints": [
+    {
+      "id": "python-v4-16-velocity-step-1",
+      "objectiveIds": [
+        "velocity",
+        "elapsed-time"
+      ],
+      "task": {
+        "en": "Return the position after moving at velocity for dt seconds.",
+        "nl": "Geef de positie terug na beweging met velocity gedurende dt seconden."
+      },
+      "check": "_rendered_frames > 0",
+      "probes": [
+        {
+          "call": {
+            "name": "advance",
+            "args": [
+              10,
+              120,
+              0.25
+            ],
+            "module": "game"
+          },
+          "check": "(_return == 40) and _error is None",
+          "moduleOnly": true,
+          "module": "game"
+        },
+        {
+          "call": {
+            "name": "advance",
+            "args": [
+              10,
+              -20,
+              0.5
+            ],
+            "module": "game"
+          },
+          "check": "(_return == 0) and _error is None",
+          "moduleOnly": true,
+          "module": "game"
+        },
+        {
+          "call": {
+            "name": "advance",
+            "args": [
+              5,
+              200,
+              0
+            ],
+            "module": "game"
+          },
+          "check": "(_return == 5) and _error is None",
+          "moduleOnly": true,
+          "module": "game"
+        }
+      ],
+      "hint": {
+        "en": "New position = old position + velocity × elapsed seconds.",
+        "nl": "Nieuwe positie = oude positie + snelheid × verstreken seconden."
+      },
+      "hints": [
+        {
+          "en": "New position = old position + velocity × elapsed seconds.",
+          "nl": "Nieuwe positie = oude positie + snelheid × verstreken seconden."
+        },
+        {
+          "en": "Multiply velocity by time before adding the old position.",
+          "nl": "Vermenigvuldig snelheid met tijd voordat je de oude positie optelt."
+        },
+        {
+          "en": "A small fragment to adapt: `position + velocity * dt`",
+          "nl": "Een klein fragment om aan te passen: `position + velocity * dt`"
+        }
+      ],
+      "feedback": {
+        "en": "Multiply velocity by time before adding the old position.",
+        "nl": "Vermenigvuldig snelheid met tijd voordat je de oude positie optelt."
+      }
+    }
+  ],
+  "solutionNote": {
+    "en": "Elapsed-time scaling keeps distance consistent across different frame rates.",
+    "nl": "Schalen met verstreken tijd houdt afstand consistent bij verschillende beeldsnelheden."
+  },
+  "inputs": [],
+  "retrievals": [
+    {
+      "id": "recall-python-v4-14-import",
+      "sourceActivityId": "python-v4-14-import",
+      "objectiveIds": [
+        "modules",
+        "imports",
+        "documentation"
+      ],
+      "prompt": {
+        "en": "Recall “Use a standard-library module”. What does the name before the dot identify? Try the earlier example from memory, then check it. Look up sqrt in the official math documentation and test zero.",
+        "nl": "Haal “Gebruik een standaardbibliotheekmodule” terug. Wat benoemt de naam vóór de punt? Probeer het eerdere voorbeeld uit je geheugen en controleer daarna. Zoek sqrt op in de officiële math-documentatie en test nul."
+      }
+    }
+  ]
+}

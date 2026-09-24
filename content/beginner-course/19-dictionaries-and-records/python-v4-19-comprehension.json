@@ -1,0 +1,149 @@
+{
+  "id": "python-v4-19-comprehension",
+  "chapter": 19,
+  "group": "python-v4-module-19",
+  "title": {
+    "en": "Derive a new mapping",
+    "nl": "Leid een nieuwe koppeling af"
+  },
+  "kind": "coding",
+  "optional": false,
+  "runtime": "terminal",
+  "guidance": "guided",
+  "checkpointMode": "sequential",
+  "estimatedMinutes": 12,
+  "topicIds": [
+    "dictionary-comprehensions"
+  ],
+  "practices": [],
+  "requiredConcepts": [
+    "dictionary-iteration",
+    "conditional-list-comprehensions"
+  ],
+  "explanation": {
+    "en": "A dictionary comprehension creates a mapping with one key/value expression per selected input.",
+    "nl": "Een dictionary comprehension maakt een koppeling met één sleutel/waarde-uitdrukking per gekozen invoer."
+  },
+  "example": "",
+  "sections": [
+    {
+      "id": "python-v4-19-comprehension-example",
+      "topicIds": [
+        "dictionary-comprehensions"
+      ],
+      "heading": {
+        "en": "Follow a working example",
+        "nl": "Volg een werkend voorbeeld"
+      },
+      "body": {
+        "en": "{key_expression: value_expression for item in source} uses braces and a colon. An optional final if filters entries. Duplicate produced keys overwrite earlier values. Unlike a list comprehension, each output requires both a key and a value. Build a new mapping to preserve the original.",
+        "nl": "{sleuteluitdrukking: waardeuitdrukking for item in bron} gebruikt accolades en een dubbele punt. Een optionele laatste if filtert invoeren. Dubbele gemaakte sleutels overschrijven eerdere waarden. Anders dan een list comprehension vraagt elke uitvoer zowel een sleutel als een waarde. Maak een nieuwe koppeling om het origineel te bewaren."
+      },
+      "code": "scores = {\"Ada\":3,\"Bo\":0}\nprint({name:score+1 for name,score in scores.items() if score > 0})",
+      "output": "{'Ada': 4}\n",
+      "prediction": {
+        "en": "Why is Bo missing from the new mapping?",
+        "nl": "Waarom ontbreekt Bo in de nieuwe koppeling?"
+      },
+      "takeaway": {
+        "en": "A dictionary comprehension must choose both keys and values.",
+        "nl": "Een dictionary comprehension moet zowel sleutels als waarden kiezen."
+      }
+    },
+    {
+      "id": "python-v4-19-comprehension-experiment",
+      "topicIds": [],
+      "heading": {
+        "en": "Try one change",
+        "nl": "Probeer één wijziging"
+      },
+      "body": {
+        "en": "Rewrite the comprehension as an ordinary loop.",
+        "nl": "Herschrijf de comprehension als een gewone lus."
+      }
+    }
+  ],
+  "files": {
+    "main.py": "def double_positive(scores):\n    # Complete this function.\n    return None\n"
+  },
+  "solution": {
+    "main.py": "def double_positive(scores):\n    return {name:score*2 for name,score in scores.items() if score > 0}\n"
+  },
+  "checkpoints": [
+    {
+      "id": "python-v4-19-comprehension-step-1",
+      "objectiveIds": [
+        "dictionary-comprehensions"
+      ],
+      "task": {
+        "en": "Use a dictionary comprehension to double positive scores and omit zero/negative scores.",
+        "nl": "Gebruik een dictionary comprehension om positieve scores te verdubbelen en nul/negatieve scores weg te laten."
+      },
+      "check": "any(isinstance(n,_ast.DictComp) for n in _ast.walk(_ast.parse(_source)))",
+      "probes": [
+        {
+          "call": {
+            "name": "double_positive",
+            "args": [
+              {
+                "A": 2,
+                "B": 0,
+                "C": -1
+              }
+            ]
+          },
+          "check": "(_return == {\"A\":4} and _args[0] == {\"A\":2,\"B\":0,\"C\":-1}) and _error is None"
+        },
+        {
+          "call": {
+            "name": "double_positive",
+            "args": [
+              {}
+            ]
+          },
+          "check": "(_return == {}) and _error is None"
+        }
+      ],
+      "hint": {
+        "en": "A dictionary comprehension must choose both keys and values.",
+        "nl": "Een dictionary comprehension moet zowel sleutels als waarden kiezen."
+      },
+      "hints": [
+        {
+          "en": "A dictionary comprehension must choose both keys and values.",
+          "nl": "Een dictionary comprehension moet zowel sleutels als waarden kiezen."
+        },
+        {
+          "en": "Keep each name as key; transform only its positive value.",
+          "nl": "Behoud elke naam als sleutel; verander alleen zijn positieve waarde."
+        },
+        {
+          "en": "A small fragment to adapt: `{name: score * 2 for name, score in scores.items() if score > 0}`",
+          "nl": "Een klein fragment om aan te passen: `{name: score * 2 for name, score in scores.items() if score > 0}`"
+        }
+      ],
+      "feedback": {
+        "en": "Keep each name as key; transform only its positive value.",
+        "nl": "Behoud elke naam als sleutel; verander alleen zijn positieve waarde."
+      }
+    }
+  ],
+  "solutionNote": {
+    "en": "The comprehension filters before adding entries and creates a separate dictionary.",
+    "nl": "De comprehension filtert vóór toevoegen en maakt een aparte dictionary."
+  },
+  "inputs": [],
+  "retrievals": [
+    {
+      "id": "recall-python-v4-17-nested-loops",
+      "sourceActivityId": "python-v4-17-nested-loops",
+      "objectiveIds": [
+        "nested-loops"
+      ],
+      "prompt": {
+        "en": "Recall “Visit rows and their elements”. How many times does the inner body run in total? Try the earlier example from memory, then check it. Trace the total for each inner iteration of [[2], [3, 4]].",
+        "nl": "Haal “Bezoek rijen en hun elementen” terug. Hoe vaak draait de binnenste inhoud in totaal? Probeer het eerdere voorbeeld uit je geheugen en controleer daarna. Volg het totaal bij elke binnenste iteratie van [[2], [3, 4]]."
+      }
+    }
+  ]
+}

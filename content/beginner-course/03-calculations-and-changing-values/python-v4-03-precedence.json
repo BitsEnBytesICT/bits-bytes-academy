@@ -1,0 +1,195 @@
+{
+  "id": "python-v4-03-precedence",
+  "chapter": 3,
+  "group": "python-v4-module-3",
+  "title": {
+    "en": "Control the order of a calculation",
+    "nl": "Bepaal de volgorde van een berekening"
+  },
+  "kind": "coding",
+  "optional": false,
+  "runtime": "terminal",
+  "guidance": "guided",
+  "checkpointMode": "sequential",
+  "estimatedMinutes": 12,
+  "topicIds": [
+    "precedence"
+  ],
+  "practices": [],
+  "requiredConcepts": [
+    "variables",
+    "integers",
+    "floats"
+  ],
+  "explanation": {
+    "en": "An expression can contain several operators. Parentheses make the intended grouping explicit.",
+    "nl": "Een expressie kan verschillende operatoren bevatten. Haakjes maken de bedoelde groepering duidelijk."
+  },
+  "example": "",
+  "sections": [
+    {
+      "id": "python-v4-03-precedence-example",
+      "topicIds": [
+        "precedence"
+      ],
+      "heading": {
+        "en": "Follow a working example",
+        "nl": "Volg een werkend voorbeeld"
+      },
+      "body": {
+        "en": "Multiplication and division happen before addition and subtraction. In 2 + 3 * 4, Python multiplies 3 by 4 first, then adds 2: the answer is 14. In (2 + 3) * 4, parentheses make the addition happen first: the answer is 20.\n\nRead the problem before selecting the grouping. A fee charged once for a whole order differs from a fee charged for every item. Intermediate variables can make a longer calculation easier to explain.",
+        "nl": "Vermenigvuldigen en delen gaan vóór optellen en aftrekken. In 2 + 3 * 4 vermenigvuldigt Python eerst 3 met 4 en telt daarna 2 op: het antwoord is 14. In (2 + 3) * 4 zorgen haakjes dat het optellen eerst gebeurt: het antwoord is 20.\n\nLees het probleem voordat je de groepering kiest. Een toeslag voor een hele bestelling verschilt van een toeslag voor elk artikel. Tussenvariabelen kunnen een langere berekening makkelijker uitlegbaar maken."
+      },
+      "code": "print(2 + 3 * 4)\nprint((2 + 3) * 4)",
+      "output": "14\n20\n",
+      "prediction": {
+        "en": "Why do the same numbers produce two different answers?",
+        "nl": "Waarom geven dezelfde getallen twee verschillende antwoorden?"
+      },
+      "takeaway": {
+        "en": "Parentheses group the part that must be calculated first.",
+        "nl": "Haakjes groeperen het deel dat eerst moet worden berekend."
+      }
+    },
+    {
+      "id": "python-v4-03-precedence-experiment",
+      "topicIds": [],
+      "heading": {
+        "en": "Try one change",
+        "nl": "Probeer één wijziging"
+      },
+      "body": {
+        "en": "Remove the parentheses temporarily and explain which group no longer gets multiplied.",
+        "nl": "Verwijder de haakjes tijdelijk en leg uit welke groep niet meer wordt vermenigvuldigd."
+      }
+    }
+  ],
+  "files": {
+    "main.py": "adults = 3\nchildren = 2\nprice = 4\n"
+  },
+  "solution": {
+    "main.py": "adults = 3\nchildren = 2\nprice = 4\nresult = (adults + children) * price\nprint(result)\n"
+  },
+  "checkpoints": [
+    {
+      "id": "python-v4-03-precedence-step-1",
+      "objectiveIds": [
+        "precedence"
+      ],
+      "task": {
+        "en": "Everyone pays the same price. Store the total ticket cost in result.",
+        "nl": "Iedereen betaalt dezelfde prijs. Bewaar de totale kaartjesprijs in result."
+      },
+      "check": "result == ((adults + children) * price)",
+      "probes": [
+        {
+          "inputs": {
+            "adults": 0,
+            "children": 3,
+            "price": 5
+          },
+          "check": "result == ((adults + children) * price)"
+        },
+        {
+          "inputs": {
+            "adults": 2,
+            "children": 0,
+            "price": 7
+          },
+          "check": "result == ((adults + children) * price)"
+        }
+      ],
+      "hint": {
+        "en": "Parentheses group the part that must be calculated first.",
+        "nl": "Haakjes groeperen het deel dat eerst moet worden berekend."
+      },
+      "hints": [
+        {
+          "en": "Parentheses group the part that must be calculated first.",
+          "nl": "Haakjes groeperen het deel dat eerst moet worden berekend."
+        },
+        {
+          "en": "Add the people first, then multiply that whole count by price.",
+          "nl": "Tel eerst de mensen op en vermenigvuldig daarna dat hele aantal met price."
+        },
+        {
+          "en": "A small fragment to adapt: `(adults + children) * price`",
+          "nl": "Een klein fragment om aan te passen: `(adults + children) * price`"
+        }
+      ],
+      "feedback": {
+        "en": "Add the people first, then multiply that whole count by price.",
+        "nl": "Tel eerst de mensen op en vermenigvuldig daarna dat hele aantal met price."
+      }
+    },
+    {
+      "id": "python-v4-03-precedence-step-2",
+      "objectiveIds": [
+        "precedence"
+      ],
+      "task": {
+        "en": "Print result after calculating it.",
+        "nl": "Druk result af nadat je het hebt berekend."
+      },
+      "check": "float(_stdout.strip()) == result",
+      "probes": [
+        {
+          "inputs": {
+            "adults": 0,
+            "children": 3,
+            "price": 5
+          },
+          "check": "float(_stdout.strip()) == ((adults + children) * price)"
+        },
+        {
+          "inputs": {
+            "adults": 2,
+            "children": 0,
+            "price": 7
+          },
+          "check": "float(_stdout.strip()) == ((adults + children) * price)"
+        }
+      ],
+      "hint": {
+        "en": "Parentheses group the part that must be calculated first.",
+        "nl": "Haakjes groeperen het deel dat eerst moet worden berekend."
+      },
+      "hints": [
+        {
+          "en": "Parentheses group the part that must be calculated first.",
+          "nl": "Haakjes groeperen het deel dat eerst moet worden berekend."
+        },
+        {
+          "en": "Display the variable that holds the calculation, rather than typing the expected answer.",
+          "nl": "Toon de variabele met de berekening in plaats van het verwachte antwoord te typen."
+        },
+        {
+          "en": "A small fragment to adapt: `print(result)`",
+          "nl": "Een klein fragment om aan te passen: `print(result)`"
+        }
+      ],
+      "feedback": {
+        "en": "Display the variable that holds the calculation, rather than typing the expected answer.",
+        "nl": "Toon de variabele met de berekening in plaats van het verwachte antwoord te typen."
+      }
+    }
+  ],
+  "solutionNote": {
+    "en": "The parentheses make the price apply to everyone. Without them, only children would be multiplied by price.",
+    "nl": "De haakjes zorgen dat de prijs voor iedereen geldt. Zonder haakjes zou alleen children met price worden vermenigvuldigd."
+  },
+  "inputs": [],
+  "retrievals": [
+    {
+      "id": "recall-python-v4-01-print-numbers",
+      "sourceActivityId": "python-v4-01-print-numbers",
+      "objectiveIds": [
+        "numeric-literals"
+      ],
+      "prompt": {
+        "en": "Recall “Numbers and quoted numbers”. Can you tell the first two values apart just by their printed appearance? Try the earlier example from memory, then check it. Change the unquoted 7 to -7. Predict which output line changes.",
+        "nl": "Haal “Getallen en getallen tussen aanhalingstekens” terug. Kun je de eerste twee waarden alleen aan hun uitvoer onderscheiden? Probeer het eerdere voorbeeld uit je geheugen en controleer daarna. Verander de 7 zonder aanhalingstekens in -7. Voorspel welke uitvoerregel verandert."
+      }
+    }
+  ]
+}

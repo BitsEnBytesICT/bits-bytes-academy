@@ -1,0 +1,147 @@
+{
+  "id": "python-v4-02-assignment",
+  "chapter": 2,
+  "group": "python-v4-module-2",
+  "title": {
+    "en": "Give a value a name",
+    "nl": "Geef een waarde een naam"
+  },
+  "kind": "coding",
+  "optional": false,
+  "runtime": "terminal",
+  "guidance": "guided",
+  "checkpointMode": "sequential",
+  "estimatedMinutes": 12,
+  "topicIds": [
+    "variables"
+  ],
+  "practices": [],
+  "requiredConcepts": [
+    "strings",
+    "print"
+  ],
+  "explanation": {
+    "en": "A variable lets you refer to a value by name. Store a message once, then use its name wherever that value is needed.",
+    "nl": "Met een variabele verwijs je via een naam naar een waarde. Bewaar een bericht eenmaal en gebruik daarna de naam waar je die waarde nodig hebt."
+  },
+  "example": "",
+  "sections": [
+    {
+      "id": "python-v4-02-assignment-example",
+      "topicIds": [
+        "variables"
+      ],
+      "heading": {
+        "en": "Follow a working example",
+        "nl": "Volg een werkend voorbeeld"
+      },
+      "body": {
+        "en": "In message = \"Come in\", the name is on the left and the value is on the right. The = sign assigns that value to the name. It does not print anything.\n\nThe next line looks up message and passes its value to print. Python must execute the assignment before it can look up the name. A variable name has no quotation marks; a literal text value does.",
+        "nl": "In message = \"Come in\" staat de naam links en de waarde rechts. Het =-teken wijst die waarde aan de naam toe. Het drukt niets af.\n\nDe volgende regel zoekt message op en geeft de waarde aan print. Python moet de toewijzing uitvoeren voordat het de naam kan opzoeken. Een variabelenaam heeft geen aanhalingstekens; een letterlijke tekstwaarde wel."
+      },
+      "code": "message = \"Come in\"\nprint(message)",
+      "output": "Come in\n",
+      "prediction": {
+        "en": "Does the first line itself display anything?",
+        "nl": "Toont de eerste regel zelf iets?"
+      },
+      "takeaway": {
+        "en": "Assignment names a value; printing the name displays that value.",
+        "nl": "Toewijzing geeft een waarde een naam; de naam afdrukken toont die waarde."
+      }
+    },
+    {
+      "id": "python-v4-02-assignment-experiment",
+      "topicIds": [],
+      "heading": {
+        "en": "Try one change",
+        "nl": "Probeer één wijziging"
+      },
+      "body": {
+        "en": "Change only the assigned string. Does the same print call display the new value?",
+        "nl": "Verander alleen de toegewezen string. Toont dezelfde print-aanroep de nieuwe waarde?"
+      }
+    }
+  ],
+  "files": {
+    "main.py": ""
+  },
+  "solution": {
+    "main.py": "place = \"Library\"\nprint(place)\n"
+  },
+  "checkpoints": [
+    {
+      "id": "python-v4-02-assignment-step-1",
+      "objectiveIds": [
+        "variables"
+      ],
+      "task": {
+        "en": "Create place with the string value \"Library\".",
+        "nl": "Maak place met de stringwaarde \"Library\"."
+      },
+      "check": "place == \"Library\"",
+      "probes": [],
+      "hint": {
+        "en": "Assignment names a value; printing the name displays that value.",
+        "nl": "Toewijzing geeft een waarde een naam; de naam afdrukken toont die waarde."
+      },
+      "hints": [
+        {
+          "en": "Assignment names a value; printing the name displays that value.",
+          "nl": "Toewijzing geeft een waarde een naam; de naam afdrukken toont die waarde."
+        },
+        {
+          "en": "Write the name on the left of = and the quoted text on the right.",
+          "nl": "Schrijf de naam links van = en de tekst tussen aanhalingstekens rechts."
+        },
+        {
+          "en": "A small fragment to adapt: `message = \"some text\"`",
+          "nl": "Een klein fragment om aan te passen: `message = \"some text\"`"
+        }
+      ],
+      "feedback": {
+        "en": "Write the name on the left of = and the quoted text on the right.",
+        "nl": "Schrijf de naam links van = en de tekst tussen aanhalingstekens rechts."
+      }
+    },
+    {
+      "id": "python-v4-02-assignment-step-2",
+      "objectiveIds": [
+        "variables"
+      ],
+      "task": {
+        "en": "Print the value stored in place.",
+        "nl": "Druk de waarde in place af."
+      },
+      "check": "_stdout == \"Library\\n\" and any(isinstance(n, _ast.Call) and any(isinstance(a, _ast.Name) and a.id == \"place\" for a in n.args) for n in _ast.walk(_ast.parse(_source)))",
+      "probes": [],
+      "hint": {
+        "en": "Assignment names a value; printing the name displays that value.",
+        "nl": "Toewijzing geeft een waarde een naam; de naam afdrukken toont die waarde."
+      },
+      "hints": [
+        {
+          "en": "Assignment names a value; printing the name displays that value.",
+          "nl": "Toewijzing geeft een waarde een naam; de naam afdrukken toont die waarde."
+        },
+        {
+          "en": "Pass the variable name to print without quotes.",
+          "nl": "Geef de variabelenaam zonder aanhalingstekens aan print."
+        },
+        {
+          "en": "A small fragment to adapt: `print(message)`",
+          "nl": "Een klein fragment om aan te passen: `print(message)`"
+        }
+      ],
+      "feedback": {
+        "en": "Pass the variable name to print without quotes.",
+        "nl": "Geef de variabelenaam zonder aanhalingstekens aan print."
+      }
+    }
+  ],
+  "solutionNote": {
+    "en": "The assignment creates place before it is used. print(place) reads the value instead of displaying the letters p-l-a-c-e.",
+    "nl": "De toewijzing maakt place voordat het wordt gebruikt. print(place) leest de waarde in plaats van de letters p-l-a-c-e te tonen."
+  },
+  "inputs": []
+}

@@ -1,0 +1,188 @@
+{
+  "id": "python-v4-20-read",
+  "chapter": 20,
+  "group": "python-v4-module-20",
+  "title": {
+    "en": "Read your first text file",
+    "nl": "Lees je eerste tekstbestand"
+  },
+  "kind": "coding",
+  "optional": false,
+  "runtime": "terminal",
+  "guidance": "guided",
+  "checkpointMode": "sequential",
+  "estimatedMinutes": 18,
+  "topicIds": [
+    "text-files",
+    "with",
+    "utf8",
+    "read",
+    "persistence"
+  ],
+  "practices": [],
+  "requiredConcepts": [
+    "helper-modules",
+    "strings"
+  ],
+  "explanation": {
+    "en": "A file can preserve text beyond one Python run. Open the supplied note.txt in the workspace to see what your program will read.\n\nOpen work.py to write the requested function. main.py is a supplied caller: Run always starts there and imports your function. The other file tabs contain input data. After a successful run, open any new output file tab to inspect what your program saved.",
+    "nl": "Een bestand kan tekst buiten één Pythonuitvoering bewaren. Open note.txt in de werkruimte om te zien wat je programma gaat lezen.\n\nOpen work.py om de gevraagde functie te schrijven. main.py is de aangeleverde aanroeper: Uitvoeren begint daar en importeert je functie. De andere bestandstabbladen bevatten invoergegevens. Open na een geslaagde uitvoering een nieuw uitvoerbestand om te bekijken wat je programma heeft opgeslagen."
+  },
+  "example": "",
+  "sections": [
+    {
+      "id": "python-v4-20-read-example",
+      "topicIds": [
+        "text-files",
+        "with",
+        "utf8",
+        "read",
+        "persistence"
+      ],
+      "heading": {
+        "en": "Follow a working example",
+        "nl": "Volg een werkend voorbeeld"
+      },
+      "body": {
+        "en": "with open(path, \"r\", encoding=\"utf-8\") as handle: opens a text file for reading. The indented block uses handle.read() to obtain all text; leaving the block closes the handle even if an error occurs. UTF-8 defines how stored bytes become characters. In this app files live in a browser runtime during execution. Supported generated text files are collected into your saved course workspace after the run. They do not automatically appear in your computer’s Documents folder.",
+        "nl": "with open(path, \"r\", encoding=\"utf-8\") as handle: opent een tekstbestand om te lezen. Het ingesprongen blok gebruikt handle.read() voor alle tekst; het blok verlaten sluit de handle ook als een fout optreedt. UTF-8 bepaalt hoe bewaarde bytes tekens worden. In deze app leven bestanden tijdens uitvoering in een browserruntime. Ondersteunde gemaakte tekstbestanden worden na uitvoering opgenomen in je opgeslagen cursuswerkruimte. Ze verschijnen niet automatisch in Documenten op je computer."
+      },
+      "code": "with open(\"example.txt\",\"r\",encoding=\"utf-8\") as handle:\n    text = handle.read()\nprint(text)",
+      "output": "Café\n",
+      "prediction": {
+        "en": "When is the handle closed relative to print?",
+        "nl": "Wanneer wordt de handle gesloten ten opzichte van print?"
+      },
+      "takeaway": {
+        "en": "Use with from the first file operation so closing is automatic.",
+        "nl": "Gebruik with vanaf de eerste bestandsbewerking zodat sluiten automatisch is."
+      },
+      "exampleFiles": {
+        "example.txt": "Café"
+      }
+    },
+    {
+      "id": "python-v4-20-read-experiment",
+      "topicIds": [],
+      "heading": {
+        "en": "Try one change",
+        "nl": "Probeer één wijziging"
+      },
+      "body": {
+        "en": "Change the supplied file, run again, and observe the changed result.",
+        "nl": "Verander het aangeleverde bestand, voer opnieuw uit en bekijk het gewijzigde resultaat."
+      }
+    }
+  ],
+  "files": {
+    "note.txt": "Hello\nCafé\n",
+    "main.py": "import work\nprint(work.read_text(\"note.txt\"))\n",
+    "work.py": "def read_text(path):\n    return \"\"\n"
+  },
+  "solution": {
+    "note.txt": "Hello\nCafé\n",
+    "main.py": "import work\nprint(work.read_text(\"note.txt\"))\n",
+    "work.py": "def read_text(path):\n    with open(path,\"r\",encoding=\"utf-8\") as handle:\n        return handle.read()\n"
+  },
+  "checkpoints": [
+    {
+      "id": "python-v4-20-read-step-1",
+      "objectiveIds": [
+        "text-files",
+        "with",
+        "utf8",
+        "read",
+        "persistence"
+      ],
+      "task": {
+        "en": "Return all text from path without stripping its final newline. Use with and UTF-8.",
+        "nl": "Geef alle tekst uit path terug zonder de laatste nieuwe regel weg te halen. Gebruik with en UTF-8."
+      },
+      "check": "True",
+      "probes": [
+        {
+          "call": {
+            "name": "read_text",
+            "args": [
+              "note.txt"
+            ],
+            "module": "work"
+          },
+          "check": "(_return == \"Hello\\nCafé\\n\") and _error is None",
+          "moduleOnly": true,
+          "module": "work",
+          "files": {}
+        },
+        {
+          "call": {
+            "name": "read_text",
+            "args": [
+              "other.txt"
+            ],
+            "module": "work"
+          },
+          "check": "(_return == \"\") and _error is None",
+          "moduleOnly": true,
+          "module": "work",
+          "files": {
+            "other.txt": ""
+          }
+        }
+      ],
+      "hint": {
+        "en": "Use with from the first file operation so closing is automatic.",
+        "nl": "Gebruik with vanaf de eerste bestandsbewerking zodat sluiten automatisch is."
+      },
+      "hints": [
+        {
+          "en": "Use with from the first file operation so closing is automatic.",
+          "nl": "Gebruik with vanaf de eerste bestandsbewerking zodat sluiten automatisch is."
+        },
+        {
+          "en": "Return read() inside the managed block; the handle still closes on return.",
+          "nl": "Geef read() binnen het beheerde blok terug; de handle sluit ook bij return."
+        },
+        {
+          "en": "A small fragment to adapt: `with open(path, \"r\", encoding=\"utf-8\") as handle:`",
+          "nl": "Een klein fragment om aan te passen: `with open(path, \"r\", encoding=\"utf-8\") as handle:`"
+        }
+      ],
+      "feedback": {
+        "en": "Return read() inside the managed block; the handle still closes on return.",
+        "nl": "Geef read() binnen het beheerde blok terug; de handle sluit ook bij return."
+      }
+    }
+  ],
+  "solutionNote": {
+    "en": "read returns the stored text exactly, including newlines and Unicode characters.",
+    "nl": "read geeft de bewaarde tekst exact terug, inclusief nieuwe regels en Unicode-tekens."
+  },
+  "inputs": [],
+  "retrievals": [
+    {
+      "id": "recall-python-v4-18-sequence",
+      "sourceActivityId": "python-v4-18-sequence",
+      "objectiveIds": [
+        "string-indexing",
+        "string-length",
+        "string-negative-index"
+      ],
+      "prompt": {
+        "en": "Recall “Read characters by position”. What is the index of the exclamation mark? Try the earlier example from memory, then check it. Test a string containing one space.",
+        "nl": "Haal “Lees tekens op positie” terug. Wat is de index van het uitroepteken? Probeer het eerdere voorbeeld uit je geheugen en controleer daarna. Test een string met één spatie."
+      }
+    },
+    {
+      "id": "recall-python-v4-18-join-strip",
+      "sourceActivityId": "python-v4-18-join-strip",
+      "objectiveIds": [
+        "join",
+        "strip-characters"
+      ],
+      "prompt": {
+        "en": "Recall “Join cleaned pieces of text”. What does joining an empty list produce? Try the earlier example from memory, then check it. Use a newline as the join separator to create a multiline report.",
+        "nl": "Haal “Voeg opgeschoonde tekstdelen samen” terug. Wat levert een lege lijst samenvoegen op? Probeer het eerdere voorbeeld uit je geheugen en controleer daarna. Gebruik een nieuwe regel als samenvoegscheiding om een rapport met meerdere regels te maken."
+      }
+    }
+  ]
+}

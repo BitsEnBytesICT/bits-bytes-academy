@@ -1,0 +1,183 @@
+{
+  "id": "python-v3-5-01",
+  "chapter": 5,
+  "group": "python-v3-module-5",
+  "title": {
+    "en": "Keep a history",
+    "nl": "Houd een geschiedenis bij"
+  },
+  "kind": "coding",
+  "optional": false,
+  "runtime": "terminal",
+  "guidance": "guided",
+  "estimatedMinutes": 15,
+  "explanation": {
+    "en": "Store several related values in a list and grow a history one event at a time. A list is an ordered, changeable collection.",
+    "nl": "Bewaar meerdere bijbehorende waarden in een lijst en breid een geschiedenis één gebeurtenis tegelijk uit. Een lijst is een geordende, veranderbare verzameling."
+  },
+  "example": "",
+  "topicIds": [
+    "lists",
+    "mixed-lists",
+    "empty-lists",
+    "list-methods",
+    "append",
+    "list-concatenation"
+  ],
+  "prerequisites": [
+    "python-v3-4-05"
+  ],
+  "sections": [
+    {
+      "topicIds": [
+        "lists",
+        "mixed-lists",
+        "empty-lists",
+        "list-methods",
+        "append",
+        "list-concatenation"
+      ],
+      "heading": {
+        "en": "Grow a list",
+        "nl": "Laat een lijst groeien"
+      },
+      "body": {
+        "en": "Square brackets create a list; [] is empty. A list can mix types, although similar items are easier to process. A method is an operation accessed through a value, such as scores.append(8). append adds one item to the existing list. + makes a new combined list. append returns None: do not replace your list with its return value.",
+        "nl": "Vierkante haken maken een lijst; [] is leeg. Een lijst kan types mengen, hoewel gelijksoortige items makkelijker te verwerken zijn. Een methode is een bewerking via een waarde, zoals scores.append(8). append voegt één item aan de bestaande lijst toe. + maakt een nieuwe gecombineerde lijst. append geeft None terug: vervang je lijst niet door die terugkeerwaarde."
+      },
+      "code": "scores = []\nscores.append(8)\nscores.append(3)\nrecord = [\"Ada\", 11, True]\ncombined = scores + [5]\nprint(scores)\nprint(combined)\nprint(record)",
+      "output": "[8, 3]\n[8, 3, 5]\n['Ada', 11, True]\n",
+      "prediction": {
+        "en": "Which operation leaves scores unchanged?",
+        "nl": "Welke bewerking laat scores ongewijzigd?"
+      }
+    },
+    {
+      "topicIds": [],
+      "heading": {
+        "en": "Try a changed input",
+        "nl": "Probeer gewijzigde invoer"
+      },
+      "body": {
+        "en": "Assign the result of append to a temporary name and print it. Explain why it is None even though the list gained an item.",
+        "nl": "Wijs het resultaat van append aan een tijdelijke naam toe en druk het af. Leg uit waarom het None is hoewel de lijst een item kreeg."
+      }
+    }
+  ],
+  "files": {
+    "main.py": "player = \"Jo\"\nfirst = 4\nsecond = 7\n# Build scores and a mixed record.\n"
+  },
+  "solution": {
+    "main.py": "player = \"Jo\"\nfirst = 4\nsecond = 7\nscores = []\nscores.append(first)\nscores.append(second)\nrecord = [player, first + second]\ncombined = scores + [0]\nprint(record)\nprint(combined)\n"
+  },
+  "checkpoints": [
+    {
+      "objectiveIds": [
+        "lists",
+        "empty-lists",
+        "list-methods",
+        "append"
+      ],
+      "task": {
+        "en": "Start scores as an empty list; append first and then second.",
+        "nl": "Begin scores als een lege lijst; voeg first en daarna second toe met append."
+      },
+      "check": "scores == [first, second] and any(isinstance(n,_ast.Call) and isinstance(n.func,_ast.Attribute) and n.func.attr == \"append\" for n in _ast.walk(_ast.parse(_source)))",
+      "hints": [
+        {
+          "en": "Create the list before calling its method.",
+          "nl": "Maak de lijst voordat je zijn methode aanroept."
+        },
+        {
+          "en": "Call append twice without assigning its result.",
+          "nl": "Roep append twee keer aan zonder het resultaat toe te wijzen."
+        },
+        {
+          "en": "scores.append(first)",
+          "nl": "scores.append(first)"
+        }
+      ],
+      "hint": {
+        "en": "Create the list before calling its method.",
+        "nl": "Maak de lijst voordat je zijn methode aanroept."
+      },
+      "feedback": {
+        "en": "Check that scores is still a list, not None.",
+        "nl": "Controleer dat scores nog een lijst is, geen None."
+      },
+      "probes": [
+        {
+          "inputs": {
+            "first": 0,
+            "second": -2
+          },
+          "check": "scores == [0,-2]"
+        }
+      ],
+      "id": "python-v3-5-01-step-1"
+    },
+    {
+      "objectiveIds": [
+        "mixed-lists",
+        "list-concatenation"
+      ],
+      "task": {
+        "en": "Make record = [player, first + second]. Make combined by joining scores and [0], preserving scores. Print record and combined.",
+        "nl": "Maak record = [player, first + second]. Maak combined door scores en [0] samen te voegen en behoud scores. Druk record en combined af."
+      },
+      "check": "record == [player, first+second] and combined == [first,second,0] and scores == [first,second] and len(_stdout.splitlines()) == 2",
+      "hints": [
+        {
+          "en": "Different types can occupy different list positions.",
+          "nl": "Verschillende types kunnen verschillende lijstposities innemen."
+        },
+        {
+          "en": "Use + for a separate list with the extra zero.",
+          "nl": "Gebruik + voor een aparte lijst met de extra nul."
+        },
+        {
+          "en": "combined = scores + [0]",
+          "nl": "combined = scores + [0]"
+        }
+      ],
+      "hint": {
+        "en": "Different types can occupy different list positions.",
+        "nl": "Verschillende types kunnen verschillende lijstposities innemen."
+      },
+      "feedback": {
+        "en": "Appending zero to scores would change the original history.",
+        "nl": "Nul toevoegen met append aan scores zou de oorspronkelijke geschiedenis wijzigen."
+      },
+      "probes": [
+        {
+          "inputs": {
+            "player": "Mia",
+            "first": 2,
+            "second": 3
+          },
+          "check": "record == [\"Mia\",5] and combined == [2,3,0] and scores == [2,3]"
+        }
+      ],
+      "id": "python-v3-5-01-step-2"
+    }
+  ],
+  "solutionNote": {
+    "en": "append changes the existing list; + creates a new one. The mixed record uses a text label and numeric total, while the score history remains purely numeric.",
+    "nl": "append wijzigt de bestaande lijst; + maakt een nieuwe. Het gemengde record gebruikt een tekstlabel en numeriek totaal, terwijl de scoregeschiedenis numeriek blijft."
+  },
+  "inputs": [],
+  "retrievals": [
+    {
+      "id": "recall-python-v3-3-01",
+      "sourceActivityId": "python-v3-3-01",
+      "objectiveIds": [
+        "why-loops",
+        "for"
+      ],
+      "prompt": {
+        "en": "Replace three repeated print calls with a for loop. Explain what changes each iteration.",
+        "nl": "Vervang drie herhaalde print-aanroepen door een for-lus. Leg uit wat per herhaling verandert."
+      }
+    }
+  ]
+}

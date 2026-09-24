@@ -1,0 +1,178 @@
+{
+  "id": "python-v4-06-inclusive-boundaries",
+  "chapter": 6,
+  "group": "python-v4-module-6",
+  "title": {
+    "en": "Include the boundary",
+    "nl": "Neem de grenswaarde mee"
+  },
+  "kind": "coding",
+  "optional": false,
+  "runtime": "terminal",
+  "guidance": "guided",
+  "checkpointMode": "sequential",
+  "estimatedMinutes": 13,
+  "topicIds": [
+    "inclusive-comparisons"
+  ],
+  "practices": [],
+  "requiredConcepts": [
+    "strict-comparisons"
+  ],
+  "explanation": {
+    "en": "Words such as at least and at most include equality. Translate that wording carefully.",
+    "nl": "Woorden zoals minstens en hoogstens omvatten gelijkheid. Vertaal die formulering zorgvuldig."
+  },
+  "example": "",
+  "sections": [
+    {
+      "id": "python-v4-06-inclusive-boundaries-example",
+      "topicIds": [
+        "inclusive-comparisons"
+      ],
+      "heading": {
+        "en": "Follow a working example",
+        "nl": "Volg een werkend voorbeeld"
+      },
+      "body": {
+        "en": ">= means greater than or equal to; <= means less than or equal to. If entry requires at least 12 years, someone aged exactly 12 qualifies. age > 12 would exclude them.\n\nA useful test table has three rows: one below the boundary, the boundary itself, and one above it. Write the expected Boolean before running the code.",
+        "nl": ">= betekent groter dan of gelijk aan; <= betekent kleiner dan of gelijk aan. Als toegang minstens 12 jaar vereist, mag iemand van precies 12 naar binnen. age > 12 zou die persoon uitsluiten.\n\nEen nuttige testtabel heeft drie regels: één onder de grens, de grens zelf en één erboven. Schrijf de verwachte booleaanse waarde op voordat je de code uitvoert."
+      },
+      "code": "print(12 >= 12)\nprint(11 >= 12)\nprint(4 <= 4)",
+      "output": "True\nFalse\nTrue\n",
+      "prediction": {
+        "en": "Which symbol represents at most?",
+        "nl": "Welk symbool betekent hoogstens?"
+      },
+      "takeaway": {
+        "en": "An inclusive comparison accepts equality at its boundary.",
+        "nl": "Een inclusieve vergelijking accepteert gelijkheid op de grens."
+      }
+    },
+    {
+      "id": "python-v4-06-inclusive-boundaries-experiment",
+      "topicIds": [],
+      "heading": {
+        "en": "Try one change",
+        "nl": "Probeer één wijziging"
+      },
+      "body": {
+        "en": "Write a three-row table for weights 4, 5 and 6, then verify it.",
+        "nl": "Schrijf een tabel met drie regels voor gewichten 4, 5 en 6 en controleer die."
+      }
+    }
+  ],
+  "files": {
+    "main.py": "weight = 5\nmaximum = 5\n"
+  },
+  "solution": {
+    "main.py": "weight = 5\nmaximum = 5\nresult = weight <= maximum\nprint(result)\n"
+  },
+  "checkpoints": [
+    {
+      "id": "python-v4-06-inclusive-boundaries-step-1",
+      "objectiveIds": [
+        "inclusive-comparisons"
+      ],
+      "task": {
+        "en": "Store whether the parcel weighs at most maximum in result.",
+        "nl": "Bewaar in result of het pakket hoogstens maximum weegt."
+      },
+      "check": "type(result) is bool and result == (weight <= maximum)",
+      "probes": [
+        {
+          "inputs": {
+            "weight": 4
+          },
+          "check": "type(result) is bool and result == (weight <= maximum)"
+        },
+        {
+          "inputs": {
+            "weight": 5
+          },
+          "check": "type(result) is bool and result == (weight <= maximum)"
+        },
+        {
+          "inputs": {
+            "weight": 6
+          },
+          "check": "type(result) is bool and result == (weight <= maximum)"
+        }
+      ],
+      "hint": {
+        "en": "An inclusive comparison accepts equality at its boundary.",
+        "nl": "Een inclusieve vergelijking accepteert gelijkheid op de grens."
+      },
+      "hints": [
+        {
+          "en": "An inclusive comparison accepts equality at its boundary.",
+          "nl": "Een inclusieve vergelijking accepteert gelijkheid op de grens."
+        },
+        {
+          "en": "A parcel exactly at the maximum is allowed.",
+          "nl": "Een pakket dat precies het maximum weegt is toegestaan."
+        },
+        {
+          "en": "A small fragment to adapt: `weight <= maximum`",
+          "nl": "Een klein fragment om aan te passen: `weight <= maximum`"
+        }
+      ],
+      "feedback": {
+        "en": "A parcel exactly at the maximum is allowed.",
+        "nl": "Een pakket dat precies het maximum weegt is toegestaan."
+      }
+    },
+    {
+      "id": "python-v4-06-inclusive-boundaries-step-2",
+      "objectiveIds": [
+        "inclusive-comparisons"
+      ],
+      "task": {
+        "en": "Print the Boolean result.",
+        "nl": "Druk het booleaanse resultaat af."
+      },
+      "check": "_stdout.strip() == str(result)",
+      "probes": [],
+      "hint": {
+        "en": "An inclusive comparison accepts equality at its boundary.",
+        "nl": "Een inclusieve vergelijking accepteert gelijkheid op de grens."
+      },
+      "hints": [
+        {
+          "en": "An inclusive comparison accepts equality at its boundary.",
+          "nl": "Een inclusieve vergelijking accepteert gelijkheid op de grens."
+        },
+        {
+          "en": "Print result itself, so changes to the comparison appear in the output.",
+          "nl": "Druk result zelf af zodat veranderingen in de vergelijking in de uitvoer verschijnen."
+        },
+        {
+          "en": "A small fragment to adapt: `print(result)`",
+          "nl": "Een klein fragment om aan te passen: `print(result)`"
+        }
+      ],
+      "feedback": {
+        "en": "Print result itself, so changes to the comparison appear in the output.",
+        "nl": "Druk result zelf af zodat veranderingen in de vergelijking in de uitvoer verschijnen."
+      }
+    }
+  ],
+  "solutionNote": {
+    "en": "The equals part of <= makes the boundary case pass.",
+    "nl": "Het gelijkdeel van <= zorgt dat de grenswaarde wordt geaccepteerd."
+  },
+  "inputs": [],
+  "retrievals": [
+    {
+      "id": "recall-python-v4-04-escapes",
+      "sourceActivityId": "python-v4-04-escapes",
+      "objectiveIds": [
+        "escapes"
+      ],
+      "prompt": {
+        "en": "Recall “Newlines and special characters”. How many output lines come from the first call? Try the earlier example from memory, then check it. Print a string containing one backslash, then one containing a quoted word. Explain which marks are syntax.",
+        "nl": "Haal “Nieuwe regels en speciale tekens” terug. Hoeveel uitvoerregels komen uit de eerste aanroep? Probeer het eerdere voorbeeld uit je geheugen en controleer daarna. Druk een string met één backslash af en daarna een string met een woord tussen aanhalingstekens. Leg uit welke tekens syntaxis zijn."
+      }
+    }
+  ]
+}

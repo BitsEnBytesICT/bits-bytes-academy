@@ -1,0 +1,143 @@
+{
+  "id": "python-v4-23-method-arguments",
+  "chapter": 23,
+  "group": "python-v4-module-23",
+  "title": {
+    "en": "Pass an argument to a method",
+    "nl": "Geef een argument aan een methode"
+  },
+  "kind": "coding",
+  "optional": false,
+  "runtime": "terminal",
+  "guidance": "guided",
+  "checkpointMode": "sequential",
+  "estimatedMinutes": 12,
+  "topicIds": [
+    "method-arguments"
+  ],
+  "practices": [],
+  "requiredConcepts": [
+    "methods",
+    "default-arguments"
+  ],
+  "explanation": {
+    "en": "A method can combine stored state with new input supplied by a caller.",
+    "nl": "Een methode kan bewaarde toestand combineren met nieuwe invoer van een aanroeper."
+  },
+  "example": "",
+  "sections": [
+    {
+      "id": "python-v4-23-method-arguments-example",
+      "topicIds": [
+        "method-arguments"
+      ],
+      "heading": {
+        "en": "Follow a working example",
+        "nl": "Volg een werkend voorbeeld"
+      },
+      "body": {
+        "en": "Define add(self, amount=1); call counter.add(3). self is supplied automatically, while amount comes from the call or its default. A method may return a useful result as well as change state, but its contract should make both effects clear. Here add returns the new total.",
+        "nl": "Definieer add(self, amount=1); roep counter.add(3) aan. self wordt automatisch geleverd, terwijl amount uit de aanroep of standaardwaarde komt. Een methode mag een nuttig resultaat teruggeven én toestand veranderen, maar de afspraak moet beide gevolgen duidelijk maken. Hier geeft add het nieuwe totaal terug."
+      },
+      "code": "class Counter:\n    def __init__(self):\n        self.value = 0\n    def add(self,amount):\n        self.value += amount\n        return self.value\ncounter = Counter()\nprint(counter.add(3))\nprint(counter.add(2))",
+      "output": "3\n5\n",
+      "prediction": {
+        "en": "Why is the second result five instead of two?",
+        "nl": "Waarom is het tweede resultaat vijf in plaats van twee?"
+      },
+      "takeaway": {
+        "en": "Method arguments after self are supplied by the caller.",
+        "nl": "Methodeargumenten na self worden door de aanroeper geleverd."
+      }
+    },
+    {
+      "id": "python-v4-23-method-arguments-experiment",
+      "topicIds": [],
+      "heading": {
+        "en": "Try one change",
+        "nl": "Probeer één wijziging"
+      },
+      "body": {
+        "en": "Call add with a named argument and explain how the stored state changes.",
+        "nl": "Roep add met een benoemd argument aan en leg uit hoe de bewaarde toestand verandert."
+      }
+    }
+  ],
+  "files": {
+    "main.py": "class Counter:\n    def __init__(self,start=0):\n        self.value = start\n    def add(self,amount=1):\n        return self.value\n"
+  },
+  "solution": {
+    "main.py": "class Counter:\n    def __init__(self,start=0):\n        self.value = start\n    def add(self,amount=1):\n        self.value += amount\n        return self.value\n"
+  },
+  "checkpoints": [
+    {
+      "id": "python-v4-23-method-arguments-step-1",
+      "objectiveIds": [
+        "method-arguments"
+      ],
+      "task": {
+        "en": "Make add increase the stored value by amount (default 1), then return the updated value.",
+        "nl": "Laat add de bewaarde waarde met amount verhogen (standaard 1) en daarna de gewijzigde waarde teruggeven."
+      },
+      "check": "callable(Counter)",
+      "probes": [
+        {
+          "call": {
+            "name": "Counter",
+            "args": [
+              3
+            ]
+          },
+          "check": "_return.add() == 4 and _return.add(-2) == 2 and _return.value == 2"
+        },
+        {
+          "call": {
+            "name": "Counter",
+            "args": []
+          },
+          "check": "_return.add(0) == 0"
+        }
+      ],
+      "hint": {
+        "en": "Method arguments after self are supplied by the caller.",
+        "nl": "Methodeargumenten na self worden door de aanroeper geleverd."
+      },
+      "hints": [
+        {
+          "en": "Method arguments after self are supplied by the caller.",
+          "nl": "Methodeargumenten na self worden door de aanroeper geleverd."
+        },
+        {
+          "en": "Update self.value before returning it.",
+          "nl": "Werk self.value bij vóór je die teruggeeft."
+        },
+        {
+          "en": "A small fragment to adapt: `self.value += amount`",
+          "nl": "Een klein fragment om aan te passen: `self.value += amount`"
+        }
+      ],
+      "feedback": {
+        "en": "Update self.value before returning it.",
+        "nl": "Werk self.value bij vóór je die teruggeeft."
+      }
+    }
+  ],
+  "solutionNote": {
+    "en": "The result includes previous state because every call updates the same instance field.",
+    "nl": "Het resultaat bevat eerdere toestand omdat elke aanroep hetzelfde instantieveld bijwerkt."
+  },
+  "inputs": [],
+  "retrievals": [
+    {
+      "id": "recall-python-v4-21-write",
+      "sourceActivityId": "python-v4-21-write",
+      "objectiveIds": [
+        "csv-write"
+      ],
+      "prompt": {
+        "en": "Recall “Export records to CSV”. Why is a comma inside the city safe here? Try the earlier example from memory, then check it. Inspect the generated file, then read it back using csv.reader.",
+        "nl": "Haal “Exporteer records naar CSV” terug. Waarom is een komma binnen de stad hier veilig? Probeer het eerdere voorbeeld uit je geheugen en controleer daarna. Bekijk het gemaakte bestand en lees het terug met csv.reader."
+      }
+    }
+  ]
+}

@@ -1,0 +1,150 @@
+{
+  "id": "python-v4-09-named-and-default",
+  "chapter": 9,
+  "group": "python-v4-module-9",
+  "title": {
+    "en": "Optional inputs and named arguments",
+    "nl": "Optionele invoer en benoemde argumenten"
+  },
+  "kind": "coding",
+  "optional": false,
+  "runtime": "terminal",
+  "guidance": "guided",
+  "checkpointMode": "sequential",
+  "estimatedMinutes": 12,
+  "topicIds": [
+    "default-arguments",
+    "keyword-arguments",
+    "argument-types"
+  ],
+  "practices": [],
+  "requiredConcepts": [
+    "scope",
+    "multiple-parameters"
+  ],
+  "explanation": {
+    "en": "Defaults make common calls short. Named arguments make less obvious calls readable.",
+    "nl": "Standaardwaarden houden veelvoorkomende aanroepen kort. Benoemde argumenten maken minder duidelijke aanroepen leesbaar."
+  },
+  "example": "",
+  "sections": [
+    {
+      "id": "python-v4-09-named-and-default-example",
+      "topicIds": [
+        "default-arguments",
+        "keyword-arguments",
+        "argument-types"
+      ],
+      "heading": {
+        "en": "Follow a working example",
+        "nl": "Volg een werkend voorbeeld"
+      },
+      "body": {
+        "en": "In a definition, tax=2 gives tax a default when the caller omits it. In a call, tax=5 explicitly chooses a value by parameter name. Required parameters come before defaulted ones. Positional arguments must come before keyword arguments in a call. Supplying a value twice raises TypeError.",
+        "nl": "In een definitie geeft tax=2 tax een standaardwaarde als de aanroeper die weglaat. In een aanroep kiest tax=5 expliciet een waarde via de parameternaam. Verplichte parameters komen vóór parameters met standaardwaarden. Positionele argumenten moeten vóór benoemde argumenten staan. Dezelfde waarde tweemaal meegeven veroorzaakt TypeError."
+      },
+      "code": "def total(price, tax=2):\n    return price + tax\nprint(total(10))\nprint(total(price=10, tax=0))",
+      "output": "12\n10\n",
+      "prediction": {
+        "en": "Why is the second result not 12?",
+        "nl": "Waarom is het tweede resultaat niet 12?"
+      },
+      "takeaway": {
+        "en": "A default is used only when that argument is omitted.",
+        "nl": "Een standaardwaarde wordt alleen gebruikt als dat argument ontbreekt."
+      }
+    },
+    {
+      "id": "python-v4-09-named-and-default-experiment",
+      "topicIds": [],
+      "heading": {
+        "en": "Try one change",
+        "nl": "Probeer één wijziging"
+      },
+      "body": {
+        "en": "Compare delivery(5, 1) with delivery(fee=1, price=5).",
+        "nl": "Vergelijk delivery(5, 1) met delivery(fee=1, price=5)."
+      }
+    }
+  ],
+  "files": {
+    "main.py": ""
+  },
+  "solution": {
+    "main.py": "def delivery(price, fee=3):\n    return price + fee\n"
+  },
+  "checkpoints": [
+    {
+      "id": "python-v4-09-named-and-default-step-1",
+      "objectiveIds": [
+        "default-arguments",
+        "keyword-arguments",
+        "argument-types"
+      ],
+      "task": {
+        "en": "Define delivery(price, fee=3) to return the price plus fee. Support both positional and named calls.",
+        "nl": "Definieer delivery(price, fee=3) om prijs plus toeslag terug te geven. Ondersteun positionele en benoemde aanroepen."
+      },
+      "check": "callable(delivery)",
+      "probes": [
+        {
+          "call": {
+            "name": "delivery",
+            "args": [
+              7
+            ]
+          },
+          "check": "_return == 10"
+        },
+        {
+          "call": {
+            "name": "delivery",
+            "args": [
+              7,
+              0
+            ]
+          },
+          "check": "_return == 7"
+        },
+        {
+          "call": {
+            "name": "delivery",
+            "args": [],
+            "kwargs": {
+              "fee": 2,
+              "price": 5
+            }
+          },
+          "check": "_return == 7"
+        }
+      ],
+      "hint": {
+        "en": "A default is used only when that argument is omitted.",
+        "nl": "Een standaardwaarde wordt alleen gebruikt als dat argument ontbreekt."
+      },
+      "hints": [
+        {
+          "en": "A default is used only when that argument is omitted.",
+          "nl": "Een standaardwaarde wordt alleen gebruikt als dat argument ontbreekt."
+        },
+        {
+          "en": "Put the default in the definition, not inside the calculation.",
+          "nl": "Zet de standaardwaarde in de definitie, niet binnen de berekening."
+        },
+        {
+          "en": "A small fragment to adapt: `def delivery(price, fee=3):`",
+          "nl": "Een klein fragment om aan te passen: `def delivery(price, fee=3):`"
+        }
+      ],
+      "feedback": {
+        "en": "Put the default in the definition, not inside the calculation.",
+        "nl": "Zet de standaardwaarde in de definitie, niet binnen de berekening."
+      }
+    }
+  ],
+  "solutionNote": {
+    "en": "The default belongs to the interface; callers can override it explicitly.",
+    "nl": "De standaardwaarde hoort bij de interface; aanroepers kunnen die expliciet vervangen."
+  },
+  "inputs": []
+}

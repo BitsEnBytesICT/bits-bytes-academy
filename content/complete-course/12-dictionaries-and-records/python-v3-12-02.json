@@ -1,0 +1,188 @@
+{
+  "id": "python-v3-12-02",
+  "chapter": 12,
+  "group": "python-v3-module-12",
+  "title": {
+    "en": "Update fields",
+    "nl": "Werk velden bij"
+  },
+  "kind": "coding",
+  "optional": false,
+  "runtime": "terminal",
+  "guidance": "adapt",
+  "estimatedMinutes": 15,
+  "explanation": {
+    "en": "Update named fields without replacing unrelated information. The order of assignments matters when two updates target the same key.",
+    "nl": "Werk benoemde velden bij zonder niet-gerelateerde informatie te vervangen. De toewijzingsvolgorde telt wanneer twee updates dezelfde sleutel hebben."
+  },
+  "example": "",
+  "topicIds": [
+    "add-key",
+    "update",
+    "overwrite"
+  ],
+  "prerequisites": [
+    "python-v3-12-01"
+  ],
+  "sections": [
+    {
+      "topicIds": [
+        "add-key",
+        "update",
+        "overwrite"
+      ],
+      "heading": {
+        "en": "Add or replace",
+        "nl": "Voeg toe of vervang"
+      },
+      "body": {
+        "en": "record[key] = value adds a missing key or replaces an existing value. record.update(other) applies several pairs with the same overwrite rule. It changes the dictionary and returns None. Fields not mentioned in an update remain unchanged.",
+        "nl": "record[key] = value voegt een ontbrekende sleutel toe of vervangt een bestaande waarde. record.update(other) past meerdere paren toe met dezelfde overschrijfregel. Het verandert de dictionary en geeft None terug. Velden die niet in een update staan blijven ongewijzigd."
+      },
+      "code": "record = {\"score\": 2, \"team\": \"blue\"}\nrecord[\"score\"] = 5\nrecord.update({\"active\": True, \"team\": \"red\"})\nprint(record)",
+      "output": "{'score': 5, 'team': 'red', 'active': True}\n",
+      "prediction": {
+        "en": "Which assignment wins for team?",
+        "nl": "Welke toewijzing wint voor team?"
+      }
+    },
+    {
+      "topicIds": [],
+      "heading": {
+        "en": "Try a changed input",
+        "nl": "Probeer gewijzigde invoer"
+      },
+      "body": {
+        "en": "Move update before the two assignments and predict a repeated name field. Explain why that changes the contract.",
+        "nl": "Verplaats update vóór de twee toewijzingen en voorspel een herhaald name-veld. Leg uit waarom dit de afspraak verandert."
+      }
+    }
+  ],
+  "files": {
+    "main.py": "def update_record(record, name, extras):\n    return record\n\nprint(update_record({\"score\": 4}, \"Ada\", {\"team\": \"red\"}))\n"
+  },
+  "solution": {
+    "main.py": "def update_record(record, name, extras):\n    record[\"name\"] = name\n    record[\"active\"] = True\n    record.update(extras)\n    return record\n\nprint(update_record({\"score\": 4}, \"Ada\", {\"team\": \"red\"}))\n"
+  },
+  "checkpoints": [
+    {
+      "objectiveIds": [
+        "add-key",
+        "overwrite"
+      ],
+      "task": {
+        "en": "In update_record, assign name and active=True on the supplied dictionary; preserve unrelated fields.",
+        "nl": "Wijs in update_record name en active=True toe aan de meegegeven dictionary; behoud andere velden."
+      },
+      "check": "callable(update_record)",
+      "hints": [
+        {
+          "en": "Update fields on the existing object.",
+          "nl": "Werk velden op het bestaande object bij."
+        },
+        {
+          "en": "Assign by key instead of constructing a replacement record.",
+          "nl": "Wijs op sleutel toe in plaats van een vervangend record te maken."
+        },
+        {
+          "en": "record[\"name\"] = name",
+          "nl": "record[\"name\"] = name"
+        }
+      ],
+      "hint": {
+        "en": "Update fields on the existing object.",
+        "nl": "Werk velden op het bestaande object bij."
+      },
+      "feedback": {
+        "en": "The caller’s dictionary should receive the changes.",
+        "nl": "De dictionary van de aanroeper moet de wijzigingen ontvangen."
+      },
+      "probes": [
+        {
+          "call": {
+            "name": "update_record",
+            "args": [
+              {
+                "score": 4,
+                "name": "Old"
+              },
+              "New",
+              {}
+            ]
+          },
+          "check": "_return is _args[0] and _return == {\"score\":4,\"name\":\"New\",\"active\":True}"
+        }
+      ],
+      "id": "python-v3-12-02-step-1"
+    },
+    {
+      "objectiveIds": [
+        "update"
+      ],
+      "task": {
+        "en": "Then apply extras with update and return the same dictionary. extras wins if it repeats a key.",
+        "nl": "Pas daarna extras toe met update en geef dezelfde dictionary terug. extras wint als die een sleutel herhaalt."
+      },
+      "check": "update_record({},\"Jo\",{\"team\":\"blue\"}) == {\"name\":\"Jo\",\"active\":True,\"team\":\"blue\"}",
+      "hints": [
+        {
+          "en": "The order is part of the requirement.",
+          "nl": "De volgorde is deel van de eis."
+        },
+        {
+          "en": "Apply extras after the fixed field assignments.",
+          "nl": "Pas extras na de vaste veldtoewijzingen toe."
+        },
+        {
+          "en": "record.update(extras)",
+          "nl": "record.update(extras)"
+        }
+      ],
+      "hint": {
+        "en": "The order is part of the requirement.",
+        "nl": "De volgorde is deel van de eis."
+      },
+      "feedback": {
+        "en": "Do not return the result of update; it is None.",
+        "nl": "Geef het resultaat van update niet terug; dat is None."
+      },
+      "probes": [
+        {
+          "call": {
+            "name": "update_record",
+            "args": [
+              {},
+              "Ada",
+              {
+                "name": "Guest",
+                "active": false
+              }
+            ]
+          },
+          "check": "_return == {\"name\":\"Guest\",\"active\":False} and _return is _args[0]"
+        }
+      ],
+      "id": "python-v3-12-02-step-2"
+    }
+  ],
+  "solutionNote": {
+    "en": "The existing dictionary retains unmentioned fields. Applying extras last makes the override policy explicit and predictable.",
+    "nl": "De bestaande dictionary behoudt niet-genoemde velden. extras als laatste toepassen maakt het overschrijfbeleid expliciet en voorspelbaar."
+  },
+  "inputs": [],
+  "retrievals": [
+    {
+      "id": "recall-python-v3-10-02",
+      "sourceActivityId": "python-v3-10-02",
+      "objectiveIds": [
+        "string-immutability",
+        "escapes",
+        "string-concatenation"
+      ],
+      "prompt": {
+        "en": "Replace one character by constructing a new string. Explain immutability, concatenation and escaped newline or quote characters.",
+        "nl": "Vervang één teken door een nieuwe string te bouwen. Leg onveranderlijkheid, samenvoegen en escapes voor nieuwe regels of aanhalingstekens uit."
+      }
+    }
+  ]
+}

@@ -1,0 +1,176 @@
+{
+  "id": "python-v4-22-update-and-recover",
+  "chapter": 22,
+  "group": "python-v4-module-22",
+  "title": {
+    "en": "Update saved data and recognise malformed JSON",
+    "nl": "Wijzig opgeslagen gegevens en herken ongeldige JSON"
+  },
+  "kind": "coding",
+  "optional": false,
+  "runtime": "terminal",
+  "guidance": "guided",
+  "checkpointMode": "sequential",
+  "estimatedMinutes": 18,
+  "topicIds": [
+    "json-update",
+    "malformed-json"
+  ],
+  "practices": [],
+  "requiredConcepts": [
+    "json-save",
+    "missing-files",
+    "try-except"
+  ],
+  "explanation": {
+    "en": "A file can exist but contain invalid JSON. Do not confuse that case with an absent file.\n\nOpen work.py to write the requested function. main.py is a supplied caller: Run always starts there and imports your function. The other file tabs contain input data. After a successful run, open any new output file tab to inspect what your program saved.",
+    "nl": "Een bestand kan bestaan maar ongeldige JSON bevatten. Verwar dat niet met een ontbrekend bestand.\n\nOpen work.py om de gevraagde functie te schrijven. main.py is de aangeleverde aanroeper: Uitvoeren begint daar en importeert je functie. De andere bestandstabbladen bevatten invoergegevens. Open na een geslaagde uitvoering een nieuw uitvoerbestand om te bekijken wat je programma heeft opgeslagen."
+  },
+  "example": "",
+  "sections": [
+    {
+      "id": "python-v4-22-update-and-recover-example",
+      "topicIds": [
+        "json-update",
+        "malformed-json"
+      ],
+      "heading": {
+        "en": "Follow a working example",
+        "nl": "Volg een werkend voorbeeld"
+      },
+      "body": {
+        "en": "json.load raises json.JSONDecodeError for malformed JSON such as a missing quote or trailing comma. Valid JSON can still have the wrong shape, so syntax and application validation are separate. This task accepts objects with an integer count. Load first, modify in memory, then save only after successful decoding. Never overwrite malformed input as an automatic recovery.\n\njson.loads(text) parses JSON already stored in a Python string. json.load(handle) reads it from an open file. Both produce Python values; the extra s identifies the string version.",
+        "nl": "json.load veroorzaakt json.JSONDecodeError bij ongeldige JSON zoals een ontbrekend aanhalingsteken of afsluitende komma. Geldige JSON kan nog steeds de verkeerde vorm hebben, dus syntax en toepassingsvalidatie zijn apart. Deze taak accepteert objecten met een gehele count. Laad eerst, wijzig in geheugen en bewaar pas na geslaagde decodering. Overschrijf ongeldige invoer nooit als automatisch herstel.\n\njson.loads(text) verwerkt JSON die al in een Pythonstring staat. json.load(handle) leest die uit een geopend bestand. Beide maken Pythonwaarden; de extra s geeft de stringversie aan."
+      },
+      "code": "import json\ntry:\n    json.loads(\"{broken}\")\nexcept json.JSONDecodeError:\n    print(\"Invalid JSON\")",
+      "output": "Invalid JSON\n",
+      "prediction": {
+        "en": "Does valid file encoding guarantee valid JSON syntax?",
+        "nl": "Garandeert geldige bestandscodering geldige JSON-syntax?"
+      },
+      "takeaway": {
+        "en": "Do not replace a damaged file before the learner can inspect it.",
+        "nl": "Vervang een beschadigd bestand niet voordat de leerling het kan bekijken."
+      },
+      "exampleFiles": {}
+    },
+    {
+      "id": "python-v4-22-update-and-recover-experiment",
+      "topicIds": [],
+      "heading": {
+        "en": "Try one change",
+        "nl": "Probeer één wijziging"
+      },
+      "body": {
+        "en": "Use valid JSON with a missing count field and explain why that is a different error.",
+        "nl": "Gebruik geldige JSON zonder count-veld en leg uit waarom dat een andere fout is."
+      }
+    }
+  ],
+  "files": {
+    "counter.json": "{\"count\":2,\"name\":\"visits\"}",
+    "main.py": "import work\nprint(work.increment(\"counter.json\"))\n",
+    "work.py": "def increment(path):\n    return None\n"
+  },
+  "solution": {
+    "counter.json": "{\"count\":2,\"name\":\"visits\"}",
+    "main.py": "import work\nprint(work.increment(\"counter.json\"))\n",
+    "work.py": "import json\ndef increment(path):\n    try:\n        with open(path,encoding=\"utf-8\") as handle:\n            data = json.load(handle)\n    except json.JSONDecodeError:\n        return None\n    data[\"count\"] += 1\n    with open(path,\"w\",encoding=\"utf-8\") as handle:\n        json.dump(data,handle,indent=2)\n    return data[\"count\"]\n"
+  },
+  "checkpoints": [
+    {
+      "id": "python-v4-22-update-and-recover-step-1",
+      "objectiveIds": [
+        "json-update",
+        "malformed-json"
+      ],
+      "task": {
+        "en": "Increase count by one and save, preserving other fields. On malformed JSON return None and leave the file untouched.",
+        "nl": "Verhoog count met één en bewaar met behoud van andere velden. Geef bij ongeldige JSON None en laat het bestand onaangeraakt."
+      },
+      "check": "True",
+      "probes": [
+        {
+          "call": {
+            "name": "increment",
+            "args": [
+              "counter.json"
+            ],
+            "module": "work"
+          },
+          "check": "(_return == 3 and _json.load(open(\"counter.json\")) == {\"count\":3,\"name\":\"visits\"}) and _error is None",
+          "moduleOnly": true,
+          "module": "work",
+          "files": {}
+        },
+        {
+          "call": {
+            "name": "increment",
+            "args": [
+              "broken.json"
+            ],
+            "module": "work"
+          },
+          "check": "(_return is None and open(\"broken.json\").read() == \"{broken}\") and _error is None",
+          "moduleOnly": true,
+          "module": "work",
+          "files": {
+            "broken.json": "{broken}"
+          }
+        }
+      ],
+      "hint": {
+        "en": "Do not replace a damaged file before the learner can inspect it.",
+        "nl": "Vervang een beschadigd bestand niet voordat de leerling het kan bekijken."
+      },
+      "hints": [
+        {
+          "en": "Do not replace a damaged file before the learner can inspect it.",
+          "nl": "Vervang een beschadigd bestand niet voordat de leerling het kan bekijken."
+        },
+        {
+          "en": "Finish decoding before opening the same file in write mode.",
+          "nl": "Rond decodering af voordat je hetzelfde bestand in schrijfmodus opent."
+        },
+        {
+          "en": "A small fragment to adapt: `except json.JSONDecodeError:`",
+          "nl": "Een klein fragment om aan te passen: `except json.JSONDecodeError:`"
+        }
+      ],
+      "feedback": {
+        "en": "Finish decoding before opening the same file in write mode.",
+        "nl": "Rond decodering af voordat je hetzelfde bestand in schrijfmodus opent."
+      }
+    }
+  ],
+  "solutionNote": {
+    "en": "Only a successful read reaches the write operation; malformed source text remains available for inspection.",
+    "nl": "Alleen geslaagd lezen bereikt schrijven; ongeldige brontekst blijft beschikbaar voor onderzoek."
+  },
+  "inputs": [],
+  "retrievals": [
+    {
+      "id": "recall-python-v4-20-position",
+      "sourceActivityId": "python-v4-20-position",
+      "objectiveIds": [
+        "readline",
+        "file-position"
+      ],
+      "prompt": {
+        "en": "Recall “Read a header, then the remaining file”. Why is the final read empty? Try the earlier example from memory, then check it. Use a file whose first line is blank. Explain how that differs from an empty file.",
+        "nl": "Haal “Lees een kop en daarna de rest” terug. Waarom is de laatste leesactie leeg? Probeer het eerdere voorbeeld uit je geheugen en controleer daarna. Gebruik een bestand met een lege eerste regel. Leg uit hoe dat verschilt van een leeg bestand."
+      }
+    },
+    {
+      "id": "recall-python-v4-20-report",
+      "sourceActivityId": "python-v4-20-report",
+      "objectiveIds": [
+        "file-review"
+      ],
+      "prompt": {
+        "en": "Recall “Generate a text report from a file”. Why does the output path need to differ from the source? Try the earlier example from memory, then check it. Add another negative number to the source and predict both report fields.",
+        "nl": "Haal “Maak een tekstrapport vanuit een bestand” terug. Waarom moet het uitvoerpad verschillen van de bron? Probeer het eerdere voorbeeld uit je geheugen en controleer daarna. Voeg nog een negatief getal aan de bron toe en voorspel beide rapportvelden."
+      }
+    }
+  ]
+}

@@ -1,0 +1,243 @@
+{
+  "id": "python-v4-14-guessing-game",
+  "chapter": 14,
+  "group": "python-v4-module-14",
+  "title": {
+    "en": "Mini project: number-guessing game",
+    "nl": "Miniproject: raad het getal"
+  },
+  "kind": "challenge",
+  "optional": false,
+  "runtime": "terminal",
+  "guidance": "independent",
+  "checkpointMode": "sequential",
+  "estimatedMinutes": 40,
+  "topicIds": [
+    "guessing-project"
+  ],
+  "practices": [
+    "random",
+    "helper-modules",
+    "retry-loops",
+    "cancellation"
+  ],
+  "requiredConcepts": [
+    "helper-modules",
+    "random",
+    "recovery-review"
+  ],
+  "explanation": {
+    "en": "Combine a supplied random caller with your own repeated-input game.",
+    "nl": "Combineer een aangeleverde willekeurige aanroeper met je eigen spel met herhaalde invoer."
+  },
+  "example": "",
+  "sections": [
+    {
+      "id": "python-v4-14-guessing-game-example",
+      "topicIds": [
+        "guessing-project",
+        "random",
+        "helper-modules",
+        "retry-loops",
+        "cancellation"
+      ],
+      "heading": {
+        "en": "Follow a working example",
+        "nl": "Volg een werkend voorbeeld"
+      },
+      "body": {
+        "en": "Write play(secret) in game.py. Ask Guess or quit: repeatedly. Invalid integers print Number needed and do not count as attempts. A valid guess counts once: print Higher if too small, Lower if too large, and Correct on a match. Return the number of valid guesses on success. quit (ignoring spaces/case) or end-of-input returns None. main.py chooses the secret with random.randint; tests use known secrets so failures are reproducible.",
+        "nl": "Schrijf play(secret) in game.py. Vraag herhaaldelijk Guess or quit:. Ongeldige gehele getallen tonen Number needed en tellen niet als poging. Een geldige gok telt eenmaal: toon Higher bij te klein, Lower bij te groot en Correct bij een overeenkomst. Geef bij succes het aantal geldige gokken terug. quit (ongeacht spaties/hoofdletters) of einde invoer geeft None. main.py kiest het geheim met random.randint; tests gebruiken bekende geheimen zodat fouten herhaalbaar zijn."
+      },
+      "code": "def compare(guess, target):\n    if guess < target:\n        return \"Higher\"\n    if guess > target:\n        return \"Lower\"\n    return \"Correct\"\nprint(compare(3, 8))",
+      "output": "Higher\n",
+      "prediction": {
+        "en": "Which comparison handles an exact match?",
+        "nl": "Welke vergelijking verwerkt een exacte overeenkomst?"
+      },
+      "takeaway": {
+        "en": "Separate the random choice from the deterministic game rules.",
+        "nl": "Scheid de willekeurige keuze van de voorspelbare spelregels."
+      }
+    },
+    {
+      "id": "python-v4-14-guessing-game-experiment",
+      "topicIds": [],
+      "heading": {
+        "en": "Try one change",
+        "nl": "Probeer één wijziging"
+      },
+      "body": {
+        "en": "Play with a range of 1–20 by editing only the supplied caller.",
+        "nl": "Speel met een bereik van 1–20 door alleen de aangeleverde aanroeper te wijzigen."
+      }
+    }
+  ],
+  "files": {
+    "main.py": "import random\nfrom game import play\nprint(play(random.randint(1, 10)))\n",
+    "game.py": "# Implement play(secret) here.\ndef play(secret):\n    return None\n"
+  },
+  "solution": {
+    "main.py": "import random\nfrom game import play\nprint(play(random.randint(1, 10)))\n",
+    "game.py": "def play(secret):\n    attempts = 0\n    while True:\n        try:\n            text = input(\"Guess or quit: \").strip().lower()\n        except EOFError:\n            return None\n        if text == \"quit\":\n            return None\n        try:\n            guess = int(text)\n        except ValueError:\n            print(\"Number needed\")\n            continue\n        attempts += 1\n        if guess < secret:\n            print(\"Higher\")\n        elif guess > secret:\n            print(\"Lower\")\n        else:\n            print(\"Correct\")\n            return attempts\n"
+  },
+  "checkpoints": [
+    {
+      "id": "python-v4-14-guessing-game-step-1",
+      "objectiveIds": [
+        "guessing-project",
+        "random",
+        "helper-modules",
+        "retry-loops",
+        "cancellation"
+      ],
+      "task": {
+        "en": "Implement the comparison loop and return the valid attempt count after a correct guess.",
+        "nl": "Implementeer de vergelijkingslus en geef het aantal geldige pogingen terug na een juiste gok."
+      },
+      "check": "True",
+      "probes": [
+        {
+          "call": {
+            "name": "play",
+            "args": [
+              5
+            ],
+            "module": "game"
+          },
+          "check": "(_return == 3 and \"Higher\" in _call_stdout and \"Lower\" in _call_stdout and \"Correct\" in _call_stdout) and _remaining_input == \"\"",
+          "moduleOnly": true,
+          "module": "game",
+          "stdin": [
+            "2",
+            "8",
+            "5"
+          ]
+        }
+      ],
+      "hint": {
+        "en": "Separate the random choice from the deterministic game rules.",
+        "nl": "Scheid de willekeurige keuze van de voorspelbare spelregels."
+      },
+      "hints": [
+        {
+          "en": "Separate the random choice from the deterministic game rules.",
+          "nl": "Scheid de willekeurige keuze van de voorspelbare spelregels."
+        },
+        {
+          "en": "Count only after successful int conversion, then compare with the parameter secret.",
+          "nl": "Tel pas na geslaagde int-omzetting en vergelijk daarna met de parameter secret."
+        },
+        {
+          "en": "A small fragment to adapt: `attempts += 1`",
+          "nl": "Een klein fragment om aan te passen: `attempts += 1`"
+        }
+      ],
+      "feedback": {
+        "en": "Count only after successful int conversion, then compare with the parameter secret.",
+        "nl": "Tel pas na geslaagde int-omzetting en vergelijk daarna met de parameter secret."
+      }
+    },
+    {
+      "id": "python-v4-14-guessing-game-step-2",
+      "objectiveIds": [
+        "guessing-project",
+        "random",
+        "helper-modules",
+        "retry-loops",
+        "cancellation"
+      ],
+      "task": {
+        "en": "Handle invalid input, quit and end-of-input without crashing.",
+        "nl": "Verwerk ongeldige invoer, quit en einde invoer zonder te crashen."
+      },
+      "check": "True",
+      "probes": [
+        {
+          "call": {
+            "name": "play",
+            "args": [
+              4
+            ],
+            "module": "game"
+          },
+          "check": "(_return == 1 and \"Number needed\" in _call_stdout) and _remaining_input == \"\"",
+          "moduleOnly": true,
+          "module": "game",
+          "stdin": [
+            "bad",
+            "4"
+          ]
+        },
+        {
+          "call": {
+            "name": "play",
+            "args": [
+              4
+            ],
+            "module": "game"
+          },
+          "check": "(_return is None and _error is None) and _remaining_input == \"\"",
+          "moduleOnly": true,
+          "module": "game",
+          "stdin": [
+            " QUIT "
+          ]
+        },
+        {
+          "call": {
+            "name": "play",
+            "args": [
+              4
+            ],
+            "module": "game"
+          },
+          "check": "(_return is None and _error is None) and _remaining_input == \"\"",
+          "moduleOnly": true,
+          "module": "game",
+          "stdin": []
+        }
+      ],
+      "hint": {
+        "en": "Separate the random choice from the deterministic game rules.",
+        "nl": "Scheid de willekeurige keuze van de voorspelbare spelregels."
+      },
+      "hints": [
+        {
+          "en": "Separate the random choice from the deterministic game rules.",
+          "nl": "Scheid de willekeurige keuze van de voorspelbare spelregels."
+        },
+        {
+          "en": "Keep the retry loop cancellable and do not count failed conversions.",
+          "nl": "Houd de herhaling annuleerbaar en tel mislukte omzettingen niet."
+        },
+        {
+          "en": "A small fragment to adapt: `except EOFError:`",
+          "nl": "Een klein fragment om aan te passen: `except EOFError:`"
+        }
+      ],
+      "feedback": {
+        "en": "Keep the retry loop cancellable and do not count failed conversions.",
+        "nl": "Houd de herhaling annuleerbaar en tel mislukte omzettingen niet."
+      }
+    }
+  ],
+  "solutionNote": {
+    "en": "The helper owns the conversation; the caller supplies the secret. Isolating randomness makes every branch testable.",
+    "nl": "De hulpfunctie beheert het gesprek; de aanroeper levert het geheim. Willekeur isoleren maakt elke tak testbaar."
+  },
+  "inputs": [],
+  "retrievals": [
+    {
+      "id": "recall-python-v4-12-activity-log",
+      "sourceActivityId": "python-v4-12-activity-log",
+      "objectiveIds": [
+        "activity-project"
+      ],
+      "prompt": {
+        "en": "Recall “Mini project: activity-log analyser”. Would counting every item answer the same question? Try the earlier example from memory, then check it. Create your own week of seven records and calculate the expected answer on paper.",
+        "nl": "Haal “Miniproject: activiteitenlog analyseren” terug. Beantwoordt elk item tellen dezelfde vraag? Probeer het eerdere voorbeeld uit je geheugen en controleer daarna. Maak je eigen week met zeven gegevens en bereken het verwachte antwoord op papier."
+      }
+    }
+  ]
+}

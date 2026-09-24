@@ -1,0 +1,149 @@
+{
+  "id": "python-v4-14-import",
+  "chapter": 14,
+  "group": "python-v4-module-14",
+  "title": {
+    "en": "Use a standard-library module",
+    "nl": "Gebruik een standaardbibliotheekmodule"
+  },
+  "kind": "coding",
+  "optional": false,
+  "runtime": "terminal",
+  "guidance": "guided",
+  "checkpointMode": "sequential",
+  "estimatedMinutes": 12,
+  "topicIds": [
+    "modules",
+    "imports",
+    "documentation"
+  ],
+  "practices": [],
+  "requiredConcepts": [
+    "functions-review"
+  ],
+  "explanation": {
+    "en": "Modules package reusable tools. Python includes a standard library, so many useful functions are already available.",
+    "nl": "Modules bundelen herbruikbare gereedschappen. Python bevat een standaardbibliotheek; veel nuttige functies zijn dus al beschikbaar."
+  },
+  "example": "",
+  "sections": [
+    {
+      "id": "python-v4-14-import-example",
+      "topicIds": [
+        "modules",
+        "imports",
+        "documentation"
+      ],
+      "heading": {
+        "en": "Follow a working example",
+        "nl": "Volg een werkend voorbeeld"
+      },
+      "body": {
+        "en": "import math makes the module available under the name math. math.sqrt(9) calls its square-root function. The dot selects a name from the module. Consult the official library reference for arguments, return values and exceptions; do not guess from a function’s name alone. Importing does not install a missing package.",
+        "nl": "import math maakt de module beschikbaar onder de naam math. math.sqrt(9) roept de vierkantswortelfunctie aan. De punt kiest een naam uit de module. Bekijk de officiële bibliotheekreferentie voor argumenten, terugkeerwaarden en uitzonderingen; gok niet alleen op basis van een functienaam. Importeren installeert geen ontbrekend pakket."
+      },
+      "code": "import math\nprint(math.sqrt(9))",
+      "output": "3.0\n",
+      "prediction": {
+        "en": "What does the name before the dot identify?",
+        "nl": "Wat benoemt de naam vóór de punt?"
+      },
+      "takeaway": {
+        "en": "Import the module, then use its documented tools.",
+        "nl": "Importeer de module en gebruik daarna de beschreven gereedschappen."
+      }
+    },
+    {
+      "heading": {
+        "en": "Documentation",
+        "nl": "Documentatie"
+      },
+      "body": {
+        "en": "[Python math reference](https://docs.python.org/3/library/math.html)",
+        "nl": "[Python math-referentie](https://docs.python.org/3/library/math.html)"
+      }
+    },
+    {
+      "id": "python-v4-14-import-experiment",
+      "topicIds": [],
+      "heading": {
+        "en": "Try one change",
+        "nl": "Probeer één wijziging"
+      },
+      "body": {
+        "en": "Look up sqrt in the official math documentation and test zero.",
+        "nl": "Zoek sqrt op in de officiële math-documentatie en test nul."
+      }
+    }
+  ],
+  "files": {
+    "main.py": "number = 16\n"
+  },
+  "solution": {
+    "main.py": "import math\nnumber = 16\nresult = math.sqrt(number)\nprint(result)\n"
+  },
+  "checkpoints": [
+    {
+      "id": "python-v4-14-import-step-1",
+      "objectiveIds": [
+        "modules",
+        "imports",
+        "documentation"
+      ],
+      "task": {
+        "en": "Import math and print the square root of number using math.sqrt. Store it as result.",
+        "nl": "Importeer math en druk de vierkantswortel van number af met math.sqrt. Bewaar die als result."
+      },
+      "check": "result == 4 and _stdout == \"4.0\\n\"",
+      "probes": [
+        {
+          "inputs": {
+            "number": 25
+          },
+          "check": "result == 5"
+        }
+      ],
+      "hint": {
+        "en": "Import the module, then use its documented tools.",
+        "nl": "Importeer de module en gebruik daarna de beschreven gereedschappen."
+      },
+      "hints": [
+        {
+          "en": "Import the module, then use its documented tools.",
+          "nl": "Importeer de module en gebruik daarna de beschreven gereedschappen."
+        },
+        {
+          "en": "The argument belongs inside the function call, after the module name.",
+          "nl": "Het argument hoort binnen de functieaanroep, na de modulenaam."
+        },
+        {
+          "en": "A small fragment to adapt: `math.sqrt(number)`",
+          "nl": "Een klein fragment om aan te passen: `math.sqrt(number)`"
+        }
+      ],
+      "feedback": {
+        "en": "The argument belongs inside the function call, after the module name.",
+        "nl": "Het argument hoort binnen de functieaanroep, na de modulenaam."
+      }
+    }
+  ],
+  "solutionNote": {
+    "en": "math.sqrt returns a float; the module prefix makes the source of the function clear.",
+    "nl": "math.sqrt geeft een float terug; het modulevoorvoegsel maakt de herkomst duidelijk."
+  },
+  "inputs": [],
+  "retrievals": [
+    {
+      "id": "recall-python-v4-12-for-values",
+      "sourceActivityId": "python-v4-12-for-values",
+      "objectiveIds": [
+        "for",
+        "list-iteration"
+      ],
+      "prompt": {
+        "en": "Recall “Visit every value with for”. What would total be for an empty list? Try the earlier example from memory, then check it. Trace the accumulator after each element of [3, 0, -2].",
+        "nl": "Haal “Bezoek elke waarde met for” terug. Wat is total bij een lege lijst? Probeer het eerdere voorbeeld uit je geheugen en controleer daarna. Volg de accumulator na elk element van [3, 0, -2]."
+      }
+    }
+  ]
+}

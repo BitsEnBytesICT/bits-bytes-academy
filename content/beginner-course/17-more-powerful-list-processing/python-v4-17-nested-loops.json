@@ -1,0 +1,153 @@
+{
+  "id": "python-v4-17-nested-loops",
+  "chapter": 17,
+  "group": "python-v4-module-17",
+  "title": {
+    "en": "Visit rows and their elements",
+    "nl": "Bezoek rijen en hun elementen"
+  },
+  "kind": "coding",
+  "optional": false,
+  "runtime": "terminal",
+  "guidance": "guided",
+  "checkpointMode": "sequential",
+  "estimatedMinutes": 12,
+  "topicIds": [
+    "nested-loops"
+  ],
+  "practices": [],
+  "requiredConcepts": [
+    "2d-lists",
+    "for"
+  ],
+  "explanation": {
+    "en": "An outer loop can select each row while an inner loop processes that row’s values.",
+    "nl": "Een buitenste lus kan elke rij kiezen terwijl een binnenste lus de waarden van die rij verwerkt."
+  },
+  "example": "",
+  "sections": [
+    {
+      "id": "python-v4-17-nested-loops-example",
+      "topicIds": [
+        "nested-loops"
+      ],
+      "heading": {
+        "en": "Follow a working example",
+        "nl": "Volg een werkend voorbeeld"
+      },
+      "body": {
+        "en": "For each outer iteration, the inner loop runs completely before the outer loop advances. The inner body is indented twice. Rows may have different lengths, including zero; iterating values handles this without fixed dimensions. Initialise a whole-grid accumulator before both loops.",
+        "nl": "Voor elke buitenste iteratie draait de binnenste lus volledig voordat de buitenste verdergaat. De binnenste inhoud springt tweemaal in. Rijen kunnen verschillende lengten hebben, inclusief nul; waarden doorlopen verwerkt dit zonder vaste afmetingen. Initialiseer een accumulator voor het hele raster vóór beide lussen."
+      },
+      "code": "for row in [[1,2],[3]]:\n    for value in row:\n        print(value)",
+      "output": "1\n2\n3\n",
+      "prediction": {
+        "en": "How many times does the inner body run in total?",
+        "nl": "Hoe vaak draait de binnenste inhoud in totaal?"
+      },
+      "takeaway": {
+        "en": "The inner loop starts again for every outer value.",
+        "nl": "De binnenste lus begint opnieuw voor elke buitenste waarde."
+      }
+    },
+    {
+      "id": "python-v4-17-nested-loops-experiment",
+      "topicIds": [],
+      "heading": {
+        "en": "Try one change",
+        "nl": "Probeer één wijziging"
+      },
+      "body": {
+        "en": "Trace the total for each inner iteration of [[2], [3, 4]].",
+        "nl": "Volg het totaal bij elke binnenste iteratie van [[2], [3, 4]]."
+      }
+    }
+  ],
+  "files": {
+    "main.py": "def grid_total(grid):\n    # Complete this function.\n    return None\n"
+  },
+  "solution": {
+    "main.py": "def grid_total(grid):\n    total = 0\n    for row in grid:\n        for value in row:\n            total += value\n    return total\n"
+  },
+  "checkpoints": [
+    {
+      "id": "python-v4-17-nested-loops-step-1",
+      "objectiveIds": [
+        "nested-loops"
+      ],
+      "task": {
+        "en": "Use nested loops to return the sum of all numbers, including for empty or uneven rows.",
+        "nl": "Gebruik geneste lussen om de som van alle getallen terug te geven, ook bij lege of ongelijke rijen."
+      },
+      "check": "any(isinstance(n, _ast.For) and any(isinstance(inner, _ast.For) and inner is not n for inner in _ast.walk(n)) for n in _ast.walk(_ast.parse(_source)))",
+      "probes": [
+        {
+          "call": {
+            "name": "grid_total",
+            "args": [
+              [
+                [
+                  1,
+                  2
+                ],
+                [],
+                [
+                  -1
+                ]
+              ]
+            ]
+          },
+          "check": "(_return == 2) and _error is None"
+        },
+        {
+          "call": {
+            "name": "grid_total",
+            "args": [
+              []
+            ]
+          },
+          "check": "(_return == 0) and _error is None"
+        },
+        {
+          "call": {
+            "name": "grid_total",
+            "args": [
+              [
+                [],
+                []
+              ]
+            ]
+          },
+          "check": "(_return == 0) and _error is None"
+        }
+      ],
+      "hint": {
+        "en": "The inner loop starts again for every outer value.",
+        "nl": "De binnenste lus begint opnieuw voor elke buitenste waarde."
+      },
+      "hints": [
+        {
+          "en": "The inner loop starts again for every outer value.",
+          "nl": "De binnenste lus begint opnieuw voor elke buitenste waarde."
+        },
+        {
+          "en": "Keep one total outside both loops.",
+          "nl": "Houd één totaal buiten beide lussen."
+        },
+        {
+          "en": "A small fragment to adapt: `for value in row:`",
+          "nl": "Een klein fragment om aan te passen: `for value in row:`"
+        }
+      ],
+      "feedback": {
+        "en": "Keep one total outside both loops.",
+        "nl": "Houd één totaal buiten beide lussen."
+      }
+    }
+  ],
+  "solutionNote": {
+    "en": "Both loops visit each actual element once without assuming a rectangular shape.",
+    "nl": "Beide lussen bezoeken elk werkelijk element eenmaal zonder een rechthoekige vorm aan te nemen."
+  },
+  "inputs": []
+}

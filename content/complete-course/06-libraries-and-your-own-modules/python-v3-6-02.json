@@ -1,0 +1,184 @@
+{
+  "id": "python-v3-6-02",
+  "chapter": 6,
+  "group": "python-v3-module-6",
+  "title": {
+    "en": "Repeat a random experiment",
+    "nl": "Herhaal een willekeurig experiment"
+  },
+  "kind": "coding",
+  "optional": false,
+  "runtime": "terminal",
+  "guidance": "adapt",
+  "estimatedMinutes": 14,
+  "explanation": {
+    "en": "Create repeatable random experiments. Seed once for an experiment, then allow successive calls to advance the random sequence.",
+    "nl": "Maak herhaalbare willekeurige experimenten. Stel de seed één keer per experiment in en laat opeenvolgende aanroepen de reeks voortzetten."
+  },
+  "example": "",
+  "topicIds": [
+    "random",
+    "random-seed"
+  ],
+  "prerequisites": [
+    "python-v3-6-01"
+  ],
+  "sections": [
+    {
+      "topicIds": [
+        "random",
+        "random-seed"
+      ],
+      "heading": {
+        "en": "Variation that can be replayed",
+        "nl": "Variatie die herhaald kan worden"
+      },
+      "body": {
+        "en": "random.randint(a, b) includes both endpoints; random.choice(values) chooses one item. random.seed(n) resets a repeatable sequence. Resetting inside a function would repeat its first choice on every call. Use this generator for simulations and game variation.",
+        "nl": "random.randint(a, b) neemt beide grenzen mee; random.choice(values) kiest één item. random.seed(n) herstart een herhaalbare reeks. Binnen een functie herstarten zou de eerste keuze bij elke aanroep herhalen. Gebruik deze generator voor simulaties en spelvariatie."
+      },
+      "code": "import random\nrandom.seed(9)\na = random.randint(1, 6)\nrandom.seed(9)\nb = random.randint(1, 6)\nprint(a == b)",
+      "output": "True\n",
+      "prediction": {
+        "en": "Why are a and b equal although randint is random?",
+        "nl": "Waarom zijn a en b gelijk hoewel randint willekeurig is?"
+      }
+    },
+    {
+      "topicIds": [],
+      "heading": {
+        "en": "Try a changed input",
+        "nl": "Probeer gewijzigde invoer"
+      },
+      "body": {
+        "en": "Remove only the second seed and compare first and second. Explain why reproducible does not mean every call returns the same result.",
+        "nl": "Verwijder alleen de tweede seed en vergelijk first en second. Leg uit waarom herhaalbaar niet betekent dat elke aanroep hetzelfde resultaat geeft."
+      }
+    }
+  ],
+  "files": {
+    "main.py": "import random\n\ndef roll_many(count):\n    return []\n\nrandom.seed(42)\nprint(roll_many(5))\n"
+  },
+  "solution": {
+    "main.py": "import random\n\ndef roll_many(count):\n    rolls = []\n    for i in range(count):\n        rolls.append(random.randint(1, 6))\n    return rolls\n\nrandom.seed(42)\nfirst = roll_many(5)\nrandom.seed(42)\nsecond = roll_many(5)\nprint(first == second)\nprint(first)\n"
+  },
+  "checkpoints": [
+    {
+      "objectiveIds": [
+        "random"
+      ],
+      "task": {
+        "en": "Return count random die values between 1 and 6 from roll_many. Do not seed inside the function.",
+        "nl": "Geef count willekeurige dobbelsteenwaarden tussen 1 en 6 terug vanuit roll_many. Stel de seed niet binnen de functie in."
+      },
+      "check": "callable(roll_many)",
+      "hints": [
+        {
+          "en": "Accumulate one random value per iteration.",
+          "nl": "Verzamel één willekeurige waarde per iteratie."
+        },
+        {
+          "en": "Use randint(1, 6) and append.",
+          "nl": "Gebruik randint(1, 6) en append."
+        },
+        {
+          "en": "rolls.append(random.randint(1, 6))",
+          "nl": "rolls.append(random.randint(1, 6))"
+        }
+      ],
+      "hint": {
+        "en": "Accumulate one random value per iteration.",
+        "nl": "Verzamel één willekeurige waarde per iteratie."
+      },
+      "feedback": {
+        "en": "The result must have the requested length and actual variation.",
+        "nl": "Het resultaat moet de gevraagde lengte en echte variatie hebben."
+      },
+      "probes": [
+        {
+          "call": {
+            "name": "roll_many",
+            "args": [
+              0
+            ]
+          },
+          "check": "_return == []"
+        },
+        {
+          "call": {
+            "name": "roll_many",
+            "args": [
+              60
+            ]
+          },
+          "check": "len(_return) == 60 and all(type(v) is int and 1 <= v <= 6 for v in _return) and len(set(_return)) > 1"
+        },
+        {
+          "call": {
+            "name": "roll_many",
+            "args": [
+              12
+            ]
+          },
+          "check": "_return != roll_many(12)"
+        }
+      ],
+      "id": "python-v3-6-02-step-1"
+    },
+    {
+      "objectiveIds": [
+        "random-seed"
+      ],
+      "task": {
+        "en": "In main.py, seed with 42, store five rolls in first, seed with 42 again and store five in second. Print whether they match and then first.",
+        "nl": "Stel in main.py de seed in op 42, bewaar vijf worpen in first, stel weer 42 in en bewaar vijf in second. Druk af of ze gelijk zijn en daarna first."
+      },
+      "check": "first == second and len(first) == 5 and _stdout.startswith(\"True\\n\")",
+      "hints": [
+        {
+          "en": "A repeated seed restarts a sequence, not just one value.",
+          "nl": "Een herhaalde seed herstart een reeks, niet alleen één waarde."
+        },
+        {
+          "en": "Reset immediately before each group of calls.",
+          "nl": "Herstart direct vóór elke groep aanroepen."
+        },
+        {
+          "en": "random.seed(42)\nsecond = roll_many(5)",
+          "nl": "random.seed(42)\nsecond = roll_many(5)"
+        }
+      ],
+      "hint": {
+        "en": "A repeated seed restarts a sequence, not just one value.",
+        "nl": "Een herhaalde seed herstart een reeks, niet alleen één waarde."
+      },
+      "feedback": {
+        "en": "The same seed and same calls reproduce the same experiment.",
+        "nl": "Dezelfde seed en dezelfde aanroepen herhalen hetzelfde experiment."
+      },
+      "probes": [],
+      "id": "python-v3-6-02-step-2"
+    }
+  ],
+  "solutionNote": {
+    "en": "The seed belongs to the experiment around the function. The function can therefore create new values during play while a test can deliberately reproduce a sequence.",
+    "nl": "De seed hoort bij het experiment rond de functie. Daardoor kan de functie tijdens het spelen nieuwe waarden maken terwijl een test bewust een reeks herhaalt."
+  },
+  "inputs": [],
+  "retrievals": [
+    {
+      "id": "recall-python-v3-4-02",
+      "sourceActivityId": "python-v3-4-02",
+      "objectiveIds": [
+        "return",
+        "none",
+        "parameters",
+        "multiple-parameters"
+      ],
+      "prompt": {
+        "en": "Write a function with two parameters that returns a total. What value would its caller receive if it only printed?",
+        "nl": "Schrijf een functie met twee parameters die een totaal teruggeeft. Welke waarde krijgt de aanroeper als de functie alleen afdrukt?"
+      }
+    }
+  ]
+}

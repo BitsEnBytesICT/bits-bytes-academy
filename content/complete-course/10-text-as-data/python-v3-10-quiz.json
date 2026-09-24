@@ -1,0 +1,774 @@
+{
+  "id": "python-v3-10-quiz",
+  "chapter": 10,
+  "group": "python-v3-module-10",
+  "kind": "quiz",
+  "optional": false,
+  "estimatedMinutes": 6,
+  "title": {
+    "en": "Text as data: review",
+    "nl": "Tekst als gegevens: herhaling"
+  },
+  "questions": [
+    {
+      "objectiveIds": [
+        "string-slicing",
+        "string-negative-indices"
+      ],
+      "reviewActivityIds": [
+        "python-v3-10-01"
+      ],
+      "category": "prediction",
+      "prompt": {
+        "en": "What does this program print?",
+        "nl": "Wat drukt dit programma af?"
+      },
+      "code": "text = \"LABS\"\nprint(text[1:-1])",
+      "answer": "a",
+      "choices": [
+        {
+          "id": "a",
+          "label": {
+            "en": "AB",
+            "nl": "AB"
+          },
+          "reason": {
+            "en": "The slice excludes the first and last characters.",
+            "nl": "De slice sluit het eerste en laatste teken uit."
+          }
+        },
+        {
+          "id": "b",
+          "label": {
+            "en": "ABS",
+            "nl": "ABS"
+          },
+          "reason": {
+            "en": "The -1 stop excludes the last character.",
+            "nl": "Het einde -1 sluit het laatste teken uit."
+          }
+        },
+        {
+          "id": "c",
+          "label": {
+            "en": "LAB",
+            "nl": "LAB"
+          },
+          "reason": {
+            "en": "The start 1 excludes index 0.",
+            "nl": "Begin 1 sluit index 0 uit."
+          }
+        }
+      ],
+      "expectedOutput": "AB\n",
+      "id": "python-v3-10-quiz-a-1"
+    },
+    {
+      "objectiveIds": [
+        "find"
+      ],
+      "reviewActivityIds": [
+        "python-v3-10-05"
+      ],
+      "category": "prediction",
+      "prompt": {
+        "en": "What does this program print?",
+        "nl": "Wat drukt dit programma af?"
+      },
+      "code": "text = \"Ada!\"\nprint(text.find(\"A\"), text.find(\"?\"))",
+      "answer": "a",
+      "choices": [
+        {
+          "id": "a",
+          "label": {
+            "en": "0 -1",
+            "nl": "0 -1"
+          },
+          "reason": {
+            "en": "A match at the start is 0; absence is -1.",
+            "nl": "Een match aan het begin is 0; afwezigheid is -1."
+          }
+        },
+        {
+          "id": "b",
+          "label": {
+            "en": "1 0",
+            "nl": "1 0"
+          },
+          "reason": {
+            "en": "String indexes start at zero and absence is not zero.",
+            "nl": "Stringindexen beginnen bij nul en afwezigheid is niet nul."
+          }
+        },
+        {
+          "id": "c",
+          "label": {
+            "en": "False False",
+            "nl": "False False"
+          },
+          "reason": {
+            "en": "find returns positions, not Boolean flags.",
+            "nl": "find geeft posities, geen booleaanse vlaggen."
+          }
+        }
+      ],
+      "expectedOutput": "0 -1\n",
+      "id": "python-v3-10-quiz-a-2"
+    },
+    {
+      "objectiveIds": [
+        "strip",
+        "case-methods"
+      ],
+      "reviewActivityIds": [
+        "python-v3-10-03"
+      ],
+      "category": "completion",
+      "prompt": {
+        "en": "Trim surrounding whitespace before changing case.",
+        "nl": "Trim omliggende witruimte vóór hoofdletters veranderen."
+      },
+      "code": "name = \"  ADA  \"\nprint(name.___().lower())",
+      "answer": "a",
+      "choices": [
+        {
+          "id": "a",
+          "label": {
+            "en": "strip",
+            "nl": "strip"
+          },
+          "reason": {
+            "en": "strip returns trimmed text; split would return a list and find needs a search argument.",
+            "nl": "strip geeft getrimde tekst; split geeft een lijst en find vereist een zoekargument."
+          }
+        },
+        {
+          "id": "b",
+          "label": {
+            "en": "split",
+            "nl": "split"
+          },
+          "reason": {
+            "en": "strip returns trimmed text; split would return a list and find needs a search argument.",
+            "nl": "strip geeft getrimde tekst; split geeft een lijst en find vereist een zoekargument."
+          }
+        },
+        {
+          "id": "c",
+          "label": {
+            "en": "find",
+            "nl": "find"
+          },
+          "reason": {
+            "en": "strip returns trimmed text; split would return a list and find needs a search argument.",
+            "nl": "strip geeft getrimde tekst; split geeft een lijst en find vereist een zoekargument."
+          }
+        }
+      ],
+      "codeBlank": {
+        "prompt": {
+          "en": "Trim surrounding whitespace before changing case.",
+          "nl": "Trim omliggende witruimte vóór hoofdletters veranderen."
+        },
+        "segments": [
+          "name = \"  ADA  \"\nprint(name.",
+          "().lower())"
+        ],
+        "tokens": [
+          {
+            "id": "token-1",
+            "code": "strip"
+          },
+          {
+            "id": "token-2",
+            "code": "split"
+          },
+          {
+            "id": "token-3",
+            "code": "find"
+          }
+        ],
+        "blanks": [
+          {
+            "answer": "strip",
+            "reason": {
+              "en": "strip returns trimmed text; split would return a list and find needs a search argument.",
+              "nl": "strip geeft getrimde tekst; split geeft een lijst en find vereist een zoekargument."
+            }
+          }
+        ],
+        "output": "ada\n"
+      },
+      "id": "python-v3-10-quiz-a-3"
+    },
+    {
+      "objectiveIds": [
+        "join"
+      ],
+      "reviewActivityIds": [
+        "python-v3-10-04"
+      ],
+      "category": "completion",
+      "prompt": {
+        "en": "Reconstruct the parts with a separator.",
+        "nl": "Bouw de delen opnieuw op met een scheidingsteken."
+      },
+      "code": "parts = [\"Ada\", \"Lab\"]\nprint(\" / \".___(parts))",
+      "answer": "a",
+      "choices": [
+        {
+          "id": "a",
+          "label": {
+            "en": "join",
+            "nl": "join"
+          },
+          "reason": {
+            "en": "join is called on the separator and receives the string parts.",
+            "nl": "join wordt op het scheidingsteken aangeroepen en ontvangt de stringdelen."
+          }
+        },
+        {
+          "id": "b",
+          "label": {
+            "en": "split",
+            "nl": "split"
+          },
+          "reason": {
+            "en": "join is called on the separator and receives the string parts.",
+            "nl": "join wordt op het scheidingsteken aangeroepen en ontvangt de stringdelen."
+          }
+        },
+        {
+          "id": "c",
+          "label": {
+            "en": "replace",
+            "nl": "replace"
+          },
+          "reason": {
+            "en": "join is called on the separator and receives the string parts.",
+            "nl": "join wordt op het scheidingsteken aangeroepen en ontvangt de stringdelen."
+          }
+        }
+      ],
+      "codeBlank": {
+        "prompt": {
+          "en": "Reconstruct the parts with a separator.",
+          "nl": "Bouw de delen opnieuw op met een scheidingsteken."
+        },
+        "segments": [
+          "parts = [\"Ada\", \"Lab\"]\nprint(\" / \".",
+          "(parts))"
+        ],
+        "tokens": [
+          {
+            "id": "token-1",
+            "code": "join"
+          },
+          {
+            "id": "token-2",
+            "code": "split"
+          },
+          {
+            "id": "token-3",
+            "code": "replace"
+          }
+        ],
+        "blanks": [
+          {
+            "answer": "join",
+            "reason": {
+              "en": "join is called on the separator and receives the string parts.",
+              "nl": "join wordt op het scheidingsteken aangeroepen en ontvangt de stringdelen."
+            }
+          }
+        ],
+        "output": "Ada / Lab\n"
+      },
+      "id": "python-v3-10-quiz-a-4"
+    },
+    {
+      "objectiveIds": [
+        "sort",
+        "sorted"
+      ],
+      "reviewActivityIds": [
+        "python-v3-9-03"
+      ],
+      "category": "debugging",
+      "prompt": {
+        "en": "How can ranking preserve the original order?",
+        "nl": "Hoe kan rangschikken de oorspronkelijke volgorde behouden?"
+      },
+      "code": "scores = [5, 1, 3]\nranked = scores.sort()",
+      "answer": "a",
+      "choices": [
+        {
+          "id": "a",
+          "label": {
+            "en": "Use ranked = sorted(scores).",
+            "nl": "Gebruik ranked = sorted(scores)."
+          },
+          "reason": {
+            "en": "sorted returns a new list without changing scores.",
+            "nl": "sorted geeft een nieuwe lijst zonder scores te veranderen."
+          }
+        },
+        {
+          "id": "b",
+          "label": {
+            "en": "Use scores = scores.sort().",
+            "nl": "Gebruik scores = scores.sort()."
+          },
+          "reason": {
+            "en": "This replaces scores with None after mutating the list.",
+            "nl": "Dit vervangt scores door None nadat de lijst is gewijzigd."
+          }
+        },
+        {
+          "id": "c",
+          "label": {
+            "en": "Print scores before calling sort.",
+            "nl": "Druk scores af vóór sort."
+          },
+          "reason": {
+            "en": "Earlier output does not preserve the original data for later use.",
+            "nl": "Eerdere uitvoer bewaart de oorspronkelijke gegevens niet voor later gebruik."
+          }
+        }
+      ],
+      "id": "python-v3-10-quiz-a-5"
+    },
+    {
+      "objectiveIds": [
+        "module-scope",
+        "local-modules"
+      ],
+      "reviewActivityIds": [
+        "python-v3-6-04"
+      ],
+      "category": "application",
+      "prompt": {
+        "en": "A helper file prints a greeting at top level. What happens the first time it is imported?",
+        "nl": "Een hulpbestand drukt op het hoogste niveau een begroeting af. Wat gebeurt er bij de eerste import?"
+      },
+      "answer": "a",
+      "choices": [
+        {
+          "id": "a",
+          "label": {
+            "en": "Its top-level statements execute.",
+            "nl": "Zijn opdrachten op het hoogste niveau worden uitgevoerd."
+          },
+          "reason": {
+            "en": "Imports execute module setup, so keep reusable modules free of unwanted conversations.",
+            "nl": "Imports voeren moduleopzet uit, dus houd herbruikbare modules vrij van ongewenste gesprekken."
+          }
+        },
+        {
+          "id": "b",
+          "label": {
+            "en": "Only def lines execute; other statements are ignored.",
+            "nl": "Alleen def-regels worden uitgevoerd; andere worden genegeerd."
+          },
+          "reason": {
+            "en": "Normal top-level statements are executed during import too.",
+            "nl": "Gewone opdrachten op het hoogste niveau worden ook bij import uitgevoerd."
+          }
+        },
+        {
+          "id": "c",
+          "label": {
+            "en": "Python automatically moves those statements into main.py.",
+            "nl": "Python verplaatst die opdrachten automatisch naar main.py."
+          },
+          "reason": {
+            "en": "Python does not rearrange source files.",
+            "nl": "Python herschikt bronbestanden niet."
+          }
+        }
+      ],
+      "id": "python-v3-10-quiz-a-6"
+    }
+  ],
+  "alternateQuestions": [
+    {
+      "objectiveIds": [
+        "string-slicing",
+        "string-negative-indices"
+      ],
+      "reviewActivityIds": [
+        "python-v3-10-01"
+      ],
+      "category": "prediction",
+      "prompt": {
+        "en": "What does this program print?",
+        "nl": "Wat drukt dit programma af?"
+      },
+      "code": "text = \"CODE\"\nprint(text[1:-1])",
+      "answer": "a",
+      "choices": [
+        {
+          "id": "a",
+          "label": {
+            "en": "OD",
+            "nl": "OD"
+          },
+          "reason": {
+            "en": "The slice excludes the first and last characters.",
+            "nl": "De slice sluit het eerste en laatste teken uit."
+          }
+        },
+        {
+          "id": "b",
+          "label": {
+            "en": "ODE",
+            "nl": "ODE"
+          },
+          "reason": {
+            "en": "The -1 stop excludes the last character.",
+            "nl": "Het einde -1 sluit het laatste teken uit."
+          }
+        },
+        {
+          "id": "c",
+          "label": {
+            "en": "COD",
+            "nl": "COD"
+          },
+          "reason": {
+            "en": "The start 1 excludes index 0.",
+            "nl": "Begin 1 sluit index 0 uit."
+          }
+        }
+      ],
+      "expectedOutput": "OD\n",
+      "id": "python-v3-10-quiz-b-1"
+    },
+    {
+      "objectiveIds": [
+        "find"
+      ],
+      "reviewActivityIds": [
+        "python-v3-10-05"
+      ],
+      "category": "prediction",
+      "prompt": {
+        "en": "What does this program print?",
+        "nl": "Wat drukt dit programma af?"
+      },
+      "code": "text = \"Bo!\"\nprint(text.find(\"B\"), text.find(\"?\"))",
+      "answer": "a",
+      "choices": [
+        {
+          "id": "a",
+          "label": {
+            "en": "0 -1",
+            "nl": "0 -1"
+          },
+          "reason": {
+            "en": "A match at the start is 0; absence is -1.",
+            "nl": "Een match aan het begin is 0; afwezigheid is -1."
+          }
+        },
+        {
+          "id": "b",
+          "label": {
+            "en": "1 0",
+            "nl": "1 0"
+          },
+          "reason": {
+            "en": "String indexes start at zero and absence is not zero.",
+            "nl": "Stringindexen beginnen bij nul en afwezigheid is niet nul."
+          }
+        },
+        {
+          "id": "c",
+          "label": {
+            "en": "False False",
+            "nl": "False False"
+          },
+          "reason": {
+            "en": "find returns positions, not Boolean flags.",
+            "nl": "find geeft posities, geen booleaanse vlaggen."
+          }
+        }
+      ],
+      "expectedOutput": "0 -1\n",
+      "id": "python-v3-10-quiz-b-2"
+    },
+    {
+      "objectiveIds": [
+        "strip",
+        "case-methods"
+      ],
+      "reviewActivityIds": [
+        "python-v3-10-03"
+      ],
+      "category": "completion",
+      "prompt": {
+        "en": "Trim surrounding whitespace before changing case.",
+        "nl": "Trim omliggende witruimte vóór hoofdletters veranderen."
+      },
+      "code": "name = \"  BO  \"\nprint(name.___().lower())",
+      "answer": "a",
+      "choices": [
+        {
+          "id": "a",
+          "label": {
+            "en": "strip",
+            "nl": "strip"
+          },
+          "reason": {
+            "en": "strip returns trimmed text; split would return a list and find needs a search argument.",
+            "nl": "strip geeft getrimde tekst; split geeft een lijst en find vereist een zoekargument."
+          }
+        },
+        {
+          "id": "b",
+          "label": {
+            "en": "split",
+            "nl": "split"
+          },
+          "reason": {
+            "en": "strip returns trimmed text; split would return a list and find needs a search argument.",
+            "nl": "strip geeft getrimde tekst; split geeft een lijst en find vereist een zoekargument."
+          }
+        },
+        {
+          "id": "c",
+          "label": {
+            "en": "find",
+            "nl": "find"
+          },
+          "reason": {
+            "en": "strip returns trimmed text; split would return a list and find needs a search argument.",
+            "nl": "strip geeft getrimde tekst; split geeft een lijst en find vereist een zoekargument."
+          }
+        }
+      ],
+      "codeBlank": {
+        "prompt": {
+          "en": "Trim surrounding whitespace before changing case.",
+          "nl": "Trim omliggende witruimte vóór hoofdletters veranderen."
+        },
+        "segments": [
+          "name = \"  BO  \"\nprint(name.",
+          "().lower())"
+        ],
+        "tokens": [
+          {
+            "id": "token-1",
+            "code": "strip"
+          },
+          {
+            "id": "token-2",
+            "code": "split"
+          },
+          {
+            "id": "token-3",
+            "code": "find"
+          }
+        ],
+        "blanks": [
+          {
+            "answer": "strip",
+            "reason": {
+              "en": "strip returns trimmed text; split would return a list and find needs a search argument.",
+              "nl": "strip geeft getrimde tekst; split geeft een lijst en find vereist een zoekargument."
+            }
+          }
+        ],
+        "output": "bo\n"
+      },
+      "id": "python-v3-10-quiz-b-3"
+    },
+    {
+      "objectiveIds": [
+        "join"
+      ],
+      "reviewActivityIds": [
+        "python-v3-10-04"
+      ],
+      "category": "completion",
+      "prompt": {
+        "en": "Reconstruct the parts with a separator.",
+        "nl": "Bouw de delen opnieuw op met een scheidingsteken."
+      },
+      "code": "parts = [\"Bo\", \"Lab\"]\nprint(\" / \".___(parts))",
+      "answer": "a",
+      "choices": [
+        {
+          "id": "a",
+          "label": {
+            "en": "join",
+            "nl": "join"
+          },
+          "reason": {
+            "en": "join is called on the separator and receives the string parts.",
+            "nl": "join wordt op het scheidingsteken aangeroepen en ontvangt de stringdelen."
+          }
+        },
+        {
+          "id": "b",
+          "label": {
+            "en": "split",
+            "nl": "split"
+          },
+          "reason": {
+            "en": "join is called on the separator and receives the string parts.",
+            "nl": "join wordt op het scheidingsteken aangeroepen en ontvangt de stringdelen."
+          }
+        },
+        {
+          "id": "c",
+          "label": {
+            "en": "replace",
+            "nl": "replace"
+          },
+          "reason": {
+            "en": "join is called on the separator and receives the string parts.",
+            "nl": "join wordt op het scheidingsteken aangeroepen en ontvangt de stringdelen."
+          }
+        }
+      ],
+      "codeBlank": {
+        "prompt": {
+          "en": "Reconstruct the parts with a separator.",
+          "nl": "Bouw de delen opnieuw op met een scheidingsteken."
+        },
+        "segments": [
+          "parts = [\"Bo\", \"Lab\"]\nprint(\" / \".",
+          "(parts))"
+        ],
+        "tokens": [
+          {
+            "id": "token-1",
+            "code": "join"
+          },
+          {
+            "id": "token-2",
+            "code": "split"
+          },
+          {
+            "id": "token-3",
+            "code": "replace"
+          }
+        ],
+        "blanks": [
+          {
+            "answer": "join",
+            "reason": {
+              "en": "join is called on the separator and receives the string parts.",
+              "nl": "join wordt op het scheidingsteken aangeroepen en ontvangt de stringdelen."
+            }
+          }
+        ],
+        "output": "Bo / Lab\n"
+      },
+      "id": "python-v3-10-quiz-b-4"
+    },
+    {
+      "objectiveIds": [
+        "sort",
+        "sorted"
+      ],
+      "reviewActivityIds": [
+        "python-v3-9-03"
+      ],
+      "category": "debugging",
+      "prompt": {
+        "en": "How can ranking preserve the original order?",
+        "nl": "Hoe kan rangschikken de oorspronkelijke volgorde behouden?"
+      },
+      "code": "scores = [8, 1, 3]\nranked = scores.sort()",
+      "answer": "a",
+      "choices": [
+        {
+          "id": "a",
+          "label": {
+            "en": "Use ranked = sorted(scores).",
+            "nl": "Gebruik ranked = sorted(scores)."
+          },
+          "reason": {
+            "en": "sorted returns a new list without changing scores.",
+            "nl": "sorted geeft een nieuwe lijst zonder scores te veranderen."
+          }
+        },
+        {
+          "id": "b",
+          "label": {
+            "en": "Use scores = scores.sort().",
+            "nl": "Gebruik scores = scores.sort()."
+          },
+          "reason": {
+            "en": "This replaces scores with None after mutating the list.",
+            "nl": "Dit vervangt scores door None nadat de lijst is gewijzigd."
+          }
+        },
+        {
+          "id": "c",
+          "label": {
+            "en": "Print scores before calling sort.",
+            "nl": "Druk scores af vóór sort."
+          },
+          "reason": {
+            "en": "Earlier output does not preserve the original data for later use.",
+            "nl": "Eerdere uitvoer bewaart de oorspronkelijke gegevens niet voor later gebruik."
+          }
+        }
+      ],
+      "id": "python-v3-10-quiz-b-5"
+    },
+    {
+      "objectiveIds": [
+        "module-scope",
+        "local-modules"
+      ],
+      "reviewActivityIds": [
+        "python-v3-6-04"
+      ],
+      "category": "application",
+      "prompt": {
+        "en": "A helper file contains input at top level. What happens the first time it is imported?",
+        "nl": "Een hulpbestand bevat input op het hoogste niveau. Wat gebeurt er bij de eerste import?"
+      },
+      "answer": "a",
+      "choices": [
+        {
+          "id": "a",
+          "label": {
+            "en": "Its top-level statements execute.",
+            "nl": "Zijn opdrachten op het hoogste niveau worden uitgevoerd."
+          },
+          "reason": {
+            "en": "Imports execute module setup, so keep reusable modules free of unwanted conversations.",
+            "nl": "Imports voeren moduleopzet uit, dus houd herbruikbare modules vrij van ongewenste gesprekken."
+          }
+        },
+        {
+          "id": "b",
+          "label": {
+            "en": "Only def lines execute; other statements are ignored.",
+            "nl": "Alleen def-regels worden uitgevoerd; andere worden genegeerd."
+          },
+          "reason": {
+            "en": "Normal top-level statements are executed during import too.",
+            "nl": "Gewone opdrachten op het hoogste niveau worden ook bij import uitgevoerd."
+          }
+        },
+        {
+          "id": "c",
+          "label": {
+            "en": "Python automatically moves those statements into main.py.",
+            "nl": "Python verplaatst die opdrachten automatisch naar main.py."
+          },
+          "reason": {
+            "en": "Python does not rearrange source files.",
+            "nl": "Python herschikt bronbestanden niet."
+          }
+        }
+      ],
+      "id": "python-v3-10-quiz-b-6"
+    }
+  ]
+}

@@ -1,0 +1,768 @@
+{
+  "id": "python-v4-21-quiz",
+  "chapter": 21,
+  "group": "python-v4-module-21",
+  "kind": "quiz",
+  "optional": false,
+  "estimatedMinutes": 8,
+  "title": {
+    "en": "CSV records: review",
+    "nl": "CSV-records: herhaling"
+  },
+  "questions": [
+    {
+      "objectiveIds": [
+        "csv-numeric-conversion"
+      ],
+      "category": "prediction",
+      "prompt": {
+        "en": "What does this program print?",
+        "nl": "Wat drukt dit programma af?"
+      },
+      "code": "row = {\"name\":\"Ada\",\"score\":\"4\"}\nprint(int(row[\"score\"]) + 2)",
+      "answer": "a",
+      "expectedOutput": "6\n",
+      "choices": [
+        {
+          "id": "a",
+          "label": {
+            "en": "6",
+            "nl": "6"
+          },
+          "reason": {
+            "en": "Conversion happens before numeric addition.",
+            "nl": "Omzetting gebeurt vóór numeriek optellen."
+          }
+        },
+        {
+          "id": "b",
+          "label": {
+            "en": "42",
+            "nl": "42"
+          },
+          "reason": {
+            "en": "That would concatenate two strings.",
+            "nl": "Dat zou twee strings samenvoegen."
+          }
+        },
+        {
+          "id": "c",
+          "label": {
+            "en": "TypeError",
+            "nl": "TypeError"
+          },
+          "reason": {
+            "en": "int converts this valid field successfully.",
+            "nl": "int zet dit geldige veld met succes om."
+          }
+        }
+      ],
+      "id": "python-v4-21-quiz-a-1",
+      "reviewActivityIds": [
+        "python-v4-21-named-records"
+      ]
+    },
+    {
+      "objectiveIds": [
+        "get"
+      ],
+      "category": "prediction",
+      "prompt": {
+        "en": "What does this program print?",
+        "nl": "Wat drukt dit programma af?"
+      },
+      "code": "record = {\"score\":0}\nprint(record.get(\"score\",5))",
+      "answer": "a",
+      "expectedOutput": "0\n",
+      "choices": [
+        {
+          "id": "a",
+          "label": {
+            "en": "0",
+            "nl": "0"
+          },
+          "reason": {
+            "en": "The present zero is preserved.",
+            "nl": "De aanwezige nul blijft behouden."
+          }
+        },
+        {
+          "id": "b",
+          "label": {
+            "en": "5",
+            "nl": "5"
+          },
+          "reason": {
+            "en": "The default is used only for a missing key.",
+            "nl": "De standaard wordt alleen bij een ontbrekende sleutel gebruikt."
+          }
+        },
+        {
+          "id": "c",
+          "label": {
+            "en": "None",
+            "nl": "None"
+          },
+          "reason": {
+            "en": "The score key is present with a numeric value.",
+            "nl": "De score-sleutel bestaat met een numerieke waarde."
+          }
+        }
+      ],
+      "id": "python-v4-21-quiz-a-2",
+      "reviewActivityIds": [
+        "python-v4-19-lookup"
+      ]
+    },
+    {
+      "objectiveIds": [
+        "dict-reader"
+      ],
+      "category": "completion",
+      "prompt": {
+        "en": "Complete the code to produce the shown output.",
+        "nl": "Vul de code aan om de getoonde uitvoer te maken."
+      },
+      "code": "import csv\nwith open(\"quiz.csv\",\"w\",newline=\"\",encoding=\"utf-8\") as handle:\n    handle.write(\"name,score\\nAda,4\\n\")\nwith open(\"quiz.csv\",newline=\"\",encoding=\"utf-8\") as handle:\n    for row in csv.___(handle):\n        print(row[\"name\"])",
+      "answer": "a",
+      "choices": [
+        {
+          "id": "a",
+          "label": {
+            "en": "DictReader",
+            "nl": "DictReader"
+          },
+          "reason": {
+            "en": "DictReader uses the first row as keys. reader gives lists and writer writes output.",
+            "nl": "DictReader gebruikt de eerste rij als sleutels. reader geeft lijsten en writer schrijft uitvoer."
+          }
+        },
+        {
+          "id": "b",
+          "label": {
+            "en": "reader",
+            "nl": "reader"
+          },
+          "reason": {
+            "en": "DictReader uses the first row as keys. reader gives lists and writer writes output.",
+            "nl": "DictReader gebruikt de eerste rij als sleutels. reader geeft lijsten en writer schrijft uitvoer."
+          }
+        },
+        {
+          "id": "c",
+          "label": {
+            "en": "writer",
+            "nl": "writer"
+          },
+          "reason": {
+            "en": "DictReader uses the first row as keys. reader gives lists and writer writes output.",
+            "nl": "DictReader gebruikt de eerste rij als sleutels. reader geeft lijsten en writer schrijft uitvoer."
+          }
+        }
+      ],
+      "codeBlank": {
+        "prompt": {
+          "en": "Complete the code to produce the shown output.",
+          "nl": "Vul de code aan om de getoonde uitvoer te maken."
+        },
+        "segments": [
+          "import csv\nwith open(\"quiz.csv\",\"w\",newline=\"\",encoding=\"utf-8\") as handle:\n    handle.write(\"name,score\\nAda,4\\n\")\nwith open(\"quiz.csv\",newline=\"\",encoding=\"utf-8\") as handle:\n    for row in csv.",
+          "(handle):\n        print(row[\"name\"])"
+        ],
+        "tokens": [
+          {
+            "id": "token-1",
+            "code": "DictReader"
+          },
+          {
+            "id": "token-2",
+            "code": "reader"
+          },
+          {
+            "id": "token-3",
+            "code": "writer"
+          }
+        ],
+        "blanks": [
+          {
+            "answer": "DictReader",
+            "reason": {
+              "en": "DictReader uses the first row as keys. reader gives lists and writer writes output.",
+              "nl": "DictReader gebruikt de eerste rij als sleutels. reader geeft lijsten en writer schrijft uitvoer."
+            }
+          }
+        ],
+        "output": "Ada\n"
+      },
+      "id": "python-v4-21-quiz-a-3",
+      "reviewActivityIds": [
+        "python-v4-21-named-records"
+      ]
+    },
+    {
+      "objectiveIds": [
+        "dictionary-comprehensions"
+      ],
+      "category": "completion",
+      "prompt": {
+        "en": "Complete the code to produce the shown output.",
+        "nl": "Vul de code aan om de getoonde uitvoer te maken."
+      },
+      "code": "values = [5,2]\nresult = {x ___ x * 2 for x in values}\nprint(result[5])",
+      "answer": "a",
+      "choices": [
+        {
+          "id": "a",
+          "label": {
+            "en": ":",
+            "nl": ":"
+          },
+          "reason": {
+            "en": "A dictionary entry separates key and value with a colon.",
+            "nl": "Een dictionary-invoer scheidt sleutel en waarde met een dubbele punt."
+          }
+        },
+        {
+          "id": "b",
+          "label": {
+            "en": "=",
+            "nl": "="
+          },
+          "reason": {
+            "en": "A dictionary entry separates key and value with a colon.",
+            "nl": "Een dictionary-invoer scheidt sleutel en waarde met een dubbele punt."
+          }
+        },
+        {
+          "id": "c",
+          "label": {
+            "en": ",",
+            "nl": ","
+          },
+          "reason": {
+            "en": "A dictionary entry separates key and value with a colon.",
+            "nl": "Een dictionary-invoer scheidt sleutel en waarde met een dubbele punt."
+          }
+        }
+      ],
+      "codeBlank": {
+        "prompt": {
+          "en": "Complete the code to produce the shown output.",
+          "nl": "Vul de code aan om de getoonde uitvoer te maken."
+        },
+        "segments": [
+          "values = [5,2]\nresult = {x ",
+          " x * 2 for x in values}\nprint(result[5])"
+        ],
+        "tokens": [
+          {
+            "id": "token-1",
+            "code": ":"
+          },
+          {
+            "id": "token-2",
+            "code": "="
+          },
+          {
+            "id": "token-3",
+            "code": ","
+          }
+        ],
+        "blanks": [
+          {
+            "answer": ":",
+            "reason": {
+              "en": "A dictionary entry separates key and value with a colon.",
+              "nl": "Een dictionary-invoer scheidt sleutel en waarde met een dubbele punt."
+            }
+          }
+        ],
+        "output": "10\n"
+      },
+      "id": "python-v4-21-quiz-a-4",
+      "reviewActivityIds": [
+        "python-v4-19-comprehension"
+      ]
+    },
+    {
+      "objectiveIds": [
+        "csv-quoting"
+      ],
+      "category": "debugging",
+      "prompt": {
+        "en": "Choose the repair or test that addresses the stated problem.",
+        "nl": "Kies de reparatie of test die het beschreven probleem aanpakt."
+      },
+      "code": "# Need two fields: Ada and Paris, France\nline = 'Ada,\"Paris, France\"'\nfields = line.split(\",\")",
+      "answer": "a",
+      "choices": [
+        {
+          "id": "a",
+          "label": {
+            "en": "Use a CSV reader that understands quoting.",
+            "nl": "Gebruik een CSV-lezer die aanhalingstekens begrijpt."
+          },
+          "reason": {
+            "en": "The comma inside the quoted city is part of the data.",
+            "nl": "De komma binnen de aangehaalde stad hoort bij de gegevens."
+          }
+        },
+        {
+          "id": "b",
+          "label": {
+            "en": "Remove all commas first.",
+            "nl": "Verwijder eerst alle komma’s."
+          },
+          "reason": {
+            "en": "That destroys both separators and meaningful punctuation.",
+            "nl": "Dat vernietigt zowel scheidingen als betekenisvolle leestekens."
+          }
+        },
+        {
+          "id": "c",
+          "label": {
+            "en": "Split twice instead.",
+            "nl": "Splits in plaats daarvan tweemaal."
+          },
+          "reason": {
+            "en": "Repeated splitting still ignores quoting rules.",
+            "nl": "Herhaald splitsen negeert nog steeds aanhalingsregels."
+          }
+        }
+      ],
+      "id": "python-v4-21-quiz-a-5",
+      "reviewActivityIds": [
+        "python-v4-21-rows"
+      ]
+    },
+    {
+      "objectiveIds": [
+        "csv-write"
+      ],
+      "category": "application",
+      "prompt": {
+        "en": "Which explanation applies to this example?",
+        "nl": "Welke uitleg past bij dit voorbeeld?"
+      },
+      "code": "writer = csv.DictWriter(handle,fieldnames=[\"name\",\"score\"])\nwriter.writeheader() # export 4",
+      "answer": "a",
+      "choices": [
+        {
+          "id": "a",
+          "label": {
+            "en": "fieldnames determines the exported column order.",
+            "nl": "fieldnames bepaalt de geëxporteerde kolomvolgorde."
+          },
+          "reason": {
+            "en": "The writer uses these names for the header and values.",
+            "nl": "De schrijver gebruikt deze namen voor kop en waarden."
+          }
+        },
+        {
+          "id": "b",
+          "label": {
+            "en": "writeheader converts every score to int.",
+            "nl": "writeheader zet elke score naar int om."
+          },
+          "reason": {
+            "en": "Writing a header does not parse input values.",
+            "nl": "Een kop schrijven ontleedt invoerwaarden niet."
+          }
+        },
+        {
+          "id": "c",
+          "label": {
+            "en": "Quoted commas must be escaped manually first.",
+            "nl": "Aangehaalde komma’s moeten eerst handmatig worden gecodeerd."
+          },
+          "reason": {
+            "en": "The CSV writer handles field quoting.",
+            "nl": "De CSV-schrijver verwerkt veldaanhalingstekens."
+          }
+        }
+      ],
+      "id": "python-v4-21-quiz-a-6",
+      "reviewActivityIds": [
+        "python-v4-21-write"
+      ]
+    }
+  ],
+  "alternateQuestions": [
+    {
+      "objectiveIds": [
+        "csv-numeric-conversion"
+      ],
+      "category": "prediction",
+      "prompt": {
+        "en": "What does this program print?",
+        "nl": "Wat drukt dit programma af?"
+      },
+      "code": "row = {\"name\":\"Ada\",\"score\":\"7\"}\nprint(int(row[\"score\"]) + 2)",
+      "answer": "a",
+      "expectedOutput": "9\n",
+      "choices": [
+        {
+          "id": "a",
+          "label": {
+            "en": "9",
+            "nl": "9"
+          },
+          "reason": {
+            "en": "Conversion happens before numeric addition.",
+            "nl": "Omzetting gebeurt vóór numeriek optellen."
+          }
+        },
+        {
+          "id": "b",
+          "label": {
+            "en": "72",
+            "nl": "72"
+          },
+          "reason": {
+            "en": "That would concatenate two strings.",
+            "nl": "Dat zou twee strings samenvoegen."
+          }
+        },
+        {
+          "id": "c",
+          "label": {
+            "en": "TypeError",
+            "nl": "TypeError"
+          },
+          "reason": {
+            "en": "int converts this valid field successfully.",
+            "nl": "int zet dit geldige veld met succes om."
+          }
+        }
+      ],
+      "id": "python-v4-21-quiz-b-1",
+      "reviewActivityIds": [
+        "python-v4-21-named-records"
+      ]
+    },
+    {
+      "objectiveIds": [
+        "get"
+      ],
+      "category": "prediction",
+      "prompt": {
+        "en": "What does this program print?",
+        "nl": "Wat drukt dit programma af?"
+      },
+      "code": "record = {\"score\":0}\nprint(record.get(\"score\",8))",
+      "answer": "a",
+      "expectedOutput": "0\n",
+      "choices": [
+        {
+          "id": "a",
+          "label": {
+            "en": "0",
+            "nl": "0"
+          },
+          "reason": {
+            "en": "The present zero is preserved.",
+            "nl": "De aanwezige nul blijft behouden."
+          }
+        },
+        {
+          "id": "b",
+          "label": {
+            "en": "8",
+            "nl": "8"
+          },
+          "reason": {
+            "en": "The default is used only for a missing key.",
+            "nl": "De standaard wordt alleen bij een ontbrekende sleutel gebruikt."
+          }
+        },
+        {
+          "id": "c",
+          "label": {
+            "en": "None",
+            "nl": "None"
+          },
+          "reason": {
+            "en": "The score key is present with a numeric value.",
+            "nl": "De score-sleutel bestaat met een numerieke waarde."
+          }
+        }
+      ],
+      "id": "python-v4-21-quiz-b-2",
+      "reviewActivityIds": [
+        "python-v4-19-lookup"
+      ]
+    },
+    {
+      "objectiveIds": [
+        "dict-reader"
+      ],
+      "category": "completion",
+      "prompt": {
+        "en": "Complete the code to produce the shown output.",
+        "nl": "Vul de code aan om de getoonde uitvoer te maken."
+      },
+      "code": "import csv\nwith open(\"quiz.csv\",\"w\",newline=\"\",encoding=\"utf-8\") as handle:\n    handle.write(\"name,score\\nAda,7\\n\")\nwith open(\"quiz.csv\",newline=\"\",encoding=\"utf-8\") as handle:\n    for row in csv.___(handle):\n        print(row[\"name\"])",
+      "answer": "a",
+      "choices": [
+        {
+          "id": "a",
+          "label": {
+            "en": "DictReader",
+            "nl": "DictReader"
+          },
+          "reason": {
+            "en": "DictReader uses the first row as keys. reader gives lists and writer writes output.",
+            "nl": "DictReader gebruikt de eerste rij als sleutels. reader geeft lijsten en writer schrijft uitvoer."
+          }
+        },
+        {
+          "id": "b",
+          "label": {
+            "en": "reader",
+            "nl": "reader"
+          },
+          "reason": {
+            "en": "DictReader uses the first row as keys. reader gives lists and writer writes output.",
+            "nl": "DictReader gebruikt de eerste rij als sleutels. reader geeft lijsten en writer schrijft uitvoer."
+          }
+        },
+        {
+          "id": "c",
+          "label": {
+            "en": "writer",
+            "nl": "writer"
+          },
+          "reason": {
+            "en": "DictReader uses the first row as keys. reader gives lists and writer writes output.",
+            "nl": "DictReader gebruikt de eerste rij als sleutels. reader geeft lijsten en writer schrijft uitvoer."
+          }
+        }
+      ],
+      "codeBlank": {
+        "prompt": {
+          "en": "Complete the code to produce the shown output.",
+          "nl": "Vul de code aan om de getoonde uitvoer te maken."
+        },
+        "segments": [
+          "import csv\nwith open(\"quiz.csv\",\"w\",newline=\"\",encoding=\"utf-8\") as handle:\n    handle.write(\"name,score\\nAda,7\\n\")\nwith open(\"quiz.csv\",newline=\"\",encoding=\"utf-8\") as handle:\n    for row in csv.",
+          "(handle):\n        print(row[\"name\"])"
+        ],
+        "tokens": [
+          {
+            "id": "token-1",
+            "code": "DictReader"
+          },
+          {
+            "id": "token-2",
+            "code": "reader"
+          },
+          {
+            "id": "token-3",
+            "code": "writer"
+          }
+        ],
+        "blanks": [
+          {
+            "answer": "DictReader",
+            "reason": {
+              "en": "DictReader uses the first row as keys. reader gives lists and writer writes output.",
+              "nl": "DictReader gebruikt de eerste rij als sleutels. reader geeft lijsten en writer schrijft uitvoer."
+            }
+          }
+        ],
+        "output": "Ada\n"
+      },
+      "id": "python-v4-21-quiz-b-3",
+      "reviewActivityIds": [
+        "python-v4-21-named-records"
+      ]
+    },
+    {
+      "objectiveIds": [
+        "dictionary-comprehensions"
+      ],
+      "category": "completion",
+      "prompt": {
+        "en": "Complete the code to produce the shown output.",
+        "nl": "Vul de code aan om de getoonde uitvoer te maken."
+      },
+      "code": "values = [8,2]\nresult = {x ___ x * 2 for x in values}\nprint(result[8])",
+      "answer": "a",
+      "choices": [
+        {
+          "id": "a",
+          "label": {
+            "en": ":",
+            "nl": ":"
+          },
+          "reason": {
+            "en": "A dictionary entry separates key and value with a colon.",
+            "nl": "Een dictionary-invoer scheidt sleutel en waarde met een dubbele punt."
+          }
+        },
+        {
+          "id": "b",
+          "label": {
+            "en": "=",
+            "nl": "="
+          },
+          "reason": {
+            "en": "A dictionary entry separates key and value with a colon.",
+            "nl": "Een dictionary-invoer scheidt sleutel en waarde met een dubbele punt."
+          }
+        },
+        {
+          "id": "c",
+          "label": {
+            "en": ",",
+            "nl": ","
+          },
+          "reason": {
+            "en": "A dictionary entry separates key and value with a colon.",
+            "nl": "Een dictionary-invoer scheidt sleutel en waarde met een dubbele punt."
+          }
+        }
+      ],
+      "codeBlank": {
+        "prompt": {
+          "en": "Complete the code to produce the shown output.",
+          "nl": "Vul de code aan om de getoonde uitvoer te maken."
+        },
+        "segments": [
+          "values = [8,2]\nresult = {x ",
+          " x * 2 for x in values}\nprint(result[8])"
+        ],
+        "tokens": [
+          {
+            "id": "token-1",
+            "code": ":"
+          },
+          {
+            "id": "token-2",
+            "code": "="
+          },
+          {
+            "id": "token-3",
+            "code": ","
+          }
+        ],
+        "blanks": [
+          {
+            "answer": ":",
+            "reason": {
+              "en": "A dictionary entry separates key and value with a colon.",
+              "nl": "Een dictionary-invoer scheidt sleutel en waarde met een dubbele punt."
+            }
+          }
+        ],
+        "output": "16\n"
+      },
+      "id": "python-v4-21-quiz-b-4",
+      "reviewActivityIds": [
+        "python-v4-19-comprehension"
+      ]
+    },
+    {
+      "objectiveIds": [
+        "csv-quoting"
+      ],
+      "category": "debugging",
+      "prompt": {
+        "en": "Choose the repair or test that addresses the stated problem.",
+        "nl": "Kies de reparatie of test die het beschreven probleem aanpakt."
+      },
+      "code": "# Need two fields: Ada and Paris, France\nline = 'Bo,\"Paris, France\"'\nfields = line.split(\",\")",
+      "answer": "a",
+      "choices": [
+        {
+          "id": "a",
+          "label": {
+            "en": "Use a CSV reader that understands quoting.",
+            "nl": "Gebruik een CSV-lezer die aanhalingstekens begrijpt."
+          },
+          "reason": {
+            "en": "The comma inside the quoted city is part of the data.",
+            "nl": "De komma binnen de aangehaalde stad hoort bij de gegevens."
+          }
+        },
+        {
+          "id": "b",
+          "label": {
+            "en": "Remove all commas first.",
+            "nl": "Verwijder eerst alle komma’s."
+          },
+          "reason": {
+            "en": "That destroys both separators and meaningful punctuation.",
+            "nl": "Dat vernietigt zowel scheidingen als betekenisvolle leestekens."
+          }
+        },
+        {
+          "id": "c",
+          "label": {
+            "en": "Split twice instead.",
+            "nl": "Splits in plaats daarvan tweemaal."
+          },
+          "reason": {
+            "en": "Repeated splitting still ignores quoting rules.",
+            "nl": "Herhaald splitsen negeert nog steeds aanhalingsregels."
+          }
+        }
+      ],
+      "id": "python-v4-21-quiz-b-5",
+      "reviewActivityIds": [
+        "python-v4-21-rows"
+      ]
+    },
+    {
+      "objectiveIds": [
+        "csv-write"
+      ],
+      "category": "application",
+      "prompt": {
+        "en": "Which explanation applies to this example?",
+        "nl": "Welke uitleg past bij dit voorbeeld?"
+      },
+      "code": "writer = csv.DictWriter(handle,fieldnames=[\"name\",\"score\"])\nwriter.writeheader() # export 7",
+      "answer": "a",
+      "choices": [
+        {
+          "id": "a",
+          "label": {
+            "en": "fieldnames determines the exported column order.",
+            "nl": "fieldnames bepaalt de geëxporteerde kolomvolgorde."
+          },
+          "reason": {
+            "en": "The writer uses these names for the header and values.",
+            "nl": "De schrijver gebruikt deze namen voor kop en waarden."
+          }
+        },
+        {
+          "id": "b",
+          "label": {
+            "en": "writeheader converts every score to int.",
+            "nl": "writeheader zet elke score naar int om."
+          },
+          "reason": {
+            "en": "Writing a header does not parse input values.",
+            "nl": "Een kop schrijven ontleedt invoerwaarden niet."
+          }
+        },
+        {
+          "id": "c",
+          "label": {
+            "en": "Quoted commas must be escaped manually first.",
+            "nl": "Aangehaalde komma’s moeten eerst handmatig worden gecodeerd."
+          },
+          "reason": {
+            "en": "The CSV writer handles field quoting.",
+            "nl": "De CSV-schrijver verwerkt veldaanhalingstekens."
+          }
+        }
+      ],
+      "id": "python-v4-21-quiz-b-6",
+      "reviewActivityIds": [
+        "python-v4-21-write"
+      ]
+    }
+  ]
+}

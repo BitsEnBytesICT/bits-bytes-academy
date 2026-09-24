@@ -1,0 +1,238 @@
+{
+  "id": "python-v4-10-cancel-safely",
+  "chapter": 10,
+  "group": "python-v4-module-10",
+  "title": {
+    "en": "Give every retry a way out",
+    "nl": "Geef elke herhaling een uitgang"
+  },
+  "kind": "coding",
+  "optional": false,
+  "runtime": "terminal",
+  "guidance": "independent",
+  "checkpointMode": "sequential",
+  "estimatedMinutes": 25,
+  "topicIds": [
+    "cancellation",
+    "end-of-input",
+    "recovery-review"
+  ],
+  "practices": [
+    "functions-review",
+    "normalisation",
+    "break",
+    "validation"
+  ],
+  "requiredConcepts": [
+    "retry-loops",
+    "none",
+    "normalisation"
+  ],
+  "explanation": {
+    "en": "Build the input helper you will need for a friendly interactive program. A person must be able to quit even after a mistake.",
+    "nl": "Bouw de invoerhulp die je nodig hebt voor een vriendelijk interactief programma. Iemand moet ook na een fout kunnen stoppen."
+  },
+  "example": "",
+  "sections": [
+    {
+      "id": "python-v4-10-cancel-safely-example",
+      "topicIds": [
+        "cancellation",
+        "end-of-input",
+        "recovery-review",
+        "functions-review",
+        "normalisation",
+        "break",
+        "validation"
+      ],
+      "heading": {
+        "en": "Follow a working example",
+        "nl": "Volg een werkend voorbeeld"
+      },
+      "body": {
+        "en": "Check a normalised quit command before converting the answer. An empty input line is text and is different from end-of-input: input raises EOFError when no more input is available. In this terminal use the End input control to test that case. Catch EOFError around input, and ValueError around conversion. Returning None signals cancellation; returning 0.0 means a valid number.",
+        "nl": "Controleer een genormaliseerd stopcommando vóór omzetting. Een lege invoerregel is tekst en verschilt van einde invoer: input veroorzaakt EOFError als geen invoer meer beschikbaar is. Gebruik in deze terminal de bediening voor einde invoer om dat te testen. Vang EOFError rond input op en ValueError rond omzetting. None teruggeven betekent annuleren; 0.0 teruggeven betekent een geldig getal."
+      },
+      "code": "def convert(text):\n    if text.strip().lower() == \"quit\":\n        return None\n    return float(text)\nprint(convert(\" QUIT \"))\nprint(convert(\"0\"))",
+      "output": "None\n0.0\n",
+      "prediction": {
+        "en": "Why must the quit check come before float?",
+        "nl": "Waarom moet de quit-controle vóór float komen?"
+      },
+      "takeaway": {
+        "en": "Check cancellation before parsing; never confuse zero with cancellation.",
+        "nl": "Controleer annuleren vóór ontleden; verwar nul nooit met annuleren."
+      }
+    },
+    {
+      "id": "python-v4-10-cancel-safely-experiment",
+      "topicIds": [],
+      "heading": {
+        "en": "Try one change",
+        "nl": "Probeer één wijziging"
+      },
+      "body": {
+        "en": "Try invalid text followed by quit, and test end-of-input at the first prompt.",
+        "nl": "Probeer verkeerde tekst gevolgd door quit en test einde invoer bij de eerste vraag."
+      }
+    }
+  ],
+  "files": {
+    "main.py": ""
+  },
+  "solution": {
+    "main.py": "def read_number():\n    while True:\n        try:\n            text = input(\"Number or quit: \").strip().lower()\n        except EOFError:\n            return None\n        if text == \"quit\":\n            return None\n        try:\n            return float(text)\n        except ValueError:\n            print(\"Try a number\")\n"
+  },
+  "checkpoints": [
+    {
+      "id": "python-v4-10-cancel-safely-step-1",
+      "objectiveIds": [
+        "cancellation",
+        "end-of-input",
+        "recovery-review",
+        "functions-review",
+        "normalisation",
+        "break",
+        "validation"
+      ],
+      "task": {
+        "en": "Define read_number() to retry invalid numeric text and return a float after a valid answer. Print Try a number on each conversion failure.",
+        "nl": "Definieer read_number() om ongeldige getaltekst opnieuw te vragen en na een geldig antwoord een float terug te geven. Druk bij elke omzettingsfout Try a number af."
+      },
+      "check": "callable(read_number)",
+      "probes": [
+        {
+          "call": {
+            "name": "read_number",
+            "args": []
+          },
+          "check": "(_return == -2.5 and _call_stdout.count(\"Try a number\") == 1) and _remaining_input == \"\"",
+          "stdin": [
+            "bad",
+            "-2.5"
+          ]
+        },
+        {
+          "call": {
+            "name": "read_number",
+            "args": []
+          },
+          "check": "(_return == 0.0) and _remaining_input == \"\"",
+          "stdin": [
+            "0"
+          ]
+        }
+      ],
+      "hint": {
+        "en": "Check cancellation before parsing; never confuse zero with cancellation.",
+        "nl": "Controleer annuleren vóór ontleden; verwar nul nooit met annuleren."
+      },
+      "hints": [
+        {
+          "en": "Check cancellation before parsing; never confuse zero with cancellation.",
+          "nl": "Controleer annuleren vóór ontleden; verwar nul nooit met annuleren."
+        },
+        {
+          "en": "Use a loop with a new input each time and a specific ValueError handler.",
+          "nl": "Gebruik een lus met telkens nieuwe invoer en een specifieke ValueError-afhandeling."
+        },
+        {
+          "en": "A small fragment to adapt: `except ValueError:`",
+          "nl": "Een klein fragment om aan te passen: `except ValueError:`"
+        }
+      ],
+      "feedback": {
+        "en": "Use a loop with a new input each time and a specific ValueError handler.",
+        "nl": "Gebruik een lus met telkens nieuwe invoer en een specifieke ValueError-afhandeling."
+      }
+    },
+    {
+      "id": "python-v4-10-cancel-safely-step-2",
+      "objectiveIds": [
+        "cancellation",
+        "end-of-input",
+        "recovery-review",
+        "functions-review",
+        "normalisation",
+        "break",
+        "validation"
+      ],
+      "task": {
+        "en": "Return None for quit with any surrounding spaces/case, and for end-of-input.",
+        "nl": "Geef None terug voor quit met willekeurige spaties/hoofdletters en voor einde invoer."
+      },
+      "check": "callable(read_number)",
+      "probes": [
+        {
+          "call": {
+            "name": "read_number",
+            "args": []
+          },
+          "check": "(_return is None and _error is None) and _remaining_input == \"\"",
+          "stdin": [
+            " QUIT "
+          ]
+        },
+        {
+          "call": {
+            "name": "read_number",
+            "args": []
+          },
+          "check": "(_return is None and _error is None) and _remaining_input == \"\"",
+          "stdin": []
+        },
+        {
+          "call": {
+            "name": "read_number",
+            "args": []
+          },
+          "check": "(_return is None and _error is None) and _remaining_input == \"\"",
+          "stdin": [
+            "wrong",
+            "quit"
+          ]
+        }
+      ],
+      "hint": {
+        "en": "Check cancellation before parsing; never confuse zero with cancellation.",
+        "nl": "Controleer annuleren vóór ontleden; verwar nul nooit met annuleren."
+      },
+      "hints": [
+        {
+          "en": "Check cancellation before parsing; never confuse zero with cancellation.",
+          "nl": "Controleer annuleren vóór ontleden; verwar nul nooit met annuleren."
+        },
+        {
+          "en": "Catch EOFError around the prompt; check the cleaned command before float.",
+          "nl": "Vang EOFError rond de vraag op; controleer het opgeschoonde commando vóór float."
+        },
+        {
+          "en": "A small fragment to adapt: `if text == \"quit\":`",
+          "nl": "Een klein fragment om aan te passen: `if text == \"quit\":`"
+        }
+      ],
+      "feedback": {
+        "en": "Catch EOFError around the prompt; check the cleaned command before float.",
+        "nl": "Vang EOFError rond de vraag op; controleer het opgeschoonde commando vóór float."
+      }
+    }
+  ],
+  "solutionNote": {
+    "en": "The helper has separate exits for a valid number, an explicit cancellation and exhausted input; invalid text alone triggers a retry.",
+    "nl": "De hulp heeft aparte uitgangen voor een geldig getal, expliciet annuleren en opgebruikte invoer; alleen ongeldige tekst veroorzaakt een nieuwe poging."
+  },
+  "inputs": [],
+  "retrievals": [
+    {
+      "id": "recall-python-v4-08-break",
+      "sourceActivityId": "python-v4-08-break",
+      "objectiveIds": [
+        "break"
+      ],
+      "prompt": {
+        "en": "Recall “Exit a loop with break”. Does the stop word reach the print inside the loop? Try the earlier example from memory, then check it. Enter two work commands before quit. Explain which print is repeated and which runs once.",
+        "nl": "Haal “Verlaat een lus met break” terug. Bereikt het stopwoord de print binnen de lus? Probeer het eerdere voorbeeld uit je geheugen en controleer daarna. Voer twee werkopdrachten in vóór quit. Leg uit welke print wordt herhaald en welke eenmaal draait."
+      }
+    }
+  ]
+}

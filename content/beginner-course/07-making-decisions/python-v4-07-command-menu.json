@@ -1,0 +1,214 @@
+{
+  "id": "python-v4-07-command-menu",
+  "chapter": 7,
+  "group": "python-v4-module-7",
+  "title": {
+    "en": "Respond to a typed choice",
+    "nl": "Reageer op een getypte keuze"
+  },
+  "kind": "coding",
+  "optional": false,
+  "runtime": "terminal",
+  "guidance": "independent",
+  "checkpointMode": "sequential",
+  "estimatedMinutes": 20,
+  "topicIds": [
+    "decision-review"
+  ],
+  "practices": [
+    "if",
+    "elif",
+    "else",
+    "normalisation"
+  ],
+  "requiredConcepts": [
+    "elif",
+    "normalisation",
+    "input"
+  ],
+  "explanation": {
+    "en": "Connect input to a decision. This menu handles one command each time the program runs.",
+    "nl": "Verbind invoer met een beslissing. Dit menu verwerkt één opdracht per uitvoering van het programma."
+  },
+  "example": "",
+  "sections": [
+    {
+      "id": "python-v4-07-command-menu-example",
+      "topicIds": [
+        "decision-review",
+        "if",
+        "elif",
+        "else",
+        "normalisation"
+      ],
+      "heading": {
+        "en": "Follow a working example",
+        "nl": "Volg een werkend voorbeeld"
+      },
+      "body": {
+        "en": "Read the answer, normalise it, then compare it with supported commands. Keep input handling separate from the branch chain so you can inspect the cleaned value.\n\nA final else gives a helpful response for an unsupported command. It does not mean Python crashed; it is behaviour you deliberately designed. Repeating a menu is taught in the next module.",
+        "nl": "Lees het antwoord, normaliseer het en vergelijk het daarna met ondersteunde opdrachten. Houd invoerafhandeling gescheiden van de keuzeketen zodat je de opgeschoonde waarde kunt onderzoeken.\n\nEen laatste else geeft een nuttige reactie op een onbekende opdracht. Dat betekent niet dat Python is gecrasht; het is gedrag dat je bewust ontwierp. Een menu herhalen leer je in de volgende module."
+      },
+      "code": "command = \"  HELP \".strip().lower()\nif command == \"help\":\n    print(\"Choose a command\")\nelse:\n    print(\"Unknown\")",
+      "output": "Choose a command\n",
+      "prediction": {
+        "en": "Why does the uppercase input match lowercase help?",
+        "nl": "Waarom komt invoer in hoofdletters overeen met help in kleine letters?"
+      },
+      "takeaway": {
+        "en": "Normalise first, compare second, and provide a fallback response.",
+        "nl": "Normaliseer eerst, vergelijk daarna en geef een terugvalreactie."
+      }
+    },
+    {
+      "id": "python-v4-07-command-menu-experiment",
+      "topicIds": [],
+      "heading": {
+        "en": "Try one change",
+        "nl": "Probeer één wijziging"
+      },
+      "body": {
+        "en": "Test both commands with spaces and mixed case. Try an empty answer too.",
+        "nl": "Test beide opdrachten met spaties en gemengde hoofdletters. Probeer ook een leeg antwoord."
+      }
+    }
+  ],
+  "files": {
+    "main.py": ""
+  },
+  "solution": {
+    "main.py": "choice = input(\"Choice: \").strip().lower()\nif choice == \"open\":\n    print(\"Opening\")\nelif choice == \"help\":\n    print(\"Commands: open, help\")\nelse:\n    print(\"Unknown choice\")\n"
+  },
+  "checkpoints": [
+    {
+      "id": "python-v4-07-command-menu-step-1",
+      "objectiveIds": [
+        "decision-review",
+        "if",
+        "elif",
+        "else",
+        "normalisation"
+      ],
+      "task": {
+        "en": "Read Choice: into a trimmed lowercase variable choice.",
+        "nl": "Lees Choice: in een getrimde variabele choice met kleine letters."
+      },
+      "check": "True",
+      "probes": [
+        {
+          "stdin": [
+            " OPEN "
+          ],
+          "check": "(choice == choice.strip().lower()) and _remaining_input == \"\""
+        },
+        {
+          "stdin": [
+            " HELP "
+          ],
+          "check": "(choice == \"help\") and _remaining_input == \"\""
+        }
+      ],
+      "hint": {
+        "en": "Normalise first, compare second, and provide a fallback response.",
+        "nl": "Normaliseer eerst, vergelijk daarna en geef een terugvalreactie."
+      },
+      "hints": [
+        {
+          "en": "Normalise first, compare second, and provide a fallback response.",
+          "nl": "Normaliseer eerst, vergelijk daarna en geef een terugvalreactie."
+        },
+        {
+          "en": "Keep the returned text from both normalisation methods.",
+          "nl": "Bewaar de teruggegeven tekst van beide normalisatiemethoden."
+        },
+        {
+          "en": "A small fragment to adapt: `choice = input(\"Choice: \").strip().lower()`",
+          "nl": "Een klein fragment om aan te passen: `choice = input(\"Choice: \").strip().lower()`"
+        }
+      ],
+      "feedback": {
+        "en": "Keep the returned text from both normalisation methods.",
+        "nl": "Bewaar de teruggegeven tekst van beide normalisatiemethoden."
+      }
+    },
+    {
+      "id": "python-v4-07-command-menu-step-2",
+      "objectiveIds": [
+        "decision-review",
+        "if",
+        "elif",
+        "else",
+        "normalisation"
+      ],
+      "task": {
+        "en": "Respond to open with \"Opening\", help with \"Commands: open, help\", and anything else with \"Unknown choice\".",
+        "nl": "Reageer op open met \"Opening\", op help met \"Commands: open, help\" en anders met \"Unknown choice\"."
+      },
+      "check": "True",
+      "probes": [
+        {
+          "stdin": [
+            " OPEN "
+          ],
+          "check": "(_stdout.endswith(\"Opening\\n\")) and _remaining_input == \"\""
+        },
+        {
+          "stdin": [
+            "help"
+          ],
+          "check": "(_stdout.endswith(\"Commands: open, help\\n\")) and _remaining_input == \"\""
+        },
+        {
+          "stdin": [
+            "other"
+          ],
+          "check": "(_stdout.endswith(\"Unknown choice\\n\")) and _remaining_input == \"\""
+        }
+      ],
+      "hint": {
+        "en": "Normalise first, compare second, and provide a fallback response.",
+        "nl": "Normaliseer eerst, vergelijk daarna en geef een terugvalreactie."
+      },
+      "hints": [
+        {
+          "en": "Normalise first, compare second, and provide a fallback response.",
+          "nl": "Normaliseer eerst, vergelijk daarna en geef een terugvalreactie."
+        },
+        {
+          "en": "Use a single chain with two recognised commands and a fallback.",
+          "nl": "Gebruik één keten met twee herkende opdrachten en een terugvaltak."
+        },
+        {
+          "en": "A small fragment to adapt: `elif choice == \"help\":`",
+          "nl": "Een klein fragment om aan te passen: `elif choice == \"help\":`"
+        }
+      ],
+      "feedback": {
+        "en": "Use a single chain with two recognised commands and a fallback.",
+        "nl": "Gebruik één keten met twee herkende opdrachten en een terugvaltak."
+      }
+    }
+  ],
+  "solutionNote": {
+    "en": "The command is cleaned once. The chain produces exactly one response, including for unknown input.",
+    "nl": "De opdracht wordt eenmaal opgeschoond. De keten produceert precies één reactie, ook voor onbekende invoer."
+  },
+  "inputs": [
+    " OPEN "
+  ],
+  "retrievals": [
+    {
+      "id": "recall-python-v4-05-normalise-command",
+      "sourceActivityId": "python-v4-05-normalise-command",
+      "objectiveIds": [
+        "normalisation",
+        "strip",
+        "case-methods"
+      ],
+      "prompt": {
+        "en": "Recall “Clean a typed command”. What would happen if you called lower without storing its result? Try the earlier example from memory, then check it. Enter SAVE FILE with outer spaces. Which space remains after strip?",
+        "nl": "Haal “Schoon een getypte opdracht op” terug. Wat gebeurt er als je lower aanroept zonder het resultaat te bewaren? Probeer het eerdere voorbeeld uit je geheugen en controleer daarna. Voer SAVE FILE in met spaties eromheen. Welke spatie blijft na strip over?"
+      }
+    }
+  ]
+}

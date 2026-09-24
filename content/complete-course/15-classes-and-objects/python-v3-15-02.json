@@ -1,0 +1,179 @@
+{
+  "id": "python-v3-15-02",
+  "chapter": 15,
+  "group": "python-v3-module-15",
+  "title": {
+    "en": "Initialise a class",
+    "nl": "Initialiseer een klasse"
+  },
+  "kind": "coding",
+  "optional": false,
+  "runtime": "terminal",
+  "guidance": "adapt",
+  "estimatedMinutes": 18,
+  "explanation": {
+    "en": "Define a class to group related state and behaviour. Calling the class creates an instance; __init__ gives that new instance its starting state.",
+    "nl": "Definieer een klasse om bijbehorende toestand en gedrag te groeperen. De klasse aanroepen maakt een instantie; __init__ geeft die nieuwe instantie zijn begintoestand."
+  },
+  "example": "",
+  "topicIds": [
+    "class",
+    "instantiation",
+    "oop",
+    "constructors",
+    "self",
+    "instance-variables"
+  ],
+  "prerequisites": [
+    "python-v3-15-01"
+  ],
+  "sections": [
+    {
+      "topicIds": [
+        "class",
+        "instantiation",
+        "oop",
+        "constructors",
+        "self",
+        "instance-variables"
+      ],
+      "heading": {
+        "en": "One definition, many instances",
+        "nl": "Eén definitie, meerdere instanties"
+      },
+      "body": {
+        "en": "class introduces a new type. Calling Label(\"Ada\") creates an instance and runs __init__ on it. self is the instance receiving the call; self.name stores an attribute on that object. name without self is only a local parameter. __init__ initialises the object and must not return a separate result. Grouping state with its operations is the core idea of object-oriented programming.",
+        "nl": "class introduceert een nieuw type. Label(\"Ada\") aanroepen maakt een instantie en voert daarop __init__ uit. self is de instantie die de aanroep ontvangt; self.name bewaart een attribuut op dat object. name zonder self is slechts een lokale parameter. __init__ initialiseert het object en mag geen apart resultaat teruggeven. Toestand met zijn bewerkingen groeperen is het kernidee van objectgeoriënteerd programmeren."
+      },
+      "code": "class Label:\n    def __init__(self, name):\n        self.name = name\n\nfirst = Label(\"Ada\")\nsecond = Label(\"Bo\")\nprint(first.name, second.name)",
+      "output": "Ada Bo\n",
+      "prediction": {
+        "en": "Why does second.name not replace first.name?",
+        "nl": "Waarom vervangt second.name niet first.name?"
+      }
+    },
+    {
+      "topicIds": [],
+      "heading": {
+        "en": "Try a changed input",
+        "nl": "Probeer gewijzigde invoer"
+      },
+      "body": {
+        "en": "Set first.value = 9, then inspect second.value. Compare that with alias = first and explain what alias shares.",
+        "nl": "Zet first.value = 9 en bekijk second.value. Vergelijk dat met alias = first en leg uit wat alias deelt."
+      }
+    }
+  ],
+  "files": {
+    "main.py": "class Counter:\n    def __init__(self, start=0):\n        value = start\n\nfirst = Counter(2)\nsecond = Counter(5)\n# Print both instance values.\n"
+  },
+  "solution": {
+    "main.py": "class Counter:\n    def __init__(self, start=0):\n        self.value = start\n\nfirst = Counter(2)\nsecond = Counter(5)\nprint(first.value, second.value)\n"
+  },
+  "checkpoints": [
+    {
+      "objectiveIds": [
+        "class",
+        "constructors",
+        "self",
+        "instance-variables"
+      ],
+      "task": {
+        "en": "Initialise Counter.value on self using start, defaulting to zero.",
+        "nl": "Initialiseer Counter.value op self met start, standaard nul."
+      },
+      "check": "hasattr(first,\"value\") and first.value == 2",
+      "hints": [
+        {
+          "en": "State must be stored on the new object.",
+          "nl": "Toestand moet op het nieuwe object worden bewaard."
+        },
+        {
+          "en": "Use self.value rather than a local value variable.",
+          "nl": "Gebruik self.value in plaats van een lokale value-variabele."
+        },
+        {
+          "en": "self.value = start",
+          "nl": "self.value = start"
+        }
+      ],
+      "hint": {
+        "en": "State must be stored on the new object.",
+        "nl": "Toestand moet op het nieuwe object worden bewaard."
+      },
+      "feedback": {
+        "en": "A local variable disappears after __init__ finishes.",
+        "nl": "Een lokale variabele verdwijnt nadat __init__ klaar is."
+      },
+      "probes": [
+        {
+          "call": {
+            "name": "Counter",
+            "args": []
+          },
+          "check": "_return.value == 0"
+        },
+        {
+          "call": {
+            "name": "Counter",
+            "args": [
+              -3
+            ]
+          },
+          "check": "_return.value == -3"
+        }
+      ],
+      "id": "python-v3-15-02-step-1"
+    },
+    {
+      "objectiveIds": [
+        "instantiation",
+        "oop"
+      ],
+      "task": {
+        "en": "Create the supplied two Counter instances and print their values. Changing one must not replace the other’s state.",
+        "nl": "Maak de twee meegeleverde Counter-instanties en druk hun waarden af. Eén wijzigen mag de toestand van de andere niet vervangen."
+      },
+      "check": "isinstance(first,Counter) and isinstance(second,Counter) and first is not second and _stdout.strip() == \"2 5\"",
+      "hints": [
+        {
+          "en": "A class is a definition; each call creates an object.",
+          "nl": "Een klasse is een definitie; elke aanroep maakt een object."
+        },
+        {
+          "en": "Use Counter(2) and Counter(5), then access attributes with dots.",
+          "nl": "Gebruik Counter(2) en Counter(5) en lees attributen met punten."
+        },
+        {
+          "en": "print(first.value, second.value)",
+          "nl": "print(first.value, second.value)"
+        }
+      ],
+      "hint": {
+        "en": "A class is a definition; each call creates an object.",
+        "nl": "Een klasse is een definitie; elke aanroep maakt een object."
+      },
+      "feedback": {
+        "en": "Two names for one instance would still share state.",
+        "nl": "Twee namen voor één instantie zouden nog steeds toestand delen."
+      },
+      "probes": [
+        {
+          "call": {
+            "name": "Counter",
+            "args": [
+              7
+            ]
+          },
+          "check": "_return.value == 7 and Counter(0).value == 0 and _return.value == 7"
+        }
+      ],
+      "id": "python-v3-15-02-step-2"
+    }
+  ],
+  "solutionNote": {
+    "en": "self.value belongs to each instance. The class defines how all counters are initialised, but does not force them to share one current value.",
+    "nl": "self.value hoort bij elke instantie. De klasse bepaalt hoe alle tellers worden geïnitialiseerd maar laat ze niet één huidige waarde delen."
+  },
+  "inputs": []
+}

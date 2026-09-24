@@ -1,0 +1,112 @@
+{
+  "id": "python-v4-01-strings-quotes",
+  "chapter": 1,
+  "group": "python-v4-module-1",
+  "title": {
+    "en": "Text is a string",
+    "nl": "Tekst is een string"
+  },
+  "kind": "coding",
+  "optional": false,
+  "runtime": "terminal",
+  "guidance": "guided",
+  "checkpointMode": "sequential",
+  "estimatedMinutes": 10,
+  "topicIds": [
+    "strings"
+  ],
+  "practices": [],
+  "requiredConcepts": [
+    "print"
+  ],
+  "explanation": {
+    "en": "Python calls a text value a string. Learn where a string starts and ends before using longer messages.",
+    "nl": "Python noemt een tekstwaarde een string. Leer waar een string begint en eindigt voordat je langere berichten gebruikt."
+  },
+  "example": "",
+  "sections": [
+    {
+      "id": "python-v4-01-strings-quotes-example",
+      "topicIds": [
+        "strings"
+      ],
+      "heading": {
+        "en": "Follow a working example",
+        "nl": "Volg een werkend voorbeeld"
+      },
+      "body": {
+        "en": "A string is text enclosed by matching quotes. You can use double quotes or single quotes. The opening and closing quote of one string must be the same kind. Both forms below display the same word.\n\nThe quotes are syntax: marks that give Python instructions about how to read the code. They are not part of the text value. An apostrophe can go inside a double-quoted string without closing it. Later you will learn escape characters for more complicated text.",
+        "nl": "Een string is tekst tussen bijpassende aanhalingstekens. Je kunt dubbele of enkele aanhalingstekens gebruiken. De openings- en sluitingstekens van één string moeten van dezelfde soort zijn. Beide vormen hieronder tonen hetzelfde woord.\n\nDe aanhalingstekens zijn syntaxis: tekens die Python vertellen hoe het de code moet lezen. Ze horen niet bij de tekstwaarde. Een apostrof past in een string met dubbele aanhalingstekens zonder die af te sluiten. Later leer je escapetekens voor ingewikkeldere tekst."
+      },
+      "code": "print(\"Welcome\")\nprint('Welcome')",
+      "output": "Welcome\nWelcome\n",
+      "prediction": {
+        "en": "Will the two output lines differ?",
+        "nl": "Verschillen de twee uitvoerregels?"
+      },
+      "takeaway": {
+        "en": "Single and double quotes both define strings when each pair matches.",
+        "nl": "Enkele en dubbele aanhalingstekens maken allebei strings als elk paar overeenkomt."
+      }
+    },
+    {
+      "id": "python-v4-01-strings-quotes-experiment",
+      "topicIds": [],
+      "heading": {
+        "en": "Try one change",
+        "nl": "Probeer één wijziging"
+      },
+      "body": {
+        "en": "Print \"It's sunny\" using double quotes. Explain why its apostrophe does not end the string.",
+        "nl": "Druk \"It's sunny\" af met dubbele aanhalingstekens. Leg uit waarom de apostrof de string niet beëindigt."
+      }
+    }
+  ],
+  "files": {
+    "main.py": ""
+  },
+  "solution": {
+    "main.py": "print(\"Mila\")\nprint('Mila')\n"
+  },
+  "checkpoints": [
+    {
+      "id": "python-v4-01-strings-quotes-step-1",
+      "objectiveIds": [
+        "strings"
+      ],
+      "task": {
+        "en": "Print \"Mila\" twice, on separate lines. Try both kinds of quotes.",
+        "nl": "Druk \"Mila\" tweemaal af op aparte regels. Probeer beide soorten aanhalingstekens."
+      },
+      "check": "_stdout == \"Mila\\nMila\\n\"",
+      "probes": [],
+      "hint": {
+        "en": "Single and double quotes both define strings when each pair matches.",
+        "nl": "Enkele en dubbele aanhalingstekens maken allebei strings als elk paar overeenkomt."
+      },
+      "hints": [
+        {
+          "en": "Single and double quotes both define strings when each pair matches.",
+          "nl": "Enkele en dubbele aanhalingstekens maken allebei strings als elk paar overeenkomt."
+        },
+        {
+          "en": "Each call needs a complete quoted string. The spelling of the displayed name stays the same.",
+          "nl": "Elke aanroep heeft een volledige string nodig. De spelling van de getoonde naam blijft hetzelfde."
+        },
+        {
+          "en": "A small fragment to adapt: `print('a name')`",
+          "nl": "Een klein fragment om aan te passen: `print('a name')`"
+        }
+      ],
+      "feedback": {
+        "en": "Each call needs a complete quoted string. The spelling of the displayed name stays the same.",
+        "nl": "Elke aanroep heeft een volledige string nodig. De spelling van de getoonde naam blijft hetzelfde."
+      }
+    }
+  ],
+  "solutionNote": {
+    "en": "Both calls produce the same value. The checker accepts either quote style because the requested behaviour is the displayed name.",
+    "nl": "Beide aanroepen produceren dezelfde waarde. De controle accepteert beide soorten aanhalingstekens omdat het gevraagde gedrag de getoonde naam is."
+  },
+  "inputs": []
+}

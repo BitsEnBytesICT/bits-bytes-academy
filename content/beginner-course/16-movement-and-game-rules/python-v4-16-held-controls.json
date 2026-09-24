@@ -1,0 +1,196 @@
+{
+  "id": "python-v4-16-held-controls",
+  "chapter": 16,
+  "group": "python-v4-module-16",
+  "title": {
+    "en": "Hold keys to move both paddles",
+    "nl": "Houd toetsen vast om beide batjes te bewegen"
+  },
+  "kind": "coding",
+  "optional": false,
+  "runtime": "pygame",
+  "guidance": "guided",
+  "checkpointMode": "sequential",
+  "estimatedMinutes": 18,
+  "topicIds": [
+    "held-keys",
+    "simultaneous-controls"
+  ],
+  "practices": [],
+  "requiredConcepts": [
+    "keyboard-events",
+    "velocity"
+  ],
+  "explanation": {
+    "en": "A held-key state answers whether a key is down now. It supports smooth continuous controls.",
+    "nl": "Een vastgehouden-toetstoestand zegt of een toets nu ingedrukt is. Dat ondersteunt vloeiende doorlopende bediening."
+  },
+  "example": "",
+  "sections": [
+    {
+      "id": "python-v4-16-held-controls-example",
+      "topicIds": [
+        "held-keys",
+        "simultaneous-controls"
+      ],
+      "heading": {
+        "en": "Follow a working example",
+        "nl": "Volg een werkend voorbeeld"
+      },
+      "body": {
+        "en": "pygame.key.get_pressed() returns states indexed by key constants, such as keys[pygame.K_w]. Check both players independently each frame; an elif between players would prevent simultaneous movement. For one paddle, subtract speed for up and add speed for down. If both are held, these changes cancel. KEYDOWN is still suitable for one-off actions such as serving.",
+        "nl": "pygame.key.get_pressed() geeft toestanden die je met toetsconstanten benadert, zoals keys[pygame.K_w]. Controleer beide spelers onafhankelijk bij elk beeld; een elif tussen spelers verhindert gelijktijdige beweging. Trek voor één batje snelheid af bij omhoog en tel snelheid op bij omlaag. Als beide vaststaan, heffen veranderingen elkaar op. KEYDOWN blijft geschikt voor eenmalige acties zoals serveren."
+      },
+      "code": "up = True\ndown = True\ndirection = 0\nif up:\n    direction -= 1\nif down:\n    direction += 1\nprint(direction)",
+      "output": "0\n",
+      "prediction": {
+        "en": "Why is this two if statements instead of if/elif?",
+        "nl": "Waarom zijn dit twee if-instructies in plaats van if/elif?"
+      },
+      "takeaway": {
+        "en": "Read held keys every frame and update each player independently.",
+        "nl": "Lees vastgehouden toetsen bij elk beeld en werk elke speler onafhankelijk bij."
+      }
+    },
+    {
+      "topicIds": [],
+      "heading": {
+        "en": "Run, observe, finish",
+        "nl": "Voer uit, bekijk, rond af"
+      },
+      "body": {
+        "en": "main.py supplies the browser entry point. Run opens a real pygame-ce preview; click it to focus the keyboard. Clicking elsewhere pauses play. Finish & check closes normally and checks your helper after at least one rendered frame. Stop cancels without grading. Run can start a fresh session afterward. Keep the supplied async definition and await asyncio.sleep(1 / 60): they let the browser draw and receive input. You are not expected to reproduce this infrastructure from memory.",
+        "nl": "main.py levert het browserstartpunt. Uitvoeren opent een echt pygame-ce-voorbeeld; klik erop om het toetsenbord te activeren. Elders klikken pauzeert het spel. Afronden en controleren sluit normaal af en controleert je helper na minstens één getekend beeld. Stop annuleert zonder beoordeling. Uitvoeren kan daarna een nieuwe sessie starten. Behoud de meegeleverde async-definitie en await asyncio.sleep(1 / 60): die laten de browser tekenen en invoer ontvangen. Je hoeft deze infrastructuur niet uit je hoofd te schrijven."
+      }
+    },
+    {
+      "id": "python-v4-16-held-controls-experiment",
+      "topicIds": [],
+      "heading": {
+        "en": "Try one change",
+        "nl": "Probeer één wijziging"
+      },
+      "body": {
+        "en": "Hold W and Down simultaneously in the preview. Both paddles should move.",
+        "nl": "Houd W en Down tegelijk vast in het voorbeeld. Beide batjes horen te bewegen."
+      }
+    }
+  ],
+  "files": {
+    "main.py": "# Browser entry point supplied by the course.\nimport asyncio\nimport pygame\nimport game\n\nasync def main():\n    pygame.init()\n    screen = pygame.display.set_mode((640, 400))\n    clock = pygame.time.Clock()\n    running = True\n    left,right = 170.0,170.0\n    while running:\n        dt = min(clock.tick() / 1000, 0.05)\n        for event in pygame.event.get():\n            if event.type == pygame.QUIT:\n                running = False\n            if event.type == pygame.KEYDOWN and event.key == pygame.K_ESCAPE:\n                running = False\n        keys = pygame.key.get_pressed()\n        left += game.direction(keys[pygame.K_w],keys[pygame.K_s]) * 200 * dt\n        right += game.direction(keys[pygame.K_UP],keys[pygame.K_DOWN]) * 200 * dt\n        screen.fill((16, 23, 39))\n        pygame.draw.rect(screen,(240,240,240),(20,left,10,60))\n        pygame.draw.rect(screen,(240,240,240),(610,right,10,60))\n        pygame.display.flip()\n        await asyncio.sleep(1 / 60)\n    pygame.quit()\n\nasyncio.run(main())\n",
+    "game.py": "import pygame\n\ndef direction(up, down):\n    return 0\n"
+  },
+  "solution": {
+    "main.py": "# Browser entry point supplied by the course.\nimport asyncio\nimport pygame\nimport game\n\nasync def main():\n    pygame.init()\n    screen = pygame.display.set_mode((640, 400))\n    clock = pygame.time.Clock()\n    running = True\n    left,right = 170.0,170.0\n    while running:\n        dt = min(clock.tick() / 1000, 0.05)\n        for event in pygame.event.get():\n            if event.type == pygame.QUIT:\n                running = False\n            if event.type == pygame.KEYDOWN and event.key == pygame.K_ESCAPE:\n                running = False\n        keys = pygame.key.get_pressed()\n        left += game.direction(keys[pygame.K_w],keys[pygame.K_s]) * 200 * dt\n        right += game.direction(keys[pygame.K_UP],keys[pygame.K_DOWN]) * 200 * dt\n        screen.fill((16, 23, 39))\n        pygame.draw.rect(screen,(240,240,240),(20,left,10,60))\n        pygame.draw.rect(screen,(240,240,240),(610,right,10,60))\n        pygame.display.flip()\n        await asyncio.sleep(1 / 60)\n    pygame.quit()\n\nasyncio.run(main())\n",
+    "game.py": "import pygame\n\ndef direction(up, down):\n    value = 0\n    if up:\n        value -= 1\n    if down:\n        value += 1\n    return value\n"
+  },
+  "checkpoints": [
+    {
+      "id": "python-v4-16-held-controls-step-1",
+      "objectiveIds": [
+        "held-keys",
+        "simultaneous-controls"
+      ],
+      "task": {
+        "en": "Return -1 for up alone, 1 for down alone, and 0 for both or neither.",
+        "nl": "Geef -1 bij alleen omhoog, 1 bij alleen omlaag en 0 bij beide of geen."
+      },
+      "check": "_rendered_frames > 0",
+      "probes": [
+        {
+          "call": {
+            "name": "direction",
+            "args": [
+              true,
+              false
+            ],
+            "module": "game"
+          },
+          "check": "(_return == -1) and _error is None",
+          "moduleOnly": true,
+          "module": "game"
+        },
+        {
+          "call": {
+            "name": "direction",
+            "args": [
+              false,
+              true
+            ],
+            "module": "game"
+          },
+          "check": "(_return == 1) and _error is None",
+          "moduleOnly": true,
+          "module": "game"
+        },
+        {
+          "call": {
+            "name": "direction",
+            "args": [
+              true,
+              true
+            ],
+            "module": "game"
+          },
+          "check": "(_return == 0) and _error is None",
+          "moduleOnly": true,
+          "module": "game"
+        },
+        {
+          "call": {
+            "name": "direction",
+            "args": [
+              false,
+              false
+            ],
+            "module": "game"
+          },
+          "check": "(_return == 0) and _error is None",
+          "moduleOnly": true,
+          "module": "game"
+        }
+      ],
+      "hint": {
+        "en": "Read held keys every frame and update each player independently.",
+        "nl": "Lees vastgehouden toetsen bij elk beeld en werk elke speler onafhankelijk bij."
+      },
+      "hints": [
+        {
+          "en": "Read held keys every frame and update each player independently.",
+          "nl": "Lees vastgehouden toetsen bij elk beeld en werk elke speler onafhankelijk bij."
+        },
+        {
+          "en": "Apply each key’s contribution separately.",
+          "nl": "Pas de bijdrage van elke toets apart toe."
+        },
+        {
+          "en": "A small fragment to adapt: `if down:`",
+          "nl": "Een klein fragment om aan te passen: `if down:`"
+        }
+      ],
+      "feedback": {
+        "en": "Apply each key’s contribution separately.",
+        "nl": "Pas de bijdrage van elke toets apart toe."
+      }
+    }
+  ],
+  "solutionNote": {
+    "en": "Independent state checks allow simultaneous controls without one player excluding the other.",
+    "nl": "Onafhankelijke toestandscontroles laten gelijktijdige bediening toe zonder dat de ene speler de andere uitsluit."
+  },
+  "inputs": [],
+  "retrievals": [
+    {
+      "id": "recall-python-v4-14-selected-and-alias",
+      "sourceActivityId": "python-v4-14-selected-and-alias",
+      "objectiveIds": [
+        "selected-imports",
+        "aliases"
+      ],
+      "prompt": {
+        "en": "Recall “Import a function or choose an alias”. Why is math.ceil unavailable under the name math in this example? Try the earlier example from memory, then check it. Change both inputs to -3.8 and predict floor versus ceiling.",
+        "nl": "Haal “Importeer een functie of kies een alias” terug. Waarom is math.ceil in dit voorbeeld niet beschikbaar onder de naam math? Probeer het eerdere voorbeeld uit je geheugen en controleer daarna. Verander beide invoerwaarden naar -3.8 en voorspel omlaag versus omhoog afronden."
+      }
+    }
+  ]
+}

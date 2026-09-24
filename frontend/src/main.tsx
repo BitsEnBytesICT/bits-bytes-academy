@@ -13,7 +13,11 @@ import type {
   Workspace,
 } from "../../shared/types";
 import { api, WorkspaceStore } from "./api";
-import { recordLessonRun } from "./lesson-progress";
+import {
+  recordLessonRun,
+  nextCheckpoint,
+  instructionView,
+} from "./lesson-progress";
 import { CreateFileForm } from "./components/CreateFileForm";
 const Editor = lazy(() =>
   import("./Editor").then((module) => ({ default: module.Editor })),
@@ -36,7 +40,13 @@ import { GamePane } from "./components/GamePane";
 import { CodeBlock } from "./components/CodeBlock";
 import { SolutionDiff } from "./components/SolutionDiff";
 import { CodeBlankQuestion } from "./components/CodeBlankQuestion";
-import { createQuizState, isCorrect, usesBlanks } from "./quiz-answers";
+import {
+  createQuizState,
+  isCorrect,
+  usesBlanks,
+  questionsFor,
+} from "./quiz-answers";
+import { isProject, workspaceActivityId } from "./activity";
 import "./styles.css";
 import "./redesign.css";
 import "./quiz-blanks.css";
@@ -72,6 +82,7 @@ function App() {
   const [output, setOutput] = useState<{ text: string; channel: string }[]>([]),
     [runStatus, setRunStatus] = useState("idle"),
     [results, setResults] = useState<Record<string, boolean>>({}),
+    [checkedStep, setCheckedStep] = useState<string | undefined>(undefined),
     [consolePrompt, setConsolePrompt] = useState(">>>");
   const [modal, setModal] = useState<
       | "settings"
@@ -80,7 +91,6 @@ function App() {
       | "import"
       | "finish"
       | "new-file"
-      | "copy-project"
       | null
     >(null),
     [pendingJump, setPendingJump] = useState<Activity | null>(null),
@@ -193,7 +203,7 @@ function App() {
           return;
         }
         const workspace = await store.current.load(
-          activity.id,
+          workspaceActivityId(activity),
           activity.kind === "quiz" ? {} : activity.files,
         );
         if (token !== navToken.current) return;
@@ -276,12 +286,17 @@ function App() {
     executing.current = true;
     setExecutionKind(kind);
     const engine = a.runtime === "pygame" ? gameRunner.current : runner.current;
+    const activeCheckpoint = nextCheckpoint(
+      a.checkpoints,
+      state.progress[a.id],
+    );
     const token = navToken.current,
       sessionBeforeSave = engine.runId;
     setRunStatus("loading");
     setError("");
     if (kind === "run") {
       setResults({});
+      setCheckedStep(activeCheckpoint);
       setConsolePrompt(">>>");
       appendOutput("> python main.py\n", "command");
     }
@@ -329,16 +344,26 @@ function App() {
             JSON.stringify(store.current.current.files)
           )
             editFiles(result.files);
-          if (event.type === "done" && a.kind !== "project") {
+          if (event.type === "done" && !isProject(a)) {
             const checks = result.results || [];
             setResults(Object.fromEntries(checks.map((r) => [r.id, r.passed])));
             void markProgress(
               a.id,
-              recordLessonRun(state.progress[a.id], a.checkpoints, checks),
+              a.kind === "reading" && !result.error
+                ? { ...state.progress[a.id], complete: true }
+                : recordLessonRun(
+                    state.progress[a.id],
+                    a.checkpoints,
+                    checks,
+                    a.checkpointMode,
+                    activeCheckpoint,
+                  ),
             ).catch((e) => setError(e.message));
             void api("/attempts/" + a.id, {
               type: "run",
               results: checks,
+              activeCheckpoint: activeCheckpoint ?? null,
+              checkpointMode: a.checkpointMode,
               error: result.error,
             }).catch((e) => setError(e.message));
           }
@@ -366,7 +391,7 @@ function App() {
           gameRunner.current.execute(
             gamePreview.current,
             { ...store.current.current.files },
-            a.kind === "project" ? [] : a.checkpoints,
+            isProject(a) ? [] : a.checkpoints,
           );
         } else
           gameRunner.current.command(
@@ -581,16 +606,17 @@ function App() {
   const exercise = a && a.kind !== "quiz" ? a : null;
   const quizView = () => {
     if (a?.kind !== "quiz" || !quizState) return null;
-    const q = a.questions[quizState.index],
+    const questions = questionsFor(a, quizState);
+    const q = questions[quizState.index],
       chosen = quizState.answers[q.id],
       finished = quizState.finished,
-      correct = a.questions.filter((q) => isCorrect(q, quizState)).length;
+      correct = questions.filter((q) => isCorrect(q, quizState)).length;
     const finish = async () => {
-      if (quizState.index < a.questions.length - 1) {
+      if (quizState.index < questions.length - 1) {
         updateQuiz({ ...quizState, index: quizState.index + 1 });
         return;
       }
-      const score = Math.floor((correct / a.questions.length) * 100);
+      const score = Math.floor((correct / questions.length) * 100);
       updateQuiz({ ...quizState, finished: true });
       await store.current.save();
       await markProgress(a.id, { complete: true, score });
@@ -600,6 +626,7 @@ function App() {
         answers: quizState.answers,
         attempt: quizState.attempt,
         format: quizState.format,
+        formId: quizState.formId,
       });
     };
     return (
@@ -623,28 +650,36 @@ function App() {
             <>
               <div className="score-card">
                 <div className="score-ring">
-                  {Math.floor((correct / a.questions.length) * 100)}
+                  {Math.floor((correct / questions.length) * 100)}
                   <small>%</small>
                 </div>
                 <div>
                   <h2>{tr("Quiz complete", "Quiz afgerond")}</h2>
                   <p>
                     {correct} {tr("correct", "goed")} ·{" "}
-                    {a.questions.length - correct}{" "}
+                    {questions.length - correct}{" "}
                     {tr("to revisit", "om te herhalen")}
                   </p>
                   <p>
                     {tr("Best score", "Beste score")}:{" "}
                     {state.progress[a.id]?.best || 0}%
                   </p>
+                  <p>
+                    {tr(
+                      "Completion records your attempt. Review missed ideas before applying them; you can continue when ready.",
+                      "Afronding registreert je poging. Herhaal gemiste ideeën voordat je ze toepast; je kunt verder wanneer je klaar bent.",
+                    )}
+                  </p>
                 </div>
                 <button className="secondary" onClick={newQuiz}>
                   <Icon name="reset" />
-                  {tr("Try again", "Opnieuw proberen")}
+                  {a.alternateQuestions
+                    ? tr("Try different questions", "Probeer andere vragen")
+                    : tr("Try again", "Opnieuw proberen")}
                 </button>
               </div>
               <h2>{tr("Review your answers", "Bekijk je antwoorden")}</h2>
-              {a.questions.map((question, i) => (
+              {questions.map((question, i) => (
                 <details className="review-question" key={question.id}>
                   <summary>
                     <span
@@ -698,6 +733,23 @@ function App() {
                       </p>
                     </>
                   )}
+                  {question.reviewActivityIds?.map((id) => {
+                    const lesson = course.activities.find(
+                      (item) => item.id === id,
+                    );
+                    return (
+                      lesson && (
+                        <button
+                          key={id}
+                          className="text-button"
+                          onClick={() => void go(lesson)}
+                        >
+                          {tr("Review: ", "Herhaal: ")}
+                          {text(lesson.title)}
+                        </button>
+                      )
+                    );
+                  })}
                 </details>
               ))}
             </>
@@ -706,12 +758,11 @@ function App() {
               <div className="question-meta">
                 <span>
                   {tr("Question", "Vraag")} {quizState.index + 1} /{" "}
-                  {a.questions.length}
+                  {questions.length}
                 </span>
                 <span>
                   {Math.round(
-                    (Object.keys(quizState.answers).length /
-                      a.questions.length) *
+                    (Object.keys(quizState.answers).length / questions.length) *
                       100,
                   )}
                   %
@@ -722,7 +773,7 @@ function App() {
                   style={{
                     width:
                       (Object.keys(quizState.answers).length /
-                        a.questions.length) *
+                        questions.length) *
                         100 +
                       "%",
                   }}
@@ -803,6 +854,25 @@ function App() {
                 </>
               )}
               <div className="quiz-next">
+                {chosen &&
+                  !isCorrect(q, quizState) &&
+                  q.reviewActivityIds?.map((id) => {
+                    const lesson = course.activities.find(
+                      (item) => item.id === id,
+                    );
+                    return (
+                      lesson && (
+                        <button
+                          key={id}
+                          className="text-button"
+                          onClick={() => void go(lesson)}
+                        >
+                          {tr("Review: ", "Herhaal: ")}
+                          {text(lesson.title)}
+                        </button>
+                      )
+                    );
+                  })}
                 <button
                   className="primary"
                   disabled={!chosen}
@@ -810,7 +880,7 @@ function App() {
                     void finish().catch((e) => setError(e.message))
                   }
                 >
-                  {quizState.index === a.questions.length - 1
+                  {quizState.index === questions.length - 1
                     ? tr("See results", "Bekijk resultaat")
                     : tr("Next question", "Volgende vraag")}
                   <Icon name="arrow" />
@@ -978,6 +1048,7 @@ function App() {
               <ReadingPane
                 key={a.id}
                 activity={a}
+                course={course}
                 language={language}
                 complete={progress.complete}
                 onComplete={async () => {
@@ -988,7 +1059,7 @@ function App() {
                   }
                 }}
               />
-            ) : a.kind === "project" ? (
+            ) : isProject(a) ? (
               <ProjectPane
                 key={a.id}
                 activity={a}
@@ -1010,9 +1081,6 @@ function App() {
                   }
                 }}
                 onActivity={(activity) => void go(activity)}
-                onCopy={
-                  a.continueFrom ? () => setModal("copy-project") : undefined
-                }
               />
             ) : (
               <LessonPane
@@ -1021,6 +1089,7 @@ function App() {
                 language={language}
                 progress={progress}
                 results={results}
+                checkedStep={checkedStep}
               />
             )}
             {a.kind === "reading" &&
@@ -1159,7 +1228,7 @@ function App() {
                         {tr("Stop", "Stop")}
                       </button>
                     )}
-                    {a.kind !== "project" && (
+                    {!isProject(a) && (
                       <button
                         className="solution-button"
                         onClick={() => setModal("solution")}
@@ -1195,7 +1264,7 @@ function App() {
                   <GamePane
                     key={a.id}
                     previewRef={gamePreview}
-                    project={a.kind === "project"}
+                    project={isProject(a)}
                     previewRunning={executionKind === "run"}
                     output={output}
                     status={runStatus}
@@ -1239,7 +1308,20 @@ function App() {
                   "Check the terminal, then try again.",
                   "Bekijk de terminal en probeer opnieuw.",
                 )
-              ) : Object.values(results).some((passed) => !passed) ? (
+              ) : (
+                  a &&
+                  a.kind !== "quiz" &&
+                  !isProject(a) &&
+                  a.checkpointMode === "sequential"
+                    ? instructionView(
+                        a.checkpoints,
+                        progress,
+                        results,
+                        a.checkpointMode,
+                        checkedStep,
+                      ).steps.some((step) => step.failed)
+                    : Object.values(results).some((passed) => !passed)
+                ) ? (
                 tr(
                   "Some checks need another try.",
                   "Probeer de openstaande checks opnieuw.",
@@ -1361,62 +1443,6 @@ function App() {
                   setError("");
                 }}
               />
-            ) : modal === "copy-project" &&
-              a?.kind === "project" &&
-              a.continueFrom ? (
-              <>
-                <h2>
-                  {tr("Copy your saved Pong?", "Je opgeslagen Pong kopiëren?")}
-                </h2>
-                <p>
-                  {tr(
-                    "This replaces the files in this optional extension. Your original Pong project stays unchanged.",
-                    "Dit vervangt de bestanden in deze optionele uitbreiding. Je oorspronkelijke Pong-project blijft ongewijzigd.",
-                  )}
-                </p>
-                <button
-                  className="primary"
-                  onClick={() =>
-                    void (async () => {
-                      const targetId = a.id,
-                        token = navToken.current;
-                      await store.current.save();
-                      const source = await api<Workspace | null>(
-                        "/workspaces/" + a.continueFrom,
-                      );
-                      if (
-                        token !== navToken.current ||
-                        activeRef.current?.id !== targetId
-                      )
-                        return;
-                      if (!source || !Object.keys(source.files).length)
-                        throw new Error(
-                          tr(
-                            "No saved Pong files yet. Save your Pong project first.",
-                            "Nog geen opgeslagen Pong-bestanden. Sla eerst je Pong-project op.",
-                          ),
-                        );
-                      runner.current.cancel();
-                      gameRunner.current.cancel();
-                      executing.current = false;
-                      setRunStatus("idle");
-                      setConsolePrompt(">>>");
-                      setOutput([]);
-                      setResults({});
-                      editFiles({ ...source.files });
-                      setFile(
-                        Object.hasOwn(source.files, "main.py")
-                          ? "main.py"
-                          : Object.keys(source.files)[0],
-                      );
-                      await store.current.save();
-                      setModal(null);
-                    })().catch((e) => setError(e.message))
-                  }
-                >
-                  {tr("Copy files", "Bestanden kopiëren")}
-                </button>
-              </>
             ) : modal === "finish" ? (
               <>
                 <span className="eyebrow">PYTHON LAB</span>
@@ -1461,7 +1487,7 @@ function App() {
                   }}
                 >
                   {tr(
-                    "Open original-course saved work",
+                    "Open saved work from earlier courses",
                     "Open opgeslagen werk uit de oorspronkelijke cursus",
                   )}
                 </button>
@@ -1508,8 +1534,8 @@ function App() {
                 </label>
                 <small>
                   {tr(
-                    "Original Python course · No videos or separate projects.",
-                    "Originele Python-cursus · Geen video’s of losse projecten.",
+                    "Learn Python through practice and two evolving projects.",
+                    "Leer Python door te oefenen en twee projecten uit te bouwen.",
                   )}
                 </small>
               </>
@@ -1551,8 +1577,12 @@ function App() {
                 <h2>{tr("Start with a clean page?", "Opnieuw beginnen?")}</h2>
                 <p>
                   {tr(
-                    "This restores the starter files for this activity. Your completed progress and attempt history stay saved.",
-                    "Dit herstelt de startbestanden van deze activiteit. Je voortgang en eerdere pogingen blijven bewaard.",
+                    isProject(a!) && !a?.optional
+                      ? "This replaces the shared files for BOTH project visits with the starter. Export a backup first if you want to keep your program. Completed progress and attempts remain saved."
+                      : "This restores the starter files for this activity. Your completed progress and attempt history stay saved.",
+                    isProject(a!) && !a?.optional
+                      ? "Dit vervangt de gedeelde bestanden van BEIDE projectbezoeken door de startbestanden. Exporteer eerst een back-up als je je programma wilt bewaren. Voortgang en pogingen blijven bewaard."
+                      : "Dit herstelt de startbestanden van deze activiteit. Je voortgang en eerdere pogingen blijven bewaard.",
                   )}
                 </p>
                 <button

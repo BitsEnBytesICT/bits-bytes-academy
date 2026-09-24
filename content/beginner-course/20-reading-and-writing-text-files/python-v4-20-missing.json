@@ -1,0 +1,158 @@
+{
+  "id": "python-v4-20-missing",
+  "chapter": 20,
+  "group": "python-v4-module-20",
+  "title": {
+    "en": "Handle a missing file explicitly",
+    "nl": "Verwerk een ontbrekend bestand expliciet"
+  },
+  "kind": "coding",
+  "optional": false,
+  "runtime": "terminal",
+  "guidance": "guided",
+  "checkpointMode": "sequential",
+  "estimatedMinutes": 18,
+  "topicIds": [
+    "missing-files"
+  ],
+  "practices": [],
+  "requiredConcepts": [
+    "read",
+    "try-except"
+  ],
+  "explanation": {
+    "en": "A file may not exist yet. Decide what that means for this feature rather than hiding every possible failure.\n\nOpen work.py to write the requested function. main.py is a supplied caller: Run always starts there and imports your function. The other file tabs contain input data. After a successful run, open any new output file tab to inspect what your program saved.",
+    "nl": "Een bestand bestaat misschien nog niet. Bepaal wat dat voor deze functie betekent in plaats van elke mogelijke fout te verbergen.\n\nOpen work.py om de gevraagde functie te schrijven. main.py is de aangeleverde aanroeper: Uitvoeren begint daar en importeert je functie. De andere bestandstabbladen bevatten invoergegevens. Open na een geslaagde uitvoering een nieuw uitvoerbestand om te bekijken wat je programma heeft opgeslagen."
+  },
+  "example": "",
+  "sections": [
+    {
+      "id": "python-v4-20-missing-example",
+      "topicIds": [
+        "missing-files"
+      ],
+      "heading": {
+        "en": "Follow a working example",
+        "nl": "Volg een werkend voorbeeld"
+      },
+      "body": {
+        "en": "Opening an absent path for reading raises FileNotFoundError. Catch that specific exception when absence has a defined fallback. Do not treat every error as an empty file: a permission or encoding problem is different and should remain visible. A missing optional note can reasonably return an empty string; a required data file may need an error instead.",
+        "nl": "Een ontbrekend pad openen om te lezen veroorzaakt FileNotFoundError. Vang die specifieke uitzondering wanneer afwezigheid een vastgestelde terugval heeft. Behandel niet elke fout als een leeg bestand: een rechten- of coderingsprobleem is anders en moet zichtbaar blijven. Een ontbrekende optionele notitie kan redelijkerwijs een lege string geven; een verplicht gegevensbestand kan juist een fout nodig hebben."
+      },
+      "code": "try:\n    with open(\"absent.txt\",encoding=\"utf-8\") as handle:\n        text = handle.read()\nexcept FileNotFoundError:\n    text = \"No note yet\"\nprint(text)",
+      "output": "No note yet\n",
+      "prediction": {
+        "en": "Would this handler catch ValueError from a conversion?",
+        "nl": "Vangt deze afhandeling ValueError van een omzetting op?"
+      },
+      "takeaway": {
+        "en": "A fallback is a product decision for one expected failure.",
+        "nl": "Een terugvalwaarde is een ontwerpbeslissing voor één verwachte fout."
+      },
+      "exampleFiles": {}
+    },
+    {
+      "id": "python-v4-20-missing-experiment",
+      "topicIds": [],
+      "heading": {
+        "en": "Try one change",
+        "nl": "Probeer één wijziging"
+      },
+      "body": {
+        "en": "Compare an empty existing file with a missing file; decide whether your feature needs to distinguish them.",
+        "nl": "Vergelijk een leeg bestaand bestand met een ontbrekend bestand; bepaal of je functie ze moet onderscheiden."
+      }
+    }
+  ],
+  "files": {
+    "note.txt": "Remember",
+    "main.py": "import work\nprint(work.optional_note(\"note.txt\"))\n",
+    "work.py": "def optional_note(path):\n    return \"\"\n"
+  },
+  "solution": {
+    "note.txt": "Remember",
+    "main.py": "import work\nprint(work.optional_note(\"note.txt\"))\n",
+    "work.py": "def optional_note(path):\n    try:\n        with open(path,encoding=\"utf-8\") as handle:\n            return handle.read()\n    except FileNotFoundError:\n        return \"\"\n"
+  },
+  "checkpoints": [
+    {
+      "id": "python-v4-20-missing-step-1",
+      "objectiveIds": [
+        "missing-files"
+      ],
+      "task": {
+        "en": "Return the optional note’s text, or an empty string only when the file is missing.",
+        "nl": "Geef de tekst van de optionele notitie terug, of alleen een lege string wanneer het bestand ontbreekt."
+      },
+      "check": "True",
+      "probes": [
+        {
+          "call": {
+            "name": "optional_note",
+            "args": [
+              "note.txt"
+            ],
+            "module": "work"
+          },
+          "check": "(_return == \"Remember\") and _error is None",
+          "moduleOnly": true,
+          "module": "work",
+          "files": {}
+        },
+        {
+          "call": {
+            "name": "optional_note",
+            "args": [
+              "not-present.txt"
+            ],
+            "module": "work"
+          },
+          "check": "(_return == \"\") and _error is None",
+          "moduleOnly": true,
+          "module": "work",
+          "files": {}
+        }
+      ],
+      "hint": {
+        "en": "A fallback is a product decision for one expected failure.",
+        "nl": "Een terugvalwaarde is een ontwerpbeslissing voor één verwachte fout."
+      },
+      "hints": [
+        {
+          "en": "A fallback is a product decision for one expected failure.",
+          "nl": "Een terugvalwaarde is een ontwerpbeslissing voor één verwachte fout."
+        },
+        {
+          "en": "Wrap the managed read in a specific FileNotFoundError handler.",
+          "nl": "Zet de beheerde leesactie in een specifieke FileNotFoundError-afhandeling."
+        },
+        {
+          "en": "A small fragment to adapt: `except FileNotFoundError:`",
+          "nl": "Een klein fragment om aan te passen: `except FileNotFoundError:`"
+        }
+      ],
+      "feedback": {
+        "en": "Wrap the managed read in a specific FileNotFoundError handler.",
+        "nl": "Zet de beheerde leesactie in een specifieke FileNotFoundError-afhandeling."
+      }
+    }
+  ],
+  "solutionNote": {
+    "en": "The fallback is limited to absence; other failures retain their diagnostic information.",
+    "nl": "De terugval is beperkt tot afwezigheid; andere fouten behouden hun diagnostische informatie."
+  },
+  "inputs": [],
+  "retrievals": [
+    {
+      "id": "recall-python-v4-18-split-whitespace",
+      "sourceActivityId": "python-v4-18-split-whitespace",
+      "objectiveIds": [
+        "split-whitespace"
+      ],
+      "prompt": {
+        "en": "Recall “Split ordinary whitespace”. Why are there no empty strings in the result? Try the earlier example from memory, then check it. Compare a tab character with the two literal characters backslash and t.",
+        "nl": "Haal “Splits gewone witruimte” terug. Waarom staan er geen lege strings in het resultaat? Probeer het eerdere voorbeeld uit je geheugen en controleer daarna. Vergelijk een tabteken met de twee letterlijke tekens backslash en t."
+      }
+    }
+  ]
+}

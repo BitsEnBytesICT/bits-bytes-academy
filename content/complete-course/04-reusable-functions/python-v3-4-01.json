@@ -1,0 +1,172 @@
+{
+  "id": "python-v3-4-01",
+  "chapter": 4,
+  "group": "python-v3-module-4",
+  "title": {
+    "en": "Extract a behaviour",
+    "nl": "Maak gedrag herbruikbaar"
+  },
+  "kind": "coding",
+  "optional": false,
+  "runtime": "terminal",
+  "guidance": "guided",
+  "estimatedMinutes": 16,
+  "explanation": {
+    "en": "Extract a repeated greeting into a function. A function names a reusable behaviour; defining it does not yet run its body.",
+    "nl": "Haal een herhaalde begroeting uit de code en maak er een functie van. Een functie geeft herbruikbaar gedrag een naam; definiëren voert het blok nog niet uit."
+  },
+  "example": "",
+  "topicIds": [
+    "why-functions",
+    "defining-functions",
+    "calling-functions",
+    "execution-flow",
+    "builtins-vs-user-functions"
+  ],
+  "prerequisites": [
+    "python-v3-3-05"
+  ],
+  "sections": [
+    {
+      "topicIds": [
+        "why-functions",
+        "defining-functions",
+        "calling-functions",
+        "execution-flow",
+        "builtins-vs-user-functions"
+      ],
+      "heading": {
+        "en": "Define, then call",
+        "nl": "Definieer en roep aan"
+      },
+      "body": {
+        "en": "Python supplies built-in functions such as print and int. def lets you define your own. The colon and indentation mark the function body. Execution skips that body until a call uses parentheses. After the call finishes, execution resumes after the call site.",
+        "nl": "Python levert ingebouwde functies zoals print en int. Met def definieer je je eigen functies. De dubbele punt en inspringing markeren het functieblok. De uitvoering slaat dat blok over totdat een aanroep haakjes gebruikt. Na de aanroep gaat de uitvoering verder op de aanroepplek."
+      },
+      "code": "def announce():\n    print(\"Open\")\n\nprint(\"Before\")\nannounce()\nprint(\"After\")",
+      "output": "Before\nOpen\nAfter\n",
+      "prediction": {
+        "en": "Why does Open appear after Before although its print is higher in the file?",
+        "nl": "Waarom verschijnt Open na Before hoewel die print hoger in het bestand staat?"
+      }
+    },
+    {
+      "topicIds": [],
+      "heading": {
+        "en": "Try a changed input",
+        "nl": "Probeer gewijzigde invoer"
+      },
+      "body": {
+        "en": "Change the message in one place. Explain why both calls now display it. Add a print before the calls and trace execution order.",
+        "nl": "Wijzig het bericht op één plek. Leg uit waarom beide aanroepen het nu tonen. Voeg een print vóór de aanroepen toe en volg de uitvoervolgorde."
+      }
+    }
+  ],
+  "files": {
+    "main.py": "# Define welcome() then call it twice.\n"
+  },
+  "solution": {
+    "main.py": "def welcome():\n    print(\"Welcome to the lab\")\n\nwelcome()\nwelcome()\n"
+  },
+  "checkpoints": [
+    {
+      "objectiveIds": [
+        "defining-functions",
+        "calling-functions",
+        "builtins-vs-user-functions"
+      ],
+      "task": {
+        "en": "Define welcome() to print \"Welcome to the lab\" when called.",
+        "nl": "Definieer welcome() om \"Welcome to the lab\" af te drukken wanneer aangeroepen."
+      },
+      "check": "callable(welcome)",
+      "hints": [
+        {
+          "en": "Give the repeated behaviour a name.",
+          "nl": "Geef het herhaalde gedrag een naam."
+        },
+        {
+          "en": "Indent print under def welcome():.",
+          "nl": "Spring print in onder def welcome():."
+        },
+        {
+          "en": "def welcome():",
+          "nl": "def welcome():"
+        }
+      ],
+      "hint": {
+        "en": "Give the repeated behaviour a name.",
+        "nl": "Geef het herhaalde gedrag een naam."
+      },
+      "feedback": {
+        "en": "A function must be callable, not a variable holding the message.",
+        "nl": "Een functie moet aanroepbaar zijn, geen variabele met het bericht."
+      },
+      "probes": [
+        {
+          "call": {
+            "name": "welcome",
+            "args": []
+          },
+          "check": "_call_stdout == \"Welcome to the lab\\n\""
+        }
+      ],
+      "id": "python-v3-4-01-step-1"
+    },
+    {
+      "objectiveIds": [
+        "why-functions",
+        "execution-flow"
+      ],
+      "task": {
+        "en": "Call welcome() twice from outside its body.",
+        "nl": "Roep welcome() twee keer aan buiten het functieblok."
+      },
+      "check": "_stdout == \"Welcome to the lab\\nWelcome to the lab\\n\"",
+      "hints": [
+        {
+          "en": "The definition does not run the function.",
+          "nl": "De definitie voert de functie niet uit."
+        },
+        {
+          "en": "Use parentheses in each call and return to outer indentation.",
+          "nl": "Gebruik haakjes bij elke aanroep en ga terug naar de buitenste inspringing."
+        },
+        {
+          "en": "welcome()",
+          "nl": "welcome()"
+        }
+      ],
+      "hint": {
+        "en": "The definition does not run the function.",
+        "nl": "De definitie voert de functie niet uit."
+      },
+      "feedback": {
+        "en": "A call inside welcome would call itself. Place both calls after the definition.",
+        "nl": "Een aanroep binnen welcome zou zichzelf aanroepen. Zet beide aanroepen na de definitie."
+      },
+      "probes": [],
+      "id": "python-v3-4-01-step-2"
+    }
+  ],
+  "solutionNote": {
+    "en": "The message is written once and executed twice. Python’s built-in print is called inside the user-defined welcome function.",
+    "nl": "Het bericht wordt één keer geschreven en twee keer uitgevoerd. Pythons ingebouwde print wordt binnen de zelfgedefinieerde welcome aangeroepen."
+  },
+  "inputs": [],
+  "retrievals": [
+    {
+      "id": "recall-python-v3-2-01",
+      "sourceActivityId": "python-v3-2-01",
+      "objectiveIds": [
+        "input",
+        "conversion",
+        "f-strings"
+      ],
+      "prompt": {
+        "en": "Read a numeric string, convert it and put the result in an f-string. What happens if you omit conversion?",
+        "nl": "Lees een numerieke string, zet die om en gebruik het resultaat in een f-string. Wat gebeurt er zonder omzetting?"
+      }
+    }
+  ]
+}

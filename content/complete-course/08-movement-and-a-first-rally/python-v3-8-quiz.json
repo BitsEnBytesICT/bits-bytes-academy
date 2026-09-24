@@ -1,0 +1,772 @@
+{
+  "id": "python-v3-8-quiz",
+  "chapter": 8,
+  "group": "python-v3-module-8",
+  "kind": "quiz",
+  "optional": false,
+  "estimatedMinutes": 6,
+  "title": {
+    "en": "Movement and a first rally: review",
+    "nl": "Beweging en een eerste rally: herhaling"
+  },
+  "questions": [
+    {
+      "objectiveIds": [
+        "velocity",
+        "elapsed-time"
+      ],
+      "reviewActivityIds": [
+        "python-v3-8-01"
+      ],
+      "category": "prediction",
+      "prompt": {
+        "en": "What does this program print?",
+        "nl": "Wat drukt dit programma af?"
+      },
+      "code": "position = 20\nvelocity = -80\ndt = 0.25\nprint(position + velocity * dt)",
+      "answer": "a",
+      "choices": [
+        {
+          "id": "a",
+          "label": {
+            "en": "0.0",
+            "nl": "0.0"
+          },
+          "reason": {
+            "en": "The displacement is -20, so position decreases by 20.",
+            "nl": "De verplaatsing is -20, dus positie daalt met 20."
+          }
+        },
+        {
+          "id": "b",
+          "label": {
+            "en": "-60",
+            "nl": "-60"
+          },
+          "reason": {
+            "en": "Velocity must be multiplied by elapsed seconds, not added directly.",
+            "nl": "Snelheid moet met verstreken seconden vermenigvuldigd worden, niet direct opgeteld."
+          }
+        },
+        {
+          "id": "c",
+          "label": {
+            "en": "40.0",
+            "nl": "40.0"
+          },
+          "reason": {
+            "en": "The negative velocity moves in the opposite direction.",
+            "nl": "De negatieve snelheid beweegt in de tegengestelde richting."
+          }
+        }
+      ],
+      "expectedOutput": "0.0\n",
+      "id": "python-v3-8-quiz-a-1"
+    },
+    {
+      "objectiveIds": [
+        "held-keys",
+        "simultaneous-controls"
+      ],
+      "reviewActivityIds": [
+        "python-v3-8-02"
+      ],
+      "category": "prediction",
+      "prompt": {
+        "en": "What does this program print?",
+        "nl": "Wat drukt dit programma af?"
+      },
+      "code": "y = 20\nup, down = True, True\nif up:\n    y -= 5\nif down:\n    y += 5\nprint(y)",
+      "answer": "a",
+      "choices": [
+        {
+          "id": "a",
+          "label": {
+            "en": "20",
+            "nl": "20"
+          },
+          "reason": {
+            "en": "The independent opposite updates cancel.",
+            "nl": "De onafhankelijke tegengestelde updates heffen elkaar op."
+          }
+        },
+        {
+          "id": "b",
+          "label": {
+            "en": "15",
+            "nl": "15"
+          },
+          "reason": {
+            "en": "The down branch also runs; this is not if/elif.",
+            "nl": "De omlaagtak draait ook; dit is geen if/elif."
+          }
+        },
+        {
+          "id": "c",
+          "label": {
+            "en": "25",
+            "nl": "25"
+          },
+          "reason": {
+            "en": "The up branch runs before the down branch.",
+            "nl": "De omhoogtak draait vóór de omlaagtak."
+          }
+        }
+      ],
+      "expectedOutput": "20\n",
+      "id": "python-v3-8-quiz-a-2"
+    },
+    {
+      "objectiveIds": [
+        "boundaries"
+      ],
+      "reviewActivityIds": [
+        "python-v3-8-03"
+      ],
+      "category": "completion",
+      "prompt": {
+        "en": "Keep the entire paddle visible at the bottom.",
+        "nl": "Houd het hele batje onderaan zichtbaar."
+      },
+      "code": "height = 60\ncourt_height = 400\nmax_y = court_height ___ height\nprint(max_y)",
+      "answer": "a",
+      "choices": [
+        {
+          "id": "a",
+          "label": {
+            "en": "-",
+            "nl": "-"
+          },
+          "reason": {
+            "en": "The top can reach court height minus the object’s own height.",
+            "nl": "De bovenkant kan veldhoogte min de eigen objecthoogte bereiken."
+          }
+        },
+        {
+          "id": "b",
+          "label": {
+            "en": "+",
+            "nl": "+"
+          },
+          "reason": {
+            "en": "The top can reach court height minus the object’s own height.",
+            "nl": "De bovenkant kan veldhoogte min de eigen objecthoogte bereiken."
+          }
+        },
+        {
+          "id": "c",
+          "label": {
+            "en": "*",
+            "nl": "*"
+          },
+          "reason": {
+            "en": "The top can reach court height minus the object’s own height.",
+            "nl": "De bovenkant kan veldhoogte min de eigen objecthoogte bereiken."
+          }
+        }
+      ],
+      "codeBlank": {
+        "prompt": {
+          "en": "Keep the entire paddle visible at the bottom.",
+          "nl": "Houd het hele batje onderaan zichtbaar."
+        },
+        "segments": [
+          "height = 60\ncourt_height = 400\nmax_y = court_height ",
+          " height\nprint(max_y)"
+        ],
+        "tokens": [
+          {
+            "id": "token-1",
+            "code": "-"
+          },
+          {
+            "id": "token-2",
+            "code": "+"
+          },
+          {
+            "id": "token-3",
+            "code": "*"
+          }
+        ],
+        "blanks": [
+          {
+            "answer": "-",
+            "reason": {
+              "en": "The top can reach court height minus the object’s own height.",
+              "nl": "De bovenkant kan veldhoogte min de eigen objecthoogte bereiken."
+            }
+          }
+        ],
+        "output": "340\n"
+      },
+      "id": "python-v3-8-quiz-a-3"
+    },
+    {
+      "objectiveIds": [
+        "wall-bounce"
+      ],
+      "reviewActivityIds": [
+        "python-v3-8-04"
+      ],
+      "category": "completion",
+      "prompt": {
+        "en": "Bounce only while approaching the upper wall.",
+        "nl": "Bots alleen bij het naderen van de bovenmuur."
+      },
+      "code": "y, radius, vy = 2, 6, -100\nif y <= radius and vy ___ 0:\n    vy = -vy\nprint(vy)",
+      "answer": "a",
+      "choices": [
+        {
+          "id": "a",
+          "label": {
+            "en": "<",
+            "nl": "<"
+          },
+          "reason": {
+            "en": "A negative vertical velocity approaches the top edge.",
+            "nl": "Een negatieve verticale snelheid nadert de bovenrand."
+          }
+        },
+        {
+          "id": "b",
+          "label": {
+            "en": ">",
+            "nl": ">"
+          },
+          "reason": {
+            "en": "A negative vertical velocity approaches the top edge.",
+            "nl": "Een negatieve verticale snelheid nadert de bovenrand."
+          }
+        },
+        {
+          "id": "c",
+          "label": {
+            "en": "==",
+            "nl": "=="
+          },
+          "reason": {
+            "en": "A negative vertical velocity approaches the top edge.",
+            "nl": "Een negatieve verticale snelheid nadert de bovenrand."
+          }
+        }
+      ],
+      "codeBlank": {
+        "prompt": {
+          "en": "Bounce only while approaching the upper wall.",
+          "nl": "Bots alleen bij het naderen van de bovenmuur."
+        },
+        "segments": [
+          "y, radius, vy = 2, 6, -100\nif y <= radius and vy ",
+          " 0:\n    vy = -vy\nprint(vy)"
+        ],
+        "tokens": [
+          {
+            "id": "token-1",
+            "code": "<"
+          },
+          {
+            "id": "token-2",
+            "code": ">"
+          },
+          {
+            "id": "token-3",
+            "code": "=="
+          }
+        ],
+        "blanks": [
+          {
+            "answer": "<",
+            "reason": {
+              "en": "A negative vertical velocity approaches the top edge.",
+              "nl": "Een negatieve verticale snelheid nadert de bovenrand."
+            }
+          }
+        ],
+        "output": "100\n"
+      },
+      "id": "python-v3-8-quiz-a-4"
+    },
+    {
+      "objectiveIds": [
+        "drawing-order"
+      ],
+      "reviewActivityIds": [
+        "python-v3-7-02"
+      ],
+      "category": "debugging",
+      "prompt": {
+        "en": "Why is the drawn object invisible?",
+        "nl": "Waarom is het getekende object onzichtbaar?"
+      },
+      "code": "import pygame\ncanvas = pygame.Surface((100, 100))\npygame.draw.rect(canvas, (255, 0, 0), (20, 10, 20, 20))\ncanvas.fill((0, 0, 0))",
+      "answer": "a",
+      "choices": [
+        {
+          "id": "a",
+          "label": {
+            "en": "The later fill covers the rectangle.",
+            "nl": "De latere fill bedekt de rechthoek."
+          },
+          "reason": {
+            "en": "Paint the background before the foreground.",
+            "nl": "Teken de achtergrond vóór de voorgrond."
+          }
+        },
+        {
+          "id": "b",
+          "label": {
+            "en": "Red cannot be drawn on a Surface.",
+            "nl": "Rood kan niet op een Surface getekend worden."
+          },
+          "reason": {
+            "en": "The colour is valid; the order overwrites it.",
+            "nl": "De kleur is geldig; de volgorde overschrijft die."
+          }
+        },
+        {
+          "id": "c",
+          "label": {
+            "en": "Rectangles need a dictionary first.",
+            "nl": "Rechthoeken hebben eerst een dictionary nodig."
+          },
+          "reason": {
+            "en": "Drawing accepts a rectangle tuple directly.",
+            "nl": "Tekenen accepteert direct een rechthoektuple."
+          }
+        }
+      ],
+      "id": "python-v3-8-quiz-a-5"
+    },
+    {
+      "objectiveIds": [
+        "imports",
+        "install-vs-import"
+      ],
+      "reviewActivityIds": [
+        "python-v3-6-01"
+      ],
+      "category": "application",
+      "prompt": {
+        "en": "The browser bundles pygame-ce already. What does import pygame do in a lesson?",
+        "nl": "De browser bundelt pygame-ce al. Wat doet import pygame in een les?"
+      },
+      "answer": "a",
+      "choices": [
+        {
+          "id": "a",
+          "label": {
+            "en": "Installation provides the package to an environment; import loads it for the program.",
+            "nl": "Installeren levert het pakket aan een omgeving; import laadt het voor het programma."
+          },
+          "reason": {
+            "en": "These are separate steps; an import statement is not a package installer.",
+            "nl": "Dit zijn aparte stappen; een import-opdracht is geen pakketinstaller."
+          }
+        },
+        {
+          "id": "b",
+          "label": {
+            "en": "import downloads and installs any missing package automatically.",
+            "nl": "import downloadt en installeert elk ontbrekend pakket automatisch."
+          },
+          "reason": {
+            "en": "An unavailable package still raises ModuleNotFoundError.",
+            "nl": "Een niet-beschikbaar pakket geeft nog steeds ModuleNotFoundError."
+          }
+        },
+        {
+          "id": "c",
+          "label": {
+            "en": "Every standard module needs pip installation first.",
+            "nl": "Elke standaardmodule moet eerst met pip worden geïnstalleerd."
+          },
+          "reason": {
+            "en": "Standard-library modules already come with Python.",
+            "nl": "Standaardmodules worden al met Python meegeleverd."
+          }
+        }
+      ],
+      "id": "python-v3-8-quiz-a-6"
+    }
+  ],
+  "alternateQuestions": [
+    {
+      "objectiveIds": [
+        "velocity",
+        "elapsed-time"
+      ],
+      "reviewActivityIds": [
+        "python-v3-8-01"
+      ],
+      "category": "prediction",
+      "prompt": {
+        "en": "What does this program print?",
+        "nl": "Wat drukt dit programma af?"
+      },
+      "code": "position = 40\nvelocity = -80\ndt = 0.25\nprint(position + velocity * dt)",
+      "answer": "a",
+      "choices": [
+        {
+          "id": "a",
+          "label": {
+            "en": "20.0",
+            "nl": "20.0"
+          },
+          "reason": {
+            "en": "The displacement is -20, so position decreases by 20.",
+            "nl": "De verplaatsing is -20, dus positie daalt met 20."
+          }
+        },
+        {
+          "id": "b",
+          "label": {
+            "en": "-40",
+            "nl": "-40"
+          },
+          "reason": {
+            "en": "Velocity must be multiplied by elapsed seconds, not added directly.",
+            "nl": "Snelheid moet met verstreken seconden vermenigvuldigd worden, niet direct opgeteld."
+          }
+        },
+        {
+          "id": "c",
+          "label": {
+            "en": "60.0",
+            "nl": "60.0"
+          },
+          "reason": {
+            "en": "The negative velocity moves in the opposite direction.",
+            "nl": "De negatieve snelheid beweegt in de tegengestelde richting."
+          }
+        }
+      ],
+      "expectedOutput": "20.0\n",
+      "id": "python-v3-8-quiz-b-1"
+    },
+    {
+      "objectiveIds": [
+        "held-keys",
+        "simultaneous-controls"
+      ],
+      "reviewActivityIds": [
+        "python-v3-8-02"
+      ],
+      "category": "prediction",
+      "prompt": {
+        "en": "What does this program print?",
+        "nl": "Wat drukt dit programma af?"
+      },
+      "code": "y = 40\nup, down = True, True\nif up:\n    y -= 5\nif down:\n    y += 5\nprint(y)",
+      "answer": "a",
+      "choices": [
+        {
+          "id": "a",
+          "label": {
+            "en": "40",
+            "nl": "40"
+          },
+          "reason": {
+            "en": "The independent opposite updates cancel.",
+            "nl": "De onafhankelijke tegengestelde updates heffen elkaar op."
+          }
+        },
+        {
+          "id": "b",
+          "label": {
+            "en": "35",
+            "nl": "35"
+          },
+          "reason": {
+            "en": "The down branch also runs; this is not if/elif.",
+            "nl": "De omlaagtak draait ook; dit is geen if/elif."
+          }
+        },
+        {
+          "id": "c",
+          "label": {
+            "en": "45",
+            "nl": "45"
+          },
+          "reason": {
+            "en": "The up branch runs before the down branch.",
+            "nl": "De omhoogtak draait vóór de omlaagtak."
+          }
+        }
+      ],
+      "expectedOutput": "40\n",
+      "id": "python-v3-8-quiz-b-2"
+    },
+    {
+      "objectiveIds": [
+        "boundaries"
+      ],
+      "reviewActivityIds": [
+        "python-v3-8-03"
+      ],
+      "category": "completion",
+      "prompt": {
+        "en": "Keep the entire paddle visible at the bottom.",
+        "nl": "Houd het hele batje onderaan zichtbaar."
+      },
+      "code": "height = 80\ncourt_height = 400\nmax_y = court_height ___ height\nprint(max_y)",
+      "answer": "a",
+      "choices": [
+        {
+          "id": "a",
+          "label": {
+            "en": "-",
+            "nl": "-"
+          },
+          "reason": {
+            "en": "The top can reach court height minus the object’s own height.",
+            "nl": "De bovenkant kan veldhoogte min de eigen objecthoogte bereiken."
+          }
+        },
+        {
+          "id": "b",
+          "label": {
+            "en": "+",
+            "nl": "+"
+          },
+          "reason": {
+            "en": "The top can reach court height minus the object’s own height.",
+            "nl": "De bovenkant kan veldhoogte min de eigen objecthoogte bereiken."
+          }
+        },
+        {
+          "id": "c",
+          "label": {
+            "en": "*",
+            "nl": "*"
+          },
+          "reason": {
+            "en": "The top can reach court height minus the object’s own height.",
+            "nl": "De bovenkant kan veldhoogte min de eigen objecthoogte bereiken."
+          }
+        }
+      ],
+      "codeBlank": {
+        "prompt": {
+          "en": "Keep the entire paddle visible at the bottom.",
+          "nl": "Houd het hele batje onderaan zichtbaar."
+        },
+        "segments": [
+          "height = 80\ncourt_height = 400\nmax_y = court_height ",
+          " height\nprint(max_y)"
+        ],
+        "tokens": [
+          {
+            "id": "token-1",
+            "code": "-"
+          },
+          {
+            "id": "token-2",
+            "code": "+"
+          },
+          {
+            "id": "token-3",
+            "code": "*"
+          }
+        ],
+        "blanks": [
+          {
+            "answer": "-",
+            "reason": {
+              "en": "The top can reach court height minus the object’s own height.",
+              "nl": "De bovenkant kan veldhoogte min de eigen objecthoogte bereiken."
+            }
+          }
+        ],
+        "output": "320\n"
+      },
+      "id": "python-v3-8-quiz-b-3"
+    },
+    {
+      "objectiveIds": [
+        "wall-bounce"
+      ],
+      "reviewActivityIds": [
+        "python-v3-8-04"
+      ],
+      "category": "completion",
+      "prompt": {
+        "en": "Bounce only while approaching the upper wall.",
+        "nl": "Bots alleen bij het naderen van de bovenmuur."
+      },
+      "code": "y, radius, vy = 4, 6, -100\nif y <= radius and vy ___ 0:\n    vy = -vy\nprint(vy)",
+      "answer": "a",
+      "choices": [
+        {
+          "id": "a",
+          "label": {
+            "en": "<",
+            "nl": "<"
+          },
+          "reason": {
+            "en": "A negative vertical velocity approaches the top edge.",
+            "nl": "Een negatieve verticale snelheid nadert de bovenrand."
+          }
+        },
+        {
+          "id": "b",
+          "label": {
+            "en": ">",
+            "nl": ">"
+          },
+          "reason": {
+            "en": "A negative vertical velocity approaches the top edge.",
+            "nl": "Een negatieve verticale snelheid nadert de bovenrand."
+          }
+        },
+        {
+          "id": "c",
+          "label": {
+            "en": "==",
+            "nl": "=="
+          },
+          "reason": {
+            "en": "A negative vertical velocity approaches the top edge.",
+            "nl": "Een negatieve verticale snelheid nadert de bovenrand."
+          }
+        }
+      ],
+      "codeBlank": {
+        "prompt": {
+          "en": "Bounce only while approaching the upper wall.",
+          "nl": "Bots alleen bij het naderen van de bovenmuur."
+        },
+        "segments": [
+          "y, radius, vy = 4, 6, -100\nif y <= radius and vy ",
+          " 0:\n    vy = -vy\nprint(vy)"
+        ],
+        "tokens": [
+          {
+            "id": "token-1",
+            "code": "<"
+          },
+          {
+            "id": "token-2",
+            "code": ">"
+          },
+          {
+            "id": "token-3",
+            "code": "=="
+          }
+        ],
+        "blanks": [
+          {
+            "answer": "<",
+            "reason": {
+              "en": "A negative vertical velocity approaches the top edge.",
+              "nl": "Een negatieve verticale snelheid nadert de bovenrand."
+            }
+          }
+        ],
+        "output": "100\n"
+      },
+      "id": "python-v3-8-quiz-b-4"
+    },
+    {
+      "objectiveIds": [
+        "drawing-order"
+      ],
+      "reviewActivityIds": [
+        "python-v3-7-02"
+      ],
+      "category": "debugging",
+      "prompt": {
+        "en": "Why is the drawn object invisible?",
+        "nl": "Waarom is het getekende object onzichtbaar?"
+      },
+      "code": "import pygame\ncanvas = pygame.Surface((100, 100))\npygame.draw.rect(canvas, (255, 0, 0), (40, 10, 20, 20))\ncanvas.fill((0, 0, 0))",
+      "answer": "a",
+      "choices": [
+        {
+          "id": "a",
+          "label": {
+            "en": "The later fill covers the rectangle.",
+            "nl": "De latere fill bedekt de rechthoek."
+          },
+          "reason": {
+            "en": "Paint the background before the foreground.",
+            "nl": "Teken de achtergrond vóór de voorgrond."
+          }
+        },
+        {
+          "id": "b",
+          "label": {
+            "en": "Red cannot be drawn on a Surface.",
+            "nl": "Rood kan niet op een Surface getekend worden."
+          },
+          "reason": {
+            "en": "The colour is valid; the order overwrites it.",
+            "nl": "De kleur is geldig; de volgorde overschrijft die."
+          }
+        },
+        {
+          "id": "c",
+          "label": {
+            "en": "Rectangles need a dictionary first.",
+            "nl": "Rechthoeken hebben eerst een dictionary nodig."
+          },
+          "reason": {
+            "en": "Drawing accepts a rectangle tuple directly.",
+            "nl": "Tekenen accepteert direct een rechthoektuple."
+          }
+        }
+      ],
+      "id": "python-v3-8-quiz-b-5"
+    },
+    {
+      "objectiveIds": [
+        "imports",
+        "install-vs-import"
+      ],
+      "reviewActivityIds": [
+        "python-v3-6-01"
+      ],
+      "category": "application",
+      "prompt": {
+        "en": "A local project cannot import pygame yet. What is the difference between install and import?",
+        "nl": "Een lokaal project kan pygame nog niet importeren. Wat is het verschil tussen installeren en importeren?"
+      },
+      "answer": "a",
+      "choices": [
+        {
+          "id": "a",
+          "label": {
+            "en": "Installation provides the package to an environment; import loads it for the program.",
+            "nl": "Installeren levert het pakket aan een omgeving; import laadt het voor het programma."
+          },
+          "reason": {
+            "en": "These are separate steps; an import statement is not a package installer.",
+            "nl": "Dit zijn aparte stappen; een import-opdracht is geen pakketinstaller."
+          }
+        },
+        {
+          "id": "b",
+          "label": {
+            "en": "import downloads and installs any missing package automatically.",
+            "nl": "import downloadt en installeert elk ontbrekend pakket automatisch."
+          },
+          "reason": {
+            "en": "An unavailable package still raises ModuleNotFoundError.",
+            "nl": "Een niet-beschikbaar pakket geeft nog steeds ModuleNotFoundError."
+          }
+        },
+        {
+          "id": "c",
+          "label": {
+            "en": "Every standard module needs pip installation first.",
+            "nl": "Elke standaardmodule moet eerst met pip worden geïnstalleerd."
+          },
+          "reason": {
+            "en": "Standard-library modules already come with Python.",
+            "nl": "Standaardmodules worden al met Python meegeleverd."
+          }
+        }
+      ],
+      "id": "python-v3-8-quiz-b-6"
+    }
+  ]
+}

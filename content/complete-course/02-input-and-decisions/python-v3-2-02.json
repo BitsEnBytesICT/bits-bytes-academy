@@ -1,0 +1,169 @@
+{
+  "id": "python-v3-2-02",
+  "chapter": 2,
+  "group": "python-v3-module-2",
+  "title": {
+    "en": "At the boundary",
+    "nl": "Op de grens"
+  },
+  "kind": "coding",
+  "optional": false,
+  "runtime": "terminal",
+  "guidance": "adapt",
+  "estimatedMinutes": 15,
+  "explanation": {
+    "en": "Express eligibility as a True or False value before choosing an action. Test the exact boundary, not just an easy value far from it.",
+    "nl": "Druk geschiktheid uit als True of False voordat je een actie kiest. Test de exacte grens, niet alleen een gemakkelijke waarde er ver vandaan."
+  },
+  "example": "",
+  "topicIds": [
+    "boolean-expressions",
+    "boolean-variables",
+    "relational-operators"
+  ],
+  "prerequisites": [
+    "python-v3-2-01"
+  ],
+  "sections": [
+    {
+      "topicIds": [
+        "boolean-expressions",
+        "boolean-variables",
+        "relational-operators"
+      ],
+      "heading": {
+        "en": "Comparisons produce values",
+        "nl": "Vergelijkingen leveren waarden"
+      },
+      "body": {
+        "en": "A Boolean expression evaluates to True or False; a variable can store that result. == compares equality and != inequality. < and > exclude the boundary; <= and >= include it. A single = assigns a value and does not compare it.",
+        "nl": "Een booleaanse expressie geeft True of False; een variabele kan dat resultaat bewaren. == vergelijkt gelijkheid en != ongelijkheid. < en > sluiten de grens uit; <= en >= nemen die mee. Eén = wijst een waarde toe en vergelijkt niet."
+      },
+      "code": "age = 12\nprint(age == 12, age != 12)\nprint(age < 12, age <= 12)\nprint(age > 12, age >= 12)",
+      "output": "True False\nFalse True\nFalse True\n",
+      "prediction": {
+        "en": "Which comparisons include exactly 12?",
+        "nl": "Welke vergelijkingen nemen precies 12 mee?"
+      }
+    },
+    {
+      "topicIds": [],
+      "heading": {
+        "en": "Try a changed input",
+        "nl": "Probeer gewijzigde invoer"
+      },
+      "body": {
+        "en": "Trace height values 139, 140, 141 on paper. Also compare !=, > and <= for each value before running.",
+        "nl": "Volg de waarden 139, 140, 141 op papier. Vergelijk voor elke waarde ook !=, > en <= voordat je uitvoert."
+      }
+    }
+  ],
+  "files": {
+    "main.py": "height = 140\nminimum = 140\n# Store comparisons below.\n"
+  },
+  "solution": {
+    "main.py": "height = 140\nminimum = 140\nallowed = height >= minimum\nat_limit = height == minimum\ntoo_short = height < minimum\nprint(allowed, at_limit, too_short)\n"
+  },
+  "checkpoints": [
+    {
+      "objectiveIds": [
+        "boolean-expressions",
+        "boolean-variables"
+      ],
+      "task": {
+        "en": "Set allowed to whether height is at least minimum, and at_limit to whether they are equal.",
+        "nl": "Geef allowed aan of height minstens minimum is en at_limit of ze gelijk zijn."
+      },
+      "check": "allowed is True and at_limit is True",
+      "hints": [
+        {
+          "en": "Store comparison results, not quoted words.",
+          "nl": "Bewaar vergelijkingsresultaten, geen woorden tussen aanhalingstekens."
+        },
+        {
+          "en": "At least includes equality.",
+          "nl": "Minstens omvat gelijkheid."
+        },
+        {
+          "en": "allowed = height >= minimum",
+          "nl": "allowed = height >= minimum"
+        }
+      ],
+      "hint": {
+        "en": "Store comparison results, not quoted words.",
+        "nl": "Bewaar vergelijkingsresultaten, geen woorden tussen aanhalingstekens."
+      },
+      "feedback": {
+        "en": "The minimum itself qualifies. Use Booleans rather than strings.",
+        "nl": "Het minimum zelf voldoet. Gebruik booleans in plaats van strings."
+      },
+      "probes": [
+        {
+          "inputs": {
+            "height": 139
+          },
+          "check": "allowed is False and at_limit is False"
+        },
+        {
+          "inputs": {
+            "height": 141
+          },
+          "check": "allowed is True and at_limit is False"
+        }
+      ],
+      "id": "python-v3-2-02-step-1"
+    },
+    {
+      "objectiveIds": [
+        "relational-operators"
+      ],
+      "task": {
+        "en": "Set too_short to height < minimum and print allowed, at_limit, too_short.",
+        "nl": "Geef too_short de waarde height < minimum en druk allowed, at_limit, too_short af."
+      },
+      "check": "too_short is False and _stdout.strip() == \"True True False\"",
+      "hints": [
+        {
+          "en": "The rejected side must exclude the accepted boundary.",
+          "nl": "De afgewezen kant moet de toegestane grens uitsluiten."
+        },
+        {
+          "en": "Compare using <, not <=.",
+          "nl": "Vergelijk met <, niet met <=."
+        },
+        {
+          "en": "too_short = height < minimum",
+          "nl": "too_short = height < minimum"
+        }
+      ],
+      "hint": {
+        "en": "The rejected side must exclude the accepted boundary.",
+        "nl": "De afgewezen kant moet de toegestane grens uitsluiten."
+      },
+      "feedback": {
+        "en": "At the minimum height, too_short must be False.",
+        "nl": "Bij de minimumhoogte moet too_short False zijn."
+      },
+      "probes": [
+        {
+          "inputs": {
+            "height": -1
+          },
+          "check": "too_short is True"
+        },
+        {
+          "inputs": {
+            "height": 200
+          },
+          "check": "too_short is False"
+        }
+      ],
+      "id": "python-v3-2-02-step-2"
+    }
+  ],
+  "solutionNote": {
+    "en": "The same input can make more than one comparison true. allowed includes the boundary while too_short excludes it, so they divide the valid numeric inputs without a gap.",
+    "nl": "Dezelfde invoer kan meerdere vergelijkingen waar maken. allowed neemt de grens mee en too_short sluit die uit, zodat ze de geldige numerieke invoer zonder gat verdelen."
+  },
+  "inputs": []
+}

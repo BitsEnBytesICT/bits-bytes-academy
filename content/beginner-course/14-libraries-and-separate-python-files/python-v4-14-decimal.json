@@ -1,0 +1,148 @@
+{
+  "id": "python-v4-14-decimal",
+  "chapter": 14,
+  "group": "python-v4-module-14",
+  "title": {
+    "en": "Use decimal arithmetic deliberately",
+    "nl": "Gebruik decimale berekeningen bewust"
+  },
+  "kind": "coding",
+  "optional": false,
+  "runtime": "terminal",
+  "guidance": "guided",
+  "checkpointMode": "sequential",
+  "estimatedMinutes": 12,
+  "topicIds": [
+    "decimal"
+  ],
+  "practices": [],
+  "requiredConcepts": [
+    "selected-imports",
+    "floats",
+    "str-conversion"
+  ],
+  "explanation": {
+    "en": "Binary floats cannot represent every decimal fraction exactly. Decimal is useful when decimal arithmetic is part of the requirement.",
+    "nl": "Binaire floats kunnen niet elke decimale breuk exact voorstellen. Decimal is nuttig wanneer decimale berekening een vereiste is."
+  },
+  "example": "",
+  "sections": [
+    {
+      "id": "python-v4-14-decimal-example",
+      "topicIds": [
+        "decimal"
+      ],
+      "heading": {
+        "en": "Follow a working example",
+        "nl": "Volg een werkend voorbeeld"
+      },
+      "body": {
+        "en": "from decimal import Decimal imports a decimal number type. Construct it from a string such as Decimal(\"0.1\") to preserve the written decimal value. Decimal(0.1) first receives an already approximated float. Decimal arithmetic still has a configurable precision; it is not unlimited exact arithmetic. Keep Decimal operations separate from floats.",
+        "nl": "from decimal import Decimal importeert een decimaal getaltype. Maak het vanuit een string zoals Decimal(\"0.1\") om de geschreven decimale waarde te bewaren. Decimal(0.1) ontvangt eerst een al benaderde float. Decimal-berekeningen hebben nog steeds een instelbare precisie; het is geen onbeperkt exacte rekenkunde. Houd Decimal-bewerkingen gescheiden van floats."
+      },
+      "code": "from decimal import Decimal\nprint(0.1 + 0.2 == 0.3)\nprint(Decimal(\"0.1\") + Decimal(\"0.2\"))",
+      "output": "False\n0.3\n",
+      "prediction": {
+        "en": "Why do the Decimal arguments have quotation marks?",
+        "nl": "Waarom staan de Decimal-argumenten tussen aanhalingstekens?"
+      },
+      "takeaway": {
+        "en": "Build Decimal from the original numeric text.",
+        "nl": "Maak Decimal vanuit de oorspronkelijke getaltekst."
+      }
+    },
+    {
+      "id": "python-v4-14-decimal-experiment",
+      "topicIds": [],
+      "heading": {
+        "en": "Try one change",
+        "nl": "Probeer één wijziging"
+      },
+      "body": {
+        "en": "Compare Decimal(\"0.1\") with Decimal(0.1) by printing both.",
+        "nl": "Vergelijk Decimal(\"0.1\") met Decimal(0.1) door beide af te drukken."
+      }
+    }
+  ],
+  "files": {
+    "main.py": "from decimal import Decimal\ndef add_prices(first, second):\n    return None\n"
+  },
+  "solution": {
+    "main.py": "from decimal import Decimal\ndef add_prices(first, second):\n    return Decimal(first) + Decimal(second)\n"
+  },
+  "checkpoints": [
+    {
+      "id": "python-v4-14-decimal-step-1",
+      "objectiveIds": [
+        "decimal"
+      ],
+      "task": {
+        "en": "Given two valid decimal strings, return their Decimal sum without first converting to float.",
+        "nl": "Geef van twee geldige decimale strings hun Decimal-som terug zonder eerst naar float om te zetten."
+      },
+      "check": "callable(add_prices)",
+      "probes": [
+        {
+          "call": {
+            "name": "add_prices",
+            "args": [
+              "0.1",
+              "0.2"
+            ]
+          },
+          "check": "type(_return).__name__ == \"Decimal\" and str(_return) == \"0.3\""
+        },
+        {
+          "call": {
+            "name": "add_prices",
+            "args": [
+              "2.50",
+              "-0.25"
+            ]
+          },
+          "check": "str(_return) == \"2.25\""
+        }
+      ],
+      "hint": {
+        "en": "Build Decimal from the original numeric text.",
+        "nl": "Maak Decimal vanuit de oorspronkelijke getaltekst."
+      },
+      "hints": [
+        {
+          "en": "Build Decimal from the original numeric text.",
+          "nl": "Maak Decimal vanuit de oorspronkelijke getaltekst."
+        },
+        {
+          "en": "Construct each Decimal directly from its text argument.",
+          "nl": "Maak elke Decimal direct vanuit zijn tekstargument."
+        },
+        {
+          "en": "A small fragment to adapt: `Decimal(first)`",
+          "nl": "Een klein fragment om aan te passen: `Decimal(first)`"
+        }
+      ],
+      "feedback": {
+        "en": "Construct each Decimal directly from its text argument.",
+        "nl": "Maak elke Decimal direct vanuit zijn tekstargument."
+      }
+    }
+  ],
+  "solutionNote": {
+    "en": "The original text avoids importing a binary floating-point approximation.",
+    "nl": "De oorspronkelijke tekst voorkomt dat een binaire floatingpointbenadering wordt overgenomen."
+  },
+  "inputs": [],
+  "retrievals": [
+    {
+      "id": "recall-python-v4-12-search",
+      "sourceActivityId": "python-v4-12-search",
+      "objectiveIds": [
+        "searching"
+      ],
+      "prompt": {
+        "en": "Recall “Search until a match”. Why is return False outside the loop? Try the earlier example from memory, then check it. Test duplicate target values. Does the answer change?",
+        "nl": "Haal “Zoek tot een overeenkomst” terug. Waarom staat return False buiten de lus? Probeer het eerdere voorbeeld uit je geheugen en controleer daarna. Test dubbele doelwaarden. Verandert het antwoord?"
+      }
+    }
+  ]
+}

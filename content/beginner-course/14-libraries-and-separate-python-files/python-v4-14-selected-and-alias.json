@@ -1,0 +1,128 @@
+{
+  "id": "python-v4-14-selected-and-alias",
+  "chapter": 14,
+  "group": "python-v4-module-14",
+  "title": {
+    "en": "Import a function or choose an alias",
+    "nl": "Importeer een functie of kies een alias"
+  },
+  "kind": "coding",
+  "optional": false,
+  "runtime": "terminal",
+  "guidance": "guided",
+  "checkpointMode": "sequential",
+  "estimatedMinutes": 12,
+  "topicIds": [
+    "selected-imports",
+    "aliases"
+  ],
+  "practices": [],
+  "requiredConcepts": [
+    "imports"
+  ],
+  "explanation": {
+    "en": "Import styles affect which names are available in the current file.",
+    "nl": "Importstijlen bepalen welke namen in het huidige bestand beschikbaar zijn."
+  },
+  "example": "",
+  "sections": [
+    {
+      "id": "python-v4-14-selected-and-alias-example",
+      "topicIds": [
+        "selected-imports",
+        "aliases"
+      ],
+      "heading": {
+        "en": "Follow a working example",
+        "nl": "Volg een werkend voorbeeld"
+      },
+      "body": {
+        "en": "from math import ceil brings only that function name into this file, so call ceil(2.3). import math as maths gives the module the local alias maths; call maths.floor(2.3). An alias changes the local name, not the tool. Avoid import * because it obscures where names came from.",
+        "nl": "from math import ceil brengt alleen die functienaam in dit bestand, dus roep ceil(2.3) aan. import math as maths geeft de module lokaal de alias maths; roep maths.floor(2.3) aan. Een alias verandert de lokale naam, niet het gereedschap. Vermijd import * omdat het de herkomst van namen verbergt."
+      },
+      "code": "from math import ceil\nimport math as maths\nprint(ceil(2.3))\nprint(maths.floor(2.3))",
+      "output": "3\n2\n",
+      "prediction": {
+        "en": "Why is math.ceil unavailable under the name math in this example?",
+        "nl": "Waarom is math.ceil in dit voorbeeld niet beschikbaar onder de naam math?"
+      },
+      "takeaway": {
+        "en": "The import statement determines the name used by the caller.",
+        "nl": "De importinstructie bepaalt welke naam de aanroeper gebruikt."
+      }
+    },
+    {
+      "id": "python-v4-14-selected-and-alias-experiment",
+      "topicIds": [],
+      "heading": {
+        "en": "Try one change",
+        "nl": "Probeer één wijziging"
+      },
+      "body": {
+        "en": "Change both inputs to -3.8 and predict floor versus ceiling.",
+        "nl": "Verander beide invoerwaarden naar -3.8 en voorspel omlaag versus omhoog afronden."
+      }
+    }
+  ],
+  "files": {
+    "main.py": "from math import floor\nimport math as m\n# Complete the two calculations.\n"
+  },
+  "solution": {
+    "main.py": "from math import floor\nimport math as m\nlower = floor(3.8)\nupper = m.ceil(3.8)\nprint(lower, upper)\n"
+  },
+  "checkpoints": [
+    {
+      "id": "python-v4-14-selected-and-alias-step-1",
+      "objectiveIds": [
+        "selected-imports",
+        "aliases"
+      ],
+      "task": {
+        "en": "Using the supplied imports, set lower to floor(3.8), upper to the ceiling, and print both.",
+        "nl": "Gebruik de aangeleverde imports: zet lower op floor(3.8), upper op het naar boven afgeronde getal en druk beide af."
+      },
+      "check": "lower == 3 and upper == 4 and _stdout == \"3 4\\n\"",
+      "probes": [],
+      "hint": {
+        "en": "The import statement determines the name used by the caller.",
+        "nl": "De importinstructie bepaalt welke naam de aanroeper gebruikt."
+      },
+      "hints": [
+        {
+          "en": "The import statement determines the name used by the caller.",
+          "nl": "De importinstructie bepaalt welke naam de aanroeper gebruikt."
+        },
+        {
+          "en": "The selected function is called directly; the aliased module needs its prefix.",
+          "nl": "De geselecteerde functie roep je direct aan; de modulealias vereist zijn voorvoegsel."
+        },
+        {
+          "en": "A small fragment to adapt: `m.ceil(3.8)`",
+          "nl": "Een klein fragment om aan te passen: `m.ceil(3.8)`"
+        }
+      ],
+      "feedback": {
+        "en": "The selected function is called directly; the aliased module needs its prefix.",
+        "nl": "De geselecteerde functie roep je direct aan; de modulealias vereist zijn voorvoegsel."
+      }
+    }
+  ],
+  "solutionNote": {
+    "en": "floor and m.ceil refer to tools from the same library through different local names.",
+    "nl": "floor en m.ceil verwijzen via verschillende lokale namen naar gereedschappen uit dezelfde bibliotheek."
+  },
+  "inputs": [],
+  "retrievals": [
+    {
+      "id": "recall-python-v4-12-range-stop",
+      "sourceActivityId": "python-v4-12-range-stop",
+      "objectiveIds": [
+        "range"
+      ],
+      "prompt": {
+        "en": "Recall “Repeat a known number of times”. How many values does range(0) produce? Try the earlier example from memory, then check it. Compare printing range(3) with printing list(range(3)).",
+        "nl": "Haal “Herhaal een bekend aantal keren” terug. Hoeveel waarden produceert range(0)? Probeer het eerdere voorbeeld uit je geheugen en controleer daarna. Vergelijk range(3) afdrukken met list(range(3)) afdrukken."
+      }
+    }
+  ]
+}

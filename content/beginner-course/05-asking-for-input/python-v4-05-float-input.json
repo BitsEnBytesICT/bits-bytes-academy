@@ -1,0 +1,210 @@
+{
+  "id": "python-v4-05-float-input",
+  "chapter": 5,
+  "group": "python-v4-module-5",
+  "title": {
+    "en": "Read a decimal measurement",
+    "nl": "Lees een decimale meting"
+  },
+  "kind": "coding",
+  "optional": false,
+  "runtime": "terminal",
+  "guidance": "guided",
+  "checkpointMode": "sequential",
+  "estimatedMinutes": 13,
+  "topicIds": [
+    "float-conversion"
+  ],
+  "practices": [],
+  "requiredConcepts": [
+    "input",
+    "floats",
+    "conversion"
+  ],
+  "explanation": {
+    "en": "A measurement may contain a fractional part. float() converts suitable numeric text to a floating-point number.",
+    "nl": "Een meting kan een deel achter de komma hebben. float() zet geschikte getaltekst om naar een kommagetal."
+  },
+  "example": "",
+  "sections": [
+    {
+      "id": "python-v4-05-float-input-example",
+      "topicIds": [
+        "float-conversion"
+      ],
+      "heading": {
+        "en": "Follow a working example",
+        "nl": "Volg een werkend voorbeeld"
+      },
+      "body": {
+        "en": "float(\"2.5\") returns 2.5. It can also read whole-number text such as \"2\" and returns 2.0. Ask the user to use a decimal point rather than a comma.\n\nAs with int, unsuitable text raises ValueError. Do not silently replace an invalid measurement with zero. For this lesson, enter valid numeric text; recovery is a separate skill taught before the calculator project.",
+        "nl": "float(\"2.5\") geeft 2.5 terug. Het kan ook tekst met een geheel getal zoals \"2\" lezen en geeft dan 2.0 terug. Vraag de gebruiker een decimale punt te gebruiken in plaats van een komma.\n\nNet als bij int veroorzaakt ongeschikte tekst ValueError. Vervang een ongeldige meting niet stilzwijgend door nul. Voer voor deze les geldige getaltekst in; herstellen is een aparte vaardigheid die vóór het rekenmachineproject aan bod komt."
+      },
+      "code": "raw = input(\"Metres: \")\nmetres = float(raw)\nprint(metres * 2)",
+      "output": "Metres: 5.0\n",
+      "prediction": {
+        "en": "With answer 2.5, does multiplication preserve the fraction?",
+        "nl": "Blijft bij antwoord 2.5 het breukdeel behouden tijdens vermenigvuldigen?"
+      },
+      "takeaway": {
+        "en": "Use float for numeric answers that may include a fractional part.",
+        "nl": "Gebruik float voor numerieke antwoorden die een deel achter de komma kunnen hebben."
+      },
+      "exampleInputs": [
+        "2.5"
+      ]
+    },
+    {
+      "id": "python-v4-05-float-input-experiment",
+      "topicIds": [],
+      "heading": {
+        "en": "Try one change",
+        "nl": "Probeer één wijziging"
+      },
+      "body": {
+        "en": "Enter 2 and then 2.5. Compare the converted types and answers.",
+        "nl": "Voer 2 in en daarna 2.5. Vergelijk de omgezette typen en antwoorden."
+      }
+    }
+  ],
+  "files": {
+    "main.py": ""
+  },
+  "solution": {
+    "main.py": "raw = input(\"Hours: \")\nhours = float(raw)\nminutes = hours * 60\nprint(minutes)\n"
+  },
+  "checkpoints": [
+    {
+      "id": "python-v4-05-float-input-step-1",
+      "objectiveIds": [
+        "float-conversion"
+      ],
+      "task": {
+        "en": "Read Hours: into raw and convert it to the float hours.",
+        "nl": "Lees Hours: in raw en zet het om naar de float hours."
+      },
+      "check": "True",
+      "probes": [
+        {
+          "stdin": [
+            "1.5"
+          ],
+          "check": "(type(hours) is float and hours == float(raw)) and _remaining_input == \"\""
+        },
+        {
+          "stdin": [
+            "0.25"
+          ],
+          "check": "(hours == 0.25) and _remaining_input == \"\""
+        }
+      ],
+      "hint": {
+        "en": "Use float for numeric answers that may include a fractional part.",
+        "nl": "Gebruik float voor numerieke antwoorden die een deel achter de komma kunnen hebben."
+      },
+      "hints": [
+        {
+          "en": "Use float for numeric answers that may include a fractional part.",
+          "nl": "Gebruik float voor numerieke antwoorden die een deel achter de komma kunnen hebben."
+        },
+        {
+          "en": "Use float rather than int so a fractional answer is accepted.",
+          "nl": "Gebruik float in plaats van int zodat een antwoord met een breukdeel wordt geaccepteerd."
+        },
+        {
+          "en": "A small fragment to adapt: `hours = float(raw)`",
+          "nl": "Een klein fragment om aan te passen: `hours = float(raw)`"
+        }
+      ],
+      "feedback": {
+        "en": "Use float rather than int so a fractional answer is accepted.",
+        "nl": "Gebruik float in plaats van int zodat een antwoord met een breukdeel wordt geaccepteerd."
+      }
+    },
+    {
+      "id": "python-v4-05-float-input-step-2",
+      "objectiveIds": [
+        "float-conversion"
+      ],
+      "task": {
+        "en": "Calculate minutes from hours and print minutes.",
+        "nl": "Bereken minutes uit hours en druk minutes af."
+      },
+      "check": "True",
+      "probes": [
+        {
+          "stdin": [
+            "1.5"
+          ],
+          "check": "(minutes == hours * 60 and _stdout.endswith(str(minutes) + \"\\n\")) and _remaining_input == \"\""
+        },
+        {
+          "stdin": [
+            "0"
+          ],
+          "check": "(minutes == 0) and _remaining_input == \"\""
+        },
+        {
+          "stdin": [
+            "0.25"
+          ],
+          "check": "(minutes == 15) and _remaining_input == \"\""
+        }
+      ],
+      "hint": {
+        "en": "Use float for numeric answers that may include a fractional part.",
+        "nl": "Gebruik float voor numerieke antwoorden die een deel achter de komma kunnen hebben."
+      },
+      "hints": [
+        {
+          "en": "Use float for numeric answers that may include a fractional part.",
+          "nl": "Gebruik float voor numerieke antwoorden die een deel achter de komma kunnen hebben."
+        },
+        {
+          "en": "One hour contains 60 minutes. Multiply the numeric measurement by 60.",
+          "nl": "Een uur bevat 60 minuten. Vermenigvuldig de numerieke meting met 60."
+        },
+        {
+          "en": "A small fragment to adapt: `minutes = hours * 60`",
+          "nl": "Een klein fragment om aan te passen: `minutes = hours * 60`"
+        }
+      ],
+      "feedback": {
+        "en": "One hour contains 60 minutes. Multiply the numeric measurement by 60.",
+        "nl": "Een uur bevat 60 minuten. Vermenigvuldig de numerieke meting met 60."
+      }
+    }
+  ],
+  "solutionNote": {
+    "en": "The conversion allows fractional hours. Multiplication converts the unit without discarding that fraction.",
+    "nl": "De conversie laat delen van uren toe. Vermenigvuldigen verandert de eenheid zonder het breukdeel weg te gooien."
+  },
+  "inputs": [
+    "1.5"
+  ],
+  "retrievals": [
+    {
+      "id": "recall-python-v4-03-division",
+      "sourceActivityId": "python-v4-03-division",
+      "objectiveIds": [
+        "division",
+        "zero-division-error"
+      ],
+      "prompt": {
+        "en": "Recall “Share a quantity equally”. Does each person receive a whole number of metres? Try the earlier example from memory, then check it. Try total = 10 and people = 2. Observe the decimal point. Temporarily try people = 0, read the error, then restore a valid count.",
+        "nl": "Haal “Verdeel een hoeveelheid gelijk” terug. Krijgt elke persoon een geheel aantal meters? Probeer het eerdere voorbeeld uit je geheugen en controleer daarna. Probeer total = 10 en people = 2. Bekijk de decimale punt. Probeer tijdelijk people = 0, lees de foutmelding en herstel een geldig aantal."
+      }
+    },
+    {
+      "id": "recall-python-v4-03-receipt",
+      "sourceActivityId": "python-v4-03-receipt",
+      "objectiveIds": [
+        "arithmetic-review"
+      ],
+      "prompt": {
+        "en": "Recall “Calculate a simple receipt”. Is delivery added once or once per book? Try the earlier example from memory, then check it. Use quantity = 1 and discount = 0, then quantity = 0. Explain both receipts.",
+        "nl": "Haal “Bereken een eenvoudige kassabon” terug. Wordt bezorging eenmaal toegevoegd of eenmaal per boek? Probeer het eerdere voorbeeld uit je geheugen en controleer daarna. Gebruik quantity = 1 en discount = 0 en daarna quantity = 0. Leg beide kassabonnen uit."
+      }
+    }
+  ]
+}

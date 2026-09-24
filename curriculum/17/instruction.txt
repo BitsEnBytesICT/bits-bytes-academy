@@ -1,0 +1,73 @@
+Control Flow
+Boolean Variables
+6 min
+
+Before we go any further, let’s talk a little bit about True and False. You may notice that when they are typed in the code editor (with uppercase “T” and “F”), they appear in a different color than
+variables
+Preview: Docs Variables are used to store data that can be used and manipulated throughout a program.
+or
+strings
+Preview: Docs Loading link description
+. This is because True and False are their own special type:
+bool
+Preview: Docs Loading link description
+.
+
+True and False are the only bool types, and any variable that is assigned one of these values is called a Boolean variable.
+
+Boolean variables can be created in several ways. The easiest way is to simply assign True or False to a variable:
+
+set_to_true = True
+set_to_false = False
+
+Copy to Clipboard
+
+You can also set a variable equal to a Boolean expression:
+
+bool_one = 5 != 7 
+bool_two = 1 + 1 != 2
+bool_three = 3 * 3 == 9
+
+Copy to Clipboard
+
+These variables now contain Boolean values, so when they are referenced, they will only
+return
+Preview: Docs Loading link description
+the True or False values of the expression they were assigned.
+
+print(bool_one)    # True
+print(bool_two)    # False
+print(bool_three)  # True
+
+Copy to Clipboard
+
+Instructions
+
+    Checkpoint 1 Passed
+
+    1.
+
+    Create a variable named my_baby_bool and set it equal to the string "true".
+    Checkpoint 2 Passed
+
+    2.
+
+    Check the type
+    Preview: Docs Loading link description
+    of my_baby_bool using type(my_baby_bool).
+
+    Print the results in the terminal.
+    Checkpoint 3 Passed
+
+    3.
+
+    It’s not a Boolean variable! Boolean values True and False always need to be capitalized and do not have quotation marks.
+
+    Create a new variable named my_baby_bool_two and set it equal to True.
+    Checkpoint 4 Passed
+
+    4.
+
+    Check the type of my_baby_bool_two and make sure you successfully created a boolean variable.
+
+    Print the results in the terminal.

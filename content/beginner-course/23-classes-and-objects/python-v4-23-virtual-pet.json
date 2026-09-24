@@ -1,0 +1,198 @@
+{
+  "id": "python-v4-23-virtual-pet",
+  "chapter": 23,
+  "group": "python-v4-module-23",
+  "title": {
+    "en": "Mini project: virtual pet",
+    "nl": "Miniproject: virtueel huisdier"
+  },
+  "kind": "challenge",
+  "optional": false,
+  "runtime": "terminal",
+  "guidance": "independent",
+  "checkpointMode": "sequential",
+  "estimatedMinutes": 45,
+  "topicIds": [
+    "pet-project",
+    "objects-review"
+  ],
+  "practices": [
+    "instance-attributes",
+    "method-arguments",
+    "independent-instances",
+    "repr"
+  ],
+  "requiredConcepts": [
+    "repr",
+    "method-arguments",
+    "independent-instances"
+  ],
+  "explanation": {
+    "en": "Create several pets with the same behaviour and independent state.",
+    "nl": "Maak meerdere huisdieren met hetzelfde gedrag en onafhankelijke toestand."
+  },
+  "example": "",
+  "sections": [
+    {
+      "id": "python-v4-23-virtual-pet-example",
+      "topicIds": [
+        "pet-project",
+        "objects-review",
+        "instance-attributes",
+        "method-arguments",
+        "independent-instances",
+        "repr"
+      ],
+      "heading": {
+        "en": "Follow a working example",
+        "nl": "Volg een werkend voorbeeld"
+      },
+      "body": {
+        "en": "Implement Pet(name) with name and energy=5. feed(amount=1) adds energy up to a maximum of 10; negative amounts do nothing. play() consumes 2 energy and returns True when at least 2 was available; otherwise leave energy unchanged and return False. __repr__ returns Pet(name, energy=N), for example Pet(Bo, energy=5). Methods must affect only that instance. No input loop is required, but you may add one after the core behaviour works.",
+        "nl": "Implementeer Pet(name) met name en energy=5. feed(amount=1) voegt energie toe tot maximaal 10; negatieve hoeveelheden doen niets. play() verbruikt 2 energie en geeft True als minstens 2 beschikbaar was; laat anders energie ongewijzigd en geef False. __repr__ geeft Pet(name, energy=N), bijvoorbeeld Pet(Bo, energy=5). Methoden mogen alleen die instantie veranderen. Een invoerlus is niet vereist, maar mag na werkend kerngedrag worden toegevoegd."
+      },
+      "code": "class Battery:\n    def __init__(self):\n        self.charge = 3\n    def use(self):\n        if self.charge < 1:\n            return False\n        self.charge -= 1\n        return True\nbattery = Battery()\nprint(battery.use(),battery.charge)",
+      "output": "True 2\n",
+      "prediction": {
+        "en": "Why must the availability check come before subtraction?",
+        "nl": "Waarom moet beschikbaarheid vóór aftrekken worden gecontroleerd?"
+      },
+      "takeaway": {
+        "en": "Each object owns its state and enforces the same behaviour contract.",
+        "nl": "Elk object bezit zijn toestand en handhaaft dezelfde gedragsafspraak."
+      }
+    },
+    {
+      "id": "python-v4-23-virtual-pet-experiment",
+      "topicIds": [],
+      "heading": {
+        "en": "Try one change",
+        "nl": "Probeer één wijziging"
+      },
+      "body": {
+        "en": "Create two pets, play with one and feed the other; explain both final states.",
+        "nl": "Maak twee huisdieren, speel met één en voer de andere; leg beide eindtoestanden uit."
+      }
+    }
+  ],
+  "files": {
+    "main.py": ""
+  },
+  "solution": {
+    "main.py": "class Pet:\n    def __init__(self,name):\n        self.name = name\n        self.energy = 5\n    def feed(self,amount=1):\n        if amount > 0:\n            self.energy = min(10,self.energy + amount)\n    def play(self):\n        if self.energy < 2:\n            return False\n        self.energy -= 2\n        return True\n    def __repr__(self):\n        return f\"Pet({self.name}, energy={self.energy})\"\n"
+  },
+  "checkpoints": [
+    {
+      "id": "python-v4-23-virtual-pet-step-1",
+      "objectiveIds": [
+        "pet-project",
+        "objects-review",
+        "instance-attributes",
+        "method-arguments",
+        "independent-instances",
+        "repr"
+      ],
+      "task": {
+        "en": "Create Pet with independent initial state and the specified feed behaviour.",
+        "nl": "Maak Pet met onafhankelijke begintoestand en het beschreven feed-gedrag."
+      },
+      "check": "callable(Pet)",
+      "probes": [
+        {
+          "call": {
+            "name": "Pet",
+            "args": [
+              "Bo"
+            ]
+          },
+          "check": "_return.name == \"Bo\" and _return.energy == 5 and _return.feed() is None and _return.energy == 6 and _return.feed(100) is None and _return.energy == 10 and Pet(\"Ada\").energy == 5"
+        },
+        {
+          "call": {
+            "name": "Pet",
+            "args": [
+              "Bo"
+            ]
+          },
+          "check": "_return.feed(-3) is None and _return.energy == 5"
+        }
+      ],
+      "hint": {
+        "en": "Each object owns its state and enforces the same behaviour contract.",
+        "nl": "Elk object bezit zijn toestand en handhaaft dezelfde gedragsafspraak."
+      },
+      "hints": [
+        {
+          "en": "Each object owns its state and enforces the same behaviour contract.",
+          "nl": "Elk object bezit zijn toestand en handhaaft dezelfde gedragsafspraak."
+        },
+        {
+          "en": "Initialise fields through self and clamp only nonnegative feeding changes.",
+          "nl": "Initialiseer velden via self en begrens alleen niet-negatieve voerveranderingen."
+        },
+        {
+          "en": "A small fragment to adapt: `self.energy = min(10, self.energy + amount)`",
+          "nl": "Een klein fragment om aan te passen: `self.energy = min(10, self.energy + amount)`"
+        }
+      ],
+      "feedback": {
+        "en": "Initialise fields through self and clamp only nonnegative feeding changes.",
+        "nl": "Initialiseer velden via self en begrens alleen niet-negatieve voerveranderingen."
+      }
+    },
+    {
+      "id": "python-v4-23-virtual-pet-step-2",
+      "objectiveIds": [
+        "pet-project",
+        "objects-review",
+        "instance-attributes",
+        "method-arguments",
+        "independent-instances",
+        "repr"
+      ],
+      "task": {
+        "en": "Implement play and the required representation, including the low-energy boundary.",
+        "nl": "Implementeer play en de vereiste weergave, inclusief de grens bij lage energie."
+      },
+      "check": "callable(Pet)",
+      "probes": [
+        {
+          "call": {
+            "name": "Pet",
+            "args": [
+              "Bo"
+            ]
+          },
+          "check": "repr(_return) == \"Pet(Bo, energy=5)\" and _return.play() is True and _return.play() is True and _return.energy == 1 and _return.play() is False and _return.energy == 1"
+        }
+      ],
+      "hint": {
+        "en": "Each object owns its state and enforces the same behaviour contract.",
+        "nl": "Elk object bezit zijn toestand en handhaaft dezelfde gedragsafspraak."
+      },
+      "hints": [
+        {
+          "en": "Each object owns its state and enforces the same behaviour contract.",
+          "nl": "Elk object bezit zijn toestand en handhaaft dezelfde gedragsafspraak."
+        },
+        {
+          "en": "Check energy before spending it, and return a Boolean that describes whether play happened.",
+          "nl": "Controleer energie vóór verbruik en geef een booleaanse waarde terug die zegt of spelen plaatsvond."
+        },
+        {
+          "en": "A small fragment to adapt: `if self.energy < 2:`",
+          "nl": "Een klein fragment om aan te passen: `if self.energy < 2:`"
+        }
+      ],
+      "feedback": {
+        "en": "Check energy before spending it, and return a Boolean that describes whether play happened.",
+        "nl": "Controleer energie vóór verbruik en geef een booleaanse waarde terug die zegt of spelen plaatsvond."
+      }
+    }
+  ],
+  "solutionNote": {
+    "en": "Instance fields keep pets independent; guards and a maximum maintain the stated energy rules.",
+    "nl": "Instantievelden houden huisdieren onafhankelijk; bewakingen en een maximum handhaven de afgesproken energieregels."
+  },
+  "inputs": []
+}

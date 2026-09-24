@@ -1,0 +1,211 @@
+{
+  "id": "python-v4-05-trip-report",
+  "chapter": 5,
+  "group": "python-v4-module-5",
+  "title": {
+    "en": "Make an interactive trip report",
+    "nl": "Maak een interactief reisverslag"
+  },
+  "kind": "coding",
+  "optional": false,
+  "runtime": "terminal",
+  "guidance": "independent",
+  "checkpointMode": "sequential",
+  "estimatedMinutes": 20,
+  "topicIds": [
+    "input-review"
+  ],
+  "practices": [
+    "input",
+    "conversion",
+    "f-strings"
+  ],
+  "requiredConcepts": [
+    "multiple-inputs",
+    "float-conversion",
+    "f-strings"
+  ],
+  "explanation": {
+    "en": "Build a short conversation from a brief. Reuse your input and formatting skills without a finished program beside the editor.",
+    "nl": "Bouw een kort gesprek vanuit een opdracht. Gebruik je invoer- en opmaakvaardigheden zonder een voltooid programma naast de editor."
+  },
+  "example": "",
+  "sections": [
+    {
+      "id": "python-v4-05-trip-report-example",
+      "topicIds": [
+        "input-review",
+        "input",
+        "conversion",
+        "f-strings"
+      ],
+      "heading": {
+        "en": "Follow a working example",
+        "nl": "Volg een werkend voorbeeld"
+      },
+      "body": {
+        "en": "Plan the conversation before typing: ask, convert if needed, calculate, then report. A person's name is text; a measurement is numeric. Convert only the measurement.\n\nThe example asks for a shop and labels it. Your task adds a numeric conversion and an arithmetic result. Assume a valid numeric answer while practising this combination.",
+        "nl": "Plan het gesprek voordat je typt: vraag, zet zo nodig om, bereken en rapporteer. Een naam is tekst; een meting is numeriek. Zet alleen de meting om.\n\nHet voorbeeld vraagt naar een winkel en geeft die een label. Jouw opdracht voegt getalconversie en een rekenresultaat toe. Ga bij het oefenen van deze combinatie uit van een geldig numeriek antwoord."
+      },
+      "code": "shop = input(\"Shop: \")\nprint(f\"Visiting {shop}\")",
+      "output": "Shop: Visiting Market\n",
+      "prediction": {
+        "en": "Does the shop name need numeric conversion?",
+        "nl": "Moet de winkelnaam naar een getal worden omgezet?"
+      },
+      "takeaway": {
+        "en": "Choose a type for each answer before calculating or formatting it.",
+        "nl": "Kies voor elk antwoord een type voordat je ermee rekent of het opmaakt."
+      },
+      "exampleInputs": [
+        "Market"
+      ]
+    },
+    {
+      "id": "python-v4-05-trip-report-experiment",
+      "topicIds": [],
+      "heading": {
+        "en": "Try one change",
+        "nl": "Probeer één wijziging"
+      },
+      "body": {
+        "en": "Try a new destination and a fractional distance. Explain the four stages of the conversation.",
+        "nl": "Probeer een nieuwe bestemming en een afstand met een breukdeel. Leg de vier stappen van het gesprek uit."
+      }
+    }
+  ],
+  "files": {
+    "main.py": ""
+  },
+  "solution": {
+    "main.py": "destination = input(\"Destination: \")\nkm = float(input(\"Kilometres: \"))\nmetres = km * 1000\nprint(f\"{destination}: {metres} m\")\n"
+  },
+  "checkpoints": [
+    {
+      "id": "python-v4-05-trip-report-step-1",
+      "objectiveIds": [
+        "input-review",
+        "input",
+        "conversion",
+        "f-strings"
+      ],
+      "task": {
+        "en": "Ask Destination: for destination and Kilometres: for a float named km.",
+        "nl": "Vraag Destination: voor destination en Kilometres: voor een float met de naam km."
+      },
+      "check": "True",
+      "probes": [
+        {
+          "stdin": [
+            "Park",
+            "1.5"
+          ],
+          "check": "(type(destination) is str and type(km) is float) and _remaining_input == \"\""
+        },
+        {
+          "stdin": [
+            "Beach",
+            "2.25"
+          ],
+          "check": "(destination == \"Beach\" and km == 2.25) and _remaining_input == \"\""
+        }
+      ],
+      "hint": {
+        "en": "Choose a type for each answer before calculating or formatting it.",
+        "nl": "Kies voor elk antwoord een type voordat je ermee rekent of het opmaakt."
+      },
+      "hints": [
+        {
+          "en": "Choose a type for each answer before calculating or formatting it.",
+          "nl": "Kies voor elk antwoord een type voordat je ermee rekent of het opmaakt."
+        },
+        {
+          "en": "Leave the destination as text and convert only the distance.",
+          "nl": "Laat de bestemming tekst en zet alleen de afstand om."
+        },
+        {
+          "en": "A small fragment to adapt: `km = float(input(\"Kilometres: \"))`",
+          "nl": "Een klein fragment om aan te passen: `km = float(input(\"Kilometres: \"))`"
+        }
+      ],
+      "feedback": {
+        "en": "Leave the destination as text and convert only the distance.",
+        "nl": "Laat de bestemming tekst en zet alleen de afstand om."
+      }
+    },
+    {
+      "id": "python-v4-05-trip-report-step-2",
+      "objectiveIds": [
+        "input-review",
+        "input",
+        "conversion",
+        "f-strings"
+      ],
+      "task": {
+        "en": "Calculate metres and print a report such as \"Park: 1500.0 m\".",
+        "nl": "Bereken metres en druk een verslag af zoals \"Park: 1500.0 m\"."
+      },
+      "check": "True",
+      "probes": [
+        {
+          "stdin": [
+            "Park",
+            "1.5"
+          ],
+          "check": "(metres == km * 1000 and _stdout.endswith(f\"{destination}: {metres} m\\n\")) and _remaining_input == \"\""
+        },
+        {
+          "stdin": [
+            "Home",
+            "0"
+          ],
+          "check": "(metres == 0 and _stdout.endswith(\"Home: 0.0 m\\n\")) and _remaining_input == \"\""
+        }
+      ],
+      "hint": {
+        "en": "Choose a type for each answer before calculating or formatting it.",
+        "nl": "Kies voor elk antwoord een type voordat je ermee rekent of het opmaakt."
+      },
+      "hints": [
+        {
+          "en": "Choose a type for each answer before calculating or formatting it.",
+          "nl": "Kies voor elk antwoord een type voordat je ermee rekent of het opmaakt."
+        },
+        {
+          "en": "A kilometre contains 1000 metres. Build the message from the current values.",
+          "nl": "Een kilometer bevat 1000 meter. Bouw het bericht uit de huidige waarden."
+        },
+        {
+          "en": "A small fragment to adapt: `metres = km * 1000`",
+          "nl": "Een klein fragment om aan te passen: `metres = km * 1000`"
+        }
+      ],
+      "feedback": {
+        "en": "A kilometre contains 1000 metres. Build the message from the current values.",
+        "nl": "Een kilometer bevat 1000 meter. Bouw het bericht uit de huidige waarden."
+      }
+    }
+  ],
+  "solutionNote": {
+    "en": "Only the numeric answer is converted. The final message combines the original text answer and the calculated measurement.",
+    "nl": "Alleen het numerieke antwoord wordt omgezet. Het eindbericht combineert het oorspronkelijke tekstantwoord en de berekende meting."
+  },
+  "inputs": [
+    "Park",
+    "1.5"
+  ],
+  "retrievals": [
+    {
+      "id": "recall-python-v4-03-short-updates",
+      "sourceActivityId": "python-v4-03-short-updates",
+      "objectiveIds": [
+        "plus-equals",
+        "minus-equals"
+      ],
+      "prompt": {
+        "en": "Recall “The += and -= shortcuts”. What is score after each update? Try the earlier example from memory, then check it. Replace += with =+ temporarily and trace the changed result. Restore += afterward.",
+        "nl": "Haal “De afkortingen += en -=” terug. Wat is score na elke wijziging? Probeer het eerdere voorbeeld uit je geheugen en controleer daarna. Vervang += tijdelijk door =+ en volg het veranderde resultaat. Herstel daarna +=."
+      }
+    }
+  ]
+}

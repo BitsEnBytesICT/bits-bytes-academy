@@ -1,0 +1,167 @@
+{
+  "id": "python-v4-17-remove",
+  "chapter": 17,
+  "group": "python-v4-module-17",
+  "title": {
+    "en": "Remove by value",
+    "nl": "Verwijder op waarde"
+  },
+  "kind": "coding",
+  "optional": false,
+  "runtime": "terminal",
+  "guidance": "guided",
+  "checkpointMode": "sequential",
+  "estimatedMinutes": 12,
+  "topicIds": [
+    "remove",
+    "membership-lists"
+  ],
+  "practices": [],
+  "requiredConcepts": [
+    "lists",
+    "if"
+  ],
+  "explanation": {
+    "en": "Sometimes you know which value to remove rather than where it is.",
+    "nl": "Soms weet je welke waarde je wilt verwijderen in plaats van waar die staat."
+  },
+  "example": "",
+  "sections": [
+    {
+      "id": "python-v4-17-remove-example",
+      "topicIds": [
+        "remove",
+        "membership-lists"
+      ],
+      "heading": {
+        "en": "Follow a working example",
+        "nl": "Volg een werkend voorbeeld"
+      },
+      "body": {
+        "en": "items.remove(value) removes the first matching element and returns None. It raises ValueError if the value is absent. value in items tests membership with a Boolean, so you can guard removal. It removes only one occurrence, not every duplicate.",
+        "nl": "items.remove(value) verwijdert het eerste overeenkomende element en geeft None terug. Bij afwezigheid ontstaat ValueError. value in items test aanwezigheid met een booleaanse waarde, zodat je verwijderen kunt bewaken. Het verwijdert slechts één voorkomen, niet alle duplicaten."
+      },
+      "code": "items = [4,2,4]\nitems.remove(4)\nprint(items)\nprint(9 in items)",
+      "output": "[2, 4]\nFalse\n",
+      "prediction": {
+        "en": "Why is one 4 still present?",
+        "nl": "Waarom is er nog één 4 aanwezig?"
+      },
+      "takeaway": {
+        "en": "remove selects by value and removes the first match.",
+        "nl": "remove kiest op waarde en verwijdert de eerste overeenkomst."
+      }
+    },
+    {
+      "id": "python-v4-17-remove-experiment",
+      "topicIds": [],
+      "heading": {
+        "en": "Try one change",
+        "nl": "Probeer één wijziging"
+      },
+      "body": {
+        "en": "Call twice on a list with two copies of the target.",
+        "nl": "Roep tweemaal aan bij een lijst met twee kopieën van het doel."
+      }
+    }
+  ],
+  "files": {
+    "main.py": "def remove_once(items, target):\n    # Complete this function.\n    return None\n"
+  },
+  "solution": {
+    "main.py": "def remove_once(items, target):\n    if target in items:\n        items.remove(target)\n    return items\n"
+  },
+  "checkpoints": [
+    {
+      "id": "python-v4-17-remove-step-1",
+      "objectiveIds": [
+        "remove",
+        "membership-lists"
+      ],
+      "task": {
+        "en": "Use remove to remove one target if present; preserve the list when absent. Return items.",
+        "nl": "Gebruik remove om één target te verwijderen als die aanwezig is; behoud de lijst bij afwezigheid. Geef items terug."
+      },
+      "check": "any(isinstance(n, _ast.Call) and isinstance(n.func, _ast.Attribute) and n.func.attr == \"remove\" for n in _ast.walk(_ast.parse(_source)))",
+      "probes": [
+        {
+          "call": {
+            "name": "remove_once",
+            "args": [
+              [
+                2,
+                2,
+                3
+              ],
+              2
+            ]
+          },
+          "check": "(_return == [2,3]) and _error is None"
+        },
+        {
+          "call": {
+            "name": "remove_once",
+            "args": [
+              [
+                2
+              ],
+              9
+            ]
+          },
+          "check": "(_return == [2]) and _error is None"
+        },
+        {
+          "call": {
+            "name": "remove_once",
+            "args": [
+              [],
+              1
+            ]
+          },
+          "check": "(_return == []) and _error is None"
+        }
+      ],
+      "hint": {
+        "en": "remove selects by value and removes the first match.",
+        "nl": "remove kiest op waarde en verwijdert de eerste overeenkomst."
+      },
+      "hints": [
+        {
+          "en": "remove selects by value and removes the first match.",
+          "nl": "remove kiest op waarde en verwijdert de eerste overeenkomst."
+        },
+        {
+          "en": "Guard the method with a membership check.",
+          "nl": "Bewaak de methode met een aanwezigheidscontrole."
+        },
+        {
+          "en": "A small fragment to adapt: `if target in items:`",
+          "nl": "Een klein fragment om aan te passen: `if target in items:`"
+        }
+      ],
+      "feedback": {
+        "en": "Guard the method with a membership check.",
+        "nl": "Bewaak de methode met een aanwezigheidscontrole."
+      }
+    }
+  ],
+  "solutionNote": {
+    "en": "The guard avoids ValueError while each call removes at most one matching item.",
+    "nl": "De bewaking voorkomt ValueError terwijl elke aanroep maximaal één passend item verwijdert."
+  },
+  "inputs": [],
+  "retrievals": [
+    {
+      "id": "recall-python-v4-15-attributes",
+      "sourceActivityId": "python-v4-15-attributes",
+      "objectiveIds": [
+        "attributes",
+        "object-methods"
+      ],
+      "prompt": {
+        "en": "Recall “Use an object’s attributes”. Does move change box.left itself? Try the earlier example from memory, then check it. Move the centre to (0, 0) and explain why part of the shape is outside the window.",
+        "nl": "Haal “Gebruik attributen van een object” terug. Verandert move box.left zelf? Probeer het eerdere voorbeeld uit je geheugen en controleer daarna. Verplaats het middelpunt naar (0, 0) en leg uit waarom een deel buiten het venster valt."
+      }
+    }
+  ]
+}

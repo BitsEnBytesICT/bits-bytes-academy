@@ -1,0 +1,774 @@
+{
+  "id": "python-v3-13-quiz",
+  "chapter": 13,
+  "group": "python-v3-module-13",
+  "kind": "quiz",
+  "optional": false,
+  "estimatedMinutes": 6,
+  "title": {
+    "en": "Text files: review",
+    "nl": "Tekstbestanden: herhaling"
+  },
+  "questions": [
+    {
+      "objectiveIds": [
+        "readline",
+        "file-position"
+      ],
+      "reviewActivityIds": [
+        "python-v3-13-02"
+      ],
+      "category": "prediction",
+      "prompt": {
+        "en": "What does this program print?",
+        "nl": "Wat drukt dit programma af?"
+      },
+      "code": "with open(\"sample.txt\", \"w\", encoding=\"utf-8\") as h:\n    h.write(\"Header\\nAda\\n\")\nwith open(\"sample.txt\", encoding=\"utf-8\") as h:\n    h.readline()\n    print(h.read().strip())",
+      "answer": "a",
+      "choices": [
+        {
+          "id": "a",
+          "label": {
+            "en": "Ada",
+            "nl": "Ada"
+          },
+          "reason": {
+            "en": "readline has already consumed the first line.",
+            "nl": "readline heeft de eerste regel al verbruikt."
+          }
+        },
+        {
+          "id": "b",
+          "label": {
+            "en": "Header",
+            "nl": "Header"
+          },
+          "reason": {
+            "en": "The file position is after Header, not at the beginning.",
+            "nl": "De bestandspositie staat na Header, niet aan het begin."
+          }
+        },
+        {
+          "id": "c",
+          "label": {
+            "en": "Header Ada",
+            "nl": "Header Ada"
+          },
+          "reason": {
+            "en": "read does not automatically rewind the file.",
+            "nl": "read spoelt het bestand niet automatisch terug."
+          }
+        }
+      ],
+      "expectedOutput": "Ada\n",
+      "id": "python-v3-13-quiz-a-1"
+    },
+    {
+      "objectiveIds": [
+        "write",
+        "append-file"
+      ],
+      "reviewActivityIds": [
+        "python-v3-13-03"
+      ],
+      "category": "prediction",
+      "prompt": {
+        "en": "What does this program print?",
+        "nl": "Wat drukt dit programma af?"
+      },
+      "code": "with open(\"sample.txt\", \"w\", encoding=\"utf-8\") as h:\n    h.write(\"A\")\nwith open(\"sample.txt\", \"w\", encoding=\"utf-8\") as h:\n    h.write(\"B\")\nwith open(\"sample.txt\", encoding=\"utf-8\") as h:\n    print(h.read())",
+      "answer": "a",
+      "choices": [
+        {
+          "id": "a",
+          "label": {
+            "en": "B",
+            "nl": "B"
+          },
+          "reason": {
+            "en": "The second mode determines whether earlier contents survive.",
+            "nl": "De tweede modus bepaalt of eerdere inhoud blijft."
+          }
+        },
+        {
+          "id": "b",
+          "label": {
+            "en": "AB",
+            "nl": "AB"
+          },
+          "reason": {
+            "en": "Write mode truncates A before writing B.",
+            "nl": "Schrijfmodus wist A vóór B te schrijven."
+          }
+        },
+        {
+          "id": "c",
+          "label": {
+            "en": "A",
+            "nl": "A"
+          },
+          "reason": {
+            "en": "The second write runs and changes the contents.",
+            "nl": "De tweede schrijfopdracht wordt uitgevoerd en verandert de inhoud."
+          }
+        }
+      ],
+      "expectedOutput": "B\n",
+      "id": "python-v3-13-quiz-a-2"
+    },
+    {
+      "objectiveIds": [
+        "with",
+        "read"
+      ],
+      "reviewActivityIds": [
+        "python-v3-13-01"
+      ],
+      "category": "completion",
+      "prompt": {
+        "en": "Keep reading inside a context that closes the file.",
+        "nl": "Houd lezen binnen een context die het bestand sluit."
+      },
+      "code": "with open(\"sample.txt\", \"w\", encoding=\"utf-8\") as h:\n    h.write(\"Ada\")\n___ open(\"sample.txt\", encoding=\"utf-8\") as h:\n    print(h.read())",
+      "answer": "a",
+      "choices": [
+        {
+          "id": "a",
+          "label": {
+            "en": "with",
+            "nl": "with"
+          },
+          "reason": {
+            "en": "with manages file lifetime, including exceptional exits.",
+            "nl": "with beheert de bestandslevensduur, inclusief uitzonderlijk verlaten."
+          }
+        },
+        {
+          "id": "b",
+          "label": {
+            "en": "for",
+            "nl": "for"
+          },
+          "reason": {
+            "en": "with manages file lifetime, including exceptional exits.",
+            "nl": "with beheert de bestandslevensduur, inclusief uitzonderlijk verlaten."
+          }
+        },
+        {
+          "id": "c",
+          "label": {
+            "en": "if",
+            "nl": "if"
+          },
+          "reason": {
+            "en": "with manages file lifetime, including exceptional exits.",
+            "nl": "with beheert de bestandslevensduur, inclusief uitzonderlijk verlaten."
+          }
+        }
+      ],
+      "codeBlank": {
+        "prompt": {
+          "en": "Keep reading inside a context that closes the file.",
+          "nl": "Houd lezen binnen een context die het bestand sluit."
+        },
+        "segments": [
+          "with open(\"sample.txt\", \"w\", encoding=\"utf-8\") as h:\n    h.write(\"Ada\")\n",
+          " open(\"sample.txt\", encoding=\"utf-8\") as h:\n    print(h.read())"
+        ],
+        "tokens": [
+          {
+            "id": "token-1",
+            "code": "with"
+          },
+          {
+            "id": "token-2",
+            "code": "for"
+          },
+          {
+            "id": "token-3",
+            "code": "if"
+          }
+        ],
+        "blanks": [
+          {
+            "answer": "with",
+            "reason": {
+              "en": "with manages file lifetime, including exceptional exits.",
+              "nl": "with beheert de bestandslevensduur, inclusief uitzonderlijk verlaten."
+            }
+          }
+        ],
+        "output": "Ada\n"
+      },
+      "id": "python-v3-13-quiz-a-3"
+    },
+    {
+      "objectiveIds": [
+        "missing-file"
+      ],
+      "reviewActivityIds": [
+        "python-v3-13-03"
+      ],
+      "category": "completion",
+      "prompt": {
+        "en": "Handle only the expected missing-file case.",
+        "nl": "Handel alleen het verwachte ontbrekende-bestandsgeval af."
+      },
+      "code": "try:\n    with open(\"absent-Ada.txt\", encoding=\"utf-8\") as h:\n        text = h.read()\nexcept ___:\n    text = \"new\"\nprint(text)",
+      "answer": "a",
+      "choices": [
+        {
+          "id": "a",
+          "label": {
+            "en": "FileNotFoundError",
+            "nl": "FileNotFoundError"
+          },
+          "reason": {
+            "en": "An absent path raises FileNotFoundError, not a conversion or arithmetic error.",
+            "nl": "Een afwezig pad geeft FileNotFoundError, geen omzettings- of rekenfout."
+          }
+        },
+        {
+          "id": "b",
+          "label": {
+            "en": "ValueError",
+            "nl": "ValueError"
+          },
+          "reason": {
+            "en": "An absent path raises FileNotFoundError, not a conversion or arithmetic error.",
+            "nl": "Een afwezig pad geeft FileNotFoundError, geen omzettings- of rekenfout."
+          }
+        },
+        {
+          "id": "c",
+          "label": {
+            "en": "ZeroDivisionError",
+            "nl": "ZeroDivisionError"
+          },
+          "reason": {
+            "en": "An absent path raises FileNotFoundError, not a conversion or arithmetic error.",
+            "nl": "Een afwezig pad geeft FileNotFoundError, geen omzettings- of rekenfout."
+          }
+        }
+      ],
+      "codeBlank": {
+        "prompt": {
+          "en": "Handle only the expected missing-file case.",
+          "nl": "Handel alleen het verwachte ontbrekende-bestandsgeval af."
+        },
+        "segments": [
+          "try:\n    with open(\"absent-Ada.txt\", encoding=\"utf-8\") as h:\n        text = h.read()\nexcept ",
+          ":\n    text = \"new\"\nprint(text)"
+        ],
+        "tokens": [
+          {
+            "id": "token-1",
+            "code": "FileNotFoundError"
+          },
+          {
+            "id": "token-2",
+            "code": "ValueError"
+          },
+          {
+            "id": "token-3",
+            "code": "ZeroDivisionError"
+          }
+        ],
+        "blanks": [
+          {
+            "answer": "FileNotFoundError",
+            "reason": {
+              "en": "An absent path raises FileNotFoundError, not a conversion or arithmetic error.",
+              "nl": "Een afwezig pad geeft FileNotFoundError, geen omzettings- of rekenfout."
+            }
+          }
+        ],
+        "output": "new\n"
+      },
+      "id": "python-v3-13-quiz-a-4"
+    },
+    {
+      "objectiveIds": [
+        "get",
+        "key-error"
+      ],
+      "reviewActivityIds": [
+        "python-v3-12-03"
+      ],
+      "category": "debugging",
+      "prompt": {
+        "en": "What avoids a KeyError while preserving an existing zero?",
+        "nl": "Wat voorkomt KeyError en behoudt een bestaande nul?"
+      },
+      "code": "record = {}\nscore = record[\"score\"]",
+      "answer": "a",
+      "choices": [
+        {
+          "id": "a",
+          "label": {
+            "en": "record.get(\"score\", 0)",
+            "nl": "record.get(\"score\", 0)"
+          },
+          "reason": {
+            "en": "get supplies a default only when the key is absent.",
+            "nl": "get geeft alleen een standaard als de sleutel ontbreekt."
+          }
+        },
+        {
+          "id": "b",
+          "label": {
+            "en": "Delete the dictionary first.",
+            "nl": "Verwijder eerst de dictionary."
+          },
+          "reason": {
+            "en": "That removes the data rather than handling a missing field.",
+            "nl": "Dat verwijdert de gegevens in plaats van een ontbrekend veld af te handelen."
+          }
+        },
+        {
+          "id": "c",
+          "label": {
+            "en": "Use an index of zero instead of the key.",
+            "nl": "Gebruik index nul in plaats van de sleutel."
+          },
+          "reason": {
+            "en": "A dictionary lookup uses keys, not list positions.",
+            "nl": "Dictionarytoegang gebruikt sleutels, geen lijstposities."
+          }
+        }
+      ],
+      "id": "python-v3-13-quiz-a-5"
+    },
+    {
+      "objectiveIds": [
+        "decimal"
+      ],
+      "reviewActivityIds": [
+        "python-v3-6-03"
+      ],
+      "category": "application",
+      "prompt": {
+        "en": "When reusing a price calculation with Decimal, which operand should accompany Decimal(\"0.1\")?",
+        "nl": "Welk operand past bij Decimal(\"0.1\") als je een prijsberekening hergebruikt?"
+      },
+      "answer": "a",
+      "choices": [
+        {
+          "id": "a",
+          "label": {
+            "en": "Another Decimal or an integer quantity.",
+            "nl": "Een andere Decimal of een geheel aantal."
+          },
+          "reason": {
+            "en": "Decimal works with integer multiplication; decimal values should also be Decimal.",
+            "nl": "Decimal werkt met gehele vermenigvuldiging; decimale waarden moeten ook Decimal zijn."
+          }
+        },
+        {
+          "id": "b",
+          "label": {
+            "en": "A float such as 0.5.",
+            "nl": "Een float zoals 0.5."
+          },
+          "reason": {
+            "en": "Mixing Decimal and float arithmetic is not the intended compatible model.",
+            "nl": "Decimal en float mengen is niet het bedoelde compatibele rekenmodel."
+          }
+        },
+        {
+          "id": "c",
+          "label": {
+            "en": "An unconverted string in an addition.",
+            "nl": "Een niet-omgezette string bij optellen."
+          },
+          "reason": {
+            "en": "The string must be converted with Decimal before arithmetic.",
+            "nl": "De string moet vóór rekenen met Decimal worden omgezet."
+          }
+        }
+      ],
+      "id": "python-v3-13-quiz-a-6"
+    }
+  ],
+  "alternateQuestions": [
+    {
+      "objectiveIds": [
+        "readline",
+        "file-position"
+      ],
+      "reviewActivityIds": [
+        "python-v3-13-02"
+      ],
+      "category": "prediction",
+      "prompt": {
+        "en": "What does this program print?",
+        "nl": "Wat drukt dit programma af?"
+      },
+      "code": "with open(\"sample.txt\", \"w\", encoding=\"utf-8\") as h:\n    h.write(\"Header\\nBo\\n\")\nwith open(\"sample.txt\", encoding=\"utf-8\") as h:\n    h.readline()\n    print(h.read().strip())",
+      "answer": "a",
+      "choices": [
+        {
+          "id": "a",
+          "label": {
+            "en": "Bo",
+            "nl": "Bo"
+          },
+          "reason": {
+            "en": "readline has already consumed the first line.",
+            "nl": "readline heeft de eerste regel al verbruikt."
+          }
+        },
+        {
+          "id": "b",
+          "label": {
+            "en": "Header",
+            "nl": "Header"
+          },
+          "reason": {
+            "en": "The file position is after Header, not at the beginning.",
+            "nl": "De bestandspositie staat na Header, niet aan het begin."
+          }
+        },
+        {
+          "id": "c",
+          "label": {
+            "en": "Header Bo",
+            "nl": "Header Bo"
+          },
+          "reason": {
+            "en": "read does not automatically rewind the file.",
+            "nl": "read spoelt het bestand niet automatisch terug."
+          }
+        }
+      ],
+      "expectedOutput": "Bo\n",
+      "id": "python-v3-13-quiz-b-1"
+    },
+    {
+      "objectiveIds": [
+        "write",
+        "append-file"
+      ],
+      "reviewActivityIds": [
+        "python-v3-13-03"
+      ],
+      "category": "prediction",
+      "prompt": {
+        "en": "What does this program print?",
+        "nl": "Wat drukt dit programma af?"
+      },
+      "code": "with open(\"sample.txt\", \"w\", encoding=\"utf-8\") as h:\n    h.write(\"A\")\nwith open(\"sample.txt\", \"a\", encoding=\"utf-8\") as h:\n    h.write(\"B\")\nwith open(\"sample.txt\", encoding=\"utf-8\") as h:\n    print(h.read())",
+      "answer": "a",
+      "choices": [
+        {
+          "id": "a",
+          "label": {
+            "en": "AB",
+            "nl": "AB"
+          },
+          "reason": {
+            "en": "The second mode determines whether earlier contents survive.",
+            "nl": "De tweede modus bepaalt of eerdere inhoud blijft."
+          }
+        },
+        {
+          "id": "b",
+          "label": {
+            "en": "B",
+            "nl": "B"
+          },
+          "reason": {
+            "en": "Append mode preserves A before adding B.",
+            "nl": "Toevoegmodus behoudt A vóór B toe te voegen."
+          }
+        },
+        {
+          "id": "c",
+          "label": {
+            "en": "A",
+            "nl": "A"
+          },
+          "reason": {
+            "en": "The second write runs and changes the contents.",
+            "nl": "De tweede schrijfopdracht wordt uitgevoerd en verandert de inhoud."
+          }
+        }
+      ],
+      "expectedOutput": "AB\n",
+      "id": "python-v3-13-quiz-b-2"
+    },
+    {
+      "objectiveIds": [
+        "with",
+        "read"
+      ],
+      "reviewActivityIds": [
+        "python-v3-13-01"
+      ],
+      "category": "completion",
+      "prompt": {
+        "en": "Keep reading inside a context that closes the file.",
+        "nl": "Houd lezen binnen een context die het bestand sluit."
+      },
+      "code": "with open(\"sample.txt\", \"w\", encoding=\"utf-8\") as h:\n    h.write(\"Bo\")\n___ open(\"sample.txt\", encoding=\"utf-8\") as h:\n    print(h.read())",
+      "answer": "a",
+      "choices": [
+        {
+          "id": "a",
+          "label": {
+            "en": "with",
+            "nl": "with"
+          },
+          "reason": {
+            "en": "with manages file lifetime, including exceptional exits.",
+            "nl": "with beheert de bestandslevensduur, inclusief uitzonderlijk verlaten."
+          }
+        },
+        {
+          "id": "b",
+          "label": {
+            "en": "for",
+            "nl": "for"
+          },
+          "reason": {
+            "en": "with manages file lifetime, including exceptional exits.",
+            "nl": "with beheert de bestandslevensduur, inclusief uitzonderlijk verlaten."
+          }
+        },
+        {
+          "id": "c",
+          "label": {
+            "en": "if",
+            "nl": "if"
+          },
+          "reason": {
+            "en": "with manages file lifetime, including exceptional exits.",
+            "nl": "with beheert de bestandslevensduur, inclusief uitzonderlijk verlaten."
+          }
+        }
+      ],
+      "codeBlank": {
+        "prompt": {
+          "en": "Keep reading inside a context that closes the file.",
+          "nl": "Houd lezen binnen een context die het bestand sluit."
+        },
+        "segments": [
+          "with open(\"sample.txt\", \"w\", encoding=\"utf-8\") as h:\n    h.write(\"Bo\")\n",
+          " open(\"sample.txt\", encoding=\"utf-8\") as h:\n    print(h.read())"
+        ],
+        "tokens": [
+          {
+            "id": "token-1",
+            "code": "with"
+          },
+          {
+            "id": "token-2",
+            "code": "for"
+          },
+          {
+            "id": "token-3",
+            "code": "if"
+          }
+        ],
+        "blanks": [
+          {
+            "answer": "with",
+            "reason": {
+              "en": "with manages file lifetime, including exceptional exits.",
+              "nl": "with beheert de bestandslevensduur, inclusief uitzonderlijk verlaten."
+            }
+          }
+        ],
+        "output": "Bo\n"
+      },
+      "id": "python-v3-13-quiz-b-3"
+    },
+    {
+      "objectiveIds": [
+        "missing-file"
+      ],
+      "reviewActivityIds": [
+        "python-v3-13-03"
+      ],
+      "category": "completion",
+      "prompt": {
+        "en": "Handle only the expected missing-file case.",
+        "nl": "Handel alleen het verwachte ontbrekende-bestandsgeval af."
+      },
+      "code": "try:\n    with open(\"absent-Bo.txt\", encoding=\"utf-8\") as h:\n        text = h.read()\nexcept ___:\n    text = \"new\"\nprint(text)",
+      "answer": "a",
+      "choices": [
+        {
+          "id": "a",
+          "label": {
+            "en": "FileNotFoundError",
+            "nl": "FileNotFoundError"
+          },
+          "reason": {
+            "en": "An absent path raises FileNotFoundError, not a conversion or arithmetic error.",
+            "nl": "Een afwezig pad geeft FileNotFoundError, geen omzettings- of rekenfout."
+          }
+        },
+        {
+          "id": "b",
+          "label": {
+            "en": "ValueError",
+            "nl": "ValueError"
+          },
+          "reason": {
+            "en": "An absent path raises FileNotFoundError, not a conversion or arithmetic error.",
+            "nl": "Een afwezig pad geeft FileNotFoundError, geen omzettings- of rekenfout."
+          }
+        },
+        {
+          "id": "c",
+          "label": {
+            "en": "ZeroDivisionError",
+            "nl": "ZeroDivisionError"
+          },
+          "reason": {
+            "en": "An absent path raises FileNotFoundError, not a conversion or arithmetic error.",
+            "nl": "Een afwezig pad geeft FileNotFoundError, geen omzettings- of rekenfout."
+          }
+        }
+      ],
+      "codeBlank": {
+        "prompt": {
+          "en": "Handle only the expected missing-file case.",
+          "nl": "Handel alleen het verwachte ontbrekende-bestandsgeval af."
+        },
+        "segments": [
+          "try:\n    with open(\"absent-Bo.txt\", encoding=\"utf-8\") as h:\n        text = h.read()\nexcept ",
+          ":\n    text = \"new\"\nprint(text)"
+        ],
+        "tokens": [
+          {
+            "id": "token-1",
+            "code": "FileNotFoundError"
+          },
+          {
+            "id": "token-2",
+            "code": "ValueError"
+          },
+          {
+            "id": "token-3",
+            "code": "ZeroDivisionError"
+          }
+        ],
+        "blanks": [
+          {
+            "answer": "FileNotFoundError",
+            "reason": {
+              "en": "An absent path raises FileNotFoundError, not a conversion or arithmetic error.",
+              "nl": "Een afwezig pad geeft FileNotFoundError, geen omzettings- of rekenfout."
+            }
+          }
+        ],
+        "output": "new\n"
+      },
+      "id": "python-v3-13-quiz-b-4"
+    },
+    {
+      "objectiveIds": [
+        "get",
+        "key-error"
+      ],
+      "reviewActivityIds": [
+        "python-v3-12-03"
+      ],
+      "category": "debugging",
+      "prompt": {
+        "en": "What avoids a KeyError while preserving an existing zero?",
+        "nl": "Wat voorkomt KeyError en behoudt een bestaande nul?"
+      },
+      "code": "record = {}\nscore = record[\"points\"]",
+      "answer": "a",
+      "choices": [
+        {
+          "id": "a",
+          "label": {
+            "en": "record.get(\"points\", 0)",
+            "nl": "record.get(\"points\", 0)"
+          },
+          "reason": {
+            "en": "get supplies a default only when the key is absent.",
+            "nl": "get geeft alleen een standaard als de sleutel ontbreekt."
+          }
+        },
+        {
+          "id": "b",
+          "label": {
+            "en": "Delete the dictionary first.",
+            "nl": "Verwijder eerst de dictionary."
+          },
+          "reason": {
+            "en": "That removes the data rather than handling a missing field.",
+            "nl": "Dat verwijdert de gegevens in plaats van een ontbrekend veld af te handelen."
+          }
+        },
+        {
+          "id": "c",
+          "label": {
+            "en": "Use an index of zero instead of the key.",
+            "nl": "Gebruik index nul in plaats van de sleutel."
+          },
+          "reason": {
+            "en": "A dictionary lookup uses keys, not list positions.",
+            "nl": "Dictionarytoegang gebruikt sleutels, geen lijstposities."
+          }
+        }
+      ],
+      "id": "python-v3-13-quiz-b-5"
+    },
+    {
+      "objectiveIds": [
+        "decimal"
+      ],
+      "reviewActivityIds": [
+        "python-v3-6-03"
+      ],
+      "category": "application",
+      "prompt": {
+        "en": "When reusing a price calculation with Decimal, which operand should accompany Decimal(\"0.2\")?",
+        "nl": "Welk operand past bij Decimal(\"0.2\") als je een prijsberekening hergebruikt?"
+      },
+      "answer": "a",
+      "choices": [
+        {
+          "id": "a",
+          "label": {
+            "en": "Another Decimal or an integer quantity.",
+            "nl": "Een andere Decimal of een geheel aantal."
+          },
+          "reason": {
+            "en": "Decimal works with integer multiplication; decimal values should also be Decimal.",
+            "nl": "Decimal werkt met gehele vermenigvuldiging; decimale waarden moeten ook Decimal zijn."
+          }
+        },
+        {
+          "id": "b",
+          "label": {
+            "en": "A float such as 0.5.",
+            "nl": "Een float zoals 0.5."
+          },
+          "reason": {
+            "en": "Mixing Decimal and float arithmetic is not the intended compatible model.",
+            "nl": "Decimal en float mengen is niet het bedoelde compatibele rekenmodel."
+          }
+        },
+        {
+          "id": "c",
+          "label": {
+            "en": "An unconverted string in an addition.",
+            "nl": "Een niet-omgezette string bij optellen."
+          },
+          "reason": {
+            "en": "The string must be converted with Decimal before arithmetic.",
+            "nl": "De string moet vóór rekenen met Decimal worden omgezet."
+          }
+        }
+      ],
+      "id": "python-v3-13-quiz-b-6"
+    }
+  ]
+}

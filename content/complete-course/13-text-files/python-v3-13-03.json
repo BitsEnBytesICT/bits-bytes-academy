@@ -1,0 +1,217 @@
+{
+  "id": "python-v3-13-03",
+  "chapter": 13,
+  "group": "python-v3-module-13",
+  "title": {
+    "en": "Overwrite or append",
+    "nl": "Overschrijven of toevoegen"
+  },
+  "kind": "coding",
+  "optional": false,
+  "runtime": "terminal",
+  "guidance": "adapt",
+  "estimatedMinutes": 16,
+  "explanation": {
+    "en": "Compare replacing file contents with adding to the end. Only write to the activity’s named log files; inspect the generated text in its file tab after Run.",
+    "nl": "Vergelijk bestandsinhoud vervangen met achteraan toevoegen. Schrijf alleen naar de benoemde logbestanden van de activiteit; bekijk na Uitvoeren de gegenereerde tekst in zijn tabblad."
+  },
+  "example": "",
+  "topicIds": [
+    "write",
+    "append-file",
+    "persistence",
+    "missing-file"
+  ],
+  "prerequisites": [
+    "python-v3-13-02"
+  ],
+  "sections": [
+    {
+      "topicIds": [
+        "write",
+        "append-file",
+        "persistence",
+        "missing-file"
+      ],
+      "heading": {
+        "en": "Modes express intention",
+        "nl": "Modi drukken bedoeling uit"
+      },
+      "body": {
+        "en": "Opening with \"w\" creates a file or truncates its old contents immediately. \"a\" creates or appends. write(text) does not add a newline automatically. Reading a nonexistent file raises FileNotFoundError; choose a specific fallback when absence is expected. The app saves supported generated text files with your workspace, so a later Run can read the captured version.",
+        "nl": "Openen met \"w\" maakt een bestand of wist direct de oude inhoud. \"a\" maakt een bestand of voegt toe. write(tekst) voegt niet automatisch een nieuwe regel toe. Een niet-bestaand bestand lezen geeft FileNotFoundError; kies een specifieke terugval als afwezigheid verwacht is. De app slaat ondersteunde gegenereerde tekstbestanden bij je werkruimte op, zodat een latere uitvoering de bewaarde versie kan lezen."
+      },
+      "code": "with open(\"example.txt\", \"w\", encoding=\"utf-8\") as handle:\n    handle.write(\"First\\n\")\nwith open(\"example.txt\", \"a\", encoding=\"utf-8\") as handle:\n    handle.write(\"Second\\n\")\nwith open(\"example.txt\", encoding=\"utf-8\") as handle:\n    print(handle.read(), end=\"\")",
+      "output": "First\nSecond\n",
+      "prediction": {
+        "en": "What would change if the second mode were w?",
+        "nl": "Wat zou veranderen als de tweede modus w was?"
+      }
+    },
+    {
+      "topicIds": [],
+      "heading": {
+        "en": "Try a changed input",
+        "nl": "Probeer gewijzigde invoer"
+      },
+      "body": {
+        "en": "After passing, remove the reset call from main.py and Run twice. Inspect events.txt after each run and after reload. Restore reset if you want the demonstration’s original output.",
+        "nl": "Verwijder na slagen de reset-aanroep uit main.py en voer twee keer uit. Bekijk events.txt na elke uitvoering en na herladen. Herstel reset als je de oorspronkelijke demonstratie-uitvoer terug wilt."
+      }
+    }
+  ],
+  "files": {
+    "main.py": "def reset_log(filename, title):\n    pass\n\ndef append_event(filename, event):\n    pass\n\ndef read_log(filename):\n    return \"\"\n\nreset_log(\"events.txt\", \"Session\")\nappend_event(\"events.txt\", \"Started\")\nprint(read_log(\"events.txt\"), end=\"\")\n"
+  },
+  "solution": {
+    "main.py": "def reset_log(filename, title):\n    with open(filename, \"w\", encoding=\"utf-8\") as handle:\n        handle.write(title + \"\\n\")\n\ndef append_event(filename, event):\n    with open(filename, \"a\", encoding=\"utf-8\") as handle:\n        handle.write(event + \"\\n\")\n\ndef read_log(filename):\n    try:\n        with open(filename, encoding=\"utf-8\") as handle:\n            return handle.read()\n    except FileNotFoundError:\n        return \"\"\n\nreset_log(\"events.txt\", \"Session\")\nappend_event(\"events.txt\", \"Started\")\nprint(read_log(\"events.txt\"), end=\"\")\n"
+  },
+  "checkpoints": [
+    {
+      "objectiveIds": [
+        "write"
+      ],
+      "task": {
+        "en": "Implement reset_log to replace the contents with title plus one newline.",
+        "nl": "Implementeer reset_log om de inhoud door title plus één nieuwe regel te vervangen."
+      },
+      "check": "callable(reset_log)",
+      "hints": [
+        {
+          "en": "The reset action deliberately discards old log text.",
+          "nl": "De resetactie verwijdert bewust oude logtekst."
+        },
+        {
+          "en": "Use mode w and append a newline to the written string.",
+          "nl": "Gebruik modus w en voeg een nieuwe regel aan de geschreven string toe."
+        },
+        {
+          "en": "handle.write(title + \"\\n\")",
+          "nl": "handle.write(title + \"\\n\")"
+        }
+      ],
+      "hint": {
+        "en": "The reset action deliberately discards old log text.",
+        "nl": "De resetactie verwijdert bewust oude logtekst."
+      },
+      "feedback": {
+        "en": "Reset must not append to an existing file.",
+        "nl": "Reset mag niet aan een bestaand bestand toevoegen."
+      },
+      "probes": [
+        {
+          "call": {
+            "name": "reset_log",
+            "args": [
+              "probe.txt",
+              "New"
+            ]
+          },
+          "check": "__import__(\"pathlib\").Path(\"probe.txt\").read_text(encoding=\"utf-8\") == \"New\\n\"",
+          "files": {
+            "probe.txt": "Old\nOld\n"
+          }
+        }
+      ],
+      "id": "python-v3-13-03-step-1"
+    },
+    {
+      "objectiveIds": [
+        "append-file",
+        "persistence"
+      ],
+      "task": {
+        "en": "Implement append_event to add event plus one newline while preserving existing contents.",
+        "nl": "Implementeer append_event om event plus één nieuwe regel toe te voegen en bestaande inhoud te behouden."
+      },
+      "check": "_stdout == \"Session\\nStarted\\n\"",
+      "hints": [
+        {
+          "en": "The log must survive the next event.",
+          "nl": "Het log moet de volgende gebeurtenis overleven."
+        },
+        {
+          "en": "Use append mode a.",
+          "nl": "Gebruik toevoegmodus a."
+        },
+        {
+          "en": "with open(filename, \"a\", encoding=\"utf-8\") as handle:",
+          "nl": "with open(filename, \"a\", encoding=\"utf-8\") as handle:"
+        }
+      ],
+      "hint": {
+        "en": "The log must survive the next event.",
+        "nl": "Het log moet de volgende gebeurtenis overleven."
+      },
+      "feedback": {
+        "en": "Check the old text remains before the new line.",
+        "nl": "Controleer dat oude tekst vóór de nieuwe regel blijft staan."
+      },
+      "probes": [
+        {
+          "call": {
+            "name": "append_event",
+            "args": [
+              "probe.txt",
+              "Café"
+            ]
+          },
+          "check": "__import__(\"pathlib\").Path(\"probe.txt\").read_text(encoding=\"utf-8\") == \"Old\\nCafé\\n\"",
+          "files": {
+            "probe.txt": "Old\n"
+          }
+        }
+      ],
+      "id": "python-v3-13-03-step-2"
+    },
+    {
+      "objectiveIds": [
+        "missing-file"
+      ],
+      "task": {
+        "en": "Implement read_log to return all text, or \"\" only when the file is missing.",
+        "nl": "Implementeer read_log om alle tekst terug te geven, of alleen \"\" wanneer het bestand ontbreekt."
+      },
+      "check": "read_log(\"events.txt\") == \"Session\\nStarted\\n\"",
+      "hints": [
+        {
+          "en": "Absence is an expected case for a first-time log.",
+          "nl": "Afwezigheid is een verwacht geval bij een eerste log."
+        },
+        {
+          "en": "Catch FileNotFoundError around opening for reading.",
+          "nl": "Vang FileNotFoundError rond openen voor lezen op."
+        },
+        {
+          "en": "except FileNotFoundError:\n    return \"\"",
+          "nl": "except FileNotFoundError:\n    return \"\""
+        }
+      ],
+      "hint": {
+        "en": "Absence is an expected case for a first-time log.",
+        "nl": "Afwezigheid is een verwacht geval bij een eerste log."
+      },
+      "feedback": {
+        "en": "Do not hide every file error with a broad except.",
+        "nl": "Verberg niet elke bestandsfout met een brede except."
+      },
+      "probes": [
+        {
+          "call": {
+            "name": "read_log",
+            "args": [
+              "not-created.txt"
+            ]
+          },
+          "check": "_return == \"\" and _error is None"
+        }
+      ],
+      "id": "python-v3-13-03-step-3"
+    }
+  ],
+  "solutionNote": {
+    "en": "Reset and append express different intentions with different modes. The read fallback handles an absent first log without pretending every read failure means an empty file.",
+    "nl": "Reset en toevoegen drukken verschillende bedoelingen uit met verschillende modi. De leesterugval handelt een ontbrekend eerste log af zonder te doen alsof elke leesfout een leeg bestand betekent."
+  },
+  "inputs": []
+}

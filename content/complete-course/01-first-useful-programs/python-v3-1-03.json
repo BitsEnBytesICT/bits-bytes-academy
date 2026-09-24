@@ -1,0 +1,165 @@
+{
+  "id": "python-v3-1-03",
+  "chapter": 1,
+  "group": "python-v3-module-1",
+  "title": {
+    "en": "Changing stock",
+    "nl": "Veranderende voorraad"
+  },
+  "kind": "coding",
+  "optional": false,
+  "runtime": "terminal",
+  "guidance": "adapt",
+  "estimatedMinutes": 13,
+  "explanation": {
+    "en": "Track stock as deliveries and sales change it. Each assignment replaces the previous value of that name.",
+    "nl": "Houd voorraad bij terwijl leveringen en verkopen die veranderen. Elke toewijzing vervangt de vorige waarde van die naam."
+  },
+  "example": "",
+  "topicIds": [
+    "changing-numbers",
+    "plus-equals"
+  ],
+  "prerequisites": [
+    "python-v3-1-02"
+  ],
+  "sections": [
+    {
+      "topicIds": [
+        "changing-numbers",
+        "plus-equals"
+      ],
+      "heading": {
+        "en": "Update a value",
+        "nl": "Werk een waarde bij"
+      },
+      "body": {
+        "en": "In score = score + 3, Python reads the old score, adds 3, then stores the result. score += 3 abbreviates that update. -= similarly subtracts. Execution order matters: printing before an update shows the earlier value.",
+        "nl": "Bij score = score + 3 leest Python de oude score, telt er 3 bij op en bewaart het resultaat. score += 3 verkort die update. -= trekt op dezelfde manier af. De volgorde telt: afdrukken vóór een update toont de eerdere waarde."
+      },
+      "code": "score = 4\nscore += 3\nprint(score)\nscore = score - 2\nprint(score)",
+      "output": "7\n5\n",
+      "prediction": {
+        "en": "What value is read on the right side of the last assignment?",
+        "nl": "Welke waarde wordt rechts bij de laatste toewijzing gelezen?"
+      }
+    },
+    {
+      "topicIds": [],
+      "heading": {
+        "en": "Try a changed input",
+        "nl": "Probeer gewijzigde invoer"
+      },
+      "body": {
+        "en": "Move print(stock) between the updates. Explain why it now reports a different point in time.",
+        "nl": "Verplaats print(stock) tussen de updates. Leg uit waarom het nu een ander moment toont."
+      }
+    }
+  ],
+  "files": {
+    "main.py": "stock = 12\ndelivery = 5\nsold = 4\n# Update stock for the delivery and then the sales.\nprint(stock)\n"
+  },
+  "solution": {
+    "main.py": "stock = 12\ndelivery = 5\nsold = 4\nstock += delivery\nstock = stock - sold\nprint(stock)\n"
+  },
+  "checkpoints": [
+    {
+      "objectiveIds": [
+        "plus-equals"
+      ],
+      "task": {
+        "en": "Use += to add delivery to stock before printing.",
+        "nl": "Gebruik += om delivery vóór het afdrukken bij stock op te tellen."
+      },
+      "check": "any(isinstance(n, _ast.AugAssign) and isinstance(n.op, _ast.Add) for n in _ast.walk(_ast.parse(_source)))",
+      "hints": [
+        {
+          "en": "An update reads and replaces the same variable.",
+          "nl": "Een update leest en vervangt dezelfde variabele."
+        },
+        {
+          "en": "Put the update after all three starting values.",
+          "nl": "Zet de update na de drie beginwaarden."
+        },
+        {
+          "en": "stock += delivery",
+          "nl": "stock += delivery"
+        }
+      ],
+      "hint": {
+        "en": "An update reads and replaces the same variable.",
+        "nl": "Een update leest en vervangt dezelfde variabele."
+      },
+      "feedback": {
+        "en": "This practice asks for +=; put it on an executable line.",
+        "nl": "Deze oefening vraagt om +=; zet het op een uitvoerbare regel."
+      },
+      "probes": [
+        {
+          "inputs": {
+            "delivery": 0,
+            "sold": 0
+          },
+          "check": "stock == 12"
+        }
+      ],
+      "id": "python-v3-1-03-step-1"
+    },
+    {
+      "objectiveIds": [
+        "changing-numbers"
+      ],
+      "task": {
+        "en": "Subtract sold from stock and print the final stock.",
+        "nl": "Trek sold van stock af en druk de eindvoorraad af."
+      },
+      "check": "stock == 13 and _stdout.strip() == \"13\"",
+      "hints": [
+        {
+          "en": "The final amount includes both changes.",
+          "nl": "Het eindbedrag bevat beide veranderingen."
+        },
+        {
+          "en": "Subtract sales from the updated stock.",
+          "nl": "Trek de verkopen van de bijgewerkte voorraad af."
+        },
+        {
+          "en": "stock = stock - sold",
+          "nl": "stock = stock - sold"
+        }
+      ],
+      "hint": {
+        "en": "The final amount includes both changes.",
+        "nl": "Het eindbedrag bevat beide veranderingen."
+      },
+      "feedback": {
+        "en": "Do not restart from the initial stock after the delivery.",
+        "nl": "Begin na de levering niet opnieuw bij de beginvoorraad."
+      },
+      "probes": [
+        {
+          "inputs": {
+            "stock": 20,
+            "delivery": 2,
+            "sold": 6
+          },
+          "check": "stock == 16 and _stdout.strip() == \"16\""
+        },
+        {
+          "inputs": {
+            "stock": 0,
+            "delivery": 4,
+            "sold": 4
+          },
+          "check": "stock == 0"
+        }
+      ],
+      "id": "python-v3-1-03-step-2"
+    }
+  ],
+  "solutionNote": {
+    "en": "The two updates model events in order. Printing once at the end reports the remaining stock, not the number sold.",
+    "nl": "De twee updates modelleren gebeurtenissen op volgorde. Eén keer afdrukken aan het einde toont de resterende voorraad, niet het verkochte aantal."
+  },
+  "inputs": []
+}

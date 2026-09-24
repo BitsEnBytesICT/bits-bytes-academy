@@ -1,0 +1,175 @@
+{
+  "id": "python-v4-11-combine",
+  "chapter": 11,
+  "group": "python-v4-module-11",
+  "title": {
+    "en": "Combine two lists",
+    "nl": "Combineer twee lijsten"
+  },
+  "kind": "coding",
+  "optional": false,
+  "runtime": "terminal",
+  "guidance": "guided",
+  "checkpointMode": "sequential",
+  "estimatedMinutes": 12,
+  "topicIds": [
+    "list-concatenation"
+  ],
+  "practices": [],
+  "requiredConcepts": [
+    "lists",
+    "concatenation"
+  ],
+  "explanation": {
+    "en": "List + joins two sequences of elements into a new list.",
+    "nl": "Lijst + voegt twee reeksen elementen samen tot een nieuwe lijst."
+  },
+  "example": "",
+  "sections": [
+    {
+      "id": "python-v4-11-combine-example",
+      "topicIds": [
+        "list-concatenation"
+      ],
+      "heading": {
+        "en": "Follow a working example",
+        "nl": "Volg een werkend voorbeeld"
+      },
+      "body": {
+        "en": "Both operands of list concatenation must be lists. [1] + [2, 3] gives [1, 2, 3]. It does not add the numbers, and it does not create a nested list. The originals stay unchanged. To add one number this way, wrap it in a one-element list.",
+        "nl": "Beide kanten van lijstsamenvoeging moeten lijsten zijn. [1] + [2, 3] geeft [1, 2, 3]. Het telt de getallen niet op en maakt geen geneste lijst. De oorspronkelijke lijsten blijven ongewijzigd. Om zo één getal toe te voegen, zet je het in een lijst met één element."
+      },
+      "code": "left = [1, 2]\nright = [3]\nprint(left + right)\nprint(left)",
+      "output": "[1, 2, 3]\n[1, 2]\n",
+      "prediction": {
+        "en": "Does left gain a third element?",
+        "nl": "Krijgt left een derde element?"
+      },
+      "takeaway": {
+        "en": "List + creates a new list containing both sets of elements in order.",
+        "nl": "Lijst + maakt een nieuwe lijst met beide reeksen elementen op volgorde."
+      }
+    },
+    {
+      "id": "python-v4-11-combine-experiment",
+      "topicIds": [],
+      "heading": {
+        "en": "Try one change",
+        "nl": "Probeer één wijziging"
+      },
+      "body": {
+        "en": "Compare combining with [] to appending [] as one element.",
+        "nl": "Vergelijk samenvoegen met [] met [] als één element toevoegen."
+      }
+    }
+  ],
+  "files": {
+    "main.py": "def combine(first, second):\n    # Complete this function.\n    return None\n"
+  },
+  "solution": {
+    "main.py": "def combine(first, second):\n    return first + second\n"
+  },
+  "checkpoints": [
+    {
+      "id": "python-v4-11-combine-step-1",
+      "objectiveIds": [
+        "list-concatenation"
+      ],
+      "task": {
+        "en": "Return the elements of first followed by second, leaving both input lists unchanged.",
+        "nl": "Geef de elementen van first gevolgd door second terug en laat beide invoerlijsten ongewijzigd."
+      },
+      "check": "callable(combine)",
+      "probes": [
+        {
+          "call": {
+            "name": "combine",
+            "args": [
+              [
+                1
+              ],
+              [
+                2,
+                3
+              ]
+            ]
+          },
+          "check": "(_return == [1,2,3] and _args == [[1],[2,3]]) and _error is None"
+        },
+        {
+          "call": {
+            "name": "combine",
+            "args": [
+              [],
+              [
+                4
+              ]
+            ]
+          },
+          "check": "(_return == [4]) and _error is None"
+        },
+        {
+          "call": {
+            "name": "combine",
+            "args": [
+              [],
+              []
+            ]
+          },
+          "check": "(_return == []) and _error is None"
+        }
+      ],
+      "hint": {
+        "en": "List + creates a new list containing both sets of elements in order.",
+        "nl": "Lijst + maakt een nieuwe lijst met beide reeksen elementen op volgorde."
+      },
+      "hints": [
+        {
+          "en": "List + creates a new list containing both sets of elements in order.",
+          "nl": "Lijst + maakt een nieuwe lijst met beide reeksen elementen op volgorde."
+        },
+        {
+          "en": "Use list concatenation to create the result.",
+          "nl": "Gebruik lijstsamenvoeging om het resultaat te maken."
+        },
+        {
+          "en": "A small fragment to adapt: `first + second`",
+          "nl": "Een klein fragment om aan te passen: `first + second`"
+        }
+      ],
+      "feedback": {
+        "en": "Use list concatenation to create the result.",
+        "nl": "Gebruik lijstsamenvoeging om het resultaat te maken."
+      }
+    }
+  ],
+  "solutionNote": {
+    "en": "Concatenation copies the outer sequence of elements into a new list.",
+    "nl": "Samenvoegen kopieert de buitenste reeks elementen naar een nieuwe lijst."
+  },
+  "inputs": [],
+  "retrievals": [
+    {
+      "id": "recall-python-v4-09-parameters",
+      "sourceActivityId": "python-v4-09-parameters",
+      "objectiveIds": [
+        "parameters-arguments"
+      ],
+      "prompt": {
+        "en": "Recall “Pass a value into a function”. Which value does name hold during the second call? Try the earlier example from memory, then check it. Call label twice with different items.",
+        "nl": "Haal “Geef een waarde aan een functie” terug. Welke waarde heeft name tijdens de tweede aanroep? Probeer het eerdere voorbeeld uit je geheugen en controleer daarna. Roep label tweemaal aan met verschillende items."
+      }
+    },
+    {
+      "id": "recall-python-v4-09-early-return",
+      "sourceActivityId": "python-v4-09-early-return",
+      "objectiveIds": [
+        "early-return"
+      ],
+      "prompt": {
+        "en": "Recall “Stop a function at a guard”. Is division reached for count zero? Try the earlier example from memory, then check it. Store speed(0, 2). Explain why zero is a valid answer unlike None.",
+        "nl": "Haal “Stop een functie bij een bewaking” terug. Wordt delen bereikt als count nul is? Probeer het eerdere voorbeeld uit je geheugen en controleer daarna. Bewaar speed(0, 2). Leg uit waarom nul een geldig antwoord is, anders dan None."
+      }
+    }
+  ]
+}

@@ -1,0 +1,119 @@
+{
+  "id": "python-v3-calculator-first",
+  "chapter": 2,
+  "estimatedMinutes": 35,
+  "group": "python-v3-calculator-first",
+  "kind": "project-stage",
+  "optional": false,
+  "runtime": "terminal",
+  "guidance": "independent",
+  "title": {
+    "en": "Calculator: first useful version",
+    "nl": "Rekenmachine: eerste bruikbare versie"
+  },
+  "explanation": {
+    "en": "Build your first calculator from a small brief: ask for two numbers and an operation, then show the result. Support +, -, * and /. Use a decision to handle a zero divisor. For this first version, assume the number inputs are valid numeric text. You have learned everything required; loops, functions and exception handling come later. Keep this code: the calculator upgrade after module 14 opens these same files. Use the readiness lessons below if you need a refresher, and mark the stage complete when you are satisfied.",
+    "nl": "Bouw je eerste rekenmachine uit een korte beschrijving: vraag twee getallen en een bewerking en toon het resultaat. Ondersteun +, -, * en /. Gebruik een beslissing voor een nuldeler. Neem voor deze eerste versie aan dat de getalinvoer geldige numerieke tekst is. Je hebt alles geleerd wat nodig is; lussen, functies en uitzonderingen komen later. Bewaar deze code: de uitbreiding na module 14 opent dezelfde bestanden. Gebruik de herhaallessen hieronder als opfrisser en rond de stap af wanneer je tevreden bent."
+  },
+  "files": {
+    "main.py": "# Your calculator. Keep and improve this program across both visits.\n"
+  },
+  "example": "",
+  "sections": [],
+  "solution": {},
+  "checkpoints": [],
+  "solutionNote": {
+    "en": "There is no single reference solution. You choose the design and assess it with your own tests.",
+    "nl": "Er is geen enkele referentieoplossing. Jij kiest het ontwerp en beoordeelt het met je eigen tests."
+  },
+  "milestones": [
+    {
+      "id": "calculator-first-input",
+      "title": {
+        "en": "Read two numbers",
+        "nl": "Lees twee getallen"
+      },
+      "description": {
+        "en": "Choose clear prompts and convert the entered text into numbers. Make addition work first.",
+        "nl": "Kies duidelijke invoervragen en zet ingevoerde tekst om naar getallen. Laat eerst optellen werken."
+      },
+      "hints": [
+        {
+          "en": "Write an example interaction before coding.",
+          "nl": "Schrijf een voorbeeldinteractie vóór coderen."
+        },
+        {
+          "en": "Use float for decimal operands.",
+          "nl": "Gebruik float voor decimale getallen."
+        },
+        {
+          "en": "A small start is left = float(input(\"First number: \")).",
+          "nl": "Een klein begin is left = float(input(\"First number: \"))."
+        }
+      ]
+    },
+    {
+      "id": "calculator-first-choice",
+      "title": {
+        "en": "Choose an operation",
+        "nl": "Kies een bewerking"
+      },
+      "description": {
+        "en": "Use decisions to support addition, subtraction, multiplication and division. Give unknown operations a clear response.",
+        "nl": "Gebruik beslissingen voor optellen, aftrekken, vermenigvuldigen en delen. Geef een duidelijk antwoord bij onbekende bewerkingen."
+      },
+      "hints": [
+        {
+          "en": "Only one operation should run.",
+          "nl": "Er moet maar één bewerking worden uitgevoerd."
+        },
+        {
+          "en": "Use an if/elif chain and a final else.",
+          "nl": "Gebruik een if/elif-keten en een laatste else."
+        },
+        {
+          "en": "Compare the operator text with symbols such as \"+\".",
+          "nl": "Vergelijk de bewerkingstekst met symbolen zoals \"+\"."
+        }
+      ]
+    },
+    {
+      "id": "calculator-first-zero",
+      "title": {
+        "en": "Handle a zero divisor",
+        "nl": "Handel een nuldeler af"
+      },
+      "description": {
+        "en": "Before division, check whether the second number is zero. Explain the problem instead of dividing.",
+        "nl": "Controleer vóór delen of het tweede getal nul is. Leg het probleem uit in plaats van te delen."
+      },
+      "hints": [
+        {
+          "en": "Zero is valid for some operations but not as a divisor.",
+          "nl": "Nul is bij sommige bewerkingen geldig maar niet als deler."
+        },
+        {
+          "en": "Put the zero decision inside the division choice.",
+          "nl": "Zet de nulbeslissing binnen de deelkeuze."
+        },
+        {
+          "en": "if right == 0: is a useful first line for that decision.",
+          "nl": "if right == 0: is een bruikbare eerste regel voor die beslissing."
+        }
+      ]
+    }
+  ],
+  "suggestedTests": [
+    {
+      "en": "Baseline: 2 + 3 → 5; 7 - 10 → -3; -2 × 4 → -8; 9 / 2 → 4.5; 0 × 5 → 0; 5 / 0 → a handled message. Repeat after every refactor.",
+      "nl": "Uitgangstests: 2 + 3 → 5; 7 - 10 → -3; -2 × 4 → -8; 9 / 2 → 4.5; 0 × 5 → 0; 5 / 0 → een afgehandeld bericht. Herhaal na elke refactor."
+    }
+  ],
+  "references": [
+    "python-v3-1-05",
+    "python-v3-2-02",
+    "python-v3-2-05"
+  ],
+  "projectId": "python-v3-calculator-project",
+  "continueFrom": "python-v2-calculator-project"
+}

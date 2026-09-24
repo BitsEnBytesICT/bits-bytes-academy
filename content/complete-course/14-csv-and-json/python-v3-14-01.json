@@ -1,0 +1,231 @@
+{
+  "id": "python-v3-14-01",
+  "chapter": 14,
+  "group": "python-v3-module-14",
+  "title": {
+    "en": "Read CSV records",
+    "nl": "Lees CSV-records"
+  },
+  "kind": "coding",
+  "optional": false,
+  "runtime": "terminal",
+  "guidance": "guided",
+  "estimatedMinutes": 16,
+  "explanation": {
+    "en": "Read tabular data with Python’s csv module. CSV fields arrive as strings; convert only the columns whose meaning is numeric.",
+    "nl": "Lees tabelgegevens met Pythons csv-module. CSV-velden komen als strings binnen; zet alleen kolommen om waarvan de betekenis numeriek is."
+  },
+  "example": "",
+  "topicIds": [
+    "csv-structure",
+    "csv-reader",
+    "csv-dictreader",
+    "csv-conversion"
+  ],
+  "prerequisites": [
+    "python-v3-13-04"
+  ],
+  "sections": [
+    {
+      "topicIds": [
+        "csv-structure",
+        "csv-reader",
+        "csv-dictreader",
+        "csv-conversion"
+      ],
+      "heading": {
+        "en": "Rows or named fields",
+        "nl": "Rijen of benoemde velden"
+      },
+      "body": {
+        "en": "CSV stores records with separators and optional quoting. csv.reader(handle) produces lists of string fields. csv.DictReader(handle) uses the first row as field names and produces dictionaries for the remaining rows. Open CSV with newline=\"\" so the parser handles line endings correctly. Convert numeric fields explicitly; identifiers such as \"001\" may need to stay text.",
+        "nl": "CSV bewaart records met scheidingstekens en optionele aanhalingstekens. csv.reader(handle) geeft lijsten met stringvelden. csv.DictReader(handle) gebruikt de eerste rij als veldnamen en geeft dictionaries voor de overige rijen. Open CSV met newline=\"\" zodat de parser regeleinden correct afhandelt. Zet numerieke velden expliciet om; codes zoals \"001\" moeten mogelijk tekst blijven."
+      },
+      "code": "import csv\nwith open(\"example.csv\", newline=\"\", encoding=\"utf-8\") as handle:\n    for row in csv.DictReader(handle):\n        print(row[\"name\"], int(row[\"score\"]) + 1)",
+      "output": "Ada 4\n",
+      "prediction": {
+        "en": "Why is int needed before adding one?",
+        "nl": "Waarom is int nodig vóór één optellen?"
+      },
+      "exampleFiles": {
+        "example.csv": "name,score\nAda,3\n"
+      }
+    },
+    {
+      "topicIds": [],
+      "heading": {
+        "en": "Try a changed input",
+        "nl": "Probeer gewijzigde invoer"
+      },
+      "body": {
+        "en": "Add a negative score and a name with leading zeros. Explain why only one column should be converted.",
+        "nl": "Voeg een negatieve score en een naam met voorloopnullen toe. Leg uit waarom slechts één kolom moet worden omgezet."
+      }
+    }
+  ],
+  "files": {
+    "scores.csv": "name,score\nAda,2\nBo,5\n",
+    "main.py": "import csv\n\ndef headings(filename):\n    return []\n\ndef read_scores(filename):\n    return []\n\nprint(read_scores(\"scores.csv\"))\n"
+  },
+  "solution": {
+    "scores.csv": "name,score\nAda,2\nBo,5\n",
+    "main.py": "import csv\n\ndef headings(filename):\n    with open(filename, newline=\"\", encoding=\"utf-8\") as handle:\n        rows = list(csv.reader(handle))\n    if rows:\n        return rows[0]\n    return []\n\ndef read_scores(filename):\n    records = []\n    with open(filename, newline=\"\", encoding=\"utf-8\") as handle:\n        for row in csv.DictReader(handle):\n            records.append({\"name\": row[\"name\"], \"score\": int(row[\"score\"])})\n    return records\n\nprint(read_scores(\"scores.csv\"))\n"
+  },
+  "checkpoints": [
+    {
+      "objectiveIds": [
+        "csv-structure",
+        "csv-reader"
+      ],
+      "task": {
+        "en": "Use csv.reader in headings to return the first row’s fields, or [] for an empty file.",
+        "nl": "Gebruik csv.reader in headings om de velden van de eerste rij terug te geven, of [] voor een leeg bestand."
+      },
+      "check": "headings(\"scores.csv\") == [\"name\",\"score\"]",
+      "hints": [
+        {
+          "en": "A CSV row is a list of fields.",
+          "nl": "Een CSV-rij is een lijst velden."
+        },
+        {
+          "en": "Read rows through the parser, then select the header.",
+          "nl": "Lees rijen via de parser en selecteer de kop."
+        },
+        {
+          "en": "rows = list(csv.reader(handle))",
+          "nl": "rows = list(csv.reader(handle))"
+        }
+      ],
+      "hint": {
+        "en": "A CSV row is a list of fields.",
+        "nl": "Een CSV-rij is een lijst velden."
+      },
+      "feedback": {
+        "en": "Do not treat an empty file as though it contains a header.",
+        "nl": "Behandel een leeg bestand niet alsof het een kop bevat."
+      },
+      "probes": [
+        {
+          "call": {
+            "name": "headings",
+            "args": [
+              "empty.csv"
+            ]
+          },
+          "check": "_return == []",
+          "files": {
+            "empty.csv": ""
+          }
+        },
+        {
+          "call": {
+            "name": "headings",
+            "args": [
+              "custom.csv"
+            ]
+          },
+          "check": "_return == [\"full name\",\"score\"]",
+          "files": {
+            "custom.csv": "full name,score\n"
+          }
+        }
+      ],
+      "id": "python-v3-14-01-step-1"
+    },
+    {
+      "objectiveIds": [
+        "csv-dictreader",
+        "csv-conversion"
+      ],
+      "task": {
+        "en": "Use DictReader to return name/score dictionaries, keeping names as strings and converting scores to int.",
+        "nl": "Gebruik DictReader om name/score-dictionaries terug te geven, met namen als strings en scores als int."
+      },
+      "check": "read_scores(\"scores.csv\") == [{\"name\":\"Ada\",\"score\":2},{\"name\":\"Bo\",\"score\":5}]",
+      "hints": [
+        {
+          "en": "DictReader already consumes the header.",
+          "nl": "DictReader verwerkt de kop al."
+        },
+        {
+          "en": "Convert row[\"score\"] for each record.",
+          "nl": "Zet row[\"score\"] voor elk record om."
+        },
+        {
+          "en": "{\"name\": row[\"name\"], \"score\": int(row[\"score\"])}",
+          "nl": "{\"name\": row[\"name\"], \"score\": int(row[\"score\"])}"
+        }
+      ],
+      "hint": {
+        "en": "DictReader already consumes the header.",
+        "nl": "DictReader verwerkt de kop al."
+      },
+      "feedback": {
+        "en": "A numeric-looking string is not yet a numeric score.",
+        "nl": "Een numeriek ogende string is nog geen numerieke score."
+      },
+      "probes": [
+        {
+          "call": {
+            "name": "read_scores",
+            "args": [
+              "case.csv"
+            ]
+          },
+          "check": "_return == [{\"name\":\"001\",\"score\":-2}]",
+          "files": {
+            "case.csv": "name,score\n001,-2\n"
+          }
+        },
+        {
+          "call": {
+            "name": "read_scores",
+            "args": [
+              "header.csv"
+            ]
+          },
+          "check": "_return == []",
+          "files": {
+            "header.csv": "name,score\n"
+          }
+        }
+      ],
+      "id": "python-v3-14-01-step-2"
+    }
+  ],
+  "solutionNote": {
+    "en": "The parser owns CSV syntax while the program owns column meaning. That division preserves names and makes score arithmetic reliable.",
+    "nl": "De parser beheert CSV-syntax terwijl het programma kolombetekenis beheert. Die verdeling behoudt namen en maakt scoreberekeningen betrouwbaar."
+  },
+  "inputs": [],
+  "retrievals": [
+    {
+      "id": "recall-python-v3-12-01",
+      "sourceActivityId": "python-v3-12-01",
+      "objectiveIds": [
+        "dictionaries",
+        "empty-dictionaries",
+        "valid-keys",
+        "invalid-keys"
+      ],
+      "prompt": {
+        "en": "Build an empty record and choose valid dictionary keys. Explain why a list and a tuple containing a list cannot be keys.",
+        "nl": "Maak een leeg record en kies geldige dictionarysleutels. Leg uit waarom een lijst en een tuple met een lijst geen sleutels kunnen zijn."
+      }
+    },
+    {
+      "id": "recall-python-v3-13-01",
+      "sourceActivityId": "python-v3-13-01",
+      "objectiveIds": [
+        "with",
+        "read",
+        "utf-8",
+        "browser-filesystem"
+      ],
+      "prompt": {
+        "en": "Read UTF-8 text with with and explain when the file closes. Where are browser workspace files saved, and how do they reach your computer?",
+        "nl": "Lees UTF-8-tekst met with en leg uit wanneer het bestand sluit. Waar worden browserwerkruimtebestanden bewaard en hoe komen ze op je computer?"
+      }
+    }
+  ]
+}

@@ -1,0 +1,183 @@
+{
+  "id": "python-v3-11-01",
+  "chapter": 11,
+  "group": "python-v3-module-11",
+  "title": {
+    "en": "Read a failure",
+    "nl": "Lees een foutmelding"
+  },
+  "kind": "coding",
+  "optional": false,
+  "runtime": "terminal",
+  "guidance": "guided",
+  "estimatedMinutes": 16,
+  "explanation": {
+    "en": "Diagnose before editing. A syntax error prevents parsing, a runtime error interrupts execution, and a logic error produces an incorrect result without necessarily raising an exception.",
+    "nl": "Diagnosticeer vóór je wijzigt. Een syntaxfout verhindert ontleden, een runtimefout onderbreekt de uitvoering en een logische fout geeft een onjuist resultaat zonder noodzakelijk een uitzondering te veroorzaken."
+  },
+  "example": "",
+  "topicIds": [
+    "tracebacks",
+    "syntax-errors",
+    "runtime-errors",
+    "logic-errors"
+  ],
+  "prerequisites": [
+    "python-v3-10-06"
+  ],
+  "sections": [
+    {
+      "topicIds": [
+        "tracebacks",
+        "syntax-errors",
+        "runtime-errors",
+        "logic-errors"
+      ],
+      "heading": {
+        "en": "Read the final line, then the call chain",
+        "nl": "Lees de laatste regel en daarna de aanroepketen"
+      },
+      "body": {
+        "en": "For a traceback, start with the final exception type and message, then find the nearest line in your own code. SyntaxError commonly points at incomplete punctuation; ValueError can mean int received nonnumeric text. Neither is the same as a calculation that runs but answers the wrong question. Reproduce one small failing input and change one cause at a time. Compare these reports: `def average(total, count)` without a colon gives SyntaxError before running. Calling average(\"five\", 2) gives a traceback ending in TypeError; the relevant function line is `return total / count`. The original 5 // 2 result has neither failure: it is a logic error.",
+        "nl": "Begin bij een traceback met het laatste uitzonderingstype en bericht en zoek dan de dichtstbijzijnde regel in je eigen code. SyntaxError wijst vaak op onvolledige leestekens; ValueError kan betekenen dat int niet-numerieke tekst kreeg. Geen van beide is hetzelfde als een berekening die draait maar de verkeerde vraag beantwoordt. Herhaal één kleine mislukte invoer en wijzig één oorzaak tegelijk. Vergelijk deze meldingen: `def average(total, count)` zonder dubbele punt geeft SyntaxError vóór uitvoering. average(\"five\", 2) geeft een traceback die eindigt met TypeError; de relevante functieregel is `return total / count`. Het oorspronkelijke resultaat 5 // 2 geeft geen van beide fouten: het is een logische fout."
+      },
+      "code": "total, count = 5, 2\nprint(total // count)\nprint(total / count)",
+      "output": "2\n2.5\n",
+      "prediction": {
+        "en": "Which result answers the question “what is the average”?",
+        "nl": "Welk resultaat beantwoordt de vraag “wat is het gemiddelde”?"
+      }
+    },
+    {
+      "topicIds": [],
+      "heading": {
+        "en": "Try a changed input",
+        "nl": "Probeer gewijzigde invoer"
+      },
+      "body": {
+        "en": "Temporarily remove the function’s colon and read the SyntaxError line. Restore it, then call average(\"five\", 2) and locate the TypeError and your function line in the traceback. Repair each change before continuing.",
+        "nl": "Verwijder tijdelijk de dubbele punt en lees de SyntaxError-regel. Herstel die, roep daarna average(\"five\", 2) aan en zoek TypeError en je functieregel in de traceback. Herstel elke wijziging voordat je verdergaat."
+      }
+    }
+  ],
+  "files": {
+    "main.py": "def average(total, count):\n    return total // count\n\nerror_kind = \"runtime\"\nsyntax_kind = \"\"\nruntime_kind = \"\"\nfault_line = \"\"\nprint(average(5, 2))\n"
+  },
+  "solution": {
+    "main.py": "def average(total, count):\n    return total / count\n\nerror_kind = \"logic\"\nsyntax_kind = \"syntax\"\nruntime_kind = \"runtime\"\nfault_line = \"return total / count\"\nprint(average(5, 2))\n"
+  },
+  "checkpoints": [
+    {
+      "objectiveIds": [
+        "logic-errors"
+      ],
+      "task": {
+        "en": "Repair average(total, count) to preserve fractional results. Assume count > 0.",
+        "nl": "Repareer average(total, count) zodat fracties behouden blijven. Neem count > 0 aan."
+      },
+      "check": "average(5,2) == 2.5",
+      "hints": [
+        {
+          "en": "The program runs, but one operator answers a different question.",
+          "nl": "Het programma draait, maar één operator beantwoordt een andere vraag."
+        },
+        {
+          "en": "Compare / with //.",
+          "nl": "Vergelijk / met //."
+        },
+        {
+          "en": "return total / count",
+          "nl": "return total / count"
+        }
+      ],
+      "hint": {
+        "en": "The program runs, but one operator answers a different question.",
+        "nl": "Het programma draait, maar één operator beantwoordt een andere vraag."
+      },
+      "feedback": {
+        "en": "An average is not automatically a whole number.",
+        "nl": "Een gemiddelde is niet automatisch een geheel getal."
+      },
+      "probes": [
+        {
+          "call": {
+            "name": "average",
+            "args": [
+              1,
+              4
+            ]
+          },
+          "check": "_return == 0.25"
+        },
+        {
+          "call": {
+            "name": "average",
+            "args": [
+              -5,
+              2
+            ]
+          },
+          "check": "_return == -2.5"
+        }
+      ],
+      "id": "python-v3-11-01-step-1"
+    },
+    {
+      "objectiveIds": [
+        "tracebacks",
+        "syntax-errors",
+        "runtime-errors"
+      ],
+      "task": {
+        "en": "Classify the three reports: set error_kind, syntax_kind and runtime_kind to \"logic\", \"syntax\" and \"runtime\". Put the relevant function line from the TypeError report in fault_line. Run the repaired program and confirm 2.5.",
+        "nl": "Classificeer de drie meldingen: stel error_kind, syntax_kind en runtime_kind in op \"logic\", \"syntax\" en \"runtime\". Zet de relevante functieregel uit de TypeError-melding in fault_line. Voer het herstelde programma uit en bevestig 2.5."
+      },
+      "check": "error_kind == \"logic\" and syntax_kind == \"syntax\" and runtime_kind == \"runtime\" and fault_line.strip() == \"return total / count\" and _stdout.strip() == \"2.5\"",
+      "hints": [
+        {
+          "en": "No exception was raised by the original valid numeric call.",
+          "nl": "De oorspronkelijke geldige numerieke aanroep gaf geen uitzondering."
+        },
+        {
+          "en": "A wrong result without a failure is a logic error.",
+          "nl": "Een fout resultaat zonder onderbreking is een logische fout."
+        },
+        {
+          "en": "error_kind = \"logic\"",
+          "nl": "error_kind = \"logic\""
+        }
+      ],
+      "hint": {
+        "en": "No exception was raised by the original valid numeric call.",
+        "nl": "De oorspronkelijke geldige numerieke aanroep gaf geen uitzondering."
+      },
+      "feedback": {
+        "en": "Distinguish a wrong result from a program that cannot parse or stops with an exception.",
+        "nl": "Onderscheid een fout resultaat van een programma dat niet kan ontleden of stopt met een uitzondering."
+      },
+      "probes": [],
+      "id": "python-v3-11-01-step-2"
+    }
+  ],
+  "solutionNote": {
+    "en": "The fault was a floor-division operator, not missing syntax or bad input. A fractional test exposes it while an evenly divisible test can hide it.",
+    "nl": "De fout was een naar-beneden-deling, geen ontbrekende syntax of slechte invoer. Een test met een fractie onthult die terwijl een exact deelbare test die kan verbergen."
+  },
+  "inputs": [],
+  "retrievals": [
+    {
+      "id": "recall-python-v3-9-01",
+      "sourceActivityId": "python-v3-9-01",
+      "objectiveIds": [
+        "insert",
+        "remove",
+        "pop",
+        "count"
+      ],
+      "prompt": {
+        "en": "For a queue with duplicate names, contrast insert, remove and pop. Which returns an item, and what does count report?",
+        "nl": "Vergelijk insert, remove en pop voor een wachtrij met dubbele namen. Welke geeft een element terug en wat meldt count?"
+      }
+    }
+  ]
+}

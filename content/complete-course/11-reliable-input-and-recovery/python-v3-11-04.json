@@ -1,0 +1,234 @@
+{
+  "id": "python-v3-11-04",
+  "chapter": 11,
+  "group": "python-v3-module-11",
+  "title": {
+    "en": "Repair a retry conversation",
+    "nl": "Repareer een herhaalgesprek"
+  },
+  "kind": "coding",
+  "optional": false,
+  "runtime": "terminal",
+  "guidance": "adapt",
+  "estimatedMinutes": 16,
+  "explanation": {
+    "en": "Repair a conversation that gives up after bad input. Keep reading until a valid nonnegative number, cancel, or end-of-input.",
+    "nl": "Repareer een gesprek dat bij slechte invoer opgeeft. Blijf lezen tot een geldig niet-negatief getal, cancel of einde van invoer."
+  },
+  "example": "",
+  "topicIds": [
+    "retry",
+    "cancel",
+    "end-of-input"
+  ],
+  "prerequisites": [
+    "python-v3-11-03"
+  ],
+  "sections": [
+    {
+      "topicIds": [
+        "retry",
+        "cancel",
+        "end-of-input"
+      ],
+      "heading": {
+        "en": "Every path has a next action",
+        "nl": "Elke route heeft een volgende actie"
+      },
+      "body": {
+        "en": "Normalise commands with strip().lower() before comparing. Catch EOFError around input when no more input is available; the terminal’s end-input action can trigger it. Cancellation and EOF both return None. On a conversion or range failure, explain what to try and continue the loop. A valid result returns immediately. float also accepts \"inf\" and \"nan\": these are not finite amounts. Check amount >= 0 and amount < float(\"inf\"); NaN fails these comparisons.",
+        "nl": "Normaliseer commando’s met strip().lower() vóór vergelijken. Vang EOFError rond input op wanneer geen invoer meer beschikbaar is; de terminalactie voor einde invoer kan dit activeren. Annuleren en EOF geven beide None. Leg bij omzettings- of bereikfouten uit wat te proberen en vervolg de lus. Een geldig resultaat wordt direct teruggegeven. float accepteert ook \"inf\" en \"nan\": dit zijn geen eindige bedragen. Controleer amount >= 0 en amount < float(\"inf\"); NaN faalt deze vergelijkingen."
+      },
+      "code": "raw = \" CANCEL \"\nprint(raw.strip().lower() == \"cancel\")",
+      "output": "True\n",
+      "prediction": {
+        "en": "Why is normalisation useful before cancellation?",
+        "nl": "Waarom is normalisatie nuttig vóór annuleren?"
+      }
+    },
+    {
+      "topicIds": [],
+      "heading": {
+        "en": "Try a changed input",
+        "nl": "Probeer gewijzigde invoer"
+      },
+      "body": {
+        "en": "Try invalid text, a negative number, zero, a mixed-case cancel, and end-input. Explain which branch handles each.",
+        "nl": "Probeer ongeldige tekst, een negatief getal, nul, cancel met gemengde hoofdletters en einde invoer. Leg uit welke tak elk geval afhandelt."
+      }
+    }
+  ],
+  "files": {
+    "reader.py": "def read_amount():\n    raw = input(\"Amount or cancel: \")\n    if raw == \"cancel\":\n        return None\n    return float(raw)\n",
+    "main.py": "import reader\nresult = reader.read_amount()\nprint(result)\n"
+  },
+  "solution": {
+    "reader.py": "def read_amount():\n    while True:\n        try:\n            raw = input(\"Amount or cancel: \")\n        except EOFError:\n            return None\n        if raw.strip().lower() == \"cancel\":\n            return None\n        try:\n            amount = float(raw)\n        except ValueError:\n            print(\"Try a number\")\n            continue\n        if amount >= 0 and amount < float(\"inf\"):\n            return amount\n        print(\"Use a finite number of 0 or more\")\n",
+    "main.py": "import reader\nresult = reader.read_amount()\nprint(result)\n"
+  },
+  "checkpoints": [
+    {
+      "objectiveIds": [
+        "retry"
+      ],
+      "task": {
+        "en": "In reader.py retry after malformed or negative input, with a message explaining what to change. Return a finite nonnegative float when valid.",
+        "nl": "Probeer in reader.py opnieuw na ongeldige of negatieve invoer met een bericht over wat te veranderen. Geef bij geldige invoer een eindige niet-negatieve float terug."
+      },
+      "check": "result == 4",
+      "hints": [
+        {
+          "en": "A failed attempt should return to input, not return from the function.",
+          "nl": "Een mislukte poging moet naar input terugkeren, niet uit de functie teruggeven."
+        },
+        {
+          "en": "Keep the whole conversation inside while True. The upper bound float(\"inf\") excludes infinity; NaN fails the range test.",
+          "nl": "Houd het hele gesprek binnen while True. De bovengrens float(\"inf\") sluit oneindig uit; NaN faalt de bereiktest."
+        },
+        {
+          "en": "except ValueError:\n    print(\"Try a number\")\n    continue",
+          "nl": "except ValueError:\n    print(\"Try a number\")\n    continue"
+        }
+      ],
+      "hint": {
+        "en": "A failed attempt should return to input, not return from the function.",
+        "nl": "Een mislukte poging moet naar input terugkeren, niet uit de functie teruggeven."
+      },
+      "feedback": {
+        "en": "Check that a later good value is still accepted after two bad attempts.",
+        "nl": "Controleer dat een latere goede waarde na twee slechte pogingen nog wordt geaccepteerd."
+      },
+      "probes": [
+        {
+          "call": {
+            "name": "read_amount",
+            "args": [],
+            "module": "reader"
+          },
+          "check": "_return == 0 and _call_stdout.count(chr(10)) >= 2",
+          "moduleOnly": true,
+          "module": "reader",
+          "stdin": [
+            "oops",
+            "-2",
+            "0"
+          ]
+        },
+        {
+          "call": {
+            "name": "read_amount",
+            "args": [],
+            "module": "reader"
+          },
+          "check": "_return == 3.5",
+          "moduleOnly": true,
+          "module": "reader",
+          "stdin": [
+            "nan",
+            "inf",
+            "3.5"
+          ]
+        }
+      ],
+      "id": "python-v3-11-04-step-1"
+    },
+    {
+      "objectiveIds": [
+        "cancel",
+        "end-of-input"
+      ],
+      "task": {
+        "en": "Return None for a normalised cancel command or EOF, even after failed attempts.",
+        "nl": "Geef None bij een genormaliseerd cancel-commando of EOF, ook na mislukte pogingen."
+      },
+      "check": "reader.read_amount is not None",
+      "hints": [
+        {
+          "en": "No result is different from a valid amount of zero.",
+          "nl": "Geen resultaat verschilt van een geldig bedrag nul."
+        },
+        {
+          "en": "Catch EOFError at input; compare stripped lowercase text before numeric conversion.",
+          "nl": "Vang EOFError bij input op; vergelijk getrimde kleine letters vóór getalomzetting."
+        },
+        {
+          "en": "except EOFError:\n    return None",
+          "nl": "except EOFError:\n    return None"
+        }
+      ],
+      "hint": {
+        "en": "No result is different from a valid amount of zero.",
+        "nl": "Geen resultaat verschilt van een geldig bedrag nul."
+      },
+      "feedback": {
+        "en": "Cancellation must not be treated as malformed numeric input that repeats forever.",
+        "nl": "Annuleren mag niet als ongeldige numerieke invoer worden behandeld die eindeloos herhaalt."
+      },
+      "probes": [
+        {
+          "call": {
+            "name": "read_amount",
+            "args": [],
+            "module": "reader"
+          },
+          "check": "_return is None and _error is None",
+          "moduleOnly": true,
+          "module": "reader",
+          "stdin": [
+            "  CANCEL  "
+          ]
+        },
+        {
+          "call": {
+            "name": "read_amount",
+            "args": [],
+            "module": "reader"
+          },
+          "check": "_return is None and _error is None",
+          "moduleOnly": true,
+          "module": "reader",
+          "stdin": []
+        },
+        {
+          "call": {
+            "name": "read_amount",
+            "args": [],
+            "module": "reader"
+          },
+          "check": "_return is None and _error is None",
+          "moduleOnly": true,
+          "module": "reader",
+          "stdin": [
+            "bad"
+          ]
+        }
+      ],
+      "id": "python-v3-11-04-step-2"
+    }
+  ],
+  "solutionNote": {
+    "en": "Separate exception boundaries make every path clear: input may end, conversion may fail, validation may reject, or the function may return a result.",
+    "nl": "Aparte uitzonderingsgrenzen maken elke route duidelijk: invoer kan eindigen, omzetting kan mislukken, validatie kan afwijzen of de functie kan een resultaat teruggeven."
+  },
+  "inputs": [
+    "bad",
+    "-2",
+    "4"
+  ],
+  "retrievals": [
+    {
+      "id": "recall-python-v3-9-04",
+      "sourceActivityId": "python-v3-9-04",
+      "objectiveIds": [
+        "2d-lists",
+        "2d-access",
+        "2d-mutation",
+        "nested-loops"
+      ],
+      "prompt": {
+        "en": "Change one cell in a two-dimensional list and traverse every cell with nested loops. Identify row and column indexes.",
+        "nl": "Verander een cel in een tweedimensionale lijst en doorloop alle cellen met geneste lussen. Wijs rij- en kolomindex aan."
+      }
+    }
+  ]
+}

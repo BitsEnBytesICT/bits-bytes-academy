@@ -1,0 +1,165 @@
+{
+  "id": "python-v4-11-append",
+  "chapter": 11,
+  "group": "python-v4-module-11",
+  "title": {
+    "en": "Start empty and append",
+    "nl": "Begin leeg en voeg achteraan toe"
+  },
+  "kind": "coding",
+  "optional": false,
+  "runtime": "terminal",
+  "guidance": "guided",
+  "checkpointMode": "sequential",
+  "estimatedMinutes": 12,
+  "topicIds": [
+    "empty-lists",
+    "list-methods",
+    "append"
+  ],
+  "practices": [],
+  "requiredConcepts": [
+    "lists"
+  ],
+  "explanation": {
+    "en": "You often do not know all values when a program starts. An empty list can grow as data arrives.",
+    "nl": "Je kent vaak nog niet alle waarden wanneer een programma start. Een lege lijst kan groeien wanneer gegevens binnenkomen."
+  },
+  "example": "",
+  "sections": [
+    {
+      "id": "python-v4-11-append-example",
+      "topicIds": [
+        "empty-lists",
+        "list-methods",
+        "append"
+      ],
+      "heading": {
+        "en": "Follow a working example",
+        "nl": "Volg een werkend voorbeeld"
+      },
+      "body": {
+        "en": "[] is an empty list. A method is a function accessed through a value: history.append(4) calls the list’s append method. The dot connects the list to the method; parentheses supply the new element. append changes the existing list and returns None. Do not assign that return value back to history.",
+        "nl": "[] is een lege lijst. Een methode is een functie die je via een waarde benadert: history.append(4) roept de append-methode van de lijst aan. De punt verbindt de lijst met de methode; haakjes leveren het nieuwe element. append verandert de bestaande lijst en geeft None terug. Wijs die terugkeerwaarde niet opnieuw toe aan history."
+      },
+      "code": "history = []\nhistory.append(4)\nhistory.append(7)\nprint(history)",
+      "output": "[4, 7]\n",
+      "prediction": {
+        "en": "What would printing history.append(9) display?",
+        "nl": "Wat toont het afdrukken van history.append(9)?"
+      },
+      "takeaway": {
+        "en": "append changes the list in place and adds one element at the end.",
+        "nl": "append verandert de lijst zelf en voegt één element achteraan toe."
+      }
+    },
+    {
+      "id": "python-v4-11-append-experiment",
+      "topicIds": [],
+      "heading": {
+        "en": "Try one change",
+        "nl": "Probeer één wijziging"
+      },
+      "body": {
+        "en": "Append an empty string and explain why the list is no longer empty.",
+        "nl": "Voeg een lege string toe en leg uit waarom de lijst niet meer leeg is."
+      }
+    }
+  ],
+  "files": {
+    "main.py": "def pair(first, second):\n    # Complete this function.\n    return None\n"
+  },
+  "solution": {
+    "main.py": "def pair(first, second):\n    values = []\n    values.append(first)\n    values.append(second)\n    return values\n"
+  },
+  "checkpoints": [
+    {
+      "id": "python-v4-11-append-step-1",
+      "objectiveIds": [
+        "empty-lists",
+        "list-methods",
+        "append"
+      ],
+      "task": {
+        "en": "Start an empty list, append first then second, and return the list. Practise append here.",
+        "nl": "Begin met een lege lijst, voeg first en daarna second toe met append en geef de lijst terug. Oefen hier append."
+      },
+      "check": "any(isinstance(n,_ast.Attribute) and n.attr == \"append\" for n in _ast.walk(_ast.parse(_source)))",
+      "probes": [
+        {
+          "call": {
+            "name": "pair",
+            "args": [
+              2,
+              4
+            ]
+          },
+          "check": "(_return == [2,4]) and _error is None"
+        },
+        {
+          "call": {
+            "name": "pair",
+            "args": [
+              "a",
+              "b"
+            ]
+          },
+          "check": "(_return == [\"a\",\"b\"]) and _error is None"
+        }
+      ],
+      "hint": {
+        "en": "append changes the list in place and adds one element at the end.",
+        "nl": "append verandert de lijst zelf en voegt één element achteraan toe."
+      },
+      "hints": [
+        {
+          "en": "append changes the list in place and adds one element at the end.",
+          "nl": "append verandert de lijst zelf en voegt één element achteraan toe."
+        },
+        {
+          "en": "Keep the list variable; call its method without replacing it.",
+          "nl": "Bewaar de lijstvariabele; roep de methode aan zonder de lijst te vervangen."
+        },
+        {
+          "en": "A small fragment to adapt: `values.append(first)`",
+          "nl": "Een klein fragment om aan te passen: `values.append(first)`"
+        }
+      ],
+      "feedback": {
+        "en": "Keep the list variable; call its method without replacing it.",
+        "nl": "Bewaar de lijstvariabele; roep de methode aan zonder de lijst te vervangen."
+      }
+    }
+  ],
+  "solutionNote": {
+    "en": "Each call mutates values; return sends the completed list to the caller.",
+    "nl": "Elke aanroep verandert values; return stuurt de voltooide lijst naar de aanroeper."
+  },
+  "inputs": [],
+  "retrievals": [
+    {
+      "id": "recall-python-v4-09-flow",
+      "sourceActivityId": "python-v4-09-flow",
+      "objectiveIds": [
+        "execution-flow"
+      ],
+      "prompt": {
+        "en": "Recall “Follow a function call”. Does defining bell print Ring immediately? Try the earlier example from memory, then check it. Predict what happens if the final print moves before the calls.",
+        "nl": "Haal “Volg een functieaanroep” terug. Drukt het definiëren van bell direct Ring af? Probeer het eerdere voorbeeld uit je geheugen en controleer daarna. Voorspel wat gebeurt als de laatste print vóór de aanroepen komt."
+      }
+    },
+    {
+      "id": "recall-python-v4-09-named-and-default",
+      "sourceActivityId": "python-v4-09-named-and-default",
+      "objectiveIds": [
+        "default-arguments",
+        "keyword-arguments",
+        "argument-types"
+      ],
+      "prompt": {
+        "en": "Recall “Optional inputs and named arguments”. Why is the second result not 12? Try the earlier example from memory, then check it. Compare delivery(5, 1) with delivery(fee=1, price=5).",
+        "nl": "Haal “Optionele invoer en benoemde argumenten” terug. Waarom is het tweede resultaat niet 12? Probeer het eerdere voorbeeld uit je geheugen en controleer daarna. Vergelijk delivery(5, 1) met delivery(fee=1, price=5)."
+      }
+    }
+  ]
+}

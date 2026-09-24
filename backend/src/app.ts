@@ -9,11 +9,16 @@ import { learningRoutes } from "./endpoints/learning.controller.js";
 import { courseCatalog } from "./course-catalog.js";
 import type { Course } from "../../shared/types.js";
 export function createApp(db = openDatabase(), courseOverride?: Course) {
-  const course = courseOverride ?? JSON.parse(
-    fs.readFileSync(path.resolve("content/course.json"), "utf8"),
-  );
-  const legacy = JSON.parse(
-    fs.readFileSync(path.resolve("content/legacy/course-v1.json"), "utf8"),
+  const course =
+    courseOverride ??
+    JSON.parse(fs.readFileSync(path.resolve("content/course.json"), "utf8"));
+  const legacy = [1, 2, 3].map((version) =>
+    JSON.parse(
+      fs.readFileSync(
+        path.resolve(`content/legacy/course-v${version}.json`),
+        "utf8",
+      ),
+    ),
   );
   const app = express();
   app.disable("x-powered-by");
@@ -33,7 +38,7 @@ export function createApp(db = openDatabase(), courseOverride?: Course) {
     next();
   });
   app.use(express.json({ limit: "25mb" }));
-  app.get("/api/courses", (_q, s) => s.json(courseCatalog));
+  app.get("/api/courses", (_q, s) => s.json(courseCatalog(course)));
   app.use(
     "/api",
     learningRoutes(new LearningService(new LearningDAO(db), course, legacy)),

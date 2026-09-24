@@ -1,0 +1,150 @@
+{
+  "id": "python-v4-17-pop",
+  "chapter": 17,
+  "group": "python-v4-module-17",
+  "title": {
+    "en": "Remove by index and keep the value",
+    "nl": "Verwijder op index en bewaar de waarde"
+  },
+  "kind": "coding",
+  "optional": false,
+  "runtime": "terminal",
+  "guidance": "guided",
+  "checkpointMode": "sequential",
+  "estimatedMinutes": 12,
+  "topicIds": [
+    "pop"
+  ],
+  "practices": [],
+  "requiredConcepts": [
+    "remove",
+    "indexing",
+    "length"
+  ],
+  "explanation": {
+    "en": "pop both removes an item and gives that item back to you.",
+    "nl": "pop verwijdert een item en geeft dat item aan je terug."
+  },
+  "example": "",
+  "sections": [
+    {
+      "id": "python-v4-17-pop-example",
+      "topicIds": [
+        "pop"
+      ],
+      "heading": {
+        "en": "Follow a working example",
+        "nl": "Volg een werkend voorbeeld"
+      },
+      "body": {
+        "en": "items.pop(index) removes and returns the element at that index. Omitting the index selects the last element. Unlike remove, its argument is a position rather than a value. A missing position raises IndexError; guard an empty list before popping.",
+        "nl": "items.pop(index) verwijdert het element op die index en geeft het terug. Zonder index wordt het laatste element gekozen. Anders dan bij remove is het argument een positie in plaats van een waarde. Een ontbrekende positie veroorzaakt IndexError; bewaak een lege lijst vóór pop."
+      },
+      "code": "queue = [\"Ada\",\"Bo\"]\nnext_person = queue.pop(0)\nprint(next_person)\nprint(queue)",
+      "output": "Ada\n['Bo']\n",
+      "prediction": {
+        "en": "What would pop() without 0 remove?",
+        "nl": "Wat verwijdert pop() zonder 0?"
+      },
+      "takeaway": {
+        "en": "pop returns the removed element, not the remaining list.",
+        "nl": "pop geeft het verwijderde element terug, niet de overgebleven lijst."
+      }
+    },
+    {
+      "id": "python-v4-17-pop-experiment",
+      "topicIds": [],
+      "heading": {
+        "en": "Try one change",
+        "nl": "Probeer één wijziging"
+      },
+      "body": {
+        "en": "Explain the different results of pop(0) and remove(0) on [5, 0].",
+        "nl": "Leg de verschillende resultaten uit van pop(0) en remove(0) op [5, 0]."
+      }
+    }
+  ],
+  "files": {
+    "main.py": "def take_next(queue):\n    # Complete this function.\n    return None\n"
+  },
+  "solution": {
+    "main.py": "def take_next(queue):\n    if len(queue) == 0:\n        return None\n    return queue.pop(0)\n"
+  },
+  "checkpoints": [
+    {
+      "id": "python-v4-17-pop-step-1",
+      "objectiveIds": [
+        "pop"
+      ],
+      "task": {
+        "en": "Use pop to remove and return the first item, or return None for an empty queue.",
+        "nl": "Gebruik pop om het eerste item te verwijderen en terug te geven, of geef None bij een lege wachtrij."
+      },
+      "check": "any(isinstance(n, _ast.Call) and isinstance(n.func, _ast.Attribute) and n.func.attr == \"pop\" for n in _ast.walk(_ast.parse(_source)))",
+      "probes": [
+        {
+          "call": {
+            "name": "take_next",
+            "args": [
+              [
+                "A",
+                "B"
+              ]
+            ]
+          },
+          "check": "(_return == \"A\" and _args[0] == [\"B\"]) and _error is None"
+        },
+        {
+          "call": {
+            "name": "take_next",
+            "args": [
+              []
+            ]
+          },
+          "check": "(_return is None) and _error is None"
+        }
+      ],
+      "hint": {
+        "en": "pop returns the removed element, not the remaining list.",
+        "nl": "pop geeft het verwijderde element terug, niet de overgebleven lijst."
+      },
+      "hints": [
+        {
+          "en": "pop returns the removed element, not the remaining list.",
+          "nl": "pop geeft het verwijderde element terug, niet de overgebleven lijst."
+        },
+        {
+          "en": "Handle the empty case before accessing the first position.",
+          "nl": "Verwerk het lege geval vóór toegang tot de eerste positie."
+        },
+        {
+          "en": "A small fragment to adapt: `return queue.pop(0)`",
+          "nl": "Een klein fragment om aan te passen: `return queue.pop(0)`"
+        }
+      ],
+      "feedback": {
+        "en": "Handle the empty case before accessing the first position.",
+        "nl": "Verwerk het lege geval vóór toegang tot de eerste positie."
+      }
+    }
+  ],
+  "solutionNote": {
+    "en": "The function returns the removed person and leaves the caller’s queue shortened.",
+    "nl": "De functie geeft de verwijderde persoon terug en laat de wachtrij van de aanroeper verkort achter."
+  },
+  "inputs": [],
+  "retrievals": [
+    {
+      "id": "recall-python-v4-15-surface-colour",
+      "sourceActivityId": "python-v4-15-surface-colour",
+      "objectiveIds": [
+        "surface",
+        "colours"
+      ],
+      "prompt": {
+        "en": "Recall “Paint an image on a Surface”. Which RGB channel makes this image blue? Try the earlier example from memory, then check it. Change one colour channel at a time and describe the change.",
+        "nl": "Haal “Teken een afbeelding op een Surface” terug. Welk RGB-kanaal maakt deze afbeelding blauw? Probeer het eerdere voorbeeld uit je geheugen en controleer daarna. Verander één kleurkanaal tegelijk en beschrijf de verandering."
+      }
+    }
+  ]
+}

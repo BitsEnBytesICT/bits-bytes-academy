@@ -1,0 +1,175 @@
+{
+  "id": "python-v4-20-lines",
+  "chapter": 20,
+  "group": "python-v4-module-20",
+  "title": {
+    "en": "Process one line at a time",
+    "nl": "Verwerk één regel tegelijk"
+  },
+  "kind": "coding",
+  "optional": false,
+  "runtime": "terminal",
+  "guidance": "guided",
+  "checkpointMode": "sequential",
+  "estimatedMinutes": 18,
+  "topicIds": [
+    "line-iteration"
+  ],
+  "practices": [],
+  "requiredConcepts": [
+    "read",
+    "for",
+    "strip"
+  ],
+  "explanation": {
+    "en": "A line loop lets you process a file incrementally instead of handling one large string.\n\nOpen work.py to write the requested function. main.py is a supplied caller: Run always starts there and imports your function. The other file tabs contain input data. After a successful run, open any new output file tab to inspect what your program saved.",
+    "nl": "Een regellus laat je een bestand stapsgewijs verwerken in plaats van één grote string te behandelen.\n\nOpen work.py om de gevraagde functie te schrijven. main.py is de aangeleverde aanroeper: Uitvoeren begint daar en importeert je functie. De andere bestandstabbladen bevatten invoergegevens. Open na een geslaagde uitvoering een nieuw uitvoerbestand om te bekijken wat je programma heeft opgeslagen."
+  },
+  "example": "",
+  "sections": [
+    {
+      "id": "python-v4-20-lines-example",
+      "topicIds": [
+        "line-iteration"
+      ],
+      "heading": {
+        "en": "Follow a working example",
+        "nl": "Volg een werkend voorbeeld"
+      },
+      "body": {
+        "en": "for line in handle visits each remaining line. A line usually includes its ending newline; the last line may not. strip() removes outer whitespace when that is appropriate for your data. Do not strip automatically when spaces are meaningful. The with block must remain open while iterating.",
+        "nl": "for line in handle bezoekt elke overgebleven regel. Een regel bevat meestal zijn afsluitende nieuwe regel; de laatste regel mogelijk niet. strip() verwijdert buitenste witruimte wanneer dat bij je gegevens past. Verwijder niet automatisch spaties als die betekenisvol zijn. Het with-blok moet open blijven tijdens doorlopen."
+      },
+      "code": "with open(\"example.txt\",encoding=\"utf-8\") as handle:\n    for line in handle:\n        print(line.strip())",
+      "output": "Ada\nBo\n",
+      "prediction": {
+        "en": "Why does strip avoid extra blank output lines here?",
+        "nl": "Waarom voorkomt strip hier extra lege uitvoerregels?"
+      },
+      "takeaway": {
+        "en": "Iterate while the file is open and decide explicitly how to handle whitespace.",
+        "nl": "Doorloop terwijl het bestand open is en beslis expliciet hoe witruimte wordt verwerkt."
+      },
+      "exampleFiles": {
+        "example.txt": " Ada \nBo"
+      }
+    },
+    {
+      "id": "python-v4-20-lines-experiment",
+      "topicIds": [],
+      "heading": {
+        "en": "Try one change",
+        "nl": "Probeer één wijziging"
+      },
+      "body": {
+        "en": "Try a final line without a newline and confirm it is still processed.",
+        "nl": "Probeer een laatste regel zonder nieuwe-regelteken en controleer dat die toch verwerkt wordt."
+      }
+    }
+  ],
+  "files": {
+    "names.txt": " Ada \n\n Bo\n",
+    "main.py": "import work\nprint(work.names(\"names.txt\"))\n",
+    "work.py": "def names(path):\n    return []\n"
+  },
+  "solution": {
+    "names.txt": " Ada \n\n Bo\n",
+    "main.py": "import work\nprint(work.names(\"names.txt\"))\n",
+    "work.py": "def names(path):\n    result = []\n    with open(path,encoding=\"utf-8\") as handle:\n        for line in handle:\n            name = line.strip()\n            if name != \"\":\n                result.append(name)\n    return result\n"
+  },
+  "checkpoints": [
+    {
+      "id": "python-v4-20-lines-step-1",
+      "objectiveIds": [
+        "line-iteration"
+      ],
+      "task": {
+        "en": "Return trimmed nonempty lines in order.",
+        "nl": "Geef getrimde niet-lege regels op volgorde terug."
+      },
+      "check": "True",
+      "probes": [
+        {
+          "call": {
+            "name": "names",
+            "args": [
+              "names.txt"
+            ],
+            "module": "work"
+          },
+          "check": "(_return == [\"Ada\",\"Bo\"]) and _error is None",
+          "moduleOnly": true,
+          "module": "work",
+          "files": {}
+        },
+        {
+          "call": {
+            "name": "names",
+            "args": [
+              "empty.txt"
+            ],
+            "module": "work"
+          },
+          "check": "(_return == []) and _error is None",
+          "moduleOnly": true,
+          "module": "work",
+          "files": {
+            "empty.txt": ""
+          }
+        }
+      ],
+      "hint": {
+        "en": "Iterate while the file is open and decide explicitly how to handle whitespace.",
+        "nl": "Doorloop terwijl het bestand open is en beslis expliciet hoe witruimte wordt verwerkt."
+      },
+      "hints": [
+        {
+          "en": "Iterate while the file is open and decide explicitly how to handle whitespace.",
+          "nl": "Doorloop terwijl het bestand open is en beslis expliciet hoe witruimte wordt verwerkt."
+        },
+        {
+          "en": "Clean each line before deciding whether to append it.",
+          "nl": "Schoon elke regel op vóór je beslist die toe te voegen."
+        },
+        {
+          "en": "A small fragment to adapt: `for line in handle:`",
+          "nl": "Een klein fragment om aan te passen: `for line in handle:`"
+        }
+      ],
+      "feedback": {
+        "en": "Clean each line before deciding whether to append it.",
+        "nl": "Schoon elke regel op vóór je beslist die toe te voegen."
+      }
+    }
+  ],
+  "solutionNote": {
+    "en": "The loop preserves order and excludes only lines that are empty after the requested trimming.",
+    "nl": "De lus bewaart de volgorde en sluit alleen regels uit die na het gevraagde trimmen leeg zijn."
+  },
+  "inputs": [],
+  "retrievals": [
+    {
+      "id": "recall-python-v4-18-slice",
+      "sourceActivityId": "python-v4-18-slice",
+      "objectiveIds": [
+        "string-slicing"
+      ],
+      "prompt": {
+        "en": "Recall “Extract a piece of text”. Which part does code[2:3] contain? Try the earlier example from memory, then check it. Compare slicing beyond the end with indexing beyond the end.",
+        "nl": "Haal “Haal een deel uit tekst” terug. Welk deel bevat code[2:3]? Probeer het eerdere voorbeeld uit je geheugen en controleer daarna. Vergelijk een deelbereik voorbij het einde met indexeren voorbij het einde."
+      }
+    },
+    {
+      "id": "recall-python-v4-18-replace-find",
+      "sourceActivityId": "python-v4-18-replace-find",
+      "objectiveIds": [
+        "replace",
+        "find"
+      ],
+      "prompt": {
+        "en": "Recall “Search and replace text”. Why is a match at zero easy to mishandle in a Boolean test? Try the earlier example from memory, then check it. Replace only the first occurrence by trying the optional count argument.",
+        "nl": "Haal “Zoek en vervang tekst” terug. Waarom wordt een overeenkomst op nul gemakkelijk verkeerd behandeld in een booleaanse test? Probeer het eerdere voorbeeld uit je geheugen en controleer daarna. Vervang alleen het eerste voorkomen door het optionele aantalargument te proberen."
+      }
+    }
+  ]
+}

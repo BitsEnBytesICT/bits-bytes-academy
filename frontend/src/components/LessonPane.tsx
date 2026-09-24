@@ -7,19 +7,24 @@ import type {
 import { Icon } from "../Icon";
 import { CodeBlock } from "./CodeBlock";
 import { InlineLessonText, LessonText } from "./LessonText";
+import { WorkedExample } from "./WorkedExample";
 import { LayeredHints } from "./LayeredHints";
+import { RetrievalPrompts } from "./RetrievalPrompts";
+import { instructionView } from "../lesson-progress";
 export function LessonPane({
   activity,
   course,
   language,
   progress,
   results,
+  checkedStep,
 }: {
   activity: Activity;
   course: Course;
   language: Language;
   progress: Progress;
   results: Record<string, boolean>;
+  checkedStep?: string;
 }) {
   const tr = (en: string, nl: string) => (language === "nl" ? nl : en);
   const group = course.groups.find((group) =>
@@ -30,6 +35,15 @@ export function LessonPane({
   )!;
   const title = (group?.title || chapter.title)[language];
   const exercise = activity.kind === "quiz" ? null : activity;
+  const instructions = exercise
+    ? instructionView(
+        exercise.checkpoints,
+        progress,
+        results,
+        exercise.checkpointMode,
+        checkedStep,
+      )
+    : null;
   return (
     <aside className="learning-pane">
       <div className="lesson-scroll structured-lesson" key={activity.id}>
@@ -53,29 +67,17 @@ export function LessonPane({
                 <CodeBlock className="example-code" code={exercise.example} />
               )}
               {exercise.sections?.map((section, index) => (
-                <section className="worked-example explanation" key={index}>
-                  <h2>
-                    <InlineLessonText text={section.heading[language]} />
-                  </h2>
-                  <LessonText text={section.body[language]} />
-                  {section.code !== undefined && (
-                    <CodeBlock className="example-code" code={section.code} />
-                  )}
-                  {section.output !== undefined && (
-                    <div className="example-result">
-                      <span>{tr("Output", "Output")}</span>
-                      <pre>
-                        <code>
-                          {section.output || tr("(No output)", "(Geen output)")}
-                        </code>
-                      </pre>
-                    </div>
-                  )}
-                  {section.takeaway && (
-                    <LessonText text={section.takeaway[language]} />
-                  )}
-                </section>
+                <WorkedExample
+                  key={index}
+                  section={section}
+                  language={language}
+                />
               ))}
+              <RetrievalPrompts
+                activity={exercise}
+                course={course}
+                language={language}
+              />
             </>
           ) : (
             <div className="explanation">
@@ -95,44 +97,98 @@ export function LessonPane({
               <h2>{tr("Instructions", "Instructies")}</h2>
               {exercise.checkpoints.length > 0 && (
                 <span>
-                  {
-                    exercise.checkpoints.filter(
-                      (c) =>
-                        results[c.id] ??
-                        (progress.checkpoints || []).includes(c.id),
-                    ).length
-                  }{" "}
-                  / {exercise.checkpoints.length}
+                  {instructions!.steps.filter((c) => c.passed).length} /{" "}
+                  {exercise.checkpoints.length}
                 </span>
               )}
             </div>
             <section className="lesson-section-content lesson-tasks">
+              {instructions?.reviewing && (
+                <div className="instruction-review" role="status">
+                  <strong>
+                    {tr(
+                      "Check the complete program",
+                      "Controleer het hele programma",
+                    )}
+                  </strong>
+                  <p>
+                    {instructions.reviewId
+                      ? tr(
+                          `You completed the steps, but your latest edits changed instruction ${exercise.checkpoints.findIndex((c) => c.id === instructions.reviewId) + 1}. Review that instruction and run again.`,
+                          `Je hebt de stappen afgerond, maar je laatste wijzigingen hebben instructie ${exercise.checkpoints.findIndex((c) => c.id === instructions.reviewId) + 1} veranderd. Bekijk die instructie en voer opnieuw uit.`,
+                        )
+                      : tr(
+                          "All steps have been practised. Run your program to check that everything works together.",
+                          "Alle stappen zijn geoefend. Voer je programma uit om te controleren of alles samen werkt.",
+                        )}
+                  </p>
+                  {instructions.reviewId && (
+                    <InlineLessonText
+                      text={
+                        exercise.checkpoints.find(
+                          (c) => c.id === instructions.reviewId,
+                        )!.feedback?.[language] ||
+                        exercise.checkpoints.find(
+                          (c) => c.id === instructions.reviewId,
+                        )!.task[language]
+                      }
+                    />
+                  )}
+                </div>
+              )}
               {exercise.checkpoints.length ? (
                 exercise.checkpoints.map((c, i) => {
-                  const passed =
-                      results[c.id] ??
-                      (progress.checkpoints || []).includes(c.id),
-                    failed = results[c.id] === false;
+                  const { passed, failed, locked, active } =
+                    instructions!.steps[i];
                   return (
                     <div
                       className={
                         "checkpoint " +
-                        (passed ? "passed" : failed ? "failed" : "")
+                        (passed
+                          ? "passed"
+                          : failed
+                            ? "failed"
+                            : locked
+                              ? "locked"
+                              : active
+                                ? "active"
+                                : "")
                       }
                       key={c.id}
                     >
                       <div className="checkpoint-title">
                         <span>
-                          {passed ? <Icon name="check" size={13} /> : i + 1}
+                          {passed ? (
+                            <Icon name="check" size={13} />
+                          ) : locked ? (
+                            <Icon name="lock" size={13} />
+                          ) : (
+                            i + 1
+                          )}
                         </span>
                         <p>
                           <InlineLessonText text={c.task[language]} />
                         </p>
                       </div>
-                      <LayeredHints
-                        hints={c.hints || [c.hint]}
-                        language={language}
-                      />
+                      {locked && (
+                        <p className="checkpoint-status">
+                          {tr(
+                            "Unlocks after the previous instruction",
+                            "Beschikbaar na de vorige instructie",
+                          )}
+                        </p>
+                      )}
+                      {active && (
+                        <p className="checkpoint-status">
+                          {tr("Current instruction", "Huidige instructie")}
+                        </p>
+                      )}
+                      {!locked && (
+                        <LayeredHints
+                          hints={c.hints || [c.hint]}
+                          language={language}
+                        />
+                      )}
                       {failed && !passed && (
                         <p className="check-message">
                           {c.feedback ? (

@@ -1,0 +1,167 @@
+{
+  "id": "python-v3-10-06",
+  "chapter": 10,
+  "group": "python-v3-module-10",
+  "title": {
+    "en": "Clean a text dataset",
+    "nl": "Schoon een tekstbestand op"
+  },
+  "kind": "coding",
+  "optional": false,
+  "runtime": "terminal",
+  "guidance": "independent",
+  "estimatedMinutes": 14,
+  "explanation": {
+    "en": "Clean a supplied text dataset into reusable tags. Each line is a candidate: trim the edges, convert to lowercase, replace internal spaces with hyphens, discard empty tags and duplicates, then return tags alphabetically.",
+    "nl": "Schoon een tekstverzameling op tot herbruikbare tags. Elke regel is een kandidaat: trim de randen, maak kleine letters, vervang interne spaties door streepjes, verwijder lege tags en duplicaten en geef de tags alfabetisch terug."
+  },
+  "example": "",
+  "topicIds": [
+    "strings-review"
+  ],
+  "prerequisites": [
+    "python-v3-10-05"
+  ],
+  "sections": [
+    {
+      "topicIds": [
+        "strings-review"
+      ],
+      "heading": {
+        "en": "A small transformation pipeline",
+        "nl": "Een korte reeks transformaties"
+      },
+      "body": {
+        "en": "Write down the order of operations: splitting, cleaning, filtering, deduplicating and ordering. List membership uses in just as string membership does, but compares whole items. Avoid joining too early: keep separate values until processing is finished.",
+        "nl": "Schrijf de bewerkingsvolgorde op: splitsen, opschonen, filteren, ontdubbelen en ordenen. Lijstlidmaatschap gebruikt in net als strings, maar vergelijkt hele items. Voeg niet te vroeg samen: houd waarden apart tot de verwerking klaar is."
+      },
+      "code": "parts = \" A ; B \".split(\";\")\nclean = [part.strip().lower() for part in parts]\nprint(\" / \".join(clean))",
+      "output": "a / b\n",
+      "prediction": {
+        "en": "Which stage changes the case, and which creates the final text?",
+        "nl": "Welke stap verandert hoofdletters en welke maakt de eindtekst?"
+      }
+    },
+    {
+      "topicIds": [],
+      "heading": {
+        "en": "Try a changed input",
+        "nl": "Probeer gewijzigde invoer"
+      },
+      "body": {
+        "en": "Add a repeated tag with different case and surrounding whitespace. Then add two internal spaces; explain why the current brief produces two hyphens.",
+        "nl": "Voeg een herhaalde tag toe met andere hoofdletters en witruimte eromheen. Voeg daarna twee interne spaties toe; leg uit waarom de huidige beschrijving twee streepjes oplevert."
+      }
+    }
+  ],
+  "files": {
+    "main.py": "def clean_tags(text):\n    pass\n\nprint(clean_tags(\" Ada \\nBo\\nada\\n \\nCee Dee\"))\n"
+  },
+  "solution": {
+    "main.py": "def clean_tags(text):\n    tags = []\n    for line in text.splitlines():\n        tag = line.strip().lower().replace(\" \", \"-\")\n        if tag != \"\" and tag not in tags:\n            tags.append(tag)\n    return sorted(tags)\n\nprint(clean_tags(\" Ada \\nBo\\nada\\n \\nCee Dee\"))\n"
+  },
+  "checkpoints": [
+    {
+      "objectiveIds": [
+        "strings-review"
+      ],
+      "task": {
+        "en": "Implement clean_tags according to the brief and return a sorted list of strings.",
+        "nl": "Implementeer clean_tags volgens de beschrijving en geef een gesorteerde lijst strings terug."
+      },
+      "check": "clean_tags(\" Ada \\nBo\\nada\\n \\nCee Dee\") == [\"ada\",\"bo\",\"cee-dee\"]",
+      "hints": [
+        {
+          "en": "Keep each line separate during cleaning.",
+          "nl": "Houd elke regel apart tijdens opschonen."
+        },
+        {
+          "en": "Apply strip, lowercase and space replacement before comparing tags.",
+          "nl": "Pas trimmen, kleine letters en spatievervanging toe vóór tags vergelijken."
+        },
+        {
+          "en": "tag = line.strip().lower().replace(\" \", \"-\")",
+          "nl": "tag = line.strip().lower().replace(\" \", \"-\")"
+        }
+      ],
+      "hint": {
+        "en": "Keep each line separate during cleaning.",
+        "nl": "Houd elke regel apart tijdens opschonen."
+      },
+      "feedback": {
+        "en": "Compare duplicates after normalisation, not before it.",
+        "nl": "Vergelijk duplicaten na normalisatie, niet ervoor."
+      },
+      "probes": [
+        {
+          "call": {
+            "name": "clean_tags",
+            "args": [
+              "Zed\nAlpha Beta\nzed"
+            ]
+          },
+          "check": "_return == [\"alpha-beta\",\"zed\"]"
+        }
+      ],
+      "id": "python-v3-10-06-step-1"
+    },
+    {
+      "objectiveIds": [
+        "strings-review"
+      ],
+      "task": {
+        "en": "Handle empty or whitespace-only text and preserve one copy of repeated tags.",
+        "nl": "Handel lege tekst en alleen witruimte af en behoud één kopie van herhaalde tags."
+      },
+      "check": "clean_tags(\"\") == []",
+      "hints": [
+        {
+          "en": "An empty line is not a useful tag.",
+          "nl": "Een lege regel is geen bruikbare tag."
+        },
+        {
+          "en": "Filter empty strings after trimming.",
+          "nl": "Filter lege strings na trimmen."
+        },
+        {
+          "en": "if tag != \"\" and tag not in tags:",
+          "nl": "if tag != \"\" and tag not in tags:"
+        }
+      ],
+      "hint": {
+        "en": "An empty line is not a useful tag.",
+        "nl": "Een lege regel is geen bruikbare tag."
+      },
+      "feedback": {
+        "en": "Do not include an empty tag or repeat the same cleaned tag.",
+        "nl": "Neem geen lege tag op en herhaal dezelfde opgeschoonde tag niet."
+      },
+      "probes": [
+        {
+          "call": {
+            "name": "clean_tags",
+            "args": [
+              " \n\t\n"
+            ]
+          },
+          "check": "_return == []"
+        },
+        {
+          "call": {
+            "name": "clean_tags",
+            "args": [
+              "A\na\n A "
+            ]
+          },
+          "check": "_return == [\"a\"]"
+        }
+      ],
+      "id": "python-v3-10-06-step-2"
+    }
+  ],
+  "solutionNote": {
+    "en": "Normalising before deduplication makes differently typed versions equivalent. Sorting a finished list separates ordering from the cleanup decisions.",
+    "nl": "Normaliseren vóór ontdubbelen maakt anders getypte versies gelijkwaardig. De voltooide lijst sorteren scheidt ordening van opschoningsbeslissingen."
+  },
+  "inputs": []
+}

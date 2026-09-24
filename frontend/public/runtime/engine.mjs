@@ -71,6 +71,7 @@ def _lab_probe(files, probe):
         if probe.get('call') and not call_reached: return False
         call_input_chars = sys.stdin.tell() - call_input_start if call_reached else 0
         namespace.update(_return=result, _error=error, _stdout=stdout.getvalue(), _stderr=stderr.getvalue(), _remaining_input=sys.stdin.read(), _close=math.isclose,
+            _source=files.get('main.py', ''), _ast=ast, _json=json, _os=os,
             _call_stdout=stdout.getvalue()[call_stdout_start:] if call_reached else '',
             _call_stderr=stderr.getvalue()[call_stderr_start:] if call_reached else '',
             _call_input_chars=call_input_chars, _args=call_args, _kwargs=call_kwargs)

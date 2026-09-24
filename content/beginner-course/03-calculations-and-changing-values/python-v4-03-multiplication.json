@@ -1,0 +1,191 @@
+{
+  "id": "python-v4-03-multiplication",
+  "chapter": 3,
+  "group": "python-v4-module-3",
+  "title": {
+    "en": "Multiply equal groups",
+    "nl": "Vermenigvuldig gelijke groepen"
+  },
+  "kind": "coding",
+  "optional": false,
+  "runtime": "terminal",
+  "guidance": "guided",
+  "checkpointMode": "sequential",
+  "estimatedMinutes": 12,
+  "topicIds": [
+    "multiplication"
+  ],
+  "practices": [],
+  "requiredConcepts": [
+    "variables",
+    "integers",
+    "floats"
+  ],
+  "explanation": {
+    "en": "Multiplication calculates the total for several equal groups without writing repeated additions.",
+    "nl": "Vermenigvuldigen berekent het totaal van gelijke groepen zonder herhaald optellen te schrijven."
+  },
+  "example": "",
+  "sections": [
+    {
+      "id": "python-v4-03-multiplication-example",
+      "topicIds": [
+        "multiplication"
+      ],
+      "heading": {
+        "en": "Follow a working example",
+        "nl": "Volg een werkend voorbeeld"
+      },
+      "body": {
+        "en": "Python uses * for multiplication, not the letter x. Three bags with four apples each contain 3 * 4 apples. Read this as three groups of four.\n\nYou can multiply an integer quantity by a float price. The result is a float. No multiplication changes the operands unless you assign a new value to one of their names.",
+        "nl": "Python gebruikt * voor vermenigvuldigen, niet de letter x. Drie zakken met elk vier appels bevatten 3 * 4 appels. Lees dit als drie groepen van vier.\n\nJe kunt een geheel aantal met een floatprijs vermenigvuldigen. Het resultaat is een float. Vermenigvuldigen verandert de operanden niet, tenzij je een nieuwe waarde aan een van hun namen toewijst."
+      },
+      "code": "bags = 3\nper_bag = 4\nprint(bags * per_bag)",
+      "output": "12\n",
+      "prediction": {
+        "en": "How many apples are there altogether?",
+        "nl": "Hoeveel appels zijn er samen?"
+      },
+      "takeaway": {
+        "en": "Use * to multiply a quantity by the value for one item.",
+        "nl": "Gebruik * om een aantal te vermenigvuldigen met de waarde per stuk."
+      }
+    },
+    {
+      "id": "python-v4-03-multiplication-experiment",
+      "topicIds": [],
+      "heading": {
+        "en": "Try one change",
+        "nl": "Probeer één wijziging"
+      },
+      "body": {
+        "en": "Double quantity and predict the new result. Then set quantity to zero.",
+        "nl": "Verdubbel quantity en voorspel het nieuwe resultaat. Zet quantity daarna op nul."
+      }
+    }
+  ],
+  "files": {
+    "main.py": "quantity = 4\nprice = 2.5\n"
+  },
+  "solution": {
+    "main.py": "quantity = 4\nprice = 2.5\nresult = quantity * price\nprint(result)\n"
+  },
+  "checkpoints": [
+    {
+      "id": "python-v4-03-multiplication-step-1",
+      "objectiveIds": [
+        "multiplication"
+      ],
+      "task": {
+        "en": "Calculate the price for all items and store it in result.",
+        "nl": "Bereken de prijs voor alle artikelen en bewaar die in result."
+      },
+      "check": "result == (quantity * price)",
+      "probes": [
+        {
+          "inputs": {
+            "quantity": 0,
+            "price": 2.5
+          },
+          "check": "result == (quantity * price)"
+        },
+        {
+          "inputs": {
+            "quantity": 3,
+            "price": 1.25
+          },
+          "check": "result == (quantity * price)"
+        }
+      ],
+      "hint": {
+        "en": "Use * to multiply a quantity by the value for one item.",
+        "nl": "Gebruik * om een aantal te vermenigvuldigen met de waarde per stuk."
+      },
+      "hints": [
+        {
+          "en": "Use * to multiply a quantity by the value for one item.",
+          "nl": "Gebruik * om een aantal te vermenigvuldigen met de waarde per stuk."
+        },
+        {
+          "en": "Each item has the same price. Multiply the number of items by that price.",
+          "nl": "Elk artikel heeft dezelfde prijs. Vermenigvuldig het aantal artikelen met die prijs."
+        },
+        {
+          "en": "A small fragment to adapt: `result = quantity * price`",
+          "nl": "Een klein fragment om aan te passen: `result = quantity * price`"
+        }
+      ],
+      "feedback": {
+        "en": "Each item has the same price. Multiply the number of items by that price.",
+        "nl": "Elk artikel heeft dezelfde prijs. Vermenigvuldig het aantal artikelen met die prijs."
+      }
+    },
+    {
+      "id": "python-v4-03-multiplication-step-2",
+      "objectiveIds": [
+        "multiplication"
+      ],
+      "task": {
+        "en": "Print result after calculating it.",
+        "nl": "Druk result af nadat je het hebt berekend."
+      },
+      "check": "float(_stdout.strip()) == result",
+      "probes": [
+        {
+          "inputs": {
+            "quantity": 0,
+            "price": 2.5
+          },
+          "check": "float(_stdout.strip()) == (quantity * price)"
+        },
+        {
+          "inputs": {
+            "quantity": 3,
+            "price": 1.25
+          },
+          "check": "float(_stdout.strip()) == (quantity * price)"
+        }
+      ],
+      "hint": {
+        "en": "Use * to multiply a quantity by the value for one item.",
+        "nl": "Gebruik * om een aantal te vermenigvuldigen met de waarde per stuk."
+      },
+      "hints": [
+        {
+          "en": "Use * to multiply a quantity by the value for one item.",
+          "nl": "Gebruik * om een aantal te vermenigvuldigen met de waarde per stuk."
+        },
+        {
+          "en": "Display the variable that holds the calculation, rather than typing the expected answer.",
+          "nl": "Toon de variabele met de berekening in plaats van het verwachte antwoord te typen."
+        },
+        {
+          "en": "A small fragment to adapt: `print(result)`",
+          "nl": "Een klein fragment om aan te passen: `print(result)`"
+        }
+      ],
+      "feedback": {
+        "en": "Display the variable that holds the calculation, rather than typing the expected answer.",
+        "nl": "Toon de variabele met de berekening in plaats van het verwachte antwoord te typen."
+      }
+    }
+  ],
+  "solutionNote": {
+    "en": "The expression uses both inputs, so changing the quantity or price changes the answer.",
+    "nl": "De expressie gebruikt beide invoerwaarden, zodat een ander aantal of een andere prijs het antwoord verandert."
+  },
+  "inputs": [],
+  "retrievals": [
+    {
+      "id": "recall-python-v4-01-print-order",
+      "sourceActivityId": "python-v4-01-print-order",
+      "objectiveIds": [
+        "execution-order"
+      ],
+      "prompt": {
+        "en": "Recall “One line after another”. Which message appears first? Try the earlier example from memory, then check it. Swap the calls and run again. Add a blank editor line between them and compare the output.",
+        "nl": "Haal “De ene regel na de andere” terug. Welk bericht verschijnt eerst? Probeer het eerdere voorbeeld uit je geheugen en controleer daarna. Verwissel de aanroepen en voer opnieuw uit. Voeg een lege editorregel ertussen toe en vergelijk de uitvoer."
+      }
+    }
+  ]
+}

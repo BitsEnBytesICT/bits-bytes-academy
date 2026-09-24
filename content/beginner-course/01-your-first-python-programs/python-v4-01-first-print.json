@@ -1,0 +1,114 @@
+{
+  "id": "python-v4-01-first-print",
+  "chapter": 1,
+  "group": "python-v4-module-1",
+  "title": {
+    "en": "Write your first print",
+    "nl": "Schrijf je eerste print"
+  },
+  "kind": "coding",
+  "optional": false,
+  "runtime": "terminal",
+  "guidance": "guided",
+  "checkpointMode": "sequential",
+  "estimatedMinutes": 8,
+  "topicIds": [
+    "print"
+  ],
+  "practices": [],
+  "requiredConcepts": [
+    "welcome"
+  ],
+  "explanation": {
+    "en": "Now you will write a complete one-line program yourself. The editor is empty on purpose: you already know the one instruction you need.",
+    "nl": "Nu schrijf je zelf een volledig programma van één regel. De editor is bewust leeg: je kent de instructie die je nodig hebt al."
+  },
+  "example": "",
+  "sections": [
+    {
+      "id": "python-v4-01-first-print-example",
+      "topicIds": [
+        "print",
+        "welcome"
+      ],
+      "heading": {
+        "en": "Follow a working example",
+        "nl": "Volg een werkend voorbeeld"
+      },
+      "body": {
+        "en": "print is a built-in function: a named tool that Python already provides. Calling it means writing print followed by parentheses. To display text, put the text inside matching quotation marks inside those parentheses.\n\nIn print(\"Good morning!\"), print names the tool, ( and ) enclose its input, and \"Good morning!\" is the text. Python is case-sensitive: Print is a different name. A program file does not display text just because you type it; print explicitly requests output.",
+        "nl": "print is een ingebouwde functie: een hulpmiddel met een naam dat Python al aanbiedt. Je roept het aan door print met haakjes erachter te schrijven. Zet tekst tussen bijpassende aanhalingstekens binnen die haakjes om haar te tonen.\n\nIn print(\"Good morning!\") is print het hulpmiddel, omsluiten ( en ) de invoer en is \"Good morning!\" de tekst. Python is hoofdlettergevoelig: Print is een andere naam. Een programmabestand toont niet vanzelf de tekst die je typt; print vraagt expliciet om uitvoer."
+      },
+      "code": "print(\"Good morning!\")",
+      "output": "Good morning!\n",
+      "prediction": {
+        "en": "Which part of this line will appear in the terminal?",
+        "nl": "Welk deel van deze regel verschijnt in de terminal?"
+      },
+      "takeaway": {
+        "en": "Use print(...) to display a value; text inside it needs matching quotes.",
+        "nl": "Gebruik print(...) om een waarde te tonen; tekst erin heeft bijpassende aanhalingstekens nodig."
+      }
+    },
+    {
+      "id": "python-v4-01-first-print-experiment",
+      "topicIds": [],
+      "heading": {
+        "en": "Try one change",
+        "nl": "Probeer één wijziging"
+      },
+      "body": {
+        "en": "Change the greeting and predict the output before running. Is anything printed without a print call?",
+        "nl": "Verander de begroeting en voorspel de uitvoer. Wordt er iets getoond zonder een print-aanroep?"
+      }
+    }
+  ],
+  "files": {
+    "main.py": ""
+  },
+  "solution": {
+    "main.py": "print(\"Hello, Python!\")\n"
+  },
+  "checkpoints": [
+    {
+      "id": "python-v4-01-first-print-step-1",
+      "objectiveIds": [
+        "print",
+        "welcome"
+      ],
+      "task": {
+        "en": "Display exactly \"Hello, Python!\" and run your program.",
+        "nl": "Toon precies \"Hello, Python!\" en voer je programma uit."
+      },
+      "check": "_stdout == \"Hello, Python!\\n\"",
+      "probes": [],
+      "hint": {
+        "en": "Use print(...) to display a value; text inside it needs matching quotes.",
+        "nl": "Gebruik print(...) om een waarde te tonen; tekst erin heeft bijpassende aanhalingstekens nodig."
+      },
+      "hints": [
+        {
+          "en": "Use print(...) to display a value; text inside it needs matching quotes.",
+          "nl": "Gebruik print(...) om een waarde te tonen; tekst erin heeft bijpassende aanhalingstekens nodig."
+        },
+        {
+          "en": "Check lowercase print, two parentheses, and matching quotes around the message.",
+          "nl": "Controleer print met kleine letters, twee haakjes en bijpassende aanhalingstekens om het bericht."
+        },
+        {
+          "en": "A small fragment to adapt: `print(\"your message\")`",
+          "nl": "Een klein fragment om aan te passen: `print(\"your message\")`"
+        }
+      ],
+      "feedback": {
+        "en": "Check lowercase print, two parentheses, and matching quotes around the message.",
+        "nl": "Controleer print met kleine letters, twee haakjes en bijpassende aanhalingstekens om het bericht."
+      }
+    }
+  ],
+  "solutionNote": {
+    "en": "The one call displays the message and adds a newline. Single quotes are equally valid here.",
+    "nl": "De ene aanroep toont het bericht en voegt een nieuwe regel toe. Enkele aanhalingstekens zijn hier ook geldig."
+  },
+  "inputs": []
+}

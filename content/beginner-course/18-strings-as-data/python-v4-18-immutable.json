@@ -1,0 +1,147 @@
+{
+  "id": "python-v4-18-immutable",
+  "chapter": 18,
+  "group": "python-v4-module-18",
+  "title": {
+    "en": "Build a changed string",
+    "nl": "Maak een veranderde string"
+  },
+  "kind": "coding",
+  "optional": false,
+  "runtime": "terminal",
+  "guidance": "guided",
+  "checkpointMode": "sequential",
+  "estimatedMinutes": 12,
+  "topicIds": [
+    "immutability"
+  ],
+  "practices": [],
+  "requiredConcepts": [
+    "string-slicing",
+    "concatenation"
+  ],
+  "explanation": {
+    "en": "A string cannot be edited one character at a time by indexed assignment. Build a new string instead.",
+    "nl": "Een string kun je niet met indextoewijzing teken voor teken veranderen. Maak in plaats daarvan een nieuwe string."
+  },
+  "example": "",
+  "sections": [
+    {
+      "id": "python-v4-18-immutable-example",
+      "topicIds": [
+        "immutability"
+      ],
+      "heading": {
+        "en": "Follow a working example",
+        "nl": "Volg een werkend voorbeeld"
+      },
+      "body": {
+        "en": "text[0] = \"A\" raises TypeError because strings are immutable. Assignment to text itself is allowed: it makes the name refer to a new string. Combine a replacement with a slice to preserve the remaining characters. String methods also return new strings instead of changing the original.",
+        "nl": "text[0] = \"A\" veroorzaakt TypeError omdat strings onveranderbaar zijn. Toewijzing aan text zelf mag wel: de naam verwijst dan naar een nieuwe string. Combineer een vervanging met een deelbereik om de overige tekens te bewaren. Stringmethoden geven ook nieuwe strings terug in plaats van het origineel te veranderen."
+      },
+      "code": "name = \"bo\"\nupdated = \"B\" + name[1:]\nprint(updated)\nprint(name)",
+      "output": "Bo\nbo\n",
+      "prediction": {
+        "en": "Why does name still contain lowercase b?",
+        "nl": "Waarom bevat name nog steeds een kleine b?"
+      },
+      "takeaway": {
+        "en": "Rebind a name to new text instead of mutating characters.",
+        "nl": "Koppel een naam aan nieuwe tekst in plaats van tekens te veranderen."
+      }
+    },
+    {
+      "id": "python-v4-18-immutable-experiment",
+      "topicIds": [],
+      "heading": {
+        "en": "Try one change",
+        "nl": "Probeer één wijziging"
+      },
+      "body": {
+        "en": "Try assigning to text[0] in an experiment and read the TypeError.",
+        "nl": "Probeer in een experiment aan text[0] toe te wijzen en lees de TypeError."
+      }
+    }
+  ],
+  "files": {
+    "main.py": "def replace_first(text, character):\n    # Complete this function.\n    return None\n"
+  },
+  "solution": {
+    "main.py": "def replace_first(text, character):\n    if text == \"\":\n        return \"\"\n    return character + text[1:]\n"
+  },
+  "checkpoints": [
+    {
+      "id": "python-v4-18-immutable-step-1",
+      "objectiveIds": [
+        "immutability"
+      ],
+      "task": {
+        "en": "Return a new string with the first character replaced; return empty text unchanged. Assume character has length one.",
+        "nl": "Geef een nieuwe string terug met het eerste teken vervangen; laat lege tekst leeg. Neem aan dat character lengte één heeft."
+      },
+      "check": "callable(replace_first)",
+      "probes": [
+        {
+          "call": {
+            "name": "replace_first",
+            "args": [
+              "cat",
+              "b"
+            ]
+          },
+          "check": "(_return == \"bat\" and _args[0] == \"cat\") and _error is None"
+        },
+        {
+          "call": {
+            "name": "replace_first",
+            "args": [
+              "",
+              "X"
+            ]
+          },
+          "check": "(_return == \"\") and _error is None"
+        }
+      ],
+      "hint": {
+        "en": "Rebind a name to new text instead of mutating characters.",
+        "nl": "Koppel een naam aan nieuwe tekst in plaats van tekens te veranderen."
+      },
+      "hints": [
+        {
+          "en": "Rebind a name to new text instead of mutating characters.",
+          "nl": "Koppel een naam aan nieuwe tekst in plaats van tekens te veranderen."
+        },
+        {
+          "en": "Keep the suffix and concatenate it to the replacement.",
+          "nl": "Bewaar het achterstuk en voeg het aan de vervanging toe."
+        },
+        {
+          "en": "A small fragment to adapt: `character + text[1:]`",
+          "nl": "Een klein fragment om aan te passen: `character + text[1:]`"
+        }
+      ],
+      "feedback": {
+        "en": "Keep the suffix and concatenate it to the replacement.",
+        "nl": "Bewaar het achterstuk en voeg het aan de vervanging toe."
+      }
+    }
+  ],
+  "solutionNote": {
+    "en": "Concatenation creates a separate string; no character of the source is mutated.",
+    "nl": "Samenvoegen maakt een aparte string; geen teken van de bron wordt veranderd."
+  },
+  "inputs": [],
+  "retrievals": [
+    {
+      "id": "recall-python-v4-16-boundaries",
+      "sourceActivityId": "python-v4-16-boundaries",
+      "objectiveIds": [
+        "boundaries"
+      ],
+      "prompt": {
+        "en": "Recall “Keep a paddle inside the court”. Why is the maximum not 100? Try the earlier example from memory, then check it. Test a different court and paddle height instead of hard-coding 340.",
+        "nl": "Haal “Houd een batje binnen het veld” terug. Waarom is het maximum niet 100? Probeer het eerdere voorbeeld uit je geheugen en controleer daarna. Test een andere veld- en batjeshoogte in plaats van 340 vast in te vullen."
+      }
+    }
+  ]
+}

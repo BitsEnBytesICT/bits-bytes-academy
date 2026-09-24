@@ -1,0 +1,774 @@
+{
+  "id": "python-v3-14-quiz",
+  "chapter": 14,
+  "group": "python-v3-module-14",
+  "kind": "quiz",
+  "optional": false,
+  "estimatedMinutes": 6,
+  "title": {
+    "en": "CSV and JSON: review",
+    "nl": "CSV en JSON: herhaling"
+  },
+  "questions": [
+    {
+      "objectiveIds": [
+        "json-load",
+        "nested-data"
+      ],
+      "reviewActivityIds": [
+        "python-v3-14-04"
+      ],
+      "category": "prediction",
+      "prompt": {
+        "en": "What does this program print?",
+        "nl": "Wat drukt dit programma af?"
+      },
+      "code": "import json\nstate = json.loads('{\"scores\":[3,2],\"paused\":false}')\nprint(state[\"scores\"][0], state[\"paused\"])",
+      "answer": "a",
+      "choices": [
+        {
+          "id": "a",
+          "label": {
+            "en": "3 False",
+            "nl": "3 False"
+          },
+          "reason": {
+            "en": "JSON arrays become lists and false becomes Python False.",
+            "nl": "JSON-arrays worden lijsten en false wordt Python False."
+          }
+        },
+        {
+          "id": "b",
+          "label": {
+            "en": "3 false",
+            "nl": "3 false"
+          },
+          "reason": {
+            "en": "Python displays its Boolean spelling with a capital F.",
+            "nl": "Python toont zijn booleaanse spelling met hoofdletter F."
+          }
+        },
+        {
+          "id": "c",
+          "label": {
+            "en": "0 False",
+            "nl": "0 False"
+          },
+          "reason": {
+            "en": "Index zero selects the first stored value, not a value of zero.",
+            "nl": "Index nul kiest de eerste opgeslagen waarde, niet de waarde nul."
+          }
+        }
+      ],
+      "expectedOutput": "3 False\n",
+      "id": "python-v3-14-quiz-a-1"
+    },
+    {
+      "objectiveIds": [
+        "csv-conversion"
+      ],
+      "reviewActivityIds": [
+        "python-v3-14-01"
+      ],
+      "category": "prediction",
+      "prompt": {
+        "en": "What does this program print?",
+        "nl": "Wat drukt dit programma af?"
+      },
+      "code": "row = {\"name\": \"Ada\", \"score\": \"3\"}\nprint(int(row[\"score\"]) + 2)",
+      "answer": "a",
+      "choices": [
+        {
+          "id": "a",
+          "label": {
+            "en": "5",
+            "nl": "5"
+          },
+          "reason": {
+            "en": "Conversion makes numeric addition possible.",
+            "nl": "Omzetting maakt numeriek optellen mogelijk."
+          }
+        },
+        {
+          "id": "b",
+          "label": {
+            "en": "32",
+            "nl": "32"
+          },
+          "reason": {
+            "en": "The int conversion prevents text concatenation.",
+            "nl": "De int-omzetting voorkomt tekstsamenvoeging."
+          }
+        },
+        {
+          "id": "c",
+          "label": {
+            "en": "TypeError",
+            "nl": "TypeError"
+          },
+          "reason": {
+            "en": "The conversion succeeds for this valid numeric field.",
+            "nl": "De omzetting slaagt voor dit geldige numerieke veld."
+          }
+        }
+      ],
+      "expectedOutput": "5\n",
+      "id": "python-v3-14-quiz-a-2"
+    },
+    {
+      "objectiveIds": [
+        "csv-delimiters",
+        "csv-quoting"
+      ],
+      "reviewActivityIds": [
+        "python-v3-14-02"
+      ],
+      "category": "completion",
+      "prompt": {
+        "en": "Configure the parser for semicolon fields.",
+        "nl": "Stel de parser in voor puntkommavelden."
+      },
+      "code": "import csv\nrows = list(csv.reader(['\"West; Hall\";3'], delimiter=___))\nprint(len(rows[0]))",
+      "answer": "a",
+      "choices": [
+        {
+          "id": "a",
+          "label": {
+            "en": "\";\"",
+            "nl": "\";\""
+          },
+          "reason": {
+            "en": "The configured delimiter separates fields outside quotes; the quoted semicolon stays inside one field.",
+            "nl": "Het ingestelde teken scheidt velden buiten aanhalingstekens; de aangehaalde puntkomma blijft binnen één veld."
+          }
+        },
+        {
+          "id": "b",
+          "label": {
+            "en": "\",\"",
+            "nl": "\",\""
+          },
+          "reason": {
+            "en": "The configured delimiter separates fields outside quotes; the quoted semicolon stays inside one field.",
+            "nl": "Het ingestelde teken scheidt velden buiten aanhalingstekens; de aangehaalde puntkomma blijft binnen één veld."
+          }
+        },
+        {
+          "id": "c",
+          "label": {
+            "en": "\"\t\"",
+            "nl": "\"\t\""
+          },
+          "reason": {
+            "en": "The configured delimiter separates fields outside quotes; the quoted semicolon stays inside one field.",
+            "nl": "Het ingestelde teken scheidt velden buiten aanhalingstekens; de aangehaalde puntkomma blijft binnen één veld."
+          }
+        }
+      ],
+      "codeBlank": {
+        "prompt": {
+          "en": "Configure the parser for semicolon fields.",
+          "nl": "Stel de parser in voor puntkommavelden."
+        },
+        "segments": [
+          "import csv\nrows = list(csv.reader(['\"West; Hall\";3'], delimiter=",
+          "))\nprint(len(rows[0]))"
+        ],
+        "tokens": [
+          {
+            "id": "token-1",
+            "code": "\";\""
+          },
+          {
+            "id": "token-2",
+            "code": "\",\""
+          },
+          {
+            "id": "token-3",
+            "code": "\"\t\""
+          }
+        ],
+        "blanks": [
+          {
+            "answer": "\";\"",
+            "reason": {
+              "en": "The configured delimiter separates fields outside quotes; the quoted semicolon stays inside one field.",
+              "nl": "Het ingestelde teken scheidt velden buiten aanhalingstekens; de aangehaalde puntkomma blijft binnen één veld."
+            }
+          }
+        ],
+        "output": "2\n"
+      },
+      "id": "python-v3-14-quiz-a-3"
+    },
+    {
+      "objectiveIds": [
+        "json-dump",
+        "round-trips"
+      ],
+      "reviewActivityIds": [
+        "python-v3-14-05"
+      ],
+      "category": "completion",
+      "prompt": {
+        "en": "Encode the report as JSON and load it back.",
+        "nl": "Codeer het rapport als JSON en laad het terug."
+      },
+      "code": "import json\nreport = {\"score\": 3}\ntext = json.___(report)\nprint(json.loads(text) == report)",
+      "answer": "a",
+      "choices": [
+        {
+          "id": "a",
+          "label": {
+            "en": "dumps",
+            "nl": "dumps"
+          },
+          "reason": {
+            "en": "dumps returns JSON text; dump writes to a file handle. loads decodes text.",
+            "nl": "dumps geeft JSON-tekst; dump schrijft naar een bestandshandle. loads decodeert tekst."
+          }
+        },
+        {
+          "id": "b",
+          "label": {
+            "en": "loads",
+            "nl": "loads"
+          },
+          "reason": {
+            "en": "dumps returns JSON text; dump writes to a file handle. loads decodes text.",
+            "nl": "dumps geeft JSON-tekst; dump schrijft naar een bestandshandle. loads decodeert tekst."
+          }
+        },
+        {
+          "id": "c",
+          "label": {
+            "en": "load",
+            "nl": "load"
+          },
+          "reason": {
+            "en": "dumps returns JSON text; dump writes to a file handle. loads decodes text.",
+            "nl": "dumps geeft JSON-tekst; dump schrijft naar een bestandshandle. loads decodeert tekst."
+          }
+        }
+      ],
+      "codeBlank": {
+        "prompt": {
+          "en": "Encode the report as JSON and load it back.",
+          "nl": "Codeer het rapport als JSON en laad het terug."
+        },
+        "segments": [
+          "import json\nreport = {\"score\": 3}\ntext = json.",
+          "(report)\nprint(json.loads(text) == report)"
+        ],
+        "tokens": [
+          {
+            "id": "token-1",
+            "code": "dumps"
+          },
+          {
+            "id": "token-2",
+            "code": "loads"
+          },
+          {
+            "id": "token-3",
+            "code": "load"
+          }
+        ],
+        "blanks": [
+          {
+            "answer": "dumps",
+            "reason": {
+              "en": "dumps returns JSON text; dump writes to a file handle. loads decodes text.",
+              "nl": "dumps geeft JSON-tekst; dump schrijft naar een bestandshandle. loads decodeert tekst."
+            }
+          }
+        ],
+        "output": "True\n"
+      },
+      "id": "python-v3-14-quiz-a-4"
+    },
+    {
+      "objectiveIds": [
+        "write",
+        "append-file"
+      ],
+      "reviewActivityIds": [
+        "python-v3-13-03"
+      ],
+      "category": "debugging",
+      "prompt": {
+        "en": "Why did the old log disappear?",
+        "nl": "Waarom verdween het oude log?"
+      },
+      "code": "with open(\"history.txt\", \"w\", encoding=\"utf-8\") as h:\n    h.write(\"New event\\n\")",
+      "answer": "a",
+      "choices": [
+        {
+          "id": "a",
+          "label": {
+            "en": "w truncates an existing file; use a to append log entries.",
+            "nl": "w wist een bestaand bestand; gebruik a om logregels toe te voegen."
+          },
+          "reason": {
+            "en": "File mode determines whether old contents are preserved.",
+            "nl": "De bestandsmodus bepaalt of oude inhoud behouden blijft."
+          }
+        },
+        {
+          "id": "b",
+          "label": {
+            "en": "UTF-8 removes earlier lines.",
+            "nl": "UTF-8 verwijdert eerdere regels."
+          },
+          "reason": {
+            "en": "Encoding controls characters, not whether a file is truncated.",
+            "nl": "Codering beheert tekens, niet of een bestand gewist wordt."
+          }
+        },
+        {
+          "id": "c",
+          "label": {
+            "en": "with always empties a file when closing.",
+            "nl": "with leegt een bestand altijd bij sluiten."
+          },
+          "reason": {
+            "en": "with closes the handle; the opening mode caused truncation.",
+            "nl": "with sluit de handle; de openingsmodus veroorzaakte wissen."
+          }
+        }
+      ],
+      "id": "python-v3-14-quiz-a-5"
+    },
+    {
+      "objectiveIds": [
+        "find"
+      ],
+      "reviewActivityIds": [
+        "python-v3-10-05"
+      ],
+      "category": "application",
+      "prompt": {
+        "en": "A search returns -1 for a missing \"?\". What should the caller conclude?",
+        "nl": "Een zoekactie geeft -1 voor een ontbrekende \"?\". Wat moet de aanroeper concluderen?"
+      },
+      "answer": "a",
+      "choices": [
+        {
+          "id": "a",
+          "label": {
+            "en": "The fragment is absent.",
+            "nl": "Het fragment ontbreekt."
+          },
+          "reason": {
+            "en": "find uses an index for matches and -1 for absence.",
+            "nl": "find gebruikt een index voor matches en -1 voor afwezigheid."
+          }
+        },
+        {
+          "id": "b",
+          "label": {
+            "en": "The fragment is the last character.",
+            "nl": "Het fragment is het laatste teken."
+          },
+          "reason": {
+            "en": "Do not confuse a search result with Boolean truthiness or negative indexing.",
+            "nl": "Verwar een zoekresultaat niet met booleaanse waarachtigheid of negatieve indexering."
+          }
+        },
+        {
+          "id": "c",
+          "label": {
+            "en": "The string was changed by searching.",
+            "nl": "De string werd door zoeken gewijzigd."
+          },
+          "reason": {
+            "en": "find only reads the string.",
+            "nl": "find leest de string alleen."
+          }
+        }
+      ],
+      "id": "python-v3-14-quiz-a-6"
+    }
+  ],
+  "alternateQuestions": [
+    {
+      "objectiveIds": [
+        "json-load",
+        "nested-data"
+      ],
+      "reviewActivityIds": [
+        "python-v3-14-04"
+      ],
+      "category": "prediction",
+      "prompt": {
+        "en": "What does this program print?",
+        "nl": "Wat drukt dit programma af?"
+      },
+      "code": "import json\nstate = json.loads('{\"scores\":[7,2],\"paused\":false}')\nprint(state[\"scores\"][0], state[\"paused\"])",
+      "answer": "a",
+      "choices": [
+        {
+          "id": "a",
+          "label": {
+            "en": "7 False",
+            "nl": "7 False"
+          },
+          "reason": {
+            "en": "JSON arrays become lists and false becomes Python False.",
+            "nl": "JSON-arrays worden lijsten en false wordt Python False."
+          }
+        },
+        {
+          "id": "b",
+          "label": {
+            "en": "7 false",
+            "nl": "7 false"
+          },
+          "reason": {
+            "en": "Python displays its Boolean spelling with a capital F.",
+            "nl": "Python toont zijn booleaanse spelling met hoofdletter F."
+          }
+        },
+        {
+          "id": "c",
+          "label": {
+            "en": "0 False",
+            "nl": "0 False"
+          },
+          "reason": {
+            "en": "Index zero selects the first stored value, not a value of zero.",
+            "nl": "Index nul kiest de eerste opgeslagen waarde, niet de waarde nul."
+          }
+        }
+      ],
+      "expectedOutput": "7 False\n",
+      "id": "python-v3-14-quiz-b-1"
+    },
+    {
+      "objectiveIds": [
+        "csv-conversion"
+      ],
+      "reviewActivityIds": [
+        "python-v3-14-01"
+      ],
+      "category": "prediction",
+      "prompt": {
+        "en": "What does this program print?",
+        "nl": "Wat drukt dit programma af?"
+      },
+      "code": "row = {\"name\": \"Bo\", \"score\": \"7\"}\nprint(int(row[\"score\"]) + 2)",
+      "answer": "a",
+      "choices": [
+        {
+          "id": "a",
+          "label": {
+            "en": "9",
+            "nl": "9"
+          },
+          "reason": {
+            "en": "Conversion makes numeric addition possible.",
+            "nl": "Omzetting maakt numeriek optellen mogelijk."
+          }
+        },
+        {
+          "id": "b",
+          "label": {
+            "en": "72",
+            "nl": "72"
+          },
+          "reason": {
+            "en": "The int conversion prevents text concatenation.",
+            "nl": "De int-omzetting voorkomt tekstsamenvoeging."
+          }
+        },
+        {
+          "id": "c",
+          "label": {
+            "en": "TypeError",
+            "nl": "TypeError"
+          },
+          "reason": {
+            "en": "The conversion succeeds for this valid numeric field.",
+            "nl": "De omzetting slaagt voor dit geldige numerieke veld."
+          }
+        }
+      ],
+      "expectedOutput": "9\n",
+      "id": "python-v3-14-quiz-b-2"
+    },
+    {
+      "objectiveIds": [
+        "csv-delimiters",
+        "csv-quoting"
+      ],
+      "reviewActivityIds": [
+        "python-v3-14-02"
+      ],
+      "category": "completion",
+      "prompt": {
+        "en": "Configure the parser for semicolon fields.",
+        "nl": "Stel de parser in voor puntkommavelden."
+      },
+      "code": "import csv\nrows = list(csv.reader(['\"East; Hall\";7'], delimiter=___))\nprint(len(rows[0]))",
+      "answer": "a",
+      "choices": [
+        {
+          "id": "a",
+          "label": {
+            "en": "\";\"",
+            "nl": "\";\""
+          },
+          "reason": {
+            "en": "The configured delimiter separates fields outside quotes; the quoted semicolon stays inside one field.",
+            "nl": "Het ingestelde teken scheidt velden buiten aanhalingstekens; de aangehaalde puntkomma blijft binnen één veld."
+          }
+        },
+        {
+          "id": "b",
+          "label": {
+            "en": "\",\"",
+            "nl": "\",\""
+          },
+          "reason": {
+            "en": "The configured delimiter separates fields outside quotes; the quoted semicolon stays inside one field.",
+            "nl": "Het ingestelde teken scheidt velden buiten aanhalingstekens; de aangehaalde puntkomma blijft binnen één veld."
+          }
+        },
+        {
+          "id": "c",
+          "label": {
+            "en": "\"\t\"",
+            "nl": "\"\t\""
+          },
+          "reason": {
+            "en": "The configured delimiter separates fields outside quotes; the quoted semicolon stays inside one field.",
+            "nl": "Het ingestelde teken scheidt velden buiten aanhalingstekens; de aangehaalde puntkomma blijft binnen één veld."
+          }
+        }
+      ],
+      "codeBlank": {
+        "prompt": {
+          "en": "Configure the parser for semicolon fields.",
+          "nl": "Stel de parser in voor puntkommavelden."
+        },
+        "segments": [
+          "import csv\nrows = list(csv.reader(['\"East; Hall\";7'], delimiter=",
+          "))\nprint(len(rows[0]))"
+        ],
+        "tokens": [
+          {
+            "id": "token-1",
+            "code": "\";\""
+          },
+          {
+            "id": "token-2",
+            "code": "\",\""
+          },
+          {
+            "id": "token-3",
+            "code": "\"\t\""
+          }
+        ],
+        "blanks": [
+          {
+            "answer": "\";\"",
+            "reason": {
+              "en": "The configured delimiter separates fields outside quotes; the quoted semicolon stays inside one field.",
+              "nl": "Het ingestelde teken scheidt velden buiten aanhalingstekens; de aangehaalde puntkomma blijft binnen één veld."
+            }
+          }
+        ],
+        "output": "2\n"
+      },
+      "id": "python-v3-14-quiz-b-3"
+    },
+    {
+      "objectiveIds": [
+        "json-dump",
+        "round-trips"
+      ],
+      "reviewActivityIds": [
+        "python-v3-14-05"
+      ],
+      "category": "completion",
+      "prompt": {
+        "en": "Encode the report as JSON and load it back.",
+        "nl": "Codeer het rapport als JSON en laad het terug."
+      },
+      "code": "import json\nreport = {\"score\": 7}\ntext = json.___(report)\nprint(json.loads(text) == report)",
+      "answer": "a",
+      "choices": [
+        {
+          "id": "a",
+          "label": {
+            "en": "dumps",
+            "nl": "dumps"
+          },
+          "reason": {
+            "en": "dumps returns JSON text; dump writes to a file handle. loads decodes text.",
+            "nl": "dumps geeft JSON-tekst; dump schrijft naar een bestandshandle. loads decodeert tekst."
+          }
+        },
+        {
+          "id": "b",
+          "label": {
+            "en": "loads",
+            "nl": "loads"
+          },
+          "reason": {
+            "en": "dumps returns JSON text; dump writes to a file handle. loads decodes text.",
+            "nl": "dumps geeft JSON-tekst; dump schrijft naar een bestandshandle. loads decodeert tekst."
+          }
+        },
+        {
+          "id": "c",
+          "label": {
+            "en": "load",
+            "nl": "load"
+          },
+          "reason": {
+            "en": "dumps returns JSON text; dump writes to a file handle. loads decodes text.",
+            "nl": "dumps geeft JSON-tekst; dump schrijft naar een bestandshandle. loads decodeert tekst."
+          }
+        }
+      ],
+      "codeBlank": {
+        "prompt": {
+          "en": "Encode the report as JSON and load it back.",
+          "nl": "Codeer het rapport als JSON en laad het terug."
+        },
+        "segments": [
+          "import json\nreport = {\"score\": 7}\ntext = json.",
+          "(report)\nprint(json.loads(text) == report)"
+        ],
+        "tokens": [
+          {
+            "id": "token-1",
+            "code": "dumps"
+          },
+          {
+            "id": "token-2",
+            "code": "loads"
+          },
+          {
+            "id": "token-3",
+            "code": "load"
+          }
+        ],
+        "blanks": [
+          {
+            "answer": "dumps",
+            "reason": {
+              "en": "dumps returns JSON text; dump writes to a file handle. loads decodes text.",
+              "nl": "dumps geeft JSON-tekst; dump schrijft naar een bestandshandle. loads decodeert tekst."
+            }
+          }
+        ],
+        "output": "True\n"
+      },
+      "id": "python-v3-14-quiz-b-4"
+    },
+    {
+      "objectiveIds": [
+        "write",
+        "append-file"
+      ],
+      "reviewActivityIds": [
+        "python-v3-13-03"
+      ],
+      "category": "debugging",
+      "prompt": {
+        "en": "Why did the old log disappear?",
+        "nl": "Waarom verdween het oude log?"
+      },
+      "code": "with open(\"events.txt\", \"w\", encoding=\"utf-8\") as h:\n    h.write(\"New event\\n\")",
+      "answer": "a",
+      "choices": [
+        {
+          "id": "a",
+          "label": {
+            "en": "w truncates an existing file; use a to append log entries.",
+            "nl": "w wist een bestaand bestand; gebruik a om logregels toe te voegen."
+          },
+          "reason": {
+            "en": "File mode determines whether old contents are preserved.",
+            "nl": "De bestandsmodus bepaalt of oude inhoud behouden blijft."
+          }
+        },
+        {
+          "id": "b",
+          "label": {
+            "en": "UTF-8 removes earlier lines.",
+            "nl": "UTF-8 verwijdert eerdere regels."
+          },
+          "reason": {
+            "en": "Encoding controls characters, not whether a file is truncated.",
+            "nl": "Codering beheert tekens, niet of een bestand gewist wordt."
+          }
+        },
+        {
+          "id": "c",
+          "label": {
+            "en": "with always empties a file when closing.",
+            "nl": "with leegt een bestand altijd bij sluiten."
+          },
+          "reason": {
+            "en": "with closes the handle; the opening mode caused truncation.",
+            "nl": "with sluit de handle; de openingsmodus veroorzaakte wissen."
+          }
+        }
+      ],
+      "id": "python-v3-14-quiz-b-5"
+    },
+    {
+      "objectiveIds": [
+        "find"
+      ],
+      "reviewActivityIds": [
+        "python-v3-10-05"
+      ],
+      "category": "application",
+      "prompt": {
+        "en": "A search returns 0 for \"!\" at the beginning. What does that mean?",
+        "nl": "Een zoekactie geeft 0 voor \"!\" aan het begin. Wat betekent dat?"
+      },
+      "answer": "a",
+      "choices": [
+        {
+          "id": "a",
+          "label": {
+            "en": "A successful match at index zero.",
+            "nl": "Een geslaagde match op index nul."
+          },
+          "reason": {
+            "en": "find uses an index for matches and -1 for absence.",
+            "nl": "find gebruikt een index voor matches en -1 voor afwezigheid."
+          }
+        },
+        {
+          "id": "b",
+          "label": {
+            "en": "The search failed because zero is false-like.",
+            "nl": "Het zoeken mislukte omdat nul onwaarachtig is."
+          },
+          "reason": {
+            "en": "Do not confuse a search result with Boolean truthiness or negative indexing.",
+            "nl": "Verwar een zoekresultaat niet met booleaanse waarachtigheid of negatieve indexering."
+          }
+        },
+        {
+          "id": "c",
+          "label": {
+            "en": "The string was changed by searching.",
+            "nl": "De string werd door zoeken gewijzigd."
+          },
+          "reason": {
+            "en": "find only reads the string.",
+            "nl": "find leest de string alleen."
+          }
+        }
+      ],
+      "id": "python-v3-14-quiz-b-6"
+    }
+  ]
+}

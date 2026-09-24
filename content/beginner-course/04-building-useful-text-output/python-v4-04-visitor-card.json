@@ -1,0 +1,143 @@
+{
+  "id": "python-v4-04-visitor-card",
+  "chapter": 4,
+  "group": "python-v4-module-4",
+  "title": {
+    "en": "Build a visitor card",
+    "nl": "Maak een bezoekerskaart"
+  },
+  "kind": "coding",
+  "optional": false,
+  "runtime": "terminal",
+  "guidance": "independent",
+  "checkpointMode": "sequential",
+  "estimatedMinutes": 18,
+  "topicIds": [
+    "output-review"
+  ],
+  "practices": [
+    "f-strings",
+    "concatenation",
+    "str-conversion"
+  ],
+  "requiredConcepts": [
+    "f-strings"
+  ],
+  "explanation": {
+    "en": "Combine stored values and readable labels in a small report. Choose a formatting method you understand.",
+    "nl": "Combineer opgeslagen waarden en leesbare labels in een klein verslag. Kies een opmaakmethode die je begrijpt."
+  },
+  "example": "",
+  "sections": [
+    {
+      "id": "python-v4-04-visitor-card-example",
+      "topicIds": [
+        "output-review",
+        "f-strings",
+        "concatenation",
+        "str-conversion"
+      ],
+      "heading": {
+        "en": "Follow a working example",
+        "nl": "Volg een werkend voorbeeld"
+      },
+      "body": {
+        "en": "A report has a predictable shape even when its data changes. First inspect the desired output, then identify the parts that come from variables.\n\nThe example formats a room label. Your card needs a visitor name and a ticket count. Either f-strings, concatenation or separate print arguments can produce the required behaviour.",
+        "nl": "Een verslag heeft een voorspelbare vorm, ook als de gegevens veranderen. Bekijk eerst de gewenste uitvoer en zoek daarna de onderdelen die uit variabelen komen.\n\nHet voorbeeld maakt een kamerlabel. Jouw kaart heeft een bezoekersnaam en een aantal kaartjes nodig. F-strings, concatenatie of aparte print-argumenten kunnen het gevraagde gedrag produceren."
+      },
+      "code": "room = \"Blue\"\nprint(f\"Room: {room}\")",
+      "output": "Room: Blue\n",
+      "prediction": {
+        "en": "Which text stays fixed when room changes?",
+        "nl": "Welke tekst blijft vast wanneer room verandert?"
+      },
+      "takeaway": {
+        "en": "Keep the changing data in variables and the fixed wording in the output template.",
+        "nl": "Houd veranderende gegevens in variabelen en vaste woorden in het uitvoersjabloon."
+      }
+    },
+    {
+      "id": "python-v4-04-visitor-card-experiment",
+      "topicIds": [],
+      "heading": {
+        "en": "Try one change",
+        "nl": "Probeer één wijziging"
+      },
+      "body": {
+        "en": "Use a longer name and no tickets. Does the same code still work?",
+        "nl": "Gebruik een langere naam en geen kaartjes. Werkt dezelfde code nog steeds?"
+      }
+    }
+  ],
+  "files": {
+    "main.py": "name = \"Noor\"\ntickets = 2\n"
+  },
+  "solution": {
+    "main.py": "name = \"Noor\"\ntickets = 2\nprint(f\"Visitor: {name}\")\nprint(f\"Tickets: {tickets}\")\n"
+  },
+  "checkpoints": [
+    {
+      "id": "python-v4-04-visitor-card-step-1",
+      "objectiveIds": [
+        "output-review",
+        "f-strings",
+        "concatenation",
+        "str-conversion"
+      ],
+      "task": {
+        "en": "Print \"Visitor: Noor\" and then \"Tickets: 2\", using the variables.",
+        "nl": "Druk \"Visitor: Noor\" af en daarna \"Tickets: 2\", met de variabelen."
+      },
+      "check": "_stdout == f\"Visitor: {name}\\nTickets: {tickets}\\n\"",
+      "probes": [
+        {
+          "inputs": {
+            "name": "Alex",
+            "tickets": 0
+          },
+          "check": "_stdout == \"Visitor: Alex\\nTickets: 0\\n\""
+        }
+      ],
+      "hint": {
+        "en": "Keep the changing data in variables and the fixed wording in the output template.",
+        "nl": "Houd veranderende gegevens in variabelen en vaste woorden in het uitvoersjabloon."
+      },
+      "hints": [
+        {
+          "en": "Keep the changing data in variables and the fixed wording in the output template.",
+          "nl": "Houd veranderende gegevens in variabelen en vaste woorden in het uitvoersjabloon."
+        },
+        {
+          "en": "Write two labelled output lines and substitute the current values.",
+          "nl": "Schrijf twee uitvoerregels met labels en vul de huidige waarden in."
+        },
+        {
+          "en": "A small fragment to adapt: `print(f\"Visitor: {name}\")`",
+          "nl": "Een klein fragment om aan te passen: `print(f\"Visitor: {name}\")`"
+        }
+      ],
+      "feedback": {
+        "en": "Write two labelled output lines and substitute the current values.",
+        "nl": "Schrijf twee uitvoerregels met labels en vul de huidige waarden in."
+      }
+    }
+  ],
+  "solutionNote": {
+    "en": "The output template stays fixed while both values are taken from the supplied data.",
+    "nl": "Het uitvoersjabloon blijft vast terwijl beide waarden uit de meegeleverde gegevens komen."
+  },
+  "inputs": [],
+  "retrievals": [
+    {
+      "id": "recall-python-v4-02-inspect-types",
+      "sourceActivityId": "python-v4-02-inspect-types",
+      "objectiveIds": [
+        "types"
+      ],
+      "prompt": {
+        "en": "Recall “Ask Python for a value's type”. Why does the quoted 8 have a different type? Try the earlier example from memory, then check it. Replace label's value with the number 5 and inspect its type again.",
+        "nl": "Haal “Vraag Python naar het type van een waarde” terug. Waarom heeft de 8 tussen aanhalingstekens een ander type? Probeer het eerdere voorbeeld uit je geheugen en controleer daarna. Vervang de waarde van label door het getal 5 en onderzoek het type opnieuw."
+      }
+    }
+  ]
+}

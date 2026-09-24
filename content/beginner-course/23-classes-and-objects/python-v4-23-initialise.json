@@ -1,0 +1,152 @@
+{
+  "id": "python-v4-23-initialise",
+  "chapter": 23,
+  "group": "python-v4-module-23",
+  "title": {
+    "en": "Give each instance initial state",
+    "nl": "Geef elke instantie begintoestand"
+  },
+  "kind": "coding",
+  "optional": false,
+  "runtime": "terminal",
+  "guidance": "guided",
+  "checkpointMode": "sequential",
+  "estimatedMinutes": 12,
+  "topicIds": [
+    "constructors",
+    "self",
+    "instance-attributes"
+  ],
+  "practices": [],
+  "requiredConcepts": [
+    "classes",
+    "parameters-arguments"
+  ],
+  "explanation": {
+    "en": "An object usually needs information at creation time, such as a name or starting score.",
+    "nl": "Een object heeft bij maken meestal informatie nodig, zoals een naam of beginscore."
+  },
+  "example": "",
+  "sections": [
+    {
+      "id": "python-v4-23-initialise-example",
+      "topicIds": [
+        "constructors",
+        "self",
+        "instance-attributes"
+      ],
+      "heading": {
+        "en": "Follow a working example",
+        "nl": "Volg een werkend voorbeeld"
+      },
+      "body": {
+        "en": "__init__ is called when an instance is created. Its first parameter, conventionally self, refers to that new instance. Python supplies self automatically; Counter(3) passes 3 to the next parameter. self.value = start stores state on the instance. A local value = start would disappear after the call. __init__ initialises the object and should not return a value.",
+        "nl": "__init__ wordt aangeroepen wanneer een instantie wordt gemaakt. De eerste parameter, volgens gewoonte self, verwijst naar die nieuwe instantie. Python levert self automatisch; Counter(3) geeft 3 aan de volgende parameter. self.value = start bewaart toestand op de instantie. Een lokale value = start verdwijnt na de aanroep. __init__ initialiseert het object en hoort geen waarde terug te geven."
+      },
+      "code": "class Counter:\n    def __init__(self,start):\n        self.value = start\ncounter = Counter(3)\nprint(counter.value)",
+      "output": "3\n",
+      "prediction": {
+        "en": "Why does the caller supply only one argument when __init__ has two parameters?",
+        "nl": "Waarom geeft de aanroeper één argument terwijl __init__ twee parameters heeft?"
+      },
+      "takeaway": {
+        "en": "Use self.attribute to keep state on this instance.",
+        "nl": "Gebruik self.attribuut om toestand op deze instantie te bewaren."
+      }
+    },
+    {
+      "id": "python-v4-23-initialise-experiment",
+      "topicIds": [],
+      "heading": {
+        "en": "Try one change",
+        "nl": "Probeer één wijziging"
+      },
+      "body": {
+        "en": "Create two players with different names and inspect both.",
+        "nl": "Maak twee spelers met verschillende namen en bekijk beide."
+      }
+    }
+  ],
+  "files": {
+    "main.py": "class Player:\n    def __init__(self,name):\n        pass\n"
+  },
+  "solution": {
+    "main.py": "class Player:\n    def __init__(self,name):\n        self.name = name\n        self.score = 0\n"
+  },
+  "checkpoints": [
+    {
+      "id": "python-v4-23-initialise-step-1",
+      "objectiveIds": [
+        "constructors",
+        "self",
+        "instance-attributes"
+      ],
+      "task": {
+        "en": "Initialise Player(name) with its own name and a score of zero.",
+        "nl": "Initialiseer Player(name) met zijn eigen name en score nul."
+      },
+      "check": "callable(Player)",
+      "probes": [
+        {
+          "call": {
+            "name": "Player",
+            "args": [
+              "Ada"
+            ]
+          },
+          "check": "_return.name == \"Ada\" and _return.score == 0"
+        },
+        {
+          "call": {
+            "name": "Player",
+            "args": [
+              "Bo"
+            ]
+          },
+          "check": "_return.name == \"Bo\" and _return.score == 0"
+        }
+      ],
+      "hint": {
+        "en": "Use self.attribute to keep state on this instance.",
+        "nl": "Gebruik self.attribuut om toestand op deze instantie te bewaren."
+      },
+      "hints": [
+        {
+          "en": "Use self.attribute to keep state on this instance.",
+          "nl": "Gebruik self.attribuut om toestand op deze instantie te bewaren."
+        },
+        {
+          "en": "Assign both fields through self inside __init__.",
+          "nl": "Wijs beide velden via self toe binnen __init__."
+        },
+        {
+          "en": "A small fragment to adapt: `self.name = name`",
+          "nl": "Een klein fragment om aan te passen: `self.name = name`"
+        }
+      ],
+      "feedback": {
+        "en": "Assign both fields through self inside __init__.",
+        "nl": "Wijs beide velden via self toe binnen __init__."
+      }
+    }
+  ],
+  "solutionNote": {
+    "en": "self distinguishes the current instance, so each constructor stores its own name.",
+    "nl": "self onderscheidt de huidige instantie; elke constructor bewaart dus zijn eigen naam."
+  },
+  "inputs": [],
+  "retrievals": [
+    {
+      "id": "recall-python-v4-21-named-records",
+      "sourceActivityId": "python-v4-21-named-records",
+      "objectiveIds": [
+        "dict-reader",
+        "csv-numeric-conversion"
+      ],
+      "prompt": {
+        "en": "Recall “Use a header as field names”. What type does row[\"score\"] have before conversion? Try the earlier example from memory, then check it. Reverse the column order but preserve the headers. The result should stay correct.",
+        "nl": "Haal “Gebruik een kop als veldnamen” terug. Welk type heeft row[\"score\"] vóór omzetting? Probeer het eerdere voorbeeld uit je geheugen en controleer daarna. Draai de kolomvolgorde om maar behoud de kopvelden. Het resultaat hoort juist te blijven."
+      }
+    }
+  ]
+}

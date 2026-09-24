@@ -1,0 +1,188 @@
+{
+  "id": "python-v3-3-03",
+  "chapter": 3,
+  "group": "python-v3-module-3",
+  "title": {
+    "en": "Keep a menu running",
+    "nl": "Laat een menu doorlopen"
+  },
+  "kind": "coding",
+  "optional": false,
+  "runtime": "terminal",
+  "guidance": "adapt",
+  "estimatedMinutes": 15,
+  "explanation": {
+    "en": "Keep asking for commands until the visitor types quit. A while loop repeats while a condition remains true. Use exact lowercase commands for now.",
+    "nl": "Blijf om commando’s vragen totdat de bezoeker quit typt. Een while-lus herhaalt zolang een voorwaarde waar blijft. Gebruik voorlopig exacte commando’s in kleine letters."
+  },
+  "example": "",
+  "topicIds": [
+    "while",
+    "counters"
+  ],
+  "prerequisites": [
+    "python-v3-3-02"
+  ],
+  "sections": [
+    {
+      "topicIds": [
+        "while",
+        "counters"
+      ],
+      "heading": {
+        "en": "Change the condition",
+        "nl": "Verander de voorwaarde"
+      },
+      "body": {
+        "en": "A while condition is checked before every iteration, including the first. Something in the body must make progress toward stopping. A counter records how many events have occurred. The first input can be read before the loop; read the next input at the end of the body.",
+        "nl": "Een while-voorwaarde wordt vóór elke iteratie gecontroleerd, ook de eerste. Iets in het blok moet bijdragen aan stoppen. Een teller registreert hoeveel gebeurtenissen zijn opgetreden. De eerste invoer kan vóór de lus worden gelezen; lees de volgende invoer aan het einde van het blok."
+      },
+      "code": "remaining = 3\nwhile remaining > 0:\n    print(remaining)\n    remaining -= 1\nprint(\"Lift off\")",
+      "output": "3\n2\n1\nLift off\n",
+      "prediction": {
+        "en": "What happens when remaining starts at zero?",
+        "nl": "Wat gebeurt er als remaining op nul begint?"
+      }
+    },
+    {
+      "topicIds": [],
+      "heading": {
+        "en": "Try a changed input",
+        "nl": "Probeer gewijzigde invoer"
+      },
+      "body": {
+        "en": "Try quit immediately, then three commands before quit. Which lines run once, and which repeat?",
+        "nl": "Probeer direct quit en daarna drie commando’s vóór quit. Welke regels worden één keer uitgevoerd en welke herhalen?"
+      }
+    }
+  ],
+  "files": {
+    "main.py": "command = input(\"Command: \")\ncount = 0\n# Keep reading commands until quit.\n"
+  },
+  "solution": {
+    "main.py": "command = input(\"Command: \")\ncount = 0\nwhile command != \"quit\":\n    count += 1\n    print(\"Received\")\n    command = input(\"Command: \")\nprint(f\"Count: {count}\")\n"
+  },
+  "checkpoints": [
+    {
+      "objectiveIds": [
+        "while"
+      ],
+      "task": {
+        "en": "Print Received for each command except quit. Read a new command every iteration.",
+        "nl": "Druk Received af voor elk commando behalve quit. Lees elke iteratie een nieuw commando."
+      },
+      "check": "_stdout.count(\"Received\") == 2",
+      "hints": [
+        {
+          "en": "The loop stops when the condition becomes false.",
+          "nl": "De lus stopt als de voorwaarde onwaar wordt."
+        },
+        {
+          "en": "Use command != \"quit\" and update command inside.",
+          "nl": "Gebruik command != \"quit\" en werk command binnen de lus bij."
+        },
+        {
+          "en": "command = input(\"Command: \")",
+          "nl": "command = input(\"Command: \")"
+        }
+      ],
+      "hint": {
+        "en": "The loop stops when the condition becomes false.",
+        "nl": "De lus stopt als de voorwaarde onwaar wordt."
+      },
+      "feedback": {
+        "en": "Without a new input, the same command repeats forever. Use Stop if that happens.",
+        "nl": "Zonder nieuwe invoer wordt hetzelfde commando eindeloos herhaald. Gebruik Stop als dat gebeurt."
+      },
+      "probes": [
+        {
+          "stdin": [
+            "quit"
+          ],
+          "check": "\"Received\" not in _stdout"
+        },
+        {
+          "stdin": [
+            "a",
+            "quit"
+          ],
+          "check": "_stdout.count(\"Received\") == 1"
+        }
+      ],
+      "id": "python-v3-3-03-step-1"
+    },
+    {
+      "objectiveIds": [
+        "counters"
+      ],
+      "task": {
+        "en": "Count processed commands, excluding quit. Print Count: and count afterward.",
+        "nl": "Tel verwerkte commando’s, zonder quit. Druk daarna Count: en count af."
+      },
+      "check": "count == 2 and \"Count: 2\" in _stdout",
+      "hints": [
+        {
+          "en": "A command is counted only when the body runs.",
+          "nl": "Een commando wordt alleen geteld als het blok wordt uitgevoerd."
+        },
+        {
+          "en": "Increment count once per iteration.",
+          "nl": "Verhoog count één keer per iteratie."
+        },
+        {
+          "en": "count += 1",
+          "nl": "count += 1"
+        }
+      ],
+      "hint": {
+        "en": "A command is counted only when the body runs.",
+        "nl": "Een commando wordt alleen geteld als het blok wordt uitgevoerd."
+      },
+      "feedback": {
+        "en": "Quitting immediately should report zero.",
+        "nl": "Direct stoppen moet nul melden."
+      },
+      "probes": [
+        {
+          "stdin": [
+            "quit"
+          ],
+          "check": "count == 0 and \"Count: 0\" in _stdout"
+        },
+        {
+          "stdin": [
+            "a",
+            "b",
+            "c",
+            "quit"
+          ],
+          "check": "count == 3"
+        }
+      ],
+      "id": "python-v3-3-03-step-2"
+    }
+  ],
+  "solutionNote": {
+    "en": "The first read lets quit skip the body entirely. Updating command inside the loop ensures each condition uses the latest input.",
+    "nl": "De eerste leesactie laat quit het blok volledig overslaan. command binnen de lus bijwerken zorgt dat elke voorwaarde de nieuwste invoer gebruikt."
+  },
+  "inputs": [
+    "help",
+    "status",
+    "quit"
+  ],
+  "retrievals": [
+    {
+      "id": "recall-python-v3-1-03",
+      "sourceActivityId": "python-v3-1-03",
+      "objectiveIds": [
+        "changing-numbers",
+        "plus-equals"
+      ],
+      "prompt": {
+        "en": "Start stock at 7, add 3 with +=, then subtract 2. Trace the value after each change.",
+        "nl": "Begin met voorraad 7, voeg 3 toe met += en trek 2 af. Volg de waarde na elke wijziging."
+      }
+    }
+  ]
+}

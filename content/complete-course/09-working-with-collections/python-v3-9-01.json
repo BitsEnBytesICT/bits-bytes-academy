@@ -1,0 +1,208 @@
+{
+  "id": "python-v3-9-01",
+  "chapter": 9,
+  "group": "python-v3-module-9",
+  "title": {
+    "en": "Maintain a queue",
+    "nl": "Beheer een wachtrij"
+  },
+  "kind": "coding",
+  "optional": false,
+  "runtime": "terminal",
+  "guidance": "guided",
+  "estimatedMinutes": 16,
+  "explanation": {
+    "en": "Maintain a queue using operations that select by position or by value. Work on a copy so the caller keeps the original queue.",
+    "nl": "Beheer een wachtrij met bewerkingen die op positie of waarde kiezen. Werk op een kopie zodat de aanroeper de oorspronkelijke rij behoudt."
+  },
+  "example": "",
+  "topicIds": [
+    "insert",
+    "remove",
+    "pop",
+    "count"
+  ],
+  "prerequisites": [
+    "python-v3-8-05"
+  ],
+  "sections": [
+    {
+      "topicIds": [
+        "insert",
+        "remove",
+        "pop",
+        "count"
+      ],
+      "heading": {
+        "en": "Choose the right removal",
+        "nl": "Kies de juiste verwijdering"
+      },
+      "body": {
+        "en": "insert(index, value) adds before an index. remove(value) deletes the first matching value and raises ValueError if none exists. pop(index) removes by position and returns the removed item; pop() defaults to the last item and raises IndexError on an empty list. count(value) counts equal values. Mutation methods such as insert and remove return None.",
+        "nl": "insert(index, value) voegt vóór een index toe. remove(value) verwijdert de eerste gelijke waarde en geeft ValueError als die ontbreekt. pop(index) verwijdert op positie en geeft het verwijderde item terug; pop() kiest standaard het laatste item en geeft IndexError bij een lege lijst. count(value) telt gelijke waarden. Wijzigingsmethoden zoals insert en remove geven None terug."
+      },
+      "code": "queue = [\"A\", \"B\", \"A\"]\nqueue.insert(1, \"C\")\nqueue.remove(\"A\")\nlast = queue.pop()\nprint(queue, last, queue.count(\"A\"))",
+      "output": "['C', 'B'] A 0\n",
+      "prediction": {
+        "en": "Which A did remove select, and which did pop return?",
+        "nl": "Welke A koos remove en welke gaf pop terug?"
+      }
+    },
+    {
+      "topicIds": [],
+      "heading": {
+        "en": "Try a changed input",
+        "nl": "Probeer gewijzigde invoer"
+      },
+      "body": {
+        "en": "Try duplicate urgent names. Explain why remove(0) would search for the value 0 rather than remove the first position.",
+        "nl": "Probeer dubbele urgent-namen. Leg uit waarom remove(0) de waarde 0 zou zoeken in plaats van de eerste positie te verwijderen."
+      }
+    }
+  ],
+  "files": {
+    "main.py": "def manage(queue, urgent, leaving):\n    result = queue.copy()\n    # Insert urgent first, remove leaving, then pop the last item.\n    return result, None, 0\n\nprint(manage([\"Ana\", \"Bo\", \"Ana\"], \"Dax\", \"Ana\"))\n"
+  },
+  "solution": {
+    "main.py": "def manage(queue, urgent, leaving):\n    result = queue.copy()\n    result.insert(0, urgent)\n    result.remove(leaving)\n    last = result.pop()\n    remaining = result.count(urgent)\n    return result, last, remaining\n\nprint(manage([\"Ana\", \"Bo\", \"Ana\"], \"Dax\", \"Ana\"))\n"
+  },
+  "checkpoints": [
+    {
+      "objectiveIds": [
+        "insert",
+        "remove"
+      ],
+      "task": {
+        "en": "In manage, use insert to add urgent at index 0 and remove to delete the first leaving value from a copy. Assume leaving exists and the original queue has at least two entries.",
+        "nl": "Gebruik in manage insert om urgent op index 0 toe te voegen en remove om de eerste leaving-waarde uit een kopie te verwijderen. Neem aan dat leaving bestaat en de oorspronkelijke rij minstens twee items heeft."
+      },
+      "check": "(callable(manage)) and (any(isinstance(n,_ast.Call) and isinstance(n.func,_ast.Attribute) and n.func.attr == \"insert\" for n in _ast.walk(next(n for n in _ast.walk(_ast.parse(_source)) if isinstance(n,_ast.FunctionDef) and n.name == \"manage\"))) and any(isinstance(n,_ast.Call) and isinstance(n.func,_ast.Attribute) and n.func.attr == \"remove\" for n in _ast.walk(next(n for n in _ast.walk(_ast.parse(_source)) if isinstance(n,_ast.FunctionDef) and n.name == \"manage\"))))",
+      "hints": [
+        {
+          "en": "Position and value are different selection rules.",
+          "nl": "Positie en waarde zijn verschillende selectieregels."
+        },
+        {
+          "en": "Call insert(0, urgent), then remove(leaving).",
+          "nl": "Roep insert(0, urgent) aan en daarna remove(leaving)."
+        },
+        {
+          "en": "result.remove(leaving)",
+          "nl": "result.remove(leaving)"
+        }
+      ],
+      "hint": {
+        "en": "Position and value are different selection rules.",
+        "nl": "Positie en waarde zijn verschillende selectieregels."
+      },
+      "feedback": {
+        "en": "Remove only the first matching value and leave the original queue intact.",
+        "nl": "Verwijder alleen de eerste gelijke waarde en laat de oorspronkelijke rij intact."
+      },
+      "probes": [
+        {
+          "call": {
+            "name": "manage",
+            "args": [
+              [
+                "A",
+                "B",
+                "A"
+              ],
+              "C",
+              "A"
+            ]
+          },
+          "check": "_return[0] == [\"C\",\"B\"] and _args[0] == [\"A\",\"B\",\"A\"]"
+        }
+      ],
+      "id": "python-v3-9-01-step-1"
+    },
+    {
+      "objectiveIds": [
+        "pop",
+        "count"
+      ],
+      "task": {
+        "en": "Pop the last remaining item and return (result, last, remaining), where remaining counts urgent in result after popping. Use pop and count.",
+        "nl": "Haal het laatste resterende item weg met pop en geef (result, last, remaining) terug; remaining telt urgent in result na pop. Gebruik pop en count."
+      },
+      "check": "(manage([\"Ana\",\"Bo\",\"Ana\"],\"Dax\",\"Ana\") == ([\"Dax\",\"Bo\"],\"Ana\",1)) and (any(isinstance(n,_ast.Call) and isinstance(n.func,_ast.Attribute) and n.func.attr == \"pop\" for n in _ast.walk(next(n for n in _ast.walk(_ast.parse(_source)) if isinstance(n,_ast.FunctionDef) and n.name == \"manage\"))) and any(isinstance(n,_ast.Call) and isinstance(n.func,_ast.Attribute) and n.func.attr == \"count\" for n in _ast.walk(next(n for n in _ast.walk(_ast.parse(_source)) if isinstance(n,_ast.FunctionDef) and n.name == \"manage\"))))",
+      "hints": [
+        {
+          "en": "pop gives back what it removes.",
+          "nl": "pop geeft terug wat het verwijdert."
+        },
+        {
+          "en": "Store the pop result before counting the final list.",
+          "nl": "Bewaar het pop-resultaat voordat je de eindlijst telt."
+        },
+        {
+          "en": "last = result.pop()\nremaining = result.count(urgent)",
+          "nl": "last = result.pop()\nremaining = result.count(urgent)"
+        }
+      ],
+      "hint": {
+        "en": "pop gives back what it removes.",
+        "nl": "pop geeft terug wat het verwijdert."
+      },
+      "feedback": {
+        "en": "Count after all changes, not before the popped entry disappears.",
+        "nl": "Tel na alle wijzigingen, niet voordat het verwijderde item verdwijnt."
+      },
+      "probes": [
+        {
+          "call": {
+            "name": "manage",
+            "args": [
+              [
+                "A",
+                "A",
+                "B"
+              ],
+              "A",
+              "A"
+            ]
+          },
+          "check": "_return == ([\"A\",\"A\"],\"B\",2)"
+        },
+        {
+          "call": {
+            "name": "manage",
+            "args": [
+              [
+                "A",
+                "B"
+              ],
+              "C",
+              "A"
+            ]
+          },
+          "check": "_return == ([\"C\"],\"B\",1)"
+        }
+      ],
+      "id": "python-v3-9-01-step-2"
+    }
+  ],
+  "solutionNote": {
+    "en": "Each operation has a different selection rule. Copying first protects the caller, while storing pop’s return value preserves the removed item for reporting.",
+    "nl": "Elke bewerking heeft een andere selectieregel. Eerst kopiëren beschermt de aanroeper; de pop-terugkeerwaarde bewaren behoudt het verwijderde item voor rapportage."
+  },
+  "inputs": [],
+  "retrievals": [
+    {
+      "id": "recall-python-v3-7-01",
+      "sourceActivityId": "python-v3-7-01",
+      "objectiveIds": [
+        "pygame-objects",
+        "attributes",
+        "rect",
+        "coordinates"
+      ],
+      "prompt": {
+        "en": "Describe a Rect’s x, y, width and right attributes at a new position. Which direction increases screen y?",
+        "nl": "Beschrijf x, y, width en right van een Rect op een nieuwe positie. In welke richting neemt scherm-y toe?"
+      }
+    }
+  ]
+}

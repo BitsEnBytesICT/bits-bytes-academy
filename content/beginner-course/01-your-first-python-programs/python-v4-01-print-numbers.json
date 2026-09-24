@@ -1,0 +1,113 @@
+{
+  "id": "python-v4-01-print-numbers",
+  "chapter": 1,
+  "group": "python-v4-module-1",
+  "title": {
+    "en": "Numbers and quoted numbers",
+    "nl": "Getallen en getallen tussen aanhalingstekens"
+  },
+  "kind": "coding",
+  "optional": false,
+  "runtime": "terminal",
+  "guidance": "guided",
+  "checkpointMode": "sequential",
+  "estimatedMinutes": 9,
+  "topicIds": [
+    "numeric-literals"
+  ],
+  "practices": [],
+  "requiredConcepts": [
+    "strings",
+    "print"
+  ],
+  "explanation": {
+    "en": "print can display numbers as well as text. Two values can look the same in the terminal while being different kinds of value.",
+    "nl": "print kan getallen én tekst tonen. Twee waarden kunnen er hetzelfde uitzien in de terminal terwijl ze verschillende soorten waarden zijn."
+  },
+  "example": "",
+  "sections": [
+    {
+      "id": "python-v4-01-print-numbers-example",
+      "topicIds": [
+        "numeric-literals"
+      ],
+      "heading": {
+        "en": "Follow a working example",
+        "nl": "Volg een werkend voorbeeld"
+      },
+      "body": {
+        "en": "Without quotes, 12 is a number. With quotes, \"12\" is text containing two digits. print displays both as 12. The terminal shows their appearance, not their type.\n\nPython also understands zero and negative numbers such as -3. Keep the minus sign next to the number. You do not need to convert a number to text just to give it directly to print. We will inspect types and calculate with numbers in the next modules.",
+        "nl": "Zonder aanhalingstekens is 12 een getal. Met aanhalingstekens is \"12\" tekst met twee cijfers. print toont beide als 12. De terminal toont hun uiterlijk, niet hun type.\n\nPython begrijpt ook nul en negatieve getallen zoals -3. Zet het minteken bij het getal. Je hoeft een getal niet naar tekst om te zetten om het rechtstreeks aan print te geven. In de volgende modules onderzoeken we typen en rekenen we met getallen."
+      },
+      "code": "print(12)\nprint(\"12\")\nprint(-3)",
+      "output": "12\n12\n-3\n",
+      "prediction": {
+        "en": "Can you tell the first two values apart just by their printed appearance?",
+        "nl": "Kun je de eerste twee waarden alleen aan hun uitvoer onderscheiden?"
+      },
+      "takeaway": {
+        "en": "Quotes make text; an unquoted numeric literal is a number.",
+        "nl": "Aanhalingstekens maken tekst; een getal zonder aanhalingstekens is een getalswaarde."
+      }
+    },
+    {
+      "id": "python-v4-01-print-numbers-experiment",
+      "topicIds": [],
+      "heading": {
+        "en": "Try one change",
+        "nl": "Probeer één wijziging"
+      },
+      "body": {
+        "en": "Change the unquoted 7 to -7. Predict which output line changes.",
+        "nl": "Verander de 7 zonder aanhalingstekens in -7. Voorspel welke uitvoerregel verandert."
+      }
+    }
+  ],
+  "files": {
+    "main.py": ""
+  },
+  "solution": {
+    "main.py": "print(7)\nprint(\"7\")\nprint(0)\n"
+  },
+  "checkpoints": [
+    {
+      "id": "python-v4-01-print-numbers-step-1",
+      "objectiveIds": [
+        "numeric-literals"
+      ],
+      "task": {
+        "en": "Print the number 7, then the string \"7\", then the number 0.",
+        "nl": "Druk het getal 7 af, daarna de string \"7\" en daarna het getal 0."
+      },
+      "check": "_stdout == \"7\\n7\\n0\\n\" and any(isinstance(n, _ast.Constant) and type(n.value) is int and n.value == 7 for n in _ast.walk(_ast.parse(_source))) and any(isinstance(n, _ast.Constant) and n.value == \"7\" for n in _ast.walk(_ast.parse(_source)))",
+      "probes": [],
+      "hint": {
+        "en": "Quotes make text; an unquoted numeric literal is a number.",
+        "nl": "Aanhalingstekens maken tekst; een getal zonder aanhalingstekens is een getalswaarde."
+      },
+      "hints": [
+        {
+          "en": "Quotes make text; an unquoted numeric literal is a number.",
+          "nl": "Aanhalingstekens maken tekst; een getal zonder aanhalingstekens is een getalswaarde."
+        },
+        {
+          "en": "Check both the output and the code: one 7 should have quotes and the other should not.",
+          "nl": "Controleer zowel uitvoer als code: één 7 moet aanhalingstekens hebben en de andere niet."
+        },
+        {
+          "en": "A small fragment to adapt: `print(5)`",
+          "nl": "Een klein fragment om aan te passen: `print(5)`"
+        }
+      ],
+      "feedback": {
+        "en": "Check both the output and the code: one 7 should have quotes and the other should not.",
+        "nl": "Controleer zowel uitvoer als code: één 7 moet aanhalingstekens hebben en de andere niet."
+      }
+    }
+  ],
+  "solutionNote": {
+    "en": "Matching output alone does not show that the types differ. This exercise also checks that the program contains both a number and a text value.",
+    "nl": "Gelijke uitvoer laat niet zien dat de typen verschillen. Deze oefening controleert daarom ook of het programma een getal én een tekstwaarde bevat."
+  },
+  "inputs": []
+}

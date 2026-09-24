@@ -1,0 +1,168 @@
+{
+  "id": "python-v4-17-slicing",
+  "chapter": 17,
+  "group": "python-v4-module-17",
+  "title": {
+    "en": "Take a slice of a list",
+    "nl": "Neem een deel van een lijst"
+  },
+  "kind": "coding",
+  "optional": false,
+  "runtime": "terminal",
+  "guidance": "guided",
+  "checkpointMode": "sequential",
+  "estimatedMinutes": 12,
+  "topicIds": [
+    "slicing",
+    "omitted-slice-bounds",
+    "count"
+  ],
+  "practices": [],
+  "requiredConcepts": [
+    "indexing",
+    "copying"
+  ],
+  "explanation": {
+    "en": "Slices extract a consecutive part without changing the source list.",
+    "nl": "Deellijsten halen een opeenvolgend deel op zonder de bronlijst te wijzigen."
+  },
+  "example": "",
+  "sections": [
+    {
+      "id": "python-v4-17-slicing-example",
+      "topicIds": [
+        "slicing",
+        "omitted-slice-bounds",
+        "count"
+      ],
+      "heading": {
+        "en": "Follow a working example",
+        "nl": "Volg een werkend voorbeeld"
+      },
+      "body": {
+        "en": "items[start:stop] includes start and excludes stop. An omitted start means the beginning; an omitted stop means the end. Negative bounds count from the end. items[:] makes a shallow copy. Unlike single indexing, a slice can safely run past an end. items.count(value) returns how many equal values occur.",
+        "nl": "items[start:stop] neemt start mee en sluit stop uit. Een ontbrekend begin betekent het begin; een ontbrekend einde betekent het einde. Negatieve grenzen tellen vanaf het einde. items[:] maakt een oppervlakkige kopie. Anders dan één index mag een deelbereik veilig voorbij een einde lopen. items.count(value) geeft hoe vaak gelijke waarden voorkomen."
+      },
+      "code": "values = [1,2,2,4]\nprint(values[1:3])\nprint(values[:2])\nprint(values[-2:])\nprint(values.count(2))",
+      "output": "[2, 2]\n[1, 2]\n[2, 4]\n2\n",
+      "prediction": {
+        "en": "Why does [1:3] contain two elements?",
+        "nl": "Waarom bevat [1:3] twee elementen?"
+      },
+      "takeaway": {
+        "en": "A slice excludes its stop and leaves the source intact.",
+        "nl": "Een deelbereik sluit zijn stop uit en laat de bron intact."
+      }
+    },
+    {
+      "id": "python-v4-17-slicing-experiment",
+      "topicIds": [],
+      "heading": {
+        "en": "Try one change",
+        "nl": "Probeer één wijziging"
+      },
+      "body": {
+        "en": "Compare [:3], [3:] and [-3:] on the same list.",
+        "nl": "Vergelijk [:3], [3:] en [-3:] op dezelfde lijst."
+      }
+    }
+  ],
+  "files": {
+    "main.py": "def window(values):\n    # Complete this function.\n    return None\n"
+  },
+  "solution": {
+    "main.py": "def window(values):\n    recent = values[-3:]\n    return recent, recent.count(0)\n"
+  },
+  "checkpoints": [
+    {
+      "id": "python-v4-17-slicing-step-1",
+      "objectiveIds": [
+        "slicing",
+        "omitted-slice-bounds",
+        "count"
+      ],
+      "task": {
+        "en": "Return (last_three_values, zero_count_in_those_values), using slicing and count. Shorter lists keep all their values.",
+        "nl": "Geef (last_three_values, zero_count_in_those_values) terug met een deelbereik en count. Kortere lijsten behouden al hun waarden."
+      },
+      "check": "any(isinstance(n, _ast.Subscript) and isinstance(n.slice, _ast.Slice) for n in _ast.walk(_ast.parse(_source))) and any(isinstance(n, _ast.Call) and isinstance(n.func, _ast.Attribute) and n.func.attr == \"count\" for n in _ast.walk(_ast.parse(_source)))",
+      "probes": [
+        {
+          "call": {
+            "name": "window",
+            "args": [
+              [
+                0,
+                1,
+                0,
+                2
+              ]
+            ]
+          },
+          "check": "(_return == ([1,0,2],1)) and _error is None"
+        },
+        {
+          "call": {
+            "name": "window",
+            "args": [
+              [
+                0
+              ]
+            ]
+          },
+          "check": "(_return == ([0],1)) and _error is None"
+        },
+        {
+          "call": {
+            "name": "window",
+            "args": [
+              []
+            ]
+          },
+          "check": "(_return == ([],0)) and _error is None"
+        }
+      ],
+      "hint": {
+        "en": "A slice excludes its stop and leaves the source intact.",
+        "nl": "Een deelbereik sluit zijn stop uit en laat de bron intact."
+      },
+      "hints": [
+        {
+          "en": "A slice excludes its stop and leaves the source intact.",
+          "nl": "Een deelbereik sluit zijn stop uit en laat de bron intact."
+        },
+        {
+          "en": "Slice first so the count applies only to the selected part.",
+          "nl": "Neem eerst het deel zodat het tellen alleen daarop slaat."
+        },
+        {
+          "en": "A small fragment to adapt: `values[-3:]`",
+          "nl": "Een klein fragment om aan te passen: `values[-3:]`"
+        }
+      ],
+      "feedback": {
+        "en": "Slice first so the count applies only to the selected part.",
+        "nl": "Neem eerst het deel zodat het tellen alleen daarop slaat."
+      }
+    }
+  ],
+  "solutionNote": {
+    "en": "Negative slicing naturally handles short lists; count reports occurrences in the selected window.",
+    "nl": "Negatieve deellijsten verwerken korte lijsten vanzelf; count telt voorkomens in het gekozen deel."
+  },
+  "inputs": [],
+  "retrievals": [
+    {
+      "id": "recall-python-v4-15-drawing-order",
+      "sourceActivityId": "python-v4-15-drawing-order",
+      "objectiveIds": [
+        "drawing-order",
+        "drawing"
+      ],
+      "prompt": {
+        "en": "Recall “Draw the background before the foreground”. What would the pixel be if fill ran last? Try the earlier example from memory, then check it. Add a second overlapping rectangle and swap their drawing order.",
+        "nl": "Haal “Teken de achtergrond vóór de voorgrond” terug. Wat is de pixel als fill als laatste draait? Probeer het eerdere voorbeeld uit je geheugen en controleer daarna. Voeg een tweede overlappende rechthoek toe en wissel de tekenvolgorde."
+      }
+    }
+  ]
+}

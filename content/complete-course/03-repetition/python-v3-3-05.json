@@ -1,0 +1,186 @@
+{
+  "id": "python-v3-3-05",
+  "chapter": 3,
+  "group": "python-v3-module-3",
+  "title": {
+    "en": "Summarise a session",
+    "nl": "Vat een sessie samen"
+  },
+  "kind": "coding",
+  "optional": false,
+  "runtime": "terminal",
+  "guidance": "independent",
+  "estimatedMinutes": 14,
+  "explanation": {
+    "en": "Write a session counter from a brief. add increases points by 2, undo decreases points by 2, quit ends the session, and other commands change nothing. Count only add and undo actions.",
+    "nl": "Schrijf een sessieteller uit een beschrijving. add verhoogt punten met 2, undo verlaagt punten met 2, quit beëindigt de sessie en andere commando’s veranderen niets. Tel alleen add- en undo-acties."
+  },
+  "example": "",
+  "topicIds": [
+    "loop-review"
+  ],
+  "prerequisites": [
+    "python-v3-3-04"
+  ],
+  "sections": [
+    {
+      "topicIds": [
+        "loop-review"
+      ],
+      "heading": {
+        "en": "Follow one event at a time",
+        "nl": "Volg één gebeurtenis tegelijk"
+      },
+      "body": {
+        "en": "Choose a clear stopping rule and keep totals outside the loop. A brief can allow negative totals: do not invent a restriction that was not requested. Use a small trace table with columns command, points, actions to check your reasoning.",
+        "nl": "Kies een duidelijke stopregel en bewaar totalen buiten de lus. Een beschrijving kan negatieve totalen toestaan: verzin geen beperking die niet gevraagd is. Gebruik een kleine volgtabel met kolommen command, points, actions om je redenering te controleren."
+      },
+      "code": "total = 0\nfor n in range(3):\n    total += 2\nprint(total)",
+      "output": "6\n",
+      "prediction": {
+        "en": "Where must total = 0 stay to preserve earlier updates?",
+        "nl": "Waar moet total = 0 blijven om eerdere updates te behouden?"
+      }
+    },
+    {
+      "topicIds": [],
+      "heading": {
+        "en": "Try a changed input",
+        "nl": "Probeer gewijzigde invoer"
+      },
+      "body": {
+        "en": "Test undo before any add. Then add three unknown commands between recognised commands. The recognised-action count should stay the same.",
+        "nl": "Test undo vóór een add. Voeg daarna drie onbekende commando’s tussen herkende commando’s toe. Het aantal herkende acties moet gelijk blijven."
+      }
+    }
+  ],
+  "files": {
+    "main.py": "# Build the command session here.\n"
+  },
+  "solution": {
+    "main.py": "points = 0\nactions = 0\nwhile True:\n    command = input(\"Action: \")\n    if command == \"quit\":\n        break\n    if command == \"add\":\n        points += 2\n    elif command == \"undo\":\n        points -= 2\n    else:\n        continue\n    actions += 1\nprint(f\"Points: {points}\")\nprint(f\"Actions: {actions}\")\n"
+  },
+  "checkpoints": [
+    {
+      "objectiveIds": [
+        "loop-review"
+      ],
+      "task": {
+        "en": "Read commands until quit. Maintain points and actions according to the brief.",
+        "nl": "Lees commando’s tot quit. Houd points en actions volgens de beschrijving bij."
+      },
+      "check": "points == 2 and actions == 3",
+      "hints": [
+        {
+          "en": "Keep the state separate from the current command.",
+          "nl": "Houd de toestand apart van het huidige commando."
+        },
+        {
+          "en": "Use a loop with one update branch for each recognised action.",
+          "nl": "Gebruik een lus met één updatetak per herkende actie."
+        },
+        {
+          "en": "elif command == \"undo\":\n    points -= 2",
+          "nl": "elif command == \"undo\":\n    points -= 2"
+        }
+      ],
+      "hint": {
+        "en": "Keep the state separate from the current command.",
+        "nl": "Houd de toestand apart van het huidige commando."
+      },
+      "feedback": {
+        "en": "Unknown commands and quit must not count as actions.",
+        "nl": "Onbekende commando’s en quit mogen niet als acties tellen."
+      },
+      "probes": [
+        {
+          "stdin": [
+            "undo",
+            "quit"
+          ],
+          "check": "points == -2 and actions == 1"
+        },
+        {
+          "stdin": [
+            "oops",
+            "quit"
+          ],
+          "check": "points == 0 and actions == 0"
+        },
+        {
+          "stdin": [
+            "quit"
+          ],
+          "check": "points == 0 and actions == 0"
+        }
+      ],
+      "id": "python-v3-3-05-step-1"
+    },
+    {
+      "objectiveIds": [
+        "loop-review"
+      ],
+      "task": {
+        "en": "After stopping, print Points: and Actions: with their totals on separate lines.",
+        "nl": "Druk na het stoppen Points: en Actions: met hun totalen op aparte regels af."
+      },
+      "check": "\"Points: 2\\nActions: 3\\n\" in _stdout",
+      "hints": [
+        {
+          "en": "The report summarises the completed session.",
+          "nl": "Het rapport vat de afgeronde sessie samen."
+        },
+        {
+          "en": "Put two f-string print calls after the loop.",
+          "nl": "Zet twee f-string-print-aanroepen na de lus."
+        },
+        {
+          "en": "print(f\"Actions: {actions}\")",
+          "nl": "print(f\"Actions: {actions}\")"
+        }
+      ],
+      "hint": {
+        "en": "The report summarises the completed session.",
+        "nl": "Het rapport vat de afgeronde sessie samen."
+      },
+      "feedback": {
+        "en": "Check both totals and print the report once after quit.",
+        "nl": "Controleer beide totalen en druk het rapport één keer na quit af."
+      },
+      "probes": [
+        {
+          "stdin": [
+            "quit"
+          ],
+          "check": "\"Points: 0\\nActions: 0\\n\" in _stdout"
+        }
+      ],
+      "id": "python-v3-3-05-step-2"
+    }
+  ],
+  "solutionNote": {
+    "en": "The state starts once. Unknown commands skip the counter, while recognised actions update both the points and the action count. A condition-based while loop is also valid.",
+    "nl": "De toestand begint één keer. Onbekende commando’s slaan de teller over, terwijl herkende acties punten én actieteller bijwerken. Een while-lus met een voorwaarde is ook geldig."
+  },
+  "inputs": [
+    "add",
+    "add",
+    "undo",
+    "quit"
+  ],
+  "retrievals": [
+    {
+      "id": "recall-python-v3-1-05",
+      "sourceActivityId": "python-v3-1-05",
+      "objectiveIds": [
+        "concatenation",
+        "multiline-strings",
+        "errors"
+      ],
+      "prompt": {
+        "en": "Build a two-line message using concatenation and a multiline string. Deliberately remove a quote, read the error and repair it.",
+        "nl": "Bouw een bericht van twee regels met samenvoegen en een meerregelige string. Verwijder bewust een aanhalingsteken, lees de fout en herstel die."
+      }
+    }
+  ]
+}

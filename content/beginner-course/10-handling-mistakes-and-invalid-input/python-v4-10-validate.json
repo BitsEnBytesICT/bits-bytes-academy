@@ -1,0 +1,190 @@
+{
+  "id": "python-v4-10-validate",
+  "chapter": 10,
+  "group": "python-v4-module-10",
+  "title": {
+    "en": "A number can still be invalid",
+    "nl": "Een getal kan nog steeds ongeldig zijn"
+  },
+  "kind": "coding",
+  "optional": false,
+  "runtime": "terminal",
+  "guidance": "independent",
+  "checkpointMode": "sequential",
+  "estimatedMinutes": 12,
+  "topicIds": [
+    "validation"
+  ],
+  "practices": [],
+  "requiredConcepts": [
+    "value-error",
+    "early-return"
+  ],
+  "explanation": {
+    "en": "Parsing asks whether text is numeric. Validation asks whether that number is allowed by the application.",
+    "nl": "Ontleden vraagt of tekst numeriek is. Validatie vraagt of dat getal volgens de toepassing is toegestaan."
+  },
+  "example": "",
+  "sections": [
+    {
+      "id": "python-v4-10-validate-example",
+      "topicIds": [
+        "validation"
+      ],
+      "heading": {
+        "en": "Follow a working example",
+        "nl": "Volg een werkend voorbeeld"
+      },
+      "body": {
+        "en": "Converting \"-2\" succeeds, but a negative ticket count may be forbidden. Catch conversion failures first; after successful conversion, check domain rules with comparisons. Keep zero separate from None: zero may be a valid answer, so if not value is often the wrong test.",
+        "nl": "Omzetten van \"-2\" lukt, maar een negatief aantal kaartjes kan verboden zijn. Vang eerst omzettingsfouten op; controleer na geslaagde omzetting de inhoudelijke regels met vergelijkingen. Houd nul gescheiden van None: nul kan geldig zijn, dus if not value is vaak de verkeerde test."
+      },
+      "code": "text = \"-2\"\ntry:\n    age = int(text)\nexcept ValueError:\n    age = None\nif age is None:\n    print(\"Not numeric\")\nelif age < 0:\n    print(\"Out of range\")\nelse:\n    print(\"Allowed\")",
+      "output": "Out of range\n",
+      "prediction": {
+        "en": "Which check rejects -2?",
+        "nl": "Welke controle keurt -2 af?"
+      },
+      "takeaway": {
+        "en": "Conversion and permission are two separate checks.",
+        "nl": "Omzetting en toestemming zijn twee aparte controles."
+      }
+    },
+    {
+      "id": "python-v4-10-validate-experiment",
+      "topicIds": [],
+      "heading": {
+        "en": "Try one change",
+        "nl": "Probeer één wijziging"
+      },
+      "body": {
+        "en": "Test both boundaries and one value just outside each boundary.",
+        "nl": "Test beide grenzen en één waarde net buiten elke grens."
+      }
+    }
+  ],
+  "files": {
+    "main.py": ""
+  },
+  "solution": {
+    "main.py": "def parse_percent(text):\n    try:\n        value = float(text)\n    except ValueError:\n        return None\n    if 0 <= value <= 100:\n        return value\n    return None\n"
+  },
+  "checkpoints": [
+    {
+      "id": "python-v4-10-validate-step-1",
+      "objectiveIds": [
+        "validation"
+      ],
+      "task": {
+        "en": "Implement parse_percent(text): return a number from 0 through 100 inclusive, otherwise None.",
+        "nl": "Implementeer parse_percent(text): geef een getal van 0 tot en met 100 terug, anders None."
+      },
+      "check": "callable(parse_percent)",
+      "probes": [
+        {
+          "call": {
+            "name": "parse_percent",
+            "args": [
+              "0"
+            ]
+          },
+          "check": "_return == 0"
+        },
+        {
+          "call": {
+            "name": "parse_percent",
+            "args": [
+              "100"
+            ]
+          },
+          "check": "_return == 100"
+        },
+        {
+          "call": {
+            "name": "parse_percent",
+            "args": [
+              "25.5"
+            ]
+          },
+          "check": "_return == 25.5"
+        },
+        {
+          "call": {
+            "name": "parse_percent",
+            "args": [
+              "-1"
+            ]
+          },
+          "check": "_return is None and _error is None"
+        },
+        {
+          "call": {
+            "name": "parse_percent",
+            "args": [
+              "101"
+            ]
+          },
+          "check": "_return is None and _error is None"
+        },
+        {
+          "call": {
+            "name": "parse_percent",
+            "args": [
+              "bad"
+            ]
+          },
+          "check": "_return is None and _error is None"
+        },
+        {
+          "call": {
+            "name": "parse_percent",
+            "args": [
+              ""
+            ]
+          },
+          "check": "_return is None and _error is None"
+        }
+      ],
+      "hint": {
+        "en": "Conversion and permission are two separate checks.",
+        "nl": "Omzetting en toestemming zijn twee aparte controles."
+      },
+      "hints": [
+        {
+          "en": "Conversion and permission are two separate checks.",
+          "nl": "Omzetting en toestemming zijn twee aparte controles."
+        },
+        {
+          "en": "Convert first, then require value >= 0 and value <= 100.",
+          "nl": "Zet eerst om en eis daarna value >= 0 en value <= 100."
+        },
+        {
+          "en": "A small fragment to adapt: `if value >= 0 and value <= 100:`",
+          "nl": "Een klein fragment om aan te passen: `if value >= 0 and value <= 100:`"
+        }
+      ],
+      "feedback": {
+        "en": "Convert first, then require value >= 0 and value <= 100.",
+        "nl": "Zet eerst om en eis daarna value >= 0 en value <= 100."
+      }
+    }
+  ],
+  "solutionNote": {
+    "en": "The parser rejects malformed text; the range check rejects numeric values outside the allowed interval.",
+    "nl": "De ontleder keurt ongeldige tekst af; de bereikcontrole keurt getallen buiten het toegestane interval af."
+  },
+  "inputs": [],
+  "retrievals": [
+    {
+      "id": "recall-python-v4-08-stop-endless-loop",
+      "sourceActivityId": "python-v4-08-stop-endless-loop",
+      "objectiveIds": [
+        "infinite-loops"
+      ],
+      "prompt": {
+        "en": "Recall “Recognise and stop an endless loop”. Which line prevents this loop from running forever? Try the earlier example from memory, then check it. With the Stop button in view, remove the update and try the program. Stop it, restore the update and verify a subsequent Run works.",
+        "nl": "Haal “Herken en stop een eindeloze lus” terug. Welke regel voorkomt dat deze lus altijd blijft draaien? Probeer het eerdere voorbeeld uit je geheugen en controleer daarna. Verwijder met de knop Stoppen in beeld de wijziging en probeer het programma. Stop het, herstel de wijziging en controleer of opnieuw Uitvoeren werkt."
+      }
+    }
+  ]
+}

@@ -1,0 +1,288 @@
+{
+  "id": "python-v4-10-calculator-project",
+  "chapter": 10,
+  "group": "python-v4-module-10",
+  "kind": "project",
+  "runtime": "terminal",
+  "optional": false,
+  "guidance": "independent",
+  "estimatedMinutes": 120,
+  "title": {
+    "en": "Project: your calculator",
+    "nl": "Project: jouw rekenmachine"
+  },
+  "explanation": {
+    "en": "Build one complete terminal calculator from a small blank file. Choose +, -, * or /, read two numeric values, show the result, and offer another calculation. Recover from invalid numbers and unsupported operations; handle a zero divisor. Accept negative and decimal values. Allow quit at every prompt and finish cleanly at end-of-input. Use small functions for calculation and input. You decide the exact messages and design. Mark each milestone yourself after testing it.",
+    "nl": "Bouw één complete terminalrekenmachine vanuit een klein leeg bestand. Kies +, -, * of /, lees twee numerieke waarden, toon het resultaat en bied nog een berekening aan. Herstel van ongeldige getallen en onbekende bewerkingen; verwerk een deler nul. Accepteer negatieve en decimale waarden. Laat quit toe bij elke vraag en sluit netjes af bij einde invoer. Gebruik kleine functies voor berekening en invoer. Jij bepaalt de exacte berichten en het ontwerp. Markeer elke mijlpaal zelf nadat je die hebt getest."
+  },
+  "example": "",
+  "sections": [
+    {
+      "heading": {
+        "en": "Readiness and a sample conversation",
+        "nl": "Voorbereiding en een voorbeeldgesprek"
+      },
+      "body": {
+        "en": "Before starting, revisit the linked independent function, menu and recovery exercises if needed. A conversation might be: Operation: + → First: -2.5 → Second: 4 → Result: 1.5 → Operation: quit → Goodbye. After First: apple, explain the problem and ask again. The program must still accept the next valid number. Prompts and wording are your choice.",
+        "nl": "Bekijk vóór de start zo nodig de gekoppelde onafhankelijke functie-, menu- en hersteloefeningen. Een gesprek kan zijn: Operation: + → First: -2.5 → Second: 4 → Result: 1.5 → Operation: quit → Goodbye. Leg na First: apple het probleem uit en vraag opnieuw. Het programma moet het volgende geldige getal nog steeds accepteren. Vragen en bewoording kies je zelf."
+      }
+    }
+  ],
+  "files": {
+    "main.py": "# Build your calculator here.\n"
+  },
+  "solution": {},
+  "checkpoints": [],
+  "solutionNote": {
+    "en": "Choose your own design and assess it using the manual tests.",
+    "nl": "Kies je eigen ontwerp en beoordeel het met de handmatige tests."
+  },
+  "milestones": [
+    {
+      "id": "calculator-arithmetic",
+      "title": {
+        "en": "Calculate with reusable functions",
+        "nl": "Bereken met herbruikbare functies"
+      },
+      "description": {
+        "en": "Implement four operations using arguments and return values. Test them separately before adding the conversation.",
+        "nl": "Implementeer vier bewerkingen met argumenten en terugkeerwaarden. Test ze apart voordat je het gesprek toevoegt."
+      },
+      "hints": [
+        {
+          "en": "Separate calculating from displaying.",
+          "nl": "Scheid berekenen van tonen."
+        },
+        {
+          "en": "Choose a clear result for division by zero.",
+          "nl": "Kies een duidelijk resultaat voor delen door nul."
+        },
+        {
+          "en": "A guard can return None before dividing.",
+          "nl": "Een bewaking kan None teruggeven vóór delen."
+        }
+      ]
+    },
+    {
+      "id": "calculator-conversation",
+      "title": {
+        "en": "Read and recover",
+        "nl": "Lees en herstel"
+      },
+      "description": {
+        "en": "Read two numbers and an operation; keep asking after an invalid value or unsupported operation.",
+        "nl": "Lees twee getallen en een bewerking; blijf vragen na een ongeldige waarde of onbekende bewerking."
+      },
+      "hints": [
+        {
+          "en": "Reuse the input patterns from module 10.",
+          "nl": "Hergebruik de invoerpatronen uit module 10."
+        },
+        {
+          "en": "Check quit before converting text.",
+          "nl": "Controleer quit vóór tekstomzetting."
+        },
+        {
+          "en": "Catch ValueError around float(text).",
+          "nl": "Vang ValueError rond float(text) op."
+        }
+      ]
+    },
+    {
+      "id": "calculator-session",
+      "title": {
+        "en": "Repeat and quit safely",
+        "nl": "Herhaal en stop veilig"
+      },
+      "description": {
+        "en": "Allow several calculations in one run and quit from any prompt, including after a failed conversion.",
+        "nl": "Sta meerdere berekeningen in één uitvoering toe en stop bij elke vraag, ook na een mislukte omzetting."
+      },
+      "hints": [
+        {
+          "en": "Draw the conversation and every exit.",
+          "nl": "Teken het gesprek en elke uitgang."
+        },
+        {
+          "en": "Keep the operation menu inside an outer while loop.",
+          "nl": "Houd het bewerkingsmenu binnen een buitenste while-lus."
+        },
+        {
+          "en": "Use is None to distinguish cancellation from numeric zero.",
+          "nl": "Gebruik is None om annuleren van numerieke nul te onderscheiden."
+        }
+      ]
+    },
+    {
+      "id": "calculator-test",
+      "title": {
+        "en": "Test the finished tool",
+        "nl": "Test het voltooide gereedschap"
+      },
+      "description": {
+        "en": "Run all manual cases below. Explain one function and one recovery path before marking the project complete.",
+        "nl": "Voer alle handmatige gevallen hieronder uit. Leg één functie en één herstelroute uit voordat je het project afrondt."
+      },
+      "hints": [
+        {
+          "en": "Check boundaries and sequences, not only one successful calculation.",
+          "nl": "Controleer grenzen en reeksen, niet alleen één geslaagde berekening."
+        },
+        {
+          "en": "Try invalid input followed by a valid calculation in the same run.",
+          "nl": "Probeer ongeldige invoer gevolgd door een geldige berekening in dezelfde uitvoering."
+        },
+        {
+          "en": "Record expected and actual results in a small table.",
+          "nl": "Noteer verwachte en werkelijke resultaten in een kleine tabel."
+        }
+      ]
+    }
+  ],
+  "references": [
+    "python-v4-09-ticket-function",
+    "python-v4-10-cancel-safely",
+    "python-v4-07-command-menu",
+    "python-v4-08-session-summary",
+    "python-v4-10-zero-division"
+  ],
+  "suggestedTests": [
+    {
+      "en": "2 + 3 → 5; 7 - 10 → -3; -2 * 4 → -8; 9 / 2 → 4.5; 0 * 5 → 0; 5 / 0 → handled message.",
+      "nl": "2 + 3 → 5; 7 - 10 → -3; -2 * 4 → -8; 9 / 2 → 4.5; 0 * 5 → 0; 5 / 0 → afgehandeld bericht."
+    },
+    {
+      "en": "Try an empty answer, apple, an unsupported operation, -2.5 and 0. Finish a valid calculation afterward without restarting.",
+      "nl": "Probeer een leeg antwoord, apple, een onbekende bewerking, -2.5 en 0. Maak daarna een geldige berekening zonder te herstarten."
+    },
+    {
+      "en": "Perform two calculations in one run. Quit at the menu, at the first number and at the second number. Test End input and then a fresh Run.",
+      "nl": "Voer twee berekeningen in één uitvoering uit. Stop bij het menu, het eerste getal en het tweede getal. Test einde invoer en daarna opnieuw Uitvoeren."
+    }
+  ],
+  "manualTests": [
+    {
+      "input": {
+        "en": "2 + 3",
+        "nl": "2 + 3"
+      },
+      "expected": {
+        "en": "5",
+        "nl": "5"
+      }
+    },
+    {
+      "input": {
+        "en": "7 - 10",
+        "nl": "7 - 10"
+      },
+      "expected": {
+        "en": "-3",
+        "nl": "-3"
+      }
+    },
+    {
+      "input": {
+        "en": "-2 * 4",
+        "nl": "-2 * 4"
+      },
+      "expected": {
+        "en": "-8",
+        "nl": "-8"
+      }
+    },
+    {
+      "input": {
+        "en": "9 / 2",
+        "nl": "9 / 2"
+      },
+      "expected": {
+        "en": "4.5",
+        "nl": "4.5"
+      }
+    },
+    {
+      "input": {
+        "en": "0 * 5",
+        "nl": "0 * 5"
+      },
+      "expected": {
+        "en": "0",
+        "nl": "0"
+      }
+    },
+    {
+      "input": {
+        "en": "-2.5 + 4",
+        "nl": "-2.5 + 4"
+      },
+      "expected": {
+        "en": "1.5",
+        "nl": "1.5"
+      }
+    },
+    {
+      "input": {
+        "en": "5 / 0",
+        "nl": "5 / 0"
+      },
+      "expected": {
+        "en": "Explain the zero divisor and return to a usable prompt.",
+        "nl": "Leg de deler nul uit en keer terug naar een bruikbare vraag."
+      }
+    },
+    {
+      "input": {
+        "en": "apple, then 3 at a number prompt",
+        "nl": "apple, daarna 3 bij een getalvraag"
+      },
+      "expected": {
+        "en": "Explain the invalid number, retry, then accept 3.",
+        "nl": "Leg het ongeldige getal uit, vraag opnieuw en accepteer 3."
+      }
+    },
+    {
+      "input": {
+        "en": "Unknown operation, then +",
+        "nl": "Onbekende bewerking, daarna +"
+      },
+      "expected": {
+        "en": "Retry the operation without crashing.",
+        "nl": "Vraag de bewerking opnieuw zonder vast te lopen."
+      }
+    },
+    {
+      "input": {
+        "en": "Two calculations, then quit",
+        "nl": "Twee berekeningen, daarna quit"
+      },
+      "expected": {
+        "en": "Show both results in one run, then finish.",
+        "nl": "Toon beide resultaten in één uitvoering en stop daarna."
+      }
+    },
+    {
+      "input": {
+        "en": "quit or End input at any prompt",
+        "nl": "quit of einde invoer bij elke vraag"
+      },
+      "expected": {
+        "en": "Exit cleanly, including after invalid input.",
+        "nl": "Sluit netjes af, ook na ongeldige invoer."
+      }
+    }
+  ],
+  "retrievals": [
+    {
+      "id": "recall-python-v4-08-continue",
+      "sourceActivityId": "python-v4-08-continue",
+      "objectiveIds": [
+        "continue"
+      ],
+      "prompt": {
+        "en": "Recall “Skip one iteration with continue”. Why does 3 still appear after 2 is skipped? Try the earlier example from memory, then check it. Replace continue with break and compare the output. Explain why later odd values disappear.",
+        "nl": "Haal “Sla één iteratie over met continue” terug. Waarom verschijnt 3 nog nadat 2 is overgeslagen? Probeer het eerdere voorbeeld uit je geheugen en controleer daarna. Vervang continue door break en vergelijk de uitvoer. Leg uit waarom latere oneven waarden verdwijnen."
+      }
+    }
+  ]
+}

@@ -1,0 +1,203 @@
+{
+  "id": "python-v3-4-02",
+  "chapter": 4,
+  "group": "python-v3-module-4",
+  "title": {
+    "en": "Return a result",
+    "nl": "Geef een resultaat terug"
+  },
+  "kind": "coding",
+  "optional": false,
+  "runtime": "terminal",
+  "guidance": "adapt",
+  "estimatedMinutes": 16,
+  "explanation": {
+    "en": "Return a computed result so another part of a program can use it. Printing a value and returning it serve different purposes.",
+    "nl": "Geef een berekend resultaat terug zodat een ander deel van het programma het kan gebruiken. Een waarde afdrukken en teruggeven dienen verschillende doelen."
+  },
+  "example": "",
+  "topicIds": [
+    "return",
+    "none",
+    "parameters",
+    "multiple-parameters"
+  ],
+  "prerequisites": [
+    "python-v3-4-01"
+  ],
+  "sections": [
+    {
+      "topicIds": [
+        "return",
+        "none",
+        "parameters",
+        "multiple-parameters"
+      ],
+      "heading": {
+        "en": "Inputs and results",
+        "nl": "Invoer en resultaten"
+      },
+      "body": {
+        "en": "Parameters are names in a definition; arguments are the values supplied by a call. Multiple parameters are separated by commas. return sends a value back and ends that call. A function with no return value returns None, a value representing no result. print displays text and itself returns None.",
+        "nl": "Parameters zijn namen in een definitie; argumenten zijn waarden die een aanroep meegeeft. Meerdere parameters worden door komma’s gescheiden. return stuurt een waarde terug en beëindigt die aanroep. Een functie zonder terugkeerwaarde geeft None terug, een waarde voor geen resultaat. print toont tekst en geeft zelf None terug."
+      },
+      "code": "def area(width, height):\n    return width * height\n\nresult = area(3, 4)\nprint(result + 1)\ndef announce():\n    print(\"Hello\")\nprint(announce())",
+      "output": "13\nHello\nNone\n",
+      "prediction": {
+        "en": "Which function can be used in a later calculation?",
+        "nl": "Welke functie kan in een latere berekening worden gebruikt?"
+      }
+    },
+    {
+      "topicIds": [],
+      "heading": {
+        "en": "Try a changed input",
+        "nl": "Probeer gewijzigde invoer"
+      },
+      "body": {
+        "en": "Temporarily remove return and run again. Explain why None appears, then restore return and add 1 to result in the caller.",
+        "nl": "Verwijder return tijdelijk en voer opnieuw uit. Leg uit waarom None verschijnt, herstel return en tel 1 bij result op in de aanroeper."
+      }
+    }
+  ],
+  "files": {
+    "main.py": "def total(price, quantity):\n    print(price * quantity)  # Change how the result leaves the function.\n\nresult = total(2.5, 4)\nprint(result)\n"
+  },
+  "solution": {
+    "main.py": "def total(price, quantity):\n    return price * quantity\n\nresult = total(2.5, 4)\nprint(result)\n"
+  },
+  "checkpoints": [
+    {
+      "objectiveIds": [
+        "return",
+        "parameters",
+        "multiple-parameters"
+      ],
+      "task": {
+        "en": "Make total(price, quantity) return their product for any numeric arguments.",
+        "nl": "Laat total(price, quantity) hun product teruggeven voor elke numerieke invoer."
+      },
+      "check": "result == 10",
+      "hints": [
+        {
+          "en": "The caller needs a number, not terminal text.",
+          "nl": "De aanroeper heeft een getal nodig, geen terminaltekst."
+        },
+        {
+          "en": "Use return instead of printing inside total.",
+          "nl": "Gebruik return in plaats van afdrukken binnen total."
+        },
+        {
+          "en": "return price * quantity",
+          "nl": "return price * quantity"
+        }
+      ],
+      "hint": {
+        "en": "The caller needs a number, not terminal text.",
+        "nl": "De aanroeper heeft een getal nodig, geen terminaltekst."
+      },
+      "feedback": {
+        "en": "A printed product leaves result as None.",
+        "nl": "Een afgedrukt product laat result op None staan."
+      },
+      "probes": [
+        {
+          "call": {
+            "name": "total",
+            "args": [
+              0,
+              8
+            ]
+          },
+          "check": "_return == 0"
+        },
+        {
+          "call": {
+            "name": "total",
+            "args": [
+              3,
+              2
+            ]
+          },
+          "check": "_return == 6"
+        },
+        {
+          "call": {
+            "name": "total",
+            "args": [
+              -2,
+              4
+            ]
+          },
+          "check": "_return == -8"
+        }
+      ],
+      "id": "python-v3-4-02-step-1"
+    },
+    {
+      "objectiveIds": [
+        "none"
+      ],
+      "task": {
+        "en": "Keep display outside total: calling total must not print anything. Print result once in main.py.",
+        "nl": "Houd uitvoer buiten total: total aanroepen mag niets afdrukken. Druk result één keer in main.py af."
+      },
+      "check": "_stdout.strip() == \"10.0\"",
+      "hints": [
+        {
+          "en": "A reusable calculation can work without a terminal.",
+          "nl": "Een herbruikbare berekening kan zonder terminal werken."
+        },
+        {
+          "en": "Keep only a return statement in the calculation body.",
+          "nl": "Houd alleen een return-opdracht in het rekenblok."
+        },
+        {
+          "en": "result = total(2.5, 4)\nprint(result)",
+          "nl": "result = total(2.5, 4)\nprint(result)"
+        }
+      ],
+      "hint": {
+        "en": "A reusable calculation can work without a terminal.",
+        "nl": "Een herbruikbare berekening kan zonder terminal werken."
+      },
+      "feedback": {
+        "en": "Separate display from the returned value.",
+        "nl": "Scheid uitvoer van de teruggegeven waarde."
+      },
+      "probes": [
+        {
+          "call": {
+            "name": "total",
+            "args": [
+              7,
+              3
+            ]
+          },
+          "check": "_return == 21 and _call_stdout == \"\""
+        }
+      ],
+      "id": "python-v3-4-02-step-2"
+    }
+  ],
+  "solutionNote": {
+    "en": "Returning the product lets the caller print it, store it or combine it with other numbers. Removing the inner print prevents duplicate output.",
+    "nl": "Het product teruggeven laat de aanroeper het afdrukken, bewaren of met andere getallen combineren. Het verwijderen van de binnenste print voorkomt dubbele uitvoer."
+  },
+  "inputs": [],
+  "retrievals": [
+    {
+      "id": "recall-python-v3-2-02",
+      "sourceActivityId": "python-v3-2-02",
+      "objectiveIds": [
+        "boolean-expressions",
+        "boolean-variables",
+        "relational-operators"
+      ],
+      "prompt": {
+        "en": "At exactly the minimum height, compare > with >= and == with !=. Store a Boolean, then trace <= and < just below the limit.",
+        "nl": "Vergelijk op de minimumlengte > met >= en == met !=. Bewaar een boolean en volg <= en < net onder de grens."
+      }
+    }
+  ]
+}

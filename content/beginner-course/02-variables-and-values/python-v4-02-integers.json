@@ -1,0 +1,147 @@
+{
+  "id": "python-v4-02-integers",
+  "chapter": 2,
+  "group": "python-v4-module-2",
+  "title": {
+    "en": "Whole numbers",
+    "nl": "Gehele getallen"
+  },
+  "kind": "coding",
+  "optional": false,
+  "runtime": "terminal",
+  "guidance": "guided",
+  "checkpointMode": "sequential",
+  "estimatedMinutes": 10,
+  "topicIds": [
+    "integers"
+  ],
+  "practices": [],
+  "requiredConcepts": [
+    "variables",
+    "numeric-literals"
+  ],
+  "explanation": {
+    "en": "Use integers to represent whole counts, including zero and negative values when those make sense.",
+    "nl": "Gebruik gehele getallen om volledige aantallen weer te geven, inclusief nul en negatieve waarden wanneer die zinvol zijn."
+  },
+  "example": "",
+  "sections": [
+    {
+      "id": "python-v4-02-integers-example",
+      "topicIds": [
+        "integers"
+      ],
+      "heading": {
+        "en": "Follow a working example",
+        "nl": "Volg een werkend voorbeeld"
+      },
+      "body": {
+        "en": "Python calls its whole-number type int. Values such as 8, 0 and -2 are integers. A count of visitors can be zero; a temperature in whole degrees can be negative. An integer literal has no decimal point.\n\nStore the number without quotes. \"8\" would be text, even though it looks numeric when printed. Choose a meaningful name for each quantity so you can tell what the number measures.",
+        "nl": "Python noemt zijn type voor gehele getallen int. Waarden zoals 8, 0 en -2 zijn gehele getallen. Het aantal bezoekers kan nul zijn; een temperatuur in hele graden kan negatief zijn. Een geheel getal heeft in deze schrijfwijze geen decimale punt.\n\nBewaar het getal zonder aanhalingstekens. \"8\" zou tekst zijn, ook al ziet die er als een getal uit wanneer je haar afdrukt. Kies een duidelijke naam voor elke hoeveelheid zodat je weet wat het getal meet."
+      },
+      "code": "visitors = 8\ntemperature = -2\nprint(visitors)\nprint(temperature)",
+      "output": "8\n-2\n",
+      "prediction": {
+        "en": "Which value is negative, and does that make it text?",
+        "nl": "Welke waarde is negatief en maakt dat haar tekst?"
+      },
+      "takeaway": {
+        "en": "An int represents a whole number, including zero and negative whole numbers.",
+        "nl": "Een int stelt een geheel getal voor, inclusief nul en negatieve gehele getallen."
+      }
+    },
+    {
+      "id": "python-v4-02-integers-experiment",
+      "topicIds": [],
+      "heading": {
+        "en": "Try one change",
+        "nl": "Probeer één wijziging"
+      },
+      "body": {
+        "en": "Assign -1 to missing and run again. Is it still a whole-number value?",
+        "nl": "Wijs -1 toe aan missing en voer opnieuw uit. Is het nog steeds een geheel getal?"
+      }
+    }
+  ],
+  "files": {
+    "main.py": ""
+  },
+  "solution": {
+    "main.py": "books = 6\nmissing = 0\nprint(books)\nprint(missing)\n"
+  },
+  "checkpoints": [
+    {
+      "id": "python-v4-02-integers-step-1",
+      "objectiveIds": [
+        "integers"
+      ],
+      "task": {
+        "en": "Create integer variables books = 6 and missing = 0.",
+        "nl": "Maak de gehele variabelen books = 6 en missing = 0."
+      },
+      "check": "type(books) is int and books == 6 and type(missing) is int and missing == 0",
+      "probes": [],
+      "hint": {
+        "en": "An int represents a whole number, including zero and negative whole numbers.",
+        "nl": "Een int stelt een geheel getal voor, inclusief nul en negatieve gehele getallen."
+      },
+      "hints": [
+        {
+          "en": "An int represents a whole number, including zero and negative whole numbers.",
+          "nl": "Een int stelt een geheel getal voor, inclusief nul en negatieve gehele getallen."
+        },
+        {
+          "en": "Leave off quotes and decimal points.",
+          "nl": "Gebruik geen aanhalingstekens of decimale punten."
+        },
+        {
+          "en": "A small fragment to adapt: `visitors = 8`",
+          "nl": "Een klein fragment om aan te passen: `visitors = 8`"
+        }
+      ],
+      "feedback": {
+        "en": "Leave off quotes and decimal points.",
+        "nl": "Gebruik geen aanhalingstekens of decimale punten."
+      }
+    },
+    {
+      "id": "python-v4-02-integers-step-2",
+      "objectiveIds": [
+        "integers"
+      ],
+      "task": {
+        "en": "Print books and missing on separate lines.",
+        "nl": "Druk books en missing op aparte regels af."
+      },
+      "check": "_stdout == \"6\\n0\\n\"",
+      "probes": [],
+      "hint": {
+        "en": "An int represents a whole number, including zero and negative whole numbers.",
+        "nl": "Een int stelt een geheel getal voor, inclusief nul en negatieve gehele getallen."
+      },
+      "hints": [
+        {
+          "en": "An int represents a whole number, including zero and negative whole numbers.",
+          "nl": "Een int stelt een geheel getal voor, inclusief nul en negatieve gehele getallen."
+        },
+        {
+          "en": "Print the stored values in the requested order.",
+          "nl": "Druk de opgeslagen waarden in de gevraagde volgorde af."
+        },
+        {
+          "en": "A small fragment to adapt: `print(visitors)`",
+          "nl": "Een klein fragment om aan te passen: `print(visitors)`"
+        }
+      ],
+      "feedback": {
+        "en": "Print the stored values in the requested order.",
+        "nl": "Druk de opgeslagen waarden in de gevraagde volgorde af."
+      }
+    }
+  ],
+  "solutionNote": {
+    "en": "Both variables hold integer values. Zero is an ordinary integer, not an empty value.",
+    "nl": "Beide variabelen bevatten gehele getallen. Nul is een gewone int, geen lege waarde."
+  },
+  "inputs": []
+}

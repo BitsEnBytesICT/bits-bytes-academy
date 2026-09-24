@@ -1,0 +1,117 @@
+{
+  "id": "python-v4-01-repair-syntax",
+  "chapter": 1,
+  "group": "python-v4-module-1",
+  "title": {
+    "en": "Your first error message",
+    "nl": "Je eerste foutmelding"
+  },
+  "kind": "coding",
+  "optional": false,
+  "runtime": "terminal",
+  "guidance": "adapt",
+  "checkpointMode": "sequential",
+  "estimatedMinutes": 12,
+  "topicIds": [
+    "errors",
+    "syntax-errors"
+  ],
+  "practices": [],
+  "requiredConcepts": [
+    "print",
+    "strings"
+  ],
+  "explanation": {
+    "en": "An error is useful information, not a verdict on you. This starter has one deliberate punctuation mistake. Run it, read the error, then repair it.",
+    "nl": "Een foutmelding is nuttige informatie, geen oordeel over jou. Deze startcode bevat één opzettelijke fout in de leestekens. Voer haar uit, lees de foutmelding en herstel de fout."
+  },
+  "example": "",
+  "sections": [
+    {
+      "id": "python-v4-01-repair-syntax-example",
+      "topicIds": [
+        "errors",
+        "syntax-errors"
+      ],
+      "heading": {
+        "en": "Follow a working example",
+        "nl": "Volg een werkend voorbeeld"
+      },
+      "body": {
+        "en": "Python must understand a statement's syntax before it can run the file. A SyntaxError says that the written structure is incomplete or invalid. Look for the file name and line number, the displayed source line, and the final explanation. A caret may point near the problem.\n\nCheck pairs: opening and closing quotes, then opening and closing parentheses. The example below is valid. Compare its shape with the starter. Fix one thing and run again; guessing several changes at once makes diagnosis harder.",
+        "nl": "Python moet de syntaxis van een instructie begrijpen voordat het het bestand kan uitvoeren. Een SyntaxError betekent dat de geschreven structuur onvolledig of ongeldig is. Zoek de bestandsnaam en het regelnummer, de getoonde coderegel en de laatste uitleg. Een dakje kan naar de omgeving van de fout wijzen.\n\nControleer paren: openings- en sluitingsaanhalingstekens, daarna openings- en sluitingshaakjes. Het voorbeeld hieronder is geldig. Vergelijk de vorm met de startcode. Verander één ding en voer opnieuw uit; meerdere dingen tegelijk raden maakt de oorzaak moeilijker te vinden."
+      },
+      "code": "print(\"A complete call\")",
+      "output": "A complete call\n",
+      "prediction": {
+        "en": "What closes the quoted text, and what closes the call?",
+        "nl": "Wat sluit de tekst af en wat sluit de aanroep af?"
+      },
+      "takeaway": {
+        "en": "A syntax error concerns how the code is written. Use the indicated line and check matching punctuation.",
+        "nl": "Een syntaxisfout gaat over hoe de code is geschreven. Gebruik de aangeduide regel en controleer bijpassende leestekens."
+      }
+    },
+    {
+      "id": "python-v4-01-repair-syntax-experiment",
+      "topicIds": [],
+      "heading": {
+        "en": "Try one change",
+        "nl": "Probeer één wijziging"
+      },
+      "body": {
+        "en": "After passing, deliberately remove a quote. Read the new error, then undo your change.",
+        "nl": "Verwijder na het slagen bewust een aanhalingsteken. Lees de nieuwe foutmelding en maak je wijziging ongedaan."
+      }
+    }
+  ],
+  "files": {
+    "main.py": "print(\"Ready to learn\"\n"
+  },
+  "solution": {
+    "main.py": "print(\"Ready to learn\")\n"
+  },
+  "checkpoints": [
+    {
+      "id": "python-v4-01-repair-syntax-step-1",
+      "objectiveIds": [
+        "errors",
+        "syntax-errors"
+      ],
+      "task": {
+        "en": "Repair the call so it prints \"Ready to learn\".",
+        "nl": "Herstel de aanroep zodat die \"Ready to learn\" afdrukt."
+      },
+      "check": "_stdout == \"Ready to learn\\n\"",
+      "probes": [],
+      "hint": {
+        "en": "A syntax error concerns how the code is written. Use the indicated line and check matching punctuation.",
+        "nl": "Een syntaxisfout gaat over hoe de code is geschreven. Gebruik de aangeduide regel en controleer bijpassende leestekens."
+      },
+      "hints": [
+        {
+          "en": "A syntax error concerns how the code is written. Use the indicated line and check matching punctuation.",
+          "nl": "Een syntaxisfout gaat over hoe de code is geschreven. Gebruik de aangeduide regel en controleer bijpassende leestekens."
+        },
+        {
+          "en": "The quotes already match. Count the opening and closing parentheses.",
+          "nl": "De aanhalingstekens kloppen al. Tel de openings- en sluitingshaakjes."
+        },
+        {
+          "en": "A small fragment to adapt: `print(\"complete\")`",
+          "nl": "Een klein fragment om aan te passen: `print(\"complete\")`"
+        }
+      ],
+      "feedback": {
+        "en": "The quotes already match. Count the opening and closing parentheses.",
+        "nl": "De aanhalingstekens kloppen al. Tel de openings- en sluitingshaakjes."
+      }
+    }
+  ],
+  "solutionNote": {
+    "en": "Adding the missing closing parenthesis makes the statement valid. The text itself does not need to change.",
+    "nl": "Het ontbrekende sluitingshaakje maakt de instructie geldig. De tekst zelf hoeft niet te veranderen."
+  },
+  "inputs": [],
+  "expectedStarterError": "SyntaxError"
+}

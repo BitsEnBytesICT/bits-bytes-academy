@@ -1,0 +1,159 @@
+{
+  "id": "python-v4-14-helper-files",
+  "chapter": 14,
+  "group": "python-v4-module-14",
+  "title": {
+    "en": "Put reusable code in another file",
+    "nl": "Zet herbruikbare code in een ander bestand"
+  },
+  "kind": "coding",
+  "optional": false,
+  "runtime": "terminal",
+  "guidance": "guided",
+  "checkpointMode": "sequential",
+  "estimatedMinutes": 12,
+  "topicIds": [
+    "helper-modules",
+    "module-scope",
+    "installing"
+  ],
+  "practices": [],
+  "requiredConcepts": [
+    "imports",
+    "scope"
+  ],
+  "explanation": {
+    "en": "Separate files help organise reusable behaviour. A module has its own names and scope.",
+    "nl": "Aparte bestanden helpen herbruikbaar gedrag organiseren. Een module heeft zijn eigen namen en bereik."
+  },
+  "example": "",
+  "sections": [
+    {
+      "id": "python-v4-14-helper-files-example",
+      "topicIds": [
+        "helper-modules",
+        "module-scope",
+        "installing"
+      ],
+      "heading": {
+        "en": "Follow a working example",
+        "nl": "Volg een werkend voorbeeld"
+      },
+      "body": {
+        "en": "A file helper.py can be imported with import helper from the same workspace. Do not include .py in the import. Use helper.double(...) to call its function. The imported file executes its top-level statements on its first import; keep demonstrations in the caller so imports do not unexpectedly ask for input. Names in helper are accessed through helper, not automatically copied into the caller. The browser already supplies Python and Pygame. On your computer installing obtains a package; importing makes an installed package available to a file. Module 24 covers installation.",
+        "nl": "Een bestand helper.py kun je importeren met import helper vanuit dezelfde werkruimte. Zet .py niet in de import. Gebruik helper.double(...) om de functie aan te roepen. Het geïmporteerde bestand voert hoofdinstructies bij de eerste import uit; houd demonstraties bij de aanroeper zodat imports niet onverwacht invoer vragen. Namen in helper benader je via helper; ze worden niet automatisch naar de aanroeper gekopieerd. De browser levert Python en Pygame al. Op je computer haalt installeren een pakket op; importeren maakt een geïnstalleerd pakket beschikbaar voor een bestand. Module 24 behandelt installatie."
+      },
+      "code": "import math\nprint(math.pi > 3)",
+      "output": "True\n",
+      "prediction": {
+        "en": "Does import copy every math name into this file?",
+        "nl": "Kopieert import elke math-naam naar dit bestand?"
+      },
+      "takeaway": {
+        "en": "Keep reusable definitions in the helper and the conversation in the caller.",
+        "nl": "Houd herbruikbare definities in de hulp en het gesprek bij de aanroeper."
+      }
+    },
+    {
+      "id": "python-v4-14-helper-files-experiment",
+      "topicIds": [],
+      "heading": {
+        "en": "Try one change",
+        "nl": "Probeer één wijziging"
+      },
+      "body": {
+        "en": "Add another call in main.py with a different argument. Explain which file owns the function.",
+        "nl": "Voeg in main.py nog een aanroep toe met een ander argument. Leg uit welk bestand de functie bevat."
+      }
+    }
+  ],
+  "files": {
+    "main.py": "import helper\nprint(helper.double(6))\n",
+    "helper.py": "def double(value):\n    return None\n"
+  },
+  "solution": {
+    "main.py": "import helper\nprint(helper.double(6))\n",
+    "helper.py": "def double(value):\n    return value * 2\n"
+  },
+  "checkpoints": [
+    {
+      "id": "python-v4-14-helper-files-step-1",
+      "objectiveIds": [
+        "helper-modules",
+        "module-scope",
+        "installing"
+      ],
+      "task": {
+        "en": "Open helper.py and implement double(value). Leave the supplied main.py caller working.",
+        "nl": "Open helper.py en implementeer double(value). Houd de aangeleverde aanroeper main.py werkend."
+      },
+      "check": "_stdout == \"12\\n\"",
+      "probes": [
+        {
+          "call": {
+            "name": "double",
+            "args": [
+              -3
+            ],
+            "module": "helper"
+          },
+          "check": "_return == -6",
+          "moduleOnly": true,
+          "module": "helper"
+        },
+        {
+          "call": {
+            "name": "double",
+            "args": [
+              0
+            ],
+            "module": "helper"
+          },
+          "check": "_return == 0",
+          "moduleOnly": true,
+          "module": "helper"
+        }
+      ],
+      "hint": {
+        "en": "Keep reusable definitions in the helper and the conversation in the caller.",
+        "nl": "Houd herbruikbare definities in de hulp en het gesprek bij de aanroeper."
+      },
+      "hints": [
+        {
+          "en": "Keep reusable definitions in the helper and the conversation in the caller.",
+          "nl": "Houd herbruikbare definities in de hulp en het gesprek bij de aanroeper."
+        },
+        {
+          "en": "Edit the definition in helper.py, not the argument in the caller.",
+          "nl": "Bewerk de definitie in helper.py, niet het argument bij de aanroeper."
+        },
+        {
+          "en": "A small fragment to adapt: `return value * 2`",
+          "nl": "Een klein fragment om aan te passen: `return value * 2`"
+        }
+      ],
+      "feedback": {
+        "en": "Edit the definition in helper.py, not the argument in the caller.",
+        "nl": "Bewerk de definitie in helper.py, niet het argument bij de aanroeper."
+      }
+    }
+  ],
+  "solutionNote": {
+    "en": "Importing helper exposes its function through the module name; parameters keep each call independent.",
+    "nl": "helper importeren stelt de functie via de modulenaam beschikbaar; parameters houden elke aanroep onafhankelijk."
+  },
+  "inputs": [],
+  "retrievals": [
+    {
+      "id": "recall-python-v4-12-filter",
+      "sourceActivityId": "python-v4-12-filter",
+      "objectiveIds": [
+        "filtering"
+      ],
+      "prompt": {
+        "en": "Recall “Build a list of matching values”. Why must return happen after the loop in a filtering function? Try the earlier example from memory, then check it. Test a list where every value is negative.",
+        "nl": "Haal “Bouw een lijst van passende waarden” terug. Waarom moet return na de lus komen in een filterfunctie? Probeer het eerdere voorbeeld uit je geheugen en controleer daarna. Test een lijst waarin elke waarde negatief is."
+      }
+    }
+  ]
+}

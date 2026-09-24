@@ -1,0 +1,198 @@
+{
+  "id": "python-v3-10-01",
+  "chapter": 10,
+  "group": "python-v3-module-10",
+  "title": {
+    "en": "Inspect identifiers",
+    "nl": "Bekijk identificatiecodes"
+  },
+  "kind": "coding",
+  "optional": false,
+  "runtime": "terminal",
+  "guidance": "guided",
+  "estimatedMinutes": 15,
+  "explanation": {
+    "en": "Treat text as a sequence of characters, with indexing and slicing rules you already know. Strings share sequence operations with lists but are not lists.",
+    "nl": "Behandel tekst als een reeks tekens met index- en sliceregels die je al kent. Strings delen reeksbewerkingen met lijsten maar zijn geen lijsten."
+  },
+  "example": "",
+  "topicIds": [
+    "string-indexing",
+    "string-slicing",
+    "string-length",
+    "string-negative-indices"
+  ],
+  "prerequisites": [
+    "python-v3-9-06"
+  ],
+  "sections": [
+    {
+      "topicIds": [
+        "string-indexing",
+        "string-slicing",
+        "string-length",
+        "string-negative-indices"
+      ],
+      "heading": {
+        "en": "Inspect an identifier",
+        "nl": "Bekijk een identificatiecode"
+      },
+      "body": {
+        "en": "text[0] is the first character, text[-1] the last, and len(text) its length. A slice returns a string and excludes its stop index. An empty string has length zero and no valid single-character index. For this task the identifier is nonempty; a one-character identifier has no middle characters.",
+        "nl": "text[0] is het eerste teken, text[-1] het laatste en len(text) de lengte. Een slice geeft een string terug en sluit de eindindex uit. Een lege string heeft lengte nul en geen geldige tekenindex. Voor deze taak is de code niet leeg; een code met één teken heeft geen middentekens."
+      },
+      "code": "code = \"AB-42\"\nprint(code[0], code[-1], len(code))\nprint(code[1:-1])",
+      "output": "A 2 5\nB-4\n",
+      "prediction": {
+        "en": "Which characters do the slice boundaries leave out?",
+        "nl": "Welke tekens laten de slicegrenzen weg?"
+      }
+    },
+    {
+      "topicIds": [],
+      "heading": {
+        "en": "Try a changed input",
+        "nl": "Probeer gewijzigde invoer"
+      },
+      "body": {
+        "en": "Predict text[:3], text[3:] and text[-2:] for a chosen identifier. Explain why a slice is different from one indexed character.",
+        "nl": "Voorspel text[:3], text[3:] en text[-2:] voor een eigen code. Leg uit waarom een slice verschilt van één geïndexeerd teken."
+      }
+    }
+  ],
+  "files": {
+    "main.py": "def inspect(text):\n    return \"\", \"\", \"\", 0\n\nprint(inspect(\"LAB-7\"))\n"
+  },
+  "solution": {
+    "main.py": "def inspect(text):\n    return text[0], text[-1], text[1:-1], len(text)\n\nprint(inspect(\"LAB-7\"))\n"
+  },
+  "checkpoints": [
+    {
+      "objectiveIds": [
+        "string-indexing",
+        "string-negative-indices"
+      ],
+      "task": {
+        "en": "Return first and last characters as the first two items of inspect’s tuple. Assume text is nonempty.",
+        "nl": "Geef het eerste en laatste teken terug als eerste twee items van inspect’s tuple. Neem aan dat text niet leeg is."
+      },
+      "check": "inspect(\"LAB-7\")[:2] == (\"L\",\"7\")",
+      "hints": [
+        {
+          "en": "The last position can be found without hard-coding its number.",
+          "nl": "De laatste positie kan zonder vast getal worden gevonden."
+        },
+        {
+          "en": "Use 0 and -1.",
+          "nl": "Gebruik 0 en -1."
+        },
+        {
+          "en": "text[-1]",
+          "nl": "text[-1]"
+        }
+      ],
+      "hint": {
+        "en": "The last position can be found without hard-coding its number.",
+        "nl": "De laatste positie kan zonder vast getal worden gevonden."
+      },
+      "feedback": {
+        "en": "A different identifier length must still work.",
+        "nl": "Een andere codelengte moet nog steeds werken."
+      },
+      "probes": [
+        {
+          "call": {
+            "name": "inspect",
+            "args": [
+              "Z"
+            ]
+          },
+          "check": "_return[:2] == (\"Z\",\"Z\")"
+        },
+        {
+          "call": {
+            "name": "inspect",
+            "args": [
+              "xy"
+            ]
+          },
+          "check": "_return[:2] == (\"x\",\"y\")"
+        }
+      ],
+      "id": "python-v3-10-01-step-1"
+    },
+    {
+      "objectiveIds": [
+        "string-slicing",
+        "string-length"
+      ],
+      "task": {
+        "en": "Return the middle slice and full length as the final two tuple items.",
+        "nl": "Geef de middenslice en volledige lengte terug als laatste twee tuple-items."
+      },
+      "check": "inspect(\"LAB-7\")[2:] == (\"AB-\",5)",
+      "hints": [
+        {
+          "en": "Exclude the first and last character from the middle.",
+          "nl": "Sluit het eerste en laatste teken uit van het midden."
+        },
+        {
+          "en": "Slice from index 1 up to -1.",
+          "nl": "Neem een slice vanaf index 1 tot -1."
+        },
+        {
+          "en": "text[1:-1], len(text)",
+          "nl": "text[1:-1], len(text)"
+        }
+      ],
+      "hint": {
+        "en": "Exclude the first and last character from the middle.",
+        "nl": "Sluit het eerste en laatste teken uit van het midden."
+      },
+      "feedback": {
+        "en": "The middle can be empty even though the identifier is not.",
+        "nl": "Het midden kan leeg zijn hoewel de code dat niet is."
+      },
+      "probes": [
+        {
+          "call": {
+            "name": "inspect",
+            "args": [
+              "Z"
+            ]
+          },
+          "check": "_return[2:] == (\"\",1)"
+        },
+        {
+          "call": {
+            "name": "inspect",
+            "args": [
+              "abcd"
+            ]
+          },
+          "check": "_return[2:] == (\"bc\",4)"
+        }
+      ],
+      "id": "python-v3-10-01-step-2"
+    }
+  ],
+  "solutionNote": {
+    "en": "Strings reuse sequence selection rules. Slicing preserves the string type and safely produces an empty middle for very short inputs.",
+    "nl": "Strings hergebruiken regels voor reeksselectie. Slicen behoudt het stringtype en geeft veilig een leeg midden bij heel korte invoer."
+  },
+  "inputs": [],
+  "retrievals": [
+    {
+      "id": "recall-python-v3-8-01",
+      "sourceActivityId": "python-v3-8-01",
+      "objectiveIds": [
+        "velocity",
+        "elapsed-time"
+      ],
+      "prompt": {
+        "en": "Predict displacement at velocity 120 for 0.25 seconds. What changes if elapsed time halves?",
+        "nl": "Voorspel de verplaatsing bij snelheid 120 gedurende 0,25 seconden. Wat verandert als de verstreken tijd halveert?"
+      }
+    }
+  ]
+}

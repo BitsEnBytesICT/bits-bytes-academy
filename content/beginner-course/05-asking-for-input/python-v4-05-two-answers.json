@@ -1,0 +1,197 @@
+{
+  "id": "python-v4-05-two-answers",
+  "chapter": 5,
+  "group": "python-v4-module-5",
+  "title": {
+    "en": "Ask two questions in order",
+    "nl": "Stel twee vragen op volgorde"
+  },
+  "kind": "coding",
+  "optional": false,
+  "runtime": "terminal",
+  "guidance": "guided",
+  "checkpointMode": "sequential",
+  "estimatedMinutes": 14,
+  "topicIds": [
+    "multiple-inputs"
+  ],
+  "practices": [],
+  "requiredConcepts": [
+    "float-conversion",
+    "f-strings"
+  ],
+  "explanation": {
+    "en": "A useful calculation often needs more than one answer. Give each input its own prompt and variable.",
+    "nl": "Een nuttige berekening heeft vaak meer dan één antwoord nodig. Geef elke invoer een eigen vraag en variabele."
+  },
+  "example": "",
+  "sections": [
+    {
+      "id": "python-v4-05-two-answers-example",
+      "topicIds": [
+        "multiple-inputs"
+      ],
+      "heading": {
+        "en": "Follow a working example",
+        "nl": "Volg een werkend voorbeeld"
+      },
+      "body": {
+        "en": "Each input call waits separately. The first answer belongs to the first call; Python reaches the next call only afterward. A clear prompt tells the person what to enter and which unit to use.\n\nThe example reads a length and a width in metres, converts both, then multiplies them. Write and test one input before adding the next. This keeps the conversation understandable.",
+        "nl": "Elke input-aanroep wacht apart. Het eerste antwoord hoort bij de eerste aanroep; Python bereikt de volgende aanroep pas daarna. Een duidelijke vraag vertelt de gebruiker wat die moet invoeren en in welke eenheid.\n\nHet voorbeeld leest een lengte en breedte in meters, zet beide om en vermenigvuldigt ze. Schrijf en test één invoer voordat je de volgende toevoegt. Zo blijft het gesprek begrijpelijk."
+      },
+      "code": "length = float(input(\"Length: \"))\nwidth = float(input(\"Width: \"))\nprint(length * width)",
+      "output": "Length: Width: 6.0\n",
+      "prediction": {
+        "en": "With answers 3 then 2, which value becomes width?",
+        "nl": "Welke waarde wordt width bij antwoorden 3 en daarna 2?"
+      },
+      "takeaway": {
+        "en": "Answers arrive in the order of the input calls.",
+        "nl": "Antwoorden komen binnen in de volgorde van de input-aanroepen."
+      },
+      "exampleInputs": [
+        "3",
+        "2"
+      ]
+    },
+    {
+      "id": "python-v4-05-two-answers-experiment",
+      "topicIds": [],
+      "heading": {
+        "en": "Try one change",
+        "nl": "Probeer één wijziging"
+      },
+      "body": {
+        "en": "Use the same distance with twice the time. Predict the change in speed.",
+        "nl": "Gebruik dezelfde afstand met tweemaal de tijd. Voorspel de verandering in snelheid."
+      }
+    }
+  ],
+  "files": {
+    "main.py": ""
+  },
+  "solution": {
+    "main.py": "distance = float(input(\"Distance: \"))\ntime = float(input(\"Time: \"))\nspeed = distance / time\nprint(speed)\n"
+  },
+  "checkpoints": [
+    {
+      "id": "python-v4-05-two-answers-step-1",
+      "objectiveIds": [
+        "multiple-inputs"
+      ],
+      "task": {
+        "en": "Read Distance: and Time: into float variables distance and time. Assume time is positive.",
+        "nl": "Lees Distance: en Time: in de floatvariabelen distance en time. Ga uit van een positieve tijd."
+      },
+      "check": "True",
+      "probes": [
+        {
+          "stdin": [
+            "12",
+            "3"
+          ],
+          "check": "(type(distance) is float and type(time) is float) and _remaining_input == \"\""
+        },
+        {
+          "stdin": [
+            "7.5",
+            "2.5"
+          ],
+          "check": "(distance == 7.5 and time == 2.5) and _remaining_input == \"\""
+        }
+      ],
+      "hint": {
+        "en": "Answers arrive in the order of the input calls.",
+        "nl": "Antwoorden komen binnen in de volgorde van de input-aanroepen."
+      },
+      "hints": [
+        {
+          "en": "Answers arrive in the order of the input calls.",
+          "nl": "Antwoorden komen binnen in de volgorde van de input-aanroepen."
+        },
+        {
+          "en": "Use two input calls and convert each answer separately.",
+          "nl": "Gebruik twee input-aanroepen en zet elk antwoord apart om."
+        },
+        {
+          "en": "A small fragment to adapt: `distance = float(input(\"Distance: \"))`",
+          "nl": "Een klein fragment om aan te passen: `distance = float(input(\"Distance: \"))`"
+        }
+      ],
+      "feedback": {
+        "en": "Use two input calls and convert each answer separately.",
+        "nl": "Gebruik twee input-aanroepen en zet elk antwoord apart om."
+      }
+    },
+    {
+      "id": "python-v4-05-two-answers-step-2",
+      "objectiveIds": [
+        "multiple-inputs"
+      ],
+      "task": {
+        "en": "Divide distance by time, store speed and print it.",
+        "nl": "Deel distance door time, bewaar speed en druk het af."
+      },
+      "check": "True",
+      "probes": [
+        {
+          "stdin": [
+            "12",
+            "3"
+          ],
+          "check": "(speed == distance / time and _stdout.endswith(str(speed) + \"\\n\")) and _remaining_input == \"\""
+        },
+        {
+          "stdin": [
+            "7.5",
+            "2.5"
+          ],
+          "check": "(speed == 3) and _remaining_input == \"\""
+        }
+      ],
+      "hint": {
+        "en": "Answers arrive in the order of the input calls.",
+        "nl": "Antwoorden komen binnen in de volgorde van de input-aanroepen."
+      },
+      "hints": [
+        {
+          "en": "Answers arrive in the order of the input calls.",
+          "nl": "Antwoorden komen binnen in de volgorde van de input-aanroepen."
+        },
+        {
+          "en": "Calculate after both answers have been read.",
+          "nl": "Reken nadat beide antwoorden zijn gelezen."
+        },
+        {
+          "en": "A small fragment to adapt: `speed = distance / time`",
+          "nl": "Een klein fragment om aan te passen: `speed = distance / time`"
+        }
+      ],
+      "feedback": {
+        "en": "Calculate after both answers have been read.",
+        "nl": "Reken nadat beide antwoorden zijn gelezen."
+      }
+    }
+  ],
+  "solutionNote": {
+    "en": "The program reads both values before dividing. The positive-time assumption avoids a zero divisor at this stage.",
+    "nl": "Het programma leest beide waarden voordat het deelt. De aanname van een positieve tijd vermijdt in deze fase een deler nul."
+  },
+  "inputs": [
+    "12",
+    "3"
+  ],
+  "retrievals": [
+    {
+      "id": "recall-python-v4-03-precedence",
+      "sourceActivityId": "python-v4-03-precedence",
+      "objectiveIds": [
+        "precedence"
+      ],
+      "prompt": {
+        "en": "Recall “Control the order of a calculation”. Why do the same numbers produce two different answers? Try the earlier example from memory, then check it. Remove the parentheses temporarily and explain which group no longer gets multiplied.",
+        "nl": "Haal “Bepaal de volgorde van een berekening” terug. Waarom geven dezelfde getallen twee verschillende antwoorden? Probeer het eerdere voorbeeld uit je geheugen en controleer daarna. Verwijder de haakjes tijdelijk en leg uit welke groep niet meer wordt vermenigvuldigd."
+      }
+    }
+  ]
+}

@@ -1,0 +1,286 @@
+{
+  "id": "python-v3-8-04",
+  "chapter": 8,
+  "group": "python-v3-module-8",
+  "title": {
+    "en": "Repair a repeated bounce",
+    "nl": "Repareer een herhaalde botsing"
+  },
+  "kind": "coding",
+  "optional": false,
+  "runtime": "pygame",
+  "guidance": "adapt",
+  "estimatedMinutes": 17,
+  "explanation": {
+    "en": "Repair a repeated wall bounce and use Pygame’s collision tool for a paddle. Contact alone does not tell you whether an object is approaching or already moving away.",
+    "nl": "Repareer een herhaalde muurbotsing en gebruik Pygames botsingshulpmiddel voor een batje. Contact alleen zegt niet of een object nadert of al weg beweegt."
+  },
+  "example": "",
+  "topicIds": [
+    "wall-bounce",
+    "paddle-contact"
+  ],
+  "prerequisites": [
+    "python-v3-8-03"
+  ],
+  "sections": [
+    {
+      "topicIds": [
+        "wall-bounce",
+        "paddle-contact"
+      ],
+      "heading": {
+        "en": "Test position and direction",
+        "nl": "Test positie en richting"
+      },
+      "body": {
+        "en": "A ball centre must stay at least radius from each wall. At the top, only a negative vy approaches the wall. Correct the position to radius and reverse vy once. Rect.colliderect(other) reports overlap; touching edges alone is not overlap. For the left paddle, only a negative vx approaches it. The exercise supplies rectangle geometry as four-item tuples.",
+        "nl": "Een balmiddelpunt moet minstens radius van elke muur blijven. Boven nadert alleen een negatieve vy de muur. Corrigeer de positie naar radius en keer vy één keer om. Rect.colliderect(other) meldt overlap; alleen rakende randen zijn geen overlap. Bij het linkerbatje nadert alleen een negatieve vx. De oefening levert rechthoekgeometrie als tuples met vier items."
+      },
+      "code": "import pygame\nball = pygame.Rect(25, 30, 12, 12)\npaddle = pygame.Rect(20, 20, 10, 60)\nprint(ball.colliderect(paddle))",
+      "output": "True\n",
+      "prediction": {
+        "en": "Would reversing velocity on every overlapping frame make a clean bounce?",
+        "nl": "Zou snelheid bij elk overlappend beeld omkeren een zuivere botsing geven?"
+      }
+    },
+    {
+      "topicIds": [],
+      "heading": {
+        "en": "Run, observe, finish",
+        "nl": "Voer uit, bekijk, rond af"
+      },
+      "body": {
+        "en": "main.py supplies the browser entry point. Run opens a real pygame-ce preview; click it to focus the keyboard. Clicking elsewhere pauses play. Finish & check closes normally and checks your helper after at least one rendered frame. Stop cancels without grading. Run can start a fresh session afterward. Keep the supplied async definition and await asyncio.sleep(1 / 60): they let the browser draw and receive input. You are not expected to reproduce this infrastructure from memory.",
+        "nl": "main.py levert het browserstartpunt. Uitvoeren opent een echt pygame-ce-voorbeeld; klik erop om het toetsenbord te activeren. Elders klikken pauzeert het spel. Afronden en controleren sluit normaal af en controleert je helper na minstens één getekend beeld. Stop annuleert zonder beoordeling. Uitvoeren kan daarna een nieuwe sessie starten. Behoud de meegeleverde async-definitie en await asyncio.sleep(1 / 60): die laten de browser tekenen en invoer ontvangen. Je hoeft deze infrastructuur niet uit je hoofd te schrijven."
+      }
+    },
+    {
+      "topicIds": [],
+      "heading": {
+        "en": "Try a changed input",
+        "nl": "Probeer gewijzigde invoer"
+      },
+      "body": {
+        "en": "Call bounce_y twice at a wall, passing its first returned pair into the second call. Explain why the second call must not undo the bounce.",
+        "nl": "Roep bounce_y twee keer bij een muur aan en geef het eerste teruggegeven paar aan de tweede aanroep. Leg uit waarom de tweede de botsing niet mag terugdraaien."
+      }
+    }
+  ],
+  "files": {
+    "main.py": "# Browser entry point supplied by the course.\nimport asyncio\nimport pygame\nimport game\n\nasync def main():\n    pygame.init()\n    screen = pygame.display.set_mode((640, 400))\n    clock = pygame.time.Clock()\n    running = True\n    x, y = 320.0, 200.0\n    vx, vy = 200.0, 100.0\n    left_y, right_y = 170.0, 170.0\n    while running:\n        dt = min(clock.tick() / 1000, 0.05)\n        for event in pygame.event.get():\n            if event.type == pygame.QUIT:\n                running = False\n            if event.type == pygame.KEYDOWN and event.key == pygame.K_ESCAPE:\n                running = False\n        keys = pygame.key.get_pressed()\n        if keys[pygame.K_w]:\n            left_y -= 240 * dt\n        if keys[pygame.K_s]:\n            left_y += 240 * dt\n        if keys[pygame.K_UP]:\n            right_y -= 240 * dt\n        if keys[pygame.K_DOWN]:\n            right_y += 240 * dt\n        left_y = max(0, min(340, left_y))\n        right_y = max(0, min(340, right_y))\n        x += vx * dt\n        y += vy * dt\n        y, vy = game.bounce_y(y, vy, 6, 400)\n        vx = game.left_contact((x - 6, y - 6, 12, 12), (20, left_y, 10, 60), vx)\n        if x > 630:\n            vx = -abs(vx)\n        if x < -6:\n            x = 320\n        screen.fill((16, 23, 39))\n        pygame.draw.rect(screen, (235, 240, 250), (20, left_y, 10, 60))\n        pygame.draw.rect(screen, (235, 240, 250), (610, right_y, 10, 60))\n        pygame.draw.circle(screen, (255, 170, 40), (int(x), int(y)), 6)\n        pygame.display.flip()\n        await asyncio.sleep(1 / 60)\n    pygame.quit()\n\nasyncio.run(main())\n",
+    "game.py": "import pygame\n\ndef bounce_y(y, vy, radius, height):\n    if y <= radius or y >= height - radius:\n        vy = -vy\n    return y, vy\n\ndef left_contact(ball, paddle, vx):\n    return vx\n"
+  },
+  "solution": {
+    "main.py": "# Browser entry point supplied by the course.\nimport asyncio\nimport pygame\nimport game\n\nasync def main():\n    pygame.init()\n    screen = pygame.display.set_mode((640, 400))\n    clock = pygame.time.Clock()\n    running = True\n    x, y = 320.0, 200.0\n    vx, vy = 200.0, 100.0\n    left_y, right_y = 170.0, 170.0\n    while running:\n        dt = min(clock.tick() / 1000, 0.05)\n        for event in pygame.event.get():\n            if event.type == pygame.QUIT:\n                running = False\n            if event.type == pygame.KEYDOWN and event.key == pygame.K_ESCAPE:\n                running = False\n        keys = pygame.key.get_pressed()\n        if keys[pygame.K_w]:\n            left_y -= 240 * dt\n        if keys[pygame.K_s]:\n            left_y += 240 * dt\n        if keys[pygame.K_UP]:\n            right_y -= 240 * dt\n        if keys[pygame.K_DOWN]:\n            right_y += 240 * dt\n        left_y = max(0, min(340, left_y))\n        right_y = max(0, min(340, right_y))\n        x += vx * dt\n        y += vy * dt\n        y, vy = game.bounce_y(y, vy, 6, 400)\n        vx = game.left_contact((x - 6, y - 6, 12, 12), (20, left_y, 10, 60), vx)\n        if x > 630:\n            vx = -abs(vx)\n        if x < -6:\n            x = 320\n        screen.fill((16, 23, 39))\n        pygame.draw.rect(screen, (235, 240, 250), (20, left_y, 10, 60))\n        pygame.draw.rect(screen, (235, 240, 250), (610, right_y, 10, 60))\n        pygame.draw.circle(screen, (255, 170, 40), (int(x), int(y)), 6)\n        pygame.display.flip()\n        await asyncio.sleep(1 / 60)\n    pygame.quit()\n\nasyncio.run(main())\n",
+    "game.py": "import pygame\n\ndef bounce_y(y, vy, radius, height):\n    if y <= radius and vy < 0:\n        return radius, -vy\n    if y >= height - radius and vy > 0:\n        return height - radius, -vy\n    return y, vy\n\ndef left_contact(ball, paddle, vx):\n    if pygame.Rect(ball).colliderect(pygame.Rect(paddle)) and vx < 0:\n        return -vx\n    return vx\n"
+  },
+  "checkpoints": [
+    {
+      "objectiveIds": [
+        "wall-bounce"
+      ],
+      "task": {
+        "en": "Correct y and reverse vy only when approaching an upper or lower wall. Return (y, vy).",
+        "nl": "Corrigeer y en keer vy alleen om bij het naderen van de boven- of ondermuur. Geef (y, vy) terug."
+      },
+      "check": "_rendered_frames > 0",
+      "hints": [
+        {
+          "en": "Use both an edge test and a direction test.",
+          "nl": "Gebruik zowel een randtest als een richtingstest."
+        },
+        {
+          "en": "At the top, approaching means vy < 0.",
+          "nl": "Boven betekent naderen vy < 0."
+        },
+        {
+          "en": "if y <= radius and vy < 0:\n    return radius, -vy",
+          "nl": "if y <= radius and vy < 0:\n    return radius, -vy"
+        }
+      ],
+      "hint": {
+        "en": "Use both an edge test and a direction test.",
+        "nl": "Gebruik zowel een randtest als een richtingstest."
+      },
+      "feedback": {
+        "en": "A ball already moving inward must keep its direction.",
+        "nl": "Een bal die al naar binnen beweegt moet zijn richting behouden."
+      },
+      "probes": [
+        {
+          "call": {
+            "name": "bounce_y",
+            "args": [
+              2,
+              -80,
+              6,
+              100
+            ],
+            "module": "game"
+          },
+          "check": "_return == (6,80)",
+          "moduleOnly": true,
+          "module": "game"
+        },
+        {
+          "call": {
+            "name": "bounce_y",
+            "args": [
+              98,
+              80,
+              6,
+              100
+            ],
+            "module": "game"
+          },
+          "check": "_return == (94,-80)",
+          "moduleOnly": true,
+          "module": "game"
+        },
+        {
+          "call": {
+            "name": "bounce_y",
+            "args": [
+              6,
+              80,
+              6,
+              100
+            ],
+            "module": "game"
+          },
+          "check": "_return == (6,80)",
+          "moduleOnly": true,
+          "module": "game"
+        }
+      ],
+      "id": "python-v3-8-04-step-1"
+    },
+    {
+      "objectiveIds": [
+        "paddle-contact"
+      ],
+      "task": {
+        "en": "In left_contact, reverse negative vx only when the two Rects overlap. Preserve vx otherwise.",
+        "nl": "Keer in left_contact negatieve vx alleen om wanneer de twee Rects overlappen. Behoud vx anders."
+      },
+      "check": "_rendered_frames > 0",
+      "hints": [
+        {
+          "en": "Pygame can do the overlap geometry.",
+          "nl": "Pygame kan de overlapgeometrie bepalen."
+        },
+        {
+          "en": "Combine colliderect with vx < 0.",
+          "nl": "Combineer colliderect met vx < 0."
+        },
+        {
+          "en": "pygame.Rect(ball).colliderect(pygame.Rect(paddle))",
+          "nl": "pygame.Rect(ball).colliderect(pygame.Rect(paddle))"
+        }
+      ],
+      "hint": {
+        "en": "Pygame can do the overlap geometry.",
+        "nl": "Pygame kan de overlapgeometrie bepalen."
+      },
+      "feedback": {
+        "en": "Overlap without approach must not bounce again.",
+        "nl": "Overlap zonder naderen mag niet opnieuw botsen."
+      },
+      "probes": [
+        {
+          "call": {
+            "name": "left_contact",
+            "args": [
+              [
+                25,
+                30,
+                12,
+                12
+              ],
+              [
+                20,
+                20,
+                10,
+                60
+              ],
+              -100
+            ],
+            "module": "game"
+          },
+          "check": "_return == 100",
+          "moduleOnly": true,
+          "module": "game"
+        },
+        {
+          "call": {
+            "name": "left_contact",
+            "args": [
+              [
+                25,
+                30,
+                12,
+                12
+              ],
+              [
+                20,
+                20,
+                10,
+                60
+              ],
+              100
+            ],
+            "module": "game"
+          },
+          "check": "_return == 100",
+          "moduleOnly": true,
+          "module": "game"
+        },
+        {
+          "call": {
+            "name": "left_contact",
+            "args": [
+              [
+                40,
+                30,
+                12,
+                12
+              ],
+              [
+                20,
+                20,
+                10,
+                60
+              ],
+              -100
+            ],
+            "module": "game"
+          },
+          "check": "_return == -100",
+          "moduleOnly": true,
+          "module": "game"
+        }
+      ],
+      "id": "python-v3-8-04-step-2"
+    }
+  ],
+  "solutionNote": {
+    "en": "The wall helper corrects both penetration and direction. The paddle helper delegates overlap to Rect and checks approach, preventing repeated reversals while contact remains.",
+    "nl": "De muurhelper corrigeert zowel doordringing als richting. De batjeshelper laat Rect overlap bepalen en controleert naderen, zodat contact niet herhaaldelijk omkeert."
+  },
+  "inputs": [],
+  "retrievals": [
+    {
+      "id": "recall-python-v3-6-04",
+      "sourceActivityId": "python-v3-6-04",
+      "objectiveIds": [
+        "local-modules",
+        "module-scope"
+      ],
+      "prompt": {
+        "en": "Describe which file owns a helper’s global variable. Does assigning the same name in main.py change it?",
+        "nl": "Beschrijf welk bestand de globale variabele van een helper bezit. Verandert een toekenning met dezelfde naam in main.py die waarde?"
+      }
+    }
+  ]
+}

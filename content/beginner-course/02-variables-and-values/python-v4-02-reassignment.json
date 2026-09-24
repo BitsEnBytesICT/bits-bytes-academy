@@ -1,0 +1,151 @@
+{
+  "id": "python-v4-02-reassignment",
+  "chapter": 2,
+  "group": "python-v4-module-2",
+  "title": {
+    "en": "Change a stored value",
+    "nl": "Verander een opgeslagen waarde"
+  },
+  "kind": "coding",
+  "optional": false,
+  "runtime": "terminal",
+  "guidance": "guided",
+  "checkpointMode": "sequential",
+  "estimatedMinutes": 12,
+  "topicIds": [
+    "reassignment"
+  ],
+  "practices": [
+    "execution-order"
+  ],
+  "requiredConcepts": [
+    "variables"
+  ],
+  "explanation": {
+    "en": "A variable can refer to a new value later in a program. Follow the value at each moment rather than reading only the last assignment.",
+    "nl": "Een variabele kan later in een programma naar een nieuwe waarde verwijzen. Volg de waarde op elk moment in plaats van alleen de laatste toewijzing te lezen."
+  },
+  "example": "",
+  "sections": [
+    {
+      "id": "python-v4-02-reassignment-example",
+      "topicIds": [
+        "reassignment",
+        "execution-order"
+      ],
+      "heading": {
+        "en": "Follow a working example",
+        "nl": "Volg een werkend voorbeeld"
+      },
+      "body": {
+        "en": "The first assignment stores Morning under message. The first print uses that value. The later assignment changes message to Evening, and the next print uses the new value.\n\nReassignment does not go back in time and change output that was already printed. To trace a program, read one line at a time and write down the current value of each name.",
+        "nl": "De eerste toewijzing bewaart Morning onder message. De eerste print gebruikt die waarde. De latere toewijzing verandert message in Evening en de volgende print gebruikt de nieuwe waarde.\n\nEen nieuwe toewijzing gaat niet terug in de tijd om eerdere uitvoer te wijzigen. Volg een programma regel voor regel en schrijf de huidige waarde van elke naam op."
+      },
+      "code": "message = \"Morning\"\nprint(message)\nmessage = \"Evening\"\nprint(message)",
+      "output": "Morning\nEvening\n",
+      "prediction": {
+        "en": "Why does the first line still say Morning?",
+        "nl": "Waarom staat op de eerste regel nog Morning?"
+      },
+      "takeaway": {
+        "en": "A print call uses the value that exists when that line executes.",
+        "nl": "Een print-aanroep gebruikt de waarde die bestaat wanneer die regel wordt uitgevoerd."
+      }
+    },
+    {
+      "id": "python-v4-02-reassignment-experiment",
+      "topicIds": [],
+      "heading": {
+        "en": "Try one change",
+        "nl": "Probeer één wijziging"
+      },
+      "body": {
+        "en": "Move the update above the first print. Predict the new two-line output.",
+        "nl": "Verplaats de wijziging tot boven de eerste print. Voorspel de nieuwe uitvoer van twee regels."
+      }
+    }
+  ],
+  "files": {
+    "main.py": "status = \"Preparing\"\nprint(status)\n# Update status below, then print it again.\n"
+  },
+  "solution": {
+    "main.py": "status = \"Preparing\"\nprint(status)\nstatus = \"Ready\"\nprint(status)\n"
+  },
+  "checkpoints": [
+    {
+      "id": "python-v4-02-reassignment-step-1",
+      "objectiveIds": [
+        "reassignment",
+        "execution-order"
+      ],
+      "task": {
+        "en": "After the existing print, assign \"Ready\" to status.",
+        "nl": "Wijs na de bestaande print \"Ready\" toe aan status."
+      },
+      "check": "status == \"Ready\"",
+      "probes": [],
+      "hint": {
+        "en": "A print call uses the value that exists when that line executes.",
+        "nl": "Een print-aanroep gebruikt de waarde die bestaat wanneer die regel wordt uitgevoerd."
+      },
+      "hints": [
+        {
+          "en": "A print call uses the value that exists when that line executes.",
+          "nl": "Een print-aanroep gebruikt de waarde die bestaat wanneer die regel wordt uitgevoerd."
+        },
+        {
+          "en": "Add another assignment below the first print; keep the original assignment.",
+          "nl": "Voeg een nieuwe toewijzing onder de eerste print toe; behoud de oorspronkelijke toewijzing."
+        },
+        {
+          "en": "A small fragment to adapt: `message = \"Evening\"`",
+          "nl": "Een klein fragment om aan te passen: `message = \"Evening\"`"
+        }
+      ],
+      "feedback": {
+        "en": "Add another assignment below the first print; keep the original assignment.",
+        "nl": "Voeg een nieuwe toewijzing onder de eerste print toe; behoud de oorspronkelijke toewijzing."
+      }
+    },
+    {
+      "id": "python-v4-02-reassignment-step-2",
+      "objectiveIds": [
+        "reassignment",
+        "execution-order"
+      ],
+      "task": {
+        "en": "Print status again so both states appear in order.",
+        "nl": "Druk status opnieuw af zodat beide toestanden op volgorde verschijnen."
+      },
+      "check": "_stdout == \"Preparing\\nReady\\n\"",
+      "probes": [],
+      "hint": {
+        "en": "A print call uses the value that exists when that line executes.",
+        "nl": "Een print-aanroep gebruikt de waarde die bestaat wanneer die regel wordt uitgevoerd."
+      },
+      "hints": [
+        {
+          "en": "A print call uses the value that exists when that line executes.",
+          "nl": "Een print-aanroep gebruikt de waarde die bestaat wanneer die regel wordt uitgevoerd."
+        },
+        {
+          "en": "There should be a print before and after the update.",
+          "nl": "Er moet een print vóór en na de wijziging staan."
+        },
+        {
+          "en": "A small fragment to adapt: `print(status)`",
+          "nl": "Een klein fragment om aan te passen: `print(status)`"
+        }
+      ],
+      "feedback": {
+        "en": "There should be a print before and after the update.",
+        "nl": "Er moet een print vóór en na de wijziging staan."
+      }
+    }
+  ],
+  "solutionNote": {
+    "en": "Keeping the first assignment and print records the initial state. The new assignment affects only the later lookup.",
+    "nl": "De eerste toewijzing en print bewaren de begintoestand in de uitvoer. De nieuwe toewijzing beïnvloedt alleen de latere opzoeking."
+  },
+  "inputs": []
+}

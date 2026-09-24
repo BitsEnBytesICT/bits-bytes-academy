@@ -1,0 +1,56 @@
+Control Flow
+Else If Statements
+6 min
+
+We have if statements, and now we have else statements. There is another type of statement that goes
+with
+Preview: Docs Loading link description
+these: elif, which is short for “else if”.
+
+An elif statement checks another condition after the previous if statement’s conditions aren’t met.
+
+We can use elif statements to control the order in which our program checks multiple conditional statements. First, the if statement is checked, then each elif statement is checked
+from
+Preview: Docs Used to import specific attributes, classes, or functions from a Python module.
+top to bottom, then
+finally
+Preview: Docs Loading link description
+the else code is executed if none of the previous conditions have been met.
+
+Let’s take a look at this in practice. The following if statement will display a curated “thank you” message after someone donates to a charity, depending on how much was given.
+
+print("Thank you for the donation!")
+
+if donation >= 1000:
+  print("You've achieved platinum donor status")
+elif donation >= 500:
+  print("You've achieved gold donor status")
+elif donation >= 100:
+  print("You've achieved silver donor status")
+else:
+  print("You've achieved bronze donor status")
+
+Copy to Clipboard
+
+Take a moment to think about this control flow chain. What would happen if all of the elif statements were simply if statements? If you donated $1100.00, then the first three messages would all print because each if condition had been met.
+
+But because we used elif statements, it checks each condition sequentially and only prints one message. If I donate $600.00, the code first checks if that is over 1000, which it is not, then it checks if it’s over 500, which it is, so it prints that message, then because all of the other statements are elif and else, none of them get checked, and no more messages get printed.
+
+Take a
+try
+Preview: Docs Loading link description
+at some other elif statements.
+Instructions
+
+    Checkpoint 1 Passed
+
+    1.
+
+    Calvin Coolidge’s Cool College has noticed that students prefer to get letter grades.
+
+    Write an if/elif/else chain that:
+        prints "A" if grade is 90 or higher
+        otherwise, prints "B" if grade is 80 or higher
+        otherwise, prints "C" if grade is 70 or higher
+        otherwise, prints "D" if grade is 60 or higher
+        otherwise, prints "F"

@@ -1,0 +1,192 @@
+{
+  "id": "python-v4-03-remainder",
+  "chapter": 3,
+  "group": "python-v4-module-3",
+  "title": {
+    "en": "Find the leftovers with %",
+    "nl": "Vind de rest met %"
+  },
+  "kind": "coding",
+  "optional": false,
+  "runtime": "terminal",
+  "guidance": "guided",
+  "checkpointMode": "sequential",
+  "estimatedMinutes": 12,
+  "topicIds": [
+    "modulo"
+  ],
+  "practices": [],
+  "requiredConcepts": [
+    "variables",
+    "integers",
+    "floats"
+  ],
+  "explanation": {
+    "en": "After counting complete groups, find what remains. The remainder operator complements floor division.",
+    "nl": "Bepaal na het tellen van volledige groepen wat overblijft. De restoperator vult gehele deling aan."
+  },
+  "example": "",
+  "sections": [
+    {
+      "id": "python-v4-03-remainder-example",
+      "topicIds": [
+        "modulo"
+      ],
+      "heading": {
+        "en": "Follow a working example",
+        "nl": "Volg een werkend voorbeeld"
+      },
+      "body": {
+        "en": "17 stickers make three packs of 5 and leave 2 stickers. 17 % 5 produces 2. The % operator means remainder here, not percentage. If a quantity divides exactly, the remainder is zero.\n\nFor nonnegative counts and a positive group size, the remainder is smaller than the group size. You can check the relationship: complete groups times group size, plus leftovers, equals the original count.",
+        "nl": "17 stickers vormen drie pakjes van 5 en laten 2 stickers over. 17 % 5 levert 2 op. De operator % betekent hier rest, niet percentage. Als een hoeveelheid precies deelbaar is, is de rest nul.\n\nBij niet-negatieve aantallen en een positieve groepsgrootte is de rest kleiner dan de groepsgrootte. Je kunt het verband controleren: volledige groepen maal groepsgrootte, plus rest, is het oorspronkelijke aantal."
+      },
+      "code": "print(17 % 5)\nprint(20 % 5)",
+      "output": "2\n0\n",
+      "prediction": {
+        "en": "Why does the second calculation leave nothing?",
+        "nl": "Waarom laat de tweede berekening niets over?"
+      },
+      "takeaway": {
+        "en": "% gives the remainder after making complete groups.",
+        "nl": "% geeft de rest na het vormen van volledige groepen."
+      }
+    },
+    {
+      "id": "python-v4-03-remainder-experiment",
+      "topicIds": [],
+      "heading": {
+        "en": "Try one change",
+        "nl": "Probeer één wijziging"
+      },
+      "body": {
+        "en": "Try 10 % 2 and 11 % 2. Explain how the results identify even and odd numbers.",
+        "nl": "Probeer 10 % 2 en 11 % 2. Leg uit hoe de resultaten even en oneven getallen herkennen."
+      }
+    }
+  ],
+  "files": {
+    "main.py": "items = 23\nbox_size = 6\n"
+  },
+  "solution": {
+    "main.py": "items = 23\nbox_size = 6\nresult = items % box_size\nprint(result)\n"
+  },
+  "checkpoints": [
+    {
+      "id": "python-v4-03-remainder-step-1",
+      "objectiveIds": [
+        "modulo"
+      ],
+      "task": {
+        "en": "Store the number of items left outside the complete boxes in result.",
+        "nl": "Bewaar in result het aantal artikelen dat buiten de volledige dozen overblijft."
+      },
+      "check": "result == (items % box_size)",
+      "probes": [
+        {
+          "inputs": {
+            "items": 0,
+            "box_size": 4
+          },
+          "check": "result == (items % box_size)"
+        },
+        {
+          "inputs": {
+            "items": 12,
+            "box_size": 6
+          },
+          "check": "result == (items % box_size)"
+        },
+        {
+          "inputs": {
+            "items": 5,
+            "box_size": 6
+          },
+          "check": "result == (items % box_size)"
+        }
+      ],
+      "hint": {
+        "en": "% gives the remainder after making complete groups.",
+        "nl": "% geeft de rest na het vormen van volledige groepen."
+      },
+      "hints": [
+        {
+          "en": "% gives the remainder after making complete groups.",
+          "nl": "% geeft de rest na het vormen van volledige groepen."
+        },
+        {
+          "en": "Use remainder, not division or the count of complete boxes.",
+          "nl": "Gebruik de rest, niet deling of het aantal volledige dozen."
+        },
+        {
+          "en": "A small fragment to adapt: `items % box_size`",
+          "nl": "Een klein fragment om aan te passen: `items % box_size`"
+        }
+      ],
+      "feedback": {
+        "en": "Use remainder, not division or the count of complete boxes.",
+        "nl": "Gebruik de rest, niet deling of het aantal volledige dozen."
+      }
+    },
+    {
+      "id": "python-v4-03-remainder-step-2",
+      "objectiveIds": [
+        "modulo"
+      ],
+      "task": {
+        "en": "Print result after calculating it.",
+        "nl": "Druk result af nadat je het hebt berekend."
+      },
+      "check": "float(_stdout.strip()) == result",
+      "probes": [
+        {
+          "inputs": {
+            "items": 0,
+            "box_size": 4
+          },
+          "check": "float(_stdout.strip()) == (items % box_size)"
+        },
+        {
+          "inputs": {
+            "items": 12,
+            "box_size": 6
+          },
+          "check": "float(_stdout.strip()) == (items % box_size)"
+        },
+        {
+          "inputs": {
+            "items": 5,
+            "box_size": 6
+          },
+          "check": "float(_stdout.strip()) == (items % box_size)"
+        }
+      ],
+      "hint": {
+        "en": "% gives the remainder after making complete groups.",
+        "nl": "% geeft de rest na het vormen van volledige groepen."
+      },
+      "hints": [
+        {
+          "en": "% gives the remainder after making complete groups.",
+          "nl": "% geeft de rest na het vormen van volledige groepen."
+        },
+        {
+          "en": "Display the variable that holds the calculation, rather than typing the expected answer.",
+          "nl": "Toon de variabele met de berekening in plaats van het verwachte antwoord te typen."
+        },
+        {
+          "en": "A small fragment to adapt: `print(result)`",
+          "nl": "Een klein fragment om aan te passen: `print(result)`"
+        }
+      ],
+      "feedback": {
+        "en": "Display the variable that holds the calculation, rather than typing the expected answer.",
+        "nl": "Toon de variabele met de berekening in plaats van het verwachte antwoord te typen."
+      }
+    }
+  ],
+  "solutionNote": {
+    "en": "Three groups use 18 of the 23 items, leaving 5. An exact multiple leaves zero.",
+    "nl": "Drie groepen gebruiken 18 van de 23 artikelen; er blijven 5 over. Een exact veelvoud laat nul over."
+  },
+  "inputs": []
+}

@@ -1,0 +1,173 @@
+{
+  "id": "python-v4-20-write",
+  "chapter": 20,
+  "group": "python-v4-module-20",
+  "title": {
+    "en": "Create or replace a text file",
+    "nl": "Maak of vervang een tekstbestand"
+  },
+  "kind": "coding",
+  "optional": false,
+  "runtime": "terminal",
+  "guidance": "guided",
+  "checkpointMode": "sequential",
+  "estimatedMinutes": 18,
+  "topicIds": [
+    "write"
+  ],
+  "practices": [],
+  "requiredConcepts": [
+    "with",
+    "utf8"
+  ],
+  "explanation": {
+    "en": "Writing produces an artifact you can reopen and inspect in the workspace.\n\nOpen work.py to write the requested function. main.py is a supplied caller: Run always starts there and imports your function. The other file tabs contain input data. After a successful run, open any new output file tab to inspect what your program saved.",
+    "nl": "Schrijven maakt een bestand dat je in de werkruimte opnieuw kunt openen en bekijken.\n\nOpen work.py om de gevraagde functie te schrijven. main.py is de aangeleverde aanroeper: Uitvoeren begint daar en importeert je functie. De andere bestandstabbladen bevatten invoergegevens. Open na een geslaagde uitvoering een nieuw uitvoerbestand om te bekijken wat je programma heeft opgeslagen."
+  },
+  "example": "",
+  "sections": [
+    {
+      "id": "python-v4-20-write-example",
+      "topicIds": [
+        "write"
+      ],
+      "heading": {
+        "en": "Follow a working example",
+        "nl": "Volg een werkend voorbeeld"
+      },
+      "body": {
+        "en": "Mode \"w\" creates a missing file or truncates an existing one immediately. handle.write(text) writes exactly that string; it adds no newline automatically. Use \"\\n\" explicitly when a line ending is required. After running, select the generated file in the file list and inspect its text. Run again to observe replacement.\n\nThe optional print argument end=\"\" prevents print from adding its own newline. This is useful when the text already contains line endings.",
+        "nl": "Modus \"w\" maakt een ontbrekend bestand of leegt een bestaand bestand direct. handle.write(text) schrijft precies die string; het voegt niet automatisch een nieuwe regel toe. Gebruik expliciet \"\\n\" wanneer een regeleinde vereist is. Kies na uitvoering het gemaakte bestand in de bestandenlijst en bekijk de tekst. Voer opnieuw uit om vervangen te zien.\n\nHet optionele print-argument end=\"\" voorkomt dat print zelf een nieuwe regel toevoegt. Dat is handig als de tekst al regeleinden bevat."
+      },
+      "code": "with open(\"example.txt\",\"w\",encoding=\"utf-8\") as handle:\n    handle.write(\"Ready\\n\")\nwith open(\"example.txt\",encoding=\"utf-8\") as handle:\n    print(handle.read(),end=\"\")",
+      "output": "Ready\n",
+      "prediction": {
+        "en": "Does write add a second newline?",
+        "nl": "Voegt write een tweede nieuwe regel toe?"
+      },
+      "takeaway": {
+        "en": "Choose w only when replacing previous content is intended.",
+        "nl": "Kies w alleen als vervangen van eerdere inhoud de bedoeling is."
+      },
+      "exampleFiles": {}
+    },
+    {
+      "id": "python-v4-20-write-experiment",
+      "topicIds": [],
+      "heading": {
+        "en": "Try one change",
+        "nl": "Probeer één wijziging"
+      },
+      "body": {
+        "en": "Save an empty string and explain the resulting file size.",
+        "nl": "Bewaar een lege string en leg de resulterende bestandsgrootte uit."
+      }
+    }
+  ],
+  "files": {
+    "output.txt": "Old content",
+    "main.py": "import work\nwork.save(\"output.txt\",\"New report\\n\")\n",
+    "work.py": "def save(path, text):\n    return None\n"
+  },
+  "solution": {
+    "output.txt": "Old content",
+    "main.py": "import work\nwork.save(\"output.txt\",\"New report\\n\")\n",
+    "work.py": "def save(path, text):\n    with open(path,\"w\",encoding=\"utf-8\") as handle:\n        handle.write(text)\n"
+  },
+  "checkpoints": [
+    {
+      "id": "python-v4-20-write-step-1",
+      "objectiveIds": [
+        "write"
+      ],
+      "task": {
+        "en": "Write exactly text to path, replacing earlier contents. Inspect output.txt after running.",
+        "nl": "Schrijf precies text naar path en vervang eerdere inhoud. Bekijk output.txt na uitvoering."
+      },
+      "check": "True",
+      "probes": [
+        {
+          "call": {
+            "name": "save",
+            "args": [
+              "output.txt",
+              "Café\n"
+            ],
+            "module": "work"
+          },
+          "check": "(open(\"output.txt\",encoding=\"utf-8\").read() == \"Café\\n\") and _error is None",
+          "moduleOnly": true,
+          "module": "work",
+          "files": {}
+        },
+        {
+          "call": {
+            "name": "save",
+            "args": [
+              "new.txt",
+              ""
+            ],
+            "module": "work"
+          },
+          "check": "(_os.path.exists(\"new.txt\") and open(\"new.txt\").read() == \"\") and _error is None",
+          "moduleOnly": true,
+          "module": "work",
+          "files": {}
+        }
+      ],
+      "hint": {
+        "en": "Choose w only when replacing previous content is intended.",
+        "nl": "Kies w alleen als vervangen van eerdere inhoud de bedoeling is."
+      },
+      "hints": [
+        {
+          "en": "Choose w only when replacing previous content is intended.",
+          "nl": "Kies w alleen als vervangen van eerdere inhoud de bedoeling is."
+        },
+        {
+          "en": "Use write mode and do not add extra text or newlines.",
+          "nl": "Gebruik schrijfmodus en voeg geen extra tekst of nieuwe regels toe."
+        },
+        {
+          "en": "A small fragment to adapt: `handle.write(text)`",
+          "nl": "Een klein fragment om aan te passen: `handle.write(text)`"
+        }
+      ],
+      "feedback": {
+        "en": "Use write mode and do not add extra text or newlines.",
+        "nl": "Gebruik schrijfmodus en voeg geen extra tekst of nieuwe regels toe."
+      }
+    }
+  ],
+  "solutionNote": {
+    "en": "The with block closes after writing; mode w deliberately replaces previous data.",
+    "nl": "Het with-blok sluit na schrijven; modus w vervangt bewust eerdere gegevens."
+  },
+  "inputs": [],
+  "retrievals": [
+    {
+      "id": "recall-python-v4-18-characters",
+      "sourceActivityId": "python-v4-18-characters",
+      "objectiveIds": [
+        "string-iteration",
+        "string-membership",
+        "string-conditionals"
+      ],
+      "prompt": {
+        "en": "Recall “Loop over characters and test membership”. Does the substring test count how many matches exist? Try the earlier example from memory, then check it. Explain why y is not counted under this particular brief.",
+        "nl": "Haal “Doorloop tekens en test aanwezigheid” terug. Telt de substringtest hoeveel overeenkomsten bestaan? Probeer het eerdere voorbeeld uit je geheugen en controleer daarna. Leg uit waarom y volgens deze specifieke opdracht niet meetelt."
+      }
+    },
+    {
+      "id": "recall-python-v4-18-text-cleaner",
+      "sourceActivityId": "python-v4-18-text-cleaner",
+      "objectiveIds": [
+        "text-project"
+      ],
+      "prompt": {
+        "en": "Recall “Mini project: text cleaner”. Which step collapses the tab and repeated spaces? Try the earlier example from memory, then check it. Test tabs, blank lines, punctuation and duplicate lines in your own fixture.",
+        "nl": "Haal “Miniproject: tekstopruimer” terug. Welke stap maakt de tab en herhaalde spaties gelijk? Probeer het eerdere voorbeeld uit je geheugen en controleer daarna. Test tabs, lege regels, leestekens en dubbele regels in je eigen gegevens."
+      }
+    }
+  ]
+}

@@ -1,0 +1,126 @@
+{
+  "id": "python-v4-04-escapes",
+  "chapter": 4,
+  "group": "python-v4-module-4",
+  "title": {
+    "en": "Newlines and special characters",
+    "nl": "Nieuwe regels en speciale tekens"
+  },
+  "kind": "coding",
+  "optional": false,
+  "runtime": "terminal",
+  "guidance": "guided",
+  "checkpointMode": "sequential",
+  "estimatedMinutes": 13,
+  "topicIds": [
+    "escapes"
+  ],
+  "practices": [],
+  "requiredConcepts": [
+    "strings",
+    "print"
+  ],
+  "explanation": {
+    "en": "A string can contain characters that are awkward to type directly, including a newline or a quotation mark.",
+    "nl": "Een string kan tekens bevatten die lastig direct te typen zijn, zoals een nieuwe regel of een aanhalingsteken."
+  },
+  "example": "",
+  "sections": [
+    {
+      "id": "python-v4-04-escapes-example",
+      "topicIds": [
+        "escapes"
+      ],
+      "heading": {
+        "en": "Follow a working example",
+        "nl": "Volg een werkend voorbeeld"
+      },
+      "body": {
+        "en": "A backslash begins an escape sequence inside an ordinary Python string. \\n represents a newline, \\t a tab, and \\\\ one literal backslash. An escaped quote belongs to the text instead of closing the string.\n\nThe example is one print call but its string contains a newline, so it displays two lines. Remember that print also adds its own newline at the end. A tab's visual width depends on where it appears.",
+        "nl": "Een backslash begint een escapereeks binnen een gewone Pythonstring. \\n stelt een nieuwe regel voor, \\t een tab en \\\\ één letterlijke backslash. Een geëscapet aanhalingsteken hoort bij de tekst in plaats van de string af te sluiten.\n\nHet voorbeeld is één print-aanroep maar de string bevat een nieuwe regel, dus verschijnen er twee regels. print voegt ook zelf aan het einde een nieuwe regel toe. De visuele breedte van een tab hangt af van de positie."
+      },
+      "code": "print(\"Tea\\nCoffee\")\nprint(\"A\\tB\")",
+      "output": "Tea\nCoffee\nA\tB\n",
+      "prediction": {
+        "en": "How many output lines come from the first call?",
+        "nl": "Hoeveel uitvoerregels komen uit de eerste aanroep?"
+      },
+      "takeaway": {
+        "en": "An escape sequence represents a character inside the string value.",
+        "nl": "Een escapereeks stelt een teken binnen de stringwaarde voor."
+      }
+    },
+    {
+      "id": "python-v4-04-escapes-experiment",
+      "topicIds": [],
+      "heading": {
+        "en": "Try one change",
+        "nl": "Probeer één wijziging"
+      },
+      "body": {
+        "en": "Print a string containing one backslash, then one containing a quoted word. Explain which marks are syntax.",
+        "nl": "Druk een string met één backslash af en daarna een string met een woord tussen aanhalingstekens. Leg uit welke tekens syntaxis zijn."
+      }
+    }
+  ],
+  "files": {
+    "main.py": ""
+  },
+  "solution": {
+    "main.py": "menu = \"Soup\\nSalad\"\nprint(menu)\n"
+  },
+  "checkpoints": [
+    {
+      "id": "python-v4-04-escapes-step-1",
+      "objectiveIds": [
+        "escapes"
+      ],
+      "task": {
+        "en": "Store Soup and Salad, separated by a newline, in one string named menu. Print menu.",
+        "nl": "Bewaar Soup en Salad, gescheiden door een nieuwe regel, in één string met de naam menu. Druk menu af."
+      },
+      "check": "menu == \"Soup\\nSalad\" and _stdout == \"Soup\\nSalad\\n\"",
+      "probes": [],
+      "hint": {
+        "en": "An escape sequence represents a character inside the string value.",
+        "nl": "Een escapereeks stelt een teken binnen de stringwaarde voor."
+      },
+      "hints": [
+        {
+          "en": "An escape sequence represents a character inside the string value.",
+          "nl": "Een escapereeks stelt een teken binnen de stringwaarde voor."
+        },
+        {
+          "en": "Place the newline escape between the two words inside one string.",
+          "nl": "Zet het nieuwe-regelteken tussen beide woorden binnen één string."
+        },
+        {
+          "en": "A small fragment to adapt: `\"first\\nsecond\"`",
+          "nl": "Een klein fragment om aan te passen: `\"first\\nsecond\"`"
+        }
+      ],
+      "feedback": {
+        "en": "Place the newline escape between the two words inside one string.",
+        "nl": "Zet het nieuwe-regelteken tussen beide woorden binnen één string."
+      }
+    }
+  ],
+  "solutionNote": {
+    "en": "The stored string contains a newline character, not the two visible characters backslash and n.",
+    "nl": "De opgeslagen string bevat een nieuweregelteken, niet de twee zichtbare tekens backslash en n."
+  },
+  "inputs": [],
+  "retrievals": [
+    {
+      "id": "recall-python-v4-02-integers",
+      "sourceActivityId": "python-v4-02-integers",
+      "objectiveIds": [
+        "integers"
+      ],
+      "prompt": {
+        "en": "Recall “Whole numbers”. Which value is negative, and does that make it text? Try the earlier example from memory, then check it. Assign -1 to missing and run again. Is it still a whole-number value?",
+        "nl": "Haal “Gehele getallen” terug. Welke waarde is negatief en maakt dat haar tekst? Probeer het eerdere voorbeeld uit je geheugen en controleer daarna. Wijs -1 toe aan missing en voer opnieuw uit. Is het nog steeds een geheel getal?"
+      }
+    }
+  ]
+}

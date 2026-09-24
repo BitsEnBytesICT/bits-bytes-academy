@@ -1,0 +1,216 @@
+{
+  "id": "python-v3-10-04",
+  "chapter": 10,
+  "group": "python-v3-module-10",
+  "title": {
+    "en": "Split and reconstruct",
+    "nl": "Splits en bouw opnieuw op"
+  },
+  "kind": "coding",
+  "optional": false,
+  "runtime": "terminal",
+  "guidance": "adapt",
+  "estimatedMinutes": 15,
+  "explanation": {
+    "en": "Split plain text according to its actual separator, then join known string parts. Distinguish arbitrary whitespace from an explicit delimiter.",
+    "nl": "Splits gewone tekst volgens zijn echte scheidingsteken en voeg bekende stringdelen samen. Onderscheid willekeurige witruimte van een expliciet scheidingsteken."
+  },
+  "example": "",
+  "topicIds": [
+    "split-whitespace",
+    "split-delimiter",
+    "split-newlines",
+    "split-tabs",
+    "join"
+  ],
+  "prerequisites": [
+    "python-v3-10-03"
+  ],
+  "sections": [
+    {
+      "topicIds": [
+        "split-whitespace",
+        "split-delimiter",
+        "split-newlines",
+        "split-tabs",
+        "join"
+      ],
+      "heading": {
+        "en": "Separators change the result",
+        "nl": "Scheidingstekens veranderen het resultaat"
+      },
+      "body": {
+        "en": "split() groups runs of whitespace and drops empty edge fields. split(\",\") splits only commas and preserves empty fields. split(\"\\t\") handles tabs; split(\"\\n\") handles newlines but leaves a final empty field after a trailing newline. splitlines() recognises line endings and avoids that trailing field. separator.join(parts) joins strings using exactly that separator. This is for simple text; CSV requires its own parser later.",
+        "nl": "split() groepeert reeksen witruimte en laat lege randvelden weg. split(\",\") splitst alleen komma’s en behoudt lege velden. split(\"\\t\") behandelt tabs; split(\"\\n\") behandelt nieuwe regels maar laat na een afsluitende nieuwe regel een leeg veld. splitlines() herkent regeleinden en vermijdt dat afsluitende veld. scheiding.join(delen) voegt strings samen met precies dat scheidingsteken. Dit is voor eenvoudige tekst; CSV vereist later een eigen parser."
+      },
+      "code": "print(\" a  b\\tc \".split())\nprint(\"a,,b\".split(\",\"))\nprint(\"a\\nb\\n\".splitlines())\nprint(\" / \".join([\"a\", \"b\"]))",
+      "output": "['a', 'b', 'c']\n['a', '', 'b']\n['a', 'b']\na / b\n",
+      "prediction": {
+        "en": "Why does the comma example retain an empty string?",
+        "nl": "Waarom behoudt het kommavoorbeeld een lege string?"
+      }
+    },
+    {
+      "topicIds": [],
+      "heading": {
+        "en": "Try a changed input",
+        "nl": "Probeer gewijzigde invoer"
+      },
+      "body": {
+        "en": "Compare split(\"\\n\") and splitlines() on text ending in a newline. Then split and rejoin a string with an empty middle field.",
+        "nl": "Vergelijk split(\"\\n\") en splitlines() bij tekst die op een nieuwe regel eindigt. Splits en voeg daarna tekst met een leeg middenveld opnieuw samen."
+      }
+    }
+  ],
+  "files": {
+    "main.py": "def split_views(text):\n    return [], [], [], []\n\ndef rebuild(parts):\n    return \"\"\n\nprint(split_views(\"a,b\\tc\\nd\"))\n"
+  },
+  "solution": {
+    "main.py": "def split_views(text):\n    return text.split(), text.split(\",\"), text.split(\"\\n\"), text.split(\"\\t\")\n\ndef rebuild(parts):\n    return \" | \".join(parts)\n\nprint(split_views(\"a,b\\tc\\nd\"))\n"
+  },
+  "checkpoints": [
+    {
+      "objectiveIds": [
+        "split-whitespace",
+        "split-delimiter",
+        "split-newlines",
+        "split-tabs"
+      ],
+      "task": {
+        "en": "Return four lists from split_views: whitespace words, comma fields, newline fields, and tab fields, in that order. Preserve explicit empty fields.",
+        "nl": "Geef vier lijsten terug vanuit split_views: witruimtewoorden, kommavelden, regelvelden en tabvelden, in die volgorde. Behoud expliciete lege velden."
+      },
+      "check": "len(split_views(\"a,b\")) == 4",
+      "hints": [
+        {
+          "en": "The separator is an argument to split.",
+          "nl": "Het scheidingsteken is een argument van split."
+        },
+        {
+          "en": "Use no argument only for arbitrary whitespace.",
+          "nl": "Gebruik alleen bij willekeurige witruimte geen argument."
+        },
+        {
+          "en": "text.split(), text.split(\",\"), text.split(\"\\n\"), text.split(\"\\t\")",
+          "nl": "text.split(), text.split(\",\"), text.split(\"\\n\"), text.split(\"\\t\")"
+        }
+      ],
+      "hint": {
+        "en": "The separator is an argument to split.",
+        "nl": "Het scheidingsteken is een argument van split."
+      },
+      "feedback": {
+        "en": "Explicit separators and whitespace splitting treat empty fields differently.",
+        "nl": "Expliciete scheidingstekens en witruimtesplitsing behandelen lege velden anders."
+      },
+      "probes": [
+        {
+          "call": {
+            "name": "split_views",
+            "args": [
+              "a,,b\tc\nd"
+            ]
+          },
+          "check": "_return == ([\"a,,b\",\"c\",\"d\"],[\"a\",\"\",\"b\tc\\nd\"],[\"a,,b\tc\",\"d\"],[\"a,,b\",\"c\\nd\"])"
+        },
+        {
+          "call": {
+            "name": "split_views",
+            "args": [
+              ""
+            ]
+          },
+          "check": "_return == ([],[\"\"],[\"\"],[\"\"])"
+        }
+      ],
+      "id": "python-v3-10-04-step-1"
+    },
+    {
+      "objectiveIds": [
+        "join"
+      ],
+      "task": {
+        "en": "Return parts joined with \" | \" from rebuild, including empty and one-item lists.",
+        "nl": "Geef parts samengevoegd met \" | \" terug vanuit rebuild, ook bij lege lijsten en lijsten met één item."
+      },
+      "check": "rebuild([\"red\",\"blue\"]) == \"red | blue\"",
+      "hints": [
+        {
+          "en": "The separator owns the join method.",
+          "nl": "Het scheidingsteken heeft de join-methode."
+        },
+        {
+          "en": "The input parts are all strings.",
+          "nl": "Alle invoerdelen zijn strings."
+        },
+        {
+          "en": "return \" | \".join(parts)",
+          "nl": "return \" | \".join(parts)"
+        }
+      ],
+      "hint": {
+        "en": "The separator owns the join method.",
+        "nl": "Het scheidingsteken heeft de join-methode."
+      },
+      "feedback": {
+        "en": "Avoid a trailing separator; join places separators only between parts.",
+        "nl": "Vermijd een scheidingsteken achteraan; join zet ze alleen tussen delen."
+      },
+      "probes": [
+        {
+          "call": {
+            "name": "rebuild",
+            "args": [
+              []
+            ]
+          },
+          "check": "_return == \"\""
+        },
+        {
+          "call": {
+            "name": "rebuild",
+            "args": [
+              [
+                "x"
+              ]
+            ]
+          },
+          "check": "_return == \"x\""
+        },
+        {
+          "call": {
+            "name": "rebuild",
+            "args": [
+              [
+                "a",
+                "",
+                "b"
+              ]
+            ]
+          },
+          "check": "_return == \"a |  | b\""
+        }
+      ],
+      "id": "python-v3-10-04-step-2"
+    }
+  ],
+  "solutionNote": {
+    "en": "Each split uses a deliberately different rule. join does not guess separators or trim fields; it preserves the provided strings and places a separator between them.",
+    "nl": "Elke split gebruikt bewust een andere regel. join raadt geen scheidingstekens en trimt geen velden; het behoudt de strings en zet er een scheidingsteken tussen."
+  },
+  "inputs": [],
+  "retrievals": [
+    {
+      "id": "recall-python-v3-8-04",
+      "sourceActivityId": "python-v3-8-04",
+      "objectiveIds": [
+        "wall-bounce",
+        "paddle-contact"
+      ],
+      "prompt": {
+        "en": "Trace a ball already moving away from a wall or paddle. Why must contact correction not reverse it again?",
+        "nl": "Volg een bal die al van een muur of batje af beweegt. Waarom mag contactcorrectie die niet opnieuw omkeren?"
+      }
+    }
+  ]
+}

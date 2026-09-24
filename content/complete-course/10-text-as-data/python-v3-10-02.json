@@ -1,0 +1,176 @@
+{
+  "id": "python-v3-10-02",
+  "chapter": 10,
+  "group": "python-v3-module-10",
+  "title": {
+    "en": "Repair text without mutation",
+    "nl": "Repareer tekst zonder mutatie"
+  },
+  "kind": "coding",
+  "optional": false,
+  "runtime": "terminal",
+  "guidance": "adapt",
+  "estimatedMinutes": 15,
+  "explanation": {
+    "en": "Repair text by constructing a new string. Unlike list elements, string characters cannot be replaced by indexed assignment.",
+    "nl": "Repareer tekst door een nieuwe string te maken. Anders dan lijstitems kunnen stringtekens niet via indextoewijzing worden vervangen."
+  },
+  "example": "",
+  "topicIds": [
+    "string-immutability",
+    "escapes",
+    "string-concatenation"
+  ],
+  "prerequisites": [
+    "python-v3-10-01"
+  ],
+  "sections": [
+    {
+      "topicIds": [
+        "string-immutability",
+        "escapes",
+        "string-concatenation"
+      ],
+      "heading": {
+        "en": "Build a replacement value",
+        "nl": "Maak een vervangende waarde"
+      },
+      "body": {
+        "en": "Strings are immutable. text[0] = \"X\" raises TypeError; \"X\" + text[1:] constructs a new value. Assigning that value changes the variable, not the original string object. Escapes let a literal include special characters: \\n is a newline, \\t a tab, \\\\ one backslash, and \\\" a double quote inside double quotes.",
+        "nl": "Strings zijn onveranderlijk. text[0] = \"X\" geeft TypeError; \"X\" + text[1:] maakt een nieuwe waarde. Die waarde toewijzen verandert de variabele, niet het oorspronkelijke stringobject. Escapes nemen speciale tekens op: \\n is een nieuwe regel, \\t een tab, \\\\ één backslash en \\\" een dubbel aanhalingsteken binnen dubbele aanhalingstekens."
+      },
+      "code": "text = \"cat\"\nnew = \"b\" + text[1:]\nprint(text, new)\nprint(\"A\\nB\")\nprint(\"C:\\\\work\")",
+      "output": "cat bat\nA\nB\nC:\\work\n",
+      "prediction": {
+        "en": "Which object changes when new is assigned?",
+        "nl": "Welk object verandert als new wordt toegewezen?"
+      }
+    },
+    {
+      "topicIds": [],
+      "heading": {
+        "en": "Try a changed input",
+        "nl": "Probeer gewijzigde invoer"
+      },
+      "body": {
+        "en": "Print the path and its length. Then create a string containing a quote and a tab and explain each escape.",
+        "nl": "Druk het pad en zijn lengte af. Maak daarna een string met een aanhalingsteken en een tab en verklaar elke escape."
+      }
+    }
+  ],
+  "files": {
+    "main.py": "def mark(text):\n    text[0] = \"#\"\n    return text\n\n# Create path and lines using escapes.\nprint(mark(\"code\"))\n"
+  },
+  "solution": {
+    "main.py": "def mark(text):\n    return \"#\" + text[1:]\n\npath = \"C:\\\\temp\"\nlines = \"first\\nsecond\"\nprint(mark(\"code\"))\n"
+  },
+  "checkpoints": [
+    {
+      "objectiveIds": [
+        "string-immutability",
+        "string-concatenation"
+      ],
+      "task": {
+        "en": "Make mark(text) return a new string beginning with # followed by text from index 1 onward. Empty text becomes \"#\".",
+        "nl": "Laat mark(text) een nieuwe string teruggeven die begint met # gevolgd door text vanaf index 1. Lege tekst wordt \"#\"."
+      },
+      "check": "mark(\"code\") == \"#ode\"",
+      "hints": [
+        {
+          "en": "Do not assign to a character position.",
+          "nl": "Wijs niet aan een tekenpositie toe."
+        },
+        {
+          "en": "Join a new prefix and a slice.",
+          "nl": "Voeg een nieuw voorvoegsel en een slice samen."
+        },
+        {
+          "en": "return \"#\" + text[1:]",
+          "nl": "return \"#\" + text[1:]"
+        }
+      ],
+      "hint": {
+        "en": "Do not assign to a character position.",
+        "nl": "Wijs niet aan een tekenpositie toe."
+      },
+      "feedback": {
+        "en": "Preserve the input text and handle an empty slice.",
+        "nl": "Behoud de invoertekst en handel een lege slice af."
+      },
+      "probes": [
+        {
+          "call": {
+            "name": "mark",
+            "args": [
+              ""
+            ]
+          },
+          "check": "_return == \"#\""
+        },
+        {
+          "call": {
+            "name": "mark",
+            "args": [
+              "X"
+            ]
+          },
+          "check": "_return == \"#\" and _args[0] == \"X\""
+        }
+      ],
+      "id": "python-v3-10-02-step-1"
+    },
+    {
+      "objectiveIds": [
+        "escapes"
+      ],
+      "task": {
+        "en": "Set path to C:\\temp with one literal backslash, and lines to first and second separated by a newline. Use escaped string literals.",
+        "nl": "Stel path in op C:\\temp met één letterlijke backslash en lines op first en second gescheiden door een nieuwe regel. Gebruik stringliterals met escapes."
+      },
+      "check": "path == \"C:\" + chr(92) + \"temp\" and lines == \"first\\nsecond\"",
+      "hints": [
+        {
+          "en": "A literal backslash must itself be escaped.",
+          "nl": "Een letterlijke backslash moet zelf worden ge-escapet."
+        },
+        {
+          "en": "Use two backslashes for one, and backslash-n for a newline.",
+          "nl": "Gebruik twee backslashes voor één en backslash-n voor een nieuwe regel."
+        },
+        {
+          "en": "lines = \"first\\nsecond\"",
+          "nl": "lines = \"first\\nsecond\""
+        }
+      ],
+      "hint": {
+        "en": "A literal backslash must itself be escaped.",
+        "nl": "Een letterlijke backslash moet zelf worden ge-escapet."
+      },
+      "feedback": {
+        "en": "A single backslash before t creates a tab instead of the intended path.",
+        "nl": "Eén backslash vóór t maakt een tab in plaats van het bedoelde pad."
+      },
+      "probes": [],
+      "id": "python-v3-10-02-step-2"
+    }
+  ],
+  "solutionNote": {
+    "en": "A slice and concatenation create the corrected text without mutation. Escapes describe characters in a literal; they are not extra characters in the resulting string.",
+    "nl": "Een slice en samenvoeging maken gecorrigeerde tekst zonder mutatie. Escapes beschrijven tekens in een literal; het zijn geen extra tekens in de resulterende string."
+  },
+  "inputs": [],
+  "retrievals": [
+    {
+      "id": "recall-python-v3-8-02",
+      "sourceActivityId": "python-v3-8-02",
+      "objectiveIds": [
+        "held-keys",
+        "simultaneous-controls"
+      ],
+      "prompt": {
+        "en": "Explain why held-key polling supports two moving paddles and a key-down event suits a single toggle.",
+        "nl": "Leg uit waarom ingedrukte toetsen twee bewegende batjes ondersteunen en een toetsindrukgebeurtenis bij een enkele omschakeling past."
+      }
+    }
+  ]
+}

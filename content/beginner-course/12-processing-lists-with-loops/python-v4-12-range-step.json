@@ -1,0 +1,153 @@
+{
+  "id": "python-v4-12-range-step",
+  "chapter": 12,
+  "group": "python-v4-module-12",
+  "title": {
+    "en": "Choose the start and step",
+    "nl": "Kies begin en stap"
+  },
+  "kind": "coding",
+  "optional": false,
+  "runtime": "terminal",
+  "guidance": "guided",
+  "checkpointMode": "sequential",
+  "estimatedMinutes": 12,
+  "topicIds": [
+    "range-start-stop-step"
+  ],
+  "practices": [],
+  "requiredConcepts": [
+    "range"
+  ],
+  "explanation": {
+    "en": "A start and step let you count from another position or count backward.",
+    "nl": "Een begin en stap laten je vanaf een andere positie of terugwaarts tellen."
+  },
+  "example": "",
+  "sections": [
+    {
+      "id": "python-v4-12-range-step-example",
+      "topicIds": [
+        "range-start-stop-step"
+      ],
+      "heading": {
+        "en": "Follow a working example",
+        "nl": "Volg een werkend voorbeeld"
+      },
+      "body": {
+        "en": "range(start, stop, step) begins at start and adds step after each value. stop remains excluded. A negative step moves downward; its stop must be lower for any values to appear. Step zero is invalid. Omitting step uses 1; providing two arguments means start and stop.",
+        "nl": "range(start, stop, step) begint bij start en telt na elke waarde step op. stop blijft uitgesloten. Een negatieve stap beweegt omlaag; de stop moet dan lager zijn om waarden te krijgen. Stap nul is ongeldig. Zonder step is de stap 1; twee argumenten betekenen start en stop."
+      },
+      "code": "print(list(range(2, 9, 3)))\nprint(list(range(4, 0, -1)))",
+      "output": "[2, 5, 8]\n[4, 3, 2, 1]\n",
+      "prediction": {
+        "en": "Why is 9 absent from the first list?",
+        "nl": "Waarom ontbreekt 9 in de eerste lijst?"
+      },
+      "takeaway": {
+        "en": "Choose a step that moves toward the excluded stop.",
+        "nl": "Kies een stap die naar de uitgesloten stop beweegt."
+      }
+    },
+    {
+      "id": "python-v4-12-range-step-experiment",
+      "topicIds": [],
+      "heading": {
+        "en": "Try one change",
+        "nl": "Probeer één wijziging"
+      },
+      "body": {
+        "en": "Write down a range for the even values 2, 4, 6, 8.",
+        "nl": "Schrijf een range voor de even waarden 2, 4, 6, 8."
+      }
+    }
+  ],
+  "files": {
+    "main.py": "def countdown(start):\n    # Complete this function.\n    return None\n"
+  },
+  "solution": {
+    "main.py": "def countdown(start):\n    return list(range(start, 0, -1))\n"
+  },
+  "checkpoints": [
+    {
+      "id": "python-v4-12-range-step-step-1",
+      "objectiveIds": [
+        "range-start-stop-step"
+      ],
+      "task": {
+        "en": "Return start down through 1 using range; a nonpositive start returns an empty list.",
+        "nl": "Geef met range start aflopend tot en met 1 terug; een niet-positief begin geeft een lege lijst."
+      },
+      "check": "callable(countdown)",
+      "probes": [
+        {
+          "call": {
+            "name": "countdown",
+            "args": [
+              3
+            ]
+          },
+          "check": "(_return == [3,2,1]) and _error is None"
+        },
+        {
+          "call": {
+            "name": "countdown",
+            "args": [
+              1
+            ]
+          },
+          "check": "(_return == [1]) and _error is None"
+        },
+        {
+          "call": {
+            "name": "countdown",
+            "args": [
+              0
+            ]
+          },
+          "check": "(_return == []) and _error is None"
+        }
+      ],
+      "hint": {
+        "en": "Choose a step that moves toward the excluded stop.",
+        "nl": "Kies een stap die naar de uitgesloten stop beweegt."
+      },
+      "hints": [
+        {
+          "en": "Choose a step that moves toward the excluded stop.",
+          "nl": "Kies een stap die naar de uitgesloten stop beweegt."
+        },
+        {
+          "en": "Use zero as the excluded stop and -1 as the step.",
+          "nl": "Gebruik nul als uitgesloten stop en -1 als stap."
+        },
+        {
+          "en": "A small fragment to adapt: `range(start, 0, -1)`",
+          "nl": "Een klein fragment om aan te passen: `range(start, 0, -1)`"
+        }
+      ],
+      "feedback": {
+        "en": "Use zero as the excluded stop and -1 as the step.",
+        "nl": "Gebruik nul als uitgesloten stop en -1 als stap."
+      }
+    }
+  ],
+  "solutionNote": {
+    "en": "The final included value is one because the descending range stops before zero.",
+    "nl": "De laatste opgenomen waarde is één omdat de aflopende range vóór nul stopt."
+  },
+  "inputs": [],
+  "retrievals": [
+    {
+      "id": "recall-python-v4-10-zero-division",
+      "sourceActivityId": "python-v4-10-zero-division",
+      "objectiveIds": [
+        "zero-division-recovery"
+      ],
+      "prompt": {
+        "en": "Recall “Handle division by zero”. Would except ValueError catch this failure? Try the earlier example from memory, then check it. Compare 0/2 and 2/0: which operand makes the difference?",
+        "nl": "Haal “Vang delen door nul op” terug. Vangt except ValueError deze fout op? Probeer het eerdere voorbeeld uit je geheugen en controleer daarna. Vergelijk 0/2 en 2/0: welk getal maakt het verschil?"
+      }
+    }
+  ]
+}

@@ -1,0 +1,133 @@
+{
+  "id": "python-v4-07-first-if",
+  "chapter": 7,
+  "group": "python-v4-module-7",
+  "title": {
+    "en": "Run an instruction only when needed",
+    "nl": "Voer een instructie alleen uit als dat nodig is"
+  },
+  "kind": "coding",
+  "optional": false,
+  "runtime": "terminal",
+  "guidance": "guided",
+  "checkpointMode": "sequential",
+  "estimatedMinutes": 15,
+  "topicIds": [
+    "if"
+  ],
+  "practices": [],
+  "requiredConcepts": [
+    "boolean-variables",
+    "print"
+  ],
+  "explanation": {
+    "en": "A comparison produces a Boolean. An if statement uses that Boolean to decide whether to run a block of code.",
+    "nl": "Een vergelijking levert een booleaanse waarde op. Een if-instructie gebruikt die waarde om te beslissen of een blok code wordt uitgevoerd."
+  },
+  "example": "",
+  "sections": [
+    {
+      "id": "python-v4-07-first-if-example",
+      "topicIds": [
+        "if"
+      ],
+      "heading": {
+        "en": "Follow a working example",
+        "nl": "Volg een werkend voorbeeld"
+      },
+      "body": {
+        "en": "Write if, a condition and a colon. On the next line, indent the action with four spaces. Python checks the condition: if it is True, the indented block runs; if it is False, the block is skipped.\n\nThe line after the block returns to the left margin. It runs regardless of the condition. Indentation therefore changes behaviour, not just appearance. The example's final message is outside the condition.",
+        "nl": "Schrijf if, een voorwaarde en een dubbele punt. Spring op de volgende regel de actie met vier spaties in. Python controleert de voorwaarde: bij True wordt het ingesprongen blok uitgevoerd; bij False wordt het overgeslagen.\n\nDe regel na het blok keert terug naar de linkermarge. Die wordt ongeacht de voorwaarde uitgevoerd. Inspringing verandert dus gedrag, niet alleen het uiterlijk. Het laatste bericht van het voorbeeld staat buiten de voorwaarde."
+      },
+      "code": "door_open = True\nif door_open:\n    print(\"Come in\")\nprint(\"Check finished\")",
+      "output": "Come in\nCheck finished\n",
+      "prediction": {
+        "en": "Which line still prints if door_open becomes False?",
+        "nl": "Welke regel verschijnt nog als door_open False wordt?"
+      },
+      "takeaway": {
+        "en": "An if block runs only when its condition is true.",
+        "nl": "Een if-blok wordt alleen uitgevoerd als zijn voorwaarde waar is."
+      }
+    },
+    {
+      "id": "python-v4-07-first-if-experiment",
+      "topicIds": [],
+      "heading": {
+        "en": "Try one change",
+        "nl": "Probeer één wijziging"
+      },
+      "body": {
+        "en": "Change has_ticket to False. An empty output is the correct behaviour in that case.",
+        "nl": "Verander has_ticket in False. Lege uitvoer is in dat geval het juiste gedrag."
+      }
+    }
+  ],
+  "files": {
+    "main.py": "has_ticket = True\n"
+  },
+  "solution": {
+    "main.py": "has_ticket = True\nif has_ticket:\n    print(\"Enter\")\n"
+  },
+  "checkpoints": [
+    {
+      "id": "python-v4-07-first-if-step-1",
+      "objectiveIds": [
+        "if"
+      ],
+      "task": {
+        "en": "Use if to print \"Enter\" only when has_ticket is True.",
+        "nl": "Gebruik if om \"Enter\" alleen af te drukken wanneer has_ticket True is."
+      },
+      "check": "any(isinstance(n, _ast.If) for n in _ast.walk(_ast.parse(_source))) and _stdout == \"Enter\\n\"",
+      "probes": [
+        {
+          "inputs": {
+            "has_ticket": false
+          },
+          "check": "_stdout == \"\""
+        }
+      ],
+      "hint": {
+        "en": "An if block runs only when its condition is true.",
+        "nl": "Een if-blok wordt alleen uitgevoerd als zijn voorwaarde waar is."
+      },
+      "hints": [
+        {
+          "en": "An if block runs only when its condition is true.",
+          "nl": "Een if-blok wordt alleen uitgevoerd als zijn voorwaarde waar is."
+        },
+        {
+          "en": "End the condition line with a colon and indent the print underneath it.",
+          "nl": "Eindig de voorwaarderegel met een dubbele punt en spring de print eronder in."
+        },
+        {
+          "en": "A small fragment to adapt: `if has_ticket:`",
+          "nl": "Een klein fragment om aan te passen: `if has_ticket:`"
+        }
+      ],
+      "feedback": {
+        "en": "End the condition line with a colon and indent the print underneath it.",
+        "nl": "Eindig de voorwaarderegel met een dubbele punt en spring de print eronder in."
+      }
+    }
+  ],
+  "solutionNote": {
+    "en": "The print belongs inside the conditional block. Its absence when the condition is False is intentional.",
+    "nl": "De print hoort binnen het voorwaardelijke blok. Dat hij ontbreekt wanneer de voorwaarde False is, is de bedoeling."
+  },
+  "inputs": [],
+  "retrievals": [
+    {
+      "id": "recall-python-v4-05-first-input",
+      "sourceActivityId": "python-v4-05-first-input",
+      "objectiveIds": [
+        "input"
+      ],
+      "prompt": {
+        "en": "Recall “Ask and wait for an answer”. Where must the person type their answer: editor or terminal? Try the earlier example from memory, then check it. Run twice with two different names. The code stays the same; the answers change.",
+        "nl": "Haal “Stel een vraag en wacht op antwoord” terug. Waar moet de gebruiker het antwoord typen: editor of terminal? Probeer het eerdere voorbeeld uit je geheugen en controleer daarna. Voer tweemaal uit met twee verschillende namen. De code blijft hetzelfde; de antwoorden veranderen."
+      }
+    }
+  ]
+}

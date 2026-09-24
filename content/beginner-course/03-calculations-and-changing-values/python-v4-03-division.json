@@ -1,0 +1,195 @@
+{
+  "id": "python-v4-03-division",
+  "chapter": 3,
+  "group": "python-v4-module-3",
+  "title": {
+    "en": "Share a quantity equally",
+    "nl": "Verdeel een hoeveelheid gelijk"
+  },
+  "kind": "coding",
+  "optional": false,
+  "runtime": "terminal",
+  "guidance": "guided",
+  "checkpointMode": "sequential",
+  "estimatedMinutes": 12,
+  "topicIds": [
+    "division",
+    "zero-division-error"
+  ],
+  "practices": [],
+  "requiredConcepts": [
+    "variables",
+    "integers",
+    "floats"
+  ],
+  "explanation": {
+    "en": "Division answers how much each equal share receives. First practise a nonzero divisor.",
+    "nl": "Delen vertelt hoeveel elk gelijk deel krijgt. Oefen eerst met een deler die niet nul is."
+  },
+  "example": "",
+  "sections": [
+    {
+      "id": "python-v4-03-division-example",
+      "topicIds": [
+        "division",
+        "zero-division-error"
+      ],
+      "heading": {
+        "en": "Follow a working example",
+        "nl": "Volg een werkend voorbeeld"
+      },
+      "body": {
+        "en": "Python uses / for division. A 9-metre ribbon shared among 4 people gives 9 / 4, or 2.25 metres each. Division with / produces a float, even when the answer is a whole number: 8 / 4 produces 2.0.\n\nDividing by zero is undefined and raises ZeroDivisionError. You may observe that error, but handling it comes after decisions and exception handling. The current exercise assumes a positive number of people.",
+        "nl": "Python gebruikt / voor delen. Een lint van 9 meter verdeeld over 4 mensen geeft 9 / 4, oftewel 2.25 meter per persoon. Delen met / levert een float op, ook als het antwoord geheel is: 8 / 4 geeft 2.0.\n\nDelen door nul is niet gedefinieerd en veroorzaakt ZeroDivisionError. Je mag die fout bekijken, maar afhandelen komt na beslissingen en foutafhandeling. Deze oefening gaat uit van een positief aantal mensen."
+      },
+      "code": "length = 9\npeople = 4\nprint(length / people)",
+      "output": "2.25\n",
+      "prediction": {
+        "en": "Does each person receive a whole number of metres?",
+        "nl": "Krijgt elke persoon een geheel aantal meters?"
+      },
+      "takeaway": {
+        "en": "Divide the total by a nonzero number of equal shares.",
+        "nl": "Deel het totaal door een aantal gelijke delen dat niet nul is."
+      }
+    },
+    {
+      "id": "python-v4-03-division-experiment",
+      "topicIds": [],
+      "heading": {
+        "en": "Try one change",
+        "nl": "Probeer één wijziging"
+      },
+      "body": {
+        "en": "Try total = 10 and people = 2. Observe the decimal point. Temporarily try people = 0, read the error, then restore a valid count.",
+        "nl": "Probeer total = 10 en people = 2. Bekijk de decimale punt. Probeer tijdelijk people = 0, lees de foutmelding en herstel een geldig aantal."
+      }
+    }
+  ],
+  "files": {
+    "main.py": "total = 15\npeople = 4\n"
+  },
+  "solution": {
+    "main.py": "total = 15\npeople = 4\nresult = total / people\nprint(result)\n"
+  },
+  "checkpoints": [
+    {
+      "id": "python-v4-03-division-step-1",
+      "objectiveIds": [
+        "division",
+        "zero-division-error"
+      ],
+      "task": {
+        "en": "Calculate the share per person and store it in result.",
+        "nl": "Bereken het deel per persoon en bewaar het in result."
+      },
+      "check": "result == (total / people)",
+      "probes": [
+        {
+          "inputs": {
+            "total": 0,
+            "people": 3
+          },
+          "check": "result == (total / people)"
+        },
+        {
+          "inputs": {
+            "total": 10,
+            "people": 2
+          },
+          "check": "result == (total / people)"
+        }
+      ],
+      "hint": {
+        "en": "Divide the total by a nonzero number of equal shares.",
+        "nl": "Deel het totaal door een aantal gelijke delen dat niet nul is."
+      },
+      "hints": [
+        {
+          "en": "Divide the total by a nonzero number of equal shares.",
+          "nl": "Deel het totaal door een aantal gelijke delen dat niet nul is."
+        },
+        {
+          "en": "The total is divided by the number of people, not the other way around.",
+          "nl": "Het totaal wordt gedeeld door het aantal mensen, niet andersom."
+        },
+        {
+          "en": "A small fragment to adapt: `result = total / people`",
+          "nl": "Een klein fragment om aan te passen: `result = total / people`"
+        }
+      ],
+      "feedback": {
+        "en": "The total is divided by the number of people, not the other way around.",
+        "nl": "Het totaal wordt gedeeld door het aantal mensen, niet andersom."
+      }
+    },
+    {
+      "id": "python-v4-03-division-step-2",
+      "objectiveIds": [
+        "division",
+        "zero-division-error"
+      ],
+      "task": {
+        "en": "Print result after calculating it.",
+        "nl": "Druk result af nadat je het hebt berekend."
+      },
+      "check": "float(_stdout.strip()) == result",
+      "probes": [
+        {
+          "inputs": {
+            "total": 0,
+            "people": 3
+          },
+          "check": "float(_stdout.strip()) == (total / people)"
+        },
+        {
+          "inputs": {
+            "total": 10,
+            "people": 2
+          },
+          "check": "float(_stdout.strip()) == (total / people)"
+        }
+      ],
+      "hint": {
+        "en": "Divide the total by a nonzero number of equal shares.",
+        "nl": "Deel het totaal door een aantal gelijke delen dat niet nul is."
+      },
+      "hints": [
+        {
+          "en": "Divide the total by a nonzero number of equal shares.",
+          "nl": "Deel het totaal door een aantal gelijke delen dat niet nul is."
+        },
+        {
+          "en": "Display the variable that holds the calculation, rather than typing the expected answer.",
+          "nl": "Toon de variabele met de berekening in plaats van het verwachte antwoord te typen."
+        },
+        {
+          "en": "A small fragment to adapt: `print(result)`",
+          "nl": "Een klein fragment om aan te passen: `print(result)`"
+        }
+      ],
+      "feedback": {
+        "en": "Display the variable that holds the calculation, rather than typing the expected answer.",
+        "nl": "Toon de variabele met de berekening in plaats van het verwachte antwoord te typen."
+      }
+    }
+  ],
+  "solutionNote": {
+    "en": "The calculation returns 3.75 for the initial data. It preserves fractional shares.",
+    "nl": "De berekening geeft 3.75 voor de begingegevens. Zij behoudt delen achter de komma."
+  },
+  "inputs": [],
+  "retrievals": [
+    {
+      "id": "recall-python-v4-01-strings-quotes",
+      "sourceActivityId": "python-v4-01-strings-quotes",
+      "objectiveIds": [
+        "strings"
+      ],
+      "prompt": {
+        "en": "Recall “Text is a string”. Will the two output lines differ? Try the earlier example from memory, then check it. Print \"It's sunny\" using double quotes. Explain why its apostrophe does not end the string.",
+        "nl": "Haal “Tekst is een string” terug. Verschillen de twee uitvoerregels? Probeer het eerdere voorbeeld uit je geheugen en controleer daarna. Druk \"It's sunny\" af met dubbele aanhalingstekens. Leg uit waarom de apostrof de string niet beëindigt."
+      }
+    }
+  ]
+}

@@ -1,0 +1,780 @@
+{
+  "id": "python-v3-15-quiz",
+  "chapter": 15,
+  "group": "python-v3-module-15",
+  "kind": "quiz",
+  "optional": false,
+  "estimatedMinutes": 6,
+  "title": {
+    "en": "Classes and objects: review",
+    "nl": "Klassen en objecten: herhaling"
+  },
+  "questions": [
+    {
+      "objectiveIds": [
+        "repr",
+        "str"
+      ],
+      "reviewActivityIds": [
+        "python-v3-15-05"
+      ],
+      "category": "prediction",
+      "prompt": {
+        "en": "What does this program print?",
+        "nl": "Wat drukt dit programma af?"
+      },
+      "code": "class Token:\n    def __init__(self, value):\n        self.value = value\n    def __repr__(self):\n        return f\"Token({self.value})\"\n    def __str__(self):\n        return f\"Value {self.value}\"\nprint(repr(Token(2)))",
+      "answer": "a",
+      "choices": [
+        {
+          "id": "a",
+          "label": {
+            "en": "Token(2)",
+            "nl": "Token(2)"
+          },
+          "reason": {
+            "en": "repr calls __repr__ for the diagnostic form.",
+            "nl": "repr roept __repr__ aan voor de diagnostische vorm."
+          }
+        },
+        {
+          "id": "b",
+          "label": {
+            "en": "Value 2",
+            "nl": "Value 2"
+          },
+          "reason": {
+            "en": "This is the friendly __str__ result, not the requested repr.",
+            "nl": "Dit is het vriendelijke __str__-resultaat, niet de gevraagde repr."
+          }
+        },
+        {
+          "id": "c",
+          "label": {
+            "en": "2",
+            "nl": "2"
+          },
+          "reason": {
+            "en": "The representation method includes the class label too.",
+            "nl": "De voorstellingsmethode bevat ook het klasselabel."
+          }
+        }
+      ],
+      "expectedOutput": "Token(2)\n",
+      "id": "python-v3-15-quiz-a-1"
+    },
+    {
+      "objectiveIds": [
+        "class-variables",
+        "independent-instances"
+      ],
+      "reviewActivityIds": [
+        "python-v3-15-04"
+      ],
+      "category": "prediction",
+      "prompt": {
+        "en": "What does this program print?",
+        "nl": "Wat drukt dit programma af?"
+      },
+      "code": "class Bag:\n    items = []\na = Bag()\nb = Bag()\na.items.append(2)\nprint(len(b.items))",
+      "answer": "a",
+      "choices": [
+        {
+          "id": "a",
+          "label": {
+            "en": "1",
+            "nl": "1"
+          },
+          "reason": {
+            "en": "Both instances see the same class-level list.",
+            "nl": "Beide instanties zien dezelfde lijst op klasseniveau."
+          }
+        },
+        {
+          "id": "b",
+          "label": {
+            "en": "0",
+            "nl": "0"
+          },
+          "reason": {
+            "en": "A new instance does not automatically clone a mutable class attribute.",
+            "nl": "Een nieuwe instantie kloont niet automatisch een veranderlijk klasseattribuut."
+          }
+        },
+        {
+          "id": "c",
+          "label": {
+            "en": "2",
+            "nl": "2"
+          },
+          "reason": {
+            "en": "Only one item was appended.",
+            "nl": "Er werd maar één item toegevoegd."
+          }
+        }
+      ],
+      "expectedOutput": "1\n",
+      "id": "python-v3-15-quiz-a-2"
+    },
+    {
+      "objectiveIds": [
+        "self",
+        "constructors",
+        "instance-variables"
+      ],
+      "reviewActivityIds": [
+        "python-v3-15-02"
+      ],
+      "category": "completion",
+      "prompt": {
+        "en": "Store state on the new instance.",
+        "nl": "Bewaar toestand op de nieuwe instantie."
+      },
+      "code": "class Counter:\n    def __init__(self, value):\n        ___.value = value\nprint(Counter(2).value)",
+      "answer": "a",
+      "choices": [
+        {
+          "id": "a",
+          "label": {
+            "en": "self",
+            "nl": "self"
+          },
+          "reason": {
+            "en": "self identifies the current instance; assigning on Counter would share class state.",
+            "nl": "self identificeert de huidige instantie; toewijzen op Counter zou klassetoestand delen."
+          }
+        },
+        {
+          "id": "b",
+          "label": {
+            "en": "Counter",
+            "nl": "Counter"
+          },
+          "reason": {
+            "en": "self identifies the current instance; assigning on Counter would share class state.",
+            "nl": "self identificeert de huidige instantie; toewijzen op Counter zou klassetoestand delen."
+          }
+        },
+        {
+          "id": "c",
+          "label": {
+            "en": "value",
+            "nl": "value"
+          },
+          "reason": {
+            "en": "self identifies the current instance; assigning on Counter would share class state.",
+            "nl": "self identificeert de huidige instantie; toewijzen op Counter zou klassetoestand delen."
+          }
+        }
+      ],
+      "codeBlank": {
+        "prompt": {
+          "en": "Store state on the new instance.",
+          "nl": "Bewaar toestand op de nieuwe instantie."
+        },
+        "segments": [
+          "class Counter:\n    def __init__(self, value):\n        ",
+          ".value = value\nprint(Counter(2).value)"
+        ],
+        "tokens": [
+          {
+            "id": "token-1",
+            "code": "self"
+          },
+          {
+            "id": "token-2",
+            "code": "Counter"
+          },
+          {
+            "id": "token-3",
+            "code": "value"
+          }
+        ],
+        "blanks": [
+          {
+            "answer": "self",
+            "reason": {
+              "en": "self identifies the current instance; assigning on Counter would share class state.",
+              "nl": "self identificeert de huidige instantie; toewijzen op Counter zou klassetoestand delen."
+            }
+          }
+        ],
+        "output": "2\n"
+      },
+      "id": "python-v3-15-quiz-a-3"
+    },
+    {
+      "objectiveIds": [
+        "getattr",
+        "hasattr",
+        "dir"
+      ],
+      "reviewActivityIds": [
+        "python-v3-15-05"
+      ],
+      "category": "completion",
+      "prompt": {
+        "en": "Read an optional attribute with a default.",
+        "nl": "Lees een optioneel attribuut met een standaard."
+      },
+      "code": "class Item:\n    pass\nitem = Item()\nprint(___(item, \"score\", 2))",
+      "answer": "a",
+      "choices": [
+        {
+          "id": "a",
+          "label": {
+            "en": "getattr",
+            "nl": "getattr"
+          },
+          "reason": {
+            "en": "getattr accepts a default; hasattr answers existence and dir lists names.",
+            "nl": "getattr accepteert een standaard; hasattr antwoordt over bestaan en dir noemt namen."
+          }
+        },
+        {
+          "id": "b",
+          "label": {
+            "en": "hasattr",
+            "nl": "hasattr"
+          },
+          "reason": {
+            "en": "getattr accepts a default; hasattr answers existence and dir lists names.",
+            "nl": "getattr accepteert een standaard; hasattr antwoordt over bestaan en dir noemt namen."
+          }
+        },
+        {
+          "id": "c",
+          "label": {
+            "en": "dir",
+            "nl": "dir"
+          },
+          "reason": {
+            "en": "getattr accepts a default; hasattr answers existence and dir lists names.",
+            "nl": "getattr accepteert een standaard; hasattr antwoordt over bestaan en dir noemt namen."
+          }
+        }
+      ],
+      "codeBlank": {
+        "prompt": {
+          "en": "Read an optional attribute with a default.",
+          "nl": "Lees een optioneel attribuut met een standaard."
+        },
+        "segments": [
+          "class Item:\n    pass\nitem = Item()\nprint(",
+          "(item, \"score\", 2))"
+        ],
+        "tokens": [
+          {
+            "id": "token-1",
+            "code": "getattr"
+          },
+          {
+            "id": "token-2",
+            "code": "hasattr"
+          },
+          {
+            "id": "token-3",
+            "code": "dir"
+          }
+        ],
+        "blanks": [
+          {
+            "answer": "getattr",
+            "reason": {
+              "en": "getattr accepts a default; hasattr answers existence and dir lists names.",
+              "nl": "getattr accepteert een standaard; hasattr antwoordt over bestaan en dir noemt namen."
+            }
+          }
+        ],
+        "output": "2\n"
+      },
+      "id": "python-v3-15-quiz-a-4"
+    },
+    {
+      "objectiveIds": [
+        "csv-quoting"
+      ],
+      "reviewActivityIds": [
+        "python-v3-14-02"
+      ],
+      "category": "debugging",
+      "prompt": {
+        "en": "Why does this split not safely read a CSV record?",
+        "nl": "Waarom leest deze split een CSV-record niet veilig?"
+      },
+      "code": "line = '\"Ada, A.\",3'\nparts = line.split(\",\")",
+      "answer": "a",
+      "choices": [
+        {
+          "id": "a",
+          "label": {
+            "en": "The comma inside quotes is part of one field; use csv.reader.",
+            "nl": "De komma binnen aanhalingstekens hoort bij één veld; gebruik csv.reader."
+          },
+          "reason": {
+            "en": "The parser understands quoting, while string split does not.",
+            "nl": "De parser begrijpt aanhalingstekens, terwijl stringsplit dat niet doet."
+          }
+        },
+        {
+          "id": "b",
+          "label": {
+            "en": "CSV records cannot contain commas.",
+            "nl": "CSV-records mogen geen komma’s bevatten."
+          },
+          "reason": {
+            "en": "Commas are valid inside quoted fields.",
+            "nl": "Komma’s zijn geldig binnen aangehaalde velden."
+          }
+        },
+        {
+          "id": "c",
+          "label": {
+            "en": "Changing split to join parses the record.",
+            "nl": "split in join veranderen verwerkt het record."
+          },
+          "reason": {
+            "en": "join reconstructs text from parts; it is not a CSV parser.",
+            "nl": "join bouwt tekst uit delen; het is geen CSV-parser."
+          }
+        }
+      ],
+      "id": "python-v3-15-quiz-a-5"
+    },
+    {
+      "objectiveIds": [
+        "valid-keys",
+        "invalid-keys"
+      ],
+      "reviewActivityIds": [
+        "python-v3-12-01"
+      ],
+      "category": "application",
+      "prompt": {
+        "en": "Which value can identify a dictionary entry without an unhashable-key error?",
+        "nl": "Welke waarde kan een dictionary-item identificeren zonder onhashbare-sleutelfout?"
+      },
+      "answer": "a",
+      "choices": [
+        {
+          "id": "a",
+          "label": {
+            "en": "(0, 1)",
+            "nl": "(0, 1)"
+          },
+          "reason": {
+            "en": "This tuple contains hashable integer components.",
+            "nl": "Deze tuple bevat hashbare gehele onderdelen."
+          }
+        },
+        {
+          "id": "b",
+          "label": {
+            "en": "[0, 1]",
+            "nl": "[0, 1]"
+          },
+          "reason": {
+            "en": "A mutable list is not a valid key.",
+            "nl": "Een veranderlijke lijst is geen geldige sleutel."
+          }
+        },
+        {
+          "id": "c",
+          "label": {
+            "en": "([0], 1)",
+            "nl": "([0], 1)"
+          },
+          "reason": {
+            "en": "The tuple contains an unhashable list, so the tuple is not hashable either.",
+            "nl": "De tuple bevat een onhashbare lijst, dus is zelf ook niet hashbaar."
+          }
+        }
+      ],
+      "id": "python-v3-15-quiz-a-6"
+    }
+  ],
+  "alternateQuestions": [
+    {
+      "objectiveIds": [
+        "repr",
+        "str"
+      ],
+      "reviewActivityIds": [
+        "python-v3-15-05"
+      ],
+      "category": "prediction",
+      "prompt": {
+        "en": "What does this program print?",
+        "nl": "Wat drukt dit programma af?"
+      },
+      "code": "class Token:\n    def __init__(self, value):\n        self.value = value\n    def __repr__(self):\n        return f\"Token({self.value})\"\n    def __str__(self):\n        return f\"Value {self.value}\"\nprint(repr(Token(5)))",
+      "answer": "a",
+      "choices": [
+        {
+          "id": "a",
+          "label": {
+            "en": "Token(5)",
+            "nl": "Token(5)"
+          },
+          "reason": {
+            "en": "repr calls __repr__ for the diagnostic form.",
+            "nl": "repr roept __repr__ aan voor de diagnostische vorm."
+          }
+        },
+        {
+          "id": "b",
+          "label": {
+            "en": "Value 5",
+            "nl": "Value 5"
+          },
+          "reason": {
+            "en": "This is the friendly __str__ result, not the requested repr.",
+            "nl": "Dit is het vriendelijke __str__-resultaat, niet de gevraagde repr."
+          }
+        },
+        {
+          "id": "c",
+          "label": {
+            "en": "5",
+            "nl": "5"
+          },
+          "reason": {
+            "en": "The representation method includes the class label too.",
+            "nl": "De voorstellingsmethode bevat ook het klasselabel."
+          }
+        }
+      ],
+      "expectedOutput": "Token(5)\n",
+      "id": "python-v3-15-quiz-b-1"
+    },
+    {
+      "objectiveIds": [
+        "class-variables",
+        "independent-instances"
+      ],
+      "reviewActivityIds": [
+        "python-v3-15-04"
+      ],
+      "category": "prediction",
+      "prompt": {
+        "en": "What does this program print?",
+        "nl": "Wat drukt dit programma af?"
+      },
+      "code": "class Bag:\n    items = []\na = Bag()\nb = Bag()\na.items.append(5)\nprint(len(b.items))",
+      "answer": "a",
+      "choices": [
+        {
+          "id": "a",
+          "label": {
+            "en": "1",
+            "nl": "1"
+          },
+          "reason": {
+            "en": "Both instances see the same class-level list.",
+            "nl": "Beide instanties zien dezelfde lijst op klasseniveau."
+          }
+        },
+        {
+          "id": "b",
+          "label": {
+            "en": "0",
+            "nl": "0"
+          },
+          "reason": {
+            "en": "A new instance does not automatically clone a mutable class attribute.",
+            "nl": "Een nieuwe instantie kloont niet automatisch een veranderlijk klasseattribuut."
+          }
+        },
+        {
+          "id": "c",
+          "label": {
+            "en": "2",
+            "nl": "2"
+          },
+          "reason": {
+            "en": "Only one item was appended.",
+            "nl": "Er werd maar één item toegevoegd."
+          }
+        }
+      ],
+      "expectedOutput": "1\n",
+      "id": "python-v3-15-quiz-b-2"
+    },
+    {
+      "objectiveIds": [
+        "self",
+        "constructors",
+        "instance-variables"
+      ],
+      "reviewActivityIds": [
+        "python-v3-15-02"
+      ],
+      "category": "completion",
+      "prompt": {
+        "en": "Store state on the new instance.",
+        "nl": "Bewaar toestand op de nieuwe instantie."
+      },
+      "code": "class Counter:\n    def __init__(self, value):\n        ___.value = value\nprint(Counter(5).value)",
+      "answer": "a",
+      "choices": [
+        {
+          "id": "a",
+          "label": {
+            "en": "self",
+            "nl": "self"
+          },
+          "reason": {
+            "en": "self identifies the current instance; assigning on Counter would share class state.",
+            "nl": "self identificeert de huidige instantie; toewijzen op Counter zou klassetoestand delen."
+          }
+        },
+        {
+          "id": "b",
+          "label": {
+            "en": "Counter",
+            "nl": "Counter"
+          },
+          "reason": {
+            "en": "self identifies the current instance; assigning on Counter would share class state.",
+            "nl": "self identificeert de huidige instantie; toewijzen op Counter zou klassetoestand delen."
+          }
+        },
+        {
+          "id": "c",
+          "label": {
+            "en": "value",
+            "nl": "value"
+          },
+          "reason": {
+            "en": "self identifies the current instance; assigning on Counter would share class state.",
+            "nl": "self identificeert de huidige instantie; toewijzen op Counter zou klassetoestand delen."
+          }
+        }
+      ],
+      "codeBlank": {
+        "prompt": {
+          "en": "Store state on the new instance.",
+          "nl": "Bewaar toestand op de nieuwe instantie."
+        },
+        "segments": [
+          "class Counter:\n    def __init__(self, value):\n        ",
+          ".value = value\nprint(Counter(5).value)"
+        ],
+        "tokens": [
+          {
+            "id": "token-1",
+            "code": "self"
+          },
+          {
+            "id": "token-2",
+            "code": "Counter"
+          },
+          {
+            "id": "token-3",
+            "code": "value"
+          }
+        ],
+        "blanks": [
+          {
+            "answer": "self",
+            "reason": {
+              "en": "self identifies the current instance; assigning on Counter would share class state.",
+              "nl": "self identificeert de huidige instantie; toewijzen op Counter zou klassetoestand delen."
+            }
+          }
+        ],
+        "output": "5\n"
+      },
+      "id": "python-v3-15-quiz-b-3"
+    },
+    {
+      "objectiveIds": [
+        "getattr",
+        "hasattr",
+        "dir"
+      ],
+      "reviewActivityIds": [
+        "python-v3-15-05"
+      ],
+      "category": "completion",
+      "prompt": {
+        "en": "Read an optional attribute with a default.",
+        "nl": "Lees een optioneel attribuut met een standaard."
+      },
+      "code": "class Item:\n    pass\nitem = Item()\nprint(___(item, \"score\", 5))",
+      "answer": "a",
+      "choices": [
+        {
+          "id": "a",
+          "label": {
+            "en": "getattr",
+            "nl": "getattr"
+          },
+          "reason": {
+            "en": "getattr accepts a default; hasattr answers existence and dir lists names.",
+            "nl": "getattr accepteert een standaard; hasattr antwoordt over bestaan en dir noemt namen."
+          }
+        },
+        {
+          "id": "b",
+          "label": {
+            "en": "hasattr",
+            "nl": "hasattr"
+          },
+          "reason": {
+            "en": "getattr accepts a default; hasattr answers existence and dir lists names.",
+            "nl": "getattr accepteert een standaard; hasattr antwoordt over bestaan en dir noemt namen."
+          }
+        },
+        {
+          "id": "c",
+          "label": {
+            "en": "dir",
+            "nl": "dir"
+          },
+          "reason": {
+            "en": "getattr accepts a default; hasattr answers existence and dir lists names.",
+            "nl": "getattr accepteert een standaard; hasattr antwoordt over bestaan en dir noemt namen."
+          }
+        }
+      ],
+      "codeBlank": {
+        "prompt": {
+          "en": "Read an optional attribute with a default.",
+          "nl": "Lees een optioneel attribuut met een standaard."
+        },
+        "segments": [
+          "class Item:\n    pass\nitem = Item()\nprint(",
+          "(item, \"score\", 5))"
+        ],
+        "tokens": [
+          {
+            "id": "token-1",
+            "code": "getattr"
+          },
+          {
+            "id": "token-2",
+            "code": "hasattr"
+          },
+          {
+            "id": "token-3",
+            "code": "dir"
+          }
+        ],
+        "blanks": [
+          {
+            "answer": "getattr",
+            "reason": {
+              "en": "getattr accepts a default; hasattr answers existence and dir lists names.",
+              "nl": "getattr accepteert een standaard; hasattr antwoordt over bestaan en dir noemt namen."
+            }
+          }
+        ],
+        "output": "5\n"
+      },
+      "id": "python-v3-15-quiz-b-4"
+    },
+    {
+      "objectiveIds": [
+        "csv-quoting"
+      ],
+      "reviewActivityIds": [
+        "python-v3-14-02"
+      ],
+      "category": "debugging",
+      "prompt": {
+        "en": "Why does this split not safely read a CSV record?",
+        "nl": "Waarom leest deze split een CSV-record niet veilig?"
+      },
+      "code": "line = '\"Bo, A.\",3'\nparts = line.split(\",\")",
+      "answer": "a",
+      "choices": [
+        {
+          "id": "a",
+          "label": {
+            "en": "The comma inside quotes is part of one field; use csv.reader.",
+            "nl": "De komma binnen aanhalingstekens hoort bij één veld; gebruik csv.reader."
+          },
+          "reason": {
+            "en": "The parser understands quoting, while string split does not.",
+            "nl": "De parser begrijpt aanhalingstekens, terwijl stringsplit dat niet doet."
+          }
+        },
+        {
+          "id": "b",
+          "label": {
+            "en": "CSV records cannot contain commas.",
+            "nl": "CSV-records mogen geen komma’s bevatten."
+          },
+          "reason": {
+            "en": "Commas are valid inside quoted fields.",
+            "nl": "Komma’s zijn geldig binnen aangehaalde velden."
+          }
+        },
+        {
+          "id": "c",
+          "label": {
+            "en": "Changing split to join parses the record.",
+            "nl": "split in join veranderen verwerkt het record."
+          },
+          "reason": {
+            "en": "join reconstructs text from parts; it is not a CSV parser.",
+            "nl": "join bouwt tekst uit delen; het is geen CSV-parser."
+          }
+        }
+      ],
+      "id": "python-v3-15-quiz-b-5"
+    },
+    {
+      "objectiveIds": [
+        "valid-keys",
+        "invalid-keys"
+      ],
+      "reviewActivityIds": [
+        "python-v3-12-01"
+      ],
+      "category": "application",
+      "prompt": {
+        "en": "Which coordinate value is a valid dictionary key?",
+        "nl": "Welke coördinaatwaarde is een geldige dictionarysleutel?"
+      },
+      "answer": "a",
+      "choices": [
+        {
+          "id": "a",
+          "label": {
+            "en": "(2, 3)",
+            "nl": "(2, 3)"
+          },
+          "reason": {
+            "en": "This tuple contains hashable integer components.",
+            "nl": "Deze tuple bevat hashbare gehele onderdelen."
+          }
+        },
+        {
+          "id": "b",
+          "label": {
+            "en": "[2, 3]",
+            "nl": "[2, 3]"
+          },
+          "reason": {
+            "en": "A mutable list is not a valid key.",
+            "nl": "Een veranderlijke lijst is geen geldige sleutel."
+          }
+        },
+        {
+          "id": "c",
+          "label": {
+            "en": "([2], 3)",
+            "nl": "([2], 3)"
+          },
+          "reason": {
+            "en": "The tuple contains an unhashable list, so the tuple is not hashable either.",
+            "nl": "De tuple bevat een onhashbare lijst, dus is zelf ook niet hashbaar."
+          }
+        }
+      ],
+      "id": "python-v3-15-quiz-b-6"
+    }
+  ]
+}

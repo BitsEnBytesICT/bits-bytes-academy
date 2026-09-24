@@ -1,0 +1,165 @@
+{
+  "id": "python-v4-01-announcement",
+  "chapter": 1,
+  "group": "python-v4-module-1",
+  "title": {
+    "en": "Make a terminal announcement",
+    "nl": "Maak een terminalaankondiging"
+  },
+  "kind": "coding",
+  "optional": false,
+  "runtime": "terminal",
+  "guidance": "independent",
+  "checkpointMode": "sequential",
+  "estimatedMinutes": 15,
+  "topicIds": [
+    "first-program-review"
+  ],
+  "practices": [
+    "print",
+    "strings",
+    "comments",
+    "execution-order"
+  ],
+  "requiredConcepts": [
+    "print",
+    "strings",
+    "comments"
+  ],
+  "explanation": {
+    "en": "Use the tools you have practised to make a three-line announcement. The editor is empty. Decide which print calls you need and add a useful comment.",
+    "nl": "Gebruik de geoefende hulpmiddelen om een aankondiging van drie regels te maken. De editor is leeg. Bepaal welke print-aanroepen je nodig hebt en voeg nuttig commentaar toe."
+  },
+  "example": "",
+  "sections": [
+    {
+      "id": "python-v4-01-announcement-example",
+      "topicIds": [
+        "first-program-review",
+        "print",
+        "strings",
+        "comments",
+        "execution-order"
+      ],
+      "heading": {
+        "en": "Follow a working example",
+        "nl": "Volg een werkend voorbeeld"
+      },
+      "body": {
+        "en": "Before typing, write down the desired output in order. One statement can display each line. A comment explains the purpose without adding another output line.\n\nThe example advertises a different activity. Your task is to make a repair-café announcement with the exact three lines in the instructions. You can use either quote style. After it works, personalise a copy by changing its wording.",
+        "nl": "Schrijf voordat je typt de gewenste uitvoer op volgorde op. Met één instructie kun je elke regel tonen. Commentaar legt het doel uit zonder een extra uitvoerregel toe te voegen.\n\nHet voorbeeld kondigt een andere activiteit aan. Jij maakt een aankondiging voor een reparatiecafé met de drie exacte regels uit de instructies. Beide soorten aanhalingstekens zijn toegestaan. Als het werkt, kun je de tekst persoonlijk maken."
+      },
+      "code": "# Invite neighbours\nprint(\"Book swap\")\nprint(\"Saturday\")",
+      "output": "Book swap\nSaturday\n",
+      "prediction": {
+        "en": "How many output lines does the comment add?",
+        "nl": "Hoeveel uitvoerregels voegt het commentaar toe?"
+      },
+      "takeaway": {
+        "en": "Plan the output, then write one print call for each line.",
+        "nl": "Plan de uitvoer en schrijf daarna één print-aanroep per regel."
+      }
+    },
+    {
+      "id": "python-v4-01-announcement-experiment",
+      "topicIds": [],
+      "heading": {
+        "en": "Try one change",
+        "nl": "Probeer één wijziging"
+      },
+      "body": {
+        "en": "Change the final line to your own invitation. Explain what Python does from the first line to the last.",
+        "nl": "Verander de laatste regel in je eigen uitnodiging. Leg uit wat Python van de eerste tot de laatste regel doet."
+      }
+    }
+  ],
+  "files": {
+    "main.py": ""
+  },
+  "solution": {
+    "main.py": "# Invite visitors to the repair cafe\nprint(\"Repair cafe\")\nprint(\"Bring one item\")\nprint(\"Everyone welcome\")\n"
+  },
+  "checkpoints": [
+    {
+      "id": "python-v4-01-announcement-step-1",
+      "objectiveIds": [
+        "first-program-review",
+        "print",
+        "strings",
+        "comments",
+        "execution-order"
+      ],
+      "task": {
+        "en": "Add a comment explaining what this program announces.",
+        "nl": "Voeg commentaar toe dat uitlegt wat dit programma aankondigt."
+      },
+      "check": "any(line.lstrip().startswith(\"#\") for line in _source.splitlines())",
+      "probes": [],
+      "hint": {
+        "en": "Plan the output, then write one print call for each line.",
+        "nl": "Plan de uitvoer en schrijf daarna één print-aanroep per regel."
+      },
+      "hints": [
+        {
+          "en": "Plan the output, then write one print call for each line.",
+          "nl": "Plan de uitvoer en schrijf daarna één print-aanroep per regel."
+        },
+        {
+          "en": "A comment begins with # and belongs in the editor.",
+          "nl": "Commentaar begint met # en hoort in de editor."
+        },
+        {
+          "en": "A small fragment to adapt: `# Purpose of the announcement`",
+          "nl": "Een klein fragment om aan te passen: `# Purpose of the announcement`"
+        }
+      ],
+      "feedback": {
+        "en": "A comment begins with # and belongs in the editor.",
+        "nl": "Commentaar begint met # en hoort in de editor."
+      }
+    },
+    {
+      "id": "python-v4-01-announcement-step-2",
+      "objectiveIds": [
+        "first-program-review",
+        "print",
+        "strings",
+        "comments",
+        "execution-order"
+      ],
+      "task": {
+        "en": "Print these three lines in order: \"Repair cafe\", \"Bring one item\", \"Everyone welcome\".",
+        "nl": "Druk deze drie regels op volgorde af: \"Repair cafe\", \"Bring one item\", \"Everyone welcome\"."
+      },
+      "check": "_stdout == \"Repair cafe\\nBring one item\\nEveryone welcome\\n\"",
+      "probes": [],
+      "hint": {
+        "en": "Plan the output, then write one print call for each line.",
+        "nl": "Plan de uitvoer en schrijf daarna één print-aanroep per regel."
+      },
+      "hints": [
+        {
+          "en": "Plan the output, then write one print call for each line.",
+          "nl": "Plan de uitvoer en schrijf daarna één print-aanroep per regel."
+        },
+        {
+          "en": "Compare line count, order and spelling with the brief.",
+          "nl": "Vergelijk het aantal regels, de volgorde en de spelling met de opdracht."
+        },
+        {
+          "en": "A small fragment to adapt: `print(\"first line\")`",
+          "nl": "Een klein fragment om aan te passen: `print(\"first line\")`"
+        }
+      ],
+      "feedback": {
+        "en": "Compare line count, order and spelling with the brief.",
+        "nl": "Vergelijk het aantal regels, de volgorde en de spelling met de opdracht."
+      }
+    }
+  ],
+  "solutionNote": {
+    "en": "The three calls produce three lines in order. The comment stays in the source and does not appear in the announcement.",
+    "nl": "De drie aanroepen produceren drie regels op volgorde. Het commentaar blijft in de broncode en verschijnt niet in de aankondiging."
+  },
+  "inputs": []
+}

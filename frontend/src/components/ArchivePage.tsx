@@ -61,8 +61,8 @@ export function ArchivePage({
       </button>
       <h1>
         {tr(
-          "Saved work from the original course",
-          "Opgeslagen werk uit de oorspronkelijke cursus",
+          "Saved work from earlier courses",
+          "Opgeslagen werk uit eerdere cursussen",
         )}
       </h1>
       <p>
@@ -123,8 +123,8 @@ export function ArchivePage({
       ) : (
         <p>
           {tr(
-            "No saved activities from the original course were found.",
-            "Er zijn geen opgeslagen activiteiten uit de oorspronkelijke cursus gevonden.",
+            "No saved activities from earlier courses were found.",
+            "Er zijn geen opgeslagen activiteiten uit eerdere cursussen gevonden.",
           )}
         </p>
       )}

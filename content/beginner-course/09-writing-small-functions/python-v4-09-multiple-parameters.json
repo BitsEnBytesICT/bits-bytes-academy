@@ -1,0 +1,150 @@
+{
+  "id": "python-v4-09-multiple-parameters",
+  "chapter": 9,
+  "group": "python-v4-module-9",
+  "title": {
+    "en": "Use two arguments",
+    "nl": "Gebruik twee argumenten"
+  },
+  "kind": "coding",
+  "optional": false,
+  "runtime": "terminal",
+  "guidance": "guided",
+  "checkpointMode": "sequential",
+  "estimatedMinutes": 12,
+  "topicIds": [
+    "multiple-parameters",
+    "positional-arguments"
+  ],
+  "practices": [],
+  "requiredConcepts": [
+    "parameters-arguments",
+    "arithmetic"
+  ],
+  "explanation": {
+    "en": "Many small calculations need more than one input.",
+    "nl": "Veel kleine berekeningen hebben meer dan één invoer nodig."
+  },
+  "example": "",
+  "sections": [
+    {
+      "id": "python-v4-09-multiple-parameters-example",
+      "topicIds": [
+        "multiple-parameters",
+        "positional-arguments"
+      ],
+      "heading": {
+        "en": "Follow a working example",
+        "nl": "Volg een werkend voorbeeld"
+      },
+      "body": {
+        "en": "Separate parameters and arguments with commas. Positional arguments are matched left to right: the first argument becomes the first parameter. The number of required arguments must match. A parameter name describes its role, not its current value.",
+        "nl": "Scheid parameters en argumenten met komma’s. Positionele argumenten worden van links naar rechts gekoppeld: het eerste argument wordt de eerste parameter. Het aantal verplichte argumenten moet kloppen. Een parameternaam beschrijft zijn rol, niet zijn huidige waarde."
+      },
+      "code": "def difference(first, second):\n    print(first - second)\ndifference(8, 3)\ndifference(3, 8)",
+      "output": "5\n-5\n",
+      "prediction": {
+        "en": "Why does swapping the arguments change the result?",
+        "nl": "Waarom verandert het resultaat als je argumenten omwisselt?"
+      },
+      "takeaway": {
+        "en": "Check argument order against the definition.",
+        "nl": "Controleer de argumentvolgorde met de definitie."
+      }
+    },
+    {
+      "id": "python-v4-09-multiple-parameters-experiment",
+      "topicIds": [],
+      "heading": {
+        "en": "Try one change",
+        "nl": "Probeer één wijziging"
+      },
+      "body": {
+        "en": "Try quantity zero and explain the result.",
+        "nl": "Probeer hoeveelheid nul en leg het resultaat uit."
+      }
+    }
+  ],
+  "files": {
+    "main.py": ""
+  },
+  "solution": {
+    "main.py": "def show_cost(price, quantity):\n    print(price * quantity)\nshow_cost(3, 4)\n"
+  },
+  "checkpoints": [
+    {
+      "id": "python-v4-09-multiple-parameters-step-1",
+      "objectiveIds": [
+        "multiple-parameters",
+        "positional-arguments"
+      ],
+      "task": {
+        "en": "Define show_cost(price, quantity) to print their product. Call it with 3 and 4.",
+        "nl": "Definieer show_cost(price, quantity) om hun product af te drukken. Roep aan met 3 en 4."
+      },
+      "check": "_stdout == \"12\\n\"",
+      "probes": [
+        {
+          "call": {
+            "name": "show_cost",
+            "args": [
+              2.5,
+              2
+            ]
+          },
+          "check": "_call_stdout == \"5.0\\n\""
+        },
+        {
+          "call": {
+            "name": "show_cost",
+            "args": [
+              8,
+              0
+            ]
+          },
+          "check": "_call_stdout == \"0\\n\""
+        }
+      ],
+      "hint": {
+        "en": "Check argument order against the definition.",
+        "nl": "Controleer de argumentvolgorde met de definitie."
+      },
+      "hints": [
+        {
+          "en": "Check argument order against the definition.",
+          "nl": "Controleer de argumentvolgorde met de definitie."
+        },
+        {
+          "en": "Use both parameters in the expression.",
+          "nl": "Gebruik beide parameters in de uitdrukking."
+        },
+        {
+          "en": "A small fragment to adapt: `def show_cost(price, quantity):`",
+          "nl": "Een klein fragment om aan te passen: `def show_cost(price, quantity):`"
+        }
+      ],
+      "feedback": {
+        "en": "Use both parameters in the expression.",
+        "nl": "Gebruik beide parameters in de uitdrukking."
+      }
+    }
+  ],
+  "solutionNote": {
+    "en": "The same multiplication works for integer and fractional prices.",
+    "nl": "Dezelfde vermenigvuldiging werkt voor gehele en gebroken prijzen."
+  },
+  "inputs": [],
+  "retrievals": [
+    {
+      "id": "recall-python-v4-07-elif",
+      "sourceActivityId": "python-v4-07-elif",
+      "objectiveIds": [
+        "elif"
+      ],
+      "prompt": {
+        "en": "Recall “Choose among several actions”. Why is the first comparison checked before the second? Try the earlier example from memory, then check it. Test 9, 10, 19 and 20. Explain why 20 belongs to Warm.",
+        "nl": "Haal “Kies tussen meerdere acties” terug. Waarom wordt de eerste vergelijking vóór de tweede gecontroleerd? Probeer het eerdere voorbeeld uit je geheugen en controleer daarna. Test 9, 10, 19 en 20. Leg uit waarom 20 bij Warm hoort."
+      }
+    }
+  ]
+}

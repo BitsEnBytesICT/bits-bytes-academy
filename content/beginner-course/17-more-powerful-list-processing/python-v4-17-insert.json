@@ -1,0 +1,152 @@
+{
+  "id": "python-v4-17-insert",
+  "chapter": 17,
+  "group": "python-v4-module-17",
+  "title": {
+    "en": "Insert at a chosen position",
+    "nl": "Voeg op een gekozen positie in"
+  },
+  "kind": "coding",
+  "optional": false,
+  "runtime": "terminal",
+  "guidance": "guided",
+  "checkpointMode": "sequential",
+  "estimatedMinutes": 12,
+  "topicIds": [
+    "insert"
+  ],
+  "practices": [],
+  "requiredConcepts": [
+    "append",
+    "indexing"
+  ],
+  "explanation": {
+    "en": "append always adds at the end; insert can put an item before an existing position.",
+    "nl": "append voegt altijd achteraan toe; insert kan een item vóór een bestaande positie zetten."
+  },
+  "example": "",
+  "sections": [
+    {
+      "id": "python-v4-17-insert-example",
+      "topicIds": [
+        "insert"
+      ],
+      "heading": {
+        "en": "Follow a working example",
+        "nl": "Volg een werkend voorbeeld"
+      },
+      "body": {
+        "en": "items.insert(index, value) shifts later elements right and changes the list in place. insert(0, value) adds at the front. Like append, insert returns None. Do not replace your list with that return value.",
+        "nl": "items.insert(index, value) verschuift latere elementen naar rechts en verandert de lijst zelf. insert(0, value) voegt vooraan toe. Net als append geeft insert None terug. Vervang je lijst niet door die terugkeerwaarde."
+      },
+      "code": "queue = [\"Bo\", \"Mila\"]\nqueue.insert(1,\"Ada\")\nprint(queue)",
+      "output": "['Bo', 'Ada', 'Mila']\n",
+      "prediction": {
+        "en": "Did Mila disappear or move?",
+        "nl": "Verdween Mila of verschoof die?"
+      },
+      "takeaway": {
+        "en": "Insertion adds a position; indexed assignment replaces one.",
+        "nl": "Invoegen voegt een positie toe; indextoewijzing vervangt er één."
+      }
+    },
+    {
+      "id": "python-v4-17-insert-experiment",
+      "topicIds": [],
+      "heading": {
+        "en": "Try one change",
+        "nl": "Probeer één wijziging"
+      },
+      "body": {
+        "en": "Insert another person at position one.",
+        "nl": "Voeg nog iemand op positie één in."
+      }
+    }
+  ],
+  "files": {
+    "main.py": "def prioritise(queue, person):\n    # Complete this function.\n    return None\n"
+  },
+  "solution": {
+    "main.py": "def prioritise(queue, person):\n    queue.insert(0, person)\n    return queue\n"
+  },
+  "checkpoints": [
+    {
+      "id": "python-v4-17-insert-step-1",
+      "objectiveIds": [
+        "insert"
+      ],
+      "task": {
+        "en": "Use insert to place person at the front of queue and return the same list.",
+        "nl": "Gebruik insert om person vooraan in queue te zetten en geef dezelfde lijst terug."
+      },
+      "check": "any(isinstance(n, _ast.Call) and isinstance(n.func, _ast.Attribute) and n.func.attr == \"insert\" for n in _ast.walk(_ast.parse(_source)))",
+      "probes": [
+        {
+          "call": {
+            "name": "prioritise",
+            "args": [
+              [
+                "Bo"
+              ],
+              "Ada"
+            ]
+          },
+          "check": "(_return == [\"Ada\",\"Bo\"] and _return is _args[0]) and _error is None"
+        },
+        {
+          "call": {
+            "name": "prioritise",
+            "args": [
+              [],
+              "A"
+            ]
+          },
+          "check": "(_return == [\"A\"]) and _error is None"
+        }
+      ],
+      "hint": {
+        "en": "Insertion adds a position; indexed assignment replaces one.",
+        "nl": "Invoegen voegt een positie toe; indextoewijzing vervangt er één."
+      },
+      "hints": [
+        {
+          "en": "Insertion adds a position; indexed assignment replaces one.",
+          "nl": "Invoegen voegt een positie toe; indextoewijzing vervangt er één."
+        },
+        {
+          "en": "Insert at zero without assigning the method result.",
+          "nl": "Voeg in op nul zonder het methoderesultaat toe te wijzen."
+        },
+        {
+          "en": "A small fragment to adapt: `queue.insert(0, person)`",
+          "nl": "Een klein fragment om aan te passen: `queue.insert(0, person)`"
+        }
+      ],
+      "feedback": {
+        "en": "Insert at zero without assigning the method result.",
+        "nl": "Voeg in op nul zonder het methoderesultaat toe te wijzen."
+      }
+    }
+  ],
+  "solutionNote": {
+    "en": "Inserting shifts the existing queue instead of overwriting its first member.",
+    "nl": "Invoegen verschuift de bestaande wachtrij in plaats van het eerste lid te overschrijven."
+  },
+  "inputs": [],
+  "retrievals": [
+    {
+      "id": "recall-python-v4-15-coordinates",
+      "sourceActivityId": "python-v4-15-coordinates",
+      "objectiveIds": [
+        "browser-loop",
+        "coordinates",
+        "pygame-objects",
+        "rect"
+      ],
+      "prompt": {
+        "en": "Recall “Meet the Pygame preview”. Which argument moves the rectangle downward? Try the earlier example from memory, then check it. Change x and then y in the supplied call; observe each direction separately.",
+        "nl": "Haal “Ontmoet het Pygame-voorbeeld” terug. Welk argument verplaatst de rechthoek naar beneden? Probeer het eerdere voorbeeld uit je geheugen en controleer daarna. Verander x en daarna y in de aangeleverde aanroep; bekijk elke richting apart."
+      }
+    }
+  ]
+}

@@ -1,0 +1,187 @@
+{
+  "id": "python-v3-5-02",
+  "chapter": 5,
+  "group": "python-v3-module-5",
+  "title": {
+    "en": "Inspect and change positions",
+    "nl": "Bekijk en wijzig posities"
+  },
+  "kind": "coding",
+  "optional": false,
+  "runtime": "terminal",
+  "guidance": "adapt",
+  "estimatedMinutes": 15,
+  "explanation": {
+    "en": "Inspect positions and distinguish an alias from a copy. Two names can refer to the same mutable list.",
+    "nl": "Bekijk posities en onderscheid een alias van een kopie. Twee namen kunnen naar dezelfde veranderbare lijst verwijzen."
+  },
+  "example": "",
+  "topicIds": [
+    "indexing",
+    "negative-indexing",
+    "list-mutation",
+    "len",
+    "aliasing",
+    "copying"
+  ],
+  "prerequisites": [
+    "python-v3-5-01"
+  ],
+  "sections": [
+    {
+      "topicIds": [
+        "indexing",
+        "negative-indexing",
+        "list-mutation",
+        "len",
+        "aliasing",
+        "copying"
+      ],
+      "heading": {
+        "en": "Positions and shared state",
+        "nl": "Posities en gedeelde toestand"
+      },
+      "body": {
+        "en": "Indexes start at zero. -1 selects the last item. len returns the number of items; the last positive index is len(items)-1. Assigning items[0] replaces one item. alias = items makes another name for the same list; items.copy() makes a separate shallow copy. This is enough for flat numeric lists; nested lists need more care later.",
+        "nl": "Indexen beginnen bij nul. -1 kiest het laatste item. len geeft het aantal items; de laatste positieve index is len(items)-1. items[0] toewijzen vervangt één item. alias = items maakt een andere naam voor dezelfde lijst; items.copy() maakt een aparte oppervlakkige kopie. Dat volstaat voor vlakke numerieke lijsten; geneste lijsten vragen later meer aandacht."
+      },
+      "code": "items = [2, 5, 8]\nalias = items\nsnapshot = items.copy()\nalias[0] = 9\nprint(items[-1], len(items))\nprint(items)\nprint(snapshot)",
+      "output": "8 3\n[9, 5, 8]\n[2, 5, 8]\n",
+      "prediction": {
+        "en": "Which names see the changed first item?",
+        "nl": "Welke namen zien het gewijzigde eerste item?"
+      }
+    },
+    {
+      "topicIds": [],
+      "heading": {
+        "en": "Try a changed input",
+        "nl": "Probeer gewijzigde invoer"
+      },
+      "body": {
+        "en": "Explain why an empty list has length zero but no last item. Do not index it without checking its length first.",
+        "nl": "Leg uit waarom een lege lijst lengte nul heeft maar geen laatste item. Indexeer die niet zonder eerst de lengte te controleren."
+      }
+    }
+  ],
+  "files": {
+    "main.py": "scores = [3, 5, 9]\nreplacement = 7\n# Preserve a snapshot, then change the first score through an alias.\n"
+  },
+  "solution": {
+    "main.py": "scores = [3, 5, 9]\nreplacement = 7\nsnapshot = scores.copy()\nalias = scores\nalias[0] = replacement\nlast = scores[-1]\ncount = len(scores)\nprint(scores, snapshot, last, count)\n"
+  },
+  "checkpoints": [
+    {
+      "objectiveIds": [
+        "aliasing",
+        "copying",
+        "list-mutation"
+      ],
+      "task": {
+        "en": "Create snapshot as a separate copy and alias as another name for scores. Change alias[0] to replacement.",
+        "nl": "Maak snapshot als aparte kopie en alias als andere naam voor scores. Wijzig alias[0] in replacement."
+      },
+      "check": "alias is scores and snapshot is not scores and snapshot == [3,5,9] and scores == [7,5,9]",
+      "hints": [
+        {
+          "en": "Copy before making the change.",
+          "nl": "Kopieer voordat je de wijziging maakt."
+        },
+        {
+          "en": "Use .copy() only for the snapshot.",
+          "nl": "Gebruik .copy() alleen voor de momentopname."
+        },
+        {
+          "en": "snapshot = scores.copy()\nalias = scores",
+          "nl": "snapshot = scores.copy()\nalias = scores"
+        }
+      ],
+      "hint": {
+        "en": "Copy before making the change.",
+        "nl": "Kopieer voordat je de wijziging maakt."
+      },
+      "feedback": {
+        "en": "A snapshot must preserve the old value while the alias shares the new value.",
+        "nl": "Een momentopname moet de oude waarde bewaren terwijl de alias de nieuwe waarde deelt."
+      },
+      "probes": [
+        {
+          "inputs": {
+            "scores": [
+              1,
+              2
+            ],
+            "replacement": 0
+          },
+          "check": "snapshot == [1,2] and scores == [0,2] and alias is scores"
+        }
+      ],
+      "id": "python-v3-5-02-step-1"
+    },
+    {
+      "objectiveIds": [
+        "indexing",
+        "negative-indexing",
+        "len"
+      ],
+      "task": {
+        "en": "Store the last score in last and the list length in count; print the results.",
+        "nl": "Bewaar de laatste score in last en de lijstlengte in count; druk de resultaten af."
+      },
+      "check": "last == 9 and count == 3 and bool(_stdout)",
+      "hints": [
+        {
+          "en": "A negative index counts from the end.",
+          "nl": "Een negatieve index telt vanaf het einde."
+        },
+        {
+          "en": "Use scores[-1] and len(scores).",
+          "nl": "Gebruik scores[-1] en len(scores)."
+        },
+        {
+          "en": "last = scores[-1]",
+          "nl": "last = scores[-1]"
+        }
+      ],
+      "hint": {
+        "en": "A negative index counts from the end.",
+        "nl": "Een negatieve index telt vanaf het einde."
+      },
+      "feedback": {
+        "en": "Do not hard-code index 2; the list may have a different length.",
+        "nl": "Leg index 2 niet vast; de lijst kan een andere lengte hebben."
+      },
+      "probes": [
+        {
+          "inputs": {
+            "scores": [
+              6
+            ],
+            "replacement": 2
+          },
+          "check": "last == 2 and count == 1"
+        }
+      ],
+      "id": "python-v3-5-02-step-2"
+    }
+  ],
+  "solutionNote": {
+    "en": "The copy is created before mutation. The alias deliberately shares identity with scores, while the snapshot retains the earlier independent values.",
+    "nl": "De kopie wordt vóór de wijziging gemaakt. De alias deelt bewust identiteit met scores, terwijl de momentopname eerdere onafhankelijke waarden bewaart."
+  },
+  "inputs": [],
+  "retrievals": [
+    {
+      "id": "recall-python-v3-3-02",
+      "sourceActivityId": "python-v3-3-02",
+      "objectiveIds": [
+        "range-start-stop-step",
+        "accumulators"
+      ],
+      "prompt": {
+        "en": "Predict range(8, 1, -2), then accumulate its total. Explain why the stop value is excluded.",
+        "nl": "Voorspel range(8, 1, -2) en tel de waarden op. Leg uit waarom de stopwaarde niet meetelt."
+      }
+    }
+  ]
+}

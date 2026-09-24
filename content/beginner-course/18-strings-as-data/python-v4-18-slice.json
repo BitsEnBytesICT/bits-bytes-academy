@@ -1,0 +1,155 @@
+{
+  "id": "python-v4-18-slice",
+  "chapter": 18,
+  "group": "python-v4-module-18",
+  "title": {
+    "en": "Extract a piece of text",
+    "nl": "Haal een deel uit tekst"
+  },
+  "kind": "coding",
+  "optional": false,
+  "runtime": "terminal",
+  "guidance": "guided",
+  "checkpointMode": "sequential",
+  "estimatedMinutes": 12,
+  "topicIds": [
+    "string-slicing"
+  ],
+  "practices": [],
+  "requiredConcepts": [
+    "string-indexing",
+    "slicing"
+  ],
+  "explanation": {
+    "en": "A slice selects a substring while preserving the original.",
+    "nl": "Een deelbereik kiest een substring en bewaart het origineel."
+  },
+  "example": "",
+  "sections": [
+    {
+      "id": "python-v4-18-slice-example",
+      "topicIds": [
+        "string-slicing"
+      ],
+      "heading": {
+        "en": "Follow a working example",
+        "nl": "Volg een werkend voorbeeld"
+      },
+      "body": {
+        "en": "text[start:stop] uses the same excluded-stop rule as list slicing. Omitted and negative bounds also work. A slice returns a string rather than a list. Use this when positions are known; later split will handle separators instead of positions.",
+        "nl": "text[start:stop] gebruikt dezelfde uitgesloten-stopregel als een lijstdeel. Ontbrekende en negatieve grenzen werken ook. Een deelbereik geeft een string terug in plaats van een lijst. Gebruik dit wanneer posities bekend zijn; split verwerkt straks scheidingstekens in plaats van posities."
+      },
+      "code": "code = \"AB-204\"\nprint(code[:2])\nprint(code[3:])\nprint(code[-3:])",
+      "output": "AB\n204\n204\n",
+      "prediction": {
+        "en": "Which part does code[2:3] contain?",
+        "nl": "Welk deel bevat code[2:3]?"
+      },
+      "takeaway": {
+        "en": "Slices select positions; the stop is excluded.",
+        "nl": "Deelbereiken kiezen posities; de stop doet niet mee."
+      }
+    },
+    {
+      "id": "python-v4-18-slice-experiment",
+      "topicIds": [],
+      "heading": {
+        "en": "Try one change",
+        "nl": "Probeer één wijziging"
+      },
+      "body": {
+        "en": "Compare slicing beyond the end with indexing beyond the end.",
+        "nl": "Vergelijk een deelbereik voorbij het einde met indexeren voorbij het einde."
+      }
+    }
+  ],
+  "files": {
+    "main.py": "def middle(text):\n    # Complete this function.\n    return None\n"
+  },
+  "solution": {
+    "main.py": "def middle(text):\n    return text[1:-1]\n"
+  },
+  "checkpoints": [
+    {
+      "id": "python-v4-18-slice-step-1",
+      "objectiveIds": [
+        "string-slicing"
+      ],
+      "task": {
+        "en": "Return text without its first and last characters. Strings of length 0, 1 or 2 return an empty string.",
+        "nl": "Geef text zonder eerste en laatste teken terug. Strings met lengte 0, 1 of 2 geven een lege string."
+      },
+      "check": "callable(middle)",
+      "probes": [
+        {
+          "call": {
+            "name": "middle",
+            "args": [
+              "[hello]"
+            ]
+          },
+          "check": "(_return == \"hello\") and _error is None"
+        },
+        {
+          "call": {
+            "name": "middle",
+            "args": [
+              "a"
+            ]
+          },
+          "check": "(_return == \"\") and _error is None"
+        },
+        {
+          "call": {
+            "name": "middle",
+            "args": [
+              ""
+            ]
+          },
+          "check": "(_return == \"\") and _error is None"
+        }
+      ],
+      "hint": {
+        "en": "Slices select positions; the stop is excluded.",
+        "nl": "Deelbereiken kiezen posities; de stop doet niet mee."
+      },
+      "hints": [
+        {
+          "en": "Slices select positions; the stop is excluded.",
+          "nl": "Deelbereiken kiezen posities; de stop doet niet mee."
+        },
+        {
+          "en": "Use a start of one and an excluded stop at the last character.",
+          "nl": "Gebruik begin één en een uitgesloten stop bij het laatste teken."
+        },
+        {
+          "en": "A small fragment to adapt: `text[1:-1]`",
+          "nl": "Een klein fragment om aan te passen: `text[1:-1]`"
+        }
+      ],
+      "feedback": {
+        "en": "Use a start of one and an excluded stop at the last character.",
+        "nl": "Gebruik begin één en een uitgesloten stop bij het laatste teken."
+      }
+    }
+  ],
+  "solutionNote": {
+    "en": "Slice bounds safely produce an empty result when no interior characters exist.",
+    "nl": "Deelgrenzen leveren veilig een leeg resultaat als er geen binnenste tekens zijn."
+  },
+  "inputs": [],
+  "retrievals": [
+    {
+      "id": "recall-python-v4-16-held-controls",
+      "sourceActivityId": "python-v4-16-held-controls",
+      "objectiveIds": [
+        "held-keys",
+        "simultaneous-controls"
+      ],
+      "prompt": {
+        "en": "Recall “Hold keys to move both paddles”. Why is this two if statements instead of if/elif? Try the earlier example from memory, then check it. Hold W and Down simultaneously in the preview. Both paddles should move.",
+        "nl": "Haal “Houd toetsen vast om beide batjes te bewegen” terug. Waarom zijn dit twee if-instructies in plaats van if/elif? Probeer het eerdere voorbeeld uit je geheugen en controleer daarna. Houd W en Down tegelijk vast in het voorbeeld. Beide batjes horen te bewegen."
+      }
+    }
+  ]
+}

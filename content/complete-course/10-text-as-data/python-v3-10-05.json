@@ -1,0 +1,200 @@
+{
+  "id": "python-v3-10-05",
+  "chapter": 10,
+  "group": "python-v3-module-10",
+  "title": {
+    "en": "Search and format",
+    "nl": "Zoek en formatteer"
+  },
+  "kind": "coding",
+  "optional": false,
+  "runtime": "terminal",
+  "guidance": "adapt",
+  "estimatedMinutes": 15,
+  "explanation": {
+    "en": "Search and replace text, then format reports using positional and named placeholders. Learn the older .format interface as well as the f-strings already used.",
+    "nl": "Zoek en vervang tekst en formatteer rapporten met positionele en benoemde invulvelden. Leer de oudere .format-interface naast de al gebruikte f-strings."
+  },
+  "example": "",
+  "topicIds": [
+    "replace",
+    "find",
+    "format-positional",
+    "format-named"
+  ],
+  "prerequisites": [
+    "python-v3-10-04"
+  ],
+  "sections": [
+    {
+      "topicIds": [
+        "replace",
+        "find",
+        "format-positional",
+        "format-named"
+      ],
+      "heading": {
+        "en": "Search results are positions",
+        "nl": "Zoekresultaten zijn posities"
+      },
+      "body": {
+        "en": "replace(old, new) returns changed text; find(fragment) returns the first index or -1 when absent. Index 0 is a successful match, so do not use a truthiness test. \"{0}: {1}\".format(name, value) selects positional arguments; \"{who}: {n}\".format(who=name, n=value) selects named arguments. An f-string embeds current expressions instead.",
+        "nl": "replace(oud, nieuw) geeft gewijzigde tekst terug; find(deel) geeft de eerste index of -1 bij afwezigheid. Index 0 is een geslaagde match, dus gebruik geen waarheidstest. \"{0}: {1}\".format(naam, waarde) kiest positionele argumenten; \"{who}: {n}\".format(who=naam, n=waarde) kiest benoemde argumenten. Een f-string neemt daarentegen huidige expressies op."
+      },
+      "code": "text = \"go?\".replace(\"?\", \"!\")\nprint(text.find(\"!\"))\nprint(\"{0}: {1}\".format(\"Ada\", 4))\nprint(\"{who}: {n}\".format(who=\"Bo\", n=5))",
+      "output": "2\nAda: 4\nBo: 5\n",
+      "prediction": {
+        "en": "What does find return for a missing exclamation mark?",
+        "nl": "Wat geeft find terug bij een ontbrekend uitroepteken?"
+      }
+    },
+    {
+      "topicIds": [],
+      "heading": {
+        "en": "Try a changed input",
+        "nl": "Probeer gewijzigde invoer"
+      },
+      "body": {
+        "en": "Rewrite one report as an f-string and compare the result. Keep the requested .format versions for this practice; independent tasks accept either style.",
+        "nl": "Herschrijf één rapport als f-string en vergelijk het resultaat. Behoud de gevraagde .format-versies voor deze oefening; zelfstandige taken accepteren beide stijlen."
+      }
+    }
+  ],
+  "files": {
+    "main.py": "def edited(text):\n    return text, -1\n\ndef positional(name, score):\n    return \"\"\n\ndef named(name, score):\n    return \"\"\n\nprint(edited(\"Ready?\"))\n"
+  },
+  "solution": {
+    "main.py": "def edited(text):\n    clean = text.replace(\"?\", \"!\")\n    return clean, clean.find(\"!\")\n\ndef positional(name, score):\n    return \"{0}: {1}\".format(name, score)\n\ndef named(name, score):\n    return \"{who}: {points}\".format(who=name, points=score)\n\nprint(edited(\"Ready?\"))\n"
+  },
+  "checkpoints": [
+    {
+      "objectiveIds": [
+        "replace",
+        "find"
+      ],
+      "task": {
+        "en": "Return (changed_text, position) from edited: replace every ? with !, then find the first !.",
+        "nl": "Geef (gewijzigde_tekst, positie) terug vanuit edited: vervang elke ? door ! en zoek dan de eerste !."
+      },
+      "check": "edited(\"Ready?\") == (\"Ready!\",5)",
+      "hints": [
+        {
+          "en": "Search the replacement result, not the original.",
+          "nl": "Doorzoek het vervangingsresultaat, niet het origineel."
+        },
+        {
+          "en": "Store replace’s return value before calling find.",
+          "nl": "Bewaar de terugkeerwaarde van replace vóór find."
+        },
+        {
+          "en": "return clean, clean.find(\"!\")",
+          "nl": "return clean, clean.find(\"!\")"
+        }
+      ],
+      "hint": {
+        "en": "Search the replacement result, not the original.",
+        "nl": "Doorzoek het vervangingsresultaat, niet het origineel."
+      },
+      "feedback": {
+        "en": "Index zero is a match; absence is -1.",
+        "nl": "Index nul is een match; afwezigheid is -1."
+      },
+      "probes": [
+        {
+          "call": {
+            "name": "edited",
+            "args": [
+              "?ok?"
+            ]
+          },
+          "check": "_return == (\"!ok!\",0)"
+        },
+        {
+          "call": {
+            "name": "edited",
+            "args": [
+              "plain"
+            ]
+          },
+          "check": "_return == (\"plain\",-1)"
+        }
+      ],
+      "id": "python-v3-10-05-step-1"
+    },
+    {
+      "objectiveIds": [
+        "format-positional",
+        "format-named"
+      ],
+      "task": {
+        "en": "Implement positional and named with .format using their respective placeholder forms. Both return \"name: score\".",
+        "nl": "Implementeer positional en named met .format en hun bijbehorende invulvormen. Beide geven \"naam: score\" terug."
+      },
+      "check": "(positional(\"Jo\",3) == \"Jo: 3\" and named(\"Jo\",3) == \"Jo: 3\") and (any(isinstance(n,_ast.Call) and isinstance(n.func,_ast.Attribute) and n.func.attr == \"format\" for n in _ast.walk(next(n for n in _ast.walk(_ast.parse(_source)) if isinstance(n,_ast.FunctionDef) and n.name == \"positional\"))) and any(isinstance(n,_ast.Call) and isinstance(n.func,_ast.Attribute) and n.func.attr == \"format\" for n in _ast.walk(next(n for n in _ast.walk(_ast.parse(_source)) if isinstance(n,_ast.FunctionDef) and n.name == \"named\"))))",
+      "hints": [
+        {
+          "en": "The placeholders choose arguments supplied to format.",
+          "nl": "De invulvelden kiezen argumenten die aan format worden meegegeven."
+        },
+        {
+          "en": "Use numeric placeholders in one function and named placeholders in the other.",
+          "nl": "Gebruik numerieke invulvelden in de ene functie en benoemde in de andere."
+        },
+        {
+          "en": "\"{who}: {points}\".format(who=name, points=score)",
+          "nl": "\"{who}: {points}\".format(who=name, points=score)"
+        }
+      ],
+      "hint": {
+        "en": "The placeholders choose arguments supplied to format.",
+        "nl": "De invulvelden kiezen argumenten die aan format worden meegegeven."
+      },
+      "feedback": {
+        "en": "Keep the name, colon, single space and score in the requested order.",
+        "nl": "Houd naam, dubbele punt, enkele spatie en score in de gevraagde volgorde."
+      },
+      "probes": [
+        {
+          "call": {
+            "name": "positional",
+            "args": [
+              "X",
+              0
+            ]
+          },
+          "check": "_return == \"X: 0\""
+        },
+        {
+          "call": {
+            "name": "named",
+            "args": [
+              "Y",
+              -2
+            ]
+          },
+          "check": "_return == \"Y: -2\""
+        }
+      ],
+      "id": "python-v3-10-05-step-2"
+    }
+  ],
+  "solutionNote": {
+    "en": "Replacement returns a new value before searching. The two formatting functions have identical behaviour but demonstrate two supported argument-selection styles.",
+    "nl": "Vervangen geeft een nieuwe waarde terug vóór het zoeken. De twee formatteerfuncties hebben identiek gedrag maar tonen twee ondersteunde stijlen om argumenten te kiezen."
+  },
+  "inputs": [],
+  "retrievals": [
+    {
+      "id": "recall-python-v3-8-05",
+      "sourceActivityId": "python-v3-8-05",
+      "objectiveIds": [
+        "miss-reset",
+        "rally-review"
+      ],
+      "prompt": {
+        "en": "Describe a miss, a reset and the next rally. Playtest simultaneous controls and both sides.",
+        "nl": "Beschrijf een misser, een herstart en de volgende rally. Test gelijktijdige besturing en beide kanten."
+      }
+    }
+  ]
+}

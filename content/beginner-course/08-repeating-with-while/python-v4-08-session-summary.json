@@ -1,0 +1,221 @@
+{
+  "id": "python-v4-08-session-summary",
+  "chapter": 8,
+  "group": "python-v4-module-8",
+  "title": {
+    "en": "Summarise a short session",
+    "nl": "Vat een korte sessie samen"
+  },
+  "kind": "coding",
+  "optional": false,
+  "runtime": "terminal",
+  "guidance": "independent",
+  "checkpointMode": "sequential",
+  "estimatedMinutes": 22,
+  "topicIds": [
+    "loop-review"
+  ],
+  "practices": [
+    "while",
+    "break",
+    "counters",
+    "input"
+  ],
+  "requiredConcepts": [
+    "break",
+    "repeated-input",
+    "counters"
+  ],
+  "explanation": {
+    "en": "Build a repeated conversation and report how much work it performed. This combines input, a stopping rule and a counter.",
+    "nl": "Bouw een herhaald gesprek en rapporteer hoeveel werk het deed. Dit combineert invoer, een stopregel en een teller."
+  },
+  "example": "",
+  "sections": [
+    {
+      "id": "python-v4-08-session-summary-example",
+      "topicIds": [
+        "loop-review",
+        "while",
+        "break",
+        "counters",
+        "input"
+      ],
+      "heading": {
+        "en": "Follow a working example",
+        "nl": "Volg een werkend voorbeeld"
+      },
+      "body": {
+        "en": "Decide what counts as work before updating the counter. A stop command should finish the conversation, not count as another completed item. Keep the summary after the loop.\n\nThe example counts three fixed rounds. Your program counts actual answers until quit. Accept zero items: quitting immediately should produce a count of zero.",
+        "nl": "Bepaal wat als werk telt voordat je de teller bijwerkt. Een stopopdracht moet het gesprek beëindigen en niet als nog een voltooid artikel meetellen. Houd de samenvatting na de lus.\n\nHet voorbeeld telt drie vaste rondes. Jouw programma telt echte antwoorden tot quit. Accepteer nul artikelen: onmiddellijk stoppen moet een telling van nul opleveren."
+      },
+      "code": "rounds = 0\nwhile rounds < 3:\n    rounds += 1\nprint(f\"Rounds: {rounds}\")",
+      "output": "Rounds: 3\n",
+      "prediction": {
+        "en": "Why is the summary outside the loop?",
+        "nl": "Waarom staat de samenvatting buiten de lus?"
+      },
+      "takeaway": {
+        "en": "Count accepted work, then print one summary after the loop finishes.",
+        "nl": "Tel geaccepteerd werk en druk daarna één samenvatting af wanneer de lus eindigt."
+      }
+    },
+    {
+      "id": "python-v4-08-session-summary-experiment",
+      "topicIds": [],
+      "heading": {
+        "en": "Try one change",
+        "nl": "Probeer één wijziging"
+      },
+      "body": {
+        "en": "Quit immediately, then after one answer. Explain why the stop command is excluded from the count.",
+        "nl": "Stop onmiddellijk en daarna na één antwoord. Leg uit waarom de stopopdracht niet wordt meegeteld."
+      }
+    }
+  ],
+  "files": {
+    "main.py": ""
+  },
+  "solution": {
+    "main.py": "count = 0\nwhile True:\n    item = input(\"Item: \").strip().lower()\n    if item == \"quit\":\n        break\n    count += 1\nprint(f\"Items: {count}\")\n"
+  },
+  "checkpoints": [
+    {
+      "id": "python-v4-08-session-summary-step-1",
+      "objectiveIds": [
+        "loop-review",
+        "while",
+        "break",
+        "counters",
+        "input"
+      ],
+      "task": {
+        "en": "Read Item: repeatedly until a normalised quit command. Count the other answers in count.",
+        "nl": "Lees Item: herhaaldelijk tot een genormaliseerde quit-opdracht. Tel de andere antwoorden in count."
+      },
+      "check": "True",
+      "probes": [
+        {
+          "stdin": [
+            "book",
+            "map",
+            "quit"
+          ],
+          "check": "(type(count) is int and count == 2) and _remaining_input == \"\""
+        },
+        {
+          "stdin": [
+            "quit"
+          ],
+          "check": "(count == 0) and _remaining_input == \"\""
+        },
+        {
+          "stdin": [
+            "one",
+            "two",
+            "three",
+            "quit"
+          ],
+          "check": "(count == 3) and _remaining_input == \"\""
+        }
+      ],
+      "hint": {
+        "en": "Count accepted work, then print one summary after the loop finishes.",
+        "nl": "Tel geaccepteerd werk en druk daarna één samenvatting af wanneer de lus eindigt."
+      },
+      "hints": [
+        {
+          "en": "Count accepted work, then print one summary after the loop finishes.",
+          "nl": "Tel geaccepteerd werk en druk daarna één samenvatting af wanneer de lus eindigt."
+        },
+        {
+          "en": "Initialise count before the loop and update it only after the stop check.",
+          "nl": "Initialiseer count vóór de lus en werk het pas na de stopcontrole bij."
+        },
+        {
+          "en": "A small fragment to adapt: `count += 1`",
+          "nl": "Een klein fragment om aan te passen: `count += 1`"
+        }
+      ],
+      "feedback": {
+        "en": "Initialise count before the loop and update it only after the stop check.",
+        "nl": "Initialiseer count vóór de lus en werk het pas na de stopcontrole bij."
+      }
+    },
+    {
+      "id": "python-v4-08-session-summary-step-2",
+      "objectiveIds": [
+        "loop-review",
+        "while",
+        "break",
+        "counters",
+        "input"
+      ],
+      "task": {
+        "en": "Print a final line such as \"Items: 2\" once after the loop.",
+        "nl": "Druk eenmaal na de lus een laatste regel af zoals \"Items: 2\"."
+      },
+      "check": "True",
+      "probes": [
+        {
+          "stdin": [
+            "book",
+            "map",
+            "quit"
+          ],
+          "check": "(_stdout.endswith(f\"Items: {count}\\n\") and _stdout.count(\"Items:\") == 1) and _remaining_input == \"\""
+        },
+        {
+          "stdin": [
+            " QUIT "
+          ],
+          "check": "(_stdout.endswith(\"Items: 0\\n\")) and _remaining_input == \"\""
+        }
+      ],
+      "hint": {
+        "en": "Count accepted work, then print one summary after the loop finishes.",
+        "nl": "Tel geaccepteerd werk en druk daarna één samenvatting af wanneer de lus eindigt."
+      },
+      "hints": [
+        {
+          "en": "Count accepted work, then print one summary after the loop finishes.",
+          "nl": "Tel geaccepteerd werk en druk daarna één samenvatting af wanneer de lus eindigt."
+        },
+        {
+          "en": "The summary uses the counter and should not repeat for each item.",
+          "nl": "De samenvatting gebruikt de teller en mag niet voor elk artikel worden herhaald."
+        },
+        {
+          "en": "A small fragment to adapt: `print(f\"Items: {count}\")`",
+          "nl": "Een klein fragment om aan te passen: `print(f\"Items: {count}\")`"
+        }
+      ],
+      "feedback": {
+        "en": "The summary uses the counter and should not repeat for each item.",
+        "nl": "De samenvatting gebruikt de teller en mag niet voor elk artikel worden herhaald."
+      }
+    }
+  ],
+  "solutionNote": {
+    "en": "The counter starts once and increments only for work. The break leads directly to the final report.",
+    "nl": "De teller begint eenmaal en stijgt alleen voor werk. De break leidt rechtstreeks naar het eindverslag."
+  },
+  "inputs": [
+    "book",
+    "map",
+    "quit"
+  ],
+  "retrievals": [
+    {
+      "id": "recall-python-v4-06-access-rule",
+      "sourceActivityId": "python-v4-06-access-rule",
+      "objectiveIds": [
+        "boolean-review"
+      ],
+      "prompt": {
+        "en": "Recall “Combine a complete access rule”. Which single changed input would make this example False? Try the earlier example from memory, then check it. Write the eight possible combinations of these three Boolean inputs and predict each result.",
+        "nl": "Haal “Combineer een volledige toegangsregel” terug. Welke ene gewijzigde invoer maakt dit voorbeeld False? Probeer het eerdere voorbeeld uit je geheugen en controleer daarna. Schrijf de acht mogelijke combinaties van deze drie booleaanse invoerwaarden op en voorspel elk resultaat."
+      }
+    }
+  ]
+}

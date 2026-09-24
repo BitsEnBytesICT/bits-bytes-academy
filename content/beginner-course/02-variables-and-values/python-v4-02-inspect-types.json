@@ -1,0 +1,114 @@
+{
+  "id": "python-v4-02-inspect-types",
+  "chapter": 2,
+  "group": "python-v4-module-2",
+  "title": {
+    "en": "Ask Python for a value's type",
+    "nl": "Vraag Python naar het type van een waarde"
+  },
+  "kind": "coding",
+  "optional": false,
+  "runtime": "terminal",
+  "guidance": "guided",
+  "checkpointMode": "sequential",
+  "estimatedMinutes": 12,
+  "topicIds": [
+    "types"
+  ],
+  "practices": [],
+  "requiredConcepts": [
+    "integers",
+    "floats",
+    "strings"
+  ],
+  "explanation": {
+    "en": "When similar-looking values behave differently, inspect their types. type() is another built-in function.",
+    "nl": "Als waarden die op elkaar lijken zich anders gedragen, onderzoek je hun typen. type() is een andere ingebouwde functie."
+  },
+  "example": "",
+  "sections": [
+    {
+      "id": "python-v4-02-inspect-types-example",
+      "topicIds": [
+        "types"
+      ],
+      "heading": {
+        "en": "Follow a working example",
+        "nl": "Volg een werkend voorbeeld"
+      },
+      "body": {
+        "en": "type(value) produces information about the kind of value. Put it inside print to display that information. In print(type(8)), Python first evaluates type(8), then passes the result to print. Read nested calls from the inside outward.\n\nThe displayed names int, float and str mean whole number, floating-point number and string. The word class in this output is Python's type notation; you will learn to create classes later. You do not need class definitions to inspect these values.",
+        "nl": "type(waarde) levert informatie over het soort waarde. Zet het binnen print om die informatie te tonen. In print(type(8)) berekent Python eerst type(8) en geeft het resultaat daarna aan print. Lees geneste aanroepen van binnen naar buiten.\n\nDe getoonde namen int, float en str betekenen geheel getal, kommagetal en string. Het woord class in deze uitvoer is Pythons typenotatie; later leer je zelf klassen maken. Je hebt geen klassendefinities nodig om deze waarden te onderzoeken."
+      },
+      "code": "print(type(8))\nprint(type(8.0))\nprint(type(\"8\"))",
+      "output": "<class 'int'>\n<class 'float'>\n<class 'str'>\n",
+      "prediction": {
+        "en": "Why does the quoted 8 have a different type?",
+        "nl": "Waarom heeft de 8 tussen aanhalingstekens een ander type?"
+      },
+      "takeaway": {
+        "en": "Print type(value) to distinguish a string from an integer or float.",
+        "nl": "Druk type(waarde) af om een string van een int of float te onderscheiden."
+      }
+    },
+    {
+      "id": "python-v4-02-inspect-types-experiment",
+      "topicIds": [],
+      "heading": {
+        "en": "Try one change",
+        "nl": "Probeer één wijziging"
+      },
+      "body": {
+        "en": "Replace label's value with the number 5 and inspect its type again.",
+        "nl": "Vervang de waarde van label door het getal 5 en onderzoek het type opnieuw."
+      }
+    }
+  ],
+  "files": {
+    "main.py": "count = 5\nprice = 1.5\nlabel = \"5\"\n"
+  },
+  "solution": {
+    "main.py": "count = 5\nprice = 1.5\nlabel = \"5\"\nprint(type(count))\nprint(type(price))\nprint(type(label))\n"
+  },
+  "checkpoints": [
+    {
+      "id": "python-v4-02-inspect-types-step-1",
+      "objectiveIds": [
+        "types"
+      ],
+      "task": {
+        "en": "Print the types of count, price and label in that order.",
+        "nl": "Druk de typen van count, price en label in die volgorde af."
+      },
+      "check": "_stdout == \"<class 'int'>\\n<class 'float'>\\n<class 'str'>\\n\"",
+      "probes": [],
+      "hint": {
+        "en": "Print type(value) to distinguish a string from an integer or float.",
+        "nl": "Druk type(waarde) af om een string van een int of float te onderscheiden."
+      },
+      "hints": [
+        {
+          "en": "Print type(value) to distinguish a string from an integer or float.",
+          "nl": "Druk type(waarde) af om een string van een int of float te onderscheiden."
+        },
+        {
+          "en": "Give each variable to type, then give that result to print.",
+          "nl": "Geef elke variabele aan type en geef dat resultaat daarna aan print."
+        },
+        {
+          "en": "A small fragment to adapt: `print(type(count))`",
+          "nl": "Een klein fragment om aan te passen: `print(type(count))`"
+        }
+      ],
+      "feedback": {
+        "en": "Give each variable to type, then give that result to print.",
+        "nl": "Geef elke variabele aan type en geef dat resultaat daarna aan print."
+      }
+    }
+  ],
+  "solutionNote": {
+    "en": "Nested calls run from the inside out. The displayed type explains why digits enclosed in quotes are still text.",
+    "nl": "Geneste aanroepen werken van binnen naar buiten. Het getoonde type verklaart waarom cijfers tussen aanhalingstekens nog steeds tekst zijn."
+  },
+  "inputs": []
+}
