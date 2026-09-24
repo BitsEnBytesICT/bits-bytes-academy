@@ -58,10 +58,11 @@
     },
     {
       "id": "python-v4-08-repeat-input-experiment",
+      "role": "experiment",
       "topicIds": [],
       "heading": {
-        "en": "Try one change",
-        "nl": "Probeer één wijziging"
+        "en": "After completing the task: try one change",
+        "nl": "Na het afronden: probeer één wijziging"
       },
       "body": {
         "en": "Quit immediately, then try two items before quitting. Trace where each answer is read.",
@@ -93,14 +94,14 @@
             "pen",
             "quit"
           ],
-          "check": "(_stdout == \"Item: Added book\\nItem: Added pen\\nItem: Done\\n\") and _remaining_input == \"\""
+          "check": "(_stdout.removesuffix(\"Done\\n\") == \"Item: Added book\\nItem: Added pen\\nItem: \") and _remaining_input == \"\""
         },
         {
           "stdin": [
             " MAP ",
             "quit"
           ],
-          "check": "(_stdout == \"Item: Added map\\nItem: Done\\n\") and _remaining_input == \"\""
+          "check": "(_stdout.removesuffix(\"Done\\n\") == \"Item: Added map\\nItem: \") and _remaining_input == \"\""
         }
       ],
       "hint": {
@@ -143,7 +144,7 @@
             "pen",
             "quit"
           ],
-          "check": "(_stdout.endswith(\"Done\\n\") and \"Added quit\" not in _stdout) and _remaining_input == \"\""
+          "check": "(_stdout.endswith(\"Done\\n\") and _stdout.count(\"Done\\n\") == 1 and \"Added quit\" not in _stdout) and _remaining_input == \"\""
         },
         {
           "stdin": [
@@ -187,15 +188,16 @@
   ],
   "retrievals": [
     {
-      "id": "recall-python-v4-06-inclusive-boundaries",
-      "sourceActivityId": "python-v4-06-inclusive-boundaries",
+      "id": "recall-python-v4-06-not-equal",
+      "sourceActivityId": "python-v4-06-not-equal",
       "objectiveIds": [
-        "inclusive-comparisons"
+        "inequality"
       ],
       "prompt": {
-        "en": "Recall “Include the boundary”. Which symbol represents at most? Try the earlier example from memory, then check it. Write a three-row table for weights 4, 5 and 6, then verify it.",
-        "nl": "Haal “Neem de grenswaarde mee” terug. Welk symbool betekent hoogstens? Probeer het eerdere voorbeeld uit je geheugen en controleer daarna. Schrijf een tabel met drie regels voor gewichten 4, 5 en 6 en controleer die."
-      }
+        "en": "Recall compare with !=. Which comparison has equal values on both sides? Try an empty string. Does it equal quit?",
+        "nl": "Herhaal vergelijk met !=. Welke vergelijking heeft gelijke waarden aan beide kanten? Probeer een lege string. Is die gelijk aan quit?"
+      },
+      "code": "command = \"help\"\nprint(command != \"quit\")\nprint(command != \"help\")"
     }
   ]
 }

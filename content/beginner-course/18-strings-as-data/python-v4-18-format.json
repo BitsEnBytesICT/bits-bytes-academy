@@ -55,11 +55,26 @@
       }
     },
     {
-      "id": "python-v4-18-format-experiment",
+      "id": "python-v4-18-format-try-calls",
+      "role": "practice",
       "topicIds": [],
       "heading": {
-        "en": "Try one change",
-        "nl": "Probeer één wijziging"
+        "en": "See your function work",
+        "nl": "Bekijk wat je functie doet"
+      },
+      "body": {
+        "en": "A definition alone produces no output. After writing the function, add these calls underneath it in main.py, without indentation, and Run. Compare the returned values with the task's requirements. The checks also call your function with other inputs; they do not require you to keep these demonstration calls.",
+        "nl": "Een definitie alleen geeft geen uitvoer. Schrijf eerst de functie en voeg daarna deze aanroepen eronder toe in main.py, zonder inspringing. Klik op Uitvoeren. Vergelijk de teruggegeven waarden met de opdracht. De controles roepen je functie ook met andere invoer aan; deze demonstratieaanroepen zijn niet verplicht."
+      },
+      "code": "print(label(\"Ada\", 7))\nprint(label(\"Bo\", 0))"
+    },
+    {
+      "id": "python-v4-18-format-experiment",
+      "role": "experiment",
+      "topicIds": [],
+      "heading": {
+        "en": "After completing the task: try one change",
+        "nl": "Na het afronden: probeer één wijziging"
       },
       "body": {
         "en": "Write an equivalent f-string and explain where its values are supplied.",
@@ -77,13 +92,11 @@
     {
       "id": "python-v4-18-format-step-1",
       "objectiveIds": [
-        "format",
-        "positional-format",
-        "named-format"
+        "format"
       ],
       "task": {
-        "en": "Use .format() to return a label such as Ada: 7 from the supplied values.",
-        "nl": "Gebruik .format() om vanuit de gegeven waarden een label zoals Ada: 7 terug te geven."
+        "en": "Write label(name, score) in main.py. Use .format() to return a label such as Ada: 7 from the supplied values.",
+        "nl": "Schrijf label(name, score) in main.py. Gebruik .format() om vanuit de gegeven waarden een label zoals Ada: 7 terug te geven."
       },
       "check": "any(isinstance(n,_ast.Attribute) and n.attr == \"format\" for n in _ast.walk(_ast.parse(_source)))",
       "probes": [

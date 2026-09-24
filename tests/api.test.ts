@@ -39,7 +39,18 @@ test("Workspace revisions, progress, quiz state, and backup validation", async (
     assert.deepEqual(
       catalog.data.map((c: any) => [c.slug, c.status, c.estimatedHours]),
       [
-        ["python", "available", Math.ceil(JSON.parse(fs.readFileSync('content/course.json','utf8')).activities.reduce((n: number,a: any)=>n+a.estimatedMinutes,0)/60)],
+        [
+          "python",
+          "available",
+          Math.ceil(
+            JSON.parse(
+              fs.readFileSync("content/course.json", "utf8"),
+            ).activities.reduce(
+              (n: number, a: any) => n + a.estimatedMinutes,
+              0,
+            ) / 60,
+          ),
+        ],
         ["csharp", "coming-soon", null],
         ["html-css", "coming-soon", null],
       ],
@@ -104,8 +115,10 @@ test("Workspace revisions, progress, quiz state, and backup validation", async (
     const state = await request("/state");
     assert.equal(state.data.progress[id].complete, true);
     assert.deepEqual(state.data.progress[id].checkpoints, ["step-1", "step-2"]);
-    const q = "python-v4-02-quiz";
     const course = (await request("/course")).data;
+    const q = course.activities.find(
+      (a: any) => a.kind === "quiz" && a.chapter === 2,
+    ).id;
     const questions = course.activities.find((a: any) => a.id === q).questions;
     const quiz = {
       index: 1,

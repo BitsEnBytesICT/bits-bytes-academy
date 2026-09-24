@@ -1,0 +1,171 @@
+{
+  "id": "python-v4-15-render-label",
+  "chapter": 15,
+  "group": "python-v4-module-15",
+  "title": {
+    "en": "Render and place your own label",
+    "nl": "Teken en plaats je eigen label"
+  },
+  "kind": "coding",
+  "optional": false,
+  "runtime": "pygame",
+  "guidance": "guided",
+  "checkpointMode": "sequential",
+  "estimatedMinutes": 18,
+  "topicIds": [
+    "text-rendering-practice"
+  ],
+  "practices": [
+    "pygame-text",
+    "blit"
+  ],
+  "requiredConcepts": [
+    "pygame-text",
+    "drawing-order"
+  ],
+  "explanation": {
+    "en": "Turn text into pixels yourself, then put those pixels on a scene. The preview supplies only the final display.",
+    "nl": "Zet zelf tekst om in pixels en plaats die pixels op een scène. Het voorbeeld levert alleen het uiteindelijke scherm."
+  },
+  "example": "",
+  "sections": [
+    {
+      "id": "python-v4-15-render-label-example",
+      "topicIds": [
+        "text-rendering-practice",
+        "pygame-text",
+        "blit"
+      ],
+      "heading": {
+        "en": "Follow a working example",
+        "nl": "Volg een werkend voorbeeld"
+      },
+      "body": {
+        "en": "In labelled(text), create a 240×70 Surface and fill it with (20,40,80). Create pygame.font.Font(None,30). font.render(text, True, (240,240,240)) returns a separate image; it does not draw onto the scene. Use canvas.blit(label, (12,12)) before returning canvas. The preview calls your function with a label and displays the Surface you return. The font system is already started; keep the supplied font.init line for isolated tests.",
+        "nl": "Maak in labelled(text) een Surface van 240×70 en vul die met (20,40,80). Maak pygame.font.Font(None,30). font.render(text, True, (240,240,240)) geeft een aparte afbeelding terug; die tekent niet op de scène. Gebruik canvas.blit(label, (12,12)) vóór je canvas teruggeeft. Het voorbeeld roept je functie met een label aan en toont de Surface die je teruggeeft. Het lettertypesysteem is al gestart; behoud font.init voor afzonderlijke tests."
+      },
+      "code": "import pygame\ncanvas = pygame.Surface((20,20))\ncanvas.fill((0,0,0))\nmarker = pygame.Surface((3,3))\nmarker.fill((255,0,0))\ncanvas.blit(marker,(4,5))\nprint(tuple(canvas.get_at((4,5)))[:3])",
+      "output": "(255, 0, 0)\n",
+      "prediction": {
+        "en": "Which Surface changes when blit runs?",
+        "nl": "Welke Surface verandert wanneer blit draait?"
+      },
+      "takeaway": {
+        "en": "render makes an image; blit places it on another image.",
+        "nl": "render maakt een afbeelding; blit plaatst die op een andere afbeelding."
+      }
+    },
+    {
+      "topicIds": [],
+      "heading": {
+        "en": "Run, observe, finish",
+        "nl": "Voer uit, bekijk, rond af"
+      },
+      "body": {
+        "en": "main.py supplies the browser entry point. Run opens a real pygame-ce preview; click it to focus the keyboard. Clicking elsewhere pauses play. Finish & check closes normally and checks your helper after at least one rendered frame. Stop cancels without grading. Run can start a fresh session afterward. Keep the supplied async definition and await asyncio.sleep(1 / 60): they let the browser draw and receive input. You are not expected to reproduce this infrastructure from memory.",
+        "nl": "main.py levert het browserstartpunt. Uitvoeren opent een echt pygame-ce-voorbeeld; klik erop om het toetsenbord te activeren. Elders klikken pauzeert het spel. Afronden en controleren sluit normaal af en controleert je helper na minstens één getekend beeld. Stop annuleert zonder beoordeling. Uitvoeren kan daarna een nieuwe sessie starten. Behoud de meegeleverde async-definitie en await asyncio.sleep(1 / 60): die laten de browser tekenen en invoer ontvangen. Je hoeft deze infrastructuur niet uit je hoofd te schrijven."
+      }
+    },
+    {
+      "id": "python-v4-15-render-label-experiment",
+      "role": "experiment",
+      "topicIds": [],
+      "heading": {
+        "en": "After completing the task: try one change",
+        "nl": "Na het afronden: probeer één wijziging"
+      },
+      "body": {
+        "en": "After passing, move the label and try a different text. Explain why returning the label alone would lose the scene background.",
+        "nl": "Verplaats na slagen het label en probeer andere tekst. Leg uit waarom alleen het label teruggeven de scèneachtergrond verliest."
+      }
+    }
+  ],
+  "files": {
+    "main.py": "# Browser entry point supplied by the course.\nimport asyncio\nimport pygame\nimport game\n\nasync def main():\n    pygame.init()\n    screen = pygame.display.set_mode((640, 400))\n    clock = pygame.time.Clock()\n    running = True\n    while running:\n        dt = min(clock.tick() / 1000, 0.05)\n        for event in pygame.event.get():\n            if event.type == pygame.QUIT:\n                running = False\n            if event.type == pygame.KEYDOWN and event.key == pygame.K_ESCAPE:\n                running = False\n        keys = pygame.key.get_pressed()\n        screen.fill((16, 23, 39))\n        screen.blit(game.labelled(\"Ready to play\"),(200,160))\n        pygame.display.flip()\n        await asyncio.sleep(1 / 60)\n    pygame.quit()\n\nasyncio.run(main())\n",
+    "game.py": "import pygame\n\npygame.font.init()\ndef labelled(text):\n    canvas = pygame.Surface((240,70))\n    canvas.fill((20,40,80))\n    # Render text, then place its Surface here.\n    return canvas\n"
+  },
+  "solution": {
+    "main.py": "# Browser entry point supplied by the course.\nimport asyncio\nimport pygame\nimport game\n\nasync def main():\n    pygame.init()\n    screen = pygame.display.set_mode((640, 400))\n    clock = pygame.time.Clock()\n    running = True\n    while running:\n        dt = min(clock.tick() / 1000, 0.05)\n        for event in pygame.event.get():\n            if event.type == pygame.QUIT:\n                running = False\n            if event.type == pygame.KEYDOWN and event.key == pygame.K_ESCAPE:\n                running = False\n        keys = pygame.key.get_pressed()\n        screen.fill((16, 23, 39))\n        screen.blit(game.labelled(\"Ready to play\"),(200,160))\n        pygame.display.flip()\n        await asyncio.sleep(1 / 60)\n    pygame.quit()\n\nasyncio.run(main())\n",
+    "game.py": "import pygame\n\npygame.font.init()\ndef labelled(text):\n    canvas = pygame.Surface((240,70))\n    canvas.fill((20,40,80))\n    font = pygame.font.Font(None,30)\n    label = font.render(text,True,(240,240,240))\n    canvas.blit(label,(12,12))\n    return canvas\n"
+  },
+  "checkpoints": [
+    {
+      "id": "python-v4-15-render-label-step-1",
+      "objectiveIds": [
+        "text-rendering-practice",
+        "pygame-text",
+        "blit"
+      ],
+      "task": {
+        "en": "Complete labelled(text) with the font, colours, dimensions and placement above. Render the supplied text and blit it onto canvas.",
+        "nl": "Maak labelled(text) af met het bovenstaande lettertype, kleuren, afmetingen en plaatsing. Teken de gegeven tekst en kopieer die naar canvas."
+      },
+      "check": "_rendered_frames > 0",
+      "probes": [
+        {
+          "call": {
+            "name": "labelled",
+            "args": [
+              "Ready"
+            ],
+            "module": "game"
+          },
+          "check": "(_return.get_size() == (240,70) and (lambda expected: (expected.fill((20,40,80)), expected.blit(_module.pygame.font.Font(None,30).render(_args[0],True,(240,240,240)),(12,12)), _module.pygame.image.tobytes(_return,'RGB') == _module.pygame.image.tobytes(expected,'RGB'))[-1])(_module.pygame.Surface((240,70)))) and _error is None",
+          "moduleOnly": true,
+          "module": "game"
+        },
+        {
+          "call": {
+            "name": "labelled",
+            "args": [
+              "2 : 9"
+            ],
+            "module": "game"
+          },
+          "check": "(_return.get_size() == (240,70) and (lambda expected: (expected.fill((20,40,80)), expected.blit(_module.pygame.font.Font(None,30).render(_args[0],True,(240,240,240)),(12,12)), _module.pygame.image.tobytes(_return,'RGB') == _module.pygame.image.tobytes(expected,'RGB'))[-1])(_module.pygame.Surface((240,70)))) and _error is None",
+          "moduleOnly": true,
+          "module": "game"
+        },
+        {
+          "call": {
+            "name": "labelled",
+            "args": [
+              ""
+            ],
+            "module": "game"
+          },
+          "check": "(_return.get_size() == (240,70) and (lambda expected: (expected.fill((20,40,80)), expected.blit(_module.pygame.font.Font(None,30).render(_args[0],True,(240,240,240)),(12,12)), _module.pygame.image.tobytes(_return,'RGB') == _module.pygame.image.tobytes(expected,'RGB'))[-1])(_module.pygame.Surface((240,70)))) and _error is None",
+          "moduleOnly": true,
+          "module": "game"
+        }
+      ],
+      "hint": {
+        "en": "render makes an image; blit places it on another image.",
+        "nl": "render maakt een afbeelding; blit plaatst die op een andere afbeelding."
+      },
+      "hints": [
+        {
+          "en": "render makes an image; blit places it on another image.",
+          "nl": "render maakt een afbeelding; blit plaatst die op een andere afbeelding."
+        },
+        {
+          "en": "Keep the background fill first. Store render's returned Surface, then blit it onto canvas.",
+          "nl": "Houd de achtergrondvulling vooraan. Bewaar de Surface uit render en kopieer die daarna naar canvas."
+        },
+        {
+          "en": "A small fragment to adapt: `canvas.blit(label, (12,12))`",
+          "nl": "Een klein fragment om aan te passen: `canvas.blit(label, (12,12))`"
+        }
+      ],
+      "feedback": {
+        "en": "Keep the background fill first. Store render's returned Surface, then blit it onto canvas.",
+        "nl": "Houd de achtergrondvulling vooraan. Bewaar de Surface uit render en kopieer die daarna naar canvas."
+      }
+    }
+  ],
+  "solutionNote": {
+    "en": "The canvas is the whole scene. The label is a smaller Surface copied into it at a coordinate pair; the caller displays the combined image.",
+    "nl": "Het canvas is de hele scène. Het label is een kleinere Surface die op een coördinatenpaar erin wordt gekopieerd; de aanroeper toont de gecombineerde afbeelding."
+  },
+  "inputs": []
+}

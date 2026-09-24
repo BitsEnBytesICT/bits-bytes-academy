@@ -52,11 +52,30 @@
       }
     },
     {
-      "id": "python-v4-10-retry-experiment",
+      "id": "python-v4-10-retry-try-calls",
+      "role": "practice",
       "topicIds": [],
       "heading": {
-        "en": "Try one change",
-        "nl": "Probeer één wijziging"
+        "en": "See your function work",
+        "nl": "Bekijk wat je functie doet"
+      },
+      "body": {
+        "en": "A definition alone produces no output. After writing the function, add these calls underneath it in main.py, without indentation, and Run. Compare the returned values with the task's requirements. The checks also call your function with other inputs; they do not require you to keep these demonstration calls.",
+        "nl": "Een definitie alleen geeft geen uitvoer. Schrijf eerst de functie en voeg daarna deze aanroepen eronder toe in main.py, zonder inspringing. Klik op Uitvoeren. Vergelijk de teruggegeven waarden met de opdracht. De controles roepen je functie ook met andere invoer aan; deze demonstratieaanroepen zijn niet verplicht."
+      },
+      "code": "print(read_count())",
+      "takeaway": {
+        "en": "For the first conversation, enter [\"0\"] one answer per line. Use End input to test cancellation when the task supports it.",
+        "nl": "Voer voor het eerste gesprek [\"0\"] in, één antwoord per regel. Gebruik Einde invoer om annuleren te testen wanneer de opdracht dat ondersteunt."
+      }
+    },
+    {
+      "id": "python-v4-10-retry-experiment",
+      "role": "experiment",
+      "topicIds": [],
+      "heading": {
+        "en": "After completing the task: try one change",
+        "nl": "Na het afronden: probeer één wijziging"
       },
       "body": {
         "en": "Test two invalid answers in a row before a valid one.",
@@ -91,7 +110,8 @@
           "stdin": [
             "bad",
             "3"
-          ]
+          ],
+          "definitionsOnly": true
         },
         {
           "call": {
@@ -103,7 +123,8 @@
             "",
             "1.5",
             "-2"
-          ]
+          ],
+          "definitionsOnly": true
         },
         {
           "call": {
@@ -113,7 +134,8 @@
           "check": "(_return == 0) and _remaining_input == \"\"",
           "stdin": [
             "0"
-          ]
+          ],
+          "definitionsOnly": true
         }
       ],
       "hint": {
@@ -147,15 +169,30 @@
   "inputs": [],
   "retrievals": [
     {
-      "id": "recall-python-v4-08-repeat-input",
-      "sourceActivityId": "python-v4-08-repeat-input",
+      "id": "recall-python-v4-08-why-repeat",
+      "sourceActivityId": "python-v4-08-why-repeat",
       "objectiveIds": [
-        "repeated-input"
+        "why-loops",
+        "while",
+        "counters"
       ],
       "prompt": {
-        "en": "Recall “Keep asking until a stop word”. What happens if the very first answer is quit? Try the earlier example from memory, then check it. Quit immediately, then try two items before quitting. Trace where each answer is read.",
-        "nl": "Haal “Blijf vragen tot een stopwoord” terug. Wat gebeurt er als het allereerste antwoord quit is? Probeer het eerdere voorbeeld uit je geheugen en controleer daarna. Stop onmiddellijk en probeer daarna twee artikelen vóór het stoppen. Volg waar elk antwoord wordt gelezen."
-      }
+        "en": "Recall repeat a small block. How many times is the body entered, and why? Try limits 0, 1 and 4. Explain why zero repetitions are possible.",
+        "nl": "Herhaal herhaal een klein blok. Hoe vaak wordt het blok betreden en waarom? Probeer grenzen 0, 1 en 4. Leg uit waarom nul herhalingen mogelijk zijn."
+      },
+      "code": "count = 0\nwhile count < 3:\n    print(\"Hello\")\n    count += 1\nprint(\"Done\")"
+    },
+    {
+      "id": "recall-python-v4-08-continue",
+      "sourceActivityId": "python-v4-08-continue",
+      "objectiveIds": [
+        "continue"
+      ],
+      "prompt": {
+        "en": "Recall skip one iteration with continue. Why does 3 still appear after 2 is skipped? Replace continue with break and compare the output. Explain why later odd values disappear.",
+        "nl": "Herhaal sla één iteratie over met continue. Waarom verschijnt 3 nog nadat 2 is overgeslagen? Vervang continue door break en vergelijk de uitvoer. Leg uit waarom latere oneven waarden verdwijnen."
+      },
+      "code": "number = 0\nwhile number < 4:\n    number += 1\n    if number == 2:\n        continue\n    print(number)"
     }
   ]
 }

@@ -52,10 +52,11 @@
     },
     {
       "id": "python-v4-02-integers-experiment",
+      "role": "experiment",
       "topicIds": [],
       "heading": {
-        "en": "Try one change",
-        "nl": "Probeer één wijziging"
+        "en": "After completing the task: try one change",
+        "nl": "Na het afronden: probeer één wijziging"
       },
       "body": {
         "en": "Assign -1 to missing and run again. Is it still a whole-number value?",
@@ -143,5 +144,19 @@
     "en": "Both variables hold integer values. Zero is an ordinary integer, not an empty value.",
     "nl": "Beide variabelen bevatten gehele getallen. Nul is een gewone int, geen lege waarde."
   },
-  "inputs": []
+  "inputs": [],
+  "retrievals": [
+    {
+      "id": "recall-python-v4-01-print-numbers",
+      "sourceActivityId": "python-v4-01-print-numbers",
+      "objectiveIds": [
+        "numeric-literals"
+      ],
+      "prompt": {
+        "en": "Recall numbers and quoted numbers. Can you tell the first two values apart just by their printed appearance? Change the unquoted 7 to -7. Predict which output line changes.",
+        "nl": "Herhaal getallen en getallen tussen aanhalingstekens. Kun je de eerste twee waarden alleen aan hun uitvoer onderscheiden? Verander de 7 zonder aanhalingstekens in -7. Voorspel welke uitvoerregel verandert."
+      },
+      "code": "print(12)\nprint(\"12\")\nprint(-3)"
+    }
+  ]
 }

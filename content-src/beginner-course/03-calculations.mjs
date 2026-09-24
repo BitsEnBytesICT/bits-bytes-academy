@@ -12,7 +12,7 @@ function calculation(slug, spec) {
     steps: [
       step(
         spec.task,
-        `result == (${spec.expression})`,
+        `result == (${spec.expression})${slug === "powers" ? " and " + uses("Pow") : ""}`,
         spec.approach,
         spec.fragment,
         cases,

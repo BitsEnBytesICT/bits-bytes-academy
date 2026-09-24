@@ -66,10 +66,11 @@
     },
     {
       "id": "python-v4-16-paddle-contact-experiment",
+      "role": "experiment",
       "topicIds": [],
       "heading": {
-        "en": "Try one change",
-        "nl": "Probeer één wijziging"
+        "en": "After completing the task: try one change",
+        "nl": "Na het afronden: probeer één wijziging"
       },
       "body": {
         "en": "Move the paddle vertically so the same x position becomes a miss.",
@@ -175,15 +176,17 @@
   "inputs": [],
   "retrievals": [
     {
-      "id": "recall-python-v4-14-decimal",
-      "sourceActivityId": "python-v4-14-decimal",
+      "id": "recall-python-v4-15-attributes",
+      "sourceActivityId": "python-v4-15-attributes",
       "objectiveIds": [
-        "decimal"
+        "attributes",
+        "object-methods"
       ],
       "prompt": {
-        "en": "Recall “Use decimal arithmetic deliberately”. Why do the Decimal arguments have quotation marks? Try the earlier example from memory, then check it. Compare Decimal(\"0.1\") with Decimal(0.1) by printing both.",
-        "nl": "Haal “Gebruik decimale berekeningen bewust” terug. Waarom staan de Decimal-argumenten tussen aanhalingstekens? Probeer het eerdere voorbeeld uit je geheugen en controleer daarna. Vergelijk Decimal(\"0.1\") met Decimal(0.1) door beide af te drukken."
-      }
+        "en": "Recall use an object’s attributes. Does move change box.left itself? Move the centre to (0, 0) and explain why part of the shape is outside the window.",
+        "nl": "Herhaal gebruik attributen van een object. Verandert move box.left zelf? Verplaats het middelpunt naar (0, 0) en leg uit waarom een deel buiten het venster valt."
+      },
+      "code": "import pygame\nbox = pygame.Rect(10, 20, 20, 10)\nbox.center = (50, 50)\nprint(box.left, box.top)\nprint(box.move(5, 0).left)"
     }
   ]
 }

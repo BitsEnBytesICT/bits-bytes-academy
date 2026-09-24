@@ -1,4 +1,11 @@
 import { L, local, words, idFor } from "./authoring.mjs";
+import { recall } from "./quiz-retrieval.mjs";
+import { varyRetry } from "./quiz-variants.mjs";
+import fs from "node:fs";
+const feedbackPath = new URL("./quiz-feedback.json", import.meta.url);
+const tokenFeedback = fs.existsSync(feedbackPath)
+  ? JSON.parse(fs.readFileSync(feedbackPath, "utf8"))
+  : {};
 export function P(topic, code, outputs, reasons) {
   if (new Set(outputs).size !== 3)
     throw Error(`Ambiguous prediction: ${topic}`);
@@ -70,9 +77,9 @@ export function makeQuizzes(specs, activities, chapters) {
   return specs.map((build, index) => {
     const chapter = index + 1;
     const form = (alternate) => {
-      const own = build(alternate);
+      const own = varyRetry(chapter, build(alternate), alternate);
       // From module 3 onward, two changed examples retrieve earlier concepts.
-      const previous = index ? specs[Math.max(0, index - 2)](alternate) : own;
+      const previous = index ? recall(chapter, alternate) : own;
       const questions =
         index === 0
           ? [own.p, own.p2, own.b, own.b2, own.debug, own.app]
@@ -81,9 +88,20 @@ export function makeQuizzes(specs, activities, chapters) {
             : [own.p, previous.p, own.b, previous.b, own.debug, own.app];
       return questions.map((q, i) => {
         if (!q) throw Error(`Missing question ${chapter}/${i}`);
+        if (q.codeBlank) {
+          for (const token of q.codeBlank.tokens) {
+            const feedback =
+              tokenFeedback[JSON.stringify([q.codeBlank.segments, token.code])];
+            if (feedback) {
+              token.reason = feedback;
+              const choice = q.choices.find((c) => c.label.en === token.code);
+              if (choice) choice.reason = feedback;
+            }
+          }
+        }
         return {
           ...structuredClone(q),
-          id: `${idFor(chapter, "quiz")}-${alternate ? "b" : "a"}-${i + 1}`,
+          id: `${idFor(chapter, "quiz-r2")}-${alternate ? "b" : "a"}-${i + 1}`,
           reviewActivityIds: [
             ...new Set(
               q.objectiveIds.map((t) => {
@@ -96,7 +114,7 @@ export function makeQuizzes(specs, activities, chapters) {
       });
     };
     return {
-      id: idFor(chapter, "quiz"),
+      id: idFor(chapter, "quiz-r2"),
       chapter,
       group: `python-v4-module-${chapter}`,
       kind: "quiz",

@@ -56,10 +56,11 @@
     },
     {
       "id": "python-v4-14-helper-files-experiment",
+      "role": "experiment",
       "topicIds": [],
       "heading": {
-        "en": "Try one change",
-        "nl": "Probeer één wijziging"
+        "en": "After completing the task: try one change",
+        "nl": "Na het afronden: probeer één wijziging"
       },
       "body": {
         "en": "Add another call in main.py with a different argument. Explain which file owns the function.",
@@ -145,15 +146,16 @@
   "inputs": [],
   "retrievals": [
     {
-      "id": "recall-python-v4-12-filter",
-      "sourceActivityId": "python-v4-12-filter",
+      "id": "recall-python-v4-09-local-scope",
+      "sourceActivityId": "python-v4-09-local-scope",
       "objectiveIds": [
-        "filtering"
+        "scope"
       ],
       "prompt": {
-        "en": "Recall “Build a list of matching values”. Why must return happen after the loop in a filtering function? Try the earlier example from memory, then check it. Test a list where every value is negative.",
-        "nl": "Haal “Bouw een lijst van passende waarden” terug. Waarom moet return na de lus komen in een filterfunctie? Probeer het eerdere voorbeeld uit je geheugen en controleer daarna. Test een lijst waarin elke waarde negatief is."
-      }
+        "en": "Recall keep a function independent. Why does the outer value remain 100? Change the outer rate to 999. The function result should stay tied to its arguments.",
+        "nl": "Herhaal houd een functie onafhankelijk. Waarom blijft de buitenliggende value 100? Verander de buitenliggende rate naar 999. Het functieresultaat hoort gekoppeld te blijven aan zijn argumenten."
+      },
+      "code": "value = 100\ndef increment(value):\n    value += 1\n    return value\nprint(increment(4))\nprint(value)"
     }
   ]
 }

@@ -53,11 +53,26 @@
       }
     },
     {
-      "id": "python-v4-12-indexed-while-experiment",
+      "id": "python-v4-12-indexed-while-try-calls",
+      "role": "practice",
       "topicIds": [],
       "heading": {
-        "en": "Try one change",
-        "nl": "Probeer één wijziging"
+        "en": "See your function work",
+        "nl": "Bekijk wat je functie doet"
+      },
+      "body": {
+        "en": "A definition alone produces no output. After writing the function, add these calls underneath it in main.py, without indentation, and Run. Compare the returned values with the task's requirements. The checks also call your function with other inputs; they do not require you to keep these demonstration calls.",
+        "nl": "Een definitie alleen geeft geen uitvoer. Schrijf eerst de functie en voeg daarna deze aanroepen eronder toe in main.py, zonder inspringing. Klik op Uitvoeren. Vergelijk de teruggegeven waarden met de opdracht. De controles roepen je functie ook met andere invoer aan; deze demonstratieaanroepen zijn niet verplicht."
+      },
+      "code": "print(copy_with_while([1, 3]))\nprint(copy_with_while([]))"
+    },
+    {
+      "id": "python-v4-12-indexed-while-experiment",
+      "role": "experiment",
+      "topicIds": [],
+      "heading": {
+        "en": "After completing the task: try one change",
+        "nl": "Na het afronden: probeer één wijziging"
       },
       "body": {
         "en": "Compare this function with items.copy() and with a for loop.",
@@ -78,8 +93,8 @@
         "while-lists"
       ],
       "task": {
-        "en": "Use an indexed while loop to return a new list with the same elements.",
-        "nl": "Gebruik een while-lus met index om een nieuwe lijst met dezelfde elementen terug te geven."
+        "en": "Write copy_with_while(items) in main.py. Use an indexed while loop to return a new list with the same elements.",
+        "nl": "Schrijf copy_with_while(items) in main.py. Gebruik een while-lus met index om een nieuwe lijst met dezelfde elementen terug te geven."
       },
       "check": "any(isinstance(n,_ast.While) for n in _ast.walk(_ast.parse(_source)))",
       "probes": [
@@ -136,15 +151,30 @@
   "inputs": [],
   "retrievals": [
     {
-      "id": "recall-python-v4-10-validate",
-      "sourceActivityId": "python-v4-10-validate",
+      "id": "recall-python-v4-11-indexes",
+      "sourceActivityId": "python-v4-11-indexes",
       "objectiveIds": [
-        "validation"
+        "indexing",
+        "negative-indexing"
       ],
       "prompt": {
-        "en": "Recall “A number can still be invalid”. Which check rejects -2? Try the earlier example from memory, then check it. Test both boundaries and one value just outside each boundary.",
-        "nl": "Haal “Een getal kan nog steeds ongeldig zijn” terug. Welke controle keurt -2 af? Probeer het eerdere voorbeeld uit je geheugen en controleer daarna. Test beide grenzen en één waarde net buiten elke grens."
-      }
+        "en": "Recall select a position. What does colours[1] select? Explain why the single-element case repeats the same value.",
+        "nl": "Herhaal kies een positie. Wat kiest colours[1]? Leg uit waarom het geval met één element dezelfde waarde herhaalt."
+      },
+      "code": "colours = [\"red\", \"green\", \"blue\"]\nprint(colours[0])\nprint(colours[-1])"
+    },
+    {
+      "id": "recall-python-v4-11-length-copy",
+      "sourceActivityId": "python-v4-11-length-copy",
+      "objectiveIds": [
+        "length",
+        "copying"
+      ],
+      "prompt": {
+        "en": "Recall count and copy a list. What would happen if copy = original were used instead? Call the function twice with the same original list.",
+        "nl": "Herhaal tel en kopieer een lijst. Wat gebeurt er als je copy = original gebruikt? Roep de functie tweemaal aan met dezelfde oorspronkelijke lijst."
+      },
+      "code": "original = [2, 4]\ncopy = original.copy()\ncopy.append(6)\nprint(len(copy))\nprint(original)"
     }
   ]
 }

@@ -19,6 +19,16 @@
   "sections": [
     {
       "heading": {
+        "en": "Plan the whole conversation",
+        "nl": "Plan het hele gesprek"
+      },
+      "body": {
+        "en": "Use the converter session as a connection map: read an operation → read the first value → check for cancellation → read the second → check for cancellation → calculate → display → return to the menu. A failed conversion stays at the same value prompt. Keep calculation separate from asking questions so you can test it with direct calls.",
+        "nl": "Gebruik het omzetgesprek als verbindingsschema: lees een bewerking → lees de eerste waarde → controleer annuleren → lees de tweede → controleer annuleren → bereken → toon → keer terug naar het menu. Een mislukte omzetting blijft bij dezelfde waardevraag. Houd berekening apart van vragen stellen zodat je direct kunt testen met aanroepen."
+      }
+    },
+    {
+      "heading": {
         "en": "Readiness and a sample conversation",
         "nl": "Voorbereiding en een voorbeeldgesprek"
       },
@@ -144,7 +154,8 @@
     "python-v4-10-cancel-safely",
     "python-v4-07-command-menu",
     "python-v4-08-session-summary",
-    "python-v4-10-zero-division"
+    "python-v4-10-zero-division",
+    "python-v4-10-converter-session"
   ],
   "suggestedTests": [
     {
@@ -269,19 +280,6 @@
       "expected": {
         "en": "Exit cleanly, including after invalid input.",
         "nl": "Sluit netjes af, ook na ongeldige invoer."
-      }
-    }
-  ],
-  "retrievals": [
-    {
-      "id": "recall-python-v4-08-continue",
-      "sourceActivityId": "python-v4-08-continue",
-      "objectiveIds": [
-        "continue"
-      ],
-      "prompt": {
-        "en": "Recall “Skip one iteration with continue”. Why does 3 still appear after 2 is skipped? Try the earlier example from memory, then check it. Replace continue with break and compare the output. Explain why later odd values disappear.",
-        "nl": "Haal “Sla één iteratie over met continue” terug. Waarom verschijnt 3 nog nadat 2 is overgeslagen? Probeer het eerdere voorbeeld uit je geheugen en controleer daarna. Vervang continue door break en vergelijk de uitvoer. Leg uit waarom latere oneven waarden verdwijnen."
       }
     }
   ]

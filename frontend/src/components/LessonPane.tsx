@@ -66,13 +66,15 @@ export function LessonPane({
               {exercise.example && (
                 <CodeBlock className="example-code" code={exercise.example} />
               )}
-              {exercise.sections?.map((section, index) => (
-                <WorkedExample
-                  key={index}
-                  section={section}
-                  language={language}
-                />
-              ))}
+              {exercise.sections
+                ?.filter((section) => section.role !== "experiment")
+                .map((section, index) => (
+                  <WorkedExample
+                    key={index}
+                    section={section}
+                    language={language}
+                  />
+                ))}
               <RetrievalPrompts
                 activity={exercise}
                 course={course}
@@ -213,6 +215,25 @@ export function LessonPane({
                 </p>
               )}
             </section>
+            {exercise.sections
+              ?.filter((section) => section.role === "experiment")
+              .map((section, index) => (
+                <section
+                  className="lesson-section-content"
+                  key={`experiment-${index}`}
+                >
+                  <details className="retrieval-prompts">
+                    <summary>{section.heading[language]}</summary>
+                    <p>
+                      {tr(
+                        "Optional exploration. Complete the instructions first. Changing the example data can change the expected result; your earned progress stays saved.",
+                        "Vrijwillig onderzoek. Rond eerst de instructies af. Andere voorbeeldgegevens kunnen een ander resultaat geven; je behaalde voortgang blijft bewaard.",
+                      )}
+                    </p>
+                    <LessonText text={section.body[language]} />
+                  </details>
+                </section>
+              ))}
           </>
         )}
       </div>

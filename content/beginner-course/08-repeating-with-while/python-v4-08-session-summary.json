@@ -61,11 +61,24 @@
       }
     },
     {
-      "id": "python-v4-08-session-summary-experiment",
+      "id": "python-v4-08-session-summary-trace",
       "topicIds": [],
       "heading": {
-        "en": "Try one change",
-        "nl": "Probeer één wijziging"
+        "en": "The empty session matters",
+        "nl": "Het lege gesprek telt ook"
+      },
+      "body": {
+        "en": "Try quit as the first answer. The loop should record no items and the final summary should still appear once. Then record one item: only its contribution changes. The summary belongs after repetition, not inside it.",
+        "nl": "Probeer quit als eerste antwoord. De lus hoort geen artikelen vast te leggen en de samenvatting verschijnt toch eenmaal. Leg daarna één artikel vast: alleen diens bijdrage verandert. De samenvatting hoort na herhaling, niet erin."
+      }
+    },
+    {
+      "id": "python-v4-08-session-summary-experiment",
+      "role": "experiment",
+      "topicIds": [],
+      "heading": {
+        "en": "After completing the task: try one change",
+        "nl": "Na het afronden: probeer één wijziging"
       },
       "body": {
         "en": "Quit immediately, then after one answer. Explain why the stop command is excluded from the count.",
@@ -83,11 +96,7 @@
     {
       "id": "python-v4-08-session-summary-step-1",
       "objectiveIds": [
-        "loop-review",
-        "while",
-        "break",
-        "counters",
-        "input"
+        "loop-review"
       ],
       "task": {
         "en": "Read Item: repeatedly until a normalised quit command. Count the other answers in count.",
@@ -145,11 +154,7 @@
     {
       "id": "python-v4-08-session-summary-step-2",
       "objectiveIds": [
-        "loop-review",
-        "while",
-        "break",
-        "counters",
-        "input"
+        "loop-review"
       ],
       "task": {
         "en": "Print a final line such as \"Items: 2\" once after the loop.",
@@ -204,18 +209,5 @@
     "book",
     "map",
     "quit"
-  ],
-  "retrievals": [
-    {
-      "id": "recall-python-v4-06-access-rule",
-      "sourceActivityId": "python-v4-06-access-rule",
-      "objectiveIds": [
-        "boolean-review"
-      ],
-      "prompt": {
-        "en": "Recall “Combine a complete access rule”. Which single changed input would make this example False? Try the earlier example from memory, then check it. Write the eight possible combinations of these three Boolean inputs and predict each result.",
-        "nl": "Haal “Combineer een volledige toegangsregel” terug. Welke ene gewijzigde invoer maakt dit voorbeeld False? Probeer het eerdere voorbeeld uit je geheugen en controleer daarna. Schrijf de acht mogelijke combinaties van deze drie booleaanse invoerwaarden op en voorspel elk resultaat."
-      }
-    }
   ]
 }

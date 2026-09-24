@@ -19,8 +19,8 @@ const A = (topic, code, answers) =>
     topic,
     "application",
     [
-      "Which explanation applies to this example?",
-      "Welke uitleg past bij dit voorbeeld?",
+      "Which statement or test fits this example?",
+      "Welke uitspraak of test past bij dit voorbeeld?",
     ],
     code,
     answers,
@@ -186,8 +186,8 @@ export const specs = [
             "Dat drukt letterlijke tekst af in plaats van de bewaarde waarde.",
           ),
           R(
-            "Change cat to dog.",
-            "Verander cat naar dog.",
+            `Change ${alt ? "dog to cat" : "cat to dog"}.`,
+            `Verander ${alt ? "dog naar cat" : "cat naar dog"}.`,
             "The stored value does not fix the name mismatch.",
             "De bewaarde waarde herstelt het naamverschil niet.",
           ),

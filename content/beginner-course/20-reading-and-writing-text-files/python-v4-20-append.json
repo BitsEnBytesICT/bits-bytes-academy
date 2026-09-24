@@ -54,10 +54,11 @@
     },
     {
       "id": "python-v4-20-append-experiment",
+      "role": "experiment",
       "topicIds": [],
       "heading": {
-        "en": "Try one change",
-        "nl": "Probeer één wijziging"
+        "en": "After completing the task: try one change",
+        "nl": "Na het afronden: probeer één wijziging"
       },
       "body": {
         "en": "Run twice, navigate away, return and inspect the saved log.",
@@ -99,7 +100,10 @@
           "check": "(open(\"log.txt\").read() == \"Started\\nFinished\\n\") and _error is None",
           "moduleOnly": true,
           "module": "work",
-          "files": {}
+          "isolatedFixtures": true,
+          "files": {
+            "log.txt": "Started\n"
+          }
         },
         {
           "call": {
@@ -113,7 +117,10 @@
           "check": "(open(\"new.txt\").read() == \"Hi\\n\") and _error is None",
           "moduleOnly": true,
           "module": "work",
-          "files": {}
+          "isolatedFixtures": true,
+          "files": {
+            "log.txt": "Started\n"
+          }
         }
       ],
       "hint": {
@@ -144,18 +151,5 @@
     "en": "Appending adds one new line without truncating the old entries.",
     "nl": "Toevoegen plaatst één nieuwe regel zonder eerdere invoeren te wissen."
   },
-  "inputs": [],
-  "retrievals": [
-    {
-      "id": "recall-python-v4-18-case",
-      "sourceActivityId": "python-v4-18-case",
-      "objectiveIds": [
-        "case-conversion"
-      ],
-      "prompt": {
-        "en": "Recall “Return differently cased text”. Which variable was reassigned? Try the earlier example from memory, then check it. Compare lower, upper and title on text with punctuation.",
-        "nl": "Haal “Geef tekst met andere hoofdletters terug” terug. Welke variabele werd opnieuw toegewezen? Probeer het eerdere voorbeeld uit je geheugen en controleer daarna. Vergelijk lower, upper en title op tekst met leestekens."
-      }
-    }
-  ]
+  "inputs": []
 }

@@ -14,8 +14,11 @@ export function gameLesson(chapter, slug, s) {
     tasks: s.tasks.map((t) => ({
       ...t,
       check: "_rendered_frames > 0",
-      probes: t.cases.map(([args, check]) =>
-        call(t.name, args, `(${check}) and _error is None`, { module: "game" }),
+      probes: t.cases.map(([args, check, options = {}]) =>
+        call(t.name, args, `(${check}) and _error is None`, {
+          module: "game",
+          ...options,
+        }),
       ),
     })),
   });

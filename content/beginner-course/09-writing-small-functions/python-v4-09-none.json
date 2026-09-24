@@ -50,11 +50,40 @@
       }
     },
     {
-      "id": "python-v4-09-none-experiment",
+      "id": "python-v4-09-none-trace",
       "topicIds": [],
       "heading": {
-        "en": "Try one change",
-        "nl": "Probeer één wijziging"
+        "en": "Predict the caller, then repair it",
+        "nl": "Voorspel de aanroeper en herstel die"
+      },
+      "body": {
+        "en": "First predict both lines below. show prints 6 internally, then returns None implicitly. The outer print displays that None. For reusable calculation, return value * 2 and let the caller print; predict the changed output before editing the required task.",
+        "nl": "Voorspel eerst beide regels hieronder. show drukt intern 6 af en geeft daarna impliciet None terug. De buitenste print toont die None. Geef voor herbruikbare berekening value * 2 terug en laat de aanroeper afdrukken; voorspel de gewijzigde uitvoer vóór je de opdracht bewerkt."
+      },
+      "code": "def show(value):\n    print(value * 2)\nprint(show(3))",
+      "output": "6\nNone\n"
+    },
+    {
+      "id": "python-v4-09-none-try-calls",
+      "role": "practice",
+      "topicIds": [],
+      "heading": {
+        "en": "See your function work",
+        "nl": "Bekijk wat je functie doet"
+      },
+      "body": {
+        "en": "A definition alone produces no output. After writing the function, add these calls underneath it in main.py, without indentation, and Run. Compare the returned values with the task's requirements. The checks also call your function with other inputs; they do not require you to keep these demonstration calls.",
+        "nl": "Een definitie alleen geeft geen uitvoer. Schrijf eerst de functie en voeg daarna deze aanroepen eronder toe in main.py, zonder inspringing. Klik op Uitvoeren. Vergelijk de teruggegeven waarden met de opdracht. De controles roepen je functie ook met andere invoer aan; deze demonstratieaanroepen zijn niet verplicht."
+      },
+      "code": "print(triple(4))\nprint(triple(-2))"
+    },
+    {
+      "id": "python-v4-09-none-experiment",
+      "role": "experiment",
+      "topicIds": [],
+      "heading": {
+        "en": "After completing the task: try one change",
+        "nl": "Na het afronden: probeer één wijziging"
       },
       "body": {
         "en": "Compare print(triple(0)) with triple(0) by itself.",
@@ -127,18 +156,5 @@
     "en": "Replacing print with return makes the function useful in expressions.",
     "nl": "print vervangen door return maakt de functie bruikbaar in uitdrukkingen."
   },
-  "inputs": [],
-  "retrievals": [
-    {
-      "id": "recall-python-v4-07-command-menu",
-      "sourceActivityId": "python-v4-07-command-menu",
-      "objectiveIds": [
-        "decision-review"
-      ],
-      "prompt": {
-        "en": "Recall “Respond to a typed choice”. Why does the uppercase input match lowercase help? Try the earlier example from memory, then check it. Test both commands with spaces and mixed case. Try an empty answer too.",
-        "nl": "Haal “Reageer op een getypte keuze” terug. Waarom komt invoer in hoofdletters overeen met help in kleine letters? Probeer het eerdere voorbeeld uit je geheugen en controleer daarna. Test beide opdrachten met spaties en gemengde hoofdletters. Probeer ook een leeg antwoord."
-      }
-    }
-  ]
+  "inputs": []
 }

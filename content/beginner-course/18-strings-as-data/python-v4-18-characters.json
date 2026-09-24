@@ -55,11 +55,26 @@
       }
     },
     {
-      "id": "python-v4-18-characters-experiment",
+      "id": "python-v4-18-characters-try-calls",
+      "role": "practice",
       "topicIds": [],
       "heading": {
-        "en": "Try one change",
-        "nl": "Probeer één wijziging"
+        "en": "See your function work",
+        "nl": "Bekijk wat je functie doet"
+      },
+      "body": {
+        "en": "A definition alone produces no output. After writing the function, add these calls underneath it in main.py, without indentation, and Run. Compare the returned values with the task's requirements. The checks also call your function with other inputs; they do not require you to keep these demonstration calls.",
+        "nl": "Een definitie alleen geeft geen uitvoer. Schrijf eerst de functie en voeg daarna deze aanroepen eronder toe in main.py, zonder inspringing. Klik op Uitvoeren. Vergelijk de teruggegeven waarden met de opdracht. De controles roepen je functie ook met andere invoer aan; deze demonstratieaanroepen zijn niet verplicht."
+      },
+      "code": "print(vowels(\"AEIOU!\"))\nprint(vowels(\"sky\"))"
+    },
+    {
+      "id": "python-v4-18-characters-experiment",
+      "role": "experiment",
+      "topicIds": [],
+      "heading": {
+        "en": "After completing the task: try one change",
+        "nl": "Na het afronden: probeer één wijziging"
       },
       "body": {
         "en": "Explain why y is not counted under this particular brief.",
@@ -82,8 +97,8 @@
         "string-conditionals"
       ],
       "task": {
-        "en": "Count a, e, i, o and u ignoring case. All other characters contribute zero.",
-        "nl": "Tel a, e, i, o en u ongeacht hoofdletters. Alle andere tekens dragen nul bij."
+        "en": "Write vowels(text) in main.py. Count a, e, i, o and u ignoring case. All other characters contribute zero.",
+        "nl": "Schrijf vowels(text) in main.py. Tel a, e, i, o en u ongeacht hoofdletters. Alle andere tekens dragen nul bij."
       },
       "check": "callable(vowels)",
       "probes": [
@@ -155,16 +170,17 @@
   "inputs": [],
   "retrievals": [
     {
-      "id": "recall-python-v4-16-wall-bounce",
-      "sourceActivityId": "python-v4-16-wall-bounce",
+      "id": "recall-python-v4-17-remove",
+      "sourceActivityId": "python-v4-17-remove",
       "objectiveIds": [
-        "wall-collision",
-        "direction-aware-collision"
+        "remove",
+        "membership-lists"
       ],
       "prompt": {
-        "en": "Recall “Bounce once at a wall”. What happens on the next check when vy is positive? Try the earlier example from memory, then check it. Call bounce twice on the first corrected result and check that direction stays stable.",
-        "nl": "Haal “Stuiter eenmaal tegen een wand” terug. Wat gebeurt er bij de volgende controle wanneer vy positief is? Probeer het eerdere voorbeeld uit je geheugen en controleer daarna. Roep bounce tweemaal aan op het eerste herstelde resultaat en controleer dat de richting stabiel blijft."
-      }
+        "en": "Recall remove by value. Why is one 4 still present? Call twice on a list with two copies of the target.",
+        "nl": "Herhaal verwijder op waarde. Waarom is er nog één 4 aanwezig? Roep tweemaal aan bij een lijst met twee kopieën van het doel."
+      },
+      "code": "items = [4,2,4]\nitems.remove(4)\nprint(items)\nprint(9 in items)"
     }
   ]
 }

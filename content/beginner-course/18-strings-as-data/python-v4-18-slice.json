@@ -51,11 +51,26 @@
       }
     },
     {
-      "id": "python-v4-18-slice-experiment",
+      "id": "python-v4-18-slice-try-calls",
+      "role": "practice",
       "topicIds": [],
       "heading": {
-        "en": "Try one change",
-        "nl": "Probeer één wijziging"
+        "en": "See your function work",
+        "nl": "Bekijk wat je functie doet"
+      },
+      "body": {
+        "en": "A definition alone produces no output. After writing the function, add these calls underneath it in main.py, without indentation, and Run. Compare the returned values with the task's requirements. The checks also call your function with other inputs; they do not require you to keep these demonstration calls.",
+        "nl": "Een definitie alleen geeft geen uitvoer. Schrijf eerst de functie en voeg daarna deze aanroepen eronder toe in main.py, zonder inspringing. Klik op Uitvoeren. Vergelijk de teruggegeven waarden met de opdracht. De controles roepen je functie ook met andere invoer aan; deze demonstratieaanroepen zijn niet verplicht."
+      },
+      "code": "print(middle(\"[hello]\"))\nprint(middle(\"a\"))"
+    },
+    {
+      "id": "python-v4-18-slice-experiment",
+      "role": "experiment",
+      "topicIds": [],
+      "heading": {
+        "en": "After completing the task: try one change",
+        "nl": "Na het afronden: probeer één wijziging"
       },
       "body": {
         "en": "Compare slicing beyond the end with indexing beyond the end.",
@@ -76,8 +91,8 @@
         "string-slicing"
       ],
       "task": {
-        "en": "Return text without its first and last characters. Strings of length 0, 1 or 2 return an empty string.",
-        "nl": "Geef text zonder eerste en laatste teken terug. Strings met lengte 0, 1 of 2 geven een lege string."
+        "en": "Write middle(text) in main.py. Return text without its first and last characters. Strings of length 0, 1 or 2 return an empty string.",
+        "nl": "Schrijf middle(text) in main.py. Geef text zonder eerste en laatste teken terug. Strings met lengte 0, 1 of 2 geven een lege string."
       },
       "check": "callable(middle)",
       "probes": [
@@ -140,16 +155,18 @@
   "inputs": [],
   "retrievals": [
     {
-      "id": "recall-python-v4-16-held-controls",
-      "sourceActivityId": "python-v4-16-held-controls",
+      "id": "recall-python-v4-17-slicing",
+      "sourceActivityId": "python-v4-17-slicing",
       "objectiveIds": [
-        "held-keys",
-        "simultaneous-controls"
+        "slicing",
+        "omitted-slice-bounds",
+        "count"
       ],
       "prompt": {
-        "en": "Recall “Hold keys to move both paddles”. Why is this two if statements instead of if/elif? Try the earlier example from memory, then check it. Hold W and Down simultaneously in the preview. Both paddles should move.",
-        "nl": "Haal “Houd toetsen vast om beide batjes te bewegen” terug. Waarom zijn dit twee if-instructies in plaats van if/elif? Probeer het eerdere voorbeeld uit je geheugen en controleer daarna. Houd W en Down tegelijk vast in het voorbeeld. Beide batjes horen te bewegen."
-      }
+        "en": "Recall take a slice of a list. Why does [1:3] contain two elements? Compare [:3], [3:] and [-3:] on the same list.",
+        "nl": "Herhaal neem een deel van een lijst. Waarom bevat [1:3] twee elementen? Vergelijk [:3], [3:] en [-3:] op dezelfde lijst."
+      },
+      "code": "values = [1,2,2,4]\nprint(values[1:3])\nprint(values[:2])\nprint(values[-2:])\nprint(values.count(2))"
     }
   ]
 }

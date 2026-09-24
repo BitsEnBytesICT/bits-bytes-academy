@@ -65,11 +65,30 @@
       }
     },
     {
-      "id": "python-v4-10-cancel-safely-experiment",
+      "id": "python-v4-10-cancel-safely-try-calls",
+      "role": "practice",
       "topicIds": [],
       "heading": {
-        "en": "Try one change",
-        "nl": "Probeer één wijziging"
+        "en": "See your function work",
+        "nl": "Bekijk wat je functie doet"
+      },
+      "body": {
+        "en": "A definition alone produces no output. After writing the function, add these calls underneath it in main.py, without indentation, and Run. Compare the returned values with the task's requirements. The checks also call your function with other inputs; they do not require you to keep these demonstration calls.",
+        "nl": "Een definitie alleen geeft geen uitvoer. Schrijf eerst de functie en voeg daarna deze aanroepen eronder toe in main.py, zonder inspringing. Klik op Uitvoeren. Vergelijk de teruggegeven waarden met de opdracht. De controles roepen je functie ook met andere invoer aan; deze demonstratieaanroepen zijn niet verplicht."
+      },
+      "code": "print(read_number())",
+      "takeaway": {
+        "en": "For the first conversation, enter [\"wrong\",\"quit\"] one answer per line. Use End input to test cancellation when the task supports it.",
+        "nl": "Voer voor het eerste gesprek [\"wrong\",\"quit\"] in, één antwoord per regel. Gebruik Einde invoer om annuleren te testen wanneer de opdracht dat ondersteunt."
+      }
+    },
+    {
+      "id": "python-v4-10-cancel-safely-experiment",
+      "role": "experiment",
+      "topicIds": [],
+      "heading": {
+        "en": "After completing the task: try one change",
+        "nl": "Na het afronden: probeer één wijziging"
       },
       "body": {
         "en": "Try invalid text followed by quit, and test end-of-input at the first prompt.",
@@ -89,11 +108,7 @@
       "objectiveIds": [
         "cancellation",
         "end-of-input",
-        "recovery-review",
-        "functions-review",
-        "normalisation",
-        "break",
-        "validation"
+        "recovery-review"
       ],
       "task": {
         "en": "Define read_number() to retry invalid numeric text and return a float after a valid answer. Print Try a number on each conversion failure.",
@@ -110,7 +125,8 @@
           "stdin": [
             "bad",
             "-2.5"
-          ]
+          ],
+          "definitionsOnly": true
         },
         {
           "call": {
@@ -120,7 +136,8 @@
           "check": "(_return == 0.0) and _remaining_input == \"\"",
           "stdin": [
             "0"
-          ]
+          ],
+          "definitionsOnly": true
         }
       ],
       "hint": {
@@ -151,11 +168,7 @@
       "objectiveIds": [
         "cancellation",
         "end-of-input",
-        "recovery-review",
-        "functions-review",
-        "normalisation",
-        "break",
-        "validation"
+        "recovery-review"
       ],
       "task": {
         "en": "Return None for quit with any surrounding spaces/case, and for end-of-input.",
@@ -171,7 +184,8 @@
           "check": "(_return is None and _error is None) and _remaining_input == \"\"",
           "stdin": [
             " QUIT "
-          ]
+          ],
+          "definitionsOnly": true
         },
         {
           "call": {
@@ -179,7 +193,8 @@
             "args": []
           },
           "check": "(_return is None and _error is None) and _remaining_input == \"\"",
-          "stdin": []
+          "stdin": [],
+          "definitionsOnly": true
         },
         {
           "call": {
@@ -190,7 +205,8 @@
           "stdin": [
             "wrong",
             "quit"
-          ]
+          ],
+          "definitionsOnly": true
         }
       ],
       "hint": {
@@ -224,15 +240,16 @@
   "inputs": [],
   "retrievals": [
     {
-      "id": "recall-python-v4-08-break",
-      "sourceActivityId": "python-v4-08-break",
+      "id": "recall-python-v4-09-none",
+      "sourceActivityId": "python-v4-09-none",
       "objectiveIds": [
-        "break"
+        "none"
       ],
       "prompt": {
-        "en": "Recall “Exit a loop with break”. Does the stop word reach the print inside the loop? Try the earlier example from memory, then check it. Enter two work commands before quit. Explain which print is repeated and which runs once.",
-        "nl": "Haal “Verlaat een lus met break” terug. Bereikt het stopwoord de print binnen de lus? Probeer het eerdere voorbeeld uit je geheugen en controleer daarna. Voer twee werkopdrachten in vóór quit. Leg uit welke print wordt herhaald en welke eenmaal draait."
-      }
+        "en": "Recall a function without a return value. Which line comes from the function body? Compare print(triple(0)) with triple(0) by itself.",
+        "nl": "Herhaal een functie zonder terugkeerwaarde. Welke regel komt uit de functie-inhoud? Vergelijk print(triple(0)) met alleen triple(0)."
+      },
+      "code": "def announce():\n    print(\"Ready\")\nresult = announce()\nprint(result is None)"
     }
   ]
 }

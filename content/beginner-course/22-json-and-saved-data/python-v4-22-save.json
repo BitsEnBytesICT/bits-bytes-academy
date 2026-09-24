@@ -55,10 +55,11 @@
     },
     {
       "id": "python-v4-22-save-experiment",
+      "role": "experiment",
       "topicIds": [],
       "heading": {
-        "en": "Try one change",
-        "nl": "Probeer één wijziging"
+        "en": "After completing the task: try one change",
+        "nl": "Na het afronden: probeer één wijziging"
       },
       "body": {
         "en": "Open the generated JSON in the workspace, navigate away, return and run a load.",
@@ -106,6 +107,7 @@
           "check": "(_json.load(open(\"out.json\",encoding=\"utf-8\")) == _args[1]) and _error is None",
           "moduleOnly": true,
           "module": "work",
+          "isolatedFixtures": true,
           "files": {}
         },
         {
@@ -120,6 +122,7 @@
           "check": "(_json.load(open(\"empty.json\")) == {}) and _error is None",
           "moduleOnly": true,
           "module": "work",
+          "isolatedFixtures": true,
           "files": {}
         }
       ],
@@ -151,29 +154,5 @@
     "en": "The encoder preserves the supported nested values; indentation only improves readability.",
     "nl": "De encoder bewaart ondersteunde geneste waarden; inspringing verbetert alleen de leesbaarheid."
   },
-  "inputs": [],
-  "retrievals": [
-    {
-      "id": "recall-python-v4-20-lines",
-      "sourceActivityId": "python-v4-20-lines",
-      "objectiveIds": [
-        "line-iteration"
-      ],
-      "prompt": {
-        "en": "Recall “Process one line at a time”. Why does strip avoid extra blank output lines here? Try the earlier example from memory, then check it. Try a final line without a newline and confirm it is still processed.",
-        "nl": "Haal “Verwerk één regel tegelijk” terug. Waarom voorkomt strip hier extra lege uitvoerregels? Probeer het eerdere voorbeeld uit je geheugen en controleer daarna. Probeer een laatste regel zonder nieuwe-regelteken en controleer dat die toch verwerkt wordt."
-      }
-    },
-    {
-      "id": "recall-python-v4-20-missing",
-      "sourceActivityId": "python-v4-20-missing",
-      "objectiveIds": [
-        "missing-files"
-      ],
-      "prompt": {
-        "en": "Recall “Handle a missing file explicitly”. Would this handler catch ValueError from a conversion? Try the earlier example from memory, then check it. Compare an empty existing file with a missing file; decide whether your feature needs to distinguish them.",
-        "nl": "Haal “Verwerk een ontbrekend bestand expliciet” terug. Vangt deze afhandeling ValueError van een omzetting op? Probeer het eerdere voorbeeld uit je geheugen en controleer daarna. Vergelijk een leeg bestaand bestand met een ontbrekend bestand; bepaal of je functie ze moet onderscheiden."
-      }
-    }
-  ]
+  "inputs": []
 }

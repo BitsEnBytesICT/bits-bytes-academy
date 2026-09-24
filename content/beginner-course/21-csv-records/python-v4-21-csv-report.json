@@ -57,11 +57,24 @@
       "exampleFiles": {}
     },
     {
-      "id": "python-v4-21-csv-report-experiment",
+      "id": "python-v4-21-csv-report-sample-files",
       "topicIds": [],
       "heading": {
-        "en": "Try one change",
-        "nl": "Probeer één wijziging"
+        "en": "Inspect the input and expected file",
+        "nl": "Bekijk de invoer en het verwachte bestand"
+      },
+      "body": {
+        "en": "For source rows \"A, B\",3 and C,-2, expect destination headers name,doubled, followed by \"A, B\",6 and C,-4. Return 2 data rows. The comma inside A, B belongs to the name and stays quoted by the writer.",
+        "nl": "Bij bronrijen \"A, B\",3 en C,-2 verwacht je uitvoerkoppen name,doubled, gevolgd door \"A, B\",6 en C,-4. Geef 2 gegevensrijen terug. De komma binnen A, B hoort bij de naam en blijft door de schrijver aangehaald."
+      }
+    },
+    {
+      "id": "python-v4-21-csv-report-experiment",
+      "role": "experiment",
+      "topicIds": [],
+      "heading": {
+        "en": "After completing the task: try one change",
+        "nl": "Na het afronden: probeer één wijziging"
       },
       "body": {
         "en": "Add a score of zero and verify both the count and exported value.",
@@ -83,9 +96,7 @@
     {
       "id": "python-v4-21-csv-report-step-1",
       "objectiveIds": [
-        "csv-review",
-        "csv-write",
-        "csv-numeric-conversion"
+        "csv-review"
       ],
       "task": {
         "en": "Implement the CSV transformation and return its data-row count.",
@@ -105,7 +116,10 @@
           "check": "(_return == 2 and list(__import__(\"csv\").DictReader(open(\"out.csv\"))) == [{\"name\":\"A, B\",\"doubled\":\"6\"},{\"name\":\"C\",\"doubled\":\"-4\"}]) and _error is None",
           "moduleOnly": true,
           "module": "work",
-          "files": {}
+          "isolatedFixtures": true,
+          "files": {
+            "source.csv": "name,score\n\"A, B\",3\nC,-2\n"
+          }
         },
         {
           "call": {
@@ -119,7 +133,9 @@
           "check": "(_return == 0 and list(__import__(\"csv\").reader(open(\"out.csv\"))) == [[\"name\",\"doubled\"]]) and _error is None",
           "moduleOnly": true,
           "module": "work",
+          "isolatedFixtures": true,
           "files": {
+            "source.csv": "name,score\n\"A, B\",3\nC,-2\n",
             "empty.csv": "name,score\n"
           }
         }
@@ -152,19 +168,5 @@
     "en": "The transformation treats score as data, not text, and delegates output quoting to CSV.",
     "nl": "De bewerking behandelt score als getal in plaats van tekst en laat uitvoeraanhalingstekens aan CSV over."
   },
-  "inputs": [],
-  "retrievals": [
-    {
-      "id": "recall-python-v4-19-delete",
-      "sourceActivityId": "python-v4-19-delete",
-      "objectiveIds": [
-        "dictionary-delete",
-        "dictionary-pop"
-      ],
-      "prompt": {
-        "en": "Recall “Remove a dictionary entry”. How does del differ from an expression returning a value? Try the earlier example from memory, then check it. Call the function twice on the same record and explain the second answer.",
-        "nl": "Haal “Verwijder een dictionary-invoer” terug. Hoe verschilt del van een uitdrukking die een waarde teruggeeft? Probeer het eerdere voorbeeld uit je geheugen en controleer daarna. Roep de functie tweemaal op hetzelfde record aan en leg het tweede antwoord uit."
-      }
-    }
-  ]
+  "inputs": []
 }

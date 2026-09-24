@@ -53,11 +53,40 @@
       }
     },
     {
-      "id": "python-v4-17-comprehensions-experiment",
+      "id": "python-v4-17-comprehensions-trace",
       "topicIds": [],
       "heading": {
-        "en": "Try one change",
-        "nl": "Probeer één wijziging"
+        "en": "Translate a familiar loop",
+        "nl": "Vertaal een bekende lus"
+      },
+      "body": {
+        "en": "First compare the ordinary loop with the unconditional comprehension below. Then add if value > 1 at the end to filter before transforming. Read the expression as: for each value, keep it if allowed, then calculate value * 2. Practise the unconditional form before adding the condition in your task.",
+        "nl": "Vergelijk eerst de gewone lus met de onvoorwaardelijke comprehensie hieronder. Voeg daarna if value > 1 achteraan toe om vóór omzetting te filteren. Lees: neem elke waarde, behoud die indien toegestaan en bereken dan value * 2. Oefen eerst de onvoorwaardelijke vorm vóór je de voorwaarde in de opdracht toevoegt."
+      },
+      "code": "result = []\nfor value in [1, 3]:\n    result.append(value * 2)\nprint(result)\nprint([value * 2 for value in [1, 3]])",
+      "output": "[2, 6]\n[2, 6]\n"
+    },
+    {
+      "id": "python-v4-17-comprehensions-try-calls",
+      "role": "practice",
+      "topicIds": [],
+      "heading": {
+        "en": "See your function work",
+        "nl": "Bekijk wat je functie doet"
+      },
+      "body": {
+        "en": "A definition alone produces no output. After writing the function, add these calls underneath it in main.py, without indentation, and Run. Compare the returned values with the task's requirements. The checks also call your function with other inputs; they do not require you to keep these demonstration calls.",
+        "nl": "Een definitie alleen geeft geen uitvoer. Schrijf eerst de functie en voeg daarna deze aanroepen eronder toe in main.py, zonder inspringing. Klik op Uitvoeren. Vergelijk de teruggegeven waarden met de opdracht. De controles roepen je functie ook met andere invoer aan; deze demonstratieaanroepen zijn niet verplicht."
+      },
+      "code": "print(positive_squares([-2, 0, 3, 2]))\nprint(positive_squares([]))"
+    },
+    {
+      "id": "python-v4-17-comprehensions-experiment",
+      "role": "experiment",
+      "topicIds": [],
+      "heading": {
+        "en": "After completing the task: try one change",
+        "nl": "Na het afronden: probeer één wijziging"
       },
       "body": {
         "en": "Rewrite the same behaviour with an ordinary loop and compare the results.",
@@ -79,8 +108,8 @@
         "conditional-list-comprehensions"
       ],
       "task": {
-        "en": "Use a conditional list comprehension to return squares of strictly positive values.",
-        "nl": "Gebruik een voorwaardelijke list comprehension om kwadraten van strikt positieve waarden terug te geven."
+        "en": "Write positive_squares(values) in main.py. Use a conditional list comprehension to return squares of strictly positive values.",
+        "nl": "Schrijf positive_squares(values) in main.py. Gebruik een voorwaardelijke list comprehension om kwadraten van strikt positieve waarden terug te geven."
       },
       "check": "any(isinstance(n,_ast.ListComp) and n.generators[0].ifs for n in _ast.walk(_ast.parse(_source)))",
       "probes": [
@@ -136,5 +165,19 @@
     "en": "The filter excludes zero and negative inputs before their square enters the result.",
     "nl": "Het filter sluit nul en negatieve invoer uit voordat hun kwadraat in het resultaat komt."
   },
-  "inputs": []
+  "inputs": [],
+  "retrievals": [
+    {
+      "id": "recall-python-v4-12-filter",
+      "sourceActivityId": "python-v4-12-filter",
+      "objectiveIds": [
+        "filtering"
+      ],
+      "prompt": {
+        "en": "Recall build a list of matching values. Why must return happen after the loop in a filtering function? Test a list where every value is negative.",
+        "nl": "Herhaal bouw een lijst van passende waarden. Waarom moet return na de lus komen in een filterfunctie? Test een lijst waarin elke waarde negatief is."
+      },
+      "code": "result = []\nfor score in [3, 8, 6]:\n    if score >= 6:\n        result.append(score)\nprint(result)"
+    }
+  ]
 }

@@ -57,11 +57,26 @@
       }
     },
     {
-      "id": "python-v4-19-lookup-experiment",
+      "id": "python-v4-19-lookup-try-calls",
+      "role": "practice",
       "topicIds": [],
       "heading": {
-        "en": "Try one change",
-        "nl": "Probeer één wijziging"
+        "en": "See your function work",
+        "nl": "Bekijk wat je functie doet"
+      },
+      "body": {
+        "en": "A definition alone produces no output. After writing the function, add these calls underneath it in main.py, without indentation, and Run. Compare the returned values with the task's requirements. The checks also call your function with other inputs; they do not require you to keep these demonstration calls.",
+        "nl": "Een definitie alleen geeft geen uitvoer. Schrijf eerst de functie en voeg daarna deze aanroepen eronder toe in main.py, zonder inspringing. Klik op Uitvoeren. Vergelijk de teruggegeven waarden met de opdracht. De controles roepen je functie ook met andere invoer aan; deze demonstratieaanroepen zijn niet verplicht."
+      },
+      "code": "print(score_of({\"score\": 4}))\nprint(score_of({}))"
+    },
+    {
+      "id": "python-v4-19-lookup-experiment",
+      "role": "experiment",
+      "topicIds": [],
+      "heading": {
+        "en": "After completing the task: try one change",
+        "nl": "Na het afronden: probeer één wijziging"
       },
       "body": {
         "en": "Compare absent score, score 0 and score None.",
@@ -85,8 +100,8 @@
         "dictionary-membership"
       ],
       "task": {
-        "en": "Return the stored score or 0 if the key is absent. Preserve an explicitly stored None.",
-        "nl": "Geef de bewaarde score terug of 0 als de sleutel ontbreekt. Behoud een expliciet bewaarde None."
+        "en": "Write score_of(record) in main.py. Return the stored score or 0 if the key is absent. Preserve an explicitly stored None.",
+        "nl": "Schrijf score_of(record) in main.py. Geef de bewaarde score terug of 0 als de sleutel ontbreekt. Behoud een expliciet bewaarde None."
       },
       "check": "callable(score_of)",
       "probes": [
@@ -150,20 +165,5 @@
     "en": "get distinguishes missing keys from present keys with special values.",
     "nl": "get onderscheidt ontbrekende sleutels van aanwezige sleutels met speciale waarden."
   },
-  "inputs": [],
-  "retrievals": [
-    {
-      "id": "recall-python-v4-17-slicing",
-      "sourceActivityId": "python-v4-17-slicing",
-      "objectiveIds": [
-        "slicing",
-        "omitted-slice-bounds",
-        "count"
-      ],
-      "prompt": {
-        "en": "Recall “Take a slice of a list”. Why does [1:3] contain two elements? Try the earlier example from memory, then check it. Compare [:3], [3:] and [-3:] on the same list.",
-        "nl": "Haal “Neem een deel van een lijst” terug. Waarom bevat [1:3] twee elementen? Probeer het eerdere voorbeeld uit je geheugen en controleer daarna. Vergelijk [:3], [3:] en [-3:] op dezelfde lijst."
-      }
-    }
-  ]
+  "inputs": []
 }

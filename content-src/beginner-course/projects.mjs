@@ -48,8 +48,16 @@ export const calculator = {
     "07-command-menu",
     "08-session-summary",
     "10-zero-division",
+    "10-converter-session",
   ].map((s) => `python-v4-${s}`),
   sections: [
+    {
+      heading: L("Plan the whole conversation", "Plan het hele gesprek"),
+      body: L(
+        "Use the converter session as a connection map: read an operation → read the first value → check for cancellation → read the second → check for cancellation → calculate → display → return to the menu. A failed conversion stays at the same value prompt. Keep calculation separate from asking questions so you can test it with direct calls.",
+        "Gebruik het omzetgesprek als verbindingsschema: lees een bewerking → lees de eerste waarde → controleer annuleren → lees de tweede → controleer annuleren → bereken → toon → keer terug naar het menu. Een mislukte omzetting blijft bij dezelfde waardevraag. Houd berekening apart van vragen stellen zodat je direct kunt testen met aanroepen.",
+      ),
+    },
     {
       heading: L(
         "Readiness and a sample conversation",
@@ -245,6 +253,11 @@ export const pong = {
     "16-paddle-contact",
     "16-score-once",
     "16-serve",
+    "15-event-wiring",
+    "15-render-label",
+    "16-two-controls",
+    "16-mirror-collision",
+    "16-rally-session",
   ].map((s) => `python-v4-${s}`),
   milestones: [
     milestone(
@@ -345,6 +358,16 @@ export const pong = {
       body: L(
         "Keep working in these same project files. Replace one player’s input with a direction chosen from the ball’s y coordinate. Give the computer a maximum speed and a small dead zone so it does not shake or teleport. Keep the two-player version selectable with a variable. This extension is optional and has no separate project completion. Later you may apply classes or save scores after those lessons.",
         "Werk verder in dezelfde projectbestanden. Vervang de invoer van één speler door een richting gekozen vanuit de y-coördinaat van de bal. Geef de computer een maximumsnelheid en een kleine dode zone zodat hij niet trilt of teleporteert. Houd de versie voor twee spelers selecteerbaar met een variabele. Deze uitbreiding is optioneel en heeft geen aparte projectafronding. Later kun je klassen toepassen of scores opslaan na die lessen.",
+      ),
+    },
+    {
+      heading: L(
+        "Place each responsibility in the loop",
+        "Plaats elke verantwoordelijkheid in de lus",
+      ),
+      body: L(
+        "Setup runs once: create coordinates, velocities, scores and font. Each frame gathers events for a serve, reads held keys for both paddles, updates positions using dt, corrects walls and paddles, resolves a miss once, then draws the resulting state. Store returned values before drawing. Compare the linked rally session with its main.py caller, and reuse the helpers you wrote. The supplied browser scheduling stays in place.",
+        "Voorbereiding draait eenmaal: maak coördinaten, snelheden, scores en lettertype. Elk beeld verzamelt servicegebeurtenissen, leest vastgehouden toetsen voor beide batjes, werkt posities bij met dt, herstelt muren en batjes, verwerkt een misser eenmaal en tekent de resulterende toestand. Bewaar teruggegeven waarden vóór tekenen. Vergelijk het gekoppelde rallygesprek met zijn main.py-aanroeper en hergebruik je eigen hulpfuncties. De aangeleverde browserplanning blijft staan.",
       ),
     },
   ],

@@ -59,10 +59,11 @@
     },
     {
       "id": "python-v4-05-normalise-command-experiment",
+      "role": "experiment",
       "topicIds": [],
       "heading": {
-        "en": "Try one change",
-        "nl": "Probeer één wijziging"
+        "en": "After completing the task: try one change",
+        "nl": "Na het afronden: probeer één wijziging"
       },
       "body": {
         "en": "Enter SAVE FILE with outer spaces. Which space remains after strip?",
@@ -94,19 +95,19 @@
           "stdin": [
             "  HELP  "
           ],
-          "check": "(choice == raw.strip().lower() and _stdout.endswith(choice + \"\\n\")) and _remaining_input == \"\""
+          "check": "(choice == \"help\" and _stdout == \"Choice: help\\n\") and _remaining_input == \"\""
         },
         {
           "stdin": [
             "  Quit "
           ],
-          "check": "(choice == \"quit\") and _remaining_input == \"\""
+          "check": "(choice == \"quit\" and _stdout == \"Choice: quit\\n\") and _remaining_input == \"\""
         },
         {
           "stdin": [
             " SAVE FILE "
           ],
-          "check": "(choice == \"save file\") and _remaining_input == \"\""
+          "check": "(choice == \"save file\" and _stdout == \"Choice: save file\\n\") and _remaining_input == \"\""
         }
       ],
       "hint": {
@@ -139,18 +140,5 @@
   },
   "inputs": [
     "  HELP  "
-  ],
-  "retrievals": [
-    {
-      "id": "recall-python-v4-03-update-a-number",
-      "sourceActivityId": "python-v4-03-update-a-number",
-      "objectiveIds": [
-        "changing-numbers"
-      ],
-      "prompt": {
-        "en": "Recall “Update a number step by step”. Which line actually changes points? Try the earlier example from memory, then check it. Try no delivery and no sales. Explain why both printed values match.",
-        "nl": "Haal “Werk een getal stap voor stap bij” terug. Welke regel verandert points werkelijk? Probeer het eerdere voorbeeld uit je geheugen en controleer daarna. Probeer geen levering en geen verkoop. Leg uit waarom beide afgedrukte waarden gelijk zijn."
-      }
-    }
   ]
 }

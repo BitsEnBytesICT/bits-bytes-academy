@@ -50,11 +50,26 @@
       }
     },
     {
-      "id": "python-v4-12-range-step-experiment",
+      "id": "python-v4-12-range-step-try-calls",
+      "role": "practice",
       "topicIds": [],
       "heading": {
-        "en": "Try one change",
-        "nl": "Probeer één wijziging"
+        "en": "See your function work",
+        "nl": "Bekijk wat je functie doet"
+      },
+      "body": {
+        "en": "A definition alone produces no output. After writing the function, add these calls underneath it in main.py, without indentation, and Run. Compare the returned values with the task's requirements. The checks also call your function with other inputs; they do not require you to keep these demonstration calls.",
+        "nl": "Een definitie alleen geeft geen uitvoer. Schrijf eerst de functie en voeg daarna deze aanroepen eronder toe in main.py, zonder inspringing. Klik op Uitvoeren. Vergelijk de teruggegeven waarden met de opdracht. De controles roepen je functie ook met andere invoer aan; deze demonstratieaanroepen zijn niet verplicht."
+      },
+      "code": "print(countdown(3))\nprint(countdown(1))"
+    },
+    {
+      "id": "python-v4-12-range-step-experiment",
+      "role": "experiment",
+      "topicIds": [],
+      "heading": {
+        "en": "After completing the task: try one change",
+        "nl": "Na het afronden: probeer één wijziging"
       },
       "body": {
         "en": "Write down a range for the even values 2, 4, 6, 8.",
@@ -75,10 +90,10 @@
         "range-start-stop-step"
       ],
       "task": {
-        "en": "Return start down through 1 using range; a nonpositive start returns an empty list.",
-        "nl": "Geef met range start aflopend tot en met 1 terug; een niet-positief begin geeft een lege lijst."
+        "en": "Write countdown(start) in main.py. Return start down through 1 using range; a nonpositive start returns an empty list.",
+        "nl": "Schrijf countdown(start) in main.py. Geef met range start aflopend tot en met 1 terug; een niet-positief begin geeft een lege lijst."
       },
-      "check": "callable(countdown)",
+      "check": "callable(countdown) and any(isinstance(n,_ast.Call) and isinstance(n.func,_ast.Name) and n.func.id == \"range\" for n in _ast.walk(_ast.parse(_source)))",
       "probes": [
         {
           "call": {
@@ -136,18 +151,5 @@
     "en": "The final included value is one because the descending range stops before zero.",
     "nl": "De laatste opgenomen waarde is één omdat de aflopende range vóór nul stopt."
   },
-  "inputs": [],
-  "retrievals": [
-    {
-      "id": "recall-python-v4-10-zero-division",
-      "sourceActivityId": "python-v4-10-zero-division",
-      "objectiveIds": [
-        "zero-division-recovery"
-      ],
-      "prompt": {
-        "en": "Recall “Handle division by zero”. Would except ValueError catch this failure? Try the earlier example from memory, then check it. Compare 0/2 and 2/0: which operand makes the difference?",
-        "nl": "Haal “Vang delen door nul op” terug. Vangt except ValueError deze fout op? Probeer het eerdere voorbeeld uit je geheugen en controleer daarna. Vergelijk 0/2 en 2/0: welk getal maakt het verschil?"
-      }
-    }
-  ]
+  "inputs": []
 }

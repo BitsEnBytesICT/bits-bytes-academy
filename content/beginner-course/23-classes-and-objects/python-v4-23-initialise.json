@@ -55,11 +55,38 @@
       }
     },
     {
-      "id": "python-v4-23-initialise-experiment",
+      "id": "python-v4-23-initialise-trace",
       "topicIds": [],
       "heading": {
-        "en": "Try one change",
-        "nl": "Probeer één wijziging"
+        "en": "Trace construction",
+        "nl": "Volg het maken van een instantie"
+      },
+      "body": {
+        "en": "Calling Player('Bo') creates one new object and passes it to __init__ as self; the string 'Bo' becomes name. self.name = name stores that string on this object. A later Player('Ada') runs __init__ again with a different self. You supply name; Python supplies self. __init__ prepares the object rather than returning a replacement object.",
+        "nl": "Player('Bo') maakt één nieuw object en geeft dat als self aan __init__; de string 'Bo' wordt name. self.name = name bewaart die string op dit object. Een latere Player('Ada') draait __init__ opnieuw met een andere self. Jij levert name; Python levert self. __init__ bereidt het object voor en geeft geen vervangend object terug."
+      }
+    },
+    {
+      "id": "python-v4-23-initialise-visible-report",
+      "role": "practice",
+      "topicIds": [],
+      "heading": {
+        "en": "Run a visible report",
+        "nl": "Voer een zichtbaar verslag uit"
+      },
+      "body": {
+        "en": "After completing the required definition, add this caller below it and Run. Expected Bo 0. Create another player and compare its own name and score.",
+        "nl": "Voeg na het afmaken van de vereiste definitie deze aanroeper eronder toe en voer uit. Verwacht Bo 0. Maak nog een speler en vergelijk zijn eigen naam en score."
+      },
+      "code": "player = Player(\"Bo\")\nprint(player.name, player.score)"
+    },
+    {
+      "id": "python-v4-23-initialise-experiment",
+      "role": "experiment",
+      "topicIds": [],
+      "heading": {
+        "en": "After completing the task: try one change",
+        "nl": "Na het afronden: probeer één wijziging"
       },
       "body": {
         "en": "Create two players with different names and inspect both.",
@@ -137,16 +164,16 @@
   "inputs": [],
   "retrievals": [
     {
-      "id": "recall-python-v4-21-named-records",
-      "sourceActivityId": "python-v4-21-named-records",
+      "id": "recall-python-v4-09-parameters",
+      "sourceActivityId": "python-v4-09-parameters",
       "objectiveIds": [
-        "dict-reader",
-        "csv-numeric-conversion"
+        "parameters-arguments"
       ],
       "prompt": {
-        "en": "Recall “Use a header as field names”. What type does row[\"score\"] have before conversion? Try the earlier example from memory, then check it. Reverse the column order but preserve the headers. The result should stay correct.",
-        "nl": "Haal “Gebruik een kop als veldnamen” terug. Welk type heeft row[\"score\"] vóór omzetting? Probeer het eerdere voorbeeld uit je geheugen en controleer daarna. Draai de kolomvolgorde om maar behoud de kopvelden. Het resultaat hoort juist te blijven."
-      }
+        "en": "Recall pass a value into a function. Which value does name hold during the second call? Call label twice with different items.",
+        "nl": "Herhaal geef een waarde aan een functie. Welke waarde heeft name tijdens de tweede aanroep? Roep label tweemaal aan met verschillende items."
+      },
+      "code": "def greet(name):\n    print(\"Hello\", name)\ngreet(\"Bo\")\ngreet(\"Mila\")"
     }
   ]
 }

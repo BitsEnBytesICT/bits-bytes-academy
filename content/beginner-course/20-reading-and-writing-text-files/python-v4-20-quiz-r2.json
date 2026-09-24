@@ -1,0 +1,800 @@
+{
+  "id": "python-v4-20-quiz-r2",
+  "chapter": 20,
+  "group": "python-v4-module-20",
+  "kind": "quiz",
+  "optional": false,
+  "estimatedMinutes": 8,
+  "title": {
+    "en": "Reading and writing text files: review",
+    "nl": "Tekstbestanden lezen en schrijven: herhaling"
+  },
+  "questions": [
+    {
+      "objectiveIds": [
+        "file-position"
+      ],
+      "category": "prediction",
+      "prompt": {
+        "en": "What does this program print?",
+        "nl": "Wat drukt dit programma af?"
+      },
+      "code": "with open(\"quiz.txt\",\"w\",encoding=\"utf-8\") as handle:\n    handle.write(\"Header\\nBody\")\nwith open(\"quiz.txt\",encoding=\"utf-8\") as handle:\n    header = handle.readline()\n    print(handle.read())",
+      "answer": "a",
+      "expectedOutput": "Body\n",
+      "choices": [
+        {
+          "id": "a",
+          "label": {
+            "en": "Body",
+            "nl": "Body"
+          },
+          "reason": {
+            "en": "readline consumed the header before read began.",
+            "nl": "readline gebruikte de kop vóór read begon."
+          }
+        },
+        {
+          "id": "b",
+          "label": {
+            "en": "Header\nBody",
+            "nl": "Header\nBody"
+          },
+          "reason": {
+            "en": "The handle does not rewind automatically.",
+            "nl": "De handle gaat niet automatisch terug naar het begin."
+          }
+        },
+        {
+          "id": "c",
+          "label": {
+            "en": "Header",
+            "nl": "Header"
+          },
+          "reason": {
+            "en": "The second read starts after the header.",
+            "nl": "De tweede leesactie begint na de kop."
+          }
+        }
+      ],
+      "id": "python-v4-20-quiz-r2-a-1",
+      "reviewActivityIds": [
+        "python-v4-20-position"
+      ]
+    },
+    {
+      "objectiveIds": [
+        "get"
+      ],
+      "category": "prediction",
+      "prompt": {
+        "en": "What does this program print?",
+        "nl": "Wat drukt dit programma af?"
+      },
+      "code": "record = {\"count\":0}\nprint(record.get(\"count\", 7))",
+      "answer": "a",
+      "expectedOutput": "0\n",
+      "choices": [
+        {
+          "id": "a",
+          "label": {
+            "en": "0",
+            "nl": "0"
+          },
+          "reason": {
+            "en": "get uses the default only when the key is missing, not when its value is zero.",
+            "nl": "get gebruikt de standaard alleen als de sleutel ontbreekt, niet als de waarde nul is."
+          }
+        },
+        {
+          "id": "b",
+          "label": {
+            "en": "7",
+            "nl": "7"
+          },
+          "reason": {
+            "en": "get uses the default only when the key is missing, not when its value is zero.",
+            "nl": "get gebruikt de standaard alleen als de sleutel ontbreekt, niet als de waarde nul is."
+          }
+        },
+        {
+          "id": "c",
+          "label": {
+            "en": "KeyError",
+            "nl": "KeyError"
+          },
+          "reason": {
+            "en": "get uses the default only when the key is missing, not when its value is zero.",
+            "nl": "get gebruikt de standaard alleen als de sleutel ontbreekt, niet als de waarde nul is."
+          }
+        }
+      ],
+      "id": "python-v4-20-quiz-r2-a-2",
+      "reviewActivityIds": [
+        "python-v4-19-lookup"
+      ]
+    },
+    {
+      "objectiveIds": [
+        "write"
+      ],
+      "category": "completion",
+      "prompt": {
+        "en": "Complete the code to produce the shown output.",
+        "nl": "Vul de code aan om de getoonde uitvoer te maken."
+      },
+      "code": "with open(\"quiz.txt\",___,encoding=\"utf-8\") as handle:\n    handle.write(\"Header\")\nwith open(\"quiz.txt\",encoding=\"utf-8\") as handle:\n    print(handle.read())",
+      "answer": "a",
+      "choices": [
+        {
+          "id": "a",
+          "label": {
+            "en": "\"w\"",
+            "nl": "\"w\""
+          },
+          "reason": {
+            "en": "w creates or replaces a file for writing.",
+            "nl": "w maakt of vervangt een bestand om te schrijven."
+          }
+        },
+        {
+          "id": "b",
+          "label": {
+            "en": "\"r\"",
+            "nl": "\"r\""
+          },
+          "reason": {
+            "en": "Using \"r\" here produces FileNotFoundError. w creates or replaces a file for writing.",
+            "nl": "Met \"r\" ontstaat hier FileNotFoundError. w maakt of vervangt een bestand om te schrijven."
+          }
+        },
+        {
+          "id": "c",
+          "label": {
+            "en": "\"rb\"",
+            "nl": "\"rb\""
+          },
+          "reason": {
+            "en": "Using \"rb\" here produces ValueError. w creates or replaces a file for writing.",
+            "nl": "Met \"rb\" ontstaat hier ValueError. w maakt of vervangt een bestand om te schrijven."
+          }
+        }
+      ],
+      "codeBlank": {
+        "prompt": {
+          "en": "Complete the code to produce the shown output.",
+          "nl": "Vul de code aan om de getoonde uitvoer te maken."
+        },
+        "segments": [
+          "with open(\"quiz.txt\",",
+          ",encoding=\"utf-8\") as handle:\n    handle.write(\"Header\")\nwith open(\"quiz.txt\",encoding=\"utf-8\") as handle:\n    print(handle.read())"
+        ],
+        "tokens": [
+          {
+            "id": "token-1",
+            "code": "\"w\""
+          },
+          {
+            "id": "token-2",
+            "code": "\"r\"",
+            "reason": {
+              "en": "Using \"r\" here produces FileNotFoundError. w creates or replaces a file for writing.",
+              "nl": "Met \"r\" ontstaat hier FileNotFoundError. w maakt of vervangt een bestand om te schrijven."
+            }
+          },
+          {
+            "id": "token-3",
+            "code": "\"rb\"",
+            "reason": {
+              "en": "Using \"rb\" here produces ValueError. w creates or replaces a file for writing.",
+              "nl": "Met \"rb\" ontstaat hier ValueError. w maakt of vervangt een bestand om te schrijven."
+            }
+          }
+        ],
+        "blanks": [
+          {
+            "answer": "\"w\"",
+            "reason": {
+              "en": "w creates or replaces a file for writing.",
+              "nl": "w maakt of vervangt een bestand om te schrijven."
+            }
+          }
+        ],
+        "output": "Header\n"
+      },
+      "id": "python-v4-20-quiz-r2-a-3",
+      "reviewActivityIds": [
+        "python-v4-20-write"
+      ]
+    },
+    {
+      "objectiveIds": [
+        "items"
+      ],
+      "category": "completion",
+      "prompt": {
+        "en": "Complete the code to produce the shown output.",
+        "nl": "Vul de code aan om de getoonde uitvoer te maken."
+      },
+      "code": "record = {\"Jo\":0}\nfor name, value in record.___():\n    print(name, value)",
+      "answer": "a",
+      "choices": [
+        {
+          "id": "a",
+          "label": {
+            "en": "items",
+            "nl": "items"
+          },
+          "reason": {
+            "en": "Follow the operation and its input type, then compare the exact result shown.",
+            "nl": "Volg de bewerking en het invoertype en vergelijk daarna het precieze getoonde resultaat."
+          }
+        },
+        {
+          "id": "b",
+          "label": {
+            "en": "keys",
+            "nl": "keys"
+          },
+          "reason": {
+            "en": "Using keys prints \"J o\\n\"; the required output is \"Jo 0\\n\". Follow the operation and its input type, then compare the exact result shown.",
+            "nl": "Met keys wordt \"J o\\n\" afgedrukt; de vereiste uitvoer is \"Jo 0\\n\". Volg de bewerking en het invoertype en vergelijk daarna het precieze getoonde resultaat."
+          }
+        },
+        {
+          "id": "c",
+          "label": {
+            "en": "values",
+            "nl": "values"
+          },
+          "reason": {
+            "en": "Using values here produces TypeError. Follow the operation and its input type, then compare the exact result shown.",
+            "nl": "Met values ontstaat hier TypeError. Volg de bewerking en het invoertype en vergelijk daarna het precieze getoonde resultaat."
+          }
+        }
+      ],
+      "codeBlank": {
+        "prompt": {
+          "en": "Complete the code to produce the shown output.",
+          "nl": "Vul de code aan om de getoonde uitvoer te maken."
+        },
+        "segments": [
+          "record = {\"Jo\":0}\nfor name, value in record.",
+          "():\n    print(name, value)"
+        ],
+        "tokens": [
+          {
+            "id": "token-1",
+            "code": "items"
+          },
+          {
+            "id": "token-2",
+            "code": "keys",
+            "reason": {
+              "en": "Using keys prints \"J o\\n\"; the required output is \"Jo 0\\n\". Follow the operation and its input type, then compare the exact result shown.",
+              "nl": "Met keys wordt \"J o\\n\" afgedrukt; de vereiste uitvoer is \"Jo 0\\n\". Volg de bewerking en het invoertype en vergelijk daarna het precieze getoonde resultaat."
+            }
+          },
+          {
+            "id": "token-3",
+            "code": "values",
+            "reason": {
+              "en": "Using values here produces TypeError. Follow the operation and its input type, then compare the exact result shown.",
+              "nl": "Met values ontstaat hier TypeError. Volg de bewerking en het invoertype en vergelijk daarna het precieze getoonde resultaat."
+            }
+          }
+        ],
+        "blanks": [
+          {
+            "answer": "items",
+            "reason": {
+              "en": "Follow the operation and its input type, then compare the exact result shown.",
+              "nl": "Volg de bewerking en het invoertype en vergelijk daarna het precieze getoonde resultaat."
+            }
+          }
+        ],
+        "output": "Jo 0\n"
+      },
+      "id": "python-v4-20-quiz-r2-a-4",
+      "reviewActivityIds": [
+        "python-v4-19-views"
+      ]
+    },
+    {
+      "objectiveIds": [
+        "append-files"
+      ],
+      "category": "debugging",
+      "prompt": {
+        "en": "Choose the repair or test that addresses the stated problem.",
+        "nl": "Kies de reparatie of test die het beschreven probleem aanpakt."
+      },
+      "code": "# Preserve older entries when adding Header.\nwith open(\"log.txt\",\"w\",encoding=\"utf-8\") as handle:\n    handle.write(\"Header\\n\")",
+      "answer": "a",
+      "choices": [
+        {
+          "id": "a",
+          "label": {
+            "en": "Use mode a.",
+            "nl": "Gebruik modus a."
+          },
+          "reason": {
+            "en": "Append preserves previous entries.",
+            "nl": "Toevoegen bewaart eerdere invoeren."
+          }
+        },
+        {
+          "id": "b",
+          "label": {
+            "en": "Use read mode.",
+            "nl": "Gebruik leesmodus."
+          },
+          "reason": {
+            "en": "Reading does not allow this write operation.",
+            "nl": "Lezen staat deze schrijfbewerking niet toe."
+          }
+        },
+        {
+          "id": "c",
+          "label": {
+            "en": "Keep w and add a comment.",
+            "nl": "Behoud w en voeg commentaar toe."
+          },
+          "reason": {
+            "en": "A comment cannot prevent truncation.",
+            "nl": "Commentaar voorkomt leegmaken niet."
+          }
+        }
+      ],
+      "id": "python-v4-20-quiz-r2-a-5",
+      "reviewActivityIds": [
+        "python-v4-20-append"
+      ]
+    },
+    {
+      "objectiveIds": [
+        "with"
+      ],
+      "category": "application",
+      "prompt": {
+        "en": "Which explanation applies to this example?",
+        "nl": "Welke uitleg past bij dit voorbeeld?"
+      },
+      "code": "with open(\"report.txt\",encoding=\"utf-8\") as handle:\n    text = handle.read()",
+      "answer": "a",
+      "choices": [
+        {
+          "id": "a",
+          "label": {
+            "en": "The handle closes when execution leaves the block.",
+            "nl": "De handle sluit wanneer uitvoering het blok verlaat."
+          },
+          "reason": {
+            "en": "with manages cleanup even on an exception.",
+            "nl": "with beheert opruimen ook bij een uitzondering."
+          }
+        },
+        {
+          "id": "b",
+          "label": {
+            "en": "The file is deleted after reading.",
+            "nl": "Het bestand wordt na lezen verwijderd."
+          },
+          "reason": {
+            "en": "Closing is not deletion.",
+            "nl": "Sluiten is niet verwijderen."
+          }
+        },
+        {
+          "id": "c",
+          "label": {
+            "en": "The text becomes a permanent local computer file.",
+            "nl": "De tekst wordt een permanent lokaal computerbestand."
+          },
+          "reason": {
+            "en": "The course workspace is separate from computer folders.",
+            "nl": "De cursuswerkruimte staat los van computermappen."
+          }
+        }
+      ],
+      "id": "python-v4-20-quiz-r2-a-6",
+      "reviewActivityIds": [
+        "python-v4-20-read"
+      ]
+    }
+  ],
+  "alternateQuestions": [
+    {
+      "objectiveIds": [
+        "file-position"
+      ],
+      "category": "prediction",
+      "prompt": {
+        "en": "What does this program print?",
+        "nl": "Wat drukt dit programma af?"
+      },
+      "code": "with open(\"quiz.txt\",\"w\",encoding=\"utf-8\") as handle:\n    handle.write(\"Top\\nBody\")\nwith open(\"quiz.txt\",encoding=\"utf-8\") as handle:\n    header = handle.readline()\n    print(handle.read())",
+      "answer": "a",
+      "expectedOutput": "Body\n",
+      "choices": [
+        {
+          "id": "a",
+          "label": {
+            "en": "Body",
+            "nl": "Body"
+          },
+          "reason": {
+            "en": "readline consumed the header before read began.",
+            "nl": "readline gebruikte de kop vóór read begon."
+          }
+        },
+        {
+          "id": "b",
+          "label": {
+            "en": "Top\nBody",
+            "nl": "Top\nBody"
+          },
+          "reason": {
+            "en": "The handle does not rewind automatically.",
+            "nl": "De handle gaat niet automatisch terug naar het begin."
+          }
+        },
+        {
+          "id": "c",
+          "label": {
+            "en": "Top",
+            "nl": "Top"
+          },
+          "reason": {
+            "en": "The second read starts after the header.",
+            "nl": "De tweede leesactie begint na de kop."
+          }
+        }
+      ],
+      "id": "python-v4-20-quiz-r2-b-1",
+      "reviewActivityIds": [
+        "python-v4-20-position"
+      ]
+    },
+    {
+      "objectiveIds": [
+        "get"
+      ],
+      "category": "prediction",
+      "prompt": {
+        "en": "What does this program print?",
+        "nl": "Wat drukt dit programma af?"
+      },
+      "code": "record = {\"count\":0}\nprint(record.get(\"missing\", 7))",
+      "answer": "a",
+      "expectedOutput": "7\n",
+      "choices": [
+        {
+          "id": "a",
+          "label": {
+            "en": "7",
+            "nl": "7"
+          },
+          "reason": {
+            "en": "get uses the default only when the key is missing, not when its value is zero.",
+            "nl": "get gebruikt de standaard alleen als de sleutel ontbreekt, niet als de waarde nul is."
+          }
+        },
+        {
+          "id": "b",
+          "label": {
+            "en": "0",
+            "nl": "0"
+          },
+          "reason": {
+            "en": "get uses the default only when the key is missing, not when its value is zero.",
+            "nl": "get gebruikt de standaard alleen als de sleutel ontbreekt, niet als de waarde nul is."
+          }
+        },
+        {
+          "id": "c",
+          "label": {
+            "en": "KeyError",
+            "nl": "KeyError"
+          },
+          "reason": {
+            "en": "get uses the default only when the key is missing, not when its value is zero.",
+            "nl": "get gebruikt de standaard alleen als de sleutel ontbreekt, niet als de waarde nul is."
+          }
+        }
+      ],
+      "id": "python-v4-20-quiz-r2-b-2",
+      "reviewActivityIds": [
+        "python-v4-19-lookup"
+      ]
+    },
+    {
+      "objectiveIds": [
+        "write"
+      ],
+      "category": "completion",
+      "prompt": {
+        "en": "Complete the code to produce the shown output.",
+        "nl": "Vul de code aan om de getoonde uitvoer te maken."
+      },
+      "code": "with open(\"quiz.txt\",___,encoding=\"utf-8\") as handle:\n    handle.write(\"Top\")\nwith open(\"quiz.txt\",encoding=\"utf-8\") as handle:\n    print(handle.read())",
+      "answer": "a",
+      "choices": [
+        {
+          "id": "a",
+          "label": {
+            "en": "\"w\"",
+            "nl": "\"w\""
+          },
+          "reason": {
+            "en": "w creates or replaces a file for writing.",
+            "nl": "w maakt of vervangt een bestand om te schrijven."
+          }
+        },
+        {
+          "id": "b",
+          "label": {
+            "en": "\"r\"",
+            "nl": "\"r\""
+          },
+          "reason": {
+            "en": "Using \"r\" here produces FileNotFoundError. w creates or replaces a file for writing.",
+            "nl": "Met \"r\" ontstaat hier FileNotFoundError. w maakt of vervangt een bestand om te schrijven."
+          }
+        },
+        {
+          "id": "c",
+          "label": {
+            "en": "\"rb\"",
+            "nl": "\"rb\""
+          },
+          "reason": {
+            "en": "Using \"rb\" here produces ValueError. w creates or replaces a file for writing.",
+            "nl": "Met \"rb\" ontstaat hier ValueError. w maakt of vervangt een bestand om te schrijven."
+          }
+        }
+      ],
+      "codeBlank": {
+        "prompt": {
+          "en": "Complete the code to produce the shown output.",
+          "nl": "Vul de code aan om de getoonde uitvoer te maken."
+        },
+        "segments": [
+          "with open(\"quiz.txt\",",
+          ",encoding=\"utf-8\") as handle:\n    handle.write(\"Top\")\nwith open(\"quiz.txt\",encoding=\"utf-8\") as handle:\n    print(handle.read())"
+        ],
+        "tokens": [
+          {
+            "id": "token-1",
+            "code": "\"w\""
+          },
+          {
+            "id": "token-2",
+            "code": "\"r\"",
+            "reason": {
+              "en": "Using \"r\" here produces FileNotFoundError. w creates or replaces a file for writing.",
+              "nl": "Met \"r\" ontstaat hier FileNotFoundError. w maakt of vervangt een bestand om te schrijven."
+            }
+          },
+          {
+            "id": "token-3",
+            "code": "\"rb\"",
+            "reason": {
+              "en": "Using \"rb\" here produces ValueError. w creates or replaces a file for writing.",
+              "nl": "Met \"rb\" ontstaat hier ValueError. w maakt of vervangt een bestand om te schrijven."
+            }
+          }
+        ],
+        "blanks": [
+          {
+            "answer": "\"w\"",
+            "reason": {
+              "en": "w creates or replaces a file for writing.",
+              "nl": "w maakt of vervangt een bestand om te schrijven."
+            }
+          }
+        ],
+        "output": "Top\n"
+      },
+      "id": "python-v4-20-quiz-r2-b-3",
+      "reviewActivityIds": [
+        "python-v4-20-write"
+      ]
+    },
+    {
+      "objectiveIds": [
+        "items"
+      ],
+      "category": "completion",
+      "prompt": {
+        "en": "Complete the code to produce the shown output.",
+        "nl": "Vul de code aan om de getoonde uitvoer te maken."
+      },
+      "code": "record = {\"Jo\":0}\nfor name, value in record.___():\n    print(name, value)",
+      "answer": "a",
+      "choices": [
+        {
+          "id": "a",
+          "label": {
+            "en": "items",
+            "nl": "items"
+          },
+          "reason": {
+            "en": "Follow the operation and its input type, then compare the exact result shown.",
+            "nl": "Volg de bewerking en het invoertype en vergelijk daarna het precieze getoonde resultaat."
+          }
+        },
+        {
+          "id": "b",
+          "label": {
+            "en": "keys",
+            "nl": "keys"
+          },
+          "reason": {
+            "en": "Using keys prints \"J o\\n\"; the required output is \"Jo 0\\n\". Follow the operation and its input type, then compare the exact result shown.",
+            "nl": "Met keys wordt \"J o\\n\" afgedrukt; de vereiste uitvoer is \"Jo 0\\n\". Volg de bewerking en het invoertype en vergelijk daarna het precieze getoonde resultaat."
+          }
+        },
+        {
+          "id": "c",
+          "label": {
+            "en": "values",
+            "nl": "values"
+          },
+          "reason": {
+            "en": "Using values here produces TypeError. Follow the operation and its input type, then compare the exact result shown.",
+            "nl": "Met values ontstaat hier TypeError. Volg de bewerking en het invoertype en vergelijk daarna het precieze getoonde resultaat."
+          }
+        }
+      ],
+      "codeBlank": {
+        "prompt": {
+          "en": "Complete the code to produce the shown output.",
+          "nl": "Vul de code aan om de getoonde uitvoer te maken."
+        },
+        "segments": [
+          "record = {\"Jo\":0}\nfor name, value in record.",
+          "():\n    print(name, value)"
+        ],
+        "tokens": [
+          {
+            "id": "token-1",
+            "code": "items"
+          },
+          {
+            "id": "token-2",
+            "code": "keys",
+            "reason": {
+              "en": "Using keys prints \"J o\\n\"; the required output is \"Jo 0\\n\". Follow the operation and its input type, then compare the exact result shown.",
+              "nl": "Met keys wordt \"J o\\n\" afgedrukt; de vereiste uitvoer is \"Jo 0\\n\". Volg de bewerking en het invoertype en vergelijk daarna het precieze getoonde resultaat."
+            }
+          },
+          {
+            "id": "token-3",
+            "code": "values",
+            "reason": {
+              "en": "Using values here produces TypeError. Follow the operation and its input type, then compare the exact result shown.",
+              "nl": "Met values ontstaat hier TypeError. Volg de bewerking en het invoertype en vergelijk daarna het precieze getoonde resultaat."
+            }
+          }
+        ],
+        "blanks": [
+          {
+            "answer": "items",
+            "reason": {
+              "en": "Follow the operation and its input type, then compare the exact result shown.",
+              "nl": "Volg de bewerking en het invoertype en vergelijk daarna het precieze getoonde resultaat."
+            }
+          }
+        ],
+        "output": "Jo 0\n"
+      },
+      "id": "python-v4-20-quiz-r2-b-4",
+      "reviewActivityIds": [
+        "python-v4-19-views"
+      ]
+    },
+    {
+      "objectiveIds": [
+        "append-files"
+      ],
+      "category": "debugging",
+      "prompt": {
+        "en": "Choose the repair or test that addresses the stated problem.",
+        "nl": "Kies de reparatie of test die het beschreven probleem aanpakt."
+      },
+      "code": "# Preserve older entries when adding Top.\nwith open(\"log.txt\",\"w\",encoding=\"utf-8\") as handle:\n    handle.write(\"Top\\n\")",
+      "answer": "a",
+      "choices": [
+        {
+          "id": "a",
+          "label": {
+            "en": "Use mode a.",
+            "nl": "Gebruik modus a."
+          },
+          "reason": {
+            "en": "Append preserves previous entries.",
+            "nl": "Toevoegen bewaart eerdere invoeren."
+          }
+        },
+        {
+          "id": "b",
+          "label": {
+            "en": "Use read mode.",
+            "nl": "Gebruik leesmodus."
+          },
+          "reason": {
+            "en": "Reading does not allow this write operation.",
+            "nl": "Lezen staat deze schrijfbewerking niet toe."
+          }
+        },
+        {
+          "id": "c",
+          "label": {
+            "en": "Keep w and add a comment.",
+            "nl": "Behoud w en voeg commentaar toe."
+          },
+          "reason": {
+            "en": "A comment cannot prevent truncation.",
+            "nl": "Commentaar voorkomt leegmaken niet."
+          }
+        }
+      ],
+      "id": "python-v4-20-quiz-r2-b-5",
+      "reviewActivityIds": [
+        "python-v4-20-append"
+      ]
+    },
+    {
+      "objectiveIds": [
+        "with"
+      ],
+      "category": "application",
+      "prompt": {
+        "en": "Which explanation applies to this example?",
+        "nl": "Welke uitleg past bij dit voorbeeld?"
+      },
+      "code": "with open(\"notes.txt\",encoding=\"utf-8\") as handle:\n    text = handle.read()",
+      "answer": "a",
+      "choices": [
+        {
+          "id": "a",
+          "label": {
+            "en": "The handle closes when execution leaves the block.",
+            "nl": "De handle sluit wanneer uitvoering het blok verlaat."
+          },
+          "reason": {
+            "en": "with manages cleanup even on an exception.",
+            "nl": "with beheert opruimen ook bij een uitzondering."
+          }
+        },
+        {
+          "id": "b",
+          "label": {
+            "en": "The file is deleted after reading.",
+            "nl": "Het bestand wordt na lezen verwijderd."
+          },
+          "reason": {
+            "en": "Closing is not deletion.",
+            "nl": "Sluiten is niet verwijderen."
+          }
+        },
+        {
+          "id": "c",
+          "label": {
+            "en": "The text becomes a permanent local computer file.",
+            "nl": "De tekst wordt een permanent lokaal computerbestand."
+          },
+          "reason": {
+            "en": "The course workspace is separate from computer folders.",
+            "nl": "De cursuswerkruimte staat los van computermappen."
+          }
+        }
+      ],
+      "id": "python-v4-20-quiz-r2-b-6",
+      "reviewActivityIds": [
+        "python-v4-20-read"
+      ]
+    }
+  ]
+}

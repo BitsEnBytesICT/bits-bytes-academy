@@ -525,8 +525,8 @@ export const specs = [
       ),
       debug: D("invalid-keys", `record = {[${n},2]: "place"}`, [
         R(
-          "Use a tuple (n, 2) as the coordinate key.",
-          "Gebruik een tuple (n, 2) als coördinaatsleutel.",
+          `Use a tuple (${n}, 2) as the coordinate key.`,
+          `Gebruik een tuple (${n}, 2) als coördinaatsleutel.`,
           "A tuple of integers is hashable; a list is not.",
           "Een tuple gehele getallen is hashbaar; een lijst niet.",
         ),
@@ -595,7 +595,7 @@ export const specs = [
         "write",
         `with open("quiz.txt",___,encoding="utf-8") as handle:\n    handle.write("${word}")\nwith open("quiz.txt",encoding="utf-8") as handle:\n    print(handle.read())`,
         '"w"',
-        ['"r"', '"x-invalid"'],
+        ['"r"', '"rb"'],
         [
           "w creates or replaces a file for writing.",
           "w maakt of vervangt een bestand om te schrijven.",
@@ -687,7 +687,7 @@ export const specs = [
       ),
       debug: D(
         "csv-quoting",
-        `# Need two fields: Ada and Paris, France\nline = '${alt ? "Bo" : "Ada"},"Paris, France"'\nfields = line.split(",")`,
+        `# Need two fields: ${alt ? "Bo" : "Ada"} and Paris, France\nline = '${alt ? "Bo" : "Ada"},"Paris, France"'\nfields = line.split(",")`,
         [
           R(
             "Use a CSV reader that understands quoting.",

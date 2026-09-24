@@ -53,6 +53,18 @@
       }
     },
     {
+      "id": "python-v4-16-score-once-trace",
+      "topicIds": [],
+      "heading": {
+        "en": "Follow two frames",
+        "nl": "Volg twee beelden"
+      },
+      "body": {
+        "en": "Frame 1 starts x=-7, vx=-100, right=0: award right=1 and reset x=320, vx=0. Frame 2 starts with that returned state: x is inside the court, so right stays 1. If x stayed -7, frame 2 would wrongly award another point.",
+        "nl": "Beeld 1 begint met x=-7, vx=-100, right=0: ken right=1 toe en zet x=320, vx=0. Beeld 2 begint met die teruggegeven toestand: x ligt binnen het veld, dus right blijft 1. Als x -7 bleef, zou beeld 2 ten onrechte nog een punt geven."
+      }
+    },
+    {
       "topicIds": [],
       "heading": {
         "en": "Run, observe, finish",
@@ -65,10 +77,11 @@
     },
     {
       "id": "python-v4-16-score-once-experiment",
+      "role": "experiment",
       "topicIds": [],
       "heading": {
-        "en": "Try one change",
-        "nl": "Probeer één wijziging"
+        "en": "After completing the task: try one change",
+        "nl": "Na het afronden: probeer één wijziging"
       },
       "body": {
         "en": "Leave the preview running after the miss. Check that the score stops increasing.",
@@ -174,17 +187,16 @@
   "inputs": [],
   "retrievals": [
     {
-      "id": "recall-python-v4-14-helper-files",
-      "sourceActivityId": "python-v4-14-helper-files",
+      "id": "recall-python-v4-07-elif",
+      "sourceActivityId": "python-v4-07-elif",
       "objectiveIds": [
-        "helper-modules",
-        "module-scope",
-        "installing"
+        "elif"
       ],
       "prompt": {
-        "en": "Recall “Put reusable code in another file”. Does import copy every math name into this file? Try the earlier example from memory, then check it. Add another call in main.py with a different argument. Explain which file owns the function.",
-        "nl": "Haal “Zet herbruikbare code in een ander bestand” terug. Kopieert import elke math-naam naar dit bestand? Probeer het eerdere voorbeeld uit je geheugen en controleer daarna. Voeg in main.py nog een aanroep toe met een ander argument. Leg uit welk bestand de functie bevat."
-      }
+        "en": "Recall choose among several actions. Why is the first comparison checked before the second? Test 9, 10, 19 and 20. Explain why 20 belongs to Warm.",
+        "nl": "Herhaal kies tussen meerdere acties. Waarom wordt de eerste vergelijking vóór de tweede gecontroleerd? Test 9, 10, 19 en 20. Leg uit waarom 20 bij Warm hoort."
+      },
+      "code": "score = 8\nif score >= 9:\n    print(\"Excellent\")\nelif score >= 6:\n    print(\"Pass\")\nelse:\n    print(\"Review\")"
     }
   ]
 }

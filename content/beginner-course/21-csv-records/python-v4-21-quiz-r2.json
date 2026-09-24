@@ -1,0 +1,800 @@
+{
+  "id": "python-v4-21-quiz-r2",
+  "chapter": 21,
+  "group": "python-v4-module-21",
+  "kind": "quiz",
+  "optional": false,
+  "estimatedMinutes": 8,
+  "title": {
+    "en": "CSV records: review",
+    "nl": "CSV-records: herhaling"
+  },
+  "questions": [
+    {
+      "objectiveIds": [
+        "csv-numeric-conversion"
+      ],
+      "category": "prediction",
+      "prompt": {
+        "en": "What does this program print?",
+        "nl": "Wat drukt dit programma af?"
+      },
+      "code": "row = {\"name\":\"Ada\",\"score\":\"4\"}\nprint(int(row[\"score\"]) + 2)",
+      "answer": "a",
+      "expectedOutput": "6\n",
+      "choices": [
+        {
+          "id": "a",
+          "label": {
+            "en": "6",
+            "nl": "6"
+          },
+          "reason": {
+            "en": "Conversion happens before numeric addition.",
+            "nl": "Omzetting gebeurt vóór numeriek optellen."
+          }
+        },
+        {
+          "id": "b",
+          "label": {
+            "en": "42",
+            "nl": "42"
+          },
+          "reason": {
+            "en": "That would concatenate two strings.",
+            "nl": "Dat zou twee strings samenvoegen."
+          }
+        },
+        {
+          "id": "c",
+          "label": {
+            "en": "TypeError",
+            "nl": "TypeError"
+          },
+          "reason": {
+            "en": "int converts this valid field successfully.",
+            "nl": "int zet dit geldige veld met succes om."
+          }
+        }
+      ],
+      "id": "python-v4-21-quiz-r2-a-1",
+      "reviewActivityIds": [
+        "python-v4-21-named-records"
+      ]
+    },
+    {
+      "objectiveIds": [
+        "file-position"
+      ],
+      "category": "prediction",
+      "prompt": {
+        "en": "What does this program print?",
+        "nl": "Wat drukt dit programma af?"
+      },
+      "code": "import io\nhandle = io.StringIO(\"one\\ntwo\\n\")\nhandle.readline()\nprint(repr(handle.read()))",
+      "answer": "a",
+      "expectedOutput": "'two\\n'\n",
+      "choices": [
+        {
+          "id": "a",
+          "label": {
+            "en": "'two\\n'",
+            "nl": "'two\\n'"
+          },
+          "reason": {
+            "en": "Reading advances the cursor. A later read starts from the current position.",
+            "nl": "Lezen verplaatst de cursor. Later lezen begint op de huidige positie."
+          }
+        },
+        {
+          "id": "b",
+          "label": {
+            "en": "'one\\ntwo\\n'",
+            "nl": "'one\\ntwo\\n'"
+          },
+          "reason": {
+            "en": "Reading advances the cursor. A later read starts from the current position.",
+            "nl": "Lezen verplaatst de cursor. Later lezen begint op de huidige positie."
+          }
+        },
+        {
+          "id": "c",
+          "label": {
+            "en": "''",
+            "nl": "''"
+          },
+          "reason": {
+            "en": "Reading advances the cursor. A later read starts from the current position.",
+            "nl": "Lezen verplaatst de cursor. Later lezen begint op de huidige positie."
+          }
+        }
+      ],
+      "id": "python-v4-21-quiz-r2-a-2",
+      "reviewActivityIds": [
+        "python-v4-20-position"
+      ]
+    },
+    {
+      "objectiveIds": [
+        "dict-reader"
+      ],
+      "category": "completion",
+      "prompt": {
+        "en": "Complete the code to produce the shown output.",
+        "nl": "Vul de code aan om de getoonde uitvoer te maken."
+      },
+      "code": "import csv\nwith open(\"quiz.csv\",\"w\",newline=\"\",encoding=\"utf-8\") as handle:\n    handle.write(\"name,score\\nAda,4\\n\")\nwith open(\"quiz.csv\",newline=\"\",encoding=\"utf-8\") as handle:\n    for row in csv.___(handle):\n        print(row[\"name\"])",
+      "answer": "a",
+      "choices": [
+        {
+          "id": "a",
+          "label": {
+            "en": "DictReader",
+            "nl": "DictReader"
+          },
+          "reason": {
+            "en": "DictReader uses the first row as keys. reader gives lists and writer writes output.",
+            "nl": "DictReader gebruikt de eerste rij als sleutels. reader geeft lijsten en writer schrijft uitvoer."
+          }
+        },
+        {
+          "id": "b",
+          "label": {
+            "en": "reader",
+            "nl": "reader"
+          },
+          "reason": {
+            "en": "Using reader here produces TypeError. DictReader uses the first row as keys. reader gives lists and writer writes output.",
+            "nl": "Met reader ontstaat hier TypeError. DictReader gebruikt de eerste rij als sleutels. reader geeft lijsten en writer schrijft uitvoer."
+          }
+        },
+        {
+          "id": "c",
+          "label": {
+            "en": "writer",
+            "nl": "writer"
+          },
+          "reason": {
+            "en": "Using writer here produces TypeError. DictReader uses the first row as keys. reader gives lists and writer writes output.",
+            "nl": "Met writer ontstaat hier TypeError. DictReader gebruikt de eerste rij als sleutels. reader geeft lijsten en writer schrijft uitvoer."
+          }
+        }
+      ],
+      "codeBlank": {
+        "prompt": {
+          "en": "Complete the code to produce the shown output.",
+          "nl": "Vul de code aan om de getoonde uitvoer te maken."
+        },
+        "segments": [
+          "import csv\nwith open(\"quiz.csv\",\"w\",newline=\"\",encoding=\"utf-8\") as handle:\n    handle.write(\"name,score\\nAda,4\\n\")\nwith open(\"quiz.csv\",newline=\"\",encoding=\"utf-8\") as handle:\n    for row in csv.",
+          "(handle):\n        print(row[\"name\"])"
+        ],
+        "tokens": [
+          {
+            "id": "token-1",
+            "code": "DictReader"
+          },
+          {
+            "id": "token-2",
+            "code": "reader",
+            "reason": {
+              "en": "Using reader here produces TypeError. DictReader uses the first row as keys. reader gives lists and writer writes output.",
+              "nl": "Met reader ontstaat hier TypeError. DictReader gebruikt de eerste rij als sleutels. reader geeft lijsten en writer schrijft uitvoer."
+            }
+          },
+          {
+            "id": "token-3",
+            "code": "writer",
+            "reason": {
+              "en": "Using writer here produces TypeError. DictReader uses the first row as keys. reader gives lists and writer writes output.",
+              "nl": "Met writer ontstaat hier TypeError. DictReader gebruikt de eerste rij als sleutels. reader geeft lijsten en writer schrijft uitvoer."
+            }
+          }
+        ],
+        "blanks": [
+          {
+            "answer": "DictReader",
+            "reason": {
+              "en": "DictReader uses the first row as keys. reader gives lists and writer writes output.",
+              "nl": "DictReader gebruikt de eerste rij als sleutels. reader geeft lijsten en writer schrijft uitvoer."
+            }
+          }
+        ],
+        "output": "Ada\n"
+      },
+      "id": "python-v4-21-quiz-r2-a-3",
+      "reviewActivityIds": [
+        "python-v4-21-named-records"
+      ]
+    },
+    {
+      "objectiveIds": [
+        "readline"
+      ],
+      "category": "completion",
+      "prompt": {
+        "en": "Complete the code to produce the shown output.",
+        "nl": "Vul de code aan om de getoonde uitvoer te maken."
+      },
+      "code": "import io\nhandle = io.StringIO(\"a\\nb\\n\")\nprint(repr(handle.___()))",
+      "answer": "a",
+      "choices": [
+        {
+          "id": "a",
+          "label": {
+            "en": "readline",
+            "nl": "readline"
+          },
+          "reason": {
+            "en": "Follow the operation and its input type, then compare the exact result shown.",
+            "nl": "Volg de bewerking en het invoertype en vergelijk daarna het precieze getoonde resultaat."
+          }
+        },
+        {
+          "id": "b",
+          "label": {
+            "en": "read",
+            "nl": "read"
+          },
+          "reason": {
+            "en": "Using read prints \"'a\\\\nb\\\\n'\\n\"; the required output is \"'a\\\\n'\\n\". Follow the operation and its input type, then compare the exact result shown.",
+            "nl": "Met read wordt \"'a\\\\nb\\\\n'\\n\" afgedrukt; de vereiste uitvoer is \"'a\\\\n'\\n\". Volg de bewerking en het invoertype en vergelijk daarna het precieze getoonde resultaat."
+          }
+        },
+        {
+          "id": "c",
+          "label": {
+            "en": "readlines",
+            "nl": "readlines"
+          },
+          "reason": {
+            "en": "Using readlines prints \"['a\\\\n', 'b\\\\n']\\n\"; the required output is \"'a\\\\n'\\n\". Follow the operation and its input type, then compare the exact result shown.",
+            "nl": "Met readlines wordt \"['a\\\\n', 'b\\\\n']\\n\" afgedrukt; de vereiste uitvoer is \"'a\\\\n'\\n\". Volg de bewerking en het invoertype en vergelijk daarna het precieze getoonde resultaat."
+          }
+        }
+      ],
+      "codeBlank": {
+        "prompt": {
+          "en": "Complete the code to produce the shown output.",
+          "nl": "Vul de code aan om de getoonde uitvoer te maken."
+        },
+        "segments": [
+          "import io\nhandle = io.StringIO(\"a\\nb\\n\")\nprint(repr(handle.",
+          "()))"
+        ],
+        "tokens": [
+          {
+            "id": "token-1",
+            "code": "readline"
+          },
+          {
+            "id": "token-2",
+            "code": "read",
+            "reason": {
+              "en": "Using read prints \"'a\\\\nb\\\\n'\\n\"; the required output is \"'a\\\\n'\\n\". Follow the operation and its input type, then compare the exact result shown.",
+              "nl": "Met read wordt \"'a\\\\nb\\\\n'\\n\" afgedrukt; de vereiste uitvoer is \"'a\\\\n'\\n\". Volg de bewerking en het invoertype en vergelijk daarna het precieze getoonde resultaat."
+            }
+          },
+          {
+            "id": "token-3",
+            "code": "readlines",
+            "reason": {
+              "en": "Using readlines prints \"['a\\\\n', 'b\\\\n']\\n\"; the required output is \"'a\\\\n'\\n\". Follow the operation and its input type, then compare the exact result shown.",
+              "nl": "Met readlines wordt \"['a\\\\n', 'b\\\\n']\\n\" afgedrukt; de vereiste uitvoer is \"'a\\\\n'\\n\". Volg de bewerking en het invoertype en vergelijk daarna het precieze getoonde resultaat."
+            }
+          }
+        ],
+        "blanks": [
+          {
+            "answer": "readline",
+            "reason": {
+              "en": "Follow the operation and its input type, then compare the exact result shown.",
+              "nl": "Volg de bewerking en het invoertype en vergelijk daarna het precieze getoonde resultaat."
+            }
+          }
+        ],
+        "output": "'a\\n'\n"
+      },
+      "id": "python-v4-21-quiz-r2-a-4",
+      "reviewActivityIds": [
+        "python-v4-20-position"
+      ]
+    },
+    {
+      "objectiveIds": [
+        "csv-quoting"
+      ],
+      "category": "debugging",
+      "prompt": {
+        "en": "Choose the repair or test that addresses the stated problem.",
+        "nl": "Kies de reparatie of test die het beschreven probleem aanpakt."
+      },
+      "code": "# Need two fields: Ada and Paris, France\nline = 'Ada,\"Paris, France\"'\nfields = line.split(\",\")",
+      "answer": "a",
+      "choices": [
+        {
+          "id": "a",
+          "label": {
+            "en": "Use a CSV reader that understands quoting.",
+            "nl": "Gebruik een CSV-lezer die aanhalingstekens begrijpt."
+          },
+          "reason": {
+            "en": "The comma inside the quoted city is part of the data.",
+            "nl": "De komma binnen de aangehaalde stad hoort bij de gegevens."
+          }
+        },
+        {
+          "id": "b",
+          "label": {
+            "en": "Remove all commas first.",
+            "nl": "Verwijder eerst alle komma’s."
+          },
+          "reason": {
+            "en": "That destroys both separators and meaningful punctuation.",
+            "nl": "Dat vernietigt zowel scheidingen als betekenisvolle leestekens."
+          }
+        },
+        {
+          "id": "c",
+          "label": {
+            "en": "Split twice instead.",
+            "nl": "Splits in plaats daarvan tweemaal."
+          },
+          "reason": {
+            "en": "Repeated splitting still ignores quoting rules.",
+            "nl": "Herhaald splitsen negeert nog steeds aanhalingsregels."
+          }
+        }
+      ],
+      "id": "python-v4-21-quiz-r2-a-5",
+      "reviewActivityIds": [
+        "python-v4-21-rows"
+      ]
+    },
+    {
+      "objectiveIds": [
+        "csv-write"
+      ],
+      "category": "application",
+      "prompt": {
+        "en": "Which explanation applies to this example?",
+        "nl": "Welke uitleg past bij dit voorbeeld?"
+      },
+      "code": "writer = csv.DictWriter(handle,fieldnames=[\"name\",\"score\"])\nwriter.writeheader() # export 4",
+      "answer": "a",
+      "choices": [
+        {
+          "id": "a",
+          "label": {
+            "en": "fieldnames determines the exported column order.",
+            "nl": "fieldnames bepaalt de geëxporteerde kolomvolgorde."
+          },
+          "reason": {
+            "en": "The writer uses these names for the header and values.",
+            "nl": "De schrijver gebruikt deze namen voor kop en waarden."
+          }
+        },
+        {
+          "id": "b",
+          "label": {
+            "en": "writeheader converts every score to int.",
+            "nl": "writeheader zet elke score naar int om."
+          },
+          "reason": {
+            "en": "Writing a header does not parse input values.",
+            "nl": "Een kop schrijven ontleedt invoerwaarden niet."
+          }
+        },
+        {
+          "id": "c",
+          "label": {
+            "en": "Quoted commas must be escaped manually first.",
+            "nl": "Aangehaalde komma’s moeten eerst handmatig worden gecodeerd."
+          },
+          "reason": {
+            "en": "The CSV writer handles field quoting.",
+            "nl": "De CSV-schrijver verwerkt veldaanhalingstekens."
+          }
+        }
+      ],
+      "id": "python-v4-21-quiz-r2-a-6",
+      "reviewActivityIds": [
+        "python-v4-21-write"
+      ]
+    }
+  ],
+  "alternateQuestions": [
+    {
+      "objectiveIds": [
+        "csv-numeric-conversion"
+      ],
+      "category": "prediction",
+      "prompt": {
+        "en": "What does this program print?",
+        "nl": "Wat drukt dit programma af?"
+      },
+      "code": "row = {\"name\":\"Ada\",\"score\":\"7\"}\nprint(int(row[\"score\"]) + 2)",
+      "answer": "a",
+      "expectedOutput": "9\n",
+      "choices": [
+        {
+          "id": "a",
+          "label": {
+            "en": "9",
+            "nl": "9"
+          },
+          "reason": {
+            "en": "Conversion happens before numeric addition.",
+            "nl": "Omzetting gebeurt vóór numeriek optellen."
+          }
+        },
+        {
+          "id": "b",
+          "label": {
+            "en": "72",
+            "nl": "72"
+          },
+          "reason": {
+            "en": "That would concatenate two strings.",
+            "nl": "Dat zou twee strings samenvoegen."
+          }
+        },
+        {
+          "id": "c",
+          "label": {
+            "en": "TypeError",
+            "nl": "TypeError"
+          },
+          "reason": {
+            "en": "int converts this valid field successfully.",
+            "nl": "int zet dit geldige veld met succes om."
+          }
+        }
+      ],
+      "id": "python-v4-21-quiz-r2-b-1",
+      "reviewActivityIds": [
+        "python-v4-21-named-records"
+      ]
+    },
+    {
+      "objectiveIds": [
+        "file-position"
+      ],
+      "category": "prediction",
+      "prompt": {
+        "en": "What does this program print?",
+        "nl": "Wat drukt dit programma af?"
+      },
+      "code": "import io\nhandle = io.StringIO(\"one\\ntwo\\n\")\nhandle.read()\nprint(repr(handle.read()))",
+      "answer": "a",
+      "expectedOutput": "''\n",
+      "choices": [
+        {
+          "id": "a",
+          "label": {
+            "en": "''",
+            "nl": "''"
+          },
+          "reason": {
+            "en": "Reading advances the cursor. A later read starts from the current position.",
+            "nl": "Lezen verplaatst de cursor. Later lezen begint op de huidige positie."
+          }
+        },
+        {
+          "id": "b",
+          "label": {
+            "en": "'one\\ntwo\\n'",
+            "nl": "'one\\ntwo\\n'"
+          },
+          "reason": {
+            "en": "Reading advances the cursor. A later read starts from the current position.",
+            "nl": "Lezen verplaatst de cursor. Later lezen begint op de huidige positie."
+          }
+        },
+        {
+          "id": "c",
+          "label": {
+            "en": "'two\\n'",
+            "nl": "'two\\n'"
+          },
+          "reason": {
+            "en": "Reading advances the cursor. A later read starts from the current position.",
+            "nl": "Lezen verplaatst de cursor. Later lezen begint op de huidige positie."
+          }
+        }
+      ],
+      "id": "python-v4-21-quiz-r2-b-2",
+      "reviewActivityIds": [
+        "python-v4-20-position"
+      ]
+    },
+    {
+      "objectiveIds": [
+        "dict-reader"
+      ],
+      "category": "completion",
+      "prompt": {
+        "en": "Complete the code to produce the shown output.",
+        "nl": "Vul de code aan om de getoonde uitvoer te maken."
+      },
+      "code": "import csv\nwith open(\"quiz.csv\",\"w\",newline=\"\",encoding=\"utf-8\") as handle:\n    handle.write(\"name,score\\nAda,7\\n\")\nwith open(\"quiz.csv\",newline=\"\",encoding=\"utf-8\") as handle:\n    for row in csv.___(handle):\n        print(row[\"name\"])",
+      "answer": "a",
+      "choices": [
+        {
+          "id": "a",
+          "label": {
+            "en": "DictReader",
+            "nl": "DictReader"
+          },
+          "reason": {
+            "en": "DictReader uses the first row as keys. reader gives lists and writer writes output.",
+            "nl": "DictReader gebruikt de eerste rij als sleutels. reader geeft lijsten en writer schrijft uitvoer."
+          }
+        },
+        {
+          "id": "b",
+          "label": {
+            "en": "reader",
+            "nl": "reader"
+          },
+          "reason": {
+            "en": "Using reader here produces TypeError. DictReader uses the first row as keys. reader gives lists and writer writes output.",
+            "nl": "Met reader ontstaat hier TypeError. DictReader gebruikt de eerste rij als sleutels. reader geeft lijsten en writer schrijft uitvoer."
+          }
+        },
+        {
+          "id": "c",
+          "label": {
+            "en": "writer",
+            "nl": "writer"
+          },
+          "reason": {
+            "en": "Using writer here produces TypeError. DictReader uses the first row as keys. reader gives lists and writer writes output.",
+            "nl": "Met writer ontstaat hier TypeError. DictReader gebruikt de eerste rij als sleutels. reader geeft lijsten en writer schrijft uitvoer."
+          }
+        }
+      ],
+      "codeBlank": {
+        "prompt": {
+          "en": "Complete the code to produce the shown output.",
+          "nl": "Vul de code aan om de getoonde uitvoer te maken."
+        },
+        "segments": [
+          "import csv\nwith open(\"quiz.csv\",\"w\",newline=\"\",encoding=\"utf-8\") as handle:\n    handle.write(\"name,score\\nAda,7\\n\")\nwith open(\"quiz.csv\",newline=\"\",encoding=\"utf-8\") as handle:\n    for row in csv.",
+          "(handle):\n        print(row[\"name\"])"
+        ],
+        "tokens": [
+          {
+            "id": "token-1",
+            "code": "DictReader"
+          },
+          {
+            "id": "token-2",
+            "code": "reader",
+            "reason": {
+              "en": "Using reader here produces TypeError. DictReader uses the first row as keys. reader gives lists and writer writes output.",
+              "nl": "Met reader ontstaat hier TypeError. DictReader gebruikt de eerste rij als sleutels. reader geeft lijsten en writer schrijft uitvoer."
+            }
+          },
+          {
+            "id": "token-3",
+            "code": "writer",
+            "reason": {
+              "en": "Using writer here produces TypeError. DictReader uses the first row as keys. reader gives lists and writer writes output.",
+              "nl": "Met writer ontstaat hier TypeError. DictReader gebruikt de eerste rij als sleutels. reader geeft lijsten en writer schrijft uitvoer."
+            }
+          }
+        ],
+        "blanks": [
+          {
+            "answer": "DictReader",
+            "reason": {
+              "en": "DictReader uses the first row as keys. reader gives lists and writer writes output.",
+              "nl": "DictReader gebruikt de eerste rij als sleutels. reader geeft lijsten en writer schrijft uitvoer."
+            }
+          }
+        ],
+        "output": "Ada\n"
+      },
+      "id": "python-v4-21-quiz-r2-b-3",
+      "reviewActivityIds": [
+        "python-v4-21-named-records"
+      ]
+    },
+    {
+      "objectiveIds": [
+        "readline"
+      ],
+      "category": "completion",
+      "prompt": {
+        "en": "Complete the code to produce the shown output.",
+        "nl": "Vul de code aan om de getoonde uitvoer te maken."
+      },
+      "code": "import io\nhandle = io.StringIO(\"a\\nb\\n\")\nprint(repr(handle.___()))",
+      "answer": "a",
+      "choices": [
+        {
+          "id": "a",
+          "label": {
+            "en": "readline",
+            "nl": "readline"
+          },
+          "reason": {
+            "en": "Follow the operation and its input type, then compare the exact result shown.",
+            "nl": "Volg de bewerking en het invoertype en vergelijk daarna het precieze getoonde resultaat."
+          }
+        },
+        {
+          "id": "b",
+          "label": {
+            "en": "read",
+            "nl": "read"
+          },
+          "reason": {
+            "en": "Using read prints \"'a\\\\nb\\\\n'\\n\"; the required output is \"'a\\\\n'\\n\". Follow the operation and its input type, then compare the exact result shown.",
+            "nl": "Met read wordt \"'a\\\\nb\\\\n'\\n\" afgedrukt; de vereiste uitvoer is \"'a\\\\n'\\n\". Volg de bewerking en het invoertype en vergelijk daarna het precieze getoonde resultaat."
+          }
+        },
+        {
+          "id": "c",
+          "label": {
+            "en": "readlines",
+            "nl": "readlines"
+          },
+          "reason": {
+            "en": "Using readlines prints \"['a\\\\n', 'b\\\\n']\\n\"; the required output is \"'a\\\\n'\\n\". Follow the operation and its input type, then compare the exact result shown.",
+            "nl": "Met readlines wordt \"['a\\\\n', 'b\\\\n']\\n\" afgedrukt; de vereiste uitvoer is \"'a\\\\n'\\n\". Volg de bewerking en het invoertype en vergelijk daarna het precieze getoonde resultaat."
+          }
+        }
+      ],
+      "codeBlank": {
+        "prompt": {
+          "en": "Complete the code to produce the shown output.",
+          "nl": "Vul de code aan om de getoonde uitvoer te maken."
+        },
+        "segments": [
+          "import io\nhandle = io.StringIO(\"a\\nb\\n\")\nprint(repr(handle.",
+          "()))"
+        ],
+        "tokens": [
+          {
+            "id": "token-1",
+            "code": "readline"
+          },
+          {
+            "id": "token-2",
+            "code": "read",
+            "reason": {
+              "en": "Using read prints \"'a\\\\nb\\\\n'\\n\"; the required output is \"'a\\\\n'\\n\". Follow the operation and its input type, then compare the exact result shown.",
+              "nl": "Met read wordt \"'a\\\\nb\\\\n'\\n\" afgedrukt; de vereiste uitvoer is \"'a\\\\n'\\n\". Volg de bewerking en het invoertype en vergelijk daarna het precieze getoonde resultaat."
+            }
+          },
+          {
+            "id": "token-3",
+            "code": "readlines",
+            "reason": {
+              "en": "Using readlines prints \"['a\\\\n', 'b\\\\n']\\n\"; the required output is \"'a\\\\n'\\n\". Follow the operation and its input type, then compare the exact result shown.",
+              "nl": "Met readlines wordt \"['a\\\\n', 'b\\\\n']\\n\" afgedrukt; de vereiste uitvoer is \"'a\\\\n'\\n\". Volg de bewerking en het invoertype en vergelijk daarna het precieze getoonde resultaat."
+            }
+          }
+        ],
+        "blanks": [
+          {
+            "answer": "readline",
+            "reason": {
+              "en": "Follow the operation and its input type, then compare the exact result shown.",
+              "nl": "Volg de bewerking en het invoertype en vergelijk daarna het precieze getoonde resultaat."
+            }
+          }
+        ],
+        "output": "'a\\n'\n"
+      },
+      "id": "python-v4-21-quiz-r2-b-4",
+      "reviewActivityIds": [
+        "python-v4-20-position"
+      ]
+    },
+    {
+      "objectiveIds": [
+        "csv-quoting"
+      ],
+      "category": "debugging",
+      "prompt": {
+        "en": "Choose the repair or test that addresses the stated problem.",
+        "nl": "Kies de reparatie of test die het beschreven probleem aanpakt."
+      },
+      "code": "# Need two fields: Bo and Paris, France\nline = 'Bo,\"Paris, France\"'\nfields = line.split(\",\")",
+      "answer": "a",
+      "choices": [
+        {
+          "id": "a",
+          "label": {
+            "en": "Use a CSV reader that understands quoting.",
+            "nl": "Gebruik een CSV-lezer die aanhalingstekens begrijpt."
+          },
+          "reason": {
+            "en": "The comma inside the quoted city is part of the data.",
+            "nl": "De komma binnen de aangehaalde stad hoort bij de gegevens."
+          }
+        },
+        {
+          "id": "b",
+          "label": {
+            "en": "Remove all commas first.",
+            "nl": "Verwijder eerst alle komma’s."
+          },
+          "reason": {
+            "en": "That destroys both separators and meaningful punctuation.",
+            "nl": "Dat vernietigt zowel scheidingen als betekenisvolle leestekens."
+          }
+        },
+        {
+          "id": "c",
+          "label": {
+            "en": "Split twice instead.",
+            "nl": "Splits in plaats daarvan tweemaal."
+          },
+          "reason": {
+            "en": "Repeated splitting still ignores quoting rules.",
+            "nl": "Herhaald splitsen negeert nog steeds aanhalingsregels."
+          }
+        }
+      ],
+      "id": "python-v4-21-quiz-r2-b-5",
+      "reviewActivityIds": [
+        "python-v4-21-rows"
+      ]
+    },
+    {
+      "objectiveIds": [
+        "csv-write"
+      ],
+      "category": "application",
+      "prompt": {
+        "en": "Which explanation applies to this example?",
+        "nl": "Welke uitleg past bij dit voorbeeld?"
+      },
+      "code": "writer = csv.DictWriter(handle,fieldnames=[\"name\",\"score\"])\nwriter.writeheader() # export 7",
+      "answer": "a",
+      "choices": [
+        {
+          "id": "a",
+          "label": {
+            "en": "fieldnames determines the exported column order.",
+            "nl": "fieldnames bepaalt de geëxporteerde kolomvolgorde."
+          },
+          "reason": {
+            "en": "The writer uses these names for the header and values.",
+            "nl": "De schrijver gebruikt deze namen voor kop en waarden."
+          }
+        },
+        {
+          "id": "b",
+          "label": {
+            "en": "writeheader converts every score to int.",
+            "nl": "writeheader zet elke score naar int om."
+          },
+          "reason": {
+            "en": "Writing a header does not parse input values.",
+            "nl": "Een kop schrijven ontleedt invoerwaarden niet."
+          }
+        },
+        {
+          "id": "c",
+          "label": {
+            "en": "Quoted commas must be escaped manually first.",
+            "nl": "Aangehaalde komma’s moeten eerst handmatig worden gecodeerd."
+          },
+          "reason": {
+            "en": "The CSV writer handles field quoting.",
+            "nl": "De CSV-schrijver verwerkt veldaanhalingstekens."
+          }
+        }
+      ],
+      "id": "python-v4-21-quiz-r2-b-6",
+      "reviewActivityIds": [
+        "python-v4-21-write"
+      ]
+    }
+  ]
+}

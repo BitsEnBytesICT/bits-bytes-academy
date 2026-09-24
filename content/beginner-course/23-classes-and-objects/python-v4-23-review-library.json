@@ -1,0 +1,1471 @@
+{
+  "id": "python-v4-23-review-library",
+  "chapter": 23,
+  "group": "python-v4-module-23",
+  "title": {
+    "en": "Optional recall library",
+    "nl": "Optionele herhalingsbibliotheek"
+  },
+  "kind": "reading",
+  "optional": true,
+  "presentation": "article",
+  "runtime": "terminal",
+  "estimatedMinutes": 10,
+  "explanation": {
+    "en": "Use this collection when you want to revisit a topic that has no later lesson using it. Choose one earlier example, predict it without running, and explain one changed case. You can continue to local Python whenever you are ready.",
+    "nl": "Gebruik deze verzameling als je een onderwerp wilt herhalen dat geen latere les meer gebruikt. Kies één eerder voorbeeld, voorspel het zonder uitvoeren en leg één gewijzigd geval uit. Je kunt doorgaan naar lokale Python zodra je wilt."
+  },
+  "sections": [],
+  "files": {},
+  "solution": {},
+  "checkpoints": [],
+  "references": [],
+  "inputs": [],
+  "topicIds": [],
+  "requiredConcepts": [],
+  "solutionNote": {
+    "en": "Optional recall supports retention; it does not change your graded completion or prove independent mastery.",
+    "nl": "Optionele herhaling helpt onthouden; die verandert je beoordeelde voortgang niet en bewijst geen zelfstandige beheersing."
+  },
+  "retrievals": [
+    {
+      "id": "recall-python-v4-01-welcome",
+      "sourceActivityId": "python-v4-01-welcome",
+      "objectiveIds": [
+        "welcome"
+      ],
+      "prompt": {
+        "en": "Recall hello, world!. Will the quotation marks appear in the output? Change world to your name and run again. Then continue to write your first line yourself.",
+        "nl": "Herhaal hallo, wereld!. Verschijnen de aanhalingstekens in de uitvoer? Verander world in je naam en voer opnieuw uit. Ga daarna verder om zelf je eerste regel te schrijven."
+      },
+      "code": "print(\"Hello, world!\")"
+    },
+    {
+      "id": "recall-python-v4-01-print-order",
+      "sourceActivityId": "python-v4-01-print-order",
+      "objectiveIds": [
+        "execution-order"
+      ],
+      "prompt": {
+        "en": "Recall one line after another. Which message appears first? Swap the calls and run again. Add a blank editor line between them and compare the output.",
+        "nl": "Herhaal de ene regel na de andere. Welk bericht verschijnt eerst? Verwissel de aanroepen en voer opnieuw uit. Voeg een lege editorregel ertussen toe en vergelijk de uitvoer."
+      },
+      "code": "print(\"Open the door\")\nprint(\"Come inside\")"
+    },
+    {
+      "id": "recall-python-v4-01-repair-syntax",
+      "sourceActivityId": "python-v4-01-repair-syntax",
+      "objectiveIds": [
+        "errors",
+        "syntax-errors"
+      ],
+      "prompt": {
+        "en": "Recall your first error message. What closes the quoted text, and what closes the call? After passing, deliberately remove a quote. Read the new error, then undo your change.",
+        "nl": "Herhaal je eerste foutmelding. Wat sluit de tekst af en wat sluit de aanroep af? Verwijder na het slagen bewust een aanhalingsteken. Lees de nieuwe foutmelding en maak je wijziging ongedaan."
+      },
+      "code": "print(\"A complete call\")"
+    },
+    {
+      "id": "recall-python-v4-01-announcement",
+      "sourceActivityId": "python-v4-01-announcement",
+      "objectiveIds": [
+        "first-program-review"
+      ],
+      "prompt": {
+        "en": "Recall make a terminal announcement. How many output lines does the comment add? You have made a working make a terminal announcement. Change the final line to your own invitation. Explain what Python does from the first line to the last.",
+        "nl": "Herhaal maak een terminalaankondiging. Hoeveel uitvoerregels voegt het commentaar toe? Je hebt een werkend programma gemaakt: maak een terminalaankondiging. Verander de laatste regel in je eigen uitnodiging. Leg uit wat Python van de eerste tot de laatste regel doet."
+      },
+      "code": "# Invite neighbours\nprint(\"Book swap\")\nprint(\"Saturday\")"
+    },
+    {
+      "id": "recall-python-v4-02-name-or-text",
+      "sourceActivityId": "python-v4-02-name-or-text",
+      "objectiveIds": [
+        "variable-vs-literal"
+      ],
+      "prompt": {
+        "en": "Recall a name or literal text?. Which call reads a stored value? Change animal to \"fox\" without editing the print calls. Predict both lines.",
+        "nl": "Herhaal een naam of letterlijke tekst?. Welke aanroep leest een opgeslagen waarde? Verander animal in \"fox\" zonder de print-aanroepen te wijzigen. Voorspel beide regels."
+      },
+      "code": "city = \"Utrecht\"\nprint(\"city\")\nprint(city)"
+    },
+    {
+      "id": "recall-python-v4-02-names",
+      "sourceActivityId": "python-v4-02-names",
+      "objectiveIds": [
+        "variable-names"
+      ],
+      "prompt": {
+        "en": "Recall choose readable names. Would Team_name refer to the same variable? Change one letter to uppercase in just the print call. Read the error, then repair the name.",
+        "nl": "Herhaal kies leesbare namen. Zou Team_name naar dezelfde variabele verwijzen? Verander alleen in de print-aanroep één letter in een hoofdletter. Lees de foutmelding en herstel de naam."
+      },
+      "code": "team_name = \"Robins\"\nprint(team_name)"
+    },
+    {
+      "id": "recall-python-v4-02-reassignment",
+      "sourceActivityId": "python-v4-02-reassignment",
+      "objectiveIds": [
+        "reassignment"
+      ],
+      "prompt": {
+        "en": "Recall change a stored value. Why does the first line still say Morning? Move the update above the first print. Predict the new two-line output.",
+        "nl": "Herhaal verander een opgeslagen waarde. Waarom staat op de eerste regel nog Morning? Verplaats de wijziging tot boven de eerste print. Voorspel de nieuwe uitvoer van twee regels."
+      },
+      "code": "message = \"Morning\"\nprint(message)\nmessage = \"Evening\"\nprint(message)"
+    },
+    {
+      "id": "recall-python-v4-02-repair-name",
+      "sourceActivityId": "python-v4-02-repair-name",
+      "objectiveIds": [
+        "name-error"
+      ],
+      "prompt": {
+        "en": "Recall read a nameerror. What would happen if these lines were reversed? Move the print above the assignment. Read the error and explain why the spelling is now correct but the order is wrong.",
+        "nl": "Herhaal lees een nameerror. Wat gebeurt er als je deze regels omdraait? Verplaats de print boven de toewijzing. Lees de fout en leg uit waarom de spelling nu klopt maar de volgorde niet."
+      },
+      "code": "city = \"Delft\"\nprint(city)"
+    },
+    {
+      "id": "recall-python-v4-02-profile",
+      "sourceActivityId": "python-v4-02-profile",
+      "objectiveIds": [
+        "values-review"
+      ],
+      "prompt": {
+        "en": "Recall create a small profile. Which assignment stores text rather than a number? You have made a working create a small profile. Change the destination and both numbers. Predict the report without changing any print calls.",
+        "nl": "Herhaal maak een klein profiel. Welke toewijzing bewaart tekst in plaats van een getal? Je hebt een werkend programma gemaakt: maak een klein profiel. Verander de bestemming en beide getallen. Voorspel het verslag zonder print-aanroepen te wijzigen."
+      },
+      "code": "shop = \"Corner shop\"\nstaff = 3\nopening_time = 8.5\nprint(shop)\nprint(staff)\nprint(opening_time)"
+    },
+    {
+      "id": "recall-python-v4-03-subtraction",
+      "sourceActivityId": "python-v4-03-subtraction",
+      "objectiveIds": [
+        "subtraction"
+      ],
+      "prompt": {
+        "en": "Recall find what remains. What would borrowed - books produce? Try selling exactly all the tickets. Then try one more than available and interpret the negative answer.",
+        "nl": "Herhaal bepaal wat overblijft. Wat zou borrowed - books opleveren? Probeer precies alle kaartjes te verkopen. Probeer daarna één meer dan beschikbaar en verklaar het negatieve antwoord."
+      },
+      "code": "books = 10\nborrowed = 3\nprint(books - borrowed)"
+    },
+    {
+      "id": "recall-python-v4-03-division",
+      "sourceActivityId": "python-v4-03-division",
+      "objectiveIds": [
+        "division",
+        "zero-division-error"
+      ],
+      "prompt": {
+        "en": "Recall share a quantity equally. Does each person receive a whole number of metres? Try total = 10 and people = 2. Observe the decimal point. Temporarily try people = 0, read the error, then restore a valid count.",
+        "nl": "Herhaal verdeel een hoeveelheid gelijk. Krijgt elke persoon een geheel aantal meters? Probeer total = 10 en people = 2. Bekijk de decimale punt. Probeer tijdelijk people = 0, lees de foutmelding en herstel een geldig aantal."
+      },
+      "code": "length = 9\npeople = 4\nprint(length / people)"
+    },
+    {
+      "id": "recall-python-v4-03-precedence",
+      "sourceActivityId": "python-v4-03-precedence",
+      "objectiveIds": [
+        "precedence"
+      ],
+      "prompt": {
+        "en": "Recall control the order of a calculation. Why do the same numbers produce two different answers? Remove the parentheses temporarily and explain which group no longer gets multiplied.",
+        "nl": "Herhaal bepaal de volgorde van een berekening. Waarom geven dezelfde getallen twee verschillende antwoorden? Verwijder de haakjes tijdelijk en leg uit welke groep niet meer wordt vermenigvuldigd."
+      },
+      "code": "print(2 + 3 * 4)\nprint((2 + 3) * 4)"
+    },
+    {
+      "id": "recall-python-v4-03-powers",
+      "sourceActivityId": "python-v4-03-powers",
+      "objectiveIds": [
+        "exponents"
+      ],
+      "prompt": {
+        "en": "Recall repeated multiplication with **. How many factors of side occur in the second calculation? Try side = 1, then side = 2. Compare side ** 2 with side * 2.",
+        "nl": "Herhaal herhaald vermenigvuldigen met **. Hoeveel factoren side staan er in de tweede berekening? Probeer side = 1 en daarna side = 2. Vergelijk side ** 2 met side * 2."
+      },
+      "code": "side = 3\nprint(side ** 2)\nprint(side ** 3)"
+    },
+    {
+      "id": "recall-python-v4-03-receipt",
+      "sourceActivityId": "python-v4-03-receipt",
+      "objectiveIds": [
+        "arithmetic-review"
+      ],
+      "prompt": {
+        "en": "Recall calculate a simple receipt. Is delivery added once or once per book? You have made a working calculate a simple receipt. Use quantity = 1 and discount = 0, then quantity = 0. Explain both receipts.",
+        "nl": "Herhaal bereken een eenvoudige kassabon. Wordt bezorging eenmaal toegevoegd of eenmaal per boek? Je hebt een werkend programma gemaakt: bereken een eenvoudige kassabon. Gebruik quantity = 1 en discount = 0 en daarna quantity = 0. Leg beide kassabonnen uit."
+      },
+      "code": "books = 2\nprice = 3.5\nsubtotal = books * price\ntotal = subtotal + 2\nprint(total)"
+    },
+    {
+      "id": "recall-python-v4-04-print-values",
+      "sourceActivityId": "python-v4-04-print-values",
+      "objectiveIds": [
+        "print-arguments"
+      ],
+      "prompt": {
+        "en": "Recall print several values together. Where do the spaces in the output come from? Try a negative temperature. Compare the code with concatenation using str().",
+        "nl": "Herhaal druk meerdere waarden samen af. Waar komen de spaties in de uitvoer vandaan? Probeer een negatieve temperatuur. Vergelijk de code met concatenatie via str()."
+      },
+      "code": "distance = 2.5\nprint(\"Distance:\", distance, \"km\")"
+    },
+    {
+      "id": "recall-python-v4-04-multiline",
+      "sourceActivityId": "python-v4-04-multiline",
+      "objectiveIds": [
+        "multiline-strings"
+      ],
+      "prompt": {
+        "en": "Recall text across several source lines. Would a newline just after the opening quotes appear in the output? Indent the second line inside the string. Observe that those spaces also become text.",
+        "nl": "Herhaal tekst over meerdere coderegels. Zou een nieuwe regel direct na de openingsaanhalingstekens in de uitvoer verschijnen? Spring de tweede regel binnen de string in. Bekijk hoe ook die spaties tekst worden."
+      },
+      "code": "notice = \"\"\"Open today\nCome inside\"\"\"\nprint(notice)"
+    },
+    {
+      "id": "recall-python-v4-04-visitor-card",
+      "sourceActivityId": "python-v4-04-visitor-card",
+      "objectiveIds": [
+        "output-review"
+      ],
+      "prompt": {
+        "en": "Recall build a visitor card. Which text stays fixed when room changes? You have made a working build a visitor card. Use a longer name and no tickets. Does the same code still work?",
+        "nl": "Herhaal maak een bezoekerskaart. Welke tekst blijft vast wanneer room verandert? Je hebt een werkend programma gemaakt: maak een bezoekerskaart. Gebruik een langere naam en geen kaartjes. Werkt dezelfde code nog steeds?"
+      },
+      "code": "room = \"Blue\"\nprint(f\"Room: {room}\")"
+    },
+    {
+      "id": "recall-python-v4-05-input-is-text",
+      "sourceActivityId": "python-v4-05-input-is-text",
+      "objectiveIds": [
+        "input-string-type"
+      ],
+      "prompt": {
+        "en": "Recall digits entered are still text. Would typing 0 instead change the returned type? Enter a word, then a decimal number. Explain why both have the same type.",
+        "nl": "Herhaal ingevoerde cijfers zijn nog steeds tekst. Verandert het teruggegeven type als je 0 typt? Voer een woord in en daarna een kommagetal. Leg uit waarom beide hetzelfde type hebben."
+      },
+      "code": "answer = input(\"Count: \")\nprint(type(answer))"
+    },
+    {
+      "id": "recall-python-v4-05-two-answers",
+      "sourceActivityId": "python-v4-05-two-answers",
+      "objectiveIds": [
+        "multiple-inputs"
+      ],
+      "prompt": {
+        "en": "Recall ask two questions in order. With answers 3 then 2, which value becomes width? Use the same distance with twice the time. Predict the change in speed.",
+        "nl": "Herhaal stel twee vragen op volgorde. Welke waarde wordt width bij antwoorden 3 en daarna 2? Gebruik dezelfde afstand met tweemaal de tijd. Voorspel de verandering in snelheid."
+      },
+      "code": "length = float(input(\"Length: \"))\nwidth = float(input(\"Width: \"))\nprint(length * width)"
+    },
+    {
+      "id": "recall-python-v4-05-trip-report",
+      "sourceActivityId": "python-v4-05-trip-report",
+      "objectiveIds": [
+        "input-review"
+      ],
+      "prompt": {
+        "en": "Recall make an interactive trip report. Does the shop name need numeric conversion? You have made a working make an interactive trip report. Try a new destination and a fractional distance. Explain the four stages of the conversation.",
+        "nl": "Herhaal maak een interactief reisverslag. Moet de winkelnaam naar een getal worden omgezet? Je hebt een werkend programma gemaakt: maak een interactief reisverslag. Probeer een nieuwe bestemming en een afstand met een breukdeel. Leg de vier stappen van het gesprek uit."
+      },
+      "code": "shop = input(\"Shop: \")\nprint(f\"Visiting {shop}\")"
+    },
+    {
+      "id": "recall-python-v4-06-greater-less",
+      "sourceActivityId": "python-v4-06-greater-less",
+      "objectiveIds": [
+        "strict-comparisons"
+      ],
+      "prompt": {
+        "en": "Recall greater than and less than. Why is the middle result False? Reverse both operands and use < instead. Do the comparisons describe the same relationship?",
+        "nl": "Herhaal groter dan en kleiner dan. Waarom is het middelste resultaat False? Draai beide operanden om en gebruik <. Beschrijven de vergelijkingen hetzelfde verband?"
+      },
+      "code": "print(8 > 5)\nprint(5 > 5)\nprint(3 < 5)"
+    },
+    {
+      "id": "recall-python-v4-06-and",
+      "sourceActivityId": "python-v4-06-and",
+      "objectiveIds": [
+        "and"
+      ],
+      "prompt": {
+        "en": "Recall require both conditions with and. Is a ticket enough when the door is closed? Predict all four combinations of meeting and missing the two requirements.",
+        "nl": "Herhaal vereis beide voorwaarden met and. Is een kaartje voldoende wanneer de deur dicht is? Voorspel alle vier combinaties van wel en niet aan de twee eisen voldoen."
+      },
+      "code": "has_ticket = True\ndoor_open = False\nprint(has_ticket and door_open)"
+    },
+    {
+      "id": "recall-python-v4-06-or",
+      "sourceActivityId": "python-v4-06-or",
+      "objectiveIds": [
+        "or"
+      ],
+      "prompt": {
+        "en": "Recall allow either condition with or. What if both values were True? Try a different command. Explain why the rule should now be False.",
+        "nl": "Herhaal sta een van beide voorwaarden toe met or. Wat als beide waarden True waren? Probeer een andere opdracht. Leg uit waarom de regel nu False moet zijn."
+      },
+      "code": "member = False\nhas_pass = True\nprint(member or has_pass)"
+    },
+    {
+      "id": "recall-python-v4-06-not",
+      "sourceActivityId": "python-v4-06-not",
+      "objectiveIds": [
+        "not"
+      ],
+      "prompt": {
+        "en": "Recall reverse a boolean with not. Does evaluating not change the original variable? Set paused to False and trace both values.",
+        "nl": "Herhaal keer een booleaanse waarde om met not. Verandert not berekenen de oorspronkelijke variabele? Zet paused op False en volg beide waarden."
+      },
+      "code": "door_open = False\nprint(not door_open)\nprint(door_open)"
+    },
+    {
+      "id": "recall-python-v4-06-access-rule",
+      "sourceActivityId": "python-v4-06-access-rule",
+      "objectiveIds": [
+        "boolean-review"
+      ],
+      "prompt": {
+        "en": "Recall combine a complete access rule. Which single changed input would make this example False? Write the eight possible combinations of these three Boolean inputs and predict each result.",
+        "nl": "Herhaal combineer een volledige toegangsregel. Welke ene gewijzigde invoer maakt dit voorbeeld False? Schrijf de acht mogelijke combinaties van deze drie booleaanse invoerwaarden op en voorspel elk resultaat."
+      },
+      "code": "ticket = True\nopen_now = True\nallowed = ticket and open_now\nprint(allowed)"
+    },
+    {
+      "id": "recall-python-v4-07-else",
+      "sourceActivityId": "python-v4-07-else",
+      "objectiveIds": [
+        "else"
+      ],
+      "prompt": {
+        "en": "Recall choose between two actions. What changes for score = 6? Predict and test ages 11, 12 and 13. Explain the equality case.",
+        "nl": "Herhaal kies tussen twee acties. Wat verandert bij score = 6? Voorspel en test leeftijden 11, 12 en 13. Leg het geval met gelijkheid uit."
+      },
+      "code": "score = 5\nif score >= 6:\n    print(\"Pass\")\nelse:\n    print(\"Try again\")"
+    },
+    {
+      "id": "recall-python-v4-07-separate-or-chain",
+      "sourceActivityId": "python-v4-07-separate-or-chain",
+      "objectiveIds": [
+        "branch-order"
+      ],
+      "prompt": {
+        "en": "Recall separate checks or one choice?. Why are two messages correct in this example? Try score = 8 and explain why Silver is skipped.",
+        "nl": "Herhaal aparte controles of één keuze?. Waarom zijn twee berichten juist in dit voorbeeld? Probeer score = 8 en leg uit waarom Silver wordt overgeslagen."
+      },
+      "code": "score = 9\nif score >= 6:\n    print(\"Passed\")\nif score >= 8:\n    print(\"High score\")"
+    },
+    {
+      "id": "recall-python-v4-07-command-menu",
+      "sourceActivityId": "python-v4-07-command-menu",
+      "objectiveIds": [
+        "decision-review"
+      ],
+      "prompt": {
+        "en": "Recall respond to a typed choice. Why does the uppercase input match lowercase help? Test both commands with spaces and mixed case. Try an empty answer too.",
+        "nl": "Herhaal reageer op een getypte keuze. Waarom komt invoer in hoofdletters overeen met help in kleine letters? Test beide opdrachten met spaties en gemengde hoofdletters. Probeer ook een leeg antwoord."
+      },
+      "code": "command = \"  HELP \".strip().lower()\nif command == \"help\":\n    print(\"Choose a command\")\nelse:\n    print(\"Unknown\")"
+    },
+    {
+      "id": "recall-python-v4-07-delivery-adviser",
+      "sourceActivityId": "python-v4-07-delivery-adviser",
+      "objectiveIds": [
+        "delivery-project"
+      ],
+      "prompt": {
+        "en": "Recall mini project: delivery-price adviser. Why is the weekend check separate from the price chain? Write a six-case test table from the suggested weights and destinations. Check every predicted cost.",
+        "nl": "Herhaal miniproject: bezorgprijsadviseur. Waarom staat de weekendcontrole los van de prijsketen? Schrijf een testtabel met zes gevallen uit de voorgestelde gewichten en bestemmingen. Controleer elke voorspelde prijs."
+      },
+      "code": "hours = 3\nweekend = True\nif hours <= 2:\n    cost = 4.0\nelse:\n    cost = 7.0\nif weekend:\n    cost += 1.0\nprint(cost)"
+    },
+    {
+      "id": "recall-python-v4-08-trace-counter",
+      "sourceActivityId": "python-v4-08-trace-counter",
+      "objectiveIds": [
+        "loop-tracing"
+      ],
+      "prompt": {
+        "en": "Recall trace the counter. Would moving the update before print change the output? Write a trace for start = 2 before running. Compare each row to the output.",
+        "nl": "Herhaal volg de teller. Verandert de uitvoer als de wijziging vóór print komt? Schrijf vóór het uitvoeren een spoor voor start = 2. Vergelijk elke regel met de uitvoer."
+      },
+      "code": "count = 3\nwhile count > 0:\n    print(count)\n    count -= 1"
+    },
+    {
+      "id": "recall-python-v4-08-stop-endless-loop",
+      "sourceActivityId": "python-v4-08-stop-endless-loop",
+      "objectiveIds": [
+        "infinite-loops"
+      ],
+      "prompt": {
+        "en": "Recall recognise and stop an endless loop. Which line prevents this loop from running forever? With the Stop button in view, remove the update and try the program. Stop it, restore the update and verify a subsequent Run works.",
+        "nl": "Herhaal herken en stop een eindeloze lus. Welke regel voorkomt dat deze lus altijd blijft draaien? Verwijder met de knop Stoppen in beeld de wijziging en probeer het programma. Stop het, herstel de wijziging en controleer of opnieuw Uitvoeren werkt."
+      },
+      "code": "count = 0\nwhile count < 3:\n    print(count)\n    count += 1"
+    },
+    {
+      "id": "recall-python-v4-08-repeat-input",
+      "sourceActivityId": "python-v4-08-repeat-input",
+      "objectiveIds": [
+        "repeated-input"
+      ],
+      "prompt": {
+        "en": "Recall keep asking until a stop word. What happens if the very first answer is quit? Quit immediately, then try two items before quitting. Trace where each answer is read.",
+        "nl": "Herhaal blijf vragen tot een stopwoord. Wat gebeurt er als het allereerste antwoord quit is? Stop onmiddellijk en probeer daarna twee artikelen vóór het stoppen. Volg waar elk antwoord wordt gelezen."
+      },
+      "code": "choice = input(\"Drink: \").strip().lower()\nwhile choice != \"quit\":\n    print(f\"You chose {choice}\")\n    choice = input(\"Drink: \").strip().lower()\nprint(\"Bye\")"
+    },
+    {
+      "id": "recall-python-v4-08-break",
+      "sourceActivityId": "python-v4-08-break",
+      "objectiveIds": [
+        "break"
+      ],
+      "prompt": {
+        "en": "Recall exit a loop with break. Does the stop word reach the print inside the loop? Enter two work commands before quit. Explain which print is repeated and which runs once.",
+        "nl": "Herhaal verlaat een lus met break. Bereikt het stopwoord de print binnen de lus? Voer twee werkopdrachten in vóór quit. Leg uit welke print wordt herhaald en welke eenmaal draait."
+      },
+      "code": "while True:\n    command = input(\"Command: \")\n    if command == \"quit\":\n        break\n    print(command)\nprint(\"Stopped\")"
+    },
+    {
+      "id": "recall-python-v4-08-repair-exit",
+      "sourceActivityId": "python-v4-08-repair-exit",
+      "objectiveIds": [
+        "loop-debugging"
+      ],
+      "prompt": {
+        "en": "Recall repair a loop that exits too soon. Where does control go immediately after break? Change the skipped value to 1, then 5. Predict which lines remain.",
+        "nl": "Herhaal herstel een lus die te vroeg stopt. Waar gaat de uitvoering direct na break heen? Verander de overgeslagen waarde in 1 en daarna 5. Voorspel welke regels overblijven."
+      },
+      "code": "n = 0\nwhile n < 5:\n    n += 1\n    if n == 3:\n        break\n    print(n)"
+    },
+    {
+      "id": "recall-python-v4-08-session-summary",
+      "sourceActivityId": "python-v4-08-session-summary",
+      "objectiveIds": [
+        "loop-review"
+      ],
+      "prompt": {
+        "en": "Recall summarise a short session. Why is the summary outside the loop? Quit immediately, then after one answer. Explain why the stop command is excluded from the count.",
+        "nl": "Herhaal vat een korte sessie samen. Waarom staat de samenvatting buiten de lus? Stop onmiddellijk en daarna na één antwoord. Leg uit waarom de stopopdracht niet wordt meegeteld."
+      },
+      "code": "rounds = 0\nwhile rounds < 3:\n    rounds += 1\nprint(f\"Rounds: {rounds}\")"
+    },
+    {
+      "id": "recall-python-v4-09-define-and-call",
+      "sourceActivityId": "python-v4-09-define-and-call",
+      "objectiveIds": [
+        "functions",
+        "function-definition",
+        "function-calls",
+        "builtins"
+      ],
+      "prompt": {
+        "en": "Recall give instructions a name. Which line would disappear if greet() were removed? Add a third call. Explain why you did not copy the function body.",
+        "nl": "Herhaal geef instructies een naam. Welke regel verdwijnt als greet() wordt verwijderd? Voeg een derde aanroep toe. Leg uit waarom je de functie-inhoud niet kopieerde."
+      },
+      "code": "def greet():\n    print(\"Hello\")\n\nprint(\"Before\")\ngreet()\nprint(\"After\")"
+    },
+    {
+      "id": "recall-python-v4-09-flow",
+      "sourceActivityId": "python-v4-09-flow",
+      "objectiveIds": [
+        "execution-flow"
+      ],
+      "prompt": {
+        "en": "Recall follow a function call. Does defining bell print Ring immediately? Predict what happens if the final print moves before the calls.",
+        "nl": "Herhaal volg een functieaanroep. Drukt het definiëren van bell direct Ring af? Voorspel wat gebeurt als de laatste print vóór de aanroepen komt."
+      },
+      "code": "def bell():\n    print(\"Ring\")\nprint(\"Start\")\nbell()\nprint(\"End\")"
+    },
+    {
+      "id": "recall-python-v4-09-multiple-parameters",
+      "sourceActivityId": "python-v4-09-multiple-parameters",
+      "objectiveIds": [
+        "multiple-parameters",
+        "positional-arguments"
+      ],
+      "prompt": {
+        "en": "Recall use two arguments. Why does swapping the arguments change the result? Try quantity zero and explain the result.",
+        "nl": "Herhaal gebruik twee argumenten. Waarom verandert het resultaat als je argumenten omwisselt? Probeer hoeveelheid nul en leg het resultaat uit."
+      },
+      "code": "def difference(first, second):\n    print(first - second)\ndifference(8, 3)\ndifference(3, 8)"
+    },
+    {
+      "id": "recall-python-v4-10-diagnose",
+      "sourceActivityId": "python-v4-10-diagnose",
+      "objectiveIds": [
+        "runtime-errors",
+        "logic-errors",
+        "tracebacks"
+      ],
+      "prompt": {
+        "en": "Recall name the kind of mistake. Which operator preserves the fractional average? Explain why changing the test from 7/2 to 8/2 could hide this bug.",
+        "nl": "Herhaal benoem het soort fout. Welke operator bewaart het gebroken gemiddelde? Leg uit waarom een test met 8/2 in plaats van 7/2 deze fout kan verbergen."
+      },
+      "code": "print(7 // 2)\nprint(7 / 2)"
+    },
+    {
+      "id": "recall-python-v4-10-zero-division",
+      "sourceActivityId": "python-v4-10-zero-division",
+      "objectiveIds": [
+        "zero-division-recovery"
+      ],
+      "prompt": {
+        "en": "Recall handle division by zero. Would except ValueError catch this failure? Compare 0/2 and 2/0: which operand makes the difference?",
+        "nl": "Herhaal vang delen door nul op. Vangt except ValueError deze fout op? Vergelijk 0/2 en 2/0: welk getal maakt het verschil?"
+      },
+      "code": "try:\n    print(6 / 0)\nexcept ZeroDivisionError:\n    print(\"Cannot divide by zero\")"
+    },
+    {
+      "id": "recall-python-v4-10-validate",
+      "sourceActivityId": "python-v4-10-validate",
+      "objectiveIds": [
+        "validation"
+      ],
+      "prompt": {
+        "en": "Recall a number can still be invalid. Which check rejects -2? Test both boundaries and one value just outside each boundary.",
+        "nl": "Herhaal een getal kan nog steeds ongeldig zijn. Welke controle keurt -2 af? Test beide grenzen en één waarde net buiten elke grens."
+      },
+      "code": "text = \"-2\"\ntry:\n    age = int(text)\nexcept ValueError:\n    age = None\nif age is None:\n    print(\"Not numeric\")\nelif age < 0:\n    print(\"Out of range\")\nelse:\n    print(\"Allowed\")"
+    },
+    {
+      "id": "recall-python-v4-10-retry",
+      "sourceActivityId": "python-v4-10-retry",
+      "objectiveIds": [
+        "retry-loops"
+      ],
+      "prompt": {
+        "en": "Recall try again after invalid input. Why can the same function recover on its second call? Test two invalid answers in a row before a valid one.",
+        "nl": "Herhaal probeer opnieuw na ongeldige invoer. Waarom kan dezelfde functie herstellen bij de tweede aanroep? Test twee ongeldige antwoorden achter elkaar vóór een geldig antwoord."
+      },
+      "code": "def parse_or_none(text):\n    try:\n        return int(text)\n    except ValueError:\n        return None\nprint(parse_or_none(\"bad\"))\nprint(parse_or_none(\"4\"))"
+    },
+    {
+      "id": "recall-python-v4-10-converter-session",
+      "sourceActivityId": "python-v4-10-converter-session",
+      "objectiveIds": [
+        "session-integration"
+      ],
+      "prompt": {
+        "en": "Recall connect a complete conversion session. Which function prints? Where does execution return after double finishes? Explain why testing if not value would wrongly treat 0 as cancellation. Sketch where a third conversion would fit before changing code.",
+        "nl": "Herhaal verbind een volledig omzetgesprek. Welke functie drukt af? Waar gaat uitvoering verder nadat double klaar is? Leg uit waarom if not value ten onrechte 0 als annuleren behandelt. Schets waar een derde omzetting past vóór je code wijzigt."
+      },
+      "code": "def double(value):\n    return value * 2\ndef show(value):\n    answer = double(value)\n    print(answer)\nshow(1.5)\nshow(0)"
+    },
+    {
+      "id": "recall-python-v4-11-combine",
+      "sourceActivityId": "python-v4-11-combine",
+      "objectiveIds": [
+        "list-concatenation"
+      ],
+      "prompt": {
+        "en": "Recall combine two lists. Does left gain a third element? Compare combining with [] to appending [] as one element.",
+        "nl": "Herhaal combineer twee lijsten. Krijgt left een derde element? Vergelijk samenvoegen met [] met [] als één element toevoegen."
+      },
+      "code": "left = [1, 2]\nright = [3]\nprint(left + right)\nprint(left)"
+    },
+    {
+      "id": "recall-python-v4-12-range-stop",
+      "sourceActivityId": "python-v4-12-range-stop",
+      "objectiveIds": [
+        "range"
+      ],
+      "prompt": {
+        "en": "Recall repeat a known number of times. How many values does range(0) produce? Compare printing range(3) with printing list(range(3)).",
+        "nl": "Herhaal herhaal een bekend aantal keren. Hoeveel waarden produceert range(0)? Vergelijk range(3) afdrukken met list(range(3)) afdrukken."
+      },
+      "code": "print(list(range(3)))\nfor position in range(2):\n    print(position)"
+    },
+    {
+      "id": "recall-python-v4-12-range-step",
+      "sourceActivityId": "python-v4-12-range-step",
+      "objectiveIds": [
+        "range-start-stop-step"
+      ],
+      "prompt": {
+        "en": "Recall choose the start and step. Why is 9 absent from the first list? Write down a range for the even values 2, 4, 6, 8.",
+        "nl": "Herhaal kies begin en stap. Waarom ontbreekt 9 in de eerste lijst? Schrijf een range voor de even waarden 2, 4, 6, 8."
+      },
+      "code": "print(list(range(2, 9, 3)))\nprint(list(range(4, 0, -1)))"
+    },
+    {
+      "id": "recall-python-v4-12-indexed-while",
+      "sourceActivityId": "python-v4-12-indexed-while",
+      "objectiveIds": [
+        "while-lists"
+      ],
+      "prompt": {
+        "en": "Recall traverse a list with an index. At which index does the loop stop? Compare this function with items.copy() and with a for loop.",
+        "nl": "Herhaal doorloop een lijst met een index. Bij welke index stopt de lus? Vergelijk deze functie met items.copy() en met een for-lus."
+      },
+      "code": "items = [4, 7]\ni = 0\nwhile i < len(items):\n    print(items[i])\n    i += 1"
+    },
+    {
+      "id": "recall-python-v4-12-search",
+      "sourceActivityId": "python-v4-12-search",
+      "objectiveIds": [
+        "searching"
+      ],
+      "prompt": {
+        "en": "Recall search until a match. Why is return False outside the loop? Test duplicate target values. Does the answer change?",
+        "nl": "Herhaal zoek tot een overeenkomst. Waarom staat return False buiten de lus? Test dubbele doelwaarden. Verandert het antwoord?"
+      },
+      "code": "def has_zero(values):\n    for value in values:\n        if value == 0:\n            return True\n    return False\nprint(has_zero([3, 0]))"
+    },
+    {
+      "id": "recall-python-v4-12-activity-log",
+      "sourceActivityId": "python-v4-12-activity-log",
+      "objectiveIds": [
+        "activity-project"
+      ],
+      "prompt": {
+        "en": "Recall mini project: activity-log analyser. Would counting every item answer the same question? Create your own week of seven records and calculate the expected answer on paper.",
+        "nl": "Herhaal miniproject: activiteitenlog analyseren. Beantwoordt elk item tellen dezelfde vraag? Maak je eigen week met zeven gegevens en bereken het verwachte antwoord op papier."
+      },
+      "code": "items = [2, 0, 4]\ncount = 0\nfor amount in items:\n    if amount > 1:\n        count += 1\nprint(count)"
+    },
+    {
+      "id": "recall-python-v4-14-selected-and-alias",
+      "sourceActivityId": "python-v4-14-selected-and-alias",
+      "objectiveIds": [
+        "selected-imports",
+        "aliases"
+      ],
+      "prompt": {
+        "en": "Recall import a function or choose an alias. Why is math.ceil unavailable under the name math in this example? Change both inputs to -3.8 and predict floor versus ceiling.",
+        "nl": "Herhaal importeer een functie of kies een alias. Waarom is math.ceil in dit voorbeeld niet beschikbaar onder de naam math? Verander beide invoerwaarden naar -3.8 en voorspel omlaag versus omhoog afronden."
+      },
+      "code": "from math import ceil\nimport math as maths\nprint(ceil(2.3))\nprint(maths.floor(2.3))"
+    },
+    {
+      "id": "recall-python-v4-14-random",
+      "sourceActivityId": "python-v4-14-random",
+      "objectiveIds": [
+        "random"
+      ],
+      "prompt": {
+        "en": "Recall generate a random choice. Could two consecutive rolls both be 6? Roll ten times and record repeats instead of treating them as failures.",
+        "nl": "Herhaal maak een willekeurige keuze. Kunnen twee opeenvolgende worpen beide 6 zijn? Werp tienmaal en noteer herhalingen in plaats van ze als fouten te zien."
+      },
+      "code": "import random\nvalue = random.randint(1, 6)\nprint(1 <= value <= 6)"
+    },
+    {
+      "id": "recall-python-v4-14-repeatable-random",
+      "sourceActivityId": "python-v4-14-repeatable-random",
+      "objectiveIds": [
+        "random-seed"
+      ],
+      "prompt": {
+        "en": "Recall repeat a random experiment. What is being reset by the second seed call? Compare two seeds, keeping the number of draws fixed.",
+        "nl": "Herhaal herhaal een willekeurig experiment. Wat wordt door de tweede seed-aanroep teruggezet? Vergelijk twee seeds en houd het aantal trekkingen gelijk."
+      },
+      "code": "import random\nrandom.seed(12)\nfirst = random.random()\nrandom.seed(12)\nprint(first == random.random())"
+    },
+    {
+      "id": "recall-python-v4-14-decimal",
+      "sourceActivityId": "python-v4-14-decimal",
+      "objectiveIds": [
+        "decimal"
+      ],
+      "prompt": {
+        "en": "Recall use decimal arithmetic deliberately. Why do the Decimal arguments have quotation marks? Compare Decimal(\"0.1\") with Decimal(0.1) by printing both.",
+        "nl": "Herhaal gebruik decimale berekeningen bewust. Waarom staan de Decimal-argumenten tussen aanhalingstekens? Vergelijk Decimal(\"0.1\") met Decimal(0.1) door beide af te drukken."
+      },
+      "code": "from decimal import Decimal\nprint(0.1 + 0.2 == 0.3)\nprint(Decimal(\"0.1\") + Decimal(\"0.2\"))"
+    },
+    {
+      "id": "recall-python-v4-14-guessing-game",
+      "sourceActivityId": "python-v4-14-guessing-game",
+      "objectiveIds": [
+        "guessing-project"
+      ],
+      "prompt": {
+        "en": "Recall mini project: number-guessing game. Which comparison handles an exact match? Play with a range of 1–20 by editing only the supplied caller.",
+        "nl": "Herhaal miniproject: raad het getal. Welke vergelijking verwerkt een exacte overeenkomst? Speel met een bereik van 1–20 door alleen de aangeleverde aanroeper te wijzigen."
+      },
+      "code": "def compare(guess, target):\n    if guess < target:\n        return \"Higher\"\n    if guess > target:\n        return \"Lower\"\n    return \"Correct\"\nprint(compare(3, 8))"
+    },
+    {
+      "id": "recall-python-v4-15-surface-colour",
+      "sourceActivityId": "python-v4-15-surface-colour",
+      "objectiveIds": [
+        "surface",
+        "colours"
+      ],
+      "prompt": {
+        "en": "Recall paint an image on a surface. Which RGB channel makes this image blue? Change one colour channel at a time and describe the change.",
+        "nl": "Herhaal teken een afbeelding op een surface. Welk RGB-kanaal maakt deze afbeelding blauw? Verander één kleurkanaal tegelijk en beschrijf de verandering."
+      },
+      "code": "import pygame\nimage = pygame.Surface((8, 6))\nimage.fill((0, 0, 120))\npixel = image.get_at((2, 2))\nprint(pixel[2])"
+    },
+    {
+      "id": "recall-python-v4-15-drawing-order",
+      "sourceActivityId": "python-v4-15-drawing-order",
+      "objectiveIds": [
+        "drawing-order",
+        "drawing"
+      ],
+      "prompt": {
+        "en": "Recall draw the background before the foreground. What would the pixel be if fill ran last? Add a second overlapping rectangle and swap their drawing order.",
+        "nl": "Herhaal teken de achtergrond vóór de voorgrond. Wat is de pixel als fill als laatste draait? Voeg een tweede overlappende rechthoek toe en wissel de tekenvolgorde."
+      },
+      "code": "import pygame\nimage = pygame.Surface((10,10))\nimage.fill((0,0,0))\npygame.draw.rect(image,(255,0,0),(2,2,4,4))\nprint(image.get_at((3,3))[0])"
+    },
+    {
+      "id": "recall-python-v4-15-score-label",
+      "sourceActivityId": "python-v4-15-score-label",
+      "objectiveIds": [
+        "pygame-text",
+        "blit"
+      ],
+      "prompt": {
+        "en": "Recall draw text on the court. Does render itself place the label on the display? Change the display font size and the label position separately.",
+        "nl": "Herhaal teken tekst op het speelveld. Plaatst render het label zelf op het scherm? Verander de schermlettergrootte en de labelpositie apart."
+      },
+      "code": "import pygame\npygame.font.init()\nfont = pygame.font.Font(None,24)\nlabel = font.render(\"Ready\", True, (255,255,255))\nprint(label.get_width() > 0)"
+    },
+    {
+      "id": "recall-python-v4-15-event-wiring",
+      "sourceActivityId": "python-v4-15-event-wiring",
+      "objectiveIds": [
+        "event-dispatch"
+      ],
+      "prompt": {
+        "en": "Recall wire an event to a visible change. Why does this event not cause an attribute error? Move the mouse, press A, then press and release Space twice. Explain which events change the colour and which leave it alone.",
+        "nl": "Herhaal verbind een gebeurtenis aan een zichtbare verandering. Waarom veroorzaakt deze gebeurtenis geen attribuutfout? Beweeg de muis, druk A en druk daarna tweemaal Space in en laat los. Leg uit welke gebeurtenissen de kleur veranderen en welke niet."
+      },
+      "code": "import pygame\nevent = pygame.event.Event(pygame.MOUSEMOTION)\nif event.type == pygame.KEYDOWN:\n    print(event.key)\nelse:\n    print('No keyboard key')"
+    },
+    {
+      "id": "recall-python-v4-15-render-label",
+      "sourceActivityId": "python-v4-15-render-label",
+      "objectiveIds": [
+        "text-rendering-practice"
+      ],
+      "prompt": {
+        "en": "Recall render and place your own label. Which Surface changes when blit runs? After passing, move the label and try a different text. Explain why returning the label alone would lose the scene background.",
+        "nl": "Herhaal teken en plaats je eigen label. Welke Surface verandert wanneer blit draait? Verplaats na slagen het label en probeer andere tekst. Leg uit waarom alleen het label teruggeven de scèneachtergrond verliest."
+      },
+      "code": "import pygame\ncanvas = pygame.Surface((20,20))\ncanvas.fill((0,0,0))\nmarker = pygame.Surface((3,3))\nmarker.fill((255,0,0))\ncanvas.blit(marker,(4,5))\nprint(tuple(canvas.get_at((4,5)))[:3])"
+    },
+    {
+      "id": "recall-python-v4-16-velocity",
+      "sourceActivityId": "python-v4-16-velocity",
+      "objectiveIds": [
+        "velocity",
+        "elapsed-time"
+      ],
+      "prompt": {
+        "en": "Recall move by elapsed time. How far would the object move in half as much time? Compare one 0.1-second step with two 0.05-second steps.",
+        "nl": "Herhaal beweeg met verstreken tijd. Hoe ver beweegt het object in half zoveel tijd? Vergelijk één stap van 0,1 seconde met twee stappen van 0,05 seconde."
+      },
+      "code": "x = 10.0\nspeed = 120\ndt = 0.25\nx += speed * dt\nprint(x)"
+    },
+    {
+      "id": "recall-python-v4-16-held-controls",
+      "sourceActivityId": "python-v4-16-held-controls",
+      "objectiveIds": [
+        "held-keys",
+        "simultaneous-controls"
+      ],
+      "prompt": {
+        "en": "Recall hold keys to move both paddles. Why is this two if statements instead of if/elif? Hold W and Down simultaneously in the preview. Both paddles should move.",
+        "nl": "Herhaal houd toetsen vast om beide batjes te bewegen. Waarom zijn dit twee if-instructies in plaats van if/elif? Houd W en Down tegelijk vast in het voorbeeld. Beide batjes horen te bewegen."
+      },
+      "code": "up = True\ndown = True\ndirection = 0\nif up:\n    direction -= 1\nif down:\n    direction += 1\nprint(direction)"
+    },
+    {
+      "id": "recall-python-v4-16-boundaries",
+      "sourceActivityId": "python-v4-16-boundaries",
+      "objectiveIds": [
+        "boundaries"
+      ],
+      "prompt": {
+        "en": "Recall keep a paddle inside the court. Why is the maximum not 100? Test a different court and paddle height instead of hard-coding 340.",
+        "nl": "Herhaal houd een batje binnen het veld. Waarom is het maximum niet 100? Test een andere veld- en batjeshoogte in plaats van 340 vast in te vullen."
+      },
+      "code": "height = 100\npaddle_height = 20\ny = 95\nif y > height - paddle_height:\n    y = height - paddle_height\nprint(y)"
+    },
+    {
+      "id": "recall-python-v4-16-wall-bounce",
+      "sourceActivityId": "python-v4-16-wall-bounce",
+      "objectiveIds": [
+        "wall-collision",
+        "direction-aware-collision"
+      ],
+      "prompt": {
+        "en": "Recall bounce once at a wall. What happens on the next check when vy is positive? Call bounce twice on the first corrected result and check that direction stays stable.",
+        "nl": "Herhaal stuiter eenmaal tegen een wand. Wat gebeurt er bij de volgende controle wanneer vy positief is? Roep bounce tweemaal aan op het eerste herstelde resultaat en controleer dat de richting stabiel blijft."
+      },
+      "code": "y, vy = 3, -100\nif y <= 6 and vy < 0:\n    y, vy = 6, -vy\nprint(y, vy)"
+    },
+    {
+      "id": "recall-python-v4-16-paddle-contact",
+      "sourceActivityId": "python-v4-16-paddle-contact",
+      "objectiveIds": [
+        "paddle-collision",
+        "overlap-correction"
+      ],
+      "prompt": {
+        "en": "Recall use rect collision detection. Why is the second result False? Move the paddle vertically so the same x position becomes a miss.",
+        "nl": "Herhaal gebruik rect-botsingsdetectie. Waarom is het tweede resultaat False? Verplaats het batje verticaal zodat dezelfde x-positie een misser wordt."
+      },
+      "code": "import pygame\na = pygame.Rect(0,0,10,10)\nb = pygame.Rect(9,0,10,10)\nprint(a.colliderect(b))\nb.left = 10\nprint(a.colliderect(b))"
+    },
+    {
+      "id": "recall-python-v4-16-score-once",
+      "sourceActivityId": "python-v4-16-score-once",
+      "objectiveIds": [
+        "scoring",
+        "misses"
+      ],
+      "prompt": {
+        "en": "Recall score a miss once. Would this condition still match on the next frame? Leave the preview running after the miss. Check that the score stops increasing.",
+        "nl": "Herhaal tel een misser eenmaal. Geldt deze voorwaarde in het volgende beeld nog steeds? Laat het voorbeeld na de misser draaien. Controleer dat de score niet verder stijgt."
+      },
+      "code": "x, score = -8, 0\nif x < -6:\n    score += 1\n    x = 320\nprint(score,x)"
+    },
+    {
+      "id": "recall-python-v4-16-serve",
+      "sourceActivityId": "python-v4-16-serve",
+      "objectiveIds": [
+        "serving",
+        "game-state",
+        "game-review"
+      ],
+      "prompt": {
+        "en": "Recall start the next rally deliberately. Why should a second press not reset an active rally? Click outside the preview, return focus, and serve again. Stop, then start a fresh run.",
+        "nl": "Herhaal begin de volgende rally bewust. Waarom hoort een tweede druk een actieve rally niet terug te zetten? Klik buiten het voorbeeld, keer terug en serveer opnieuw. Stop en start daarna een nieuwe uitvoering."
+      },
+      "code": "waiting = True\npressed = True\nif waiting and pressed:\n    waiting = False\nprint(waiting)"
+    },
+    {
+      "id": "recall-python-v4-16-two-controls",
+      "sourceActivityId": "python-v4-16-two-controls",
+      "objectiveIds": [
+        "controls-integration"
+      ],
+      "prompt": {
+        "en": "Recall connect two players' controls. Why does clamping need to happen after movement? Hold W and Down together, then opposing keys for one paddle. Click outside the preview and return; explain why no movement should accumulate while unfocused.",
+        "nl": "Herhaal verbind de besturing van twee spelers. Waarom moet begrenzen na bewegen gebeuren? Houd W en Omlaag samen ingedrukt en daarna tegengestelde toetsen voor één batje. Klik buiten het voorbeeld en keer terug; leg uit waarom beweging zich niet hoort op te stapelen zonder focus."
+      },
+      "code": "position = 10\nposition -= 100 * 0.2\nprint(position)\nposition = max(0, position)\nprint(position)"
+    },
+    {
+      "id": "recall-python-v4-16-mirror-collision",
+      "sourceActivityId": "python-v4-16-mirror-collision",
+      "objectiveIds": [
+        "mirrored-collision"
+      ],
+      "prompt": {
+        "en": "Recall complete the other side of the court. Which side of left_edge is 495? Which way is the negative velocity? Explain the exact-touch case: pygame Rect edges that only touch do not overlap. Test a high and low miss too.",
+        "nl": "Herhaal maak de andere kant van het veld af. Aan welke kant van left_edge ligt 495? Welke richting heeft de negatieve snelheid? Leg het geval van exact raken uit: pygame Rect-randen die alleen raken overlappen niet. Test ook een hoge en lage misser."
+      },
+      "code": "left_edge = 500\nradius = 5\nprint(left_edge - radius)\nprint(-120)"
+    },
+    {
+      "id": "recall-python-v4-16-rally-session",
+      "sourceActivityId": "python-v4-16-rally-session",
+      "objectiveIds": [
+        "rally-integration"
+      ],
+      "prompt": {
+        "en": "Recall connect serve, movement and one-point scoring. Would checking the miss before movement award this point in the same update? Draw the cycle as waiting → playing → miss → waiting. Say where paddles and wall responses belong when combining this with your earlier work for Pong.",
+        "nl": "Herhaal verbind service, beweging en eenmalig scoren. Zou een misser vóór beweging controleren dit punt in dezelfde update geven? Teken de cyclus als wachten → spelen → missen → wachten. Vertel waar batjes en muurreacties passen wanneer je dit met je eerdere werk voor Pong combineert."
+      },
+      "code": "x, velocity, score = 99, 20, 0\nx += velocity * 0.1\nif x > 100:\n    score += 1\n    x, velocity = 50, 0\nprint(x, velocity, score)"
+    },
+    {
+      "id": "recall-python-v4-17-insert",
+      "sourceActivityId": "python-v4-17-insert",
+      "objectiveIds": [
+        "insert"
+      ],
+      "prompt": {
+        "en": "Recall insert at a chosen position. Did Mila disappear or move? Insert another person at position one.",
+        "nl": "Herhaal voeg op een gekozen positie in. Verdween Mila of verschoof die? Voeg nog iemand op positie één in."
+      },
+      "code": "queue = [\"Bo\", \"Mila\"]\nqueue.insert(1,\"Ada\")\nprint(queue)"
+    },
+    {
+      "id": "recall-python-v4-17-pop",
+      "sourceActivityId": "python-v4-17-pop",
+      "objectiveIds": [
+        "pop"
+      ],
+      "prompt": {
+        "en": "Recall remove by index and keep the value. What would pop() without 0 remove? Explain the different results of pop(0) and remove(0) on [5, 0].",
+        "nl": "Herhaal verwijder op index en bewaar de waarde. Wat verwijdert pop() zonder 0? Leg de verschillende resultaten uit van pop(0) en remove(0) op [5, 0]."
+      },
+      "code": "queue = [\"Ada\",\"Bo\"]\nnext_person = queue.pop(0)\nprint(next_person)\nprint(queue)"
+    },
+    {
+      "id": "recall-python-v4-17-sorting",
+      "sourceActivityId": "python-v4-17-sorting",
+      "objectiveIds": [
+        "sort",
+        "sorted"
+      ],
+      "prompt": {
+        "en": "Recall sort in place or make a sorted copy. Which call changes scores itself? Add duplicate values and check they remain in the result.",
+        "nl": "Herhaal sorteer ter plaatse of maak een gesorteerde kopie. Welke aanroep verandert scores zelf? Voeg dubbele waarden toe en controleer dat ze behouden blijven."
+      },
+      "code": "scores = [3,1,2]\nprint(sorted(scores))\nprint(scores)\nprint(scores.sort())\nprint(scores)"
+    },
+    {
+      "id": "recall-python-v4-17-nested-loops",
+      "sourceActivityId": "python-v4-17-nested-loops",
+      "objectiveIds": [
+        "nested-loops"
+      ],
+      "prompt": {
+        "en": "Recall visit rows and their elements. How many times does the inner body run in total? Trace the total for each inner iteration of [[2], [3, 4]].",
+        "nl": "Herhaal bezoek rijen en hun elementen. Hoe vaak draait de binnenste inhoud in totaal? Volg het totaal bij elke binnenste iteratie van [[2], [3, 4]]."
+      },
+      "code": "for row in [[1,2],[3]]:\n    for value in row:\n        print(value)"
+    },
+    {
+      "id": "recall-python-v4-17-score-report",
+      "sourceActivityId": "python-v4-17-score-report",
+      "objectiveIds": [
+        "collections-review"
+      ],
+      "prompt": {
+        "en": "Recall build a report without losing the original. Why does the source list keep its order? Design a test that catches accidentally removing duplicates.",
+        "nl": "Herhaal bouw een rapport zonder het origineel te verliezen. Waarom behoudt de bronlijst zijn volgorde? Ontwerp een test die onbedoeld verwijderen van duplicaten ontdekt."
+      },
+      "code": "names = [\"Bo\",\"Ada\",\"Mila\"]\nprint(sorted(names)[:2])\nprint(names)"
+    },
+    {
+      "id": "recall-python-v4-18-sequence",
+      "sourceActivityId": "python-v4-18-sequence",
+      "objectiveIds": [
+        "string-indexing",
+        "string-length",
+        "string-negative-index"
+      ],
+      "prompt": {
+        "en": "Recall read characters by position. What is the index of the exclamation mark? Test a string containing one space.",
+        "nl": "Herhaal lees tekens op positie. Wat is de index van het uitroepteken? Test een string met één spatie."
+      },
+      "code": "text = \"Code!\"\nprint(text[0],text[-1],len(text))"
+    },
+    {
+      "id": "recall-python-v4-18-slice",
+      "sourceActivityId": "python-v4-18-slice",
+      "objectiveIds": [
+        "string-slicing"
+      ],
+      "prompt": {
+        "en": "Recall extract a piece of text. Which part does code[2:3] contain? Compare slicing beyond the end with indexing beyond the end.",
+        "nl": "Herhaal haal een deel uit tekst. Welk deel bevat code[2:3]? Vergelijk een deelbereik voorbij het einde met indexeren voorbij het einde."
+      },
+      "code": "code = \"AB-204\"\nprint(code[:2])\nprint(code[3:])\nprint(code[-3:])"
+    },
+    {
+      "id": "recall-python-v4-18-immutable",
+      "sourceActivityId": "python-v4-18-immutable",
+      "objectiveIds": [
+        "immutability"
+      ],
+      "prompt": {
+        "en": "Recall build a changed string. Why does name still contain lowercase b? Try assigning to text[0] in an experiment and read the TypeError.",
+        "nl": "Herhaal maak een veranderde string. Waarom bevat name nog steeds een kleine b? Probeer in een experiment aan text[0] toe te wijzen en lees de TypeError."
+      },
+      "code": "name = \"bo\"\nupdated = \"B\" + name[1:]\nprint(updated)\nprint(name)"
+    },
+    {
+      "id": "recall-python-v4-18-characters",
+      "sourceActivityId": "python-v4-18-characters",
+      "objectiveIds": [
+        "string-iteration",
+        "string-membership",
+        "string-conditionals"
+      ],
+      "prompt": {
+        "en": "Recall loop over characters and test membership. Does the substring test count how many matches exist? Explain why y is not counted under this particular brief.",
+        "nl": "Herhaal doorloop tekens en test aanwezigheid. Telt de substringtest hoeveel overeenkomsten bestaan? Leg uit waarom y volgens deze specifieke opdracht niet meetelt."
+      },
+      "code": "count = 0\nfor character in \"banana\":\n    if character == \"a\":\n        count += 1\nprint(count)\nprint(\"ana\" in \"banana\")"
+    },
+    {
+      "id": "recall-python-v4-18-case",
+      "sourceActivityId": "python-v4-18-case",
+      "objectiveIds": [
+        "case-conversion"
+      ],
+      "prompt": {
+        "en": "Recall return differently cased text. Which variable was reassigned? Compare lower, upper and title on text with punctuation.",
+        "nl": "Herhaal geef tekst met andere hoofdletters terug. Welke variabele werd opnieuw toegewezen? Vergelijk lower, upper en title op tekst met leestekens."
+      },
+      "code": "name = \"ada lovelace\"\nprint(name.title())\nprint(name.upper())\nprint(name)"
+    },
+    {
+      "id": "recall-python-v4-18-split-whitespace",
+      "sourceActivityId": "python-v4-18-split-whitespace",
+      "objectiveIds": [
+        "split-whitespace"
+      ],
+      "prompt": {
+        "en": "Recall split ordinary whitespace. Why are there no empty strings in the result? Compare a tab character with the two literal characters backslash and t.",
+        "nl": "Herhaal splits gewone witruimte. Waarom staan er geen lege strings in het resultaat? Vergelijk een tabteken met de twee letterlijke tekens backslash en t."
+      },
+      "code": "text = \"  one\\t two\\nthree  \"\nprint(text.split())"
+    },
+    {
+      "id": "recall-python-v4-18-split-delimiter",
+      "sourceActivityId": "python-v4-18-split-delimiter",
+      "objectiveIds": [
+        "split-delimiters",
+        "split-newlines",
+        "split-tabs"
+      ],
+      "prompt": {
+        "en": "Recall split a known separator. What information would removing the empty field lose? Compare splitting the same newline-terminated text with splitlines and split(\"\\n\").",
+        "nl": "Herhaal splits een bekend scheidingsteken. Welke informatie verdwijnt als je het lege veld verwijdert? Vergelijk dezelfde tekst met een nieuwe regel aan het einde via splitlines en split(\"\\n\")."
+      },
+      "code": "print(\"a,,b\".split(\",\"))\nprint(\"a\tb\".split(\"\t\"))\nprint(\"a\\nb\\n\".splitlines())"
+    },
+    {
+      "id": "recall-python-v4-18-join-strip",
+      "sourceActivityId": "python-v4-18-join-strip",
+      "objectiveIds": [
+        "join",
+        "strip-characters"
+      ],
+      "prompt": {
+        "en": "Recall join cleaned pieces of text. What does joining an empty list produce? Use a newline as the join separator to create a multiline report.",
+        "nl": "Herhaal voeg opgeschoonde tekstdelen samen. Wat levert een lege lijst samenvoegen op? Gebruik een nieuwe regel als samenvoegscheiding om een rapport met meerdere regels te maken."
+      },
+      "code": "parts = [\"  Ada \",\" Bo\"]\nclean = [part.strip() for part in parts]\nprint(\" / \".join(clean))"
+    },
+    {
+      "id": "recall-python-v4-18-replace-find",
+      "sourceActivityId": "python-v4-18-replace-find",
+      "objectiveIds": [
+        "replace",
+        "find"
+      ],
+      "prompt": {
+        "en": "Recall search and replace text. Why is a match at zero easy to mishandle in a Boolean test? Replace only the first occurrence by trying the optional count argument.",
+        "nl": "Herhaal zoek en vervang tekst. Waarom wordt een overeenkomst op nul gemakkelijk verkeerd behandeld in een booleaanse test? Vervang alleen het eerste voorkomen door het optionele aantalargument te proberen."
+      },
+      "code": "text = \"red-red\"\nprint(text.find(\"red\"))\nprint(text.find(\"blue\"))\nprint(text.replace(\"red\",\"green\"))"
+    },
+    {
+      "id": "recall-python-v4-18-format",
+      "sourceActivityId": "python-v4-18-format",
+      "objectiveIds": [
+        "format",
+        "positional-format",
+        "named-format"
+      ],
+      "prompt": {
+        "en": "Recall fill a text template with format. Which positional argument does {1} select? Write an equivalent f-string and explain where its values are supplied.",
+        "nl": "Herhaal vul een tekstsjabloon met format. Welk positioneel argument kiest {1}? Schrijf een gelijkwaardige f-string en leg uit waar de waarden worden geleverd."
+      },
+      "code": "print(\"{1}, {0}\".format(\"Ada\",\"Hello\"))\nprint(\"{name}: {score}\".format(name=\"Bo\",score=4))"
+    },
+    {
+      "id": "recall-python-v4-18-both-format-forms",
+      "sourceActivityId": "python-v4-18-both-format-forms",
+      "objectiveIds": [
+        "format-forms-practice"
+      ],
+      "prompt": {
+        "en": "Recall use positional and named placeholders. Why do both lines put second first? After passing, write the equivalent f-string and explain which names Python looks up.",
+        "nl": "Herhaal gebruik plaatsaanduidingen op positie en naam. Waarom zetten beide regels second vooraan? Schrijf na slagen de overeenkomstige f-string en leg uit welke namen Python opzoekt."
+      },
+      "code": "print(\"{1} then {0}\".format(\"first\", \"second\"))\nprint(\"{right} then {left}\".format(left=\"first\", right=\"second\"))"
+    },
+    {
+      "id": "recall-python-v4-18-text-cleaner",
+      "sourceActivityId": "python-v4-18-text-cleaner",
+      "objectiveIds": [
+        "text-project"
+      ],
+      "prompt": {
+        "en": "Recall mini project: text cleaner. Which step collapses the tab and repeated spaces? Test tabs, blank lines, punctuation and duplicate lines in your own fixture.",
+        "nl": "Herhaal miniproject: tekstopruimer. Welke stap maakt de tab en herhaalde spaties gelijk? Test tabs, lege regels, leestekens en dubbele regels in je eigen gegevens."
+      },
+      "code": "text = \"  Hello\t WORLD \"\nprint(\" \".join(text.split()).lower())"
+    },
+    {
+      "id": "recall-python-v4-19-keys",
+      "sourceActivityId": "python-v4-19-keys",
+      "objectiveIds": [
+        "dictionary-keys",
+        "invalid-keys"
+      ],
+      "prompt": {
+        "en": "Recall choose valid keys. Why is the coordinate written as a tuple? Try using the original list as a key and read the resulting TypeError.",
+        "nl": "Herhaal kies geldige sleutels. Waarom is de coördinaat als tuple geschreven? Probeer de oorspronkelijke lijst als sleutel te gebruiken en lees de TypeError."
+      },
+      "code": "places = {(2,3):\"start\"}\nprint(places[(2,3)])"
+    },
+    {
+      "id": "recall-python-v4-19-update",
+      "sourceActivityId": "python-v4-19-update",
+      "objectiveIds": [
+        "empty-dictionaries",
+        "adding-keys",
+        "update",
+        "overwriting"
+      ],
+      "prompt": {
+        "en": "Recall build and update a record. Why is there only one score key? Call again with a different score and inspect which keys remain.",
+        "nl": "Herhaal bouw en wijzig een record. Waarom is er maar één score-sleutel? Roep opnieuw aan met een andere score en bekijk welke sleutels blijven."
+      },
+      "code": "record = {}\nrecord[\"score\"] = 2\nrecord.update({\"score\":5,\"active\":True})\nprint(record)"
+    },
+    {
+      "id": "recall-python-v4-19-build-record",
+      "sourceActivityId": "python-v4-19-build-record",
+      "objectiveIds": [
+        "record-construction"
+      ],
+      "prompt": {
+        "en": "Recall build a record from an empty mapping. Which variable contains the changed dictionary? Create two records and change only one. Explain why the other must stay unchanged.",
+        "nl": "Herhaal bouw een record vanuit een lege koppeling. Welke variabele bevat de gewijzigde dictionary? Maak twee records en verander er maar één. Leg uit waarom de andere gelijk moet blijven."
+      },
+      "code": "item = {}\nitem[\"count\"] = 1\nresult = item.update({\"count\":3,\"ready\":True})\nprint(item)\nprint(result)"
+    },
+    {
+      "id": "recall-python-v4-19-lookup",
+      "sourceActivityId": "python-v4-19-lookup",
+      "objectiveIds": [
+        "lookup",
+        "key-error",
+        "get",
+        "dictionary-membership"
+      ],
+      "prompt": {
+        "en": "Recall handle a missing key. Why does the first lookup return zero instead of ten? Compare absent score, score 0 and score None.",
+        "nl": "Herhaal verwerk een ontbrekende sleutel. Waarom geeft de eerste zoekactie nul in plaats van tien? Vergelijk ontbrekende score, score 0 en score None."
+      },
+      "code": "record = {\"score\":0}\nprint(record.get(\"score\",10))\nprint(record.get(\"lives\",3))\nprint(\"score\" in record)"
+    },
+    {
+      "id": "recall-python-v4-19-delete",
+      "sourceActivityId": "python-v4-19-delete",
+      "objectiveIds": [
+        "dictionary-delete",
+        "dictionary-pop"
+      ],
+      "prompt": {
+        "en": "Recall remove a dictionary entry. How does del differ from an expression returning a value? Call the function twice on the same record and explain the second answer.",
+        "nl": "Herhaal verwijder een dictionary-invoer. Hoe verschilt del van een uitdrukking die een waarde teruggeeft? Roep de functie tweemaal op hetzelfde record aan en leg het tweede antwoord uit."
+      },
+      "code": "record = {\"name\":\"Bo\",\"temporary\":4}\ndel record[\"temporary\"]\nprint(record.pop(\"name\"))\nprint(record)"
+    },
+    {
+      "id": "recall-python-v4-19-views",
+      "sourceActivityId": "python-v4-19-views",
+      "objectiveIds": [
+        "keys",
+        "values",
+        "items",
+        "dictionary-iteration"
+      ],
+      "prompt": {
+        "en": "Recall visit keys, values and pairs. What does a plain for name in scores visit? Compare returning keys only with the labelled report.",
+        "nl": "Herhaal bezoek sleutels, waarden en paren. Wat bezoekt een gewone for name in scores? Vergelijk alleen sleutels teruggeven met het gelabelde rapport."
+      },
+      "code": "scores = {\"Ada\":3,\"Bo\":5}\nprint(list(scores.keys()))\nprint(list(scores.values()))\nfor name,score in scores.items():\n    print(name,score)"
+    },
+    {
+      "id": "recall-python-v4-19-keys-and-values",
+      "sourceActivityId": "python-v4-19-keys-and-values",
+      "objectiveIds": [
+        "view-selection"
+      ],
+      "prompt": {
+        "en": "Recall choose a dictionary view deliberately. Which result keeps each colour next to its count? Add a new key after making the lists. Predict why the lists do not grow with the dictionary.",
+        "nl": "Herhaal kies bewust een dictionaryweergave. Welk resultaat houdt elke kleur naast zijn aantal? Voeg na het maken van de lijsten een sleutel toe. Voorspel waarom de lijsten niet meegroeien met de dictionary."
+      },
+      "code": "record = {\"red\":2,\"blue\":0}\nprint(list(record.keys()))\nprint(list(record.values()))\nprint(list(record.items()))"
+    },
+    {
+      "id": "recall-python-v4-19-comprehension",
+      "sourceActivityId": "python-v4-19-comprehension",
+      "objectiveIds": [
+        "dictionary-comprehensions"
+      ],
+      "prompt": {
+        "en": "Recall derive a new mapping. Why is Bo missing from the new mapping? Rewrite the comprehension as an ordinary loop.",
+        "nl": "Herhaal leid een nieuwe koppeling af. Waarom ontbreekt Bo in de nieuwe koppeling? Herschrijf de comprehension als een gewone lus."
+      },
+      "code": "scores = {\"Ada\":3,\"Bo\":0}\nprint({name:score+1 for name,score in scores.items() if score > 0})"
+    },
+    {
+      "id": "recall-python-v4-20-lines",
+      "sourceActivityId": "python-v4-20-lines",
+      "objectiveIds": [
+        "line-iteration"
+      ],
+      "prompt": {
+        "en": "Recall process one line at a time. Why does strip avoid extra blank output lines here? Try a final line without a newline and confirm it is still processed.",
+        "nl": "Herhaal verwerk één regel tegelijk. Waarom voorkomt strip hier extra lege uitvoerregels? Probeer een laatste regel zonder nieuwe-regelteken en controleer dat die toch verwerkt wordt."
+      },
+      "code": "with open(\"example.txt\",encoding=\"utf-8\") as handle:\n    for line in handle:\n        print(line.strip())"
+    },
+    {
+      "id": "recall-python-v4-20-position",
+      "sourceActivityId": "python-v4-20-position",
+      "objectiveIds": [
+        "readline",
+        "file-position"
+      ],
+      "prompt": {
+        "en": "Recall read a header, then the remaining file. Why is the final read empty? Use a file whose first line is blank. Explain how that differs from an empty file.",
+        "nl": "Herhaal lees een kop en daarna de rest. Waarom is de laatste leesactie leeg? Gebruik een bestand met een lege eerste regel. Leg uit hoe dat verschilt van een leeg bestand."
+      },
+      "code": "with open(\"example.txt\",encoding=\"utf-8\") as handle:\n    print(handle.readline().strip())\n    print(handle.read().strip())\n    print(handle.read() == \"\")"
+    },
+    {
+      "id": "recall-python-v4-20-append",
+      "sourceActivityId": "python-v4-20-append",
+      "objectiveIds": [
+        "append-files"
+      ],
+      "prompt": {
+        "en": "Recall append a new log entry. What would w do to the first line? Run twice, navigate away, return and inspect the saved log.",
+        "nl": "Herhaal voeg een nieuwe logregel toe. Wat doet w met de eerste regel? Voer tweemaal uit, navigeer weg, keer terug en bekijk het opgeslagen log."
+      },
+      "code": "with open(\"example.txt\",\"a\",encoding=\"utf-8\") as handle:\n    handle.write(\"second\\n\")\nwith open(\"example.txt\",encoding=\"utf-8\") as handle:\n    print(handle.read(),end=\"\")"
+    },
+    {
+      "id": "recall-python-v4-20-report",
+      "sourceActivityId": "python-v4-20-report",
+      "objectiveIds": [
+        "file-review"
+      ],
+      "prompt": {
+        "en": "Recall generate a text report from a file. Why does the output path need to differ from the source? Add another negative number to the source and predict both report fields.",
+        "nl": "Herhaal maak een tekstrapport vanuit een bestand. Waarom moet het uitvoerpad verschillen van de bron? Voeg nog een negatief getal aan de bron toe en voorspel beide rapportvelden."
+      },
+      "code": "values = [2,5]\ntotal = 0\nfor value in values:\n    total += value\nprint(f\"count={len(values)}\")\nprint(f\"total={total}\")"
+    },
+    {
+      "id": "recall-python-v4-21-rows",
+      "sourceActivityId": "python-v4-21-rows",
+      "objectiveIds": [
+        "csv",
+        "csv-reader",
+        "csv-quoting"
+      ],
+      "prompt": {
+        "en": "Recall read rows and columns with csv.reader. Why does the data row still have only two columns? Put a quoted comma inside another field and compare with naive splitting.",
+        "nl": "Herhaal lees rijen en kolommen met csv.reader. Waarom heeft de gegevensrij nog steeds maar twee kolommen? Zet een aangehaalde komma in een ander veld en vergelijk met eenvoudig splitsen."
+      },
+      "code": "import csv\nwith open(\"example.csv\",newline=\"\",encoding=\"utf-8\") as handle:\n    for row in csv.reader(handle):\n        print(row)"
+    },
+    {
+      "id": "recall-python-v4-21-named-records",
+      "sourceActivityId": "python-v4-21-named-records",
+      "objectiveIds": [
+        "dict-reader",
+        "csv-numeric-conversion"
+      ],
+      "prompt": {
+        "en": "Recall use a header as field names. What type does row[\"score\"] have before conversion? Reverse the column order but preserve the headers. The result should stay correct.",
+        "nl": "Herhaal gebruik een kop als veldnamen. Welk type heeft row[\"score\"] vóór omzetting? Draai de kolomvolgorde om maar behoud de kopvelden. Het resultaat hoort juist te blijven."
+      },
+      "code": "import csv\nwith open(\"example.csv\",newline=\"\",encoding=\"utf-8\") as handle:\n    for row in csv.DictReader(handle):\n        print(row[\"name\"],int(row[\"score\"]) + 1)"
+    },
+    {
+      "id": "recall-python-v4-21-delimiter",
+      "sourceActivityId": "python-v4-21-delimiter",
+      "objectiveIds": [
+        "csv-delimiters"
+      ],
+      "prompt": {
+        "en": "Recall read a different csv dialect. Why does B;C remain one field? Create a tab-separated fixture and retain a comma inside one field.",
+        "nl": "Herhaal lees een ander csv-dialect. Waarom blijft B;C één veld? Maak een tabgescheiden voorbeeld en behoud een komma binnen één veld."
+      },
+      "code": "import csv\nwith open(\"example.csv\",newline=\"\",encoding=\"utf-8\") as handle:\n    print(list(csv.reader(handle,delimiter=\";\")))"
+    },
+    {
+      "id": "recall-python-v4-21-write",
+      "sourceActivityId": "python-v4-21-write",
+      "objectiveIds": [
+        "csv-write"
+      ],
+      "prompt": {
+        "en": "Recall export records to csv. Why is a comma inside the city safe here? Inspect the generated file, then read it back using csv.reader.",
+        "nl": "Herhaal exporteer records naar csv. Waarom is een komma binnen de stad hier veilig? Bekijk het gemaakte bestand en lees het terug met csv.reader."
+      },
+      "code": "import csv\nwith open(\"example.csv\",\"w\",newline=\"\",encoding=\"utf-8\") as handle:\n    writer = csv.writer(handle)\n    writer.writerow([\"name\",\"city\"])\n    writer.writerow([\"Ada\",\"Paris, France\"])\nwith open(\"example.csv\",newline=\"\",encoding=\"utf-8\") as handle:\n    print(list(csv.reader(handle)))"
+    },
+    {
+      "id": "recall-python-v4-22-load",
+      "sourceActivityId": "python-v4-22-load",
+      "objectiveIds": [
+        "json",
+        "json-load",
+        "nested-records"
+      ],
+      "prompt": {
+        "en": "Recall load nested json data. Which access selects the first player rather than a field? Add a second field to each player and confirm name extraction remains stable.",
+        "nl": "Herhaal laad geneste json-gegevens. Welke toegang kiest de eerste speler in plaats van een veld? Voeg een tweede veld aan elke speler toe en controleer dat namen ophalen gelijk blijft."
+      },
+      "code": "import json\nwith open(\"example.json\",encoding=\"utf-8\") as handle:\n    data = json.load(handle)\nprint(data[\"players\"][0][\"name\"])\nprint(data[\"active\"])"
+    },
+    {
+      "id": "recall-python-v4-22-save",
+      "sourceActivityId": "python-v4-22-save",
+      "objectiveIds": [
+        "json-save",
+        "json-roundtrip"
+      ],
+      "prompt": {
+        "en": "Recall save and reopen json. Why might whitespace differ while the data is equal? Open the generated JSON in the workspace, navigate away, return and run a load.",
+        "nl": "Herhaal bewaar en heropen json. Waarom kan witruimte verschillen terwijl de gegevens gelijk zijn? Open de gemaakte JSON in de werkruimte, navigeer weg, keer terug en laad die."
+      },
+      "code": "import json\ndata = {\"active\":True,\"scores\":[2,4]}\nwith open(\"example.json\",\"w\",encoding=\"utf-8\") as handle:\n    json.dump(data,handle,indent=2)\nwith open(\"example.json\",encoding=\"utf-8\") as handle:\n    print(json.load(handle) == data)"
+    },
+    {
+      "id": "recall-python-v4-22-update-and-recover",
+      "sourceActivityId": "python-v4-22-update-and-recover",
+      "objectiveIds": [
+        "json-update",
+        "malformed-json"
+      ],
+      "prompt": {
+        "en": "Recall update saved data and recognise malformed json. Does valid file encoding guarantee valid JSON syntax? Use valid JSON with a missing count field and explain why that is a different error.",
+        "nl": "Herhaal wijzig opgeslagen gegevens en herken ongeldige json. Garandeert geldige bestandscodering geldige JSON-syntax? Gebruik geldige JSON zonder count-veld en leg uit waarom dat een andere fout is."
+      },
+      "code": "import json\ntry:\n    json.loads(\"{broken}\")\nexcept json.JSONDecodeError:\n    print(\"Invalid JSON\")"
+    },
+    {
+      "id": "recall-python-v4-22-club-book",
+      "sourceActivityId": "python-v4-22-club-book",
+      "objectiveIds": [
+        "club-project"
+      ],
+      "prompt": {
+        "en": "Recall mini project: club results book. Why is the number of rows different from the number of keys? Add duplicate players, a quoted comma in a name and a negative score; reopen the generated JSON.",
+        "nl": "Herhaal miniproject: uitslagenboek van de club. Waarom verschilt het aantal rijen van het aantal sleutels? Voeg dubbele spelers, een aangehaalde komma in een naam en een negatieve score toe; heropen de gemaakte JSON."
+      },
+      "code": "totals = {}\nfor name,points in [(\"Ada\",2),(\"Ada\",3)]:\n    totals[name] = totals.get(name,0) + points\nprint(totals)"
+    },
+    {
+      "id": "recall-python-v4-23-class",
+      "sourceActivityId": "python-v4-23-class",
+      "objectiveIds": [
+        "classes",
+        "instantiation",
+        "oop"
+      ],
+      "prompt": {
+        "en": "Recall define a new type with class. Which line defines the type and which creates an object? Compare second = first with second = Ticket().",
+        "nl": "Herhaal definieer een nieuw type met class. Welke regel definieert het type en welke maakt een object? Vergelijk second = first met second = Ticket()."
+      },
+      "code": "class Badge:\n    pass\nfirst = Badge()\nsecond = Badge()\nprint(isinstance(first,Badge))\nprint(first is second)"
+    },
+    {
+      "id": "recall-python-v4-23-initialise",
+      "sourceActivityId": "python-v4-23-initialise",
+      "objectiveIds": [
+        "constructors",
+        "self",
+        "instance-attributes"
+      ],
+      "prompt": {
+        "en": "Recall give each instance initial state. Why does the caller supply only one argument when __init__ has two parameters? Create two players with different names and inspect both.",
+        "nl": "Herhaal geef elke instantie begintoestand. Waarom geeft de aanroeper één argument terwijl __init__ twee parameters heeft? Maak twee spelers met verschillende namen en bekijk beide."
+      },
+      "code": "class Counter:\n    def __init__(self,start):\n        self.value = start\ncounter = Counter(3)\nprint(counter.value)"
+    },
+    {
+      "id": "recall-python-v4-23-methods",
+      "sourceActivityId": "python-v4-23-methods",
+      "objectiveIds": [
+        "methods"
+      ],
+      "prompt": {
+        "en": "Recall let an object perform an action. Which object’s state does self.value identify? Create two lamps and toggle only one.",
+        "nl": "Herhaal laat een object een actie uitvoeren. Van welk object benoemt self.value de toestand? Maak twee lampjes en schakel er maar één om."
+      },
+      "code": "class Counter:\n    def __init__(self):\n        self.value = 0\n    def increment(self):\n        self.value += 1\ncounter = Counter()\ncounter.increment()\nprint(counter.value)"
+    },
+    {
+      "id": "recall-python-v4-23-method-arguments",
+      "sourceActivityId": "python-v4-23-method-arguments",
+      "objectiveIds": [
+        "method-arguments"
+      ],
+      "prompt": {
+        "en": "Recall pass an argument to a method. Why is the second result five instead of two? Call add with a named argument and explain how the stored state changes.",
+        "nl": "Herhaal geef een argument aan een methode. Waarom is het tweede resultaat vijf in plaats van twee? Roep add met een benoemd argument aan en leg uit hoe de bewaarde toestand verandert."
+      },
+      "code": "class Counter:\n    def __init__(self):\n        self.value = 0\n    def add(self,amount):\n        self.value += amount\n        return self.value\ncounter = Counter()\nprint(counter.add(3))\nprint(counter.add(2))"
+    },
+    {
+      "id": "recall-python-v4-23-shared-state",
+      "sourceActivityId": "python-v4-23-shared-state",
+      "objectiveIds": [
+        "class-attributes",
+        "independent-instances"
+      ],
+      "prompt": {
+        "en": "Recall separate shared defaults from instance data. Why can category be shared while items must be separate? Create three bags, add to just one, and inspect all three lists.",
+        "nl": "Herhaal scheid gedeelde standaarden van instantiegegevens. Waarom kan category gedeeld zijn terwijl items apart moeten zijn? Maak drie tassen, voeg aan één toe en bekijk alle drie lijsten."
+      },
+      "code": "class Basket:\n    category = \"storage\"\n    def __init__(self):\n        self.items = []\na = Basket()\nb = Basket()\na.items.append(\"book\")\nprint(b.items)\nprint(Basket.category)"
+    },
+    {
+      "id": "recall-python-v4-23-inspect",
+      "sourceActivityId": "python-v4-23-inspect",
+      "objectiveIds": [
+        "hasattr",
+        "getattr",
+        "dir"
+      ],
+      "prompt": {
+        "en": "Recall inspect an unfamiliar object. Which call actually retrieves a value? Use dir on a string and identify one method you already know.",
+        "nl": "Herhaal onderzoek een onbekend object. Welke aanroep haalt werkelijk een waarde op? Gebruik dir op een string en herken één methode die je al kent."
+      },
+      "code": "class Badge:\n    name = \"Visitor\"\nbadge = Badge()\nprint(hasattr(badge,\"name\"))\nprint(getattr(badge,\"score\",0))\nprint(\"name\" in dir(badge))"
+    },
+    {
+      "id": "recall-python-v4-23-representation",
+      "sourceActivityId": "python-v4-23-representation",
+      "objectiveIds": [
+        "repr",
+        "str-method"
+      ],
+      "prompt": {
+        "en": "Recall give objects useful text representations. Which method is used by the second print? Put two counters in a list and print the list to observe representations.",
+        "nl": "Herhaal geef objecten bruikbare tekstweergaven. Welke methode gebruikt de tweede print? Zet twee tellers in een lijst en druk die af om weergaven te bekijken."
+      },
+      "code": "class Score:\n    def __init__(self,value):\n        self.value = value\n    def __repr__(self):\n        return f\"Score({self.value})\"\n    def __str__(self):\n        return f\"{self.value} points\"\nscore = Score(4)\nprint(repr(score))\nprint(score)"
+    },
+    {
+      "id": "recall-python-v4-23-functions-as-values",
+      "sourceActivityId": "python-v4-23-functions-as-values",
+      "objectiveIds": [
+        "everything-object",
+        "function-objects"
+      ],
+      "prompt": {
+        "en": "Recall a function is an object too. What would action contain after action = double(3)? Pass action to another function and have that function call it with a value.",
+        "nl": "Herhaal een functie is ook een object. Wat bevat action na action = double(3)? Geef action door aan een andere functie en laat die haar met een waarde aanroepen."
+      },
+      "code": "def double(value):\n    return value * 2\naction = double\nprint(action(3))\nprint(callable(action))"
+    },
+    {
+      "id": "recall-python-v4-23-virtual-pet",
+      "sourceActivityId": "python-v4-23-virtual-pet",
+      "objectiveIds": [
+        "pet-project",
+        "objects-review"
+      ],
+      "prompt": {
+        "en": "Recall mini project: virtual pet. Why must the availability check come before subtraction? Create two pets, play with one and feed the other; explain both final states.",
+        "nl": "Herhaal miniproject: virtueel huisdier. Waarom moet beschikbaarheid vóór aftrekken worden gecontroleerd? Maak twee huisdieren, speel met één en voer de andere; leg beide eindtoestanden uit."
+      },
+      "code": "class Battery:\n    def __init__(self):\n        self.charge = 3\n    def use(self):\n        if self.charge < 1:\n            return False\n        self.charge -= 1\n        return True\nbattery = Battery()\nprint(battery.use(),battery.charge)"
+    }
+  ]
+}

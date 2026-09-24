@@ -51,11 +51,26 @@
       }
     },
     {
-      "id": "python-v4-23-methods-experiment",
+      "id": "python-v4-23-methods-visible-report",
+      "role": "practice",
       "topicIds": [],
       "heading": {
-        "en": "Try one change",
-        "nl": "Probeer één wijziging"
+        "en": "Run a visible report",
+        "nl": "Voer een zichtbaar verslag uit"
+      },
+      "body": {
+        "en": "After completing the required definition, add this caller below it and Run. Expected False, then True. Call toggle again to return to False.",
+        "nl": "Voeg na het afmaken van de vereiste definitie deze aanroeper eronder toe en voer uit. Verwacht False en dan True. Roep toggle nogmaals aan om terug te gaan naar False."
+      },
+      "code": "lamp = Lamp()\nprint(lamp.on)\nlamp.toggle()\nprint(lamp.on)"
+    },
+    {
+      "id": "python-v4-23-methods-experiment",
+      "role": "experiment",
+      "topicIds": [],
+      "heading": {
+        "en": "After completing the task: try one change",
+        "nl": "Na het afronden: probeer één wijziging"
       },
       "body": {
         "en": "Create two lamps and toggle only one.",
@@ -86,7 +101,7 @@
             "name": "Lamp",
             "args": []
           },
-          "check": "_return.on is False and _return.toggle() is None and _return.on is True and _return.toggle() is None and _return.on is False"
+          "check": "_return.on is False and (_return.toggle(), _return.on)[1] is True and (_return.toggle(), _return.on)[1] is False"
         }
       ],
       "hint": {
@@ -117,18 +132,5 @@
     "en": "The method updates its own instance, and applying not twice restores the original state.",
     "nl": "De methode verandert zijn eigen instantie en tweemaal not herstelt de oorspronkelijke toestand."
   },
-  "inputs": [],
-  "retrievals": [
-    {
-      "id": "recall-python-v4-21-delimiter",
-      "sourceActivityId": "python-v4-21-delimiter",
-      "objectiveIds": [
-        "csv-delimiters"
-      ],
-      "prompt": {
-        "en": "Recall “Read a different CSV dialect”. Why does B;C remain one field? Try the earlier example from memory, then check it. Create a tab-separated fixture and retain a comma inside one field.",
-        "nl": "Haal “Lees een ander CSV-dialect” terug. Waarom blijft B;C één veld? Probeer het eerdere voorbeeld uit je geheugen en controleer daarna. Maak een tabgescheiden voorbeeld en behoud een komma binnen één veld."
-      }
-    }
-  ]
+  "inputs": []
 }

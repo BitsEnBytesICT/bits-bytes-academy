@@ -51,11 +51,26 @@
       }
     },
     {
-      "id": "python-v4-18-immutable-experiment",
+      "id": "python-v4-18-immutable-try-calls",
+      "role": "practice",
       "topicIds": [],
       "heading": {
-        "en": "Try one change",
-        "nl": "Probeer één wijziging"
+        "en": "See your function work",
+        "nl": "Bekijk wat je functie doet"
+      },
+      "body": {
+        "en": "A definition alone produces no output. After writing the function, add these calls underneath it in main.py, without indentation, and Run. Compare the returned values with the task's requirements. The checks also call your function with other inputs; they do not require you to keep these demonstration calls.",
+        "nl": "Een definitie alleen geeft geen uitvoer. Schrijf eerst de functie en voeg daarna deze aanroepen eronder toe in main.py, zonder inspringing. Klik op Uitvoeren. Vergelijk de teruggegeven waarden met de opdracht. De controles roepen je functie ook met andere invoer aan; deze demonstratieaanroepen zijn niet verplicht."
+      },
+      "code": "print(replace_first(\"cat\", \"b\"))\nprint(replace_first(\"\", \"X\"))"
+    },
+    {
+      "id": "python-v4-18-immutable-experiment",
+      "role": "experiment",
+      "topicIds": [],
+      "heading": {
+        "en": "After completing the task: try one change",
+        "nl": "Na het afronden: probeer één wijziging"
       },
       "body": {
         "en": "Try assigning to text[0] in an experiment and read the TypeError.",
@@ -76,8 +91,8 @@
         "immutability"
       ],
       "task": {
-        "en": "Return a new string with the first character replaced; return empty text unchanged. Assume character has length one.",
-        "nl": "Geef een nieuwe string terug met het eerste teken vervangen; laat lege tekst leeg. Neem aan dat character lengte één heeft."
+        "en": "Write replace_first(text, character) in main.py. Return a new string with the first character replaced; return empty text unchanged. Assume character has length one.",
+        "nl": "Schrijf replace_first(text, character) in main.py. Geef een nieuwe string terug met het eerste teken vervangen; laat lege tekst leeg. Neem aan dat character lengte één heeft."
       },
       "check": "callable(replace_first)",
       "probes": [
@@ -130,18 +145,5 @@
     "en": "Concatenation creates a separate string; no character of the source is mutated.",
     "nl": "Samenvoegen maakt een aparte string; geen teken van de bron wordt veranderd."
   },
-  "inputs": [],
-  "retrievals": [
-    {
-      "id": "recall-python-v4-16-boundaries",
-      "sourceActivityId": "python-v4-16-boundaries",
-      "objectiveIds": [
-        "boundaries"
-      ],
-      "prompt": {
-        "en": "Recall “Keep a paddle inside the court”. Why is the maximum not 100? Try the earlier example from memory, then check it. Test a different court and paddle height instead of hard-coding 340.",
-        "nl": "Haal “Houd een batje binnen het veld” terug. Waarom is het maximum niet 100? Probeer het eerdere voorbeeld uit je geheugen en controleer daarna. Test een andere veld- en batjeshoogte in plaats van 340 vast in te vullen."
-      }
-    }
-  ]
+  "inputs": []
 }

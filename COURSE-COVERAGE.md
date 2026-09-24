@@ -2,7 +2,7 @@
 
 Generated from explicit lesson sections, required checkpoints, question forms and delayed retrieval prompts. Runtime setup is excluded. The 151 distinct linked syllabus entries are consolidated below; repeated entries share evidence. File and class reviews also appear in independent activities and module quizzes.
 
-The active course has 274 stable topic contracts. Exact evidence is in [the manifest](content/curriculum-manifest.json). Optional self-explanation is retrieval, not graded proof of mastery.
+The active course has 283 stable topic contracts. Exact evidence is in [the manifest](content/curriculum-manifest.json). Optional self-explanation is retrieval, not graded proof of mastery.
 
 | Requested subject | Topics | Introduction |
 | --- | --- | --- |

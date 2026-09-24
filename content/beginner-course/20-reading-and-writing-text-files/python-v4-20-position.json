@@ -57,11 +57,24 @@
       }
     },
     {
-      "id": "python-v4-20-position-experiment",
+      "id": "python-v4-20-position-trace",
       "topicIds": [],
       "heading": {
-        "en": "Try one change",
-        "nl": "Probeer één wijziging"
+        "en": "Imagine a reading cursor",
+        "nl": "Stel je een leescursor voor"
+      },
+      "body": {
+        "en": "For a file containing Header, newline, Ada, newline: initially the cursor is before H. readline() returns 'Header\\n' and leaves the cursor before A. read() then returns only 'Ada\\n' and leaves the cursor at the end. Another read() returns ''. Opening the file again starts a new cursor at the beginning.",
+        "nl": "Bij een bestand met Header, nieuwe regel, Ada, nieuwe regel staat de cursor eerst vóór H. readline() geeft 'Header\\n' en zet de cursor vóór A. read() geeft daarna alleen 'Ada\\n' en zet de cursor aan het einde. Nogmaals read() geeft ''. Opnieuw openen begint met een nieuwe cursor aan het begin."
+      }
+    },
+    {
+      "id": "python-v4-20-position-experiment",
+      "role": "experiment",
+      "topicIds": [],
+      "heading": {
+        "en": "After completing the task: try one change",
+        "nl": "Na het afronden: probeer één wijziging"
       },
       "body": {
         "en": "Use a file whose first line is blank. Explain how that differs from an empty file.",
@@ -103,7 +116,10 @@
           "check": "(_return == (\"Scores\",\"2\\n4\\n\")) and _error is None",
           "moduleOnly": true,
           "module": "work",
-          "files": {}
+          "isolatedFixtures": true,
+          "files": {
+            "report.txt": "Scores\n2\n4\n"
+          }
         },
         {
           "call": {
@@ -116,7 +132,9 @@
           "check": "(_return == (\"\",\"\")) and _error is None",
           "moduleOnly": true,
           "module": "work",
+          "isolatedFixtures": true,
           "files": {
+            "report.txt": "Scores\n2\n4\n",
             "empty.txt": ""
           }
         }
@@ -149,31 +167,5 @@
     "en": "The first call consumes exactly one line, leaving all remaining characters for read.",
     "nl": "De eerste aanroep gebruikt precies één regel en laat alle overige tekens voor read."
   },
-  "inputs": [],
-  "retrievals": [
-    {
-      "id": "recall-python-v4-18-immutable",
-      "sourceActivityId": "python-v4-18-immutable",
-      "objectiveIds": [
-        "immutability"
-      ],
-      "prompt": {
-        "en": "Recall “Build a changed string”. Why does name still contain lowercase b? Try the earlier example from memory, then check it. Try assigning to text[0] in an experiment and read the TypeError.",
-        "nl": "Haal “Maak een veranderde string” terug. Waarom bevat name nog steeds een kleine b? Probeer het eerdere voorbeeld uit je geheugen en controleer daarna. Probeer in een experiment aan text[0] toe te wijzen en lees de TypeError."
-      }
-    },
-    {
-      "id": "recall-python-v4-18-format",
-      "sourceActivityId": "python-v4-18-format",
-      "objectiveIds": [
-        "format",
-        "positional-format",
-        "named-format"
-      ],
-      "prompt": {
-        "en": "Recall “Fill a text template with format”. Which positional argument does {1} select? Try the earlier example from memory, then check it. Write an equivalent f-string and explain where its values are supplied.",
-        "nl": "Haal “Vul een tekstsjabloon met format” terug. Welk positioneel argument kiest {1}? Probeer het eerdere voorbeeld uit je geheugen en controleer daarna. Schrijf een gelijkwaardige f-string en leg uit waar de waarden worden geleverd."
-      }
-    }
-  ]
+  "inputs": []
 }

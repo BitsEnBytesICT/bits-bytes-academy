@@ -56,10 +56,11 @@
     },
     {
       "id": "python-v4-20-lines-experiment",
+      "role": "experiment",
       "topicIds": [],
       "heading": {
-        "en": "Try one change",
-        "nl": "Probeer één wijziging"
+        "en": "After completing the task: try one change",
+        "nl": "Na het afronden: probeer één wijziging"
       },
       "body": {
         "en": "Try a final line without a newline and confirm it is still processed.",
@@ -100,7 +101,10 @@
           "check": "(_return == [\"Ada\",\"Bo\"]) and _error is None",
           "moduleOnly": true,
           "module": "work",
-          "files": {}
+          "isolatedFixtures": true,
+          "files": {
+            "names.txt": " Ada \n\n Bo\n"
+          }
         },
         {
           "call": {
@@ -113,7 +117,9 @@
           "check": "(_return == []) and _error is None",
           "moduleOnly": true,
           "module": "work",
+          "isolatedFixtures": true,
           "files": {
+            "names.txt": " Ada \n\n Bo\n",
             "empty.txt": ""
           }
         }
@@ -146,30 +152,5 @@
     "en": "The loop preserves order and excludes only lines that are empty after the requested trimming.",
     "nl": "De lus bewaart de volgorde en sluit alleen regels uit die na het gevraagde trimmen leeg zijn."
   },
-  "inputs": [],
-  "retrievals": [
-    {
-      "id": "recall-python-v4-18-slice",
-      "sourceActivityId": "python-v4-18-slice",
-      "objectiveIds": [
-        "string-slicing"
-      ],
-      "prompt": {
-        "en": "Recall “Extract a piece of text”. Which part does code[2:3] contain? Try the earlier example from memory, then check it. Compare slicing beyond the end with indexing beyond the end.",
-        "nl": "Haal “Haal een deel uit tekst” terug. Welk deel bevat code[2:3]? Probeer het eerdere voorbeeld uit je geheugen en controleer daarna. Vergelijk een deelbereik voorbij het einde met indexeren voorbij het einde."
-      }
-    },
-    {
-      "id": "recall-python-v4-18-replace-find",
-      "sourceActivityId": "python-v4-18-replace-find",
-      "objectiveIds": [
-        "replace",
-        "find"
-      ],
-      "prompt": {
-        "en": "Recall “Search and replace text”. Why is a match at zero easy to mishandle in a Boolean test? Try the earlier example from memory, then check it. Replace only the first occurrence by trying the optional count argument.",
-        "nl": "Haal “Zoek en vervang tekst” terug. Waarom wordt een overeenkomst op nul gemakkelijk verkeerd behandeld in een booleaanse test? Probeer het eerdere voorbeeld uit je geheugen en controleer daarna. Vervang alleen het eerste voorkomen door het optionele aantalargument te proberen."
-      }
-    }
-  ]
+  "inputs": []
 }

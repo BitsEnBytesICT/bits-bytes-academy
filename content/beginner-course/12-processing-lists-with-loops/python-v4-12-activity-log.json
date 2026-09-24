@@ -60,11 +60,40 @@
       }
     },
     {
-      "id": "python-v4-12-activity-log-experiment",
+      "id": "python-v4-12-activity-log-try-calls",
+      "role": "practice",
       "topicIds": [],
       "heading": {
-        "en": "Try one change",
-        "nl": "Probeer één wijziging"
+        "en": "See your function work",
+        "nl": "Bekijk wat je functie doet"
+      },
+      "body": {
+        "en": "A definition alone produces no output. After writing the function, add these calls underneath it in main.py, without indentation, and Run. Compare the returned values with the task's requirements. The checks also call your function with other inputs; they do not require you to keep these demonstration calls.",
+        "nl": "Een definitie alleen geeft geen uitvoer. Schrijf eerst de functie en voeg daarna deze aanroepen eronder toe in main.py, zonder inspringing. Klik op Uitvoeren. Vergelijk de teruggegeven waarden met de opdracht. De controles roepen je functie ook met andere invoer aan; deze demonstratieaanroepen zijn niet verplicht."
+      },
+      "code": "print(summarise([20, 0, -4, 30]))\nprint(summarise([]))"
+    },
+    {
+      "id": "python-v4-12-activity-log-visible-report",
+      "role": "practice",
+      "topicIds": [],
+      "heading": {
+        "en": "Run a visible report",
+        "nl": "Voer een zichtbaar verslag uit"
+      },
+      "body": {
+        "en": "After completing the required definition, add this caller below it and Run. Expected: Total minutes: 50 and Active days: 2. Empty records give 0 and 0. Negative records do not contribute.",
+        "nl": "Voeg na het afmaken van de vereiste definitie deze aanroeper eronder toe en voer uit. Verwacht: Total minutes: 50 en Active days: 2. Lege gegevens geven 0 en 0. Negatieve gegevens dragen niet bij."
+      },
+      "code": "records = [20, 0, -4, 30]\nreport = summarise(records)\nprint(\"Total minutes:\", report[0])\nprint(\"Active days:\", report[1])"
+    },
+    {
+      "id": "python-v4-12-activity-log-experiment",
+      "role": "experiment",
+      "topicIds": [],
+      "heading": {
+        "en": "After completing the task: try one change",
+        "nl": "Na het afronden: probeer één wijziging"
       },
       "body": {
         "en": "Create your own week of seven records and calculate the expected answer on paper.",
@@ -82,15 +111,11 @@
     {
       "id": "python-v4-12-activity-log-step-1",
       "objectiveIds": [
-        "activity-project",
-        "for",
-        "accumulators",
-        "filtering",
-        "length"
+        "activity-project"
       ],
       "task": {
-        "en": "Implement the stated summary contract, leaving the input unchanged.",
-        "nl": "Implementeer de beschreven samenvatting en laat de invoer ongewijzigd."
+        "en": "Write summarise(minutes) in main.py. Implement the stated summary contract, leaving the input unchanged.",
+        "nl": "Schrijf summarise(minutes) in main.py. Implementeer de beschreven samenvatting en laat de invoer ongewijzigd."
       },
       "check": "callable(summarise)",
       "probes": [

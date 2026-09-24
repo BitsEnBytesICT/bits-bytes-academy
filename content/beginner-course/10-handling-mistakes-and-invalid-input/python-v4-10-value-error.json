@@ -53,11 +53,26 @@
       }
     },
     {
-      "id": "python-v4-10-value-error-experiment",
+      "id": "python-v4-10-value-error-try-calls",
+      "role": "practice",
       "topicIds": [],
       "heading": {
-        "en": "Try one change",
-        "nl": "Probeer één wijziging"
+        "en": "See your function work",
+        "nl": "Bekijk wat je functie doet"
+      },
+      "body": {
+        "en": "A definition alone produces no output. After writing the function, add these calls underneath it in main.py, without indentation, and Run. Compare the returned values with the task's requirements. The checks also call your function with other inputs; they do not require you to keep these demonstration calls.",
+        "nl": "Een definitie alleen geeft geen uitvoer. Schrijf eerst de functie en voeg daarna deze aanroepen eronder toe in main.py, zonder inspringing. Klik op Uitvoeren. Vergelijk de teruggegeven waarden met de opdracht. De controles roepen je functie ook met andere invoer aan; deze demonstratieaanroepen zijn niet verplicht."
+      },
+      "code": "print(parse_price(\"2.5\"))\nprint(parse_price(\"-3\"))"
+    },
+    {
+      "id": "python-v4-10-value-error-experiment",
+      "role": "experiment",
+      "topicIds": [],
+      "heading": {
+        "en": "After completing the task: try one change",
+        "nl": "Na het afronden: probeer één wijziging"
       },
       "body": {
         "en": "Try \" 0 \" and explain why spaces around a numeric string can still convert.",
@@ -149,29 +164,5 @@
     "en": "float accepts valid numeric strings; only its expected ValueError becomes None.",
     "nl": "float accepteert geldige getaltekst; alleen de verwachte ValueError wordt None."
   },
-  "inputs": [],
-  "retrievals": [
-    {
-      "id": "recall-python-v4-08-trace-counter",
-      "sourceActivityId": "python-v4-08-trace-counter",
-      "objectiveIds": [
-        "loop-tracing"
-      ],
-      "prompt": {
-        "en": "Recall “Trace the counter”. Would moving the update before print change the output? Try the earlier example from memory, then check it. Write a trace for start = 2 before running. Compare each row to the output.",
-        "nl": "Haal “Volg de teller” terug. Verandert de uitvoer als de wijziging vóór print komt? Probeer het eerdere voorbeeld uit je geheugen en controleer daarna. Schrijf vóór het uitvoeren een spoor voor start = 2. Vergelijk elke regel met de uitvoer."
-      }
-    },
-    {
-      "id": "recall-python-v4-08-session-summary",
-      "sourceActivityId": "python-v4-08-session-summary",
-      "objectiveIds": [
-        "loop-review"
-      ],
-      "prompt": {
-        "en": "Recall “Summarise a short session”. Why is the summary outside the loop? Try the earlier example from memory, then check it. Quit immediately, then after one answer. Explain why the stop command is excluded from the count.",
-        "nl": "Haal “Vat een korte sessie samen” terug. Waarom staat de samenvatting buiten de lus? Probeer het eerdere voorbeeld uit je geheugen en controleer daarna. Stop onmiddellijk en daarna na één antwoord. Leg uit waarom de stopopdracht niet wordt meegeteld."
-      }
-    }
-  ]
+  "inputs": []
 }

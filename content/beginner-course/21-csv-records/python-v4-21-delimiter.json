@@ -54,10 +54,11 @@
     },
     {
       "id": "python-v4-21-delimiter-experiment",
+      "role": "experiment",
       "topicIds": [],
       "heading": {
-        "en": "Try one change",
-        "nl": "Probeer één wijziging"
+        "en": "After completing the task: try one change",
+        "nl": "Na het afronden: probeer één wijziging"
       },
       "body": {
         "en": "Create a tab-separated fixture and retain a comma inside one field.",
@@ -99,7 +100,10 @@
           "check": "(_return == [{\"name\":\"Bo; Jr\",\"score\":\"3\"}]) and _error is None",
           "moduleOnly": true,
           "module": "work",
-          "files": {}
+          "isolatedFixtures": true,
+          "files": {
+            "export.csv": "name;score\n\"Bo; Jr\";3\n"
+          }
         },
         {
           "call": {
@@ -113,7 +117,9 @@
           "check": "(_return == [{\"name\":\"Ada\",\"score\":\"4\"}]) and _error is None",
           "moduleOnly": true,
           "module": "work",
+          "isolatedFixtures": true,
           "files": {
+            "export.csv": "name;score\n\"Bo; Jr\";3\n",
             "tabs.tsv": "name\tscore\nAda\t4\n"
           }
         }
@@ -146,32 +152,5 @@
     "en": "Reader configuration changes the separators without modifying the underlying data.",
     "nl": "Lezerinstellingen veranderen de scheiding zonder onderliggende gegevens te wijzigen."
   },
-  "inputs": [],
-  "retrievals": [
-    {
-      "id": "recall-python-v4-19-update",
-      "sourceActivityId": "python-v4-19-update",
-      "objectiveIds": [
-        "empty-dictionaries",
-        "adding-keys",
-        "update",
-        "overwriting"
-      ],
-      "prompt": {
-        "en": "Recall “Build and update a record”. Why is there only one score key? Try the earlier example from memory, then check it. Call again with a different score and inspect which keys remain.",
-        "nl": "Haal “Bouw en wijzig een record” terug. Waarom is er maar één score-sleutel? Probeer het eerdere voorbeeld uit je geheugen en controleer daarna. Roep opnieuw aan met een andere score en bekijk welke sleutels blijven."
-      }
-    },
-    {
-      "id": "recall-python-v4-19-registry",
-      "sourceActivityId": "python-v4-19-registry",
-      "objectiveIds": [
-        "dictionary-review"
-      ],
-      "prompt": {
-        "en": "Recall “Maintain a small scoreboard”. Why do the two dictionaries end with different values? Try the earlier example from memory, then check it. Award points twice while keeping both the original and updated versions.",
-        "nl": "Haal “Beheer een klein scorebord” terug. Waarom eindigen beide dictionaries met verschillende waarden? Probeer het eerdere voorbeeld uit je geheugen en controleer daarna. Ken tweemaal punten toe en bewaar zowel de oorspronkelijke als gewijzigde versie."
-      }
-    }
-  ]
+  "inputs": []
 }

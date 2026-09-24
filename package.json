@@ -7,6 +7,7 @@
     "dev": "concurrently -k -n API,WEB \"tsx watch backend/src/index.ts\" \"vite --config frontend/vite.config.ts\"",
     "setup:runtime": "node scripts/setup-runtime.mjs",
     "content": "node scripts/build-beginner-content.mjs",
+    "test:audit-regressions": "npm run content && node scripts/audit-course-checks.mjs && node tests/beginner-integration.test.mjs",
     "test:beginner-course": "npm run content && node tests/beginner-course-assembly.test.mjs && node tests/beginner-course-runtime.test.mjs && node tests/beginner-course-quizzes.test.mjs && node tests/beginner-course-behavior.test.mjs && tsx --test tests/lesson-progress.test.ts tests/curriculum-persistence.test.ts tests/quiz-contrast.test.ts && tsx --tsconfig frontend/tsconfig.json --test tests/project-presentation.test.ts",
     "typecheck": "tsc -p frontend/tsconfig.json --noEmit && tsc -p backend/tsconfig.json --noEmit",
     "build": "npm run content && npm run setup:runtime && npm run typecheck && vite build --config frontend/vite.config.ts && tsc -p backend/tsconfig.json",

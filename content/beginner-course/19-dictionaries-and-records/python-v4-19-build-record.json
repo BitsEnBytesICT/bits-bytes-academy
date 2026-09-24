@@ -1,0 +1,170 @@
+{
+  "id": "python-v4-19-build-record",
+  "chapter": 19,
+  "group": "python-v4-module-19",
+  "title": {
+    "en": "Build a record from an empty mapping",
+    "nl": "Bouw een record vanuit een lege koppeling"
+  },
+  "kind": "coding",
+  "optional": false,
+  "runtime": "terminal",
+  "guidance": "guided",
+  "checkpointMode": "sequential",
+  "estimatedMinutes": 15,
+  "topicIds": [
+    "record-construction"
+  ],
+  "practices": [
+    "empty-dictionaries",
+    "update"
+  ],
+  "requiredConcepts": [
+    "update",
+    "empty-dictionaries"
+  ],
+  "explanation": {
+    "en": "Make the empty mapping yourself and apply several incoming fields with update.",
+    "nl": "Maak zelf de lege koppeling en pas meerdere binnenkomende velden toe met update."
+  },
+  "example": "",
+  "sections": [
+    {
+      "id": "python-v4-19-build-record-example",
+      "topicIds": [
+        "record-construction",
+        "empty-dictionaries",
+        "update"
+      ],
+      "heading": {
+        "en": "Follow a working example",
+        "nl": "Volg een werkend voorbeeld"
+      },
+      "body": {
+        "en": "Start with a fresh {} inside the function. Add name with an assignment, then update with details. Incoming fields may overwrite name; unrelated fields are added. Return the new record, keeping details unchanged. update returns None: do not assign its return value back to your record.",
+        "nl": "Begin met een nieuwe {} binnen de functie. Voeg name toe met een toewijzing en werk daarna bij met details. Binnenkomende velden mogen name overschrijven; andere velden worden toegevoegd. Geef het nieuwe record terug en houd details ongewijzigd. update geeft None terug: wijs die terugkeerwaarde niet opnieuw toe aan je record."
+      },
+      "code": "item = {}\nitem[\"count\"] = 1\nresult = item.update({\"count\":3,\"ready\":True})\nprint(item)\nprint(result)",
+      "output": "{'count': 3, 'ready': True}\nNone\n",
+      "prediction": {
+        "en": "Which variable contains the changed dictionary?",
+        "nl": "Welke variabele bevat de gewijzigde dictionary?"
+      },
+      "takeaway": {
+        "en": "Create → add one field → update several fields → return the record.",
+        "nl": "Maak → voeg één veld toe → werk meerdere velden bij → geef het record terug."
+      }
+    },
+    {
+      "id": "python-v4-19-build-record-try-calls",
+      "role": "practice",
+      "topicIds": [],
+      "heading": {
+        "en": "See your function work",
+        "nl": "Bekijk wat je functie doet"
+      },
+      "body": {
+        "en": "A definition alone produces no output. After writing the function, add these calls underneath it in main.py, without indentation, and Run. Compare the returned values with the task's requirements. The checks also call your function with other inputs; they do not require you to keep these demonstration calls.",
+        "nl": "Een definitie alleen geeft geen uitvoer. Schrijf eerst de functie en voeg daarna deze aanroepen eronder toe in main.py, zonder inspringing. Klik op Uitvoeren. Vergelijk de teruggegeven waarden met de opdracht. De controles roepen je functie ook met andere invoer aan; deze demonstratieaanroepen zijn niet verplicht."
+      },
+      "code": "print(new_record(\"Ada\", {\"score\": 0}))\nprint(new_record(\"Ada\", {\"name\": \"Bo\"}))"
+    },
+    {
+      "id": "python-v4-19-build-record-experiment",
+      "role": "experiment",
+      "topicIds": [],
+      "heading": {
+        "en": "After completing the task: try one change",
+        "nl": "Na het afronden: probeer één wijziging"
+      },
+      "body": {
+        "en": "Create two records and change only one. Explain why the other must stay unchanged.",
+        "nl": "Maak twee records en verander er maar één. Leg uit waarom de andere gelijk moet blijven."
+      }
+    }
+  ],
+  "files": {
+    "main.py": "def new_record(name, details):\n    # Complete this function.\n    return None\n"
+  },
+  "solution": {
+    "main.py": "def new_record(name, details):\n    record = {}\n    record[\"name\"] = name\n    record.update(details)\n    return record\n"
+  },
+  "checkpoints": [
+    {
+      "id": "python-v4-19-build-record-step-1",
+      "objectiveIds": [
+        "record-construction",
+        "empty-dictionaries",
+        "update"
+      ],
+      "task": {
+        "en": "Write new_record(name, details) in main.py. Write new_record(name, details): begin with {}, assign its name key, call update(details), and return the new mapping. Do not mutate details.",
+        "nl": "Schrijf new_record(name, details) in main.py. Schrijf new_record(name, details): begin met {}, wijs de sleutel name toe, roep update(details) aan en geef de nieuwe koppeling terug. Verander details niet."
+      },
+      "check": "callable(new_record) and any(isinstance(n,_ast.Dict) and not n.keys for n in _ast.walk(_ast.parse(_source))) and any(isinstance(n,_ast.Call) and isinstance(n.func,_ast.Attribute) and n.func.attr == \"update\" for n in _ast.walk(_ast.parse(_source)))",
+      "probes": [
+        {
+          "call": {
+            "name": "new_record",
+            "args": [
+              "Ada",
+              {
+                "score": 0
+              }
+            ]
+          },
+          "check": "(_return == {\"name\":\"Ada\",\"score\":0} and _args[1] == {\"score\":0} and _return is not _args[1]) and _error is None"
+        },
+        {
+          "call": {
+            "name": "new_record",
+            "args": [
+              "Ada",
+              {
+                "name": "Bo"
+              }
+            ]
+          },
+          "check": "(_return == {\"name\":\"Bo\"} and _args[1] == {\"name\":\"Bo\"}) and _error is None"
+        },
+        {
+          "call": {
+            "name": "new_record",
+            "args": [
+              "Mia",
+              {}
+            ]
+          },
+          "check": "(_return == {\"name\":\"Mia\"}) and _error is None"
+        }
+      ],
+      "hint": {
+        "en": "Create → add one field → update several fields → return the record.",
+        "nl": "Maak → voeg één veld toe → werk meerdere velden bij → geef het record terug."
+      },
+      "hints": [
+        {
+          "en": "Create → add one field → update several fields → return the record.",
+          "nl": "Maak → voeg één veld toe → werk meerdere velden bij → geef het record terug."
+        },
+        {
+          "en": "Store the mapping, then mutate it with update; return the mapping itself.",
+          "nl": "Bewaar de koppeling, wijzig die met update en geef de koppeling zelf terug."
+        },
+        {
+          "en": "A small fragment to adapt: `record = {}`",
+          "nl": "Een klein fragment om aan te passen: `record = {}`"
+        }
+      ],
+      "feedback": {
+        "en": "Store the mapping, then mutate it with update; return the mapping itself.",
+        "nl": "Bewaar de koppeling, wijzig die met update en geef de koppeling zelf terug."
+      }
+    }
+  ],
+  "solutionNote": {
+    "en": "Each call creates a new mapping. update applies the incoming values after the original name, so their values win on a duplicate key.",
+    "nl": "Elke aanroep maakt een nieuwe koppeling. update past de binnenkomende waarden na de oorspronkelijke naam toe; bij een dubbele sleutel winnen hun waarden."
+  },
+  "inputs": []
+}

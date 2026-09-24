@@ -1,0 +1,1719 @@
+[
+  {
+    "id": "python-v4-01-print-order",
+    "tasks": [
+      "Keep the line that prints \"Ready\".",
+      "Add a second call that prints \"Start\" on the next line."
+    ],
+    "firstPassing": [
+      0,
+      1
+    ],
+    "runs": [
+      {
+        "code": "print(\"Ready\")\n",
+        "passed": [
+          true,
+          false
+        ],
+        "error": null
+      },
+      {
+        "code": "print(\"Ready\")\nprint(\"Start\")\n",
+        "passed": [
+          true,
+          true
+        ],
+        "error": null
+      }
+    ]
+  },
+  {
+    "id": "python-v4-01-comments",
+    "tasks": [
+      "Add a comment explaining the announcement.",
+      "Comment out the test message so only \"Opening soon\" is displayed."
+    ],
+    "firstPassing": [
+      0,
+      0
+    ],
+    "runs": [
+      {
+        "code": "# Announce the opening\nprint(\"Opening soon\")\n",
+        "passed": [
+          true,
+          true
+        ],
+        "error": null
+      }
+    ]
+  },
+  {
+    "id": "python-v4-01-announcement",
+    "tasks": [
+      "Add a comment explaining what this program announces.",
+      "Print these three lines in order: \"Repair cafe\", \"Bring one item\", \"Everyone welcome\"."
+    ],
+    "firstPassing": [
+      0,
+      2
+    ],
+    "runs": [
+      {
+        "code": "# Invite visitors to the repair cafe\nprint(\"Repair cafe\")\n",
+        "passed": [
+          true,
+          false
+        ],
+        "error": null
+      },
+      {
+        "code": "# Invite visitors to the repair cafe\nprint(\"Repair cafe\")\nprint(\"Bring one item\")\n",
+        "passed": [
+          true,
+          false
+        ],
+        "error": null
+      },
+      {
+        "code": "# Invite visitors to the repair cafe\nprint(\"Repair cafe\")\nprint(\"Bring one item\")\nprint(\"Everyone welcome\")\n",
+        "passed": [
+          true,
+          true
+        ],
+        "error": null
+      }
+    ]
+  },
+  {
+    "id": "python-v4-02-assignment",
+    "tasks": [
+      "Create place with the string value \"Library\".",
+      "Print the value stored in place."
+    ],
+    "firstPassing": [
+      0,
+      1
+    ],
+    "runs": [
+      {
+        "code": "place = \"Library\"\n",
+        "passed": [
+          true,
+          false
+        ],
+        "error": null
+      },
+      {
+        "code": "place = \"Library\"\nprint(place)\n",
+        "passed": [
+          true,
+          true
+        ],
+        "error": null
+      }
+    ]
+  },
+  {
+    "id": "python-v4-02-reassignment",
+    "tasks": [
+      "After the existing print, assign \"Ready\" to status.",
+      "Print status again so both states appear in order."
+    ],
+    "firstPassing": [
+      2,
+      3
+    ],
+    "runs": [
+      {
+        "code": "status = \"Preparing\"\n",
+        "passed": [
+          false,
+          false
+        ],
+        "error": null
+      },
+      {
+        "code": "status = \"Preparing\"\nprint(status)\n",
+        "passed": [
+          false,
+          false
+        ],
+        "error": null
+      },
+      {
+        "code": "status = \"Preparing\"\nprint(status)\nstatus = \"Ready\"\n",
+        "passed": [
+          true,
+          false
+        ],
+        "error": null
+      },
+      {
+        "code": "status = \"Preparing\"\nprint(status)\nstatus = \"Ready\"\nprint(status)\n",
+        "passed": [
+          true,
+          true
+        ],
+        "error": null
+      }
+    ]
+  },
+  {
+    "id": "python-v4-02-integers",
+    "tasks": [
+      "Create integer variables books = 6 and missing = 0.",
+      "Print books and missing on separate lines."
+    ],
+    "firstPassing": [
+      1,
+      3
+    ],
+    "runs": [
+      {
+        "code": "books = 6\n",
+        "passed": [
+          false,
+          false
+        ],
+        "error": null
+      },
+      {
+        "code": "books = 6\nmissing = 0\n",
+        "passed": [
+          true,
+          false
+        ],
+        "error": null
+      },
+      {
+        "code": "books = 6\nmissing = 0\nprint(books)\n",
+        "passed": [
+          true,
+          false
+        ],
+        "error": null
+      },
+      {
+        "code": "books = 6\nmissing = 0\nprint(books)\nprint(missing)\n",
+        "passed": [
+          true,
+          true
+        ],
+        "error": null
+      }
+    ]
+  },
+  {
+    "id": "python-v4-02-profile",
+    "tasks": [
+      "Create destination = \"Forest\", walkers = 4 and distance = 7.5, using a string, int and float respectively.",
+      "Print the destination, walker count and distance, one per line."
+    ],
+    "firstPassing": [
+      2,
+      5
+    ],
+    "runs": [
+      {
+        "code": "destination = \"Forest\"\n",
+        "passed": [
+          false,
+          false
+        ],
+        "error": null
+      },
+      {
+        "code": "destination = \"Forest\"\nwalkers = 4\n",
+        "passed": [
+          false,
+          false
+        ],
+        "error": null
+      },
+      {
+        "code": "destination = \"Forest\"\nwalkers = 4\ndistance = 7.5\n",
+        "passed": [
+          true,
+          false
+        ],
+        "error": null
+      },
+      {
+        "code": "destination = \"Forest\"\nwalkers = 4\ndistance = 7.5\nprint(destination)\n",
+        "passed": [
+          true,
+          false
+        ],
+        "error": null
+      },
+      {
+        "code": "destination = \"Forest\"\nwalkers = 4\ndistance = 7.5\nprint(destination)\nprint(walkers)\n",
+        "passed": [
+          true,
+          false
+        ],
+        "error": null
+      },
+      {
+        "code": "destination = \"Forest\"\nwalkers = 4\ndistance = 7.5\nprint(destination)\nprint(walkers)\nprint(distance)\n",
+        "passed": [
+          true,
+          true
+        ],
+        "error": null
+      }
+    ]
+  },
+  {
+    "id": "python-v4-03-addition",
+    "tasks": [
+      "Calculate the total number of visitors and store it in result.",
+      "Print result after calculating it."
+    ],
+    "firstPassing": [
+      2,
+      3
+    ],
+    "runs": [
+      {
+        "code": "morning = 7\n",
+        "passed": [
+          false,
+          false
+        ],
+        "error": null
+      },
+      {
+        "code": "morning = 7\nafternoon = 5\n",
+        "passed": [
+          false,
+          false
+        ],
+        "error": null
+      },
+      {
+        "code": "morning = 7\nafternoon = 5\nresult = morning + afternoon\n",
+        "passed": [
+          true,
+          false
+        ],
+        "error": null
+      },
+      {
+        "code": "morning = 7\nafternoon = 5\nresult = morning + afternoon\nprint(result)\n",
+        "passed": [
+          true,
+          true
+        ],
+        "error": null
+      }
+    ]
+  },
+  {
+    "id": "python-v4-03-subtraction",
+    "tasks": [
+      "Store the unsold ticket count in result.",
+      "Print result after calculating it."
+    ],
+    "firstPassing": [
+      2,
+      3
+    ],
+    "runs": [
+      {
+        "code": "tickets = 20\n",
+        "passed": [
+          false,
+          false
+        ],
+        "error": null
+      },
+      {
+        "code": "tickets = 20\nsold = 8\n",
+        "passed": [
+          false,
+          false
+        ],
+        "error": null
+      },
+      {
+        "code": "tickets = 20\nsold = 8\nresult = tickets - sold\n",
+        "passed": [
+          true,
+          false
+        ],
+        "error": null
+      },
+      {
+        "code": "tickets = 20\nsold = 8\nresult = tickets - sold\nprint(result)\n",
+        "passed": [
+          true,
+          true
+        ],
+        "error": null
+      }
+    ]
+  },
+  {
+    "id": "python-v4-03-multiplication",
+    "tasks": [
+      "Calculate the price for all items and store it in result.",
+      "Print result after calculating it."
+    ],
+    "firstPassing": [
+      2,
+      3
+    ],
+    "runs": [
+      {
+        "code": "quantity = 4\n",
+        "passed": [
+          false,
+          false
+        ],
+        "error": null
+      },
+      {
+        "code": "quantity = 4\nprice = 2.5\n",
+        "passed": [
+          false,
+          false
+        ],
+        "error": null
+      },
+      {
+        "code": "quantity = 4\nprice = 2.5\nresult = quantity * price\n",
+        "passed": [
+          true,
+          false
+        ],
+        "error": null
+      },
+      {
+        "code": "quantity = 4\nprice = 2.5\nresult = quantity * price\nprint(result)\n",
+        "passed": [
+          true,
+          true
+        ],
+        "error": null
+      }
+    ]
+  },
+  {
+    "id": "python-v4-03-division",
+    "tasks": [
+      "Calculate the share per person and store it in result.",
+      "Print result after calculating it."
+    ],
+    "firstPassing": [
+      2,
+      3
+    ],
+    "runs": [
+      {
+        "code": "total = 15\n",
+        "passed": [
+          false,
+          false
+        ],
+        "error": null
+      },
+      {
+        "code": "total = 15\npeople = 4\n",
+        "passed": [
+          false,
+          false
+        ],
+        "error": null
+      },
+      {
+        "code": "total = 15\npeople = 4\nresult = total / people\n",
+        "passed": [
+          true,
+          false
+        ],
+        "error": null
+      },
+      {
+        "code": "total = 15\npeople = 4\nresult = total / people\nprint(result)\n",
+        "passed": [
+          true,
+          true
+        ],
+        "error": null
+      }
+    ]
+  },
+  {
+    "id": "python-v4-03-precedence",
+    "tasks": [
+      "Everyone pays the same price. Store the total ticket cost in result.",
+      "Print result after calculating it."
+    ],
+    "firstPassing": [
+      3,
+      4
+    ],
+    "runs": [
+      {
+        "code": "adults = 3\n",
+        "passed": [
+          false,
+          false
+        ],
+        "error": null
+      },
+      {
+        "code": "adults = 3\nchildren = 2\n",
+        "passed": [
+          false,
+          false
+        ],
+        "error": null
+      },
+      {
+        "code": "adults = 3\nchildren = 2\nprice = 4\n",
+        "passed": [
+          false,
+          false
+        ],
+        "error": null
+      },
+      {
+        "code": "adults = 3\nchildren = 2\nprice = 4\nresult = (adults + children) * price\n",
+        "passed": [
+          true,
+          false
+        ],
+        "error": null
+      },
+      {
+        "code": "adults = 3\nchildren = 2\nprice = 4\nresult = (adults + children) * price\nprint(result)\n",
+        "passed": [
+          true,
+          true
+        ],
+        "error": null
+      }
+    ]
+  },
+  {
+    "id": "python-v4-03-update-a-number",
+    "tasks": [
+      "Add delivered to stock and print the updated stock.",
+      "Then subtract sold from stock and print it again."
+    ],
+    "firstPassing": [
+      4,
+      6
+    ],
+    "runs": [
+      {
+        "code": "stock = 10\n",
+        "passed": [
+          false,
+          false
+        ],
+        "error": null
+      },
+      {
+        "code": "stock = 10\ndelivered = 4\n",
+        "passed": [
+          false,
+          false
+        ],
+        "error": null
+      },
+      {
+        "code": "stock = 10\ndelivered = 4\nsold = 3\n",
+        "passed": [
+          false,
+          false
+        ],
+        "error": null
+      },
+      {
+        "code": "stock = 10\ndelivered = 4\nsold = 3\nstock = stock + delivered\n",
+        "passed": [
+          false,
+          false
+        ],
+        "error": null
+      },
+      {
+        "code": "stock = 10\ndelivered = 4\nsold = 3\nstock = stock + delivered\nprint(stock)\n",
+        "passed": [
+          true,
+          false
+        ],
+        "error": null
+      },
+      {
+        "code": "stock = 10\ndelivered = 4\nsold = 3\nstock = stock + delivered\nprint(stock)\nstock = stock - sold\n",
+        "passed": [
+          true,
+          false
+        ],
+        "error": null
+      },
+      {
+        "code": "stock = 10\ndelivered = 4\nsold = 3\nstock = stock + delivered\nprint(stock)\nstock = stock - sold\nprint(stock)\n",
+        "passed": [
+          true,
+          true
+        ],
+        "error": null
+      }
+    ]
+  },
+  {
+    "id": "python-v4-03-short-updates",
+    "tasks": [
+      "Use += to add deposit to balance.",
+      "Use -= for the purchase, then print the final balance."
+    ],
+    "firstPassing": [
+      3,
+      5
+    ],
+    "runs": [
+      {
+        "code": "balance = 20\n",
+        "passed": [
+          false,
+          false
+        ],
+        "error": null
+      },
+      {
+        "code": "balance = 20\ndeposit = 6\n",
+        "passed": [
+          false,
+          false
+        ],
+        "error": null
+      },
+      {
+        "code": "balance = 20\ndeposit = 6\npurchase = 4\n",
+        "passed": [
+          false,
+          false
+        ],
+        "error": null
+      },
+      {
+        "code": "balance = 20\ndeposit = 6\npurchase = 4\nbalance += deposit\n",
+        "passed": [
+          true,
+          false
+        ],
+        "error": null
+      },
+      {
+        "code": "balance = 20\ndeposit = 6\npurchase = 4\nbalance += deposit\nbalance -= purchase\n",
+        "passed": [
+          true,
+          false
+        ],
+        "error": null
+      },
+      {
+        "code": "balance = 20\ndeposit = 6\npurchase = 4\nbalance += deposit\nbalance -= purchase\nprint(balance)\n",
+        "passed": [
+          true,
+          true
+        ],
+        "error": null
+      }
+    ]
+  },
+  {
+    "id": "python-v4-03-powers",
+    "tasks": [
+      "Calculate the square's area in result, using **.",
+      "Print result after calculating it."
+    ],
+    "firstPassing": [
+      1,
+      2
+    ],
+    "runs": [
+      {
+        "code": "side = 6\n",
+        "passed": [
+          false,
+          false
+        ],
+        "error": null
+      },
+      {
+        "code": "side = 6\nresult = side ** 2\n",
+        "passed": [
+          true,
+          false
+        ],
+        "error": null
+      },
+      {
+        "code": "side = 6\nresult = side ** 2\nprint(result)\n",
+        "passed": [
+          true,
+          true
+        ],
+        "error": null
+      }
+    ]
+  },
+  {
+    "id": "python-v4-03-whole-groups",
+    "tasks": [
+      "Store the number of completely filled boxes in result.",
+      "Print result after calculating it."
+    ],
+    "firstPassing": [
+      2,
+      3
+    ],
+    "runs": [
+      {
+        "code": "items = 23\n",
+        "passed": [
+          false,
+          false
+        ],
+        "error": null
+      },
+      {
+        "code": "items = 23\nbox_size = 6\n",
+        "passed": [
+          false,
+          false
+        ],
+        "error": null
+      },
+      {
+        "code": "items = 23\nbox_size = 6\nresult = items // box_size\n",
+        "passed": [
+          true,
+          false
+        ],
+        "error": null
+      },
+      {
+        "code": "items = 23\nbox_size = 6\nresult = items // box_size\nprint(result)\n",
+        "passed": [
+          true,
+          true
+        ],
+        "error": null
+      }
+    ]
+  },
+  {
+    "id": "python-v4-03-remainder",
+    "tasks": [
+      "Store the number of items left outside the complete boxes in result.",
+      "Print result after calculating it."
+    ],
+    "firstPassing": [
+      2,
+      3
+    ],
+    "runs": [
+      {
+        "code": "items = 23\n",
+        "passed": [
+          false,
+          false
+        ],
+        "error": null
+      },
+      {
+        "code": "items = 23\nbox_size = 6\n",
+        "passed": [
+          false,
+          false
+        ],
+        "error": null
+      },
+      {
+        "code": "items = 23\nbox_size = 6\nresult = items % box_size\n",
+        "passed": [
+          true,
+          false
+        ],
+        "error": null
+      },
+      {
+        "code": "items = 23\nbox_size = 6\nresult = items % box_size\nprint(result)\n",
+        "passed": [
+          true,
+          true
+        ],
+        "error": null
+      }
+    ]
+  },
+  {
+    "id": "python-v4-03-receipt",
+    "tasks": [
+      "Calculate subtotal from quantity and unit_price.",
+      "Subtract the discount once to calculate total. Print subtotal, then total."
+    ],
+    "firstPassing": [
+      3,
+      6
+    ],
+    "runs": [
+      {
+        "code": "quantity = 3\n",
+        "passed": [
+          false,
+          false
+        ],
+        "error": null
+      },
+      {
+        "code": "quantity = 3\nunit_price = 4.0\n",
+        "passed": [
+          false,
+          false
+        ],
+        "error": null
+      },
+      {
+        "code": "quantity = 3\nunit_price = 4.0\ndiscount = 2.0\n",
+        "passed": [
+          false,
+          false
+        ],
+        "error": null
+      },
+      {
+        "code": "quantity = 3\nunit_price = 4.0\ndiscount = 2.0\nsubtotal = quantity * unit_price\n",
+        "passed": [
+          true,
+          false
+        ],
+        "error": null
+      },
+      {
+        "code": "quantity = 3\nunit_price = 4.0\ndiscount = 2.0\nsubtotal = quantity * unit_price\ntotal = subtotal - discount\n",
+        "passed": [
+          true,
+          false
+        ],
+        "error": null
+      },
+      {
+        "code": "quantity = 3\nunit_price = 4.0\ndiscount = 2.0\nsubtotal = quantity * unit_price\ntotal = subtotal - discount\nprint(subtotal)\n",
+        "passed": [
+          true,
+          false
+        ],
+        "error": null
+      },
+      {
+        "code": "quantity = 3\nunit_price = 4.0\ndiscount = 2.0\nsubtotal = quantity * unit_price\ntotal = subtotal - discount\nprint(subtotal)\nprint(total)\n",
+        "passed": [
+          true,
+          true
+        ],
+        "error": null
+      }
+    ]
+  },
+  {
+    "id": "python-v4-05-first-input",
+    "tasks": [
+      "Ask with input(\"Name: \") and store the answer in name.",
+      "Greet the entered name, for example \"Hello, Mila!\"."
+    ],
+    "firstPassing": [
+      0,
+      1
+    ],
+    "runs": [
+      {
+        "code": "name = input(\"Name: \")\n",
+        "passed": [
+          true,
+          false
+        ],
+        "error": null
+      },
+      {
+        "code": "name = input(\"Name: \")\nprint(f\"Hello, {name}!\")\n",
+        "passed": [
+          true,
+          true
+        ],
+        "error": null
+      }
+    ]
+  },
+  {
+    "id": "python-v4-05-integer-input",
+    "tasks": [
+      "Read Visitors: into raw and convert it to the integer visitors.",
+      "Print the count after two more visitors arrive."
+    ],
+    "firstPassing": [
+      1,
+      2
+    ],
+    "runs": [
+      {
+        "code": "raw = input(\"Visitors: \")\n",
+        "passed": [
+          false,
+          false
+        ],
+        "error": null
+      },
+      {
+        "code": "raw = input(\"Visitors: \")\nvisitors = int(raw)\n",
+        "passed": [
+          true,
+          false
+        ],
+        "error": null
+      },
+      {
+        "code": "raw = input(\"Visitors: \")\nvisitors = int(raw)\nprint(visitors + 2)\n",
+        "passed": [
+          true,
+          true
+        ],
+        "error": null
+      }
+    ]
+  },
+  {
+    "id": "python-v4-05-float-input",
+    "tasks": [
+      "Read Hours: into raw and convert it to the float hours.",
+      "Calculate minutes from hours and print minutes."
+    ],
+    "firstPassing": [
+      1,
+      3
+    ],
+    "runs": [
+      {
+        "code": "raw = input(\"Hours: \")\n",
+        "passed": [
+          false,
+          false
+        ],
+        "error": null
+      },
+      {
+        "code": "raw = input(\"Hours: \")\nhours = float(raw)\n",
+        "passed": [
+          true,
+          false
+        ],
+        "error": null
+      },
+      {
+        "code": "raw = input(\"Hours: \")\nhours = float(raw)\nminutes = hours * 60\n",
+        "passed": [
+          true,
+          false
+        ],
+        "error": null
+      },
+      {
+        "code": "raw = input(\"Hours: \")\nhours = float(raw)\nminutes = hours * 60\nprint(minutes)\n",
+        "passed": [
+          true,
+          true
+        ],
+        "error": null
+      }
+    ]
+  },
+  {
+    "id": "python-v4-05-two-answers",
+    "tasks": [
+      "Read Distance: and Time: into float variables distance and time. Assume time is positive.",
+      "Divide distance by time, store speed and print it."
+    ],
+    "firstPassing": [
+      1,
+      3
+    ],
+    "runs": [
+      {
+        "code": "distance = float(input(\"Distance: \"))\n",
+        "passed": [
+          false,
+          false
+        ],
+        "error": null
+      },
+      {
+        "code": "distance = float(input(\"Distance: \"))\ntime = float(input(\"Time: \"))\n",
+        "passed": [
+          true,
+          false
+        ],
+        "error": null
+      },
+      {
+        "code": "distance = float(input(\"Distance: \"))\ntime = float(input(\"Time: \"))\nspeed = distance / time\n",
+        "passed": [
+          true,
+          false
+        ],
+        "error": null
+      },
+      {
+        "code": "distance = float(input(\"Distance: \"))\ntime = float(input(\"Time: \"))\nspeed = distance / time\nprint(speed)\n",
+        "passed": [
+          true,
+          true
+        ],
+        "error": null
+      }
+    ]
+  },
+  {
+    "id": "python-v4-05-trip-report",
+    "tasks": [
+      "Ask Destination: for destination and Kilometres: for a float named km.",
+      "Calculate metres and print a report such as \"Park: 1500.0 m\"."
+    ],
+    "firstPassing": [
+      1,
+      3
+    ],
+    "runs": [
+      {
+        "code": "destination = input(\"Destination: \")\n",
+        "passed": [
+          false,
+          false
+        ],
+        "error": null
+      },
+      {
+        "code": "destination = input(\"Destination: \")\nkm = float(input(\"Kilometres: \"))\n",
+        "passed": [
+          true,
+          false
+        ],
+        "error": null
+      },
+      {
+        "code": "destination = input(\"Destination: \")\nkm = float(input(\"Kilometres: \"))\nmetres = km * 1000\n",
+        "passed": [
+          true,
+          false
+        ],
+        "error": null
+      },
+      {
+        "code": "destination = input(\"Destination: \")\nkm = float(input(\"Kilometres: \"))\nmetres = km * 1000\nprint(f\"{destination}: {metres} m\")\n",
+        "passed": [
+          true,
+          true
+        ],
+        "error": null
+      }
+    ]
+  },
+  {
+    "id": "python-v4-06-boolean-values",
+    "tasks": [
+      "Create ready as True and finished as False, using Boolean values.",
+      "Print ready, then finished."
+    ],
+    "firstPassing": [
+      1,
+      3
+    ],
+    "runs": [
+      {
+        "code": "ready = True\n",
+        "passed": [
+          false,
+          false
+        ],
+        "error": null
+      },
+      {
+        "code": "ready = True\nfinished = False\n",
+        "passed": [
+          true,
+          false
+        ],
+        "error": null
+      },
+      {
+        "code": "ready = True\nfinished = False\nprint(ready)\n",
+        "passed": [
+          true,
+          false
+        ],
+        "error": null
+      },
+      {
+        "code": "ready = True\nfinished = False\nprint(ready)\nprint(finished)\n",
+        "passed": [
+          true,
+          true
+        ],
+        "error": null
+      }
+    ]
+  },
+  {
+    "id": "python-v4-06-equal",
+    "tasks": [
+      "Compare entered with expected and store the Boolean in result.",
+      "Print the Boolean result."
+    ],
+    "firstPassing": [
+      2,
+      3
+    ],
+    "runs": [
+      {
+        "code": "entered = \"open\"\n",
+        "passed": [
+          false,
+          false
+        ],
+        "error": null
+      },
+      {
+        "code": "entered = \"open\"\nexpected = \"open\"\n",
+        "passed": [
+          false,
+          false
+        ],
+        "error": null
+      },
+      {
+        "code": "entered = \"open\"\nexpected = \"open\"\nresult = entered == expected\n",
+        "passed": [
+          true,
+          false
+        ],
+        "error": null
+      },
+      {
+        "code": "entered = \"open\"\nexpected = \"open\"\nresult = entered == expected\nprint(result)\n",
+        "passed": [
+          true,
+          true
+        ],
+        "error": null
+      }
+    ]
+  },
+  {
+    "id": "python-v4-06-not-equal",
+    "tasks": [
+      "Store whether choice differs from \"quit\" in result.",
+      "Print the Boolean result."
+    ],
+    "firstPassing": [
+      1,
+      2
+    ],
+    "runs": [
+      {
+        "code": "choice = \"play\"\n",
+        "passed": [
+          false,
+          false
+        ],
+        "error": null
+      },
+      {
+        "code": "choice = \"play\"\nresult = choice != \"quit\"\n",
+        "passed": [
+          true,
+          false
+        ],
+        "error": null
+      },
+      {
+        "code": "choice = \"play\"\nresult = choice != \"quit\"\nprint(result)\n",
+        "passed": [
+          true,
+          true
+        ],
+        "error": null
+      }
+    ]
+  },
+  {
+    "id": "python-v4-06-greater-less",
+    "tasks": [
+      "Store whether temperature is strictly above limit in result.",
+      "Print the Boolean result."
+    ],
+    "firstPassing": [
+      2,
+      3
+    ],
+    "runs": [
+      {
+        "code": "temperature = 21\n",
+        "passed": [
+          false,
+          false
+        ],
+        "error": null
+      },
+      {
+        "code": "temperature = 21\nlimit = 20\n",
+        "passed": [
+          false,
+          false
+        ],
+        "error": null
+      },
+      {
+        "code": "temperature = 21\nlimit = 20\nresult = temperature > limit\n",
+        "passed": [
+          true,
+          false
+        ],
+        "error": null
+      },
+      {
+        "code": "temperature = 21\nlimit = 20\nresult = temperature > limit\nprint(result)\n",
+        "passed": [
+          true,
+          true
+        ],
+        "error": null
+      }
+    ]
+  },
+  {
+    "id": "python-v4-06-inclusive-boundaries",
+    "tasks": [
+      "Store whether the parcel weighs at most maximum in result.",
+      "Print the Boolean result."
+    ],
+    "firstPassing": [
+      2,
+      3
+    ],
+    "runs": [
+      {
+        "code": "weight = 5\n",
+        "passed": [
+          false,
+          false
+        ],
+        "error": null
+      },
+      {
+        "code": "weight = 5\nmaximum = 5\n",
+        "passed": [
+          false,
+          false
+        ],
+        "error": null
+      },
+      {
+        "code": "weight = 5\nmaximum = 5\nresult = weight <= maximum\n",
+        "passed": [
+          true,
+          false
+        ],
+        "error": null
+      },
+      {
+        "code": "weight = 5\nmaximum = 5\nresult = weight <= maximum\nprint(result)\n",
+        "passed": [
+          true,
+          true
+        ],
+        "error": null
+      }
+    ]
+  },
+  {
+    "id": "python-v4-06-and",
+    "tasks": [
+      "A learner qualifies with at least 120 credits and a score of at least 6. Store that rule in result.",
+      "Print the Boolean result."
+    ],
+    "firstPassing": [
+      2,
+      3
+    ],
+    "runs": [
+      {
+        "code": "credits = 120\n",
+        "passed": [
+          false,
+          false
+        ],
+        "error": null
+      },
+      {
+        "code": "credits = 120\nscore = 7\n",
+        "passed": [
+          false,
+          false
+        ],
+        "error": null
+      },
+      {
+        "code": "credits = 120\nscore = 7\nresult = credits >= 120 and score >= 6\n",
+        "passed": [
+          true,
+          false
+        ],
+        "error": null
+      },
+      {
+        "code": "credits = 120\nscore = 7\nresult = credits >= 120 and score >= 6\nprint(result)\n",
+        "passed": [
+          true,
+          true
+        ],
+        "error": null
+      }
+    ]
+  },
+  {
+    "id": "python-v4-06-or",
+    "tasks": [
+      "Store whether command is \"help\" or \"info\" in result.",
+      "Print the Boolean result."
+    ],
+    "firstPassing": [
+      1,
+      2
+    ],
+    "runs": [
+      {
+        "code": "command = \"help\"\n",
+        "passed": [
+          false,
+          false
+        ],
+        "error": null
+      },
+      {
+        "code": "command = \"help\"\nresult = command == \"help\" or command == \"info\"\n",
+        "passed": [
+          true,
+          false
+        ],
+        "error": null
+      },
+      {
+        "code": "command = \"help\"\nresult = command == \"help\" or command == \"info\"\nprint(result)\n",
+        "passed": [
+          true,
+          true
+        ],
+        "error": null
+      }
+    ]
+  },
+  {
+    "id": "python-v4-06-not",
+    "tasks": [
+      "Store whether the activity is running, the opposite of paused, in result.",
+      "Print the Boolean result."
+    ],
+    "firstPassing": [
+      1,
+      2
+    ],
+    "runs": [
+      {
+        "code": "paused = True\n",
+        "passed": [
+          false,
+          false
+        ],
+        "error": null
+      },
+      {
+        "code": "paused = True\nresult = not paused\n",
+        "passed": [
+          true,
+          false
+        ],
+        "error": null
+      },
+      {
+        "code": "paused = True\nresult = not paused\nprint(result)\n",
+        "passed": [
+          true,
+          true
+        ],
+        "error": null
+      }
+    ]
+  },
+  {
+    "id": "python-v4-06-access-rule",
+    "tasks": [
+      "Access requires membership or a guest pass, and a non-blocked account. Store the decision in result.",
+      "Print the Boolean result."
+    ],
+    "firstPassing": [
+      3,
+      4
+    ],
+    "runs": [
+      {
+        "code": "member = True\n",
+        "passed": [
+          false,
+          false
+        ],
+        "error": null
+      },
+      {
+        "code": "member = True\nguest_pass = False\n",
+        "passed": [
+          false,
+          false
+        ],
+        "error": null
+      },
+      {
+        "code": "member = True\nguest_pass = False\nblocked = False\n",
+        "passed": [
+          false,
+          false
+        ],
+        "error": null
+      },
+      {
+        "code": "member = True\nguest_pass = False\nblocked = False\nresult = (member or guest_pass) and not blocked\n",
+        "passed": [
+          true,
+          false
+        ],
+        "error": null
+      },
+      {
+        "code": "member = True\nguest_pass = False\nblocked = False\nresult = (member or guest_pass) and not blocked\nprint(result)\n",
+        "passed": [
+          true,
+          true
+        ],
+        "error": null
+      }
+    ]
+  },
+  {
+    "id": "python-v4-07-else",
+    "tasks": [
+      "Print \"Welcome\" when age is at least 12.",
+      "Add else to print \"Too young\" for a lower age."
+    ],
+    "firstPassing": [
+      1,
+      1
+    ],
+    "runs": [
+      {
+        "code": "age = 12\n",
+        "passed": [
+          false,
+          false
+        ],
+        "error": null
+      },
+      {
+        "code": "age = 12\nif age >= 12:\n    print(\"Welcome\")\nelse:\n    print(\"Too young\")\n",
+        "passed": [
+          true,
+          true
+        ],
+        "error": null
+      }
+    ]
+  },
+  {
+    "id": "python-v4-07-command-menu",
+    "tasks": [
+      "Read Choice: into a trimmed lowercase variable choice.",
+      "Respond to open with \"Opening\", help with \"Commands: open, help\", and anything else with \"Unknown choice\"."
+    ],
+    "firstPassing": [
+      0,
+      1
+    ],
+    "runs": [
+      {
+        "code": "choice = input(\"Choice: \").strip().lower()\n",
+        "passed": [
+          true,
+          false
+        ],
+        "error": null
+      },
+      {
+        "code": "choice = input(\"Choice: \").strip().lower()\nif choice == \"open\":\n    print(\"Opening\")\nelif choice == \"help\":\n    print(\"Commands: open, help\")\nelse:\n    print(\"Unknown choice\")\n",
+        "passed": [
+          true,
+          true
+        ],
+        "error": null
+      }
+    ]
+  },
+  {
+    "id": "python-v4-07-delivery-adviser",
+    "tasks": [
+      "Read and store the weight and normalised destination.",
+      "Calculate cost from the two rules, then print it."
+    ],
+    "firstPassing": [
+      1,
+      4
+    ],
+    "runs": [
+      {
+        "code": "weight = float(input(\"Weight: \"))\n",
+        "passed": [
+          false,
+          false
+        ],
+        "error": null
+      },
+      {
+        "code": "weight = float(input(\"Weight: \"))\ndestination = input(\"Destination: \").strip().lower()\n",
+        "passed": [
+          true,
+          false
+        ],
+        "error": null
+      },
+      {
+        "code": "weight = float(input(\"Weight: \"))\ndestination = input(\"Destination: \").strip().lower()\nif weight <= 2:\n    cost = 3.0\nelse:\n    cost = 6.0\n",
+        "passed": [
+          true,
+          false
+        ],
+        "error": null
+      },
+      {
+        "code": "weight = float(input(\"Weight: \"))\ndestination = input(\"Destination: \").strip().lower()\nif weight <= 2:\n    cost = 3.0\nelse:\n    cost = 6.0\nif destination == \"remote\":\n    cost += 2.0\n",
+        "passed": [
+          true,
+          false
+        ],
+        "error": null
+      },
+      {
+        "code": "weight = float(input(\"Weight: \"))\ndestination = input(\"Destination: \").strip().lower()\nif weight <= 2:\n    cost = 3.0\nelse:\n    cost = 6.0\nif destination == \"remote\":\n    cost += 2.0\nprint(cost)\n",
+        "passed": [
+          true,
+          true
+        ],
+        "error": null
+      }
+    ]
+  },
+  {
+    "id": "python-v4-08-repeat-input",
+    "tasks": [
+      "Read Item: repeatedly; print \"Added \" plus each normalised item until quit.",
+      "Print \"Done\" once after stopping and never add quit as an item."
+    ],
+    "firstPassing": [
+      2,
+      2
+    ],
+    "runs": [
+      {
+        "code": "choice = input(\"Item: \").strip().lower()\n",
+        "passed": [
+          false,
+          false
+        ],
+        "error": null
+      },
+      {
+        "code": "choice = input(\"Item: \").strip().lower()\nwhile choice != \"quit\":\n    print(f\"Added {choice}\")\n    choice = input(\"Item: \").strip().lower()\n",
+        "passed": [
+          false,
+          false
+        ],
+        "error": null
+      },
+      {
+        "code": "choice = input(\"Item: \").strip().lower()\nwhile choice != \"quit\":\n    print(f\"Added {choice}\")\n    choice = input(\"Item: \").strip().lower()\nprint(\"Done\")\n",
+        "passed": [
+          true,
+          true
+        ],
+        "error": null
+      }
+    ]
+  },
+  {
+    "id": "python-v4-08-session-summary",
+    "tasks": [
+      "Read Item: repeatedly until a normalised quit command. Count the other answers in count.",
+      "Print a final line such as \"Items: 2\" once after the loop."
+    ],
+    "firstPassing": [
+      1,
+      2
+    ],
+    "runs": [
+      {
+        "code": "count = 0\n",
+        "passed": [
+          false,
+          false
+        ],
+        "error": null
+      },
+      {
+        "code": "count = 0\nwhile True:\n    item = input(\"Item: \").strip().lower()\n    if item == \"quit\":\n        break\n    count += 1\n",
+        "passed": [
+          true,
+          false
+        ],
+        "error": null
+      },
+      {
+        "code": "count = 0\nwhile True:\n    item = input(\"Item: \").strip().lower()\n    if item == \"quit\":\n        break\n    count += 1\nprint(f\"Items: {count}\")\n",
+        "passed": [
+          true,
+          true
+        ],
+        "error": null
+      }
+    ]
+  },
+  {
+    "id": "python-v4-09-define-and-call",
+    "tasks": [
+      "Define show_title() to print Library.",
+      "Call your function twice."
+    ],
+    "firstPassing": [
+      0,
+      2
+    ],
+    "runs": [
+      {
+        "code": "def show_title():\n    print(\"Library\")\n",
+        "passed": [
+          true,
+          false
+        ],
+        "error": null
+      },
+      {
+        "code": "def show_title():\n    print(\"Library\")\n\nshow_title()\n",
+        "passed": [
+          true,
+          false
+        ],
+        "error": null
+      },
+      {
+        "code": "def show_title():\n    print(\"Library\")\n\nshow_title()\nshow_title()\n",
+        "passed": [
+          true,
+          true
+        ],
+        "error": null
+      }
+    ]
+  },
+  {
+    "id": "python-v4-10-cancel-safely",
+    "tasks": [
+      "Define read_number() to retry invalid numeric text and return a float after a valid answer. Print Try a number on each conversion failure.",
+      "Return None for quit with any surrounding spaces/case, and for end-of-input."
+    ],
+    "firstPassing": [
+      0,
+      0
+    ],
+    "runs": [
+      {
+        "code": "def read_number():\n    while True:\n        try:\n            text = input(\"Number or quit: \").strip().lower()\n        except EOFError:\n            return None\n        if text == \"quit\":\n            return None\n        try:\n            return float(text)\n        except ValueError:\n            print(\"Try a number\")\n",
+        "passed": [
+          true,
+          true
+        ],
+        "error": null
+      }
+    ]
+  },
+  {
+    "id": "python-v4-14-guessing-game",
+    "tasks": [
+      "Implement the comparison loop and return the valid attempt count after a correct guess.",
+      "Handle invalid input, quit and end-of-input without crashing."
+    ],
+    "firstPassing": [
+      0,
+      0
+    ],
+    "runs": [
+      {
+        "code": "import random\n",
+        "passed": [
+          true,
+          true
+        ],
+        "error": null
+      },
+      {
+        "code": "import random\nfrom game import play\n",
+        "passed": [
+          true,
+          true
+        ],
+        "error": null
+      },
+      {
+        "code": "import random\nfrom game import play\nprint(play(random.randint(1, 10)))\n",
+        "passed": [
+          true,
+          true
+        ],
+        "error": null
+      }
+    ]
+  },
+  {
+    "id": "python-v4-23-virtual-pet",
+    "tasks": [
+      "Create Pet with independent initial state and the specified feed behaviour.",
+      "Implement play and the required representation, including the low-energy boundary."
+    ],
+    "firstPassing": [
+      0,
+      0
+    ],
+    "runs": [
+      {
+        "code": "class Pet:\n    def __init__(self,name):\n        self.name = name\n        self.energy = 5\n    def feed(self,amount=1):\n        if amount > 0:\n            self.energy = min(10,self.energy + amount)\n    def play(self):\n        if self.energy < 2:\n            return False\n        self.energy -= 2\n        return True\n    def __repr__(self):\n        return f\"Pet({self.name}, energy={self.energy})\"\n",
+        "passed": [
+          true,
+          true
+        ],
+        "error": null
+      }
+    ]
+  }
+]

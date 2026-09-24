@@ -1,0 +1,800 @@
+{
+  "id": "python-v4-13-quiz-r2",
+  "chapter": 13,
+  "group": "python-v4-module-13",
+  "kind": "quiz",
+  "optional": false,
+  "estimatedMinutes": 8,
+  "title": {
+    "en": "Tuples and multiple results: review",
+    "nl": "Tuples en meerdere resultaten: herhaling"
+  },
+  "questions": [
+    {
+      "objectiveIds": [
+        "packing-unpacking"
+      ],
+      "category": "prediction",
+      "prompt": {
+        "en": "What does this program print?",
+        "nl": "Wat drukt dit programma af?"
+      },
+      "code": "point = (4,2)\nx,y = point\nprint(y,x)",
+      "answer": "a",
+      "expectedOutput": "2 4\n",
+      "choices": [
+        {
+          "id": "a",
+          "label": {
+            "en": "2 4",
+            "nl": "2 4"
+          },
+          "reason": {
+            "en": "The print reverses the order of the named values.",
+            "nl": "De print keert de volgorde van de benoemde waarden om."
+          }
+        },
+        {
+          "id": "b",
+          "label": {
+            "en": "4 2",
+            "nl": "4 2"
+          },
+          "reason": {
+            "en": "The caller prints y first.",
+            "nl": "De aanroeper drukt y eerst af."
+          }
+        },
+        {
+          "id": "c",
+          "label": {
+            "en": "(4, 2)",
+            "nl": "(4, 2)"
+          },
+          "reason": {
+            "en": "It prints two arguments rather than the tuple object.",
+            "nl": "Het drukt twee argumenten af in plaats van het tupleobject."
+          }
+        }
+      ],
+      "id": "python-v4-13-quiz-r2-a-1",
+      "reviewActivityIds": [
+        "python-v4-13-unpack"
+      ]
+    },
+    {
+      "objectiveIds": [
+        "range"
+      ],
+      "category": "prediction",
+      "prompt": {
+        "en": "What does this program print?",
+        "nl": "Wat drukt dit programma af?"
+      },
+      "code": "print(list(range(0)))",
+      "answer": "a",
+      "expectedOutput": "[]\n",
+      "choices": [
+        {
+          "id": "a",
+          "label": {
+            "en": "[]",
+            "nl": "[]"
+          },
+          "reason": {
+            "en": "The stop is excluded. range(0) is empty; a negative step counts downward.",
+            "nl": "De eindgrens telt niet mee. range(0) is leeg; een negatieve stap telt omlaag."
+          }
+        },
+        {
+          "id": "b",
+          "label": {
+            "en": "[0]",
+            "nl": "[0]"
+          },
+          "reason": {
+            "en": "The stop is excluded. range(0) is empty; a negative step counts downward.",
+            "nl": "De eindgrens telt niet mee. range(0) is leeg; een negatieve stap telt omlaag."
+          }
+        },
+        {
+          "id": "c",
+          "label": {
+            "en": "[3, 2, 1, 0]",
+            "nl": "[3, 2, 1, 0]"
+          },
+          "reason": {
+            "en": "The stop is excluded. range(0) is empty; a negative step counts downward.",
+            "nl": "De eindgrens telt niet mee. range(0) is leeg; een negatieve stap telt omlaag."
+          }
+        }
+      ],
+      "id": "python-v4-13-quiz-r2-a-2",
+      "reviewActivityIds": [
+        "python-v4-12-range-stop"
+      ]
+    },
+    {
+      "objectiveIds": [
+        "multiple-returns"
+      ],
+      "category": "completion",
+      "prompt": {
+        "en": "Complete the code to produce the shown output.",
+        "nl": "Vul de code aan om de getoonde uitvoer te maken."
+      },
+      "code": "def pair():\n    return 4,2\nx, y = ___\nprint(x + y)",
+      "answer": "a",
+      "choices": [
+        {
+          "id": "a",
+          "label": {
+            "en": "pair()",
+            "nl": "pair()"
+          },
+          "reason": {
+            "en": "Call the function, then unpack its returned tuple.",
+            "nl": "Roep de functie aan en pak daarna de teruggegeven tuple uit."
+          }
+        },
+        {
+          "id": "b",
+          "label": {
+            "en": "pair",
+            "nl": "pair"
+          },
+          "reason": {
+            "en": "Using pair here produces TypeError. Call the function, then unpack its returned tuple.",
+            "nl": "Met pair ontstaat hier TypeError. Roep de functie aan en pak daarna de teruggegeven tuple uit."
+          }
+        },
+        {
+          "id": "c",
+          "label": {
+            "en": "2",
+            "nl": "2"
+          },
+          "reason": {
+            "en": "Using 2 here produces TypeError. Call the function, then unpack its returned tuple.",
+            "nl": "Met 2 ontstaat hier TypeError. Roep de functie aan en pak daarna de teruggegeven tuple uit."
+          }
+        }
+      ],
+      "codeBlank": {
+        "prompt": {
+          "en": "Complete the code to produce the shown output.",
+          "nl": "Vul de code aan om de getoonde uitvoer te maken."
+        },
+        "segments": [
+          "def pair():\n    return 4,2\nx, y = ",
+          "\nprint(x + y)"
+        ],
+        "tokens": [
+          {
+            "id": "token-1",
+            "code": "pair()"
+          },
+          {
+            "id": "token-2",
+            "code": "pair",
+            "reason": {
+              "en": "Using pair here produces TypeError. Call the function, then unpack its returned tuple.",
+              "nl": "Met pair ontstaat hier TypeError. Roep de functie aan en pak daarna de teruggegeven tuple uit."
+            }
+          },
+          {
+            "id": "token-3",
+            "code": "2",
+            "reason": {
+              "en": "Using 2 here produces TypeError. Call the function, then unpack its returned tuple.",
+              "nl": "Met 2 ontstaat hier TypeError. Roep de functie aan en pak daarna de teruggegeven tuple uit."
+            }
+          }
+        ],
+        "blanks": [
+          {
+            "answer": "pair()",
+            "reason": {
+              "en": "Call the function, then unpack its returned tuple.",
+              "nl": "Roep de functie aan en pak daarna de teruggegeven tuple uit."
+            }
+          }
+        ],
+        "output": "6\n"
+      },
+      "id": "python-v4-13-quiz-r2-a-3",
+      "reviewActivityIds": [
+        "python-v4-13-multiple-results"
+      ]
+    },
+    {
+      "objectiveIds": [
+        "for"
+      ],
+      "category": "completion",
+      "prompt": {
+        "en": "Complete the code to produce the shown output.",
+        "nl": "Vul de code aan om de getoonde uitvoer te maken."
+      },
+      "code": "total = 0\nfor value in [2, 4]:\n    total ___ value\nprint(total)",
+      "answer": "a",
+      "choices": [
+        {
+          "id": "a",
+          "label": {
+            "en": "+=",
+            "nl": "+="
+          },
+          "reason": {
+            "en": "Follow the operation and its input type, then compare the exact result shown.",
+            "nl": "Volg de bewerking en het invoertype en vergelijk daarna het precieze getoonde resultaat."
+          }
+        },
+        {
+          "id": "b",
+          "label": {
+            "en": "=",
+            "nl": "="
+          },
+          "reason": {
+            "en": "Using = prints \"4\\n\"; the required output is \"6\\n\". Follow the operation and its input type, then compare the exact result shown.",
+            "nl": "Met = wordt \"4\\n\" afgedrukt; de vereiste uitvoer is \"6\\n\". Volg de bewerking en het invoertype en vergelijk daarna het precieze getoonde resultaat."
+          }
+        },
+        {
+          "id": "c",
+          "label": {
+            "en": "-=",
+            "nl": "-="
+          },
+          "reason": {
+            "en": "Using -= prints \"-6\\n\"; the required output is \"6\\n\". Follow the operation and its input type, then compare the exact result shown.",
+            "nl": "Met -= wordt \"-6\\n\" afgedrukt; de vereiste uitvoer is \"6\\n\". Volg de bewerking en het invoertype en vergelijk daarna het precieze getoonde resultaat."
+          }
+        }
+      ],
+      "codeBlank": {
+        "prompt": {
+          "en": "Complete the code to produce the shown output.",
+          "nl": "Vul de code aan om de getoonde uitvoer te maken."
+        },
+        "segments": [
+          "total = 0\nfor value in [2, 4]:\n    total ",
+          " value\nprint(total)"
+        ],
+        "tokens": [
+          {
+            "id": "token-1",
+            "code": "+="
+          },
+          {
+            "id": "token-2",
+            "code": "=",
+            "reason": {
+              "en": "Using = prints \"4\\n\"; the required output is \"6\\n\". Follow the operation and its input type, then compare the exact result shown.",
+              "nl": "Met = wordt \"4\\n\" afgedrukt; de vereiste uitvoer is \"6\\n\". Volg de bewerking en het invoertype en vergelijk daarna het precieze getoonde resultaat."
+            }
+          },
+          {
+            "id": "token-3",
+            "code": "-=",
+            "reason": {
+              "en": "Using -= prints \"-6\\n\"; the required output is \"6\\n\". Follow the operation and its input type, then compare the exact result shown.",
+              "nl": "Met -= wordt \"-6\\n\" afgedrukt; de vereiste uitvoer is \"6\\n\". Volg de bewerking en het invoertype en vergelijk daarna het precieze getoonde resultaat."
+            }
+          }
+        ],
+        "blanks": [
+          {
+            "answer": "+=",
+            "reason": {
+              "en": "Follow the operation and its input type, then compare the exact result shown.",
+              "nl": "Volg de bewerking en het invoertype en vergelijk daarna het precieze getoonde resultaat."
+            }
+          }
+        ],
+        "output": "6\n"
+      },
+      "id": "python-v4-13-quiz-r2-a-4",
+      "reviewActivityIds": [
+        "python-v4-12-for-values"
+      ]
+    },
+    {
+      "objectiveIds": [
+        "packing-unpacking"
+      ],
+      "category": "debugging",
+      "prompt": {
+        "en": "Choose the repair or test that addresses the stated problem.",
+        "nl": "Kies de reparatie of test die het beschreven probleem aanpakt."
+      },
+      "code": "x,y = (4,2,3)",
+      "answer": "a",
+      "choices": [
+        {
+          "id": "a",
+          "label": {
+            "en": "Use three target names for three values.",
+            "nl": "Gebruik drie doelnamen voor drie waarden."
+          },
+          "reason": {
+            "en": "Ordinary unpacking requires matching counts.",
+            "nl": "Gewoon uitpakken vereist gelijke aantallen."
+          }
+        },
+        {
+          "id": "b",
+          "label": {
+            "en": "Remove the commas between values.",
+            "nl": "Verwijder de komma’s tussen waarden."
+          },
+          "reason": {
+            "en": "That removes the tuple syntax instead of matching its shape.",
+            "nl": "Dat verwijdert tuplesyntax in plaats van bij de vorm te passen."
+          }
+        },
+        {
+          "id": "c",
+          "label": {
+            "en": "Run it a second time.",
+            "nl": "Voer nogmaals uit."
+          },
+          "reason": {
+            "en": "The mismatch is structural and repeats.",
+            "nl": "Het verschil is structureel en herhaalt zich."
+          }
+        }
+      ],
+      "id": "python-v4-13-quiz-r2-a-5",
+      "reviewActivityIds": [
+        "python-v4-13-unpack"
+      ]
+    },
+    {
+      "objectiveIds": [
+        "tuples"
+      ],
+      "category": "application",
+      "prompt": {
+        "en": "Which explanation applies to this example?",
+        "nl": "Welke uitleg past bij dit voorbeeld?"
+      },
+      "code": "point = (4,2)",
+      "answer": "a",
+      "choices": [
+        {
+          "id": "a",
+          "label": {
+            "en": "The tuple is ordered and cannot have an element reassigned.",
+            "nl": "De tuple is geordend en een element kan niet opnieuw worden toegewezen."
+          },
+          "reason": {
+            "en": "Tuple immutability differs from list mutation.",
+            "nl": "Onveranderbaarheid van tuples verschilt van lijstwijziging."
+          }
+        },
+        {
+          "id": "b",
+          "label": {
+            "en": "The first index is one.",
+            "nl": "De eerste index is één."
+          },
+          "reason": {
+            "en": "Tuples also start indexing at zero.",
+            "nl": "Tuples beginnen ook bij index nul."
+          }
+        },
+        {
+          "id": "c",
+          "label": {
+            "en": "A tuple is always exactly two values.",
+            "nl": "Een tuple heeft altijd precies twee waarden."
+          },
+          "reason": {
+            "en": "Tuples can have other lengths.",
+            "nl": "Tuples kunnen andere lengten hebben."
+          }
+        }
+      ],
+      "id": "python-v4-13-quiz-r2-a-6",
+      "reviewActivityIds": [
+        "python-v4-13-pairs"
+      ]
+    }
+  ],
+  "alternateQuestions": [
+    {
+      "objectiveIds": [
+        "packing-unpacking"
+      ],
+      "category": "prediction",
+      "prompt": {
+        "en": "What does this program print?",
+        "nl": "Wat drukt dit programma af?"
+      },
+      "code": "point = (7,2)\nx,y = point\nprint(y,x)",
+      "answer": "a",
+      "expectedOutput": "2 7\n",
+      "choices": [
+        {
+          "id": "a",
+          "label": {
+            "en": "2 7",
+            "nl": "2 7"
+          },
+          "reason": {
+            "en": "The print reverses the order of the named values.",
+            "nl": "De print keert de volgorde van de benoemde waarden om."
+          }
+        },
+        {
+          "id": "b",
+          "label": {
+            "en": "7 2",
+            "nl": "7 2"
+          },
+          "reason": {
+            "en": "The caller prints y first.",
+            "nl": "De aanroeper drukt y eerst af."
+          }
+        },
+        {
+          "id": "c",
+          "label": {
+            "en": "(7, 2)",
+            "nl": "(7, 2)"
+          },
+          "reason": {
+            "en": "It prints two arguments rather than the tuple object.",
+            "nl": "Het drukt twee argumenten af in plaats van het tupleobject."
+          }
+        }
+      ],
+      "id": "python-v4-13-quiz-r2-b-1",
+      "reviewActivityIds": [
+        "python-v4-13-unpack"
+      ]
+    },
+    {
+      "objectiveIds": [
+        "range"
+      ],
+      "category": "prediction",
+      "prompt": {
+        "en": "What does this program print?",
+        "nl": "Wat drukt dit programma af?"
+      },
+      "code": "print(list(range(3, 0, -1)))",
+      "answer": "a",
+      "expectedOutput": "[3, 2, 1]\n",
+      "choices": [
+        {
+          "id": "a",
+          "label": {
+            "en": "[3, 2, 1]",
+            "nl": "[3, 2, 1]"
+          },
+          "reason": {
+            "en": "The stop is excluded. range(0) is empty; a negative step counts downward.",
+            "nl": "De eindgrens telt niet mee. range(0) is leeg; een negatieve stap telt omlaag."
+          }
+        },
+        {
+          "id": "b",
+          "label": {
+            "en": "[0]",
+            "nl": "[0]"
+          },
+          "reason": {
+            "en": "The stop is excluded. range(0) is empty; a negative step counts downward.",
+            "nl": "De eindgrens telt niet mee. range(0) is leeg; een negatieve stap telt omlaag."
+          }
+        },
+        {
+          "id": "c",
+          "label": {
+            "en": "[3, 2, 1, 0]",
+            "nl": "[3, 2, 1, 0]"
+          },
+          "reason": {
+            "en": "The stop is excluded. range(0) is empty; a negative step counts downward.",
+            "nl": "De eindgrens telt niet mee. range(0) is leeg; een negatieve stap telt omlaag."
+          }
+        }
+      ],
+      "id": "python-v4-13-quiz-r2-b-2",
+      "reviewActivityIds": [
+        "python-v4-12-range-stop"
+      ]
+    },
+    {
+      "objectiveIds": [
+        "multiple-returns"
+      ],
+      "category": "completion",
+      "prompt": {
+        "en": "Complete the code to produce the shown output.",
+        "nl": "Vul de code aan om de getoonde uitvoer te maken."
+      },
+      "code": "def pair():\n    return 7,2\nx, y = ___\nprint(x + y)",
+      "answer": "a",
+      "choices": [
+        {
+          "id": "a",
+          "label": {
+            "en": "pair()",
+            "nl": "pair()"
+          },
+          "reason": {
+            "en": "Call the function, then unpack its returned tuple.",
+            "nl": "Roep de functie aan en pak daarna de teruggegeven tuple uit."
+          }
+        },
+        {
+          "id": "b",
+          "label": {
+            "en": "pair",
+            "nl": "pair"
+          },
+          "reason": {
+            "en": "Using pair here produces TypeError. Call the function, then unpack its returned tuple.",
+            "nl": "Met pair ontstaat hier TypeError. Roep de functie aan en pak daarna de teruggegeven tuple uit."
+          }
+        },
+        {
+          "id": "c",
+          "label": {
+            "en": "2",
+            "nl": "2"
+          },
+          "reason": {
+            "en": "Using 2 here produces TypeError. Call the function, then unpack its returned tuple.",
+            "nl": "Met 2 ontstaat hier TypeError. Roep de functie aan en pak daarna de teruggegeven tuple uit."
+          }
+        }
+      ],
+      "codeBlank": {
+        "prompt": {
+          "en": "Complete the code to produce the shown output.",
+          "nl": "Vul de code aan om de getoonde uitvoer te maken."
+        },
+        "segments": [
+          "def pair():\n    return 7,2\nx, y = ",
+          "\nprint(x + y)"
+        ],
+        "tokens": [
+          {
+            "id": "token-1",
+            "code": "pair()"
+          },
+          {
+            "id": "token-2",
+            "code": "pair",
+            "reason": {
+              "en": "Using pair here produces TypeError. Call the function, then unpack its returned tuple.",
+              "nl": "Met pair ontstaat hier TypeError. Roep de functie aan en pak daarna de teruggegeven tuple uit."
+            }
+          },
+          {
+            "id": "token-3",
+            "code": "2",
+            "reason": {
+              "en": "Using 2 here produces TypeError. Call the function, then unpack its returned tuple.",
+              "nl": "Met 2 ontstaat hier TypeError. Roep de functie aan en pak daarna de teruggegeven tuple uit."
+            }
+          }
+        ],
+        "blanks": [
+          {
+            "answer": "pair()",
+            "reason": {
+              "en": "Call the function, then unpack its returned tuple.",
+              "nl": "Roep de functie aan en pak daarna de teruggegeven tuple uit."
+            }
+          }
+        ],
+        "output": "9\n"
+      },
+      "id": "python-v4-13-quiz-r2-b-3",
+      "reviewActivityIds": [
+        "python-v4-13-multiple-results"
+      ]
+    },
+    {
+      "objectiveIds": [
+        "for"
+      ],
+      "category": "completion",
+      "prompt": {
+        "en": "Complete the code to produce the shown output.",
+        "nl": "Vul de code aan om de getoonde uitvoer te maken."
+      },
+      "code": "total = 0\nfor value in [2, 4]:\n    total ___ value\nprint(total)",
+      "answer": "a",
+      "choices": [
+        {
+          "id": "a",
+          "label": {
+            "en": "+=",
+            "nl": "+="
+          },
+          "reason": {
+            "en": "Follow the operation and its input type, then compare the exact result shown.",
+            "nl": "Volg de bewerking en het invoertype en vergelijk daarna het precieze getoonde resultaat."
+          }
+        },
+        {
+          "id": "b",
+          "label": {
+            "en": "=",
+            "nl": "="
+          },
+          "reason": {
+            "en": "Using = prints \"4\\n\"; the required output is \"6\\n\". Follow the operation and its input type, then compare the exact result shown.",
+            "nl": "Met = wordt \"4\\n\" afgedrukt; de vereiste uitvoer is \"6\\n\". Volg de bewerking en het invoertype en vergelijk daarna het precieze getoonde resultaat."
+          }
+        },
+        {
+          "id": "c",
+          "label": {
+            "en": "-=",
+            "nl": "-="
+          },
+          "reason": {
+            "en": "Using -= prints \"-6\\n\"; the required output is \"6\\n\". Follow the operation and its input type, then compare the exact result shown.",
+            "nl": "Met -= wordt \"-6\\n\" afgedrukt; de vereiste uitvoer is \"6\\n\". Volg de bewerking en het invoertype en vergelijk daarna het precieze getoonde resultaat."
+          }
+        }
+      ],
+      "codeBlank": {
+        "prompt": {
+          "en": "Complete the code to produce the shown output.",
+          "nl": "Vul de code aan om de getoonde uitvoer te maken."
+        },
+        "segments": [
+          "total = 0\nfor value in [2, 4]:\n    total ",
+          " value\nprint(total)"
+        ],
+        "tokens": [
+          {
+            "id": "token-1",
+            "code": "+="
+          },
+          {
+            "id": "token-2",
+            "code": "=",
+            "reason": {
+              "en": "Using = prints \"4\\n\"; the required output is \"6\\n\". Follow the operation and its input type, then compare the exact result shown.",
+              "nl": "Met = wordt \"4\\n\" afgedrukt; de vereiste uitvoer is \"6\\n\". Volg de bewerking en het invoertype en vergelijk daarna het precieze getoonde resultaat."
+            }
+          },
+          {
+            "id": "token-3",
+            "code": "-=",
+            "reason": {
+              "en": "Using -= prints \"-6\\n\"; the required output is \"6\\n\". Follow the operation and its input type, then compare the exact result shown.",
+              "nl": "Met -= wordt \"-6\\n\" afgedrukt; de vereiste uitvoer is \"6\\n\". Volg de bewerking en het invoertype en vergelijk daarna het precieze getoonde resultaat."
+            }
+          }
+        ],
+        "blanks": [
+          {
+            "answer": "+=",
+            "reason": {
+              "en": "Follow the operation and its input type, then compare the exact result shown.",
+              "nl": "Volg de bewerking en het invoertype en vergelijk daarna het precieze getoonde resultaat."
+            }
+          }
+        ],
+        "output": "6\n"
+      },
+      "id": "python-v4-13-quiz-r2-b-4",
+      "reviewActivityIds": [
+        "python-v4-12-for-values"
+      ]
+    },
+    {
+      "objectiveIds": [
+        "packing-unpacking"
+      ],
+      "category": "debugging",
+      "prompt": {
+        "en": "Choose the repair or test that addresses the stated problem.",
+        "nl": "Kies de reparatie of test die het beschreven probleem aanpakt."
+      },
+      "code": "x,y = (7,2,3)",
+      "answer": "a",
+      "choices": [
+        {
+          "id": "a",
+          "label": {
+            "en": "Use three target names for three values.",
+            "nl": "Gebruik drie doelnamen voor drie waarden."
+          },
+          "reason": {
+            "en": "Ordinary unpacking requires matching counts.",
+            "nl": "Gewoon uitpakken vereist gelijke aantallen."
+          }
+        },
+        {
+          "id": "b",
+          "label": {
+            "en": "Remove the commas between values.",
+            "nl": "Verwijder de komma’s tussen waarden."
+          },
+          "reason": {
+            "en": "That removes the tuple syntax instead of matching its shape.",
+            "nl": "Dat verwijdert tuplesyntax in plaats van bij de vorm te passen."
+          }
+        },
+        {
+          "id": "c",
+          "label": {
+            "en": "Run it a second time.",
+            "nl": "Voer nogmaals uit."
+          },
+          "reason": {
+            "en": "The mismatch is structural and repeats.",
+            "nl": "Het verschil is structureel en herhaalt zich."
+          }
+        }
+      ],
+      "id": "python-v4-13-quiz-r2-b-5",
+      "reviewActivityIds": [
+        "python-v4-13-unpack"
+      ]
+    },
+    {
+      "objectiveIds": [
+        "tuples"
+      ],
+      "category": "application",
+      "prompt": {
+        "en": "Which explanation applies to this example?",
+        "nl": "Welke uitleg past bij dit voorbeeld?"
+      },
+      "code": "point = (7,2)",
+      "answer": "a",
+      "choices": [
+        {
+          "id": "a",
+          "label": {
+            "en": "The tuple is ordered and cannot have an element reassigned.",
+            "nl": "De tuple is geordend en een element kan niet opnieuw worden toegewezen."
+          },
+          "reason": {
+            "en": "Tuple immutability differs from list mutation.",
+            "nl": "Onveranderbaarheid van tuples verschilt van lijstwijziging."
+          }
+        },
+        {
+          "id": "b",
+          "label": {
+            "en": "The first index is one.",
+            "nl": "De eerste index is één."
+          },
+          "reason": {
+            "en": "Tuples also start indexing at zero.",
+            "nl": "Tuples beginnen ook bij index nul."
+          }
+        },
+        {
+          "id": "c",
+          "label": {
+            "en": "A tuple is always exactly two values.",
+            "nl": "Een tuple heeft altijd precies twee waarden."
+          },
+          "reason": {
+            "en": "Tuples can have other lengths.",
+            "nl": "Tuples kunnen andere lengten hebben."
+          }
+        }
+      ],
+      "id": "python-v4-13-quiz-r2-b-6",
+      "reviewActivityIds": [
+        "python-v4-13-pairs"
+      ]
+    }
+  ]
+}

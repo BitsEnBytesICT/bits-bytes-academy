@@ -716,15 +716,21 @@ export const activities = [
           "Read Choice: and store a trimmed, lowercase version in choice. Print choice.",
           "Lees Choice: en bewaar een versie zonder randspaties en met kleine letters in choice. Druk choice af.",
         ],
-        'choice == raw.strip().lower() and _stdout.endswith(choice + "\n")',
+        'choice == "help" and _stdout == "Choice: help\n"',
         [
           "Apply both transformations and assign their returned text. You can use separate assignments.",
           "Pas beide veranderingen toe en wijs de teruggegeven tekst toe. Je mag aparte toewijzingen gebruiken.",
         ],
         "trimmed = raw.strip()",
         [
-          { stdin: ["  Quit "], check: 'choice == "quit"' },
-          { stdin: [" SAVE FILE "], check: 'choice == "save file"' },
+          {
+            stdin: ["  Quit "],
+            check: 'choice == "quit" and _stdout == "Choice: quit\n"',
+          },
+          {
+            stdin: [" SAVE FILE "],
+            check: 'choice == "save file" and _stdout == "Choice: save file\n"',
+          },
         ],
       ),
     ],

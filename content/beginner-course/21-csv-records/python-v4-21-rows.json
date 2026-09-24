@@ -60,10 +60,11 @@
     },
     {
       "id": "python-v4-21-rows-experiment",
+      "role": "experiment",
       "topicIds": [],
       "heading": {
-        "en": "Try one change",
-        "nl": "Probeer één wijziging"
+        "en": "After completing the task: try one change",
+        "nl": "Na het afronden: probeer één wijziging"
       },
       "body": {
         "en": "Put a quoted comma inside another field and compare with naive splitting.",
@@ -106,7 +107,10 @@
           "check": "(_return == [[\"name\",\"score\"],[\"Bo, Jr\",\"4\"],[\"Ada\",\"5\"]]) and _error is None",
           "moduleOnly": true,
           "module": "work",
-          "files": {}
+          "isolatedFixtures": true,
+          "files": {
+            "table.csv": "name,score\n\"Bo, Jr\",4\nAda,5\n"
+          }
         },
         {
           "call": {
@@ -119,7 +123,9 @@
           "check": "(_return == []) and _error is None",
           "moduleOnly": true,
           "module": "work",
+          "isolatedFixtures": true,
           "files": {
+            "table.csv": "name,score\n\"Bo, Jr\",4\nAda,5\n",
             "empty.csv": ""
           }
         }
@@ -155,30 +161,34 @@
   "inputs": [],
   "retrievals": [
     {
-      "id": "recall-python-v4-19-records",
-      "sourceActivityId": "python-v4-19-records",
+      "id": "recall-python-v4-14-import",
+      "sourceActivityId": "python-v4-14-import",
       "objectiveIds": [
-        "dictionaries",
-        "dictionary-creation"
+        "modules",
+        "imports",
+        "documentation"
       ],
       "prompt": {
-        "en": "Recall “Name fields with dictionary keys”. Would record[0] mean the first entry? Try the earlier example from memory, then check it. Add a Boolean active field in an experiment.",
-        "nl": "Haal “Benoem velden met dictionarysleutels” terug. Betekent record[0] de eerste invoer? Probeer het eerdere voorbeeld uit je geheugen en controleer daarna. Voeg in een experiment een booleaans active-veld toe."
-      }
+        "en": "Recall use a standard-library module. What does the name before the dot identify? Look up sqrt in the official math documentation and test zero.",
+        "nl": "Herhaal gebruik een standaardbibliotheekmodule. Wat benoemt de naam vóór de punt? Zoek sqrt op in de officiële math-documentatie en test nul."
+      },
+      "code": "import math\nprint(math.sqrt(9))"
     },
     {
-      "id": "recall-python-v4-19-views",
-      "sourceActivityId": "python-v4-19-views",
+      "id": "recall-python-v4-20-read",
+      "sourceActivityId": "python-v4-20-read",
       "objectiveIds": [
-        "keys",
-        "values",
-        "items",
-        "dictionary-iteration"
+        "text-files",
+        "with",
+        "utf8",
+        "read",
+        "persistence"
       ],
       "prompt": {
-        "en": "Recall “Visit keys, values and pairs”. What does a plain for name in scores visit? Try the earlier example from memory, then check it. Compare returning keys only with the labelled report.",
-        "nl": "Haal “Bezoek sleutels, waarden en paren” terug. Wat bezoekt een gewone for name in scores? Probeer het eerdere voorbeeld uit je geheugen en controleer daarna. Vergelijk alleen sleutels teruggeven met het gelabelde rapport."
-      }
+        "en": "Recall read your first text file. When is the handle closed relative to print? Change the supplied file, run again, and observe the changed result.",
+        "nl": "Herhaal lees je eerste tekstbestand. Wanneer wordt de handle gesloten ten opzichte van print? Verander het aangeleverde bestand, voer opnieuw uit en bekijk het gewijzigde resultaat."
+      },
+      "code": "with open(\"example.txt\",\"r\",encoding=\"utf-8\") as handle:\n    text = handle.read()\nprint(text)"
     }
   ]
 }

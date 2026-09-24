@@ -1,0 +1,800 @@
+{
+  "id": "python-v4-03-quiz-r2",
+  "chapter": 3,
+  "group": "python-v4-module-3",
+  "kind": "quiz",
+  "optional": false,
+  "estimatedMinutes": 8,
+  "title": {
+    "en": "Calculations and changing values: review",
+    "nl": "Berekeningen en veranderende waarden: herhaling"
+  },
+  "questions": [
+    {
+      "objectiveIds": [
+        "precedence"
+      ],
+      "category": "prediction",
+      "prompt": {
+        "en": "What does this program print?",
+        "nl": "Wat drukt dit programma af?"
+      },
+      "code": "print(3 + 2 * 5)",
+      "answer": "a",
+      "expectedOutput": "13\n",
+      "choices": [
+        {
+          "id": "a",
+          "label": {
+            "en": "13",
+            "nl": "13"
+          },
+          "reason": {
+            "en": "Multiplication comes before addition.",
+            "nl": "Vermenigvuldigen komt vóór optellen."
+          }
+        },
+        {
+          "id": "b",
+          "label": {
+            "en": "25",
+            "nl": "25"
+          },
+          "reason": {
+            "en": "That needs parentheses around the addition.",
+            "nl": "Dat vereist haakjes rond het optellen."
+          }
+        },
+        {
+          "id": "c",
+          "label": {
+            "en": "10",
+            "nl": "10"
+          },
+          "reason": {
+            "en": "2 * 5 is ten, not seven.",
+            "nl": "2 * 5 is tien, geen zeven."
+          }
+        }
+      ],
+      "id": "python-v4-03-quiz-r2-a-1",
+      "reviewActivityIds": [
+        "python-v4-03-precedence"
+      ]
+    },
+    {
+      "objectiveIds": [
+        "reassignment"
+      ],
+      "category": "prediction",
+      "prompt": {
+        "en": "What does this program print?",
+        "nl": "Wat drukt dit programma af?"
+      },
+      "code": "stock = 4\nstock = stock + 2\nprint(stock)",
+      "answer": "a",
+      "expectedOutput": "6\n",
+      "choices": [
+        {
+          "id": "a",
+          "label": {
+            "en": "6",
+            "nl": "6"
+          },
+          "reason": {
+            "en": "The right side uses the old value; assignment stores the new one.",
+            "nl": "Rechts gebruikt de oude waarde; toewijzing bewaart de nieuwe."
+          }
+        },
+        {
+          "id": "b",
+          "label": {
+            "en": "4",
+            "nl": "4"
+          },
+          "reason": {
+            "en": "The right side uses the old value; assignment stores the new one.",
+            "nl": "Rechts gebruikt de oude waarde; toewijzing bewaart de nieuwe."
+          }
+        },
+        {
+          "id": "c",
+          "label": {
+            "en": "0",
+            "nl": "0"
+          },
+          "reason": {
+            "en": "The right side uses the old value; assignment stores the new one.",
+            "nl": "Rechts gebruikt de oude waarde; toewijzing bewaart de nieuwe."
+          }
+        }
+      ],
+      "id": "python-v4-03-quiz-r2-a-2",
+      "reviewActivityIds": [
+        "python-v4-02-reassignment"
+      ]
+    },
+    {
+      "objectiveIds": [
+        "exponents"
+      ],
+      "category": "completion",
+      "prompt": {
+        "en": "Complete the code to produce the shown output.",
+        "nl": "Vul de code aan om de getoonde uitvoer te maken."
+      },
+      "code": "print(3 ___ 2)",
+      "answer": "a",
+      "choices": [
+        {
+          "id": "a",
+          "label": {
+            "en": "**",
+            "nl": "**"
+          },
+          "reason": {
+            "en": "** raises to a power; * multiplies and % returns a remainder.",
+            "nl": "** verheft tot een macht; * vermenigvuldigt en % geeft een rest."
+          }
+        },
+        {
+          "id": "b",
+          "label": {
+            "en": "*",
+            "nl": "*"
+          },
+          "reason": {
+            "en": "Using * prints \"6\\n\"; the required output is \"9\\n\". ** raises to a power; * multiplies and % returns a remainder.",
+            "nl": "Met * wordt \"6\\n\" afgedrukt; de vereiste uitvoer is \"9\\n\". ** verheft tot een macht; * vermenigvuldigt en % geeft een rest."
+          }
+        },
+        {
+          "id": "c",
+          "label": {
+            "en": "%",
+            "nl": "%"
+          },
+          "reason": {
+            "en": "Using % prints \"1\\n\"; the required output is \"9\\n\". ** raises to a power; * multiplies and % returns a remainder.",
+            "nl": "Met % wordt \"1\\n\" afgedrukt; de vereiste uitvoer is \"9\\n\". ** verheft tot een macht; * vermenigvuldigt en % geeft een rest."
+          }
+        }
+      ],
+      "codeBlank": {
+        "prompt": {
+          "en": "Complete the code to produce the shown output.",
+          "nl": "Vul de code aan om de getoonde uitvoer te maken."
+        },
+        "segments": [
+          "print(3 ",
+          " 2)"
+        ],
+        "tokens": [
+          {
+            "id": "token-1",
+            "code": "**"
+          },
+          {
+            "id": "token-2",
+            "code": "*",
+            "reason": {
+              "en": "Using * prints \"6\\n\"; the required output is \"9\\n\". ** raises to a power; * multiplies and % returns a remainder.",
+              "nl": "Met * wordt \"6\\n\" afgedrukt; de vereiste uitvoer is \"9\\n\". ** verheft tot een macht; * vermenigvuldigt en % geeft een rest."
+            }
+          },
+          {
+            "id": "token-3",
+            "code": "%",
+            "reason": {
+              "en": "Using % prints \"1\\n\"; the required output is \"9\\n\". ** raises to a power; * multiplies and % returns a remainder.",
+              "nl": "Met % wordt \"1\\n\" afgedrukt; de vereiste uitvoer is \"9\\n\". ** verheft tot een macht; * vermenigvuldigt en % geeft een rest."
+            }
+          }
+        ],
+        "blanks": [
+          {
+            "answer": "**",
+            "reason": {
+              "en": "** raises to a power; * multiplies and % returns a remainder.",
+              "nl": "** verheft tot een macht; * vermenigvuldigt en % geeft een rest."
+            }
+          }
+        ],
+        "output": "9\n"
+      },
+      "id": "python-v4-03-quiz-r2-a-3",
+      "reviewActivityIds": [
+        "python-v4-03-powers"
+      ]
+    },
+    {
+      "objectiveIds": [
+        "variables"
+      ],
+      "category": "completion",
+      "prompt": {
+        "en": "Complete the code to produce the shown output.",
+        "nl": "Vul de code aan om de getoonde uitvoer te maken."
+      },
+      "code": "stock = 6\nprint(___)",
+      "answer": "a",
+      "choices": [
+        {
+          "id": "a",
+          "label": {
+            "en": "stock",
+            "nl": "stock"
+          },
+          "reason": {
+            "en": "Follow the operation and its input type, then compare the exact result shown.",
+            "nl": "Volg de bewerking en het invoertype en vergelijk daarna het precieze getoonde resultaat."
+          }
+        },
+        {
+          "id": "b",
+          "label": {
+            "en": "\"stock\"",
+            "nl": "\"stock\""
+          },
+          "reason": {
+            "en": "Using \"stock\" prints \"stock\\n\"; the required output is \"6\\n\". Follow the operation and its input type, then compare the exact result shown.",
+            "nl": "Met \"stock\" wordt \"stock\\n\" afgedrukt; de vereiste uitvoer is \"6\\n\". Volg de bewerking en het invoertype en vergelijk daarna het precieze getoonde resultaat."
+          }
+        },
+        {
+          "id": "c",
+          "label": {
+            "en": "Stock",
+            "nl": "Stock"
+          },
+          "reason": {
+            "en": "Using Stock here produces NameError. Follow the operation and its input type, then compare the exact result shown.",
+            "nl": "Met Stock ontstaat hier NameError. Volg de bewerking en het invoertype en vergelijk daarna het precieze getoonde resultaat."
+          }
+        }
+      ],
+      "codeBlank": {
+        "prompt": {
+          "en": "Complete the code to produce the shown output.",
+          "nl": "Vul de code aan om de getoonde uitvoer te maken."
+        },
+        "segments": [
+          "stock = 6\nprint(",
+          ")"
+        ],
+        "tokens": [
+          {
+            "id": "token-1",
+            "code": "stock"
+          },
+          {
+            "id": "token-2",
+            "code": "\"stock\"",
+            "reason": {
+              "en": "Using \"stock\" prints \"stock\\n\"; the required output is \"6\\n\". Follow the operation and its input type, then compare the exact result shown.",
+              "nl": "Met \"stock\" wordt \"stock\\n\" afgedrukt; de vereiste uitvoer is \"6\\n\". Volg de bewerking en het invoertype en vergelijk daarna het precieze getoonde resultaat."
+            }
+          },
+          {
+            "id": "token-3",
+            "code": "Stock",
+            "reason": {
+              "en": "Using Stock here produces NameError. Follow the operation and its input type, then compare the exact result shown.",
+              "nl": "Met Stock ontstaat hier NameError. Volg de bewerking en het invoertype en vergelijk daarna het precieze getoonde resultaat."
+            }
+          }
+        ],
+        "blanks": [
+          {
+            "answer": "stock",
+            "reason": {
+              "en": "Follow the operation and its input type, then compare the exact result shown.",
+              "nl": "Volg de bewerking en het invoertype en vergelijk daarna het precieze getoonde resultaat."
+            }
+          }
+        ],
+        "output": "6\n"
+      },
+      "id": "python-v4-03-quiz-r2-a-4",
+      "reviewActivityIds": [
+        "python-v4-02-assignment"
+      ]
+    },
+    {
+      "objectiveIds": [
+        "modulo"
+      ],
+      "category": "debugging",
+      "prompt": {
+        "en": "Choose the repair or test that addresses the stated problem.",
+        "nl": "Kies de reparatie of test die het beschreven probleem aanpakt."
+      },
+      "code": "items = 13\n# Need leftover items after groups of 4.\nleftover = items // 4",
+      "answer": "a",
+      "choices": [
+        {
+          "id": "a",
+          "label": {
+            "en": "Use items % 4.",
+            "nl": "Gebruik items % 4."
+          },
+          "reason": {
+            "en": "Remainder counts leftovers.",
+            "nl": "Restdeling telt wat overblijft."
+          }
+        },
+        {
+          "id": "b",
+          "label": {
+            "en": "Use items / 4.",
+            "nl": "Gebruik items / 4."
+          },
+          "reason": {
+            "en": "Division gives group size as a ratio, not leftovers.",
+            "nl": "Delen geeft een verhouding, geen overblijvende items."
+          }
+        },
+        {
+          "id": "c",
+          "label": {
+            "en": "Keep // unchanged.",
+            "nl": "Behoud // ongewijzigd."
+          },
+          "reason": {
+            "en": "Floor division counts complete groups.",
+            "nl": "Gehele deling telt volledige groepen."
+          }
+        }
+      ],
+      "id": "python-v4-03-quiz-r2-a-5",
+      "reviewActivityIds": [
+        "python-v4-03-remainder"
+      ]
+    },
+    {
+      "objectiveIds": [
+        "plus-equals"
+      ],
+      "category": "application",
+      "prompt": {
+        "en": "Which statement or test fits this example?",
+        "nl": "Welke uitspraak of test past bij dit voorbeeld?"
+      },
+      "code": "stock = 3\nstock += 2",
+      "answer": "a",
+      "choices": [
+        {
+          "id": "a",
+          "label": {
+            "en": "The new stock is the old stock plus two.",
+            "nl": "De nieuwe stock is de oude stock plus twee."
+          },
+          "reason": {
+            "en": "+= reads and updates the same variable.",
+            "nl": "+= leest en wijzigt dezelfde variabele."
+          }
+        },
+        {
+          "id": "b",
+          "label": {
+            "en": "Stock becomes two.",
+            "nl": "Stock wordt twee."
+          },
+          "reason": {
+            "en": "That would be stock = 2.",
+            "nl": "Dat zou stock = 2 zijn."
+          }
+        },
+        {
+          "id": "c",
+          "label": {
+            "en": "Stock is multiplied by two.",
+            "nl": "Stock wordt met twee vermenigvuldigd."
+          },
+          "reason": {
+            "en": "That would use *=.",
+            "nl": "Dat zou *= gebruiken."
+          }
+        }
+      ],
+      "id": "python-v4-03-quiz-r2-a-6",
+      "reviewActivityIds": [
+        "python-v4-03-short-updates"
+      ]
+    }
+  ],
+  "alternateQuestions": [
+    {
+      "objectiveIds": [
+        "precedence"
+      ],
+      "category": "prediction",
+      "prompt": {
+        "en": "What does this program print?",
+        "nl": "Wat drukt dit programma af?"
+      },
+      "code": "print((8 + 2) * 3)",
+      "answer": "a",
+      "expectedOutput": "30\n",
+      "choices": [
+        {
+          "id": "a",
+          "label": {
+            "en": "30",
+            "nl": "30"
+          },
+          "reason": {
+            "en": "Evaluate the parentheses before multiplication.",
+            "nl": "Werk de haakjes vóór vermenigvuldiging uit."
+          }
+        },
+        {
+          "id": "b",
+          "label": {
+            "en": "14",
+            "nl": "14"
+          },
+          "reason": {
+            "en": "Evaluate the parentheses before multiplication.",
+            "nl": "Werk de haakjes vóór vermenigvuldiging uit."
+          }
+        },
+        {
+          "id": "c",
+          "label": {
+            "en": "13",
+            "nl": "13"
+          },
+          "reason": {
+            "en": "Evaluate the parentheses before multiplication.",
+            "nl": "Werk de haakjes vóór vermenigvuldiging uit."
+          }
+        }
+      ],
+      "id": "python-v4-03-quiz-r2-b-1",
+      "reviewActivityIds": [
+        "python-v4-03-precedence"
+      ]
+    },
+    {
+      "objectiveIds": [
+        "reassignment"
+      ],
+      "category": "prediction",
+      "prompt": {
+        "en": "What does this program print?",
+        "nl": "Wat drukt dit programma af?"
+      },
+      "code": "stock = 0\nstock = stock + 2\nprint(stock)",
+      "answer": "a",
+      "expectedOutput": "2\n",
+      "choices": [
+        {
+          "id": "a",
+          "label": {
+            "en": "2",
+            "nl": "2"
+          },
+          "reason": {
+            "en": "The right side uses the old value; assignment stores the new one.",
+            "nl": "Rechts gebruikt de oude waarde; toewijzing bewaart de nieuwe."
+          }
+        },
+        {
+          "id": "b",
+          "label": {
+            "en": "4",
+            "nl": "4"
+          },
+          "reason": {
+            "en": "The right side uses the old value; assignment stores the new one.",
+            "nl": "Rechts gebruikt de oude waarde; toewijzing bewaart de nieuwe."
+          }
+        },
+        {
+          "id": "c",
+          "label": {
+            "en": "0",
+            "nl": "0"
+          },
+          "reason": {
+            "en": "The right side uses the old value; assignment stores the new one.",
+            "nl": "Rechts gebruikt de oude waarde; toewijzing bewaart de nieuwe."
+          }
+        }
+      ],
+      "id": "python-v4-03-quiz-r2-b-2",
+      "reviewActivityIds": [
+        "python-v4-02-reassignment"
+      ]
+    },
+    {
+      "objectiveIds": [
+        "exponents"
+      ],
+      "category": "completion",
+      "prompt": {
+        "en": "Complete the code to produce the shown output.",
+        "nl": "Vul de code aan om de getoonde uitvoer te maken."
+      },
+      "code": "print(4 ___ 2)",
+      "answer": "a",
+      "choices": [
+        {
+          "id": "a",
+          "label": {
+            "en": "**",
+            "nl": "**"
+          },
+          "reason": {
+            "en": "** raises to a power; * multiplies and % returns a remainder.",
+            "nl": "** verheft tot een macht; * vermenigvuldigt en % geeft een rest."
+          }
+        },
+        {
+          "id": "b",
+          "label": {
+            "en": "*",
+            "nl": "*"
+          },
+          "reason": {
+            "en": "Using * prints \"8\\n\"; the required output is \"16\\n\". ** raises to a power; * multiplies and % returns a remainder.",
+            "nl": "Met * wordt \"8\\n\" afgedrukt; de vereiste uitvoer is \"16\\n\". ** verheft tot een macht; * vermenigvuldigt en % geeft een rest."
+          }
+        },
+        {
+          "id": "c",
+          "label": {
+            "en": "%",
+            "nl": "%"
+          },
+          "reason": {
+            "en": "Using % prints \"0\\n\"; the required output is \"16\\n\". ** raises to a power; * multiplies and % returns a remainder.",
+            "nl": "Met % wordt \"0\\n\" afgedrukt; de vereiste uitvoer is \"16\\n\". ** verheft tot een macht; * vermenigvuldigt en % geeft een rest."
+          }
+        }
+      ],
+      "codeBlank": {
+        "prompt": {
+          "en": "Complete the code to produce the shown output.",
+          "nl": "Vul de code aan om de getoonde uitvoer te maken."
+        },
+        "segments": [
+          "print(4 ",
+          " 2)"
+        ],
+        "tokens": [
+          {
+            "id": "token-1",
+            "code": "**"
+          },
+          {
+            "id": "token-2",
+            "code": "*",
+            "reason": {
+              "en": "Using * prints \"8\\n\"; the required output is \"16\\n\". ** raises to a power; * multiplies and % returns a remainder.",
+              "nl": "Met * wordt \"8\\n\" afgedrukt; de vereiste uitvoer is \"16\\n\". ** verheft tot een macht; * vermenigvuldigt en % geeft een rest."
+            }
+          },
+          {
+            "id": "token-3",
+            "code": "%",
+            "reason": {
+              "en": "Using % prints \"0\\n\"; the required output is \"16\\n\". ** raises to a power; * multiplies and % returns a remainder.",
+              "nl": "Met % wordt \"0\\n\" afgedrukt; de vereiste uitvoer is \"16\\n\". ** verheft tot een macht; * vermenigvuldigt en % geeft een rest."
+            }
+          }
+        ],
+        "blanks": [
+          {
+            "answer": "**",
+            "reason": {
+              "en": "** raises to a power; * multiplies and % returns a remainder.",
+              "nl": "** verheft tot een macht; * vermenigvuldigt en % geeft een rest."
+            }
+          }
+        ],
+        "output": "16\n"
+      },
+      "id": "python-v4-03-quiz-r2-b-3",
+      "reviewActivityIds": [
+        "python-v4-03-powers"
+      ]
+    },
+    {
+      "objectiveIds": [
+        "variables"
+      ],
+      "category": "completion",
+      "prompt": {
+        "en": "Complete the code to produce the shown output.",
+        "nl": "Vul de code aan om de getoonde uitvoer te maken."
+      },
+      "code": "stock = 6\nprint(___)",
+      "answer": "a",
+      "choices": [
+        {
+          "id": "a",
+          "label": {
+            "en": "stock",
+            "nl": "stock"
+          },
+          "reason": {
+            "en": "Follow the operation and its input type, then compare the exact result shown.",
+            "nl": "Volg de bewerking en het invoertype en vergelijk daarna het precieze getoonde resultaat."
+          }
+        },
+        {
+          "id": "b",
+          "label": {
+            "en": "\"stock\"",
+            "nl": "\"stock\""
+          },
+          "reason": {
+            "en": "Using \"stock\" prints \"stock\\n\"; the required output is \"6\\n\". Follow the operation and its input type, then compare the exact result shown.",
+            "nl": "Met \"stock\" wordt \"stock\\n\" afgedrukt; de vereiste uitvoer is \"6\\n\". Volg de bewerking en het invoertype en vergelijk daarna het precieze getoonde resultaat."
+          }
+        },
+        {
+          "id": "c",
+          "label": {
+            "en": "Stock",
+            "nl": "Stock"
+          },
+          "reason": {
+            "en": "Using Stock here produces NameError. Follow the operation and its input type, then compare the exact result shown.",
+            "nl": "Met Stock ontstaat hier NameError. Volg de bewerking en het invoertype en vergelijk daarna het precieze getoonde resultaat."
+          }
+        }
+      ],
+      "codeBlank": {
+        "prompt": {
+          "en": "Complete the code to produce the shown output.",
+          "nl": "Vul de code aan om de getoonde uitvoer te maken."
+        },
+        "segments": [
+          "stock = 6\nprint(",
+          ")"
+        ],
+        "tokens": [
+          {
+            "id": "token-1",
+            "code": "stock"
+          },
+          {
+            "id": "token-2",
+            "code": "\"stock\"",
+            "reason": {
+              "en": "Using \"stock\" prints \"stock\\n\"; the required output is \"6\\n\". Follow the operation and its input type, then compare the exact result shown.",
+              "nl": "Met \"stock\" wordt \"stock\\n\" afgedrukt; de vereiste uitvoer is \"6\\n\". Volg de bewerking en het invoertype en vergelijk daarna het precieze getoonde resultaat."
+            }
+          },
+          {
+            "id": "token-3",
+            "code": "Stock",
+            "reason": {
+              "en": "Using Stock here produces NameError. Follow the operation and its input type, then compare the exact result shown.",
+              "nl": "Met Stock ontstaat hier NameError. Volg de bewerking en het invoertype en vergelijk daarna het precieze getoonde resultaat."
+            }
+          }
+        ],
+        "blanks": [
+          {
+            "answer": "stock",
+            "reason": {
+              "en": "Follow the operation and its input type, then compare the exact result shown.",
+              "nl": "Volg de bewerking en het invoertype en vergelijk daarna het precieze getoonde resultaat."
+            }
+          }
+        ],
+        "output": "6\n"
+      },
+      "id": "python-v4-03-quiz-r2-b-4",
+      "reviewActivityIds": [
+        "python-v4-02-assignment"
+      ]
+    },
+    {
+      "objectiveIds": [
+        "modulo"
+      ],
+      "category": "debugging",
+      "prompt": {
+        "en": "Choose the repair or test that addresses the stated problem.",
+        "nl": "Kies de reparatie of test die het beschreven probleem aanpakt."
+      },
+      "code": "items = 17\n# Need leftover items after groups of 4.\nleftover = items // 4",
+      "answer": "a",
+      "choices": [
+        {
+          "id": "a",
+          "label": {
+            "en": "Use items % 4.",
+            "nl": "Gebruik items % 4."
+          },
+          "reason": {
+            "en": "Remainder counts leftovers.",
+            "nl": "Restdeling telt wat overblijft."
+          }
+        },
+        {
+          "id": "b",
+          "label": {
+            "en": "Use items / 4.",
+            "nl": "Gebruik items / 4."
+          },
+          "reason": {
+            "en": "Division gives group size as a ratio, not leftovers.",
+            "nl": "Delen geeft een verhouding, geen overblijvende items."
+          }
+        },
+        {
+          "id": "c",
+          "label": {
+            "en": "Keep // unchanged.",
+            "nl": "Behoud // ongewijzigd."
+          },
+          "reason": {
+            "en": "Floor division counts complete groups.",
+            "nl": "Gehele deling telt volledige groepen."
+          }
+        }
+      ],
+      "id": "python-v4-03-quiz-r2-b-5",
+      "reviewActivityIds": [
+        "python-v4-03-remainder"
+      ]
+    },
+    {
+      "objectiveIds": [
+        "plus-equals"
+      ],
+      "category": "application",
+      "prompt": {
+        "en": "Which statement or test fits this example?",
+        "nl": "Welke uitspraak of test past bij dit voorbeeld?"
+      },
+      "code": "stock = 4\nstock += 2",
+      "answer": "a",
+      "choices": [
+        {
+          "id": "a",
+          "label": {
+            "en": "The new stock is the old stock plus two.",
+            "nl": "De nieuwe stock is de oude stock plus twee."
+          },
+          "reason": {
+            "en": "+= reads and updates the same variable.",
+            "nl": "+= leest en wijzigt dezelfde variabele."
+          }
+        },
+        {
+          "id": "b",
+          "label": {
+            "en": "Stock becomes two.",
+            "nl": "Stock wordt twee."
+          },
+          "reason": {
+            "en": "That would be stock = 2.",
+            "nl": "Dat zou stock = 2 zijn."
+          }
+        },
+        {
+          "id": "c",
+          "label": {
+            "en": "Stock is multiplied by two.",
+            "nl": "Stock wordt met twee vermenigvuldigd."
+          },
+          "reason": {
+            "en": "That would use *=.",
+            "nl": "Dat zou *= gebruiken."
+          }
+        }
+      ],
+      "id": "python-v4-03-quiz-r2-b-6",
+      "reviewActivityIds": [
+        "python-v4-03-short-updates"
+      ]
+    }
+  ]
+}

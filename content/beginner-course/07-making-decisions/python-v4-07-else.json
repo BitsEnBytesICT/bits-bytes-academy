@@ -53,10 +53,11 @@
     },
     {
       "id": "python-v4-07-else-experiment",
+      "role": "experiment",
       "topicIds": [],
       "heading": {
-        "en": "Try one change",
-        "nl": "Probeer één wijziging"
+        "en": "After completing the task: try one change",
+        "nl": "Na het afronden: probeer één wijziging"
       },
       "body": {
         "en": "Predict and test ages 11, 12 and 13. Explain the equality case.",
@@ -161,16 +162,16 @@
   "inputs": [],
   "retrievals": [
     {
-      "id": "recall-python-v4-05-integer-input",
-      "sourceActivityId": "python-v4-05-integer-input",
+      "id": "recall-python-v4-06-inclusive-boundaries",
+      "sourceActivityId": "python-v4-06-inclusive-boundaries",
       "objectiveIds": [
-        "conversion",
-        "int-conversion"
+        "inclusive-comparisons"
       ],
       "prompt": {
-        "en": "Recall “Convert a whole-number answer”. With answer 4, why does the output end in 5 rather than 41? Try the earlier example from memory, then check it. Try 0, then -2. Finally try a word, read ValueError, and rerun with a valid number.",
-        "nl": "Haal “Zet een geheel antwoord om” terug. Waarom eindigt de uitvoer bij antwoord 4 op 5 in plaats van 41? Probeer het eerdere voorbeeld uit je geheugen en controleer daarna. Probeer 0 en daarna -2. Probeer ten slotte een woord, lees ValueError en voer opnieuw uit met een geldig getal."
-      }
+        "en": "Recall include the boundary. Which symbol represents at most? Write a three-row table for weights 4, 5 and 6, then verify it.",
+        "nl": "Herhaal neem de grenswaarde mee. Welk symbool betekent hoogstens? Schrijf een tabel met drie regels voor gewichten 4, 5 en 6 en controleer die."
+      },
+      "code": "print(12 >= 12)\nprint(11 >= 12)\nprint(4 <= 4)"
     }
   ]
 }

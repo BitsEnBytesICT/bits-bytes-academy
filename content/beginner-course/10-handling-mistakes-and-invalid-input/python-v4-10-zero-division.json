@@ -54,11 +54,26 @@
       }
     },
     {
-      "id": "python-v4-10-zero-division-experiment",
+      "id": "python-v4-10-zero-division-try-calls",
+      "role": "practice",
       "topicIds": [],
       "heading": {
-        "en": "Try one change",
-        "nl": "Probeer één wijziging"
+        "en": "See your function work",
+        "nl": "Bekijk wat je functie doet"
+      },
+      "body": {
+        "en": "A definition alone produces no output. After writing the function, add these calls underneath it in main.py, without indentation, and Run. Compare the returned values with the task's requirements. The checks also call your function with other inputs; they do not require you to keep these demonstration calls.",
+        "nl": "Een definitie alleen geeft geen uitvoer. Schrijf eerst de functie en voeg daarna deze aanroepen eronder toe in main.py, zonder inspringing. Klik op Uitvoeren. Vergelijk de teruggegeven waarden met de opdracht. De controles roepen je functie ook met andere invoer aan; deze demonstratieaanroepen zijn niet verplicht."
+      },
+      "code": "print(portion(8, 0))\nprint(portion(0, 2))"
+    },
+    {
+      "id": "python-v4-10-zero-division-experiment",
+      "role": "experiment",
+      "topicIds": [],
+      "heading": {
+        "en": "After completing the task: try one change",
+        "nl": "Na het afronden: probeer één wijziging"
       },
       "body": {
         "en": "Compare 0/2 and 2/0: which operand makes the difference?",
@@ -147,15 +162,16 @@
   "inputs": [],
   "retrievals": [
     {
-      "id": "recall-python-v4-08-accumulate",
-      "sourceActivityId": "python-v4-08-accumulate",
+      "id": "recall-python-v4-09-return-values",
+      "sourceActivityId": "python-v4-09-return-values",
       "objectiveIds": [
-        "accumulators"
+        "return"
       ],
       "prompt": {
-        "en": "Recall “Keep a running total”. What is total just after adding 2? Try the earlier example from memory, then check it. Temporarily move total = 0 into the body. Predict why the accumulated history disappears.",
-        "nl": "Haal “Houd een lopend totaal bij” terug. Wat is total direct nadat 2 is toegevoegd? Probeer het eerdere voorbeeld uit je geheugen en controleer daarna. Verplaats total = 0 tijdelijk naar het blok. Voorspel waarom de opgebouwde geschiedenis verdwijnt."
-      }
+        "en": "Recall return an answer to the caller. What is stored in answer before the print? Store an area result and add a separate print in the caller.",
+        "nl": "Herhaal geef een antwoord terug aan de aanroeper. Wat staat in answer vóór de print? Bewaar een area-resultaat en voeg een aparte print toe bij de aanroeper."
+      },
+      "code": "def double(value):\n    return value * 2\nanswer = double(4)\nprint(answer + 1)"
     }
   ]
 }

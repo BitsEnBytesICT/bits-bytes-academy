@@ -52,10 +52,11 @@
     },
     {
       "id": "python-v4-08-repair-exit-experiment",
+      "role": "experiment",
       "topicIds": [],
       "heading": {
-        "en": "Try one change",
-        "nl": "Probeer één wijziging"
+        "en": "After completing the task: try one change",
+        "nl": "Na het afronden: probeer één wijziging"
       },
       "body": {
         "en": "Change the skipped value to 1, then 5. Predict which lines remain.",
@@ -109,18 +110,5 @@
     "en": "continue transfers control to the next loop test. The counter has already advanced, so the repaired loop still terminates.",
     "nl": "continue brengt de uitvoering naar de volgende lustest. De teller is al verhoogd, dus de herstelde lus eindigt nog steeds."
   },
-  "inputs": [],
-  "retrievals": [
-    {
-      "id": "recall-python-v4-06-not",
-      "sourceActivityId": "python-v4-06-not",
-      "objectiveIds": [
-        "not"
-      ],
-      "prompt": {
-        "en": "Recall “Reverse a Boolean with not”. Does evaluating not change the original variable? Try the earlier example from memory, then check it. Set paused to False and trace both values.",
-        "nl": "Haal “Keer een booleaanse waarde om met not” terug. Verandert not berekenen de oorspronkelijke variabele? Probeer het eerdere voorbeeld uit je geheugen en controleer daarna. Zet paused op False en volg beide waarden."
-      }
-    }
-  ]
+  "inputs": []
 }

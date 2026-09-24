@@ -54,11 +54,38 @@
       }
     },
     {
-      "id": "python-v4-23-shared-state-experiment",
+      "id": "python-v4-23-shared-state-trace",
       "topicIds": [],
       "heading": {
-        "en": "Try one change",
-        "nl": "Probeer één wijziging"
+        "en": "Draw the references",
+        "nl": "Teken de verwijzingen"
+      },
+      "body": {
+        "en": "Before repair: bag A.items → shared list ← bag B.items. After repair: bag A.items → list A; bag B.items → list B. Assign self.items = [] inside __init__ to create the separate list on each construction. The category string can stay at class level. add only needs to change this bag; its return value is not restricted by this task.",
+        "nl": "Vóór herstel: tas A.items → gedeelde lijst ← tas B.items. Na herstel: tas A.items → lijst A; tas B.items → lijst B. Wijs self.items = [] binnen __init__ toe om bij elke constructie een aparte lijst te maken. De string category kan op klasseniveau blijven. add hoeft alleen deze tas te veranderen; de opdracht beperkt de terugkeerwaarde niet."
+      }
+    },
+    {
+      "id": "python-v4-23-shared-state-visible-report",
+      "role": "practice",
+      "topicIds": [],
+      "heading": {
+        "en": "Run a visible report",
+        "nl": "Voer een zichtbaar verslag uit"
+      },
+      "body": {
+        "en": "After completing the required definition, add this caller below it and Run. Expected ['map'], then []. Both bags share the category but keep separate lists.",
+        "nl": "Voeg na het afmaken van de vereiste definitie deze aanroeper eronder toe en voer uit. Verwacht ['map'] en dan []. Beide tassen delen de categorie maar hebben aparte lijsten."
+      },
+      "code": "first = Bag()\nsecond = Bag()\nfirst.add(\"map\")\nprint(first.items)\nprint(second.items)"
+    },
+    {
+      "id": "python-v4-23-shared-state-experiment",
+      "role": "experiment",
+      "topicIds": [],
+      "heading": {
+        "en": "After completing the task: try one change",
+        "nl": "Na het afronden: probeer één wijziging"
       },
       "body": {
         "en": "Create three bags, add to just one, and inspect all three lists.",
@@ -90,7 +117,7 @@
             "name": "Bag",
             "args": []
           },
-          "check": "Bag.category == \"travel\" and _return.add(\"map\") is None and _return.items == [\"map\"] and Bag().items == []"
+          "check": "Bag.category == \"travel\" and (_return.add(\"map\"), _return.items)[1] == [\"map\"] and Bag().items == []"
         }
       ],
       "hint": {
@@ -121,18 +148,5 @@
     "en": "Each initializer creates a fresh list; the immutable class label remains a shared description.",
     "nl": "Elke initializer maakt een nieuwe lijst; het onveranderbare klasselabel blijft een gedeelde beschrijving."
   },
-  "inputs": [],
-  "retrievals": [
-    {
-      "id": "recall-python-v4-21-csv-report",
-      "sourceActivityId": "python-v4-21-csv-report",
-      "objectiveIds": [
-        "csv-review"
-      ],
-      "prompt": {
-        "en": "Recall “Transform a CSV export”. Which field needs conversion before transformation? Try the earlier example from memory, then check it. Add a score of zero and verify both the count and exported value.",
-        "nl": "Haal “Bewerk een CSV-export” terug. Welk veld vraagt omzetting vóór bewerking? Probeer het eerdere voorbeeld uit je geheugen en controleer daarna. Voeg een score nul toe en controleer zowel aantal als geëxporteerde waarde."
-      }
-    }
-  ]
+  "inputs": []
 }

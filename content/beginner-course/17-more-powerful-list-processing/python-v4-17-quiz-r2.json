@@ -1,0 +1,800 @@
+{
+  "id": "python-v4-17-quiz-r2",
+  "chapter": 17,
+  "group": "python-v4-module-17",
+  "kind": "quiz",
+  "optional": false,
+  "estimatedMinutes": 8,
+  "title": {
+    "en": "More powerful list processing: review",
+    "nl": "Meer mogelijkheden met lijsten: herhaling"
+  },
+  "questions": [
+    {
+      "objectiveIds": [
+        "sort"
+      ],
+      "category": "prediction",
+      "prompt": {
+        "en": "What does this program print?",
+        "nl": "Wat drukt dit programma af?"
+      },
+      "code": "values = [3,1,2]\nresult = values.sort()\nprint(result)",
+      "answer": "a",
+      "expectedOutput": "None\n",
+      "choices": [
+        {
+          "id": "a",
+          "label": {
+            "en": "None",
+            "nl": "None"
+          },
+          "reason": {
+            "en": "sort mutates and returns None.",
+            "nl": "sort wijzigt en geeft None terug."
+          }
+        },
+        {
+          "id": "b",
+          "label": {
+            "en": "[1, 2, 3]",
+            "nl": "[1, 2, 3]"
+          },
+          "reason": {
+            "en": "That sorted list is stored in values, not result.",
+            "nl": "Die gesorteerde lijst staat in values, niet result."
+          }
+        },
+        {
+          "id": "c",
+          "label": {
+            "en": "3",
+            "nl": "3"
+          },
+          "reason": {
+            "en": "sort does not return the first element.",
+            "nl": "sort geeft niet het eerste element terug."
+          }
+        }
+      ],
+      "id": "python-v4-17-quiz-r2-a-1",
+      "reviewActivityIds": [
+        "python-v4-17-sorting"
+      ]
+    },
+    {
+      "objectiveIds": [
+        "serving"
+      ],
+      "category": "prediction",
+      "prompt": {
+        "en": "What does this program print?",
+        "nl": "Wat drukt dit programma af?"
+      },
+      "code": "vx = 0\npressed = True\nif vx == 0 and pressed:\n    vx = 200\nprint(vx)",
+      "answer": "a",
+      "expectedOutput": "200\n",
+      "choices": [
+        {
+          "id": "a",
+          "label": {
+            "en": "200",
+            "nl": "200"
+          },
+          "reason": {
+            "en": "A serve starts only a stopped ball; pressing during play preserves velocity.",
+            "nl": "Een service start alleen een gestopte bal; indrukken tijdens spelen behoudt de snelheid."
+          }
+        },
+        {
+          "id": "b",
+          "label": {
+            "en": "0",
+            "nl": "0"
+          },
+          "reason": {
+            "en": "A serve starts only a stopped ball; pressing during play preserves velocity.",
+            "nl": "Een service start alleen een gestopte bal; indrukken tijdens spelen behoudt de snelheid."
+          }
+        },
+        {
+          "id": "c",
+          "label": {
+            "en": "120",
+            "nl": "120"
+          },
+          "reason": {
+            "en": "A serve starts only a stopped ball; pressing during play preserves velocity.",
+            "nl": "Een service start alleen een gestopte bal; indrukken tijdens spelen behoudt de snelheid."
+          }
+        }
+      ],
+      "id": "python-v4-17-quiz-r2-a-2",
+      "reviewActivityIds": [
+        "python-v4-16-serve"
+      ]
+    },
+    {
+      "objectiveIds": [
+        "conditional-list-comprehensions"
+      ],
+      "category": "completion",
+      "prompt": {
+        "en": "Complete the code to produce the shown output.",
+        "nl": "Vul de code aan om de getoonde uitvoer te maken."
+      },
+      "code": "values = [-1,0,3]\nprint([x * 2 for x in values ___ x > 0])",
+      "answer": "a",
+      "choices": [
+        {
+          "id": "a",
+          "label": {
+            "en": "if",
+            "nl": "if"
+          },
+          "reason": {
+            "en": "The final if filters input elements.",
+            "nl": "De laatste if filtert invoerelementen."
+          }
+        },
+        {
+          "id": "b",
+          "label": {
+            "en": "else",
+            "nl": "else"
+          },
+          "reason": {
+            "en": "Using else here produces SyntaxError. The final if filters input elements.",
+            "nl": "Met else ontstaat hier SyntaxError. De laatste if filtert invoerelementen."
+          }
+        },
+        {
+          "id": "c",
+          "label": {
+            "en": "while",
+            "nl": "while"
+          },
+          "reason": {
+            "en": "Using while here produces SyntaxError. The final if filters input elements.",
+            "nl": "Met while ontstaat hier SyntaxError. De laatste if filtert invoerelementen."
+          }
+        }
+      ],
+      "codeBlank": {
+        "prompt": {
+          "en": "Complete the code to produce the shown output.",
+          "nl": "Vul de code aan om de getoonde uitvoer te maken."
+        },
+        "segments": [
+          "values = [-1,0,3]\nprint([x * 2 for x in values ",
+          " x > 0])"
+        ],
+        "tokens": [
+          {
+            "id": "token-1",
+            "code": "if"
+          },
+          {
+            "id": "token-2",
+            "code": "else",
+            "reason": {
+              "en": "Using else here produces SyntaxError. The final if filters input elements.",
+              "nl": "Met else ontstaat hier SyntaxError. De laatste if filtert invoerelementen."
+            }
+          },
+          {
+            "id": "token-3",
+            "code": "while",
+            "reason": {
+              "en": "Using while here produces SyntaxError. The final if filters input elements.",
+              "nl": "Met while ontstaat hier SyntaxError. De laatste if filtert invoerelementen."
+            }
+          }
+        ],
+        "blanks": [
+          {
+            "answer": "if",
+            "reason": {
+              "en": "The final if filters input elements.",
+              "nl": "De laatste if filtert invoerelementen."
+            }
+          }
+        ],
+        "output": "[6]\n"
+      },
+      "id": "python-v4-17-quiz-r2-a-3",
+      "reviewActivityIds": [
+        "python-v4-17-comprehensions"
+      ]
+    },
+    {
+      "objectiveIds": [
+        "velocity"
+      ],
+      "category": "completion",
+      "prompt": {
+        "en": "Complete the code to produce the shown output.",
+        "nl": "Vul de code aan om de getoonde uitvoer te maken."
+      },
+      "code": "x = 10\nvx = -20\ndt = 0.1\nx += ___\nprint(x)",
+      "answer": "a",
+      "choices": [
+        {
+          "id": "a",
+          "label": {
+            "en": "vx * dt",
+            "nl": "vx * dt"
+          },
+          "reason": {
+            "en": "Follow the operation and its input type, then compare the exact result shown.",
+            "nl": "Volg de bewerking en het invoertype en vergelijk daarna het precieze getoonde resultaat."
+          }
+        },
+        {
+          "id": "b",
+          "label": {
+            "en": "vx",
+            "nl": "vx"
+          },
+          "reason": {
+            "en": "Using vx prints \"-10\\n\"; the required output is \"8.0\\n\". Follow the operation and its input type, then compare the exact result shown.",
+            "nl": "Met vx wordt \"-10\\n\" afgedrukt; de vereiste uitvoer is \"8.0\\n\". Volg de bewerking en het invoertype en vergelijk daarna het precieze getoonde resultaat."
+          }
+        },
+        {
+          "id": "c",
+          "label": {
+            "en": "dt",
+            "nl": "dt"
+          },
+          "reason": {
+            "en": "Using dt prints \"10.1\\n\"; the required output is \"8.0\\n\". Follow the operation and its input type, then compare the exact result shown.",
+            "nl": "Met dt wordt \"10.1\\n\" afgedrukt; de vereiste uitvoer is \"8.0\\n\". Volg de bewerking en het invoertype en vergelijk daarna het precieze getoonde resultaat."
+          }
+        }
+      ],
+      "codeBlank": {
+        "prompt": {
+          "en": "Complete the code to produce the shown output.",
+          "nl": "Vul de code aan om de getoonde uitvoer te maken."
+        },
+        "segments": [
+          "x = 10\nvx = -20\ndt = 0.1\nx += ",
+          "\nprint(x)"
+        ],
+        "tokens": [
+          {
+            "id": "token-1",
+            "code": "vx * dt"
+          },
+          {
+            "id": "token-2",
+            "code": "vx",
+            "reason": {
+              "en": "Using vx prints \"-10\\n\"; the required output is \"8.0\\n\". Follow the operation and its input type, then compare the exact result shown.",
+              "nl": "Met vx wordt \"-10\\n\" afgedrukt; de vereiste uitvoer is \"8.0\\n\". Volg de bewerking en het invoertype en vergelijk daarna het precieze getoonde resultaat."
+            }
+          },
+          {
+            "id": "token-3",
+            "code": "dt",
+            "reason": {
+              "en": "Using dt prints \"10.1\\n\"; the required output is \"8.0\\n\". Follow the operation and its input type, then compare the exact result shown.",
+              "nl": "Met dt wordt \"10.1\\n\" afgedrukt; de vereiste uitvoer is \"8.0\\n\". Volg de bewerking en het invoertype en vergelijk daarna het precieze getoonde resultaat."
+            }
+          }
+        ],
+        "blanks": [
+          {
+            "answer": "vx * dt",
+            "reason": {
+              "en": "Follow the operation and its input type, then compare the exact result shown.",
+              "nl": "Volg de bewerking en het invoertype en vergelijk daarna het precieze getoonde resultaat."
+            }
+          }
+        ],
+        "output": "8.0\n"
+      },
+      "id": "python-v4-17-quiz-r2-a-4",
+      "reviewActivityIds": [
+        "python-v4-16-velocity"
+      ]
+    },
+    {
+      "objectiveIds": [
+        "pop"
+      ],
+      "category": "debugging",
+      "prompt": {
+        "en": "Choose the repair or test that addresses the stated problem.",
+        "nl": "Kies de reparatie of test die het beschreven probleem aanpakt."
+      },
+      "code": "values = [3,2]\n# Need to remove and return the first element.\nresult = values.remove(0)",
+      "answer": "a",
+      "choices": [
+        {
+          "id": "a",
+          "label": {
+            "en": "Use values.pop(0).",
+            "nl": "Gebruik values.pop(0)."
+          },
+          "reason": {
+            "en": "pop selects by index and returns the removed element.",
+            "nl": "pop kiest op index en geeft het verwijderde element terug."
+          }
+        },
+        {
+          "id": "b",
+          "label": {
+            "en": "Use values.remove(1).",
+            "nl": "Gebruik values.remove(1)."
+          },
+          "reason": {
+            "en": "remove still selects by value and returns None.",
+            "nl": "remove kiest nog steeds op waarde en geeft None."
+          }
+        },
+        {
+          "id": "c",
+          "label": {
+            "en": "Use values[0] only.",
+            "nl": "Gebruik alleen values[0]."
+          },
+          "reason": {
+            "en": "That reads but does not remove the element.",
+            "nl": "Dat leest maar verwijdert het element niet."
+          }
+        }
+      ],
+      "id": "python-v4-17-quiz-r2-a-5",
+      "reviewActivityIds": [
+        "python-v4-17-pop"
+      ]
+    },
+    {
+      "objectiveIds": [
+        "aliasing"
+      ],
+      "category": "application",
+      "prompt": {
+        "en": "Which explanation applies to this example?",
+        "nl": "Welke uitleg past bij dit voorbeeld?"
+      },
+      "code": "grid = [[3,2],[3,4]]\ncopy = grid.copy()",
+      "answer": "a",
+      "choices": [
+        {
+          "id": "a",
+          "label": {
+            "en": "The outer lists differ but their inner rows are shared.",
+            "nl": "De buitenste lijsten verschillen maar hun binnenste rijen worden gedeeld."
+          },
+          "reason": {
+            "en": "This is a shallow copy.",
+            "nl": "Dit is een oppervlakkige kopie."
+          }
+        },
+        {
+          "id": "b",
+          "label": {
+            "en": "Every nested row is automatically copied.",
+            "nl": "Elke geneste rij wordt automatisch gekopieerd."
+          },
+          "reason": {
+            "en": "Shallow copying does not duplicate inner mutable objects.",
+            "nl": "Oppervlakkig kopiëren dupliceert binnenste veranderbare objecten niet."
+          }
+        },
+        {
+          "id": "c",
+          "label": {
+            "en": "The copy has no elements.",
+            "nl": "De kopie heeft geen elementen."
+          },
+          "reason": {
+            "en": "copy preserves the element references.",
+            "nl": "copy bewaart de elementverwijzingen."
+          }
+        }
+      ],
+      "id": "python-v4-17-quiz-r2-a-6",
+      "reviewActivityIds": [
+        "python-v4-17-nested-grid"
+      ]
+    }
+  ],
+  "alternateQuestions": [
+    {
+      "objectiveIds": [
+        "sort"
+      ],
+      "category": "prediction",
+      "prompt": {
+        "en": "What does this program print?",
+        "nl": "Wat drukt dit programma af?"
+      },
+      "code": "values = [5,1,2]\nresult = values.sort()\nprint(result)",
+      "answer": "a",
+      "expectedOutput": "None\n",
+      "choices": [
+        {
+          "id": "a",
+          "label": {
+            "en": "None",
+            "nl": "None"
+          },
+          "reason": {
+            "en": "sort mutates and returns None.",
+            "nl": "sort wijzigt en geeft None terug."
+          }
+        },
+        {
+          "id": "b",
+          "label": {
+            "en": "[1, 2, 5]",
+            "nl": "[1, 2, 5]"
+          },
+          "reason": {
+            "en": "That sorted list is stored in values, not result.",
+            "nl": "Die gesorteerde lijst staat in values, niet result."
+          }
+        },
+        {
+          "id": "c",
+          "label": {
+            "en": "5",
+            "nl": "5"
+          },
+          "reason": {
+            "en": "sort does not return the first element.",
+            "nl": "sort geeft niet het eerste element terug."
+          }
+        }
+      ],
+      "id": "python-v4-17-quiz-r2-b-1",
+      "reviewActivityIds": [
+        "python-v4-17-sorting"
+      ]
+    },
+    {
+      "objectiveIds": [
+        "serving"
+      ],
+      "category": "prediction",
+      "prompt": {
+        "en": "What does this program print?",
+        "nl": "Wat drukt dit programma af?"
+      },
+      "code": "vx = 120\npressed = True\nif vx == 0 and pressed:\n    vx = 200\nprint(vx)",
+      "answer": "a",
+      "expectedOutput": "120\n",
+      "choices": [
+        {
+          "id": "a",
+          "label": {
+            "en": "120",
+            "nl": "120"
+          },
+          "reason": {
+            "en": "A serve starts only a stopped ball; pressing during play preserves velocity.",
+            "nl": "Een service start alleen een gestopte bal; indrukken tijdens spelen behoudt de snelheid."
+          }
+        },
+        {
+          "id": "b",
+          "label": {
+            "en": "0",
+            "nl": "0"
+          },
+          "reason": {
+            "en": "A serve starts only a stopped ball; pressing during play preserves velocity.",
+            "nl": "Een service start alleen een gestopte bal; indrukken tijdens spelen behoudt de snelheid."
+          }
+        },
+        {
+          "id": "c",
+          "label": {
+            "en": "200",
+            "nl": "200"
+          },
+          "reason": {
+            "en": "A serve starts only a stopped ball; pressing during play preserves velocity.",
+            "nl": "Een service start alleen een gestopte bal; indrukken tijdens spelen behoudt de snelheid."
+          }
+        }
+      ],
+      "id": "python-v4-17-quiz-r2-b-2",
+      "reviewActivityIds": [
+        "python-v4-16-serve"
+      ]
+    },
+    {
+      "objectiveIds": [
+        "conditional-list-comprehensions"
+      ],
+      "category": "completion",
+      "prompt": {
+        "en": "Complete the code to produce the shown output.",
+        "nl": "Vul de code aan om de getoonde uitvoer te maken."
+      },
+      "code": "values = [-1,0,5]\nprint([x * 2 for x in values ___ x > 0])",
+      "answer": "a",
+      "choices": [
+        {
+          "id": "a",
+          "label": {
+            "en": "if",
+            "nl": "if"
+          },
+          "reason": {
+            "en": "The final if filters input elements.",
+            "nl": "De laatste if filtert invoerelementen."
+          }
+        },
+        {
+          "id": "b",
+          "label": {
+            "en": "else",
+            "nl": "else"
+          },
+          "reason": {
+            "en": "Using else here produces SyntaxError. The final if filters input elements.",
+            "nl": "Met else ontstaat hier SyntaxError. De laatste if filtert invoerelementen."
+          }
+        },
+        {
+          "id": "c",
+          "label": {
+            "en": "while",
+            "nl": "while"
+          },
+          "reason": {
+            "en": "Using while here produces SyntaxError. The final if filters input elements.",
+            "nl": "Met while ontstaat hier SyntaxError. De laatste if filtert invoerelementen."
+          }
+        }
+      ],
+      "codeBlank": {
+        "prompt": {
+          "en": "Complete the code to produce the shown output.",
+          "nl": "Vul de code aan om de getoonde uitvoer te maken."
+        },
+        "segments": [
+          "values = [-1,0,5]\nprint([x * 2 for x in values ",
+          " x > 0])"
+        ],
+        "tokens": [
+          {
+            "id": "token-1",
+            "code": "if"
+          },
+          {
+            "id": "token-2",
+            "code": "else",
+            "reason": {
+              "en": "Using else here produces SyntaxError. The final if filters input elements.",
+              "nl": "Met else ontstaat hier SyntaxError. De laatste if filtert invoerelementen."
+            }
+          },
+          {
+            "id": "token-3",
+            "code": "while",
+            "reason": {
+              "en": "Using while here produces SyntaxError. The final if filters input elements.",
+              "nl": "Met while ontstaat hier SyntaxError. De laatste if filtert invoerelementen."
+            }
+          }
+        ],
+        "blanks": [
+          {
+            "answer": "if",
+            "reason": {
+              "en": "The final if filters input elements.",
+              "nl": "De laatste if filtert invoerelementen."
+            }
+          }
+        ],
+        "output": "[10]\n"
+      },
+      "id": "python-v4-17-quiz-r2-b-3",
+      "reviewActivityIds": [
+        "python-v4-17-comprehensions"
+      ]
+    },
+    {
+      "objectiveIds": [
+        "velocity"
+      ],
+      "category": "completion",
+      "prompt": {
+        "en": "Complete the code to produce the shown output.",
+        "nl": "Vul de code aan om de getoonde uitvoer te maken."
+      },
+      "code": "x = 10\nvx = -20\ndt = 0.1\nx += ___\nprint(x)",
+      "answer": "a",
+      "choices": [
+        {
+          "id": "a",
+          "label": {
+            "en": "vx * dt",
+            "nl": "vx * dt"
+          },
+          "reason": {
+            "en": "Follow the operation and its input type, then compare the exact result shown.",
+            "nl": "Volg de bewerking en het invoertype en vergelijk daarna het precieze getoonde resultaat."
+          }
+        },
+        {
+          "id": "b",
+          "label": {
+            "en": "vx",
+            "nl": "vx"
+          },
+          "reason": {
+            "en": "Using vx prints \"-10\\n\"; the required output is \"8.0\\n\". Follow the operation and its input type, then compare the exact result shown.",
+            "nl": "Met vx wordt \"-10\\n\" afgedrukt; de vereiste uitvoer is \"8.0\\n\". Volg de bewerking en het invoertype en vergelijk daarna het precieze getoonde resultaat."
+          }
+        },
+        {
+          "id": "c",
+          "label": {
+            "en": "dt",
+            "nl": "dt"
+          },
+          "reason": {
+            "en": "Using dt prints \"10.1\\n\"; the required output is \"8.0\\n\". Follow the operation and its input type, then compare the exact result shown.",
+            "nl": "Met dt wordt \"10.1\\n\" afgedrukt; de vereiste uitvoer is \"8.0\\n\". Volg de bewerking en het invoertype en vergelijk daarna het precieze getoonde resultaat."
+          }
+        }
+      ],
+      "codeBlank": {
+        "prompt": {
+          "en": "Complete the code to produce the shown output.",
+          "nl": "Vul de code aan om de getoonde uitvoer te maken."
+        },
+        "segments": [
+          "x = 10\nvx = -20\ndt = 0.1\nx += ",
+          "\nprint(x)"
+        ],
+        "tokens": [
+          {
+            "id": "token-1",
+            "code": "vx * dt"
+          },
+          {
+            "id": "token-2",
+            "code": "vx",
+            "reason": {
+              "en": "Using vx prints \"-10\\n\"; the required output is \"8.0\\n\". Follow the operation and its input type, then compare the exact result shown.",
+              "nl": "Met vx wordt \"-10\\n\" afgedrukt; de vereiste uitvoer is \"8.0\\n\". Volg de bewerking en het invoertype en vergelijk daarna het precieze getoonde resultaat."
+            }
+          },
+          {
+            "id": "token-3",
+            "code": "dt",
+            "reason": {
+              "en": "Using dt prints \"10.1\\n\"; the required output is \"8.0\\n\". Follow the operation and its input type, then compare the exact result shown.",
+              "nl": "Met dt wordt \"10.1\\n\" afgedrukt; de vereiste uitvoer is \"8.0\\n\". Volg de bewerking en het invoertype en vergelijk daarna het precieze getoonde resultaat."
+            }
+          }
+        ],
+        "blanks": [
+          {
+            "answer": "vx * dt",
+            "reason": {
+              "en": "Follow the operation and its input type, then compare the exact result shown.",
+              "nl": "Volg de bewerking en het invoertype en vergelijk daarna het precieze getoonde resultaat."
+            }
+          }
+        ],
+        "output": "8.0\n"
+      },
+      "id": "python-v4-17-quiz-r2-b-4",
+      "reviewActivityIds": [
+        "python-v4-16-velocity"
+      ]
+    },
+    {
+      "objectiveIds": [
+        "pop"
+      ],
+      "category": "debugging",
+      "prompt": {
+        "en": "Choose the repair or test that addresses the stated problem.",
+        "nl": "Kies de reparatie of test die het beschreven probleem aanpakt."
+      },
+      "code": "values = [5,2]\n# Need to remove and return the first element.\nresult = values.remove(0)",
+      "answer": "a",
+      "choices": [
+        {
+          "id": "a",
+          "label": {
+            "en": "Use values.pop(0).",
+            "nl": "Gebruik values.pop(0)."
+          },
+          "reason": {
+            "en": "pop selects by index and returns the removed element.",
+            "nl": "pop kiest op index en geeft het verwijderde element terug."
+          }
+        },
+        {
+          "id": "b",
+          "label": {
+            "en": "Use values.remove(1).",
+            "nl": "Gebruik values.remove(1)."
+          },
+          "reason": {
+            "en": "remove still selects by value and returns None.",
+            "nl": "remove kiest nog steeds op waarde en geeft None."
+          }
+        },
+        {
+          "id": "c",
+          "label": {
+            "en": "Use values[0] only.",
+            "nl": "Gebruik alleen values[0]."
+          },
+          "reason": {
+            "en": "That reads but does not remove the element.",
+            "nl": "Dat leest maar verwijdert het element niet."
+          }
+        }
+      ],
+      "id": "python-v4-17-quiz-r2-b-5",
+      "reviewActivityIds": [
+        "python-v4-17-pop"
+      ]
+    },
+    {
+      "objectiveIds": [
+        "aliasing"
+      ],
+      "category": "application",
+      "prompt": {
+        "en": "Which explanation applies to this example?",
+        "nl": "Welke uitleg past bij dit voorbeeld?"
+      },
+      "code": "grid = [[5,2],[3,4]]\ncopy = grid.copy()",
+      "answer": "a",
+      "choices": [
+        {
+          "id": "a",
+          "label": {
+            "en": "The outer lists differ but their inner rows are shared.",
+            "nl": "De buitenste lijsten verschillen maar hun binnenste rijen worden gedeeld."
+          },
+          "reason": {
+            "en": "This is a shallow copy.",
+            "nl": "Dit is een oppervlakkige kopie."
+          }
+        },
+        {
+          "id": "b",
+          "label": {
+            "en": "Every nested row is automatically copied.",
+            "nl": "Elke geneste rij wordt automatisch gekopieerd."
+          },
+          "reason": {
+            "en": "Shallow copying does not duplicate inner mutable objects.",
+            "nl": "Oppervlakkig kopiëren dupliceert binnenste veranderbare objecten niet."
+          }
+        },
+        {
+          "id": "c",
+          "label": {
+            "en": "The copy has no elements.",
+            "nl": "De kopie heeft geen elementen."
+          },
+          "reason": {
+            "en": "copy preserves the element references.",
+            "nl": "copy bewaart de elementverwijzingen."
+          }
+        }
+      ],
+      "id": "python-v4-17-quiz-r2-b-6",
+      "reviewActivityIds": [
+        "python-v4-17-nested-grid"
+      ]
+    }
+  ]
+}

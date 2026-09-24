@@ -1,0 +1,626 @@
+{
+  "[[\"print(\",\")\"],\"Hello\"]": {
+    "en": "Using Hello here produces NameError. Text needs matching quotes; a comment is not an argument.",
+    "nl": "Met Hello ontstaat hier NameError. Tekst heeft passende aanhalingstekens nodig; commentaar is geen argument."
+  },
+  "[[\"print(\",\")\"],\"# Hello\"]": {
+    "en": "Using # Hello here produces SyntaxError. Text needs matching quotes; a comment is not an argument.",
+    "nl": "Met # Hello ontstaat hier SyntaxError. Tekst heeft passende aanhalingstekens nodig; commentaar is geen argument."
+  },
+  "[[\"\",\" an explanation\\nprint(\\\"Hello\\\")\"],\"//\"]": {
+    "en": "Using // here produces SyntaxError. # begins a Python comment. // is arithmetic, not a comment marker.",
+    "nl": "Met // ontstaat hier SyntaxError. Met # begint Pythoncommentaar. // is rekenkunde, geen commentaarteken."
+  },
+  "[[\"\",\" an explanation\\nprint(\\\"Hello\\\")\"],\"print\"]": {
+    "en": "Using print here produces SyntaxError. # begins a Python comment. // is arithmetic, not a comment marker.",
+    "nl": "Met print ontstaat hier SyntaxError. Met # begint Pythoncommentaar. // is rekenkunde, geen commentaarteken."
+  },
+  "[[\"print(\",\")\"],\"Welcome\"]": {
+    "en": "Using Welcome here produces NameError. Text needs matching quotes; a comment is not an argument.",
+    "nl": "Met Welcome ontstaat hier NameError. Tekst heeft passende aanhalingstekens nodig; commentaar is geen argument."
+  },
+  "[[\"print(\",\")\"],\"# Welcome\"]": {
+    "en": "Using # Welcome here produces SyntaxError. Text needs matching quotes; a comment is not an argument.",
+    "nl": "Met # Welcome ontstaat hier SyntaxError. Tekst heeft passende aanhalingstekens nodig; commentaar is geen argument."
+  },
+  "[[\"\",\" an explanation\\nprint(\\\"Welcome\\\")\"],\"//\"]": {
+    "en": "Using // here produces SyntaxError. # begins a Python comment. // is arithmetic, not a comment marker.",
+    "nl": "Met // ontstaat hier SyntaxError. Met # begint Pythoncommentaar. // is rekenkunde, geen commentaarteken."
+  },
+  "[[\"\",\" an explanation\\nprint(\\\"Welcome\\\")\"],\"print\"]": {
+    "en": "Using print here produces SyntaxError. # begins a Python comment. // is arithmetic, not a comment marker.",
+    "nl": "Met print ontstaat hier SyntaxError. Met # begint Pythoncommentaar. // is rekenkunde, geen commentaarteken."
+  },
+  "[[\"\",\" = 5\\nprint(score)\"],\"\\\"score\\\"\"]": {
+    "en": "Using \"score\" here produces SyntaxError. Assignment needs a variable name on the left.",
+    "nl": "Met \"score\" ontstaat hier SyntaxError. Toewijzing heeft links een variabelenaam nodig."
+  },
+  "[[\"\",\" = 5\\nprint(score)\"],\"print(score)\"]": {
+    "en": "Using print(score) here produces SyntaxError. Assignment needs a variable name on the left.",
+    "nl": "Met print(score) ontstaat hier SyntaxError. Toewijzing heeft links een variabelenaam nodig."
+  },
+  "[[\"value = \",\"\\nprint(type(value))\"],\"\\\"5.5\\\"\"]": {
+    "en": "Using \"5.5\" prints \"<class 'str'>\\n\"; the required output is \"<class 'float'>\\n\". A decimal point creates a float literal; quotes create a string. type(value) reports the kind of value.",
+    "nl": "Met \"5.5\" wordt \"<class 'str'>\\n\" afgedrukt; de vereiste uitvoer is \"<class 'float'>\\n\". Een decimale punt maakt een float; aanhalingstekens maken een string. type(value) toont het soort waarde."
+  },
+  "[[\"value = \",\"\\nprint(type(value))\"],\"5\"]": {
+    "en": "Using 5 prints \"<class 'int'>\\n\"; the required output is \"<class 'float'>\\n\". A decimal point creates a float literal; quotes create a string. type(value) reports the kind of value.",
+    "nl": "Met 5 wordt \"<class 'int'>\\n\" afgedrukt; de vereiste uitvoer is \"<class 'float'>\\n\". Een decimale punt maakt een float; aanhalingstekens maken een string. type(value) toont het soort waarde."
+  },
+  "[[\"\",\" = 8\\nprint(score)\"],\"\\\"score\\\"\"]": {
+    "en": "Using \"score\" here produces SyntaxError. Assignment needs a variable name on the left.",
+    "nl": "Met \"score\" ontstaat hier SyntaxError. Toewijzing heeft links een variabelenaam nodig."
+  },
+  "[[\"\",\" = 8\\nprint(score)\"],\"print(score)\"]": {
+    "en": "Using print(score) here produces SyntaxError. Assignment needs a variable name on the left.",
+    "nl": "Met print(score) ontstaat hier SyntaxError. Toewijzing heeft links een variabelenaam nodig."
+  },
+  "[[\"value = \",\"\\nprint(type(value))\"],\"\\\"8.5\\\"\"]": {
+    "en": "Using \"8.5\" prints \"<class 'str'>\\n\"; the required output is \"<class 'float'>\\n\". A decimal point creates a float literal; quotes create a string. type(value) reports the kind of value.",
+    "nl": "Met \"8.5\" wordt \"<class 'str'>\\n\" afgedrukt; de vereiste uitvoer is \"<class 'float'>\\n\". Een decimale punt maakt een float; aanhalingstekens maken een string. type(value) toont het soort waarde."
+  },
+  "[[\"value = \",\"\\nprint(type(value))\"],\"8\"]": {
+    "en": "Using 8 prints \"<class 'int'>\\n\"; the required output is \"<class 'float'>\\n\". A decimal point creates a float literal; quotes create a string. type(value) reports the kind of value.",
+    "nl": "Met 8 wordt \"<class 'int'>\\n\" afgedrukt; de vereiste uitvoer is \"<class 'float'>\\n\". Een decimale punt maakt een float; aanhalingstekens maken een string. type(value) toont het soort waarde."
+  },
+  "[[\"print(3 \",\" 2)\"],\"*\"]": {
+    "en": "Using * prints \"6\\n\"; the required output is \"9\\n\". ** raises to a power; * multiplies and % returns a remainder.",
+    "nl": "Met * wordt \"6\\n\" afgedrukt; de vereiste uitvoer is \"9\\n\". ** verheft tot een macht; * vermenigvuldigt en % geeft een rest."
+  },
+  "[[\"print(3 \",\" 2)\"],\"%\"]": {
+    "en": "Using % prints \"1\\n\"; the required output is \"9\\n\". ** raises to a power; * multiplies and % returns a remainder.",
+    "nl": "Met % wordt \"1\\n\" afgedrukt; de vereiste uitvoer is \"9\\n\". ** verheft tot een macht; * vermenigvuldigt en % geeft een rest."
+  },
+  "[[\"stock = 6\\nprint(\",\")\"],\"\\\"stock\\\"\"]": {
+    "en": "Using \"stock\" prints \"stock\\n\"; the required output is \"6\\n\". Follow the operation and its input type, then compare the exact result shown.",
+    "nl": "Met \"stock\" wordt \"stock\\n\" afgedrukt; de vereiste uitvoer is \"6\\n\". Volg de bewerking en het invoertype en vergelijk daarna het precieze getoonde resultaat."
+  },
+  "[[\"stock = 6\\nprint(\",\")\"],\"Stock\"]": {
+    "en": "Using Stock here produces NameError. Follow the operation and its input type, then compare the exact result shown.",
+    "nl": "Met Stock ontstaat hier NameError. Volg de bewerking en het invoertype en vergelijk daarna het precieze getoonde resultaat."
+  },
+  "[[\"print(4 \",\" 2)\"],\"*\"]": {
+    "en": "Using * prints \"8\\n\"; the required output is \"16\\n\". ** raises to a power; * multiplies and % returns a remainder.",
+    "nl": "Met * wordt \"8\\n\" afgedrukt; de vereiste uitvoer is \"16\\n\". ** verheft tot een macht; * vermenigvuldigt en % geeft een rest."
+  },
+  "[[\"print(4 \",\" 2)\"],\"%\"]": {
+    "en": "Using % prints \"0\\n\"; the required output is \"16\\n\". ** raises to a power; * multiplies and % returns a remainder.",
+    "nl": "Met % wordt \"0\\n\" afgedrukt; de vereiste uitvoer is \"16\\n\". ** verheft tot een macht; * vermenigvuldigt en % geeft een rest."
+  },
+  "[[\"count = 4\\nprint(\\\"Count: \\\" + \",\")\"],\"count\"]": {
+    "en": "Using count here produces TypeError. Convert the number to text for string concatenation.",
+    "nl": "Met count ontstaat hier TypeError. Zet het getal om naar tekst voor stringsamenvoeging."
+  },
+  "[[\"count = 4\\nprint(\\\"Count: \\\" + \",\")\"],\"\\\"count\\\"\"]": {
+    "en": "Using \"count\" prints \"Count: count\\n\"; the required output is \"Count: 4\\n\". Convert the number to text for string concatenation.",
+    "nl": "Met \"count\" wordt \"Count: count\\n\" afgedrukt; de vereiste uitvoer is \"Count: 4\\n\". Zet het getal om naar tekst voor stringsamenvoeging."
+  },
+  "[[\"print(14 \",\" 4)\"],\"/\"]": {
+    "en": "Using / prints \"3.5\\n\"; the required output is \"2\\n\". Follow the operation and its input type, then compare the exact result shown.",
+    "nl": "Met / wordt \"3.5\\n\" afgedrukt; de vereiste uitvoer is \"2\\n\". Volg de bewerking en het invoertype en vergelijk daarna het precieze getoonde resultaat."
+  },
+  "[[\"print(14 \",\" 4)\"],\"*\"]": {
+    "en": "Using * prints \"56\\n\"; the required output is \"2\\n\". Follow the operation and its input type, then compare the exact result shown.",
+    "nl": "Met * wordt \"56\\n\" afgedrukt; de vereiste uitvoer is \"2\\n\". Volg de bewerking en het invoertype en vergelijk daarna het precieze getoonde resultaat."
+  },
+  "[[\"count = 6\\nprint(\\\"Count: \\\" + \",\")\"],\"count\"]": {
+    "en": "Using count here produces TypeError. Convert the number to text for string concatenation.",
+    "nl": "Met count ontstaat hier TypeError. Zet het getal om naar tekst voor stringsamenvoeging."
+  },
+  "[[\"count = 6\\nprint(\\\"Count: \\\" + \",\")\"],\"\\\"count\\\"\"]": {
+    "en": "Using \"count\" prints \"Count: count\\n\"; the required output is \"Count: 6\\n\". Convert the number to text for string concatenation.",
+    "nl": "Met \"count\" wordt \"Count: count\\n\" afgedrukt; de vereiste uitvoer is \"Count: 6\\n\". Zet het getal om naar tekst voor stringsamenvoeging."
+  },
+  "[[\"print(12 \",\" 4)\"],\"/\"]": {
+    "en": "Using / prints \"3.0\\n\"; the required output is \"0\\n\". Follow the operation and its input type, then compare the exact result shown.",
+    "nl": "Met / wordt \"3.0\\n\" afgedrukt; de vereiste uitvoer is \"0\\n\". Volg de bewerking en het invoertype en vergelijk daarna het precieze getoonde resultaat."
+  },
+  "[[\"print(12 \",\" 4)\"],\"*\"]": {
+    "en": "Using * prints \"48\\n\"; the required output is \"0\\n\". Follow the operation and its input type, then compare the exact result shown.",
+    "nl": "Met * wordt \"48\\n\" afgedrukt; de vereiste uitvoer is \"0\\n\". Volg de bewerking en het invoertype en vergelijk daarna het precieze getoonde resultaat."
+  },
+  "[[\"answer = \\\"5\\\"\\nprint(\",\" + 2)\"],\"answer\"]": {
+    "en": "Using answer here produces TypeError. int converts whole-number text before addition.",
+    "nl": "Met answer ontstaat hier TypeError. int zet tekst met een geheel getal om vóór optellen."
+  },
+  "[[\"answer = \\\"5\\\"\\nprint(\",\" + 2)\"],\"str(answer)\"]": {
+    "en": "Using str(answer) here produces TypeError. int converts whole-number text before addition.",
+    "nl": "Met str(answer) ontstaat hier TypeError. int zet tekst met een geheel getal om vóór optellen."
+  },
+  "[[\"name = \\\"Jo\\\"\\nprint(\",\")\"],\"\\\"Hi {name}\\\"\"]": {
+    "en": "Using \"Hi {name}\" prints \"Hi {name}\\n\"; the required output is \"Hi Jo\\n\". Follow the operation and its input type, then compare the exact result shown.",
+    "nl": "Met \"Hi {name}\" wordt \"Hi {name}\\n\" afgedrukt; de vereiste uitvoer is \"Hi Jo\\n\". Volg de bewerking en het invoertype en vergelijk daarna het precieze getoonde resultaat."
+  },
+  "[[\"name = \\\"Jo\\\"\\nprint(\",\")\"],\"name\"]": {
+    "en": "Using name prints \"Jo\\n\"; the required output is \"Hi Jo\\n\". Follow the operation and its input type, then compare the exact result shown.",
+    "nl": "Met name wordt \"Jo\\n\" afgedrukt; de vereiste uitvoer is \"Hi Jo\\n\". Volg de bewerking en het invoertype en vergelijk daarna het precieze getoonde resultaat."
+  },
+  "[[\"answer = \\\"8\\\"\\nprint(\",\" + 2)\"],\"answer\"]": {
+    "en": "Using answer here produces TypeError. int converts whole-number text before addition.",
+    "nl": "Met answer ontstaat hier TypeError. int zet tekst met een geheel getal om vóór optellen."
+  },
+  "[[\"answer = \\\"8\\\"\\nprint(\",\" + 2)\"],\"str(answer)\"]": {
+    "en": "Using str(answer) here produces TypeError. int converts whole-number text before addition.",
+    "nl": "Met str(answer) ontstaat hier TypeError. int zet tekst met een geheel getal om vóór optellen."
+  },
+  "[[\"has_ticket = False\\nhas_pass = True\\nprint(has_ticket \",\" has_pass)\"],\"and\"]": {
+    "en": "Using and prints \"False\\n\"; the required output is \"True\\n\". Either permission is enough, so use or.",
+    "nl": "Met and wordt \"False\\n\" afgedrukt; de vereiste uitvoer is \"True\\n\". Eén toestemming is genoeg, dus gebruik or."
+  },
+  "[[\"has_ticket = False\\nhas_pass = True\\nprint(has_ticket \",\" has_pass)\"],\"==\"]": {
+    "en": "Using == prints \"False\\n\"; the required output is \"True\\n\". Either permission is enough, so use or.",
+    "nl": "Met == wordt \"False\\n\" afgedrukt; de vereiste uitvoer is \"True\\n\". Eén toestemming is genoeg, dus gebruik or."
+  },
+  "[[\"text = \\\"3\\\"\\nprint(\",\"(text) + 1)\"],\"str\"]": {
+    "en": "Using str here produces TypeError. Follow the operation and its input type, then compare the exact result shown.",
+    "nl": "Met str ontstaat hier TypeError. Volg de bewerking en het invoertype en vergelijk daarna het precieze getoonde resultaat."
+  },
+  "[[\"text = \\\"3\\\"\\nprint(\",\"(text) + 1)\"],\"len\"]": {
+    "en": "Using len prints \"2\\n\"; the required output is \"4\\n\". Follow the operation and its input type, then compare the exact result shown.",
+    "nl": "Met len wordt \"2\\n\" afgedrukt; de vereiste uitvoer is \"4\\n\". Volg de bewerking en het invoertype en vergelijk daarna het precieze getoonde resultaat."
+  },
+  "[[\"has_ticket = True\\nhas_pass = False\\nprint(has_ticket \",\" has_pass)\"],\"and\"]": {
+    "en": "Using and prints \"False\\n\"; the required output is \"True\\n\". Either permission is enough, so use or.",
+    "nl": "Met and wordt \"False\\n\" afgedrukt; de vereiste uitvoer is \"True\\n\". Eén toestemming is genoeg, dus gebruik or."
+  },
+  "[[\"has_ticket = True\\nhas_pass = False\\nprint(has_ticket \",\" has_pass)\"],\"==\"]": {
+    "en": "Using == prints \"False\\n\"; the required output is \"True\\n\". Either permission is enough, so use or.",
+    "nl": "Met == wordt \"False\\n\" afgedrukt; de vereiste uitvoer is \"True\\n\". Eén toestemming is genoeg, dus gebruik or."
+  },
+  "[[\"text = \\\"-3\\\"\\nprint(\",\"(text) + 1)\"],\"str\"]": {
+    "en": "Using str here produces TypeError. Follow the operation and its input type, then compare the exact result shown.",
+    "nl": "Met str ontstaat hier TypeError. Volg de bewerking en het invoertype en vergelijk daarna het precieze getoonde resultaat."
+  },
+  "[[\"text = \\\"-3\\\"\\nprint(\",\"(text) + 1)\"],\"len\"]": {
+    "en": "Using len prints \"3\\n\"; the required output is \"-2\\n\". Follow the operation and its input type, then compare the exact result shown.",
+    "nl": "Met len wordt \"3\\n\" afgedrukt; de vereiste uitvoer is \"-2\\n\". Volg de bewerking en het invoertype en vergelijk daarna het precieze getoonde resultaat."
+  },
+  "[[\"age = 5\\nif age >= 6:\\n    print(\\\"Allowed\\\")\\n\",\":\\n    print(\\\"Wait\\\")\"],\"elif\"]": {
+    "en": "Using elif here produces SyntaxError. else needs no condition and covers the failed if.",
+    "nl": "Met elif ontstaat hier SyntaxError. else heeft geen voorwaarde nodig en verwerkt de onware if."
+  },
+  "[[\"age = 5\\nif age >= 6:\\n    print(\\\"Allowed\\\")\\n\",\":\\n    print(\\\"Wait\\\")\"],\"if\"]": {
+    "en": "Using if here produces SyntaxError. else needs no condition and covers the failed if.",
+    "nl": "Met if ontstaat hier SyntaxError. else heeft geen voorwaarde nodig en verwerkt de onware if."
+  },
+  "[[\"closed = False\\nprint(\",\" closed)\"],\"bool\"]": {
+    "en": "Using bool here produces SyntaxError. Follow the operation and its input type, then compare the exact result shown.",
+    "nl": "Met bool ontstaat hier SyntaxError. Volg de bewerking en het invoertype en vergelijk daarna het precieze getoonde resultaat."
+  },
+  "[[\"closed = False\\nprint(\",\" closed)\"],\"and\"]": {
+    "en": "Using and here produces SyntaxError. Follow the operation and its input type, then compare the exact result shown.",
+    "nl": "Met and ontstaat hier SyntaxError. Volg de bewerking en het invoertype en vergelijk daarna het precieze getoonde resultaat."
+  },
+  "[[\"age = 7\\nif age >= 8:\\n    print(\\\"Allowed\\\")\\n\",\":\\n    print(\\\"Wait\\\")\"],\"elif\"]": {
+    "en": "Using elif here produces SyntaxError. else needs no condition and covers the failed if.",
+    "nl": "Met elif ontstaat hier SyntaxError. else heeft geen voorwaarde nodig en verwerkt de onware if."
+  },
+  "[[\"age = 7\\nif age >= 8:\\n    print(\\\"Allowed\\\")\\n\",\":\\n    print(\\\"Wait\\\")\"],\"if\"]": {
+    "en": "Using if here produces SyntaxError. else needs no condition and covers the failed if.",
+    "nl": "Met if ontstaat hier SyntaxError. else heeft geen voorwaarde nodig en verwerkt de onware if."
+  },
+  "[[\"closed = True\\nprint(\",\" closed)\"],\"bool\"]": {
+    "en": "Using bool here produces SyntaxError. Follow the operation and its input type, then compare the exact result shown.",
+    "nl": "Met bool ontstaat hier SyntaxError. Volg de bewerking en het invoertype en vergelijk daarna het precieze getoonde resultaat."
+  },
+  "[[\"closed = True\\nprint(\",\" closed)\"],\"and\"]": {
+    "en": "Using and here produces SyntaxError. Follow the operation and its input type, then compare the exact result shown.",
+    "nl": "Met and ontstaat hier SyntaxError. Volg de bewerking en het invoertype en vergelijk daarna het precieze getoonde resultaat."
+  },
+  "[[\"while True:\\n    print(\\\"3\\\")\\n    \",\"\"],\"continue\"]": {
+    "en": "Using continue here produces RuntimeError or exceeds the short execution limit. break leaves the loop; continue would repeat it.",
+    "nl": "Met continue ontstaat hier RuntimeError of wordt de korte uitvoeringslimiet overschreden. break verlaat de lus; continue zou herhalen."
+  },
+  "[[\"while True:\\n    print(\\\"3\\\")\\n    \",\"\"],\"True\"]": {
+    "en": "Using True here produces RuntimeError or exceeds the short execution limit. break leaves the loop; continue would repeat it.",
+    "nl": "Met True ontstaat hier RuntimeError of wordt de korte uitvoeringslimiet overschreden. break verlaat de lus; continue zou herhalen."
+  },
+  "[[\"age = 12\\nif age \",\" 12:\\n    print(\\\"Allowed\\\")\"],\">\"]": {
+    "en": "Using > prints \"\"; the required output is \"Allowed\\n\". Follow the operation and its input type, then compare the exact result shown.",
+    "nl": "Met > wordt \"\" afgedrukt; de vereiste uitvoer is \"Allowed\\n\". Volg de bewerking en het invoertype en vergelijk daarna het precieze getoonde resultaat."
+  },
+  "[[\"age = 12\\nif age \",\" 12:\\n    print(\\\"Allowed\\\")\"],\"<\"]": {
+    "en": "Using < prints \"\"; the required output is \"Allowed\\n\". Follow the operation and its input type, then compare the exact result shown.",
+    "nl": "Met < wordt \"\" afgedrukt; de vereiste uitvoer is \"Allowed\\n\". Volg de bewerking en het invoertype en vergelijk daarna het precieze getoonde resultaat."
+  },
+  "[[\"while True:\\n    print(\\\"4\\\")\\n    \",\"\"],\"continue\"]": {
+    "en": "Using continue here produces RuntimeError or exceeds the short execution limit. break leaves the loop; continue would repeat it.",
+    "nl": "Met continue ontstaat hier RuntimeError of wordt de korte uitvoeringslimiet overschreden. break verlaat de lus; continue zou herhalen."
+  },
+  "[[\"while True:\\n    print(\\\"4\\\")\\n    \",\"\"],\"True\"]": {
+    "en": "Using True here produces RuntimeError or exceeds the short execution limit. break leaves the loop; continue would repeat it.",
+    "nl": "Met True ontstaat hier RuntimeError of wordt de korte uitvoeringslimiet overschreden. break verlaat de lus; continue zou herhalen."
+  },
+  "[[\"def cost(price, fee\",\"):\\n    return price + fee\\nprint(cost(3))\"],\"==2\"]": {
+    "en": "Using ==2 here produces SyntaxError. A default value uses = in the parameter list.",
+    "nl": "Met ==2 ontstaat hier SyntaxError. Een standaardwaarde gebruikt = in de parameterlijst."
+  },
+  "[[\"def cost(price, fee\",\"):\\n    return price + fee\\nprint(cost(3))\"],\",2\"]": {
+    "en": "Using ,2 here produces SyntaxError. A default value uses = in the parameter list.",
+    "nl": "Met ,2 ontstaat hier SyntaxError. Een standaardwaarde gebruikt = in de parameterlijst."
+  },
+  "[[\"count = 0\\nwhile count < 2:\\n    count += 1\\nprint(\",\")\"],\"count + 1\"]": {
+    "en": "Using count + 1 prints \"3\\n\"; the required output is \"2\\n\". Follow the operation and its input type, then compare the exact result shown.",
+    "nl": "Met count + 1 wordt \"3\\n\" afgedrukt; de vereiste uitvoer is \"2\\n\". Volg de bewerking en het invoertype en vergelijk daarna het precieze getoonde resultaat."
+  },
+  "[[\"count = 0\\nwhile count < 2:\\n    count += 1\\nprint(\",\")\"],\"0\"]": {
+    "en": "Using 0 prints \"0\\n\"; the required output is \"2\\n\". Follow the operation and its input type, then compare the exact result shown.",
+    "nl": "Met 0 wordt \"0\\n\" afgedrukt; de vereiste uitvoer is \"2\\n\". Volg de bewerking en het invoertype en vergelijk daarna het precieze getoonde resultaat."
+  },
+  "[[\"def cost(price, fee\",\"):\\n    return price + fee\\nprint(cost(4))\"],\"==2\"]": {
+    "en": "Using ==2 here produces SyntaxError. A default value uses = in the parameter list.",
+    "nl": "Met ==2 ontstaat hier SyntaxError. Een standaardwaarde gebruikt = in de parameterlijst."
+  },
+  "[[\"def cost(price, fee\",\"):\\n    return price + fee\\nprint(cost(4))\"],\",2\"]": {
+    "en": "Using ,2 here produces SyntaxError. A default value uses = in the parameter list.",
+    "nl": "Met ,2 ontstaat hier SyntaxError. Een standaardwaarde gebruikt = in de parameterlijst."
+  },
+  "[[\"try:\\n    print(3 / 0)\\nexcept \",\":\\n    print(\\\"No division\\\")\"],\"ValueError\"]": {
+    "en": "Using ValueError here produces ZeroDivisionError. Dividing a number by zero raises ZeroDivisionError.",
+    "nl": "Met ValueError ontstaat hier ZeroDivisionError. Een getal delen door nul veroorzaakt ZeroDivisionError."
+  },
+  "[[\"try:\\n    print(3 / 0)\\nexcept \",\":\\n    print(\\\"No division\\\")\"],\"NameError\"]": {
+    "en": "Using NameError here produces ZeroDivisionError. Dividing a number by zero raises ZeroDivisionError.",
+    "nl": "Met NameError ontstaat hier ZeroDivisionError. Een getal delen door nul veroorzaakt ZeroDivisionError."
+  },
+  "[[\"def twice(value):\\n    \",\" value * 2\\nprint(twice(0))\"],\"print\"]": {
+    "en": "Using print here produces SyntaxError. Follow the operation and its input type, then compare the exact result shown.",
+    "nl": "Met print ontstaat hier SyntaxError. Volg de bewerking en het invoertype en vergelijk daarna het precieze getoonde resultaat."
+  },
+  "[[\"def twice(value):\\n    \",\" value * 2\\nprint(twice(0))\"],\"pass\"]": {
+    "en": "Using pass here produces SyntaxError. Follow the operation and its input type, then compare the exact result shown.",
+    "nl": "Met pass ontstaat hier SyntaxError. Volg de bewerking en het invoertype en vergelijk daarna het precieze getoonde resultaat."
+  },
+  "[[\"try:\\n    print(5 / 0)\\nexcept \",\":\\n    print(\\\"No division\\\")\"],\"ValueError\"]": {
+    "en": "Using ValueError here produces ZeroDivisionError. Dividing a number by zero raises ZeroDivisionError.",
+    "nl": "Met ValueError ontstaat hier ZeroDivisionError. Een getal delen door nul veroorzaakt ZeroDivisionError."
+  },
+  "[[\"try:\\n    print(5 / 0)\\nexcept \",\":\\n    print(\\\"No division\\\")\"],\"NameError\"]": {
+    "en": "Using NameError here produces ZeroDivisionError. Dividing a number by zero raises ZeroDivisionError.",
+    "nl": "Met NameError ontstaat hier ZeroDivisionError. Een getal delen door nul veroorzaakt ZeroDivisionError."
+  },
+  "[[\"def twice(value):\\n    \",\" value * 2\\nprint(twice(-1))\"],\"print\"]": {
+    "en": "Using print here produces SyntaxError. Follow the operation and its input type, then compare the exact result shown.",
+    "nl": "Met print ontstaat hier SyntaxError. Volg de bewerking en het invoertype en vergelijk daarna het precieze getoonde resultaat."
+  },
+  "[[\"def twice(value):\\n    \",\" value * 2\\nprint(twice(-1))\"],\"pass\"]": {
+    "en": "Using pass here produces SyntaxError. Follow the operation and its input type, then compare the exact result shown.",
+    "nl": "Met pass ontstaat hier SyntaxError. Volg de bewerking en het invoertype en vergelijk daarna het precieze getoonde resultaat."
+  },
+  "[[\"values = []\\nvalues.\",\"(4)\\nprint(values)\"],\"add\"]": {
+    "en": "Using add here produces AttributeError. append adds one value to the end of a list.",
+    "nl": "Met add ontstaat hier AttributeError. append voegt één waarde achteraan een lijst toe."
+  },
+  "[[\"values = []\\nvalues.\",\"(4)\\nprint(values)\"],\"pop\"]": {
+    "en": "Using pop here produces IndexError. append adds one value to the end of a list.",
+    "nl": "Met pop ontstaat hier IndexError. append voegt één waarde achteraan een lijst toe."
+  },
+  "[[\"try:\\n    int(\\\"blue\\\")\\nexcept \",\":\\n    print(\\\"Retry\\\")\"],\"ZeroDivisionError\"]": {
+    "en": "Using ZeroDivisionError here produces ValueError. Follow the operation and its input type, then compare the exact result shown.",
+    "nl": "Met ZeroDivisionError ontstaat hier ValueError. Volg de bewerking en het invoertype en vergelijk daarna het precieze getoonde resultaat."
+  },
+  "[[\"try:\\n    int(\\\"blue\\\")\\nexcept \",\":\\n    print(\\\"Retry\\\")\"],\"NameError\"]": {
+    "en": "Using NameError here produces ValueError. Follow the operation and its input type, then compare the exact result shown.",
+    "nl": "Met NameError ontstaat hier ValueError. Volg de bewerking en het invoertype en vergelijk daarna het precieze getoonde resultaat."
+  },
+  "[[\"values = []\\nvalues.\",\"(7)\\nprint(values)\"],\"add\"]": {
+    "en": "Using add here produces AttributeError. append adds one value to the end of a list.",
+    "nl": "Met add ontstaat hier AttributeError. append voegt één waarde achteraan een lijst toe."
+  },
+  "[[\"values = []\\nvalues.\",\"(7)\\nprint(values)\"],\"pop\"]": {
+    "en": "Using pop here produces IndexError. append adds one value to the end of a list.",
+    "nl": "Met pop ontstaat hier IndexError. append voegt één waarde achteraan een lijst toe."
+  },
+  "[[\"total = 0\\nfor value \",\" [3,2]:\\n    total += value\\nprint(total)\"],\"is\"]": {
+    "en": "Using is here produces SyntaxError. for uses in to select successive values from a sequence.",
+    "nl": "Met is ontstaat hier SyntaxError. for gebruikt in om opeenvolgende waarden uit een reeks te kiezen."
+  },
+  "[[\"total = 0\\nfor value \",\" [3,2]:\\n    total += value\\nprint(total)\"],\"==\"]": {
+    "en": "Using == here produces SyntaxError. for uses in to select successive values from a sequence.",
+    "nl": "Met == ontstaat hier SyntaxError. for gebruikt in om opeenvolgende waarden uit een reeks te kiezen."
+  },
+  "[[\"items = [5, 8, 2]\\nprint(items[\",\"])\"],\"0\"]": {
+    "en": "Using 0 prints \"5\\n\"; the required output is \"2\\n\". Follow the operation and its input type, then compare the exact result shown.",
+    "nl": "Met 0 wordt \"5\\n\" afgedrukt; de vereiste uitvoer is \"2\\n\". Volg de bewerking en het invoertype en vergelijk daarna het precieze getoonde resultaat."
+  },
+  "[[\"items = [5, 8, 2]\\nprint(items[\",\"])\"],\"-2\"]": {
+    "en": "Using -2 prints \"8\\n\"; the required output is \"2\\n\". Follow the operation and its input type, then compare the exact result shown.",
+    "nl": "Met -2 wordt \"8\\n\" afgedrukt; de vereiste uitvoer is \"2\\n\". Volg de bewerking en het invoertype en vergelijk daarna het precieze getoonde resultaat."
+  },
+  "[[\"total = 0\\nfor value \",\" [4,2]:\\n    total += value\\nprint(total)\"],\"is\"]": {
+    "en": "Using is here produces SyntaxError. for uses in to select successive values from a sequence.",
+    "nl": "Met is ontstaat hier SyntaxError. for gebruikt in om opeenvolgende waarden uit een reeks te kiezen."
+  },
+  "[[\"total = 0\\nfor value \",\" [4,2]:\\n    total += value\\nprint(total)\"],\"==\"]": {
+    "en": "Using == here produces SyntaxError. for uses in to select successive values from a sequence.",
+    "nl": "Met == ontstaat hier SyntaxError. for gebruikt in om opeenvolgende waarden uit een reeks te kiezen."
+  },
+  "[[\"items = [5, 8, 2]\\nprint(items[\",\"])\"],\"-1\"]": {
+    "en": "Using -1 prints \"2\\n\"; the required output is \"8\\n\". Follow the operation and its input type, then compare the exact result shown.",
+    "nl": "Met -1 wordt \"2\\n\" afgedrukt; de vereiste uitvoer is \"8\\n\". Volg de bewerking en het invoertype en vergelijk daarna het precieze getoonde resultaat."
+  },
+  "[[\"def pair():\\n    return 4,2\\nx, y = \",\"\\nprint(x + y)\"],\"pair\"]": {
+    "en": "Using pair here produces TypeError. Call the function, then unpack its returned tuple.",
+    "nl": "Met pair ontstaat hier TypeError. Roep de functie aan en pak daarna de teruggegeven tuple uit."
+  },
+  "[[\"def pair():\\n    return 4,2\\nx, y = \",\"\\nprint(x + y)\"],\"2\"]": {
+    "en": "Using 2 here produces TypeError. Call the function, then unpack its returned tuple.",
+    "nl": "Met 2 ontstaat hier TypeError. Roep de functie aan en pak daarna de teruggegeven tuple uit."
+  },
+  "[[\"total = 0\\nfor value in [2, 4]:\\n    total \",\" value\\nprint(total)\"],\"=\"]": {
+    "en": "Using = prints \"4\\n\"; the required output is \"6\\n\". Follow the operation and its input type, then compare the exact result shown.",
+    "nl": "Met = wordt \"4\\n\" afgedrukt; de vereiste uitvoer is \"6\\n\". Volg de bewerking en het invoertype en vergelijk daarna het precieze getoonde resultaat."
+  },
+  "[[\"total = 0\\nfor value in [2, 4]:\\n    total \",\" value\\nprint(total)\"],\"-=\"]": {
+    "en": "Using -= prints \"-6\\n\"; the required output is \"6\\n\". Follow the operation and its input type, then compare the exact result shown.",
+    "nl": "Met -= wordt \"-6\\n\" afgedrukt; de vereiste uitvoer is \"6\\n\". Volg de bewerking en het invoertype en vergelijk daarna het precieze getoonde resultaat."
+  },
+  "[[\"def pair():\\n    return 7,2\\nx, y = \",\"\\nprint(x + y)\"],\"pair\"]": {
+    "en": "Using pair here produces TypeError. Call the function, then unpack its returned tuple.",
+    "nl": "Met pair ontstaat hier TypeError. Roep de functie aan en pak daarna de teruggegeven tuple uit."
+  },
+  "[[\"def pair():\\n    return 7,2\\nx, y = \",\"\\nprint(x + y)\"],\"2\"]": {
+    "en": "Using 2 here produces TypeError. Call the function, then unpack its returned tuple.",
+    "nl": "Met 2 ontstaat hier TypeError. Roep de functie aan en pak daarna de teruggegeven tuple uit."
+  },
+  "[[\"from decimal import Decimal\\nprint(Decimal(\",\") + Decimal(\\\"0.2\\\"))\"],\"0.1\"]": {
+    "en": "Using 0.1 prints \"0.3000000000000000055511151231\\n\"; the required output is \"0.3\\n\". A string preserves the written decimal exactly; a float may already be approximate.",
+    "nl": "Met 0.1 wordt \"0.3000000000000000055511151231\\n\" afgedrukt; de vereiste uitvoer is \"0.3\\n\". Een string bewaart de geschreven decimaal exact; een float kan al benaderd zijn."
+  },
+  "[[\"from decimal import Decimal\\nprint(Decimal(\",\") + Decimal(\\\"0.2\\\"))\"],\"1\"]": {
+    "en": "Using 1 prints \"1.2\\n\"; the required output is \"0.3\\n\". A string preserves the written decimal exactly; a float may already be approximate.",
+    "nl": "Met 1 wordt \"1.2\\n\" afgedrukt; de vereiste uitvoer is \"0.3\\n\". Een string bewaart de geschreven decimaal exact; een float kan al benaderd zijn."
+  },
+  "[[\"def pair():\\n    return 3, 8\\nx, y = \",\"\\nprint(x + y)\"],\"pair\"]": {
+    "en": "Using pair here produces TypeError. Follow the operation and its input type, then compare the exact result shown.",
+    "nl": "Met pair ontstaat hier TypeError. Volg de bewerking en het invoertype en vergelijk daarna het precieze getoonde resultaat."
+  },
+  "[[\"def pair():\\n    return 3, 8\\nx, y = \",\"\\nprint(x + y)\"],\"(3, 3)\"]": {
+    "en": "Using (3, 3) prints \"6\\n\"; the required output is \"11\\n\". Follow the operation and its input type, then compare the exact result shown.",
+    "nl": "Met (3, 3) wordt \"6\\n\" afgedrukt; de vereiste uitvoer is \"11\\n\". Volg de bewerking en het invoertype en vergelijk daarna het precieze getoonde resultaat."
+  },
+  "[[\"from decimal import Decimal\\nprint(Decimal(\",\") + Decimal(\\\"0.4\\\"))\"],\"0.2\"]": {
+    "en": "Using 0.2 prints \"0.6000000000000000111022302463\\n\"; the required output is \"0.6\\n\". A string preserves the written decimal exactly; a float may already be approximate.",
+    "nl": "Met 0.2 wordt \"0.6000000000000000111022302463\\n\" afgedrukt; de vereiste uitvoer is \"0.6\\n\". Een string bewaart de geschreven decimaal exact; een float kan al benaderd zijn."
+  },
+  "[[\"from decimal import Decimal\\nprint(Decimal(\",\") + Decimal(\\\"0.4\\\"))\"],\"1\"]": {
+    "en": "Using 1 prints \"1.4\\n\"; the required output is \"0.6\\n\". A string preserves the written decimal exactly; a float may already be approximate.",
+    "nl": "Met 1 wordt \"1.4\\n\" afgedrukt; de vereiste uitvoer is \"0.6\\n\". Een string bewaart de geschreven decimaal exact; een float kan al benaderd zijn."
+  },
+  "[[\"import pygame\\nimage = pygame.Surface((10,10))\\nimage.\",\"((20,40,80))\\nprint(image.get_at((0,0))[2])\"],\"print\"]": {
+    "en": "Using print here produces AttributeError. fill paints the Surface; append belongs to lists.",
+    "nl": "Met print ontstaat hier AttributeError. fill kleurt de Surface; append hoort bij lijsten."
+  },
+  "[[\"import pygame\\nimage = pygame.Surface((10,10))\\nimage.\",\"((20,40,80))\\nprint(image.get_at((0,0))[2])\"],\"append\"]": {
+    "en": "Using append here produces AttributeError. fill paints the Surface; append belongs to lists.",
+    "nl": "Met append ontstaat hier AttributeError. fill kleurt de Surface; append hoort bij lijsten."
+  },
+  "[[\"from math import floor\\nprint(\",\"(2.7))\"],\"math.floor\"]": {
+    "en": "Using math.floor here produces NameError. Follow the operation and its input type, then compare the exact result shown.",
+    "nl": "Met math.floor ontstaat hier NameError. Volg de bewerking en het invoertype en vergelijk daarna het precieze getoonde resultaat."
+  },
+  "[[\"from math import floor\\nprint(\",\"(2.7))\"],\"floor.floor\"]": {
+    "en": "Using floor.floor here produces AttributeError. Follow the operation and its input type, then compare the exact result shown.",
+    "nl": "Met floor.floor ontstaat hier AttributeError. Volg de bewerking en het invoertype en vergelijk daarna het precieze getoonde resultaat."
+  },
+  "[[\"import pygame\\nimage = pygame.Surface((10,10))\\nimage.\",\"((20,40,120))\\nprint(image.get_at((0,0))[2])\"],\"print\"]": {
+    "en": "Using print here produces AttributeError. fill paints the Surface; append belongs to lists.",
+    "nl": "Met print ontstaat hier AttributeError. fill kleurt de Surface; append hoort bij lijsten."
+  },
+  "[[\"import pygame\\nimage = pygame.Surface((10,10))\\nimage.\",\"((20,40,120))\\nprint(image.get_at((0,0))[2])\"],\"append\"]": {
+    "en": "Using append here produces AttributeError. fill paints the Surface; append belongs to lists.",
+    "nl": "Met append ontstaat hier AttributeError. fill kleurt de Surface; append hoort bij lijsten."
+  },
+  "[[\"y,vy = 3,-100\\nif y <= 6 and \",\":\\n    y,vy = 6,-vy\\nprint(vy)\"],\"vy > 0\"]": {
+    "en": "Using vy > 0 prints \"-100\\n\"; the required output is \"100\\n\". Reverse only a velocity pointing into the top wall.",
+    "nl": "Met vy > 0 wordt \"-100\\n\" afgedrukt; de vereiste uitvoer is \"100\\n\". Keer alleen een snelheid naar de bovenwand om."
+  },
+  "[[\"y,vy = 3,-100\\nif y <= 6 and \",\":\\n    y,vy = 6,-vy\\nprint(vy)\"],\"vy == 0\"]": {
+    "en": "Using vy == 0 prints \"-100\\n\"; the required output is \"100\\n\". Reverse only a velocity pointing into the top wall.",
+    "nl": "Met vy == 0 wordt \"-100\\n\" afgedrukt; de vereiste uitvoer is \"100\\n\". Keer alleen een snelheid naar de bovenwand om."
+  },
+  "[[\"import pygame\\nr = pygame.Rect(3, 4, 10, 20)\\nprint(r.\",\")\"],\"x\"]": {
+    "en": "Using x prints \"3\\n\"; the required output is \"13\\n\". Follow the operation and its input type, then compare the exact result shown.",
+    "nl": "Met x wordt \"3\\n\" afgedrukt; de vereiste uitvoer is \"13\\n\". Volg de bewerking en het invoertype en vergelijk daarna het precieze getoonde resultaat."
+  },
+  "[[\"import pygame\\nr = pygame.Rect(3, 4, 10, 20)\\nprint(r.\",\")\"],\"width\"]": {
+    "en": "Using width prints \"10\\n\"; the required output is \"13\\n\". Follow the operation and its input type, then compare the exact result shown.",
+    "nl": "Met width wordt \"10\\n\" afgedrukt; de vereiste uitvoer is \"13\\n\". Volg de bewerking en het invoertype en vergelijk daarna het precieze getoonde resultaat."
+  },
+  "[[\"y,vy = 3,-120\\nif y <= 6 and \",\":\\n    y,vy = 6,-vy\\nprint(vy)\"],\"vy > 0\"]": {
+    "en": "Using vy > 0 prints \"-120\\n\"; the required output is \"120\\n\". Reverse only a velocity pointing into the top wall.",
+    "nl": "Met vy > 0 wordt \"-120\\n\" afgedrukt; de vereiste uitvoer is \"120\\n\". Keer alleen een snelheid naar de bovenwand om."
+  },
+  "[[\"y,vy = 3,-120\\nif y <= 6 and \",\":\\n    y,vy = 6,-vy\\nprint(vy)\"],\"vy == 0\"]": {
+    "en": "Using vy == 0 prints \"-120\\n\"; the required output is \"120\\n\". Reverse only a velocity pointing into the top wall.",
+    "nl": "Met vy == 0 wordt \"-120\\n\" afgedrukt; de vereiste uitvoer is \"120\\n\". Keer alleen een snelheid naar de bovenwand om."
+  },
+  "[[\"import pygame\\nr = pygame.Rect(3, 4, 10, 20)\\nprint(r.\",\")\"],\"y\"]": {
+    "en": "Using y prints \"4\\n\"; the required output is \"24\\n\". Follow the operation and its input type, then compare the exact result shown.",
+    "nl": "Met y wordt \"4\\n\" afgedrukt; de vereiste uitvoer is \"24\\n\". Volg de bewerking en het invoertype en vergelijk daarna het precieze getoonde resultaat."
+  },
+  "[[\"import pygame\\nr = pygame.Rect(3, 4, 10, 20)\\nprint(r.\",\")\"],\"height\"]": {
+    "en": "Using height prints \"20\\n\"; the required output is \"24\\n\". Follow the operation and its input type, then compare the exact result shown.",
+    "nl": "Met height wordt \"20\\n\" afgedrukt; de vereiste uitvoer is \"24\\n\". Volg de bewerking en het invoertype en vergelijk daarna het precieze getoonde resultaat."
+  },
+  "[[\"values = [-1,0,3]\\nprint([x * 2 for x in values \",\" x > 0])\"],\"else\"]": {
+    "en": "Using else here produces SyntaxError. The final if filters input elements.",
+    "nl": "Met else ontstaat hier SyntaxError. De laatste if filtert invoerelementen."
+  },
+  "[[\"values = [-1,0,3]\\nprint([x * 2 for x in values \",\" x > 0])\"],\"while\"]": {
+    "en": "Using while here produces SyntaxError. The final if filters input elements.",
+    "nl": "Met while ontstaat hier SyntaxError. De laatste if filtert invoerelementen."
+  },
+  "[[\"x = 10\\nvx = -20\\ndt = 0.1\\nx += \",\"\\nprint(x)\"],\"vx\"]": {
+    "en": "Using vx prints \"-10\\n\"; the required output is \"8.0\\n\". Follow the operation and its input type, then compare the exact result shown.",
+    "nl": "Met vx wordt \"-10\\n\" afgedrukt; de vereiste uitvoer is \"8.0\\n\". Volg de bewerking en het invoertype en vergelijk daarna het precieze getoonde resultaat."
+  },
+  "[[\"x = 10\\nvx = -20\\ndt = 0.1\\nx += \",\"\\nprint(x)\"],\"dt\"]": {
+    "en": "Using dt prints \"10.1\\n\"; the required output is \"8.0\\n\". Follow the operation and its input type, then compare the exact result shown.",
+    "nl": "Met dt wordt \"10.1\\n\" afgedrukt; de vereiste uitvoer is \"8.0\\n\". Volg de bewerking en het invoertype en vergelijk daarna het precieze getoonde resultaat."
+  },
+  "[[\"values = [-1,0,5]\\nprint([x * 2 for x in values \",\" x > 0])\"],\"else\"]": {
+    "en": "Using else here produces SyntaxError. The final if filters input elements.",
+    "nl": "Met else ontstaat hier SyntaxError. De laatste if filtert invoerelementen."
+  },
+  "[[\"values = [-1,0,5]\\nprint([x * 2 for x in values \",\" x > 0])\"],\"while\"]": {
+    "en": "Using while here produces SyntaxError. The final if filters input elements.",
+    "nl": "Met while ontstaat hier SyntaxError. De laatste if filtert invoerelementen."
+  },
+  "[[\"parts = [\\\"red\\\",\\\"sky\\\"]\\nprint(\\\"-\\\".\",\"(parts))\"],\"split\"]": {
+    "en": "Using split here produces TypeError. Call join on the separator to combine strings.",
+    "nl": "Met split ontstaat hier TypeError. Roep join aan op het scheidingsteken om strings samen te voegen."
+  },
+  "[[\"parts = [\\\"red\\\",\\\"sky\\\"]\\nprint(\\\"-\\\".\",\"(parts))\"],\"append\"]": {
+    "en": "Using append here produces AttributeError. Call join on the separator to combine strings.",
+    "nl": "Met append ontstaat hier AttributeError. Roep join aan op het scheidingsteken om strings samen te voegen."
+  },
+  "[[\"items = [3, 6, 9]\\nprint(items[\",\"])\"],\"1:\"]": {
+    "en": "Using 1: prints \"[6, 9]\\n\"; the required output is \"[3, 6]\\n\". Follow the operation and its input type, then compare the exact result shown.",
+    "nl": "Met 1: wordt \"[6, 9]\\n\" afgedrukt; de vereiste uitvoer is \"[3, 6]\\n\". Volg de bewerking en het invoertype en vergelijk daarna het precieze getoonde resultaat."
+  },
+  "[[\"items = [3, 6, 9]\\nprint(items[\",\"])\"],\":1\"]": {
+    "en": "Using :1 prints \"[3]\\n\"; the required output is \"[3, 6]\\n\". Follow the operation and its input type, then compare the exact result shown.",
+    "nl": "Met :1 wordt \"[3]\\n\" afgedrukt; de vereiste uitvoer is \"[3, 6]\\n\". Volg de bewerking en het invoertype en vergelijk daarna het precieze getoonde resultaat."
+  },
+  "[[\"parts = [\\\"blue\\\",\\\"sky\\\"]\\nprint(\\\"-\\\".\",\"(parts))\"],\"split\"]": {
+    "en": "Using split here produces TypeError. Call join on the separator to combine strings.",
+    "nl": "Met split ontstaat hier TypeError. Roep join aan op het scheidingsteken om strings samen te voegen."
+  },
+  "[[\"parts = [\\\"blue\\\",\\\"sky\\\"]\\nprint(\\\"-\\\".\",\"(parts))\"],\"append\"]": {
+    "en": "Using append here produces AttributeError. Call join on the separator to combine strings.",
+    "nl": "Met append ontstaat hier AttributeError. Roep join aan op het scheidingsteken om strings samen te voegen."
+  },
+  "[[\"items = [3, 6, 9]\\nprint(items[\",\"])\"],\":2\"]": {
+    "en": "Using :2 prints \"[3, 6]\\n\"; the required output is \"[6, 9]\\n\". Follow the operation and its input type, then compare the exact result shown.",
+    "nl": "Met :2 wordt \"[3, 6]\\n\" afgedrukt; de vereiste uitvoer is \"[6, 9]\\n\". Volg de bewerking en het invoertype en vergelijk daarna het precieze getoonde resultaat."
+  },
+  "[[\"values = [5,2]\\nresult = {x \",\" x * 2 for x in values}\\nprint(result[5])\"],\"=\"]": {
+    "en": "Using = here produces SyntaxError. A dictionary entry separates key and value with a colon.",
+    "nl": "Met = ontstaat hier SyntaxError. Een dictionary-invoer scheidt sleutel en waarde met een dubbele punt."
+  },
+  "[[\"values = [5,2]\\nresult = {x \",\" x * 2 for x in values}\\nprint(result[5])\"],\",\"]": {
+    "en": "Using , here produces SyntaxError. A dictionary entry separates key and value with a colon.",
+    "nl": "Met , ontstaat hier SyntaxError. Een dictionary-invoer scheidt sleutel en waarde met een dubbele punt."
+  },
+  "[[\"parts = [\\\"red\\\", \\\"blue\\\"]\\nprint(\\\"/\\\".\",\"(parts))\"],\"split\"]": {
+    "en": "Using split here produces TypeError. Follow the operation and its input type, then compare the exact result shown.",
+    "nl": "Met split ontstaat hier TypeError. Volg de bewerking en het invoertype en vergelijk daarna het precieze getoonde resultaat."
+  },
+  "[[\"parts = [\\\"red\\\", \\\"blue\\\"]\\nprint(\\\"/\\\".\",\"(parts))\"],\"strip\"]": {
+    "en": "Using strip here produces TypeError. Follow the operation and its input type, then compare the exact result shown.",
+    "nl": "Met strip ontstaat hier TypeError. Volg de bewerking en het invoertype en vergelijk daarna het precieze getoonde resultaat."
+  },
+  "[[\"values = [8,2]\\nresult = {x \",\" x * 2 for x in values}\\nprint(result[8])\"],\"=\"]": {
+    "en": "Using = here produces SyntaxError. A dictionary entry separates key and value with a colon.",
+    "nl": "Met = ontstaat hier SyntaxError. Een dictionary-invoer scheidt sleutel en waarde met een dubbele punt."
+  },
+  "[[\"values = [8,2]\\nresult = {x \",\" x * 2 for x in values}\\nprint(result[8])\"],\",\"]": {
+    "en": "Using , here produces SyntaxError. A dictionary entry separates key and value with a colon.",
+    "nl": "Met , ontstaat hier SyntaxError. Een dictionary-invoer scheidt sleutel en waarde met een dubbele punt."
+  },
+  "[[\"with open(\\\"quiz.txt\\\",\",\",encoding=\\\"utf-8\\\") as handle:\\n    handle.write(\\\"Header\\\")\\nwith open(\\\"quiz.txt\\\",encoding=\\\"utf-8\\\") as handle:\\n    print(handle.read())\"],\"\\\"r\\\"\"]": {
+    "en": "Using \"r\" here produces FileNotFoundError. w creates or replaces a file for writing.",
+    "nl": "Met \"r\" ontstaat hier FileNotFoundError. w maakt of vervangt een bestand om te schrijven."
+  },
+  "[[\"with open(\\\"quiz.txt\\\",\",\",encoding=\\\"utf-8\\\") as handle:\\n    handle.write(\\\"Header\\\")\\nwith open(\\\"quiz.txt\\\",encoding=\\\"utf-8\\\") as handle:\\n    print(handle.read())\"],\"\\\"rb\\\"\"]": {
+    "en": "Using \"rb\" here produces ValueError. w creates or replaces a file for writing.",
+    "nl": "Met \"rb\" ontstaat hier ValueError. w maakt of vervangt een bestand om te schrijven."
+  },
+  "[[\"record = {\\\"Jo\\\":0}\\nfor name, value in record.\",\"():\\n    print(name, value)\"],\"keys\"]": {
+    "en": "Using keys prints \"J o\\n\"; the required output is \"Jo 0\\n\". Follow the operation and its input type, then compare the exact result shown.",
+    "nl": "Met keys wordt \"J o\\n\" afgedrukt; de vereiste uitvoer is \"Jo 0\\n\". Volg de bewerking en het invoertype en vergelijk daarna het precieze getoonde resultaat."
+  },
+  "[[\"record = {\\\"Jo\\\":0}\\nfor name, value in record.\",\"():\\n    print(name, value)\"],\"values\"]": {
+    "en": "Using values here produces TypeError. Follow the operation and its input type, then compare the exact result shown.",
+    "nl": "Met values ontstaat hier TypeError. Volg de bewerking en het invoertype en vergelijk daarna het precieze getoonde resultaat."
+  },
+  "[[\"with open(\\\"quiz.txt\\\",\",\",encoding=\\\"utf-8\\\") as handle:\\n    handle.write(\\\"Top\\\")\\nwith open(\\\"quiz.txt\\\",encoding=\\\"utf-8\\\") as handle:\\n    print(handle.read())\"],\"\\\"r\\\"\"]": {
+    "en": "Using \"r\" here produces FileNotFoundError. w creates or replaces a file for writing.",
+    "nl": "Met \"r\" ontstaat hier FileNotFoundError. w maakt of vervangt een bestand om te schrijven."
+  },
+  "[[\"with open(\\\"quiz.txt\\\",\",\",encoding=\\\"utf-8\\\") as handle:\\n    handle.write(\\\"Top\\\")\\nwith open(\\\"quiz.txt\\\",encoding=\\\"utf-8\\\") as handle:\\n    print(handle.read())\"],\"\\\"rb\\\"\"]": {
+    "en": "Using \"rb\" here produces ValueError. w creates or replaces a file for writing.",
+    "nl": "Met \"rb\" ontstaat hier ValueError. w maakt of vervangt een bestand om te schrijven."
+  },
+  "[[\"import csv\\nwith open(\\\"quiz.csv\\\",\\\"w\\\",newline=\\\"\\\",encoding=\\\"utf-8\\\") as handle:\\n    handle.write(\\\"name,score\\\\nAda,4\\\\n\\\")\\nwith open(\\\"quiz.csv\\\",newline=\\\"\\\",encoding=\\\"utf-8\\\") as handle:\\n    for row in csv.\",\"(handle):\\n        print(row[\\\"name\\\"])\"],\"reader\"]": {
+    "en": "Using reader here produces TypeError. DictReader uses the first row as keys. reader gives lists and writer writes output.",
+    "nl": "Met reader ontstaat hier TypeError. DictReader gebruikt de eerste rij als sleutels. reader geeft lijsten en writer schrijft uitvoer."
+  },
+  "[[\"import csv\\nwith open(\\\"quiz.csv\\\",\\\"w\\\",newline=\\\"\\\",encoding=\\\"utf-8\\\") as handle:\\n    handle.write(\\\"name,score\\\\nAda,4\\\\n\\\")\\nwith open(\\\"quiz.csv\\\",newline=\\\"\\\",encoding=\\\"utf-8\\\") as handle:\\n    for row in csv.\",\"(handle):\\n        print(row[\\\"name\\\"])\"],\"writer\"]": {
+    "en": "Using writer here produces TypeError. DictReader uses the first row as keys. reader gives lists and writer writes output.",
+    "nl": "Met writer ontstaat hier TypeError. DictReader gebruikt de eerste rij als sleutels. reader geeft lijsten en writer schrijft uitvoer."
+  },
+  "[[\"import io\\nhandle = io.StringIO(\\\"a\\\\nb\\\\n\\\")\\nprint(repr(handle.\",\"()))\"],\"read\"]": {
+    "en": "Using read prints \"'a\\\\nb\\\\n'\\n\"; the required output is \"'a\\\\n'\\n\". Follow the operation and its input type, then compare the exact result shown.",
+    "nl": "Met read wordt \"'a\\\\nb\\\\n'\\n\" afgedrukt; de vereiste uitvoer is \"'a\\\\n'\\n\". Volg de bewerking en het invoertype en vergelijk daarna het precieze getoonde resultaat."
+  },
+  "[[\"import io\\nhandle = io.StringIO(\\\"a\\\\nb\\\\n\\\")\\nprint(repr(handle.\",\"()))\"],\"readlines\"]": {
+    "en": "Using readlines prints \"['a\\\\n', 'b\\\\n']\\n\"; the required output is \"'a\\\\n'\\n\". Follow the operation and its input type, then compare the exact result shown.",
+    "nl": "Met readlines wordt \"['a\\\\n', 'b\\\\n']\\n\" afgedrukt; de vereiste uitvoer is \"'a\\\\n'\\n\". Volg de bewerking en het invoertype en vergelijk daarna het precieze getoonde resultaat."
+  },
+  "[[\"import csv\\nwith open(\\\"quiz.csv\\\",\\\"w\\\",newline=\\\"\\\",encoding=\\\"utf-8\\\") as handle:\\n    handle.write(\\\"name,score\\\\nAda,7\\\\n\\\")\\nwith open(\\\"quiz.csv\\\",newline=\\\"\\\",encoding=\\\"utf-8\\\") as handle:\\n    for row in csv.\",\"(handle):\\n        print(row[\\\"name\\\"])\"],\"reader\"]": {
+    "en": "Using reader here produces TypeError. DictReader uses the first row as keys. reader gives lists and writer writes output.",
+    "nl": "Met reader ontstaat hier TypeError. DictReader gebruikt de eerste rij als sleutels. reader geeft lijsten en writer schrijft uitvoer."
+  },
+  "[[\"import csv\\nwith open(\\\"quiz.csv\\\",\\\"w\\\",newline=\\\"\\\",encoding=\\\"utf-8\\\") as handle:\\n    handle.write(\\\"name,score\\\\nAda,7\\\\n\\\")\\nwith open(\\\"quiz.csv\\\",newline=\\\"\\\",encoding=\\\"utf-8\\\") as handle:\\n    for row in csv.\",\"(handle):\\n        print(row[\\\"name\\\"])\"],\"writer\"]": {
+    "en": "Using writer here produces TypeError. DictReader uses the first row as keys. reader gives lists and writer writes output.",
+    "nl": "Met writer ontstaat hier TypeError. DictReader gebruikt de eerste rij als sleutels. reader geeft lijsten en writer schrijft uitvoer."
+  },
+  "[[\"import json\\nwith open(\\\"quiz.json\\\",\\\"w\\\",encoding=\\\"utf-8\\\") as handle:\\n    json.\",\"({\\\"count\\\":4},handle)\\nwith open(\\\"quiz.json\\\",encoding=\\\"utf-8\\\") as handle:\\n    print(json.load(handle)[\\\"count\\\"])\"],\"load\"]": {
+    "en": "Using load here produces TypeError. dump writes to a handle; load reads a handle and loads reads a string.",
+    "nl": "Met load ontstaat hier TypeError. dump schrijft naar een handle; load leest een handle en loads leest een string."
+  },
+  "[[\"import json\\nwith open(\\\"quiz.json\\\",\\\"w\\\",encoding=\\\"utf-8\\\") as handle:\\n    json.\",\"({\\\"count\\\":4},handle)\\nwith open(\\\"quiz.json\\\",encoding=\\\"utf-8\\\") as handle:\\n    print(json.load(handle)[\\\"count\\\"])\"],\"loads\"]": {
+    "en": "Using loads here produces TypeError. dump writes to a handle; load reads a handle and loads reads a string.",
+    "nl": "Met loads ontstaat hier TypeError. dump schrijft naar een handle; load leest een handle en loads leest een string."
+  },
+  "[[\"import csv\\nrow = next(csv.reader(['Jo,\\\"A,B\\\"']))\\nprint(len(row))\\nprint(row[\",\"])\"],\"0\"]": {
+    "en": "Using 0 prints \"2\\nJo\\n\"; the required output is \"2\\nA,B\\n\". Follow the operation and its input type, then compare the exact result shown.",
+    "nl": "Met 0 wordt \"2\\nJo\\n\" afgedrukt; de vereiste uitvoer is \"2\\nA,B\\n\". Volg de bewerking en het invoertype en vergelijk daarna het precieze getoonde resultaat."
+  },
+  "[[\"import csv\\nrow = next(csv.reader(['Jo,\\\"A,B\\\"']))\\nprint(len(row))\\nprint(row[\",\"])\"],\"2\"]": {
+    "en": "Using 2 here produces IndexError. Follow the operation and its input type, then compare the exact result shown.",
+    "nl": "Met 2 ontstaat hier IndexError. Volg de bewerking en het invoertype en vergelijk daarna het precieze getoonde resultaat."
+  },
+  "[[\"import json\\nwith open(\\\"quiz.json\\\",\\\"w\\\",encoding=\\\"utf-8\\\") as handle:\\n    json.\",\"({\\\"count\\\":7},handle)\\nwith open(\\\"quiz.json\\\",encoding=\\\"utf-8\\\") as handle:\\n    print(json.load(handle)[\\\"count\\\"])\"],\"load\"]": {
+    "en": "Using load here produces TypeError. dump writes to a handle; load reads a handle and loads reads a string.",
+    "nl": "Met load ontstaat hier TypeError. dump schrijft naar een handle; load leest een handle en loads leest een string."
+  },
+  "[[\"import json\\nwith open(\\\"quiz.json\\\",\\\"w\\\",encoding=\\\"utf-8\\\") as handle:\\n    json.\",\"({\\\"count\\\":7},handle)\\nwith open(\\\"quiz.json\\\",encoding=\\\"utf-8\\\") as handle:\\n    print(json.load(handle)[\\\"count\\\"])\"],\"loads\"]": {
+    "en": "Using loads here produces TypeError. dump writes to a handle; load reads a handle and loads reads a string.",
+    "nl": "Met loads ontstaat hier TypeError. dump schrijft naar een handle; load leest een handle en loads leest een string."
+  },
+  "[[\"import csv\\nrow = next(csv.reader(['Bo,\\\"A,B\\\"']))\\nprint(len(row))\\nprint(row[\",\"])\"],\"0\"]": {
+    "en": "Using 0 prints \"2\\nBo\\n\"; the required output is \"2\\nA,B\\n\". Follow the operation and its input type, then compare the exact result shown.",
+    "nl": "Met 0 wordt \"2\\nBo\\n\" afgedrukt; de vereiste uitvoer is \"2\\nA,B\\n\". Volg de bewerking en het invoertype en vergelijk daarna het precieze getoonde resultaat."
+  },
+  "[[\"import csv\\nrow = next(csv.reader(['Bo,\\\"A,B\\\"']))\\nprint(len(row))\\nprint(row[\",\"])\"],\"2\"]": {
+    "en": "Using 2 here produces IndexError. Follow the operation and its input type, then compare the exact result shown.",
+    "nl": "Met 2 ontstaat hier IndexError. Volg de bewerking en het invoertype en vergelijk daarna het precieze getoonde resultaat."
+  },
+  "[[\"class Counter:\\n    def __init__(self,value):\\n        \",\".value = value\\nprint(Counter(4).value)\"],\"Counter()\"]": {
+    "en": "Using Counter() here produces TypeError. self identifies the new instance being initialised.",
+    "nl": "Met Counter() ontstaat hier TypeError. self benoemt de nieuwe instantie die wordt geïnitialiseerd."
+  },
+  "[[\"class Counter:\\n    def __init__(self,value):\\n        \",\".value = value\\nprint(Counter(4).value)\"],\"value\"]": {
+    "en": "Using value here produces AttributeError. self identifies the new instance being initialised.",
+    "nl": "Met value ontstaat hier AttributeError. self benoemt de nieuwe instantie die wordt geïnitialiseerd."
+  },
+  "[[\"import json\\ntext = json.dumps({\\\"ready\\\":True})\\nprint(json.\",\"(text)[\\\"ready\\\"])\"],\"load\"]": {
+    "en": "Using load here produces AttributeError. Follow the operation and its input type, then compare the exact result shown.",
+    "nl": "Met load ontstaat hier AttributeError. Volg de bewerking en het invoertype en vergelijk daarna het precieze getoonde resultaat."
+  },
+  "[[\"import json\\ntext = json.dumps({\\\"ready\\\":True})\\nprint(json.\",\"(text)[\\\"ready\\\"])\"],\"dumps\"]": {
+    "en": "Using dumps here produces TypeError. Follow the operation and its input type, then compare the exact result shown.",
+    "nl": "Met dumps ontstaat hier TypeError. Volg de bewerking en het invoertype en vergelijk daarna het precieze getoonde resultaat."
+  },
+  "[[\"class Counter:\\n    def __init__(self,value):\\n        \",\".value = value\\nprint(Counter(7).value)\"],\"Counter()\"]": {
+    "en": "Using Counter() here produces TypeError. self identifies the new instance being initialised.",
+    "nl": "Met Counter() ontstaat hier TypeError. self benoemt de nieuwe instantie die wordt geïnitialiseerd."
+  },
+  "[[\"class Counter:\\n    def __init__(self,value):\\n        \",\".value = value\\nprint(Counter(7).value)\"],\"value\"]": {
+    "en": "Using value here produces AttributeError. self identifies the new instance being initialised.",
+    "nl": "Met value ontstaat hier AttributeError. self benoemt de nieuwe instantie die wordt geïnitialiseerd."
+  }
+}

@@ -55,10 +55,11 @@
     },
     {
       "id": "python-v4-03-addition-experiment",
+      "role": "experiment",
       "topicIds": [],
       "heading": {
-        "en": "Try one change",
-        "nl": "Probeer één wijziging"
+        "en": "After completing the task: try one change",
+        "nl": "Na het afronden: probeer één wijziging"
       },
       "body": {
         "en": "Set morning to zero. Explain why the answer becomes the afternoon count.",
@@ -126,8 +127,7 @@
     {
       "id": "python-v4-03-addition-step-2",
       "objectiveIds": [
-        "arithmetic",
-        "addition"
+        "print"
       ],
       "task": {
         "en": "Print result after calculating it.",
@@ -181,15 +181,40 @@
   "inputs": [],
   "retrievals": [
     {
-      "id": "recall-python-v4-01-welcome",
-      "sourceActivityId": "python-v4-01-welcome",
+      "id": "recall-python-v4-02-assignment",
+      "sourceActivityId": "python-v4-02-assignment",
       "objectiveIds": [
-        "welcome"
+        "variables"
       ],
       "prompt": {
-        "en": "Recall “Hello, world!”. Will the quotation marks appear in the output? Try the earlier example from memory, then check it. Change world to your name and run again. Then continue to write your first line yourself.",
-        "nl": "Haal “Hallo, wereld!” terug. Verschijnen de aanhalingstekens in de uitvoer? Probeer het eerdere voorbeeld uit je geheugen en controleer daarna. Verander world in je naam en voer opnieuw uit. Ga daarna verder om zelf je eerste regel te schrijven."
-      }
+        "en": "Recall give a value a name. Does the first line itself display anything? Change only the assigned string. Does the same print call display the new value?",
+        "nl": "Herhaal geef een waarde een naam. Toont de eerste regel zelf iets? Verander alleen de toegewezen string. Toont dezelfde print-aanroep de nieuwe waarde?"
+      },
+      "code": "message = \"Come in\"\nprint(message)"
+    },
+    {
+      "id": "recall-python-v4-02-integers",
+      "sourceActivityId": "python-v4-02-integers",
+      "objectiveIds": [
+        "integers"
+      ],
+      "prompt": {
+        "en": "Recall whole numbers. Which value is negative, and does that make it text? Assign -1 to missing and run again. Is it still a whole-number value?",
+        "nl": "Herhaal gehele getallen. Welke waarde is negatief en maakt dat haar tekst? Wijs -1 toe aan missing en voer opnieuw uit. Is het nog steeds een geheel getal?"
+      },
+      "code": "visitors = 8\ntemperature = -2\nprint(visitors)\nprint(temperature)"
+    },
+    {
+      "id": "recall-python-v4-02-floats",
+      "sourceActivityId": "python-v4-02-floats",
+      "objectiveIds": [
+        "floats"
+      ],
+      "prompt": {
+        "en": "Recall numbers with a decimal point. Are both assigned values floats? Change distance to 4.0 and then to 4. Compare the displayed values.",
+        "nl": "Herhaal getallen met een decimale punt. Zijn beide toegewezen waarden floats? Verander distance eerst in 4.0 en daarna in 4. Vergelijk de getoonde waarden."
+      },
+      "code": "length = 2.5\nwhole_measurement = 3.0\nprint(length)\nprint(whole_measurement)"
     }
   ]
 }

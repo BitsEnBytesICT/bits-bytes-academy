@@ -52,10 +52,11 @@
     },
     {
       "id": "python-v4-02-assignment-experiment",
+      "role": "experiment",
       "topicIds": [],
       "heading": {
-        "en": "Try one change",
-        "nl": "Probeer één wijziging"
+        "en": "After completing the task: try one change",
+        "nl": "Na het afronden: probeer één wijziging"
       },
       "body": {
         "en": "Change only the assigned string. Does the same print call display the new value?",
@@ -143,5 +144,31 @@
     "en": "The assignment creates place before it is used. print(place) reads the value instead of displaying the letters p-l-a-c-e.",
     "nl": "De toewijzing maakt place voordat het wordt gebruikt. print(place) leest de waarde in plaats van de letters p-l-a-c-e te tonen."
   },
-  "inputs": []
+  "inputs": [],
+  "retrievals": [
+    {
+      "id": "recall-python-v4-01-first-print",
+      "sourceActivityId": "python-v4-01-first-print",
+      "objectiveIds": [
+        "print"
+      ],
+      "prompt": {
+        "en": "Recall write your first print. Which part of this line will appear in the terminal? Change the greeting and predict the output before running. Is anything printed without a print call?",
+        "nl": "Herhaal schrijf je eerste print. Welk deel van deze regel verschijnt in de terminal? Verander de begroeting en voorspel de uitvoer. Wordt er iets getoond zonder een print-aanroep?"
+      },
+      "code": "print(\"Good morning!\")"
+    },
+    {
+      "id": "recall-python-v4-01-strings-quotes",
+      "sourceActivityId": "python-v4-01-strings-quotes",
+      "objectiveIds": [
+        "strings"
+      ],
+      "prompt": {
+        "en": "Recall text is a string. Will the two output lines differ? Print \"It's sunny\" using double quotes. Explain why its apostrophe does not end the string.",
+        "nl": "Herhaal tekst is een string. Verschillen de twee uitvoerregels? Druk \"It's sunny\" af met dubbele aanhalingstekens. Leg uit waarom de apostrof de string niet beëindigt."
+      },
+      "code": "print(\"Welcome\")\nprint('Welcome')"
+    }
+  ]
 }

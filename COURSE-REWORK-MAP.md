@@ -1,8 +1,8 @@
 # Python course version 4 — beginner path
 
-24 modules, 165 focused coding lessons, six graded mini projects, 23 quizzes with two forms each, two self-assessed main projects, and a final local-development article.
+24 modules, 174 focused coding lessons, six graded mini projects, 23 quizzes with two forms each, two self-assessed main projects, and a final local-development article.
 
-Activity estimates sum to 3021 minutes (approximately 51 hours). This is a provisional authoring estimate; no fixed duration target was used. Review time and actual beginner completion times require learner validation.
+Activity estimates sum to 3216 minutes (approximately 54 hours). This is a provisional authoring estimate; no fixed duration target was used. Review time and actual beginner completion times require learner validation.
 
 ## Linear path
 
@@ -17,20 +17,20 @@ Activity estimates sum to 3021 minutes (approximately 51 hours). This is a provi
 | 7. Making decisions | Choose one action and test the boundaries of each rule. | 8 | 137 |
 | 8. Repeating with while | Control a repeated conversation and explain why it stops. | 10 | 153 |
 | 9. Writing small functions | Separate a program into functions with clear inputs and results. | 11 | 138 |
-| 10. Handling mistakes and invalid input | Recover from bad input and build a usable calculator. | 8 | 213 |
+| 10. Handling mistakes and invalid input | Recover from bad input and build a usable calculator. | 9 | 243 |
 | 11. Introducing lists | Store, access and change a collection of values. | 7 | 80 |
 | 12. Processing lists with loops | Summarise, search and filter a collection with a loop. | 8 | 115 |
 | 13. Tuples and multiple results | Unpack coordinates and the results of a function. | 4 | 44 |
 | 14. Libraries and separate Python files | Use documented libraries and import your own helper module. | 8 | 120 |
-| 15. Drawing and interacting with Pygame | Draw a scene and respond to input in a browser game. | 7 | 116 |
-| 16. Movement and game rules | Combine controls, movement, collisions and scoring into Pong. | 9 | 288 |
+| 15. Drawing and interacting with Pygame | Draw a scene and respond to input in a browser game. | 9 | 152 |
+| 16. Movement and game rules | Combine controls, movement, collisions and scoring into Pong. | 12 | 362 |
 | 17. More powerful list processing | Reshape, sort and process nested collections. | 10 | 129 |
-| 18. Strings as data | Inspect, clean, split and format text. | 12 | 163 |
-| 19. Dictionaries and records | Manage named records and handle missing information. | 9 | 117 |
+| 18. Strings as data | Inspect, clean, split and format text. | 13 | 178 |
+| 19. Dictionaries and records | Manage named records and handle missing information. | 11 | 147 |
 | 20. Reading and writing text files | Read and create inspectable files that survive another run. | 8 | 141 |
 | 21. CSV records | Read and write quoted, delimited tabular records. | 6 | 105 |
 | 22. JSON and saved data | Load, update and save structured data. | 5 | 107 |
-| 23. Classes and objects | Group state and behaviour while keeping instances independent. | 10 | 149 |
+| 23. Classes and objects | Group state and behaviour while keeping instances independent. | 11 | 159 |
 | 24. Python on your computer | Set up a local project and begin an idea of your own. | 1 | 30 |
 
 ## Projects
@@ -72,7 +72,7 @@ Run npm run test:beginner-course, npm test, the runtime/persistence suites and n
 - Comments are for readers (coding, 9 min) — python-v4-01-comments
 - Your first error message (coding, 12 min) — python-v4-01-repair-syntax
 - Make a terminal announcement (coding, 15 min) — python-v4-01-announcement
-- Your first Python programs: review (quiz, 8 min) — python-v4-01-quiz
+- Your first Python programs: review (quiz, 8 min) — python-v4-01-quiz-r2
 
 ### 2. Variables and values
 
@@ -85,7 +85,7 @@ Run npm run test:beginner-course, npm test, the runtime/persistence suites and n
 - Ask Python for a value's type (coding, 12 min) — python-v4-02-inspect-types
 - Read a NameError (coding, 10 min) — python-v4-02-repair-name
 - Create a small profile (coding, 18 min) — python-v4-02-profile
-- Variables and values: review (quiz, 8 min) — python-v4-02-quiz
+- Variables and values: review (quiz, 8 min) — python-v4-02-quiz-r2
 
 ### 3. Calculations and changing values
 
@@ -100,7 +100,7 @@ Run npm run test:beginner-course, npm test, the runtime/persistence suites and n
 - Count complete groups with // (coding, 12 min) — python-v4-03-whole-groups
 - Find the leftovers with % (coding, 12 min) — python-v4-03-remainder
 - Calculate a simple receipt (coding, 20 min) — python-v4-03-receipt
-- Calculations and changing values: review (quiz, 8 min) — python-v4-03-quiz
+- Calculations and changing values: review (quiz, 8 min) — python-v4-03-quiz-r2
 
 ### 4. Building useful text output
 
@@ -111,7 +111,7 @@ Run npm run test:beginner-course, npm test, the runtime/persistence suites and n
 - Newlines and special characters (coding, 13 min) — python-v4-04-escapes
 - Text across several source lines (coding, 12 min) — python-v4-04-multiline
 - Build a visitor card (coding, 18 min) — python-v4-04-visitor-card
-- Building useful text output: review (quiz, 8 min) — python-v4-04-quiz
+- Building useful text output: review (quiz, 8 min) — python-v4-04-quiz-r2
 
 ### 5. Asking for input
 
@@ -122,7 +122,7 @@ Run npm run test:beginner-course, npm test, the runtime/persistence suites and n
 - Ask two questions in order (coding, 14 min) — python-v4-05-two-answers
 - Clean a typed command (coding, 14 min) — python-v4-05-normalise-command
 - Make an interactive trip report (coding, 20 min) — python-v4-05-trip-report
-- Asking for input: review (quiz, 8 min) — python-v4-05-quiz
+- Asking for input: review (quiz, 8 min) — python-v4-05-quiz-r2
 
 ### 6. Comparisons and Boolean values
 
@@ -135,7 +135,7 @@ Run npm run test:beginner-course, npm test, the runtime/persistence suites and n
 - Allow either condition with or (coding, 13 min) — python-v4-06-or
 - Reverse a Boolean with not (coding, 13 min) — python-v4-06-not
 - Combine a complete access rule (coding, 13 min) — python-v4-06-access-rule
-- Comparisons and Boolean values: review (quiz, 8 min) — python-v4-06-quiz
+- Comparisons and Boolean values: review (quiz, 8 min) — python-v4-06-quiz-r2
 
 ### 7. Making decisions
 
@@ -146,7 +146,7 @@ Run npm run test:beginner-course, npm test, the runtime/persistence suites and n
 - Separate checks or one choice? (coding, 15 min) — python-v4-07-separate-or-chain
 - Respond to a typed choice (coding, 20 min) — python-v4-07-command-menu
 - Mini project: delivery-price adviser (challenge, 35 min) — python-v4-07-delivery-adviser
-- Making decisions: review (quiz, 8 min) — python-v4-07-quiz
+- Making decisions: review (quiz, 8 min) — python-v4-07-quiz-r2
 
 ### 8. Repeating with while
 
@@ -159,7 +159,7 @@ Run npm run test:beginner-course, npm test, the runtime/persistence suites and n
 - Skip one iteration with continue (coding, 16 min) — python-v4-08-continue
 - Repair a loop that exits too soon (coding, 14 min) — python-v4-08-repair-exit
 - Summarise a short session (coding, 22 min) — python-v4-08-session-summary
-- Repeating with while: review (quiz, 8 min) — python-v4-08-quiz
+- Repeating with while: review (quiz, 8 min) — python-v4-08-quiz-r2
 
 ### 9. Writing small functions
 
@@ -173,7 +173,7 @@ Run npm run test:beginner-course, npm test, the runtime/persistence suites and n
 - Optional inputs and named arguments (coding, 12 min) — python-v4-09-named-and-default
 - Stop a function at a guard (coding, 12 min) — python-v4-09-early-return
 - Build a reusable ticket calculation (coding, 22 min) — python-v4-09-ticket-function
-- Writing small functions: review (quiz, 8 min) — python-v4-09-quiz
+- Writing small functions: review (quiz, 8 min) — python-v4-09-quiz-r2
 
 ### 10. Handling mistakes and invalid input
 
@@ -183,7 +183,8 @@ Run npm run test:beginner-course, npm test, the runtime/persistence suites and n
 - A number can still be invalid (coding, 12 min) — python-v4-10-validate
 - Try again after invalid input (coding, 12 min) — python-v4-10-retry
 - Give every retry a way out (coding, 25 min) — python-v4-10-cancel-safely
-- Handling mistakes and invalid input: review (quiz, 8 min) — python-v4-10-quiz
+- Connect a complete conversion session (coding, 30 min) — python-v4-10-converter-session
+- Handling mistakes and invalid input: review (quiz, 8 min) — python-v4-10-quiz-r2
 - Project: your calculator (project, 120 min) — python-v4-10-calculator-project
 
 ### 11. Introducing lists
@@ -194,7 +195,7 @@ Run npm run test:beginner-course, npm test, the runtime/persistence suites and n
 - Select a position (coding, 12 min) — python-v4-11-indexes
 - Replace an element (coding, 12 min) — python-v4-11-change-element
 - Count and copy a list (coding, 12 min) — python-v4-11-length-copy
-- Introducing lists: review (quiz, 8 min) — python-v4-11-quiz
+- Introducing lists: review (quiz, 8 min) — python-v4-11-quiz-r2
 
 ### 12. Processing lists with loops
 
@@ -205,14 +206,14 @@ Run npm run test:beginner-course, npm test, the runtime/persistence suites and n
 - Search until a match (coding, 12 min) — python-v4-12-search
 - Build a list of matching values (coding, 12 min) — python-v4-12-filter
 - Mini project: activity-log analyser (challenge, 35 min) — python-v4-12-activity-log
-- Processing lists with loops: review (quiz, 8 min) — python-v4-12-quiz
+- Processing lists with loops: review (quiz, 8 min) — python-v4-12-quiz-r2
 
 ### 13. Tuples and multiple results
 
 - Keep a coordinate pair in a tuple (coding, 12 min) — python-v4-13-pairs
 - Unpack a pair into names (coding, 12 min) — python-v4-13-unpack
 - Return two related answers (coding, 12 min) — python-v4-13-multiple-results
-- Tuples and multiple results: review (quiz, 8 min) — python-v4-13-quiz
+- Tuples and multiple results: review (quiz, 8 min) — python-v4-13-quiz-r2
 
 ### 14. Libraries and separate Python files
 
@@ -223,7 +224,7 @@ Run npm run test:beginner-course, npm test, the runtime/persistence suites and n
 - Use decimal arithmetic deliberately (coding, 12 min) — python-v4-14-decimal
 - Put reusable code in another file (coding, 12 min) — python-v4-14-helper-files
 - Mini project: number-guessing game (challenge, 40 min) — python-v4-14-guessing-game
-- Libraries and separate Python files: review (quiz, 8 min) — python-v4-14-quiz
+- Libraries and separate Python files: review (quiz, 8 min) — python-v4-14-quiz-r2
 
 ### 15. Drawing and interacting with Pygame
 
@@ -233,7 +234,9 @@ Run npm run test:beginner-course, npm test, the runtime/persistence suites and n
 - Draw the background before the foreground (coding, 18 min) — python-v4-15-drawing-order
 - Respond to a key press (coding, 18 min) — python-v4-15-events
 - Draw text on the court (coding, 18 min) — python-v4-15-score-label
-- Drawing and interacting with Pygame: review (quiz, 8 min) — python-v4-15-quiz
+- Wire an event to a visible change (coding, 18 min) — python-v4-15-event-wiring
+- Render and place your own label (coding, 18 min) — python-v4-15-render-label
+- Drawing and interacting with Pygame: review (quiz, 8 min) — python-v4-15-quiz-r2
 
 ### 16. Movement and game rules
 
@@ -244,7 +247,10 @@ Run npm run test:beginner-course, npm test, the runtime/persistence suites and n
 - Use Rect collision detection (coding, 18 min) — python-v4-16-paddle-contact
 - Score a miss once (coding, 18 min) — python-v4-16-score-once
 - Start the next rally deliberately (coding, 22 min) — python-v4-16-serve
-- Movement and game rules: review (quiz, 8 min) — python-v4-16-quiz
+- Connect two players' controls (coding, 22 min) — python-v4-16-two-controls
+- Complete the other side of the court (coding, 22 min) — python-v4-16-mirror-collision
+- Connect serve, movement and one-point scoring (coding, 30 min) — python-v4-16-rally-session
+- Movement and game rules: review (quiz, 8 min) — python-v4-16-quiz-r2
 - Project: a complete Pong rally (project, 150 min) — python-v4-16-pong-project
 
 ### 17. More powerful list processing
@@ -258,7 +264,7 @@ Run npm run test:beginner-course, npm test, the runtime/persistence suites and n
 - Visit rows and their elements (coding, 12 min) — python-v4-17-nested-loops
 - Express a simple transformation compactly (coding, 12 min) — python-v4-17-comprehensions
 - Build a report without losing the original (coding, 25 min) — python-v4-17-score-report
-- More powerful list processing: review (quiz, 8 min) — python-v4-17-quiz
+- More powerful list processing: review (quiz, 8 min) — python-v4-17-quiz-r2
 
 ### 18. Strings as data
 
@@ -272,20 +278,23 @@ Run npm run test:beginner-course, npm test, the runtime/persistence suites and n
 - Join cleaned pieces of text (coding, 12 min) — python-v4-18-join-strip
 - Search and replace text (coding, 12 min) — python-v4-18-replace-find
 - Fill a text template with format (coding, 12 min) — python-v4-18-format
+- Use positional and named placeholders (coding, 15 min) — python-v4-18-both-format-forms
 - Mini project: text cleaner (challenge, 35 min) — python-v4-18-text-cleaner
-- Strings as data: review (quiz, 8 min) — python-v4-18-quiz
+- Strings as data: review (quiz, 8 min) — python-v4-18-quiz-r2
 
 ### 19. Dictionaries and records
 
 - Name fields with dictionary keys (coding, 12 min) — python-v4-19-records
 - Choose valid keys (coding, 12 min) — python-v4-19-keys
 - Build and update a record (coding, 12 min) — python-v4-19-update
+- Build a record from an empty mapping (coding, 15 min) — python-v4-19-build-record
 - Handle a missing key (coding, 12 min) — python-v4-19-lookup
 - Remove a dictionary entry (coding, 12 min) — python-v4-19-delete
 - Visit keys, values and pairs (coding, 12 min) — python-v4-19-views
+- Choose a dictionary view deliberately (coding, 15 min) — python-v4-19-keys-and-values
 - Derive a new mapping (coding, 12 min) — python-v4-19-comprehension
 - Maintain a small scoreboard (coding, 25 min) — python-v4-19-registry
-- Dictionaries and records: review (quiz, 8 min) — python-v4-19-quiz
+- Dictionaries and records: review (quiz, 8 min) — python-v4-19-quiz-r2
 
 ### 20. Reading and writing text files
 
@@ -296,7 +305,7 @@ Run npm run test:beginner-course, npm test, the runtime/persistence suites and n
 - Append a new log entry (coding, 18 min) — python-v4-20-append
 - Handle a missing file explicitly (coding, 18 min) — python-v4-20-missing
 - Generate a text report from a file (coding, 25 min) — python-v4-20-report
-- Reading and writing text files: review (quiz, 8 min) — python-v4-20-quiz
+- Reading and writing text files: review (quiz, 8 min) — python-v4-20-quiz-r2
 
 ### 21. CSV records
 
@@ -305,7 +314,7 @@ Run npm run test:beginner-course, npm test, the runtime/persistence suites and n
 - Read a different CSV dialect (coding, 18 min) — python-v4-21-delimiter
 - Export records to CSV (coding, 18 min) — python-v4-21-write
 - Transform a CSV export (coding, 25 min) — python-v4-21-csv-report
-- CSV records: review (quiz, 8 min) — python-v4-21-quiz
+- CSV records: review (quiz, 8 min) — python-v4-21-quiz-r2
 
 ### 22. JSON and saved data
 
@@ -313,7 +322,7 @@ Run npm run test:beginner-course, npm test, the runtime/persistence suites and n
 - Save and reopen JSON (coding, 18 min) — python-v4-22-save
 - Update saved data and recognise malformed JSON (coding, 18 min) — python-v4-22-update-and-recover
 - Mini project: club results book (challenge, 45 min) — python-v4-22-club-book
-- JSON and saved data: review (quiz, 8 min) — python-v4-22-quiz
+- JSON and saved data: review (quiz, 8 min) — python-v4-22-quiz-r2
 
 ### 23. Classes and objects
 
@@ -326,7 +335,8 @@ Run npm run test:beginner-course, npm test, the runtime/persistence suites and n
 - Give objects useful text representations (coding, 12 min) — python-v4-23-representation
 - A function is an object too (coding, 12 min) — python-v4-23-functions-as-values
 - Mini project: virtual pet (challenge, 45 min) — python-v4-23-virtual-pet
-- Classes and objects: review (quiz, 8 min) — python-v4-23-quiz
+- Optional recall library (reading, 10 min) — python-v4-23-review-library
+- Classes and objects: review (quiz, 8 min) — python-v4-23-quiz-r2
 
 ### 24. Python on your computer
 

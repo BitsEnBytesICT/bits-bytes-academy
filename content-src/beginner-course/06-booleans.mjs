@@ -26,6 +26,12 @@ function rule(slug, spec) {
           "Druk result zelf af zodat veranderingen in de vergelijking in de uitvoer verschijnen.",
         ],
         "print(result)",
+        spec.cases.map((inputs) =>
+          probe(
+            inputs,
+            `type(result) is bool and _stdout.strip() == str(${spec.expression})`,
+          ),
+        ),
       ),
     ],
   });

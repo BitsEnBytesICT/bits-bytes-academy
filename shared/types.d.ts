@@ -8,6 +8,12 @@ export type CheckInput =
   | CheckInput[]
   | { [key: string]: CheckInput };
 export interface BehaviorProbe {
+  /** Grade declared fixture data independently of generated learner files. */
+  isolatedFixtures?: boolean;
+  /** Load definitions without running an optional interactive demonstration. */
+  definitionsOnly?: boolean;
+  /** Prompt wording is not part of this behaviour contract. */
+  ignorePrompts?: boolean;
   /** Test a reusable module without starting the interactive main.py loop. */
   moduleOnly?: boolean;
   files?: Record<string, string>;
@@ -36,6 +42,7 @@ export interface Checkpoint {
   }[];
 }
 export interface LessonSection {
+  role?: "teaching" | "experiment" | "practice";
   exampleInputs?: string[];
   exampleFiles?: Record<string, string>;
   heading: Localized;
@@ -54,6 +61,7 @@ export interface Exercise {
     sourceActivityId: string;
     objectiveIds: string[];
     prompt: Localized;
+    code?: string;
   }[];
   estimatedMinutes: number;
   id: string;
@@ -104,7 +112,7 @@ export interface Question {
   codeBlank?: {
     prompt: Localized;
     segments: string[];
-    tokens: { id: string; code: string }[];
+    tokens: { id: string; code: string; reason?: Localized }[];
     blanks: { answer: string; reason: Localized }[];
     output: string;
   };

@@ -1,0 +1,240 @@
+{
+  "id": "python-v4-15-event-wiring",
+  "chapter": 15,
+  "group": "python-v4-module-15",
+  "title": {
+    "en": "Wire an event to a visible change",
+    "nl": "Verbind een gebeurtenis aan een zichtbare verandering"
+  },
+  "kind": "coding",
+  "optional": false,
+  "runtime": "pygame",
+  "guidance": "guided",
+  "checkpointMode": "sequential",
+  "estimatedMinutes": 18,
+  "topicIds": [
+    "event-dispatch"
+  ],
+  "practices": [
+    "events",
+    "keyboard-events",
+    "closing-window"
+  ],
+  "requiredConcepts": [
+    "events",
+    "blit"
+  ],
+  "explanation": {
+    "en": "Previously the loop checked the event type for you. Now handle a complete event safely yourself.",
+    "nl": "Eerder controleerde de lus het gebeurtenistype voor je. Verwerk nu zelf veilig een volledige gebeurtenis."
+  },
+  "example": "",
+  "sections": [
+    {
+      "id": "python-v4-15-event-wiring-example",
+      "topicIds": [
+        "event-dispatch",
+        "events",
+        "keyboard-events",
+        "closing-window"
+      ],
+      "heading": {
+        "en": "Follow a working example",
+        "nl": "Volg een werkend voorbeeld"
+      },
+      "body": {
+        "en": "main.py retrieves events and calls react(event, bright) once for each event. Return two values: (keep_running, new_bright). A QUIT event returns False and the unchanged colour state. A Space KEYDOWN toggles bright and keeps running. Other events keep both states unchanged. Some events have no key: only read event.key after checking event.type. The caller unpacks your pair into running and bright; its next draw shows the result. Event creation in the example is just a way to simulate a click or key during a test.",
+        "nl": "main.py haalt gebeurtenissen op en roept react(event, bright) eenmaal per gebeurtenis aan. Geef twee waarden terug: (keep_running, new_bright). QUIT geeft False en de ongewijzigde kleurtoestand terug. Space KEYDOWN wisselt bright en laat het programma doorgaan. Andere gebeurtenissen houden beide toestanden gelijk. Sommige gebeurtenissen hebben geen key: lees event.key pas nadat je event.type hebt gecontroleerd. De aanroeper pakt je paar uit in running en bright; de volgende tekening toont het resultaat. Gebeurtenissen maken in het voorbeeld is alleen een manier om een klik of toets bij een test na te bootsen."
+      },
+      "code": "import pygame\nevent = pygame.event.Event(pygame.MOUSEMOTION)\nif event.type == pygame.KEYDOWN:\n    print(event.key)\nelse:\n    print('No keyboard key')",
+      "output": "No keyboard key\n",
+      "prediction": {
+        "en": "Why does this event not cause an attribute error?",
+        "nl": "Waarom veroorzaakt deze gebeurtenis geen attribuutfout?"
+      },
+      "takeaway": {
+        "en": "Inspect the type, read relevant attributes, then return the new state.",
+        "nl": "Bekijk het type, lees passende attributen en geef de nieuwe toestand terug."
+      }
+    },
+    {
+      "topicIds": [],
+      "heading": {
+        "en": "Run, observe, finish",
+        "nl": "Voer uit, bekijk, rond af"
+      },
+      "body": {
+        "en": "main.py supplies the browser entry point. Run opens a real pygame-ce preview; click it to focus the keyboard. Clicking elsewhere pauses play. Finish & check closes normally and checks your helper after at least one rendered frame. Stop cancels without grading. Run can start a fresh session afterward. Keep the supplied async definition and await asyncio.sleep(1 / 60): they let the browser draw and receive input. You are not expected to reproduce this infrastructure from memory.",
+        "nl": "main.py levert het browserstartpunt. Uitvoeren opent een echt pygame-ce-voorbeeld; klik erop om het toetsenbord te activeren. Elders klikken pauzeert het spel. Afronden en controleren sluit normaal af en controleert je helper na minstens één getekend beeld. Stop annuleert zonder beoordeling. Uitvoeren kan daarna een nieuwe sessie starten. Behoud de meegeleverde async-definitie en await asyncio.sleep(1 / 60): die laten de browser tekenen en invoer ontvangen. Je hoeft deze infrastructuur niet uit je hoofd te schrijven."
+      }
+    },
+    {
+      "id": "python-v4-15-event-wiring-experiment",
+      "role": "experiment",
+      "topicIds": [],
+      "heading": {
+        "en": "After completing the task: try one change",
+        "nl": "Na het afronden: probeer één wijziging"
+      },
+      "body": {
+        "en": "Move the mouse, press A, then press and release Space twice. Explain which events change the colour and which leave it alone.",
+        "nl": "Beweeg de muis, druk A en druk daarna tweemaal Space in en laat los. Leg uit welke gebeurtenissen de kleur veranderen en welke niet."
+      }
+    }
+  ],
+  "files": {
+    "main.py": "# Browser entry point supplied by the course.\nimport asyncio\nimport pygame\nimport game\n\nasync def main():\n    pygame.init()\n    screen = pygame.display.set_mode((640, 400))\n    clock = pygame.time.Clock()\n    running = True\n    bright = False\n    while running:\n        dt = min(clock.tick() / 1000, 0.05)\n        for event in pygame.event.get():\n            if event.type == pygame.QUIT:\n                running = False\n            if event.type == pygame.KEYDOWN and event.key == pygame.K_ESCAPE:\n                running = False\n            keep_running, bright = game.react(event, bright)\n            running = running and keep_running\n        keys = pygame.key.get_pressed()\n        screen.fill((16, 23, 39))\n        if bright:\n            screen.fill((240,240,240))\n        pygame.display.flip()\n        await asyncio.sleep(1 / 60)\n    pygame.quit()\n\nasyncio.run(main())\n",
+    "game.py": "import pygame\n\ndef react(event, bright):\n    return True, bright\n"
+  },
+  "solution": {
+    "main.py": "# Browser entry point supplied by the course.\nimport asyncio\nimport pygame\nimport game\n\nasync def main():\n    pygame.init()\n    screen = pygame.display.set_mode((640, 400))\n    clock = pygame.time.Clock()\n    running = True\n    bright = False\n    while running:\n        dt = min(clock.tick() / 1000, 0.05)\n        for event in pygame.event.get():\n            if event.type == pygame.QUIT:\n                running = False\n            if event.type == pygame.KEYDOWN and event.key == pygame.K_ESCAPE:\n                running = False\n            keep_running, bright = game.react(event, bright)\n            running = running and keep_running\n        keys = pygame.key.get_pressed()\n        screen.fill((16, 23, 39))\n        if bright:\n            screen.fill((240,240,240))\n        pygame.display.flip()\n        await asyncio.sleep(1 / 60)\n    pygame.quit()\n\nasyncio.run(main())\n",
+    "game.py": "import pygame\n\ndef react(event, bright):\n    if event.type == pygame.QUIT:\n        return False, bright\n    if event.type == pygame.KEYDOWN and event.key == pygame.K_SPACE:\n        return True, not bright\n    return True, bright\n"
+  },
+  "checkpoints": [
+    {
+      "id": "python-v4-15-event-wiring-step-1",
+      "objectiveIds": [
+        "event-dispatch",
+        "events",
+        "keyboard-events",
+        "closing-window"
+      ],
+      "task": {
+        "en": "Complete react(event, bright). Handle QUIT, Space KEYDOWN and events without a key. Return (keep_running, new_bright).",
+        "nl": "Maak react(event, bright) af. Verwerk QUIT, Space KEYDOWN en gebeurtenissen zonder key. Geef (keep_running, new_bright) terug."
+      },
+      "check": "_rendered_frames > 0",
+      "probes": [
+        {
+          "call": {
+            "name": "react",
+            "args": [
+              256,
+              null,
+              true
+            ],
+            "module": "_event_fixture"
+          },
+          "check": "(_return == (False,True)) and _error is None",
+          "moduleOnly": true,
+          "module": "_event_fixture",
+          "files": {
+            "_event_fixture.py": "import pygame\nimport game\ndef react(kind, key, bright):\n    if key is None:\n        event = pygame.event.Event(kind)\n    else:\n        event = pygame.event.Event(kind, key=key)\n    return game.react(event, bright)\n"
+          }
+        },
+        {
+          "call": {
+            "name": "react",
+            "args": [
+              768,
+              32,
+              false
+            ],
+            "module": "_event_fixture"
+          },
+          "check": "(_return == (True,True)) and _error is None",
+          "moduleOnly": true,
+          "module": "_event_fixture",
+          "files": {
+            "_event_fixture.py": "import pygame\nimport game\ndef react(kind, key, bright):\n    if key is None:\n        event = pygame.event.Event(kind)\n    else:\n        event = pygame.event.Event(kind, key=key)\n    return game.react(event, bright)\n"
+          }
+        },
+        {
+          "call": {
+            "name": "react",
+            "args": [
+              768,
+              32,
+              true
+            ],
+            "module": "_event_fixture"
+          },
+          "check": "(_return == (True,False)) and _error is None",
+          "moduleOnly": true,
+          "module": "_event_fixture",
+          "files": {
+            "_event_fixture.py": "import pygame\nimport game\ndef react(kind, key, bright):\n    if key is None:\n        event = pygame.event.Event(kind)\n    else:\n        event = pygame.event.Event(kind, key=key)\n    return game.react(event, bright)\n"
+          }
+        },
+        {
+          "call": {
+            "name": "react",
+            "args": [
+              768,
+              97,
+              false
+            ],
+            "module": "_event_fixture"
+          },
+          "check": "(_return == (True,False)) and _error is None",
+          "moduleOnly": true,
+          "module": "_event_fixture",
+          "files": {
+            "_event_fixture.py": "import pygame\nimport game\ndef react(kind, key, bright):\n    if key is None:\n        event = pygame.event.Event(kind)\n    else:\n        event = pygame.event.Event(kind, key=key)\n    return game.react(event, bright)\n"
+          }
+        },
+        {
+          "call": {
+            "name": "react",
+            "args": [
+              1024,
+              null,
+              true
+            ],
+            "module": "_event_fixture"
+          },
+          "check": "(_return == (True,True)) and _error is None",
+          "moduleOnly": true,
+          "module": "_event_fixture",
+          "files": {
+            "_event_fixture.py": "import pygame\nimport game\ndef react(kind, key, bright):\n    if key is None:\n        event = pygame.event.Event(kind)\n    else:\n        event = pygame.event.Event(kind, key=key)\n    return game.react(event, bright)\n"
+          }
+        },
+        {
+          "call": {
+            "name": "react",
+            "args": [
+              769,
+              32,
+              false
+            ],
+            "module": "_event_fixture"
+          },
+          "check": "(_return == (True,False)) and _error is None",
+          "moduleOnly": true,
+          "module": "_event_fixture",
+          "files": {
+            "_event_fixture.py": "import pygame\nimport game\ndef react(kind, key, bright):\n    if key is None:\n        event = pygame.event.Event(kind)\n    else:\n        event = pygame.event.Event(kind, key=key)\n    return game.react(event, bright)\n"
+          }
+        }
+      ],
+      "hint": {
+        "en": "Inspect the type, read relevant attributes, then return the new state.",
+        "nl": "Bekijk het type, lees passende attributen en geef de nieuwe toestand terug."
+      },
+      "hints": [
+        {
+          "en": "Inspect the type, read relevant attributes, then return the new state.",
+          "nl": "Bekijk het type, lees passende attributen en geef de nieuwe toestand terug."
+        },
+        {
+          "en": "Handle QUIT first. Guard the key comparison with the event type; return unchanged state otherwise.",
+          "nl": "Verwerk QUIT eerst. Bewaak de toetsvergelijking met het gebeurtenistype; geef anders ongewijzigde toestand terug."
+        },
+        {
+          "en": "A small fragment to adapt: `if event.type == pygame.KEYDOWN:`",
+          "nl": "Een klein fragment om aan te passen: `if event.type == pygame.KEYDOWN:`"
+        }
+      ],
+      "feedback": {
+        "en": "Handle QUIT first. Guard the key comparison with the event type; return unchanged state otherwise.",
+        "nl": "Verwerk QUIT eerst. Bewaak de toetsvergelijking met het gebeurtenistype; geef anders ongewijzigde toestand terug."
+      }
+    }
+  ],
+  "solutionNote": {
+    "en": "The type guard prevents reading a missing key. Returning state lets one caller coordinate events and drawing without global variables.",
+    "nl": "De typecontrole voorkomt het lezen van een ontbrekende key. Door toestand terug te geven kan één aanroeper gebeurtenissen en tekenen verbinden zonder globale variabelen."
+  },
+  "inputs": []
+}

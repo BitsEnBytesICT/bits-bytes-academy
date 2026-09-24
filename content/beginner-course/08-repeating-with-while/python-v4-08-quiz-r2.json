@@ -1,0 +1,800 @@
+{
+  "id": "python-v4-08-quiz-r2",
+  "chapter": 8,
+  "group": "python-v4-module-8",
+  "kind": "quiz",
+  "optional": false,
+  "estimatedMinutes": 8,
+  "title": {
+    "en": "Repeating with while: review",
+    "nl": "Herhalen met while: herhaling"
+  },
+  "questions": [
+    {
+      "objectiveIds": [
+        "while"
+      ],
+      "category": "prediction",
+      "prompt": {
+        "en": "What does this program print?",
+        "nl": "Wat drukt dit programma af?"
+      },
+      "code": "count = 0\nwhile count < 3:\n    count += 1\nprint(count)",
+      "answer": "a",
+      "expectedOutput": "3\n",
+      "choices": [
+        {
+          "id": "a",
+          "label": {
+            "en": "3",
+            "nl": "3"
+          },
+          "reason": {
+            "en": "The final update reaches the excluded bound.",
+            "nl": "De laatste update bereikt de uitgesloten grens."
+          }
+        },
+        {
+          "id": "b",
+          "label": {
+            "en": "2",
+            "nl": "2"
+          },
+          "reason": {
+            "en": "The loop tests again after the last increment.",
+            "nl": "De lus test opnieuw na de laatste verhoging."
+          }
+        },
+        {
+          "id": "c",
+          "label": {
+            "en": "0",
+            "nl": "0"
+          },
+          "reason": {
+            "en": "The body updates count each iteration.",
+            "nl": "De inhoud wijzigt count elke iteratie."
+          }
+        }
+      ],
+      "id": "python-v4-08-quiz-r2-a-1",
+      "reviewActivityIds": [
+        "python-v4-08-why-repeat"
+      ]
+    },
+    {
+      "objectiveIds": [
+        "elif"
+      ],
+      "category": "prediction",
+      "prompt": {
+        "en": "What does this program print?",
+        "nl": "Wat drukt dit programma af?"
+      },
+      "code": "score = 10\nif score >= 10:\n    print(\"Gold\")\nelif score >= 0:\n    print(\"Entered\")",
+      "answer": "a",
+      "expectedOutput": "Gold\n",
+      "choices": [
+        {
+          "id": "a",
+          "label": {
+            "en": "Gold",
+            "nl": "Gold"
+          },
+          "reason": {
+            "en": "An if/elif chain selects only its first matching branch.",
+            "nl": "Een if/elif-keten kiest alleen de eerste passende tak."
+          }
+        },
+        {
+          "id": "b",
+          "label": {
+            "en": "Gold\nEntered",
+            "nl": "Gold\nEntered"
+          },
+          "reason": {
+            "en": "An if/elif chain selects only its first matching branch.",
+            "nl": "Een if/elif-keten kiest alleen de eerste passende tak."
+          }
+        },
+        {
+          "id": "c",
+          "label": {
+            "en": "Nothing",
+            "nl": "Nothing"
+          },
+          "reason": {
+            "en": "An if/elif chain selects only its first matching branch.",
+            "nl": "Een if/elif-keten kiest alleen de eerste passende tak."
+          }
+        }
+      ],
+      "id": "python-v4-08-quiz-r2-a-2",
+      "reviewActivityIds": [
+        "python-v4-07-elif"
+      ]
+    },
+    {
+      "objectiveIds": [
+        "break"
+      ],
+      "category": "completion",
+      "prompt": {
+        "en": "Complete the code to produce the shown output.",
+        "nl": "Vul de code aan om de getoonde uitvoer te maken."
+      },
+      "code": "while True:\n    print(\"3\")\n    ___",
+      "answer": "a",
+      "choices": [
+        {
+          "id": "a",
+          "label": {
+            "en": "break",
+            "nl": "break"
+          },
+          "reason": {
+            "en": "break leaves the loop; continue would repeat it.",
+            "nl": "break verlaat de lus; continue zou herhalen."
+          }
+        },
+        {
+          "id": "b",
+          "label": {
+            "en": "continue",
+            "nl": "continue"
+          },
+          "reason": {
+            "en": "Using continue here produces RuntimeError or exceeds the short execution limit. break leaves the loop; continue would repeat it.",
+            "nl": "Met continue ontstaat hier RuntimeError of wordt de korte uitvoeringslimiet overschreden. break verlaat de lus; continue zou herhalen."
+          }
+        },
+        {
+          "id": "c",
+          "label": {
+            "en": "True",
+            "nl": "True"
+          },
+          "reason": {
+            "en": "Using True here produces RuntimeError or exceeds the short execution limit. break leaves the loop; continue would repeat it.",
+            "nl": "Met True ontstaat hier RuntimeError of wordt de korte uitvoeringslimiet overschreden. break verlaat de lus; continue zou herhalen."
+          }
+        }
+      ],
+      "codeBlank": {
+        "prompt": {
+          "en": "Complete the code to produce the shown output.",
+          "nl": "Vul de code aan om de getoonde uitvoer te maken."
+        },
+        "segments": [
+          "while True:\n    print(\"3\")\n    ",
+          ""
+        ],
+        "tokens": [
+          {
+            "id": "token-1",
+            "code": "break"
+          },
+          {
+            "id": "token-2",
+            "code": "continue",
+            "reason": {
+              "en": "Using continue here produces RuntimeError or exceeds the short execution limit. break leaves the loop; continue would repeat it.",
+              "nl": "Met continue ontstaat hier RuntimeError of wordt de korte uitvoeringslimiet overschreden. break verlaat de lus; continue zou herhalen."
+            }
+          },
+          {
+            "id": "token-3",
+            "code": "True",
+            "reason": {
+              "en": "Using True here produces RuntimeError or exceeds the short execution limit. break leaves the loop; continue would repeat it.",
+              "nl": "Met True ontstaat hier RuntimeError of wordt de korte uitvoeringslimiet overschreden. break verlaat de lus; continue zou herhalen."
+            }
+          }
+        ],
+        "blanks": [
+          {
+            "answer": "break",
+            "reason": {
+              "en": "break leaves the loop; continue would repeat it.",
+              "nl": "break verlaat de lus; continue zou herhalen."
+            }
+          }
+        ],
+        "output": "3\n"
+      },
+      "id": "python-v4-08-quiz-r2-a-3",
+      "reviewActivityIds": [
+        "python-v4-08-break"
+      ]
+    },
+    {
+      "objectiveIds": [
+        "inclusive-comparisons"
+      ],
+      "category": "completion",
+      "prompt": {
+        "en": "Complete the code to produce the shown output.",
+        "nl": "Vul de code aan om de getoonde uitvoer te maken."
+      },
+      "code": "age = 12\nif age ___ 12:\n    print(\"Allowed\")",
+      "answer": "a",
+      "choices": [
+        {
+          "id": "a",
+          "label": {
+            "en": ">=",
+            "nl": ">="
+          },
+          "reason": {
+            "en": "Follow the operation and its input type, then compare the exact result shown.",
+            "nl": "Volg de bewerking en het invoertype en vergelijk daarna het precieze getoonde resultaat."
+          }
+        },
+        {
+          "id": "b",
+          "label": {
+            "en": ">",
+            "nl": ">"
+          },
+          "reason": {
+            "en": "Using > prints \"\"; the required output is \"Allowed\\n\". Follow the operation and its input type, then compare the exact result shown.",
+            "nl": "Met > wordt \"\" afgedrukt; de vereiste uitvoer is \"Allowed\\n\". Volg de bewerking en het invoertype en vergelijk daarna het precieze getoonde resultaat."
+          }
+        },
+        {
+          "id": "c",
+          "label": {
+            "en": "<",
+            "nl": "<"
+          },
+          "reason": {
+            "en": "Using < prints \"\"; the required output is \"Allowed\\n\". Follow the operation and its input type, then compare the exact result shown.",
+            "nl": "Met < wordt \"\" afgedrukt; de vereiste uitvoer is \"Allowed\\n\". Volg de bewerking en het invoertype en vergelijk daarna het precieze getoonde resultaat."
+          }
+        }
+      ],
+      "codeBlank": {
+        "prompt": {
+          "en": "Complete the code to produce the shown output.",
+          "nl": "Vul de code aan om de getoonde uitvoer te maken."
+        },
+        "segments": [
+          "age = 12\nif age ",
+          " 12:\n    print(\"Allowed\")"
+        ],
+        "tokens": [
+          {
+            "id": "token-1",
+            "code": ">="
+          },
+          {
+            "id": "token-2",
+            "code": ">",
+            "reason": {
+              "en": "Using > prints \"\"; the required output is \"Allowed\\n\". Follow the operation and its input type, then compare the exact result shown.",
+              "nl": "Met > wordt \"\" afgedrukt; de vereiste uitvoer is \"Allowed\\n\". Volg de bewerking en het invoertype en vergelijk daarna het precieze getoonde resultaat."
+            }
+          },
+          {
+            "id": "token-3",
+            "code": "<",
+            "reason": {
+              "en": "Using < prints \"\"; the required output is \"Allowed\\n\". Follow the operation and its input type, then compare the exact result shown.",
+              "nl": "Met < wordt \"\" afgedrukt; de vereiste uitvoer is \"Allowed\\n\". Volg de bewerking en het invoertype en vergelijk daarna het precieze getoonde resultaat."
+            }
+          }
+        ],
+        "blanks": [
+          {
+            "answer": ">=",
+            "reason": {
+              "en": "Follow the operation and its input type, then compare the exact result shown.",
+              "nl": "Volg de bewerking en het invoertype en vergelijk daarna het precieze getoonde resultaat."
+            }
+          }
+        ],
+        "output": "Allowed\n"
+      },
+      "id": "python-v4-08-quiz-r2-a-4",
+      "reviewActivityIds": [
+        "python-v4-06-inclusive-boundaries"
+      ]
+    },
+    {
+      "objectiveIds": [
+        "infinite-loops"
+      ],
+      "category": "debugging",
+      "prompt": {
+        "en": "Choose the repair or test that addresses the stated problem.",
+        "nl": "Kies de reparatie of test die het beschreven probleem aanpakt."
+      },
+      "code": "count = 0\nwhile count < 3:\n    print(count)",
+      "answer": "a",
+      "choices": [
+        {
+          "id": "a",
+          "label": {
+            "en": "Increment count inside the loop.",
+            "nl": "Verhoog count binnen de lus."
+          },
+          "reason": {
+            "en": "The condition must eventually change to False.",
+            "nl": "De voorwaarde moet uiteindelijk False worden."
+          }
+        },
+        {
+          "id": "b",
+          "label": {
+            "en": "Increment count after the loop.",
+            "nl": "Verhoog count na de lus."
+          },
+          "reason": {
+            "en": "That statement is never reached while the loop is stuck.",
+            "nl": "Die instructie wordt bij een vastgelopen lus nooit bereikt."
+          }
+        },
+        {
+          "id": "c",
+          "label": {
+            "en": "Add another print.",
+            "nl": "Voeg nog een print toe."
+          },
+          "reason": {
+            "en": "Output does not change the condition.",
+            "nl": "Uitvoer verandert de voorwaarde niet."
+          }
+        }
+      ],
+      "id": "python-v4-08-quiz-r2-a-5",
+      "reviewActivityIds": [
+        "python-v4-08-stop-endless-loop"
+      ]
+    },
+    {
+      "objectiveIds": [
+        "continue"
+      ],
+      "category": "application",
+      "prompt": {
+        "en": "Which statement or test fits this example?",
+        "nl": "Welke uitspraak of test past bij dit voorbeeld?"
+      },
+      "code": "i = 0\nwhile i < 3:\n    i += 1\n    if i == 2:\n        continue\n    print(i)",
+      "answer": "a",
+      "choices": [
+        {
+          "id": "a",
+          "label": {
+            "en": "Only the remaining body for i = 2 is skipped.",
+            "nl": "Alleen de resterende inhoud voor i = 2 wordt overgeslagen."
+          },
+          "reason": {
+            "en": "continue starts the next iteration.",
+            "nl": "continue begint de volgende iteratie."
+          }
+        },
+        {
+          "id": "b",
+          "label": {
+            "en": "The whole program stops at 2.",
+            "nl": "Het hele programma stopt bij 2."
+          },
+          "reason": {
+            "en": "continue does not stop the loop or program.",
+            "nl": "continue stopt de lus of het programma niet."
+          }
+        },
+        {
+          "id": "c",
+          "label": {
+            "en": "The increment is undone.",
+            "nl": "De verhoging wordt ongedaan gemaakt."
+          },
+          "reason": {
+            "en": "Earlier statements are not reversed.",
+            "nl": "Eerdere instructies worden niet teruggedraaid."
+          }
+        }
+      ],
+      "id": "python-v4-08-quiz-r2-a-6",
+      "reviewActivityIds": [
+        "python-v4-08-continue"
+      ]
+    }
+  ],
+  "alternateQuestions": [
+    {
+      "objectiveIds": [
+        "while"
+      ],
+      "category": "prediction",
+      "prompt": {
+        "en": "What does this program print?",
+        "nl": "Wat drukt dit programma af?"
+      },
+      "code": "count = 0\nwhile count < 4:\n    count += 1\nprint(count)",
+      "answer": "a",
+      "expectedOutput": "4\n",
+      "choices": [
+        {
+          "id": "a",
+          "label": {
+            "en": "4",
+            "nl": "4"
+          },
+          "reason": {
+            "en": "The final update reaches the excluded bound.",
+            "nl": "De laatste update bereikt de uitgesloten grens."
+          }
+        },
+        {
+          "id": "b",
+          "label": {
+            "en": "3",
+            "nl": "3"
+          },
+          "reason": {
+            "en": "The loop tests again after the last increment.",
+            "nl": "De lus test opnieuw na de laatste verhoging."
+          }
+        },
+        {
+          "id": "c",
+          "label": {
+            "en": "0",
+            "nl": "0"
+          },
+          "reason": {
+            "en": "The body updates count each iteration.",
+            "nl": "De inhoud wijzigt count elke iteratie."
+          }
+        }
+      ],
+      "id": "python-v4-08-quiz-r2-b-1",
+      "reviewActivityIds": [
+        "python-v4-08-why-repeat"
+      ]
+    },
+    {
+      "objectiveIds": [
+        "elif"
+      ],
+      "category": "prediction",
+      "prompt": {
+        "en": "What does this program print?",
+        "nl": "Wat drukt dit programma af?"
+      },
+      "code": "score = 0\nif score >= 10:\n    print(\"Gold\")\nelif score >= 0:\n    print(\"Entered\")",
+      "answer": "a",
+      "expectedOutput": "Entered\n",
+      "choices": [
+        {
+          "id": "a",
+          "label": {
+            "en": "Entered",
+            "nl": "Entered"
+          },
+          "reason": {
+            "en": "An if/elif chain selects only its first matching branch.",
+            "nl": "Een if/elif-keten kiest alleen de eerste passende tak."
+          }
+        },
+        {
+          "id": "b",
+          "label": {
+            "en": "Gold\nEntered",
+            "nl": "Gold\nEntered"
+          },
+          "reason": {
+            "en": "An if/elif chain selects only its first matching branch.",
+            "nl": "Een if/elif-keten kiest alleen de eerste passende tak."
+          }
+        },
+        {
+          "id": "c",
+          "label": {
+            "en": "Nothing",
+            "nl": "Nothing"
+          },
+          "reason": {
+            "en": "An if/elif chain selects only its first matching branch.",
+            "nl": "Een if/elif-keten kiest alleen de eerste passende tak."
+          }
+        }
+      ],
+      "id": "python-v4-08-quiz-r2-b-2",
+      "reviewActivityIds": [
+        "python-v4-07-elif"
+      ]
+    },
+    {
+      "objectiveIds": [
+        "break"
+      ],
+      "category": "completion",
+      "prompt": {
+        "en": "Complete the code to produce the shown output.",
+        "nl": "Vul de code aan om de getoonde uitvoer te maken."
+      },
+      "code": "while True:\n    print(\"4\")\n    ___",
+      "answer": "a",
+      "choices": [
+        {
+          "id": "a",
+          "label": {
+            "en": "break",
+            "nl": "break"
+          },
+          "reason": {
+            "en": "break leaves the loop; continue would repeat it.",
+            "nl": "break verlaat de lus; continue zou herhalen."
+          }
+        },
+        {
+          "id": "b",
+          "label": {
+            "en": "continue",
+            "nl": "continue"
+          },
+          "reason": {
+            "en": "Using continue here produces RuntimeError or exceeds the short execution limit. break leaves the loop; continue would repeat it.",
+            "nl": "Met continue ontstaat hier RuntimeError of wordt de korte uitvoeringslimiet overschreden. break verlaat de lus; continue zou herhalen."
+          }
+        },
+        {
+          "id": "c",
+          "label": {
+            "en": "True",
+            "nl": "True"
+          },
+          "reason": {
+            "en": "Using True here produces RuntimeError or exceeds the short execution limit. break leaves the loop; continue would repeat it.",
+            "nl": "Met True ontstaat hier RuntimeError of wordt de korte uitvoeringslimiet overschreden. break verlaat de lus; continue zou herhalen."
+          }
+        }
+      ],
+      "codeBlank": {
+        "prompt": {
+          "en": "Complete the code to produce the shown output.",
+          "nl": "Vul de code aan om de getoonde uitvoer te maken."
+        },
+        "segments": [
+          "while True:\n    print(\"4\")\n    ",
+          ""
+        ],
+        "tokens": [
+          {
+            "id": "token-1",
+            "code": "break"
+          },
+          {
+            "id": "token-2",
+            "code": "continue",
+            "reason": {
+              "en": "Using continue here produces RuntimeError or exceeds the short execution limit. break leaves the loop; continue would repeat it.",
+              "nl": "Met continue ontstaat hier RuntimeError of wordt de korte uitvoeringslimiet overschreden. break verlaat de lus; continue zou herhalen."
+            }
+          },
+          {
+            "id": "token-3",
+            "code": "True",
+            "reason": {
+              "en": "Using True here produces RuntimeError or exceeds the short execution limit. break leaves the loop; continue would repeat it.",
+              "nl": "Met True ontstaat hier RuntimeError of wordt de korte uitvoeringslimiet overschreden. break verlaat de lus; continue zou herhalen."
+            }
+          }
+        ],
+        "blanks": [
+          {
+            "answer": "break",
+            "reason": {
+              "en": "break leaves the loop; continue would repeat it.",
+              "nl": "break verlaat de lus; continue zou herhalen."
+            }
+          }
+        ],
+        "output": "4\n"
+      },
+      "id": "python-v4-08-quiz-r2-b-3",
+      "reviewActivityIds": [
+        "python-v4-08-break"
+      ]
+    },
+    {
+      "objectiveIds": [
+        "inclusive-comparisons"
+      ],
+      "category": "completion",
+      "prompt": {
+        "en": "Complete the code to produce the shown output.",
+        "nl": "Vul de code aan om de getoonde uitvoer te maken."
+      },
+      "code": "age = 12\nif age ___ 12:\n    print(\"Allowed\")",
+      "answer": "a",
+      "choices": [
+        {
+          "id": "a",
+          "label": {
+            "en": "==",
+            "nl": "=="
+          },
+          "reason": {
+            "en": "Follow the operation and its input type, then compare the exact result shown.",
+            "nl": "Volg de bewerking en het invoertype en vergelijk daarna het precieze getoonde resultaat."
+          }
+        },
+        {
+          "id": "b",
+          "label": {
+            "en": ">",
+            "nl": ">"
+          },
+          "reason": {
+            "en": "Using > prints \"\"; the required output is \"Allowed\\n\". Follow the operation and its input type, then compare the exact result shown.",
+            "nl": "Met > wordt \"\" afgedrukt; de vereiste uitvoer is \"Allowed\\n\". Volg de bewerking en het invoertype en vergelijk daarna het precieze getoonde resultaat."
+          }
+        },
+        {
+          "id": "c",
+          "label": {
+            "en": "<",
+            "nl": "<"
+          },
+          "reason": {
+            "en": "Using < prints \"\"; the required output is \"Allowed\\n\". Follow the operation and its input type, then compare the exact result shown.",
+            "nl": "Met < wordt \"\" afgedrukt; de vereiste uitvoer is \"Allowed\\n\". Volg de bewerking en het invoertype en vergelijk daarna het precieze getoonde resultaat."
+          }
+        }
+      ],
+      "codeBlank": {
+        "prompt": {
+          "en": "Complete the code to produce the shown output.",
+          "nl": "Vul de code aan om de getoonde uitvoer te maken."
+        },
+        "segments": [
+          "age = 12\nif age ",
+          " 12:\n    print(\"Allowed\")"
+        ],
+        "tokens": [
+          {
+            "id": "token-1",
+            "code": "=="
+          },
+          {
+            "id": "token-2",
+            "code": ">",
+            "reason": {
+              "en": "Using > prints \"\"; the required output is \"Allowed\\n\". Follow the operation and its input type, then compare the exact result shown.",
+              "nl": "Met > wordt \"\" afgedrukt; de vereiste uitvoer is \"Allowed\\n\". Volg de bewerking en het invoertype en vergelijk daarna het precieze getoonde resultaat."
+            }
+          },
+          {
+            "id": "token-3",
+            "code": "<",
+            "reason": {
+              "en": "Using < prints \"\"; the required output is \"Allowed\\n\". Follow the operation and its input type, then compare the exact result shown.",
+              "nl": "Met < wordt \"\" afgedrukt; de vereiste uitvoer is \"Allowed\\n\". Volg de bewerking en het invoertype en vergelijk daarna het precieze getoonde resultaat."
+            }
+          }
+        ],
+        "blanks": [
+          {
+            "answer": "==",
+            "reason": {
+              "en": "Follow the operation and its input type, then compare the exact result shown.",
+              "nl": "Volg de bewerking en het invoertype en vergelijk daarna het precieze getoonde resultaat."
+            }
+          }
+        ],
+        "output": "Allowed\n"
+      },
+      "id": "python-v4-08-quiz-r2-b-4",
+      "reviewActivityIds": [
+        "python-v4-06-inclusive-boundaries"
+      ]
+    },
+    {
+      "objectiveIds": [
+        "infinite-loops"
+      ],
+      "category": "debugging",
+      "prompt": {
+        "en": "Choose the repair or test that addresses the stated problem.",
+        "nl": "Kies de reparatie of test die het beschreven probleem aanpakt."
+      },
+      "code": "count = 0\nwhile count < 4:\n    print(count)",
+      "answer": "a",
+      "choices": [
+        {
+          "id": "a",
+          "label": {
+            "en": "Increment count inside the loop.",
+            "nl": "Verhoog count binnen de lus."
+          },
+          "reason": {
+            "en": "The condition must eventually change to False.",
+            "nl": "De voorwaarde moet uiteindelijk False worden."
+          }
+        },
+        {
+          "id": "b",
+          "label": {
+            "en": "Increment count after the loop.",
+            "nl": "Verhoog count na de lus."
+          },
+          "reason": {
+            "en": "That statement is never reached while the loop is stuck.",
+            "nl": "Die instructie wordt bij een vastgelopen lus nooit bereikt."
+          }
+        },
+        {
+          "id": "c",
+          "label": {
+            "en": "Add another print.",
+            "nl": "Voeg nog een print toe."
+          },
+          "reason": {
+            "en": "Output does not change the condition.",
+            "nl": "Uitvoer verandert de voorwaarde niet."
+          }
+        }
+      ],
+      "id": "python-v4-08-quiz-r2-b-5",
+      "reviewActivityIds": [
+        "python-v4-08-stop-endless-loop"
+      ]
+    },
+    {
+      "objectiveIds": [
+        "continue"
+      ],
+      "category": "application",
+      "prompt": {
+        "en": "Which statement or test fits this example?",
+        "nl": "Welke uitspraak of test past bij dit voorbeeld?"
+      },
+      "code": "i = 0\nwhile i < 4:\n    i += 1\n    if i == 2:\n        continue\n    print(i)",
+      "answer": "a",
+      "choices": [
+        {
+          "id": "a",
+          "label": {
+            "en": "Only the remaining body for i = 2 is skipped.",
+            "nl": "Alleen de resterende inhoud voor i = 2 wordt overgeslagen."
+          },
+          "reason": {
+            "en": "continue starts the next iteration.",
+            "nl": "continue begint de volgende iteratie."
+          }
+        },
+        {
+          "id": "b",
+          "label": {
+            "en": "The whole program stops at 2.",
+            "nl": "Het hele programma stopt bij 2."
+          },
+          "reason": {
+            "en": "continue does not stop the loop or program.",
+            "nl": "continue stopt de lus of het programma niet."
+          }
+        },
+        {
+          "id": "c",
+          "label": {
+            "en": "The increment is undone.",
+            "nl": "De verhoging wordt ongedaan gemaakt."
+          },
+          "reason": {
+            "en": "Earlier statements are not reversed.",
+            "nl": "Eerdere instructies worden niet teruggedraaid."
+          }
+        }
+      ],
+      "id": "python-v4-08-quiz-r2-b-6",
+      "reviewActivityIds": [
+        "python-v4-08-continue"
+      ]
+    }
+  ]
+}

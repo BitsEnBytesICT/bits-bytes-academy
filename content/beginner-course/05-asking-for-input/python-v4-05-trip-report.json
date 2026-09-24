@@ -63,14 +63,15 @@
     },
     {
       "id": "python-v4-05-trip-report-experiment",
+      "role": "experiment",
       "topicIds": [],
       "heading": {
-        "en": "Try one change",
-        "nl": "Probeer één wijziging"
+        "en": "After completing the task: try one change",
+        "nl": "Na het afronden: probeer één wijziging"
       },
       "body": {
-        "en": "Try a new destination and a fractional distance. Explain the four stages of the conversation.",
-        "nl": "Probeer een nieuwe bestemming en een afstand met een breukdeel. Leg de vier stappen van het gesprek uit."
+        "en": "You have made a working make an interactive trip report. Try a new destination and a fractional distance. Explain the four stages of the conversation.",
+        "nl": "Je hebt een werkend programma gemaakt: maak een interactief reisverslag. Probeer een nieuwe bestemming en een afstand met een breukdeel. Leg de vier stappen van het gesprek uit."
       }
     }
   ],
@@ -84,10 +85,7 @@
     {
       "id": "python-v4-05-trip-report-step-1",
       "objectiveIds": [
-        "input-review",
-        "input",
-        "conversion",
-        "f-strings"
+        "input-review"
       ],
       "task": {
         "en": "Ask Destination: for destination and Kilometres: for a float named km.",
@@ -136,10 +134,7 @@
     {
       "id": "python-v4-05-trip-report-step-2",
       "objectiveIds": [
-        "input-review",
-        "input",
-        "conversion",
-        "f-strings"
+        "input-review"
       ],
       "task": {
         "en": "Calculate metres and print a report such as \"Park: 1500.0 m\".",
@@ -193,19 +188,5 @@
   "inputs": [
     "Park",
     "1.5"
-  ],
-  "retrievals": [
-    {
-      "id": "recall-python-v4-03-short-updates",
-      "sourceActivityId": "python-v4-03-short-updates",
-      "objectiveIds": [
-        "plus-equals",
-        "minus-equals"
-      ],
-      "prompt": {
-        "en": "Recall “The += and -= shortcuts”. What is score after each update? Try the earlier example from memory, then check it. Replace += with =+ temporarily and trace the changed result. Restore += afterward.",
-        "nl": "Haal “De afkortingen += en -=” terug. Wat is score na elke wijziging? Probeer het eerdere voorbeeld uit je geheugen en controleer daarna. Vervang += tijdelijk door =+ en volg het veranderde resultaat. Herstel daarna +=."
-      }
-    }
   ]
 }

@@ -51,10 +51,11 @@
     },
     {
       "id": "python-v4-06-not-experiment",
+      "role": "experiment",
       "topicIds": [],
       "heading": {
-        "en": "Try one change",
-        "nl": "Probeer één wijziging"
+        "en": "After completing the task: try one change",
+        "nl": "Na het afronden: probeer één wijziging"
       },
       "body": {
         "en": "Set paused to False and trace both values.",
@@ -119,14 +120,27 @@
     {
       "id": "python-v4-06-not-step-2",
       "objectiveIds": [
-        "not"
+        "print"
       ],
       "task": {
         "en": "Print the Boolean result.",
         "nl": "Druk het booleaanse resultaat af."
       },
       "check": "_stdout.strip() == str(result)",
-      "probes": [],
+      "probes": [
+        {
+          "inputs": {
+            "paused": false
+          },
+          "check": "type(result) is bool and _stdout.strip() == str(not paused)"
+        },
+        {
+          "inputs": {
+            "paused": true
+          },
+          "check": "type(result) is bool and _stdout.strip() == str(not paused)"
+        }
+      ],
       "hint": {
         "en": "not reverses the truth value of its condition.",
         "nl": "not keert de waarheidswaarde van een voorwaarde om."

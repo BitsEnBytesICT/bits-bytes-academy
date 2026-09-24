@@ -65,10 +65,11 @@
     },
     {
       "id": "python-v4-16-held-controls-experiment",
+      "role": "experiment",
       "topicIds": [],
       "heading": {
-        "en": "Try one change",
-        "nl": "Probeer één wijziging"
+        "en": "After completing the task: try one change",
+        "nl": "Na het afronden: probeer één wijziging"
       },
       "body": {
         "en": "Hold W and Down simultaneously in the preview. Both paddles should move.",
@@ -181,16 +182,18 @@
   "inputs": [],
   "retrievals": [
     {
-      "id": "recall-python-v4-14-selected-and-alias",
-      "sourceActivityId": "python-v4-14-selected-and-alias",
+      "id": "recall-python-v4-15-events",
+      "sourceActivityId": "python-v4-15-events",
       "objectiveIds": [
-        "selected-imports",
-        "aliases"
+        "events",
+        "keyboard-events",
+        "closing-window"
       ],
       "prompt": {
-        "en": "Recall “Import a function or choose an alias”. Why is math.ceil unavailable under the name math in this example? Try the earlier example from memory, then check it. Change both inputs to -3.8 and predict floor versus ceiling.",
-        "nl": "Haal “Importeer een functie of kies een alias” terug. Waarom is math.ceil in dit voorbeeld niet beschikbaar onder de naam math? Probeer het eerdere voorbeeld uit je geheugen en controleer daarna. Verander beide invoerwaarden naar -3.8 en voorspel omlaag versus omhoog afronden."
-      }
+        "en": "Recall respond to a key press. Why should key only be read for a keyboard event? Press and release Space twice; explain the two state changes.",
+        "nl": "Herhaal reageer op een toetsdruk. Waarom hoort key alleen bij een toetsenbordgebeurtenis gelezen te worden? Druk Space tweemaal in en laat los; leg de twee toestandsveranderingen uit."
+      },
+      "code": "import pygame\nevent = pygame.event.Event(pygame.KEYDOWN, key=pygame.K_SPACE)\nprint(event.type == pygame.KEYDOWN)\nprint(event.key == pygame.K_SPACE)"
     }
   ]
 }

@@ -20,6 +20,14 @@ export function createApp(db = openDatabase(), courseOverride?: Course) {
       ),
     ),
   );
+  legacy.push(
+    JSON.parse(
+      fs.readFileSync(
+        path.resolve("content/legacy/course-v4-original-quizzes.json"),
+        "utf8",
+      ),
+    ),
+  );
   const app = express();
   app.disable("x-powered-by");
   app.use((q, s, next) => {

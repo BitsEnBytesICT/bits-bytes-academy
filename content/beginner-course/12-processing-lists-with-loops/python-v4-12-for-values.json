@@ -53,11 +53,26 @@
       }
     },
     {
-      "id": "python-v4-12-for-values-experiment",
+      "id": "python-v4-12-for-values-try-calls",
+      "role": "practice",
       "topicIds": [],
       "heading": {
-        "en": "Try one change",
-        "nl": "Probeer één wijziging"
+        "en": "See your function work",
+        "nl": "Bekijk wat je functie doet"
+      },
+      "body": {
+        "en": "A definition alone produces no output. After writing the function, add these calls underneath it in main.py, without indentation, and Run. Compare the returned values with the task's requirements. The checks also call your function with other inputs; they do not require you to keep these demonstration calls.",
+        "nl": "Een definitie alleen geeft geen uitvoer. Schrijf eerst de functie en voeg daarna deze aanroepen eronder toe in main.py, zonder inspringing. Klik op Uitvoeren. Vergelijk de teruggegeven waarden met de opdracht. De controles roepen je functie ook met andere invoer aan; deze demonstratieaanroepen zijn niet verplicht."
+      },
+      "code": "print(total([2, -1, 4]))\nprint(total([]))"
+    },
+    {
+      "id": "python-v4-12-for-values-experiment",
+      "role": "experiment",
+      "topicIds": [],
+      "heading": {
+        "en": "After completing the task: try one change",
+        "nl": "Na het afronden: probeer één wijziging"
       },
       "body": {
         "en": "Trace the accumulator after each element of [3, 0, -2].",
@@ -79,8 +94,8 @@
         "list-iteration"
       ],
       "task": {
-        "en": "Use a for loop to return the sum of values; return 0 for an empty list.",
-        "nl": "Gebruik een for-lus om de som van values terug te geven; geef 0 bij een lege lijst."
+        "en": "Write total(values) in main.py. Use a for loop to return the sum of values; return 0 for an empty list.",
+        "nl": "Schrijf total(values) in main.py. Gebruik een for-lus om de som van values terug te geven; geef 0 bij een lege lijst."
       },
       "check": "any(isinstance(n,_ast.For) for n in _ast.walk(_ast.parse(_source)))",
       "probes": [
@@ -138,17 +153,29 @@
   "inputs": [],
   "retrievals": [
     {
-      "id": "recall-python-v4-10-diagnose",
-      "sourceActivityId": "python-v4-10-diagnose",
+      "id": "recall-python-v4-08-accumulate",
+      "sourceActivityId": "python-v4-08-accumulate",
       "objectiveIds": [
-        "runtime-errors",
-        "logic-errors",
-        "tracebacks"
+        "accumulators"
       ],
       "prompt": {
-        "en": "Recall “Name the kind of mistake”. Which operator preserves the fractional average? Try the earlier example from memory, then check it. Explain why changing the test from 7/2 to 8/2 could hide this bug.",
-        "nl": "Haal “Benoem het soort fout” terug. Welke operator bewaart het gebroken gemiddelde? Probeer het eerdere voorbeeld uit je geheugen en controleer daarna. Leg uit waarom een test met 8/2 in plaats van 7/2 deze fout kan verbergen."
-      }
+        "en": "Recall keep a running total. What is total just after adding 2? Temporarily move total = 0 into the body. Predict why the accumulated history disappears.",
+        "nl": "Herhaal houd een lopend totaal bij. Wat is total direct nadat 2 is toegevoegd? Verplaats total = 0 tijdelijk naar het blok. Voorspel waarom de opgebouwde geschiedenis verdwijnt."
+      },
+      "code": "number = 1\ntotal = 0\nwhile number <= 3:\n    total += number\n    number += 1\nprint(total)"
+    },
+    {
+      "id": "recall-python-v4-11-create",
+      "sourceActivityId": "python-v4-11-create",
+      "objectiveIds": [
+        "lists",
+        "list-contents"
+      ],
+      "prompt": {
+        "en": "Recall keep several values in a list. How many elements are in this list? Swap two elements and explain why this changes the record.",
+        "nl": "Herhaal bewaar meerdere waarden in een lijst. Hoeveel elementen staan in deze lijst? Wissel twee elementen om en leg uit waarom dit het record verandert."
+      },
+      "code": "record = [\"Bo\", 8, True]\nprint(record)"
     }
   ]
 }

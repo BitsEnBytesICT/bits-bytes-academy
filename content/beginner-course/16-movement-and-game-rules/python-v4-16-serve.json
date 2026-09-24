@@ -75,10 +75,11 @@
     },
     {
       "id": "python-v4-16-serve-experiment",
+      "role": "experiment",
       "topicIds": [],
       "heading": {
-        "en": "Try one change",
-        "nl": "Probeer één wijziging"
+        "en": "After completing the task: try one change",
+        "nl": "Na het afronden: probeer één wijziging"
       },
       "body": {
         "en": "Click outside the preview, return focus, and serve again. Stop, then start a fresh run.",
@@ -100,10 +101,7 @@
       "objectiveIds": [
         "serving",
         "game-state",
-        "game-review",
-        "events",
-        "velocity",
-        "scoring"
+        "game-review"
       ],
       "task": {
         "en": "Return velocity 180 only when the ball is waiting and Space was pressed; otherwise preserve vx.",
@@ -192,18 +190,5 @@
     "en": "The guard restricts serving to a waiting ball, preserving an active rally.",
     "nl": "De bewaking beperkt serveren tot een wachtende bal en bewaart een actieve rally."
   },
-  "inputs": [],
-  "retrievals": [
-    {
-      "id": "recall-python-v4-14-guessing-game",
-      "sourceActivityId": "python-v4-14-guessing-game",
-      "objectiveIds": [
-        "guessing-project"
-      ],
-      "prompt": {
-        "en": "Recall “Mini project: number-guessing game”. Which comparison handles an exact match? Try the earlier example from memory, then check it. Play with a range of 1–20 by editing only the supplied caller.",
-        "nl": "Haal “Miniproject: raad het getal” terug. Welke vergelijking verwerkt een exacte overeenkomst? Probeer het eerdere voorbeeld uit je geheugen en controleer daarna. Speel met een bereik van 1–20 door alleen de aangeleverde aanroeper te wijzigen."
-      }
-    }
-  ]
+  "inputs": []
 }

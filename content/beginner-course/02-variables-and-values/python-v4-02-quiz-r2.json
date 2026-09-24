@@ -1,0 +1,800 @@
+{
+  "id": "python-v4-02-quiz-r2",
+  "chapter": 2,
+  "group": "python-v4-module-2",
+  "kind": "quiz",
+  "optional": false,
+  "estimatedMinutes": 8,
+  "title": {
+    "en": "Variables and values: review",
+    "nl": "Variabelen en waarden: herhaling"
+  },
+  "questions": [
+    {
+      "objectiveIds": [
+        "reassignment"
+      ],
+      "category": "prediction",
+      "prompt": {
+        "en": "What does this program print?",
+        "nl": "Wat drukt dit programma af?"
+      },
+      "code": "score = 5\nscore = 2\nprint(score)",
+      "answer": "a",
+      "expectedOutput": "2\n",
+      "choices": [
+        {
+          "id": "a",
+          "label": {
+            "en": "2",
+            "nl": "2"
+          },
+          "reason": {
+            "en": "The later assignment replaces the value.",
+            "nl": "De latere toewijzing vervangt de waarde."
+          }
+        },
+        {
+          "id": "b",
+          "label": {
+            "en": "5",
+            "nl": "5"
+          },
+          "reason": {
+            "en": "The first value has been replaced before printing.",
+            "nl": "De eerste waarde is vóór afdrukken vervangen."
+          }
+        },
+        {
+          "id": "c",
+          "label": {
+            "en": "5\n2",
+            "nl": "5\n2"
+          },
+          "reason": {
+            "en": "Only one print is called.",
+            "nl": "Er wordt maar één print aangeroepen."
+          }
+        }
+      ],
+      "id": "python-v4-02-quiz-r2-a-1",
+      "reviewActivityIds": [
+        "python-v4-02-reassignment"
+      ]
+    },
+    {
+      "objectiveIds": [
+        "execution-order"
+      ],
+      "category": "prediction",
+      "prompt": {
+        "en": "What does this program print?",
+        "nl": "Wat drukt dit programma af?"
+      },
+      "code": "print(\"Ready\")\nprint(\"Open\")",
+      "answer": "a",
+      "expectedOutput": "Ready\nOpen\n",
+      "choices": [
+        {
+          "id": "a",
+          "label": {
+            "en": "Ready\nOpen",
+            "nl": "Ready\nOpen"
+          },
+          "reason": {
+            "en": "Comments are skipped; each executed print adds one line.",
+            "nl": "Commentaar wordt overgeslagen; elke uitgevoerde print voegt één regel toe."
+          }
+        },
+        {
+          "id": "b",
+          "label": {
+            "en": "Ready Open",
+            "nl": "Ready Open"
+          },
+          "reason": {
+            "en": "Comments are skipped; each executed print adds one line.",
+            "nl": "Commentaar wordt overgeslagen; elke uitgevoerde print voegt één regel toe."
+          }
+        },
+        {
+          "id": "c",
+          "label": {
+            "en": "Closed\nReady",
+            "nl": "Closed\nReady"
+          },
+          "reason": {
+            "en": "Comments are skipped; each executed print adds one line.",
+            "nl": "Commentaar wordt overgeslagen; elke uitgevoerde print voegt één regel toe."
+          }
+        }
+      ],
+      "id": "python-v4-02-quiz-r2-a-2",
+      "reviewActivityIds": [
+        "python-v4-01-print-order"
+      ]
+    },
+    {
+      "objectiveIds": [
+        "variables"
+      ],
+      "category": "completion",
+      "prompt": {
+        "en": "Complete the code to produce the shown output.",
+        "nl": "Vul de code aan om de getoonde uitvoer te maken."
+      },
+      "code": "___ = 5\nprint(score)",
+      "answer": "a",
+      "choices": [
+        {
+          "id": "a",
+          "label": {
+            "en": "score",
+            "nl": "score"
+          },
+          "reason": {
+            "en": "Assignment needs a variable name on the left.",
+            "nl": "Toewijzing heeft links een variabelenaam nodig."
+          }
+        },
+        {
+          "id": "b",
+          "label": {
+            "en": "\"score\"",
+            "nl": "\"score\""
+          },
+          "reason": {
+            "en": "Using \"score\" here produces SyntaxError. Assignment needs a variable name on the left.",
+            "nl": "Met \"score\" ontstaat hier SyntaxError. Toewijzing heeft links een variabelenaam nodig."
+          }
+        },
+        {
+          "id": "c",
+          "label": {
+            "en": "print(score)",
+            "nl": "print(score)"
+          },
+          "reason": {
+            "en": "Using print(score) here produces SyntaxError. Assignment needs a variable name on the left.",
+            "nl": "Met print(score) ontstaat hier SyntaxError. Toewijzing heeft links een variabelenaam nodig."
+          }
+        }
+      ],
+      "codeBlank": {
+        "prompt": {
+          "en": "Complete the code to produce the shown output.",
+          "nl": "Vul de code aan om de getoonde uitvoer te maken."
+        },
+        "segments": [
+          "",
+          " = 5\nprint(score)"
+        ],
+        "tokens": [
+          {
+            "id": "token-1",
+            "code": "score"
+          },
+          {
+            "id": "token-2",
+            "code": "\"score\"",
+            "reason": {
+              "en": "Using \"score\" here produces SyntaxError. Assignment needs a variable name on the left.",
+              "nl": "Met \"score\" ontstaat hier SyntaxError. Toewijzing heeft links een variabelenaam nodig."
+            }
+          },
+          {
+            "id": "token-3",
+            "code": "print(score)",
+            "reason": {
+              "en": "Using print(score) here produces SyntaxError. Assignment needs a variable name on the left.",
+              "nl": "Met print(score) ontstaat hier SyntaxError. Toewijzing heeft links een variabelenaam nodig."
+            }
+          }
+        ],
+        "blanks": [
+          {
+            "answer": "score",
+            "reason": {
+              "en": "Assignment needs a variable name on the left.",
+              "nl": "Toewijzing heeft links een variabelenaam nodig."
+            }
+          }
+        ],
+        "output": "5\n"
+      },
+      "id": "python-v4-02-quiz-r2-a-3",
+      "reviewActivityIds": [
+        "python-v4-02-assignment"
+      ]
+    },
+    {
+      "objectiveIds": [
+        "floats"
+      ],
+      "category": "completion",
+      "prompt": {
+        "en": "Complete the code to produce the shown output.",
+        "nl": "Vul de code aan om de getoonde uitvoer te maken."
+      },
+      "code": "value = ___\nprint(type(value))",
+      "answer": "a",
+      "choices": [
+        {
+          "id": "a",
+          "label": {
+            "en": "5.5",
+            "nl": "5.5"
+          },
+          "reason": {
+            "en": "A decimal point creates a float literal; quotes create a string. type(value) reports the kind of value.",
+            "nl": "Een decimale punt maakt een float; aanhalingstekens maken een string. type(value) toont het soort waarde."
+          }
+        },
+        {
+          "id": "b",
+          "label": {
+            "en": "\"5.5\"",
+            "nl": "\"5.5\""
+          },
+          "reason": {
+            "en": "Using \"5.5\" prints \"<class 'str'>\\n\"; the required output is \"<class 'float'>\\n\". A decimal point creates a float literal; quotes create a string. type(value) reports the kind of value.",
+            "nl": "Met \"5.5\" wordt \"<class 'str'>\\n\" afgedrukt; de vereiste uitvoer is \"<class 'float'>\\n\". Een decimale punt maakt een float; aanhalingstekens maken een string. type(value) toont het soort waarde."
+          }
+        },
+        {
+          "id": "c",
+          "label": {
+            "en": "5",
+            "nl": "5"
+          },
+          "reason": {
+            "en": "Using 5 prints \"<class 'int'>\\n\"; the required output is \"<class 'float'>\\n\". A decimal point creates a float literal; quotes create a string. type(value) reports the kind of value.",
+            "nl": "Met 5 wordt \"<class 'int'>\\n\" afgedrukt; de vereiste uitvoer is \"<class 'float'>\\n\". Een decimale punt maakt een float; aanhalingstekens maken een string. type(value) toont het soort waarde."
+          }
+        }
+      ],
+      "codeBlank": {
+        "prompt": {
+          "en": "Complete the code to produce the shown output.",
+          "nl": "Vul de code aan om de getoonde uitvoer te maken."
+        },
+        "segments": [
+          "value = ",
+          "\nprint(type(value))"
+        ],
+        "tokens": [
+          {
+            "id": "token-1",
+            "code": "5.5"
+          },
+          {
+            "id": "token-2",
+            "code": "\"5.5\"",
+            "reason": {
+              "en": "Using \"5.5\" prints \"<class 'str'>\\n\"; the required output is \"<class 'float'>\\n\". A decimal point creates a float literal; quotes create a string. type(value) reports the kind of value.",
+              "nl": "Met \"5.5\" wordt \"<class 'str'>\\n\" afgedrukt; de vereiste uitvoer is \"<class 'float'>\\n\". Een decimale punt maakt een float; aanhalingstekens maken een string. type(value) toont het soort waarde."
+            }
+          },
+          {
+            "id": "token-3",
+            "code": "5",
+            "reason": {
+              "en": "Using 5 prints \"<class 'int'>\\n\"; the required output is \"<class 'float'>\\n\". A decimal point creates a float literal; quotes create a string. type(value) reports the kind of value.",
+              "nl": "Met 5 wordt \"<class 'int'>\\n\" afgedrukt; de vereiste uitvoer is \"<class 'float'>\\n\". Een decimale punt maakt een float; aanhalingstekens maken een string. type(value) toont het soort waarde."
+            }
+          }
+        ],
+        "blanks": [
+          {
+            "answer": "5.5",
+            "reason": {
+              "en": "A decimal point creates a float literal; quotes create a string. type(value) reports the kind of value.",
+              "nl": "Een decimale punt maakt een float; aanhalingstekens maken een string. type(value) toont het soort waarde."
+            }
+          }
+        ],
+        "output": "<class 'float'>\n"
+      },
+      "id": "python-v4-02-quiz-r2-a-4",
+      "reviewActivityIds": [
+        "python-v4-02-floats"
+      ]
+    },
+    {
+      "objectiveIds": [
+        "name-error"
+      ],
+      "category": "debugging",
+      "prompt": {
+        "en": "Choose the repair or test that addresses the stated problem.",
+        "nl": "Kies de reparatie of test die het beschreven probleem aanpakt."
+      },
+      "code": "animal = \"cat\"\nprint(Animal) # NameError",
+      "answer": "a",
+      "choices": [
+        {
+          "id": "a",
+          "label": {
+            "en": "Use animal with the same case.",
+            "nl": "Gebruik animal met dezelfde letters."
+          },
+          "reason": {
+            "en": "Names are case-sensitive.",
+            "nl": "Namen zijn hoofdlettergevoelig."
+          }
+        },
+        {
+          "id": "b",
+          "label": {
+            "en": "Add quotation marks to Animal.",
+            "nl": "Zet Animal tussen aanhalingstekens."
+          },
+          "reason": {
+            "en": "That prints literal text instead of the stored value.",
+            "nl": "Dat drukt letterlijke tekst af in plaats van de bewaarde waarde."
+          }
+        },
+        {
+          "id": "c",
+          "label": {
+            "en": "Change cat to dog.",
+            "nl": "Verander cat naar dog."
+          },
+          "reason": {
+            "en": "The stored value does not fix the name mismatch.",
+            "nl": "De bewaarde waarde herstelt het naamverschil niet."
+          }
+        }
+      ],
+      "id": "python-v4-02-quiz-r2-a-5",
+      "reviewActivityIds": [
+        "python-v4-02-repair-name"
+      ]
+    },
+    {
+      "objectiveIds": [
+        "variable-vs-literal"
+      ],
+      "category": "application",
+      "prompt": {
+        "en": "Which statement or test fits this example?",
+        "nl": "Welke uitspraak of test past bij dit voorbeeld?"
+      },
+      "code": "name = \"Ada\"\nprint(\"name\")",
+      "answer": "a",
+      "choices": [
+        {
+          "id": "a",
+          "label": {
+            "en": "It prints the literal word name.",
+            "nl": "Het drukt het letterlijke woord name af."
+          },
+          "reason": {
+            "en": "Quoted text is not looked up as a variable.",
+            "nl": "Tekst tussen aanhalingstekens wordt niet als variabele opgezocht."
+          }
+        },
+        {
+          "id": "b",
+          "label": {
+            "en": "It prints the stored person.",
+            "nl": "Het drukt de bewaarde persoon af."
+          },
+          "reason": {
+            "en": "That would require print(name) without quotes.",
+            "nl": "Dat vereist print(name) zonder aanhalingstekens."
+          }
+        },
+        {
+          "id": "c",
+          "label": {
+            "en": "The variable is deleted.",
+            "nl": "De variabele wordt verwijderd."
+          },
+          "reason": {
+            "en": "Printing does not delete assignments.",
+            "nl": "Afdrukken verwijdert geen toewijzingen."
+          }
+        }
+      ],
+      "id": "python-v4-02-quiz-r2-a-6",
+      "reviewActivityIds": [
+        "python-v4-02-name-or-text"
+      ]
+    }
+  ],
+  "alternateQuestions": [
+    {
+      "objectiveIds": [
+        "reassignment"
+      ],
+      "category": "prediction",
+      "prompt": {
+        "en": "What does this program print?",
+        "nl": "Wat drukt dit programma af?"
+      },
+      "code": "score = 8\nscore = 2\nprint(score)",
+      "answer": "a",
+      "expectedOutput": "2\n",
+      "choices": [
+        {
+          "id": "a",
+          "label": {
+            "en": "2",
+            "nl": "2"
+          },
+          "reason": {
+            "en": "The later assignment replaces the value.",
+            "nl": "De latere toewijzing vervangt de waarde."
+          }
+        },
+        {
+          "id": "b",
+          "label": {
+            "en": "8",
+            "nl": "8"
+          },
+          "reason": {
+            "en": "The first value has been replaced before printing.",
+            "nl": "De eerste waarde is vóór afdrukken vervangen."
+          }
+        },
+        {
+          "id": "c",
+          "label": {
+            "en": "8\n2",
+            "nl": "8\n2"
+          },
+          "reason": {
+            "en": "Only one print is called.",
+            "nl": "Er wordt maar één print aangeroepen."
+          }
+        }
+      ],
+      "id": "python-v4-02-quiz-r2-b-1",
+      "reviewActivityIds": [
+        "python-v4-02-reassignment"
+      ]
+    },
+    {
+      "objectiveIds": [
+        "execution-order"
+      ],
+      "category": "prediction",
+      "prompt": {
+        "en": "What does this program print?",
+        "nl": "Wat drukt dit programma af?"
+      },
+      "code": "print(\"Open\")\n# print(\"Closed\")\nprint(\"Ready\")",
+      "answer": "a",
+      "expectedOutput": "Open\nReady\n",
+      "choices": [
+        {
+          "id": "a",
+          "label": {
+            "en": "Open\nReady",
+            "nl": "Open\nReady"
+          },
+          "reason": {
+            "en": "Comments are skipped; each executed print adds one line.",
+            "nl": "Commentaar wordt overgeslagen; elke uitgevoerde print voegt één regel toe."
+          }
+        },
+        {
+          "id": "b",
+          "label": {
+            "en": "Ready Open",
+            "nl": "Ready Open"
+          },
+          "reason": {
+            "en": "Comments are skipped; each executed print adds one line.",
+            "nl": "Commentaar wordt overgeslagen; elke uitgevoerde print voegt één regel toe."
+          }
+        },
+        {
+          "id": "c",
+          "label": {
+            "en": "Closed\nReady",
+            "nl": "Closed\nReady"
+          },
+          "reason": {
+            "en": "Comments are skipped; each executed print adds one line.",
+            "nl": "Commentaar wordt overgeslagen; elke uitgevoerde print voegt één regel toe."
+          }
+        }
+      ],
+      "id": "python-v4-02-quiz-r2-b-2",
+      "reviewActivityIds": [
+        "python-v4-01-print-order"
+      ]
+    },
+    {
+      "objectiveIds": [
+        "variables"
+      ],
+      "category": "completion",
+      "prompt": {
+        "en": "Complete the code to produce the shown output.",
+        "nl": "Vul de code aan om de getoonde uitvoer te maken."
+      },
+      "code": "___ = 8\nprint(score)",
+      "answer": "a",
+      "choices": [
+        {
+          "id": "a",
+          "label": {
+            "en": "score",
+            "nl": "score"
+          },
+          "reason": {
+            "en": "Assignment needs a variable name on the left.",
+            "nl": "Toewijzing heeft links een variabelenaam nodig."
+          }
+        },
+        {
+          "id": "b",
+          "label": {
+            "en": "\"score\"",
+            "nl": "\"score\""
+          },
+          "reason": {
+            "en": "Using \"score\" here produces SyntaxError. Assignment needs a variable name on the left.",
+            "nl": "Met \"score\" ontstaat hier SyntaxError. Toewijzing heeft links een variabelenaam nodig."
+          }
+        },
+        {
+          "id": "c",
+          "label": {
+            "en": "print(score)",
+            "nl": "print(score)"
+          },
+          "reason": {
+            "en": "Using print(score) here produces SyntaxError. Assignment needs a variable name on the left.",
+            "nl": "Met print(score) ontstaat hier SyntaxError. Toewijzing heeft links een variabelenaam nodig."
+          }
+        }
+      ],
+      "codeBlank": {
+        "prompt": {
+          "en": "Complete the code to produce the shown output.",
+          "nl": "Vul de code aan om de getoonde uitvoer te maken."
+        },
+        "segments": [
+          "",
+          " = 8\nprint(score)"
+        ],
+        "tokens": [
+          {
+            "id": "token-1",
+            "code": "score"
+          },
+          {
+            "id": "token-2",
+            "code": "\"score\"",
+            "reason": {
+              "en": "Using \"score\" here produces SyntaxError. Assignment needs a variable name on the left.",
+              "nl": "Met \"score\" ontstaat hier SyntaxError. Toewijzing heeft links een variabelenaam nodig."
+            }
+          },
+          {
+            "id": "token-3",
+            "code": "print(score)",
+            "reason": {
+              "en": "Using print(score) here produces SyntaxError. Assignment needs a variable name on the left.",
+              "nl": "Met print(score) ontstaat hier SyntaxError. Toewijzing heeft links een variabelenaam nodig."
+            }
+          }
+        ],
+        "blanks": [
+          {
+            "answer": "score",
+            "reason": {
+              "en": "Assignment needs a variable name on the left.",
+              "nl": "Toewijzing heeft links een variabelenaam nodig."
+            }
+          }
+        ],
+        "output": "8\n"
+      },
+      "id": "python-v4-02-quiz-r2-b-3",
+      "reviewActivityIds": [
+        "python-v4-02-assignment"
+      ]
+    },
+    {
+      "objectiveIds": [
+        "floats"
+      ],
+      "category": "completion",
+      "prompt": {
+        "en": "Complete the code to produce the shown output.",
+        "nl": "Vul de code aan om de getoonde uitvoer te maken."
+      },
+      "code": "value = ___\nprint(type(value))",
+      "answer": "a",
+      "choices": [
+        {
+          "id": "a",
+          "label": {
+            "en": "8.5",
+            "nl": "8.5"
+          },
+          "reason": {
+            "en": "A decimal point creates a float literal; quotes create a string. type(value) reports the kind of value.",
+            "nl": "Een decimale punt maakt een float; aanhalingstekens maken een string. type(value) toont het soort waarde."
+          }
+        },
+        {
+          "id": "b",
+          "label": {
+            "en": "\"8.5\"",
+            "nl": "\"8.5\""
+          },
+          "reason": {
+            "en": "Using \"8.5\" prints \"<class 'str'>\\n\"; the required output is \"<class 'float'>\\n\". A decimal point creates a float literal; quotes create a string. type(value) reports the kind of value.",
+            "nl": "Met \"8.5\" wordt \"<class 'str'>\\n\" afgedrukt; de vereiste uitvoer is \"<class 'float'>\\n\". Een decimale punt maakt een float; aanhalingstekens maken een string. type(value) toont het soort waarde."
+          }
+        },
+        {
+          "id": "c",
+          "label": {
+            "en": "8",
+            "nl": "8"
+          },
+          "reason": {
+            "en": "Using 8 prints \"<class 'int'>\\n\"; the required output is \"<class 'float'>\\n\". A decimal point creates a float literal; quotes create a string. type(value) reports the kind of value.",
+            "nl": "Met 8 wordt \"<class 'int'>\\n\" afgedrukt; de vereiste uitvoer is \"<class 'float'>\\n\". Een decimale punt maakt een float; aanhalingstekens maken een string. type(value) toont het soort waarde."
+          }
+        }
+      ],
+      "codeBlank": {
+        "prompt": {
+          "en": "Complete the code to produce the shown output.",
+          "nl": "Vul de code aan om de getoonde uitvoer te maken."
+        },
+        "segments": [
+          "value = ",
+          "\nprint(type(value))"
+        ],
+        "tokens": [
+          {
+            "id": "token-1",
+            "code": "8.5"
+          },
+          {
+            "id": "token-2",
+            "code": "\"8.5\"",
+            "reason": {
+              "en": "Using \"8.5\" prints \"<class 'str'>\\n\"; the required output is \"<class 'float'>\\n\". A decimal point creates a float literal; quotes create a string. type(value) reports the kind of value.",
+              "nl": "Met \"8.5\" wordt \"<class 'str'>\\n\" afgedrukt; de vereiste uitvoer is \"<class 'float'>\\n\". Een decimale punt maakt een float; aanhalingstekens maken een string. type(value) toont het soort waarde."
+            }
+          },
+          {
+            "id": "token-3",
+            "code": "8",
+            "reason": {
+              "en": "Using 8 prints \"<class 'int'>\\n\"; the required output is \"<class 'float'>\\n\". A decimal point creates a float literal; quotes create a string. type(value) reports the kind of value.",
+              "nl": "Met 8 wordt \"<class 'int'>\\n\" afgedrukt; de vereiste uitvoer is \"<class 'float'>\\n\". Een decimale punt maakt een float; aanhalingstekens maken een string. type(value) toont het soort waarde."
+            }
+          }
+        ],
+        "blanks": [
+          {
+            "answer": "8.5",
+            "reason": {
+              "en": "A decimal point creates a float literal; quotes create a string. type(value) reports the kind of value.",
+              "nl": "Een decimale punt maakt een float; aanhalingstekens maken een string. type(value) toont het soort waarde."
+            }
+          }
+        ],
+        "output": "<class 'float'>\n"
+      },
+      "id": "python-v4-02-quiz-r2-b-4",
+      "reviewActivityIds": [
+        "python-v4-02-floats"
+      ]
+    },
+    {
+      "objectiveIds": [
+        "name-error"
+      ],
+      "category": "debugging",
+      "prompt": {
+        "en": "Choose the repair or test that addresses the stated problem.",
+        "nl": "Kies de reparatie of test die het beschreven probleem aanpakt."
+      },
+      "code": "animal = \"dog\"\nprint(Animal) # NameError",
+      "answer": "a",
+      "choices": [
+        {
+          "id": "a",
+          "label": {
+            "en": "Use animal with the same case.",
+            "nl": "Gebruik animal met dezelfde letters."
+          },
+          "reason": {
+            "en": "Names are case-sensitive.",
+            "nl": "Namen zijn hoofdlettergevoelig."
+          }
+        },
+        {
+          "id": "b",
+          "label": {
+            "en": "Add quotation marks to Animal.",
+            "nl": "Zet Animal tussen aanhalingstekens."
+          },
+          "reason": {
+            "en": "That prints literal text instead of the stored value.",
+            "nl": "Dat drukt letterlijke tekst af in plaats van de bewaarde waarde."
+          }
+        },
+        {
+          "id": "c",
+          "label": {
+            "en": "Change dog to cat.",
+            "nl": "Verander dog naar cat."
+          },
+          "reason": {
+            "en": "The stored value does not fix the name mismatch.",
+            "nl": "De bewaarde waarde herstelt het naamverschil niet."
+          }
+        }
+      ],
+      "id": "python-v4-02-quiz-r2-b-5",
+      "reviewActivityIds": [
+        "python-v4-02-repair-name"
+      ]
+    },
+    {
+      "objectiveIds": [
+        "variable-vs-literal"
+      ],
+      "category": "application",
+      "prompt": {
+        "en": "Which statement or test fits this example?",
+        "nl": "Welke uitspraak of test past bij dit voorbeeld?"
+      },
+      "code": "name = \"Bo\"\nprint(\"name\")",
+      "answer": "a",
+      "choices": [
+        {
+          "id": "a",
+          "label": {
+            "en": "It prints the literal word name.",
+            "nl": "Het drukt het letterlijke woord name af."
+          },
+          "reason": {
+            "en": "Quoted text is not looked up as a variable.",
+            "nl": "Tekst tussen aanhalingstekens wordt niet als variabele opgezocht."
+          }
+        },
+        {
+          "id": "b",
+          "label": {
+            "en": "It prints the stored person.",
+            "nl": "Het drukt de bewaarde persoon af."
+          },
+          "reason": {
+            "en": "That would require print(name) without quotes.",
+            "nl": "Dat vereist print(name) zonder aanhalingstekens."
+          }
+        },
+        {
+          "id": "c",
+          "label": {
+            "en": "The variable is deleted.",
+            "nl": "De variabele wordt verwijderd."
+          },
+          "reason": {
+            "en": "Printing does not delete assignments.",
+            "nl": "Afdrukken verwijdert geen toewijzingen."
+          }
+        }
+      ],
+      "id": "python-v4-02-quiz-r2-b-6",
+      "reviewActivityIds": [
+        "python-v4-02-name-or-text"
+      ]
+    }
+  ]
+}

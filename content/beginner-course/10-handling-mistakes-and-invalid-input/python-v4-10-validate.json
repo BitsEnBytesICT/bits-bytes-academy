@@ -51,11 +51,38 @@
       }
     },
     {
-      "id": "python-v4-10-validate-experiment",
+      "id": "python-v4-10-validate-trace",
       "topicIds": [],
       "heading": {
-        "en": "Try one change",
-        "nl": "Probeer één wijziging"
+        "en": "Parsing and permission",
+        "nl": "Omzetten en toestaan"
+      },
+      "body": {
+        "en": "Test parse_percent with '0' → 0.0, '100' → 100.0 and '25.5' → 25.5. Test '-1', '101', 'cat' and '' → None. The first two rejected cases convert successfully but fail the range rule; the last two fail conversion itself.",
+        "nl": "Test parse_percent met '0' → 0.0, '100' → 100.0 en '25.5' → 25.5. Test '-1', '101', 'cat' en '' → None. De eerste twee afwijzingen worden wel omgezet maar vallen buiten het bereik; de laatste twee mislukken bij omzetting."
+      }
+    },
+    {
+      "id": "python-v4-10-validate-try-calls",
+      "role": "practice",
+      "topicIds": [],
+      "heading": {
+        "en": "See your function work",
+        "nl": "Bekijk wat je functie doet"
+      },
+      "body": {
+        "en": "A definition alone produces no output. After writing the function, add these calls underneath it in main.py, without indentation, and Run. Compare the returned values with the task's requirements. The checks also call your function with other inputs; they do not require you to keep these demonstration calls.",
+        "nl": "Een definitie alleen geeft geen uitvoer. Schrijf eerst de functie en voeg daarna deze aanroepen eronder toe in main.py, zonder inspringing. Klik op Uitvoeren. Vergelijk de teruggegeven waarden met de opdracht. De controles roepen je functie ook met andere invoer aan; deze demonstratieaanroepen zijn niet verplicht."
+      },
+      "code": "print(parse_percent(\"0\"))\nprint(parse_percent(\"100\"))"
+    },
+    {
+      "id": "python-v4-10-validate-experiment",
+      "role": "experiment",
+      "topicIds": [],
+      "heading": {
+        "en": "After completing the task: try one change",
+        "nl": "Na het afronden: probeer één wijziging"
       },
       "body": {
         "en": "Test both boundaries and one value just outside each boundary.",
@@ -176,15 +203,16 @@
   "inputs": [],
   "retrievals": [
     {
-      "id": "recall-python-v4-08-stop-endless-loop",
-      "sourceActivityId": "python-v4-08-stop-endless-loop",
+      "id": "recall-python-v4-09-early-return",
+      "sourceActivityId": "python-v4-09-early-return",
       "objectiveIds": [
-        "infinite-loops"
+        "early-return"
       ],
       "prompt": {
-        "en": "Recall “Recognise and stop an endless loop”. Which line prevents this loop from running forever? Try the earlier example from memory, then check it. With the Stop button in view, remove the update and try the program. Stop it, restore the update and verify a subsequent Run works.",
-        "nl": "Haal “Herken en stop een eindeloze lus” terug. Welke regel voorkomt dat deze lus altijd blijft draaien? Probeer het eerdere voorbeeld uit je geheugen en controleer daarna. Verwijder met de knop Stoppen in beeld de wijziging en probeer het programma. Stop het, herstel de wijziging en controleer of opnieuw Uitvoeren werkt."
-      }
+        "en": "Recall stop a function at a guard. Is division reached for count zero? Store speed(0, 2). Explain why zero is a valid answer unlike None.",
+        "nl": "Herhaal stop een functie vroeg bij een speciaal geval. Wordt delen bereikt als count nul is? Bewaar speed(0, 2). Leg uit waarom nul een geldig antwoord is, anders dan None."
+      },
+      "code": "def average(total, count):\n    if count == 0:\n        return None\n    return total / count\nprint(average(10, 0))\nprint(average(10, 2))"
     }
   ]
 }

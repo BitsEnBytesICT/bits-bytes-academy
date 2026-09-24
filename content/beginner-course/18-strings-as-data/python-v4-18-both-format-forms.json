@@ -1,0 +1,156 @@
+{
+  "id": "python-v4-18-both-format-forms",
+  "chapter": 18,
+  "group": "python-v4-module-18",
+  "title": {
+    "en": "Use positional and named placeholders",
+    "nl": "Gebruik plaatsaanduidingen op positie en naam"
+  },
+  "kind": "coding",
+  "optional": false,
+  "runtime": "terminal",
+  "guidance": "guided",
+  "checkpointMode": "sequential",
+  "estimatedMinutes": 15,
+  "topicIds": [
+    "format-forms-practice"
+  ],
+  "practices": [
+    "positional-format",
+    "named-format"
+  ],
+  "requiredConcepts": [
+    "named-format",
+    "tuples"
+  ],
+  "explanation": {
+    "en": "Practise both ways of matching .format arguments to placeholders, then compare them with an f-string.",
+    "nl": "Oefen beide manieren om .format-argumenten aan plaatsaanduidingen te koppelen en vergelijk ze daarna met een f-string."
+  },
+  "example": "",
+  "sections": [
+    {
+      "id": "python-v4-18-both-format-forms-example",
+      "topicIds": [
+        "format-forms-practice",
+        "positional-format",
+        "named-format"
+      ],
+      "heading": {
+        "en": "Follow a working example",
+        "nl": "Volg een werkend voorbeeld"
+      },
+      "body": {
+        "en": "In '{0}: {1}'.format(name, score), 0 refers to the first argument and 1 to the second. In '{who}: {points}'.format(who=name, points=score), placeholder names match keyword arguments. The names belong to the format call; they do not have to be variable names elsewhere. Both forms produce text. To demonstrate both, return a tuple with the positional result first and the named result second.",
+        "nl": "In '{0}: {1}'.format(name, score) verwijst 0 naar het eerste argument en 1 naar het tweede. In '{who}: {points}'.format(who=name, points=score) horen namen bij benoemde argumenten. De namen horen bij de format-aanroep; het hoeven geen variabelenamen elders te zijn. Beide vormen maken tekst. Geef om beide te demonstreren een tuple terug met het resultaat op positie eerst en het benoemde resultaat als tweede."
+      },
+      "code": "print(\"{1} then {0}\".format(\"first\", \"second\"))\nprint(\"{right} then {left}\".format(left=\"first\", right=\"second\"))",
+      "output": "second then first\nsecond then first\n",
+      "prediction": {
+        "en": "Why do both lines put second first?",
+        "nl": "Waarom zetten beide regels second vooraan?"
+      },
+      "takeaway": {
+        "en": "Positions refer to argument order; names refer to keyword arguments.",
+        "nl": "Posities verwijzen naar argumentvolgorde; namen naar benoemde argumenten."
+      }
+    },
+    {
+      "id": "python-v4-18-both-format-forms-try-calls",
+      "role": "practice",
+      "topicIds": [],
+      "heading": {
+        "en": "See your function work",
+        "nl": "Bekijk wat je functie doet"
+      },
+      "body": {
+        "en": "A definition alone produces no output. After writing the function, add these calls underneath it in main.py, without indentation, and Run. Compare the returned values with the task's requirements. The checks also call your function with other inputs; they do not require you to keep these demonstration calls.",
+        "nl": "Een definitie alleen geeft geen uitvoer. Schrijf eerst de functie en voeg daarna deze aanroepen eronder toe in main.py, zonder inspringing. Klik op Uitvoeren. Vergelijk de teruggegeven waarden met de opdracht. De controles roepen je functie ook met andere invoer aan; deze demonstratieaanroepen zijn niet verplicht."
+      },
+      "code": "print(labels(\"Ada\", 4))\nprint(labels(\"Bo\", 0))"
+    },
+    {
+      "id": "python-v4-18-both-format-forms-experiment",
+      "role": "experiment",
+      "topicIds": [],
+      "heading": {
+        "en": "After completing the task: try one change",
+        "nl": "Na het afronden: probeer één wijziging"
+      },
+      "body": {
+        "en": "After passing, write the equivalent f-string and explain which names Python looks up.",
+        "nl": "Schrijf na slagen de overeenkomstige f-string en leg uit welke namen Python opzoekt."
+      }
+    }
+  ],
+  "files": {
+    "main.py": "def labels(name, score):\n    # Complete this function.\n    return None\n"
+  },
+  "solution": {
+    "main.py": "def labels(name, score):\n    positional = \"{0}: {1}\".format(name, score)\n    named = \"{who}: {points}\".format(who=name, points=score)\n    return positional, named\n"
+  },
+  "checkpoints": [
+    {
+      "id": "python-v4-18-both-format-forms-step-1",
+      "objectiveIds": [
+        "format-forms-practice",
+        "positional-format",
+        "named-format"
+      ],
+      "task": {
+        "en": "Write labels(name, score) in main.py. Implement labels(name, score). Return two strings like ('Ada: 4', 'Ada: 4'): use numeric placeholders and .format for the first, named placeholders and .format for the second.",
+        "nl": "Schrijf labels(name, score) in main.py. Implementeer labels(name, score). Geef twee strings zoals ('Ada: 4', 'Ada: 4') terug: gebruik numerieke plaatsen met .format voor de eerste en benoemde plaatsen met .format voor de tweede."
+      },
+      "check": "callable(labels) and any(isinstance(n,_ast.Call) and isinstance(n.func,_ast.Attribute) and n.func.attr == \"format\" and isinstance(n.func.value,_ast.Constant) and \"{0}\" in n.func.value.value and \"{1}\" in n.func.value.value for n in _ast.walk(_ast.parse(_source))) and any(isinstance(n,_ast.Call) and isinstance(n.func,_ast.Attribute) and n.func.attr == \"format\" and len(n.keywords) >= 2 for n in _ast.walk(_ast.parse(_source)))",
+      "probes": [
+        {
+          "call": {
+            "name": "labels",
+            "args": [
+              "Ada",
+              4
+            ]
+          },
+          "check": "(_return == (\"Ada: 4\", \"Ada: 4\")) and _error is None"
+        },
+        {
+          "call": {
+            "name": "labels",
+            "args": [
+              "Bo",
+              0
+            ]
+          },
+          "check": "(_return == (\"Bo: 0\", \"Bo: 0\")) and _error is None"
+        }
+      ],
+      "hint": {
+        "en": "Positions refer to argument order; names refer to keyword arguments.",
+        "nl": "Posities verwijzen naar argumentvolgorde; namen naar benoemde argumenten."
+      },
+      "hints": [
+        {
+          "en": "Positions refer to argument order; names refer to keyword arguments.",
+          "nl": "Posities verwijzen naar argumentvolgorde; namen naar benoemde argumenten."
+        },
+        {
+          "en": "Build the strings separately, then return the pair. Match each named placeholder to a keyword.",
+          "nl": "Bouw de strings apart en geef daarna het paar terug. Koppel elke benoemde plaats aan een benoemd argument."
+        },
+        {
+          "en": "A small fragment to adapt: `\"{who}\".format(who=name)`",
+          "nl": "Een klein fragment om aan te passen: `\"{who}\".format(who=name)`"
+        }
+      ],
+      "feedback": {
+        "en": "Build the strings separately, then return the pair. Match each named placeholder to a keyword.",
+        "nl": "Bouw de strings apart en geef daarna het paar terug. Koppel elke benoemde plaats aan een benoemd argument."
+      }
+    }
+  ],
+  "solutionNote": {
+    "en": "The positional call binds indexes 0 and 1. The named call binds who and points. Tuple packing returns both completed strings.",
+    "nl": "De positionele aanroep bindt indexen 0 en 1. De benoemde aanroep bindt who en points. Tuple-pakken geeft beide complete strings terug."
+  },
+  "inputs": []
+}

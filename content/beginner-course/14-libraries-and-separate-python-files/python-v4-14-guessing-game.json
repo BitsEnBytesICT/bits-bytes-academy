@@ -61,11 +61,24 @@
       }
     },
     {
-      "id": "python-v4-14-guessing-game-experiment",
+      "id": "python-v4-14-guessing-game-trace",
       "topicIds": [],
       "heading": {
-        "en": "Try one change",
-        "nl": "Probeer één wijziging"
+        "en": "Start a real game",
+        "nl": "Start een echt spel"
+      },
+      "body": {
+        "en": "Run starts main.py, which chooses a secret from 1 through 10 and calls your play function in game.py. Enter answers in the terminal until Correct or quit. To test a known conversation, temporarily change the caller to print(play(5)): 2 → Higher, 8 → Lower, 5 → Correct, then 3 valid attempts. Invalid words do not count.",
+        "nl": "Uitvoeren start main.py, dat een geheim van 1 tot en met 10 kiest en je play-functie in game.py aanroept. Voer antwoorden in de terminal in tot Correct of quit. Verander voor een bekend gesprek de aanroeper tijdelijk in print(play(5)): 2 → Higher, 8 → Lower, 5 → Correct en daarna 3 geldige pogingen. Ongeldige woorden tellen niet mee."
+      }
+    },
+    {
+      "id": "python-v4-14-guessing-game-experiment",
+      "role": "experiment",
+      "topicIds": [],
+      "heading": {
+        "en": "After completing the task: try one change",
+        "nl": "Na het afronden: probeer één wijziging"
       },
       "body": {
         "en": "Play with a range of 1–20 by editing only the supplied caller.",
@@ -85,11 +98,7 @@
     {
       "id": "python-v4-14-guessing-game-step-1",
       "objectiveIds": [
-        "guessing-project",
-        "random",
-        "helper-modules",
-        "retry-loops",
-        "cancellation"
+        "guessing-project"
       ],
       "task": {
         "en": "Implement the comparison loop and return the valid attempt count after a correct guess.",
@@ -141,11 +150,7 @@
     {
       "id": "python-v4-14-guessing-game-step-2",
       "objectiveIds": [
-        "guessing-project",
-        "random",
-        "helper-modules",
-        "retry-loops",
-        "cancellation"
+        "guessing-project"
       ],
       "task": {
         "en": "Handle invalid input, quit and end-of-input without crashing.",
@@ -229,15 +234,18 @@
   "inputs": [],
   "retrievals": [
     {
-      "id": "recall-python-v4-12-activity-log",
-      "sourceActivityId": "python-v4-12-activity-log",
+      "id": "recall-python-v4-10-cancel-safely",
+      "sourceActivityId": "python-v4-10-cancel-safely",
       "objectiveIds": [
-        "activity-project"
+        "cancellation",
+        "end-of-input",
+        "recovery-review"
       ],
       "prompt": {
-        "en": "Recall “Mini project: activity-log analyser”. Would counting every item answer the same question? Try the earlier example from memory, then check it. Create your own week of seven records and calculate the expected answer on paper.",
-        "nl": "Haal “Miniproject: activiteitenlog analyseren” terug. Beantwoordt elk item tellen dezelfde vraag? Probeer het eerdere voorbeeld uit je geheugen en controleer daarna. Maak je eigen week met zeven gegevens en bereken het verwachte antwoord op papier."
-      }
+        "en": "Recall give every retry a way out. Why must the quit check come before float? Try invalid text followed by quit, and test end-of-input at the first prompt.",
+        "nl": "Herhaal geef elke herhaling een uitgang. Waarom moet de quit-controle vóór float komen? Probeer verkeerde tekst gevolgd door quit en test einde invoer bij de eerste vraag."
+      },
+      "code": "def convert(text):\n    if text.strip().lower() == \"quit\":\n        return None\n    return float(text)\nprint(convert(\" QUIT \"))\nprint(convert(\"0\"))"
     }
   ]
 }

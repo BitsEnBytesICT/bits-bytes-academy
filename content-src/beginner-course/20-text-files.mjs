@@ -33,6 +33,8 @@ export const activities = [
     tasks: [
       {
         name: "read_text",
+        sourceCheck:
+          'any(isinstance(n,_ast.With) for n in _ast.walk(_ast.parse(_module_source))) and any(isinstance(n,_ast.keyword) and n.arg == "encoding" and isinstance(n.value,_ast.Constant) and n.value.value.lower().replace("-", "") == "utf8" for n in _ast.walk(_ast.parse(_module_source)))',
         task: [
           "Return all text from path without stripping its final newline. Use with and UTF-8.",
           "Geef alle tekst uit path terug zonder de laatste nieuwe regel weg te halen. Gebruik with en UTF-8.",

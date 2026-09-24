@@ -54,6 +54,18 @@
       }
     },
     {
+      "id": "python-v4-16-wall-bounce-trace",
+      "topicIds": [],
+      "heading": {
+        "en": "Position and direction change together",
+        "nl": "Positie en richting veranderen samen"
+      },
+      "body": {
+        "en": "At the top with radius 6: before correction y=3, vy=-100; after correction y=6, vy=100. Next frame the ball moves down. If y=6, vy=100 already, do not reverse it again. At the bottom, use height-radius and a negative outgoing vy.",
+        "nl": "Bovenaan met straal 6: vóór herstel y=3, vy=-100; na herstel y=6, vy=100. Het volgende beeld beweegt de bal omlaag. Als y=6, vy=100 al geldt, keer niet opnieuw om. Gebruik onderaan hoogte-straal en een negatieve vertrekkende vy."
+      }
+    },
+    {
       "topicIds": [],
       "heading": {
         "en": "Run, observe, finish",
@@ -66,10 +78,11 @@
     },
     {
       "id": "python-v4-16-wall-bounce-experiment",
+      "role": "experiment",
       "topicIds": [],
       "heading": {
-        "en": "Try one change",
-        "nl": "Probeer één wijziging"
+        "en": "After completing the task: try one change",
+        "nl": "Na het afronden: probeer één wijziging"
       },
       "body": {
         "en": "Call bounce twice on the first corrected result and check that direction stays stable.",
@@ -187,18 +200,5 @@
     "en": "Position correction removes overlap; the direction condition prevents a second unwanted reversal.",
     "nl": "Positieherstel verwijdert overlap; de richtingsvoorwaarde voorkomt een tweede ongewenste omkering."
   },
-  "inputs": [],
-  "retrievals": [
-    {
-      "id": "recall-python-v4-14-repeatable-random",
-      "sourceActivityId": "python-v4-14-repeatable-random",
-      "objectiveIds": [
-        "random-seed"
-      ],
-      "prompt": {
-        "en": "Recall “Repeat a random experiment”. What is being reset by the second seed call? Try the earlier example from memory, then check it. Compare two seeds, keeping the number of draws fixed.",
-        "nl": "Haal “Herhaal een willekeurig experiment” terug. Wat wordt door de tweede seed-aanroep teruggezet? Probeer het eerdere voorbeeld uit je geheugen en controleer daarna. Vergelijk twee seeds en houd het aantal trekkingen gelijk."
-      }
-    }
-  ]
+  "inputs": []
 }

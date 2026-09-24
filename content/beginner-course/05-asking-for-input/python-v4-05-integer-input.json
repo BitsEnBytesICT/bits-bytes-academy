@@ -58,10 +58,11 @@
     },
     {
       "id": "python-v4-05-integer-input-experiment",
+      "role": "experiment",
       "topicIds": [],
       "heading": {
-        "en": "Try one change",
-        "nl": "Probeer één wijziging"
+        "en": "After completing the task: try one change",
+        "nl": "Na het afronden: probeer één wijziging"
       },
       "body": {
         "en": "Try 0, then -2. Finally try a word, read ValueError, and rerun with a valid number.",
@@ -182,26 +183,17 @@
   ],
   "retrievals": [
     {
-      "id": "recall-python-v4-03-multiplication",
-      "sourceActivityId": "python-v4-03-multiplication",
+      "id": "recall-python-v4-03-addition",
+      "sourceActivityId": "python-v4-03-addition",
       "objectiveIds": [
-        "multiplication"
+        "arithmetic",
+        "addition"
       ],
       "prompt": {
-        "en": "Recall “Multiply equal groups”. How many apples are there altogether? Try the earlier example from memory, then check it. Double quantity and predict the new result. Then set quantity to zero.",
-        "nl": "Haal “Vermenigvuldig gelijke groepen” terug. Hoeveel appels zijn er samen? Probeer het eerdere voorbeeld uit je geheugen en controleer daarna. Verdubbel quantity en voorspel het nieuwe resultaat. Zet quantity daarna op nul."
-      }
-    },
-    {
-      "id": "recall-python-v4-03-remainder",
-      "sourceActivityId": "python-v4-03-remainder",
-      "objectiveIds": [
-        "modulo"
-      ],
-      "prompt": {
-        "en": "Recall “Find the leftovers with %”. Why does the second calculation leave nothing? Try the earlier example from memory, then check it. Try 10 % 2 and 11 % 2. Explain how the results identify even and odd numbers.",
-        "nl": "Haal “Vind de rest met %” terug. Waarom laat de tweede berekening niets over? Probeer het eerdere voorbeeld uit je geheugen en controleer daarna. Probeer 10 % 2 en 11 % 2. Leg uit hoe de resultaten even en oneven getallen herkennen."
-      }
+        "en": "Recall add quantities. What value is assigned to total? Set morning to zero. Explain why the answer becomes the afternoon count.",
+        "nl": "Herhaal tel hoeveelheden op. Welke waarde wordt aan total toegewezen? Zet morning op nul. Leg uit waarom het antwoord het middagaantal wordt."
+      },
+      "code": "apples = 3\npears = 2\ntotal = apples + pears\nprint(total)"
     }
   ]
 }

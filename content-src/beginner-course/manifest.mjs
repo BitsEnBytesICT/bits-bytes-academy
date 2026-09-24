@@ -111,6 +111,11 @@ export function createManifest(course, legacy) {
       teaching,
       workedExamples,
       requiredPractice,
+      independentApplication: requiredPractice.filter(
+        (p) =>
+          course.activities.find((a) => a.id === p.activityId)?.guidance ===
+          "independent",
+      ),
       assessment,
       laterRetrieval,
     };
@@ -207,7 +212,7 @@ export function createManifest(course, legacy) {
   return {
     version: 4,
     evidencePolicy:
-      "Explicit teaching and examples, required coding outcomes, quiz items and optional delayed self-explanation are distinct evidence. Runtime infrastructure does not establish topic coverage. Retrieval is not graded mastery.",
+      "Introductions and demonstrated examples, learner checkpoint outcomes, independent application, quiz items and optional recall are separate author-reviewed evidence. Checkpoint tags exclude incidental practice tags and supplied runtime setup; targeted rendering, event, formatting and dictionary tasks provide the learner contribution. Behavior checks establish tested outcomes, not general mastery; named syntax requirements additionally use source checks. Retrieval is ungraded. Adversarial verification is recorded in docs/audits/python-v4/verification.json.",
     durationPolicy:
       "Provisional estimates from individual authored activities; no fixed time or lesson-count target. Actual beginner sessions remain required for validation.",
     estimatedMinutes: course.activities.reduce(

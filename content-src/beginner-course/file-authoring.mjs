@@ -11,10 +11,16 @@ export function fileLesson(chapter, slug, s) {
       ...t,
       check: "True",
       probes: t.cases.map((c) =>
-        call(t.name, c.args, `(${c.check}) and _error is None`, {
-          module: "work",
-          files: c.files || {},
-        }),
+        call(
+          t.name,
+          c.args,
+          `(${c.check}) and _error is None${t.sourceCheck ? ` and (${t.sourceCheck})` : ""}`,
+          {
+            module: "work",
+            isolatedFixtures: true,
+            files: { ...s.fixtures, ...c.files },
+          },
+        ),
       ),
     })),
   });

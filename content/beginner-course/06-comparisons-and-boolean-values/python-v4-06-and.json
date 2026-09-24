@@ -51,11 +51,24 @@
       }
     },
     {
-      "id": "python-v4-06-and-experiment",
+      "id": "python-v4-06-and-trace",
       "topicIds": [],
       "heading": {
-        "en": "Try one change",
-        "nl": "Probeer één wijziging"
+        "en": "Trace both conditions",
+        "nl": "Volg beide voorwaarden"
+      },
+      "body": {
+        "en": "For A and B, the four cases are: True/True → True; True/False → False; False/True → False; False/False → False. One successful condition cannot compensate for the other failing.",
+        "nl": "Bij A and B zijn de vier gevallen: True/True → True; True/False → False; False/True → False; False/False → False. Eén geslaagde voorwaarde compenseert geen mislukte andere voorwaarde."
+      }
+    },
+    {
+      "id": "python-v4-06-and-experiment",
+      "role": "experiment",
+      "topicIds": [],
+      "heading": {
+        "en": "After completing the task: try one change",
+        "nl": "Na het afronden: probeer één wijziging"
       },
       "body": {
         "en": "Predict all four combinations of meeting and missing the two requirements.",
@@ -136,14 +149,43 @@
     {
       "id": "python-v4-06-and-step-2",
       "objectiveIds": [
-        "and"
+        "print"
       ],
       "task": {
         "en": "Print the Boolean result.",
         "nl": "Druk het booleaanse resultaat af."
       },
       "check": "_stdout.strip() == str(result)",
-      "probes": [],
+      "probes": [
+        {
+          "inputs": {
+            "credits": 119,
+            "score": 7
+          },
+          "check": "type(result) is bool and _stdout.strip() == str(credits >= 120 and score >= 6)"
+        },
+        {
+          "inputs": {
+            "credits": 120,
+            "score": 5
+          },
+          "check": "type(result) is bool and _stdout.strip() == str(credits >= 120 and score >= 6)"
+        },
+        {
+          "inputs": {
+            "credits": 119,
+            "score": 5
+          },
+          "check": "type(result) is bool and _stdout.strip() == str(credits >= 120 and score >= 6)"
+        },
+        {
+          "inputs": {
+            "credits": 120,
+            "score": 6
+          },
+          "check": "type(result) is bool and _stdout.strip() == str(credits >= 120 and score >= 6)"
+        }
+      ],
       "hint": {
         "en": "Both requirements must hold for an and rule to be True.",
         "nl": "Beide eisen moeten gelden om een and-regel True te maken."
@@ -172,18 +214,5 @@
     "en": "Each comparison produces a Boolean. and combines them so one successful requirement cannot compensate for a failed one.",
     "nl": "Elke vergelijking levert een booleaanse waarde op. and combineert ze zodat één geslaagde eis een mislukte eis niet kan compenseren."
   },
-  "inputs": [],
-  "retrievals": [
-    {
-      "id": "recall-python-v4-04-multiline",
-      "sourceActivityId": "python-v4-04-multiline",
-      "objectiveIds": [
-        "multiline-strings"
-      ],
-      "prompt": {
-        "en": "Recall “Text across several source lines”. Would a newline just after the opening quotes appear in the output? Try the earlier example from memory, then check it. Indent the second line inside the string. Observe that those spaces also become text.",
-        "nl": "Haal “Tekst over meerdere coderegels” terug. Zou een nieuwe regel direct na de openingsaanhalingstekens in de uitvoer verschijnen? Probeer het eerdere voorbeeld uit je geheugen en controleer daarna. Spring de tweede regel binnen de string in. Bekijk hoe ook die spaties tekst worden."
-      }
-    }
-  ]
+  "inputs": []
 }

@@ -52,10 +52,11 @@
     },
     {
       "id": "python-v4-04-multiline-experiment",
+      "role": "experiment",
       "topicIds": [],
       "heading": {
-        "en": "Try one change",
-        "nl": "Probeer één wijziging"
+        "en": "After completing the task: try one change",
+        "nl": "Na het afronden: probeer één wijziging"
       },
       "body": {
         "en": "Indent the second line inside the string. Observe that those spaces also become text.",
@@ -112,15 +113,16 @@
   "inputs": [],
   "retrievals": [
     {
-      "id": "recall-python-v4-02-floats",
-      "sourceActivityId": "python-v4-02-floats",
+      "id": "recall-python-v4-01-comments",
+      "sourceActivityId": "python-v4-01-comments",
       "objectiveIds": [
-        "floats"
+        "comments"
       ],
       "prompt": {
-        "en": "Recall “Numbers with a decimal point”. Are both assigned values floats? Try the earlier example from memory, then check it. Change distance to 4.0 and then to 4. Compare the displayed values.",
-        "nl": "Haal “Getallen met een decimale punt” terug. Zijn beide toegewezen waarden floats? Probeer het eerdere voorbeeld uit je geheugen en controleer daarna. Verander distance eerst in 4.0 en daarna in 4. Vergelijk de getoonde waarden."
-      }
+        "en": "Recall comments are for readers. Which print call is disabled? Add print(\"# is visible here\"). Explain why the # is printed.",
+        "nl": "Herhaal commentaar is voor lezers. Welke print-aanroep is uitgeschakeld? Voeg print(\"# is visible here\") toe. Leg uit waarom # wordt afgedrukt."
+      },
+      "code": "# Welcome visitors\nprint(\"Come in\")\n# print(\"Closed\")"
     }
   ]
 }

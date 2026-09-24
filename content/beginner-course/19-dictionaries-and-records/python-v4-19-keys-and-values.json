@@ -1,0 +1,160 @@
+{
+  "id": "python-v4-19-keys-and-values",
+  "chapter": 19,
+  "group": "python-v4-module-19",
+  "title": {
+    "en": "Choose a dictionary view deliberately",
+    "nl": "Kies bewust een dictionaryweergave"
+  },
+  "kind": "coding",
+  "optional": false,
+  "runtime": "terminal",
+  "guidance": "guided",
+  "checkpointMode": "sequential",
+  "estimatedMinutes": 15,
+  "topicIds": [
+    "view-selection"
+  ],
+  "practices": [
+    "keys",
+    "values",
+    "items"
+  ],
+  "requiredConcepts": [
+    "keys",
+    "values",
+    "items"
+  ],
+  "explanation": {
+    "en": "Extract labels and their values separately while preserving their correspondence.",
+    "nl": "Haal labels en hun waarden apart op en behoud hun onderlinge verband."
+  },
+  "example": "",
+  "sections": [
+    {
+      "id": "python-v4-19-keys-and-values-example",
+      "topicIds": [
+        "view-selection",
+        "keys",
+        "values",
+        "items"
+      ],
+      "heading": {
+        "en": "Follow a working example",
+        "nl": "Volg een werkend voorbeeld"
+      },
+      "body": {
+        "en": "record.keys() visits labels; record.values() visits the values in the same insertion order. record.items() pairs each label with its value. list(view) captures the contents now. Return (list of keys, list of values). These lists are separate from the mapping; a shallow copy does not recursively clone nested objects.",
+        "nl": "record.keys() bezoekt labels; record.values() bezoekt waarden in dezelfde invoegvolgorde. record.items() koppelt elk label aan zijn waarde. list(weergave) legt de huidige inhoud vast. Geef (lijst met sleutels, lijst met waarden) terug. Deze lijsten staan los van de koppeling; een oppervlakkige kopie kloont geneste objecten niet recursief."
+      },
+      "code": "record = {\"red\":2,\"blue\":0}\nprint(list(record.keys()))\nprint(list(record.values()))\nprint(list(record.items()))",
+      "output": "['red', 'blue']\n[2, 0]\n[('red', 2), ('blue', 0)]\n",
+      "prediction": {
+        "en": "Which result keeps each colour next to its count?",
+        "nl": "Welk resultaat houdt elke kleur naast zijn aantal?"
+      },
+      "takeaway": {
+        "en": "keys asks 'which labels?', values asks 'which data?', items keeps the pairs.",
+        "nl": "keys vraagt 'welke labels?', values vraagt 'welke gegevens?', items houdt de paren bij elkaar."
+      }
+    },
+    {
+      "id": "python-v4-19-keys-and-values-try-calls",
+      "role": "practice",
+      "topicIds": [],
+      "heading": {
+        "en": "See your function work",
+        "nl": "Bekijk wat je functie doet"
+      },
+      "body": {
+        "en": "A definition alone produces no output. After writing the function, add these calls underneath it in main.py, without indentation, and Run. Compare the returned values with the task's requirements. The checks also call your function with other inputs; they do not require you to keep these demonstration calls.",
+        "nl": "Een definitie alleen geeft geen uitvoer. Schrijf eerst de functie en voeg daarna deze aanroepen eronder toe in main.py, zonder inspringing. Klik op Uitvoeren. Vergelijk de teruggegeven waarden met de opdracht. De controles roepen je functie ook met andere invoer aan; deze demonstratieaanroepen zijn niet verplicht."
+      },
+      "code": "print(columns({\"b\": 0, \"a\": 2}))\nprint(columns({}))"
+    },
+    {
+      "id": "python-v4-19-keys-and-values-experiment",
+      "role": "experiment",
+      "topicIds": [],
+      "heading": {
+        "en": "After completing the task: try one change",
+        "nl": "Na het afronden: probeer één wijziging"
+      },
+      "body": {
+        "en": "Add a new key after making the lists. Predict why the lists do not grow with the dictionary.",
+        "nl": "Voeg na het maken van de lijsten een sleutel toe. Voorspel waarom de lijsten niet meegroeien met de dictionary."
+      }
+    }
+  ],
+  "files": {
+    "main.py": "def columns(record):\n    # Complete this function.\n    return None\n"
+  },
+  "solution": {
+    "main.py": "def columns(record):\n    return list(record.keys()), list(record.values())\n"
+  },
+  "checkpoints": [
+    {
+      "id": "python-v4-19-keys-and-values-step-1",
+      "objectiveIds": [
+        "view-selection",
+        "keys",
+        "values"
+      ],
+      "task": {
+        "en": "Write columns(record) in main.py. Implement columns(record) using keys() and values(). Return two lists in a tuple; preserve insertion order and leave record unchanged.",
+        "nl": "Schrijf columns(record) in main.py. Implementeer columns(record) met keys() en values(). Geef twee lijsten in een tuple terug; behoud invoegvolgorde en laat record ongewijzigd."
+      },
+      "check": "callable(columns) and all(any(isinstance(n,_ast.Call) and isinstance(n.func,_ast.Attribute) and n.func.attr == method for n in _ast.walk(_ast.parse(_source))) for method in (\"keys\",\"values\"))",
+      "probes": [
+        {
+          "call": {
+            "name": "columns",
+            "args": [
+              {
+                "b": 0,
+                "a": 2
+              }
+            ]
+          },
+          "check": "(_return == ([\"b\",\"a\"],[0,2]) and _args[0] == {\"b\":0,\"a\":2}) and _error is None"
+        },
+        {
+          "call": {
+            "name": "columns",
+            "args": [
+              {}
+            ]
+          },
+          "check": "(_return == ([],[])) and _error is None"
+        }
+      ],
+      "hint": {
+        "en": "keys asks 'which labels?', values asks 'which data?', items keeps the pairs.",
+        "nl": "keys vraagt 'welke labels?', values vraagt 'welke gegevens?', items houdt de paren bij elkaar."
+      },
+      "hints": [
+        {
+          "en": "keys asks 'which labels?', values asks 'which data?', items keeps the pairs.",
+          "nl": "keys vraagt 'welke labels?', values vraagt 'welke gegevens?', items houdt de paren bij elkaar."
+        },
+        {
+          "en": "Convert each view to a list and pack the two lists as one returned tuple.",
+          "nl": "Zet elke weergave om naar een lijst en pak beide lijsten in één teruggegeven tuple."
+        },
+        {
+          "en": "A small fragment to adapt: `list(record.values())`",
+          "nl": "Een klein fragment om aan te passen: `list(record.values())`"
+        }
+      ],
+      "feedback": {
+        "en": "Convert each view to a list and pack the two lists as one returned tuple.",
+        "nl": "Zet elke weergave om naar een lijst en pak beide lijsten in één teruggegeven tuple."
+      }
+    }
+  ],
+  "solutionNote": {
+    "en": "The views have matching order; list captures their current elements. Returning two lists makes the interface visible and testable.",
+    "nl": "De weergaven hebben dezelfde volgorde; list legt hun huidige elementen vast. Twee lijsten teruggeven maakt de interface zichtbaar en testbaar."
+  },
+  "inputs": []
+}

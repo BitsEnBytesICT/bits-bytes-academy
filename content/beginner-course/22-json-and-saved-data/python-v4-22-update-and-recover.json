@@ -56,10 +56,11 @@
     },
     {
       "id": "python-v4-22-update-and-recover-experiment",
+      "role": "experiment",
       "topicIds": [],
       "heading": {
-        "en": "Try one change",
-        "nl": "Probeer één wijziging"
+        "en": "After completing the task: try one change",
+        "nl": "Na het afronden: probeer één wijziging"
       },
       "body": {
         "en": "Use valid JSON with a missing count field and explain why that is a different error.",
@@ -101,7 +102,10 @@
           "check": "(_return == 3 and _json.load(open(\"counter.json\")) == {\"count\":3,\"name\":\"visits\"}) and _error is None",
           "moduleOnly": true,
           "module": "work",
-          "files": {}
+          "isolatedFixtures": true,
+          "files": {
+            "counter.json": "{\"count\":2,\"name\":\"visits\"}"
+          }
         },
         {
           "call": {
@@ -114,7 +118,9 @@
           "check": "(_return is None and open(\"broken.json\").read() == \"{broken}\") and _error is None",
           "moduleOnly": true,
           "module": "work",
+          "isolatedFixtures": true,
           "files": {
+            "counter.json": "{\"count\":2,\"name\":\"visits\"}",
             "broken.json": "{broken}"
           }
         }
@@ -150,27 +156,16 @@
   "inputs": [],
   "retrievals": [
     {
-      "id": "recall-python-v4-20-position",
-      "sourceActivityId": "python-v4-20-position",
+      "id": "recall-python-v4-20-missing",
+      "sourceActivityId": "python-v4-20-missing",
       "objectiveIds": [
-        "readline",
-        "file-position"
+        "missing-files"
       ],
       "prompt": {
-        "en": "Recall “Read a header, then the remaining file”. Why is the final read empty? Try the earlier example from memory, then check it. Use a file whose first line is blank. Explain how that differs from an empty file.",
-        "nl": "Haal “Lees een kop en daarna de rest” terug. Waarom is de laatste leesactie leeg? Probeer het eerdere voorbeeld uit je geheugen en controleer daarna. Gebruik een bestand met een lege eerste regel. Leg uit hoe dat verschilt van een leeg bestand."
-      }
-    },
-    {
-      "id": "recall-python-v4-20-report",
-      "sourceActivityId": "python-v4-20-report",
-      "objectiveIds": [
-        "file-review"
-      ],
-      "prompt": {
-        "en": "Recall “Generate a text report from a file”. Why does the output path need to differ from the source? Try the earlier example from memory, then check it. Add another negative number to the source and predict both report fields.",
-        "nl": "Haal “Maak een tekstrapport vanuit een bestand” terug. Waarom moet het uitvoerpad verschillen van de bron? Probeer het eerdere voorbeeld uit je geheugen en controleer daarna. Voeg nog een negatief getal aan de bron toe en voorspel beide rapportvelden."
-      }
+        "en": "Recall handle a missing file explicitly. Would this handler catch ValueError from a conversion? Compare an empty existing file with a missing file; decide whether your feature needs to distinguish them.",
+        "nl": "Herhaal verwerk een ontbrekend bestand expliciet. Vangt deze afhandeling ValueError van een omzetting op? Vergelijk een leeg bestaand bestand met een ontbrekend bestand; bepaal of je functie ze moet onderscheiden."
+      },
+      "code": "try:\n    with open(\"absent.txt\",encoding=\"utf-8\") as handle:\n        text = handle.read()\nexcept FileNotFoundError:\n    text = \"No note yet\"\nprint(text)"
     }
   ]
 }

@@ -52,11 +52,26 @@
       }
     },
     {
-      "id": "python-v4-17-pop-experiment",
+      "id": "python-v4-17-pop-try-calls",
+      "role": "practice",
       "topicIds": [],
       "heading": {
-        "en": "Try one change",
-        "nl": "Probeer één wijziging"
+        "en": "See your function work",
+        "nl": "Bekijk wat je functie doet"
+      },
+      "body": {
+        "en": "A definition alone produces no output. After writing the function, add these calls underneath it in main.py, without indentation, and Run. Compare the returned values with the task's requirements. The checks also call your function with other inputs; they do not require you to keep these demonstration calls.",
+        "nl": "Een definitie alleen geeft geen uitvoer. Schrijf eerst de functie en voeg daarna deze aanroepen eronder toe in main.py, zonder inspringing. Klik op Uitvoeren. Vergelijk de teruggegeven waarden met de opdracht. De controles roepen je functie ook met andere invoer aan; deze demonstratieaanroepen zijn niet verplicht."
+      },
+      "code": "print(take_next([\"A\", \"B\"]))\nprint(take_next([]))"
+    },
+    {
+      "id": "python-v4-17-pop-experiment",
+      "role": "experiment",
+      "topicIds": [],
+      "heading": {
+        "en": "After completing the task: try one change",
+        "nl": "Na het afronden: probeer één wijziging"
       },
       "body": {
         "en": "Explain the different results of pop(0) and remove(0) on [5, 0].",
@@ -77,8 +92,8 @@
         "pop"
       ],
       "task": {
-        "en": "Use pop to remove and return the first item, or return None for an empty queue.",
-        "nl": "Gebruik pop om het eerste item te verwijderen en terug te geven, of geef None bij een lege wachtrij."
+        "en": "Write take_next(queue) in main.py. Use pop to remove and return the first item, or return None for an empty queue.",
+        "nl": "Schrijf take_next(queue) in main.py. Gebruik pop om het eerste item te verwijderen en terug te geven, of geef None bij een lege wachtrij."
       },
       "check": "any(isinstance(n, _ast.Call) and isinstance(n.func, _ast.Attribute) and n.func.attr == \"pop\" for n in _ast.walk(_ast.parse(_source)))",
       "probes": [
@@ -132,19 +147,5 @@
     "en": "The function returns the removed person and leaves the caller’s queue shortened.",
     "nl": "De functie geeft de verwijderde persoon terug en laat de wachtrij van de aanroeper verkort achter."
   },
-  "inputs": [],
-  "retrievals": [
-    {
-      "id": "recall-python-v4-15-surface-colour",
-      "sourceActivityId": "python-v4-15-surface-colour",
-      "objectiveIds": [
-        "surface",
-        "colours"
-      ],
-      "prompt": {
-        "en": "Recall “Paint an image on a Surface”. Which RGB channel makes this image blue? Try the earlier example from memory, then check it. Change one colour channel at a time and describe the change.",
-        "nl": "Haal “Teken een afbeelding op een Surface” terug. Welk RGB-kanaal maakt deze afbeelding blauw? Probeer het eerdere voorbeeld uit je geheugen en controleer daarna. Verander één kleurkanaal tegelijk en beschrijf de verandering."
-      }
-    }
-  ]
+  "inputs": []
 }

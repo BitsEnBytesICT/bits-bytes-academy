@@ -9,3 +9,7 @@ export const localDevelopment = {
 };
 localDevelopment.sections[3].exampleInputs = ["Ada"];
 localDevelopment.sections[3].output = "Your name: Hello, Ada!\n";
+localDevelopment.sections[4].body.en +=
+  "\n\nIf you see >>>, you are inside Python rather than the shell. Type exit() and press Enter before running a command such as python -m pip install pygame-ce.";
+localDevelopment.sections[4].body.nl +=
+  "\n\nZie je >>>, dan zit je in Python in plaats van de shell. Typ exit() en druk op Enter voordat je een opdracht zoals python -m pip install pygame-ce uitvoert.";

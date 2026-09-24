@@ -52,11 +52,26 @@
       }
     },
     {
-      "id": "python-v4-19-delete-experiment",
+      "id": "python-v4-19-delete-try-calls",
+      "role": "practice",
       "topicIds": [],
       "heading": {
-        "en": "Try one change",
-        "nl": "Probeer één wijziging"
+        "en": "See your function work",
+        "nl": "Bekijk wat je functie doet"
+      },
+      "body": {
+        "en": "A definition alone produces no output. After writing the function, add these calls underneath it in main.py, without indentation, and Run. Compare the returned values with the task's requirements. The checks also call your function with other inputs; they do not require you to keep these demonstration calls.",
+        "nl": "Een definitie alleen geeft geen uitvoer. Schrijf eerst de functie en voeg daarna deze aanroepen eronder toe in main.py, zonder inspringing. Klik op Uitvoeren. Vergelijk de teruggegeven waarden met de opdracht. De controles roepen je functie ook met andere invoer aan; deze demonstratieaanroepen zijn niet verplicht."
+      },
+      "code": "print(take_note({\"note\": \"hello\", \"score\": 2}))\nprint(take_note({}))"
+    },
+    {
+      "id": "python-v4-19-delete-experiment",
+      "role": "experiment",
+      "topicIds": [],
+      "heading": {
+        "en": "After completing the task: try one change",
+        "nl": "Na het afronden: probeer één wijziging"
       },
       "body": {
         "en": "Call the function twice on the same record and explain the second answer.",
@@ -78,8 +93,8 @@
         "dictionary-pop"
       ],
       "task": {
-        "en": "Remove note and return its old value; return an empty string if absent. Preserve other fields.",
-        "nl": "Verwijder note en geef de oude waarde terug; geef een lege string bij afwezigheid. Behoud andere velden."
+        "en": "Write take_note(record) in main.py. Remove note and return its old value; return an empty string if absent. Preserve other fields.",
+        "nl": "Schrijf take_note(record) in main.py. Verwijder note en geef de oude waarde terug; geef een lege string bij afwezigheid. Behoud andere velden."
       },
       "check": "callable(take_note)",
       "probes": [
@@ -133,19 +148,5 @@
     "en": "The first call consumes the note; later calls use the absent-key fallback.",
     "nl": "De eerste aanroep gebruikt de notitie; latere aanroepen gebruiken de terugvalwaarde bij afwezigheid."
   },
-  "inputs": [],
-  "retrievals": [
-    {
-      "id": "recall-python-v4-17-sorting",
-      "sourceActivityId": "python-v4-17-sorting",
-      "objectiveIds": [
-        "sort",
-        "sorted"
-      ],
-      "prompt": {
-        "en": "Recall “Sort in place or make a sorted copy”. Which call changes scores itself? Try the earlier example from memory, then check it. Add duplicate values and check they remain in the result.",
-        "nl": "Haal “Sorteer ter plaatse of maak een gesorteerde kopie” terug. Welke aanroep verandert scores zelf? Probeer het eerdere voorbeeld uit je geheugen en controleer daarna. Voeg dubbele waarden toe en controleer dat ze behouden blijven."
-      }
-    }
-  ]
+  "inputs": []
 }

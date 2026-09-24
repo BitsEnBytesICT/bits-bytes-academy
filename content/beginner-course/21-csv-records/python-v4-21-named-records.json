@@ -57,11 +57,24 @@
       }
     },
     {
-      "id": "python-v4-21-named-records-experiment",
+      "id": "python-v4-21-named-records-trace",
       "topicIds": [],
       "heading": {
-        "en": "Try one change",
-        "nl": "Probeer één wijziging"
+        "en": "A row before and after conversion",
+        "nl": "Een rij vóór en na omzetting"
+      },
+      "body": {
+        "en": "DictReader can produce {'name':'Bo','score':'0'}. Looking up row['score'] returns text '0'; int(row['score']) returns number 0. Read → select field → convert → calculate. This task assumes valid headers and integer score text; malformed rows are handled in the later club book.",
+        "nl": "DictReader kan {'name':'Bo','score':'0'} maken. row['score'] opzoeken geeft tekst '0'; int(row['score']) geeft getal 0. Lees → kies veld → zet om → bereken. Deze opdracht veronderstelt geldige koppen en gehele scoretekst; ongeldige rijen worden in het latere clubboek verwerkt."
+      }
+    },
+    {
+      "id": "python-v4-21-named-records-experiment",
+      "role": "experiment",
+      "topicIds": [],
+      "heading": {
+        "en": "After completing the task: try one change",
+        "nl": "Na het afronden: probeer één wijziging"
       },
       "body": {
         "en": "Reverse the column order but preserve the headers. The result should stay correct.",
@@ -103,7 +116,10 @@
           "check": "(_return == 3) and _error is None",
           "moduleOnly": true,
           "module": "work",
-          "files": {}
+          "isolatedFixtures": true,
+          "files": {
+            "scores.csv": "name,score\nAda,4\nBo,-1\n"
+          }
         },
         {
           "call": {
@@ -116,7 +132,9 @@
           "check": "(_return == 7) and _error is None",
           "moduleOnly": true,
           "module": "work",
+          "isolatedFixtures": true,
           "files": {
+            "scores.csv": "name,score\nAda,4\nBo,-1\n",
             "other.csv": "score,name\n5,A\n2,B\n"
           }
         },
@@ -131,7 +149,9 @@
           "check": "(_return == 0) and _error is None",
           "moduleOnly": true,
           "module": "work",
+          "isolatedFixtures": true,
           "files": {
+            "scores.csv": "name,score\nAda,4\nBo,-1\n",
             "empty.csv": "name,score\n"
           }
         }
@@ -167,27 +187,30 @@
   "inputs": [],
   "retrievals": [
     {
-      "id": "recall-python-v4-19-keys",
-      "sourceActivityId": "python-v4-19-keys",
+      "id": "recall-python-v4-05-integer-input",
+      "sourceActivityId": "python-v4-05-integer-input",
       "objectiveIds": [
-        "dictionary-keys",
-        "invalid-keys"
+        "conversion",
+        "int-conversion"
       ],
       "prompt": {
-        "en": "Recall “Choose valid keys”. Why is the coordinate written as a tuple? Try the earlier example from memory, then check it. Try using the original list as a key and read the resulting TypeError.",
-        "nl": "Haal “Kies geldige sleutels” terug. Waarom is de coördinaat als tuple geschreven? Probeer het eerdere voorbeeld uit je geheugen en controleer daarna. Probeer de oorspronkelijke lijst als sleutel te gebruiken en lees de TypeError."
-      }
+        "en": "Recall convert a whole-number answer. With answer 4, why does the output end in 5 rather than 41? Try 0, then -2. Finally try a word, read ValueError, and rerun with a valid number.",
+        "nl": "Herhaal zet een geheel antwoord om. Waarom eindigt de uitvoer bij antwoord 4 op 5 in plaats van 41? Probeer 0 en daarna -2. Probeer ten slotte een woord, lees ValueError en voer opnieuw uit met een geldig getal."
+      },
+      "code": "raw = input(\"Boxes: \")\nboxes = int(raw)\nprint(boxes + 1)"
     },
     {
-      "id": "recall-python-v4-19-comprehension",
-      "sourceActivityId": "python-v4-19-comprehension",
+      "id": "recall-python-v4-19-records",
+      "sourceActivityId": "python-v4-19-records",
       "objectiveIds": [
-        "dictionary-comprehensions"
+        "dictionaries",
+        "dictionary-creation"
       ],
       "prompt": {
-        "en": "Recall “Derive a new mapping”. Why is Bo missing from the new mapping? Try the earlier example from memory, then check it. Rewrite the comprehension as an ordinary loop.",
-        "nl": "Haal “Leid een nieuwe koppeling af” terug. Waarom ontbreekt Bo in de nieuwe koppeling? Probeer het eerdere voorbeeld uit je geheugen en controleer daarna. Herschrijf de comprehension als een gewone lus."
-      }
+        "en": "Recall name fields with dictionary keys. Would record[0] mean the first entry? Add a Boolean active field in an experiment.",
+        "nl": "Herhaal benoem velden met dictionarysleutels. Betekent record[0] de eerste invoer? Voeg in een experiment een booleaans active-veld toe."
+      },
+      "code": "record = {\"name\":\"Bo\",\"score\":4}\nprint(record[\"name\"])\nprint(record[\"score\"])"
     }
   ]
 }

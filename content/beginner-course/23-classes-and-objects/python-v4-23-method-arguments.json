@@ -51,11 +51,26 @@
       }
     },
     {
-      "id": "python-v4-23-method-arguments-experiment",
+      "id": "python-v4-23-method-arguments-visible-report",
+      "role": "practice",
       "topicIds": [],
       "heading": {
-        "en": "Try one change",
-        "nl": "Probeer één wijziging"
+        "en": "Run a visible report",
+        "nl": "Voer een zichtbaar verslag uit"
+      },
+      "body": {
+        "en": "After completing the required definition, add this caller below it and Run. Expected 4, then 2. The second call uses the state left by the first.",
+        "nl": "Voeg na het afmaken van de vereiste definitie deze aanroeper eronder toe en voer uit. Verwacht 4 en dan 2. De tweede aanroep gebruikt de toestand die de eerste achterlaat."
+      },
+      "code": "counter = Counter(3)\nprint(counter.add())\nprint(counter.add(amount=-2))"
+    },
+    {
+      "id": "python-v4-23-method-arguments-experiment",
+      "role": "experiment",
+      "topicIds": [],
+      "heading": {
+        "en": "After completing the task: try one change",
+        "nl": "Na het afronden: probeer één wijziging"
       },
       "body": {
         "en": "Call add with a named argument and explain how the stored state changes.",
@@ -126,18 +141,5 @@
     "en": "The result includes previous state because every call updates the same instance field.",
     "nl": "Het resultaat bevat eerdere toestand omdat elke aanroep hetzelfde instantieveld bijwerkt."
   },
-  "inputs": [],
-  "retrievals": [
-    {
-      "id": "recall-python-v4-21-write",
-      "sourceActivityId": "python-v4-21-write",
-      "objectiveIds": [
-        "csv-write"
-      ],
-      "prompt": {
-        "en": "Recall “Export records to CSV”. Why is a comma inside the city safe here? Try the earlier example from memory, then check it. Inspect the generated file, then read it back using csv.reader.",
-        "nl": "Haal “Exporteer records naar CSV” terug. Waarom is een komma binnen de stad hier veilig? Probeer het eerdere voorbeeld uit je geheugen en controleer daarna. Bekijk het gemaakte bestand en lees het terug met csv.reader."
-      }
-    }
-  ]
+  "inputs": []
 }

@@ -56,11 +56,26 @@
       }
     },
     {
-      "id": "python-v4-18-join-strip-experiment",
+      "id": "python-v4-18-join-strip-try-calls",
+      "role": "practice",
       "topicIds": [],
       "heading": {
-        "en": "Try one change",
-        "nl": "Probeer één wijziging"
+        "en": "See your function work",
+        "nl": "Bekijk wat je functie doet"
+      },
+      "body": {
+        "en": "A definition alone produces no output. After writing the function, add these calls underneath it in main.py, without indentation, and Run. Compare the returned values with the task's requirements. The checks also call your function with other inputs; they do not require you to keep these demonstration calls.",
+        "nl": "Een definitie alleen geeft geen uitvoer. Schrijf eerst de functie en voeg daarna deze aanroepen eronder toe in main.py, zonder inspringing. Klik op Uitvoeren. Vergelijk de teruggegeven waarden met de opdracht. De controles roepen je functie ook met andere invoer aan; deze demonstratieaanroepen zijn niet verplicht."
+      },
+      "code": "print(line([\" A \", \" B\"]))\nprint(line([]))"
+    },
+    {
+      "id": "python-v4-18-join-strip-experiment",
+      "role": "experiment",
+      "topicIds": [],
+      "heading": {
+        "en": "After completing the task: try one change",
+        "nl": "Na het afronden: probeer één wijziging"
       },
       "body": {
         "en": "Use a newline as the join separator to create a multiline report.",
@@ -79,12 +94,11 @@
       "id": "python-v4-18-join-strip-step-1",
       "objectiveIds": [
         "join",
-        "strip-characters",
-        "strip"
+        "strip-characters"
       ],
       "task": {
-        "en": "Trim outer whitespace from each part, then join with comma-space. Preserve empty parts.",
-        "nl": "Verwijder buitenste witruimte van elk deel en voeg samen met komma-spatie. Behoud lege delen."
+        "en": "Write line(parts) in main.py. Trim outer whitespace from each part, then join with comma-space. Preserve empty parts.",
+        "nl": "Schrijf line(parts) in main.py. Verwijder buitenste witruimte van elk deel en voeg samen met komma-spatie. Behoud lege delen."
       },
       "check": "callable(line)",
       "probes": [
@@ -150,5 +164,20 @@
     "en": "Cleaning and joining are separate operations so internal content is preserved.",
     "nl": "Opschonen en samenvoegen zijn aparte bewerkingen zodat interne inhoud bewaard blijft."
   },
-  "inputs": []
+  "inputs": [],
+  "retrievals": [
+    {
+      "id": "recall-python-v4-17-comprehensions",
+      "sourceActivityId": "python-v4-17-comprehensions",
+      "objectiveIds": [
+        "list-comprehensions",
+        "conditional-list-comprehensions"
+      ],
+      "prompt": {
+        "en": "Recall express a simple transformation compactly. Does the filter test n or n * 2? Rewrite the same behaviour with an ordinary loop and compare the results.",
+        "nl": "Herhaal schrijf een eenvoudige omzetting compact. Test het filter n of n * 2? Herschrijf hetzelfde gedrag met een gewone lus en vergelijk de resultaten."
+      },
+      "code": "values = [-1,0,3]\nprint([n * 2 for n in values])\nprint([n * 2 for n in values if n > 0])"
+    }
+  ]
 }

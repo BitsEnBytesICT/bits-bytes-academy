@@ -62,11 +62,40 @@
       }
     },
     {
-      "id": "python-v4-18-text-cleaner-experiment",
+      "id": "python-v4-18-text-cleaner-try-calls",
+      "role": "practice",
       "topicIds": [],
       "heading": {
-        "en": "Try one change",
-        "nl": "Probeer één wijziging"
+        "en": "See your function work",
+        "nl": "Bekijk wat je functie doet"
+      },
+      "body": {
+        "en": "A definition alone produces no output. After writing the function, add these calls underneath it in main.py, without indentation, and Run. Compare the returned values with the task's requirements. The checks also call your function with other inputs; they do not require you to keep these demonstration calls.",
+        "nl": "Een definitie alleen geeft geen uitvoer. Schrijf eerst de functie en voeg daarna deze aanroepen eronder toe in main.py, zonder inspringing. Klik op Uitvoeren. Vergelijk de teruggegeven waarden met de opdracht. De controles roepen je functie ook met andere invoer aan; deze demonstratieaanroepen zijn niet verplicht."
+      },
+      "code": "print(clean_report([\"  Red\\tFOX \", \" \", \"Blue  Sky\"]))\nprint(clean_report([]))"
+    },
+    {
+      "id": "python-v4-18-text-cleaner-visible-report",
+      "role": "practice",
+      "topicIds": [],
+      "heading": {
+        "en": "Run a visible report",
+        "nl": "Voer een zichtbaar verslag uit"
+      },
+      "body": {
+        "en": "After completing the required definition, add this caller below it and Run. Expected two lines: red fox, then blue sky. The blank source line disappears; the duplicate-line case should preserve duplicates.",
+        "nl": "Voeg na het afmaken van de vereiste definitie deze aanroeper eronder toe en voer uit. Verwacht twee regels: red fox en dan blue sky. De lege bronregel verdwijnt; bij dubbele regels blijven duplicaten behouden."
+      },
+      "code": "lines = [\"  Red\\tFOX \", \" \", \"Blue  Sky\"]\nprint(clean_report(lines))"
+    },
+    {
+      "id": "python-v4-18-text-cleaner-experiment",
+      "role": "experiment",
+      "topicIds": [],
+      "heading": {
+        "en": "After completing the task: try one change",
+        "nl": "Na het afronden: probeer één wijziging"
       },
       "body": {
         "en": "Test tabs, blank lines, punctuation and duplicate lines in your own fixture.",
@@ -84,16 +113,11 @@
     {
       "id": "python-v4-18-text-cleaner-step-1",
       "objectiveIds": [
-        "text-project",
-        "split-whitespace",
-        "join",
-        "strip",
-        "case-conversion",
-        "list-iteration"
+        "text-project"
       ],
       "task": {
-        "en": "Implement the report rules and leave the input list unchanged.",
-        "nl": "Implementeer de rapportregels en laat de invoerlijst ongewijzigd."
+        "en": "Write clean_report(lines) in main.py. Implement the report rules and leave the input list unchanged.",
+        "nl": "Schrijf clean_report(lines) in main.py. Implementeer de rapportregels en laat de invoerlijst ongewijzigd."
       },
       "check": "callable(clean_report)",
       "probes": [

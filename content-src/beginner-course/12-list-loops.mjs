@@ -75,6 +75,8 @@ export const activities = [
       "Hoeveel waarden produceert range(0)?",
     ],
     name: "positions",
+    check:
+      'callable(positions) and any(isinstance(n,_ast.Call) and isinstance(n.func,_ast.Name) and n.func.id == "range" for n in _ast.walk(_ast.parse(_source)))',
     params: "count",
     body: "return list(range(count))",
     task: [
@@ -123,6 +125,8 @@ export const activities = [
       "Waarom ontbreekt 9 in de eerste lijst?",
     ],
     name: "countdown",
+    check:
+      'callable(countdown) and any(isinstance(n,_ast.Call) and isinstance(n.func,_ast.Name) and n.func.id == "range" for n in _ast.walk(_ast.parse(_source)))',
     params: "start",
     body: "return list(range(start, 0, -1))",
     task: [

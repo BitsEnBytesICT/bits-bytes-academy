@@ -60,11 +60,38 @@
       }
     },
     {
-      "id": "python-v4-10-diagnose-experiment",
+      "id": "python-v4-10-diagnose-trace",
       "topicIds": [],
       "heading": {
-        "en": "Try one change",
-        "nl": "Probeer één wijziging"
+        "en": "Read a traceback from the end",
+        "nl": "Lees een traceback vanaf het einde"
+      },
+      "body": {
+        "en": "Example diagnostic text: File 'main.py', line 2 → number = int(text) → ValueError: invalid literal for int() with base 10: 'cat'. The final line names failed conversion; line 2 tells you which statement to inspect. Compare with a SyntaxError (Python could not parse the file) and a logic error such as 7 // 2 for a fractional average (runs, but gives the wrong result). This task repairs the logic case.",
+        "nl": "Voorbeeld van fouttekst: File 'main.py', line 2 → number = int(text) → ValueError: invalid literal for int() with base 10: 'cat'. De laatste regel benoemt mislukte omzetting; regel 2 zegt welke instructie je onderzoekt. Vergelijk met SyntaxError (Python kon het bestand niet ontleden) en een logische fout zoals 7 // 2 voor een gebroken gemiddelde (draait maar geeft een verkeerd resultaat). Deze opdracht herstelt het logische geval."
+      }
+    },
+    {
+      "id": "python-v4-10-diagnose-try-calls",
+      "role": "practice",
+      "topicIds": [],
+      "heading": {
+        "en": "See your function work",
+        "nl": "Bekijk wat je functie doet"
+      },
+      "body": {
+        "en": "A definition alone produces no output. After writing the function, add these calls underneath it in main.py, without indentation, and Run. Compare the returned values with the task's requirements. The checks also call your function with other inputs; they do not require you to keep these demonstration calls.",
+        "nl": "Een definitie alleen geeft geen uitvoer. Schrijf eerst de functie en voeg daarna deze aanroepen eronder toe in main.py, zonder inspringing. Klik op Uitvoeren. Vergelijk de teruggegeven waarden met de opdracht. De controles roepen je functie ook met andere invoer aan; deze demonstratieaanroepen zijn niet verplicht."
+      },
+      "code": "print(average(7, 2))\nprint(average(1, 4))"
+    },
+    {
+      "id": "python-v4-10-diagnose-experiment",
+      "role": "experiment",
+      "topicIds": [],
+      "heading": {
+        "en": "After completing the task: try one change",
+        "nl": "Na het afronden: probeer één wijziging"
       },
       "body": {
         "en": "Explain why changing the test from 7/2 to 8/2 could hide this bug.",
@@ -84,9 +111,7 @@
       "objectiveIds": [
         "runtime-errors",
         "logic-errors",
-        "tracebacks",
-        "syntax-errors",
-        "name-error"
+        "tracebacks"
       ],
       "task": {
         "en": "Repair average(total, count) for count > 0 so fractional results are preserved.",
@@ -156,28 +181,28 @@
   "inputs": [],
   "retrievals": [
     {
-      "id": "recall-python-v4-08-why-repeat",
-      "sourceActivityId": "python-v4-08-why-repeat",
+      "id": "recall-python-v4-03-whole-groups",
+      "sourceActivityId": "python-v4-03-whole-groups",
       "objectiveIds": [
-        "why-loops",
-        "while",
-        "counters"
+        "floor-division"
       ],
       "prompt": {
-        "en": "Recall “Repeat a small block”. How many times is the body entered, and why? Try the earlier example from memory, then check it. Try limits 0, 1 and 4. Explain why zero repetitions are possible.",
-        "nl": "Haal “Herhaal een klein blok” terug. Hoe vaak wordt het blok betreden en waarom? Probeer het eerdere voorbeeld uit je geheugen en controleer daarna. Probeer grenzen 0, 1 en 4. Leg uit waarom nul herhalingen mogelijk zijn."
-      }
+        "en": "Recall count complete groups with //. Why is the first result a smaller whole number? Try one fewer item than box_size. How many complete boxes can you fill?",
+        "nl": "Herhaal tel volledige groepen met //. Waarom is het eerste resultaat een kleiner geheel getal? Probeer één artikel minder dan box_size. Hoeveel volledige dozen kun je vullen?"
+      },
+      "code": "stickers = 17\npack_size = 5\nprint(stickers // pack_size)\nprint(stickers / pack_size)"
     },
     {
-      "id": "recall-python-v4-08-repair-exit",
-      "sourceActivityId": "python-v4-08-repair-exit",
+      "id": "recall-python-v4-09-ticket-function",
+      "sourceActivityId": "python-v4-09-ticket-function",
       "objectiveIds": [
-        "loop-debugging"
+        "functions-review"
       ],
       "prompt": {
-        "en": "Recall “Repair a loop that exits too soon”. Where does control go immediately after break? Try the earlier example from memory, then check it. Change the skipped value to 1, then 5. Predict which lines remain.",
-        "nl": "Haal “Herstel een lus die te vroeg stopt” terug. Waar gaat de uitvoering direct na break heen? Probeer het eerdere voorbeeld uit je geheugen en controleer daarna. Verander de overgeslagen waarde in 1 en daarna 5. Voorspel welke regels overblijven."
-      }
+        "en": "Recall build a reusable ticket calculation. What would remaining(8, -1) return? Add a named-argument test that overrides price.",
+        "nl": "Herhaal bouw een herbruikbare ticketberekening. Wat geeft remaining(8, -1) terug? Voeg een test met benoemde argumenten toe die price vervangt."
+      },
+      "code": "def remaining(stock, used=1):\n    if used < 0:\n        return None\n    return stock - used\nprint(remaining(8))"
     }
   ]
 }

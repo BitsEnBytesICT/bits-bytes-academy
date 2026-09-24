@@ -54,11 +54,38 @@
       }
     },
     {
-      "id": "python-v4-11-create-experiment",
+      "id": "python-v4-11-create-trace",
       "topicIds": [],
       "heading": {
-        "en": "Try one change",
-        "nl": "Probeer één wijziging"
+        "en": "Read the list's shape",
+        "nl": "Lees de vorm van de lijst"
+      },
+      "body": {
+        "en": "Square brackets mark the list. Commas separate its elements, and order is preserved. ['Bo', 3, True] has three elements with three different types. Use the visible print call below to inspect the list your function returns.",
+        "nl": "Vierkante haakjes markeren de lijst. Komma's scheiden elementen en de volgorde blijft behouden. ['Bo', 3, True] heeft drie elementen met drie verschillende typen. Gebruik de zichtbare print-aanroep hieronder om de lijst uit je functie te bekijken."
+      }
+    },
+    {
+      "id": "python-v4-11-create-try-calls",
+      "role": "practice",
+      "topicIds": [],
+      "heading": {
+        "en": "See your function work",
+        "nl": "Bekijk wat je functie doet"
+      },
+      "body": {
+        "en": "A definition alone produces no output. After writing the function, add these calls underneath it in main.py, without indentation, and Run. Compare the returned values with the task's requirements. The checks also call your function with other inputs; they do not require you to keep these demonstration calls.",
+        "nl": "Een definitie alleen geeft geen uitvoer. Schrijf eerst de functie en voeg daarna deze aanroepen eronder toe in main.py, zonder inspringing. Klik op Uitvoeren. Vergelijk de teruggegeven waarden met de opdracht. De controles roepen je functie ook met andere invoer aan; deze demonstratieaanroepen zijn niet verplicht."
+      },
+      "code": "print(record(\"Mila\", 5))\nprint(record(\"\", 0))"
+    },
+    {
+      "id": "python-v4-11-create-experiment",
+      "role": "experiment",
+      "topicIds": [],
+      "heading": {
+        "en": "After completing the task: try one change",
+        "nl": "Na het afronden: probeer één wijziging"
       },
       "body": {
         "en": "Swap two elements and explain why this changes the record.",
@@ -80,8 +107,8 @@
         "list-contents"
       ],
       "task": {
-        "en": "Return a list containing name, score and True in that order.",
-        "nl": "Geef een lijst terug met name, score en True in die volgorde."
+        "en": "Write record(name, score) in main.py. Return a list containing name, score and True in that order.",
+        "nl": "Schrijf record(name, score) in main.py. Geef een lijst terug met name, score en True in die volgorde."
       },
       "check": "callable(record)",
       "probes": [
@@ -134,32 +161,5 @@
     "en": "The list retains the supplied values and their order, including their different types.",
     "nl": "De lijst bewaart de gegeven waarden en hun volgorde, inclusief de verschillende typen."
   },
-  "inputs": [],
-  "retrievals": [
-    {
-      "id": "recall-python-v4-09-define-and-call",
-      "sourceActivityId": "python-v4-09-define-and-call",
-      "objectiveIds": [
-        "functions",
-        "function-definition",
-        "function-calls",
-        "builtins"
-      ],
-      "prompt": {
-        "en": "Recall “Give instructions a name”. Which line would disappear if greet() were removed? Try the earlier example from memory, then check it. Add a third call. Explain why you did not copy the function body.",
-        "nl": "Haal “Geef instructies een naam” terug. Welke regel verdwijnt als greet() wordt verwijderd? Probeer het eerdere voorbeeld uit je geheugen en controleer daarna. Voeg een derde aanroep toe. Leg uit waarom je de functie-inhoud niet kopieerde."
-      }
-    },
-    {
-      "id": "recall-python-v4-09-local-scope",
-      "sourceActivityId": "python-v4-09-local-scope",
-      "objectiveIds": [
-        "scope"
-      ],
-      "prompt": {
-        "en": "Recall “Keep a function independent”. Why does the outer value remain 100? Try the earlier example from memory, then check it. Change the outer rate to 999. The function result should stay tied to its arguments.",
-        "nl": "Haal “Houd een functie onafhankelijk” terug. Waarom blijft de buitenliggende value 100? Probeer het eerdere voorbeeld uit je geheugen en controleer daarna. Verander de buitenliggende rate naar 999. Het functieresultaat hoort gekoppeld te blijven aan zijn argumenten."
-      }
-    }
-  ]
+  "inputs": []
 }

@@ -16,6 +16,9 @@ import { createApp } from "../backend/src/app.ts";
 const versions: Course[] = [1, 2, 3].map((v) =>
   JSON.parse(fs.readFileSync(`content/legacy/course-v${v}.json`, "utf8")),
 );
+const originalV4Quizzes: Course = JSON.parse(
+  fs.readFileSync("content/legacy/course-v4-original-quizzes.json", "utf8"),
+);
 const original = versions[1].activities.find(
   (a) => a.kind === "project",
 ) as Project;
@@ -326,6 +329,73 @@ test("All authored quiz forms preserve drafts, scoring, answers and immutable at
       );
     }
   } finally {
+    db.close();
+  }
+});
+
+test("Original v4 quiz forms restore under their archived identity without passing revised quizzes", async () => {
+  const db = openDatabase(":memory:");
+  const { app } = createApp(db);
+  const server = app.listen(0, "127.0.0.1");
+  await new Promise<void>((r) => server.once("listening", r));
+  const base = `http://127.0.0.1:${(server.address() as { port: number }).port}/api`;
+  const request = async (route: string, data?: unknown, method = "PUT") => {
+    const response = await fetch(base + route, {
+      method: data === undefined ? "GET" : method,
+      headers: { "Content-Type": "application/json" },
+      body: data === undefined ? undefined : JSON.stringify(data),
+    });
+    return { status: response.status, data: await response.json() };
+  };
+  try {
+    const active = (await request("/course")).data as Course;
+    for (const q of originalV4Quizzes.activities as Quiz[]) {
+      assert(!active.activities.some((a) => a.id === q.id));
+      const draft = createQuizState(q, 1, (values) => values);
+      const selected = questionsFor(q, draft);
+      draft.answers[selected[0].id] = selected[0].answer;
+      assert.equal(
+        (
+          await request(`/workspaces/${q.id}`, {
+            revision: 0,
+            files: {},
+            quiz: draft,
+          })
+        ).status,
+        200,
+      );
+      await request(`/progress/${q.id}`, { complete: true, score: 67 });
+      const archive = (await request(`/archive/${q.id}`)).data;
+      assert.deepEqual(archive.workspace.quiz, draft);
+      assert.equal(archive.progress.complete, true);
+      assert.equal(
+        questionsFor(q, archive.workspace.quiz)[0].id,
+        selected[0].id,
+      );
+      const replacement = active.activities.find(
+        (a) => a.kind === "quiz" && a.chapter === q.chapter,
+      )!;
+      assert.notEqual(replacement.id, q.id);
+      assert(
+        !(await request("/state")).data.progress[replacement.id]?.complete,
+      );
+    }
+    const backup = (await request("/backup")).data;
+    assert.equal(
+      (await request("/backup/preview", backup, "POST")).status,
+      200,
+    );
+    assert.equal(
+      (await request("/backup/restore", backup, "POST")).status,
+      200,
+    );
+    for (const q of originalV4Quizzes.activities as Quiz[])
+      assert.deepEqual(
+        (await request(`/workspaces/${q.id}`)).data.quiz,
+        backup.workspaces[q.id].quiz,
+      );
+  } finally {
+    await new Promise<void>((r) => server.close(() => r()));
     db.close();
   }
 });

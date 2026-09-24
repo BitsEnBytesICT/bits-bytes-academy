@@ -1,0 +1,230 @@
+{
+  "id": "python-v4-16-two-controls",
+  "chapter": 16,
+  "group": "python-v4-module-16",
+  "title": {
+    "en": "Connect two players' controls",
+    "nl": "Verbind de besturing van twee spelers"
+  },
+  "kind": "coding",
+  "optional": false,
+  "runtime": "pygame",
+  "guidance": "guided",
+  "checkpointMode": "sequential",
+  "estimatedMinutes": 22,
+  "topicIds": [
+    "controls-integration"
+  ],
+  "practices": [
+    "held-keys",
+    "boundaries",
+    "elapsed-time"
+  ],
+  "requiredConcepts": [
+    "serving",
+    "held-keys",
+    "boundaries"
+  ],
+  "explanation": {
+    "en": "Join held keys, elapsed time and boundaries in one update. Both players must be able to move in the same frame.",
+    "nl": "Verbind ingedrukte toetsen, verstreken tijd en grenzen in één update. Beide spelers moeten in hetzelfde beeld kunnen bewegen."
+  },
+  "example": "",
+  "sections": [
+    {
+      "id": "python-v4-16-two-controls-example",
+      "topicIds": [
+        "controls-integration",
+        "held-keys",
+        "boundaries",
+        "elapsed-time"
+      ],
+      "heading": {
+        "en": "Follow a working example",
+        "nl": "Volg een werkend voorbeeld"
+      },
+      "body": {
+        "en": "controls(left, right, w, s, up, down, dt) returns the new two paddle positions. Each held upward key subtracts 240 * dt; each held downward key adds it. Use independent if statements, including for opposing keys: both held means no net movement. Only after adding movement, clamp each result to 0 through 340. The supplied loop reads the keyboard, calls your update, unpacks its result, then draws. Look at main.py to find those three steps; leave the browser scheduling unchanged.",
+        "nl": "controls(left, right, w, s, up, down, dt) geeft de twee nieuwe batjeposities terug. Elke ingedrukte omhoogtoets trekt 240 * dt af; elke omlaagtoets telt dat op. Gebruik onafhankelijke if-instructies, ook voor tegengestelde toetsen: beide ingedrukt betekent netto geen beweging. Begrens pas na optellen van beweging elk resultaat tot 0 tot en met 340. De aangeleverde lus leest het toetsenbord, roept je update aan, pakt het resultaat uit en tekent. Zoek die drie stappen in main.py; laat de browserplanning ongewijzigd."
+      },
+      "code": "position = 10\nposition -= 100 * 0.2\nprint(position)\nposition = max(0, position)\nprint(position)",
+      "output": "-10.0\n0\n",
+      "prediction": {
+        "en": "Why does clamping need to happen after movement?",
+        "nl": "Waarom moet begrenzen na bewegen gebeuren?"
+      },
+      "takeaway": {
+        "en": "Read both players, update both positions, clamp, then draw.",
+        "nl": "Lees beide spelers, werk beide posities bij, begrens en teken."
+      }
+    },
+    {
+      "topicIds": [],
+      "heading": {
+        "en": "Run, observe, finish",
+        "nl": "Voer uit, bekijk, rond af"
+      },
+      "body": {
+        "en": "main.py supplies the browser entry point. Run opens a real pygame-ce preview; click it to focus the keyboard. Clicking elsewhere pauses play. Finish & check closes normally and checks your helper after at least one rendered frame. Stop cancels without grading. Run can start a fresh session afterward. Keep the supplied async definition and await asyncio.sleep(1 / 60): they let the browser draw and receive input. You are not expected to reproduce this infrastructure from memory.",
+        "nl": "main.py levert het browserstartpunt. Uitvoeren opent een echt pygame-ce-voorbeeld; klik erop om het toetsenbord te activeren. Elders klikken pauzeert het spel. Afronden en controleren sluit normaal af en controleert je helper na minstens één getekend beeld. Stop annuleert zonder beoordeling. Uitvoeren kan daarna een nieuwe sessie starten. Behoud de meegeleverde async-definitie en await asyncio.sleep(1 / 60): die laten de browser tekenen en invoer ontvangen. Je hoeft deze infrastructuur niet uit je hoofd te schrijven."
+      }
+    },
+    {
+      "id": "python-v4-16-two-controls-experiment",
+      "role": "experiment",
+      "topicIds": [],
+      "heading": {
+        "en": "After completing the task: try one change",
+        "nl": "Na het afronden: probeer één wijziging"
+      },
+      "body": {
+        "en": "Hold W and Down together, then opposing keys for one paddle. Click outside the preview and return; explain why no movement should accumulate while unfocused.",
+        "nl": "Houd W en Omlaag samen ingedrukt en daarna tegengestelde toetsen voor één batje. Klik buiten het voorbeeld en keer terug; leg uit waarom beweging zich niet hoort op te stapelen zonder focus."
+      }
+    }
+  ],
+  "files": {
+    "main.py": "# Browser entry point supplied by the course.\nimport asyncio\nimport pygame\nimport game\n\nasync def main():\n    pygame.init()\n    screen = pygame.display.set_mode((640, 400))\n    clock = pygame.time.Clock()\n    running = True\n    x, y = 320.0, 200.0\n    vx, vy = 200.0, 100.0\n    left_y, right_y = 170.0, 170.0\n    while running:\n        dt = min(clock.tick() / 1000, 0.05)\n        for event in pygame.event.get():\n            if event.type == pygame.QUIT:\n                running = False\n            if event.type == pygame.KEYDOWN and event.key == pygame.K_ESCAPE:\n                running = False\n        keys = pygame.key.get_pressed()\n        left_y,right_y = game.controls(left_y,right_y,keys[pygame.K_w],keys[pygame.K_s],keys[pygame.K_UP],keys[pygame.K_DOWN],dt)\n        screen.fill((16, 23, 39))\n        pygame.draw.rect(screen, (235, 240, 250), (20, left_y, 10, 60))\n        pygame.draw.rect(screen, (235, 240, 250), (610, right_y, 10, 60))\n        pygame.draw.circle(screen, (255, 170, 40), (int(x), int(y)), 6)\n        pygame.display.flip()\n        await asyncio.sleep(1 / 60)\n    pygame.quit()\n\nasyncio.run(main())\n",
+    "game.py": "import pygame\n\ndef controls(left, right, w, s, up, down, dt):\n    return left, right\n"
+  },
+  "solution": {
+    "main.py": "# Browser entry point supplied by the course.\nimport asyncio\nimport pygame\nimport game\n\nasync def main():\n    pygame.init()\n    screen = pygame.display.set_mode((640, 400))\n    clock = pygame.time.Clock()\n    running = True\n    x, y = 320.0, 200.0\n    vx, vy = 200.0, 100.0\n    left_y, right_y = 170.0, 170.0\n    while running:\n        dt = min(clock.tick() / 1000, 0.05)\n        for event in pygame.event.get():\n            if event.type == pygame.QUIT:\n                running = False\n            if event.type == pygame.KEYDOWN and event.key == pygame.K_ESCAPE:\n                running = False\n        keys = pygame.key.get_pressed()\n        left_y,right_y = game.controls(left_y,right_y,keys[pygame.K_w],keys[pygame.K_s],keys[pygame.K_UP],keys[pygame.K_DOWN],dt)\n        screen.fill((16, 23, 39))\n        pygame.draw.rect(screen, (235, 240, 250), (20, left_y, 10, 60))\n        pygame.draw.rect(screen, (235, 240, 250), (610, right_y, 10, 60))\n        pygame.draw.circle(screen, (255, 170, 40), (int(x), int(y)), 6)\n        pygame.display.flip()\n        await asyncio.sleep(1 / 60)\n    pygame.quit()\n\nasyncio.run(main())\n",
+    "game.py": "import pygame\n\ndef controls(left, right, w, s, up, down, dt):\n    if w: left -= 240 * dt\n    if s: left += 240 * dt\n    if up: right -= 240 * dt\n    if down: right += 240 * dt\n    return max(0,min(340,left)), max(0,min(340,right))\n"
+  },
+  "checkpoints": [
+    {
+      "id": "python-v4-16-two-controls-step-1",
+      "objectiveIds": [
+        "controls-integration",
+        "simultaneous-controls",
+        "held-keys",
+        "boundaries",
+        "elapsed-time"
+      ],
+      "task": {
+        "en": "Implement controls with independent controls for both paddles, elapsed time and final boundary clamping. Return (left, right).",
+        "nl": "Implementeer controls met onafhankelijke besturing van beide batjes, verstreken tijd en begrenzing aan het eind. Geef (left, right) terug."
+      },
+      "check": "_rendered_frames > 0",
+      "probes": [
+        {
+          "call": {
+            "name": "controls",
+            "args": [
+              100,
+              200,
+              true,
+              false,
+              false,
+              true,
+              0.1
+            ],
+            "module": "game"
+          },
+          "check": "(_return == (76,224)) and _error is None",
+          "moduleOnly": true,
+          "module": "game"
+        },
+        {
+          "call": {
+            "name": "controls",
+            "args": [
+              0,
+              340,
+              true,
+              false,
+              false,
+              true,
+              0.1
+            ],
+            "module": "game"
+          },
+          "check": "(_return == (0,340)) and _error is None",
+          "moduleOnly": true,
+          "module": "game"
+        },
+        {
+          "call": {
+            "name": "controls",
+            "args": [
+              0,
+              340,
+              true,
+              true,
+              true,
+              true,
+              0.1
+            ],
+            "module": "game"
+          },
+          "check": "(_return == (0,340)) and _error is None",
+          "moduleOnly": true,
+          "module": "game"
+        },
+        {
+          "call": {
+            "name": "controls",
+            "args": [
+              100,
+              200,
+              false,
+              true,
+              true,
+              false,
+              0
+            ],
+            "module": "game"
+          },
+          "check": "(_return == (100,200)) and _error is None",
+          "moduleOnly": true,
+          "module": "game"
+        },
+        {
+          "call": {
+            "name": "controls",
+            "args": [
+              100,
+              200,
+              false,
+              true,
+              true,
+              false,
+              0.05
+            ],
+            "module": "game"
+          },
+          "check": "(_return == (112,188)) and _error is None",
+          "moduleOnly": true,
+          "module": "game"
+        }
+      ],
+      "hint": {
+        "en": "Read both players, update both positions, clamp, then draw.",
+        "nl": "Lees beide spelers, werk beide posities bij, begrens en teken."
+      },
+      "hints": [
+        {
+          "en": "Read both players, update both positions, clamp, then draw.",
+          "nl": "Lees beide spelers, werk beide posities bij, begrens en teken."
+        },
+        {
+          "en": "An elif chain would skip the second player's movement. Four if statements allow simultaneous actions.",
+          "nl": "Een elif-keten zou beweging van de tweede speler overslaan. Vier if-instructies laten gelijktijdige acties toe."
+        },
+        {
+          "en": "A small fragment to adapt: `if down: right += 240 * dt`",
+          "nl": "Een klein fragment om aan te passen: `if down: right += 240 * dt`"
+        }
+      ],
+      "feedback": {
+        "en": "An elif chain would skip the second player's movement. Four if statements allow simultaneous actions.",
+        "nl": "Een elif-keten zou beweging van de tweede speler overslaan. Vier if-instructies laten gelijktijdige acties toe."
+      }
+    }
+  ],
+  "solutionNote": {
+    "en": "Every key contributes independently. Both positions are bounded after all contributions, avoiding stuck controls or giving one player priority.",
+    "nl": "Elke toets draagt onafhankelijk bij. Beide posities worden na alle bijdragen begrensd; zo blijven besturingen vrij en krijgt geen speler voorrang."
+  },
+  "inputs": []
+}

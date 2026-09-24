@@ -51,11 +51,26 @@
       }
     },
     {
-      "id": "python-v4-12-search-experiment",
+      "id": "python-v4-12-search-try-calls",
+      "role": "practice",
       "topicIds": [],
       "heading": {
-        "en": "Try one change",
-        "nl": "Probeer één wijziging"
+        "en": "See your function work",
+        "nl": "Bekijk wat je functie doet"
+      },
+      "body": {
+        "en": "A definition alone produces no output. After writing the function, add these calls underneath it in main.py, without indentation, and Run. Compare the returned values with the task's requirements. The checks also call your function with other inputs; they do not require you to keep these demonstration calls.",
+        "nl": "Een definitie alleen geeft geen uitvoer. Schrijf eerst de functie en voeg daarna deze aanroepen eronder toe in main.py, zonder inspringing. Klik op Uitvoeren. Vergelijk de teruggegeven waarden met de opdracht. De controles roepen je functie ook met andere invoer aan; deze demonstratieaanroepen zijn niet verplicht."
+      },
+      "code": "print(contains([1, 3], 3))\nprint(contains([1, 3], 2))"
+    },
+    {
+      "id": "python-v4-12-search-experiment",
+      "role": "experiment",
+      "topicIds": [],
+      "heading": {
+        "en": "After completing the task: try one change",
+        "nl": "Na het afronden: probeer één wijziging"
       },
       "body": {
         "en": "Test duplicate target values. Does the answer change?",
@@ -76,8 +91,8 @@
         "searching"
       ],
       "task": {
-        "en": "Return True if target occurs in items, otherwise False.",
-        "nl": "Geef True terug als target in items voorkomt, anders False."
+        "en": "Write contains(items, target) in main.py. Return True if target occurs in items, otherwise False.",
+        "nl": "Schrijf contains(items, target) in main.py. Geef True terug als target in items voorkomt, anders False."
       },
       "check": "callable(contains)",
       "probes": [
@@ -146,18 +161,5 @@
     "en": "An early return proves existence; the final return covers exhausted searches.",
     "nl": "Een vroege return bewijst aanwezigheid; de laatste return verwerkt uitgeputte zoekacties."
   },
-  "inputs": [],
-  "retrievals": [
-    {
-      "id": "recall-python-v4-10-retry",
-      "sourceActivityId": "python-v4-10-retry",
-      "objectiveIds": [
-        "retry-loops"
-      ],
-      "prompt": {
-        "en": "Recall “Try again after invalid input”. Why can the same function recover on its second call? Try the earlier example from memory, then check it. Test two invalid answers in a row before a valid one.",
-        "nl": "Haal “Probeer opnieuw na ongeldige invoer” terug. Waarom kan dezelfde functie herstellen bij de tweede aanroep? Probeer het eerdere voorbeeld uit je geheugen en controleer daarna. Test twee ongeldige antwoorden achter elkaar vóór een geldig antwoord."
-      }
-    }
-  ]
+  "inputs": []
 }

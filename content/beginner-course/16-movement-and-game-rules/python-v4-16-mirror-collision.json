@@ -1,0 +1,195 @@
+{
+  "id": "python-v4-16-mirror-collision",
+  "chapter": 16,
+  "group": "python-v4-module-16",
+  "title": {
+    "en": "Complete the other side of the court",
+    "nl": "Maak de andere kant van het veld af"
+  },
+  "kind": "coding",
+  "optional": false,
+  "runtime": "pygame",
+  "guidance": "independent",
+  "checkpointMode": "sequential",
+  "estimatedMinutes": 22,
+  "topicIds": [
+    "mirrored-collision"
+  ],
+  "practices": [
+    "paddle-collision",
+    "overlap-correction"
+  ],
+  "requiredConcepts": [
+    "paddle-collision",
+    "serving"
+  ],
+  "explanation": {
+    "en": "Apply the left-paddle idea to the right side. Direction and position correction must mirror together.",
+    "nl": "Pas het idee van het linkerbatje toe op rechts. Richting en positieherstel moeten samen spiegelen."
+  },
+  "example": "",
+  "sections": [
+    {
+      "id": "python-v4-16-mirror-collision-example",
+      "topicIds": [
+        "mirrored-collision",
+        "paddle-collision",
+        "overlap-correction"
+      ],
+      "heading": {
+        "en": "Follow a working example",
+        "nl": "Volg een werkend voorbeeld"
+      },
+      "body": {
+        "en": "The right paddle is a Rect at (610, paddle_y, 10, 60). The ball's centre is (x,y), radius 6. Build its Rect from (x-6,y-6,12,12). Reverse only an overlapping ball that approaches with vx > 0. Move its centre to paddle.left - 6 so it is outside the paddle on its new travel side. Keep x and vx unchanged for misses or a ball already travelling left. The supplied left side in main.py lets you compare the two responses during a rally.",
+        "nl": "Het rechterbatje is een Rect op (610, paddle_y, 10, 60). Het balmiddelpunt is (x,y), straal 6. Maak zijn Rect met (x-6,y-6,12,12). Keer alleen een overlappende bal om die nadert met vx > 0. Verplaats het middelpunt naar paddle.left - 6 zodat het buiten het batje staat aan de nieuwe bewegingskant. Houd x en vx gelijk bij missers of een bal die al linkswaarts gaat. De aangeleverde linkerkant in main.py laat je beide reacties tijdens een rally vergelijken."
+      },
+      "code": "left_edge = 500\nradius = 5\nprint(left_edge - radius)\nprint(-120)",
+      "output": "495\n-120\n",
+      "prediction": {
+        "en": "Which side of left_edge is 495? Which way is the negative velocity?",
+        "nl": "Aan welke kant van left_edge ligt 495? Welke richting heeft de negatieve snelheid?"
+      },
+      "takeaway": {
+        "en": "Overlap and approach are both required; correct position before the next frame.",
+        "nl": "Overlap en naderen zijn allebei nodig; herstel de positie vóór het volgende beeld."
+      }
+    },
+    {
+      "topicIds": [],
+      "heading": {
+        "en": "Run, observe, finish",
+        "nl": "Voer uit, bekijk, rond af"
+      },
+      "body": {
+        "en": "main.py supplies the browser entry point. Run opens a real pygame-ce preview; click it to focus the keyboard. Clicking elsewhere pauses play. Finish & check closes normally and checks your helper after at least one rendered frame. Stop cancels without grading. Run can start a fresh session afterward. Keep the supplied async definition and await asyncio.sleep(1 / 60): they let the browser draw and receive input. You are not expected to reproduce this infrastructure from memory.",
+        "nl": "main.py levert het browserstartpunt. Uitvoeren opent een echt pygame-ce-voorbeeld; klik erop om het toetsenbord te activeren. Elders klikken pauzeert het spel. Afronden en controleren sluit normaal af en controleert je helper na minstens één getekend beeld. Stop annuleert zonder beoordeling. Uitvoeren kan daarna een nieuwe sessie starten. Behoud de meegeleverde async-definitie en await asyncio.sleep(1 / 60): die laten de browser tekenen en invoer ontvangen. Je hoeft deze infrastructuur niet uit je hoofd te schrijven."
+      }
+    },
+    {
+      "id": "python-v4-16-mirror-collision-experiment",
+      "role": "experiment",
+      "topicIds": [],
+      "heading": {
+        "en": "After completing the task: try one change",
+        "nl": "Na het afronden: probeer één wijziging"
+      },
+      "body": {
+        "en": "Explain the exact-touch case: pygame Rect edges that only touch do not overlap. Test a high and low miss too.",
+        "nl": "Leg het geval van exact raken uit: pygame Rect-randen die alleen raken overlappen niet. Test ook een hoge en lage misser."
+      }
+    }
+  ],
+  "files": {
+    "main.py": "# Browser entry point supplied by the course.\nimport asyncio\nimport pygame\nimport game\n\nasync def main():\n    pygame.init()\n    screen = pygame.display.set_mode((640, 400))\n    clock = pygame.time.Clock()\n    running = True\n    x, y = 320.0, 200.0\n    vx, vy = 200.0, 100.0\n    left_y, right_y = 170.0, 170.0\n    while running:\n        dt = min(clock.tick() / 1000, 0.05)\n        for event in pygame.event.get():\n            if event.type == pygame.QUIT:\n                running = False\n            if event.type == pygame.KEYDOWN and event.key == pygame.K_ESCAPE:\n                running = False\n        keys = pygame.key.get_pressed()\n        if keys[pygame.K_w]:\n            left_y -= 240 * dt\n        if keys[pygame.K_s]:\n            left_y += 240 * dt\n        if keys[pygame.K_UP]:\n            right_y -= 240 * dt\n        if keys[pygame.K_DOWN]:\n            right_y += 240 * dt\n        left_y = max(0, min(340, left_y))\n        right_y = max(0, min(340, right_y))\n        x += vx * dt\n        y += vy * dt\n        if y <= 6 or y >= 394:\n            vy = -vy\n            y = max(6,min(394,y))\n        if x <= 36 and vx < 0 and left_y <= y <= left_y + 60:\n            x,vx = 36,-vx\n        x,vx = game.hit_right(x,y,vx,right_y)\n        if x < -6 or x > 646:\n            x,y = 320,200\n        screen.fill((16, 23, 39))\n        pygame.draw.rect(screen, (235, 240, 250), (20, left_y, 10, 60))\n        pygame.draw.rect(screen, (235, 240, 250), (610, right_y, 10, 60))\n        pygame.draw.circle(screen, (255, 170, 40), (int(x), int(y)), 6)\n        pygame.display.flip()\n        await asyncio.sleep(1 / 60)\n    pygame.quit()\n\nasyncio.run(main())\n",
+    "game.py": "import pygame\n\ndef hit_right(x, y, vx, paddle_y):\n    return x, vx\n"
+  },
+  "solution": {
+    "main.py": "# Browser entry point supplied by the course.\nimport asyncio\nimport pygame\nimport game\n\nasync def main():\n    pygame.init()\n    screen = pygame.display.set_mode((640, 400))\n    clock = pygame.time.Clock()\n    running = True\n    x, y = 320.0, 200.0\n    vx, vy = 200.0, 100.0\n    left_y, right_y = 170.0, 170.0\n    while running:\n        dt = min(clock.tick() / 1000, 0.05)\n        for event in pygame.event.get():\n            if event.type == pygame.QUIT:\n                running = False\n            if event.type == pygame.KEYDOWN and event.key == pygame.K_ESCAPE:\n                running = False\n        keys = pygame.key.get_pressed()\n        if keys[pygame.K_w]:\n            left_y -= 240 * dt\n        if keys[pygame.K_s]:\n            left_y += 240 * dt\n        if keys[pygame.K_UP]:\n            right_y -= 240 * dt\n        if keys[pygame.K_DOWN]:\n            right_y += 240 * dt\n        left_y = max(0, min(340, left_y))\n        right_y = max(0, min(340, right_y))\n        x += vx * dt\n        y += vy * dt\n        if y <= 6 or y >= 394:\n            vy = -vy\n            y = max(6,min(394,y))\n        if x <= 36 and vx < 0 and left_y <= y <= left_y + 60:\n            x,vx = 36,-vx\n        x,vx = game.hit_right(x,y,vx,right_y)\n        if x < -6 or x > 646:\n            x,y = 320,200\n        screen.fill((16, 23, 39))\n        pygame.draw.rect(screen, (235, 240, 250), (20, left_y, 10, 60))\n        pygame.draw.rect(screen, (235, 240, 250), (610, right_y, 10, 60))\n        pygame.draw.circle(screen, (255, 170, 40), (int(x), int(y)), 6)\n        pygame.display.flip()\n        await asyncio.sleep(1 / 60)\n    pygame.quit()\n\nasyncio.run(main())\n",
+    "game.py": "import pygame\n\ndef hit_right(x, y, vx, paddle_y):\n    ball = pygame.Rect(x-6,y-6,12,12)\n    paddle = pygame.Rect(610,paddle_y,10,60)\n    if ball.colliderect(paddle) and vx > 0:\n        return paddle.left - 6, -vx\n    return x, vx\n"
+  },
+  "checkpoints": [
+    {
+      "id": "python-v4-16-mirror-collision-step-1",
+      "objectiveIds": [
+        "mirrored-collision",
+        "paddle-collision",
+        "overlap-correction"
+      ],
+      "task": {
+        "en": "Implement hit_right(x, y, vx, paddle_y) for the geometry above. Return corrected (x, vx) only for an approaching contact.",
+        "nl": "Implementeer hit_right(x, y, vx, paddle_y) voor de geometrie hierboven. Geef herstelde (x, vx) alleen bij naderend contact terug."
+      },
+      "check": "_rendered_frames > 0",
+      "probes": [
+        {
+          "call": {
+            "name": "hit_right",
+            "args": [
+              608,
+              200,
+              100,
+              170
+            ],
+            "module": "game"
+          },
+          "check": "(_return == (604,-100)) and _error is None",
+          "moduleOnly": true,
+          "module": "game"
+        },
+        {
+          "call": {
+            "name": "hit_right",
+            "args": [
+              608,
+              200,
+              -100,
+              170
+            ],
+            "module": "game"
+          },
+          "check": "(_return == (608,-100)) and _error is None",
+          "moduleOnly": true,
+          "module": "game"
+        },
+        {
+          "call": {
+            "name": "hit_right",
+            "args": [
+              608,
+              100,
+              100,
+              170
+            ],
+            "module": "game"
+          },
+          "check": "(_return == (608,100)) and _error is None",
+          "moduleOnly": true,
+          "module": "game"
+        },
+        {
+          "call": {
+            "name": "hit_right",
+            "args": [
+              604,
+              200,
+              100,
+              170
+            ],
+            "module": "game"
+          },
+          "check": "(_return == (604,100)) and _error is None",
+          "moduleOnly": true,
+          "module": "game"
+        }
+      ],
+      "hint": {
+        "en": "Overlap and approach are both required; correct position before the next frame.",
+        "nl": "Overlap en naderen zijn allebei nodig; herstel de positie vóór het volgende beeld."
+      },
+      "hints": [
+        {
+          "en": "Overlap and approach are both required; correct position before the next frame.",
+          "nl": "Overlap en naderen zijn allebei nodig; herstel de positie vóór het volgende beeld."
+        },
+        {
+          "en": "Mirror both the velocity sign and the paddle edge. An outgoing ball must not bounce again.",
+          "nl": "Spiegel zowel het snelheidsteken als de batjerand. Een vertrekkende bal mag niet opnieuw stuiteren."
+        },
+        {
+          "en": "A small fragment to adapt: `paddle.left - 6`",
+          "nl": "Een klein fragment om aan te passen: `paddle.left - 6`"
+        }
+      ],
+      "feedback": {
+        "en": "Mirror both the velocity sign and the paddle edge. An outgoing ball must not bounce again.",
+        "nl": "Spiegel zowel het snelheidsteken als de batjerand. Een vertrekkende bal mag niet opnieuw stuiteren."
+      }
+    }
+  ],
+  "solutionNote": {
+    "en": "The right-side correction is 610 - 6 = 604, with negative outgoing velocity. Testing direction prevents a second bounce while leaving contact.",
+    "nl": "Het rechter positieherstel is 610 - 6 = 604, met negatieve vertreksnelheid. Richting testen voorkomt een tweede stuiter bij het verlaten van contact."
+  },
+  "inputs": []
+}

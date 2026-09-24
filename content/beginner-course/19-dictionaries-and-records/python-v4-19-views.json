@@ -57,11 +57,26 @@
       }
     },
     {
-      "id": "python-v4-19-views-experiment",
+      "id": "python-v4-19-views-try-calls",
+      "role": "practice",
       "topicIds": [],
       "heading": {
-        "en": "Try one change",
-        "nl": "Probeer één wijziging"
+        "en": "See your function work",
+        "nl": "Bekijk wat je functie doet"
+      },
+      "body": {
+        "en": "A definition alone produces no output. After writing the function, add these calls underneath it in main.py, without indentation, and Run. Compare the returned values with the task's requirements. The checks also call your function with other inputs; they do not require you to keep these demonstration calls.",
+        "nl": "Een definitie alleen geeft geen uitvoer. Schrijf eerst de functie en voeg daarna deze aanroepen eronder toe in main.py, zonder inspringing. Klik op Uitvoeren. Vergelijk de teruggegeven waarden met de opdracht. De controles roepen je functie ook met andere invoer aan; deze demonstratieaanroepen zijn niet verplicht."
+      },
+      "code": "print(labels({\"Ada\": 3, \"Bo\": 0}))\nprint(labels({}))"
+    },
+    {
+      "id": "python-v4-19-views-experiment",
+      "role": "experiment",
+      "topicIds": [],
+      "heading": {
+        "en": "After completing the task: try one change",
+        "nl": "Na het afronden: probeer één wijziging"
       },
       "body": {
         "en": "Compare returning keys only with the labelled report.",
@@ -79,14 +94,12 @@
     {
       "id": "python-v4-19-views-step-1",
       "objectiveIds": [
-        "keys",
-        "values",
         "items",
         "dictionary-iteration"
       ],
       "task": {
-        "en": "Return one name: score string per entry, preserving dictionary insertion order.",
-        "nl": "Geef per invoer één name: score-string terug met behoud van dictionary-invoegvolgorde."
+        "en": "Write labels(scores) in main.py. Return one name: score string per entry, preserving dictionary insertion order.",
+        "nl": "Schrijf labels(scores) in main.py. Geef per invoer één name: score-string terug met behoud van dictionary-invoegvolgorde."
       },
       "check": "callable(labels)",
       "probes": [
@@ -143,18 +156,16 @@
   "inputs": [],
   "retrievals": [
     {
-      "id": "recall-python-v4-17-nested-grid",
-      "sourceActivityId": "python-v4-17-nested-grid",
+      "id": "recall-python-v4-13-unpack",
+      "sourceActivityId": "python-v4-13-unpack",
       "objectiveIds": [
-        "2d-lists",
-        "2d-access",
-        "2d-mutation",
-        "aliasing"
+        "packing-unpacking"
       ],
       "prompt": {
-        "en": "Recall “Read and change a grid”. Which index selects the row? Try the earlier example from memory, then check it. Copy only the outer grid, modify one inner row, and observe the shared row.",
-        "nl": "Haal “Lees en verander een raster” terug. Welke index kiest de rij? Probeer het eerdere voorbeeld uit je geheugen en controleer daarna. Kopieer alleen het buitenste raster, verander één binnenste rij en bekijk de gedeelde rij."
-      }
+        "en": "Recall unpack a pair into names. Which coordinate changed in the printed result? Apply a shift and its opposite. Predict the final position.",
+        "nl": "Herhaal pak een paar uit in namen. Welke coördinaat veranderde in het afgedrukte resultaat? Pas een verschuiving en de tegenovergestelde toe. Voorspel de eindpositie."
+      },
+      "code": "point = (4, 7)\nx, y = point\nprint(x + 2, y)"
     }
   ]
 }

@@ -57,6 +57,18 @@
       }
     },
     {
+      "id": "python-v4-15-coordinates-trace",
+      "topicIds": [],
+      "heading": {
+        "en": "Where to edit and where pixels go",
+        "nl": "Waar je bewerkt en waar pixels komen"
+      },
+      "body": {
+        "en": "Edit game.py; main.py supplies the browser loop. The top-left corner is (0,0). Increasing x moves right; increasing y moves down. In a 640×400 scene the centre is (320,200). A rectangle's x,y describe its top-left corner, while our ball's x,y describe its centre; subtract the radius when building its Rect.",
+        "nl": "Bewerk game.py; main.py levert de browserlus. Linksboven is (0,0). x verhogen gaat naar rechts; y verhogen naar beneden. In een scène van 640×400 is het midden (320,200). De x,y van een rechthoek beschrijven zijn linkerbovenhoek; de x,y van onze bal beschrijven zijn middelpunt. Trek de straal af bij het maken van zijn Rect."
+      }
+    },
+    {
       "topicIds": [],
       "heading": {
         "en": "Run, observe, finish",
@@ -69,10 +81,11 @@
     },
     {
       "id": "python-v4-15-coordinates-experiment",
+      "role": "experiment",
       "topicIds": [],
       "heading": {
-        "en": "Try one change",
-        "nl": "Probeer één wijziging"
+        "en": "After completing the task: try one change",
+        "nl": "Na het afronden: probeer één wijziging"
       },
       "body": {
         "en": "Change x and then y in the supplied call; observe each direction separately.",
@@ -171,9 +184,24 @@
         "tuples"
       ],
       "prompt": {
-        "en": "Recall “Keep a coordinate pair in a tuple”. What does position[1] mean? Try the earlier example from memory, then check it. Compare type((5)) with type((5,)).",
-        "nl": "Haal “Bewaar een coördinatenpaar in een tuple” terug. Wat betekent position[1]? Probeer het eerdere voorbeeld uit je geheugen en controleer daarna. Vergelijk type((5)) met type((5,))."
-      }
+        "en": "Recall keep a coordinate pair in a tuple. What does position[1] mean? Compare type((5)) with type((5,)).",
+        "nl": "Herhaal bewaar een coördinatenpaar in een tuple. Wat betekent position[1]? Vergelijk type((5)) met type((5,))."
+      },
+      "code": "position = (20, 30)\nprint(position[0])\nprint(len(position))"
+    },
+    {
+      "id": "recall-python-v4-14-helper-files",
+      "sourceActivityId": "python-v4-14-helper-files",
+      "objectiveIds": [
+        "helper-modules",
+        "module-scope",
+        "installing"
+      ],
+      "prompt": {
+        "en": "Recall put reusable code in another file. Does import copy every math name into this file? Add another call in main.py with a different argument. Explain which file owns the function.",
+        "nl": "Herhaal zet herbruikbare code in een ander bestand. Kopieert import elke math-naam naar dit bestand? Voeg in main.py nog een aanroep toe met een ander argument. Leg uit welk bestand de functie bevat."
+      },
+      "code": "import math\nprint(math.pi > 3)"
     }
   ]
 }

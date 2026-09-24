@@ -51,11 +51,26 @@
       }
     },
     {
-      "id": "python-v4-14-repeatable-random-experiment",
+      "id": "python-v4-14-repeatable-random-try-calls",
+      "role": "practice",
       "topicIds": [],
       "heading": {
-        "en": "Try one change",
-        "nl": "Probeer één wijziging"
+        "en": "See your function work",
+        "nl": "Bekijk wat je functie doet"
+      },
+      "body": {
+        "en": "A definition alone produces no output. After writing the function, add these calls underneath it in main.py, without indentation, and Run. Compare the returned values with the task's requirements. The checks also call your function with other inputs; they do not require you to keep these demonstration calls.",
+        "nl": "Een definitie alleen geeft geen uitvoer. Schrijf eerst de functie en voeg daarna deze aanroepen eronder toe in main.py, zonder inspringing. Klik op Uitvoeren. Vergelijk de teruggegeven waarden met de opdracht. De controles roepen je functie ook met andere invoer aan; deze demonstratieaanroepen zijn niet verplicht."
+      },
+      "code": "print(draws(12, 6))\nprint(draws(1, 0))"
+    },
+    {
+      "id": "python-v4-14-repeatable-random-experiment",
+      "role": "experiment",
+      "topicIds": [],
+      "heading": {
+        "en": "After completing the task: try one change",
+        "nl": "Na het afronden: probeer één wijziging"
       },
       "body": {
         "en": "Compare two seeds, keeping the number of draws fixed.",
@@ -89,7 +104,7 @@
               6
             ]
           },
-          "check": "_return == draws(12,6) and len(_return) == 6 and len(set(_return)) > 1 and all(1 <= v <= 6 for v in _return)"
+          "check": "_return == (lambda rng: [rng.randint(1,6) for _ in range(6)])(__import__('random').Random(12)) and _return == draws(12,6)"
         },
         {
           "call": {
@@ -100,6 +115,16 @@
             ]
           },
           "check": "_return == []"
+        },
+        {
+          "call": {
+            "name": "draws",
+            "args": [
+              37,
+              8
+            ]
+          },
+          "check": "_return == (lambda rng: [rng.randint(1,6) for _ in range(8)])(__import__('random').Random(37))"
         }
       ],
       "hint": {
@@ -133,15 +158,17 @@
   "inputs": [],
   "retrievals": [
     {
-      "id": "recall-python-v4-12-indexed-while",
-      "sourceActivityId": "python-v4-12-indexed-while",
+      "id": "recall-python-v4-12-for-values",
+      "sourceActivityId": "python-v4-12-for-values",
       "objectiveIds": [
-        "while-lists"
+        "for",
+        "list-iteration"
       ],
       "prompt": {
-        "en": "Recall “Traverse a list with an index”. At which index does the loop stop? Try the earlier example from memory, then check it. Compare this function with items.copy() and with a for loop.",
-        "nl": "Haal “Doorloop een lijst met een index” terug. Bij welke index stopt de lus? Probeer het eerdere voorbeeld uit je geheugen en controleer daarna. Vergelijk deze functie met items.copy() en met een for-lus."
-      }
+        "en": "Recall visit every value with for. What would total be for an empty list? Trace the accumulator after each element of [3, 0, -2].",
+        "nl": "Herhaal bezoek elke waarde met for. Wat is total bij een lege lijst? Volg de accumulator na elk element van [3, 0, -2]."
+      },
+      "code": "total = 0\nfor amount in [2, 5, 3]:\n    total += amount\nprint(total)"
     }
   ]
 }

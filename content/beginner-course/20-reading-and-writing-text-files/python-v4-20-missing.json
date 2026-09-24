@@ -52,11 +52,24 @@
       "exampleFiles": {}
     },
     {
-      "id": "python-v4-20-missing-experiment",
+      "id": "python-v4-20-missing-trace",
       "topicIds": [],
       "heading": {
-        "en": "Try one change",
-        "nl": "Probeer één wijziging"
+        "en": "Three distinct file cases",
+        "nl": "Drie verschillende bestandsgevallen"
+      },
+      "body": {
+        "en": "An absent file raises FileNotFoundError; an existing empty file reads as ''; a nonempty file returns its contents. Catch the missing-file exception only. An empty string does not prove a file is missing. The checks use their own files, so your workspace experiments remain yours.",
+        "nl": "Een ontbrekend bestand veroorzaakt FileNotFoundError; een bestaand leeg bestand leest als ''; een niet-leeg bestand geeft zijn inhoud. Vang alleen de fout voor een ontbrekend bestand. Een lege string bewijst niet dat een bestand ontbreekt. De controles gebruiken eigen bestanden; jouw experimenten blijven in je werkruimte."
+      }
+    },
+    {
+      "id": "python-v4-20-missing-experiment",
+      "role": "experiment",
+      "topicIds": [],
+      "heading": {
+        "en": "After completing the task: try one change",
+        "nl": "Na het afronden: probeer één wijziging"
       },
       "body": {
         "en": "Compare an empty existing file with a missing file; decide whether your feature needs to distinguish them.",
@@ -97,7 +110,10 @@
           "check": "(_return == \"Remember\") and _error is None",
           "moduleOnly": true,
           "module": "work",
-          "files": {}
+          "isolatedFixtures": true,
+          "files": {
+            "note.txt": "Remember"
+          }
         },
         {
           "call": {
@@ -110,7 +126,10 @@
           "check": "(_return == \"\") and _error is None",
           "moduleOnly": true,
           "module": "work",
-          "files": {}
+          "isolatedFixtures": true,
+          "files": {
+            "note.txt": "Remember"
+          }
         }
       ],
       "hint": {
@@ -144,15 +163,17 @@
   "inputs": [],
   "retrievals": [
     {
-      "id": "recall-python-v4-18-split-whitespace",
-      "sourceActivityId": "python-v4-18-split-whitespace",
+      "id": "recall-python-v4-10-value-error",
+      "sourceActivityId": "python-v4-10-value-error",
       "objectiveIds": [
-        "split-whitespace"
+        "try-except",
+        "value-error"
       ],
       "prompt": {
-        "en": "Recall “Split ordinary whitespace”. Why are there no empty strings in the result? Try the earlier example from memory, then check it. Compare a tab character with the two literal characters backslash and t.",
-        "nl": "Haal “Splits gewone witruimte” terug. Waarom staan er geen lege strings in het resultaat? Probeer het eerdere voorbeeld uit je geheugen en controleer daarna. Vergelijk een tabteken met de twee letterlijke tekens backslash en t."
-      }
+        "en": "Recall recover from a conversion failure. Which print in the try block is skipped? Try \" 0 \" and explain why spaces around a numeric string can still convert.",
+        "nl": "Herhaal herstel een mislukte omzetting. Welke print in het try-blok wordt overgeslagen? Probeer \" 0 \" en leg uit waarom spaties rond getaltekst omzetting niet verhinderen."
+      },
+      "code": "text = \"oops\"\ntry:\n    number = int(text)\n    print(number)\nexcept ValueError:\n    print(\"Whole number needed\")\nprint(\"Still running\")"
     }
   ]
 }

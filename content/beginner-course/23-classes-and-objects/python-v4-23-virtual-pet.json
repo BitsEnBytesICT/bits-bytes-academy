@@ -63,11 +63,26 @@
       }
     },
     {
+      "id": "pet-visible-driver",
+      "topicIds": [],
+      "role": "practice",
+      "heading": {
+        "en": "Play with two pets",
+        "nl": "Speel met twee huisdieren"
+      },
+      "body": {
+        "en": "After implementing Pet, add this caller below the class and Run. Inspect the two representations after each action. Only Bo should change; the class decides whether play succeeds.",
+        "nl": "Voeg na het maken van Pet deze aanroeper onder de klasse toe en voer uit. Bekijk beide weergaven na elke actie. Alleen Bo hoort te veranderen; de klasse beslist of spelen lukt."
+      },
+      "code": "bo = Pet(\"Bo\")\nada = Pet(\"Ada\")\nprint(bo, ada)\nprint(bo.play())\nbo.feed(2)\nprint(bo, ada)"
+    },
+    {
       "id": "python-v4-23-virtual-pet-experiment",
+      "role": "experiment",
       "topicIds": [],
       "heading": {
-        "en": "Try one change",
-        "nl": "Probeer één wijziging"
+        "en": "After completing the task: try one change",
+        "nl": "Na het afronden: probeer één wijziging"
       },
       "body": {
         "en": "Create two pets, play with one and feed the other; explain both final states.",
@@ -86,11 +101,7 @@
       "id": "python-v4-23-virtual-pet-step-1",
       "objectiveIds": [
         "pet-project",
-        "objects-review",
-        "instance-attributes",
-        "method-arguments",
-        "independent-instances",
-        "repr"
+        "objects-review"
       ],
       "task": {
         "en": "Create Pet with independent initial state and the specified feed behaviour.",
@@ -105,7 +116,7 @@
               "Bo"
             ]
           },
-          "check": "_return.name == \"Bo\" and _return.energy == 5 and _return.feed() is None and _return.energy == 6 and _return.feed(100) is None and _return.energy == 10 and Pet(\"Ada\").energy == 5"
+          "check": "_return.name == \"Bo\" and _return.energy == 5 and (_return.feed(), _return.energy)[1] == 6 and (_return.feed(100), _return.energy)[1] == 10 and Pet(\"Ada\").energy == 5"
         },
         {
           "call": {
@@ -114,7 +125,7 @@
               "Bo"
             ]
           },
-          "check": "_return.feed(-3) is None and _return.energy == 5"
+          "check": "(_return.feed(-3), _return.energy)[1] == 5 and (_return.feed(0), _return.energy)[1] == 5"
         }
       ],
       "hint": {
@@ -144,11 +155,7 @@
       "id": "python-v4-23-virtual-pet-step-2",
       "objectiveIds": [
         "pet-project",
-        "objects-review",
-        "instance-attributes",
-        "method-arguments",
-        "independent-instances",
-        "repr"
+        "objects-review"
       ],
       "task": {
         "en": "Implement play and the required representation, including the low-energy boundary.",
@@ -164,6 +171,15 @@
             ]
           },
           "check": "repr(_return) == \"Pet(Bo, energy=5)\" and _return.play() is True and _return.play() is True and _return.energy == 1 and _return.play() is False and _return.energy == 1"
+        },
+        {
+          "call": {
+            "name": "Pet",
+            "args": [
+              "Ada"
+            ]
+          },
+          "check": "setattr(_return,\"energy\",2) is None and _return.play() is True and _return.energy == 0 and _return.play() is False and _return.energy == 0 and repr(_return) == \"Pet(Ada, energy=0)\""
         }
       ],
       "hint": {

@@ -58,10 +58,11 @@
     },
     {
       "id": "python-v4-09-define-and-call-experiment",
+      "role": "experiment",
       "topicIds": [],
       "heading": {
-        "en": "Try one change",
-        "nl": "Probeer één wijziging"
+        "en": "After completing the task: try one change",
+        "nl": "Na het afronden: probeer één wijziging"
       },
       "body": {
         "en": "Add a third call. Explain why you did not copy the function body.",
@@ -166,15 +167,16 @@
   "inputs": [],
   "retrievals": [
     {
-      "id": "recall-python-v4-07-first-if",
-      "sourceActivityId": "python-v4-07-first-if",
+      "id": "recall-python-v4-07-indentation",
+      "sourceActivityId": "python-v4-07-indentation",
       "objectiveIds": [
-        "if"
+        "indentation"
       ],
       "prompt": {
-        "en": "Recall “Run an instruction only when needed”. Which line still prints if door_open becomes False? Try the earlier example from memory, then check it. Change has_ticket to False. An empty output is the correct behaviour in that case.",
-        "nl": "Haal “Voer een instructie alleen uit als dat nodig is” terug. Welke regel verschijnt nog als door_open False wordt? Probeer het eerdere voorbeeld uit je geheugen en controleer daarna. Verander has_ticket in False. Lege uitvoer is in dat geval het juiste gedrag."
-      }
+        "en": "Recall see which lines belong together. Which statements are skipped together? Move Ready inside the block, test False, then restore the intended behaviour.",
+        "nl": "Herhaal zie welke regels bij elkaar horen. Welke instructies worden samen overgeslagen? Verplaats Ready naar het blok, test False en herstel daarna het bedoelde gedrag."
+      },
+      "code": "sunny = False\nif sunny:\n    print(\"Take sunglasses\")\n    print(\"Enjoy the sun\")\nprint(\"Have a good day\")"
     }
   ]
 }

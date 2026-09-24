@@ -52,11 +52,26 @@
       }
     },
     {
-      "id": "python-v4-14-decimal-experiment",
+      "id": "python-v4-14-decimal-try-calls",
+      "role": "practice",
       "topicIds": [],
       "heading": {
-        "en": "Try one change",
-        "nl": "Probeer één wijziging"
+        "en": "See your function work",
+        "nl": "Bekijk wat je functie doet"
+      },
+      "body": {
+        "en": "A definition alone produces no output. After writing the function, add these calls underneath it in main.py, without indentation, and Run. Compare the returned values with the task's requirements. The checks also call your function with other inputs; they do not require you to keep these demonstration calls.",
+        "nl": "Een definitie alleen geeft geen uitvoer. Schrijf eerst de functie en voeg daarna deze aanroepen eronder toe in main.py, zonder inspringing. Klik op Uitvoeren. Vergelijk de teruggegeven waarden met de opdracht. De controles roepen je functie ook met andere invoer aan; deze demonstratieaanroepen zijn niet verplicht."
+      },
+      "code": "print(add_prices(\"0.1\", \"0.2\"))\nprint(add_prices(\"2.50\", \"-0.25\"))"
+    },
+    {
+      "id": "python-v4-14-decimal-experiment",
+      "role": "experiment",
+      "topicIds": [],
+      "heading": {
+        "en": "After completing the task: try one change",
+        "nl": "Na het afronden: probeer één wijziging"
       },
       "body": {
         "en": "Compare Decimal(\"0.1\") with Decimal(0.1) by printing both.",
@@ -134,15 +149,16 @@
   "inputs": [],
   "retrievals": [
     {
-      "id": "recall-python-v4-12-search",
-      "sourceActivityId": "python-v4-12-search",
+      "id": "recall-python-v4-04-convert-to-text",
+      "sourceActivityId": "python-v4-04-convert-to-text",
       "objectiveIds": [
-        "searching"
+        "str-conversion"
       ],
       "prompt": {
-        "en": "Recall “Search until a match”. Why is return False outside the loop? Try the earlier example from memory, then check it. Test duplicate target values. Does the answer change?",
-        "nl": "Haal “Zoek tot een overeenkomst” terug. Waarom staat return False buiten de lus? Probeer het eerdere voorbeeld uit je geheugen en controleer daarna. Test dubbele doelwaarden. Verandert het antwoord?"
-      }
+        "en": "Recall include a number in text. Does creating label change the type of count? Try age = 0. Explain why the message still contains a visible zero.",
+        "nl": "Herhaal neem een getal in tekst op. Verandert het maken van label het type van count? Probeer age = 0. Leg uit waarom het bericht nog steeds een zichtbare nul bevat."
+      },
+      "code": "count = 4\nlabel = \"Count: \" + str(count)\nprint(label)\nprint(type(count))"
     }
   ]
 }

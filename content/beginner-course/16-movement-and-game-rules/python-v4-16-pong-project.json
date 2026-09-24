@@ -26,6 +26,16 @@
         "en": "Keep working in these same project files. Replace one player’s input with a direction chosen from the ball’s y coordinate. Give the computer a maximum speed and a small dead zone so it does not shake or teleport. Keep the two-player version selectable with a variable. This extension is optional and has no separate project completion. Later you may apply classes or save scores after those lessons.",
         "nl": "Werk verder in dezelfde projectbestanden. Vervang de invoer van één speler door een richting gekozen vanuit de y-coördinaat van de bal. Geef de computer een maximumsnelheid en een kleine dode zone zodat hij niet trilt of teleporteert. Houd de versie voor twee spelers selecteerbaar met een variabele. Deze uitbreiding is optioneel en heeft geen aparte projectafronding. Later kun je klassen toepassen of scores opslaan na die lessen."
       }
+    },
+    {
+      "heading": {
+        "en": "Place each responsibility in the loop",
+        "nl": "Plaats elke verantwoordelijkheid in de lus"
+      },
+      "body": {
+        "en": "Setup runs once: create coordinates, velocities, scores and font. Each frame gathers events for a serve, reads held keys for both paddles, updates positions using dt, corrects walls and paddles, resolves a miss once, then draws the resulting state. Store returned values before drawing. Compare the linked rally session with its main.py caller, and reuse the helpers you wrote. The supplied browser scheduling stays in place.",
+        "nl": "Voorbereiding draait eenmaal: maak coördinaten, snelheden, scores en lettertype. Elk beeld verzamelt servicegebeurtenissen, leest vastgehouden toetsen voor beide batjes, werkt posities bij met dt, herstelt muren en batjes, verwerkt een misser eenmaal en tekent de resulterende toestand. Bewaar teruggegeven waarden vóór tekenen. Vergelijk het gekoppelde rallygesprek met zijn main.py-aanroeper en hergebruik je eigen hulpfuncties. De aangeleverde browserplanning blijft staan."
+      }
     }
   ],
   "files": {
@@ -146,7 +156,12 @@
     "python-v4-16-wall-bounce",
     "python-v4-16-paddle-contact",
     "python-v4-16-score-once",
-    "python-v4-16-serve"
+    "python-v4-16-serve",
+    "python-v4-15-event-wiring",
+    "python-v4-15-render-label",
+    "python-v4-16-two-controls",
+    "python-v4-16-mirror-collision",
+    "python-v4-16-rally-session"
   ],
   "suggestedTests": [
     {

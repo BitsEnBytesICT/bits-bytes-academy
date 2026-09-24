@@ -53,10 +53,11 @@
     },
     {
       "id": "python-v4-21-write-experiment",
+      "role": "experiment",
       "topicIds": [],
       "heading": {
-        "en": "Try one change",
-        "nl": "Probeer één wijziging"
+        "en": "After completing the task: try one change",
+        "nl": "Na het afronden: probeer één wijziging"
       },
       "body": {
         "en": "Inspect the generated file, then read it back using csv.reader.",
@@ -101,6 +102,7 @@
           "check": "(list(__import__(\"csv\").reader(open(\"out.csv\",newline=\"\"))) == [[\"name\",\"score\"],[\"A, B\",\"2\"]]) and _error is None",
           "moduleOnly": true,
           "module": "work",
+          "isolatedFixtures": true,
           "files": {}
         },
         {
@@ -115,6 +117,7 @@
           "check": "(list(__import__(\"csv\").reader(open(\"empty.csv\",newline=\"\"))) == [[\"name\",\"score\"]]) and _error is None",
           "moduleOnly": true,
           "module": "work",
+          "isolatedFixtures": true,
           "files": {}
         }
       ],
@@ -149,18 +152,16 @@
   "inputs": [],
   "retrievals": [
     {
-      "id": "recall-python-v4-19-lookup",
-      "sourceActivityId": "python-v4-19-lookup",
+      "id": "recall-python-v4-20-write",
+      "sourceActivityId": "python-v4-20-write",
       "objectiveIds": [
-        "lookup",
-        "key-error",
-        "get",
-        "dictionary-membership"
+        "write"
       ],
       "prompt": {
-        "en": "Recall “Handle a missing key”. Why does the first lookup return zero instead of ten? Try the earlier example from memory, then check it. Compare absent score, score 0 and score None.",
-        "nl": "Haal “Verwerk een ontbrekende sleutel” terug. Waarom geeft de eerste zoekactie nul in plaats van tien? Probeer het eerdere voorbeeld uit je geheugen en controleer daarna. Vergelijk ontbrekende score, score 0 en score None."
-      }
+        "en": "Recall create or replace a text file. Does write add a second newline? Save an empty string and explain the resulting file size.",
+        "nl": "Herhaal maak of vervang een tekstbestand. Voegt write een tweede nieuwe regel toe? Bewaar een lege string en leg de resulterende bestandsgrootte uit."
+      },
+      "code": "with open(\"example.txt\",\"w\",encoding=\"utf-8\") as handle:\n    handle.write(\"Ready\\n\")\nwith open(\"example.txt\",encoding=\"utf-8\") as handle:\n    print(handle.read(),end=\"\")"
     }
   ]
 }

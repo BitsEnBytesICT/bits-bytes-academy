@@ -60,10 +60,11 @@
     },
     {
       "id": "python-v4-22-load-experiment",
+      "role": "experiment",
       "topicIds": [],
       "heading": {
-        "en": "Try one change",
-        "nl": "Probeer één wijziging"
+        "en": "After completing the task: try one change",
+        "nl": "Na het afronden: probeer één wijziging"
       },
       "body": {
         "en": "Add a second field to each player and confirm name extraction remains stable.",
@@ -106,7 +107,10 @@
           "check": "(_return == [\"Ada\",\"Bo\"]) and _error is None",
           "moduleOnly": true,
           "module": "work",
-          "files": {}
+          "isolatedFixtures": true,
+          "files": {
+            "club.json": "{\"players\":[{\"name\":\"Ada\",\"score\":3},{\"name\":\"Bo\",\"score\":4}]}"
+          }
         },
         {
           "call": {
@@ -119,7 +123,9 @@
           "check": "(_return == []) and _error is None",
           "moduleOnly": true,
           "module": "work",
+          "isolatedFixtures": true,
           "files": {
+            "club.json": "{\"players\":[{\"name\":\"Ada\",\"score\":3},{\"name\":\"Bo\",\"score\":4}]}",
             "empty.json": "{\"players\":[]}"
           }
         }
@@ -155,30 +161,19 @@
   "inputs": [],
   "retrievals": [
     {
-      "id": "recall-python-v4-20-read",
-      "sourceActivityId": "python-v4-20-read",
+      "id": "recall-python-v4-17-nested-grid",
+      "sourceActivityId": "python-v4-17-nested-grid",
       "objectiveIds": [
-        "text-files",
-        "with",
-        "utf8",
-        "read",
-        "persistence"
+        "2d-lists",
+        "2d-access",
+        "2d-mutation",
+        "aliasing"
       ],
       "prompt": {
-        "en": "Recall “Read your first text file”. When is the handle closed relative to print? Try the earlier example from memory, then check it. Change the supplied file, run again, and observe the changed result.",
-        "nl": "Haal “Lees je eerste tekstbestand” terug. Wanneer wordt de handle gesloten ten opzichte van print? Probeer het eerdere voorbeeld uit je geheugen en controleer daarna. Verander het aangeleverde bestand, voer opnieuw uit en bekijk het gewijzigde resultaat."
-      }
-    },
-    {
-      "id": "recall-python-v4-20-append",
-      "sourceActivityId": "python-v4-20-append",
-      "objectiveIds": [
-        "append-files"
-      ],
-      "prompt": {
-        "en": "Recall “Append a new log entry”. What would w do to the first line? Try the earlier example from memory, then check it. Run twice, navigate away, return and inspect the saved log.",
-        "nl": "Haal “Voeg een nieuwe logregel toe” terug. Wat doet w met de eerste regel? Probeer het eerdere voorbeeld uit je geheugen en controleer daarna. Voer tweemaal uit, navigeer weg, keer terug en bekijk het opgeslagen log."
-      }
+        "en": "Recall read and change a grid. Which index selects the row? Copy only the outer grid, modify one inner row, and observe the shared row.",
+        "nl": "Herhaal lees en verander een raster. Welke index kiest de rij? Kopieer alleen het buitenste raster, verander één binnenste rij en bekijk de gedeelde rij."
+      },
+      "code": "grid = [[1,2],[3,4]]\ngrid[1][0] = 9\nprint(grid)"
     }
   ]
 }

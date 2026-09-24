@@ -71,6 +71,8 @@ export const activities = [
       "Welke coördinaat veranderde in het afgedrukte resultaat?",
     ],
     name: "shift",
+    check:
+      'callable(shift) and any(isinstance(n,_ast.Assign) and any(isinstance(t,(_ast.Tuple,_ast.List)) for t in n.targets) and isinstance(n.value,_ast.Name) and n.value.id == "point" for n in _ast.walk(_ast.parse(_source)))',
     params: "point, dx, dy",
     body: "x, y = point\nreturn (x + dx, y + dy)",
     task: [

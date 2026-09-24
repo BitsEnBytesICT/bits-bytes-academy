@@ -55,11 +55,40 @@
       }
     },
     {
-      "id": "python-v4-18-split-delimiter-experiment",
+      "id": "python-v4-18-split-delimiter-trace",
       "topicIds": [],
       "heading": {
-        "en": "Try one change",
-        "nl": "Probeer één wijziging"
+        "en": "Whitespace or an exact separator?",
+        "nl": "Witruimte of een exact scheidingsteken?"
+      },
+      "body": {
+        "en": "split() groups whitespace and drops empty edge pieces; split(',') separates exactly at commas and keeps empty fields. A newline or tab can also be the explicit separator: write '\\n' or '\\t' in the source. The examples below make each boundary visible.",
+        "nl": "split() groepeert witruimte en laat lege randdelen weg; split(',') scheidt precies bij komma's en bewaart lege velden. Een nieuwe regel of tab kan ook een expliciet scheidingsteken zijn: schrijf '\\n' of '\\t' in de broncode. De voorbeelden maken elke grens zichtbaar."
+      },
+      "code": "print(\" a  b \".split())\nprint(\",a,,b,\".split(\",\"))\nprint(\"a\\nb\\n\".split(\"\\n\"))\nprint(\"a\\tb\".split(\"\\t\"))",
+      "output": "['a', 'b']\n['', 'a', '', 'b', '']\n['a', 'b', '']\n['a', 'b']\n"
+    },
+    {
+      "id": "python-v4-18-split-delimiter-try-calls",
+      "role": "practice",
+      "topicIds": [],
+      "heading": {
+        "en": "See your function work",
+        "nl": "Bekijk wat je functie doet"
+      },
+      "body": {
+        "en": "A definition alone produces no output. After writing the function, add these calls underneath it in main.py, without indentation, and Run. Compare the returned values with the task's requirements. The checks also call your function with other inputs; they do not require you to keep these demonstration calls.",
+        "nl": "Een definitie alleen geeft geen uitvoer. Schrijf eerst de functie en voeg daarna deze aanroepen eronder toe in main.py, zonder inspringing. Klik op Uitvoeren. Vergelijk de teruggegeven waarden met de opdracht. De controles roepen je functie ook met andere invoer aan; deze demonstratieaanroepen zijn niet verplicht."
+      },
+      "code": "print(fields(\"a,,b\", \",\"))\nprint(fields(\"a\\tb\", \"\\t\"))"
+    },
+    {
+      "id": "python-v4-18-split-delimiter-experiment",
+      "role": "experiment",
+      "topicIds": [],
+      "heading": {
+        "en": "After completing the task: try one change",
+        "nl": "Na het afronden: probeer één wijziging"
       },
       "body": {
         "en": "Compare splitting the same newline-terminated text with splitlines and split(\"\\n\").",
@@ -82,8 +111,8 @@
         "split-tabs"
       ],
       "task": {
-        "en": "Split text by the supplied nonempty separator and preserve empty fields.",
-        "nl": "Splits text op het gegeven niet-lege scheidingsteken en behoud lege velden."
+        "en": "Write fields(text, separator) in main.py. Split text by the supplied nonempty separator and preserve empty fields.",
+        "nl": "Schrijf fields(text, separator) in main.py. Splits text op het gegeven niet-lege scheidingsteken en behoud lege velden."
       },
       "check": "callable(fields)",
       "probes": [
@@ -149,17 +178,16 @@
   "inputs": [],
   "retrievals": [
     {
-      "id": "recall-python-v4-16-serve",
-      "sourceActivityId": "python-v4-16-serve",
+      "id": "recall-python-v4-04-escapes",
+      "sourceActivityId": "python-v4-04-escapes",
       "objectiveIds": [
-        "serving",
-        "game-state",
-        "game-review"
+        "escapes"
       ],
       "prompt": {
-        "en": "Recall “Start the next rally deliberately”. Why should a second press not reset an active rally? Try the earlier example from memory, then check it. Click outside the preview, return focus, and serve again. Stop, then start a fresh run.",
-        "nl": "Haal “Begin de volgende rally bewust” terug. Waarom hoort een tweede druk een actieve rally niet terug te zetten? Probeer het eerdere voorbeeld uit je geheugen en controleer daarna. Klik buiten het voorbeeld, keer terug en serveer opnieuw. Stop en start daarna een nieuwe uitvoering."
-      }
+        "en": "Recall newlines and special characters. How many output lines come from the first call? Print a string containing one backslash, then one containing a quoted word. Explain which marks are syntax.",
+        "nl": "Herhaal nieuwe regels en speciale tekens. Hoeveel uitvoerregels komen uit de eerste aanroep? Druk een string met één backslash af en daarna een string met een woord tussen aanhalingstekens. Leg uit welke tekens syntaxis zijn."
+      },
+      "code": "print(\"Tea\\nCoffee\")\nprint(\"A\\tB\")"
     }
   ]
 }

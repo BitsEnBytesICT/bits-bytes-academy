@@ -63,10 +63,11 @@
     },
     {
       "id": "python-v4-20-read-experiment",
+      "role": "experiment",
       "topicIds": [],
       "heading": {
-        "en": "Try one change",
-        "nl": "Probeer één wijziging"
+        "en": "After completing the task: try one change",
+        "nl": "Na het afronden: probeer één wijziging"
       },
       "body": {
         "en": "Change the supplied file, run again, and observe the changed result.",
@@ -108,10 +109,13 @@
             ],
             "module": "work"
           },
-          "check": "(_return == \"Hello\\nCafé\\n\") and _error is None",
+          "check": "(_return == \"Hello\\nCafé\\n\") and _error is None and (any(isinstance(n,_ast.With) for n in _ast.walk(_ast.parse(_module_source))) and any(isinstance(n,_ast.keyword) and n.arg == \"encoding\" and isinstance(n.value,_ast.Constant) and n.value.value.lower().replace(\"-\", \"\") == \"utf8\" for n in _ast.walk(_ast.parse(_module_source))))",
           "moduleOnly": true,
           "module": "work",
-          "files": {}
+          "isolatedFixtures": true,
+          "files": {
+            "note.txt": "Hello\nCafé\n"
+          }
         },
         {
           "call": {
@@ -121,10 +125,12 @@
             ],
             "module": "work"
           },
-          "check": "(_return == \"\") and _error is None",
+          "check": "(_return == \"\") and _error is None and (any(isinstance(n,_ast.With) for n in _ast.walk(_ast.parse(_module_source))) and any(isinstance(n,_ast.keyword) and n.arg == \"encoding\" and isinstance(n.value,_ast.Constant) and n.value.value.lower().replace(\"-\", \"\") == \"utf8\" for n in _ast.walk(_ast.parse(_module_source))))",
           "moduleOnly": true,
           "module": "work",
+          "isolatedFixtures": true,
           "files": {
+            "note.txt": "Hello\nCafé\n",
             "other.txt": ""
           }
         }
@@ -157,32 +163,5 @@
     "en": "read returns the stored text exactly, including newlines and Unicode characters.",
     "nl": "read geeft de bewaarde tekst exact terug, inclusief nieuwe regels en Unicode-tekens."
   },
-  "inputs": [],
-  "retrievals": [
-    {
-      "id": "recall-python-v4-18-sequence",
-      "sourceActivityId": "python-v4-18-sequence",
-      "objectiveIds": [
-        "string-indexing",
-        "string-length",
-        "string-negative-index"
-      ],
-      "prompt": {
-        "en": "Recall “Read characters by position”. What is the index of the exclamation mark? Try the earlier example from memory, then check it. Test a string containing one space.",
-        "nl": "Haal “Lees tekens op positie” terug. Wat is de index van het uitroepteken? Probeer het eerdere voorbeeld uit je geheugen en controleer daarna. Test een string met één spatie."
-      }
-    },
-    {
-      "id": "recall-python-v4-18-join-strip",
-      "sourceActivityId": "python-v4-18-join-strip",
-      "objectiveIds": [
-        "join",
-        "strip-characters"
-      ],
-      "prompt": {
-        "en": "Recall “Join cleaned pieces of text”. What does joining an empty list produce? Try the earlier example from memory, then check it. Use a newline as the join separator to create a multiline report.",
-        "nl": "Haal “Voeg opgeschoonde tekstdelen samen” terug. Wat levert een lege lijst samenvoegen op? Probeer het eerdere voorbeeld uit je geheugen en controleer daarna. Gebruik een nieuwe regel als samenvoegscheiding om een rapport met meerdere regels te maken."
-      }
-    }
-  ]
+  "inputs": []
 }

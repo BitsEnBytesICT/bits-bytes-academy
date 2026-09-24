@@ -55,11 +55,38 @@
       }
     },
     {
-      "id": "python-v4-09-named-and-default-experiment",
+      "id": "python-v4-09-named-and-default-trace",
       "topicIds": [],
       "heading": {
-        "en": "Try one change",
-        "nl": "Probeer één wijziging"
+        "en": "Bind arguments one at a time",
+        "nl": "Koppel argumenten één voor één"
+      },
+      "body": {
+        "en": "For def cost(count, price=4): cost(2) binds count=2, price=4. cost(2,3) binds count=2, price=3. cost(price=3,count=2) binds those same values by name. The default is used only when that argument is omitted; it does not replace an explicitly supplied 0.",
+        "nl": "Bij def cost(count, price=4): cost(2) koppelt count=2, price=4. cost(2,3) koppelt count=2, price=3. cost(price=3,count=2) koppelt dezelfde waarden op naam. De standaard wordt alleen gebruikt als dat argument ontbreekt; een expliciete 0 wordt niet vervangen."
+      }
+    },
+    {
+      "id": "python-v4-09-named-and-default-try-calls",
+      "role": "practice",
+      "topicIds": [],
+      "heading": {
+        "en": "See your function work",
+        "nl": "Bekijk wat je functie doet"
+      },
+      "body": {
+        "en": "A definition alone produces no output. After writing the function, add these calls underneath it in main.py, without indentation, and Run. Compare the returned values with the task's requirements. The checks also call your function with other inputs; they do not require you to keep these demonstration calls.",
+        "nl": "Een definitie alleen geeft geen uitvoer. Schrijf eerst de functie en voeg daarna deze aanroepen eronder toe in main.py, zonder inspringing. Klik op Uitvoeren. Vergelijk de teruggegeven waarden met de opdracht. De controles roepen je functie ook met andere invoer aan; deze demonstratieaanroepen zijn niet verplicht."
+      },
+      "code": "print(delivery(7))\nprint(delivery(7, 0))"
+    },
+    {
+      "id": "python-v4-09-named-and-default-experiment",
+      "role": "experiment",
+      "topicIds": [],
+      "heading": {
+        "en": "After completing the task: try one change",
+        "nl": "Na het afronden: probeer één wijziging"
       },
       "body": {
         "en": "Compare delivery(5, 1) with delivery(fee=1, price=5).",

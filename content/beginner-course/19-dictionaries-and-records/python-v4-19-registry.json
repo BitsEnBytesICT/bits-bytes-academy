@@ -60,11 +60,26 @@
       }
     },
     {
-      "id": "python-v4-19-registry-experiment",
+      "id": "python-v4-19-registry-try-calls",
+      "role": "practice",
       "topicIds": [],
       "heading": {
-        "en": "Try one change",
-        "nl": "Probeer één wijziging"
+        "en": "See your function work",
+        "nl": "Bekijk wat je functie doet"
+      },
+      "body": {
+        "en": "A definition alone produces no output. After writing the function, add these calls underneath it in main.py, without indentation, and Run. Compare the returned values with the task's requirements. The checks also call your function with other inputs; they do not require you to keep these demonstration calls.",
+        "nl": "Een definitie alleen geeft geen uitvoer. Schrijf eerst de functie en voeg daarna deze aanroepen eronder toe in main.py, zonder inspringing. Klik op Uitvoeren. Vergelijk de teruggegeven waarden met de opdracht. De controles roepen je functie ook met andere invoer aan; deze demonstratieaanroepen zijn niet verplicht."
+      },
+      "code": "print(award({\"Ada\": 3}, \"Ada\", 2))\nprint(award({}, \"Bo\", 0))"
+    },
+    {
+      "id": "python-v4-19-registry-experiment",
+      "role": "experiment",
+      "topicIds": [],
+      "heading": {
+        "en": "After completing the task: try one change",
+        "nl": "Na het afronden: probeer één wijziging"
       },
       "body": {
         "en": "Award points twice while keeping both the original and updated versions.",
@@ -82,15 +97,11 @@
     {
       "id": "python-v4-19-registry-step-1",
       "objectiveIds": [
-        "dictionary-review",
-        "get",
-        "adding-keys",
-        "overwriting",
-        "dictionary-iteration"
+        "dictionary-review"
       ],
       "task": {
-        "en": "Implement the update contract for existing and new players.",
-        "nl": "Implementeer de wijzigingsafspraak voor bestaande en nieuwe spelers."
+        "en": "Write award(scores, name, points) in main.py. Implement the update contract for existing and new players.",
+        "nl": "Schrijf award(scores, name, points) in main.py. Implementeer de wijzigingsafspraak voor bestaande en nieuwe spelers."
       },
       "check": "callable(award)",
       "probes": [
@@ -160,19 +171,5 @@
     "en": "A copied mapping and an absent-key fallback keep new and existing players on the same update path.",
     "nl": "Een gekopieerde koppeling en terugvalwaarde voor ontbrekende sleutels houden nieuwe en bestaande spelers op dezelfde wijzigingsroute."
   },
-  "inputs": [],
-  "retrievals": [
-    {
-      "id": "recall-python-v4-17-comprehensions",
-      "sourceActivityId": "python-v4-17-comprehensions",
-      "objectiveIds": [
-        "list-comprehensions",
-        "conditional-list-comprehensions"
-      ],
-      "prompt": {
-        "en": "Recall “Express a simple transformation compactly”. Does the filter test n or n * 2? Try the earlier example from memory, then check it. Rewrite the same behaviour with an ordinary loop and compare the results.",
-        "nl": "Haal “Schrijf een eenvoudige omzetting compact” terug. Test het filter n of n * 2? Probeer het eerdere voorbeeld uit je geheugen en controleer daarna. Herschrijf hetzelfde gedrag met een gewone lus en vergelijk de resultaten."
-      }
-    }
-  ]
+  "inputs": []
 }

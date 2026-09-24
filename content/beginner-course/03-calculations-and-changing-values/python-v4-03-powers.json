@@ -53,10 +53,11 @@
     },
     {
       "id": "python-v4-03-powers-experiment",
+      "role": "experiment",
       "topicIds": [],
       "heading": {
-        "en": "Try one change",
-        "nl": "Probeer één wijziging"
+        "en": "After completing the task: try one change",
+        "nl": "Na het afronden: probeer één wijziging"
       },
       "body": {
         "en": "Try side = 1, then side = 2. Compare side ** 2 with side * 2.",
@@ -80,7 +81,7 @@
         "en": "Calculate the square's area in result, using **.",
         "nl": "Bereken de oppervlakte van het vierkant in result met **."
       },
-      "check": "result == (side ** 2)",
+      "check": "result == (side ** 2) and any(isinstance(n, _ast.Pow) for n in _ast.walk(_ast.parse(_source)))",
       "probes": [
         {
           "inputs": {
@@ -121,7 +122,7 @@
     {
       "id": "python-v4-03-powers-step-2",
       "objectiveIds": [
-        "exponents"
+        "print"
       ],
       "task": {
         "en": "Print result after calculating it.",
@@ -170,18 +171,5 @@
     "en": "A square has the same width and height, so squaring its side gives its area.",
     "nl": "Een vierkant heeft dezelfde breedte en hoogte, dus het kwadraat van de zijde geeft de oppervlakte."
   },
-  "inputs": [],
-  "retrievals": [
-    {
-      "id": "recall-python-v4-01-announcement",
-      "sourceActivityId": "python-v4-01-announcement",
-      "objectiveIds": [
-        "first-program-review"
-      ],
-      "prompt": {
-        "en": "Recall “Make a terminal announcement”. How many output lines does the comment add? Try the earlier example from memory, then check it. Change the final line to your own invitation. Explain what Python does from the first line to the last.",
-        "nl": "Haal “Maak een terminalaankondiging” terug. Hoeveel uitvoerregels voegt het commentaar toe? Probeer het eerdere voorbeeld uit je geheugen en controleer daarna. Verander de laatste regel in je eigen uitnodiging. Leg uit wat Python van de eerste tot de laatste regel doet."
-      }
-    }
-  ]
+  "inputs": []
 }

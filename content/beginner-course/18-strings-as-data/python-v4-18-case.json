@@ -55,11 +55,26 @@
       }
     },
     {
-      "id": "python-v4-18-case-experiment",
+      "id": "python-v4-18-case-try-calls",
+      "role": "practice",
       "topicIds": [],
       "heading": {
-        "en": "Try one change",
-        "nl": "Probeer één wijziging"
+        "en": "See your function work",
+        "nl": "Bekijk wat je functie doet"
+      },
+      "body": {
+        "en": "A definition alone produces no output. After writing the function, add these calls underneath it in main.py, without indentation, and Run. Compare the returned values with the task's requirements. The checks also call your function with other inputs; they do not require you to keep these demonstration calls.",
+        "nl": "Een definitie alleen geeft geen uitvoer. Schrijf eerst de functie en voeg daarna deze aanroepen eronder toe in main.py, zonder inspringing. Klik op Uitvoeren. Vergelijk de teruggegeven waarden met de opdracht. De controles roepen je functie ook met andere invoer aan; deze demonstratieaanroepen zijn niet verplicht."
+      },
+      "code": "print(shout(\"Hello\"))\nprint(shout(\"123!\"))"
+    },
+    {
+      "id": "python-v4-18-case-experiment",
+      "role": "experiment",
+      "topicIds": [],
+      "heading": {
+        "en": "After completing the task: try one change",
+        "nl": "Na het afronden: probeer één wijziging"
       },
       "body": {
         "en": "Compare lower, upper and title on text with punctuation.",
@@ -77,13 +92,11 @@
     {
       "id": "python-v4-18-case-step-1",
       "objectiveIds": [
-        "case-conversion",
-        "case-methods",
-        "normalisation"
+        "case-conversion"
       ],
       "task": {
-        "en": "Repair shout so it returns uppercase text.",
-        "nl": "Herstel shout zodat die tekst in hoofdletters teruggeeft."
+        "en": "Write shout(text) in main.py. Repair shout so it returns uppercase text.",
+        "nl": "Schrijf shout(text) in main.py. Herstel shout zodat die tekst in hoofdletters teruggeeft."
       },
       "check": "callable(shout)",
       "probes": [
@@ -143,19 +156,5 @@
     "en": "Returning the method result fixes the discarded-value bug.",
     "nl": "Het methoderesultaat teruggeven herstelt de fout van de weggegooide waarde."
   },
-  "inputs": [],
-  "retrievals": [
-    {
-      "id": "recall-python-v4-16-paddle-contact",
-      "sourceActivityId": "python-v4-16-paddle-contact",
-      "objectiveIds": [
-        "paddle-collision",
-        "overlap-correction"
-      ],
-      "prompt": {
-        "en": "Recall “Use Rect collision detection”. Why is the second result False? Try the earlier example from memory, then check it. Move the paddle vertically so the same x position becomes a miss.",
-        "nl": "Haal “Gebruik Rect-botsingsdetectie” terug. Waarom is het tweede resultaat False? Probeer het eerdere voorbeeld uit je geheugen en controleer daarna. Verplaats het batje verticaal zodat dezelfde x-positie een misser wordt."
-      }
-    }
-  ]
+  "inputs": []
 }

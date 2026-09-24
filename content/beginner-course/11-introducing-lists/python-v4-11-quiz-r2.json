@@ -1,0 +1,800 @@
+{
+  "id": "python-v4-11-quiz-r2",
+  "chapter": 11,
+  "group": "python-v4-module-11",
+  "kind": "quiz",
+  "optional": false,
+  "estimatedMinutes": 8,
+  "title": {
+    "en": "Introducing lists: review",
+    "nl": "Kennismaken met lijsten: herhaling"
+  },
+  "questions": [
+    {
+      "objectiveIds": [
+        "negative-indexing"
+      ],
+      "category": "prediction",
+      "prompt": {
+        "en": "What does this program print?",
+        "nl": "Wat drukt dit programma af?"
+      },
+      "code": "values = [2,4,9]\nprint(values[-1])",
+      "answer": "a",
+      "expectedOutput": "9\n",
+      "choices": [
+        {
+          "id": "a",
+          "label": {
+            "en": "9",
+            "nl": "9"
+          },
+          "reason": {
+            "en": "-1 selects the last element.",
+            "nl": "-1 kiest het laatste element."
+          }
+        },
+        {
+          "id": "b",
+          "label": {
+            "en": "4",
+            "nl": "4"
+          },
+          "reason": {
+            "en": "That is the middle element at index 1 or -2.",
+            "nl": "Dat is het middelste element op index 1 of -2."
+          }
+        },
+        {
+          "id": "c",
+          "label": {
+            "en": "2",
+            "nl": "2"
+          },
+          "reason": {
+            "en": "The first element uses index 0.",
+            "nl": "Het eerste element gebruikt index 0."
+          }
+        }
+      ],
+      "id": "python-v4-11-quiz-r2-a-1",
+      "reviewActivityIds": [
+        "python-v4-11-indexes"
+      ]
+    },
+    {
+      "objectiveIds": [
+        "none"
+      ],
+      "category": "prediction",
+      "prompt": {
+        "en": "What does this program print?",
+        "nl": "Wat drukt dit programma af?"
+      },
+      "code": "def read(text):\n    try:\n        return int(text)\n    except ValueError:\n        return None\nprint(read(\"0\") is None)",
+      "answer": "a",
+      "expectedOutput": "False\n",
+      "choices": [
+        {
+          "id": "a",
+          "label": {
+            "en": "False",
+            "nl": "False"
+          },
+          "reason": {
+            "en": "Invalid text returns None; converting zero succeeds and does not mean cancellation.",
+            "nl": "Ongeldige tekst geeft None; nul omzetten slaagt en betekent geen annulering."
+          }
+        },
+        {
+          "id": "b",
+          "label": {
+            "en": "True",
+            "nl": "True"
+          },
+          "reason": {
+            "en": "Invalid text returns None; converting zero succeeds and does not mean cancellation.",
+            "nl": "Ongeldige tekst geeft None; nul omzetten slaagt en betekent geen annulering."
+          }
+        },
+        {
+          "id": "c",
+          "label": {
+            "en": "ValueError",
+            "nl": "ValueError"
+          },
+          "reason": {
+            "en": "Invalid text returns None; converting zero succeeds and does not mean cancellation.",
+            "nl": "Ongeldige tekst geeft None; nul omzetten slaagt en betekent geen annulering."
+          }
+        }
+      ],
+      "id": "python-v4-11-quiz-r2-a-2",
+      "reviewActivityIds": [
+        "python-v4-09-none"
+      ]
+    },
+    {
+      "objectiveIds": [
+        "append"
+      ],
+      "category": "completion",
+      "prompt": {
+        "en": "Complete the code to produce the shown output.",
+        "nl": "Vul de code aan om de getoonde uitvoer te maken."
+      },
+      "code": "values = []\nvalues.___(4)\nprint(values)",
+      "answer": "a",
+      "choices": [
+        {
+          "id": "a",
+          "label": {
+            "en": "append",
+            "nl": "append"
+          },
+          "reason": {
+            "en": "append adds one value to the end of a list.",
+            "nl": "append voegt één waarde achteraan een lijst toe."
+          }
+        },
+        {
+          "id": "b",
+          "label": {
+            "en": "add",
+            "nl": "add"
+          },
+          "reason": {
+            "en": "Using add here produces AttributeError. append adds one value to the end of a list.",
+            "nl": "Met add ontstaat hier AttributeError. append voegt één waarde achteraan een lijst toe."
+          }
+        },
+        {
+          "id": "c",
+          "label": {
+            "en": "pop",
+            "nl": "pop"
+          },
+          "reason": {
+            "en": "Using pop here produces IndexError. append adds one value to the end of a list.",
+            "nl": "Met pop ontstaat hier IndexError. append voegt één waarde achteraan een lijst toe."
+          }
+        }
+      ],
+      "codeBlank": {
+        "prompt": {
+          "en": "Complete the code to produce the shown output.",
+          "nl": "Vul de code aan om de getoonde uitvoer te maken."
+        },
+        "segments": [
+          "values = []\nvalues.",
+          "(4)\nprint(values)"
+        ],
+        "tokens": [
+          {
+            "id": "token-1",
+            "code": "append"
+          },
+          {
+            "id": "token-2",
+            "code": "add",
+            "reason": {
+              "en": "Using add here produces AttributeError. append adds one value to the end of a list.",
+              "nl": "Met add ontstaat hier AttributeError. append voegt één waarde achteraan een lijst toe."
+            }
+          },
+          {
+            "id": "token-3",
+            "code": "pop",
+            "reason": {
+              "en": "Using pop here produces IndexError. append adds one value to the end of a list.",
+              "nl": "Met pop ontstaat hier IndexError. append voegt één waarde achteraan een lijst toe."
+            }
+          }
+        ],
+        "blanks": [
+          {
+            "answer": "append",
+            "reason": {
+              "en": "append adds one value to the end of a list.",
+              "nl": "append voegt één waarde achteraan een lijst toe."
+            }
+          }
+        ],
+        "output": "[4]\n"
+      },
+      "id": "python-v4-11-quiz-r2-a-3",
+      "reviewActivityIds": [
+        "python-v4-11-append"
+      ]
+    },
+    {
+      "objectiveIds": [
+        "value-error"
+      ],
+      "category": "completion",
+      "prompt": {
+        "en": "Complete the code to produce the shown output.",
+        "nl": "Vul de code aan om de getoonde uitvoer te maken."
+      },
+      "code": "try:\n    int(\"blue\")\nexcept ___:\n    print(\"Retry\")",
+      "answer": "a",
+      "choices": [
+        {
+          "id": "a",
+          "label": {
+            "en": "ValueError",
+            "nl": "ValueError"
+          },
+          "reason": {
+            "en": "Follow the operation and its input type, then compare the exact result shown.",
+            "nl": "Volg de bewerking en het invoertype en vergelijk daarna het precieze getoonde resultaat."
+          }
+        },
+        {
+          "id": "b",
+          "label": {
+            "en": "ZeroDivisionError",
+            "nl": "ZeroDivisionError"
+          },
+          "reason": {
+            "en": "Using ZeroDivisionError here produces ValueError. Follow the operation and its input type, then compare the exact result shown.",
+            "nl": "Met ZeroDivisionError ontstaat hier ValueError. Volg de bewerking en het invoertype en vergelijk daarna het precieze getoonde resultaat."
+          }
+        },
+        {
+          "id": "c",
+          "label": {
+            "en": "NameError",
+            "nl": "NameError"
+          },
+          "reason": {
+            "en": "Using NameError here produces ValueError. Follow the operation and its input type, then compare the exact result shown.",
+            "nl": "Met NameError ontstaat hier ValueError. Volg de bewerking en het invoertype en vergelijk daarna het precieze getoonde resultaat."
+          }
+        }
+      ],
+      "codeBlank": {
+        "prompt": {
+          "en": "Complete the code to produce the shown output.",
+          "nl": "Vul de code aan om de getoonde uitvoer te maken."
+        },
+        "segments": [
+          "try:\n    int(\"blue\")\nexcept ",
+          ":\n    print(\"Retry\")"
+        ],
+        "tokens": [
+          {
+            "id": "token-1",
+            "code": "ValueError"
+          },
+          {
+            "id": "token-2",
+            "code": "ZeroDivisionError",
+            "reason": {
+              "en": "Using ZeroDivisionError here produces ValueError. Follow the operation and its input type, then compare the exact result shown.",
+              "nl": "Met ZeroDivisionError ontstaat hier ValueError. Volg de bewerking en het invoertype en vergelijk daarna het precieze getoonde resultaat."
+            }
+          },
+          {
+            "id": "token-3",
+            "code": "NameError",
+            "reason": {
+              "en": "Using NameError here produces ValueError. Follow the operation and its input type, then compare the exact result shown.",
+              "nl": "Met NameError ontstaat hier ValueError. Volg de bewerking en het invoertype en vergelijk daarna het precieze getoonde resultaat."
+            }
+          }
+        ],
+        "blanks": [
+          {
+            "answer": "ValueError",
+            "reason": {
+              "en": "Follow the operation and its input type, then compare the exact result shown.",
+              "nl": "Volg de bewerking en het invoertype en vergelijk daarna het precieze getoonde resultaat."
+            }
+          }
+        ],
+        "output": "Retry\n"
+      },
+      "id": "python-v4-11-quiz-r2-a-4",
+      "reviewActivityIds": [
+        "python-v4-10-value-error"
+      ]
+    },
+    {
+      "objectiveIds": [
+        "copying"
+      ],
+      "category": "debugging",
+      "prompt": {
+        "en": "Choose the repair or test that addresses the stated problem.",
+        "nl": "Kies de reparatie of test die het beschreven probleem aanpakt."
+      },
+      "code": "original = [4]\ncopy = original\ncopy.append(2)\n# Need original unchanged.",
+      "answer": "a",
+      "choices": [
+        {
+          "id": "a",
+          "label": {
+            "en": "Use copy = original.copy().",
+            "nl": "Gebruik copy = original.copy()."
+          },
+          "reason": {
+            "en": "A separate outer list prevents this append from affecting original.",
+            "nl": "Een aparte buitenste lijst voorkomt dat append original verandert."
+          }
+        },
+        {
+          "id": "b",
+          "label": {
+            "en": "Rename copy to backup.",
+            "nl": "Hernoem copy naar backup."
+          },
+          "reason": {
+            "en": "Changing a name does not copy the object.",
+            "nl": "Een naam veranderen kopieert het object niet."
+          }
+        },
+        {
+          "id": "c",
+          "label": {
+            "en": "Append to original instead.",
+            "nl": "Voeg in plaats daarvan toe aan original."
+          },
+          "reason": {
+            "en": "That explicitly changes the source.",
+            "nl": "Dat verandert de bron juist expliciet."
+          }
+        }
+      ],
+      "id": "python-v4-11-quiz-r2-a-5",
+      "reviewActivityIds": [
+        "python-v4-11-length-copy"
+      ]
+    },
+    {
+      "objectiveIds": [
+        "list-mutation"
+      ],
+      "category": "application",
+      "prompt": {
+        "en": "Which statement or test fits this example?",
+        "nl": "Welke uitspraak of test past bij dit voorbeeld?"
+      },
+      "code": "values = [4,2]\nvalues[0] = 8",
+      "answer": "a",
+      "choices": [
+        {
+          "id": "a",
+          "label": {
+            "en": "One existing element is replaced; length stays two.",
+            "nl": "Eén bestaand element wordt vervangen; lengte blijft twee."
+          },
+          "reason": {
+            "en": "Indexed assignment does not insert a new position.",
+            "nl": "Indextoewijzing voegt geen nieuwe positie in."
+          }
+        },
+        {
+          "id": "b",
+          "label": {
+            "en": "The list grows to length three.",
+            "nl": "De lijst groeit naar lengte drie."
+          },
+          "reason": {
+            "en": "That would require insertion or appending.",
+            "nl": "Dat vereist invoegen of toevoegen."
+          }
+        },
+        {
+          "id": "c",
+          "label": {
+            "en": "A new list is automatically created.",
+            "nl": "Er wordt automatisch een nieuwe lijst gemaakt."
+          },
+          "reason": {
+            "en": "This assignment mutates the existing list.",
+            "nl": "Deze toewijzing verandert de bestaande lijst."
+          }
+        }
+      ],
+      "id": "python-v4-11-quiz-r2-a-6",
+      "reviewActivityIds": [
+        "python-v4-11-change-element"
+      ]
+    }
+  ],
+  "alternateQuestions": [
+    {
+      "objectiveIds": [
+        "negative-indexing"
+      ],
+      "category": "prediction",
+      "prompt": {
+        "en": "What does this program print?",
+        "nl": "Wat drukt dit programma af?"
+      },
+      "code": "values = [2,7,9]\nprint(values[-1])",
+      "answer": "a",
+      "expectedOutput": "9\n",
+      "choices": [
+        {
+          "id": "a",
+          "label": {
+            "en": "9",
+            "nl": "9"
+          },
+          "reason": {
+            "en": "-1 selects the last element.",
+            "nl": "-1 kiest het laatste element."
+          }
+        },
+        {
+          "id": "b",
+          "label": {
+            "en": "7",
+            "nl": "7"
+          },
+          "reason": {
+            "en": "That is the middle element at index 1 or -2.",
+            "nl": "Dat is het middelste element op index 1 of -2."
+          }
+        },
+        {
+          "id": "c",
+          "label": {
+            "en": "2",
+            "nl": "2"
+          },
+          "reason": {
+            "en": "The first element uses index 0.",
+            "nl": "Het eerste element gebruikt index 0."
+          }
+        }
+      ],
+      "id": "python-v4-11-quiz-r2-b-1",
+      "reviewActivityIds": [
+        "python-v4-11-indexes"
+      ]
+    },
+    {
+      "objectiveIds": [
+        "none"
+      ],
+      "category": "prediction",
+      "prompt": {
+        "en": "What does this program print?",
+        "nl": "Wat drukt dit programma af?"
+      },
+      "code": "def read(text):\n    try:\n        return int(text)\n    except ValueError:\n        return None\nprint(read(\"bad\") is None)",
+      "answer": "a",
+      "expectedOutput": "True\n",
+      "choices": [
+        {
+          "id": "a",
+          "label": {
+            "en": "True",
+            "nl": "True"
+          },
+          "reason": {
+            "en": "Invalid text returns None; converting zero succeeds and does not mean cancellation.",
+            "nl": "Ongeldige tekst geeft None; nul omzetten slaagt en betekent geen annulering."
+          }
+        },
+        {
+          "id": "b",
+          "label": {
+            "en": "False",
+            "nl": "False"
+          },
+          "reason": {
+            "en": "Invalid text returns None; converting zero succeeds and does not mean cancellation.",
+            "nl": "Ongeldige tekst geeft None; nul omzetten slaagt en betekent geen annulering."
+          }
+        },
+        {
+          "id": "c",
+          "label": {
+            "en": "ValueError",
+            "nl": "ValueError"
+          },
+          "reason": {
+            "en": "Invalid text returns None; converting zero succeeds and does not mean cancellation.",
+            "nl": "Ongeldige tekst geeft None; nul omzetten slaagt en betekent geen annulering."
+          }
+        }
+      ],
+      "id": "python-v4-11-quiz-r2-b-2",
+      "reviewActivityIds": [
+        "python-v4-09-none"
+      ]
+    },
+    {
+      "objectiveIds": [
+        "append"
+      ],
+      "category": "completion",
+      "prompt": {
+        "en": "Complete the code to produce the shown output.",
+        "nl": "Vul de code aan om de getoonde uitvoer te maken."
+      },
+      "code": "values = []\nvalues.___(7)\nprint(values)",
+      "answer": "a",
+      "choices": [
+        {
+          "id": "a",
+          "label": {
+            "en": "append",
+            "nl": "append"
+          },
+          "reason": {
+            "en": "append adds one value to the end of a list.",
+            "nl": "append voegt één waarde achteraan een lijst toe."
+          }
+        },
+        {
+          "id": "b",
+          "label": {
+            "en": "add",
+            "nl": "add"
+          },
+          "reason": {
+            "en": "Using add here produces AttributeError. append adds one value to the end of a list.",
+            "nl": "Met add ontstaat hier AttributeError. append voegt één waarde achteraan een lijst toe."
+          }
+        },
+        {
+          "id": "c",
+          "label": {
+            "en": "pop",
+            "nl": "pop"
+          },
+          "reason": {
+            "en": "Using pop here produces IndexError. append adds one value to the end of a list.",
+            "nl": "Met pop ontstaat hier IndexError. append voegt één waarde achteraan een lijst toe."
+          }
+        }
+      ],
+      "codeBlank": {
+        "prompt": {
+          "en": "Complete the code to produce the shown output.",
+          "nl": "Vul de code aan om de getoonde uitvoer te maken."
+        },
+        "segments": [
+          "values = []\nvalues.",
+          "(7)\nprint(values)"
+        ],
+        "tokens": [
+          {
+            "id": "token-1",
+            "code": "append"
+          },
+          {
+            "id": "token-2",
+            "code": "add",
+            "reason": {
+              "en": "Using add here produces AttributeError. append adds one value to the end of a list.",
+              "nl": "Met add ontstaat hier AttributeError. append voegt één waarde achteraan een lijst toe."
+            }
+          },
+          {
+            "id": "token-3",
+            "code": "pop",
+            "reason": {
+              "en": "Using pop here produces IndexError. append adds one value to the end of a list.",
+              "nl": "Met pop ontstaat hier IndexError. append voegt één waarde achteraan een lijst toe."
+            }
+          }
+        ],
+        "blanks": [
+          {
+            "answer": "append",
+            "reason": {
+              "en": "append adds one value to the end of a list.",
+              "nl": "append voegt één waarde achteraan een lijst toe."
+            }
+          }
+        ],
+        "output": "[7]\n"
+      },
+      "id": "python-v4-11-quiz-r2-b-3",
+      "reviewActivityIds": [
+        "python-v4-11-append"
+      ]
+    },
+    {
+      "objectiveIds": [
+        "value-error"
+      ],
+      "category": "completion",
+      "prompt": {
+        "en": "Complete the code to produce the shown output.",
+        "nl": "Vul de code aan om de getoonde uitvoer te maken."
+      },
+      "code": "try:\n    int(\"blue\")\nexcept ___:\n    print(\"Retry\")",
+      "answer": "a",
+      "choices": [
+        {
+          "id": "a",
+          "label": {
+            "en": "ValueError",
+            "nl": "ValueError"
+          },
+          "reason": {
+            "en": "Follow the operation and its input type, then compare the exact result shown.",
+            "nl": "Volg de bewerking en het invoertype en vergelijk daarna het precieze getoonde resultaat."
+          }
+        },
+        {
+          "id": "b",
+          "label": {
+            "en": "ZeroDivisionError",
+            "nl": "ZeroDivisionError"
+          },
+          "reason": {
+            "en": "Using ZeroDivisionError here produces ValueError. Follow the operation and its input type, then compare the exact result shown.",
+            "nl": "Met ZeroDivisionError ontstaat hier ValueError. Volg de bewerking en het invoertype en vergelijk daarna het precieze getoonde resultaat."
+          }
+        },
+        {
+          "id": "c",
+          "label": {
+            "en": "NameError",
+            "nl": "NameError"
+          },
+          "reason": {
+            "en": "Using NameError here produces ValueError. Follow the operation and its input type, then compare the exact result shown.",
+            "nl": "Met NameError ontstaat hier ValueError. Volg de bewerking en het invoertype en vergelijk daarna het precieze getoonde resultaat."
+          }
+        }
+      ],
+      "codeBlank": {
+        "prompt": {
+          "en": "Complete the code to produce the shown output.",
+          "nl": "Vul de code aan om de getoonde uitvoer te maken."
+        },
+        "segments": [
+          "try:\n    int(\"blue\")\nexcept ",
+          ":\n    print(\"Retry\")"
+        ],
+        "tokens": [
+          {
+            "id": "token-1",
+            "code": "ValueError"
+          },
+          {
+            "id": "token-2",
+            "code": "ZeroDivisionError",
+            "reason": {
+              "en": "Using ZeroDivisionError here produces ValueError. Follow the operation and its input type, then compare the exact result shown.",
+              "nl": "Met ZeroDivisionError ontstaat hier ValueError. Volg de bewerking en het invoertype en vergelijk daarna het precieze getoonde resultaat."
+            }
+          },
+          {
+            "id": "token-3",
+            "code": "NameError",
+            "reason": {
+              "en": "Using NameError here produces ValueError. Follow the operation and its input type, then compare the exact result shown.",
+              "nl": "Met NameError ontstaat hier ValueError. Volg de bewerking en het invoertype en vergelijk daarna het precieze getoonde resultaat."
+            }
+          }
+        ],
+        "blanks": [
+          {
+            "answer": "ValueError",
+            "reason": {
+              "en": "Follow the operation and its input type, then compare the exact result shown.",
+              "nl": "Volg de bewerking en het invoertype en vergelijk daarna het precieze getoonde resultaat."
+            }
+          }
+        ],
+        "output": "Retry\n"
+      },
+      "id": "python-v4-11-quiz-r2-b-4",
+      "reviewActivityIds": [
+        "python-v4-10-value-error"
+      ]
+    },
+    {
+      "objectiveIds": [
+        "copying"
+      ],
+      "category": "debugging",
+      "prompt": {
+        "en": "Choose the repair or test that addresses the stated problem.",
+        "nl": "Kies de reparatie of test die het beschreven probleem aanpakt."
+      },
+      "code": "original = [7]\ncopy = original\ncopy.append(2)\n# Need original unchanged.",
+      "answer": "a",
+      "choices": [
+        {
+          "id": "a",
+          "label": {
+            "en": "Use copy = original.copy().",
+            "nl": "Gebruik copy = original.copy()."
+          },
+          "reason": {
+            "en": "A separate outer list prevents this append from affecting original.",
+            "nl": "Een aparte buitenste lijst voorkomt dat append original verandert."
+          }
+        },
+        {
+          "id": "b",
+          "label": {
+            "en": "Rename copy to backup.",
+            "nl": "Hernoem copy naar backup."
+          },
+          "reason": {
+            "en": "Changing a name does not copy the object.",
+            "nl": "Een naam veranderen kopieert het object niet."
+          }
+        },
+        {
+          "id": "c",
+          "label": {
+            "en": "Append to original instead.",
+            "nl": "Voeg in plaats daarvan toe aan original."
+          },
+          "reason": {
+            "en": "That explicitly changes the source.",
+            "nl": "Dat verandert de bron juist expliciet."
+          }
+        }
+      ],
+      "id": "python-v4-11-quiz-r2-b-5",
+      "reviewActivityIds": [
+        "python-v4-11-length-copy"
+      ]
+    },
+    {
+      "objectiveIds": [
+        "list-mutation"
+      ],
+      "category": "application",
+      "prompt": {
+        "en": "Which statement or test fits this example?",
+        "nl": "Welke uitspraak of test past bij dit voorbeeld?"
+      },
+      "code": "values = [7,2]\nvalues[0] = 8",
+      "answer": "a",
+      "choices": [
+        {
+          "id": "a",
+          "label": {
+            "en": "One existing element is replaced; length stays two.",
+            "nl": "Eén bestaand element wordt vervangen; lengte blijft twee."
+          },
+          "reason": {
+            "en": "Indexed assignment does not insert a new position.",
+            "nl": "Indextoewijzing voegt geen nieuwe positie in."
+          }
+        },
+        {
+          "id": "b",
+          "label": {
+            "en": "The list grows to length three.",
+            "nl": "De lijst groeit naar lengte drie."
+          },
+          "reason": {
+            "en": "That would require insertion or appending.",
+            "nl": "Dat vereist invoegen of toevoegen."
+          }
+        },
+        {
+          "id": "c",
+          "label": {
+            "en": "A new list is automatically created.",
+            "nl": "Er wordt automatisch een nieuwe lijst gemaakt."
+          },
+          "reason": {
+            "en": "This assignment mutates the existing list.",
+            "nl": "Deze toewijzing verandert de bestaande lijst."
+          }
+        }
+      ],
+      "id": "python-v4-11-quiz-r2-b-6",
+      "reviewActivityIds": [
+        "python-v4-11-change-element"
+      ]
+    }
+  ]
+}

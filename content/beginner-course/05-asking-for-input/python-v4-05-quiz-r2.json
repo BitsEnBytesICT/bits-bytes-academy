@@ -1,0 +1,800 @@
+{
+  "id": "python-v4-05-quiz-r2",
+  "chapter": 5,
+  "group": "python-v4-module-5",
+  "kind": "quiz",
+  "optional": false,
+  "estimatedMinutes": 8,
+  "title": {
+    "en": "Asking for input: review",
+    "nl": "Om invoer vragen: herhaling"
+  },
+  "questions": [
+    {
+      "objectiveIds": [
+        "input-string-type"
+      ],
+      "category": "prediction",
+      "prompt": {
+        "en": "What does this program print?",
+        "nl": "Wat drukt dit programma af?"
+      },
+      "code": "answer = \"5\" # value returned by input\nprint(answer + \"2\")",
+      "answer": "a",
+      "expectedOutput": "52\n",
+      "choices": [
+        {
+          "id": "a",
+          "label": {
+            "en": "52",
+            "nl": "52"
+          },
+          "reason": {
+            "en": "Both operands are strings, so + concatenates.",
+            "nl": "Beide kanten zijn strings, dus + voegt samen."
+          }
+        },
+        {
+          "id": "b",
+          "label": {
+            "en": "7",
+            "nl": "7"
+          },
+          "reason": {
+            "en": "Numeric addition requires conversion first.",
+            "nl": "Numeriek optellen vereist eerst omzetting."
+          }
+        },
+        {
+          "id": "c",
+          "label": {
+            "en": "TypeError",
+            "nl": "TypeError"
+          },
+          "reason": {
+            "en": "Adding two strings is valid.",
+            "nl": "Twee strings samenvoegen is geldig."
+          }
+        }
+      ],
+      "id": "python-v4-05-quiz-r2-a-1",
+      "reviewActivityIds": [
+        "python-v4-05-input-is-text"
+      ]
+    },
+    {
+      "objectiveIds": [
+        "str-conversion"
+      ],
+      "category": "prediction",
+      "prompt": {
+        "en": "What does this program print?",
+        "nl": "Wat drukt dit programma af?"
+      },
+      "code": "print(\"Room \" + str(0))",
+      "answer": "a",
+      "expectedOutput": "Room 0\n",
+      "choices": [
+        {
+          "id": "a",
+          "label": {
+            "en": "Room 0",
+            "nl": "Room 0"
+          },
+          "reason": {
+            "en": "str makes number text suitable for concatenation.",
+            "nl": "str maakt getaltekst die je kunt samenvoegen."
+          }
+        },
+        {
+          "id": "b",
+          "label": {
+            "en": "TypeError",
+            "nl": "TypeError"
+          },
+          "reason": {
+            "en": "str makes number text suitable for concatenation.",
+            "nl": "str maakt getaltekst die je kunt samenvoegen."
+          }
+        },
+        {
+          "id": "c",
+          "label": {
+            "en": "Room str",
+            "nl": "Room str"
+          },
+          "reason": {
+            "en": "str makes number text suitable for concatenation.",
+            "nl": "str maakt getaltekst die je kunt samenvoegen."
+          }
+        }
+      ],
+      "id": "python-v4-05-quiz-r2-a-2",
+      "reviewActivityIds": [
+        "python-v4-04-convert-to-text"
+      ]
+    },
+    {
+      "objectiveIds": [
+        "int-conversion"
+      ],
+      "category": "completion",
+      "prompt": {
+        "en": "Complete the code to produce the shown output.",
+        "nl": "Vul de code aan om de getoonde uitvoer te maken."
+      },
+      "code": "answer = \"5\"\nprint(___ + 2)",
+      "answer": "a",
+      "choices": [
+        {
+          "id": "a",
+          "label": {
+            "en": "int(answer)",
+            "nl": "int(answer)"
+          },
+          "reason": {
+            "en": "int converts whole-number text before addition.",
+            "nl": "int zet tekst met een geheel getal om vóór optellen."
+          }
+        },
+        {
+          "id": "b",
+          "label": {
+            "en": "answer",
+            "nl": "answer"
+          },
+          "reason": {
+            "en": "Using answer here produces TypeError. int converts whole-number text before addition.",
+            "nl": "Met answer ontstaat hier TypeError. int zet tekst met een geheel getal om vóór optellen."
+          }
+        },
+        {
+          "id": "c",
+          "label": {
+            "en": "str(answer)",
+            "nl": "str(answer)"
+          },
+          "reason": {
+            "en": "Using str(answer) here produces TypeError. int converts whole-number text before addition.",
+            "nl": "Met str(answer) ontstaat hier TypeError. int zet tekst met een geheel getal om vóór optellen."
+          }
+        }
+      ],
+      "codeBlank": {
+        "prompt": {
+          "en": "Complete the code to produce the shown output.",
+          "nl": "Vul de code aan om de getoonde uitvoer te maken."
+        },
+        "segments": [
+          "answer = \"5\"\nprint(",
+          " + 2)"
+        ],
+        "tokens": [
+          {
+            "id": "token-1",
+            "code": "int(answer)"
+          },
+          {
+            "id": "token-2",
+            "code": "answer",
+            "reason": {
+              "en": "Using answer here produces TypeError. int converts whole-number text before addition.",
+              "nl": "Met answer ontstaat hier TypeError. int zet tekst met een geheel getal om vóór optellen."
+            }
+          },
+          {
+            "id": "token-3",
+            "code": "str(answer)",
+            "reason": {
+              "en": "Using str(answer) here produces TypeError. int converts whole-number text before addition.",
+              "nl": "Met str(answer) ontstaat hier TypeError. int zet tekst met een geheel getal om vóór optellen."
+            }
+          }
+        ],
+        "blanks": [
+          {
+            "answer": "int(answer)",
+            "reason": {
+              "en": "int converts whole-number text before addition.",
+              "nl": "int zet tekst met een geheel getal om vóór optellen."
+            }
+          }
+        ],
+        "output": "7\n"
+      },
+      "id": "python-v4-05-quiz-r2-a-3",
+      "reviewActivityIds": [
+        "python-v4-05-integer-input"
+      ]
+    },
+    {
+      "objectiveIds": [
+        "f-strings"
+      ],
+      "category": "completion",
+      "prompt": {
+        "en": "Complete the code to produce the shown output.",
+        "nl": "Vul de code aan om de getoonde uitvoer te maken."
+      },
+      "code": "name = \"Jo\"\nprint(___)",
+      "answer": "a",
+      "choices": [
+        {
+          "id": "a",
+          "label": {
+            "en": "f\"Hi {name}\"",
+            "nl": "f\"Hi {name}\""
+          },
+          "reason": {
+            "en": "Follow the operation and its input type, then compare the exact result shown.",
+            "nl": "Volg de bewerking en het invoertype en vergelijk daarna het precieze getoonde resultaat."
+          }
+        },
+        {
+          "id": "b",
+          "label": {
+            "en": "\"Hi {name}\"",
+            "nl": "\"Hi {name}\""
+          },
+          "reason": {
+            "en": "Using \"Hi {name}\" prints \"Hi {name}\\n\"; the required output is \"Hi Jo\\n\". Follow the operation and its input type, then compare the exact result shown.",
+            "nl": "Met \"Hi {name}\" wordt \"Hi {name}\\n\" afgedrukt; de vereiste uitvoer is \"Hi Jo\\n\". Volg de bewerking en het invoertype en vergelijk daarna het precieze getoonde resultaat."
+          }
+        },
+        {
+          "id": "c",
+          "label": {
+            "en": "name",
+            "nl": "name"
+          },
+          "reason": {
+            "en": "Using name prints \"Jo\\n\"; the required output is \"Hi Jo\\n\". Follow the operation and its input type, then compare the exact result shown.",
+            "nl": "Met name wordt \"Jo\\n\" afgedrukt; de vereiste uitvoer is \"Hi Jo\\n\". Volg de bewerking en het invoertype en vergelijk daarna het precieze getoonde resultaat."
+          }
+        }
+      ],
+      "codeBlank": {
+        "prompt": {
+          "en": "Complete the code to produce the shown output.",
+          "nl": "Vul de code aan om de getoonde uitvoer te maken."
+        },
+        "segments": [
+          "name = \"Jo\"\nprint(",
+          ")"
+        ],
+        "tokens": [
+          {
+            "id": "token-1",
+            "code": "f\"Hi {name}\""
+          },
+          {
+            "id": "token-2",
+            "code": "\"Hi {name}\"",
+            "reason": {
+              "en": "Using \"Hi {name}\" prints \"Hi {name}\\n\"; the required output is \"Hi Jo\\n\". Follow the operation and its input type, then compare the exact result shown.",
+              "nl": "Met \"Hi {name}\" wordt \"Hi {name}\\n\" afgedrukt; de vereiste uitvoer is \"Hi Jo\\n\". Volg de bewerking en het invoertype en vergelijk daarna het precieze getoonde resultaat."
+            }
+          },
+          {
+            "id": "token-3",
+            "code": "name",
+            "reason": {
+              "en": "Using name prints \"Jo\\n\"; the required output is \"Hi Jo\\n\". Follow the operation and its input type, then compare the exact result shown.",
+              "nl": "Met name wordt \"Jo\\n\" afgedrukt; de vereiste uitvoer is \"Hi Jo\\n\". Volg de bewerking en het invoertype en vergelijk daarna het precieze getoonde resultaat."
+            }
+          }
+        ],
+        "blanks": [
+          {
+            "answer": "f\"Hi {name}\"",
+            "reason": {
+              "en": "Follow the operation and its input type, then compare the exact result shown.",
+              "nl": "Volg de bewerking en het invoertype en vergelijk daarna het precieze getoonde resultaat."
+            }
+          }
+        ],
+        "output": "Hi Jo\n"
+      },
+      "id": "python-v4-05-quiz-r2-a-4",
+      "reviewActivityIds": [
+        "python-v4-04-f-strings"
+      ]
+    },
+    {
+      "objectiveIds": [
+        "float-conversion"
+      ],
+      "category": "debugging",
+      "prompt": {
+        "en": "Choose the repair or test that addresses the stated problem.",
+        "nl": "Kies de reparatie of test die het beschreven probleem aanpakt."
+      },
+      "code": "# Accept decimal input such as 5.5\nvalue = int(\"5.5\")",
+      "answer": "a",
+      "choices": [
+        {
+          "id": "a",
+          "label": {
+            "en": "Use float on the numeric text.",
+            "nl": "Gebruik float op de getaltekst."
+          },
+          "reason": {
+            "en": "float accepts a decimal point.",
+            "nl": "float accepteert een decimale punt."
+          }
+        },
+        {
+          "id": "b",
+          "label": {
+            "en": "Strip the decimal point away.",
+            "nl": "Verwijder de decimale punt."
+          },
+          "reason": {
+            "en": "That changes the numeric meaning.",
+            "nl": "Dat verandert de numerieke betekenis."
+          }
+        },
+        {
+          "id": "c",
+          "label": {
+            "en": "Put another pair of quotes around it.",
+            "nl": "Zet er nog een paar aanhalingstekens om."
+          },
+          "reason": {
+            "en": "More quotes do not perform numeric conversion.",
+            "nl": "Meer aanhalingstekens voeren geen getalomzetting uit."
+          }
+        }
+      ],
+      "id": "python-v4-05-quiz-r2-a-5",
+      "reviewActivityIds": [
+        "python-v4-05-float-input"
+      ]
+    },
+    {
+      "objectiveIds": [
+        "normalisation"
+      ],
+      "category": "application",
+      "prompt": {
+        "en": "Which statement or test fits this example?",
+        "nl": "Welke uitspraak of test past bij dit voorbeeld?"
+      },
+      "code": "command = \" HELP \".strip().lower()",
+      "answer": "a",
+      "choices": [
+        {
+          "id": "a",
+          "label": {
+            "en": "Outer spaces are removed and letters become lowercase.",
+            "nl": "Buitenste spaties verdwijnen en letters worden klein."
+          },
+          "reason": {
+            "en": "The returned text from strip is passed to lower.",
+            "nl": "De teruggegeven tekst van strip gaat naar lower."
+          }
+        },
+        {
+          "id": "b",
+          "label": {
+            "en": "Every space inside the string is removed.",
+            "nl": "Elke spatie binnen de string verdwijnt."
+          },
+          "reason": {
+            "en": "strip affects only the ends.",
+            "nl": "strip verandert alleen de uiteinden."
+          }
+        },
+        {
+          "id": "c",
+          "label": {
+            "en": "The command is executed by lower.",
+            "nl": "lower voert het commando uit."
+          },
+          "reason": {
+            "en": "lower changes text case; it does not execute commands.",
+            "nl": "lower verandert hoofdletters; het voert geen opdrachten uit."
+          }
+        }
+      ],
+      "id": "python-v4-05-quiz-r2-a-6",
+      "reviewActivityIds": [
+        "python-v4-05-normalise-command"
+      ]
+    }
+  ],
+  "alternateQuestions": [
+    {
+      "objectiveIds": [
+        "input-string-type"
+      ],
+      "category": "prediction",
+      "prompt": {
+        "en": "What does this program print?",
+        "nl": "Wat drukt dit programma af?"
+      },
+      "code": "answer = \"8\" # value returned by input\nprint(answer + \"2\")",
+      "answer": "a",
+      "expectedOutput": "82\n",
+      "choices": [
+        {
+          "id": "a",
+          "label": {
+            "en": "82",
+            "nl": "82"
+          },
+          "reason": {
+            "en": "Both operands are strings, so + concatenates.",
+            "nl": "Beide kanten zijn strings, dus + voegt samen."
+          }
+        },
+        {
+          "id": "b",
+          "label": {
+            "en": "10",
+            "nl": "10"
+          },
+          "reason": {
+            "en": "Numeric addition requires conversion first.",
+            "nl": "Numeriek optellen vereist eerst omzetting."
+          }
+        },
+        {
+          "id": "c",
+          "label": {
+            "en": "TypeError",
+            "nl": "TypeError"
+          },
+          "reason": {
+            "en": "Adding two strings is valid.",
+            "nl": "Twee strings samenvoegen is geldig."
+          }
+        }
+      ],
+      "id": "python-v4-05-quiz-r2-b-1",
+      "reviewActivityIds": [
+        "python-v4-05-input-is-text"
+      ]
+    },
+    {
+      "objectiveIds": [
+        "str-conversion"
+      ],
+      "category": "prediction",
+      "prompt": {
+        "en": "What does this program print?",
+        "nl": "Wat drukt dit programma af?"
+      },
+      "code": "print(\"Room \" + str(-2))",
+      "answer": "a",
+      "expectedOutput": "Room -2\n",
+      "choices": [
+        {
+          "id": "a",
+          "label": {
+            "en": "Room -2",
+            "nl": "Room -2"
+          },
+          "reason": {
+            "en": "str makes number text suitable for concatenation.",
+            "nl": "str maakt getaltekst die je kunt samenvoegen."
+          }
+        },
+        {
+          "id": "b",
+          "label": {
+            "en": "TypeError",
+            "nl": "TypeError"
+          },
+          "reason": {
+            "en": "str makes number text suitable for concatenation.",
+            "nl": "str maakt getaltekst die je kunt samenvoegen."
+          }
+        },
+        {
+          "id": "c",
+          "label": {
+            "en": "Room str",
+            "nl": "Room str"
+          },
+          "reason": {
+            "en": "str makes number text suitable for concatenation.",
+            "nl": "str maakt getaltekst die je kunt samenvoegen."
+          }
+        }
+      ],
+      "id": "python-v4-05-quiz-r2-b-2",
+      "reviewActivityIds": [
+        "python-v4-04-convert-to-text"
+      ]
+    },
+    {
+      "objectiveIds": [
+        "int-conversion"
+      ],
+      "category": "completion",
+      "prompt": {
+        "en": "Complete the code to produce the shown output.",
+        "nl": "Vul de code aan om de getoonde uitvoer te maken."
+      },
+      "code": "answer = \"8\"\nprint(___ + 2)",
+      "answer": "a",
+      "choices": [
+        {
+          "id": "a",
+          "label": {
+            "en": "int(answer)",
+            "nl": "int(answer)"
+          },
+          "reason": {
+            "en": "int converts whole-number text before addition.",
+            "nl": "int zet tekst met een geheel getal om vóór optellen."
+          }
+        },
+        {
+          "id": "b",
+          "label": {
+            "en": "answer",
+            "nl": "answer"
+          },
+          "reason": {
+            "en": "Using answer here produces TypeError. int converts whole-number text before addition.",
+            "nl": "Met answer ontstaat hier TypeError. int zet tekst met een geheel getal om vóór optellen."
+          }
+        },
+        {
+          "id": "c",
+          "label": {
+            "en": "str(answer)",
+            "nl": "str(answer)"
+          },
+          "reason": {
+            "en": "Using str(answer) here produces TypeError. int converts whole-number text before addition.",
+            "nl": "Met str(answer) ontstaat hier TypeError. int zet tekst met een geheel getal om vóór optellen."
+          }
+        }
+      ],
+      "codeBlank": {
+        "prompt": {
+          "en": "Complete the code to produce the shown output.",
+          "nl": "Vul de code aan om de getoonde uitvoer te maken."
+        },
+        "segments": [
+          "answer = \"8\"\nprint(",
+          " + 2)"
+        ],
+        "tokens": [
+          {
+            "id": "token-1",
+            "code": "int(answer)"
+          },
+          {
+            "id": "token-2",
+            "code": "answer",
+            "reason": {
+              "en": "Using answer here produces TypeError. int converts whole-number text before addition.",
+              "nl": "Met answer ontstaat hier TypeError. int zet tekst met een geheel getal om vóór optellen."
+            }
+          },
+          {
+            "id": "token-3",
+            "code": "str(answer)",
+            "reason": {
+              "en": "Using str(answer) here produces TypeError. int converts whole-number text before addition.",
+              "nl": "Met str(answer) ontstaat hier TypeError. int zet tekst met een geheel getal om vóór optellen."
+            }
+          }
+        ],
+        "blanks": [
+          {
+            "answer": "int(answer)",
+            "reason": {
+              "en": "int converts whole-number text before addition.",
+              "nl": "int zet tekst met een geheel getal om vóór optellen."
+            }
+          }
+        ],
+        "output": "10\n"
+      },
+      "id": "python-v4-05-quiz-r2-b-3",
+      "reviewActivityIds": [
+        "python-v4-05-integer-input"
+      ]
+    },
+    {
+      "objectiveIds": [
+        "f-strings"
+      ],
+      "category": "completion",
+      "prompt": {
+        "en": "Complete the code to produce the shown output.",
+        "nl": "Vul de code aan om de getoonde uitvoer te maken."
+      },
+      "code": "name = \"Jo\"\nprint(___)",
+      "answer": "a",
+      "choices": [
+        {
+          "id": "a",
+          "label": {
+            "en": "f\"Hi {name}\"",
+            "nl": "f\"Hi {name}\""
+          },
+          "reason": {
+            "en": "Follow the operation and its input type, then compare the exact result shown.",
+            "nl": "Volg de bewerking en het invoertype en vergelijk daarna het precieze getoonde resultaat."
+          }
+        },
+        {
+          "id": "b",
+          "label": {
+            "en": "\"Hi {name}\"",
+            "nl": "\"Hi {name}\""
+          },
+          "reason": {
+            "en": "Using \"Hi {name}\" prints \"Hi {name}\\n\"; the required output is \"Hi Jo\\n\". Follow the operation and its input type, then compare the exact result shown.",
+            "nl": "Met \"Hi {name}\" wordt \"Hi {name}\\n\" afgedrukt; de vereiste uitvoer is \"Hi Jo\\n\". Volg de bewerking en het invoertype en vergelijk daarna het precieze getoonde resultaat."
+          }
+        },
+        {
+          "id": "c",
+          "label": {
+            "en": "name",
+            "nl": "name"
+          },
+          "reason": {
+            "en": "Using name prints \"Jo\\n\"; the required output is \"Hi Jo\\n\". Follow the operation and its input type, then compare the exact result shown.",
+            "nl": "Met name wordt \"Jo\\n\" afgedrukt; de vereiste uitvoer is \"Hi Jo\\n\". Volg de bewerking en het invoertype en vergelijk daarna het precieze getoonde resultaat."
+          }
+        }
+      ],
+      "codeBlank": {
+        "prompt": {
+          "en": "Complete the code to produce the shown output.",
+          "nl": "Vul de code aan om de getoonde uitvoer te maken."
+        },
+        "segments": [
+          "name = \"Jo\"\nprint(",
+          ")"
+        ],
+        "tokens": [
+          {
+            "id": "token-1",
+            "code": "f\"Hi {name}\""
+          },
+          {
+            "id": "token-2",
+            "code": "\"Hi {name}\"",
+            "reason": {
+              "en": "Using \"Hi {name}\" prints \"Hi {name}\\n\"; the required output is \"Hi Jo\\n\". Follow the operation and its input type, then compare the exact result shown.",
+              "nl": "Met \"Hi {name}\" wordt \"Hi {name}\\n\" afgedrukt; de vereiste uitvoer is \"Hi Jo\\n\". Volg de bewerking en het invoertype en vergelijk daarna het precieze getoonde resultaat."
+            }
+          },
+          {
+            "id": "token-3",
+            "code": "name",
+            "reason": {
+              "en": "Using name prints \"Jo\\n\"; the required output is \"Hi Jo\\n\". Follow the operation and its input type, then compare the exact result shown.",
+              "nl": "Met name wordt \"Jo\\n\" afgedrukt; de vereiste uitvoer is \"Hi Jo\\n\". Volg de bewerking en het invoertype en vergelijk daarna het precieze getoonde resultaat."
+            }
+          }
+        ],
+        "blanks": [
+          {
+            "answer": "f\"Hi {name}\"",
+            "reason": {
+              "en": "Follow the operation and its input type, then compare the exact result shown.",
+              "nl": "Volg de bewerking en het invoertype en vergelijk daarna het precieze getoonde resultaat."
+            }
+          }
+        ],
+        "output": "Hi Jo\n"
+      },
+      "id": "python-v4-05-quiz-r2-b-4",
+      "reviewActivityIds": [
+        "python-v4-04-f-strings"
+      ]
+    },
+    {
+      "objectiveIds": [
+        "float-conversion"
+      ],
+      "category": "debugging",
+      "prompt": {
+        "en": "Choose the repair or test that addresses the stated problem.",
+        "nl": "Kies de reparatie of test die het beschreven probleem aanpakt."
+      },
+      "code": "# Accept decimal input such as 8.5\nvalue = int(\"8.5\")",
+      "answer": "a",
+      "choices": [
+        {
+          "id": "a",
+          "label": {
+            "en": "Use float on the numeric text.",
+            "nl": "Gebruik float op de getaltekst."
+          },
+          "reason": {
+            "en": "float accepts a decimal point.",
+            "nl": "float accepteert een decimale punt."
+          }
+        },
+        {
+          "id": "b",
+          "label": {
+            "en": "Strip the decimal point away.",
+            "nl": "Verwijder de decimale punt."
+          },
+          "reason": {
+            "en": "That changes the numeric meaning.",
+            "nl": "Dat verandert de numerieke betekenis."
+          }
+        },
+        {
+          "id": "c",
+          "label": {
+            "en": "Put another pair of quotes around it.",
+            "nl": "Zet er nog een paar aanhalingstekens om."
+          },
+          "reason": {
+            "en": "More quotes do not perform numeric conversion.",
+            "nl": "Meer aanhalingstekens voeren geen getalomzetting uit."
+          }
+        }
+      ],
+      "id": "python-v4-05-quiz-r2-b-5",
+      "reviewActivityIds": [
+        "python-v4-05-float-input"
+      ]
+    },
+    {
+      "objectiveIds": [
+        "normalisation"
+      ],
+      "category": "application",
+      "prompt": {
+        "en": "Which statement or test fits this example?",
+        "nl": "Welke uitspraak of test past bij dit voorbeeld?"
+      },
+      "code": "command = \" GO \".strip().lower()",
+      "answer": "a",
+      "choices": [
+        {
+          "id": "a",
+          "label": {
+            "en": "Outer spaces are removed and letters become lowercase.",
+            "nl": "Buitenste spaties verdwijnen en letters worden klein."
+          },
+          "reason": {
+            "en": "The returned text from strip is passed to lower.",
+            "nl": "De teruggegeven tekst van strip gaat naar lower."
+          }
+        },
+        {
+          "id": "b",
+          "label": {
+            "en": "Every space inside the string is removed.",
+            "nl": "Elke spatie binnen de string verdwijnt."
+          },
+          "reason": {
+            "en": "strip affects only the ends.",
+            "nl": "strip verandert alleen de uiteinden."
+          }
+        },
+        {
+          "id": "c",
+          "label": {
+            "en": "The command is executed by lower.",
+            "nl": "lower voert het commando uit."
+          },
+          "reason": {
+            "en": "lower changes text case; it does not execute commands.",
+            "nl": "lower verandert hoofdletters; het voert geen opdrachten uit."
+          }
+        }
+      ],
+      "id": "python-v4-05-quiz-r2-b-6",
+      "reviewActivityIds": [
+        "python-v4-05-normalise-command"
+      ]
+    }
+  ]
+}

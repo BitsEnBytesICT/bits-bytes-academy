@@ -52,11 +52,24 @@
       }
     },
     {
-      "id": "python-v4-14-selected-and-alias-experiment",
+      "id": "python-v4-14-selected-and-alias-trace",
       "topicIds": [],
       "heading": {
-        "en": "Try one change",
-        "nl": "Probeer één wijziging"
+        "en": "Two names, two call styles",
+        "nl": "Twee namen, twee aanroepvormen"
+      },
+      "body": {
+        "en": "from math import floor introduces the local name floor: call floor(3.8). import math as m introduces m: call m.ceil(3.8). As a small practice edit, remove the two supplied import lines, type them back yourself, and rerun. Both imports are needed by this task's two calculations.",
+        "nl": "from math import floor introduceert de lokale naam floor: roep floor(3.8) aan. import math as m introduceert m: roep m.ceil(3.8) aan. Verwijder als kleine oefening de twee aangeleverde importregels, typ ze zelf terug en voer opnieuw uit. Beide imports zijn nodig voor de twee berekeningen van deze opdracht."
+      }
+    },
+    {
+      "id": "python-v4-14-selected-and-alias-experiment",
+      "role": "experiment",
+      "topicIds": [],
+      "heading": {
+        "en": "After completing the task: try one change",
+        "nl": "Na het afronden: probeer één wijziging"
       },
       "body": {
         "en": "Change both inputs to -3.8 and predict floor versus ceiling.",
@@ -111,18 +124,5 @@
     "en": "floor and m.ceil refer to tools from the same library through different local names.",
     "nl": "floor en m.ceil verwijzen via verschillende lokale namen naar gereedschappen uit dezelfde bibliotheek."
   },
-  "inputs": [],
-  "retrievals": [
-    {
-      "id": "recall-python-v4-12-range-stop",
-      "sourceActivityId": "python-v4-12-range-stop",
-      "objectiveIds": [
-        "range"
-      ],
-      "prompt": {
-        "en": "Recall “Repeat a known number of times”. How many values does range(0) produce? Try the earlier example from memory, then check it. Compare printing range(3) with printing list(range(3)).",
-        "nl": "Haal “Herhaal een bekend aantal keren” terug. Hoeveel waarden produceert range(0)? Probeer het eerdere voorbeeld uit je geheugen en controleer daarna. Vergelijk range(3) afdrukken met list(range(3)) afdrukken."
-      }
-    }
-  ]
+  "inputs": []
 }

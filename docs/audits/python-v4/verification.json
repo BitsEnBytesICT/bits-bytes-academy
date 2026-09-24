@@ -1,0 +1,920 @@
+{
+  "date": "2026-09-24",
+  "courseVersion": 4,
+  "cases": [
+    {
+      "id": "python-v4-05-normalise-command",
+      "label": "Valid normalisation without an unrequested raw variable",
+      "expected": [
+        true
+      ],
+      "actual": [
+        true
+      ],
+      "error": null,
+      "stdout": "Choice: help\n",
+      "files": {
+        "main.py": "choice = input(\"Choice: \").strip().lower()\nprint(choice)\n"
+      },
+      "matches": true
+    },
+    {
+      "id": "python-v4-08-repeat-input",
+      "label": "Instruction 1 complete; instruction 2 intentionally unfinished",
+      "expected": [
+        true,
+        false
+      ],
+      "actual": [
+        true,
+        false
+      ],
+      "error": null,
+      "stdout": "Item: Added book\nItem: Added pen\nItem: ",
+      "files": {
+        "main.py": "choice = input(\"Item: \").strip().lower()\nwhile choice != \"quit\":\n    print(f\"Added {choice}\")\n    choice = input(\"Item: \").strip().lower()\n"
+      },
+      "matches": true
+    },
+    {
+      "id": "python-v4-09-return-values",
+      "label": "Return-only function with visible learner test calls",
+      "expected": [
+        true
+      ],
+      "actual": [
+        true
+      ],
+      "error": null,
+      "stdout": "12\n",
+      "files": {
+        "main.py": "def area(width, height):\n    return width * height\nprint(area(3, 4))\n"
+      },
+      "matches": true
+    },
+    {
+      "id": "python-v4-10-retry",
+      "label": "Completed retry helper with the natural interactive test call",
+      "expected": [
+        true
+      ],
+      "actual": [
+        true
+      ],
+      "error": null,
+      "stdout": "Count: Try an integer\nCount: 3\n",
+      "files": {
+        "main.py": "def read_count():\n    while True:\n        text = input(\"Count: \")\n        try:\n            return int(text)\n        except ValueError:\n            print(\"Try an integer\")\nprint(read_count())\n"
+      },
+      "matches": true
+    },
+    {
+      "id": "python-v4-10-cancel-safely",
+      "label": "Completed cancellable helper with an interactive test call",
+      "expected": [
+        true,
+        true
+      ],
+      "actual": [
+        true,
+        true
+      ],
+      "error": null,
+      "stdout": "Number or quit: -2.5\n",
+      "files": {
+        "main.py": "def read_number():\n    while True:\n        try:\n            text = input(\"Number or quit: \").strip().lower()\n        except EOFError:\n            return None\n        if text == \"quit\":\n            return None\n        try:\n            return float(text)\n        except ValueError:\n            print(\"Try a number\")\nprint(read_number())\n"
+      },
+      "matches": true
+    },
+    {
+      "id": "python-v4-03-powers",
+      "label": "Multiplication instead of explicitly required exponent operator",
+      "expected": [
+        false,
+        true
+      ],
+      "actual": [
+        false,
+        true
+      ],
+      "error": null,
+      "stdout": "36\n",
+      "files": {
+        "main.py": "side = 6\nresult = side * side\nprint(result)\n"
+      },
+      "matches": true
+    },
+    {
+      "id": "python-v4-12-range-stop",
+      "label": "Loop instead of explicitly required range",
+      "expected": [
+        false
+      ],
+      "actual": [
+        false
+      ],
+      "error": null,
+      "stdout": "",
+      "files": {
+        "main.py": "def positions(count):\n    result = []\n    i = 0\n    while i < count:\n        result.append(i)\n        i += 1\n    return result\n"
+      },
+      "matches": true
+    },
+    {
+      "id": "python-v4-12-range-step",
+      "label": "While loop instead of explicitly required range",
+      "expected": [
+        false
+      ],
+      "actual": [
+        false
+      ],
+      "error": null,
+      "stdout": "",
+      "files": {
+        "main.py": "def countdown(start):\n    values = []\n    while start > 0:\n        values.append(start)\n        start -= 1\n    return values\n"
+      },
+      "matches": true
+    },
+    {
+      "id": "python-v4-13-unpack",
+      "label": "Index access rather than explicitly requested unpacking",
+      "expected": [
+        false
+      ],
+      "actual": [
+        false
+      ],
+      "error": null,
+      "stdout": "",
+      "files": {
+        "main.py": "def shift(point, dx, dy):\n    return (point[0] + dx, point[1] + dy)\n"
+      },
+      "matches": true
+    },
+    {
+      "id": "python-v4-08-break",
+      "label": "Correct behaviour using an unannounced stop prompt",
+      "expected": [
+        true
+      ],
+      "actual": [
+        true
+      ],
+      "error": null,
+      "stdout": "Action: Working\nAction: Stopped\n",
+      "files": {
+        "main.py": "while True:\n    command = input(\"Action: \").strip().lower()\n    if command == \"quit\":\n        break\n    print(\"Working\")\nprint(\"Stopped\")\n"
+      },
+      "matches": true
+    },
+    {
+      "id": "python-v4-06-equal",
+      "label": "Correct Boolean but output hard-coded for the starter",
+      "expected": [
+        true,
+        false
+      ],
+      "actual": [
+        true,
+        false
+      ],
+      "error": null,
+      "stdout": "True\n",
+      "files": {
+        "main.py": "entered = \"open\"\nexpected = \"open\"\nresult = entered == expected\nprint(True)\n"
+      },
+      "matches": true
+    },
+    {
+      "id": "python-v4-03-addition",
+      "label": "Equivalent grouped initial assignments rejected by probe replacement",
+      "expected": [
+        true,
+        true
+      ],
+      "actual": [
+        true,
+        true
+      ],
+      "error": null,
+      "stdout": "12\n",
+      "files": {
+        "main.py": "morning, afternoon = 7, 5\nresult = morning + afternoon\nprint(result)\n"
+      },
+      "matches": true
+    },
+    {
+      "id": "python-v4-23-methods",
+      "label": "Method changes the right state and also returns the new state",
+      "expected": [
+        true
+      ],
+      "actual": [
+        true
+      ],
+      "error": null,
+      "stdout": "",
+      "files": {
+        "main.py": "class Lamp:\n    def __init__(self):\n        self.on = False\n    def toggle(self):\n        self.on = not self.on\n        return self.on\n"
+      },
+      "matches": true
+    },
+    {
+      "id": "python-v4-23-virtual-pet",
+      "label": "feed changes state correctly and returns the resulting energy",
+      "expected": [
+        true,
+        true
+      ],
+      "actual": [
+        true,
+        true
+      ],
+      "error": null,
+      "stdout": "",
+      "files": {
+        "main.py": "class Pet:\n    def __init__(self,name):\n        self.name = name\n        self.energy = 5\n    def feed(self,amount=1):\n        if amount > 0:\n            self.energy = min(10,self.energy + amount)\n        return self.energy\n    def play(self):\n        if self.energy < 2:\n            return False\n        self.energy -= 2\n        return True\n    def __repr__(self):\n        return f\"Pet({self.name}, energy={self.energy})\"\n"
+      },
+      "matches": true
+    },
+    {
+      "id": "python-v4-23-virtual-pet",
+      "label": "play incorrectly rejects exactly two energy",
+      "expected": [
+        true,
+        false
+      ],
+      "actual": [
+        true,
+        false
+      ],
+      "error": null,
+      "stdout": "",
+      "files": {
+        "main.py": "class Pet:\n    def __init__(self,name):\n        self.name = name\n        self.energy = 5\n    def feed(self,amount=1):\n        if amount > 0:\n            self.energy = min(10,self.energy + amount)\n    def play(self):\n        if self.energy <= 2:\n            return False\n        self.energy -= 2\n        return True\n    def __repr__(self):\n        return f\"Pet({self.name}, energy={self.energy})\"\n"
+      },
+      "matches": true
+    },
+    {
+      "id": "python-v4-23-virtual-pet",
+      "label": "repr incorrectly hard-codes the initial energy",
+      "expected": [
+        true,
+        false
+      ],
+      "actual": [
+        true,
+        false
+      ],
+      "error": null,
+      "stdout": "",
+      "files": {
+        "main.py": "class Pet:\n    def __init__(self,name):\n        self.name = name\n        self.energy = 5\n    def feed(self,amount=1):\n        if amount > 0:\n            self.energy = min(10,self.energy + amount)\n    def play(self):\n        if self.energy < 2:\n            return False\n        self.energy -= 2\n        return True\n    def __repr__(self):\n        return f\"Pet({self.name}, energy=5)\"\n"
+      },
+      "matches": true
+    },
+    {
+      "id": "python-v4-19-keys",
+      "label": "Fixed example returned for every changed coordinate",
+      "expected": [
+        false
+      ],
+      "actual": [
+        false
+      ],
+      "error": null,
+      "stdout": "",
+      "files": {
+        "main.py": "def location(coordinates, label):\n    return {(2,3):label}\n"
+      },
+      "matches": true
+    },
+    {
+      "id": "python-v4-14-repeatable-random",
+      "label": "Alternating constants ignore the required seed and random generator",
+      "expected": [
+        false
+      ],
+      "actual": [
+        false
+      ],
+      "error": null,
+      "stdout": "",
+      "files": {
+        "main.py": "import random\ndef draws(seed, count):\n    result = []\n    for i in range(count):\n        result.append(1 + i % 2)\n    return result\n"
+      },
+      "matches": true
+    },
+    {
+      "id": "python-v4-20-read",
+      "label": "Returns identical text without the explicitly required with statement",
+      "expected": [
+        false
+      ],
+      "actual": [
+        false
+      ],
+      "error": null,
+      "stdout": "Hello\nCafé\n\n",
+      "files": {
+        "note.txt": "Hello\nCafé\n",
+        "main.py": "import work\nprint(work.read_text(\"note.txt\"))\n",
+        "work.py": "def read_text(path):\n    handle = open(path, encoding=\"utf-8\")\n    text = handle.read()\n    handle.close()\n    return text\n"
+      },
+      "matches": true
+    },
+    {
+      "id": "python-v4-20-append",
+      "label": "Reference, first run",
+      "expected": [
+        true
+      ],
+      "actual": [
+        true
+      ],
+      "error": null,
+      "stdout": "",
+      "files": {
+        "log.txt": "Started\n",
+        "main.py": "import work\nwork.add_entry(\"log.txt\",\"Played\")\n",
+        "work.py": "def add_entry(path, message):\n    with open(path,\"a\",encoding=\"utf-8\") as handle:\n        handle.write(message + \"\\n\")\n"
+      },
+      "matches": true
+    },
+    {
+      "id": "python-v4-20-append",
+      "label": "Same correct code with files saved from first run",
+      "expected": [
+        true
+      ],
+      "actual": [
+        true
+      ],
+      "error": null,
+      "stdout": "",
+      "files": {
+        "log.txt": "Started\nPlayed\n",
+        "main.py": "import work\nwork.add_entry(\"log.txt\",\"Played\")\n",
+        "work.py": "def add_entry(path, message):\n    with open(path,\"a\",encoding=\"utf-8\") as handle:\n        handle.write(message + \"\\n\")\n"
+      },
+      "matches": true
+    },
+    {
+      "id": "python-v4-22-update-and-recover",
+      "label": "Reference, first run",
+      "expected": [
+        true
+      ],
+      "actual": [
+        true
+      ],
+      "error": null,
+      "stdout": "3\n",
+      "files": {
+        "counter.json": "{\"count\":2,\"name\":\"visits\"}",
+        "main.py": "import work\nprint(work.increment(\"counter.json\"))\n",
+        "work.py": "import json\ndef increment(path):\n    try:\n        with open(path,encoding=\"utf-8\") as handle:\n            data = json.load(handle)\n    except json.JSONDecodeError:\n        return None\n    data[\"count\"] += 1\n    with open(path,\"w\",encoding=\"utf-8\") as handle:\n        json.dump(data,handle,indent=2)\n    return data[\"count\"]\n"
+      },
+      "matches": true
+    },
+    {
+      "id": "python-v4-22-update-and-recover",
+      "label": "Same correct code with files saved from first run",
+      "expected": [
+        true
+      ],
+      "actual": [
+        true
+      ],
+      "error": null,
+      "stdout": "4\n",
+      "files": {
+        "counter.json": "{\n  \"count\": 3,\n  \"name\": \"visits\"\n}",
+        "main.py": "import work\nprint(work.increment(\"counter.json\"))\n",
+        "work.py": "import json\ndef increment(path):\n    try:\n        with open(path,encoding=\"utf-8\") as handle:\n            data = json.load(handle)\n    except json.JSONDecodeError:\n        return None\n    data[\"count\"] += 1\n    with open(path,\"w\",encoding=\"utf-8\") as handle:\n        json.dump(data,handle,indent=2)\n    return data[\"count\"]\n"
+      },
+      "matches": true
+    },
+    {
+      "id": "python-v4-20-read",
+      "label": "Correct reference after the encouraged input-file experiment",
+      "expected": [
+        true
+      ],
+      "actual": [
+        true
+      ],
+      "error": null,
+      "stdout": "Changed\n\n",
+      "files": {
+        "note.txt": "Changed\n",
+        "main.py": "import work\nprint(work.read_text(\"note.txt\"))\n",
+        "work.py": "def read_text(path):\n    with open(path,\"r\",encoding=\"utf-8\") as handle:\n        return handle.read()\n"
+      },
+      "matches": true
+    },
+    {
+      "id": "python-v4-20-lines",
+      "label": "Correct reference after the encouraged input-file experiment",
+      "expected": [
+        true
+      ],
+      "actual": [
+        true
+      ],
+      "error": null,
+      "stdout": "['One', 'Two', 'Three']\n",
+      "files": {
+        "names.txt": "One\nTwo\nThree\n",
+        "main.py": "import work\nprint(work.names(\"names.txt\"))\n",
+        "work.py": "def names(path):\n    result = []\n    with open(path,encoding=\"utf-8\") as handle:\n        for line in handle:\n            name = line.strip()\n            if name != \"\":\n                result.append(name)\n    return result\n"
+      },
+      "matches": true
+    },
+    {
+      "id": "python-v4-21-rows",
+      "label": "Correct reference after the encouraged input-file experiment",
+      "expected": [
+        true
+      ],
+      "actual": [
+        true
+      ],
+      "error": null,
+      "stdout": "[['name', 'score'], ['Ada', '9']]\n",
+      "files": {
+        "table.csv": "name,score\nAda,9\n",
+        "main.py": "import work\nprint(work.rows(\"table.csv\"))\n",
+        "work.py": "import csv\ndef rows(path):\n    with open(path,newline=\"\",encoding=\"utf-8\") as handle:\n        return list(csv.reader(handle))\n"
+      },
+      "matches": true
+    },
+    {
+      "id": "python-v4-22-load",
+      "label": "Correct reference after the encouraged input-file experiment",
+      "expected": [
+        true
+      ],
+      "actual": [
+        true
+      ],
+      "error": null,
+      "stdout": "['New']\n",
+      "files": {
+        "club.json": "{\"players\":[{\"name\":\"New\"}]}",
+        "main.py": "import work\nprint(work.names(\"club.json\"))\n",
+        "work.py": "import json\ndef names(path):\n    with open(path,encoding=\"utf-8\") as handle:\n        data = json.load(handle)\n    return [player[\"name\"] for player in data[\"players\"]]\n"
+      },
+      "matches": true
+    }
+  ],
+  "quizDistractorsExecuted": 184,
+  "quizAmbiguities": [],
+  "functionContracts": [],
+  "stats": [
+    {
+      "chapter": 1,
+      "title": "Your first Python programs",
+      "minutes": 84,
+      "coding": 7,
+      "singleStep": 4,
+      "blank": 4,
+      "teachingWords": [
+        76,
+        67,
+        80,
+        74,
+        78,
+        82,
+        63
+      ],
+      "retrievals": 0
+    },
+    {
+      "chapter": 2,
+      "title": "Variables and values",
+      "minutes": 113,
+      "coding": 9,
+      "singleStep": 5,
+      "blank": 5,
+      "teachingWords": [
+        68,
+        58,
+        71,
+        61,
+        68,
+        82,
+        76,
+        62,
+        61
+      ],
+      "retrievals": 3
+    },
+    {
+      "chapter": 3,
+      "title": "Calculations and changing values",
+      "minutes": 148,
+      "coding": 11,
+      "singleStep": 0,
+      "blank": 0,
+      "teachingWords": [
+        65,
+        63,
+        58,
+        70,
+        76,
+        65,
+        63,
+        71,
+        66,
+        65,
+        56
+      ],
+      "retrievals": 3
+    },
+    {
+      "chapter": 4,
+      "title": "Building useful text output",
+      "minutes": 98,
+      "coding": 7,
+      "singleStep": 7,
+      "blank": 2,
+      "teachingWords": [
+        67,
+        61,
+        58,
+        62,
+        72,
+        68,
+        52
+      ],
+      "retrievals": 1
+    },
+    {
+      "chapter": 5,
+      "title": "Asking for input",
+      "minutes": 109,
+      "coding": 7,
+      "singleStep": 2,
+      "blank": 7,
+      "teachingWords": [
+        73,
+        63,
+        67,
+        60,
+        63,
+        77,
+        53
+      ],
+      "retrievals": 3
+    },
+    {
+      "chapter": 6,
+      "title": "Comparisons and Boolean values",
+      "minutes": 124,
+      "coding": 9,
+      "singleStep": 0,
+      "blank": 1,
+      "teachingWords": [
+        73,
+        64,
+        62,
+        57,
+        58,
+        74,
+        76,
+        55,
+        57
+      ],
+      "retrievals": 0
+    },
+    {
+      "chapter": 7,
+      "title": "Making decisions",
+      "minutes": 137,
+      "coding": 7,
+      "singleStep": 4,
+      "blank": 2,
+      "teachingWords": [
+        68,
+        69,
+        62,
+        61,
+        55,
+        58,
+        81
+      ],
+      "retrievals": 7
+    },
+    {
+      "chapter": 8,
+      "title": "Repeating with while",
+      "minutes": 153,
+      "coding": 9,
+      "singleStep": 7,
+      "blank": 3,
+      "teachingWords": [
+        73,
+        67,
+        67,
+        97,
+        69,
+        68,
+        56,
+        59,
+        52
+      ],
+      "retrievals": 4
+    },
+    {
+      "chapter": 9,
+      "title": "Writing small functions",
+      "minutes": 138,
+      "coding": 10,
+      "singleStep": 9,
+      "blank": 5,
+      "teachingWords": [
+        52,
+        45,
+        45,
+        37,
+        46,
+        45,
+        53,
+        46,
+        46,
+        55
+      ],
+      "retrievals": 1
+    },
+    {
+      "chapter": 10,
+      "title": "Handling mistakes and invalid input",
+      "minutes": 243,
+      "coding": 7,
+      "singleStep": 5,
+      "blank": 2,
+      "teachingWords": [
+        70,
+        50,
+        44,
+        43,
+        51,
+        59,
+        113
+      ],
+      "retrievals": 8
+    },
+    {
+      "chapter": 11,
+      "title": "Introducing lists",
+      "minutes": 80,
+      "coding": 6,
+      "singleStep": 6,
+      "blank": 1,
+      "teachingWords": [
+        50,
+        50,
+        46,
+        51,
+        47,
+        45
+      ],
+      "retrievals": 1
+    },
+    {
+      "chapter": 12,
+      "title": "Processing lists with loops",
+      "minutes": 115,
+      "coding": 7,
+      "singleStep": 7,
+      "blank": 1,
+      "teachingWords": [
+        44,
+        48,
+        45,
+        43,
+        43,
+        49,
+        43
+      ],
+      "retrievals": 5
+    },
+    {
+      "chapter": 13,
+      "title": "Tuples and multiple results",
+      "minutes": 44,
+      "coding": 3,
+      "singleStep": 3,
+      "blank": 1,
+      "teachingWords": [
+        55,
+        49,
+        46
+      ],
+      "retrievals": 0
+    },
+    {
+      "chapter": 14,
+      "title": "Libraries and separate Python files",
+      "minutes": 120,
+      "coding": 7,
+      "singleStep": 6,
+      "blank": 0,
+      "teachingWords": [
+        49,
+        47,
+        37,
+        41,
+        49,
+        90,
+        68
+      ],
+      "retrievals": 4
+    },
+    {
+      "chapter": 15,
+      "title": "Drawing and interacting with Pygame",
+      "minutes": 152,
+      "coding": 8,
+      "singleStep": 7,
+      "blank": 0,
+      "teachingWords": [
+        70,
+        48,
+        53,
+        43,
+        53,
+        47,
+        84,
+        61
+      ],
+      "retrievals": 2
+    },
+    {
+      "chapter": 16,
+      "title": "Movement and game rules",
+      "minutes": 362,
+      "coding": 10,
+      "singleStep": 10,
+      "blank": 0,
+      "teachingWords": [
+        67,
+        53,
+        62,
+        57,
+        76,
+        62,
+        59,
+        79,
+        80,
+        109
+      ],
+      "retrievals": 6
+    },
+    {
+      "chapter": 17,
+      "title": "More powerful list processing",
+      "minutes": 129,
+      "coding": 9,
+      "singleStep": 9,
+      "blank": 1,
+      "teachingWords": [
+        32,
+        38,
+        38,
+        47,
+        38,
+        60,
+        41,
+        54,
+        44
+      ],
+      "retrievals": 2
+    },
+    {
+      "chapter": 18,
+      "title": "Strings as data",
+      "minutes": 178,
+      "coding": 12,
+      "singleStep": 12,
+      "blank": 1,
+      "teachingWords": [
+        45,
+        38,
+        46,
+        46,
+        41,
+        40,
+        55,
+        49,
+        47,
+        47,
+        60,
+        46
+      ],
+      "retrievals": 4
+    },
+    {
+      "chapter": 19,
+      "title": "Dictionaries and records",
+      "minutes": 147,
+      "coding": 10,
+      "singleStep": 10,
+      "blank": 1,
+      "teachingWords": [
+        40,
+        45,
+        40,
+        46,
+        61,
+        41,
+        55,
+        47,
+        44,
+        50
+      ],
+      "retrievals": 1
+    },
+    {
+      "chapter": 20,
+      "title": "Reading and writing text files",
+      "minutes": 141,
+      "coding": 7,
+      "singleStep": 7,
+      "blank": 0,
+      "teachingWords": [
+        74,
+        47,
+        44,
+        72,
+        70,
+        57,
+        46
+      ],
+      "retrievals": 1
+    },
+    {
+      "chapter": 21,
+      "title": "CSV records",
+      "minutes": 105,
+      "coding": 5,
+      "singleStep": 5,
+      "blank": 0,
+      "teachingWords": [
+        46,
+        47,
+        41,
+        42,
+        44
+      ],
+      "retrievals": 5
+    },
+    {
+      "chapter": 22,
+      "title": "JSON and saved data",
+      "minutes": 107,
+      "coding": 4,
+      "singleStep": 4,
+      "blank": 0,
+      "teachingWords": [
+        44,
+        53,
+        83,
+        63
+      ],
+      "retrievals": 4
+    },
+    {
+      "chapter": 23,
+      "title": "Classes and objects",
+      "minutes": 159,
+      "coding": 9,
+      "singleStep": 8,
+      "blank": 2,
+      "teachingWords": [
+        73,
+        57,
+        49,
+        44,
+        63,
+        48,
+        44,
+        48,
+        68
+      ],
+      "retrievals": 116
+    },
+    {
+      "chapter": 24,
+      "title": "Python on your computer",
+      "minutes": 30,
+      "coding": 0,
+      "singleStep": 0,
+      "blank": 0,
+      "teachingWords": [],
+      "retrievals": 0
+    }
+  ]
+}

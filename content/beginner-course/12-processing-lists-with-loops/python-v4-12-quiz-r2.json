@@ -1,0 +1,808 @@
+{
+  "id": "python-v4-12-quiz-r2",
+  "chapter": 12,
+  "group": "python-v4-module-12",
+  "kind": "quiz",
+  "optional": false,
+  "estimatedMinutes": 8,
+  "title": {
+    "en": "Processing lists with loops: review",
+    "nl": "Lijsten verwerken met lussen: herhaling"
+  },
+  "questions": [
+    {
+      "objectiveIds": [
+        "range"
+      ],
+      "category": "prediction",
+      "prompt": {
+        "en": "What does this program print?",
+        "nl": "Wat drukt dit programma af?"
+      },
+      "code": "print(list(range(3)))",
+      "answer": "a",
+      "expectedOutput": "[0, 1, 2]\n",
+      "choices": [
+        {
+          "id": "a",
+          "label": {
+            "en": "[0, 1, 2]",
+            "nl": "[0, 1, 2]"
+          },
+          "reason": {
+            "en": "range starts at zero and excludes stop.",
+            "nl": "range begint bij nul en sluit stop uit."
+          }
+        },
+        {
+          "id": "b",
+          "label": {
+            "en": "[1, 2, 3]",
+            "nl": "[1, 2, 3]"
+          },
+          "reason": {
+            "en": "Starting at one requires an explicit start argument.",
+            "nl": "Bij één beginnen vereist een expliciet beginargument."
+          }
+        },
+        {
+          "id": "c",
+          "label": {
+            "en": "3",
+            "nl": "3"
+          },
+          "reason": {
+            "en": "list materialises every range value.",
+            "nl": "list maakt elke range-waarde concreet."
+          }
+        }
+      ],
+      "id": "python-v4-12-quiz-r2-a-1",
+      "reviewActivityIds": [
+        "python-v4-12-range-stop"
+      ]
+    },
+    {
+      "objectiveIds": [
+        "append"
+      ],
+      "category": "prediction",
+      "prompt": {
+        "en": "What does this program print?",
+        "nl": "Wat drukt dit programma af?"
+      },
+      "code": "items = [4]\nitems.append(4)\nprint(len(items))",
+      "answer": "a",
+      "expectedOutput": "2\n",
+      "choices": [
+        {
+          "id": "a",
+          "label": {
+            "en": "2",
+            "nl": "2"
+          },
+          "reason": {
+            "en": "append adds one element even when that element is zero or duplicates an existing one.",
+            "nl": "append voegt één element toe, ook nul of een al aanwezige waarde."
+          }
+        },
+        {
+          "id": "b",
+          "label": {
+            "en": "1",
+            "nl": "1"
+          },
+          "reason": {
+            "en": "append adds one element even when that element is zero or duplicates an existing one.",
+            "nl": "append voegt één element toe, ook nul of een al aanwezige waarde."
+          }
+        },
+        {
+          "id": "c",
+          "label": {
+            "en": "4",
+            "nl": "4"
+          },
+          "reason": {
+            "en": "append adds one element even when that element is zero or duplicates an existing one.",
+            "nl": "append voegt één element toe, ook nul of een al aanwezige waarde."
+          }
+        }
+      ],
+      "id": "python-v4-12-quiz-r2-a-2",
+      "reviewActivityIds": [
+        "python-v4-11-append"
+      ]
+    },
+    {
+      "objectiveIds": [
+        "for"
+      ],
+      "category": "completion",
+      "prompt": {
+        "en": "Complete the code to produce the shown output.",
+        "nl": "Vul de code aan om de getoonde uitvoer te maken."
+      },
+      "code": "total = 0\nfor value ___ [3,2]:\n    total += value\nprint(total)",
+      "answer": "a",
+      "choices": [
+        {
+          "id": "a",
+          "label": {
+            "en": "in",
+            "nl": "in"
+          },
+          "reason": {
+            "en": "for uses in to select successive values from a sequence.",
+            "nl": "for gebruikt in om opeenvolgende waarden uit een reeks te kiezen."
+          }
+        },
+        {
+          "id": "b",
+          "label": {
+            "en": "is",
+            "nl": "is"
+          },
+          "reason": {
+            "en": "Using is here produces SyntaxError. for uses in to select successive values from a sequence.",
+            "nl": "Met is ontstaat hier SyntaxError. for gebruikt in om opeenvolgende waarden uit een reeks te kiezen."
+          }
+        },
+        {
+          "id": "c",
+          "label": {
+            "en": "==",
+            "nl": "=="
+          },
+          "reason": {
+            "en": "Using == here produces SyntaxError. for uses in to select successive values from a sequence.",
+            "nl": "Met == ontstaat hier SyntaxError. for gebruikt in om opeenvolgende waarden uit een reeks te kiezen."
+          }
+        }
+      ],
+      "codeBlank": {
+        "prompt": {
+          "en": "Complete the code to produce the shown output.",
+          "nl": "Vul de code aan om de getoonde uitvoer te maken."
+        },
+        "segments": [
+          "total = 0\nfor value ",
+          " [3,2]:\n    total += value\nprint(total)"
+        ],
+        "tokens": [
+          {
+            "id": "token-1",
+            "code": "in"
+          },
+          {
+            "id": "token-2",
+            "code": "is",
+            "reason": {
+              "en": "Using is here produces SyntaxError. for uses in to select successive values from a sequence.",
+              "nl": "Met is ontstaat hier SyntaxError. for gebruikt in om opeenvolgende waarden uit een reeks te kiezen."
+            }
+          },
+          {
+            "id": "token-3",
+            "code": "==",
+            "reason": {
+              "en": "Using == here produces SyntaxError. for uses in to select successive values from a sequence.",
+              "nl": "Met == ontstaat hier SyntaxError. for gebruikt in om opeenvolgende waarden uit een reeks te kiezen."
+            }
+          }
+        ],
+        "blanks": [
+          {
+            "answer": "in",
+            "reason": {
+              "en": "for uses in to select successive values from a sequence.",
+              "nl": "for gebruikt in om opeenvolgende waarden uit een reeks te kiezen."
+            }
+          }
+        ],
+        "output": "5\n"
+      },
+      "id": "python-v4-12-quiz-r2-a-3",
+      "reviewActivityIds": [
+        "python-v4-12-for-values"
+      ]
+    },
+    {
+      "objectiveIds": [
+        "negative-indexing"
+      ],
+      "category": "completion",
+      "prompt": {
+        "en": "Complete the code to produce the shown output.",
+        "nl": "Vul de code aan om de getoonde uitvoer te maken."
+      },
+      "code": "items = [5, 8, 2]\nprint(items[___])",
+      "answer": "a",
+      "choices": [
+        {
+          "id": "a",
+          "label": {
+            "en": "-1",
+            "nl": "-1"
+          },
+          "reason": {
+            "en": "Using -1 prints \"2\\n\"; the required output is \"8\\n\". Follow the operation and its input type, then compare the exact result shown.",
+            "nl": "Met -1 wordt \"2\\n\" afgedrukt; de vereiste uitvoer is \"8\\n\". Volg de bewerking en het invoertype en vergelijk daarna het precieze getoonde resultaat."
+          }
+        },
+        {
+          "id": "b",
+          "label": {
+            "en": "0",
+            "nl": "0"
+          },
+          "reason": {
+            "en": "Using 0 prints \"5\\n\"; the required output is \"2\\n\". Follow the operation and its input type, then compare the exact result shown.",
+            "nl": "Met 0 wordt \"5\\n\" afgedrukt; de vereiste uitvoer is \"2\\n\". Volg de bewerking en het invoertype en vergelijk daarna het precieze getoonde resultaat."
+          }
+        },
+        {
+          "id": "c",
+          "label": {
+            "en": "-2",
+            "nl": "-2"
+          },
+          "reason": {
+            "en": "Using -2 prints \"8\\n\"; the required output is \"2\\n\". Follow the operation and its input type, then compare the exact result shown.",
+            "nl": "Met -2 wordt \"8\\n\" afgedrukt; de vereiste uitvoer is \"2\\n\". Volg de bewerking en het invoertype en vergelijk daarna het precieze getoonde resultaat."
+          }
+        }
+      ],
+      "codeBlank": {
+        "prompt": {
+          "en": "Complete the code to produce the shown output.",
+          "nl": "Vul de code aan om de getoonde uitvoer te maken."
+        },
+        "segments": [
+          "items = [5, 8, 2]\nprint(items[",
+          "])"
+        ],
+        "tokens": [
+          {
+            "id": "token-1",
+            "code": "-1",
+            "reason": {
+              "en": "Using -1 prints \"2\\n\"; the required output is \"8\\n\". Follow the operation and its input type, then compare the exact result shown.",
+              "nl": "Met -1 wordt \"2\\n\" afgedrukt; de vereiste uitvoer is \"8\\n\". Volg de bewerking en het invoertype en vergelijk daarna het precieze getoonde resultaat."
+            }
+          },
+          {
+            "id": "token-2",
+            "code": "0",
+            "reason": {
+              "en": "Using 0 prints \"5\\n\"; the required output is \"2\\n\". Follow the operation and its input type, then compare the exact result shown.",
+              "nl": "Met 0 wordt \"5\\n\" afgedrukt; de vereiste uitvoer is \"2\\n\". Volg de bewerking en het invoertype en vergelijk daarna het precieze getoonde resultaat."
+            }
+          },
+          {
+            "id": "token-3",
+            "code": "-2",
+            "reason": {
+              "en": "Using -2 prints \"8\\n\"; the required output is \"2\\n\". Follow the operation and its input type, then compare the exact result shown.",
+              "nl": "Met -2 wordt \"8\\n\" afgedrukt; de vereiste uitvoer is \"2\\n\". Volg de bewerking en het invoertype en vergelijk daarna het precieze getoonde resultaat."
+            }
+          }
+        ],
+        "blanks": [
+          {
+            "answer": "-1",
+            "reason": {
+              "en": "Follow the operation and its input type, then compare the exact result shown.",
+              "nl": "Volg de bewerking en het invoertype en vergelijk daarna het precieze getoonde resultaat."
+            }
+          }
+        ],
+        "output": "2\n"
+      },
+      "id": "python-v4-12-quiz-r2-a-4",
+      "reviewActivityIds": [
+        "python-v4-11-indexes"
+      ]
+    },
+    {
+      "objectiveIds": [
+        "searching"
+      ],
+      "category": "debugging",
+      "prompt": {
+        "en": "Choose the repair or test that addresses the stated problem.",
+        "nl": "Kies de reparatie of test die het beschreven probleem aanpakt."
+      },
+      "code": "def contains(items, target):\n    for item in items:\n        if item == target:\n            return True\n        return False\n# Test contains([3,2],2).",
+      "answer": "a",
+      "choices": [
+        {
+          "id": "a",
+          "label": {
+            "en": "Move return False after the loop.",
+            "nl": "Verplaats return False na de lus."
+          },
+          "reason": {
+            "en": "A later item might match after the first nonmatch.",
+            "nl": "Na de eerste afwijking kan een later item overeenkomen."
+          }
+        },
+        {
+          "id": "b",
+          "label": {
+            "en": "Return True before the loop.",
+            "nl": "Geef True vóór de lus terug."
+          },
+          "reason": {
+            "en": "That claims a match without checking data.",
+            "nl": "Dat beweert een overeenkomst zonder gegevens te controleren."
+          }
+        },
+        {
+          "id": "c",
+          "label": {
+            "en": "Remove the equality condition.",
+            "nl": "Verwijder de gelijkheidsvoorwaarde."
+          },
+          "reason": {
+            "en": "The function still needs to compare each candidate.",
+            "nl": "De functie moet elke kandidaat nog steeds vergelijken."
+          }
+        }
+      ],
+      "id": "python-v4-12-quiz-r2-a-5",
+      "reviewActivityIds": [
+        "python-v4-12-search"
+      ]
+    },
+    {
+      "objectiveIds": [
+        "filtering"
+      ],
+      "category": "application",
+      "prompt": {
+        "en": "Which statement or test fits this example?",
+        "nl": "Welke uitspraak of test past bij dit voorbeeld?"
+      },
+      "code": "result = []\nfor value in [3,-1,0]:\n    if value >= 0:\n        result.append(value)",
+      "answer": "a",
+      "choices": [
+        {
+          "id": "a",
+          "label": {
+            "en": "A new list keeps matching values in their original order.",
+            "nl": "Een nieuwe lijst bewaart passende waarden op oorspronkelijke volgorde."
+          },
+          "reason": {
+            "en": "Appending selected items preserves traversal order.",
+            "nl": "Gekozen items toevoegen bewaart de doorloopvolgorde."
+          }
+        },
+        {
+          "id": "b",
+          "label": {
+            "en": "Negative values are removed from the original list.",
+            "nl": "Negatieve waarden worden uit de oorspronkelijke lijst verwijderd."
+          },
+          "reason": {
+            "en": "The source is not mutated.",
+            "nl": "De bron wordt niet gewijzigd."
+          }
+        },
+        {
+          "id": "c",
+          "label": {
+            "en": "The loop stops at the first match.",
+            "nl": "De lus stopt bij de eerste overeenkomst."
+          },
+          "reason": {
+            "en": "There is no early return or break.",
+            "nl": "Er is geen vroege return of break."
+          }
+        }
+      ],
+      "id": "python-v4-12-quiz-r2-a-6",
+      "reviewActivityIds": [
+        "python-v4-12-filter"
+      ]
+    }
+  ],
+  "alternateQuestions": [
+    {
+      "objectiveIds": [
+        "range"
+      ],
+      "category": "prediction",
+      "prompt": {
+        "en": "What does this program print?",
+        "nl": "Wat drukt dit programma af?"
+      },
+      "code": "print(list(range(4)))",
+      "answer": "a",
+      "expectedOutput": "[0, 1, 2, 3]\n",
+      "choices": [
+        {
+          "id": "a",
+          "label": {
+            "en": "[0, 1, 2, 3]",
+            "nl": "[0, 1, 2, 3]"
+          },
+          "reason": {
+            "en": "range starts at zero and excludes stop.",
+            "nl": "range begint bij nul en sluit stop uit."
+          }
+        },
+        {
+          "id": "b",
+          "label": {
+            "en": "[1, 2, 3, 4]",
+            "nl": "[1, 2, 3, 4]"
+          },
+          "reason": {
+            "en": "Starting at one requires an explicit start argument.",
+            "nl": "Bij één beginnen vereist een expliciet beginargument."
+          }
+        },
+        {
+          "id": "c",
+          "label": {
+            "en": "4",
+            "nl": "4"
+          },
+          "reason": {
+            "en": "list materialises every range value.",
+            "nl": "list maakt elke range-waarde concreet."
+          }
+        }
+      ],
+      "id": "python-v4-12-quiz-r2-b-1",
+      "reviewActivityIds": [
+        "python-v4-12-range-stop"
+      ]
+    },
+    {
+      "objectiveIds": [
+        "append"
+      ],
+      "category": "prediction",
+      "prompt": {
+        "en": "What does this program print?",
+        "nl": "Wat drukt dit programma af?"
+      },
+      "code": "items = [4]\nitems.append(0)\nprint(len(items))",
+      "answer": "a",
+      "expectedOutput": "2\n",
+      "choices": [
+        {
+          "id": "a",
+          "label": {
+            "en": "2",
+            "nl": "2"
+          },
+          "reason": {
+            "en": "append adds one element even when that element is zero or duplicates an existing one.",
+            "nl": "append voegt één element toe, ook nul of een al aanwezige waarde."
+          }
+        },
+        {
+          "id": "b",
+          "label": {
+            "en": "1",
+            "nl": "1"
+          },
+          "reason": {
+            "en": "append adds one element even when that element is zero or duplicates an existing one.",
+            "nl": "append voegt één element toe, ook nul of een al aanwezige waarde."
+          }
+        },
+        {
+          "id": "c",
+          "label": {
+            "en": "4",
+            "nl": "4"
+          },
+          "reason": {
+            "en": "append adds one element even when that element is zero or duplicates an existing one.",
+            "nl": "append voegt één element toe, ook nul of een al aanwezige waarde."
+          }
+        }
+      ],
+      "id": "python-v4-12-quiz-r2-b-2",
+      "reviewActivityIds": [
+        "python-v4-11-append"
+      ]
+    },
+    {
+      "objectiveIds": [
+        "for"
+      ],
+      "category": "completion",
+      "prompt": {
+        "en": "Complete the code to produce the shown output.",
+        "nl": "Vul de code aan om de getoonde uitvoer te maken."
+      },
+      "code": "total = 0\nfor value ___ [4,2]:\n    total += value\nprint(total)",
+      "answer": "a",
+      "choices": [
+        {
+          "id": "a",
+          "label": {
+            "en": "in",
+            "nl": "in"
+          },
+          "reason": {
+            "en": "for uses in to select successive values from a sequence.",
+            "nl": "for gebruikt in om opeenvolgende waarden uit een reeks te kiezen."
+          }
+        },
+        {
+          "id": "b",
+          "label": {
+            "en": "is",
+            "nl": "is"
+          },
+          "reason": {
+            "en": "Using is here produces SyntaxError. for uses in to select successive values from a sequence.",
+            "nl": "Met is ontstaat hier SyntaxError. for gebruikt in om opeenvolgende waarden uit een reeks te kiezen."
+          }
+        },
+        {
+          "id": "c",
+          "label": {
+            "en": "==",
+            "nl": "=="
+          },
+          "reason": {
+            "en": "Using == here produces SyntaxError. for uses in to select successive values from a sequence.",
+            "nl": "Met == ontstaat hier SyntaxError. for gebruikt in om opeenvolgende waarden uit een reeks te kiezen."
+          }
+        }
+      ],
+      "codeBlank": {
+        "prompt": {
+          "en": "Complete the code to produce the shown output.",
+          "nl": "Vul de code aan om de getoonde uitvoer te maken."
+        },
+        "segments": [
+          "total = 0\nfor value ",
+          " [4,2]:\n    total += value\nprint(total)"
+        ],
+        "tokens": [
+          {
+            "id": "token-1",
+            "code": "in"
+          },
+          {
+            "id": "token-2",
+            "code": "is",
+            "reason": {
+              "en": "Using is here produces SyntaxError. for uses in to select successive values from a sequence.",
+              "nl": "Met is ontstaat hier SyntaxError. for gebruikt in om opeenvolgende waarden uit een reeks te kiezen."
+            }
+          },
+          {
+            "id": "token-3",
+            "code": "==",
+            "reason": {
+              "en": "Using == here produces SyntaxError. for uses in to select successive values from a sequence.",
+              "nl": "Met == ontstaat hier SyntaxError. for gebruikt in om opeenvolgende waarden uit een reeks te kiezen."
+            }
+          }
+        ],
+        "blanks": [
+          {
+            "answer": "in",
+            "reason": {
+              "en": "for uses in to select successive values from a sequence.",
+              "nl": "for gebruikt in om opeenvolgende waarden uit een reeks te kiezen."
+            }
+          }
+        ],
+        "output": "6\n"
+      },
+      "id": "python-v4-12-quiz-r2-b-3",
+      "reviewActivityIds": [
+        "python-v4-12-for-values"
+      ]
+    },
+    {
+      "objectiveIds": [
+        "negative-indexing"
+      ],
+      "category": "completion",
+      "prompt": {
+        "en": "Complete the code to produce the shown output.",
+        "nl": "Vul de code aan om de getoonde uitvoer te maken."
+      },
+      "code": "items = [5, 8, 2]\nprint(items[___])",
+      "answer": "a",
+      "choices": [
+        {
+          "id": "a",
+          "label": {
+            "en": "-2",
+            "nl": "-2"
+          },
+          "reason": {
+            "en": "Using -2 prints \"8\\n\"; the required output is \"2\\n\". Follow the operation and its input type, then compare the exact result shown.",
+            "nl": "Met -2 wordt \"8\\n\" afgedrukt; de vereiste uitvoer is \"2\\n\". Volg de bewerking en het invoertype en vergelijk daarna het precieze getoonde resultaat."
+          }
+        },
+        {
+          "id": "b",
+          "label": {
+            "en": "0",
+            "nl": "0"
+          },
+          "reason": {
+            "en": "Using 0 prints \"5\\n\"; the required output is \"2\\n\". Follow the operation and its input type, then compare the exact result shown.",
+            "nl": "Met 0 wordt \"5\\n\" afgedrukt; de vereiste uitvoer is \"2\\n\". Volg de bewerking en het invoertype en vergelijk daarna het precieze getoonde resultaat."
+          }
+        },
+        {
+          "id": "c",
+          "label": {
+            "en": "-1",
+            "nl": "-1"
+          },
+          "reason": {
+            "en": "Using -1 prints \"2\\n\"; the required output is \"8\\n\". Follow the operation and its input type, then compare the exact result shown.",
+            "nl": "Met -1 wordt \"2\\n\" afgedrukt; de vereiste uitvoer is \"8\\n\". Volg de bewerking en het invoertype en vergelijk daarna het precieze getoonde resultaat."
+          }
+        }
+      ],
+      "codeBlank": {
+        "prompt": {
+          "en": "Complete the code to produce the shown output.",
+          "nl": "Vul de code aan om de getoonde uitvoer te maken."
+        },
+        "segments": [
+          "items = [5, 8, 2]\nprint(items[",
+          "])"
+        ],
+        "tokens": [
+          {
+            "id": "token-1",
+            "code": "-2",
+            "reason": {
+              "en": "Using -2 prints \"8\\n\"; the required output is \"2\\n\". Follow the operation and its input type, then compare the exact result shown.",
+              "nl": "Met -2 wordt \"8\\n\" afgedrukt; de vereiste uitvoer is \"2\\n\". Volg de bewerking en het invoertype en vergelijk daarna het precieze getoonde resultaat."
+            }
+          },
+          {
+            "id": "token-2",
+            "code": "0",
+            "reason": {
+              "en": "Using 0 prints \"5\\n\"; the required output is \"2\\n\". Follow the operation and its input type, then compare the exact result shown.",
+              "nl": "Met 0 wordt \"5\\n\" afgedrukt; de vereiste uitvoer is \"2\\n\". Volg de bewerking en het invoertype en vergelijk daarna het precieze getoonde resultaat."
+            }
+          },
+          {
+            "id": "token-3",
+            "code": "-1",
+            "reason": {
+              "en": "Using -1 prints \"2\\n\"; the required output is \"8\\n\". Follow the operation and its input type, then compare the exact result shown.",
+              "nl": "Met -1 wordt \"2\\n\" afgedrukt; de vereiste uitvoer is \"8\\n\". Volg de bewerking en het invoertype en vergelijk daarna het precieze getoonde resultaat."
+            }
+          }
+        ],
+        "blanks": [
+          {
+            "answer": "-2",
+            "reason": {
+              "en": "Follow the operation and its input type, then compare the exact result shown.",
+              "nl": "Volg de bewerking en het invoertype en vergelijk daarna het precieze getoonde resultaat."
+            }
+          }
+        ],
+        "output": "8\n"
+      },
+      "id": "python-v4-12-quiz-r2-b-4",
+      "reviewActivityIds": [
+        "python-v4-11-indexes"
+      ]
+    },
+    {
+      "objectiveIds": [
+        "searching"
+      ],
+      "category": "debugging",
+      "prompt": {
+        "en": "Choose the repair or test that addresses the stated problem.",
+        "nl": "Kies de reparatie of test die het beschreven probleem aanpakt."
+      },
+      "code": "def contains(items, target):\n    for item in items:\n        if item == target:\n            return True\n        return False\n# Test contains([4,2],2).",
+      "answer": "a",
+      "choices": [
+        {
+          "id": "a",
+          "label": {
+            "en": "Move return False after the loop.",
+            "nl": "Verplaats return False na de lus."
+          },
+          "reason": {
+            "en": "A later item might match after the first nonmatch.",
+            "nl": "Na de eerste afwijking kan een later item overeenkomen."
+          }
+        },
+        {
+          "id": "b",
+          "label": {
+            "en": "Return True before the loop.",
+            "nl": "Geef True vóór de lus terug."
+          },
+          "reason": {
+            "en": "That claims a match without checking data.",
+            "nl": "Dat beweert een overeenkomst zonder gegevens te controleren."
+          }
+        },
+        {
+          "id": "c",
+          "label": {
+            "en": "Remove the equality condition.",
+            "nl": "Verwijder de gelijkheidsvoorwaarde."
+          },
+          "reason": {
+            "en": "The function still needs to compare each candidate.",
+            "nl": "De functie moet elke kandidaat nog steeds vergelijken."
+          }
+        }
+      ],
+      "id": "python-v4-12-quiz-r2-b-5",
+      "reviewActivityIds": [
+        "python-v4-12-search"
+      ]
+    },
+    {
+      "objectiveIds": [
+        "filtering"
+      ],
+      "category": "application",
+      "prompt": {
+        "en": "Which statement or test fits this example?",
+        "nl": "Welke uitspraak of test past bij dit voorbeeld?"
+      },
+      "code": "result = []\nfor value in [4,-1,0]:\n    if value >= 0:\n        result.append(value)",
+      "answer": "a",
+      "choices": [
+        {
+          "id": "a",
+          "label": {
+            "en": "A new list keeps matching values in their original order.",
+            "nl": "Een nieuwe lijst bewaart passende waarden op oorspronkelijke volgorde."
+          },
+          "reason": {
+            "en": "Appending selected items preserves traversal order.",
+            "nl": "Gekozen items toevoegen bewaart de doorloopvolgorde."
+          }
+        },
+        {
+          "id": "b",
+          "label": {
+            "en": "Negative values are removed from the original list.",
+            "nl": "Negatieve waarden worden uit de oorspronkelijke lijst verwijderd."
+          },
+          "reason": {
+            "en": "The source is not mutated.",
+            "nl": "De bron wordt niet gewijzigd."
+          }
+        },
+        {
+          "id": "c",
+          "label": {
+            "en": "The loop stops at the first match.",
+            "nl": "De lus stopt bij de eerste overeenkomst."
+          },
+          "reason": {
+            "en": "There is no early return or break.",
+            "nl": "Er is geen vroege return of break."
+          }
+        }
+      ],
+      "id": "python-v4-12-quiz-r2-b-6",
+      "reviewActivityIds": [
+        "python-v4-12-filter"
+      ]
+    }
+  ]
+}

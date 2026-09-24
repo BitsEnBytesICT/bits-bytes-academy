@@ -53,11 +53,26 @@
       }
     },
     {
-      "id": "python-v4-19-records-experiment",
+      "id": "python-v4-19-records-try-calls",
+      "role": "practice",
       "topicIds": [],
       "heading": {
-        "en": "Try one change",
-        "nl": "Probeer één wijziging"
+        "en": "See your function work",
+        "nl": "Bekijk wat je functie doet"
+      },
+      "body": {
+        "en": "A definition alone produces no output. After writing the function, add these calls underneath it in main.py, without indentation, and Run. Compare the returned values with the task's requirements. The checks also call your function with other inputs; they do not require you to keep these demonstration calls.",
+        "nl": "Een definitie alleen geeft geen uitvoer. Schrijf eerst de functie en voeg daarna deze aanroepen eronder toe in main.py, zonder inspringing. Klik op Uitvoeren. Vergelijk de teruggegeven waarden met de opdracht. De controles roepen je functie ook met andere invoer aan; deze demonstratieaanroepen zijn niet verplicht."
+      },
+      "code": "print(player(\"Ada\", 3))\nprint(player(\"\", 0))"
+    },
+    {
+      "id": "python-v4-19-records-experiment",
+      "role": "experiment",
+      "topicIds": [],
+      "heading": {
+        "en": "After completing the task: try one change",
+        "nl": "Na het afronden: probeer één wijziging"
       },
       "body": {
         "en": "Add a Boolean active field in an experiment.",
@@ -79,8 +94,8 @@
         "dictionary-creation"
       ],
       "task": {
-        "en": "Return a dictionary with keys name and score mapped to the supplied values.",
-        "nl": "Geef een dictionary terug met sleutels name en score gekoppeld aan de gegeven waarden."
+        "en": "Write player(name, score) in main.py. Return a dictionary with keys name and score mapped to the supplied values.",
+        "nl": "Schrijf player(name, score) in main.py. Geef een dictionary terug met sleutels name en score gekoppeld aan de gegeven waarden."
       },
       "check": "callable(player)",
       "probes": [
@@ -133,29 +148,5 @@
     "en": "Named fields keep the record’s meaning visible when accessed later.",
     "nl": "Benoemde velden houden de betekenis van het record zichtbaar bij latere toegang."
   },
-  "inputs": [],
-  "retrievals": [
-    {
-      "id": "recall-python-v4-17-insert",
-      "sourceActivityId": "python-v4-17-insert",
-      "objectiveIds": [
-        "insert"
-      ],
-      "prompt": {
-        "en": "Recall “Insert at a chosen position”. Did Mila disappear or move? Try the earlier example from memory, then check it. Insert another person at position one.",
-        "nl": "Haal “Voeg op een gekozen positie in” terug. Verdween Mila of verschoof die? Probeer het eerdere voorbeeld uit je geheugen en controleer daarna. Voeg nog iemand op positie één in."
-      }
-    },
-    {
-      "id": "recall-python-v4-17-score-report",
-      "sourceActivityId": "python-v4-17-score-report",
-      "objectiveIds": [
-        "collections-review"
-      ],
-      "prompt": {
-        "en": "Recall “Build a report without losing the original”. Why does the source list keep its order? Try the earlier example from memory, then check it. Design a test that catches accidentally removing duplicates.",
-        "nl": "Haal “Bouw een rapport zonder het origineel te verliezen” terug. Waarom behoudt de bronlijst zijn volgorde? Probeer het eerdere voorbeeld uit je geheugen en controleer daarna. Ontwerp een test die onbedoeld verwijderen van duplicaten ontdekt."
-      }
-    }
-  ]
+  "inputs": []
 }

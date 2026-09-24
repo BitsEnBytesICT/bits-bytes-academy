@@ -50,11 +50,24 @@
       }
     },
     {
-      "id": "python-v4-06-inclusive-boundaries-experiment",
+      "id": "python-v4-06-inclusive-boundaries-trace",
       "topicIds": [],
       "heading": {
-        "en": "Try one change",
-        "nl": "Probeer één wijziging"
+        "en": "Below, on, above",
+        "nl": "Onder, op, boven"
+      },
+      "body": {
+        "en": "Compare three cases: 4 <= 5 → True; 5 <= 5 → True; 6 <= 5 → False. The equals part changes only the boundary case.",
+        "nl": "Vergelijk drie gevallen: 4 <= 5 → True; 5 <= 5 → True; 6 <= 5 → False. Het gelijkteken verandert alleen het grensgeval."
+      }
+    },
+    {
+      "id": "python-v4-06-inclusive-boundaries-experiment",
+      "role": "experiment",
+      "topicIds": [],
+      "heading": {
+        "en": "After completing the task: try one change",
+        "nl": "Na het afronden: probeer één wijziging"
       },
       "body": {
         "en": "Write a three-row table for weights 4, 5 and 6, then verify it.",
@@ -125,14 +138,33 @@
     {
       "id": "python-v4-06-inclusive-boundaries-step-2",
       "objectiveIds": [
-        "inclusive-comparisons"
+        "print"
       ],
       "task": {
         "en": "Print the Boolean result.",
         "nl": "Druk het booleaanse resultaat af."
       },
       "check": "_stdout.strip() == str(result)",
-      "probes": [],
+      "probes": [
+        {
+          "inputs": {
+            "weight": 4
+          },
+          "check": "type(result) is bool and _stdout.strip() == str(weight <= maximum)"
+        },
+        {
+          "inputs": {
+            "weight": 5
+          },
+          "check": "type(result) is bool and _stdout.strip() == str(weight <= maximum)"
+        },
+        {
+          "inputs": {
+            "weight": 6
+          },
+          "check": "type(result) is bool and _stdout.strip() == str(weight <= maximum)"
+        }
+      ],
       "hint": {
         "en": "An inclusive comparison accepts equality at its boundary.",
         "nl": "Een inclusieve vergelijking accepteert gelijkheid op de grens."
@@ -161,18 +193,5 @@
     "en": "The equals part of <= makes the boundary case pass.",
     "nl": "Het gelijkdeel van <= zorgt dat de grenswaarde wordt geaccepteerd."
   },
-  "inputs": [],
-  "retrievals": [
-    {
-      "id": "recall-python-v4-04-escapes",
-      "sourceActivityId": "python-v4-04-escapes",
-      "objectiveIds": [
-        "escapes"
-      ],
-      "prompt": {
-        "en": "Recall “Newlines and special characters”. How many output lines come from the first call? Try the earlier example from memory, then check it. Print a string containing one backslash, then one containing a quoted word. Explain which marks are syntax.",
-        "nl": "Haal “Nieuwe regels en speciale tekens” terug. Hoeveel uitvoerregels komen uit de eerste aanroep? Probeer het eerdere voorbeeld uit je geheugen en controleer daarna. Druk een string met één backslash af en daarna een string met een woord tussen aanhalingstekens. Leg uit welke tekens syntaxis zijn."
-      }
-    }
-  ]
+  "inputs": []
 }

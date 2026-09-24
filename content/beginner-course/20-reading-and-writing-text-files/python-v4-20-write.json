@@ -53,10 +53,11 @@
     },
     {
       "id": "python-v4-20-write-experiment",
+      "role": "experiment",
       "topicIds": [],
       "heading": {
-        "en": "Try one change",
-        "nl": "Probeer één wijziging"
+        "en": "After completing the task: try one change",
+        "nl": "Na het afronden: probeer één wijziging"
       },
       "body": {
         "en": "Save an empty string and explain the resulting file size.",
@@ -98,7 +99,10 @@
           "check": "(open(\"output.txt\",encoding=\"utf-8\").read() == \"Café\\n\") and _error is None",
           "moduleOnly": true,
           "module": "work",
-          "files": {}
+          "isolatedFixtures": true,
+          "files": {
+            "output.txt": "Old content"
+          }
         },
         {
           "call": {
@@ -112,7 +116,10 @@
           "check": "(_os.path.exists(\"new.txt\") and open(\"new.txt\").read() == \"\") and _error is None",
           "moduleOnly": true,
           "module": "work",
-          "files": {}
+          "isolatedFixtures": true,
+          "files": {
+            "output.txt": "Old content"
+          }
         }
       ],
       "hint": {
@@ -143,31 +150,5 @@
     "en": "The with block closes after writing; mode w deliberately replaces previous data.",
     "nl": "Het with-blok sluit na schrijven; modus w vervangt bewust eerdere gegevens."
   },
-  "inputs": [],
-  "retrievals": [
-    {
-      "id": "recall-python-v4-18-characters",
-      "sourceActivityId": "python-v4-18-characters",
-      "objectiveIds": [
-        "string-iteration",
-        "string-membership",
-        "string-conditionals"
-      ],
-      "prompt": {
-        "en": "Recall “Loop over characters and test membership”. Does the substring test count how many matches exist? Try the earlier example from memory, then check it. Explain why y is not counted under this particular brief.",
-        "nl": "Haal “Doorloop tekens en test aanwezigheid” terug. Telt de substringtest hoeveel overeenkomsten bestaan? Probeer het eerdere voorbeeld uit je geheugen en controleer daarna. Leg uit waarom y volgens deze specifieke opdracht niet meetelt."
-      }
-    },
-    {
-      "id": "recall-python-v4-18-text-cleaner",
-      "sourceActivityId": "python-v4-18-text-cleaner",
-      "objectiveIds": [
-        "text-project"
-      ],
-      "prompt": {
-        "en": "Recall “Mini project: text cleaner”. Which step collapses the tab and repeated spaces? Try the earlier example from memory, then check it. Test tabs, blank lines, punctuation and duplicate lines in your own fixture.",
-        "nl": "Haal “Miniproject: tekstopruimer” terug. Welke stap maakt de tab en herhaalde spaties gelijk? Probeer het eerdere voorbeeld uit je geheugen en controleer daarna. Test tabs, lege regels, leestekens en dubbele regels in je eigen gegevens."
-      }
-    }
-  ]
+  "inputs": []
 }

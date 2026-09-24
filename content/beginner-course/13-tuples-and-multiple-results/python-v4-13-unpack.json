@@ -50,11 +50,26 @@
       }
     },
     {
-      "id": "python-v4-13-unpack-experiment",
+      "id": "python-v4-13-unpack-try-calls",
+      "role": "practice",
       "topicIds": [],
       "heading": {
-        "en": "Try one change",
-        "nl": "Probeer één wijziging"
+        "en": "See your function work",
+        "nl": "Bekijk wat je functie doet"
+      },
+      "body": {
+        "en": "A definition alone produces no output. After writing the function, add these calls underneath it in main.py, without indentation, and Run. Compare the returned values with the task's requirements. The checks also call your function with other inputs; they do not require you to keep these demonstration calls.",
+        "nl": "Een definitie alleen geeft geen uitvoer. Schrijf eerst de functie en voeg daarna deze aanroepen eronder toe in main.py, zonder inspringing. Klik op Uitvoeren. Vergelijk de teruggegeven waarden met de opdracht. De controles roepen je functie ook met andere invoer aan; deze demonstratieaanroepen zijn niet verplicht."
+      },
+      "code": "print(shift([4, 7], 2, -1))\nprint(shift([0, 0], -3, 5))"
+    },
+    {
+      "id": "python-v4-13-unpack-experiment",
+      "role": "experiment",
+      "topicIds": [],
+      "heading": {
+        "en": "After completing the task: try one change",
+        "nl": "Na het afronden: probeer één wijziging"
       },
       "body": {
         "en": "Apply a shift and its opposite. Predict the final position.",
@@ -75,10 +90,10 @@
         "packing-unpacking"
       ],
       "task": {
-        "en": "Unpack point and return a new tuple moved by dx and dy.",
-        "nl": "Pak point uit en geef een nieuwe tuple terug die dx en dy is verschoven."
+        "en": "Write shift(point, dx, dy) in main.py. Unpack point and return a new tuple moved by dx and dy.",
+        "nl": "Schrijf shift(point, dx, dy) in main.py. Pak point uit en geef een nieuwe tuple terug die dx en dy is verschoven."
       },
-      "check": "callable(shift)",
+      "check": "callable(shift) and any(isinstance(n,_ast.Assign) and any(isinstance(t,(_ast.Tuple,_ast.List)) for t in n.targets) and isinstance(n.value,_ast.Name) and n.value.id == \"point\" for n in _ast.walk(_ast.parse(_source)))",
       "probes": [
         {
           "call": {
@@ -137,31 +152,5 @@
     "en": "Unpacking gives meaningful local names; returning a new tuple preserves the source position.",
     "nl": "Uitpakken geeft betekenisvolle lokale namen; een nieuwe tuple teruggeven bewaart de bronpositie."
   },
-  "inputs": [],
-  "retrievals": [
-    {
-      "id": "recall-python-v4-11-append",
-      "sourceActivityId": "python-v4-11-append",
-      "objectiveIds": [
-        "empty-lists",
-        "list-methods",
-        "append"
-      ],
-      "prompt": {
-        "en": "Recall “Start empty and append”. What would printing history.append(9) display? Try the earlier example from memory, then check it. Append an empty string and explain why the list is no longer empty.",
-        "nl": "Haal “Begin leeg en voeg achteraan toe” terug. Wat toont het afdrukken van history.append(9)? Probeer het eerdere voorbeeld uit je geheugen en controleer daarna. Voeg een lege string toe en leg uit waarom de lijst niet meer leeg is."
-      }
-    },
-    {
-      "id": "recall-python-v4-11-change-element",
-      "sourceActivityId": "python-v4-11-change-element",
-      "objectiveIds": [
-        "list-mutation"
-      ],
-      "prompt": {
-        "en": "Recall “Replace an element”. Did the number of elements change? Try the earlier example from memory, then check it. Have the caller print its original variable after the call.",
-        "nl": "Haal “Vervang een element” terug. Is het aantal elementen veranderd? Probeer het eerdere voorbeeld uit je geheugen en controleer daarna. Laat de aanroeper zijn oorspronkelijke variabele na de aanroep afdrukken."
-      }
-    }
-  ]
+  "inputs": []
 }

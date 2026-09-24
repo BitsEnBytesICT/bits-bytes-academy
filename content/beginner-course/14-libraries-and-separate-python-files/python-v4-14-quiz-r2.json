@@ -1,0 +1,800 @@
+{
+  "id": "python-v4-14-quiz-r2",
+  "chapter": 14,
+  "group": "python-v4-module-14",
+  "kind": "quiz",
+  "optional": false,
+  "estimatedMinutes": 8,
+  "title": {
+    "en": "Libraries and separate Python files: review",
+    "nl": "Bibliotheken en aparte Pythonbestanden: herhaling"
+  },
+  "questions": [
+    {
+      "objectiveIds": [
+        "random-seed"
+      ],
+      "category": "prediction",
+      "prompt": {
+        "en": "What does this program print?",
+        "nl": "Wat drukt dit programma af?"
+      },
+      "code": "import random\nrandom.seed(12)\nfirst = random.random()\nrandom.seed(12)\nprint(first == random.random())",
+      "answer": "a",
+      "expectedOutput": "True\n",
+      "choices": [
+        {
+          "id": "a",
+          "label": {
+            "en": "True",
+            "nl": "True"
+          },
+          "reason": {
+            "en": "The seed and call sequence repeat.",
+            "nl": "De seed en aanroepreeks worden herhaald."
+          }
+        },
+        {
+          "id": "b",
+          "label": {
+            "en": "False",
+            "nl": "False"
+          },
+          "reason": {
+            "en": "Resetting the same generator state reproduces the draw.",
+            "nl": "Dezelfde generatortoestand herstellen reproduceert de trekking."
+          }
+        },
+        {
+          "id": "c",
+          "label": {
+            "en": "12",
+            "nl": "12"
+          },
+          "reason": {
+            "en": "The seed is not the random output.",
+            "nl": "De seed is niet de willekeurige uitvoer."
+          }
+        }
+      ],
+      "id": "python-v4-14-quiz-r2-a-1",
+      "reviewActivityIds": [
+        "python-v4-14-repeatable-random"
+      ]
+    },
+    {
+      "objectiveIds": [
+        "packing-unpacking"
+      ],
+      "category": "prediction",
+      "prompt": {
+        "en": "What does this program print?",
+        "nl": "Wat drukt dit programma af?"
+      },
+      "code": "def pair():\n    return 9, 4\nx, y = pair()\nprint(x - y)",
+      "answer": "a",
+      "expectedOutput": "5\n",
+      "choices": [
+        {
+          "id": "a",
+          "label": {
+            "en": "5",
+            "nl": "5"
+          },
+          "reason": {
+            "en": "Unpacking binds x to the first returned value and y to the second.",
+            "nl": "Uitpakken koppelt x aan de eerste teruggegeven waarde en y aan de tweede."
+          }
+        },
+        {
+          "id": "b",
+          "label": {
+            "en": "13",
+            "nl": "13"
+          },
+          "reason": {
+            "en": "Unpacking binds x to the first returned value and y to the second.",
+            "nl": "Uitpakken koppelt x aan de eerste teruggegeven waarde en y aan de tweede."
+          }
+        },
+        {
+          "id": "c",
+          "label": {
+            "en": "-5",
+            "nl": "-5"
+          },
+          "reason": {
+            "en": "Unpacking binds x to the first returned value and y to the second.",
+            "nl": "Uitpakken koppelt x aan de eerste teruggegeven waarde en y aan de tweede."
+          }
+        }
+      ],
+      "id": "python-v4-14-quiz-r2-a-2",
+      "reviewActivityIds": [
+        "python-v4-13-unpack"
+      ]
+    },
+    {
+      "objectiveIds": [
+        "decimal"
+      ],
+      "category": "completion",
+      "prompt": {
+        "en": "Complete the code to produce the shown output.",
+        "nl": "Vul de code aan om de getoonde uitvoer te maken."
+      },
+      "code": "from decimal import Decimal\nprint(Decimal(___) + Decimal(\"0.2\"))",
+      "answer": "a",
+      "choices": [
+        {
+          "id": "a",
+          "label": {
+            "en": "\"0.1\"",
+            "nl": "\"0.1\""
+          },
+          "reason": {
+            "en": "A string preserves the written decimal exactly; a float may already be approximate.",
+            "nl": "Een string bewaart de geschreven decimaal exact; een float kan al benaderd zijn."
+          }
+        },
+        {
+          "id": "b",
+          "label": {
+            "en": "0.1",
+            "nl": "0.1"
+          },
+          "reason": {
+            "en": "Using 0.1 prints \"0.3000000000000000055511151231\\n\"; the required output is \"0.3\\n\". A string preserves the written decimal exactly; a float may already be approximate.",
+            "nl": "Met 0.1 wordt \"0.3000000000000000055511151231\\n\" afgedrukt; de vereiste uitvoer is \"0.3\\n\". Een string bewaart de geschreven decimaal exact; een float kan al benaderd zijn."
+          }
+        },
+        {
+          "id": "c",
+          "label": {
+            "en": "1",
+            "nl": "1"
+          },
+          "reason": {
+            "en": "Using 1 prints \"1.2\\n\"; the required output is \"0.3\\n\". A string preserves the written decimal exactly; a float may already be approximate.",
+            "nl": "Met 1 wordt \"1.2\\n\" afgedrukt; de vereiste uitvoer is \"0.3\\n\". Een string bewaart de geschreven decimaal exact; een float kan al benaderd zijn."
+          }
+        }
+      ],
+      "codeBlank": {
+        "prompt": {
+          "en": "Complete the code to produce the shown output.",
+          "nl": "Vul de code aan om de getoonde uitvoer te maken."
+        },
+        "segments": [
+          "from decimal import Decimal\nprint(Decimal(",
+          ") + Decimal(\"0.2\"))"
+        ],
+        "tokens": [
+          {
+            "id": "token-1",
+            "code": "\"0.1\""
+          },
+          {
+            "id": "token-2",
+            "code": "0.1",
+            "reason": {
+              "en": "Using 0.1 prints \"0.3000000000000000055511151231\\n\"; the required output is \"0.3\\n\". A string preserves the written decimal exactly; a float may already be approximate.",
+              "nl": "Met 0.1 wordt \"0.3000000000000000055511151231\\n\" afgedrukt; de vereiste uitvoer is \"0.3\\n\". Een string bewaart de geschreven decimaal exact; een float kan al benaderd zijn."
+            }
+          },
+          {
+            "id": "token-3",
+            "code": "1",
+            "reason": {
+              "en": "Using 1 prints \"1.2\\n\"; the required output is \"0.3\\n\". A string preserves the written decimal exactly; a float may already be approximate.",
+              "nl": "Met 1 wordt \"1.2\\n\" afgedrukt; de vereiste uitvoer is \"0.3\\n\". Een string bewaart de geschreven decimaal exact; een float kan al benaderd zijn."
+            }
+          }
+        ],
+        "blanks": [
+          {
+            "answer": "\"0.1\"",
+            "reason": {
+              "en": "A string preserves the written decimal exactly; a float may already be approximate.",
+              "nl": "Een string bewaart de geschreven decimaal exact; een float kan al benaderd zijn."
+            }
+          }
+        ],
+        "output": "0.3\n"
+      },
+      "id": "python-v4-14-quiz-r2-a-3",
+      "reviewActivityIds": [
+        "python-v4-14-decimal"
+      ]
+    },
+    {
+      "objectiveIds": [
+        "multiple-returns"
+      ],
+      "category": "completion",
+      "prompt": {
+        "en": "Complete the code to produce the shown output.",
+        "nl": "Vul de code aan om de getoonde uitvoer te maken."
+      },
+      "code": "def pair():\n    return 3, 8\nx, y = ___\nprint(x + y)",
+      "answer": "a",
+      "choices": [
+        {
+          "id": "a",
+          "label": {
+            "en": "pair()",
+            "nl": "pair()"
+          },
+          "reason": {
+            "en": "Follow the operation and its input type, then compare the exact result shown.",
+            "nl": "Volg de bewerking en het invoertype en vergelijk daarna het precieze getoonde resultaat."
+          }
+        },
+        {
+          "id": "b",
+          "label": {
+            "en": "pair",
+            "nl": "pair"
+          },
+          "reason": {
+            "en": "Using pair here produces TypeError. Follow the operation and its input type, then compare the exact result shown.",
+            "nl": "Met pair ontstaat hier TypeError. Volg de bewerking en het invoertype en vergelijk daarna het precieze getoonde resultaat."
+          }
+        },
+        {
+          "id": "c",
+          "label": {
+            "en": "(3, 3)",
+            "nl": "(3, 3)"
+          },
+          "reason": {
+            "en": "Using (3, 3) prints \"6\\n\"; the required output is \"11\\n\". Follow the operation and its input type, then compare the exact result shown.",
+            "nl": "Met (3, 3) wordt \"6\\n\" afgedrukt; de vereiste uitvoer is \"11\\n\". Volg de bewerking en het invoertype en vergelijk daarna het precieze getoonde resultaat."
+          }
+        }
+      ],
+      "codeBlank": {
+        "prompt": {
+          "en": "Complete the code to produce the shown output.",
+          "nl": "Vul de code aan om de getoonde uitvoer te maken."
+        },
+        "segments": [
+          "def pair():\n    return 3, 8\nx, y = ",
+          "\nprint(x + y)"
+        ],
+        "tokens": [
+          {
+            "id": "token-1",
+            "code": "pair()"
+          },
+          {
+            "id": "token-2",
+            "code": "pair",
+            "reason": {
+              "en": "Using pair here produces TypeError. Follow the operation and its input type, then compare the exact result shown.",
+              "nl": "Met pair ontstaat hier TypeError. Volg de bewerking en het invoertype en vergelijk daarna het precieze getoonde resultaat."
+            }
+          },
+          {
+            "id": "token-3",
+            "code": "(3, 3)",
+            "reason": {
+              "en": "Using (3, 3) prints \"6\\n\"; the required output is \"11\\n\". Follow the operation and its input type, then compare the exact result shown.",
+              "nl": "Met (3, 3) wordt \"6\\n\" afgedrukt; de vereiste uitvoer is \"11\\n\". Volg de bewerking en het invoertype en vergelijk daarna het precieze getoonde resultaat."
+            }
+          }
+        ],
+        "blanks": [
+          {
+            "answer": "pair()",
+            "reason": {
+              "en": "Follow the operation and its input type, then compare the exact result shown.",
+              "nl": "Volg de bewerking en het invoertype en vergelijk daarna het precieze getoonde resultaat."
+            }
+          }
+        ],
+        "output": "11\n"
+      },
+      "id": "python-v4-14-quiz-r2-a-4",
+      "reviewActivityIds": [
+        "python-v4-13-multiple-results"
+      ]
+    },
+    {
+      "objectiveIds": [
+        "aliases"
+      ],
+      "category": "debugging",
+      "prompt": {
+        "en": "Choose the repair or test that addresses the stated problem.",
+        "nl": "Kies de reparatie of test die het beschreven probleem aanpakt."
+      },
+      "code": "import math as m\nprint(math.sqrt(144))",
+      "answer": "a",
+      "choices": [
+        {
+          "id": "a",
+          "label": {
+            "en": "Use m.sqrt with the chosen alias.",
+            "nl": "Gebruik m.sqrt met de gekozen alias."
+          },
+          "reason": {
+            "en": "The local module name is m.",
+            "nl": "De lokale modulenaam is m."
+          }
+        },
+        {
+          "id": "b",
+          "label": {
+            "en": "Install math with pip.",
+            "nl": "Installeer math met pip."
+          },
+          "reason": {
+            "en": "math is in the standard library; the issue is its local name.",
+            "nl": "math zit in de standaardbibliotheek; het probleem is de lokale naam."
+          }
+        },
+        {
+          "id": "c",
+          "label": {
+            "en": "Put the call in quotes.",
+            "nl": "Zet de aanroep tussen aanhalingstekens."
+          },
+          "reason": {
+            "en": "That prints code text instead of computing.",
+            "nl": "Dat drukt codetekst af in plaats van te rekenen."
+          }
+        }
+      ],
+      "id": "python-v4-14-quiz-r2-a-5",
+      "reviewActivityIds": [
+        "python-v4-14-selected-and-alias"
+      ]
+    },
+    {
+      "objectiveIds": [
+        "installing"
+      ],
+      "category": "application",
+      "prompt": {
+        "en": "Which explanation applies to this example?",
+        "nl": "Welke uitleg past bij dit voorbeeld?"
+      },
+      "code": "import random",
+      "answer": "a",
+      "choices": [
+        {
+          "id": "a",
+          "label": {
+            "en": "Import makes an available module usable in this file.",
+            "nl": "Import maakt een beschikbare module bruikbaar in dit bestand."
+          },
+          "reason": {
+            "en": "It does not download a missing package.",
+            "nl": "Het downloadt geen ontbrekend pakket."
+          }
+        },
+        {
+          "id": "b",
+          "label": {
+            "en": "Import installs any missing package automatically.",
+            "nl": "Import installeert elk ontbrekend pakket automatisch."
+          },
+          "reason": {
+            "en": "Installation is a separate operation.",
+            "nl": "Installeren is een aparte bewerking."
+          }
+        },
+        {
+          "id": "c",
+          "label": {
+            "en": "Every module requires a pip install.",
+            "nl": "Elke module vereist pip-installatie."
+          },
+          "reason": {
+            "en": "Standard-library modules are included with Python.",
+            "nl": "Standaardbibliotheekmodules zitten bij Python."
+          }
+        }
+      ],
+      "id": "python-v4-14-quiz-r2-a-6",
+      "reviewActivityIds": [
+        "python-v4-14-helper-files"
+      ]
+    }
+  ],
+  "alternateQuestions": [
+    {
+      "objectiveIds": [
+        "random-seed"
+      ],
+      "category": "prediction",
+      "prompt": {
+        "en": "What does this program print?",
+        "nl": "Wat drukt dit programma af?"
+      },
+      "code": "import random\nrandom.seed(12)\nfirst = random.random()\nsecond = random.random()\nrandom.seed(12)\nprint(random.random() == first)\nprint(random.random() == second)",
+      "answer": "a",
+      "expectedOutput": "True\nTrue\n",
+      "choices": [
+        {
+          "id": "a",
+          "label": {
+            "en": "True\nTrue",
+            "nl": "True\nTrue"
+          },
+          "reason": {
+            "en": "Reseeding restarts the sequence. Two subsequent calls repeat its first and second values in order.",
+            "nl": "De seed opnieuw instellen herstart de reeks. Twee volgende aanroepen herhalen de eerste en tweede waarde in volgorde."
+          }
+        },
+        {
+          "id": "b",
+          "label": {
+            "en": "True\nFalse",
+            "nl": "True\nFalse"
+          },
+          "reason": {
+            "en": "Reseeding restarts the sequence. Two subsequent calls repeat its first and second values in order.",
+            "nl": "De seed opnieuw instellen herstart de reeks. Twee volgende aanroepen herhalen de eerste en tweede waarde in volgorde."
+          }
+        },
+        {
+          "id": "c",
+          "label": {
+            "en": "False\nFalse",
+            "nl": "False\nFalse"
+          },
+          "reason": {
+            "en": "Reseeding restarts the sequence. Two subsequent calls repeat its first and second values in order.",
+            "nl": "De seed opnieuw instellen herstart de reeks. Twee volgende aanroepen herhalen de eerste en tweede waarde in volgorde."
+          }
+        }
+      ],
+      "id": "python-v4-14-quiz-r2-b-1",
+      "reviewActivityIds": [
+        "python-v4-14-repeatable-random"
+      ]
+    },
+    {
+      "objectiveIds": [
+        "packing-unpacking"
+      ],
+      "category": "prediction",
+      "prompt": {
+        "en": "What does this program print?",
+        "nl": "Wat drukt dit programma af?"
+      },
+      "code": "def pair():\n    return 9, 4\nx, y = pair()\nprint(y - x)",
+      "answer": "a",
+      "expectedOutput": "-5\n",
+      "choices": [
+        {
+          "id": "a",
+          "label": {
+            "en": "-5",
+            "nl": "-5"
+          },
+          "reason": {
+            "en": "Unpacking binds x to the first returned value and y to the second.",
+            "nl": "Uitpakken koppelt x aan de eerste teruggegeven waarde en y aan de tweede."
+          }
+        },
+        {
+          "id": "b",
+          "label": {
+            "en": "13",
+            "nl": "13"
+          },
+          "reason": {
+            "en": "Unpacking binds x to the first returned value and y to the second.",
+            "nl": "Uitpakken koppelt x aan de eerste teruggegeven waarde en y aan de tweede."
+          }
+        },
+        {
+          "id": "c",
+          "label": {
+            "en": "5",
+            "nl": "5"
+          },
+          "reason": {
+            "en": "Unpacking binds x to the first returned value and y to the second.",
+            "nl": "Uitpakken koppelt x aan de eerste teruggegeven waarde en y aan de tweede."
+          }
+        }
+      ],
+      "id": "python-v4-14-quiz-r2-b-2",
+      "reviewActivityIds": [
+        "python-v4-13-unpack"
+      ]
+    },
+    {
+      "objectiveIds": [
+        "decimal"
+      ],
+      "category": "completion",
+      "prompt": {
+        "en": "Complete the code to produce the shown output.",
+        "nl": "Vul de code aan om de getoonde uitvoer te maken."
+      },
+      "code": "from decimal import Decimal\nprint(Decimal(___) + Decimal(\"0.4\"))",
+      "answer": "a",
+      "choices": [
+        {
+          "id": "a",
+          "label": {
+            "en": "\"0.2\"",
+            "nl": "\"0.2\""
+          },
+          "reason": {
+            "en": "A string preserves the written decimal exactly; a float may already be approximate.",
+            "nl": "Een string bewaart de geschreven decimaal exact; een float kan al benaderd zijn."
+          }
+        },
+        {
+          "id": "b",
+          "label": {
+            "en": "0.2",
+            "nl": "0.2"
+          },
+          "reason": {
+            "en": "Using 0.2 prints \"0.6000000000000000111022302463\\n\"; the required output is \"0.6\\n\". A string preserves the written decimal exactly; a float may already be approximate.",
+            "nl": "Met 0.2 wordt \"0.6000000000000000111022302463\\n\" afgedrukt; de vereiste uitvoer is \"0.6\\n\". Een string bewaart de geschreven decimaal exact; een float kan al benaderd zijn."
+          }
+        },
+        {
+          "id": "c",
+          "label": {
+            "en": "1",
+            "nl": "1"
+          },
+          "reason": {
+            "en": "Using 1 prints \"1.4\\n\"; the required output is \"0.6\\n\". A string preserves the written decimal exactly; a float may already be approximate.",
+            "nl": "Met 1 wordt \"1.4\\n\" afgedrukt; de vereiste uitvoer is \"0.6\\n\". Een string bewaart de geschreven decimaal exact; een float kan al benaderd zijn."
+          }
+        }
+      ],
+      "codeBlank": {
+        "prompt": {
+          "en": "Complete the code to produce the shown output.",
+          "nl": "Vul de code aan om de getoonde uitvoer te maken."
+        },
+        "segments": [
+          "from decimal import Decimal\nprint(Decimal(",
+          ") + Decimal(\"0.4\"))"
+        ],
+        "tokens": [
+          {
+            "id": "token-1",
+            "code": "\"0.2\""
+          },
+          {
+            "id": "token-2",
+            "code": "0.2",
+            "reason": {
+              "en": "Using 0.2 prints \"0.6000000000000000111022302463\\n\"; the required output is \"0.6\\n\". A string preserves the written decimal exactly; a float may already be approximate.",
+              "nl": "Met 0.2 wordt \"0.6000000000000000111022302463\\n\" afgedrukt; de vereiste uitvoer is \"0.6\\n\". Een string bewaart de geschreven decimaal exact; een float kan al benaderd zijn."
+            }
+          },
+          {
+            "id": "token-3",
+            "code": "1",
+            "reason": {
+              "en": "Using 1 prints \"1.4\\n\"; the required output is \"0.6\\n\". A string preserves the written decimal exactly; a float may already be approximate.",
+              "nl": "Met 1 wordt \"1.4\\n\" afgedrukt; de vereiste uitvoer is \"0.6\\n\". Een string bewaart de geschreven decimaal exact; een float kan al benaderd zijn."
+            }
+          }
+        ],
+        "blanks": [
+          {
+            "answer": "\"0.2\"",
+            "reason": {
+              "en": "A string preserves the written decimal exactly; a float may already be approximate.",
+              "nl": "Een string bewaart de geschreven decimaal exact; een float kan al benaderd zijn."
+            }
+          }
+        ],
+        "output": "0.6\n"
+      },
+      "id": "python-v4-14-quiz-r2-b-3",
+      "reviewActivityIds": [
+        "python-v4-14-decimal"
+      ]
+    },
+    {
+      "objectiveIds": [
+        "multiple-returns"
+      ],
+      "category": "completion",
+      "prompt": {
+        "en": "Complete the code to produce the shown output.",
+        "nl": "Vul de code aan om de getoonde uitvoer te maken."
+      },
+      "code": "def pair():\n    return 3, 8\nx, y = ___\nprint(x + y)",
+      "answer": "a",
+      "choices": [
+        {
+          "id": "a",
+          "label": {
+            "en": "pair()",
+            "nl": "pair()"
+          },
+          "reason": {
+            "en": "Follow the operation and its input type, then compare the exact result shown.",
+            "nl": "Volg de bewerking en het invoertype en vergelijk daarna het precieze getoonde resultaat."
+          }
+        },
+        {
+          "id": "b",
+          "label": {
+            "en": "pair",
+            "nl": "pair"
+          },
+          "reason": {
+            "en": "Using pair here produces TypeError. Follow the operation and its input type, then compare the exact result shown.",
+            "nl": "Met pair ontstaat hier TypeError. Volg de bewerking en het invoertype en vergelijk daarna het precieze getoonde resultaat."
+          }
+        },
+        {
+          "id": "c",
+          "label": {
+            "en": "(3, 3)",
+            "nl": "(3, 3)"
+          },
+          "reason": {
+            "en": "Using (3, 3) prints \"6\\n\"; the required output is \"11\\n\". Follow the operation and its input type, then compare the exact result shown.",
+            "nl": "Met (3, 3) wordt \"6\\n\" afgedrukt; de vereiste uitvoer is \"11\\n\". Volg de bewerking en het invoertype en vergelijk daarna het precieze getoonde resultaat."
+          }
+        }
+      ],
+      "codeBlank": {
+        "prompt": {
+          "en": "Complete the code to produce the shown output.",
+          "nl": "Vul de code aan om de getoonde uitvoer te maken."
+        },
+        "segments": [
+          "def pair():\n    return 3, 8\nx, y = ",
+          "\nprint(x + y)"
+        ],
+        "tokens": [
+          {
+            "id": "token-1",
+            "code": "pair()"
+          },
+          {
+            "id": "token-2",
+            "code": "pair",
+            "reason": {
+              "en": "Using pair here produces TypeError. Follow the operation and its input type, then compare the exact result shown.",
+              "nl": "Met pair ontstaat hier TypeError. Volg de bewerking en het invoertype en vergelijk daarna het precieze getoonde resultaat."
+            }
+          },
+          {
+            "id": "token-3",
+            "code": "(3, 3)",
+            "reason": {
+              "en": "Using (3, 3) prints \"6\\n\"; the required output is \"11\\n\". Follow the operation and its input type, then compare the exact result shown.",
+              "nl": "Met (3, 3) wordt \"6\\n\" afgedrukt; de vereiste uitvoer is \"11\\n\". Volg de bewerking en het invoertype en vergelijk daarna het precieze getoonde resultaat."
+            }
+          }
+        ],
+        "blanks": [
+          {
+            "answer": "pair()",
+            "reason": {
+              "en": "Follow the operation and its input type, then compare the exact result shown.",
+              "nl": "Volg de bewerking en het invoertype en vergelijk daarna het precieze getoonde resultaat."
+            }
+          }
+        ],
+        "output": "11\n"
+      },
+      "id": "python-v4-14-quiz-r2-b-4",
+      "reviewActivityIds": [
+        "python-v4-13-multiple-results"
+      ]
+    },
+    {
+      "objectiveIds": [
+        "aliases"
+      ],
+      "category": "debugging",
+      "prompt": {
+        "en": "Choose the repair or test that addresses the stated problem.",
+        "nl": "Kies de reparatie of test die het beschreven probleem aanpakt."
+      },
+      "code": "import math as m\nprint(math.sqrt(289))",
+      "answer": "a",
+      "choices": [
+        {
+          "id": "a",
+          "label": {
+            "en": "Use m.sqrt with the chosen alias.",
+            "nl": "Gebruik m.sqrt met de gekozen alias."
+          },
+          "reason": {
+            "en": "The local module name is m.",
+            "nl": "De lokale modulenaam is m."
+          }
+        },
+        {
+          "id": "b",
+          "label": {
+            "en": "Install math with pip.",
+            "nl": "Installeer math met pip."
+          },
+          "reason": {
+            "en": "math is in the standard library; the issue is its local name.",
+            "nl": "math zit in de standaardbibliotheek; het probleem is de lokale naam."
+          }
+        },
+        {
+          "id": "c",
+          "label": {
+            "en": "Put the call in quotes.",
+            "nl": "Zet de aanroep tussen aanhalingstekens."
+          },
+          "reason": {
+            "en": "That prints code text instead of computing.",
+            "nl": "Dat drukt codetekst af in plaats van te rekenen."
+          }
+        }
+      ],
+      "id": "python-v4-14-quiz-r2-b-5",
+      "reviewActivityIds": [
+        "python-v4-14-selected-and-alias"
+      ]
+    },
+    {
+      "objectiveIds": [
+        "installing"
+      ],
+      "category": "application",
+      "prompt": {
+        "en": "Which explanation applies to this example?",
+        "nl": "Welke uitleg past bij dit voorbeeld?"
+      },
+      "code": "import csv",
+      "answer": "a",
+      "choices": [
+        {
+          "id": "a",
+          "label": {
+            "en": "Import makes an available module usable in this file.",
+            "nl": "Import maakt een beschikbare module bruikbaar in dit bestand."
+          },
+          "reason": {
+            "en": "It does not download a missing package.",
+            "nl": "Het downloadt geen ontbrekend pakket."
+          }
+        },
+        {
+          "id": "b",
+          "label": {
+            "en": "Import installs any missing package automatically.",
+            "nl": "Import installeert elk ontbrekend pakket automatisch."
+          },
+          "reason": {
+            "en": "Installation is a separate operation.",
+            "nl": "Installeren is een aparte bewerking."
+          }
+        },
+        {
+          "id": "c",
+          "label": {
+            "en": "Every module requires a pip install.",
+            "nl": "Elke module vereist pip-installatie."
+          },
+          "reason": {
+            "en": "Standard-library modules are included with Python.",
+            "nl": "Standaardbibliotheekmodules zitten bij Python."
+          }
+        }
+      ],
+      "id": "python-v4-14-quiz-r2-b-6",
+      "reviewActivityIds": [
+        "python-v4-14-helper-files"
+      ]
+    }
+  ]
+}

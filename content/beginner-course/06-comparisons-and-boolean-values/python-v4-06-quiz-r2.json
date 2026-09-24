@@ -1,0 +1,804 @@
+{
+  "id": "python-v4-06-quiz-r2",
+  "chapter": 6,
+  "group": "python-v4-module-6",
+  "kind": "quiz",
+  "optional": false,
+  "estimatedMinutes": 8,
+  "title": {
+    "en": "Comparisons and Boolean values: review",
+    "nl": "Vergelijkingen en booleaanse waarden: herhaling"
+  },
+  "questions": [
+    {
+      "objectiveIds": [
+        "and"
+      ],
+      "category": "prediction",
+      "prompt": {
+        "en": "What does this program print?",
+        "nl": "Wat drukt dit programma af?"
+      },
+      "code": "age = 10\nprint(age >= 10 and age < 10)",
+      "answer": "a",
+      "expectedOutput": "False\n",
+      "choices": [
+        {
+          "id": "a",
+          "label": {
+            "en": "False",
+            "nl": "False"
+          },
+          "reason": {
+            "en": "One False operand makes and False here.",
+            "nl": "Eén onware kant maakt and hier False."
+          }
+        },
+        {
+          "id": "b",
+          "label": {
+            "en": "True",
+            "nl": "True"
+          },
+          "reason": {
+            "en": "Both conditions must be true.",
+            "nl": "Beide voorwaarden moeten waar zijn."
+          }
+        },
+        {
+          "id": "c",
+          "label": {
+            "en": "10",
+            "nl": "10"
+          },
+          "reason": {
+            "en": "A comparison combination produces a Boolean here.",
+            "nl": "Deze combinatie van vergelijkingen geeft een booleaanse waarde."
+          }
+        }
+      ],
+      "id": "python-v4-06-quiz-r2-a-1",
+      "reviewActivityIds": [
+        "python-v4-06-and"
+      ]
+    },
+    {
+      "objectiveIds": [
+        "normalisation"
+      ],
+      "category": "prediction",
+      "prompt": {
+        "en": "What does this program print?",
+        "nl": "Wat drukt dit programma af?"
+      },
+      "code": "text = \" Quit \"\nprint(text.lower())",
+      "answer": "a",
+      "expectedOutput": " quit \n",
+      "choices": [
+        {
+          "id": "a",
+          "label": {
+            "en": " quit ",
+            "nl": " quit "
+          },
+          "reason": {
+            "en": "lower changes case; only strip removes outer whitespace. Neither removes internal spaces.",
+            "nl": "lower verandert hoofdletters; alleen strip verwijdert randwitruimte. Geen van beide verwijdert binnenspaties."
+          }
+        },
+        {
+          "id": "b",
+          "label": {
+            "en": "gonow",
+            "nl": "gonow"
+          },
+          "reason": {
+            "en": "lower changes case; only strip removes outer whitespace. Neither removes internal spaces.",
+            "nl": "lower verandert hoofdletters; alleen strip verwijdert randwitruimte. Geen van beide verwijdert binnenspaties."
+          }
+        },
+        {
+          "id": "c",
+          "label": {
+            "en": "QUIT",
+            "nl": "QUIT"
+          },
+          "reason": {
+            "en": "lower changes case; only strip removes outer whitespace. Neither removes internal spaces.",
+            "nl": "lower verandert hoofdletters; alleen strip verwijdert randwitruimte. Geen van beide verwijdert binnenspaties."
+          }
+        }
+      ],
+      "id": "python-v4-06-quiz-r2-a-2",
+      "reviewActivityIds": [
+        "python-v4-05-normalise-command"
+      ]
+    },
+    {
+      "objectiveIds": [
+        "or"
+      ],
+      "category": "completion",
+      "prompt": {
+        "en": "Complete the code to produce the shown output.",
+        "nl": "Vul de code aan om de getoonde uitvoer te maken."
+      },
+      "code": "has_ticket = False\nhas_pass = True\nprint(has_ticket ___ has_pass)",
+      "answer": "a",
+      "choices": [
+        {
+          "id": "a",
+          "label": {
+            "en": "or",
+            "nl": "or"
+          },
+          "reason": {
+            "en": "Either permission is enough, so use or.",
+            "nl": "Eén toestemming is genoeg, dus gebruik or."
+          }
+        },
+        {
+          "id": "b",
+          "label": {
+            "en": "and",
+            "nl": "and"
+          },
+          "reason": {
+            "en": "Using and prints \"False\\n\"; the required output is \"True\\n\". Either permission is enough, so use or.",
+            "nl": "Met and wordt \"False\\n\" afgedrukt; de vereiste uitvoer is \"True\\n\". Eén toestemming is genoeg, dus gebruik or."
+          }
+        },
+        {
+          "id": "c",
+          "label": {
+            "en": "==",
+            "nl": "=="
+          },
+          "reason": {
+            "en": "Using == prints \"False\\n\"; the required output is \"True\\n\". Either permission is enough, so use or.",
+            "nl": "Met == wordt \"False\\n\" afgedrukt; de vereiste uitvoer is \"True\\n\". Eén toestemming is genoeg, dus gebruik or."
+          }
+        }
+      ],
+      "codeBlank": {
+        "prompt": {
+          "en": "Complete the code to produce the shown output.",
+          "nl": "Vul de code aan om de getoonde uitvoer te maken."
+        },
+        "segments": [
+          "has_ticket = False\nhas_pass = True\nprint(has_ticket ",
+          " has_pass)"
+        ],
+        "tokens": [
+          {
+            "id": "token-1",
+            "code": "or"
+          },
+          {
+            "id": "token-2",
+            "code": "and",
+            "reason": {
+              "en": "Using and prints \"False\\n\"; the required output is \"True\\n\". Either permission is enough, so use or.",
+              "nl": "Met and wordt \"False\\n\" afgedrukt; de vereiste uitvoer is \"True\\n\". Eén toestemming is genoeg, dus gebruik or."
+            }
+          },
+          {
+            "id": "token-3",
+            "code": "==",
+            "reason": {
+              "en": "Using == prints \"False\\n\"; the required output is \"True\\n\". Either permission is enough, so use or.",
+              "nl": "Met == wordt \"False\\n\" afgedrukt; de vereiste uitvoer is \"True\\n\". Eén toestemming is genoeg, dus gebruik or."
+            }
+          }
+        ],
+        "blanks": [
+          {
+            "answer": "or",
+            "reason": {
+              "en": "Either permission is enough, so use or.",
+              "nl": "Eén toestemming is genoeg, dus gebruik or."
+            }
+          }
+        ],
+        "output": "True\n"
+      },
+      "id": "python-v4-06-quiz-r2-a-3",
+      "reviewActivityIds": [
+        "python-v4-06-or"
+      ]
+    },
+    {
+      "objectiveIds": [
+        "int-conversion"
+      ],
+      "category": "completion",
+      "prompt": {
+        "en": "Complete the code to produce the shown output.",
+        "nl": "Vul de code aan om de getoonde uitvoer te maken."
+      },
+      "code": "text = \"3\"\nprint(___(text) + 1)",
+      "answer": "a",
+      "choices": [
+        {
+          "id": "a",
+          "label": {
+            "en": "int",
+            "nl": "int"
+          },
+          "reason": {
+            "en": "Follow the operation and its input type, then compare the exact result shown.",
+            "nl": "Volg de bewerking en het invoertype en vergelijk daarna het precieze getoonde resultaat."
+          }
+        },
+        {
+          "id": "b",
+          "label": {
+            "en": "str",
+            "nl": "str"
+          },
+          "reason": {
+            "en": "Using str here produces TypeError. Follow the operation and its input type, then compare the exact result shown.",
+            "nl": "Met str ontstaat hier TypeError. Volg de bewerking en het invoertype en vergelijk daarna het precieze getoonde resultaat."
+          }
+        },
+        {
+          "id": "c",
+          "label": {
+            "en": "len",
+            "nl": "len"
+          },
+          "reason": {
+            "en": "Using len prints \"2\\n\"; the required output is \"4\\n\". Follow the operation and its input type, then compare the exact result shown.",
+            "nl": "Met len wordt \"2\\n\" afgedrukt; de vereiste uitvoer is \"4\\n\". Volg de bewerking en het invoertype en vergelijk daarna het precieze getoonde resultaat."
+          }
+        }
+      ],
+      "codeBlank": {
+        "prompt": {
+          "en": "Complete the code to produce the shown output.",
+          "nl": "Vul de code aan om de getoonde uitvoer te maken."
+        },
+        "segments": [
+          "text = \"3\"\nprint(",
+          "(text) + 1)"
+        ],
+        "tokens": [
+          {
+            "id": "token-1",
+            "code": "int"
+          },
+          {
+            "id": "token-2",
+            "code": "str",
+            "reason": {
+              "en": "Using str here produces TypeError. Follow the operation and its input type, then compare the exact result shown.",
+              "nl": "Met str ontstaat hier TypeError. Volg de bewerking en het invoertype en vergelijk daarna het precieze getoonde resultaat."
+            }
+          },
+          {
+            "id": "token-3",
+            "code": "len",
+            "reason": {
+              "en": "Using len prints \"2\\n\"; the required output is \"4\\n\". Follow the operation and its input type, then compare the exact result shown.",
+              "nl": "Met len wordt \"2\\n\" afgedrukt; de vereiste uitvoer is \"4\\n\". Volg de bewerking en het invoertype en vergelijk daarna het precieze getoonde resultaat."
+            }
+          }
+        ],
+        "blanks": [
+          {
+            "answer": "int",
+            "reason": {
+              "en": "Follow the operation and its input type, then compare the exact result shown.",
+              "nl": "Volg de bewerking en het invoertype en vergelijk daarna het precieze getoonde resultaat."
+            }
+          }
+        ],
+        "output": "4\n"
+      },
+      "id": "python-v4-06-quiz-r2-a-4",
+      "reviewActivityIds": [
+        "python-v4-05-integer-input"
+      ]
+    },
+    {
+      "objectiveIds": [
+        "equality"
+      ],
+      "category": "debugging",
+      "prompt": {
+        "en": "Choose the repair or test that addresses the stated problem.",
+        "nl": "Kies de reparatie of test die het beschreven probleem aanpakt."
+      },
+      "code": "# Compare; do not assign.\nprint(10 = 10)",
+      "answer": "a",
+      "choices": [
+        {
+          "id": "a",
+          "label": {
+            "en": "Use == for equality.",
+            "nl": "Gebruik == voor gelijkheid."
+          },
+          "reason": {
+            "en": "A comparison uses two equals signs.",
+            "nl": "Een vergelijking gebruikt twee gelijktekens."
+          }
+        },
+        {
+          "id": "b",
+          "label": {
+            "en": "Use +=.",
+            "nl": "Gebruik +=."
+          },
+          "reason": {
+            "en": "+= updates a variable, not equality.",
+            "nl": "+= wijzigt een variabele, geen gelijkheid."
+          }
+        },
+        {
+          "id": "c",
+          "label": {
+            "en": "Add quotes to the whole expression.",
+            "nl": "Zet de hele uitdrukking tussen aanhalingstekens."
+          },
+          "reason": {
+            "en": "That would print text instead of comparing.",
+            "nl": "Dat drukt tekst af in plaats van te vergelijken."
+          }
+        }
+      ],
+      "id": "python-v4-06-quiz-r2-a-5",
+      "reviewActivityIds": [
+        "python-v4-06-equal"
+      ]
+    },
+    {
+      "objectiveIds": [
+        "not"
+      ],
+      "category": "application",
+      "prompt": {
+        "en": "Which statement or test fits this example?",
+        "nl": "Welke uitspraak of test past bij dit voorbeeld?"
+      },
+      "code": "blocked = True\nallowed = not blocked",
+      "answer": "a",
+      "choices": [
+        {
+          "id": "a",
+          "label": {
+            "en": "allowed is the opposite Boolean value.",
+            "nl": "allowed is de tegenovergestelde booleaanse waarde."
+          },
+          "reason": {
+            "en": "not negates the condition.",
+            "nl": "not keert de voorwaarde om."
+          }
+        },
+        {
+          "id": "b",
+          "label": {
+            "en": "blocked itself is overwritten.",
+            "nl": "blocked zelf wordt overschreven."
+          },
+          "reason": {
+            "en": "The assignment targets allowed.",
+            "nl": "De toewijzing richt zich op allowed."
+          }
+        },
+        {
+          "id": "c",
+          "label": {
+            "en": "not subtracts one.",
+            "nl": "not trekt één af."
+          },
+          "reason": {
+            "en": "This is Boolean negation, not arithmetic subtraction.",
+            "nl": "Dit is booleaanse ontkenning, geen aftrekking."
+          }
+        }
+      ],
+      "id": "python-v4-06-quiz-r2-a-6",
+      "reviewActivityIds": [
+        "python-v4-06-not"
+      ]
+    }
+  ],
+  "alternateQuestions": [
+    {
+      "objectiveIds": [
+        "and",
+        "or",
+        "not"
+      ],
+      "category": "prediction",
+      "prompt": {
+        "en": "What does this program print?",
+        "nl": "Wat drukt dit programma af?"
+      },
+      "code": "member = False\nclosed = True\nprint(member or not closed)\nprint(member and not closed)",
+      "answer": "a",
+      "expectedOutput": "False\nFalse\n",
+      "choices": [
+        {
+          "id": "a",
+          "label": {
+            "en": "False\nFalse",
+            "nl": "False\nFalse"
+          },
+          "reason": {
+            "en": "not closed is False; both combinations therefore stay False.",
+            "nl": "not closed is False; beide combinaties blijven dus False."
+          }
+        },
+        {
+          "id": "b",
+          "label": {
+            "en": "True\nFalse",
+            "nl": "True\nFalse"
+          },
+          "reason": {
+            "en": "not closed is False; both combinations therefore stay False.",
+            "nl": "not closed is False; beide combinaties blijven dus False."
+          }
+        },
+        {
+          "id": "c",
+          "label": {
+            "en": "False\nTrue",
+            "nl": "False\nTrue"
+          },
+          "reason": {
+            "en": "not closed is False; both combinations therefore stay False.",
+            "nl": "not closed is False; beide combinaties blijven dus False."
+          }
+        }
+      ],
+      "id": "python-v4-06-quiz-r2-b-1",
+      "reviewActivityIds": [
+        "python-v4-06-and",
+        "python-v4-06-or",
+        "python-v4-06-not"
+      ]
+    },
+    {
+      "objectiveIds": [
+        "normalisation"
+      ],
+      "category": "prediction",
+      "prompt": {
+        "en": "What does this program print?",
+        "nl": "Wat drukt dit programma af?"
+      },
+      "code": "text = \" GO NOW \"\nprint(text.strip().lower())",
+      "answer": "a",
+      "expectedOutput": "go now\n",
+      "choices": [
+        {
+          "id": "a",
+          "label": {
+            "en": "go now",
+            "nl": "go now"
+          },
+          "reason": {
+            "en": "lower changes case; only strip removes outer whitespace. Neither removes internal spaces.",
+            "nl": "lower verandert hoofdletters; alleen strip verwijdert randwitruimte. Geen van beide verwijdert binnenspaties."
+          }
+        },
+        {
+          "id": "b",
+          "label": {
+            "en": "gonow",
+            "nl": "gonow"
+          },
+          "reason": {
+            "en": "lower changes case; only strip removes outer whitespace. Neither removes internal spaces.",
+            "nl": "lower verandert hoofdletters; alleen strip verwijdert randwitruimte. Geen van beide verwijdert binnenspaties."
+          }
+        },
+        {
+          "id": "c",
+          "label": {
+            "en": "QUIT",
+            "nl": "QUIT"
+          },
+          "reason": {
+            "en": "lower changes case; only strip removes outer whitespace. Neither removes internal spaces.",
+            "nl": "lower verandert hoofdletters; alleen strip verwijdert randwitruimte. Geen van beide verwijdert binnenspaties."
+          }
+        }
+      ],
+      "id": "python-v4-06-quiz-r2-b-2",
+      "reviewActivityIds": [
+        "python-v4-05-normalise-command"
+      ]
+    },
+    {
+      "objectiveIds": [
+        "or"
+      ],
+      "category": "completion",
+      "prompt": {
+        "en": "Complete the code to produce the shown output.",
+        "nl": "Vul de code aan om de getoonde uitvoer te maken."
+      },
+      "code": "has_ticket = True\nhas_pass = False\nprint(has_ticket ___ has_pass)",
+      "answer": "a",
+      "choices": [
+        {
+          "id": "a",
+          "label": {
+            "en": "or",
+            "nl": "or"
+          },
+          "reason": {
+            "en": "Either permission is enough, so use or.",
+            "nl": "Eén toestemming is genoeg, dus gebruik or."
+          }
+        },
+        {
+          "id": "b",
+          "label": {
+            "en": "and",
+            "nl": "and"
+          },
+          "reason": {
+            "en": "Using and prints \"False\\n\"; the required output is \"True\\n\". Either permission is enough, so use or.",
+            "nl": "Met and wordt \"False\\n\" afgedrukt; de vereiste uitvoer is \"True\\n\". Eén toestemming is genoeg, dus gebruik or."
+          }
+        },
+        {
+          "id": "c",
+          "label": {
+            "en": "==",
+            "nl": "=="
+          },
+          "reason": {
+            "en": "Using == prints \"False\\n\"; the required output is \"True\\n\". Either permission is enough, so use or.",
+            "nl": "Met == wordt \"False\\n\" afgedrukt; de vereiste uitvoer is \"True\\n\". Eén toestemming is genoeg, dus gebruik or."
+          }
+        }
+      ],
+      "codeBlank": {
+        "prompt": {
+          "en": "Complete the code to produce the shown output.",
+          "nl": "Vul de code aan om de getoonde uitvoer te maken."
+        },
+        "segments": [
+          "has_ticket = True\nhas_pass = False\nprint(has_ticket ",
+          " has_pass)"
+        ],
+        "tokens": [
+          {
+            "id": "token-1",
+            "code": "or"
+          },
+          {
+            "id": "token-2",
+            "code": "and",
+            "reason": {
+              "en": "Using and prints \"False\\n\"; the required output is \"True\\n\". Either permission is enough, so use or.",
+              "nl": "Met and wordt \"False\\n\" afgedrukt; de vereiste uitvoer is \"True\\n\". Eén toestemming is genoeg, dus gebruik or."
+            }
+          },
+          {
+            "id": "token-3",
+            "code": "==",
+            "reason": {
+              "en": "Using == prints \"False\\n\"; the required output is \"True\\n\". Either permission is enough, so use or.",
+              "nl": "Met == wordt \"False\\n\" afgedrukt; de vereiste uitvoer is \"True\\n\". Eén toestemming is genoeg, dus gebruik or."
+            }
+          }
+        ],
+        "blanks": [
+          {
+            "answer": "or",
+            "reason": {
+              "en": "Either permission is enough, so use or.",
+              "nl": "Eén toestemming is genoeg, dus gebruik or."
+            }
+          }
+        ],
+        "output": "True\n"
+      },
+      "id": "python-v4-06-quiz-r2-b-3",
+      "reviewActivityIds": [
+        "python-v4-06-or"
+      ]
+    },
+    {
+      "objectiveIds": [
+        "int-conversion"
+      ],
+      "category": "completion",
+      "prompt": {
+        "en": "Complete the code to produce the shown output.",
+        "nl": "Vul de code aan om de getoonde uitvoer te maken."
+      },
+      "code": "text = \"-3\"\nprint(___(text) + 1)",
+      "answer": "a",
+      "choices": [
+        {
+          "id": "a",
+          "label": {
+            "en": "int",
+            "nl": "int"
+          },
+          "reason": {
+            "en": "Follow the operation and its input type, then compare the exact result shown.",
+            "nl": "Volg de bewerking en het invoertype en vergelijk daarna het precieze getoonde resultaat."
+          }
+        },
+        {
+          "id": "b",
+          "label": {
+            "en": "str",
+            "nl": "str"
+          },
+          "reason": {
+            "en": "Using str here produces TypeError. Follow the operation and its input type, then compare the exact result shown.",
+            "nl": "Met str ontstaat hier TypeError. Volg de bewerking en het invoertype en vergelijk daarna het precieze getoonde resultaat."
+          }
+        },
+        {
+          "id": "c",
+          "label": {
+            "en": "len",
+            "nl": "len"
+          },
+          "reason": {
+            "en": "Using len prints \"3\\n\"; the required output is \"-2\\n\". Follow the operation and its input type, then compare the exact result shown.",
+            "nl": "Met len wordt \"3\\n\" afgedrukt; de vereiste uitvoer is \"-2\\n\". Volg de bewerking en het invoertype en vergelijk daarna het precieze getoonde resultaat."
+          }
+        }
+      ],
+      "codeBlank": {
+        "prompt": {
+          "en": "Complete the code to produce the shown output.",
+          "nl": "Vul de code aan om de getoonde uitvoer te maken."
+        },
+        "segments": [
+          "text = \"-3\"\nprint(",
+          "(text) + 1)"
+        ],
+        "tokens": [
+          {
+            "id": "token-1",
+            "code": "int"
+          },
+          {
+            "id": "token-2",
+            "code": "str",
+            "reason": {
+              "en": "Using str here produces TypeError. Follow the operation and its input type, then compare the exact result shown.",
+              "nl": "Met str ontstaat hier TypeError. Volg de bewerking en het invoertype en vergelijk daarna het precieze getoonde resultaat."
+            }
+          },
+          {
+            "id": "token-3",
+            "code": "len",
+            "reason": {
+              "en": "Using len prints \"3\\n\"; the required output is \"-2\\n\". Follow the operation and its input type, then compare the exact result shown.",
+              "nl": "Met len wordt \"3\\n\" afgedrukt; de vereiste uitvoer is \"-2\\n\". Volg de bewerking en het invoertype en vergelijk daarna het precieze getoonde resultaat."
+            }
+          }
+        ],
+        "blanks": [
+          {
+            "answer": "int",
+            "reason": {
+              "en": "Follow the operation and its input type, then compare the exact result shown.",
+              "nl": "Volg de bewerking en het invoertype en vergelijk daarna het precieze getoonde resultaat."
+            }
+          }
+        ],
+        "output": "-2\n"
+      },
+      "id": "python-v4-06-quiz-r2-b-4",
+      "reviewActivityIds": [
+        "python-v4-05-integer-input"
+      ]
+    },
+    {
+      "objectiveIds": [
+        "equality"
+      ],
+      "category": "debugging",
+      "prompt": {
+        "en": "Choose the repair or test that addresses the stated problem.",
+        "nl": "Kies de reparatie of test die het beschreven probleem aanpakt."
+      },
+      "code": "# Compare; do not assign.\nprint(12 = 12)",
+      "answer": "a",
+      "choices": [
+        {
+          "id": "a",
+          "label": {
+            "en": "Use == for equality.",
+            "nl": "Gebruik == voor gelijkheid."
+          },
+          "reason": {
+            "en": "A comparison uses two equals signs.",
+            "nl": "Een vergelijking gebruikt twee gelijktekens."
+          }
+        },
+        {
+          "id": "b",
+          "label": {
+            "en": "Use +=.",
+            "nl": "Gebruik +=."
+          },
+          "reason": {
+            "en": "+= updates a variable, not equality.",
+            "nl": "+= wijzigt een variabele, geen gelijkheid."
+          }
+        },
+        {
+          "id": "c",
+          "label": {
+            "en": "Add quotes to the whole expression.",
+            "nl": "Zet de hele uitdrukking tussen aanhalingstekens."
+          },
+          "reason": {
+            "en": "That would print text instead of comparing.",
+            "nl": "Dat drukt tekst af in plaats van te vergelijken."
+          }
+        }
+      ],
+      "id": "python-v4-06-quiz-r2-b-5",
+      "reviewActivityIds": [
+        "python-v4-06-equal"
+      ]
+    },
+    {
+      "objectiveIds": [
+        "not"
+      ],
+      "category": "application",
+      "prompt": {
+        "en": "Which statement or test fits this example?",
+        "nl": "Welke uitspraak of test past bij dit voorbeeld?"
+      },
+      "code": "blocked = False\nallowed = not blocked",
+      "answer": "a",
+      "choices": [
+        {
+          "id": "a",
+          "label": {
+            "en": "allowed is the opposite Boolean value.",
+            "nl": "allowed is de tegenovergestelde booleaanse waarde."
+          },
+          "reason": {
+            "en": "not negates the condition.",
+            "nl": "not keert de voorwaarde om."
+          }
+        },
+        {
+          "id": "b",
+          "label": {
+            "en": "blocked itself is overwritten.",
+            "nl": "blocked zelf wordt overschreven."
+          },
+          "reason": {
+            "en": "The assignment targets allowed.",
+            "nl": "De toewijzing richt zich op allowed."
+          }
+        },
+        {
+          "id": "c",
+          "label": {
+            "en": "not subtracts one.",
+            "nl": "not trekt één af."
+          },
+          "reason": {
+            "en": "This is Boolean negation, not arithmetic subtraction.",
+            "nl": "Dit is booleaanse ontkenning, geen aftrekking."
+          }
+        }
+      ],
+      "id": "python-v4-06-quiz-r2-b-6",
+      "reviewActivityIds": [
+        "python-v4-06-not"
+      ]
+    }
+  ]
+}

@@ -52,11 +52,26 @@
       }
     },
     {
-      "id": "python-v4-12-filter-experiment",
+      "id": "python-v4-12-filter-try-calls",
+      "role": "practice",
       "topicIds": [],
       "heading": {
-        "en": "Try one change",
-        "nl": "Probeer één wijziging"
+        "en": "See your function work",
+        "nl": "Bekijk wat je functie doet"
+      },
+      "body": {
+        "en": "A definition alone produces no output. After writing the function, add these calls underneath it in main.py, without indentation, and Run. Compare the returned values with the task's requirements. The checks also call your function with other inputs; they do not require you to keep these demonstration calls.",
+        "nl": "Een definitie alleen geeft geen uitvoer. Schrijf eerst de functie en voeg daarna deze aanroepen eronder toe in main.py, zonder inspringing. Klik op Uitvoeren. Vergelijk de teruggegeven waarden met de opdracht. De controles roepen je functie ook met andere invoer aan; deze demonstratieaanroepen zijn niet verplicht."
+      },
+      "code": "print(nonnegative([-1, 0, 2, 2]))\nprint(nonnegative([-1]))"
+    },
+    {
+      "id": "python-v4-12-filter-experiment",
+      "role": "experiment",
+      "topicIds": [],
+      "heading": {
+        "en": "After completing the task: try one change",
+        "nl": "Na het afronden: probeer één wijziging"
       },
       "body": {
         "en": "Test a list where every value is negative.",
@@ -77,8 +92,8 @@
         "filtering"
       ],
       "task": {
-        "en": "Return the nonnegative values in their original order, keeping values unchanged.",
-        "nl": "Geef de niet-negatieve waarden in oorspronkelijke volgorde terug en laat values ongewijzigd."
+        "en": "Write nonnegative(values) in main.py. Return the nonnegative values in their original order, keeping values unchanged.",
+        "nl": "Schrijf nonnegative(values) in main.py. Geef de niet-negatieve waarden in oorspronkelijke volgorde terug en laat values ongewijzigd."
       },
       "check": "callable(nonnegative)",
       "probes": [
@@ -148,17 +163,18 @@
   "inputs": [],
   "retrievals": [
     {
-      "id": "recall-python-v4-10-cancel-safely",
-      "sourceActivityId": "python-v4-10-cancel-safely",
+      "id": "recall-python-v4-11-append",
+      "sourceActivityId": "python-v4-11-append",
       "objectiveIds": [
-        "cancellation",
-        "end-of-input",
-        "recovery-review"
+        "empty-lists",
+        "list-methods",
+        "append"
       ],
       "prompt": {
-        "en": "Recall “Give every retry a way out”. Why must the quit check come before float? Try the earlier example from memory, then check it. Try invalid text followed by quit, and test end-of-input at the first prompt.",
-        "nl": "Haal “Geef elke herhaling een uitgang” terug. Waarom moet de quit-controle vóór float komen? Probeer het eerdere voorbeeld uit je geheugen en controleer daarna. Probeer verkeerde tekst gevolgd door quit en test einde invoer bij de eerste vraag."
-      }
+        "en": "Recall start empty and append. What would printing history.append(9) display? Append an empty string and explain why the list is no longer empty.",
+        "nl": "Herhaal begin leeg en voeg achteraan toe. Wat toont het afdrukken van history.append(9)? Voeg een lege string toe en leg uit waarom de lijst niet meer leeg is."
+      },
+      "code": "history = []\nhistory.append(4)\nhistory.append(7)\nprint(history)"
     }
   ]
 }

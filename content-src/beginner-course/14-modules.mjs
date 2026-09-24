@@ -218,9 +218,14 @@ export const activities = [
           call(
             "draws",
             [12, 6],
-            "_return == draws(12,6) and len(_return) == 6 and len(set(_return)) > 1 and all(1 <= v <= 6 for v in _return)",
+            "_return == (lambda rng: [rng.randint(1,6) for _ in range(6)])(__import__('random').Random(12)) and _return == draws(12,6)",
           ),
           call("draws", [1, 0], "_return == []"),
+          call(
+            "draws",
+            [37, 8],
+            "_return == (lambda rng: [rng.randint(1,6) for _ in range(8)])(__import__('random').Random(37))",
+          ),
         ],
       },
     ],

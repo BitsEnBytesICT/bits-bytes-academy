@@ -60,11 +60,40 @@
       }
     },
     {
-      "id": "python-v4-23-class-experiment",
+      "id": "python-v4-23-class-trace",
       "topicIds": [],
       "heading": {
-        "en": "Try one change",
-        "nl": "Probeer één wijziging"
+        "en": "One class, two objects",
+        "nl": "Eén klasse, twee objecten"
+      },
+      "body": {
+        "en": "Think of a class as a description; calling it creates an object. first = Marker() and second = Marker() create different instances of the same type. first → instance A, second → instance B. Changing one object's future state need not change the other. The next lesson gives each instance its own named data.",
+        "nl": "Zie een klasse als een beschrijving; aanroepen maakt een object. first = Marker() en second = Marker() maken verschillende instanties van hetzelfde type. first → instantie A, second → instantie B. De toekomstige toestand van het ene object wijzigen hoeft de andere niet te veranderen. De volgende les geeft elke instantie eigen benoemde gegevens."
+      },
+      "code": "class Marker:\n    pass\nfirst = Marker()\nsecond = Marker()\nprint(type(first) == type(second))\nprint(first is second)",
+      "output": "True\nFalse\n"
+    },
+    {
+      "id": "python-v4-23-class-visible-report",
+      "role": "practice",
+      "topicIds": [],
+      "heading": {
+        "en": "Run a visible report",
+        "nl": "Voer een zichtbaar verslag uit"
+      },
+      "body": {
+        "en": "After completing the required definition, add this caller below it and Run. Expected Ticket as the type and False for identity: two constructions give two objects.",
+        "nl": "Voeg na het afmaken van de vereiste definitie deze aanroeper eronder toe en voer uit. Verwacht Ticket als type en False voor identiteit: twee constructies geven twee objecten."
+      },
+      "code": "print(type(first))\nprint(first is second)"
+    },
+    {
+      "id": "python-v4-23-class-experiment",
+      "role": "experiment",
+      "topicIds": [],
+      "heading": {
+        "en": "After completing the task: try one change",
+        "nl": "Na het afronden: probeer één wijziging"
       },
       "body": {
         "en": "Compare second = first with second = Ticket().",
@@ -84,9 +113,7 @@
       "objectiveIds": [
         "classes",
         "instantiation",
-        "oop",
-        "types",
-        "pygame-objects"
+        "oop"
       ],
       "task": {
         "en": "Define Ticket and create two distinct instances named first and second.",
@@ -122,20 +149,5 @@
     "en": "Each constructor call creates a new instance, while assignment alone creates another reference.",
     "nl": "Elke constructoraanroep maakt een nieuwe instantie, terwijl alleen toewijzing een andere verwijzing maakt."
   },
-  "inputs": [],
-  "retrievals": [
-    {
-      "id": "recall-python-v4-21-rows",
-      "sourceActivityId": "python-v4-21-rows",
-      "objectiveIds": [
-        "csv",
-        "csv-reader",
-        "csv-quoting"
-      ],
-      "prompt": {
-        "en": "Recall “Read rows and columns with csv.reader”. Why does the data row still have only two columns? Try the earlier example from memory, then check it. Put a quoted comma inside another field and compare with naive splitting.",
-        "nl": "Haal “Lees rijen en kolommen met csv.reader” terug. Waarom heeft de gegevensrij nog steeds maar twee kolommen? Probeer het eerdere voorbeeld uit je geheugen en controleer daarna. Zet een aangehaalde komma in een ander veld en vergelijk met eenvoudig splitsen."
-      }
-    }
-  ]
+  "inputs": []
 }

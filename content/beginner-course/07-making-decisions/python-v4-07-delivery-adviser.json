@@ -65,11 +65,24 @@
       }
     },
     {
-      "id": "python-v4-07-delivery-adviser-experiment",
+      "id": "python-v4-07-delivery-adviser-trace",
       "topicIds": [],
       "heading": {
-        "en": "Try one change",
-        "nl": "Probeer één wijziging"
+        "en": "Check your price table",
+        "nl": "Controleer je prijstabel"
+      },
+      "body": {
+        "en": "Expected costs: 1 kg local → 3.0; 2 kg local → 3.0; 3 kg local → 6.0. For remote, the same weights cost 5.0, 5.0 and 8.0. Example conversation: Weight: 2, then Destination: REMOTE, then output 5.0. All weights here are positive numeric input; recovery comes later.",
+        "nl": "Verwachte prijzen: 1 kg local → 3.0; 2 kg local → 3.0; 3 kg local → 6.0. Voor remote kosten die gewichten 5.0, 5.0 en 8.0. Voorbeeldgesprek: Weight: 2, daarna Destination: REMOTE en uitvoer 5.0. Alle gewichten zijn hier positieve getalinvoer; foutherstel komt later."
+      }
+    },
+    {
+      "id": "python-v4-07-delivery-adviser-experiment",
+      "role": "experiment",
+      "topicIds": [],
+      "heading": {
+        "en": "After completing the task: try one change",
+        "nl": "Na het afronden: probeer één wijziging"
       },
       "body": {
         "en": "Write a six-case test table from the suggested weights and destinations. Check every predicted cost.",
@@ -87,13 +100,7 @@
     {
       "id": "python-v4-07-delivery-adviser-step-1",
       "objectiveIds": [
-        "delivery-project",
-        "input",
-        "conversion",
-        "if",
-        "else",
-        "inclusive-comparisons",
-        "plus-equals"
+        "delivery-project"
       ],
       "task": {
         "en": "Read and store the weight and normalised destination.",
@@ -142,13 +149,7 @@
     {
       "id": "python-v4-07-delivery-adviser-step-2",
       "objectiveIds": [
-        "delivery-project",
-        "input",
-        "conversion",
-        "if",
-        "else",
-        "inclusive-comparisons",
-        "plus-equals"
+        "delivery-project"
       ],
       "task": {
         "en": "Calculate cost from the two rules, then print it.",
@@ -219,15 +220,29 @@
   ],
   "retrievals": [
     {
-      "id": "recall-python-v4-05-trip-report",
-      "sourceActivityId": "python-v4-05-trip-report",
+      "id": "recall-python-v4-03-short-updates",
+      "sourceActivityId": "python-v4-03-short-updates",
       "objectiveIds": [
-        "input-review"
+        "plus-equals",
+        "minus-equals"
       ],
       "prompt": {
-        "en": "Recall “Make an interactive trip report”. Does the shop name need numeric conversion? Try the earlier example from memory, then check it. Try a new destination and a fractional distance. Explain the four stages of the conversation.",
-        "nl": "Haal “Maak een interactief reisverslag” terug. Moet de winkelnaam naar een getal worden omgezet? Probeer het eerdere voorbeeld uit je geheugen en controleer daarna. Probeer een nieuwe bestemming en een afstand met een breukdeel. Leg de vier stappen van het gesprek uit."
-      }
+        "en": "Recall the += and -= shortcuts. What is score after each update? Replace += with =+ temporarily and trace the changed result. Restore += afterward.",
+        "nl": "Herhaal de afkortingen += en -=. Wat is score na elke wijziging? Vervang += tijdelijk door =+ en volg het veranderde resultaat. Herstel daarna +=."
+      },
+      "code": "score = 8\nscore += 3\nscore -= 2\nprint(score)"
+    },
+    {
+      "id": "recall-python-v4-05-float-input",
+      "sourceActivityId": "python-v4-05-float-input",
+      "objectiveIds": [
+        "float-conversion"
+      ],
+      "prompt": {
+        "en": "Recall read a decimal measurement. With answer 2.5, does multiplication preserve the fraction? Enter 2 and then 2.5. Compare the converted types and answers.",
+        "nl": "Herhaal lees een decimale meting. Blijft bij antwoord 2.5 het breukdeel behouden tijdens vermenigvuldigen? Voer 2 in en daarna 2.5. Vergelijk de omgezette typen en antwoorden."
+      },
+      "code": "raw = input(\"Metres: \")\nmetres = float(raw)\nprint(metres * 2)"
     }
   ]
 }

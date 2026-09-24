@@ -56,10 +56,11 @@
     },
     {
       "id": "python-v4-08-why-repeat-experiment",
+      "role": "experiment",
       "topicIds": [],
       "heading": {
-        "en": "Try one change",
-        "nl": "Probeer één wijziging"
+        "en": "After completing the task: try one change",
+        "nl": "Na het afronden: probeer één wijziging"
       },
       "body": {
         "en": "Try limits 0, 1 and 4. Explain why zero repetitions are possible.",
@@ -131,16 +132,28 @@
   "inputs": [],
   "retrievals": [
     {
-      "id": "recall-python-v4-06-boolean-values",
-      "sourceActivityId": "python-v4-06-boolean-values",
+      "id": "recall-python-v4-03-update-a-number",
+      "sourceActivityId": "python-v4-03-update-a-number",
       "objectiveIds": [
-        "boolean-expressions",
-        "boolean-variables"
+        "changing-numbers"
       ],
       "prompt": {
-        "en": "Recall “Two Boolean values”. Do the last two calls report the same type? Try the earlier example from memory, then check it. Assign the string False to finished and inspect its type. Restore the Boolean afterward.",
-        "nl": "Haal “Twee booleaanse waarden” terug. Melden de laatste twee aanroepen hetzelfde type? Probeer het eerdere voorbeeld uit je geheugen en controleer daarna. Wijs de string False aan finished toe en onderzoek het type. Herstel daarna de booleaanse waarde."
-      }
+        "en": "Recall update a number step by step. Which line actually changes points? Try no delivery and no sales. Explain why both printed values match.",
+        "nl": "Herhaal werk een getal stap voor stap bij. Welke regel verandert points werkelijk? Probeer geen levering en geen verkoop. Leg uit waarom beide afgedrukte waarden gelijk zijn."
+      },
+      "code": "points = 5\nprint(points + 2)\nprint(points)\npoints = points + 2\nprint(points)"
+    },
+    {
+      "id": "recall-python-v4-07-first-if",
+      "sourceActivityId": "python-v4-07-first-if",
+      "objectiveIds": [
+        "if"
+      ],
+      "prompt": {
+        "en": "Recall run an instruction only when needed. Which line still prints if door_open becomes False? Change has_ticket to False. An empty output is the correct behaviour in that case.",
+        "nl": "Herhaal voer een instructie alleen uit als dat nodig is. Welke regel verschijnt nog als door_open False wordt? Verander has_ticket in False. Lege uitvoer is in dat geval het juiste gedrag."
+      },
+      "code": "door_open = True\nif door_open:\n    print(\"Come in\")\nprint(\"Check finished\")"
     }
   ]
 }

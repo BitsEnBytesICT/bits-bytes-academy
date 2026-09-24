@@ -161,7 +161,7 @@ export const activities = [
           call(
             "Lamp",
             [],
-            "_return.on is False and _return.toggle() is None and _return.on is True and _return.toggle() is None and _return.on is False",
+            "_return.on is False and (_return.toggle(), _return.on)[1] is True and (_return.toggle(), _return.on)[1] is False",
           ),
         ],
       },
@@ -282,7 +282,7 @@ export const activities = [
           call(
             "Bag",
             [],
-            'Bag.category == "travel" and _return.add("map") is None and _return.items == ["map"] and Bag().items == []',
+            'Bag.category == "travel" and (_return.add("map"), _return.items)[1] == ["map"] and Bag().items == []',
           ),
         ],
       },
@@ -512,12 +512,12 @@ export const activities = [
           call(
             "Pet",
             ["Bo"],
-            '_return.name == "Bo" and _return.energy == 5 and _return.feed() is None and _return.energy == 6 and _return.feed(100) is None and _return.energy == 10 and Pet("Ada").energy == 5',
+            '_return.name == "Bo" and _return.energy == 5 and (_return.feed(), _return.energy)[1] == 6 and (_return.feed(100), _return.energy)[1] == 10 and Pet("Ada").energy == 5',
           ),
           call(
             "Pet",
             ["Bo"],
-            "_return.feed(-3) is None and _return.energy == 5",
+            "(_return.feed(-3), _return.energy)[1] == 5 and (_return.feed(0), _return.energy)[1] == 5",
           ),
         ],
       },
@@ -537,6 +537,11 @@ export const activities = [
             "Pet",
             ["Bo"],
             'repr(_return) == "Pet(Bo, energy=5)" and _return.play() is True and _return.play() is True and _return.energy == 1 and _return.play() is False and _return.energy == 1',
+          ),
+          call(
+            "Pet",
+            ["Ada"],
+            'setattr(_return,"energy",2) is None and _return.play() is True and _return.energy == 0 and _return.play() is False and _return.energy == 0 and repr(_return) == "Pet(Ada, energy=0)"',
           ),
         ],
       },

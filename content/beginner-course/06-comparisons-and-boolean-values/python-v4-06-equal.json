@@ -54,10 +54,11 @@
     },
     {
       "id": "python-v4-06-equal-experiment",
+      "role": "experiment",
       "topicIds": [],
       "heading": {
-        "en": "Try one change",
-        "nl": "Probeer één wijziging"
+        "en": "After completing the task: try one change",
+        "nl": "Na het afronden: probeer één wijziging"
       },
       "body": {
         "en": "Change only the capitalisation of entered. Is string equality case-sensitive?",
@@ -123,15 +124,27 @@
     {
       "id": "python-v4-06-equal-step-2",
       "objectiveIds": [
-        "relational-operators",
-        "equality"
+        "print"
       ],
       "task": {
         "en": "Print the Boolean result.",
         "nl": "Druk het booleaanse resultaat af."
       },
       "check": "_stdout.strip() == str(result)",
-      "probes": [],
+      "probes": [
+        {
+          "inputs": {
+            "entered": "close"
+          },
+          "check": "type(result) is bool and _stdout.strip() == str(entered == expected)"
+        },
+        {
+          "inputs": {
+            "entered": "OPEN"
+          },
+          "check": "type(result) is bool and _stdout.strip() == str(entered == expected)"
+        }
+      ],
       "hint": {
         "en": "= stores a value; == asks whether two values are equal.",
         "nl": "= bewaart een waarde; == vraagt of twee waarden gelijk zijn."
@@ -160,18 +173,5 @@
     "en": "The comparison produces a Boolean value and does not replace either string.",
     "nl": "De vergelijking levert een booleaanse waarde op en vervangt geen van de strings."
   },
-  "inputs": [],
-  "retrievals": [
-    {
-      "id": "recall-python-v4-04-convert-to-text",
-      "sourceActivityId": "python-v4-04-convert-to-text",
-      "objectiveIds": [
-        "str-conversion"
-      ],
-      "prompt": {
-        "en": "Recall “Include a number in text”. Does creating label change the type of count? Try the earlier example from memory, then check it. Try age = 0. Explain why the message still contains a visible zero.",
-        "nl": "Haal “Neem een getal in tekst op” terug. Verandert het maken van label het type van count? Probeer het eerdere voorbeeld uit je geheugen en controleer daarna. Probeer age = 0. Leg uit waarom het bericht nog steeds een zichtbare nul bevat."
-      }
-    }
-  ]
+  "inputs": []
 }

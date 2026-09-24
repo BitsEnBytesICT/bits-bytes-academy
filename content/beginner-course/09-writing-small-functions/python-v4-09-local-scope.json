@@ -51,11 +51,26 @@
       }
     },
     {
-      "id": "python-v4-09-local-scope-experiment",
+      "id": "python-v4-09-local-scope-try-calls",
+      "role": "practice",
       "topicIds": [],
       "heading": {
-        "en": "Try one change",
-        "nl": "Probeer één wijziging"
+        "en": "See your function work",
+        "nl": "Bekijk wat je functie doet"
+      },
+      "body": {
+        "en": "A definition alone produces no output. After writing the function, add these calls underneath it in main.py, without indentation, and Run. Compare the returned values with the task's requirements. The checks also call your function with other inputs; they do not require you to keep these demonstration calls.",
+        "nl": "Een definitie alleen geeft geen uitvoer. Schrijf eerst de functie en voeg daarna deze aanroepen eronder toe in main.py, zonder inspringing. Klik op Uitvoeren. Vergelijk de teruggegeven waarden met de opdracht. De controles roepen je functie ook met andere invoer aan; deze demonstratieaanroepen zijn niet verplicht."
+      },
+      "code": "print(charge(2, 7))\nprint(charge(0, 20))"
+    },
+    {
+      "id": "python-v4-09-local-scope-experiment",
+      "role": "experiment",
+      "topicIds": [],
+      "heading": {
+        "en": "After completing the task: try one change",
+        "nl": "Na het afronden: probeer één wijziging"
       },
       "body": {
         "en": "Change the outer rate to 999. The function result should stay tied to its arguments.",
@@ -140,18 +155,5 @@
     "en": "hourly_rate is local input; rate no longer influences this calculation.",
     "nl": "hourly_rate is lokale invoer; rate beïnvloedt deze berekening niet meer."
   },
-  "inputs": [],
-  "retrievals": [
-    {
-      "id": "recall-python-v4-07-delivery-adviser",
-      "sourceActivityId": "python-v4-07-delivery-adviser",
-      "objectiveIds": [
-        "delivery-project"
-      ],
-      "prompt": {
-        "en": "Recall “Mini project: delivery-price adviser”. Why is the weekend check separate from the price chain? Try the earlier example from memory, then check it. Write a six-case test table from the suggested weights and destinations. Check every predicted cost.",
-        "nl": "Haal “Miniproject: bezorgprijsadviseur” terug. Waarom staat de weekendcontrole los van de prijsketen? Probeer het eerdere voorbeeld uit je geheugen en controleer daarna. Schrijf een testtabel met zes gevallen uit de voorgestelde gewichten en bestemmingen. Controleer elke voorspelde prijs."
-      }
-    }
-  ]
+  "inputs": []
 }

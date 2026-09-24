@@ -452,16 +452,19 @@ export const activities = [
     ],
   }),
   f("early-return", {
-    title: ["Stop a function at a guard", "Stop een functie bij een bewaking"],
+    title: [
+      "Stop a function at a guard",
+      "Stop een functie vroeg bij een speciaal geval",
+    ],
     topics: "early-return",
     requires: "return if none",
     why: [
       "A guard handles a special case before the normal calculation.",
-      "Een bewaking verwerkt een speciaal geval vóór de normale berekening.",
+      "Een controle vooraf verwerkt een speciaal geval vóór de normale berekening.",
     ],
     teach: [
       "return immediately ends the current function call. Statements below that return do not run for that call. A guard can return None when no numeric answer is meaningful. This does not stop the whole program: the caller continues and can decide how to display the absence.",
-      "return beëindigt direct de huidige functieaanroep. Instructies onder die return worden voor die aanroep niet uitgevoerd. Een bewaking kan None teruggeven wanneer geen numeriek antwoord zinvol is. Dit stopt niet het hele programma: de aanroeper gaat verder en kan beslissen hoe afwezigheid wordt getoond.",
+      "return beëindigt direct de huidige functieaanroep. Instructies onder die return worden voor die aanroep niet uitgevoerd. Een controle vooraf kan None teruggeven wanneer geen numeriek antwoord zinvol is. Dit stopt niet het hele programma: de aanroeper gaat verder en kan beslissen hoe afwezigheid wordt getoond.",
     ],
     rule: [
       "Check the invalid case before the operation that needs valid data.",
@@ -486,7 +489,7 @@ export const activities = [
         check: "callable(speed)",
         help: [
           "Add a guard before the division.",
-          "Voeg een bewaking vóór de deling toe.",
+          "Voeg een controle vóór de deling toe.",
         ],
         fragment: "if hours <= 0:",
         probes: [
@@ -502,7 +505,7 @@ export const activities = [
     ],
     explain: [
       "The guard exits before division; valid zero distance still returns numeric zero.",
-      "De bewaking stopt vóór de deling; geldige afstand nul geeft nog steeds numerieke nul terug.",
+      "De controle stopt vóór de deling; geldige afstand nul geeft nog steeds numerieke nul terug.",
     ],
     guidance: "adapt",
   }),
@@ -522,7 +525,7 @@ export const activities = [
     ],
     teach: [
       "Write down the input rules first. For ticket_total(count, price=4), a negative count is invalid and returns None; zero is valid and returns zero; otherwise multiply count by price. The function reads no input and prints nothing. Test the returned value from separate caller code. The example shows the same guard pattern in a different context.",
-      "Schrijf eerst de invoerregels op. Voor ticket_total(count, price=4) is een negatief aantal ongeldig en geeft None; nul is geldig en geeft nul; vermenigvuldig anders count met price. De functie leest geen invoer en drukt niets af. Test de teruggegeven waarde vanuit aparte aanroepcode. Het voorbeeld toont hetzelfde bewakingspatroon in een andere context.",
+      "Schrijf eerst de invoerregels op. Voor ticket_total(count, price=4) is een negatief aantal ongeldig en geeft None; nul is geldig en geeft nul; vermenigvuldig anders count met price. De functie leest geen invoer en drukt niets af. Test de teruggegeven waarde vanuit aparte aanroepcode. Het voorbeeld toont hetzelfde controlespatroon in een andere context.",
     ],
     rule: [
       "A clear function contract names its inputs, output and exceptional cases.",
@@ -547,7 +550,7 @@ export const activities = [
         check: "callable(ticket_total)",
         help: [
           "Separate the invalid-count guard from the normal product.",
-          "Scheid de bewaking voor ongeldige aantallen van het gewone product.",
+          "Scheid de controle voor ongeldige aantallen van het gewone product.",
         ],
         fragment: "if count < 0:",
         probes: [

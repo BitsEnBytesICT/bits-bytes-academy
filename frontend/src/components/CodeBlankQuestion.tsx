@@ -150,7 +150,11 @@ export function CodeBlankQuestion({
                   {results[i] ? "✓ " : "× "}
                   {tr("Blank", "Invulplek")} {i + 1}:{" "}
                 </strong>
-                {blank.reason[language]}
+                {(!results[i] &&
+                  spec.tokens.find((t) => t.id === values[i])?.reason?.[
+                    language
+                  ]) ||
+                  blank.reason[language]}
               </li>
             ))}
           </ol>

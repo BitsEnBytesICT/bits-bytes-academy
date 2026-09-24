@@ -1,0 +1,800 @@
+{
+  "id": "python-v4-15-quiz-r2",
+  "chapter": 15,
+  "group": "python-v4-module-15",
+  "kind": "quiz",
+  "optional": false,
+  "estimatedMinutes": 8,
+  "title": {
+    "en": "Drawing and interacting with Pygame: review",
+    "nl": "Tekenen en interactie met Pygame: herhaling"
+  },
+  "questions": [
+    {
+      "objectiveIds": [
+        "rect"
+      ],
+      "category": "prediction",
+      "prompt": {
+        "en": "What does this program print?",
+        "nl": "Wat drukt dit programma af?"
+      },
+      "code": "import pygame\nbox = pygame.Rect(10,20,30,40)\nprint(box.right,box.bottom)",
+      "answer": "a",
+      "expectedOutput": "40 60\n",
+      "choices": [
+        {
+          "id": "a",
+          "label": {
+            "en": "40 60",
+            "nl": "40 60"
+          },
+          "reason": {
+            "en": "Edges combine the position and dimensions.",
+            "nl": "Randen combineren positie en afmetingen."
+          }
+        },
+        {
+          "id": "b",
+          "label": {
+            "en": "30 40",
+            "nl": "30 40"
+          },
+          "reason": {
+            "en": "Width and height are not right and bottom.",
+            "nl": "Breedte en hoogte zijn niet rechterrand en onderkant."
+          }
+        },
+        {
+          "id": "c",
+          "label": {
+            "en": "10 20",
+            "nl": "10 20"
+          },
+          "reason": {
+            "en": "Those are the top-left coordinates.",
+            "nl": "Dat zijn de linkerbovencoördinaten."
+          }
+        }
+      ],
+      "id": "python-v4-15-quiz-r2-a-1",
+      "reviewActivityIds": [
+        "python-v4-15-coordinates"
+      ]
+    },
+    {
+      "objectiveIds": [
+        "module-scope"
+      ],
+      "category": "prediction",
+      "prompt": {
+        "en": "What does this program print?",
+        "nl": "Wat drukt dit programma af?"
+      },
+      "code": "import math as geometry\nprint(geometry.floor(1.2))",
+      "answer": "a",
+      "expectedOutput": "1\n",
+      "choices": [
+        {
+          "id": "a",
+          "label": {
+            "en": "1",
+            "nl": "1"
+          },
+          "reason": {
+            "en": "The alias names the module; floor rounds toward negative infinity.",
+            "nl": "De alias benoemt de module; floor rondt af richting min oneindig."
+          }
+        },
+        {
+          "id": "b",
+          "label": {
+            "en": "0",
+            "nl": "0"
+          },
+          "reason": {
+            "en": "The alias names the module; floor rounds toward negative infinity.",
+            "nl": "De alias benoemt de module; floor rondt af richting min oneindig."
+          }
+        },
+        {
+          "id": "c",
+          "label": {
+            "en": "2",
+            "nl": "2"
+          },
+          "reason": {
+            "en": "The alias names the module; floor rounds toward negative infinity.",
+            "nl": "De alias benoemt de module; floor rondt af richting min oneindig."
+          }
+        }
+      ],
+      "id": "python-v4-15-quiz-r2-a-2",
+      "reviewActivityIds": [
+        "python-v4-14-helper-files"
+      ]
+    },
+    {
+      "objectiveIds": [
+        "surface"
+      ],
+      "category": "completion",
+      "prompt": {
+        "en": "Complete the code to produce the shown output.",
+        "nl": "Vul de code aan om de getoonde uitvoer te maken."
+      },
+      "code": "import pygame\nimage = pygame.Surface((10,10))\nimage.___((20,40,80))\nprint(image.get_at((0,0))[2])",
+      "answer": "a",
+      "choices": [
+        {
+          "id": "a",
+          "label": {
+            "en": "fill",
+            "nl": "fill"
+          },
+          "reason": {
+            "en": "fill paints the Surface; append belongs to lists.",
+            "nl": "fill kleurt de Surface; append hoort bij lijsten."
+          }
+        },
+        {
+          "id": "b",
+          "label": {
+            "en": "print",
+            "nl": "print"
+          },
+          "reason": {
+            "en": "Using print here produces AttributeError. fill paints the Surface; append belongs to lists.",
+            "nl": "Met print ontstaat hier AttributeError. fill kleurt de Surface; append hoort bij lijsten."
+          }
+        },
+        {
+          "id": "c",
+          "label": {
+            "en": "append",
+            "nl": "append"
+          },
+          "reason": {
+            "en": "Using append here produces AttributeError. fill paints the Surface; append belongs to lists.",
+            "nl": "Met append ontstaat hier AttributeError. fill kleurt de Surface; append hoort bij lijsten."
+          }
+        }
+      ],
+      "codeBlank": {
+        "prompt": {
+          "en": "Complete the code to produce the shown output.",
+          "nl": "Vul de code aan om de getoonde uitvoer te maken."
+        },
+        "segments": [
+          "import pygame\nimage = pygame.Surface((10,10))\nimage.",
+          "((20,40,80))\nprint(image.get_at((0,0))[2])"
+        ],
+        "tokens": [
+          {
+            "id": "token-1",
+            "code": "fill"
+          },
+          {
+            "id": "token-2",
+            "code": "print",
+            "reason": {
+              "en": "Using print here produces AttributeError. fill paints the Surface; append belongs to lists.",
+              "nl": "Met print ontstaat hier AttributeError. fill kleurt de Surface; append hoort bij lijsten."
+            }
+          },
+          {
+            "id": "token-3",
+            "code": "append",
+            "reason": {
+              "en": "Using append here produces AttributeError. fill paints the Surface; append belongs to lists.",
+              "nl": "Met append ontstaat hier AttributeError. fill kleurt de Surface; append hoort bij lijsten."
+            }
+          }
+        ],
+        "blanks": [
+          {
+            "answer": "fill",
+            "reason": {
+              "en": "fill paints the Surface; append belongs to lists.",
+              "nl": "fill kleurt de Surface; append hoort bij lijsten."
+            }
+          }
+        ],
+        "output": "80\n"
+      },
+      "id": "python-v4-15-quiz-r2-a-3",
+      "reviewActivityIds": [
+        "python-v4-15-surface-colour"
+      ]
+    },
+    {
+      "objectiveIds": [
+        "selected-imports"
+      ],
+      "category": "completion",
+      "prompt": {
+        "en": "Complete the code to produce the shown output.",
+        "nl": "Vul de code aan om de getoonde uitvoer te maken."
+      },
+      "code": "from math import floor\nprint(___(2.7))",
+      "answer": "a",
+      "choices": [
+        {
+          "id": "a",
+          "label": {
+            "en": "floor",
+            "nl": "floor"
+          },
+          "reason": {
+            "en": "Follow the operation and its input type, then compare the exact result shown.",
+            "nl": "Volg de bewerking en het invoertype en vergelijk daarna het precieze getoonde resultaat."
+          }
+        },
+        {
+          "id": "b",
+          "label": {
+            "en": "math.floor",
+            "nl": "math.floor"
+          },
+          "reason": {
+            "en": "Using math.floor here produces NameError. Follow the operation and its input type, then compare the exact result shown.",
+            "nl": "Met math.floor ontstaat hier NameError. Volg de bewerking en het invoertype en vergelijk daarna het precieze getoonde resultaat."
+          }
+        },
+        {
+          "id": "c",
+          "label": {
+            "en": "floor.floor",
+            "nl": "floor.floor"
+          },
+          "reason": {
+            "en": "Using floor.floor here produces AttributeError. Follow the operation and its input type, then compare the exact result shown.",
+            "nl": "Met floor.floor ontstaat hier AttributeError. Volg de bewerking en het invoertype en vergelijk daarna het precieze getoonde resultaat."
+          }
+        }
+      ],
+      "codeBlank": {
+        "prompt": {
+          "en": "Complete the code to produce the shown output.",
+          "nl": "Vul de code aan om de getoonde uitvoer te maken."
+        },
+        "segments": [
+          "from math import floor\nprint(",
+          "(2.7))"
+        ],
+        "tokens": [
+          {
+            "id": "token-1",
+            "code": "floor"
+          },
+          {
+            "id": "token-2",
+            "code": "math.floor",
+            "reason": {
+              "en": "Using math.floor here produces NameError. Follow the operation and its input type, then compare the exact result shown.",
+              "nl": "Met math.floor ontstaat hier NameError. Volg de bewerking en het invoertype en vergelijk daarna het precieze getoonde resultaat."
+            }
+          },
+          {
+            "id": "token-3",
+            "code": "floor.floor",
+            "reason": {
+              "en": "Using floor.floor here produces AttributeError. Follow the operation and its input type, then compare the exact result shown.",
+              "nl": "Met floor.floor ontstaat hier AttributeError. Volg de bewerking en het invoertype en vergelijk daarna het precieze getoonde resultaat."
+            }
+          }
+        ],
+        "blanks": [
+          {
+            "answer": "floor",
+            "reason": {
+              "en": "Follow the operation and its input type, then compare the exact result shown.",
+              "nl": "Volg de bewerking en het invoertype en vergelijk daarna het precieze getoonde resultaat."
+            }
+          }
+        ],
+        "output": "2\n"
+      },
+      "id": "python-v4-15-quiz-r2-a-4",
+      "reviewActivityIds": [
+        "python-v4-14-selected-and-alias"
+      ]
+    },
+    {
+      "objectiveIds": [
+        "drawing-order"
+      ],
+      "category": "debugging",
+      "prompt": {
+        "en": "Choose the repair or test that addresses the stated problem.",
+        "nl": "Kies de reparatie of test die het beschreven probleem aanpakt."
+      },
+      "code": "# Paddle should be visible.\npygame.draw.rect(screen,(255,255,255),(20,20,10,60))\nscreen.fill((0,0,0))",
+      "answer": "a",
+      "choices": [
+        {
+          "id": "a",
+          "label": {
+            "en": "Fill before drawing the paddle.",
+            "nl": "Vul vóór het batje tekenen."
+          },
+          "reason": {
+            "en": "The later fill currently covers the paddle.",
+            "nl": "De latere fill bedekt nu het batje."
+          }
+        },
+        {
+          "id": "b",
+          "label": {
+            "en": "Make the paddle colour black.",
+            "nl": "Maak het batje zwart."
+          },
+          "reason": {
+            "en": "That makes it blend into the background.",
+            "nl": "Daardoor valt het samen met de achtergrond."
+          }
+        },
+        {
+          "id": "c",
+          "label": {
+            "en": "Call fill twice afterward.",
+            "nl": "Roep fill daarna tweemaal aan."
+          },
+          "reason": {
+            "en": "More background painting still covers it.",
+            "nl": "Meer achtergrond tekenen blijft het bedekken."
+          }
+        }
+      ],
+      "id": "python-v4-15-quiz-r2-a-5",
+      "reviewActivityIds": [
+        "python-v4-15-drawing-order"
+      ]
+    },
+    {
+      "objectiveIds": [
+        "events"
+      ],
+      "category": "application",
+      "prompt": {
+        "en": "Which explanation applies to this example?",
+        "nl": "Welke uitleg past bij dit voorbeeld?"
+      },
+      "code": "if event.type == pygame.KEYDOWN:\n    print(event.key) # 20",
+      "answer": "a",
+      "choices": [
+        {
+          "id": "a",
+          "label": {
+            "en": "The type check ensures this is a keyboard event before reading key.",
+            "nl": "De typecontrole zorgt dat dit een toetsenbordgebeurtenis is vóór key lezen."
+          },
+          "reason": {
+            "en": "Not all events have a key attribute.",
+            "nl": "Niet alle gebeurtenissen hebben een key-attribuut."
+          }
+        },
+        {
+          "id": "b",
+          "label": {
+            "en": "Every event always has key.",
+            "nl": "Elke gebeurtenis heeft altijd key."
+          },
+          "reason": {
+            "en": "Window events can have different attributes.",
+            "nl": "Venstergebeurtenissen kunnen andere attributen hebben."
+          }
+        },
+        {
+          "id": "c",
+          "label": {
+            "en": "The check installs keyboard support.",
+            "nl": "De controle installeert toetsenbordondersteuning."
+          },
+          "reason": {
+            "en": "It selects an event branch; it installs nothing.",
+            "nl": "Het kiest een gebeurtenistak en installeert niets."
+          }
+        }
+      ],
+      "id": "python-v4-15-quiz-r2-a-6",
+      "reviewActivityIds": [
+        "python-v4-15-events"
+      ]
+    }
+  ],
+  "alternateQuestions": [
+    {
+      "objectiveIds": [
+        "rect"
+      ],
+      "category": "prediction",
+      "prompt": {
+        "en": "What does this program print?",
+        "nl": "Wat drukt dit programma af?"
+      },
+      "code": "import pygame\nbox = pygame.Rect(10,30,30,40)\nprint(box.right,box.bottom)",
+      "answer": "a",
+      "expectedOutput": "40 70\n",
+      "choices": [
+        {
+          "id": "a",
+          "label": {
+            "en": "40 70",
+            "nl": "40 70"
+          },
+          "reason": {
+            "en": "Edges combine the position and dimensions.",
+            "nl": "Randen combineren positie en afmetingen."
+          }
+        },
+        {
+          "id": "b",
+          "label": {
+            "en": "30 40",
+            "nl": "30 40"
+          },
+          "reason": {
+            "en": "Width and height are not right and bottom.",
+            "nl": "Breedte en hoogte zijn niet rechterrand en onderkant."
+          }
+        },
+        {
+          "id": "c",
+          "label": {
+            "en": "10 30",
+            "nl": "10 30"
+          },
+          "reason": {
+            "en": "Those are the top-left coordinates.",
+            "nl": "Dat zijn de linkerbovencoördinaten."
+          }
+        }
+      ],
+      "id": "python-v4-15-quiz-r2-b-1",
+      "reviewActivityIds": [
+        "python-v4-15-coordinates"
+      ]
+    },
+    {
+      "objectiveIds": [
+        "module-scope"
+      ],
+      "category": "prediction",
+      "prompt": {
+        "en": "What does this program print?",
+        "nl": "Wat drukt dit programma af?"
+      },
+      "code": "import math as geometry\nprint(geometry.floor(-1.2))",
+      "answer": "a",
+      "expectedOutput": "-2\n",
+      "choices": [
+        {
+          "id": "a",
+          "label": {
+            "en": "-2",
+            "nl": "-2"
+          },
+          "reason": {
+            "en": "The alias names the module; floor rounds toward negative infinity.",
+            "nl": "De alias benoemt de module; floor rondt af richting min oneindig."
+          }
+        },
+        {
+          "id": "b",
+          "label": {
+            "en": "0",
+            "nl": "0"
+          },
+          "reason": {
+            "en": "The alias names the module; floor rounds toward negative infinity.",
+            "nl": "De alias benoemt de module; floor rondt af richting min oneindig."
+          }
+        },
+        {
+          "id": "c",
+          "label": {
+            "en": "-1",
+            "nl": "-1"
+          },
+          "reason": {
+            "en": "The alias names the module; floor rounds toward negative infinity.",
+            "nl": "De alias benoemt de module; floor rondt af richting min oneindig."
+          }
+        }
+      ],
+      "id": "python-v4-15-quiz-r2-b-2",
+      "reviewActivityIds": [
+        "python-v4-14-helper-files"
+      ]
+    },
+    {
+      "objectiveIds": [
+        "surface"
+      ],
+      "category": "completion",
+      "prompt": {
+        "en": "Complete the code to produce the shown output.",
+        "nl": "Vul de code aan om de getoonde uitvoer te maken."
+      },
+      "code": "import pygame\nimage = pygame.Surface((10,10))\nimage.___((20,40,120))\nprint(image.get_at((0,0))[2])",
+      "answer": "a",
+      "choices": [
+        {
+          "id": "a",
+          "label": {
+            "en": "fill",
+            "nl": "fill"
+          },
+          "reason": {
+            "en": "fill paints the Surface; append belongs to lists.",
+            "nl": "fill kleurt de Surface; append hoort bij lijsten."
+          }
+        },
+        {
+          "id": "b",
+          "label": {
+            "en": "print",
+            "nl": "print"
+          },
+          "reason": {
+            "en": "Using print here produces AttributeError. fill paints the Surface; append belongs to lists.",
+            "nl": "Met print ontstaat hier AttributeError. fill kleurt de Surface; append hoort bij lijsten."
+          }
+        },
+        {
+          "id": "c",
+          "label": {
+            "en": "append",
+            "nl": "append"
+          },
+          "reason": {
+            "en": "Using append here produces AttributeError. fill paints the Surface; append belongs to lists.",
+            "nl": "Met append ontstaat hier AttributeError. fill kleurt de Surface; append hoort bij lijsten."
+          }
+        }
+      ],
+      "codeBlank": {
+        "prompt": {
+          "en": "Complete the code to produce the shown output.",
+          "nl": "Vul de code aan om de getoonde uitvoer te maken."
+        },
+        "segments": [
+          "import pygame\nimage = pygame.Surface((10,10))\nimage.",
+          "((20,40,120))\nprint(image.get_at((0,0))[2])"
+        ],
+        "tokens": [
+          {
+            "id": "token-1",
+            "code": "fill"
+          },
+          {
+            "id": "token-2",
+            "code": "print",
+            "reason": {
+              "en": "Using print here produces AttributeError. fill paints the Surface; append belongs to lists.",
+              "nl": "Met print ontstaat hier AttributeError. fill kleurt de Surface; append hoort bij lijsten."
+            }
+          },
+          {
+            "id": "token-3",
+            "code": "append",
+            "reason": {
+              "en": "Using append here produces AttributeError. fill paints the Surface; append belongs to lists.",
+              "nl": "Met append ontstaat hier AttributeError. fill kleurt de Surface; append hoort bij lijsten."
+            }
+          }
+        ],
+        "blanks": [
+          {
+            "answer": "fill",
+            "reason": {
+              "en": "fill paints the Surface; append belongs to lists.",
+              "nl": "fill kleurt de Surface; append hoort bij lijsten."
+            }
+          }
+        ],
+        "output": "120\n"
+      },
+      "id": "python-v4-15-quiz-r2-b-3",
+      "reviewActivityIds": [
+        "python-v4-15-surface-colour"
+      ]
+    },
+    {
+      "objectiveIds": [
+        "selected-imports"
+      ],
+      "category": "completion",
+      "prompt": {
+        "en": "Complete the code to produce the shown output.",
+        "nl": "Vul de code aan om de getoonde uitvoer te maken."
+      },
+      "code": "from math import floor\nprint(___(2.7))",
+      "answer": "a",
+      "choices": [
+        {
+          "id": "a",
+          "label": {
+            "en": "floor",
+            "nl": "floor"
+          },
+          "reason": {
+            "en": "Follow the operation and its input type, then compare the exact result shown.",
+            "nl": "Volg de bewerking en het invoertype en vergelijk daarna het precieze getoonde resultaat."
+          }
+        },
+        {
+          "id": "b",
+          "label": {
+            "en": "math.floor",
+            "nl": "math.floor"
+          },
+          "reason": {
+            "en": "Using math.floor here produces NameError. Follow the operation and its input type, then compare the exact result shown.",
+            "nl": "Met math.floor ontstaat hier NameError. Volg de bewerking en het invoertype en vergelijk daarna het precieze getoonde resultaat."
+          }
+        },
+        {
+          "id": "c",
+          "label": {
+            "en": "floor.floor",
+            "nl": "floor.floor"
+          },
+          "reason": {
+            "en": "Using floor.floor here produces AttributeError. Follow the operation and its input type, then compare the exact result shown.",
+            "nl": "Met floor.floor ontstaat hier AttributeError. Volg de bewerking en het invoertype en vergelijk daarna het precieze getoonde resultaat."
+          }
+        }
+      ],
+      "codeBlank": {
+        "prompt": {
+          "en": "Complete the code to produce the shown output.",
+          "nl": "Vul de code aan om de getoonde uitvoer te maken."
+        },
+        "segments": [
+          "from math import floor\nprint(",
+          "(2.7))"
+        ],
+        "tokens": [
+          {
+            "id": "token-1",
+            "code": "floor"
+          },
+          {
+            "id": "token-2",
+            "code": "math.floor",
+            "reason": {
+              "en": "Using math.floor here produces NameError. Follow the operation and its input type, then compare the exact result shown.",
+              "nl": "Met math.floor ontstaat hier NameError. Volg de bewerking en het invoertype en vergelijk daarna het precieze getoonde resultaat."
+            }
+          },
+          {
+            "id": "token-3",
+            "code": "floor.floor",
+            "reason": {
+              "en": "Using floor.floor here produces AttributeError. Follow the operation and its input type, then compare the exact result shown.",
+              "nl": "Met floor.floor ontstaat hier AttributeError. Volg de bewerking en het invoertype en vergelijk daarna het precieze getoonde resultaat."
+            }
+          }
+        ],
+        "blanks": [
+          {
+            "answer": "floor",
+            "reason": {
+              "en": "Follow the operation and its input type, then compare the exact result shown.",
+              "nl": "Volg de bewerking en het invoertype en vergelijk daarna het precieze getoonde resultaat."
+            }
+          }
+        ],
+        "output": "2\n"
+      },
+      "id": "python-v4-15-quiz-r2-b-4",
+      "reviewActivityIds": [
+        "python-v4-14-selected-and-alias"
+      ]
+    },
+    {
+      "objectiveIds": [
+        "drawing-order"
+      ],
+      "category": "debugging",
+      "prompt": {
+        "en": "Choose the repair or test that addresses the stated problem.",
+        "nl": "Kies de reparatie of test die het beschreven probleem aanpakt."
+      },
+      "code": "# Paddle should be visible.\npygame.draw.rect(screen,(255,255,255),(20,30,10,60))\nscreen.fill((0,0,0))",
+      "answer": "a",
+      "choices": [
+        {
+          "id": "a",
+          "label": {
+            "en": "Fill before drawing the paddle.",
+            "nl": "Vul vóór het batje tekenen."
+          },
+          "reason": {
+            "en": "The later fill currently covers the paddle.",
+            "nl": "De latere fill bedekt nu het batje."
+          }
+        },
+        {
+          "id": "b",
+          "label": {
+            "en": "Make the paddle colour black.",
+            "nl": "Maak het batje zwart."
+          },
+          "reason": {
+            "en": "That makes it blend into the background.",
+            "nl": "Daardoor valt het samen met de achtergrond."
+          }
+        },
+        {
+          "id": "c",
+          "label": {
+            "en": "Call fill twice afterward.",
+            "nl": "Roep fill daarna tweemaal aan."
+          },
+          "reason": {
+            "en": "More background painting still covers it.",
+            "nl": "Meer achtergrond tekenen blijft het bedekken."
+          }
+        }
+      ],
+      "id": "python-v4-15-quiz-r2-b-5",
+      "reviewActivityIds": [
+        "python-v4-15-drawing-order"
+      ]
+    },
+    {
+      "objectiveIds": [
+        "events"
+      ],
+      "category": "application",
+      "prompt": {
+        "en": "A mouse event reaches this branch. Which change safely handles keyboard input?",
+        "nl": "Een muisgebeurtenis bereikt deze tak. Welke wijziging verwerkt toetsenbordinvoer veilig?"
+      },
+      "code": "if event.type == pygame.MOUSEMOTION:\n    print(event.key)",
+      "answer": "a",
+      "choices": [
+        {
+          "id": "a",
+          "label": {
+            "en": "Check for KEYDOWN before reading key.",
+            "nl": "Controleer KEYDOWN vóór je key leest."
+          },
+          "reason": {
+            "en": "A mouse-motion event does not carry a keyboard key attribute.",
+            "nl": "Een muisbewegingsgebeurtenis heeft geen toetsenbordattribuut key."
+          }
+        },
+        {
+          "id": "b",
+          "label": {
+            "en": "Remove the type check.",
+            "nl": "Verwijder de typecontrole."
+          },
+          "reason": {
+            "en": "Then even more non-keyboard events reach the unsafe access.",
+            "nl": "Dan bereiken nog meer niet-toetsenbordgebeurtenissen de onveilige toegang."
+          }
+        },
+        {
+          "id": "c",
+          "label": {
+            "en": "Call str(event.key).",
+            "nl": "Roep str(event.key) aan."
+          },
+          "reason": {
+            "en": "The attribute must exist before its value can be converted.",
+            "nl": "Het attribuut moet bestaan vóór zijn waarde kan worden omgezet."
+          }
+        }
+      ],
+      "id": "python-v4-15-quiz-r2-b-6",
+      "reviewActivityIds": [
+        "python-v4-15-events"
+      ]
+    }
+  ]
+}

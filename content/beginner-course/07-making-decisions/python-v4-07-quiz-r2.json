@@ -1,0 +1,800 @@
+{
+  "id": "python-v4-07-quiz-r2",
+  "chapter": 7,
+  "group": "python-v4-module-7",
+  "kind": "quiz",
+  "optional": false,
+  "estimatedMinutes": 8,
+  "title": {
+    "en": "Making decisions: review",
+    "nl": "Beslissingen nemen: herhaling"
+  },
+  "questions": [
+    {
+      "objectiveIds": [
+        "elif"
+      ],
+      "category": "prediction",
+      "prompt": {
+        "en": "What does this program print?",
+        "nl": "Wat drukt dit programma af?"
+      },
+      "code": "score = 6\nif score >= 6:\n    print(\"Pass\")\nelif score >= 0:\n    print(\"Try\")",
+      "answer": "a",
+      "expectedOutput": "Pass\n",
+      "choices": [
+        {
+          "id": "a",
+          "label": {
+            "en": "Pass",
+            "nl": "Pass"
+          },
+          "reason": {
+            "en": "The first matching branch runs alone.",
+            "nl": "Alleen de eerste passende tak draait."
+          }
+        },
+        {
+          "id": "b",
+          "label": {
+            "en": "Pass\nTry",
+            "nl": "Pass\nTry"
+          },
+          "reason": {
+            "en": "elif is skipped after a match.",
+            "nl": "elif wordt na een overeenkomst overgeslagen."
+          }
+        },
+        {
+          "id": "c",
+          "label": {
+            "en": "Try",
+            "nl": "Try"
+          },
+          "reason": {
+            "en": "The equality boundary meets >=.",
+            "nl": "De gelijkheidsgrens voldoet aan >=."
+          }
+        }
+      ],
+      "id": "python-v4-07-quiz-r2-a-1",
+      "reviewActivityIds": [
+        "python-v4-07-elif"
+      ]
+    },
+    {
+      "objectiveIds": [
+        "and"
+      ],
+      "category": "prediction",
+      "prompt": {
+        "en": "What does this program print?",
+        "nl": "Wat drukt dit programma af?"
+      },
+      "code": "age = 13\nallowed = age >= 12 and age < 13\nprint(allowed)",
+      "answer": "a",
+      "expectedOutput": "False\n",
+      "choices": [
+        {
+          "id": "a",
+          "label": {
+            "en": "False",
+            "nl": "False"
+          },
+          "reason": {
+            "en": "Both comparisons must hold, including the strict upper boundary.",
+            "nl": "Beide vergelijkingen moeten kloppen, inclusief de strikte bovengrens."
+          }
+        },
+        {
+          "id": "b",
+          "label": {
+            "en": "True",
+            "nl": "True"
+          },
+          "reason": {
+            "en": "Both comparisons must hold, including the strict upper boundary.",
+            "nl": "Beide vergelijkingen moeten kloppen, inclusief de strikte bovengrens."
+          }
+        },
+        {
+          "id": "c",
+          "label": {
+            "en": "12",
+            "nl": "12"
+          },
+          "reason": {
+            "en": "Both comparisons must hold, including the strict upper boundary.",
+            "nl": "Beide vergelijkingen moeten kloppen, inclusief de strikte bovengrens."
+          }
+        }
+      ],
+      "id": "python-v4-07-quiz-r2-a-2",
+      "reviewActivityIds": [
+        "python-v4-06-and"
+      ]
+    },
+    {
+      "objectiveIds": [
+        "else"
+      ],
+      "category": "completion",
+      "prompt": {
+        "en": "Complete the code to produce the shown output.",
+        "nl": "Vul de code aan om de getoonde uitvoer te maken."
+      },
+      "code": "age = 5\nif age >= 6:\n    print(\"Allowed\")\n___:\n    print(\"Wait\")",
+      "answer": "a",
+      "choices": [
+        {
+          "id": "a",
+          "label": {
+            "en": "else",
+            "nl": "else"
+          },
+          "reason": {
+            "en": "else needs no condition and covers the failed if.",
+            "nl": "else heeft geen voorwaarde nodig en verwerkt de onware if."
+          }
+        },
+        {
+          "id": "b",
+          "label": {
+            "en": "elif",
+            "nl": "elif"
+          },
+          "reason": {
+            "en": "Using elif here produces SyntaxError. else needs no condition and covers the failed if.",
+            "nl": "Met elif ontstaat hier SyntaxError. else heeft geen voorwaarde nodig en verwerkt de onware if."
+          }
+        },
+        {
+          "id": "c",
+          "label": {
+            "en": "if",
+            "nl": "if"
+          },
+          "reason": {
+            "en": "Using if here produces SyntaxError. else needs no condition and covers the failed if.",
+            "nl": "Met if ontstaat hier SyntaxError. else heeft geen voorwaarde nodig en verwerkt de onware if."
+          }
+        }
+      ],
+      "codeBlank": {
+        "prompt": {
+          "en": "Complete the code to produce the shown output.",
+          "nl": "Vul de code aan om de getoonde uitvoer te maken."
+        },
+        "segments": [
+          "age = 5\nif age >= 6:\n    print(\"Allowed\")\n",
+          ":\n    print(\"Wait\")"
+        ],
+        "tokens": [
+          {
+            "id": "token-1",
+            "code": "else"
+          },
+          {
+            "id": "token-2",
+            "code": "elif",
+            "reason": {
+              "en": "Using elif here produces SyntaxError. else needs no condition and covers the failed if.",
+              "nl": "Met elif ontstaat hier SyntaxError. else heeft geen voorwaarde nodig en verwerkt de onware if."
+            }
+          },
+          {
+            "id": "token-3",
+            "code": "if",
+            "reason": {
+              "en": "Using if here produces SyntaxError. else needs no condition and covers the failed if.",
+              "nl": "Met if ontstaat hier SyntaxError. else heeft geen voorwaarde nodig en verwerkt de onware if."
+            }
+          }
+        ],
+        "blanks": [
+          {
+            "answer": "else",
+            "reason": {
+              "en": "else needs no condition and covers the failed if.",
+              "nl": "else heeft geen voorwaarde nodig en verwerkt de onware if."
+            }
+          }
+        ],
+        "output": "Wait\n"
+      },
+      "id": "python-v4-07-quiz-r2-a-3",
+      "reviewActivityIds": [
+        "python-v4-07-else"
+      ]
+    },
+    {
+      "objectiveIds": [
+        "not"
+      ],
+      "category": "completion",
+      "prompt": {
+        "en": "Complete the code to produce the shown output.",
+        "nl": "Vul de code aan om de getoonde uitvoer te maken."
+      },
+      "code": "closed = False\nprint(___ closed)",
+      "answer": "a",
+      "choices": [
+        {
+          "id": "a",
+          "label": {
+            "en": "not",
+            "nl": "not"
+          },
+          "reason": {
+            "en": "Follow the operation and its input type, then compare the exact result shown.",
+            "nl": "Volg de bewerking en het invoertype en vergelijk daarna het precieze getoonde resultaat."
+          }
+        },
+        {
+          "id": "b",
+          "label": {
+            "en": "bool",
+            "nl": "bool"
+          },
+          "reason": {
+            "en": "Using bool here produces SyntaxError. Follow the operation and its input type, then compare the exact result shown.",
+            "nl": "Met bool ontstaat hier SyntaxError. Volg de bewerking en het invoertype en vergelijk daarna het precieze getoonde resultaat."
+          }
+        },
+        {
+          "id": "c",
+          "label": {
+            "en": "and",
+            "nl": "and"
+          },
+          "reason": {
+            "en": "Using and here produces SyntaxError. Follow the operation and its input type, then compare the exact result shown.",
+            "nl": "Met and ontstaat hier SyntaxError. Volg de bewerking en het invoertype en vergelijk daarna het precieze getoonde resultaat."
+          }
+        }
+      ],
+      "codeBlank": {
+        "prompt": {
+          "en": "Complete the code to produce the shown output.",
+          "nl": "Vul de code aan om de getoonde uitvoer te maken."
+        },
+        "segments": [
+          "closed = False\nprint(",
+          " closed)"
+        ],
+        "tokens": [
+          {
+            "id": "token-1",
+            "code": "not"
+          },
+          {
+            "id": "token-2",
+            "code": "bool",
+            "reason": {
+              "en": "Using bool here produces SyntaxError. Follow the operation and its input type, then compare the exact result shown.",
+              "nl": "Met bool ontstaat hier SyntaxError. Volg de bewerking en het invoertype en vergelijk daarna het precieze getoonde resultaat."
+            }
+          },
+          {
+            "id": "token-3",
+            "code": "and",
+            "reason": {
+              "en": "Using and here produces SyntaxError. Follow the operation and its input type, then compare the exact result shown.",
+              "nl": "Met and ontstaat hier SyntaxError. Volg de bewerking en het invoertype en vergelijk daarna het precieze getoonde resultaat."
+            }
+          }
+        ],
+        "blanks": [
+          {
+            "answer": "not",
+            "reason": {
+              "en": "Follow the operation and its input type, then compare the exact result shown.",
+              "nl": "Volg de bewerking en het invoertype en vergelijk daarna het precieze getoonde resultaat."
+            }
+          }
+        ],
+        "output": "True\n"
+      },
+      "id": "python-v4-07-quiz-r2-a-4",
+      "reviewActivityIds": [
+        "python-v4-06-not"
+      ]
+    },
+    {
+      "objectiveIds": [
+        "branch-order"
+      ],
+      "category": "debugging",
+      "prompt": {
+        "en": "Choose the repair or test that addresses the stated problem.",
+        "nl": "Kies de reparatie of test die het beschreven probleem aanpakt."
+      },
+      "code": "# Need one label.\nscore = 6\nif score >= 0:\n    print(\"Some\")\nif score >= 6:\n    print(\"High\")",
+      "answer": "a",
+      "choices": [
+        {
+          "id": "a",
+          "label": {
+            "en": "Test High first and make Some an elif alternative.",
+            "nl": "Test High eerst en maak Some een elif-alternatief."
+          },
+          "reason": {
+            "en": "This selects the most specific matching category once.",
+            "nl": "Dit kiest de specifiekste passende categorie eenmaal."
+          }
+        },
+        {
+          "id": "b",
+          "label": {
+            "en": "Indent both prints further.",
+            "nl": "Laat beide prints verder inspringen."
+          },
+          "reason": {
+            "en": "Whitespace alone does not connect separate if statements.",
+            "nl": "Alleen witruimte verbindt aparte if-instructies niet."
+          }
+        },
+        {
+          "id": "c",
+          "label": {
+            "en": "Use == for both comparisons.",
+            "nl": "Gebruik == voor beide vergelijkingen."
+          },
+          "reason": {
+            "en": "That changes the threshold rules instead of fixing alternatives.",
+            "nl": "Dat verandert de grensregels in plaats van alternatieven te herstellen."
+          }
+        }
+      ],
+      "id": "python-v4-07-quiz-r2-a-5",
+      "reviewActivityIds": [
+        "python-v4-07-separate-or-chain"
+      ]
+    },
+    {
+      "objectiveIds": [
+        "inclusive-comparisons"
+      ],
+      "category": "application",
+      "prompt": {
+        "en": "Which statement or test fits this example?",
+        "nl": "Welke uitspraak of test past bij dit voorbeeld?"
+      },
+      "code": "if weight <= 6:\n    price = 3\nelse:\n    price = 6",
+      "answer": "a",
+      "choices": [
+        {
+          "id": "a",
+          "label": {
+            "en": "Test 5, 6 and 7.",
+            "nl": "Test 5, 6 en 7."
+          },
+          "reason": {
+            "en": "These cases surround and include the boundary.",
+            "nl": "Deze gevallen omringen en omvatten de grens."
+          }
+        },
+        {
+          "id": "b",
+          "label": {
+            "en": "Test only a very small weight.",
+            "nl": "Test alleen een heel klein gewicht."
+          },
+          "reason": {
+            "en": "That does not exercise the boundary or else.",
+            "nl": "Dat oefent de grens of else niet."
+          }
+        },
+        {
+          "id": "c",
+          "label": {
+            "en": "Test the same weight three times.",
+            "nl": "Test hetzelfde gewicht driemaal."
+          },
+          "reason": {
+            "en": "Repetition does not cover another branch.",
+            "nl": "Herhaling dekt geen andere tak."
+          }
+        }
+      ],
+      "id": "python-v4-07-quiz-r2-a-6",
+      "reviewActivityIds": [
+        "python-v4-06-inclusive-boundaries"
+      ]
+    }
+  ],
+  "alternateQuestions": [
+    {
+      "objectiveIds": [
+        "elif"
+      ],
+      "category": "prediction",
+      "prompt": {
+        "en": "What does this program print?",
+        "nl": "Wat drukt dit programma af?"
+      },
+      "code": "age = 12\nif age < 12:\n    print(\"Child\")\nelif age == 12:\n    print(\"Boundary\")\nelse:\n    print(\"Older\")",
+      "answer": "a",
+      "expectedOutput": "Boundary\n",
+      "choices": [
+        {
+          "id": "a",
+          "label": {
+            "en": "Boundary",
+            "nl": "Boundary"
+          },
+          "reason": {
+            "en": "The strict first comparison excludes 12; equality selects the second branch.",
+            "nl": "De eerste strikte vergelijking sluit 12 uit; gelijkheid kiest de tweede tak."
+          }
+        },
+        {
+          "id": "b",
+          "label": {
+            "en": "Child",
+            "nl": "Child"
+          },
+          "reason": {
+            "en": "The strict first comparison excludes 12; equality selects the second branch.",
+            "nl": "De eerste strikte vergelijking sluit 12 uit; gelijkheid kiest de tweede tak."
+          }
+        },
+        {
+          "id": "c",
+          "label": {
+            "en": "Older",
+            "nl": "Older"
+          },
+          "reason": {
+            "en": "The strict first comparison excludes 12; equality selects the second branch.",
+            "nl": "De eerste strikte vergelijking sluit 12 uit; gelijkheid kiest de tweede tak."
+          }
+        }
+      ],
+      "id": "python-v4-07-quiz-r2-b-1",
+      "reviewActivityIds": [
+        "python-v4-07-elif"
+      ]
+    },
+    {
+      "objectiveIds": [
+        "and"
+      ],
+      "category": "prediction",
+      "prompt": {
+        "en": "What does this program print?",
+        "nl": "Wat drukt dit programma af?"
+      },
+      "code": "age = 12\nallowed = age >= 12 and age < 13\nprint(allowed)",
+      "answer": "a",
+      "expectedOutput": "True\n",
+      "choices": [
+        {
+          "id": "a",
+          "label": {
+            "en": "True",
+            "nl": "True"
+          },
+          "reason": {
+            "en": "Both comparisons must hold, including the strict upper boundary.",
+            "nl": "Beide vergelijkingen moeten kloppen, inclusief de strikte bovengrens."
+          }
+        },
+        {
+          "id": "b",
+          "label": {
+            "en": "False",
+            "nl": "False"
+          },
+          "reason": {
+            "en": "Both comparisons must hold, including the strict upper boundary.",
+            "nl": "Beide vergelijkingen moeten kloppen, inclusief de strikte bovengrens."
+          }
+        },
+        {
+          "id": "c",
+          "label": {
+            "en": "12",
+            "nl": "12"
+          },
+          "reason": {
+            "en": "Both comparisons must hold, including the strict upper boundary.",
+            "nl": "Beide vergelijkingen moeten kloppen, inclusief de strikte bovengrens."
+          }
+        }
+      ],
+      "id": "python-v4-07-quiz-r2-b-2",
+      "reviewActivityIds": [
+        "python-v4-06-and"
+      ]
+    },
+    {
+      "objectiveIds": [
+        "else"
+      ],
+      "category": "completion",
+      "prompt": {
+        "en": "Complete the code to produce the shown output.",
+        "nl": "Vul de code aan om de getoonde uitvoer te maken."
+      },
+      "code": "age = 7\nif age >= 8:\n    print(\"Allowed\")\n___:\n    print(\"Wait\")",
+      "answer": "a",
+      "choices": [
+        {
+          "id": "a",
+          "label": {
+            "en": "else",
+            "nl": "else"
+          },
+          "reason": {
+            "en": "else needs no condition and covers the failed if.",
+            "nl": "else heeft geen voorwaarde nodig en verwerkt de onware if."
+          }
+        },
+        {
+          "id": "b",
+          "label": {
+            "en": "elif",
+            "nl": "elif"
+          },
+          "reason": {
+            "en": "Using elif here produces SyntaxError. else needs no condition and covers the failed if.",
+            "nl": "Met elif ontstaat hier SyntaxError. else heeft geen voorwaarde nodig en verwerkt de onware if."
+          }
+        },
+        {
+          "id": "c",
+          "label": {
+            "en": "if",
+            "nl": "if"
+          },
+          "reason": {
+            "en": "Using if here produces SyntaxError. else needs no condition and covers the failed if.",
+            "nl": "Met if ontstaat hier SyntaxError. else heeft geen voorwaarde nodig en verwerkt de onware if."
+          }
+        }
+      ],
+      "codeBlank": {
+        "prompt": {
+          "en": "Complete the code to produce the shown output.",
+          "nl": "Vul de code aan om de getoonde uitvoer te maken."
+        },
+        "segments": [
+          "age = 7\nif age >= 8:\n    print(\"Allowed\")\n",
+          ":\n    print(\"Wait\")"
+        ],
+        "tokens": [
+          {
+            "id": "token-1",
+            "code": "else"
+          },
+          {
+            "id": "token-2",
+            "code": "elif",
+            "reason": {
+              "en": "Using elif here produces SyntaxError. else needs no condition and covers the failed if.",
+              "nl": "Met elif ontstaat hier SyntaxError. else heeft geen voorwaarde nodig en verwerkt de onware if."
+            }
+          },
+          {
+            "id": "token-3",
+            "code": "if",
+            "reason": {
+              "en": "Using if here produces SyntaxError. else needs no condition and covers the failed if.",
+              "nl": "Met if ontstaat hier SyntaxError. else heeft geen voorwaarde nodig en verwerkt de onware if."
+            }
+          }
+        ],
+        "blanks": [
+          {
+            "answer": "else",
+            "reason": {
+              "en": "else needs no condition and covers the failed if.",
+              "nl": "else heeft geen voorwaarde nodig en verwerkt de onware if."
+            }
+          }
+        ],
+        "output": "Wait\n"
+      },
+      "id": "python-v4-07-quiz-r2-b-3",
+      "reviewActivityIds": [
+        "python-v4-07-else"
+      ]
+    },
+    {
+      "objectiveIds": [
+        "not"
+      ],
+      "category": "completion",
+      "prompt": {
+        "en": "Complete the code to produce the shown output.",
+        "nl": "Vul de code aan om de getoonde uitvoer te maken."
+      },
+      "code": "closed = True\nprint(___ closed)",
+      "answer": "a",
+      "choices": [
+        {
+          "id": "a",
+          "label": {
+            "en": "not",
+            "nl": "not"
+          },
+          "reason": {
+            "en": "Follow the operation and its input type, then compare the exact result shown.",
+            "nl": "Volg de bewerking en het invoertype en vergelijk daarna het precieze getoonde resultaat."
+          }
+        },
+        {
+          "id": "b",
+          "label": {
+            "en": "bool",
+            "nl": "bool"
+          },
+          "reason": {
+            "en": "Using bool here produces SyntaxError. Follow the operation and its input type, then compare the exact result shown.",
+            "nl": "Met bool ontstaat hier SyntaxError. Volg de bewerking en het invoertype en vergelijk daarna het precieze getoonde resultaat."
+          }
+        },
+        {
+          "id": "c",
+          "label": {
+            "en": "and",
+            "nl": "and"
+          },
+          "reason": {
+            "en": "Using and here produces SyntaxError. Follow the operation and its input type, then compare the exact result shown.",
+            "nl": "Met and ontstaat hier SyntaxError. Volg de bewerking en het invoertype en vergelijk daarna het precieze getoonde resultaat."
+          }
+        }
+      ],
+      "codeBlank": {
+        "prompt": {
+          "en": "Complete the code to produce the shown output.",
+          "nl": "Vul de code aan om de getoonde uitvoer te maken."
+        },
+        "segments": [
+          "closed = True\nprint(",
+          " closed)"
+        ],
+        "tokens": [
+          {
+            "id": "token-1",
+            "code": "not"
+          },
+          {
+            "id": "token-2",
+            "code": "bool",
+            "reason": {
+              "en": "Using bool here produces SyntaxError. Follow the operation and its input type, then compare the exact result shown.",
+              "nl": "Met bool ontstaat hier SyntaxError. Volg de bewerking en het invoertype en vergelijk daarna het precieze getoonde resultaat."
+            }
+          },
+          {
+            "id": "token-3",
+            "code": "and",
+            "reason": {
+              "en": "Using and here produces SyntaxError. Follow the operation and its input type, then compare the exact result shown.",
+              "nl": "Met and ontstaat hier SyntaxError. Volg de bewerking en het invoertype en vergelijk daarna het precieze getoonde resultaat."
+            }
+          }
+        ],
+        "blanks": [
+          {
+            "answer": "not",
+            "reason": {
+              "en": "Follow the operation and its input type, then compare the exact result shown.",
+              "nl": "Volg de bewerking en het invoertype en vergelijk daarna het precieze getoonde resultaat."
+            }
+          }
+        ],
+        "output": "False\n"
+      },
+      "id": "python-v4-07-quiz-r2-b-4",
+      "reviewActivityIds": [
+        "python-v4-06-not"
+      ]
+    },
+    {
+      "objectiveIds": [
+        "branch-order"
+      ],
+      "category": "debugging",
+      "prompt": {
+        "en": "Choose the repair or test that addresses the stated problem.",
+        "nl": "Kies de reparatie of test die het beschreven probleem aanpakt."
+      },
+      "code": "# Need one label.\nscore = 8\nif score >= 0:\n    print(\"Some\")\nif score >= 8:\n    print(\"High\")",
+      "answer": "a",
+      "choices": [
+        {
+          "id": "a",
+          "label": {
+            "en": "Test High first and make Some an elif alternative.",
+            "nl": "Test High eerst en maak Some een elif-alternatief."
+          },
+          "reason": {
+            "en": "This selects the most specific matching category once.",
+            "nl": "Dit kiest de specifiekste passende categorie eenmaal."
+          }
+        },
+        {
+          "id": "b",
+          "label": {
+            "en": "Indent both prints further.",
+            "nl": "Laat beide prints verder inspringen."
+          },
+          "reason": {
+            "en": "Whitespace alone does not connect separate if statements.",
+            "nl": "Alleen witruimte verbindt aparte if-instructies niet."
+          }
+        },
+        {
+          "id": "c",
+          "label": {
+            "en": "Use == for both comparisons.",
+            "nl": "Gebruik == voor beide vergelijkingen."
+          },
+          "reason": {
+            "en": "That changes the threshold rules instead of fixing alternatives.",
+            "nl": "Dat verandert de grensregels in plaats van alternatieven te herstellen."
+          }
+        }
+      ],
+      "id": "python-v4-07-quiz-r2-b-5",
+      "reviewActivityIds": [
+        "python-v4-07-separate-or-chain"
+      ]
+    },
+    {
+      "objectiveIds": [
+        "inclusive-comparisons"
+      ],
+      "category": "application",
+      "prompt": {
+        "en": "Which statement or test fits this example?",
+        "nl": "Welke uitspraak of test past bij dit voorbeeld?"
+      },
+      "code": "if weight <= 8:\n    price = 3\nelse:\n    price = 6",
+      "answer": "a",
+      "choices": [
+        {
+          "id": "a",
+          "label": {
+            "en": "Test 7, 8 and 9.",
+            "nl": "Test 7, 8 en 9."
+          },
+          "reason": {
+            "en": "These cases surround and include the boundary.",
+            "nl": "Deze gevallen omringen en omvatten de grens."
+          }
+        },
+        {
+          "id": "b",
+          "label": {
+            "en": "Test only a very small weight.",
+            "nl": "Test alleen een heel klein gewicht."
+          },
+          "reason": {
+            "en": "That does not exercise the boundary or else.",
+            "nl": "Dat oefent de grens of else niet."
+          }
+        },
+        {
+          "id": "c",
+          "label": {
+            "en": "Test the same weight three times.",
+            "nl": "Test hetzelfde gewicht driemaal."
+          },
+          "reason": {
+            "en": "Repetition does not cover another branch.",
+            "nl": "Herhaling dekt geen andere tak."
+          }
+        }
+      ],
+      "id": "python-v4-07-quiz-r2-b-6",
+      "reviewActivityIds": [
+        "python-v4-06-inclusive-boundaries"
+      ]
+    }
+  ]
+}

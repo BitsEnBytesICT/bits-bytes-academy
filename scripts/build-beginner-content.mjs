@@ -23,6 +23,16 @@ for (const chapter of course.chapters) {
     String(chapter.number).padStart(2, "0") + "-" + chapter.slug,
   );
   fs.mkdirSync(directory, { recursive: true });
+  // Rewritten quizzes have new identities; their exact old definitions live in
+  // legacy/course-v4-original-quizzes.json. Remove only the obsolete generated
+  // file in this known chapter directory, never learner data or arbitrary files.
+  const oldQuiz = path.resolve(
+    directory,
+    `python-v4-${String(chapter.number).padStart(2, "0")}-quiz.json`,
+  );
+  if (!oldQuiz.startsWith(path.resolve("content/beginner-course") + path.sep))
+    throw Error("Invalid generated path");
+  if (fs.existsSync(oldQuiz)) fs.unlinkSync(oldQuiz);
   fs.writeFileSync(
     path.join(directory, "chapter.json"),
     JSON.stringify(chapter, null, 2),

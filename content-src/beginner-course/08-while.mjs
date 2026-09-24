@@ -248,7 +248,7 @@ export const activities = [
           'Read Item: repeatedly; print "Added " plus each normalised item until quit.',
           'Lees Item: herhaaldelijk; druk "Added " plus elk genormaliseerd artikel af tot quit.',
         ],
-        '_stdout == "Item: Added book\nItem: Added pen\nItem: Done\n"',
+        '_stdout.removesuffix("Done\n") == "Item: Added book\nItem: Added pen\nItem: "',
         [
           "Read another answer inside the body so the condition can change.",
           "Lees een nieuw antwoord binnen het blok zodat de voorwaarde kan veranderen.",
@@ -257,7 +257,8 @@ export const activities = [
         [
           {
             stdin: [" MAP ", "quit"],
-            check: '_stdout == "Item: Added map\nItem: Done\n"',
+            check:
+              '_stdout.removesuffix("Done\n") == "Item: Added map\nItem: "',
           },
         ],
       ),
@@ -266,7 +267,7 @@ export const activities = [
           'Print "Done" once after stopping and never add quit as an item.',
           'Druk eenmaal "Done" af na het stoppen en voeg quit nooit als artikel toe.',
         ],
-        '_stdout.endswith("Done\n") and "Added quit" not in _stdout',
+        '_stdout.endswith("Done\n") and _stdout.count("Done\n") == 1 and "Added quit" not in _stdout',
         [
           "Place the finishing message after the loop, with no indentation.",
           "Zet het eindbericht na de lus, zonder inspringing.",
@@ -318,13 +319,14 @@ export const activities = [
           'Use while True and break to stop on quit; other commands print "Working". After the loop print "Stopped".',
           'Gebruik while True en break om bij quit te stoppen; andere opdrachten drukken "Working" af. Druk na de lus "Stopped" af.',
         ],
-        `${uses("Break")} and _stdout == "Command: Working\nCommand: Stopped\n"`,
+        `${uses("Break")} and _stdout == "Working\nStopped\n"`,
         [
           "Check for quitting before doing ordinary work in the loop.",
           "Controleer stoppen voordat je gewoon werk binnen de lus uitvoert.",
         ],
         'if command == "quit":',
-        [{ stdin: [" QUIT "], check: '_stdout == "Command: Stopped\n"' }],
+        [{ stdin: [" QUIT "], check: '_stdout == "Stopped\n"' }],
+        { ignorePrompts: true },
       ),
     ],
     experiment: [

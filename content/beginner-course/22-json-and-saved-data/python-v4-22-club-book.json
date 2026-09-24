@@ -62,11 +62,24 @@
       "exampleFiles": {}
     },
     {
-      "id": "python-v4-22-club-book-experiment",
+      "id": "python-v4-22-club-book-trace",
       "topicIds": [],
       "heading": {
-        "en": "Try one change",
-        "nl": "Probeer één wijziging"
+        "en": "Trace rows into the saved book",
+        "nl": "Volg rijen naar het opgeslagen boek"
+      },
+      "body": {
+        "en": "The supplied CSV has headers name,score and exactly two fields per row. Ada,3 starts Ada's total at 3; Bo,2 adds Bo:2; Ada,4 changes Ada to 7. A blank name and Bo,bad are skipped, so accepted is 3, not the number of distinct players. The returned structure and saved JSON both contain totals {Ada:7, Bo:2} and accepted:3. Negative and zero integer scores are valid. Broken headers or rows with missing fields are outside this exercise's input contract.",
+        "nl": "De aangeleverde CSV heeft koppen name,score en precies twee velden per rij. Ada,3 begint Ada's totaal op 3; Bo,2 voegt Bo:2 toe; Ada,4 verandert Ada naar 7. Een lege naam en Bo,bad worden overgeslagen, dus accepted is 3 en niet het aantal unieke spelers. De teruggegeven structuur en opgeslagen JSON bevatten beide totals {Ada:7, Bo:2} en accepted:3. Negatieve en nul-gehele scores zijn geldig. Kapotte koppen of rijen met ontbrekende velden vallen buiten de invoerafspraak van deze oefening."
+      }
+    },
+    {
+      "id": "python-v4-22-club-book-experiment",
+      "role": "experiment",
+      "topicIds": [],
+      "heading": {
+        "en": "After completing the task: try one change",
+        "nl": "Na het afronden: probeer één wijziging"
       },
       "body": {
         "en": "Add duplicate players, a quoted comma in a name and a negative score; reopen the generated JSON.",
@@ -88,11 +101,7 @@
     {
       "id": "python-v4-22-club-book-step-1",
       "objectiveIds": [
-        "club-project",
-        "csv-numeric-conversion",
-        "json-save",
-        "get",
-        "dictionary-iteration"
+        "club-project"
       ],
       "task": {
         "en": "Implement validation, aggregation and JSON saving from the brief.",
@@ -112,7 +121,10 @@
           "check": "(_return == {\"totals\":{\"Ada\":7,\"Bo\":2},\"accepted\":3} and _json.load(open(\"book.json\")) == _return) and _error is None",
           "moduleOnly": true,
           "module": "work",
-          "files": {}
+          "isolatedFixtures": true,
+          "files": {
+            "results.csv": "name,score\nAda,3\nBo,2\nAda,4\n,9\nBo,bad\n"
+          }
         },
         {
           "call": {
@@ -126,7 +138,9 @@
           "check": "(_return == {\"totals\":{\"A, B\":-2,\"A\":3},\"accepted\":3} and _json.load(open(\"out.json\")) == _return) and _error is None",
           "moduleOnly": true,
           "module": "work",
+          "isolatedFixtures": true,
           "files": {
+            "results.csv": "name,score\nAda,3\nBo,2\nAda,4\n,9\nBo,bad\n",
             "other.csv": "name,score\n\" A, B \",-2\nA,0\nA,3\n"
           }
         },
@@ -142,7 +156,9 @@
           "check": "(_return == {\"totals\":{},\"accepted\":0}) and _error is None",
           "moduleOnly": true,
           "module": "work",
+          "isolatedFixtures": true,
           "files": {
+            "results.csv": "name,score\nAda,3\nBo,2\nAda,4\n,9\nBo,bad\n",
             "empty.csv": "name,score\n"
           }
         }
@@ -178,15 +194,28 @@
   "inputs": [],
   "retrievals": [
     {
-      "id": "recall-python-v4-20-write",
-      "sourceActivityId": "python-v4-20-write",
+      "id": "recall-python-v4-19-registry",
+      "sourceActivityId": "python-v4-19-registry",
       "objectiveIds": [
-        "write"
+        "dictionary-review"
       ],
       "prompt": {
-        "en": "Recall “Create or replace a text file”. Does write add a second newline? Try the earlier example from memory, then check it. Save an empty string and explain the resulting file size.",
-        "nl": "Haal “Maak of vervang een tekstbestand” terug. Voegt write een tweede nieuwe regel toe? Probeer het eerdere voorbeeld uit je geheugen en controleer daarna. Bewaar een lege string en leg de resulterende bestandsgrootte uit."
-      }
+        "en": "Recall maintain a small scoreboard. Why do the two dictionaries end with different values? Award points twice while keeping both the original and updated versions.",
+        "nl": "Herhaal beheer een klein scorebord. Waarom eindigen beide dictionaries met verschillende waarden? Ken tweemaal punten toe en bewaar zowel de oorspronkelijke als gewijzigde versie."
+      },
+      "code": "stock = {\"pens\":2}\nupdated = stock.copy()\nupdated[\"pens\"] += 3\nprint(stock)\nprint(updated)"
+    },
+    {
+      "id": "recall-python-v4-21-csv-report",
+      "sourceActivityId": "python-v4-21-csv-report",
+      "objectiveIds": [
+        "csv-review"
+      ],
+      "prompt": {
+        "en": "Recall transform a csv export. Which field needs conversion before transformation? Add a score of zero and verify both the count and exported value.",
+        "nl": "Herhaal bewerk een csv-export. Welk veld vraagt omzetting vóór bewerking? Voeg een score nul toe en controleer zowel aantal als geëxporteerde waarde."
+      },
+      "code": "row = {\"name\":\"Ada\",\"score\":\"3\"}\nprint({\"name\":row[\"name\"],\"doubled\":int(row[\"score\"])*2})"
     }
   ]
 }

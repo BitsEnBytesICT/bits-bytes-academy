@@ -51,11 +51,26 @@
       }
     },
     {
-      "id": "python-v4-19-comprehension-experiment",
+      "id": "python-v4-19-comprehension-try-calls",
+      "role": "practice",
       "topicIds": [],
       "heading": {
-        "en": "Try one change",
-        "nl": "Probeer één wijziging"
+        "en": "See your function work",
+        "nl": "Bekijk wat je functie doet"
+      },
+      "body": {
+        "en": "A definition alone produces no output. After writing the function, add these calls underneath it in main.py, without indentation, and Run. Compare the returned values with the task's requirements. The checks also call your function with other inputs; they do not require you to keep these demonstration calls.",
+        "nl": "Een definitie alleen geeft geen uitvoer. Schrijf eerst de functie en voeg daarna deze aanroepen eronder toe in main.py, zonder inspringing. Klik op Uitvoeren. Vergelijk de teruggegeven waarden met de opdracht. De controles roepen je functie ook met andere invoer aan; deze demonstratieaanroepen zijn niet verplicht."
+      },
+      "code": "print(double_positive({\"A\": 2, \"B\": 0, \"C\": -1}))\nprint(double_positive({}))"
+    },
+    {
+      "id": "python-v4-19-comprehension-experiment",
+      "role": "experiment",
+      "topicIds": [],
+      "heading": {
+        "en": "After completing the task: try one change",
+        "nl": "Na het afronden: probeer één wijziging"
       },
       "body": {
         "en": "Rewrite the comprehension as an ordinary loop.",
@@ -76,8 +91,8 @@
         "dictionary-comprehensions"
       ],
       "task": {
-        "en": "Use a dictionary comprehension to double positive scores and omit zero/negative scores.",
-        "nl": "Gebruik een dictionary comprehension om positieve scores te verdubbelen en nul/negatieve scores weg te laten."
+        "en": "Write double_positive(scores) in main.py. Use a dictionary comprehension to double positive scores and omit zero/negative scores.",
+        "nl": "Schrijf double_positive(scores) in main.py. Gebruik een dictionary comprehension om positieve scores te verdubbelen en nul/negatieve scores weg te laten."
       },
       "check": "any(isinstance(n,_ast.DictComp) for n in _ast.walk(_ast.parse(_source)))",
       "probes": [
@@ -132,18 +147,5 @@
     "en": "The comprehension filters before adding entries and creates a separate dictionary.",
     "nl": "De comprehension filtert vóór toevoegen en maakt een aparte dictionary."
   },
-  "inputs": [],
-  "retrievals": [
-    {
-      "id": "recall-python-v4-17-nested-loops",
-      "sourceActivityId": "python-v4-17-nested-loops",
-      "objectiveIds": [
-        "nested-loops"
-      ],
-      "prompt": {
-        "en": "Recall “Visit rows and their elements”. How many times does the inner body run in total? Try the earlier example from memory, then check it. Trace the total for each inner iteration of [[2], [3, 4]].",
-        "nl": "Haal “Bezoek rijen en hun elementen” terug. Hoe vaak draait de binnenste inhoud in totaal? Probeer het eerdere voorbeeld uit je geheugen en controleer daarna. Volg het totaal bij elke binnenste iteratie van [[2], [3, 4]]."
-      }
-    }
-  ]
+  "inputs": []
 }

@@ -56,11 +56,26 @@
       }
     },
     {
-      "id": "python-v4-18-sequence-experiment",
+      "id": "python-v4-18-sequence-try-calls",
+      "role": "practice",
       "topicIds": [],
       "heading": {
-        "en": "Try one change",
-        "nl": "Probeer één wijziging"
+        "en": "See your function work",
+        "nl": "Bekijk wat je functie doet"
+      },
+      "body": {
+        "en": "A definition alone produces no output. After writing the function, add these calls underneath it in main.py, without indentation, and Run. Compare the returned values with the task's requirements. The checks also call your function with other inputs; they do not require you to keep these demonstration calls.",
+        "nl": "Een definitie alleen geeft geen uitvoer. Schrijf eerst de functie en voeg daarna deze aanroepen eronder toe in main.py, zonder inspringing. Klik op Uitvoeren. Vergelijk de teruggegeven waarden met de opdracht. De controles roepen je functie ook met andere invoer aan; deze demonstratieaanroepen zijn niet verplicht."
+      },
+      "code": "print(edges(\"Python\"))\nprint(edges(\"a\"))"
+    },
+    {
+      "id": "python-v4-18-sequence-experiment",
+      "role": "experiment",
+      "topicIds": [],
+      "heading": {
+        "en": "After completing the task: try one change",
+        "nl": "Na het afronden: probeer één wijziging"
       },
       "body": {
         "en": "Test a string containing one space.",
@@ -83,8 +98,8 @@
         "string-negative-index"
       ],
       "task": {
-        "en": "Return first and last characters concatenated, or an empty string for empty text.",
-        "nl": "Geef het eerste en laatste teken samengevoegd terug, of een lege string bij lege tekst."
+        "en": "Write edges(text) in main.py. Return first and last characters concatenated, or an empty string for empty text.",
+        "nl": "Schrijf edges(text) in main.py. Geef het eerste en laatste teken samengevoegd terug, of een lege string bij lege tekst."
       },
       "check": "callable(edges)",
       "probes": [
@@ -144,19 +159,5 @@
     "en": "The guard handles absence; a one-character string has the same first and last character.",
     "nl": "De bewaking verwerkt afwezigheid; bij één teken zijn eerste en laatste hetzelfde teken."
   },
-  "inputs": [],
-  "retrievals": [
-    {
-      "id": "recall-python-v4-16-velocity",
-      "sourceActivityId": "python-v4-16-velocity",
-      "objectiveIds": [
-        "velocity",
-        "elapsed-time"
-      ],
-      "prompt": {
-        "en": "Recall “Move by elapsed time”. How far would the object move in half as much time? Try the earlier example from memory, then check it. Compare one 0.1-second step with two 0.05-second steps.",
-        "nl": "Haal “Beweeg met verstreken tijd” terug. Hoe ver beweegt het object in half zoveel tijd? Probeer het eerdere voorbeeld uit je geheugen en controleer daarna. Vergelijk één stap van 0,1 seconde met twee stappen van 0,05 seconde."
-      }
-    }
-  ]
+  "inputs": []
 }

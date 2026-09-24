@@ -4,7 +4,7 @@
   "group": "python-v4-module-9",
   "title": {
     "en": "Stop a function at a guard",
-    "nl": "Stop een functie bij een bewaking"
+    "nl": "Stop een functie vroeg bij een speciaal geval"
   },
   "kind": "coding",
   "optional": false,
@@ -23,7 +23,7 @@
   ],
   "explanation": {
     "en": "A guard handles a special case before the normal calculation.",
-    "nl": "Een bewaking verwerkt een speciaal geval vóór de normale berekening."
+    "nl": "Een controle vooraf verwerkt een speciaal geval vóór de normale berekening."
   },
   "example": "",
   "sections": [
@@ -38,7 +38,7 @@
       },
       "body": {
         "en": "return immediately ends the current function call. Statements below that return do not run for that call. A guard can return None when no numeric answer is meaningful. This does not stop the whole program: the caller continues and can decide how to display the absence.",
-        "nl": "return beëindigt direct de huidige functieaanroep. Instructies onder die return worden voor die aanroep niet uitgevoerd. Een bewaking kan None teruggeven wanneer geen numeriek antwoord zinvol is. Dit stopt niet het hele programma: de aanroeper gaat verder en kan beslissen hoe afwezigheid wordt getoond."
+        "nl": "return beëindigt direct de huidige functieaanroep. Instructies onder die return worden voor die aanroep niet uitgevoerd. Een controle vooraf kan None teruggeven wanneer geen numeriek antwoord zinvol is. Dit stopt niet het hele programma: de aanroeper gaat verder en kan beslissen hoe afwezigheid wordt getoond."
       },
       "code": "def average(total, count):\n    if count == 0:\n        return None\n    return total / count\nprint(average(10, 0))\nprint(average(10, 2))",
       "output": "None\n5.0\n",
@@ -52,11 +52,40 @@
       }
     },
     {
-      "id": "python-v4-09-early-return-experiment",
+      "id": "python-v4-09-early-return-trace",
       "topicIds": [],
       "heading": {
-        "en": "Try one change",
-        "nl": "Probeer één wijziging"
+        "en": "Follow the early exit",
+        "nl": "Volg de vroege uitgang"
+      },
+      "body": {
+        "en": "Read the first call: count=0 makes the first condition true, so return None ends this call. The calculation is never reached. For count=2 the condition is false, so execution reaches the division. Each call starts this choice again.",
+        "nl": "Lees de eerste aanroep: count=0 maakt de eerste voorwaarde waar, dus return None beëindigt deze aanroep. De berekening wordt nooit bereikt. Bij count=2 is de voorwaarde onwaar en bereikt uitvoering de deling. Elke aanroep maakt deze keuze opnieuw."
+      },
+      "code": "def share(total, count):\n    if count == 0:\n        return None\n    return total / count\nprint(share(6, 0))\nprint(share(6, 2))",
+      "output": "None\n3.0\n"
+    },
+    {
+      "id": "python-v4-09-early-return-try-calls",
+      "role": "practice",
+      "topicIds": [],
+      "heading": {
+        "en": "See your function work",
+        "nl": "Bekijk wat je functie doet"
+      },
+      "body": {
+        "en": "A definition alone produces no output. After writing the function, add these calls underneath it in main.py, without indentation, and Run. Compare the returned values with the task's requirements. The checks also call your function with other inputs; they do not require you to keep these demonstration calls.",
+        "nl": "Een definitie alleen geeft geen uitvoer. Schrijf eerst de functie en voeg daarna deze aanroepen eronder toe in main.py, zonder inspringing. Klik op Uitvoeren. Vergelijk de teruggegeven waarden met de opdracht. De controles roepen je functie ook met andere invoer aan; deze demonstratieaanroepen zijn niet verplicht."
+      },
+      "code": "print(speed(12, 0))\nprint(speed(12, -1))"
+    },
+    {
+      "id": "python-v4-09-early-return-experiment",
+      "role": "experiment",
+      "topicIds": [],
+      "heading": {
+        "en": "After completing the task: try one change",
+        "nl": "Na het afronden: probeer één wijziging"
       },
       "body": {
         "en": "Store speed(0, 2). Explain why zero is a valid answer unlike None.",
@@ -124,7 +153,7 @@
         },
         {
           "en": "Add a guard before the division.",
-          "nl": "Voeg een bewaking vóór de deling toe."
+          "nl": "Voeg een controle vóór de deling toe."
         },
         {
           "en": "A small fragment to adapt: `if hours <= 0:`",
@@ -133,13 +162,13 @@
       ],
       "feedback": {
         "en": "Add a guard before the division.",
-        "nl": "Voeg een bewaking vóór de deling toe."
+        "nl": "Voeg een controle vóór de deling toe."
       }
     }
   ],
   "solutionNote": {
     "en": "The guard exits before division; valid zero distance still returns numeric zero.",
-    "nl": "De bewaking stopt vóór de deling; geldige afstand nul geeft nog steeds numerieke nul terug."
+    "nl": "De controle stopt vóór de deling; geldige afstand nul geeft nog steeds numerieke nul terug."
   },
   "inputs": []
 }

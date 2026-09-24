@@ -1,0 +1,802 @@
+{
+  "id": "python-v4-23-quiz-r2",
+  "chapter": 23,
+  "group": "python-v4-module-23",
+  "kind": "quiz",
+  "optional": false,
+  "estimatedMinutes": 8,
+  "title": {
+    "en": "Classes and objects: review",
+    "nl": "Klassen en objecten: herhaling"
+  },
+  "questions": [
+    {
+      "objectiveIds": [
+        "independent-instances"
+      ],
+      "category": "prediction",
+      "prompt": {
+        "en": "What does this program print?",
+        "nl": "Wat drukt dit programma af?"
+      },
+      "code": "class Counter:\n    def __init__(self):\n        self.value = 0\na = Counter()\nb = Counter()\na.value = 4\nprint(b.value)",
+      "answer": "a",
+      "expectedOutput": "0\n",
+      "choices": [
+        {
+          "id": "a",
+          "label": {
+            "en": "0",
+            "nl": "0"
+          },
+          "reason": {
+            "en": "Each instance has its own value attribute.",
+            "nl": "Elke instantie heeft een eigen value-attribuut."
+          }
+        },
+        {
+          "id": "b",
+          "label": {
+            "en": "4",
+            "nl": "4"
+          },
+          "reason": {
+            "en": "Only a was changed.",
+            "nl": "Alleen a werd veranderd."
+          }
+        },
+        {
+          "id": "c",
+          "label": {
+            "en": "None",
+            "nl": "None"
+          },
+          "reason": {
+            "en": "The initializer explicitly stores zero.",
+            "nl": "De initializer bewaart expliciet nul."
+          }
+        }
+      ],
+      "id": "python-v4-23-quiz-r2-a-1",
+      "reviewActivityIds": [
+        "python-v4-23-shared-state"
+      ]
+    },
+    {
+      "objectiveIds": [
+        "json"
+      ],
+      "category": "prediction",
+      "prompt": {
+        "en": "What does this program print?",
+        "nl": "Wat drukt dit programma af?"
+      },
+      "code": "import json\nvalue = json.loads('false')\nprint(type(value).__name__)",
+      "answer": "a",
+      "expectedOutput": "bool\n",
+      "choices": [
+        {
+          "id": "a",
+          "label": {
+            "en": "bool",
+            "nl": "bool"
+          },
+          "reason": {
+            "en": "JSON null becomes None and JSON false becomes a Python Boolean.",
+            "nl": "JSON null wordt None en JSON false wordt een Pythonboolean."
+          }
+        },
+        {
+          "id": "b",
+          "label": {
+            "en": "str",
+            "nl": "str"
+          },
+          "reason": {
+            "en": "JSON null becomes None and JSON false becomes a Python Boolean.",
+            "nl": "JSON null wordt None en JSON false wordt een Pythonboolean."
+          }
+        },
+        {
+          "id": "c",
+          "label": {
+            "en": "null",
+            "nl": "null"
+          },
+          "reason": {
+            "en": "JSON null becomes None and JSON false becomes a Python Boolean.",
+            "nl": "JSON null wordt None en JSON false wordt een Pythonboolean."
+          }
+        }
+      ],
+      "id": "python-v4-23-quiz-r2-a-2",
+      "reviewActivityIds": [
+        "python-v4-22-load"
+      ]
+    },
+    {
+      "objectiveIds": [
+        "self"
+      ],
+      "category": "completion",
+      "prompt": {
+        "en": "Complete the code to produce the shown output.",
+        "nl": "Vul de code aan om de getoonde uitvoer te maken."
+      },
+      "code": "class Counter:\n    def __init__(self,value):\n        ___.value = value\nprint(Counter(4).value)",
+      "answer": "a",
+      "choices": [
+        {
+          "id": "a",
+          "label": {
+            "en": "self",
+            "nl": "self"
+          },
+          "reason": {
+            "en": "self identifies the new instance being initialised.",
+            "nl": "self benoemt de nieuwe instantie die wordt geïnitialiseerd."
+          }
+        },
+        {
+          "id": "b",
+          "label": {
+            "en": "Counter()",
+            "nl": "Counter()"
+          },
+          "reason": {
+            "en": "Using Counter() here produces TypeError. self identifies the new instance being initialised.",
+            "nl": "Met Counter() ontstaat hier TypeError. self benoemt de nieuwe instantie die wordt geïnitialiseerd."
+          }
+        },
+        {
+          "id": "c",
+          "label": {
+            "en": "value",
+            "nl": "value"
+          },
+          "reason": {
+            "en": "Using value here produces AttributeError. self identifies the new instance being initialised.",
+            "nl": "Met value ontstaat hier AttributeError. self benoemt de nieuwe instantie die wordt geïnitialiseerd."
+          }
+        }
+      ],
+      "codeBlank": {
+        "prompt": {
+          "en": "Complete the code to produce the shown output.",
+          "nl": "Vul de code aan om de getoonde uitvoer te maken."
+        },
+        "segments": [
+          "class Counter:\n    def __init__(self,value):\n        ",
+          ".value = value\nprint(Counter(4).value)"
+        ],
+        "tokens": [
+          {
+            "id": "token-1",
+            "code": "self"
+          },
+          {
+            "id": "token-2",
+            "code": "Counter()",
+            "reason": {
+              "en": "Using Counter() here produces TypeError. self identifies the new instance being initialised.",
+              "nl": "Met Counter() ontstaat hier TypeError. self benoemt de nieuwe instantie die wordt geïnitialiseerd."
+            }
+          },
+          {
+            "id": "token-3",
+            "code": "value",
+            "reason": {
+              "en": "Using value here produces AttributeError. self identifies the new instance being initialised.",
+              "nl": "Met value ontstaat hier AttributeError. self benoemt de nieuwe instantie die wordt geïnitialiseerd."
+            }
+          }
+        ],
+        "blanks": [
+          {
+            "answer": "self",
+            "reason": {
+              "en": "self identifies the new instance being initialised.",
+              "nl": "self benoemt de nieuwe instantie die wordt geïnitialiseerd."
+            }
+          }
+        ],
+        "output": "4\n"
+      },
+      "id": "python-v4-23-quiz-r2-a-3",
+      "reviewActivityIds": [
+        "python-v4-23-initialise"
+      ]
+    },
+    {
+      "objectiveIds": [
+        "json-save"
+      ],
+      "category": "completion",
+      "prompt": {
+        "en": "Complete the code to produce the shown output.",
+        "nl": "Vul de code aan om de getoonde uitvoer te maken."
+      },
+      "code": "import json\ntext = json.dumps({\"ready\":True})\nprint(json.___(text)[\"ready\"])",
+      "answer": "a",
+      "choices": [
+        {
+          "id": "a",
+          "label": {
+            "en": "loads",
+            "nl": "loads"
+          },
+          "reason": {
+            "en": "Follow the operation and its input type, then compare the exact result shown.",
+            "nl": "Volg de bewerking en het invoertype en vergelijk daarna het precieze getoonde resultaat."
+          }
+        },
+        {
+          "id": "b",
+          "label": {
+            "en": "load",
+            "nl": "load"
+          },
+          "reason": {
+            "en": "Using load here produces AttributeError. Follow the operation and its input type, then compare the exact result shown.",
+            "nl": "Met load ontstaat hier AttributeError. Volg de bewerking en het invoertype en vergelijk daarna het precieze getoonde resultaat."
+          }
+        },
+        {
+          "id": "c",
+          "label": {
+            "en": "dumps",
+            "nl": "dumps"
+          },
+          "reason": {
+            "en": "Using dumps here produces TypeError. Follow the operation and its input type, then compare the exact result shown.",
+            "nl": "Met dumps ontstaat hier TypeError. Volg de bewerking en het invoertype en vergelijk daarna het precieze getoonde resultaat."
+          }
+        }
+      ],
+      "codeBlank": {
+        "prompt": {
+          "en": "Complete the code to produce the shown output.",
+          "nl": "Vul de code aan om de getoonde uitvoer te maken."
+        },
+        "segments": [
+          "import json\ntext = json.dumps({\"ready\":True})\nprint(json.",
+          "(text)[\"ready\"])"
+        ],
+        "tokens": [
+          {
+            "id": "token-1",
+            "code": "loads"
+          },
+          {
+            "id": "token-2",
+            "code": "load",
+            "reason": {
+              "en": "Using load here produces AttributeError. Follow the operation and its input type, then compare the exact result shown.",
+              "nl": "Met load ontstaat hier AttributeError. Volg de bewerking en het invoertype en vergelijk daarna het precieze getoonde resultaat."
+            }
+          },
+          {
+            "id": "token-3",
+            "code": "dumps",
+            "reason": {
+              "en": "Using dumps here produces TypeError. Follow the operation and its input type, then compare the exact result shown.",
+              "nl": "Met dumps ontstaat hier TypeError. Volg de bewerking en het invoertype en vergelijk daarna het precieze getoonde resultaat."
+            }
+          }
+        ],
+        "blanks": [
+          {
+            "answer": "loads",
+            "reason": {
+              "en": "Follow the operation and its input type, then compare the exact result shown.",
+              "nl": "Volg de bewerking en het invoertype en vergelijk daarna het precieze getoonde resultaat."
+            }
+          }
+        ],
+        "output": "True\n"
+      },
+      "id": "python-v4-23-quiz-r2-a-4",
+      "reviewActivityIds": [
+        "python-v4-22-save"
+      ]
+    },
+    {
+      "objectiveIds": [
+        "class-attributes"
+      ],
+      "category": "debugging",
+      "prompt": {
+        "en": "Choose the repair or test that addresses the stated problem.",
+        "nl": "Kies de reparatie of test die het beschreven probleem aanpakt."
+      },
+      "code": "class Bag:\n    items = []\n# Need independent lists for 4 bags.",
+      "answer": "a",
+      "choices": [
+        {
+          "id": "a",
+          "label": {
+            "en": "Create self.items = [] inside __init__.",
+            "nl": "Maak self.items = [] binnen __init__."
+          },
+          "reason": {
+            "en": "Every constructor call then creates a fresh list.",
+            "nl": "Elke constructoraanroep maakt dan een nieuwe lijst."
+          }
+        },
+        {
+          "id": "b",
+          "label": {
+            "en": "Rename items to things.",
+            "nl": "Hernoem items naar things."
+          },
+          "reason": {
+            "en": "It would still be a shared class attribute.",
+            "nl": "Het blijft een gedeeld klasseattribuut."
+          }
+        },
+        {
+          "id": "c",
+          "label": {
+            "en": "Make every variable refer to the same Bag().",
+            "nl": "Laat elke variabele naar dezelfde Bag() verwijzen."
+          },
+          "reason": {
+            "en": "That shares the whole instance as well.",
+            "nl": "Dat deelt ook de hele instantie."
+          }
+        }
+      ],
+      "id": "python-v4-23-quiz-r2-a-5",
+      "reviewActivityIds": [
+        "python-v4-23-shared-state"
+      ]
+    },
+    {
+      "objectiveIds": [
+        "repr"
+      ],
+      "category": "application",
+      "prompt": {
+        "en": "Which explanation applies to this example?",
+        "nl": "Welke uitleg past bij dit voorbeeld?"
+      },
+      "code": "class Counter:\n    def __repr__(self):\n        return \"Counter(4)\"",
+      "answer": "a",
+      "choices": [
+        {
+          "id": "a",
+          "label": {
+            "en": "__repr__ returns useful developer-facing text.",
+            "nl": "__repr__ geeft nuttige tekst voor ontwikkelaars terug."
+          },
+          "reason": {
+            "en": "Representations return strings and do not print themselves.",
+            "nl": "Weergaven geven strings terug en drukken zichzelf niet af."
+          }
+        },
+        {
+          "id": "b",
+          "label": {
+            "en": "__repr__ must print and return None.",
+            "nl": "__repr__ moet afdrukken en None geven."
+          },
+          "reason": {
+            "en": "The protocol requires a string return value.",
+            "nl": "Het protocol vereist een stringterugkeerwaarde."
+          }
+        },
+        {
+          "id": "c",
+          "label": {
+            "en": "__repr__ initialises the object.",
+            "nl": "__repr__ initialiseert het object."
+          },
+          "reason": {
+            "en": "Initialisation belongs to __init__.",
+            "nl": "Initialisatie hoort bij __init__."
+          }
+        }
+      ],
+      "id": "python-v4-23-quiz-r2-a-6",
+      "reviewActivityIds": [
+        "python-v4-23-representation"
+      ]
+    }
+  ],
+  "alternateQuestions": [
+    {
+      "objectiveIds": [
+        "repr",
+        "instance-attributes"
+      ],
+      "category": "prediction",
+      "prompt": {
+        "en": "What does this program print?",
+        "nl": "Wat drukt dit programma af?"
+      },
+      "code": "class Meter:\n    def __init__(self):\n        self.value = 1\n    def __repr__(self):\n        return f\"Meter({self.value})\"\nmeter = Meter()\nmeter.value += 2\nprint(repr(meter))",
+      "answer": "a",
+      "expectedOutput": "Meter(3)\n",
+      "choices": [
+        {
+          "id": "a",
+          "label": {
+            "en": "Meter(3)",
+            "nl": "Meter(3)"
+          },
+          "reason": {
+            "en": "Representation reads current instance state at the time of the call.",
+            "nl": "De weergave leest de huidige instantietoestand op het moment van aanroepen."
+          }
+        },
+        {
+          "id": "b",
+          "label": {
+            "en": "Meter(1)",
+            "nl": "Meter(1)"
+          },
+          "reason": {
+            "en": "Representation reads current instance state at the time of the call.",
+            "nl": "De weergave leest de huidige instantietoestand op het moment van aanroepen."
+          }
+        },
+        {
+          "id": "c",
+          "label": {
+            "en": "3",
+            "nl": "3"
+          },
+          "reason": {
+            "en": "Representation reads current instance state at the time of the call.",
+            "nl": "De weergave leest de huidige instantietoestand op het moment van aanroepen."
+          }
+        }
+      ],
+      "id": "python-v4-23-quiz-r2-b-1",
+      "reviewActivityIds": [
+        "python-v4-23-representation",
+        "python-v4-23-initialise"
+      ]
+    },
+    {
+      "objectiveIds": [
+        "json"
+      ],
+      "category": "prediction",
+      "prompt": {
+        "en": "What does this program print?",
+        "nl": "Wat drukt dit programma af?"
+      },
+      "code": "import json\nvalue = json.loads('null')\nprint(value is None)",
+      "answer": "a",
+      "expectedOutput": "True\n",
+      "choices": [
+        {
+          "id": "a",
+          "label": {
+            "en": "True",
+            "nl": "True"
+          },
+          "reason": {
+            "en": "JSON null becomes None and JSON false becomes a Python Boolean.",
+            "nl": "JSON null wordt None en JSON false wordt een Pythonboolean."
+          }
+        },
+        {
+          "id": "b",
+          "label": {
+            "en": "False",
+            "nl": "False"
+          },
+          "reason": {
+            "en": "JSON null becomes None and JSON false becomes a Python Boolean.",
+            "nl": "JSON null wordt None en JSON false wordt een Pythonboolean."
+          }
+        },
+        {
+          "id": "c",
+          "label": {
+            "en": "null",
+            "nl": "null"
+          },
+          "reason": {
+            "en": "JSON null becomes None and JSON false becomes a Python Boolean.",
+            "nl": "JSON null wordt None en JSON false wordt een Pythonboolean."
+          }
+        }
+      ],
+      "id": "python-v4-23-quiz-r2-b-2",
+      "reviewActivityIds": [
+        "python-v4-22-load"
+      ]
+    },
+    {
+      "objectiveIds": [
+        "self"
+      ],
+      "category": "completion",
+      "prompt": {
+        "en": "Complete the code to produce the shown output.",
+        "nl": "Vul de code aan om de getoonde uitvoer te maken."
+      },
+      "code": "class Counter:\n    def __init__(self,value):\n        ___.value = value\nprint(Counter(7).value)",
+      "answer": "a",
+      "choices": [
+        {
+          "id": "a",
+          "label": {
+            "en": "self",
+            "nl": "self"
+          },
+          "reason": {
+            "en": "self identifies the new instance being initialised.",
+            "nl": "self benoemt de nieuwe instantie die wordt geïnitialiseerd."
+          }
+        },
+        {
+          "id": "b",
+          "label": {
+            "en": "Counter()",
+            "nl": "Counter()"
+          },
+          "reason": {
+            "en": "Using Counter() here produces TypeError. self identifies the new instance being initialised.",
+            "nl": "Met Counter() ontstaat hier TypeError. self benoemt de nieuwe instantie die wordt geïnitialiseerd."
+          }
+        },
+        {
+          "id": "c",
+          "label": {
+            "en": "value",
+            "nl": "value"
+          },
+          "reason": {
+            "en": "Using value here produces AttributeError. self identifies the new instance being initialised.",
+            "nl": "Met value ontstaat hier AttributeError. self benoemt de nieuwe instantie die wordt geïnitialiseerd."
+          }
+        }
+      ],
+      "codeBlank": {
+        "prompt": {
+          "en": "Complete the code to produce the shown output.",
+          "nl": "Vul de code aan om de getoonde uitvoer te maken."
+        },
+        "segments": [
+          "class Counter:\n    def __init__(self,value):\n        ",
+          ".value = value\nprint(Counter(7).value)"
+        ],
+        "tokens": [
+          {
+            "id": "token-1",
+            "code": "self"
+          },
+          {
+            "id": "token-2",
+            "code": "Counter()",
+            "reason": {
+              "en": "Using Counter() here produces TypeError. self identifies the new instance being initialised.",
+              "nl": "Met Counter() ontstaat hier TypeError. self benoemt de nieuwe instantie die wordt geïnitialiseerd."
+            }
+          },
+          {
+            "id": "token-3",
+            "code": "value",
+            "reason": {
+              "en": "Using value here produces AttributeError. self identifies the new instance being initialised.",
+              "nl": "Met value ontstaat hier AttributeError. self benoemt de nieuwe instantie die wordt geïnitialiseerd."
+            }
+          }
+        ],
+        "blanks": [
+          {
+            "answer": "self",
+            "reason": {
+              "en": "self identifies the new instance being initialised.",
+              "nl": "self benoemt de nieuwe instantie die wordt geïnitialiseerd."
+            }
+          }
+        ],
+        "output": "7\n"
+      },
+      "id": "python-v4-23-quiz-r2-b-3",
+      "reviewActivityIds": [
+        "python-v4-23-initialise"
+      ]
+    },
+    {
+      "objectiveIds": [
+        "json-save"
+      ],
+      "category": "completion",
+      "prompt": {
+        "en": "Complete the code to produce the shown output.",
+        "nl": "Vul de code aan om de getoonde uitvoer te maken."
+      },
+      "code": "import json\ntext = json.dumps({\"ready\":True})\nprint(json.___(text)[\"ready\"])",
+      "answer": "a",
+      "choices": [
+        {
+          "id": "a",
+          "label": {
+            "en": "loads",
+            "nl": "loads"
+          },
+          "reason": {
+            "en": "Follow the operation and its input type, then compare the exact result shown.",
+            "nl": "Volg de bewerking en het invoertype en vergelijk daarna het precieze getoonde resultaat."
+          }
+        },
+        {
+          "id": "b",
+          "label": {
+            "en": "load",
+            "nl": "load"
+          },
+          "reason": {
+            "en": "Using load here produces AttributeError. Follow the operation and its input type, then compare the exact result shown.",
+            "nl": "Met load ontstaat hier AttributeError. Volg de bewerking en het invoertype en vergelijk daarna het precieze getoonde resultaat."
+          }
+        },
+        {
+          "id": "c",
+          "label": {
+            "en": "dumps",
+            "nl": "dumps"
+          },
+          "reason": {
+            "en": "Using dumps here produces TypeError. Follow the operation and its input type, then compare the exact result shown.",
+            "nl": "Met dumps ontstaat hier TypeError. Volg de bewerking en het invoertype en vergelijk daarna het precieze getoonde resultaat."
+          }
+        }
+      ],
+      "codeBlank": {
+        "prompt": {
+          "en": "Complete the code to produce the shown output.",
+          "nl": "Vul de code aan om de getoonde uitvoer te maken."
+        },
+        "segments": [
+          "import json\ntext = json.dumps({\"ready\":True})\nprint(json.",
+          "(text)[\"ready\"])"
+        ],
+        "tokens": [
+          {
+            "id": "token-1",
+            "code": "loads"
+          },
+          {
+            "id": "token-2",
+            "code": "load",
+            "reason": {
+              "en": "Using load here produces AttributeError. Follow the operation and its input type, then compare the exact result shown.",
+              "nl": "Met load ontstaat hier AttributeError. Volg de bewerking en het invoertype en vergelijk daarna het precieze getoonde resultaat."
+            }
+          },
+          {
+            "id": "token-3",
+            "code": "dumps",
+            "reason": {
+              "en": "Using dumps here produces TypeError. Follow the operation and its input type, then compare the exact result shown.",
+              "nl": "Met dumps ontstaat hier TypeError. Volg de bewerking en het invoertype en vergelijk daarna het precieze getoonde resultaat."
+            }
+          }
+        ],
+        "blanks": [
+          {
+            "answer": "loads",
+            "reason": {
+              "en": "Follow the operation and its input type, then compare the exact result shown.",
+              "nl": "Volg de bewerking en het invoertype en vergelijk daarna het precieze getoonde resultaat."
+            }
+          }
+        ],
+        "output": "True\n"
+      },
+      "id": "python-v4-23-quiz-r2-b-4",
+      "reviewActivityIds": [
+        "python-v4-22-save"
+      ]
+    },
+    {
+      "objectiveIds": [
+        "class-attributes"
+      ],
+      "category": "debugging",
+      "prompt": {
+        "en": "Choose the repair or test that addresses the stated problem.",
+        "nl": "Kies de reparatie of test die het beschreven probleem aanpakt."
+      },
+      "code": "class Bag:\n    items = []\n# Need independent lists for 7 bags.",
+      "answer": "a",
+      "choices": [
+        {
+          "id": "a",
+          "label": {
+            "en": "Create self.items = [] inside __init__.",
+            "nl": "Maak self.items = [] binnen __init__."
+          },
+          "reason": {
+            "en": "Every constructor call then creates a fresh list.",
+            "nl": "Elke constructoraanroep maakt dan een nieuwe lijst."
+          }
+        },
+        {
+          "id": "b",
+          "label": {
+            "en": "Rename items to things.",
+            "nl": "Hernoem items naar things."
+          },
+          "reason": {
+            "en": "It would still be a shared class attribute.",
+            "nl": "Het blijft een gedeeld klasseattribuut."
+          }
+        },
+        {
+          "id": "c",
+          "label": {
+            "en": "Make every variable refer to the same Bag().",
+            "nl": "Laat elke variabele naar dezelfde Bag() verwijzen."
+          },
+          "reason": {
+            "en": "That shares the whole instance as well.",
+            "nl": "Dat deelt ook de hele instantie."
+          }
+        }
+      ],
+      "id": "python-v4-23-quiz-r2-b-5",
+      "reviewActivityIds": [
+        "python-v4-23-shared-state"
+      ]
+    },
+    {
+      "objectiveIds": [
+        "repr"
+      ],
+      "category": "application",
+      "prompt": {
+        "en": "Which explanation applies to this example?",
+        "nl": "Welke uitleg past bij dit voorbeeld?"
+      },
+      "code": "class Counter:\n    def __repr__(self):\n        return \"Counter(7)\"",
+      "answer": "a",
+      "choices": [
+        {
+          "id": "a",
+          "label": {
+            "en": "__repr__ returns useful developer-facing text.",
+            "nl": "__repr__ geeft nuttige tekst voor ontwikkelaars terug."
+          },
+          "reason": {
+            "en": "Representations return strings and do not print themselves.",
+            "nl": "Weergaven geven strings terug en drukken zichzelf niet af."
+          }
+        },
+        {
+          "id": "b",
+          "label": {
+            "en": "__repr__ must print and return None.",
+            "nl": "__repr__ moet afdrukken en None geven."
+          },
+          "reason": {
+            "en": "The protocol requires a string return value.",
+            "nl": "Het protocol vereist een stringterugkeerwaarde."
+          }
+        },
+        {
+          "id": "c",
+          "label": {
+            "en": "__repr__ initialises the object.",
+            "nl": "__repr__ initialiseert het object."
+          },
+          "reason": {
+            "en": "Initialisation belongs to __init__.",
+            "nl": "Initialisatie hoort bij __init__."
+          }
+        }
+      ],
+      "id": "python-v4-23-quiz-r2-b-6",
+      "reviewActivityIds": [
+        "python-v4-23-representation"
+      ]
+    }
+  ]
+}

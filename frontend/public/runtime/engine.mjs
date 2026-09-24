@@ -8,9 +8,28 @@ _lab_ns = None
 _lab_console = None
 _lab_names = set()
 
+def _lab_substitute_inputs(tree, inputs):
+    remaining = set(inputs)
+    def replace(target, value):
+        if isinstance(target, ast.Name) and target.id in remaining:
+            remaining.remove(target.id)
+            return ast.copy_location(ast.parse(repr(inputs[target.id]), mode='eval').body, value)
+        if isinstance(target, (ast.Tuple, ast.List)) and isinstance(value, (ast.Tuple, ast.List)) and len(target.elts) == len(value.elts):
+            value.elts = [replace(t, v) for t, v in zip(target.elts, value.elts)]
+        return value
+    for node in tree.body:
+        if isinstance(node, ast.Assign) and len(node.targets) == 1:
+            node.value = replace(node.targets[0], node.value)
+        elif isinstance(node, ast.AnnAssign) and node.value is not None:
+            node.value = replace(node.target, node.value)
+    if remaining: raise ValueError('Missing exercise input assignments: ' + ', '.join(sorted(remaining)))
+    return tree
+
 def _lab_probe(files, probe):
     # Real Python, fresh files/modules/input for every case. A test must not
     # alter the learner's variables, random generator, imports, or saved files.
+    if probe.get('isolatedFixtures'):
+        files = {name: value for name, value in files.items() if name.endswith('.py')}
     files = dict(files, **probe.get('files', {}))
     root = '/home/pyodide/behavior-probe'
     original_cwd, original_path = os.getcwd(), sys.path[:]
@@ -25,6 +44,9 @@ def _lab_probe(files, probe):
             return self.target.write(value)
         def flush(self): pass
     namespace = {'__name__': '__main__', '__file__': 'main.py'}
+    if probe.get('ignorePrompts'):
+        import builtins
+        namespace['input'] = lambda prompt='': builtins.input()
     result, error = None, None
     call_reached, call_stdout_start, call_stderr_start, call_input_start = False, 0, 0, 0
     call_args, call_kwargs = [], {}
@@ -41,15 +63,12 @@ def _lab_probe(files, probe):
         sys.path[:] = [root] + [p for p in original_path if p not in (_lab_root, root)]
         sys.stdin = io.StringIO(''.join(line + '\n' for line in probe.get('stdin', [])))
         random.seed(1729)
-        tree = ast.parse(files.get('main.py', ''))
-        remaining = set(probe.get('inputs', {}))
-        for node in tree.body:
-            if isinstance(node, ast.Assign) and len(node.targets) == 1 and isinstance(node.targets[0], ast.Name):
-                name = node.targets[0].id
-                if name in remaining:
-                    node.value = ast.copy_location(ast.parse(repr(probe['inputs'][name]), mode='eval').body, node.value)
-                    remaining.remove(name)
-        if remaining: raise ValueError('Missing exercise input assignments: ' + ', '.join(sorted(remaining)))
+        tree = _lab_substitute_inputs(ast.parse(files.get('main.py', '')), probe.get('inputs', {}))
+        if probe.get('definitionsOnly'):
+            # Explicit opt-in for functions whose interactive demonstration is
+            # separate from the call under test. Never execute a caller twice.
+            tree.body = [node for node in tree.body if isinstance(node, (ast.Import, ast.ImportFrom, ast.FunctionDef, ast.AsyncFunctionDef, ast.ClassDef)) or
+                (isinstance(node, (ast.Assign, ast.AnnAssign)) and not any(isinstance(n, ast.Call) for n in ast.walk(node)))]
         with contextlib.redirect_stdout(BoundedOutput(stdout)), contextlib.redirect_stderr(BoundedOutput(stderr)):
             try:
                 if not probe.get('moduleOnly'):
@@ -71,7 +90,7 @@ def _lab_probe(files, probe):
         if probe.get('call') and not call_reached: return False
         call_input_chars = sys.stdin.tell() - call_input_start if call_reached else 0
         namespace.update(_return=result, _error=error, _stdout=stdout.getvalue(), _stderr=stderr.getvalue(), _remaining_input=sys.stdin.read(), _close=math.isclose,
-            _source=files.get('main.py', ''), _ast=ast, _json=json, _os=os,
+            _source=files.get('main.py', ''), _module_source=files.get(probe.get('call', {}).get('module', '') + '.py', ''), _ast=ast, _json=json, _os=os,
             _call_stdout=stdout.getvalue()[call_stdout_start:] if call_reached else '',
             _call_stderr=stderr.getvalue()[call_stderr_start:] if call_reached else '',
             _call_input_chars=call_input_chars, _args=call_args, _kwargs=call_kwargs)
@@ -180,15 +199,7 @@ def _lab_run(payload_json):
     def case_namespace(inputs):
         key = json.dumps(inputs, sort_keys=True)
         if key in case_cache: return case_cache[key]
-        tree = ast.parse(source)
-        remaining = set(inputs)
-        for node in tree.body:
-            if isinstance(node, ast.Assign) and len(node.targets) == 1 and isinstance(node.targets[0], ast.Name):
-                name = node.targets[0].id
-                if name in remaining:
-                    node.value = ast.copy_location(ast.parse(repr(inputs[name]), mode='eval').body, node.value)
-                    remaining.remove(name)
-        if remaining: raise ValueError('Keep the named input assignments at the top of the program')
+        tree = _lab_substitute_inputs(ast.parse(source), inputs)
         case_output = Capture(io.StringIO())
         # Probe programs need no imports, input prompts or filesystem access.
         allowed = {name: getattr(__import__('builtins'), name) for name in

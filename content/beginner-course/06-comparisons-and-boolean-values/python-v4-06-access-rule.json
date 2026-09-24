@@ -61,11 +61,24 @@
       }
     },
     {
-      "id": "python-v4-06-access-rule-experiment",
+      "id": "python-v4-06-access-rule-trace",
       "topicIds": [],
       "heading": {
-        "en": "Try one change",
-        "nl": "Probeer één wijziging"
+        "en": "Design counterexamples",
+        "nl": "Bedenk tegenvoorbeelden"
+      },
+      "body": {
+        "en": "For a rule that requires a ticket and allows either membership or age >= 18, compare: ticket=True/member=False/age=18 → allowed; the same at 17 → denied; ticket=False/member=True/age=18 → denied. Work through the parentheses before the outer and.",
+        "nl": "Bij een regel die een kaartje vereist en lidmaatschap of age >= 18 toestaat: ticket=True/member=False/age=18 → toegestaan; hetzelfde bij 17 → geweigerd; ticket=False/member=True/age=18 → geweigerd. Werk eerst de haakjes uit en dan de buitenste and."
+      }
+    },
+    {
+      "id": "python-v4-06-access-rule-experiment",
+      "role": "experiment",
+      "topicIds": [],
+      "heading": {
+        "en": "After completing the task: try one change",
+        "nl": "Na het afronden: probeer één wijziging"
       },
       "body": {
         "en": "Write the eight possible combinations of these three Boolean inputs and predict each result.",
@@ -83,11 +96,7 @@
     {
       "id": "python-v4-06-access-rule-step-1",
       "objectiveIds": [
-        "boolean-review",
-        "and",
-        "or",
-        "not",
-        "relational-operators"
+        "boolean-review"
       ],
       "task": {
         "en": "Access requires membership or a guest pass, and a non-blocked account. Store the decision in result.",
@@ -154,18 +163,47 @@
     {
       "id": "python-v4-06-access-rule-step-2",
       "objectiveIds": [
-        "boolean-review",
-        "and",
-        "or",
-        "not",
-        "relational-operators"
+        "print"
       ],
       "task": {
         "en": "Print the Boolean result.",
         "nl": "Druk het booleaanse resultaat af."
       },
       "check": "_stdout.strip() == str(result)",
-      "probes": [],
+      "probes": [
+        {
+          "inputs": {
+            "member": false,
+            "guest_pass": true,
+            "blocked": false
+          },
+          "check": "type(result) is bool and _stdout.strip() == str((member or guest_pass) and not blocked)"
+        },
+        {
+          "inputs": {
+            "member": true,
+            "guest_pass": false,
+            "blocked": true
+          },
+          "check": "type(result) is bool and _stdout.strip() == str((member or guest_pass) and not blocked)"
+        },
+        {
+          "inputs": {
+            "member": false,
+            "guest_pass": false,
+            "blocked": false
+          },
+          "check": "type(result) is bool and _stdout.strip() == str((member or guest_pass) and not blocked)"
+        },
+        {
+          "inputs": {
+            "member": true,
+            "guest_pass": true,
+            "blocked": false
+          },
+          "check": "type(result) is bool and _stdout.strip() == str((member or guest_pass) and not blocked)"
+        }
+      ],
       "hint": {
         "en": "Combine alternatives first, then apply the requirement shared by all alternatives.",
         "nl": "Combineer eerst alternatieven en pas daarna de eis toe die voor alle alternatieven geldt."

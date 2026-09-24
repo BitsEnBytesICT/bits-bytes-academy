@@ -52,11 +52,26 @@
       }
     },
     {
-      "id": "python-v4-13-pairs-experiment",
+      "id": "python-v4-13-pairs-try-calls",
+      "role": "practice",
       "topicIds": [],
       "heading": {
-        "en": "Try one change",
-        "nl": "Probeer één wijziging"
+        "en": "See your function work",
+        "nl": "Bekijk wat je functie doet"
+      },
+      "body": {
+        "en": "A definition alone produces no output. After writing the function, add these calls underneath it in main.py, without indentation, and Run. Compare the returned values with the task's requirements. The checks also call your function with other inputs; they do not require you to keep these demonstration calls.",
+        "nl": "Een definitie alleen geeft geen uitvoer. Schrijf eerst de functie en voeg daarna deze aanroepen eronder toe in main.py, zonder inspringing. Klik op Uitvoeren. Vergelijk de teruggegeven waarden met de opdracht. De controles roepen je functie ook met andere invoer aan; deze demonstratieaanroepen zijn niet verplicht."
+      },
+      "code": "print(position(2, 3))\nprint(position(-1, 0))"
+    },
+    {
+      "id": "python-v4-13-pairs-experiment",
+      "role": "experiment",
+      "topicIds": [],
+      "heading": {
+        "en": "After completing the task: try one change",
+        "nl": "Na het afronden: probeer één wijziging"
       },
       "body": {
         "en": "Compare type((5)) with type((5,)).",
@@ -77,8 +92,8 @@
         "tuples"
       ],
       "task": {
-        "en": "Return x and y as a two-element tuple.",
-        "nl": "Geef x en y terug als een tuple met twee elementen."
+        "en": "Write position(x, y) in main.py. Return x and y as a two-element tuple.",
+        "nl": "Schrijf position(x, y) in main.py. Geef x en y terug als een tuple met twee elementen."
       },
       "check": "callable(position)",
       "probes": [
@@ -131,31 +146,5 @@
     "en": "The comma forms the tuple; the two values keep their order.",
     "nl": "De komma vormt de tuple; de twee waarden behouden hun volgorde."
   },
-  "inputs": [],
-  "retrievals": [
-    {
-      "id": "recall-python-v4-11-create",
-      "sourceActivityId": "python-v4-11-create",
-      "objectiveIds": [
-        "lists",
-        "list-contents"
-      ],
-      "prompt": {
-        "en": "Recall “Keep several values in a list”. How many elements are in this list? Try the earlier example from memory, then check it. Swap two elements and explain why this changes the record.",
-        "nl": "Haal “Bewaar meerdere waarden in een lijst” terug. Hoeveel elementen staan in deze lijst? Probeer het eerdere voorbeeld uit je geheugen en controleer daarna. Wissel twee elementen om en leg uit waarom dit het record verandert."
-      }
-    },
-    {
-      "id": "recall-python-v4-11-indexes",
-      "sourceActivityId": "python-v4-11-indexes",
-      "objectiveIds": [
-        "indexing",
-        "negative-indexing"
-      ],
-      "prompt": {
-        "en": "Recall “Select a position”. What does colours[1] select? Try the earlier example from memory, then check it. Explain why the single-element case repeats the same value.",
-        "nl": "Haal “Kies een positie” terug. Wat kiest colours[1]? Probeer het eerdere voorbeeld uit je geheugen en controleer daarna. Leg uit waarom het geval met één element dezelfde waarde herhaalt."
-      }
-    }
-  ]
+  "inputs": []
 }

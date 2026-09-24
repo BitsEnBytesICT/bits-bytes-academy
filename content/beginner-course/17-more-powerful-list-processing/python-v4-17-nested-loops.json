@@ -51,11 +51,38 @@
       }
     },
     {
-      "id": "python-v4-17-nested-loops-experiment",
+      "id": "python-v4-17-nested-loops-trace",
       "topicIds": [],
       "heading": {
-        "en": "Try one change",
-        "nl": "Probeer één wijziging"
+        "en": "Trace one row at a time",
+        "nl": "Volg één rij tegelijk"
+      },
+      "body": {
+        "en": "For [[2,1],[],[4]], total starts at 0. First row: add 2 → 2, add 1 → 3. Empty row: inner loop runs zero times, total stays 3. Last row: add 4 → 7. The outer loop selects rows; the inner loop selects values within the current row.",
+        "nl": "Bij [[2,1],[],[4]] begint total op 0. Eerste rij: tel 2 op → 2, tel 1 op → 3. Lege rij: de binnenste lus draait nul keer en total blijft 3. Laatste rij: tel 4 op → 7. De buitenste lus kiest rijen; de binnenste lus kiest waarden binnen de huidige rij."
+      }
+    },
+    {
+      "id": "python-v4-17-nested-loops-try-calls",
+      "role": "practice",
+      "topicIds": [],
+      "heading": {
+        "en": "See your function work",
+        "nl": "Bekijk wat je functie doet"
+      },
+      "body": {
+        "en": "A definition alone produces no output. After writing the function, add these calls underneath it in main.py, without indentation, and Run. Compare the returned values with the task's requirements. The checks also call your function with other inputs; they do not require you to keep these demonstration calls.",
+        "nl": "Een definitie alleen geeft geen uitvoer. Schrijf eerst de functie en voeg daarna deze aanroepen eronder toe in main.py, zonder inspringing. Klik op Uitvoeren. Vergelijk de teruggegeven waarden met de opdracht. De controles roepen je functie ook met andere invoer aan; deze demonstratieaanroepen zijn niet verplicht."
+      },
+      "code": "print(grid_total([[1, 2], [], [-1]]))\nprint(grid_total([]))"
+    },
+    {
+      "id": "python-v4-17-nested-loops-experiment",
+      "role": "experiment",
+      "topicIds": [],
+      "heading": {
+        "en": "After completing the task: try one change",
+        "nl": "Na het afronden: probeer één wijziging"
       },
       "body": {
         "en": "Trace the total for each inner iteration of [[2], [3, 4]].",
@@ -76,8 +103,8 @@
         "nested-loops"
       ],
       "task": {
-        "en": "Use nested loops to return the sum of all numbers, including for empty or uneven rows.",
-        "nl": "Gebruik geneste lussen om de som van alle getallen terug te geven, ook bij lege of ongelijke rijen."
+        "en": "Write grid_total(grid) in main.py. Use nested loops to return the sum of all numbers, including for empty or uneven rows.",
+        "nl": "Schrijf grid_total(grid) in main.py. Gebruik geneste lussen om de som van alle getallen terug te geven, ook bij lege of ongelijke rijen."
       },
       "check": "any(isinstance(n, _ast.For) and any(isinstance(inner, _ast.For) and inner is not n for inner in _ast.walk(n)) for n in _ast.walk(_ast.parse(_source)))",
       "probes": [

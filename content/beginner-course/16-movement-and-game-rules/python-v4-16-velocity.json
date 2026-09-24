@@ -66,10 +66,11 @@
     },
     {
       "id": "python-v4-16-velocity-experiment",
+      "role": "experiment",
       "topicIds": [],
       "heading": {
-        "en": "Try one change",
-        "nl": "Probeer één wijziging"
+        "en": "After completing the task: try one change",
+        "nl": "Na het afronden: probeer één wijziging"
       },
       "body": {
         "en": "Compare one 0.1-second step with two 0.05-second steps.",
@@ -172,17 +173,43 @@
   "inputs": [],
   "retrievals": [
     {
-      "id": "recall-python-v4-14-import",
-      "sourceActivityId": "python-v4-14-import",
+      "id": "recall-python-v4-03-multiplication",
+      "sourceActivityId": "python-v4-03-multiplication",
       "objectiveIds": [
-        "modules",
-        "imports",
-        "documentation"
+        "multiplication"
       ],
       "prompt": {
-        "en": "Recall “Use a standard-library module”. What does the name before the dot identify? Try the earlier example from memory, then check it. Look up sqrt in the official math documentation and test zero.",
-        "nl": "Haal “Gebruik een standaardbibliotheekmodule” terug. Wat benoemt de naam vóór de punt? Probeer het eerdere voorbeeld uit je geheugen en controleer daarna. Zoek sqrt op in de officiële math-documentatie en test nul."
-      }
+        "en": "Recall multiply equal groups. How many apples are there altogether? Double quantity and predict the new result. Then set quantity to zero.",
+        "nl": "Herhaal vermenigvuldig gelijke groepen. Hoeveel appels zijn er samen? Verdubbel quantity en voorspel het nieuwe resultaat. Zet quantity daarna op nul."
+      },
+      "code": "bags = 3\nper_bag = 4\nprint(bags * per_bag)"
+    },
+    {
+      "id": "recall-python-v4-13-multiple-results",
+      "sourceActivityId": "python-v4-13-multiple-results",
+      "objectiveIds": [
+        "multiple-returns"
+      ],
+      "prompt": {
+        "en": "Recall return two related answers. What would a single variable receive from split_hours? Unpack the result in a caller and print each part with a label.",
+        "nl": "Herhaal geef twee bijbehorende antwoorden terug. Wat ontvangt één variabele van split_hours? Pak het resultaat bij de aanroeper uit en druk elk deel met een label af."
+      },
+      "code": "def split_hours(minutes):\n    return minutes // 60, minutes % 60\nhours, remaining = split_hours(95)\nprint(hours, remaining)"
+    },
+    {
+      "id": "recall-python-v4-15-coordinates",
+      "sourceActivityId": "python-v4-15-coordinates",
+      "objectiveIds": [
+        "browser-loop",
+        "coordinates",
+        "pygame-objects",
+        "rect"
+      ],
+      "prompt": {
+        "en": "Recall meet the pygame preview. Which argument moves the rectangle downward? Change x and then y in the supplied call; observe each direction separately.",
+        "nl": "Herhaal ontmoet het pygame-voorbeeld. Welk argument verplaatst de rechthoek naar beneden? Verander x en daarna y in de aangeleverde aanroep; bekijk elke richting apart."
+      },
+      "code": "import pygame\nbox = pygame.Rect(10, 20, 30, 40)\nprint(box.x, box.y, box.width, box.height)"
     }
   ]
 }

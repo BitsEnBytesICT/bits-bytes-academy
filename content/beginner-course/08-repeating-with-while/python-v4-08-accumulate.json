@@ -51,11 +51,24 @@
       }
     },
     {
-      "id": "python-v4-08-accumulate-experiment",
+      "id": "python-v4-08-accumulate-trace",
       "topicIds": [],
       "heading": {
-        "en": "Try one change",
-        "nl": "Probeer één wijziging"
+        "en": "Counter and total are different",
+        "nl": "Teller en totaal verschillen"
+      },
+      "body": {
+        "en": "To add 1, 2 and 3, begin total=0. After value=1: total=1. After value=2: total=3. After value=3: total=6. The current value tells you what to add; total remembers everything already added. Initialise total once before the loop.",
+        "nl": "Begin met total=0 om 1, 2 en 3 op te tellen. Na value=1: total=1. Na value=2: total=3. Na value=3: total=6. De huidige waarde zegt wat je optelt; total onthoudt alles wat al is opgeteld. Initialiseer total eenmaal vóór de lus."
+      }
+    },
+    {
+      "id": "python-v4-08-accumulate-experiment",
+      "role": "experiment",
+      "topicIds": [],
+      "heading": {
+        "en": "After completing the task: try one change",
+        "nl": "Na het afronden: probeer één wijziging"
       },
       "body": {
         "en": "Temporarily move total = 0 into the body. Predict why the accumulated history disappears.",
@@ -128,18 +141,5 @@
     "en": "The accumulator keeps earlier contributions. The counter advances independently toward the stopping condition.",
     "nl": "De accumulator behoudt eerdere bijdragen. De teller gaat onafhankelijk verder richting de stopvoorwaarde."
   },
-  "inputs": [],
-  "retrievals": [
-    {
-      "id": "recall-python-v4-06-not-equal",
-      "sourceActivityId": "python-v4-06-not-equal",
-      "objectiveIds": [
-        "inequality"
-      ],
-      "prompt": {
-        "en": "Recall “Compare with !=”. Which comparison has equal values on both sides? Try the earlier example from memory, then check it. Try an empty string. Does it equal quit?",
-        "nl": "Haal “Vergelijk met !=” terug. Welke vergelijking heeft gelijke waarden aan beide kanten? Probeer het eerdere voorbeeld uit je geheugen en controleer daarna. Probeer een lege string. Is die gelijk aan quit?"
-      }
-    }
-  ]
+  "inputs": []
 }

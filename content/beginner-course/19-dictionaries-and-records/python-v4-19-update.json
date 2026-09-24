@@ -57,11 +57,26 @@
       }
     },
     {
-      "id": "python-v4-19-update-experiment",
+      "id": "python-v4-19-update-try-calls",
+      "role": "practice",
       "topicIds": [],
       "heading": {
-        "en": "Try one change",
-        "nl": "Probeer één wijziging"
+        "en": "See your function work",
+        "nl": "Bekijk wat je functie doet"
+      },
+      "body": {
+        "en": "A definition alone produces no output. After writing the function, add these calls underneath it in main.py, without indentation, and Run. Compare the returned values with the task's requirements. The checks also call your function with other inputs; they do not require you to keep these demonstration calls.",
+        "nl": "Een definitie alleen geeft geen uitvoer. Schrijf eerst de functie en voeg daarna deze aanroepen eronder toe in main.py, zonder inspringing. Klik op Uitvoeren. Vergelijk de teruggegeven waarden met de opdracht. De controles roepen je functie ook met andere invoer aan; deze demonstratieaanroepen zijn niet verplicht."
+      },
+      "code": "print(update_player({\"name\": \"Bo\", \"score\": 2}, 5))\nprint(update_player({}, 0))"
+    },
+    {
+      "id": "python-v4-19-update-experiment",
+      "role": "experiment",
+      "topicIds": [],
+      "heading": {
+        "en": "After completing the task: try one change",
+        "nl": "Na het afronden: probeer één wijziging"
       },
       "body": {
         "en": "Call again with a different score and inspect which keys remain.",
@@ -79,14 +94,12 @@
     {
       "id": "python-v4-19-update-step-1",
       "objectiveIds": [
-        "empty-dictionaries",
         "adding-keys",
-        "update",
         "overwriting"
       ],
       "task": {
-        "en": "Set score to the supplied value and active to True, preserving other fields. Return the same record.",
-        "nl": "Zet score op de gegeven waarde en active op True, behoud andere velden. Geef hetzelfde record terug."
+        "en": "Write update_player(record, score) in main.py. Set score to the supplied value and active to True, preserving other fields. Return the same record.",
+        "nl": "Schrijf update_player(record, score) in main.py. Zet score op de gegeven waarde en active op True, behoud andere velden. Geef hetzelfde record terug."
       },
       "check": "callable(update_player)",
       "probes": [
@@ -142,18 +155,5 @@
     "en": "Updating entries changes only the selected keys and preserves the remaining record.",
     "nl": "Invoeren bijwerken verandert alleen de gekozen sleutels en behoudt het overige record."
   },
-  "inputs": [],
-  "retrievals": [
-    {
-      "id": "recall-python-v4-17-pop",
-      "sourceActivityId": "python-v4-17-pop",
-      "objectiveIds": [
-        "pop"
-      ],
-      "prompt": {
-        "en": "Recall “Remove by index and keep the value”. What would pop() without 0 remove? Try the earlier example from memory, then check it. Explain the different results of pop(0) and remove(0) on [5, 0].",
-        "nl": "Haal “Verwijder op index en bewaar de waarde” terug. Wat verwijdert pop() zonder 0? Probeer het eerdere voorbeeld uit je geheugen en controleer daarna. Leg de verschillende resultaten uit van pop(0) en remove(0) op [5, 0]."
-      }
-    }
-  ]
+  "inputs": []
 }

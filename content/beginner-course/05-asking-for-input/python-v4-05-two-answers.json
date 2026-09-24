@@ -56,10 +56,11 @@
     },
     {
       "id": "python-v4-05-two-answers-experiment",
+      "role": "experiment",
       "topicIds": [],
       "heading": {
-        "en": "Try one change",
-        "nl": "Probeer één wijziging"
+        "en": "After completing the task: try one change",
+        "nl": "Na het afronden: probeer één wijziging"
       },
       "body": {
         "en": "Use the same distance with twice the time. Predict the change in speed.",
@@ -183,15 +184,16 @@
   ],
   "retrievals": [
     {
-      "id": "recall-python-v4-03-precedence",
-      "sourceActivityId": "python-v4-03-precedence",
+      "id": "recall-python-v4-04-f-strings",
+      "sourceActivityId": "python-v4-04-f-strings",
       "objectiveIds": [
-        "precedence"
+        "f-strings"
       ],
       "prompt": {
-        "en": "Recall “Control the order of a calculation”. Why do the same numbers produce two different answers? Try the earlier example from memory, then check it. Remove the parentheses temporarily and explain which group no longer gets multiplied.",
-        "nl": "Haal “Bepaal de volgorde van een berekening” terug. Waarom geven dezelfde getallen twee verschillende antwoorden? Probeer het eerdere voorbeeld uit je geheugen en controleer daarna. Verwijder de haakjes tijdelijk en leg uit welke groep niet meer wordt vermenigvuldigd."
-      }
+        "en": "Recall place values inside a message. What would the same string display without its f prefix? Change both inputs and predict the message. Then remove f once to observe the difference.",
+        "nl": "Herhaal plaats waarden binnen een bericht. Wat toont dezelfde string zonder de f ervoor? Verander beide invoerwaarden en voorspel het bericht. Verwijder daarna eenmaal f om het verschil te zien."
+      },
+      "code": "name = \"Noor\"\npoints = 8\nprint(f\"{name} has {points} points\")"
     }
   ]
 }

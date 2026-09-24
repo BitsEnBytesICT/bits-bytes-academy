@@ -57,10 +57,11 @@
     },
     {
       "id": "python-v4-08-break-experiment",
+      "role": "experiment",
       "topicIds": [],
       "heading": {
-        "en": "Try one change",
-        "nl": "Probeer één wijziging"
+        "en": "After completing the task: try one change",
+        "nl": "Na het afronden: probeer één wijziging"
       },
       "body": {
         "en": "Enter two work commands before quit. Explain which print is repeated and which runs once.",
@@ -91,13 +92,15 @@
             "go",
             "quit"
           ],
-          "check": "(any(isinstance(n, _ast.Break) for n in _ast.walk(_ast.parse(_source))) and _stdout == \"Command: Working\\nCommand: Stopped\\n\") and _remaining_input == \"\""
+          "check": "(any(isinstance(n, _ast.Break) for n in _ast.walk(_ast.parse(_source))) and _stdout == \"Working\\nStopped\\n\") and _remaining_input == \"\"",
+          "ignorePrompts": true
         },
         {
           "stdin": [
             " QUIT "
           ],
-          "check": "(_stdout == \"Command: Stopped\\n\") and _remaining_input == \"\""
+          "check": "(_stdout == \"Stopped\\n\") and _remaining_input == \"\"",
+          "ignorePrompts": true
         }
       ],
       "hint": {
@@ -131,18 +134,5 @@
   "inputs": [
     "go",
     "quit"
-  ],
-  "retrievals": [
-    {
-      "id": "recall-python-v4-06-and",
-      "sourceActivityId": "python-v4-06-and",
-      "objectiveIds": [
-        "and"
-      ],
-      "prompt": {
-        "en": "Recall “Require both conditions with and”. Is a ticket enough when the door is closed? Try the earlier example from memory, then check it. Predict all four combinations of meeting and missing the two requirements.",
-        "nl": "Haal “Vereis beide voorwaarden met and” terug. Is een kaartje voldoende wanneer de deur dicht is? Probeer het eerdere voorbeeld uit je geheugen en controleer daarna. Voorspel alle vier combinaties van wel en niet aan de twee eisen voldoen."
-      }
-    }
   ]
 }

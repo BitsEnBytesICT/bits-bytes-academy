@@ -1,6 +1,12 @@
 import { focus } from "./focused.mjs";
 import { call } from "./authoring.mjs";
-const f = (slug, s) => focus(10, slug, s);
+const f = (slug, s) => {
+  if (["retry", "cancel-safely"].includes(slug)) {
+    for (const task of s.tasks)
+      for (const probe of task.probes || []) probe.definitionsOnly = true;
+  }
+  return focus(10, slug, s);
+};
 export const activities = [
   f("diagnose", {
     title: ["Name the kind of mistake", "Benoem het soort fout"],

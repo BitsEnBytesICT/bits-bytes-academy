@@ -51,11 +51,26 @@
       }
     },
     {
-      "id": "python-v4-18-split-whitespace-experiment",
+      "id": "python-v4-18-split-whitespace-try-calls",
+      "role": "practice",
       "topicIds": [],
       "heading": {
-        "en": "Try one change",
-        "nl": "Probeer één wijziging"
+        "en": "See your function work",
+        "nl": "Bekijk wat je functie doet"
+      },
+      "body": {
+        "en": "A definition alone produces no output. After writing the function, add these calls underneath it in main.py, without indentation, and Run. Compare the returned values with the task's requirements. The checks also call your function with other inputs; they do not require you to keep these demonstration calls.",
+        "nl": "Een definitie alleen geeft geen uitvoer. Schrijf eerst de functie en voeg daarna deze aanroepen eronder toe in main.py, zonder inspringing. Klik op Uitvoeren. Vergelijk de teruggegeven waarden met de opdracht. De controles roepen je functie ook met andere invoer aan; deze demonstratieaanroepen zijn niet verplicht."
+      },
+      "code": "print(word_count(\" a\\t b\\nc \"))\nprint(word_count(\"  \"))"
+    },
+    {
+      "id": "python-v4-18-split-whitespace-experiment",
+      "role": "experiment",
+      "topicIds": [],
+      "heading": {
+        "en": "After completing the task: try one change",
+        "nl": "Na het afronden: probeer één wijziging"
       },
       "body": {
         "en": "Compare a tab character with the two literal characters backslash and t.",
@@ -76,8 +91,8 @@
         "split-whitespace"
       ],
       "task": {
-        "en": "Return the number of whitespace-separated words.",
-        "nl": "Geef het aantal door witruimte gescheiden woorden terug."
+        "en": "Write word_count(text) in main.py. Return the number of whitespace-separated words.",
+        "nl": "Schrijf word_count(text) in main.py. Geef het aantal door witruimte gescheiden woorden terug."
       },
       "check": "callable(word_count)",
       "probes": [
@@ -137,19 +152,5 @@
     "en": "The default split handles varied whitespace without creating empty word entries.",
     "nl": "Standaard split verwerkt verschillende witruimte zonder lege woorden te maken."
   },
-  "inputs": [],
-  "retrievals": [
-    {
-      "id": "recall-python-v4-16-score-once",
-      "sourceActivityId": "python-v4-16-score-once",
-      "objectiveIds": [
-        "scoring",
-        "misses"
-      ],
-      "prompt": {
-        "en": "Recall “Score a miss once”. Would this condition still match on the next frame? Try the earlier example from memory, then check it. Leave the preview running after the miss. Check that the score stops increasing.",
-        "nl": "Haal “Tel een misser eenmaal” terug. Geldt deze voorwaarde in het volgende beeld nog steeds? Probeer het eerdere voorbeeld uit je geheugen en controleer daarna. Laat het voorbeeld na de misser draaien. Controleer dat de score niet verder stijgt."
-      }
-    }
-  ]
+  "inputs": []
 }

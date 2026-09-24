@@ -1,0 +1,244 @@
+{
+  "id": "python-v4-16-rally-session",
+  "chapter": 16,
+  "group": "python-v4-module-16",
+  "title": {
+    "en": "Connect serve, movement and one-point scoring",
+    "nl": "Verbind service, beweging en eenmalig scoren"
+  },
+  "kind": "coding",
+  "optional": false,
+  "runtime": "pygame",
+  "guidance": "independent",
+  "checkpointMode": "sequential",
+  "estimatedMinutes": 30,
+  "topicIds": [
+    "rally-integration"
+  ],
+  "practices": [
+    "serving",
+    "scoring",
+    "elapsed-time",
+    "game-state"
+  ],
+  "requiredConcepts": [
+    "mirrored-collision",
+    "controls-integration",
+    "scoring"
+  ],
+  "explanation": {
+    "en": "Make one complete horizontal rally cycle before building your own Pong. Keep your attention on update order and state.",
+    "nl": "Maak één volledige horizontale rallycyclus vóór je eigen Pong. Richt je aandacht op updatevolgorde en toestand."
+  },
+  "example": "",
+  "sections": [
+    {
+      "id": "python-v4-16-rally-session-example",
+      "topicIds": [
+        "rally-integration",
+        "serving",
+        "scoring",
+        "elapsed-time",
+        "game-state"
+      ],
+      "heading": {
+        "en": "Follow a working example",
+        "nl": "Volg een werkend voorbeeld"
+      },
+      "body": {
+        "en": "step(x, vx, left, right, pressed, dt) returns the next (x, vx, left, right). If waiting (vx == 0) and Space was pressed, start at vx = 200. Next move x by vx * dt. Finally check misses: x < -6 awards right one point; x > 646 awards left one point. A miss resets x to 320 and vx to 0 in that same update. Keep scores otherwise. A Space press during play has no effect. This horizontal practice has no paddles or vertical movement; you have already practised those separately. main.py resets the Space request every frame, gathers events, calls step once, unpacks all four results, then draws.",
+        "nl": "step(x, vx, left, right, pressed, dt) geeft de volgende (x, vx, left, right) terug. Start bij wachten (vx == 0) en Space ingedrukt met vx = 200. Verplaats daarna x met vx * dt. Controleer als laatste missers: x < -6 geeft rechts één punt; x > 646 geeft links één punt. Een misser zet x op 320 en vx op 0 in dezelfde update. Houd scores anders gelijk. Space tijdens spelen heeft geen gevolg. Deze horizontale oefening heeft geen batjes of verticale beweging; die heb je afzonderlijk geoefend. main.py wist het Space-verzoek elk beeld, verzamelt gebeurtenissen, roept step eenmaal aan, pakt alle vier resultaten uit en tekent."
+      },
+      "code": "x, velocity, score = 99, 20, 0\nx += velocity * 0.1\nif x > 100:\n    score += 1\n    x, velocity = 50, 0\nprint(x, velocity, score)",
+      "output": "50 0 1\n",
+      "prediction": {
+        "en": "Would checking the miss before movement award this point in the same update?",
+        "nl": "Zou een misser vóór beweging controleren dit punt in dezelfde update geven?"
+      },
+      "takeaway": {
+        "en": "Apply the event → move → resolve the miss → draw the returned state.",
+        "nl": "Verwerk de gebeurtenis → beweeg → verwerk de misser → teken de teruggegeven toestand."
+      }
+    },
+    {
+      "topicIds": [],
+      "heading": {
+        "en": "Run, observe, finish",
+        "nl": "Voer uit, bekijk, rond af"
+      },
+      "body": {
+        "en": "main.py supplies the browser entry point. Run opens a real pygame-ce preview; click it to focus the keyboard. Clicking elsewhere pauses play. Finish & check closes normally and checks your helper after at least one rendered frame. Stop cancels without grading. Run can start a fresh session afterward. Keep the supplied async definition and await asyncio.sleep(1 / 60): they let the browser draw and receive input. You are not expected to reproduce this infrastructure from memory.",
+        "nl": "main.py levert het browserstartpunt. Uitvoeren opent een echt pygame-ce-voorbeeld; klik erop om het toetsenbord te activeren. Elders klikken pauzeert het spel. Afronden en controleren sluit normaal af en controleert je helper na minstens één getekend beeld. Stop annuleert zonder beoordeling. Uitvoeren kan daarna een nieuwe sessie starten. Behoud de meegeleverde async-definitie en await asyncio.sleep(1 / 60): die laten de browser tekenen en invoer ontvangen. Je hoeft deze infrastructuur niet uit je hoofd te schrijven."
+      }
+    },
+    {
+      "id": "python-v4-16-rally-session-experiment",
+      "role": "experiment",
+      "topicIds": [],
+      "heading": {
+        "en": "After completing the task: try one change",
+        "nl": "Na het afronden: probeer één wijziging"
+      },
+      "body": {
+        "en": "Draw the cycle as waiting → playing → miss → waiting. Say where paddles and wall responses belong when combining this with your earlier work for Pong.",
+        "nl": "Teken de cyclus als wachten → spelen → missen → wachten. Vertel waar batjes en muurreacties passen wanneer je dit met je eerdere werk voor Pong combineert."
+      }
+    }
+  ],
+  "files": {
+    "main.py": "# Browser entry point supplied by the course.\nimport asyncio\nimport pygame\nimport game\n\nasync def main():\n    pygame.init()\n    screen = pygame.display.set_mode((640, 400))\n    clock = pygame.time.Clock()\n    running = True\n    x,vx,left,right = 320.0,0.0,0,0\n    pressed = False\n    while running:\n        dt = min(clock.tick() / 1000, 0.05)\n        for event in pygame.event.get():\n            if event.type == pygame.QUIT:\n                running = False\n            if event.type == pygame.KEYDOWN and event.key == pygame.K_ESCAPE:\n                running = False\n            if event.type == pygame.KEYDOWN and event.key == pygame.K_SPACE:\n                pressed = True\n        keys = pygame.key.get_pressed()\n        x,vx,left,right = game.step(x,vx,left,right,pressed,dt)\n        pressed = False\n        screen.fill((16, 23, 39))\n        pygame.draw.circle(screen,(255,170,40),(int(x),200),6)\n        font = pygame.font.Font(None,30)\n        screen.blit(font.render(f\"{left} : {right}   Space to serve\",True,(240,240,240)),(150,30))\n        pygame.display.flip()\n        await asyncio.sleep(1 / 60)\n    pygame.quit()\n\nasyncio.run(main())\n",
+    "game.py": "import pygame\n\ndef step(x, vx, left, right, pressed, dt):\n    return x, vx, left, right\n"
+  },
+  "solution": {
+    "main.py": "# Browser entry point supplied by the course.\nimport asyncio\nimport pygame\nimport game\n\nasync def main():\n    pygame.init()\n    screen = pygame.display.set_mode((640, 400))\n    clock = pygame.time.Clock()\n    running = True\n    x,vx,left,right = 320.0,0.0,0,0\n    pressed = False\n    while running:\n        dt = min(clock.tick() / 1000, 0.05)\n        for event in pygame.event.get():\n            if event.type == pygame.QUIT:\n                running = False\n            if event.type == pygame.KEYDOWN and event.key == pygame.K_ESCAPE:\n                running = False\n            if event.type == pygame.KEYDOWN and event.key == pygame.K_SPACE:\n                pressed = True\n        keys = pygame.key.get_pressed()\n        x,vx,left,right = game.step(x,vx,left,right,pressed,dt)\n        pressed = False\n        screen.fill((16, 23, 39))\n        pygame.draw.circle(screen,(255,170,40),(int(x),200),6)\n        font = pygame.font.Font(None,30)\n        screen.blit(font.render(f\"{left} : {right}   Space to serve\",True,(240,240,240)),(150,30))\n        pygame.display.flip()\n        await asyncio.sleep(1 / 60)\n    pygame.quit()\n\nasyncio.run(main())\n",
+    "game.py": "import pygame\n\ndef step(x, vx, left, right, pressed, dt):\n    if vx == 0 and pressed:\n        vx = 200\n    x += vx * dt\n    if x < -6:\n        return 320, 0, left, right + 1\n    if x > 646:\n        return 320, 0, left + 1, right\n    return x, vx, left, right\n"
+  },
+  "checkpoints": [
+    {
+      "id": "python-v4-16-rally-session-step-1",
+      "objectiveIds": [
+        "rally-integration",
+        "serving",
+        "scoring",
+        "game-state",
+        "elapsed-time"
+      ],
+      "task": {
+        "en": "Write the complete step function following the state contract above. Test an entire cycle: serve, move, miss, wait, serve again.",
+        "nl": "Schrijf de volledige step-functie volgens de toestandsafspraken hierboven. Test een hele cyclus: service, bewegen, missen, wachten, opnieuw serveren."
+      },
+      "check": "_rendered_frames > 0",
+      "probes": [
+        {
+          "call": {
+            "name": "step",
+            "args": [
+              320,
+              0,
+              2,
+              3,
+              true,
+              0.1
+            ],
+            "module": "game"
+          },
+          "check": "(_return == (340,200,2,3)) and _error is None",
+          "moduleOnly": true,
+          "module": "game"
+        },
+        {
+          "call": {
+            "name": "step",
+            "args": [
+              640,
+              200,
+              2,
+              3,
+              false,
+              0.1
+            ],
+            "module": "game"
+          },
+          "check": "(_return == (320,0,3,3) and _module.step(*_return,False,0.1) == (320,0,3,3) and _module.step(*_return,True,0.1) == (340,200,3,3)) and _error is None",
+          "moduleOnly": true,
+          "module": "game"
+        },
+        {
+          "call": {
+            "name": "step",
+            "args": [
+              0,
+              -200,
+              2,
+              3,
+              true,
+              0.1
+            ],
+            "module": "game"
+          },
+          "check": "(_return == (320,0,2,4)) and _error is None",
+          "moduleOnly": true,
+          "module": "game"
+        },
+        {
+          "call": {
+            "name": "step",
+            "args": [
+              320,
+              0,
+              2,
+              3,
+              false,
+              1
+            ],
+            "module": "game"
+          },
+          "check": "(_return == (320,0,2,3)) and _error is None",
+          "moduleOnly": true,
+          "module": "game"
+        },
+        {
+          "call": {
+            "name": "step",
+            "args": [
+              600,
+              -100,
+              2,
+              3,
+              true,
+              0.1
+            ],
+            "module": "game"
+          },
+          "check": "(_return == (590,-100,2,3)) and _error is None",
+          "moduleOnly": true,
+          "module": "game"
+        },
+        {
+          "call": {
+            "name": "step",
+            "args": [
+              646,
+              200,
+              2,
+              3,
+              false,
+              0
+            ],
+            "module": "game"
+          },
+          "check": "(_return == (646,200,2,3)) and _error is None",
+          "moduleOnly": true,
+          "module": "game"
+        }
+      ],
+      "hint": {
+        "en": "Apply the event → move → resolve the miss → draw the returned state.",
+        "nl": "Verwerk de gebeurtenis → beweeg → verwerk de misser → teken de teruggegeven toestand."
+      },
+      "hints": [
+        {
+          "en": "Apply the event → move → resolve the miss → draw the returned state.",
+          "nl": "Verwerk de gebeurtenis → beweeg → verwerk de misser → teken de teruggegeven toestand."
+        },
+        {
+          "en": "Store every returned state value in the caller. A miss changes both velocity and position so it cannot score again next frame.",
+          "nl": "Bewaar elke teruggegeven toestandswaarde in de aanroeper. Een misser verandert snelheid én positie zodat die volgend beeld niet opnieuw scoort."
+        },
+        {
+          "en": "A small fragment to adapt: `x += vx * dt`",
+          "nl": "Een klein fragment om aan te passen: `x += vx * dt`"
+        }
+      ],
+      "feedback": {
+        "en": "Store every returned state value in the caller. A miss changes both velocity and position so it cannot score again next frame.",
+        "nl": "Bewaar elke teruggegeven toestandswaarde in de aanroeper. Een misser verandert snelheid én positie zodat die volgend beeld niet opnieuw scoort."
+      }
+    }
+  ],
+  "solutionNote": {
+    "en": "Serving only changes a waiting ball. Movement happens before miss detection. The returned centred, stopped state prevents duplicate points and is ready for a new serve.",
+    "nl": "Serveren verandert alleen een wachtende bal. Beweging komt vóór misserdetectie. De teruggegeven gecentreerde, gestopte toestand voorkomt dubbele punten en is klaar voor een nieuwe service."
+  },
+  "inputs": []
+}

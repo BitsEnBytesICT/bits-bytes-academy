@@ -55,11 +55,38 @@
       }
     },
     {
-      "id": "python-v4-17-slicing-experiment",
+      "id": "python-v4-17-slicing-trace",
       "topicIds": [],
       "heading": {
-        "en": "Try one change",
-        "nl": "Probeer één wijziging"
+        "en": "Inspect the intermediate slice",
+        "nl": "Bekijk de tussenliggende deelreeks"
+      },
+      "body": {
+        "en": "First inspect the slice, then count within it. For [2,9,2,4], [:3] is [2,9,2]; that slice's count(2) is 2. Counting the original list and counting a slice are different requests. An omitted stop includes the end; stop itself is always excluded.",
+        "nl": "Bekijk eerst de deelreeks en tel daarna daarin. Bij [2,9,2,4] is [:3] gelijk aan [2,9,2]; count(2) van die deelreeks is 2. In de oorspronkelijke lijst of in een deelreeks tellen zijn verschillende opdrachten. Een ontbrekende eindgrens neemt het einde mee; de eindgrens zelf telt nooit mee."
+      }
+    },
+    {
+      "id": "python-v4-17-slicing-try-calls",
+      "role": "practice",
+      "topicIds": [],
+      "heading": {
+        "en": "See your function work",
+        "nl": "Bekijk wat je functie doet"
+      },
+      "body": {
+        "en": "A definition alone produces no output. After writing the function, add these calls underneath it in main.py, without indentation, and Run. Compare the returned values with the task's requirements. The checks also call your function with other inputs; they do not require you to keep these demonstration calls.",
+        "nl": "Een definitie alleen geeft geen uitvoer. Schrijf eerst de functie en voeg daarna deze aanroepen eronder toe in main.py, zonder inspringing. Klik op Uitvoeren. Vergelijk de teruggegeven waarden met de opdracht. De controles roepen je functie ook met andere invoer aan; deze demonstratieaanroepen zijn niet verplicht."
+      },
+      "code": "print(window([0, 1, 0, 2]))\nprint(window([0]))"
+    },
+    {
+      "id": "python-v4-17-slicing-experiment",
+      "role": "experiment",
+      "topicIds": [],
+      "heading": {
+        "en": "After completing the task: try one change",
+        "nl": "Na het afronden: probeer één wijziging"
       },
       "body": {
         "en": "Compare [:3], [3:] and [-3:] on the same list.",
@@ -82,8 +109,8 @@
         "count"
       ],
       "task": {
-        "en": "Return (last_three_values, zero_count_in_those_values), using slicing and count. Shorter lists keep all their values.",
-        "nl": "Geef (last_three_values, zero_count_in_those_values) terug met een deelbereik en count. Kortere lijsten behouden al hun waarden."
+        "en": "Write window(values) in main.py. Return (last_three_values, zero_count_in_those_values), using slicing and count. Shorter lists keep all their values.",
+        "nl": "Schrijf window(values) in main.py. Geef (last_three_values, zero_count_in_those_values) terug met een deelbereik en count. Kortere lijsten behouden al hun waarden."
       },
       "check": "any(isinstance(n, _ast.Subscript) and isinstance(n.slice, _ast.Slice) for n in _ast.walk(_ast.parse(_source))) and any(isinstance(n, _ast.Call) and isinstance(n.func, _ast.Attribute) and n.func.attr == \"count\" for n in _ast.walk(_ast.parse(_source)))",
       "probes": [
@@ -150,19 +177,5 @@
     "en": "Negative slicing naturally handles short lists; count reports occurrences in the selected window.",
     "nl": "Negatieve deellijsten verwerken korte lijsten vanzelf; count telt voorkomens in het gekozen deel."
   },
-  "inputs": [],
-  "retrievals": [
-    {
-      "id": "recall-python-v4-15-drawing-order",
-      "sourceActivityId": "python-v4-15-drawing-order",
-      "objectiveIds": [
-        "drawing-order",
-        "drawing"
-      ],
-      "prompt": {
-        "en": "Recall “Draw the background before the foreground”. What would the pixel be if fill ran last? Try the earlier example from memory, then check it. Add a second overlapping rectangle and swap their drawing order.",
-        "nl": "Haal “Teken de achtergrond vóór de voorgrond” terug. Wat is de pixel als fill als laatste draait? Probeer het eerdere voorbeeld uit je geheugen en controleer daarna. Voeg een tweede overlappende rechthoek toe en wissel de tekenvolgorde."
-      }
-    }
-  ]
+  "inputs": []
 }

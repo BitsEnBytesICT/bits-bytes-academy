@@ -1,0 +1,800 @@
+{
+  "id": "python-v4-04-quiz-r2",
+  "chapter": 4,
+  "group": "python-v4-module-4",
+  "kind": "quiz",
+  "optional": false,
+  "estimatedMinutes": 8,
+  "title": {
+    "en": "Building useful text output: review",
+    "nl": "Bruikbare tekstuitvoer maken: herhaling"
+  },
+  "questions": [
+    {
+      "objectiveIds": [
+        "concatenation"
+      ],
+      "category": "prediction",
+      "prompt": {
+        "en": "What does this program print?",
+        "nl": "Wat drukt dit programma af?"
+      },
+      "code": "print(\"A\" + \"4\")",
+      "answer": "a",
+      "expectedOutput": "A4\n",
+      "choices": [
+        {
+          "id": "a",
+          "label": {
+            "en": "A4",
+            "nl": "A4"
+          },
+          "reason": {
+            "en": "Concatenation adds no automatic space.",
+            "nl": "Samenvoegen voegt niet automatisch een spatie toe."
+          }
+        },
+        {
+          "id": "b",
+          "label": {
+            "en": "A 4",
+            "nl": "A 4"
+          },
+          "reason": {
+            "en": "A space must be present in a string.",
+            "nl": "Een spatie moet in een string staan."
+          }
+        },
+        {
+          "id": "c",
+          "label": {
+            "en": "4",
+            "nl": "4"
+          },
+          "reason": {
+            "en": "The first string remains part of the result.",
+            "nl": "De eerste string blijft deel van het resultaat."
+          }
+        }
+      ],
+      "id": "python-v4-04-quiz-r2-a-1",
+      "reviewActivityIds": [
+        "python-v4-04-concatenate"
+      ]
+    },
+    {
+      "objectiveIds": [
+        "precedence"
+      ],
+      "category": "prediction",
+      "prompt": {
+        "en": "What does this program print?",
+        "nl": "Wat drukt dit programma af?"
+      },
+      "code": "print(2 + 3 * 4)",
+      "answer": "a",
+      "expectedOutput": "14\n",
+      "choices": [
+        {
+          "id": "a",
+          "label": {
+            "en": "14",
+            "nl": "14"
+          },
+          "reason": {
+            "en": "Parentheses group first; without them multiplication comes before addition.",
+            "nl": "Haakjes groeperen eerst; zonder haakjes komt vermenigvuldigen vóór optellen."
+          }
+        },
+        {
+          "id": "b",
+          "label": {
+            "en": "20",
+            "nl": "20"
+          },
+          "reason": {
+            "en": "Parentheses group first; without them multiplication comes before addition.",
+            "nl": "Haakjes groeperen eerst; zonder haakjes komt vermenigvuldigen vóór optellen."
+          }
+        },
+        {
+          "id": "c",
+          "label": {
+            "en": "24",
+            "nl": "24"
+          },
+          "reason": {
+            "en": "Parentheses group first; without them multiplication comes before addition.",
+            "nl": "Haakjes groeperen eerst; zonder haakjes komt vermenigvuldigen vóór optellen."
+          }
+        }
+      ],
+      "id": "python-v4-04-quiz-r2-a-2",
+      "reviewActivityIds": [
+        "python-v4-03-precedence"
+      ]
+    },
+    {
+      "objectiveIds": [
+        "str-conversion"
+      ],
+      "category": "completion",
+      "prompt": {
+        "en": "Complete the code to produce the shown output.",
+        "nl": "Vul de code aan om de getoonde uitvoer te maken."
+      },
+      "code": "count = 4\nprint(\"Count: \" + ___)",
+      "answer": "a",
+      "choices": [
+        {
+          "id": "a",
+          "label": {
+            "en": "str(count)",
+            "nl": "str(count)"
+          },
+          "reason": {
+            "en": "Convert the number to text for string concatenation.",
+            "nl": "Zet het getal om naar tekst voor stringsamenvoeging."
+          }
+        },
+        {
+          "id": "b",
+          "label": {
+            "en": "count",
+            "nl": "count"
+          },
+          "reason": {
+            "en": "Using count here produces TypeError. Convert the number to text for string concatenation.",
+            "nl": "Met count ontstaat hier TypeError. Zet het getal om naar tekst voor stringsamenvoeging."
+          }
+        },
+        {
+          "id": "c",
+          "label": {
+            "en": "\"count\"",
+            "nl": "\"count\""
+          },
+          "reason": {
+            "en": "Using \"count\" prints \"Count: count\\n\"; the required output is \"Count: 4\\n\". Convert the number to text for string concatenation.",
+            "nl": "Met \"count\" wordt \"Count: count\\n\" afgedrukt; de vereiste uitvoer is \"Count: 4\\n\". Zet het getal om naar tekst voor stringsamenvoeging."
+          }
+        }
+      ],
+      "codeBlank": {
+        "prompt": {
+          "en": "Complete the code to produce the shown output.",
+          "nl": "Vul de code aan om de getoonde uitvoer te maken."
+        },
+        "segments": [
+          "count = 4\nprint(\"Count: \" + ",
+          ")"
+        ],
+        "tokens": [
+          {
+            "id": "token-1",
+            "code": "str(count)"
+          },
+          {
+            "id": "token-2",
+            "code": "count",
+            "reason": {
+              "en": "Using count here produces TypeError. Convert the number to text for string concatenation.",
+              "nl": "Met count ontstaat hier TypeError. Zet het getal om naar tekst voor stringsamenvoeging."
+            }
+          },
+          {
+            "id": "token-3",
+            "code": "\"count\"",
+            "reason": {
+              "en": "Using \"count\" prints \"Count: count\\n\"; the required output is \"Count: 4\\n\". Convert the number to text for string concatenation.",
+              "nl": "Met \"count\" wordt \"Count: count\\n\" afgedrukt; de vereiste uitvoer is \"Count: 4\\n\". Zet het getal om naar tekst voor stringsamenvoeging."
+            }
+          }
+        ],
+        "blanks": [
+          {
+            "answer": "str(count)",
+            "reason": {
+              "en": "Convert the number to text for string concatenation.",
+              "nl": "Zet het getal om naar tekst voor stringsamenvoeging."
+            }
+          }
+        ],
+        "output": "Count: 4\n"
+      },
+      "id": "python-v4-04-quiz-r2-a-3",
+      "reviewActivityIds": [
+        "python-v4-04-convert-to-text"
+      ]
+    },
+    {
+      "objectiveIds": [
+        "modulo"
+      ],
+      "category": "completion",
+      "prompt": {
+        "en": "Complete the code to produce the shown output.",
+        "nl": "Vul de code aan om de getoonde uitvoer te maken."
+      },
+      "code": "print(14 ___ 4)",
+      "answer": "a",
+      "choices": [
+        {
+          "id": "a",
+          "label": {
+            "en": "%",
+            "nl": "%"
+          },
+          "reason": {
+            "en": "Follow the operation and its input type, then compare the exact result shown.",
+            "nl": "Volg de bewerking en het invoertype en vergelijk daarna het precieze getoonde resultaat."
+          }
+        },
+        {
+          "id": "b",
+          "label": {
+            "en": "/",
+            "nl": "/"
+          },
+          "reason": {
+            "en": "Using / prints \"3.5\\n\"; the required output is \"2\\n\". Follow the operation and its input type, then compare the exact result shown.",
+            "nl": "Met / wordt \"3.5\\n\" afgedrukt; de vereiste uitvoer is \"2\\n\". Volg de bewerking en het invoertype en vergelijk daarna het precieze getoonde resultaat."
+          }
+        },
+        {
+          "id": "c",
+          "label": {
+            "en": "*",
+            "nl": "*"
+          },
+          "reason": {
+            "en": "Using * prints \"56\\n\"; the required output is \"2\\n\". Follow the operation and its input type, then compare the exact result shown.",
+            "nl": "Met * wordt \"56\\n\" afgedrukt; de vereiste uitvoer is \"2\\n\". Volg de bewerking en het invoertype en vergelijk daarna het precieze getoonde resultaat."
+          }
+        }
+      ],
+      "codeBlank": {
+        "prompt": {
+          "en": "Complete the code to produce the shown output.",
+          "nl": "Vul de code aan om de getoonde uitvoer te maken."
+        },
+        "segments": [
+          "print(14 ",
+          " 4)"
+        ],
+        "tokens": [
+          {
+            "id": "token-1",
+            "code": "%"
+          },
+          {
+            "id": "token-2",
+            "code": "/",
+            "reason": {
+              "en": "Using / prints \"3.5\\n\"; the required output is \"2\\n\". Follow the operation and its input type, then compare the exact result shown.",
+              "nl": "Met / wordt \"3.5\\n\" afgedrukt; de vereiste uitvoer is \"2\\n\". Volg de bewerking en het invoertype en vergelijk daarna het precieze getoonde resultaat."
+            }
+          },
+          {
+            "id": "token-3",
+            "code": "*",
+            "reason": {
+              "en": "Using * prints \"56\\n\"; the required output is \"2\\n\". Follow the operation and its input type, then compare the exact result shown.",
+              "nl": "Met * wordt \"56\\n\" afgedrukt; de vereiste uitvoer is \"2\\n\". Volg de bewerking en het invoertype en vergelijk daarna het precieze getoonde resultaat."
+            }
+          }
+        ],
+        "blanks": [
+          {
+            "answer": "%",
+            "reason": {
+              "en": "Follow the operation and its input type, then compare the exact result shown.",
+              "nl": "Volg de bewerking en het invoertype en vergelijk daarna het precieze getoonde resultaat."
+            }
+          }
+        ],
+        "output": "2\n"
+      },
+      "id": "python-v4-04-quiz-r2-a-4",
+      "reviewActivityIds": [
+        "python-v4-03-remainder"
+      ]
+    },
+    {
+      "objectiveIds": [
+        "escapes"
+      ],
+      "category": "debugging",
+      "prompt": {
+        "en": "Choose the repair or test that addresses the stated problem.",
+        "nl": "Kies de reparatie of test die het beschreven probleem aanpakt."
+      },
+      "code": "# Need two output lines.\nprint(\"First Second 4\")",
+      "answer": "a",
+      "choices": [
+        {
+          "id": "a",
+          "label": {
+            "en": "Put \\n between First and Second.",
+            "nl": "Zet \\n tussen First en Second."
+          },
+          "reason": {
+            "en": "The newline escape creates a line boundary.",
+            "nl": "De nieuwe-regeleescape maakt een regelgrens."
+          }
+        },
+        {
+          "id": "b",
+          "label": {
+            "en": "Add another ordinary space.",
+            "nl": "Voeg nog een gewone spatie toe."
+          },
+          "reason": {
+            "en": "A space stays on the same line.",
+            "nl": "Een spatie blijft op dezelfde regel."
+          }
+        },
+        {
+          "id": "c",
+          "label": {
+            "en": "Remove quotation marks.",
+            "nl": "Verwijder aanhalingstekens."
+          },
+          "reason": {
+            "en": "Those delimit the string.",
+            "nl": "Die begrenzen de string."
+          }
+        }
+      ],
+      "id": "python-v4-04-quiz-r2-a-5",
+      "reviewActivityIds": [
+        "python-v4-04-escapes"
+      ]
+    },
+    {
+      "objectiveIds": [
+        "f-strings"
+      ],
+      "category": "application",
+      "prompt": {
+        "en": "Which statement or test fits this example?",
+        "nl": "Welke uitspraak of test past bij dit voorbeeld?"
+      },
+      "code": "count = 4\nprint(f\"Items: {count}\")",
+      "answer": "a",
+      "choices": [
+        {
+          "id": "a",
+          "label": {
+            "en": "The expression inside braces is evaluated.",
+            "nl": "De uitdrukking tussen accolades wordt berekend."
+          },
+          "reason": {
+            "en": "The f prefix enables replacement fields.",
+            "nl": "Het f-voorvoegsel activeert vervangvelden."
+          }
+        },
+        {
+          "id": "b",
+          "label": {
+            "en": "The braces are always printed literally.",
+            "nl": "De accolades worden altijd letterlijk afgedrukt."
+          },
+          "reason": {
+            "en": "Single braces mark a replacement here.",
+            "nl": "Enkele accolades markeren hier vervanging."
+          }
+        },
+        {
+          "id": "c",
+          "label": {
+            "en": "count becomes a string variable.",
+            "nl": "count wordt een stringvariabele."
+          },
+          "reason": {
+            "en": "Formatting does not reassign count.",
+            "nl": "Formatteren wijst count niet opnieuw toe."
+          }
+        }
+      ],
+      "id": "python-v4-04-quiz-r2-a-6",
+      "reviewActivityIds": [
+        "python-v4-04-f-strings"
+      ]
+    }
+  ],
+  "alternateQuestions": [
+    {
+      "objectiveIds": [
+        "f-strings"
+      ],
+      "category": "prediction",
+      "prompt": {
+        "en": "What does this program print?",
+        "nl": "Wat drukt dit programma af?"
+      },
+      "code": "count = 3\nprint(\"Count: {count}\")\nprint(f\"Count: {count}\")",
+      "answer": "a",
+      "expectedOutput": "Count: {count}\nCount: 3\n",
+      "choices": [
+        {
+          "id": "a",
+          "label": {
+            "en": "Count: {count}\nCount: 3",
+            "nl": "Count: {count}\nCount: 3"
+          },
+          "reason": {
+            "en": "Only the f prefix makes braces evaluate an expression.",
+            "nl": "Alleen het f-voorvoegsel laat haakjes een expressie evalueren."
+          }
+        },
+        {
+          "id": "b",
+          "label": {
+            "en": "Count: 3\nCount: 3",
+            "nl": "Count: 3\nCount: 3"
+          },
+          "reason": {
+            "en": "Only the f prefix makes braces evaluate an expression.",
+            "nl": "Alleen het f-voorvoegsel laat haakjes een expressie evalueren."
+          }
+        },
+        {
+          "id": "c",
+          "label": {
+            "en": "Count: {count}\nCount: {count}",
+            "nl": "Count: {count}\nCount: {count}"
+          },
+          "reason": {
+            "en": "Only the f prefix makes braces evaluate an expression.",
+            "nl": "Alleen het f-voorvoegsel laat haakjes een expressie evalueren."
+          }
+        }
+      ],
+      "id": "python-v4-04-quiz-r2-b-1",
+      "reviewActivityIds": [
+        "python-v4-04-f-strings"
+      ]
+    },
+    {
+      "objectiveIds": [
+        "precedence"
+      ],
+      "category": "prediction",
+      "prompt": {
+        "en": "What does this program print?",
+        "nl": "Wat drukt dit programma af?"
+      },
+      "code": "print((2 + 3) * 4)",
+      "answer": "a",
+      "expectedOutput": "20\n",
+      "choices": [
+        {
+          "id": "a",
+          "label": {
+            "en": "20",
+            "nl": "20"
+          },
+          "reason": {
+            "en": "Parentheses group first; without them multiplication comes before addition.",
+            "nl": "Haakjes groeperen eerst; zonder haakjes komt vermenigvuldigen vóór optellen."
+          }
+        },
+        {
+          "id": "b",
+          "label": {
+            "en": "14",
+            "nl": "14"
+          },
+          "reason": {
+            "en": "Parentheses group first; without them multiplication comes before addition.",
+            "nl": "Haakjes groeperen eerst; zonder haakjes komt vermenigvuldigen vóór optellen."
+          }
+        },
+        {
+          "id": "c",
+          "label": {
+            "en": "24",
+            "nl": "24"
+          },
+          "reason": {
+            "en": "Parentheses group first; without them multiplication comes before addition.",
+            "nl": "Haakjes groeperen eerst; zonder haakjes komt vermenigvuldigen vóór optellen."
+          }
+        }
+      ],
+      "id": "python-v4-04-quiz-r2-b-2",
+      "reviewActivityIds": [
+        "python-v4-03-precedence"
+      ]
+    },
+    {
+      "objectiveIds": [
+        "str-conversion"
+      ],
+      "category": "completion",
+      "prompt": {
+        "en": "Complete the code to produce the shown output.",
+        "nl": "Vul de code aan om de getoonde uitvoer te maken."
+      },
+      "code": "count = 6\nprint(\"Count: \" + ___)",
+      "answer": "a",
+      "choices": [
+        {
+          "id": "a",
+          "label": {
+            "en": "str(count)",
+            "nl": "str(count)"
+          },
+          "reason": {
+            "en": "Convert the number to text for string concatenation.",
+            "nl": "Zet het getal om naar tekst voor stringsamenvoeging."
+          }
+        },
+        {
+          "id": "b",
+          "label": {
+            "en": "count",
+            "nl": "count"
+          },
+          "reason": {
+            "en": "Using count here produces TypeError. Convert the number to text for string concatenation.",
+            "nl": "Met count ontstaat hier TypeError. Zet het getal om naar tekst voor stringsamenvoeging."
+          }
+        },
+        {
+          "id": "c",
+          "label": {
+            "en": "\"count\"",
+            "nl": "\"count\""
+          },
+          "reason": {
+            "en": "Using \"count\" prints \"Count: count\\n\"; the required output is \"Count: 6\\n\". Convert the number to text for string concatenation.",
+            "nl": "Met \"count\" wordt \"Count: count\\n\" afgedrukt; de vereiste uitvoer is \"Count: 6\\n\". Zet het getal om naar tekst voor stringsamenvoeging."
+          }
+        }
+      ],
+      "codeBlank": {
+        "prompt": {
+          "en": "Complete the code to produce the shown output.",
+          "nl": "Vul de code aan om de getoonde uitvoer te maken."
+        },
+        "segments": [
+          "count = 6\nprint(\"Count: \" + ",
+          ")"
+        ],
+        "tokens": [
+          {
+            "id": "token-1",
+            "code": "str(count)"
+          },
+          {
+            "id": "token-2",
+            "code": "count",
+            "reason": {
+              "en": "Using count here produces TypeError. Convert the number to text for string concatenation.",
+              "nl": "Met count ontstaat hier TypeError. Zet het getal om naar tekst voor stringsamenvoeging."
+            }
+          },
+          {
+            "id": "token-3",
+            "code": "\"count\"",
+            "reason": {
+              "en": "Using \"count\" prints \"Count: count\\n\"; the required output is \"Count: 6\\n\". Convert the number to text for string concatenation.",
+              "nl": "Met \"count\" wordt \"Count: count\\n\" afgedrukt; de vereiste uitvoer is \"Count: 6\\n\". Zet het getal om naar tekst voor stringsamenvoeging."
+            }
+          }
+        ],
+        "blanks": [
+          {
+            "answer": "str(count)",
+            "reason": {
+              "en": "Convert the number to text for string concatenation.",
+              "nl": "Zet het getal om naar tekst voor stringsamenvoeging."
+            }
+          }
+        ],
+        "output": "Count: 6\n"
+      },
+      "id": "python-v4-04-quiz-r2-b-3",
+      "reviewActivityIds": [
+        "python-v4-04-convert-to-text"
+      ]
+    },
+    {
+      "objectiveIds": [
+        "modulo"
+      ],
+      "category": "completion",
+      "prompt": {
+        "en": "Complete the code to produce the shown output.",
+        "nl": "Vul de code aan om de getoonde uitvoer te maken."
+      },
+      "code": "print(12 ___ 4)",
+      "answer": "a",
+      "choices": [
+        {
+          "id": "a",
+          "label": {
+            "en": "%",
+            "nl": "%"
+          },
+          "reason": {
+            "en": "Follow the operation and its input type, then compare the exact result shown.",
+            "nl": "Volg de bewerking en het invoertype en vergelijk daarna het precieze getoonde resultaat."
+          }
+        },
+        {
+          "id": "b",
+          "label": {
+            "en": "/",
+            "nl": "/"
+          },
+          "reason": {
+            "en": "Using / prints \"3.0\\n\"; the required output is \"0\\n\". Follow the operation and its input type, then compare the exact result shown.",
+            "nl": "Met / wordt \"3.0\\n\" afgedrukt; de vereiste uitvoer is \"0\\n\". Volg de bewerking en het invoertype en vergelijk daarna het precieze getoonde resultaat."
+          }
+        },
+        {
+          "id": "c",
+          "label": {
+            "en": "*",
+            "nl": "*"
+          },
+          "reason": {
+            "en": "Using * prints \"48\\n\"; the required output is \"0\\n\". Follow the operation and its input type, then compare the exact result shown.",
+            "nl": "Met * wordt \"48\\n\" afgedrukt; de vereiste uitvoer is \"0\\n\". Volg de bewerking en het invoertype en vergelijk daarna het precieze getoonde resultaat."
+          }
+        }
+      ],
+      "codeBlank": {
+        "prompt": {
+          "en": "Complete the code to produce the shown output.",
+          "nl": "Vul de code aan om de getoonde uitvoer te maken."
+        },
+        "segments": [
+          "print(12 ",
+          " 4)"
+        ],
+        "tokens": [
+          {
+            "id": "token-1",
+            "code": "%"
+          },
+          {
+            "id": "token-2",
+            "code": "/",
+            "reason": {
+              "en": "Using / prints \"3.0\\n\"; the required output is \"0\\n\". Follow the operation and its input type, then compare the exact result shown.",
+              "nl": "Met / wordt \"3.0\\n\" afgedrukt; de vereiste uitvoer is \"0\\n\". Volg de bewerking en het invoertype en vergelijk daarna het precieze getoonde resultaat."
+            }
+          },
+          {
+            "id": "token-3",
+            "code": "*",
+            "reason": {
+              "en": "Using * prints \"48\\n\"; the required output is \"0\\n\". Follow the operation and its input type, then compare the exact result shown.",
+              "nl": "Met * wordt \"48\\n\" afgedrukt; de vereiste uitvoer is \"0\\n\". Volg de bewerking en het invoertype en vergelijk daarna het precieze getoonde resultaat."
+            }
+          }
+        ],
+        "blanks": [
+          {
+            "answer": "%",
+            "reason": {
+              "en": "Follow the operation and its input type, then compare the exact result shown.",
+              "nl": "Volg de bewerking en het invoertype en vergelijk daarna het precieze getoonde resultaat."
+            }
+          }
+        ],
+        "output": "0\n"
+      },
+      "id": "python-v4-04-quiz-r2-b-4",
+      "reviewActivityIds": [
+        "python-v4-03-remainder"
+      ]
+    },
+    {
+      "objectiveIds": [
+        "escapes"
+      ],
+      "category": "debugging",
+      "prompt": {
+        "en": "Choose the repair or test that addresses the stated problem.",
+        "nl": "Kies de reparatie of test die het beschreven probleem aanpakt."
+      },
+      "code": "# Need two output lines.\nprint(\"First Second 6\")",
+      "answer": "a",
+      "choices": [
+        {
+          "id": "a",
+          "label": {
+            "en": "Put \\n between First and Second.",
+            "nl": "Zet \\n tussen First en Second."
+          },
+          "reason": {
+            "en": "The newline escape creates a line boundary.",
+            "nl": "De nieuwe-regeleescape maakt een regelgrens."
+          }
+        },
+        {
+          "id": "b",
+          "label": {
+            "en": "Add another ordinary space.",
+            "nl": "Voeg nog een gewone spatie toe."
+          },
+          "reason": {
+            "en": "A space stays on the same line.",
+            "nl": "Een spatie blijft op dezelfde regel."
+          }
+        },
+        {
+          "id": "c",
+          "label": {
+            "en": "Remove quotation marks.",
+            "nl": "Verwijder aanhalingstekens."
+          },
+          "reason": {
+            "en": "Those delimit the string.",
+            "nl": "Die begrenzen de string."
+          }
+        }
+      ],
+      "id": "python-v4-04-quiz-r2-b-5",
+      "reviewActivityIds": [
+        "python-v4-04-escapes"
+      ]
+    },
+    {
+      "objectiveIds": [
+        "f-strings"
+      ],
+      "category": "application",
+      "prompt": {
+        "en": "Which statement or test fits this example?",
+        "nl": "Welke uitspraak of test past bij dit voorbeeld?"
+      },
+      "code": "count = 6\nprint(f\"Items: {count}\")",
+      "answer": "a",
+      "choices": [
+        {
+          "id": "a",
+          "label": {
+            "en": "The expression inside braces is evaluated.",
+            "nl": "De uitdrukking tussen accolades wordt berekend."
+          },
+          "reason": {
+            "en": "The f prefix enables replacement fields.",
+            "nl": "Het f-voorvoegsel activeert vervangvelden."
+          }
+        },
+        {
+          "id": "b",
+          "label": {
+            "en": "The braces are always printed literally.",
+            "nl": "De accolades worden altijd letterlijk afgedrukt."
+          },
+          "reason": {
+            "en": "Single braces mark a replacement here.",
+            "nl": "Enkele accolades markeren hier vervanging."
+          }
+        },
+        {
+          "id": "c",
+          "label": {
+            "en": "count becomes a string variable.",
+            "nl": "count wordt een stringvariabele."
+          },
+          "reason": {
+            "en": "Formatting does not reassign count.",
+            "nl": "Formatteren wijst count niet opnieuw toe."
+          }
+        }
+      ],
+      "id": "python-v4-04-quiz-r2-b-6",
+      "reviewActivityIds": [
+        "python-v4-04-f-strings"
+      ]
+    }
+  ]
+}

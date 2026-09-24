@@ -54,11 +54,26 @@
       }
     },
     {
-      "id": "python-v4-11-append-experiment",
+      "id": "python-v4-11-append-try-calls",
+      "role": "practice",
       "topicIds": [],
       "heading": {
-        "en": "Try one change",
-        "nl": "Probeer één wijziging"
+        "en": "See your function work",
+        "nl": "Bekijk wat je functie doet"
+      },
+      "body": {
+        "en": "A definition alone produces no output. After writing the function, add these calls underneath it in main.py, without indentation, and Run. Compare the returned values with the task's requirements. The checks also call your function with other inputs; they do not require you to keep these demonstration calls.",
+        "nl": "Een definitie alleen geeft geen uitvoer. Schrijf eerst de functie en voeg daarna deze aanroepen eronder toe in main.py, zonder inspringing. Klik op Uitvoeren. Vergelijk de teruggegeven waarden met de opdracht. De controles roepen je functie ook met andere invoer aan; deze demonstratieaanroepen zijn niet verplicht."
+      },
+      "code": "print(pair(2, 4))\nprint(pair(\"a\", \"b\"))"
+    },
+    {
+      "id": "python-v4-11-append-experiment",
+      "role": "experiment",
+      "topicIds": [],
+      "heading": {
+        "en": "After completing the task: try one change",
+        "nl": "Na het afronden: probeer één wijziging"
       },
       "body": {
         "en": "Append an empty string and explain why the list is no longer empty.",
@@ -81,8 +96,8 @@
         "append"
       ],
       "task": {
-        "en": "Start an empty list, append first then second, and return the list. Practise append here.",
-        "nl": "Begin met een lege lijst, voeg first en daarna second toe met append en geef de lijst terug. Oefen hier append."
+        "en": "Write pair(first, second) in main.py. Start an empty list, append first then second, and return the list. Practise append here.",
+        "nl": "Schrijf pair(first, second) in main.py. Begin met een lege lijst, voeg first en daarna second toe met append en geef de lijst terug. Oefen hier append."
       },
       "check": "any(isinstance(n,_ast.Attribute) and n.attr == \"append\" for n in _ast.walk(_ast.parse(_source)))",
       "probes": [
@@ -135,31 +150,5 @@
     "en": "Each call mutates values; return sends the completed list to the caller.",
     "nl": "Elke aanroep verandert values; return stuurt de voltooide lijst naar de aanroeper."
   },
-  "inputs": [],
-  "retrievals": [
-    {
-      "id": "recall-python-v4-09-flow",
-      "sourceActivityId": "python-v4-09-flow",
-      "objectiveIds": [
-        "execution-flow"
-      ],
-      "prompt": {
-        "en": "Recall “Follow a function call”. Does defining bell print Ring immediately? Try the earlier example from memory, then check it. Predict what happens if the final print moves before the calls.",
-        "nl": "Haal “Volg een functieaanroep” terug. Drukt het definiëren van bell direct Ring af? Probeer het eerdere voorbeeld uit je geheugen en controleer daarna. Voorspel wat gebeurt als de laatste print vóór de aanroepen komt."
-      }
-    },
-    {
-      "id": "recall-python-v4-09-named-and-default",
-      "sourceActivityId": "python-v4-09-named-and-default",
-      "objectiveIds": [
-        "default-arguments",
-        "keyword-arguments",
-        "argument-types"
-      ],
-      "prompt": {
-        "en": "Recall “Optional inputs and named arguments”. Why is the second result not 12? Try the earlier example from memory, then check it. Compare delivery(5, 1) with delivery(fee=1, price=5).",
-        "nl": "Haal “Optionele invoer en benoemde argumenten” terug. Waarom is het tweede resultaat niet 12? Probeer het eerdere voorbeeld uit je geheugen en controleer daarna. Vergelijk delivery(5, 1) met delivery(fee=1, price=5)."
-      }
-    }
-  ]
+  "inputs": []
 }

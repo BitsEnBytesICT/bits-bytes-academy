@@ -55,10 +55,11 @@
     },
     {
       "id": "python-v4-05-input-is-text-experiment",
+      "role": "experiment",
       "topicIds": [],
       "heading": {
-        "en": "Try one change",
-        "nl": "Probeer één wijziging"
+        "en": "After completing the task: try one change",
+        "nl": "Na het afronden: probeer één wijziging"
       },
       "body": {
         "en": "Enter a word, then a decimal number. Explain why both have the same type.",
@@ -130,26 +131,16 @@
   ],
   "retrievals": [
     {
-      "id": "recall-python-v4-03-subtraction",
-      "sourceActivityId": "python-v4-03-subtraction",
+      "id": "recall-python-v4-02-inspect-types",
+      "sourceActivityId": "python-v4-02-inspect-types",
       "objectiveIds": [
-        "subtraction"
+        "types"
       ],
       "prompt": {
-        "en": "Recall “Find what remains”. What would borrowed - books produce? Try the earlier example from memory, then check it. Try selling exactly all the tickets. Then try one more than available and interpret the negative answer.",
-        "nl": "Haal “Bepaal wat overblijft” terug. Wat zou borrowed - books opleveren? Probeer het eerdere voorbeeld uit je geheugen en controleer daarna. Probeer precies alle kaartjes te verkopen. Probeer daarna één meer dan beschikbaar en verklaar het negatieve antwoord."
-      }
-    },
-    {
-      "id": "recall-python-v4-03-whole-groups",
-      "sourceActivityId": "python-v4-03-whole-groups",
-      "objectiveIds": [
-        "floor-division"
-      ],
-      "prompt": {
-        "en": "Recall “Count complete groups with //”. Why is the first result a smaller whole number? Try the earlier example from memory, then check it. Try one fewer item than box_size. How many complete boxes can you fill?",
-        "nl": "Haal “Tel volledige groepen met //” terug. Waarom is het eerste resultaat een kleiner geheel getal? Probeer het eerdere voorbeeld uit je geheugen en controleer daarna. Probeer één artikel minder dan box_size. Hoeveel volledige dozen kun je vullen?"
-      }
+        "en": "Recall ask python for a value's type. Why does the quoted 8 have a different type? Replace label's value with the number 5 and inspect its type again.",
+        "nl": "Herhaal vraag python naar het type van een waarde. Waarom heeft de 8 tussen aanhalingstekens een ander type? Vervang de waarde van label door het getal 5 en onderzoek het type opnieuw."
+      },
+      "code": "print(type(8))\nprint(type(8.0))\nprint(type(\"8\"))"
     }
   ]
 }

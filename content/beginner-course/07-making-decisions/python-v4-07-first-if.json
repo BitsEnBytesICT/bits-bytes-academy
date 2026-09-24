@@ -52,10 +52,11 @@
     },
     {
       "id": "python-v4-07-first-if-experiment",
+      "role": "experiment",
       "topicIds": [],
       "heading": {
-        "en": "Try one change",
-        "nl": "Probeer één wijziging"
+        "en": "After completing the task: try one change",
+        "nl": "Na het afronden: probeer één wijziging"
       },
       "body": {
         "en": "Change has_ticket to False. An empty output is the correct behaviour in that case.",
@@ -119,15 +120,17 @@
   "inputs": [],
   "retrievals": [
     {
-      "id": "recall-python-v4-05-first-input",
-      "sourceActivityId": "python-v4-05-first-input",
+      "id": "recall-python-v4-06-boolean-values",
+      "sourceActivityId": "python-v4-06-boolean-values",
       "objectiveIds": [
-        "input"
+        "boolean-expressions",
+        "boolean-variables"
       ],
       "prompt": {
-        "en": "Recall “Ask and wait for an answer”. Where must the person type their answer: editor or terminal? Try the earlier example from memory, then check it. Run twice with two different names. The code stays the same; the answers change.",
-        "nl": "Haal “Stel een vraag en wacht op antwoord” terug. Waar moet de gebruiker het antwoord typen: editor of terminal? Probeer het eerdere voorbeeld uit je geheugen en controleer daarna. Voer tweemaal uit met twee verschillende namen. De code blijft hetzelfde; de antwoorden veranderen."
-      }
+        "en": "Recall two boolean values. Do the last two calls report the same type? Assign the string False to finished and inspect its type. Restore the Boolean afterward.",
+        "nl": "Herhaal twee booleaanse waarden. Melden de laatste twee aanroepen hetzelfde type? Wijs de string False aan finished toe en onderzoek het type. Herstel daarna de booleaanse waarde."
+      },
+      "code": "door_open = True\nprint(door_open)\nprint(type(door_open))\nprint(type(\"True\"))"
     }
   ]
 }

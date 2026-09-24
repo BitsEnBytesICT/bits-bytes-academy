@@ -50,11 +50,24 @@
       }
     },
     {
-      "id": "python-v4-06-or-experiment",
+      "id": "python-v4-06-or-trace",
       "topicIds": [],
       "heading": {
-        "en": "Try one change",
-        "nl": "Probeer één wijziging"
+        "en": "Compare twice",
+        "nl": "Vergelijk tweemaal"
+      },
+      "body": {
+        "en": "For A or B: True/True, True/False and False/True all give True; only False/False gives False. Write command == 'go' or command == 'start'. In command == 'go' or 'start', the second part is nonempty text, which counts as true without comparing command.",
+        "nl": "Bij A or B geven True/True, True/False en False/True allemaal True; alleen False/False geeft False. Schrijf command == 'go' or command == 'start'. Bij command == 'go' or 'start' is het tweede deel niet-lege tekst die als waar telt zonder command te vergelijken."
+      }
+    },
+    {
+      "id": "python-v4-06-or-experiment",
+      "role": "experiment",
+      "topicIds": [],
+      "heading": {
+        "en": "After completing the task: try one change",
+        "nl": "Na het afronden: probeer één wijziging"
       },
       "body": {
         "en": "Try a different command. Explain why the rule should now be False.",
@@ -125,14 +138,33 @@
     {
       "id": "python-v4-06-or-step-2",
       "objectiveIds": [
-        "or"
+        "print"
       ],
       "task": {
         "en": "Print the Boolean result.",
         "nl": "Druk het booleaanse resultaat af."
       },
       "check": "_stdout.strip() == str(result)",
-      "probes": [],
+      "probes": [
+        {
+          "inputs": {
+            "command": "info"
+          },
+          "check": "type(result) is bool and _stdout.strip() == str(command == \"help\" or command == \"info\")"
+        },
+        {
+          "inputs": {
+            "command": "quit"
+          },
+          "check": "type(result) is bool and _stdout.strip() == str(command == \"help\" or command == \"info\")"
+        },
+        {
+          "inputs": {
+            "command": ""
+          },
+          "check": "type(result) is bool and _stdout.strip() == str(command == \"help\" or command == \"info\")"
+        }
+      ],
       "hint": {
         "en": "or accepts either condition, including both being True.",
         "nl": "or accepteert een van beide voorwaarden, inclusief wanneer beide True zijn."
@@ -161,18 +193,5 @@
     "en": "Both sides compare command with a specific value. An unrelated command fails both comparisons.",
     "nl": "Beide kanten vergelijken command met een specifieke waarde. Een andere opdracht faalt voor beide vergelijkingen."
   },
-  "inputs": [],
-  "retrievals": [
-    {
-      "id": "recall-python-v4-04-visitor-card",
-      "sourceActivityId": "python-v4-04-visitor-card",
-      "objectiveIds": [
-        "output-review"
-      ],
-      "prompt": {
-        "en": "Recall “Build a visitor card”. Which text stays fixed when room changes? Try the earlier example from memory, then check it. Use a longer name and no tickets. Does the same code still work?",
-        "nl": "Haal “Maak een bezoekerskaart” terug. Welke tekst blijft vast wanneer room verandert? Probeer het eerdere voorbeeld uit je geheugen en controleer daarna. Gebruik een langere naam en geen kaartjes. Werkt dezelfde code nog steeds?"
-      }
-    }
-  ]
+  "inputs": []
 }

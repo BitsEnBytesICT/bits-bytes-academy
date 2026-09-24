@@ -6,6 +6,9 @@ import { specs as early } from "./quizzes.mjs";
 import { specs as late } from "./quizzes-later.mjs";
 import { calculator, pong } from "./projects.mjs";
 import { localDevelopment } from "./local-development.mjs";
+import { addLearningSupport } from "./learning-support.mjs";
+import { addRetrieval, reviewLibrary } from "./retrieval.mjs";
+import { applyEvidenceContracts } from "./evidence-contracts.mjs";
 const paths = fs
   .readdirSync(new URL(".", import.meta.url))
   .filter((n) => /^\d\d-.*\.mjs$/.test(n))
@@ -13,6 +16,19 @@ const paths = fs
 export const lessons = (
   await Promise.all(paths.map((n) => import(new URL(n, import.meta.url))))
 ).flatMap((m) => m.activities);
+for (const [id, after] of [
+  ["18-both-format-forms", "18-format"],
+  ["19-build-record", "19-update"],
+  ["19-keys-and-values", "19-views"],
+]) {
+  const index = lessons.findIndex((a) => a.id === `python-v4-${id}`);
+  const [activity] = lessons.splice(index, 1);
+  lessons.splice(
+    lessons.findIndex((a) => a.id === `python-v4-${after}`) + 1,
+    0,
+    activity,
+  );
+}
 const aliases = {
   assignment: "variables",
   comparisons: "relational-operators",
@@ -24,38 +40,15 @@ lessons
   .find((a) => a.id === "python-v4-01-first-print")
   .checkpoints[0].objectiveIds.push("welcome");
 const quizzes = makeQuizzes([...early, ...late], lessons, outline);
+addLearningSupport(lessons);
+applyEvidenceContracts(lessons);
 const activities = outline.flatMap((_, i) => [
   ...lessons.filter((a) => a.chapter === i + 1),
+  ...(i === 22 ? [reviewLibrary] : []),
   ...quizzes.filter((a) => a.chapter === i + 1),
   ...[calculator, pong, localDevelopment].filter((a) => a.chapter === i + 1),
 ]);
-// Delayed, optional self-explanation: refer to a specific earlier example and
-// a changed-input experiment. These prompts are retrieval, not graded mastery.
-for (const source of lessons) {
-  const candidates = activities.filter(
-    (a) => a.kind !== "quiz" && a.chapter === Math.min(24, source.chapter + 2),
-  );
-  const within = lessons
-    .filter((a) => a.chapter === source.chapter)
-    .indexOf(source);
-  const destination = candidates[within % candidates.length];
-  const prompt =
-    source.sections[0].prediction ||
-    L(
-      "Explain the example’s execution order.",
-      "Leg de uitvoeringsvolgorde van het voorbeeld uit.",
-    );
-  const change = source.sections.at(-1).body;
-  (destination.retrievals ||= []).push({
-    id: `recall-${source.id}`,
-    sourceActivityId: source.id,
-    objectiveIds: source.topicIds,
-    prompt: L(
-      `Recall “${source.title.en}”. ${prompt.en} Try the earlier example from memory, then check it. ${change.en}`,
-      `Haal “${source.title.nl}” terug. ${prompt.nl} Probeer het eerdere voorbeeld uit je geheugen en controleer daarna. ${change.nl}`,
-    ),
-  });
-}
+addRetrieval(lessons, activities);
 export const estimatedMinutes = activities.reduce(
   (n, a) => n + a.estimatedMinutes,
   0,

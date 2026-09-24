@@ -55,11 +55,38 @@
       }
     },
     {
-      "id": "python-v4-23-inspect-experiment",
+      "id": "python-v4-23-inspect-trace",
       "topicIds": [],
       "heading": {
-        "en": "Try one change",
-        "nl": "Probeer één wijziging"
+        "en": "Ask three separate questions",
+        "nl": "Stel drie aparte vragen"
+      },
+      "body": {
+        "en": "hasattr(obj,'name') asks whether an attribute exists. getattr(obj,'name','Unknown') fetches its value or the fallback when absent. dir(obj) lists available names for exploration. An existing name=None still exists: hasattr is True and getattr returns None, not 'Unknown'. Check existence separately from the stored value.",
+        "nl": "hasattr(obj,'name') vraagt of een attribuut bestaat. getattr(obj,'name','Unknown') haalt de waarde op of het alternatief bij afwezigheid. dir(obj) geeft beschikbare namen om te onderzoeken. Een bestaande name=None bestaat nog: hasattr is True en getattr geeft None, niet 'Unknown'. Controleer bestaan apart van de bewaarde waarde."
+      }
+    },
+    {
+      "id": "python-v4-23-inspect-try-calls",
+      "role": "practice",
+      "topicIds": [],
+      "heading": {
+        "en": "See your function work",
+        "nl": "Bekijk wat je functie doet"
+      },
+      "body": {
+        "en": "A definition alone produces no output. After writing the function, add these calls underneath it in main.py, without indentation, and Run. Compare the returned values with the task's requirements. The checks also call your function with other inputs; they do not require you to keep these demonstration calls.",
+        "nl": "Een definitie alleen geeft geen uitvoer. Schrijf eerst de functie en voeg daarna deze aanroepen eronder toe in main.py, zonder inspringing. Klik op Uitvoeren. Vergelijk de teruggegeven waarden met de opdracht. De controles roepen je functie ook met andere invoer aan; deze demonstratieaanroepen zijn niet verplicht."
+      },
+      "code": "print(inspect_name(\"text\"))"
+    },
+    {
+      "id": "python-v4-23-inspect-experiment",
+      "role": "experiment",
+      "topicIds": [],
+      "heading": {
+        "en": "After completing the task: try one change",
+        "nl": "Na het afronden: probeer één wijziging"
       },
       "body": {
         "en": "Use dir on a string and identify one method you already know.",

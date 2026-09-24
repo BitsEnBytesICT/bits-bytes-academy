@@ -46,7 +46,7 @@
       },
       "body": {
         "en": "Write down the input rules first. For ticket_total(count, price=4), a negative count is invalid and returns None; zero is valid and returns zero; otherwise multiply count by price. The function reads no input and prints nothing. Test the returned value from separate caller code. The example shows the same guard pattern in a different context.",
-        "nl": "Schrijf eerst de invoerregels op. Voor ticket_total(count, price=4) is een negatief aantal ongeldig en geeft None; nul is geldig en geeft nul; vermenigvuldig anders count met price. De functie leest geen invoer en drukt niets af. Test de teruggegeven waarde vanuit aparte aanroepcode. Het voorbeeld toont hetzelfde bewakingspatroon in een andere context."
+        "nl": "Schrijf eerst de invoerregels op. Voor ticket_total(count, price=4) is een negatief aantal ongeldig en geeft None; nul is geldig en geeft nul; vermenigvuldig anders count met price. De functie leest geen invoer en drukt niets af. Test de teruggegeven waarde vanuit aparte aanroepcode. Het voorbeeld toont hetzelfde controlespatroon in een andere context."
       },
       "code": "def remaining(stock, used=1):\n    if used < 0:\n        return None\n    return stock - used\nprint(remaining(8))",
       "output": "7\n",
@@ -60,11 +60,26 @@
       }
     },
     {
-      "id": "python-v4-09-ticket-function-experiment",
+      "id": "python-v4-09-ticket-function-try-calls",
+      "role": "practice",
       "topicIds": [],
       "heading": {
-        "en": "Try one change",
-        "nl": "Probeer één wijziging"
+        "en": "See your function work",
+        "nl": "Bekijk wat je functie doet"
+      },
+      "body": {
+        "en": "A definition alone produces no output. After writing the function, add these calls underneath it in main.py, without indentation, and Run. Compare the returned values with the task's requirements. The checks also call your function with other inputs; they do not require you to keep these demonstration calls.",
+        "nl": "Een definitie alleen geeft geen uitvoer. Schrijf eerst de functie en voeg daarna deze aanroepen eronder toe in main.py, zonder inspringing. Klik op Uitvoeren. Vergelijk de teruggegeven waarden met de opdracht. De controles roepen je functie ook met andere invoer aan; deze demonstratieaanroepen zijn niet verplicht."
+      },
+      "code": "print(ticket_total(3))\nprint(ticket_total(0))"
+    },
+    {
+      "id": "python-v4-09-ticket-function-experiment",
+      "role": "experiment",
+      "topicIds": [],
+      "heading": {
+        "en": "After completing the task: try one change",
+        "nl": "Na het afronden: probeer één wijziging"
       },
       "body": {
         "en": "Add a named-argument test that overrides price.",
@@ -82,11 +97,7 @@
     {
       "id": "python-v4-09-ticket-function-step-1",
       "objectiveIds": [
-        "functions-review",
-        "return",
-        "default-arguments",
-        "scope",
-        "early-return"
+        "functions-review"
       ],
       "task": {
         "en": "Implement ticket_total(count, price=4) using the stated contract.",
@@ -143,7 +154,7 @@
         },
         {
           "en": "Separate the invalid-count guard from the normal product.",
-          "nl": "Scheid de bewaking voor ongeldige aantallen van het gewone product."
+          "nl": "Scheid de controle voor ongeldige aantallen van het gewone product."
         },
         {
           "en": "A small fragment to adapt: `if count < 0:`",
@@ -152,7 +163,7 @@
       ],
       "feedback": {
         "en": "Separate the invalid-count guard from the normal product.",
-        "nl": "Scheid de bewaking voor ongeldige aantallen van het gewone product."
+        "nl": "Scheid de controle voor ongeldige aantallen van het gewone product."
       }
     }
   ],

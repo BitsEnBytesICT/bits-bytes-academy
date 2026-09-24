@@ -7,18 +7,8 @@ import {
   initializeRuntime,
 } from "../frontend/public/runtime/engine.mjs";
 import { ensurePackages } from "../frontend/public/runtime/packages.mjs";
-import { localDevelopment } from "../content-src/beginner-course/local-development.mjs";
-const files = fs
-  .readdirSync("content-src/beginner-course")
-  .filter((n) => /^\d\d-/.test(n) && n.endsWith(".mjs"));
-const activities = [
-  ...(
-    await Promise.all(
-      files.map((n) => import(`../content-src/beginner-course/${n}`)),
-    )
-  ).flatMap((m) => m.activities),
-  localDevelopment,
-];
+import { course } from "../content-src/beginner-course/index.mjs";
+const activities = course.activities.filter((a) => a.kind !== "quiz");
 const py = await loadPyodide({
   indexURL: path.resolve("frontend/public/runtime/pyodide"),
 });

@@ -1,0 +1,800 @@
+{
+  "id": "python-v4-19-quiz-r2",
+  "chapter": 19,
+  "group": "python-v4-module-19",
+  "kind": "quiz",
+  "optional": false,
+  "estimatedMinutes": 8,
+  "title": {
+    "en": "Dictionaries and records: review",
+    "nl": "Dictionaries en records: herhaling"
+  },
+  "questions": [
+    {
+      "objectiveIds": [
+        "get"
+      ],
+      "category": "prediction",
+      "prompt": {
+        "en": "What does this program print?",
+        "nl": "Wat drukt dit programma af?"
+      },
+      "code": "record = {\"score\":0}\nprint(record.get(\"score\",5))",
+      "answer": "a",
+      "expectedOutput": "0\n",
+      "choices": [
+        {
+          "id": "a",
+          "label": {
+            "en": "0",
+            "nl": "0"
+          },
+          "reason": {
+            "en": "The present zero is preserved.",
+            "nl": "De aanwezige nul blijft behouden."
+          }
+        },
+        {
+          "id": "b",
+          "label": {
+            "en": "5",
+            "nl": "5"
+          },
+          "reason": {
+            "en": "The default is used only for a missing key.",
+            "nl": "De standaard wordt alleen bij een ontbrekende sleutel gebruikt."
+          }
+        },
+        {
+          "id": "c",
+          "label": {
+            "en": "None",
+            "nl": "None"
+          },
+          "reason": {
+            "en": "The score key is present with a numeric value.",
+            "nl": "De score-sleutel bestaat met een numerieke waarde."
+          }
+        }
+      ],
+      "id": "python-v4-19-quiz-r2-a-1",
+      "reviewActivityIds": [
+        "python-v4-19-lookup"
+      ]
+    },
+    {
+      "objectiveIds": [
+        "split-delimiters"
+      ],
+      "category": "prediction",
+      "prompt": {
+        "en": "What does this program print?",
+        "nl": "Wat drukt dit programma af?"
+      },
+      "code": "print(\"a,,b\".split(\",\"))",
+      "answer": "a",
+      "expectedOutput": "['a', '', 'b']\n",
+      "choices": [
+        {
+          "id": "a",
+          "label": {
+            "en": "['a', '', 'b']",
+            "nl": "['a', '', 'b']"
+          },
+          "reason": {
+            "en": "An explicit delimiter preserves empty fields, including at either end.",
+            "nl": "Een expliciet scheidingsteken bewaart lege velden, ook aan beide uiteinden."
+          }
+        },
+        {
+          "id": "b",
+          "label": {
+            "en": "['a', 'b']",
+            "nl": "['a', 'b']"
+          },
+          "reason": {
+            "en": "An explicit delimiter preserves empty fields, including at either end.",
+            "nl": "Een expliciet scheidingsteken bewaart lege velden, ook aan beide uiteinden."
+          }
+        },
+        {
+          "id": "c",
+          "label": {
+            "en": "['a']",
+            "nl": "['a']"
+          },
+          "reason": {
+            "en": "An explicit delimiter preserves empty fields, including at either end.",
+            "nl": "Een expliciet scheidingsteken bewaart lege velden, ook aan beide uiteinden."
+          }
+        }
+      ],
+      "id": "python-v4-19-quiz-r2-a-2",
+      "reviewActivityIds": [
+        "python-v4-18-split-delimiter"
+      ]
+    },
+    {
+      "objectiveIds": [
+        "dictionary-comprehensions"
+      ],
+      "category": "completion",
+      "prompt": {
+        "en": "Complete the code to produce the shown output.",
+        "nl": "Vul de code aan om de getoonde uitvoer te maken."
+      },
+      "code": "values = [5,2]\nresult = {x ___ x * 2 for x in values}\nprint(result[5])",
+      "answer": "a",
+      "choices": [
+        {
+          "id": "a",
+          "label": {
+            "en": ":",
+            "nl": ":"
+          },
+          "reason": {
+            "en": "A dictionary entry separates key and value with a colon.",
+            "nl": "Een dictionary-invoer scheidt sleutel en waarde met een dubbele punt."
+          }
+        },
+        {
+          "id": "b",
+          "label": {
+            "en": "=",
+            "nl": "="
+          },
+          "reason": {
+            "en": "Using = here produces SyntaxError. A dictionary entry separates key and value with a colon.",
+            "nl": "Met = ontstaat hier SyntaxError. Een dictionary-invoer scheidt sleutel en waarde met een dubbele punt."
+          }
+        },
+        {
+          "id": "c",
+          "label": {
+            "en": ",",
+            "nl": ","
+          },
+          "reason": {
+            "en": "Using , here produces SyntaxError. A dictionary entry separates key and value with a colon.",
+            "nl": "Met , ontstaat hier SyntaxError. Een dictionary-invoer scheidt sleutel en waarde met een dubbele punt."
+          }
+        }
+      ],
+      "codeBlank": {
+        "prompt": {
+          "en": "Complete the code to produce the shown output.",
+          "nl": "Vul de code aan om de getoonde uitvoer te maken."
+        },
+        "segments": [
+          "values = [5,2]\nresult = {x ",
+          " x * 2 for x in values}\nprint(result[5])"
+        ],
+        "tokens": [
+          {
+            "id": "token-1",
+            "code": ":"
+          },
+          {
+            "id": "token-2",
+            "code": "=",
+            "reason": {
+              "en": "Using = here produces SyntaxError. A dictionary entry separates key and value with a colon.",
+              "nl": "Met = ontstaat hier SyntaxError. Een dictionary-invoer scheidt sleutel en waarde met een dubbele punt."
+            }
+          },
+          {
+            "id": "token-3",
+            "code": ",",
+            "reason": {
+              "en": "Using , here produces SyntaxError. A dictionary entry separates key and value with a colon.",
+              "nl": "Met , ontstaat hier SyntaxError. Een dictionary-invoer scheidt sleutel en waarde met een dubbele punt."
+            }
+          }
+        ],
+        "blanks": [
+          {
+            "answer": ":",
+            "reason": {
+              "en": "A dictionary entry separates key and value with a colon.",
+              "nl": "Een dictionary-invoer scheidt sleutel en waarde met een dubbele punt."
+            }
+          }
+        ],
+        "output": "10\n"
+      },
+      "id": "python-v4-19-quiz-r2-a-3",
+      "reviewActivityIds": [
+        "python-v4-19-comprehension"
+      ]
+    },
+    {
+      "objectiveIds": [
+        "join"
+      ],
+      "category": "completion",
+      "prompt": {
+        "en": "Complete the code to produce the shown output.",
+        "nl": "Vul de code aan om de getoonde uitvoer te maken."
+      },
+      "code": "parts = [\"red\", \"blue\"]\nprint(\"/\".___(parts))",
+      "answer": "a",
+      "choices": [
+        {
+          "id": "a",
+          "label": {
+            "en": "join",
+            "nl": "join"
+          },
+          "reason": {
+            "en": "Follow the operation and its input type, then compare the exact result shown.",
+            "nl": "Volg de bewerking en het invoertype en vergelijk daarna het precieze getoonde resultaat."
+          }
+        },
+        {
+          "id": "b",
+          "label": {
+            "en": "split",
+            "nl": "split"
+          },
+          "reason": {
+            "en": "Using split here produces TypeError. Follow the operation and its input type, then compare the exact result shown.",
+            "nl": "Met split ontstaat hier TypeError. Volg de bewerking en het invoertype en vergelijk daarna het precieze getoonde resultaat."
+          }
+        },
+        {
+          "id": "c",
+          "label": {
+            "en": "strip",
+            "nl": "strip"
+          },
+          "reason": {
+            "en": "Using strip here produces TypeError. Follow the operation and its input type, then compare the exact result shown.",
+            "nl": "Met strip ontstaat hier TypeError. Volg de bewerking en het invoertype en vergelijk daarna het precieze getoonde resultaat."
+          }
+        }
+      ],
+      "codeBlank": {
+        "prompt": {
+          "en": "Complete the code to produce the shown output.",
+          "nl": "Vul de code aan om de getoonde uitvoer te maken."
+        },
+        "segments": [
+          "parts = [\"red\", \"blue\"]\nprint(\"/\".",
+          "(parts))"
+        ],
+        "tokens": [
+          {
+            "id": "token-1",
+            "code": "join"
+          },
+          {
+            "id": "token-2",
+            "code": "split",
+            "reason": {
+              "en": "Using split here produces TypeError. Follow the operation and its input type, then compare the exact result shown.",
+              "nl": "Met split ontstaat hier TypeError. Volg de bewerking en het invoertype en vergelijk daarna het precieze getoonde resultaat."
+            }
+          },
+          {
+            "id": "token-3",
+            "code": "strip",
+            "reason": {
+              "en": "Using strip here produces TypeError. Follow the operation and its input type, then compare the exact result shown.",
+              "nl": "Met strip ontstaat hier TypeError. Volg de bewerking en het invoertype en vergelijk daarna het precieze getoonde resultaat."
+            }
+          }
+        ],
+        "blanks": [
+          {
+            "answer": "join",
+            "reason": {
+              "en": "Follow the operation and its input type, then compare the exact result shown.",
+              "nl": "Volg de bewerking en het invoertype en vergelijk daarna het precieze getoonde resultaat."
+            }
+          }
+        ],
+        "output": "red/blue\n"
+      },
+      "id": "python-v4-19-quiz-r2-a-4",
+      "reviewActivityIds": [
+        "python-v4-18-join-strip"
+      ]
+    },
+    {
+      "objectiveIds": [
+        "invalid-keys"
+      ],
+      "category": "debugging",
+      "prompt": {
+        "en": "Choose the repair or test that addresses the stated problem.",
+        "nl": "Kies de reparatie of test die het beschreven probleem aanpakt."
+      },
+      "code": "record = {[5,2]: \"place\"}",
+      "answer": "a",
+      "choices": [
+        {
+          "id": "a",
+          "label": {
+            "en": "Use a tuple (5, 2) as the coordinate key.",
+            "nl": "Gebruik een tuple (5, 2) als coördinaatsleutel."
+          },
+          "reason": {
+            "en": "A tuple of integers is hashable; a list is not.",
+            "nl": "Een tuple gehele getallen is hashbaar; een lijst niet."
+          }
+        },
+        {
+          "id": "b",
+          "label": {
+            "en": "Use an empty list instead.",
+            "nl": "Gebruik in plaats daarvan een lege lijst."
+          },
+          "reason": {
+            "en": "An empty list is still unhashable.",
+            "nl": "Een lege lijst is nog steeds niet hashbaar."
+          }
+        },
+        {
+          "id": "c",
+          "label": {
+            "en": "Change only the value to a number.",
+            "nl": "Verander alleen de waarde naar een getal."
+          },
+          "reason": {
+            "en": "The invalid key is the problem.",
+            "nl": "De ongeldige sleutel is het probleem."
+          }
+        }
+      ],
+      "id": "python-v4-19-quiz-r2-a-5",
+      "reviewActivityIds": [
+        "python-v4-19-keys"
+      ]
+    },
+    {
+      "objectiveIds": [
+        "items"
+      ],
+      "category": "application",
+      "prompt": {
+        "en": "Which explanation applies to this example?",
+        "nl": "Welke uitleg past bij dit voorbeeld?"
+      },
+      "code": "for name, score in {\"Ada\":5}.items():\n    print(name,score)",
+      "answer": "a",
+      "choices": [
+        {
+          "id": "a",
+          "label": {
+            "en": "Each iteration unpacks a key/value pair.",
+            "nl": "Elke iteratie pakt een sleutel/waarde-paar uit."
+          },
+          "reason": {
+            "en": "items supplies both parts together.",
+            "nl": "items levert beide delen samen."
+          }
+        },
+        {
+          "id": "b",
+          "label": {
+            "en": "Both names receive dictionary keys.",
+            "nl": "Beide namen ontvangen dictionarysleutels."
+          },
+          "reason": {
+            "en": "The second part is the corresponding value.",
+            "nl": "Het tweede deel is de bijbehorende waarde."
+          }
+        },
+        {
+          "id": "c",
+          "label": {
+            "en": "The dictionary is deleted by iteration.",
+            "nl": "De dictionary wordt door iteratie verwijderd."
+          },
+          "reason": {
+            "en": "Reading entries does not delete them.",
+            "nl": "Invoeren lezen verwijdert ze niet."
+          }
+        }
+      ],
+      "id": "python-v4-19-quiz-r2-a-6",
+      "reviewActivityIds": [
+        "python-v4-19-views"
+      ]
+    }
+  ],
+  "alternateQuestions": [
+    {
+      "objectiveIds": [
+        "get"
+      ],
+      "category": "prediction",
+      "prompt": {
+        "en": "What does this program print?",
+        "nl": "Wat drukt dit programma af?"
+      },
+      "code": "record = {\"score\":0}\nprint(record.get(\"score\",8))",
+      "answer": "a",
+      "expectedOutput": "0\n",
+      "choices": [
+        {
+          "id": "a",
+          "label": {
+            "en": "0",
+            "nl": "0"
+          },
+          "reason": {
+            "en": "The present zero is preserved.",
+            "nl": "De aanwezige nul blijft behouden."
+          }
+        },
+        {
+          "id": "b",
+          "label": {
+            "en": "8",
+            "nl": "8"
+          },
+          "reason": {
+            "en": "The default is used only for a missing key.",
+            "nl": "De standaard wordt alleen bij een ontbrekende sleutel gebruikt."
+          }
+        },
+        {
+          "id": "c",
+          "label": {
+            "en": "None",
+            "nl": "None"
+          },
+          "reason": {
+            "en": "The score key is present with a numeric value.",
+            "nl": "De score-sleutel bestaat met een numerieke waarde."
+          }
+        }
+      ],
+      "id": "python-v4-19-quiz-r2-b-1",
+      "reviewActivityIds": [
+        "python-v4-19-lookup"
+      ]
+    },
+    {
+      "objectiveIds": [
+        "split-delimiters"
+      ],
+      "category": "prediction",
+      "prompt": {
+        "en": "What does this program print?",
+        "nl": "Wat drukt dit programma af?"
+      },
+      "code": "print(\",a,\".split(\",\"))",
+      "answer": "a",
+      "expectedOutput": "['', 'a', '']\n",
+      "choices": [
+        {
+          "id": "a",
+          "label": {
+            "en": "['', 'a', '']",
+            "nl": "['', 'a', '']"
+          },
+          "reason": {
+            "en": "An explicit delimiter preserves empty fields, including at either end.",
+            "nl": "Een expliciet scheidingsteken bewaart lege velden, ook aan beide uiteinden."
+          }
+        },
+        {
+          "id": "b",
+          "label": {
+            "en": "['a', 'b']",
+            "nl": "['a', 'b']"
+          },
+          "reason": {
+            "en": "An explicit delimiter preserves empty fields, including at either end.",
+            "nl": "Een expliciet scheidingsteken bewaart lege velden, ook aan beide uiteinden."
+          }
+        },
+        {
+          "id": "c",
+          "label": {
+            "en": "['a']",
+            "nl": "['a']"
+          },
+          "reason": {
+            "en": "An explicit delimiter preserves empty fields, including at either end.",
+            "nl": "Een expliciet scheidingsteken bewaart lege velden, ook aan beide uiteinden."
+          }
+        }
+      ],
+      "id": "python-v4-19-quiz-r2-b-2",
+      "reviewActivityIds": [
+        "python-v4-18-split-delimiter"
+      ]
+    },
+    {
+      "objectiveIds": [
+        "dictionary-comprehensions"
+      ],
+      "category": "completion",
+      "prompt": {
+        "en": "Complete the code to produce the shown output.",
+        "nl": "Vul de code aan om de getoonde uitvoer te maken."
+      },
+      "code": "values = [8,2]\nresult = {x ___ x * 2 for x in values}\nprint(result[8])",
+      "answer": "a",
+      "choices": [
+        {
+          "id": "a",
+          "label": {
+            "en": ":",
+            "nl": ":"
+          },
+          "reason": {
+            "en": "A dictionary entry separates key and value with a colon.",
+            "nl": "Een dictionary-invoer scheidt sleutel en waarde met een dubbele punt."
+          }
+        },
+        {
+          "id": "b",
+          "label": {
+            "en": "=",
+            "nl": "="
+          },
+          "reason": {
+            "en": "Using = here produces SyntaxError. A dictionary entry separates key and value with a colon.",
+            "nl": "Met = ontstaat hier SyntaxError. Een dictionary-invoer scheidt sleutel en waarde met een dubbele punt."
+          }
+        },
+        {
+          "id": "c",
+          "label": {
+            "en": ",",
+            "nl": ","
+          },
+          "reason": {
+            "en": "Using , here produces SyntaxError. A dictionary entry separates key and value with a colon.",
+            "nl": "Met , ontstaat hier SyntaxError. Een dictionary-invoer scheidt sleutel en waarde met een dubbele punt."
+          }
+        }
+      ],
+      "codeBlank": {
+        "prompt": {
+          "en": "Complete the code to produce the shown output.",
+          "nl": "Vul de code aan om de getoonde uitvoer te maken."
+        },
+        "segments": [
+          "values = [8,2]\nresult = {x ",
+          " x * 2 for x in values}\nprint(result[8])"
+        ],
+        "tokens": [
+          {
+            "id": "token-1",
+            "code": ":"
+          },
+          {
+            "id": "token-2",
+            "code": "=",
+            "reason": {
+              "en": "Using = here produces SyntaxError. A dictionary entry separates key and value with a colon.",
+              "nl": "Met = ontstaat hier SyntaxError. Een dictionary-invoer scheidt sleutel en waarde met een dubbele punt."
+            }
+          },
+          {
+            "id": "token-3",
+            "code": ",",
+            "reason": {
+              "en": "Using , here produces SyntaxError. A dictionary entry separates key and value with a colon.",
+              "nl": "Met , ontstaat hier SyntaxError. Een dictionary-invoer scheidt sleutel en waarde met een dubbele punt."
+            }
+          }
+        ],
+        "blanks": [
+          {
+            "answer": ":",
+            "reason": {
+              "en": "A dictionary entry separates key and value with a colon.",
+              "nl": "Een dictionary-invoer scheidt sleutel en waarde met een dubbele punt."
+            }
+          }
+        ],
+        "output": "16\n"
+      },
+      "id": "python-v4-19-quiz-r2-b-3",
+      "reviewActivityIds": [
+        "python-v4-19-comprehension"
+      ]
+    },
+    {
+      "objectiveIds": [
+        "join"
+      ],
+      "category": "completion",
+      "prompt": {
+        "en": "Complete the code to produce the shown output.",
+        "nl": "Vul de code aan om de getoonde uitvoer te maken."
+      },
+      "code": "parts = [\"red\", \"blue\"]\nprint(\"/\".___(parts))",
+      "answer": "a",
+      "choices": [
+        {
+          "id": "a",
+          "label": {
+            "en": "join",
+            "nl": "join"
+          },
+          "reason": {
+            "en": "Follow the operation and its input type, then compare the exact result shown.",
+            "nl": "Volg de bewerking en het invoertype en vergelijk daarna het precieze getoonde resultaat."
+          }
+        },
+        {
+          "id": "b",
+          "label": {
+            "en": "split",
+            "nl": "split"
+          },
+          "reason": {
+            "en": "Using split here produces TypeError. Follow the operation and its input type, then compare the exact result shown.",
+            "nl": "Met split ontstaat hier TypeError. Volg de bewerking en het invoertype en vergelijk daarna het precieze getoonde resultaat."
+          }
+        },
+        {
+          "id": "c",
+          "label": {
+            "en": "strip",
+            "nl": "strip"
+          },
+          "reason": {
+            "en": "Using strip here produces TypeError. Follow the operation and its input type, then compare the exact result shown.",
+            "nl": "Met strip ontstaat hier TypeError. Volg de bewerking en het invoertype en vergelijk daarna het precieze getoonde resultaat."
+          }
+        }
+      ],
+      "codeBlank": {
+        "prompt": {
+          "en": "Complete the code to produce the shown output.",
+          "nl": "Vul de code aan om de getoonde uitvoer te maken."
+        },
+        "segments": [
+          "parts = [\"red\", \"blue\"]\nprint(\"/\".",
+          "(parts))"
+        ],
+        "tokens": [
+          {
+            "id": "token-1",
+            "code": "join"
+          },
+          {
+            "id": "token-2",
+            "code": "split",
+            "reason": {
+              "en": "Using split here produces TypeError. Follow the operation and its input type, then compare the exact result shown.",
+              "nl": "Met split ontstaat hier TypeError. Volg de bewerking en het invoertype en vergelijk daarna het precieze getoonde resultaat."
+            }
+          },
+          {
+            "id": "token-3",
+            "code": "strip",
+            "reason": {
+              "en": "Using strip here produces TypeError. Follow the operation and its input type, then compare the exact result shown.",
+              "nl": "Met strip ontstaat hier TypeError. Volg de bewerking en het invoertype en vergelijk daarna het precieze getoonde resultaat."
+            }
+          }
+        ],
+        "blanks": [
+          {
+            "answer": "join",
+            "reason": {
+              "en": "Follow the operation and its input type, then compare the exact result shown.",
+              "nl": "Volg de bewerking en het invoertype en vergelijk daarna het precieze getoonde resultaat."
+            }
+          }
+        ],
+        "output": "red/blue\n"
+      },
+      "id": "python-v4-19-quiz-r2-b-4",
+      "reviewActivityIds": [
+        "python-v4-18-join-strip"
+      ]
+    },
+    {
+      "objectiveIds": [
+        "invalid-keys"
+      ],
+      "category": "debugging",
+      "prompt": {
+        "en": "Choose the repair or test that addresses the stated problem.",
+        "nl": "Kies de reparatie of test die het beschreven probleem aanpakt."
+      },
+      "code": "record = {[8,2]: \"place\"}",
+      "answer": "a",
+      "choices": [
+        {
+          "id": "a",
+          "label": {
+            "en": "Use a tuple (8, 2) as the coordinate key.",
+            "nl": "Gebruik een tuple (8, 2) als coördinaatsleutel."
+          },
+          "reason": {
+            "en": "A tuple of integers is hashable; a list is not.",
+            "nl": "Een tuple gehele getallen is hashbaar; een lijst niet."
+          }
+        },
+        {
+          "id": "b",
+          "label": {
+            "en": "Use an empty list instead.",
+            "nl": "Gebruik in plaats daarvan een lege lijst."
+          },
+          "reason": {
+            "en": "An empty list is still unhashable.",
+            "nl": "Een lege lijst is nog steeds niet hashbaar."
+          }
+        },
+        {
+          "id": "c",
+          "label": {
+            "en": "Change only the value to a number.",
+            "nl": "Verander alleen de waarde naar een getal."
+          },
+          "reason": {
+            "en": "The invalid key is the problem.",
+            "nl": "De ongeldige sleutel is het probleem."
+          }
+        }
+      ],
+      "id": "python-v4-19-quiz-r2-b-5",
+      "reviewActivityIds": [
+        "python-v4-19-keys"
+      ]
+    },
+    {
+      "objectiveIds": [
+        "items"
+      ],
+      "category": "application",
+      "prompt": {
+        "en": "Which explanation applies to this example?",
+        "nl": "Welke uitleg past bij dit voorbeeld?"
+      },
+      "code": "for name, score in {\"Ada\":8}.items():\n    print(name,score)",
+      "answer": "a",
+      "choices": [
+        {
+          "id": "a",
+          "label": {
+            "en": "Each iteration unpacks a key/value pair.",
+            "nl": "Elke iteratie pakt een sleutel/waarde-paar uit."
+          },
+          "reason": {
+            "en": "items supplies both parts together.",
+            "nl": "items levert beide delen samen."
+          }
+        },
+        {
+          "id": "b",
+          "label": {
+            "en": "Both names receive dictionary keys.",
+            "nl": "Beide namen ontvangen dictionarysleutels."
+          },
+          "reason": {
+            "en": "The second part is the corresponding value.",
+            "nl": "Het tweede deel is de bijbehorende waarde."
+          }
+        },
+        {
+          "id": "c",
+          "label": {
+            "en": "The dictionary is deleted by iteration.",
+            "nl": "De dictionary wordt door iteratie verwijderd."
+          },
+          "reason": {
+            "en": "Reading entries does not delete them.",
+            "nl": "Invoeren lezen verwijdert ze niet."
+          }
+        }
+      ],
+      "id": "python-v4-19-quiz-r2-b-6",
+      "reviewActivityIds": [
+        "python-v4-19-views"
+      ]
+    }
+  ]
+}

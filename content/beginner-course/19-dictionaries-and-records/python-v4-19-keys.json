@@ -53,11 +53,26 @@
       }
     },
     {
-      "id": "python-v4-19-keys-experiment",
+      "id": "python-v4-19-keys-try-calls",
+      "role": "practice",
       "topicIds": [],
       "heading": {
-        "en": "Try one change",
-        "nl": "Probeer één wijziging"
+        "en": "See your function work",
+        "nl": "Bekijk wat je functie doet"
+      },
+      "body": {
+        "en": "A definition alone produces no output. After writing the function, add these calls underneath it in main.py, without indentation, and Run. Compare the returned values with the task's requirements. The checks also call your function with other inputs; they do not require you to keep these demonstration calls.",
+        "nl": "Een definitie alleen geeft geen uitvoer. Schrijf eerst de functie en voeg daarna deze aanroepen eronder toe in main.py, zonder inspringing. Klik op Uitvoeren. Vergelijk de teruggegeven waarden met de opdracht. De controles roepen je functie ook met andere invoer aan; deze demonstratieaanroepen zijn niet verplicht."
+      },
+      "code": "print(location([2, 3], \"home\"))\nprint(location([0, -1], \"edge\"))"
+    },
+    {
+      "id": "python-v4-19-keys-experiment",
+      "role": "experiment",
+      "topicIds": [],
+      "heading": {
+        "en": "After completing the task: try one change",
+        "nl": "Na het afronden: probeer één wijziging"
       },
       "body": {
         "en": "Try using the original list as a key and read the resulting TypeError.",
@@ -79,8 +94,8 @@
         "invalid-keys"
       ],
       "task": {
-        "en": "Given a list of two integer coordinates, return a dictionary mapping its tuple to label.",
-        "nl": "Geef van een lijst met twee gehele coördinaten een dictionary terug die de tuple aan label koppelt."
+        "en": "Write location(coordinates, label) in main.py. Given a list of two integer coordinates, return a dictionary mapping its tuple to label.",
+        "nl": "Schrijf location(coordinates, label) in main.py. Geef van een lijst met twee gehele coördinaten een dictionary terug die de tuple aan label koppelt."
       },
       "check": "callable(location)",
       "probes": [
@@ -139,19 +154,5 @@
     "en": "The tuple of integers is hashable and keeps the pair together as one key.",
     "nl": "De tuple van gehele getallen is hashbaar en houdt het paar als één sleutel samen."
   },
-  "inputs": [],
-  "retrievals": [
-    {
-      "id": "recall-python-v4-17-remove",
-      "sourceActivityId": "python-v4-17-remove",
-      "objectiveIds": [
-        "remove",
-        "membership-lists"
-      ],
-      "prompt": {
-        "en": "Recall “Remove by value”. Why is one 4 still present? Try the earlier example from memory, then check it. Call twice on a list with two copies of the target.",
-        "nl": "Haal “Verwijder op waarde” terug. Waarom is er nog één 4 aanwezig? Probeer het eerdere voorbeeld uit je geheugen en controleer daarna. Roep tweemaal aan bij een lijst met twee kopieën van het doel."
-      }
-    }
-  ]
+  "inputs": []
 }

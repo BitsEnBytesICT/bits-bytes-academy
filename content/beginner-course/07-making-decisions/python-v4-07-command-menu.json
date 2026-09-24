@@ -62,10 +62,11 @@
     },
     {
       "id": "python-v4-07-command-menu-experiment",
+      "role": "experiment",
       "topicIds": [],
       "heading": {
-        "en": "Try one change",
-        "nl": "Probeer één wijziging"
+        "en": "After completing the task: try one change",
+        "nl": "Na het afronden: probeer één wijziging"
       },
       "body": {
         "en": "Test both commands with spaces and mixed case. Try an empty answer too.",
@@ -83,11 +84,7 @@
     {
       "id": "python-v4-07-command-menu-step-1",
       "objectiveIds": [
-        "decision-review",
-        "if",
-        "elif",
-        "else",
-        "normalisation"
+        "decision-review"
       ],
       "task": {
         "en": "Read Choice: into a trimmed lowercase variable choice.",
@@ -134,11 +131,7 @@
     {
       "id": "python-v4-07-command-menu-step-2",
       "objectiveIds": [
-        "decision-review",
-        "if",
-        "elif",
-        "else",
-        "normalisation"
+        "decision-review"
       ],
       "task": {
         "en": "Respond to open with \"Opening\", help with \"Commands: open, help\", and anything else with \"Unknown choice\".",
@@ -198,6 +191,18 @@
   ],
   "retrievals": [
     {
+      "id": "recall-python-v4-05-first-input",
+      "sourceActivityId": "python-v4-05-first-input",
+      "objectiveIds": [
+        "input"
+      ],
+      "prompt": {
+        "en": "Recall ask and wait for an answer. Where must the person type their answer: editor or terminal? Run twice with two different names. The code stays the same; the answers change.",
+        "nl": "Herhaal stel een vraag en wacht op antwoord. Waar moet de gebruiker het antwoord typen: editor of terminal? Voer tweemaal uit met twee verschillende namen. De code blijft hetzelfde; de antwoorden veranderen."
+      },
+      "code": "name = input(\"Name: \")\nprint(name)"
+    },
+    {
       "id": "recall-python-v4-05-normalise-command",
       "sourceActivityId": "python-v4-05-normalise-command",
       "objectiveIds": [
@@ -206,9 +211,10 @@
         "case-methods"
       ],
       "prompt": {
-        "en": "Recall “Clean a typed command”. What would happen if you called lower without storing its result? Try the earlier example from memory, then check it. Enter SAVE FILE with outer spaces. Which space remains after strip?",
-        "nl": "Haal “Schoon een getypte opdracht op” terug. Wat gebeurt er als je lower aanroept zonder het resultaat te bewaren? Probeer het eerdere voorbeeld uit je geheugen en controleer daarna. Voer SAVE FILE in met spaties eromheen. Welke spatie blijft na strip over?"
-      }
+        "en": "Recall clean a typed command. What would happen if you called lower without storing its result? Enter SAVE FILE with outer spaces. Which space remains after strip?",
+        "nl": "Herhaal schoon een getypte opdracht op. Wat gebeurt er als je lower aanroept zonder het resultaat te bewaren? Voer SAVE FILE in met spaties eromheen. Welke spatie blijft na strip over?"
+      },
+      "code": "raw = input(\"Command: \")\ntrimmed = raw.strip()\ncommand = trimmed.lower()\nprint(command)"
     }
   ]
 }

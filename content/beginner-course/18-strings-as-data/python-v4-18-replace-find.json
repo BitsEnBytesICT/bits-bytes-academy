@@ -53,11 +53,40 @@
       }
     },
     {
-      "id": "python-v4-18-replace-find-experiment",
+      "id": "python-v4-18-replace-find-trace",
       "topicIds": [],
       "heading": {
-        "en": "Try one change",
-        "nl": "Probeer één wijziging"
+        "en": "Search first, replace separately",
+        "nl": "Zoek eerst en vervang apart"
+      },
+      "body": {
+        "en": "find returns an index or -1; replace returns new text. Neither changes the original string. Searching after replacement may produce a different index, so follow the task's requested order. A match at 0 is valid; -1 means absent.",
+        "nl": "find geeft een index of -1; replace geeft nieuwe tekst. Geen van beide verandert de oorspronkelijke string. Na vervanging zoeken kan een andere index opleveren; volg de gevraagde volgorde. Een match op 0 is geldig; -1 betekent afwezig."
+      },
+      "code": "text = \"red-blue\"\nprint(text.find(\"red\"))\nprint(text.replace(\"red\", \"green\"))\nprint(text.find(\"green\"))",
+      "output": "0\ngreen-blue\n-1\n"
+    },
+    {
+      "id": "python-v4-18-replace-find-try-calls",
+      "role": "practice",
+      "topicIds": [],
+      "heading": {
+        "en": "See your function work",
+        "nl": "Bekijk wat je functie doet"
+      },
+      "body": {
+        "en": "A definition alone produces no output. After writing the function, add these calls underneath it in main.py, without indentation, and Run. Compare the returned values with the task's requirements. The checks also call your function with other inputs; they do not require you to keep these demonstration calls.",
+        "nl": "Een definitie alleen geeft geen uitvoer. Schrijf eerst de functie en voeg daarna deze aanroepen eronder toe in main.py, zonder inspringing. Klik op Uitvoeren. Vergelijk de teruggegeven waarden met de opdracht. De controles roepen je functie ook met andere invoer aan; deze demonstratieaanroepen zijn niet verplicht."
+      },
+      "code": "print(rename(\"cat cat\", \"cat\", \"dog\"))\nprint(rename(\"hello\", \"x\", \"y\"))"
+    },
+    {
+      "id": "python-v4-18-replace-find-experiment",
+      "role": "experiment",
+      "topicIds": [],
+      "heading": {
+        "en": "After completing the task: try one change",
+        "nl": "Na het afronden: probeer één wijziging"
       },
       "body": {
         "en": "Replace only the first occurrence by trying the optional count argument.",
@@ -79,8 +108,8 @@
         "find"
       ],
       "task": {
-        "en": "Return (replaced_text, first_original_match_index). Assume old is nonempty.",
-        "nl": "Geef (replaced_text, first_original_match_index) terug. Neem aan dat old niet leeg is."
+        "en": "Write rename(text, old, new) in main.py. Return (replaced_text, first_original_match_index). Assume old is nonempty.",
+        "nl": "Schrijf rename(text, old, new) in main.py. Geef (replaced_text, first_original_match_index) terug. Neem aan dat old niet leeg is."
       },
       "check": "callable(rename)",
       "probes": [

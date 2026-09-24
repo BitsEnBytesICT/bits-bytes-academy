@@ -53,11 +53,26 @@
       }
     },
     {
-      "id": "python-v4-17-sorting-experiment",
+      "id": "python-v4-17-sorting-try-calls",
+      "role": "practice",
       "topicIds": [],
       "heading": {
-        "en": "Try one change",
-        "nl": "Probeer één wijziging"
+        "en": "See your function work",
+        "nl": "Bekijk wat je functie doet"
+      },
+      "body": {
+        "en": "A definition alone produces no output. After writing the function, add these calls underneath it in main.py, without indentation, and Run. Compare the returned values with the task's requirements. The checks also call your function with other inputs; they do not require you to keep these demonstration calls.",
+        "nl": "Een definitie alleen geeft geen uitvoer. Schrijf eerst de functie en voeg daarna deze aanroepen eronder toe in main.py, zonder inspringing. Klik op Uitvoeren. Vergelijk de teruggegeven waarden met de opdracht. De controles roepen je functie ook met andere invoer aan; deze demonstratieaanroepen zijn niet verplicht."
+      },
+      "code": "print(ranked([3, 1, 2]))\nprint(ranked([]))"
+    },
+    {
+      "id": "python-v4-17-sorting-experiment",
+      "role": "experiment",
+      "topicIds": [],
+      "heading": {
+        "en": "After completing the task: try one change",
+        "nl": "Na het afronden: probeer één wijziging"
       },
       "body": {
         "en": "Add duplicate values and check they remain in the result.",
@@ -79,8 +94,8 @@
         "sorted"
       ],
       "task": {
-        "en": "Repair ranked to return descending scores without changing the input.",
-        "nl": "Herstel ranked om aflopende scores terug te geven zonder de invoer te veranderen."
+        "en": "Write ranked(scores) in main.py. Repair ranked to return descending scores without changing the input.",
+        "nl": "Schrijf ranked(scores) in main.py. Herstel ranked om aflopende scores terug te geven zonder de invoer te veranderen."
       },
       "check": "callable(ranked)",
       "probes": [
@@ -148,20 +163,5 @@
     "en": "sorted supplies the list the caller expects while leaving the original order intact.",
     "nl": "sorted levert de verwachte lijst aan de aanroeper terwijl de oorspronkelijke volgorde intact blijft."
   },
-  "inputs": [],
-  "retrievals": [
-    {
-      "id": "recall-python-v4-15-events",
-      "sourceActivityId": "python-v4-15-events",
-      "objectiveIds": [
-        "events",
-        "keyboard-events",
-        "closing-window"
-      ],
-      "prompt": {
-        "en": "Recall “Respond to a key press”. Why should key only be read for a keyboard event? Try the earlier example from memory, then check it. Press and release Space twice; explain the two state changes.",
-        "nl": "Haal “Reageer op een toetsdruk” terug. Waarom hoort key alleen bij een toetsenbordgebeurtenis gelezen te worden? Probeer het eerdere voorbeeld uit je geheugen en controleer daarna. Druk Space tweemaal in en laat los; leg de twee toestandsveranderingen uit."
-      }
-    }
-  ]
+  "inputs": []
 }

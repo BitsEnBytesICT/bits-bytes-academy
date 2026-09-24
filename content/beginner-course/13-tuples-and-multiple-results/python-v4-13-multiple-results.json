@@ -61,11 +61,38 @@
       }
     },
     {
-      "id": "python-v4-13-multiple-results-experiment",
+      "id": "python-v4-13-multiple-results-trace",
       "topicIds": [],
       "heading": {
-        "en": "Try one change",
-        "nl": "Probeer één wijziging"
+        "en": "Name and order both results",
+        "nl": "Benoem en orden beide resultaten"
+      },
+      "body": {
+        "en": "Write pack_groups(items, size). For 11 items and size 4 return (2,3): two whole groups, three left over. For zero items return (0,0). size is always a positive integer in this task. The caller can use groups, remainder = pack_groups(11,4) to name the two results.",
+        "nl": "Schrijf pack_groups(items, size). Geef bij 11 artikelen en grootte 4 (2,3) terug: twee hele groepen, drie over. Geef bij nul artikelen (0,0) terug. size is in deze opdracht altijd een positief geheel getal. De aanroeper kan groups, remainder = pack_groups(11,4) gebruiken om beide resultaten te benoemen."
+      }
+    },
+    {
+      "id": "python-v4-13-multiple-results-try-calls",
+      "role": "practice",
+      "topicIds": [],
+      "heading": {
+        "en": "See your function work",
+        "nl": "Bekijk wat je functie doet"
+      },
+      "body": {
+        "en": "A definition alone produces no output. After writing the function, add these calls underneath it in main.py, without indentation, and Run. Compare the returned values with the task's requirements. The checks also call your function with other inputs; they do not require you to keep these demonstration calls.",
+        "nl": "Een definitie alleen geeft geen uitvoer. Schrijf eerst de functie en voeg daarna deze aanroepen eronder toe in main.py, zonder inspringing. Klik op Uitvoeren. Vergelijk de teruggegeven waarden met de opdracht. De controles roepen je functie ook met andere invoer aan; deze demonstratieaanroepen zijn niet verplicht."
+      },
+      "code": "print(pack_groups(14, 4))\nprint(pack_groups(0, 3))"
+    },
+    {
+      "id": "python-v4-13-multiple-results-experiment",
+      "role": "experiment",
+      "topicIds": [],
+      "heading": {
+        "en": "After completing the task: try one change",
+        "nl": "Na het afronden: probeer één wijziging"
       },
       "body": {
         "en": "Unpack the result in a caller and print each part with a label.",
@@ -83,15 +110,11 @@
     {
       "id": "python-v4-13-multiple-results-step-1",
       "objectiveIds": [
-        "multiple-returns",
-        "return",
-        "packing-unpacking",
-        "modulo",
-        "floor-division"
+        "multiple-returns"
       ],
       "task": {
-        "en": "For nonnegative items and positive size, return (full_groups, leftover).",
-        "nl": "Geef voor niet-negatieve items en positieve size (full_groups, leftover) terug."
+        "en": "Write pack_groups(items, size) in main.py. For nonnegative items and positive size, return (full_groups, leftover).",
+        "nl": "Schrijf pack_groups(items, size) in main.py. Geef voor niet-negatieve items en positieve size (full_groups, leftover) terug."
       },
       "check": "callable(pack_groups)",
       "probes": [
@@ -154,30 +177,5 @@
     "en": "Both results describe the same grouping calculation and travel together in one tuple.",
     "nl": "Beide resultaten beschrijven dezelfde groepering en reizen samen in één tuple."
   },
-  "inputs": [],
-  "retrievals": [
-    {
-      "id": "recall-python-v4-11-combine",
-      "sourceActivityId": "python-v4-11-combine",
-      "objectiveIds": [
-        "list-concatenation"
-      ],
-      "prompt": {
-        "en": "Recall “Combine two lists”. Does left gain a third element? Try the earlier example from memory, then check it. Compare combining with [] to appending [] as one element.",
-        "nl": "Haal “Combineer twee lijsten” terug. Krijgt left een derde element? Probeer het eerdere voorbeeld uit je geheugen en controleer daarna. Vergelijk samenvoegen met [] met [] als één element toevoegen."
-      }
-    },
-    {
-      "id": "recall-python-v4-11-length-copy",
-      "sourceActivityId": "python-v4-11-length-copy",
-      "objectiveIds": [
-        "length",
-        "copying"
-      ],
-      "prompt": {
-        "en": "Recall “Count and copy a list”. What would happen if copy = original were used instead? Try the earlier example from memory, then check it. Call the function twice with the same original list.",
-        "nl": "Haal “Tel en kopieer een lijst” terug. Wat gebeurt er als je copy = original gebruikt? Probeer het eerdere voorbeeld uit je geheugen en controleer daarna. Roep de functie tweemaal aan met dezelfde oorspronkelijke lijst."
-      }
-    }
-  ]
+  "inputs": []
 }

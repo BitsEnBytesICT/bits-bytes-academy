@@ -1,0 +1,800 @@
+{
+  "id": "python-v4-16-quiz-r2",
+  "chapter": 16,
+  "group": "python-v4-module-16",
+  "kind": "quiz",
+  "optional": false,
+  "estimatedMinutes": 8,
+  "title": {
+    "en": "Movement and game rules: review",
+    "nl": "Beweging en spelregels: herhaling"
+  },
+  "questions": [
+    {
+      "objectiveIds": [
+        "elapsed-time"
+      ],
+      "category": "prediction",
+      "prompt": {
+        "en": "What does this program print?",
+        "nl": "Wat drukt dit programma af?"
+      },
+      "code": "x = 10\nx += 100 * 0.5\nprint(x)",
+      "answer": "a",
+      "expectedOutput": "60.0\n",
+      "choices": [
+        {
+          "id": "a",
+          "label": {
+            "en": "60.0",
+            "nl": "60.0"
+          },
+          "reason": {
+            "en": "Velocity times seconds gives this frame’s displacement.",
+            "nl": "Snelheid maal seconden geeft de verplaatsing in dit beeld."
+          }
+        },
+        {
+          "id": "b",
+          "label": {
+            "en": "110",
+            "nl": "110"
+          },
+          "reason": {
+            "en": "That would correspond to a full second.",
+            "nl": "Dat komt overeen met een volle seconde."
+          }
+        },
+        {
+          "id": "c",
+          "label": {
+            "en": "50",
+            "nl": "50"
+          },
+          "reason": {
+            "en": "The old position must also be added.",
+            "nl": "De oude positie moet ook worden opgeteld."
+          }
+        }
+      ],
+      "id": "python-v4-16-quiz-r2-a-1",
+      "reviewActivityIds": [
+        "python-v4-16-velocity"
+      ]
+    },
+    {
+      "objectiveIds": [
+        "rect"
+      ],
+      "category": "prediction",
+      "prompt": {
+        "en": "What does this program print?",
+        "nl": "Wat drukt dit programma af?"
+      },
+      "code": "import pygame\npaddle = pygame.Rect(10, 20, 8, 40)\npaddle.y += 5\nprint(paddle.bottom)",
+      "answer": "a",
+      "expectedOutput": "65\n",
+      "choices": [
+        {
+          "id": "a",
+          "label": {
+            "en": "65",
+            "nl": "65"
+          },
+          "reason": {
+            "en": "bottom is y plus height; moving y changes bottom without changing height.",
+            "nl": "bottom is y plus hoogte; y verplaatsen verandert bottom zonder de hoogte te veranderen."
+          }
+        },
+        {
+          "id": "b",
+          "label": {
+            "en": "40",
+            "nl": "40"
+          },
+          "reason": {
+            "en": "bottom is y plus height; moving y changes bottom without changing height.",
+            "nl": "bottom is y plus hoogte; y verplaatsen verandert bottom zonder de hoogte te veranderen."
+          }
+        },
+        {
+          "id": "c",
+          "label": {
+            "en": "55",
+            "nl": "55"
+          },
+          "reason": {
+            "en": "bottom is y plus height; moving y changes bottom without changing height.",
+            "nl": "bottom is y plus hoogte; y verplaatsen verandert bottom zonder de hoogte te veranderen."
+          }
+        }
+      ],
+      "id": "python-v4-16-quiz-r2-a-2",
+      "reviewActivityIds": [
+        "python-v4-15-coordinates"
+      ]
+    },
+    {
+      "objectiveIds": [
+        "wall-collision"
+      ],
+      "category": "completion",
+      "prompt": {
+        "en": "Complete the code to produce the shown output.",
+        "nl": "Vul de code aan om de getoonde uitvoer te maken."
+      },
+      "code": "y,vy = 3,-100\nif y <= 6 and ___:\n    y,vy = 6,-vy\nprint(vy)",
+      "answer": "a",
+      "choices": [
+        {
+          "id": "a",
+          "label": {
+            "en": "vy < 0",
+            "nl": "vy < 0"
+          },
+          "reason": {
+            "en": "Reverse only a velocity pointing into the top wall.",
+            "nl": "Keer alleen een snelheid naar de bovenwand om."
+          }
+        },
+        {
+          "id": "b",
+          "label": {
+            "en": "vy > 0",
+            "nl": "vy > 0"
+          },
+          "reason": {
+            "en": "Using vy > 0 prints \"-100\\n\"; the required output is \"100\\n\". Reverse only a velocity pointing into the top wall.",
+            "nl": "Met vy > 0 wordt \"-100\\n\" afgedrukt; de vereiste uitvoer is \"100\\n\". Keer alleen een snelheid naar de bovenwand om."
+          }
+        },
+        {
+          "id": "c",
+          "label": {
+            "en": "vy == 0",
+            "nl": "vy == 0"
+          },
+          "reason": {
+            "en": "Using vy == 0 prints \"-100\\n\"; the required output is \"100\\n\". Reverse only a velocity pointing into the top wall.",
+            "nl": "Met vy == 0 wordt \"-100\\n\" afgedrukt; de vereiste uitvoer is \"100\\n\". Keer alleen een snelheid naar de bovenwand om."
+          }
+        }
+      ],
+      "codeBlank": {
+        "prompt": {
+          "en": "Complete the code to produce the shown output.",
+          "nl": "Vul de code aan om de getoonde uitvoer te maken."
+        },
+        "segments": [
+          "y,vy = 3,-100\nif y <= 6 and ",
+          ":\n    y,vy = 6,-vy\nprint(vy)"
+        ],
+        "tokens": [
+          {
+            "id": "token-1",
+            "code": "vy < 0"
+          },
+          {
+            "id": "token-2",
+            "code": "vy > 0",
+            "reason": {
+              "en": "Using vy > 0 prints \"-100\\n\"; the required output is \"100\\n\". Reverse only a velocity pointing into the top wall.",
+              "nl": "Met vy > 0 wordt \"-100\\n\" afgedrukt; de vereiste uitvoer is \"100\\n\". Keer alleen een snelheid naar de bovenwand om."
+            }
+          },
+          {
+            "id": "token-3",
+            "code": "vy == 0",
+            "reason": {
+              "en": "Using vy == 0 prints \"-100\\n\"; the required output is \"100\\n\". Reverse only a velocity pointing into the top wall.",
+              "nl": "Met vy == 0 wordt \"-100\\n\" afgedrukt; de vereiste uitvoer is \"100\\n\". Keer alleen een snelheid naar de bovenwand om."
+            }
+          }
+        ],
+        "blanks": [
+          {
+            "answer": "vy < 0",
+            "reason": {
+              "en": "Reverse only a velocity pointing into the top wall.",
+              "nl": "Keer alleen een snelheid naar de bovenwand om."
+            }
+          }
+        ],
+        "output": "100\n"
+      },
+      "id": "python-v4-16-quiz-r2-a-3",
+      "reviewActivityIds": [
+        "python-v4-16-wall-bounce"
+      ]
+    },
+    {
+      "objectiveIds": [
+        "rect"
+      ],
+      "category": "completion",
+      "prompt": {
+        "en": "Complete the code to produce the shown output.",
+        "nl": "Vul de code aan om de getoonde uitvoer te maken."
+      },
+      "code": "import pygame\nr = pygame.Rect(3, 4, 10, 20)\nprint(r.___)",
+      "answer": "a",
+      "choices": [
+        {
+          "id": "a",
+          "label": {
+            "en": "right",
+            "nl": "right"
+          },
+          "reason": {
+            "en": "Follow the operation and its input type, then compare the exact result shown.",
+            "nl": "Volg de bewerking en het invoertype en vergelijk daarna het precieze getoonde resultaat."
+          }
+        },
+        {
+          "id": "b",
+          "label": {
+            "en": "x",
+            "nl": "x"
+          },
+          "reason": {
+            "en": "Using x prints \"3\\n\"; the required output is \"13\\n\". Follow the operation and its input type, then compare the exact result shown.",
+            "nl": "Met x wordt \"3\\n\" afgedrukt; de vereiste uitvoer is \"13\\n\". Volg de bewerking en het invoertype en vergelijk daarna het precieze getoonde resultaat."
+          }
+        },
+        {
+          "id": "c",
+          "label": {
+            "en": "width",
+            "nl": "width"
+          },
+          "reason": {
+            "en": "Using width prints \"10\\n\"; the required output is \"13\\n\". Follow the operation and its input type, then compare the exact result shown.",
+            "nl": "Met width wordt \"10\\n\" afgedrukt; de vereiste uitvoer is \"13\\n\". Volg de bewerking en het invoertype en vergelijk daarna het precieze getoonde resultaat."
+          }
+        }
+      ],
+      "codeBlank": {
+        "prompt": {
+          "en": "Complete the code to produce the shown output.",
+          "nl": "Vul de code aan om de getoonde uitvoer te maken."
+        },
+        "segments": [
+          "import pygame\nr = pygame.Rect(3, 4, 10, 20)\nprint(r.",
+          ")"
+        ],
+        "tokens": [
+          {
+            "id": "token-1",
+            "code": "right"
+          },
+          {
+            "id": "token-2",
+            "code": "x",
+            "reason": {
+              "en": "Using x prints \"3\\n\"; the required output is \"13\\n\". Follow the operation and its input type, then compare the exact result shown.",
+              "nl": "Met x wordt \"3\\n\" afgedrukt; de vereiste uitvoer is \"13\\n\". Volg de bewerking en het invoertype en vergelijk daarna het precieze getoonde resultaat."
+            }
+          },
+          {
+            "id": "token-3",
+            "code": "width",
+            "reason": {
+              "en": "Using width prints \"10\\n\"; the required output is \"13\\n\". Follow the operation and its input type, then compare the exact result shown.",
+              "nl": "Met width wordt \"10\\n\" afgedrukt; de vereiste uitvoer is \"13\\n\". Volg de bewerking en het invoertype en vergelijk daarna het precieze getoonde resultaat."
+            }
+          }
+        ],
+        "blanks": [
+          {
+            "answer": "right",
+            "reason": {
+              "en": "Follow the operation and its input type, then compare the exact result shown.",
+              "nl": "Volg de bewerking en het invoertype en vergelijk daarna het precieze getoonde resultaat."
+            }
+          }
+        ],
+        "output": "13\n"
+      },
+      "id": "python-v4-16-quiz-r2-a-4",
+      "reviewActivityIds": [
+        "python-v4-15-coordinates"
+      ]
+    },
+    {
+      "objectiveIds": [
+        "scoring"
+      ],
+      "category": "debugging",
+      "prompt": {
+        "en": "Choose the repair or test that addresses the stated problem.",
+        "nl": "Kies de reparatie of test die het beschreven probleem aanpakt."
+      },
+      "code": "# Scores every frame while x stays outside.\nif x < -6:\n    right_score += 1 # speed 100",
+      "answer": "a",
+      "choices": [
+        {
+          "id": "a",
+          "label": {
+            "en": "Reset position and enter a waiting state in the same update.",
+            "nl": "Herstel positie en ga in dezelfde update naar de wachttoestand."
+          },
+          "reason": {
+            "en": "This removes the scoring condition before the next frame.",
+            "nl": "Dit verwijdert de scorevoorwaarde vóór het volgende beeld."
+          }
+        },
+        {
+          "id": "b",
+          "label": {
+            "en": "Make the score increment larger.",
+            "nl": "Maak de scoreverhoging groter."
+          },
+          "reason": {
+            "en": "The repeat-scoring cause remains.",
+            "nl": "De oorzaak van herhaald scoren blijft."
+          }
+        },
+        {
+          "id": "c",
+          "label": {
+            "en": "Hide the score text.",
+            "nl": "Verberg de scoretekst."
+          },
+          "reason": {
+            "en": "The data still increments even when invisible.",
+            "nl": "De gegevens stijgen nog steeds wanneer ze onzichtbaar zijn."
+          }
+        }
+      ],
+      "id": "python-v4-16-quiz-r2-a-5",
+      "reviewActivityIds": [
+        "python-v4-16-score-once"
+      ]
+    },
+    {
+      "objectiveIds": [
+        "simultaneous-controls"
+      ],
+      "category": "application",
+      "prompt": {
+        "en": "Which explanation applies to this example?",
+        "nl": "Welke uitleg past bij dit voorbeeld?"
+      },
+      "code": "if keys[pygame.K_w]:\n    left_y -= 100 * dt\nif keys[pygame.K_DOWN]:\n    right_y += 100 * dt",
+      "answer": "a",
+      "choices": [
+        {
+          "id": "a",
+          "label": {
+            "en": "Both players can move in the same frame.",
+            "nl": "Beide spelers kunnen in hetzelfde beeld bewegen."
+          },
+          "reason": {
+            "en": "Independent checks allow both actions.",
+            "nl": "Onafhankelijke controles laten beide acties toe."
+          }
+        },
+        {
+          "id": "b",
+          "label": {
+            "en": "Only the first matching key can move.",
+            "nl": "Alleen de eerste passende toets kan bewegen."
+          },
+          "reason": {
+            "en": "That would require an alternative chain.",
+            "nl": "Dat vereist een alternatievenketen."
+          }
+        },
+        {
+          "id": "c",
+          "label": {
+            "en": "dt must always be one.",
+            "nl": "dt moet altijd één zijn."
+          },
+          "reason": {
+            "en": "dt measures the actual elapsed seconds.",
+            "nl": "dt meet de werkelijk verstreken seconden."
+          }
+        }
+      ],
+      "id": "python-v4-16-quiz-r2-a-6",
+      "reviewActivityIds": [
+        "python-v4-16-held-controls"
+      ]
+    }
+  ],
+  "alternateQuestions": [
+    {
+      "objectiveIds": [
+        "elapsed-time"
+      ],
+      "category": "prediction",
+      "prompt": {
+        "en": "What does this program print?",
+        "nl": "Wat drukt dit programma af?"
+      },
+      "code": "x = 10\nx += 120 * 0.5\nprint(x)",
+      "answer": "a",
+      "expectedOutput": "70.0\n",
+      "choices": [
+        {
+          "id": "a",
+          "label": {
+            "en": "70.0",
+            "nl": "70.0"
+          },
+          "reason": {
+            "en": "Velocity times seconds gives this frame’s displacement.",
+            "nl": "Snelheid maal seconden geeft de verplaatsing in dit beeld."
+          }
+        },
+        {
+          "id": "b",
+          "label": {
+            "en": "130",
+            "nl": "130"
+          },
+          "reason": {
+            "en": "That would correspond to a full second.",
+            "nl": "Dat komt overeen met een volle seconde."
+          }
+        },
+        {
+          "id": "c",
+          "label": {
+            "en": "60",
+            "nl": "60"
+          },
+          "reason": {
+            "en": "The old position must also be added.",
+            "nl": "De oude positie moet ook worden opgeteld."
+          }
+        }
+      ],
+      "id": "python-v4-16-quiz-r2-b-1",
+      "reviewActivityIds": [
+        "python-v4-16-velocity"
+      ]
+    },
+    {
+      "objectiveIds": [
+        "rect"
+      ],
+      "category": "prediction",
+      "prompt": {
+        "en": "What does this program print?",
+        "nl": "Wat drukt dit programma af?"
+      },
+      "code": "import pygame\npaddle = pygame.Rect(10, 20, 8, 40)\npaddle.y += -5\nprint(paddle.bottom)",
+      "answer": "a",
+      "expectedOutput": "55\n",
+      "choices": [
+        {
+          "id": "a",
+          "label": {
+            "en": "55",
+            "nl": "55"
+          },
+          "reason": {
+            "en": "bottom is y plus height; moving y changes bottom without changing height.",
+            "nl": "bottom is y plus hoogte; y verplaatsen verandert bottom zonder de hoogte te veranderen."
+          }
+        },
+        {
+          "id": "b",
+          "label": {
+            "en": "40",
+            "nl": "40"
+          },
+          "reason": {
+            "en": "bottom is y plus height; moving y changes bottom without changing height.",
+            "nl": "bottom is y plus hoogte; y verplaatsen verandert bottom zonder de hoogte te veranderen."
+          }
+        },
+        {
+          "id": "c",
+          "label": {
+            "en": "65",
+            "nl": "65"
+          },
+          "reason": {
+            "en": "bottom is y plus height; moving y changes bottom without changing height.",
+            "nl": "bottom is y plus hoogte; y verplaatsen verandert bottom zonder de hoogte te veranderen."
+          }
+        }
+      ],
+      "id": "python-v4-16-quiz-r2-b-2",
+      "reviewActivityIds": [
+        "python-v4-15-coordinates"
+      ]
+    },
+    {
+      "objectiveIds": [
+        "wall-collision"
+      ],
+      "category": "completion",
+      "prompt": {
+        "en": "Complete the code to produce the shown output.",
+        "nl": "Vul de code aan om de getoonde uitvoer te maken."
+      },
+      "code": "y,vy = 3,-120\nif y <= 6 and ___:\n    y,vy = 6,-vy\nprint(vy)",
+      "answer": "a",
+      "choices": [
+        {
+          "id": "a",
+          "label": {
+            "en": "vy < 0",
+            "nl": "vy < 0"
+          },
+          "reason": {
+            "en": "Reverse only a velocity pointing into the top wall.",
+            "nl": "Keer alleen een snelheid naar de bovenwand om."
+          }
+        },
+        {
+          "id": "b",
+          "label": {
+            "en": "vy > 0",
+            "nl": "vy > 0"
+          },
+          "reason": {
+            "en": "Using vy > 0 prints \"-120\\n\"; the required output is \"120\\n\". Reverse only a velocity pointing into the top wall.",
+            "nl": "Met vy > 0 wordt \"-120\\n\" afgedrukt; de vereiste uitvoer is \"120\\n\". Keer alleen een snelheid naar de bovenwand om."
+          }
+        },
+        {
+          "id": "c",
+          "label": {
+            "en": "vy == 0",
+            "nl": "vy == 0"
+          },
+          "reason": {
+            "en": "Using vy == 0 prints \"-120\\n\"; the required output is \"120\\n\". Reverse only a velocity pointing into the top wall.",
+            "nl": "Met vy == 0 wordt \"-120\\n\" afgedrukt; de vereiste uitvoer is \"120\\n\". Keer alleen een snelheid naar de bovenwand om."
+          }
+        }
+      ],
+      "codeBlank": {
+        "prompt": {
+          "en": "Complete the code to produce the shown output.",
+          "nl": "Vul de code aan om de getoonde uitvoer te maken."
+        },
+        "segments": [
+          "y,vy = 3,-120\nif y <= 6 and ",
+          ":\n    y,vy = 6,-vy\nprint(vy)"
+        ],
+        "tokens": [
+          {
+            "id": "token-1",
+            "code": "vy < 0"
+          },
+          {
+            "id": "token-2",
+            "code": "vy > 0",
+            "reason": {
+              "en": "Using vy > 0 prints \"-120\\n\"; the required output is \"120\\n\". Reverse only a velocity pointing into the top wall.",
+              "nl": "Met vy > 0 wordt \"-120\\n\" afgedrukt; de vereiste uitvoer is \"120\\n\". Keer alleen een snelheid naar de bovenwand om."
+            }
+          },
+          {
+            "id": "token-3",
+            "code": "vy == 0",
+            "reason": {
+              "en": "Using vy == 0 prints \"-120\\n\"; the required output is \"120\\n\". Reverse only a velocity pointing into the top wall.",
+              "nl": "Met vy == 0 wordt \"-120\\n\" afgedrukt; de vereiste uitvoer is \"120\\n\". Keer alleen een snelheid naar de bovenwand om."
+            }
+          }
+        ],
+        "blanks": [
+          {
+            "answer": "vy < 0",
+            "reason": {
+              "en": "Reverse only a velocity pointing into the top wall.",
+              "nl": "Keer alleen een snelheid naar de bovenwand om."
+            }
+          }
+        ],
+        "output": "120\n"
+      },
+      "id": "python-v4-16-quiz-r2-b-3",
+      "reviewActivityIds": [
+        "python-v4-16-wall-bounce"
+      ]
+    },
+    {
+      "objectiveIds": [
+        "rect"
+      ],
+      "category": "completion",
+      "prompt": {
+        "en": "Complete the code to produce the shown output.",
+        "nl": "Vul de code aan om de getoonde uitvoer te maken."
+      },
+      "code": "import pygame\nr = pygame.Rect(3, 4, 10, 20)\nprint(r.___)",
+      "answer": "a",
+      "choices": [
+        {
+          "id": "a",
+          "label": {
+            "en": "bottom",
+            "nl": "bottom"
+          },
+          "reason": {
+            "en": "Follow the operation and its input type, then compare the exact result shown.",
+            "nl": "Volg de bewerking en het invoertype en vergelijk daarna het precieze getoonde resultaat."
+          }
+        },
+        {
+          "id": "b",
+          "label": {
+            "en": "y",
+            "nl": "y"
+          },
+          "reason": {
+            "en": "Using y prints \"4\\n\"; the required output is \"24\\n\". Follow the operation and its input type, then compare the exact result shown.",
+            "nl": "Met y wordt \"4\\n\" afgedrukt; de vereiste uitvoer is \"24\\n\". Volg de bewerking en het invoertype en vergelijk daarna het precieze getoonde resultaat."
+          }
+        },
+        {
+          "id": "c",
+          "label": {
+            "en": "height",
+            "nl": "height"
+          },
+          "reason": {
+            "en": "Using height prints \"20\\n\"; the required output is \"24\\n\". Follow the operation and its input type, then compare the exact result shown.",
+            "nl": "Met height wordt \"20\\n\" afgedrukt; de vereiste uitvoer is \"24\\n\". Volg de bewerking en het invoertype en vergelijk daarna het precieze getoonde resultaat."
+          }
+        }
+      ],
+      "codeBlank": {
+        "prompt": {
+          "en": "Complete the code to produce the shown output.",
+          "nl": "Vul de code aan om de getoonde uitvoer te maken."
+        },
+        "segments": [
+          "import pygame\nr = pygame.Rect(3, 4, 10, 20)\nprint(r.",
+          ")"
+        ],
+        "tokens": [
+          {
+            "id": "token-1",
+            "code": "bottom"
+          },
+          {
+            "id": "token-2",
+            "code": "y",
+            "reason": {
+              "en": "Using y prints \"4\\n\"; the required output is \"24\\n\". Follow the operation and its input type, then compare the exact result shown.",
+              "nl": "Met y wordt \"4\\n\" afgedrukt; de vereiste uitvoer is \"24\\n\". Volg de bewerking en het invoertype en vergelijk daarna het precieze getoonde resultaat."
+            }
+          },
+          {
+            "id": "token-3",
+            "code": "height",
+            "reason": {
+              "en": "Using height prints \"20\\n\"; the required output is \"24\\n\". Follow the operation and its input type, then compare the exact result shown.",
+              "nl": "Met height wordt \"20\\n\" afgedrukt; de vereiste uitvoer is \"24\\n\". Volg de bewerking en het invoertype en vergelijk daarna het precieze getoonde resultaat."
+            }
+          }
+        ],
+        "blanks": [
+          {
+            "answer": "bottom",
+            "reason": {
+              "en": "Follow the operation and its input type, then compare the exact result shown.",
+              "nl": "Volg de bewerking en het invoertype en vergelijk daarna het precieze getoonde resultaat."
+            }
+          }
+        ],
+        "output": "24\n"
+      },
+      "id": "python-v4-16-quiz-r2-b-4",
+      "reviewActivityIds": [
+        "python-v4-15-coordinates"
+      ]
+    },
+    {
+      "objectiveIds": [
+        "direction-aware-collision"
+      ],
+      "category": "debugging",
+      "prompt": {
+        "en": "The ball is at the top and already moving down. Which repair prevents an extra bounce?",
+        "nl": "De bal staat bovenaan en beweegt al omlaag. Welke reparatie voorkomt een extra stuiter?"
+      },
+      "code": "y, vy = 6, 100\nif y <= 6:\n    vy = -vy",
+      "answer": "a",
+      "choices": [
+        {
+          "id": "a",
+          "label": {
+            "en": "Also require vy < 0 before reversing.",
+            "nl": "Eis ook vy < 0 vóór omkeren."
+          },
+          "reason": {
+            "en": "Only an approaching ball should reverse; this ball is leaving the wall.",
+            "nl": "Alleen een naderende bal hoort om te keren; deze bal verlaat de muur."
+          }
+        },
+        {
+          "id": "b",
+          "label": {
+            "en": "Always reverse twice.",
+            "nl": "Keer altijd tweemaal om."
+          },
+          "reason": {
+            "en": "Two reversals cancel, so approaching balls would also fail to bounce.",
+            "nl": "Twee omkeringen heffen elkaar op; naderende ballen zouden dan ook niet stuiteren."
+          }
+        },
+        {
+          "id": "c",
+          "label": {
+            "en": "Change <= to == only.",
+            "nl": "Verander alleen <= in ==."
+          },
+          "reason": {
+            "en": "The shown position equals 6, so the erroneous reversal still happens.",
+            "nl": "De getoonde positie is gelijk aan 6, dus de verkeerde omkering gebeurt nog."
+          }
+        }
+      ],
+      "id": "python-v4-16-quiz-r2-b-5",
+      "reviewActivityIds": [
+        "python-v4-16-wall-bounce"
+      ]
+    },
+    {
+      "objectiveIds": [
+        "simultaneous-controls"
+      ],
+      "category": "application",
+      "prompt": {
+        "en": "Which explanation applies to this example?",
+        "nl": "Welke uitleg past bij dit voorbeeld?"
+      },
+      "code": "if keys[pygame.K_w]:\n    left_y -= 120 * dt\nif keys[pygame.K_DOWN]:\n    right_y += 120 * dt",
+      "answer": "a",
+      "choices": [
+        {
+          "id": "a",
+          "label": {
+            "en": "Both players can move in the same frame.",
+            "nl": "Beide spelers kunnen in hetzelfde beeld bewegen."
+          },
+          "reason": {
+            "en": "Independent checks allow both actions.",
+            "nl": "Onafhankelijke controles laten beide acties toe."
+          }
+        },
+        {
+          "id": "b",
+          "label": {
+            "en": "Only the first matching key can move.",
+            "nl": "Alleen de eerste passende toets kan bewegen."
+          },
+          "reason": {
+            "en": "That would require an alternative chain.",
+            "nl": "Dat vereist een alternatievenketen."
+          }
+        },
+        {
+          "id": "c",
+          "label": {
+            "en": "dt must always be one.",
+            "nl": "dt moet altijd één zijn."
+          },
+          "reason": {
+            "en": "dt measures the actual elapsed seconds.",
+            "nl": "dt meet de werkelijk verstreken seconden."
+          }
+        }
+      ],
+      "id": "python-v4-16-quiz-r2-b-6",
+      "reviewActivityIds": [
+        "python-v4-16-held-controls"
+      ]
+    }
+  ]
+}

@@ -53,11 +53,26 @@
       }
     },
     {
-      "id": "python-v4-17-remove-experiment",
+      "id": "python-v4-17-remove-try-calls",
+      "role": "practice",
       "topicIds": [],
       "heading": {
-        "en": "Try one change",
-        "nl": "Probeer één wijziging"
+        "en": "See your function work",
+        "nl": "Bekijk wat je functie doet"
+      },
+      "body": {
+        "en": "A definition alone produces no output. After writing the function, add these calls underneath it in main.py, without indentation, and Run. Compare the returned values with the task's requirements. The checks also call your function with other inputs; they do not require you to keep these demonstration calls.",
+        "nl": "Een definitie alleen geeft geen uitvoer. Schrijf eerst de functie en voeg daarna deze aanroepen eronder toe in main.py, zonder inspringing. Klik op Uitvoeren. Vergelijk de teruggegeven waarden met de opdracht. De controles roepen je functie ook met andere invoer aan; deze demonstratieaanroepen zijn niet verplicht."
+      },
+      "code": "print(remove_once([2, 2, 3], 2))\nprint(remove_once([2], 9))"
+    },
+    {
+      "id": "python-v4-17-remove-experiment",
+      "role": "experiment",
+      "topicIds": [],
+      "heading": {
+        "en": "After completing the task: try one change",
+        "nl": "Na het afronden: probeer één wijziging"
       },
       "body": {
         "en": "Call twice on a list with two copies of the target.",
@@ -79,8 +94,8 @@
         "membership-lists"
       ],
       "task": {
-        "en": "Use remove to remove one target if present; preserve the list when absent. Return items.",
-        "nl": "Gebruik remove om één target te verwijderen als die aanwezig is; behoud de lijst bij afwezigheid. Geef items terug."
+        "en": "Write remove_once(items, target) in main.py. Use remove to remove one target if present; preserve the list when absent. Return items.",
+        "nl": "Schrijf remove_once(items, target) in main.py. Gebruik remove om één target te verwijderen als die aanwezig is; behoud de lijst bij afwezigheid. Geef items terug."
       },
       "check": "any(isinstance(n, _ast.Call) and isinstance(n.func, _ast.Attribute) and n.func.attr == \"remove\" for n in _ast.walk(_ast.parse(_source)))",
       "probes": [
@@ -149,19 +164,5 @@
     "en": "The guard avoids ValueError while each call removes at most one matching item.",
     "nl": "De bewaking voorkomt ValueError terwijl elke aanroep maximaal één passend item verwijdert."
   },
-  "inputs": [],
-  "retrievals": [
-    {
-      "id": "recall-python-v4-15-attributes",
-      "sourceActivityId": "python-v4-15-attributes",
-      "objectiveIds": [
-        "attributes",
-        "object-methods"
-      ],
-      "prompt": {
-        "en": "Recall “Use an object’s attributes”. Does move change box.left itself? Try the earlier example from memory, then check it. Move the centre to (0, 0) and explain why part of the shape is outside the window.",
-        "nl": "Haal “Gebruik attributen van een object” terug. Verandert move box.left zelf? Probeer het eerdere voorbeeld uit je geheugen en controleer daarna. Verplaats het middelpunt naar (0, 0) en leg uit waarom een deel buiten het venster valt."
-      }
-    }
-  ]
+  "inputs": []
 }

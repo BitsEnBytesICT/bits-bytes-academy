@@ -51,11 +51,26 @@
       }
     },
     {
-      "id": "python-v4-17-insert-experiment",
+      "id": "python-v4-17-insert-try-calls",
+      "role": "practice",
       "topicIds": [],
       "heading": {
-        "en": "Try one change",
-        "nl": "Probeer één wijziging"
+        "en": "See your function work",
+        "nl": "Bekijk wat je functie doet"
+      },
+      "body": {
+        "en": "A definition alone produces no output. After writing the function, add these calls underneath it in main.py, without indentation, and Run. Compare the returned values with the task's requirements. The checks also call your function with other inputs; they do not require you to keep these demonstration calls.",
+        "nl": "Een definitie alleen geeft geen uitvoer. Schrijf eerst de functie en voeg daarna deze aanroepen eronder toe in main.py, zonder inspringing. Klik op Uitvoeren. Vergelijk de teruggegeven waarden met de opdracht. De controles roepen je functie ook met andere invoer aan; deze demonstratieaanroepen zijn niet verplicht."
+      },
+      "code": "print(prioritise([\"Bo\"], \"Ada\"))\nprint(prioritise([], \"A\"))"
+    },
+    {
+      "id": "python-v4-17-insert-experiment",
+      "role": "experiment",
+      "topicIds": [],
+      "heading": {
+        "en": "After completing the task: try one change",
+        "nl": "Na het afronden: probeer één wijziging"
       },
       "body": {
         "en": "Insert another person at position one.",
@@ -76,8 +91,8 @@
         "insert"
       ],
       "task": {
-        "en": "Use insert to place person at the front of queue and return the same list.",
-        "nl": "Gebruik insert om person vooraan in queue te zetten en geef dezelfde lijst terug."
+        "en": "Write prioritise(queue, person) in main.py. Use insert to place person at the front of queue and return the same list.",
+        "nl": "Schrijf prioritise(queue, person) in main.py. Gebruik insert om person vooraan in queue te zetten en geef dezelfde lijst terug."
       },
       "check": "any(isinstance(n, _ast.Call) and isinstance(n.func, _ast.Attribute) and n.func.attr == \"insert\" for n in _ast.walk(_ast.parse(_source)))",
       "probes": [
@@ -132,21 +147,5 @@
     "en": "Inserting shifts the existing queue instead of overwriting its first member.",
     "nl": "Invoegen verschuift de bestaande wachtrij in plaats van het eerste lid te overschrijven."
   },
-  "inputs": [],
-  "retrievals": [
-    {
-      "id": "recall-python-v4-15-coordinates",
-      "sourceActivityId": "python-v4-15-coordinates",
-      "objectiveIds": [
-        "browser-loop",
-        "coordinates",
-        "pygame-objects",
-        "rect"
-      ],
-      "prompt": {
-        "en": "Recall “Meet the Pygame preview”. Which argument moves the rectangle downward? Try the earlier example from memory, then check it. Change x and then y in the supplied call; observe each direction separately.",
-        "nl": "Haal “Ontmoet het Pygame-voorbeeld” terug. Welk argument verplaatst de rechthoek naar beneden? Probeer het eerdere voorbeeld uit je geheugen en controleer daarna. Verander x en daarna y in de aangeleverde aanroep; bekijk elke richting apart."
-      }
-    }
-  ]
+  "inputs": []
 }

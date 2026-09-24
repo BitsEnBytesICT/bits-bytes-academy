@@ -57,11 +57,38 @@
       }
     },
     {
-      "id": "python-v4-17-nested-grid-experiment",
+      "id": "python-v4-17-nested-grid-trace",
       "topicIds": [],
       "heading": {
-        "en": "Try one change",
-        "nl": "Probeer één wijziging"
+        "en": "Choose a row, then a cell",
+        "nl": "Kies een rij en dan een cel"
+      },
+      "body": {
+        "en": "For grid=[[1,2],[3,4]], grid[1] selects row [3,4]; grid[1][0] then selects 3. Assigning grid[1][0]=9 changes just that cell. list(grid) copies only the outer list: its rows are still shared. To keep rows independent, copy each row too.",
+        "nl": "Bij grid=[[1,2],[3,4]] kiest grid[1] de rij [3,4]; grid[1][0] kiest daarna 3. grid[1][0]=9 verandert alleen die cel. list(grid) kopieert alleen de buitenste lijst: rijen blijven gedeeld. Kopieer elke rij ook om rijen onafhankelijk te houden."
+      }
+    },
+    {
+      "id": "python-v4-17-nested-grid-try-calls",
+      "role": "practice",
+      "topicIds": [],
+      "heading": {
+        "en": "See your function work",
+        "nl": "Bekijk wat je functie doet"
+      },
+      "body": {
+        "en": "A definition alone produces no output. After writing the function, add these calls underneath it in main.py, without indentation, and Run. Compare the returned values with the task's requirements. The checks also call your function with other inputs; they do not require you to keep these demonstration calls.",
+        "nl": "Een definitie alleen geeft geen uitvoer. Schrijf eerst de functie en voeg daarna deze aanroepen eronder toe in main.py, zonder inspringing. Klik op Uitvoeren. Vergelijk de teruggegeven waarden met de opdracht. De controles roepen je functie ook met andere invoer aan; deze demonstratieaanroepen zijn niet verplicht."
+      },
+      "code": "print(mark([[0, 0], [0, 0]], 1, 0))\nprint(mark([[1, 2, 3]], 0, 2))"
+    },
+    {
+      "id": "python-v4-17-nested-grid-experiment",
+      "role": "experiment",
+      "topicIds": [],
+      "heading": {
+        "en": "After completing the task: try one change",
+        "nl": "Na het afronden: probeer één wijziging"
       },
       "body": {
         "en": "Copy only the outer grid, modify one inner row, and observe the shared row.",
@@ -85,8 +112,8 @@
         "aliasing"
       ],
       "task": {
-        "en": "Replace the selected cell with X and return grid. The supplied indexes are valid.",
-        "nl": "Vervang de gekozen cel door X en geef grid terug. De gegeven indexen zijn geldig."
+        "en": "Write mark(grid, row, column) in main.py. Replace the selected cell with X and return grid. The supplied indexes are valid.",
+        "nl": "Schrijf mark(grid, row, column) in main.py. Vervang de gekozen cel door X en geef grid terug. De gegeven indexen zijn geldig."
       },
       "check": "callable(mark)",
       "probes": [
@@ -159,16 +186,16 @@
   "inputs": [],
   "retrievals": [
     {
-      "id": "recall-python-v4-15-score-label",
-      "sourceActivityId": "python-v4-15-score-label",
+      "id": "recall-python-v4-11-change-element",
+      "sourceActivityId": "python-v4-11-change-element",
       "objectiveIds": [
-        "pygame-text",
-        "blit"
+        "list-mutation"
       ],
       "prompt": {
-        "en": "Recall “Draw text on the court”. Does render itself place the label on the display? Try the earlier example from memory, then check it. Change the display font size and the label position separately.",
-        "nl": "Haal “Teken tekst op het speelveld” terug. Plaatst render het label zelf op het scherm? Probeer het eerdere voorbeeld uit je geheugen en controleer daarna. Verander de schermlettergrootte en de labelpositie apart."
-      }
+        "en": "Recall replace an element. Did the number of elements change? Have the caller print its original variable after the call.",
+        "nl": "Herhaal vervang een element. Is het aantal elementen veranderd? Laat de aanroeper zijn oorspronkelijke variabele na de aanroep afdrukken."
+      },
+      "code": "scores = [3, 5, 7]\nscores[1] = 9\nprint(scores)"
     }
   ]
 }

@@ -1,5 +1,5 @@
 import { focus } from "./focused.mjs";
-import { call } from "./authoring.mjs";
+import { call, local } from "./authoring.mjs";
 export function functionPractice(chapter, slug, s) {
   const signature = `${s.name}(${s.params})`;
   return focus(chapter, slug, {
@@ -15,7 +15,10 @@ export function functionPractice(chapter, slug, s) {
       .join("\n")}\n`,
     tasks: [
       {
-        task: s.task,
+        task: [
+          `Write ${signature} in main.py. ${local(s.task).en}`,
+          `Schrijf ${signature} in main.py. ${local(s.task).nl}`,
+        ],
         check: s.check || `callable(${s.name})`,
         help: s.help,
         fragment: s.fragment,

@@ -50,11 +50,26 @@
       }
     },
     {
-      "id": "python-v4-12-range-stop-experiment",
+      "id": "python-v4-12-range-stop-try-calls",
+      "role": "practice",
       "topicIds": [],
       "heading": {
-        "en": "Try one change",
-        "nl": "Probeer één wijziging"
+        "en": "See your function work",
+        "nl": "Bekijk wat je functie doet"
+      },
+      "body": {
+        "en": "A definition alone produces no output. After writing the function, add these calls underneath it in main.py, without indentation, and Run. Compare the returned values with the task's requirements. The checks also call your function with other inputs; they do not require you to keep these demonstration calls.",
+        "nl": "Een definitie alleen geeft geen uitvoer. Schrijf eerst de functie en voeg daarna deze aanroepen eronder toe in main.py, zonder inspringing. Klik op Uitvoeren. Vergelijk de teruggegeven waarden met de opdracht. De controles roepen je functie ook met andere invoer aan; deze demonstratieaanroepen zijn niet verplicht."
+      },
+      "code": "print(positions(4))\nprint(positions(0))"
+    },
+    {
+      "id": "python-v4-12-range-stop-experiment",
+      "role": "experiment",
+      "topicIds": [],
+      "heading": {
+        "en": "After completing the task: try one change",
+        "nl": "Na het afronden: probeer één wijziging"
       },
       "body": {
         "en": "Compare printing range(3) with printing list(range(3)).",
@@ -75,10 +90,10 @@
         "range"
       ],
       "task": {
-        "en": "Return a list of positions from 0 up to but not including count, using range.",
-        "nl": "Geef met range een lijst van posities van 0 tot maar niet inclusief count terug."
+        "en": "Write positions(count) in main.py. Return a list of positions from 0 up to but not including count, using range.",
+        "nl": "Schrijf positions(count) in main.py. Geef met range een lijst van posities van 0 tot maar niet inclusief count terug."
       },
-      "check": "callable(positions)",
+      "check": "callable(positions) and any(isinstance(n,_ast.Call) and isinstance(n.func,_ast.Name) and n.func.id == \"range\" for n in _ast.walk(_ast.parse(_source)))",
       "probes": [
         {
           "call": {
@@ -136,19 +151,5 @@
     "en": "The conversion materialises the range values; it does not change the excluded stop.",
     "nl": "De omzetting maakt de range-waarden concreet; ze verandert de uitgesloten stop niet."
   },
-  "inputs": [],
-  "retrievals": [
-    {
-      "id": "recall-python-v4-10-value-error",
-      "sourceActivityId": "python-v4-10-value-error",
-      "objectiveIds": [
-        "try-except",
-        "value-error"
-      ],
-      "prompt": {
-        "en": "Recall “Recover from a conversion failure”. Which print in the try block is skipped? Try the earlier example from memory, then check it. Try \" 0 \" and explain why spaces around a numeric string can still convert.",
-        "nl": "Haal “Herstel een mislukte omzetting” terug. Welke print in het try-blok wordt overgeslagen? Probeer het eerdere voorbeeld uit je geheugen en controleer daarna. Probeer \" 0 \" en leg uit waarom spaties rond getaltekst omzetting niet verhinderen."
-      }
-    }
-  ]
+  "inputs": []
 }

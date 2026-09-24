@@ -52,11 +52,24 @@
       }
     },
     {
-      "id": "python-v4-08-continue-experiment",
+      "id": "python-v4-08-continue-trace",
       "topicIds": [],
       "heading": {
-        "en": "Try one change",
-        "nl": "Probeer één wijziging"
+        "en": "Trace a skipped turn",
+        "nl": "Volg een overgeslagen beurt"
+      },
+      "body": {
+        "en": "Suppose count becomes 2 and the body continues for even numbers. Statements below continue are skipped. If the only count update were below it, count would stay 2 forever. Move the update before a possible continue, then trace 1 → 2 → 3.",
+        "nl": "Stel dat count 2 wordt en het blok continue gebruikt bij even getallen. Instructies onder continue worden overgeslagen. Als de enige verhoging daar stond, bleef count altijd 2. Zet verhogen vóór een mogelijke continue en volg 1 → 2 → 3."
+      }
+    },
+    {
+      "id": "python-v4-08-continue-experiment",
+      "role": "experiment",
+      "topicIds": [],
+      "heading": {
+        "en": "After completing the task: try one change",
+        "nl": "Na het afronden: probeer één wijziging"
       },
       "body": {
         "en": "Replace continue with break and compare the output. Explain why later odd values disappear.",
@@ -126,15 +139,16 @@
   "inputs": [],
   "retrievals": [
     {
-      "id": "recall-python-v4-06-or",
-      "sourceActivityId": "python-v4-06-or",
+      "id": "recall-python-v4-03-remainder",
+      "sourceActivityId": "python-v4-03-remainder",
       "objectiveIds": [
-        "or"
+        "modulo"
       ],
       "prompt": {
-        "en": "Recall “Allow either condition with or”. What if both values were True? Try the earlier example from memory, then check it. Try a different command. Explain why the rule should now be False.",
-        "nl": "Haal “Sta een van beide voorwaarden toe met or” terug. Wat als beide waarden True waren? Probeer het eerdere voorbeeld uit je geheugen en controleer daarna. Probeer een andere opdracht. Leg uit waarom de regel nu False moet zijn."
-      }
+        "en": "Recall find the leftovers with %. Why does the second calculation leave nothing? Try 10 % 2 and 11 % 2. Explain how the results identify even and odd numbers.",
+        "nl": "Herhaal vind de rest met %. Waarom laat de tweede berekening niets over? Probeer 10 % 2 en 11 % 2. Leg uit hoe de resultaten even en oneven getallen herkennen."
+      },
+      "code": "print(17 % 5)\nprint(20 % 5)"
     }
   ]
 }

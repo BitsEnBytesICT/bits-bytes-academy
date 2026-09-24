@@ -1,0 +1,328 @@
+{
+  "id": "python-v4-10-converter-session",
+  "chapter": 10,
+  "group": "python-v4-module-10",
+  "title": {
+    "en": "Connect a complete conversion session",
+    "nl": "Verbind een volledig omzetgesprek"
+  },
+  "kind": "coding",
+  "optional": false,
+  "runtime": "terminal",
+  "guidance": "independent",
+  "checkpointMode": "sequential",
+  "estimatedMinutes": 30,
+  "topicIds": [
+    "session-integration"
+  ],
+  "practices": [
+    "retry-loops",
+    "cancellation",
+    "return",
+    "while",
+    "validation"
+  ],
+  "requiredConcepts": [
+    "recovery-review",
+    "keyword-arguments"
+  ],
+  "explanation": {
+    "en": "Before building the calculator, connect familiar functions, decisions and repetition in one small program. This service converts minutes to seconds or hours to minutes.",
+    "nl": "Verbind vóór de rekenmachine bekende functies, keuzes en herhaling tot één klein programma. Deze dienst zet minuten om naar seconden of uren naar minuten."
+  },
+  "example": "",
+  "sections": [
+    {
+      "id": "python-v4-10-converter-session-example",
+      "topicIds": [
+        "session-integration",
+        "retry-loops",
+        "cancellation",
+        "return",
+        "while",
+        "validation"
+      ],
+      "heading": {
+        "en": "Follow a working example",
+        "nl": "Volg een werkend voorbeeld"
+      },
+      "body": {
+        "en": "Use three responsibilities. convert(value) returns value * 60 without printing. read_value() asks Value or quit: until it gets a float; invalid text prints Number needed, while quit or end-of-input returns None. session() owns the menu: minutes or hours uses read_value(), displays the converted number and asks for the next operation. A cancelled value ends the session. Unknown commands print Unknown operation and ask again. Normalise commands with strip and lower. Zero and negative numbers are valid here. None, not a false value, signals cancellation.\n\nThe outer loop selects work; the inner retry loop only repairs the current answer. Returning a value from read_value does not end session. The caller decides what happens next.",
+        "nl": "Gebruik drie verantwoordelijkheden. convert(value) geeft value * 60 terug zonder afdrukken. read_value() vraagt Value or quit: tot er een float komt; ongeldige tekst toont Number needed, terwijl quit of einde invoer None teruggeeft. session() beheert het menu: minutes of hours gebruikt read_value(), toont het omgezette getal en vraagt om de volgende bewerking. Een geannuleerde waarde beëindigt het gesprek. Onbekende opdrachten tonen Unknown operation en vragen opnieuw. Normaliseer opdrachten met strip en lower. Nul en negatieve getallen zijn hier geldig. None, niet een onware waarde, betekent annuleren.\n\nDe buitenste lus kiest werk; de binnenste herhaling herstelt alleen het huidige antwoord. Een waarde teruggeven uit read_value beëindigt session niet. De aanroeper bepaalt wat daarna gebeurt."
+      },
+      "code": "def double(value):\n    return value * 2\ndef show(value):\n    answer = double(value)\n    print(answer)\nshow(1.5)\nshow(0)",
+      "output": "3.0\n0\n",
+      "prediction": {
+        "en": "Which function prints? Where does execution return after double finishes?",
+        "nl": "Welke functie drukt af? Waar gaat uitvoering verder nadat double klaar is?"
+      },
+      "takeaway": {
+        "en": "Read → validate → calculate → display → repeat. Give each loop a clear exit.",
+        "nl": "Lees → controleer → bereken → toon → herhaal. Geef elke lus een duidelijke uitgang."
+      }
+    },
+    {
+      "id": "converter-conversation",
+      "topicIds": [],
+      "heading": {
+        "en": "Plan the conversation",
+        "nl": "Plan het gesprek"
+      },
+      "body": {
+        "en": "Try: minutes → bad → 2.5 → hours → 0 → quit. Expected messages: Number needed, 150.0, 0.0, Bye. Also try an unknown operation, a negative value, immediate quit, and quit at the value prompt. Prompt wording is yours; the four result messages are specified. Add one small part and Run before connecting the next.",
+        "nl": "Probeer: minutes → bad → 2.5 → hours → 0 → quit. Verwachte berichten: Number needed, 150.0, 0.0, Bye. Probeer ook een onbekende opdracht, een negatieve waarde, meteen quit en quit bij de waardevraag. De vraagtekst kies je zelf; de vier resultaatberichten liggen vast. Voeg één klein onderdeel toe en voer uit vóór je het volgende verbindt."
+      }
+    },
+    {
+      "id": "python-v4-10-converter-session-try-calls",
+      "role": "practice",
+      "topicIds": [],
+      "heading": {
+        "en": "See your function work",
+        "nl": "Bekijk wat je functie doet"
+      },
+      "body": {
+        "en": "A definition alone produces no output. After writing the function, add these calls underneath it in main.py, without indentation, and Run. Compare the returned values with the task's requirements. The checks also call your function with other inputs; they do not require you to keep these demonstration calls.",
+        "nl": "Een definitie alleen geeft geen uitvoer. Schrijf eerst de functie en voeg daarna deze aanroepen eronder toe in main.py, zonder inspringing. Klik op Uitvoeren. Vergelijk de teruggegeven waarden met de opdracht. De controles roepen je functie ook met andere invoer aan; deze demonstratieaanroepen zijn niet verplicht."
+      },
+      "code": "print(convert(-2.5))\nprint(convert(0))",
+      "takeaway": {
+        "en": "For the first conversation, enter [] one answer per line. Use End input to test cancellation when the task supports it.",
+        "nl": "Voer voor het eerste gesprek [] in, één antwoord per regel. Gebruik Einde invoer om annuleren te testen wanneer de opdracht dat ondersteunt."
+      }
+    },
+    {
+      "id": "python-v4-10-converter-session-experiment",
+      "role": "experiment",
+      "topicIds": [],
+      "heading": {
+        "en": "After completing the task: try one change",
+        "nl": "Na het afronden: probeer één wijziging"
+      },
+      "body": {
+        "en": "Explain why testing if not value would wrongly treat 0 as cancellation. Sketch where a third conversion would fit before changing code.",
+        "nl": "Leg uit waarom if not value ten onrechte 0 als annuleren behandelt. Schets waar een derde omzetting past vóór je code wijzigt."
+      }
+    }
+  ],
+  "files": {
+    "main.py": "def convert(value):\n    return None\n\ndef read_value():\n    return None\n\ndef session():\n    # Read an operation, call the helpers, print, and repeat.\n    return None\n\nsession()\n"
+  },
+  "solution": {
+    "main.py": "def convert(value):\n    return value * 60\n\ndef read_value():\n    while True:\n        try:\n            text = input(\"Value or quit: \").strip().lower()\n        except EOFError:\n            return None\n        if text == \"quit\":\n            return None\n        try:\n            return float(text)\n        except ValueError:\n            print(\"Number needed\")\n\ndef session():\n    while True:\n        try:\n            operation = input(\"minutes, hours or quit: \").strip().lower()\n        except EOFError:\n            break\n        if operation == \"quit\":\n            break\n        if operation != \"minutes\" and operation != \"hours\":\n            print(\"Unknown operation\")\n            continue\n        value = read_value()\n        if value is None:\n            break\n        print(convert(value))\n    print(\"Bye\")\n\nsession()\n"
+  },
+  "checkpoints": [
+    {
+      "id": "python-v4-10-converter-session-step-1",
+      "objectiveIds": [
+        "session-integration"
+      ],
+      "task": {
+        "en": "Implement convert(value) and read_value() using the contracts above. Keep session runnable while it is unfinished.",
+        "nl": "Implementeer convert(value) en read_value() volgens de afspraken hierboven. Houd session uitvoerbaar terwijl die nog onaf is."
+      },
+      "check": "callable(convert) and callable(read_value)",
+      "probes": [
+        {
+          "call": {
+            "name": "convert",
+            "args": [
+              -2.5
+            ]
+          },
+          "check": "_return == -150 and _error is None and _remaining_input == \"\"",
+          "definitionsOnly": true,
+          "stdin": []
+        },
+        {
+          "call": {
+            "name": "convert",
+            "args": [
+              0
+            ]
+          },
+          "check": "_return == 0 and _error is None and _remaining_input == \"\"",
+          "definitionsOnly": true,
+          "stdin": []
+        },
+        {
+          "call": {
+            "name": "read_value",
+            "args": []
+          },
+          "check": "_return == 2.5 and \"Number needed\" in _call_stdout and _error is None and _remaining_input == \"\"",
+          "definitionsOnly": true,
+          "stdin": [
+            "bad",
+            "2.5"
+          ]
+        },
+        {
+          "call": {
+            "name": "read_value",
+            "args": []
+          },
+          "check": "_return is None and _error is None and _remaining_input == \"\"",
+          "definitionsOnly": true,
+          "stdin": [
+            " QUIT "
+          ]
+        },
+        {
+          "call": {
+            "name": "read_value",
+            "args": []
+          },
+          "check": "_return is None and _error is None and _remaining_input == \"\"",
+          "definitionsOnly": true,
+          "stdin": []
+        }
+      ],
+      "hint": {
+        "en": "Read → validate → calculate → display → repeat. Give each loop a clear exit.",
+        "nl": "Lees → controleer → bereken → toon → herhaal. Geef elke lus een duidelijke uitgang."
+      },
+      "hints": [
+        {
+          "en": "Read → validate → calculate → display → repeat. Give each loop a clear exit.",
+          "nl": "Lees → controleer → bereken → toon → herhaal. Geef elke lus een duidelijke uitgang."
+        },
+        {
+          "en": "Test the pure conversion first; then return None only for cancellation and retry failed float conversions.",
+          "nl": "Test eerst de zuivere omzetting; geef daarna alleen None terug bij annuleren en herhaal mislukte float-omzettingen."
+        },
+        {
+          "en": "A small fragment to adapt: `if text == \"quit\": return None`",
+          "nl": "Een klein fragment om aan te passen: `if text == \"quit\": return None`"
+        }
+      ],
+      "feedback": {
+        "en": "Test the pure conversion first; then return None only for cancellation and retry failed float conversions.",
+        "nl": "Test eerst de zuivere omzetting; geef daarna alleen None terug bij annuleren en herhaal mislukte float-omzettingen."
+      }
+    },
+    {
+      "id": "python-v4-10-converter-session-step-2",
+      "objectiveIds": [
+        "session-integration"
+      ],
+      "task": {
+        "en": "Complete session() and call it at the bottom. Repeat conversions, reject unknown commands, and print Bye once on quit or end-of-input, including cancellation at the value prompt.",
+        "nl": "Maak session() af en roep die onderaan aan. Herhaal omzettingen, weiger onbekende opdrachten en druk Bye eenmaal af bij quit of einde invoer, ook bij annuleren aan de waardevraag."
+      },
+      "check": "any(isinstance(n,_ast.Expr) and isinstance(n.value,_ast.Call) and isinstance(n.value.func,_ast.Name) and n.value.func.id == \"session\" for n in _ast.parse(_source).body)",
+      "probes": [
+        {
+          "call": {
+            "name": "session",
+            "args": []
+          },
+          "check": "_call_stdout == \"Number needed\\n150.0\\n0.0\\nBye\\n\" and _error is None and _remaining_input == \"\"",
+          "definitionsOnly": true,
+          "stdin": [
+            "minutes",
+            "bad",
+            "2.5",
+            "hours",
+            "0",
+            "quit"
+          ],
+          "ignorePrompts": true
+        },
+        {
+          "call": {
+            "name": "session",
+            "args": []
+          },
+          "check": "_call_stdout == \"Unknown operation\\n-120.0\\nBye\\n\" and _error is None and _remaining_input == \"\"",
+          "definitionsOnly": true,
+          "stdin": [
+            "unknown",
+            " HOURS ",
+            "-2",
+            "quit"
+          ],
+          "ignorePrompts": true
+        },
+        {
+          "call": {
+            "name": "session",
+            "args": []
+          },
+          "check": "_call_stdout == \"Bye\\n\" and _error is None and _remaining_input == \"\"",
+          "definitionsOnly": true,
+          "stdin": [
+            "minutes",
+            "quit"
+          ],
+          "ignorePrompts": true
+        },
+        {
+          "call": {
+            "name": "session",
+            "args": []
+          },
+          "check": "_call_stdout == \"Bye\\n\" and _error is None and _remaining_input == \"\"",
+          "definitionsOnly": true,
+          "stdin": [
+            "quit"
+          ],
+          "ignorePrompts": true
+        },
+        {
+          "call": {
+            "name": "session",
+            "args": []
+          },
+          "check": "_call_stdout == \"Bye\\n\" and _error is None and _remaining_input == \"\"",
+          "definitionsOnly": true,
+          "stdin": [],
+          "ignorePrompts": true
+        }
+      ],
+      "hint": {
+        "en": "Read → validate → calculate → display → repeat. Give each loop a clear exit.",
+        "nl": "Lees → controleer → bereken → toon → herhaal. Geef elke lus een duidelijke uitgang."
+      },
+      "hints": [
+        {
+          "en": "Read → validate → calculate → display → repeat. Give each loop a clear exit.",
+          "nl": "Lees → controleer → bereken → toon → herhaal. Geef elke lus een duidelijke uitgang."
+        },
+        {
+          "en": "The menu repeats after a result. Check value is None before calculating; zero must still produce a result.",
+          "nl": "Het menu herhaalt na een resultaat. Controleer value is None vóór berekenen; nul moet wel een resultaat opleveren."
+        },
+        {
+          "en": "A small fragment to adapt: `if value is None: break`",
+          "nl": "Een klein fragment om aan te passen: `if value is None: break`"
+        }
+      ],
+      "feedback": {
+        "en": "The menu repeats after a result. Check value is None before calculating; zero must still produce a result.",
+        "nl": "Het menu herhaalt na een resultaat. Controleer value is None vóór berekenen; nul moet wel een resultaat opleveren."
+      }
+    }
+  ],
+  "solutionNote": {
+    "en": "The conversion has no terminal responsibilities. The reader retries one answer. The session handles operation selection and owns repetition and the final goodbye; this division makes each part testable.",
+    "nl": "De omzetting heeft geen terminaltaken. De lezer herhaalt één antwoord. Het gesprek verwerkt de opdrachtkeuze, herhaling en het afscheid; door deze verdeling is elk deel te testen."
+  },
+  "inputs": [],
+  "retrievals": [
+    {
+      "id": "recall-python-v4-09-named-and-default",
+      "sourceActivityId": "python-v4-09-named-and-default",
+      "objectiveIds": [
+        "default-arguments",
+        "keyword-arguments",
+        "argument-types"
+      ],
+      "prompt": {
+        "en": "Recall optional inputs and named arguments. Why is the second result not 12? Compare delivery(5, 1) with delivery(fee=1, price=5).",
+        "nl": "Herhaal optionele invoer en benoemde argumenten. Waarom is het tweede resultaat niet 12? Vergelijk delivery(5, 1) met delivery(fee=1, price=5)."
+      },
+      "code": "def total(price, tax=2):\n    return price + tax\nprint(total(10))\nprint(total(price=10, tax=0))"
+    }
+  ]
+}

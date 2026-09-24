@@ -52,11 +52,38 @@
       }
     },
     {
-      "id": "python-v4-11-length-copy-experiment",
+      "id": "python-v4-11-length-copy-trace",
       "topicIds": [],
       "heading": {
-        "en": "Try one change",
-        "nl": "Probeer één wijziging"
+        "en": "Your function's interface",
+        "nl": "De interface van je functie"
+      },
+      "body": {
+        "en": "Write with_count(items). with_count(['a','b']) must return ['a','b',2]; with_count([]) must return [0]. Keep the original list unchanged. To inspect this, store original=['a','b'], print(with_count(original)), then print(original). The second print should still show ['a','b'].",
+        "nl": "Schrijf with_count(items). with_count(['a','b']) geeft ['a','b',2] terug; with_count([]) geeft [0] terug. Houd de oorspronkelijke lijst gelijk. Bewaar om dit te bekijken original=['a','b'], voer print(with_count(original)) uit en daarna print(original). De tweede print hoort nog ['a','b'] te tonen."
+      }
+    },
+    {
+      "id": "python-v4-11-length-copy-try-calls",
+      "role": "practice",
+      "topicIds": [],
+      "heading": {
+        "en": "See your function work",
+        "nl": "Bekijk wat je functie doet"
+      },
+      "body": {
+        "en": "A definition alone produces no output. After writing the function, add these calls underneath it in main.py, without indentation, and Run. Compare the returned values with the task's requirements. The checks also call your function with other inputs; they do not require you to keep these demonstration calls.",
+        "nl": "Een definitie alleen geeft geen uitvoer. Schrijf eerst de functie en voeg daarna deze aanroepen eronder toe in main.py, zonder inspringing. Klik op Uitvoeren. Vergelijk de teruggegeven waarden met de opdracht. De controles roepen je functie ook met andere invoer aan; deze demonstratieaanroepen zijn niet verplicht."
+      },
+      "code": "print(with_count([5, 9]))\nprint(with_count([]))"
+    },
+    {
+      "id": "python-v4-11-length-copy-experiment",
+      "role": "experiment",
+      "topicIds": [],
+      "heading": {
+        "en": "After completing the task: try one change",
+        "nl": "Na het afronden: probeer één wijziging"
       },
       "body": {
         "en": "Call the function twice with the same original list.",
@@ -78,8 +105,8 @@
         "copying"
       ],
       "task": {
-        "en": "Return a copy with the original length appended. Leave items unchanged, including for an empty list.",
-        "nl": "Geef een kopie terug met de oorspronkelijke lengte achteraan. Laat items ongewijzigd, ook bij een lege lijst."
+        "en": "Write with_count(items) in main.py. Return a copy with the original length appended. Leave items unchanged, including for an empty list.",
+        "nl": "Schrijf with_count(items) in main.py. Geef een kopie terug met de oorspronkelijke lengte achteraan. Laat items ongewijzigd, ook bij een lege lijst."
       },
       "check": "callable(with_count)",
       "probes": [
@@ -133,18 +160,5 @@
     "en": "Copying prevents an appended count from contaminating the next use of the original data.",
     "nl": "Kopiëren voorkomt dat een toegevoegd aantal het volgende gebruik van de oorspronkelijke gegevens beïnvloedt."
   },
-  "inputs": [],
-  "retrievals": [
-    {
-      "id": "recall-python-v4-09-none",
-      "sourceActivityId": "python-v4-09-none",
-      "objectiveIds": [
-        "none"
-      ],
-      "prompt": {
-        "en": "Recall “A function without a return value”. Which line comes from the function body? Try the earlier example from memory, then check it. Compare print(triple(0)) with triple(0) by itself.",
-        "nl": "Haal “Een functie zonder terugkeerwaarde” terug. Welke regel komt uit de functie-inhoud? Probeer het eerdere voorbeeld uit je geheugen en controleer daarna. Vergelijk print(triple(0)) met alleen triple(0)."
-      }
-    }
-  ]
+  "inputs": []
 }
