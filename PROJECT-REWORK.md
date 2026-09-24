@@ -20,7 +20,7 @@ Before any application edits, a full snapshot was created at `../../backups/pyth
 - [x] Reading: researching documentation. Pong self-assessed project; optional AI.
 - [x] Navigation, descriptions, duration, future lock, progress and Resume in EN/NL.
 - [x] Learner-facing desktop/mobile and keyboard checks; persistence, backup and conflict regression tests.
-- [ ] Typecheck, production build, restart, Git push, run instructions. (Only push remains.)
+- [x] Typecheck, production build, restart, Git push, run instructions.
 
 ## Current implementation evidence
 
