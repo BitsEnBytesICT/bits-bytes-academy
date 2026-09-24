@@ -1,0 +1,344 @@
+{
+  "id": "python-v2-10-02",
+  "chapter": 10,
+  "group": "python-v2-module-10",
+  "title": {
+    "en": "Resolve contact only once",
+    "nl": "Los contact één keer op"
+  },
+  "kind": "coding",
+  "optional": false,
+  "runtime": "pygame",
+  "guidance": "adapt",
+  "estimatedMinutes": 22,
+  "explanation": {
+    "en": "A bounce needs more than a sign change. The ball can still overlap the paddle on the next frame, causing repeated reversals. Repair the response by moving it clear of the paddle and checking whether it was travelling toward that paddle.",
+    "nl": "Een botsing vereist meer dan een tekenwissel. De bal kan in het volgende beeld nog met de paddle overlappen, waardoor hij herhaaldelijk omkeert. Herstel de reactie door hem vrij van de paddle te plaatsen en te controleren of hij naar die paddle bewoog."
+  },
+  "sections": [
+    {
+      "heading": {
+        "en": "Contact, direction, correction",
+        "nl": "Contact, richting, correctie"
+      },
+      "body": {
+        "en": "paddle_response(ball, paddle, vx, side) returns (new_left, new_vx). ball and paddle are rectangle sequences; side is \"left\" or \"right\". Only react if their areas overlap and vx points toward that side. At the left paddle, place the ball’s left at paddle.right and make vx positive. At the right paddle, place its right at paddle.left and make vx negative. Preserve speed magnitude. For a miss, outgoing ball, or zero speed, return the original ball-left and vx. Leave input sequences unchanged.",
+        "nl": "paddle_response(ball, paddle, vx, side) geeft (new_left, new_vx) terug. ball en paddle zijn rechthoekreeksen; side is \"left\" of \"right\". Reageer alleen als hun gebieden overlappen en vx naar die kant wijst. Zet bij de linkerpaddle de bal-links op paddle.right en maak vx positief. Zet bij de rechterpaddle de bal-rechts op paddle.left en maak vx negatief. Behoud de snelheidsomvang. Geef bij een misser, wegbewegende bal of snelheid nul de oorspronkelijke bal-links en vx terug. Laat invoerreeksen ongemoeid."
+      }
+    },
+    {
+      "heading": {
+        "en": "Run, observe, then finish",
+        "nl": "Voer uit, bekijk en rond af"
+      },
+      "body": {
+        "en": "Run starts main.py and opens the game preview. Click the preview to use the keyboard. Clicking elsewhere pauses the game. Finish & check sends the normal close event and checks your helper functions after the loop exits; Stop interrupts without grading. The supplied async loop gives the browser time to draw and receive input. Keep await asyncio.sleep(1 / 60) inside that loop. You do not need to learn asynchronous programming in depth yet.",
+        "nl": "Run start main.py en opent het spelvoorbeeld. Klik op het voorbeeld om het toetsenbord te gebruiken. Elders klikken pauzeert het spel. Afronden en controleren stuurt de normale sluitgebeurtenis en controleert je hulpfuncties nadat de lus eindigt; Stop onderbreekt zonder beoordeling. De meegeleverde async-lus geeft de browser tijd om te tekenen en invoer te ontvangen. Houd await asyncio.sleep(1 / 60) binnen die lus. Je hoeft asynchroon programmeren nog niet uitgebreid te leren."
+      }
+    }
+  ],
+  "example": "",
+  "files": {
+    "main.py": "import asyncio\nimport pygame\nimport rules\n\nasync def main():\n    pygame.init()\n    screen = pygame.display.set_mode((640, 400))\n    clock = pygame.time.Clock()\n    font = pygame.font.Font(None, 28)\n    running = True\n    paddle = pygame.Rect(24, 164, 12, 72)\n    x = 400.0\n    vx = -180.0\n    while running:\n        for event in pygame.event.get():\n            if event.type == pygame.QUIT or (event.type == pygame.KEYDOWN and event.key == pygame.K_ESCAPE):\n                running = False\n        dt = min(clock.tick() / 1000, 0.05)\n        keys = pygame.key.get_pressed()\n        x += vx * dt\n        ball = pygame.Rect(round(x), 190, 16, 16)\n        corrected_x, new_vx = rules.paddle_response(list(ball), list(paddle), vx, \"left\")\n        if new_vx != vx:\n            x = corrected_x\n        vx = new_vx\n        if x > 620:\n            vx = -abs(vx)\n        screen.fill((16, 23, 39))\n        pygame.draw.rect(screen, (80,180,255), paddle)\n        pygame.draw.rect(screen, (255,255,255), (round(x),190,16,16))\n        pygame.display.flip()\n        await asyncio.sleep(1 / 60)\n    pygame.quit()\n\nasyncio.run(main())\n",
+    "rules.py": "import pygame\n\ndef paddle_response(ball, paddle, vx, side):\n    ball_rect = pygame.Rect(ball)\n    paddle_rect = pygame.Rect(paddle)\n    if ball_rect.colliderect(paddle_rect):\n        vx = -vx\n    return (ball_rect.left, vx)\n"
+  },
+  "solution": {
+    "main.py": "import asyncio\nimport pygame\nimport rules\n\nasync def main():\n    pygame.init()\n    screen = pygame.display.set_mode((640, 400))\n    clock = pygame.time.Clock()\n    font = pygame.font.Font(None, 28)\n    running = True\n    paddle = pygame.Rect(24, 164, 12, 72)\n    x = 400.0\n    vx = -180.0\n    while running:\n        for event in pygame.event.get():\n            if event.type == pygame.QUIT or (event.type == pygame.KEYDOWN and event.key == pygame.K_ESCAPE):\n                running = False\n        dt = min(clock.tick() / 1000, 0.05)\n        keys = pygame.key.get_pressed()\n        x += vx * dt\n        ball = pygame.Rect(round(x), 190, 16, 16)\n        corrected_x, new_vx = rules.paddle_response(list(ball), list(paddle), vx, \"left\")\n        if new_vx != vx:\n            x = corrected_x\n        vx = new_vx\n        if x > 620:\n            vx = -abs(vx)\n        screen.fill((16, 23, 39))\n        pygame.draw.rect(screen, (80,180,255), paddle)\n        pygame.draw.rect(screen, (255,255,255), (round(x),190,16,16))\n        pygame.display.flip()\n        await asyncio.sleep(1 / 60)\n    pygame.quit()\n\nasyncio.run(main())\n",
+    "rules.py": "import pygame\n\ndef paddle_response(ball, paddle, vx, side):\n    b, p = pygame.Rect(ball), pygame.Rect(paddle)\n    if b.colliderect(p):\n        if side == \"left\" and vx < 0:\n            return (p.right, -vx)\n        if side == \"right\" and vx > 0:\n            return (p.left - b.width, -vx)\n    return (b.left, vx)\n"
+  },
+  "checkpoints": [
+    {
+      "id": "python-v2-10-02-step-1",
+      "task": {
+        "en": "Reflect incoming contacts on either paddle and keep the speed magnitude.",
+        "nl": "Kaats inkomend contact bij beide paddles terug en behoud de snelheidsomvang."
+      },
+      "check": "_rendered_frames > 0",
+      "hint": {
+        "en": "The two sides face opposite directions.",
+        "nl": "De twee kanten zijn tegengesteld gericht."
+      },
+      "hints": [
+        {
+          "en": "The two sides face opposite directions.",
+          "nl": "De twee kanten zijn tegengesteld gericht."
+        },
+        {
+          "en": "Use the side and velocity sign together.",
+          "nl": "Gebruik kant en snelheidsteken samen."
+        },
+        {
+          "en": "For the left side, a negative vx approaches the paddle.",
+          "nl": "Aan de linkerkant nadert negatieve vx de paddle."
+        }
+      ],
+      "feedback": {
+        "en": "Incoming left and right contacts need opposite outgoing signs.",
+        "nl": "Inkomend contact links en rechts vereist tegengestelde uitgaande tekens."
+      },
+      "probes": [
+        {
+          "moduleOnly": true,
+          "call": {
+            "module": "rules",
+            "name": "paddle_response",
+            "args": [
+              [
+                30,
+                60,
+                16,
+                16
+              ],
+              [
+                24,
+                40,
+                12,
+                72
+              ],
+              -180,
+              "left"
+            ]
+          },
+          "check": "_error is None and (_return[1] == 180)"
+        },
+        {
+          "moduleOnly": true,
+          "call": {
+            "module": "rules",
+            "name": "paddle_response",
+            "args": [
+              [
+                290,
+                60,
+                16,
+                16
+              ],
+              [
+                300,
+                40,
+                12,
+                72
+              ],
+              180,
+              "right"
+            ]
+          },
+          "check": "_error is None and (_return[1] == -180)"
+        }
+      ]
+    },
+    {
+      "id": "python-v2-10-02-step-2",
+      "task": {
+        "en": "Place the ball just outside the contacted paddle, accounting for the ball’s width on the right side.",
+        "nl": "Plaats de bal net buiten de geraakte paddle en houd aan de rechterkant rekening met de balbreedte."
+      },
+      "check": "_rendered_frames > 0",
+      "hint": {
+        "en": "A direction change alone leaves the rectangles overlapping.",
+        "nl": "Alleen van richting veranderen laat de rechthoeken overlappen."
+      },
+      "hints": [
+        {
+          "en": "A direction change alone leaves the rectangles overlapping.",
+          "nl": "Alleen van richting veranderen laat de rechthoeken overlappen."
+        },
+        {
+          "en": "Separate the ball and paddle along the horizontal axis.",
+          "nl": "Scheid bal en paddle langs de horizontale as."
+        },
+        {
+          "en": "If the ball’s right is 300 and its width is 16, its left is 284.",
+          "nl": "Als bal-rechts 300 en de breedte 16 is, is bal-links 284."
+        }
+      ],
+      "feedback": {
+        "en": "Correct the position to prevent repeated contact.",
+        "nl": "Corrigeer de positie om herhaald contact te voorkomen."
+      },
+      "probes": [
+        {
+          "moduleOnly": true,
+          "call": {
+            "module": "rules",
+            "name": "paddle_response",
+            "args": [
+              [
+                30,
+                60,
+                16,
+                16
+              ],
+              [
+                24,
+                40,
+                12,
+                72
+              ],
+              -180,
+              "left"
+            ]
+          },
+          "check": "_error is None and (_return[0] == 36)"
+        },
+        {
+          "moduleOnly": true,
+          "call": {
+            "module": "rules",
+            "name": "paddle_response",
+            "args": [
+              [
+                290,
+                60,
+                16,
+                16
+              ],
+              [
+                300,
+                40,
+                12,
+                72
+              ],
+              180,
+              "right"
+            ]
+          },
+          "check": "_error is None and (_return[0] == 284)"
+        }
+      ]
+    },
+    {
+      "id": "python-v2-10-02-step-3",
+      "task": {
+        "en": "Do nothing for misses, stationary balls, or balls already leaving the paddle. Test several rallies in the preview.",
+        "nl": "Doe niets bij missers, stilstaande ballen of ballen die de paddle al verlaten. Test meerdere rally’s in het voorbeeld."
+      },
+      "check": "_rendered_frames > 0",
+      "hint": {
+        "en": "Collision and approach direction are both necessary.",
+        "nl": "Botsing en naderingsrichting zijn beide nodig."
+      },
+      "hints": [
+        {
+          "en": "Collision and approach direction are both necessary.",
+          "nl": "Botsing en naderingsrichting zijn beide nodig."
+        },
+        {
+          "en": "Keep an unchanged-result path for cases without a response.",
+          "nl": "Behoud een pad met ongewijzigd resultaat voor gevallen zonder reactie."
+        },
+        {
+          "en": "A ball moving right after a left-paddle hit should not flip back left.",
+          "nl": "Een bal die na een linkerpaddlehit naar rechts beweegt mag niet terug naar links draaien."
+        }
+      ],
+      "feedback": {
+        "en": "Ignore non-contact and outgoing cases without mutating input.",
+        "nl": "Negeer niet-contact en wegbewegende gevallen zonder invoer te veranderen."
+      },
+      "probes": [
+        {
+          "moduleOnly": true,
+          "call": {
+            "module": "rules",
+            "name": "paddle_response",
+            "args": [
+              [
+                30,
+                60,
+                16,
+                16
+              ],
+              [
+                24,
+                40,
+                12,
+                72
+              ],
+              180,
+              "left"
+            ]
+          },
+          "check": "_error is None and (tuple(_return) == (30,180) and _args[0] == [30,60,16,16])"
+        },
+        {
+          "moduleOnly": true,
+          "call": {
+            "module": "rules",
+            "name": "paddle_response",
+            "args": [
+              [
+                30,
+                0,
+                16,
+                16
+              ],
+              [
+                24,
+                40,
+                12,
+                72
+              ],
+              -180,
+              "left"
+            ]
+          },
+          "check": "_error is None and (tuple(_return) == (30,-180))"
+        },
+        {
+          "moduleOnly": true,
+          "call": {
+            "module": "rules",
+            "name": "paddle_response",
+            "args": [
+              [
+                290,
+                60,
+                16,
+                16
+              ],
+              [
+                300,
+                40,
+                12,
+                72
+              ],
+              -180,
+              "right"
+            ]
+          },
+          "check": "_error is None and (tuple(_return) == (290,-180))"
+        },
+        {
+          "moduleOnly": true,
+          "call": {
+            "module": "rules",
+            "name": "paddle_response",
+            "args": [
+              [
+                30,
+                60,
+                16,
+                16
+              ],
+              [
+                24,
+                40,
+                12,
+                72
+              ],
+              0,
+              "left"
+            ]
+          },
+          "check": "_error is None and (tuple(_return) == (30,0))"
+        }
+      ]
+    }
+  ],
+  "inputs": [],
+  "solutionNote": {
+    "en": "This is one valid approach. Compare the reasoning with your own code before choosing whether to use it. Other implementations can satisfy the same behavior.",
+    "nl": "Dit is één geldige aanpak. Vergelijk de redenering met je eigen code voordat je besluit die te gebruiken. Andere implementaties kunnen aan hetzelfde gedrag voldoen."
+  }
+}

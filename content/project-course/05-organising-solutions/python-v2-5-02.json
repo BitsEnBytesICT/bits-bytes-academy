@@ -1,0 +1,195 @@
+{
+  "id": "python-v2-5-02",
+  "chapter": 5,
+  "group": "python-v2-module-5",
+  "title": {
+    "en": "Return a result instead of losing it",
+    "nl": "Geef een resultaat terug in plaats van het te verliezen"
+  },
+  "kind": "coding",
+  "optional": false,
+  "runtime": "terminal",
+  "guidance": "adapt",
+  "estimatedMinutes": 16,
+  "explanation": {
+    "en": "A delivery quote function prints a number but gives its caller nothing useful to calculate with. It also accidentally uses a global shipping charge instead of its parameter. Repair the function so several callers can use it independently.",
+    "nl": "Een bezorgprijsfunctie drukt een getal af, maar geeft de aanroeper niets bruikbaars om mee te rekenen. De functie gebruikt bovendien per ongeluk een globale bezorgprijs in plaats van de parameter. Herstel de functie zodat verschillende aanroepers deze onafhankelijk kunnen gebruiken."
+  },
+  "sections": [
+    {
+      "heading": {
+        "en": "A returned value belongs to the caller",
+        "nl": "Een teruggegeven waarde hoort bij de aanroeper"
+      },
+      "body": {
+        "en": "return sends a value back to the call and ends the function. The caller can assign, print, or combine that value. print only displays text. A function without an explicit return returns None.",
+        "nl": "return stuurt een waarde terug naar de aanroep en beëindigt de functie. De aanroeper kan die waarde toekennen, afdrukken of combineren. print toont alleen tekst. Een functie zonder expliciete return geeft None terug."
+      },
+      "code": "def rectangle_area(width, height):\n    return width * height\n\narea = rectangle_area(3, 4)\nprint(area + 2)",
+      "output": "14"
+    },
+    {
+      "heading": {
+        "en": "Use the information passed in",
+        "nl": "Gebruik de meegegeven informatie"
+      },
+      "body": {
+        "en": "Parameters and variables assigned inside a function are local to that call. A function can see some outside names too, but relying on an unrelated global value makes it difficult to reuse. delivery_total(subtotal, shipping) should use only its arguments and return their sum without printing.",
+        "nl": "Parameters en variabelen die binnen een functie worden toegekend zijn lokaal voor die aanroep. Een functie kan ook sommige namen erbuiten zien, maar vertrouwen op een ongerelateerde globale waarde maakt hergebruik lastig. delivery_total(subtotal, shipping) moet alleen de argumenten gebruiken en hun som teruggeven zonder af te drukken."
+      }
+    }
+  ],
+  "example": "",
+  "files": {
+    "main.py": "shipping_charge = 4\n\ndef delivery_total(subtotal, shipping):\n    total = subtotal + shipping_charge\n    print(total)\n\nfirst = delivery_total(12, 3)\nsecond = delivery_total(5.5, 0)\nprint(\"Quotes:\", first, second)\n"
+  },
+  "solution": {
+    "main.py": "shipping_charge = 4\n\ndef delivery_total(subtotal, shipping):\n    total = subtotal + shipping\n    return total\n\nfirst = delivery_total(12, 3)\nsecond = delivery_total(5.5, 0)\nprint(\"Quotes:\", first, second)\n"
+  },
+  "checkpoints": [
+    {
+      "id": "python-v2-5-02-step-1",
+      "task": {
+        "en": "Make delivery_total return the numeric sum of its two arguments.",
+        "nl": "Laat delivery_total de numerieke som van beide argumenten teruggeven."
+      },
+      "check": "callable(delivery_total) and isinstance(first, (int, float))",
+      "hint": {
+        "en": "The caller currently receives None even though a number appears on screen.",
+        "nl": "De aanroeper ontvangt momenteel None, ook al verschijnt er een getal op het scherm."
+      },
+      "hints": [
+        {
+          "en": "The caller currently receives None even though a number appears on screen.",
+          "nl": "De aanroeper ontvangt momenteel None, ook al verschijnt er een getal op het scherm."
+        },
+        {
+          "en": "Choose the statement that passes a value back to the call.",
+          "nl": "Kies het statement dat een waarde terugstuurt naar de aanroep."
+        },
+        {
+          "en": "rectangle_area returns a value that another expression can use.",
+          "nl": "rectangle_area geeft een waarde terug die een andere uitdrukking kan gebruiken."
+        }
+      ],
+      "feedback": {
+        "en": "Return a usable number, not just printed text.",
+        "nl": "Geef een bruikbaar getal terug, niet alleen afgedrukte tekst."
+      },
+      "probes": [
+        {
+          "call": {
+            "name": "delivery_total",
+            "args": [
+              2.25,
+              1.5
+            ]
+          },
+          "check": "_error is None and _close(_return, 3.75)"
+        }
+      ]
+    },
+    {
+      "id": "python-v2-5-02-step-2",
+      "task": {
+        "en": "Use the shipping argument, so zero and custom shipping charges work independently of shipping_charge outside the function.",
+        "nl": "Gebruik het shipping-argument, zodat nul en aangepaste bezorgprijzen onafhankelijk van shipping_charge buiten de functie werken."
+      },
+      "check": "first == 15 and second == 5.5",
+      "hint": {
+        "en": "Two similarly named values can come from different places.",
+        "nl": "Twee gelijksoortig genoemde waarden kunnen van verschillende plekken komen."
+      },
+      "hints": [
+        {
+          "en": "Two similarly named values can come from different places.",
+          "nl": "Twee gelijksoortig genoemde waarden kunnen van verschillende plekken komen."
+        },
+        {
+          "en": "Inspect the names used inside the calculation.",
+          "nl": "Bekijk de namen die binnen de berekening worden gebruikt."
+        },
+        {
+          "en": "A parameter receives a fresh value for each call.",
+          "nl": "Een parameter ontvangt bij elke aanroep een nieuwe waarde."
+        }
+      ],
+      "feedback": {
+        "en": "Changing the unrelated global must not change the quote.",
+        "nl": "De ongerelateerde globale waarde veranderen mag de prijs niet veranderen."
+      },
+      "probes": [
+        {
+          "inputs": {
+            "shipping_charge": 999
+          },
+          "call": {
+            "name": "delivery_total",
+            "args": [
+              8,
+              0
+            ]
+          },
+          "check": "_error is None and _return == 8 and first == 15 and second == 5.5"
+        },
+        {
+          "call": {
+            "name": "delivery_total",
+            "args": [
+              0,
+              2
+            ]
+          },
+          "check": "_return == 2"
+        }
+      ]
+    },
+    {
+      "id": "python-v2-5-02-step-3",
+      "task": {
+        "en": "Keep printing in the caller. The script should display only its Quotes line; calling delivery_total in another calculation should not print extra lines.",
+        "nl": "Houd het afdrukken bij de aanroeper. Het script moet alleen de Quotes-regel tonen; delivery_total in een andere berekening aanroepen mag geen extra regels afdrukken."
+      },
+      "check": "callable(delivery_total) and len(_stdout.splitlines()) == 1 and _stdout.split()[0] == \"Quotes:\" and float(_stdout.split()[1]) == 15 and float(_stdout.split()[2]) == 5.5",
+      "hint": {
+        "en": "A reusable calculation should not decide how the user interface looks.",
+        "nl": "Een herbruikbare berekening moet niet bepalen hoe de gebruikersinterface eruitziet."
+      },
+      "hints": [
+        {
+          "en": "A reusable calculation should not decide how the user interface looks.",
+          "nl": "Een herbruikbare berekening moet niet bepalen hoe de gebruikersinterface eruitziet."
+        },
+        {
+          "en": "Remove printing from the calculation and retain the existing final report.",
+          "nl": "Verwijder afdrukken uit de berekening en behoud het bestaande eindoverzicht."
+        },
+        {
+          "en": "area = rectangle_area(3, 4) itself produces no output.",
+          "nl": "area = rectangle_area(3, 4) produceert zelf geen uitvoer."
+        }
+      ],
+      "feedback": {
+        "en": "The calculation should return silently; the caller decides what to show.",
+        "nl": "De berekening moet stil terugkeren; de aanroeper bepaalt wat wordt getoond."
+      },
+      "probes": [
+        {
+          "call": {
+            "name": "delivery_total",
+            "args": [
+              100,
+              7
+            ]
+          },
+          "check": "_error is None and _return == 107 and _call_stdout == \"\" and _call_input_chars == 0"
+        }
+      ]
+    }
+  ],
+  "inputs": [],
+  "solutionNote": {
+    "en": "Returning the expression directly is as valid as using a local total variable. Local names do not need to match this reference implementation.",
+    "nl": "De uitdrukking direct teruggeven is net zo geldig als een lokale total-variabele gebruiken. Lokale namen hoeven niet overeen te komen met deze voorbeeldimplementatie."
+  }
+}

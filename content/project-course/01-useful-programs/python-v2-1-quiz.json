@@ -1,0 +1,278 @@
+{
+  "id": "python-v2-1-quiz",
+  "chapter": 1,
+  "group": "python-v2-module-1",
+  "kind": "quiz",
+  "optional": false,
+  "title": {
+    "en": "Check your reasoning: useful programs",
+    "nl": "Controleer je inzicht: nuttige programma’s"
+  },
+  "estimatedMinutes": 5,
+  "questions": [
+    {
+      "id": "v2-m1-q1",
+      "prompt": {
+        "en": "What does the second line print?",
+        "nl": "Wat drukt de tweede regel af?"
+      },
+      "code": "name = \"Workshop\"\nprint(\"name\")",
+      "choices": [
+        {
+          "id": "a",
+          "label": {
+            "en": "name",
+            "nl": "name"
+          },
+          "reason": {
+            "en": "Quotes make this literal text.",
+            "nl": "Aanhalingstekens maken dit letterlijke tekst."
+          }
+        },
+        {
+          "id": "b",
+          "label": {
+            "en": "Workshop",
+            "nl": "Workshop"
+          },
+          "reason": {
+            "en": "That would require print(name), without quotes.",
+            "nl": "Daarvoor heb je print(name) zonder aanhalingstekens nodig."
+          }
+        },
+        {
+          "id": "c",
+          "label": {
+            "en": "Nothing",
+            "nl": "Niets"
+          },
+          "reason": {
+            "en": "The print call contains a valid string.",
+            "nl": "De print-aanroep bevat een geldige string."
+          }
+        }
+      ],
+      "answer": "a"
+    },
+    {
+      "id": "v2-m1-q2",
+      "prompt": {
+        "en": "What is printed?",
+        "nl": "Wat wordt afgedrukt?"
+      },
+      "code": "amount = 7\nsnapshot = amount\namount += 3\nprint(snapshot, amount)",
+      "choices": [
+        {
+          "id": "a",
+          "label": {
+            "en": "7 10",
+            "nl": "7 10"
+          },
+          "reason": {
+            "en": "snapshot keeps the earlier value; only amount is reassigned.",
+            "nl": "snapshot behoudt de eerdere waarde; alleen amount krijgt een nieuwe waarde."
+          }
+        },
+        {
+          "id": "b",
+          "label": {
+            "en": "10 10",
+            "nl": "10 10"
+          },
+          "reason": {
+            "en": "A saved numeric value does not follow later updates to another variable.",
+            "nl": "Een opgeslagen getalswaarde volgt latere updates van een andere variabele niet."
+          }
+        },
+        {
+          "id": "c",
+          "label": {
+            "en": "7 3",
+            "nl": "7 3"
+          },
+          "reason": {
+            "en": "+= adds to the existing value rather than replacing it with 3.",
+            "nl": "+= telt op bij de bestaande waarde in plaats van die te vervangen door 3."
+          }
+        }
+      ],
+      "answer": "a",
+      "codeBlank": {
+        "prompt": {
+          "en": "Preserve the original amount, then increase amount by 3. Complete the two missing expressions.",
+          "nl": "Bewaar het oorspronkelijke bedrag en verhoog daarna amount met 3. Vul de twee ontbrekende uitdrukkingen in."
+        },
+        "segments": [
+          "amount = 7\nsnapshot = ",
+          "\namount = ",
+          "\nprint(snapshot, amount)\n"
+        ],
+        "tokens": [
+          {
+            "id": "saved",
+            "code": "amount"
+          },
+          {
+            "id": "update",
+            "code": "amount + 3"
+          },
+          {
+            "id": "literal",
+            "code": "\"amount\""
+          },
+          {
+            "id": "replace",
+            "code": "3"
+          }
+        ],
+        "blanks": [
+          {
+            "answer": "amount",
+            "reason": {
+              "en": "Save the value before updating the other variable.",
+              "nl": "Bewaar de waarde voordat je de andere variabele bijwerkt."
+            }
+          },
+          {
+            "answer": "amount + 3",
+            "reason": {
+              "en": "Use the current value as part of the new value.",
+              "nl": "Gebruik de huidige waarde als onderdeel van de nieuwe waarde."
+            }
+          }
+        ],
+        "output": "7 10\n"
+      }
+    },
+    {
+      "id": "v2-m1-q3",
+      "prompt": {
+        "en": "You have 20 items and boxes of 6. Which result represents full boxes and loose items?",
+        "nl": "Je hebt 20 artikelen en dozen van 6. Welke uitkomst stelt volle dozen en losse artikelen voor?"
+      },
+      "choices": [
+        {
+          "id": "a",
+          "label": {
+            "en": "3 full boxes, 2 loose items",
+            "nl": "3 volle dozen, 2 losse artikelen"
+          },
+          "reason": {
+            "en": "Three boxes hold 18 items; two remain.",
+            "nl": "Drie dozen bevatten 18 artikelen; er blijven er twee over."
+          }
+        },
+        {
+          "id": "b",
+          "label": {
+            "en": "4 full boxes, 0 loose items",
+            "nl": "4 volle dozen, 0 losse artikelen"
+          },
+          "reason": {
+            "en": "Four full boxes would require 24 items.",
+            "nl": "Vier volle dozen vereisen 24 artikelen."
+          }
+        },
+        {
+          "id": "c",
+          "label": {
+            "en": "3 full boxes, 6 loose items",
+            "nl": "3 volle dozen, 6 losse artikelen"
+          },
+          "reason": {
+            "en": "That accounts for 24 items instead of 20.",
+            "nl": "Dat verantwoordt 24 artikelen in plaats van 20."
+          }
+        }
+      ],
+      "answer": "a"
+    },
+    {
+      "id": "v2-m1-q4",
+      "prompt": {
+        "en": "A program works for 13 visitors and packs of 5. Which test best checks that it avoids buying an extra pack when none is needed?",
+        "nl": "Een programma werkt voor 13 bezoekers en verpakkingen van 5. Welke test controleert het beste of het geen extra verpakking koopt wanneer dat niet nodig is?"
+      },
+      "choices": [
+        {
+          "id": "a",
+          "label": {
+            "en": "15 visitors, packs of 5",
+            "nl": "15 bezoekers, verpakkingen van 5"
+          },
+          "reason": {
+            "en": "An exact fit checks the boundary between needing another pack and not needing one.",
+            "nl": "Een precies passende hoeveelheid controleert de grens tussen wel en geen extra verpakking nodig hebben."
+          }
+        },
+        {
+          "id": "b",
+          "label": {
+            "en": "14 visitors, packs of 5",
+            "nl": "14 bezoekers, verpakkingen van 5"
+          },
+          "reason": {
+            "en": "This still leaves a partial pack; it does not check an exact fit.",
+            "nl": "Dit laat nog steeds een gedeeltelijke verpakking over; het controleert geen precies passende hoeveelheid."
+          }
+        },
+        {
+          "id": "c",
+          "label": {
+            "en": "13 visitors, packs of 5 again",
+            "nl": "Opnieuw 13 bezoekers, verpakkingen van 5"
+          },
+          "reason": {
+            "en": "Repeating the same input gives no new boundary evidence.",
+            "nl": "Dezelfde invoer herhalen geeft geen nieuw bewijs over grensgevallen."
+          }
+        }
+      ],
+      "answer": "a"
+    },
+    {
+      "id": "v2-m1-q5",
+      "prompt": {
+        "en": "The price should follow both inputs. Which line does that?",
+        "nl": "De prijs moet beide invoerwaarden volgen. Welke regel doet dat?"
+      },
+      "code": "quantity = 3\nprice = 4",
+      "choices": [
+        {
+          "id": "a",
+          "label": {
+            "en": "total = quantity * price",
+            "nl": "total = quantity * price"
+          },
+          "reason": {
+            "en": "Both stored inputs are used, so changing either affects the result.",
+            "nl": "Beide opgeslagen invoerwaarden worden gebruikt, dus een verandering van een van beide beïnvloedt het resultaat."
+          }
+        },
+        {
+          "id": "b",
+          "label": {
+            "en": "total = 12",
+            "nl": "total = 12"
+          },
+          "reason": {
+            "en": "This matches one order but ignores future changes.",
+            "nl": "Dit klopt voor één bestelling maar negeert toekomstige veranderingen."
+          }
+        },
+        {
+          "id": "c",
+          "label": {
+            "en": "total = quantity + price",
+            "nl": "total = quantity + price"
+          },
+          "reason": {
+            "en": "Adding a count and a unit price does not calculate an order price.",
+            "nl": "Een aantal en een stuksprijs optellen berekent geen bestelprijs."
+          }
+        }
+      ],
+      "answer": "a"
+    }
+  ]
+}

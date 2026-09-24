@@ -1,0 +1,196 @@
+{
+  "id": "python-v2-7-02",
+  "chapter": 7,
+  "group": "python-v2-module-7",
+  "title": {
+    "en": "Vary the next serve deliberately",
+    "nl": "Varieer de volgende opslag bewust"
+  },
+  "kind": "coding",
+  "optional": false,
+  "runtime": "terminal",
+  "guidance": "adapt",
+  "estimatedMinutes": 18,
+  "explanation": {
+    "en": "A ball should not start every rally in exactly the same direction. Use Python’s random module to choose a direction while keeping the speed controlled. Randomness should vary the choice, not make the game’s rules unpredictable.",
+    "nl": "Een bal moet niet elke rally in precies dezelfde richting beginnen. Gebruik Pythons random-module om een richting te kiezen en houd tegelijk de snelheid onder controle. Willekeur moet de keuze variëren, niet de spelregels onvoorspelbaar maken."
+  },
+  "sections": [
+    {
+      "heading": {
+        "en": "Choose from allowed values",
+        "nl": "Kies uit toegestane waarden"
+      },
+      "body": {
+        "en": "random.choice(sequence) selects one item. random.randint(a, b) selects an integer including both endpoints. Import the module before calling its tools. For this exercise, serve_velocity(speed) returns (vx, vy): vx must be either -speed or speed; vy must be either -speed/2 or speed/2.",
+        "nl": "random.choice(sequence) kiest één item. random.randint(a, b) kiest een integer inclusief beide grenzen. Importeer de module voordat je de tools aanroept. Voor deze opdracht geeft serve_velocity(speed) (vx, vy) terug: vx moet -speed of speed zijn; vy moet -speed/2 of speed/2 zijn."
+      },
+      "code": "import random\ncolour = random.choice([\"blue\", \"orange\"])\nprint(colour)"
+    },
+    {
+      "heading": {
+        "en": "Reproduce an experiment without freezing every call",
+        "nl": "Herhaal een experiment zonder elke aanroep vast te zetten"
+      },
+      "body": {
+        "en": "random.seed(number) starts a repeatable sequence, useful for debugging. Seed once before a series of calls if needed. Seeding to the same value inside every call restarts the sequence and can produce the same “random” choice repeatedly. This generator is for game variation, not passwords or security tokens.",
+        "nl": "random.seed(number) begint een herhaalbare reeks, handig voor foutonderzoek. Stel indien nodig één keer vóór een reeks aanroepen de seed in. In elke aanroep dezelfde seed instellen herstart de reeks en kan steeds dezelfde “willekeurige” keuze opleveren. Deze generator is voor spelvariatie, niet voor wachtwoorden of beveiligingstokens."
+      }
+    }
+  ],
+  "example": "",
+  "files": {
+    "main.py": "def serve_velocity(speed):\n    return (speed, speed / 2)\n\nfor serve in range(6):\n    print(serve_velocity(4))\n"
+  },
+  "solution": {
+    "main.py": "import random\n\ndef serve_velocity(speed):\n    vx = random.choice([-1, 1]) * speed\n    vy = random.choice([-1, 1]) * speed / 2\n    return (vx, vy)\n\nfor serve in range(6):\n    print(serve_velocity(4))\n"
+  },
+  "checkpoints": [
+    {
+      "id": "python-v2-7-02-step-1",
+      "task": {
+        "en": "Return the specified horizontal and vertical components for any supplied positive speed, as a two-item tuple.",
+        "nl": "Geef de afgesproken horizontale en verticale componenten voor elke meegegeven positieve snelheid terug als tuple met twee items."
+      },
+      "check": "callable(serve_velocity)",
+      "hint": {
+        "en": "The choice of sign and the size of a component are separate.",
+        "nl": "De keuze van het teken en de grootte van een component staan los van elkaar."
+      },
+      "hints": [
+        {
+          "en": "The choice of sign and the size of a component are separate.",
+          "nl": "De keuze van het teken en de grootte van een component staan los van elkaar."
+        },
+        {
+          "en": "Derive magnitudes from the speed argument rather than the sample value 4.",
+          "nl": "Leid de groottes af uit het speed-argument in plaats van de voorbeeldwaarde 4."
+        },
+        {
+          "en": "Multiplying a value by -1 reverses its sign without changing its magnitude.",
+          "nl": "Een waarde met -1 vermenigvuldigen keert het teken om zonder de grootte te veranderen."
+        }
+      ],
+      "feedback": {
+        "en": "Keep the allowed component magnitudes for varied speeds.",
+        "nl": "Behoud de toegestane componentgroottes bij verschillende snelheden."
+      },
+      "probes": [
+        {
+          "call": {
+            "name": "serve_velocity",
+            "args": [
+              2
+            ]
+          },
+          "check": "_error is None and isinstance(_return, tuple) and len(_return) == 2 and abs(_return[0]) == 2 and abs(_return[1]) == 1"
+        },
+        {
+          "call": {
+            "name": "serve_velocity",
+            "args": [
+              7
+            ]
+          },
+          "check": "_error is None and isinstance(_return, tuple) and len(_return) == 2 and abs(_return[0]) == 7 and abs(_return[1]) == 3.5"
+        },
+        {
+          "call": {
+            "name": "serve_velocity",
+            "args": [
+              2.5
+            ]
+          },
+          "check": "_error is None and isinstance(_return, tuple) and len(_return) == 2 and abs(_return[0]) == 2.5 and abs(_return[1]) == 1.25"
+        }
+      ]
+    },
+    {
+      "id": "python-v2-7-02-step-2",
+      "task": {
+        "en": "Use independent random direction choices so repeated serves can go left or right and up or down.",
+        "nl": "Gebruik onafhankelijke willekeurige richtingskeuzes zodat herhaalde opslagen naar links of rechts en omhoog of omlaag kunnen gaan."
+      },
+      "check": "callable(serve_velocity)",
+      "hint": {
+        "en": "One sign reused for both axes limits the available directions.",
+        "nl": "Eén teken dat voor beide assen wordt hergebruikt beperkt de beschikbare richtingen."
+      },
+      "hints": [
+        {
+          "en": "One sign reused for both axes limits the available directions.",
+          "nl": "Eén teken dat voor beide assen wordt hergebruikt beperkt de beschikbare richtingen."
+        },
+        {
+          "en": "Choose the direction of each component separately.",
+          "nl": "Kies de richting van elke component apart."
+        },
+        {
+          "en": "Two calls to choice can select two signs independently.",
+          "nl": "Twee aanroepen van choice kunnen onafhankelijk twee tekens kiezen."
+        }
+      ],
+      "feedback": {
+        "en": "Allow all four direction combinations over a sequence of serves.",
+        "nl": "Sta in een reeks opslagen alle vier richtingscombinaties toe."
+      },
+      "probes": [
+        {
+          "call": {
+            "name": "serve_velocity",
+            "args": [
+              4
+            ]
+          },
+          "check": "_error is None and {serve_velocity(4) for _ in range(100)} == {(-4, -2), (-4, 2), (4, -2), (4, 2)}"
+        }
+      ]
+    },
+    {
+      "id": "python-v2-7-02-step-3",
+      "task": {
+        "en": "Keep the six-serve demonstration, and keep individual calls free of input or printing. Do not restart the random sequence on each call.",
+        "nl": "Behoud de demonstratie met zes opslagen en houd afzonderlijke aanroepen vrij van invoer of afdrukken. Herstart de willekeurige reeks niet bij elke aanroep."
+      },
+      "check": "callable(serve_velocity) and len(_stdout.splitlines()) == 6",
+      "hint": {
+        "en": "The demonstration controls how many results to display.",
+        "nl": "De demonstratie bepaalt hoeveel resultaten worden getoond."
+      },
+      "hints": [
+        {
+          "en": "The demonstration controls how many results to display.",
+          "nl": "De demonstratie bepaalt hoeveel resultaten worden getoond."
+        },
+        {
+          "en": "The function should supply one result and let the next call advance the generator.",
+          "nl": "De functie moet één resultaat leveren en de volgende aanroep de generator laten vervolgen."
+        },
+        {
+          "en": "A fixed seed is useful before an experiment; repeatedly setting it defeats variation.",
+          "nl": "Een vaste seed is nuttig vóór een experiment; deze steeds instellen verhindert variatie."
+        }
+      ],
+      "feedback": {
+        "en": "Each call should supply a fresh choice without its own conversation.",
+        "nl": "Elke aanroep moet een nieuwe keuze leveren zonder eigen interactie."
+      },
+      "probes": [
+        {
+          "call": {
+            "name": "serve_velocity",
+            "args": [
+              6
+            ]
+          },
+          "check": "_error is None and _call_stdout == \"\" and _call_input_chars == 0 and len({serve_velocity(6) for _ in range(100)}) == 4"
+        }
+      ]
+    }
+  ],
+  "inputs": [],
+  "solutionNote": {
+    "en": "choice, randint with a sign conversion, and equivalent approaches can satisfy the same contract. The checks use a repeatable random seed to avoid random test failures; the six visible demonstration results need not match a particular sequence.",
+    "nl": "choice, randint met tekenomzetting en gelijkwaardige aanpakken kunnen aan dezelfde afspraken voldoen. De controles gebruiken een herhaalbare seed om willekeurige testfouten te voorkomen; de zes zichtbare demonstratieresultaten hoeven niet met een bepaalde reeks overeen te komen."
+  }
+}

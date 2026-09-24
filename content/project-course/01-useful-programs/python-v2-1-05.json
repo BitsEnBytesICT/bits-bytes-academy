@@ -1,0 +1,197 @@
+{
+  "id": "python-v2-1-05",
+  "chapter": 1,
+  "group": "python-v2-module-1",
+  "title": {
+    "en": "Plan the workshop supplies",
+    "nl": "Plan de workshopbenodigdheden"
+  },
+  "kind": "coding",
+  "optional": false,
+  "runtime": "terminal",
+  "guidance": "independent",
+  "estimatedMinutes": 18,
+  "explanation": {
+    "en": "Each workshop visitor needs one notebook. The shop only sells sealed packs. Build a small planning report that buys enough notebooks without buying an unnecessary extra pack. You already know the Python needed; the challenge is deciding how to combine it. You may refer back to the packing lesson.",
+    "nl": "Elke workshopbezoeker heeft één notitieboek nodig. De winkel verkoopt alleen gesloten verpakkingen. Bouw een klein planningsoverzicht dat voldoende notitieboeken inkoopt zonder een onnodige extra verpakking te kopen. Je kent de benodigde Python al; de uitdaging is bepalen hoe je die combineert. Je mag terugkijken naar de inpakles."
+  },
+  "sections": [
+    {
+      "heading": {
+        "en": "A specification to reason about",
+        "nl": "Een beschrijving om over na te denken"
+      },
+      "body": {
+        "en": "With 14 visitors and packs of 6, two packs are not enough and three packs leave four notebooks spare. With 12 visitors, two packs are enough. With no visitors, nothing needs to be purchased. Your code should handle all three situations using the input values in the editor.",
+        "nl": "Bij 14 bezoekers en verpakkingen van 6 zijn twee verpakkingen niet genoeg en laten drie verpakkingen vier notitieboeken over. Bij 12 bezoekers zijn twee verpakkingen genoeg. Zonder bezoekers hoeft niets te worden gekocht. Je code moet alle drie de situaties aankunnen met de invoerwaarden in de editor."
+      }
+    }
+  ],
+  "example": "",
+  "files": {
+    "main.py": "visitors = 23\npack_size = 5\npack_price = 7.5\n\n# Build your supply report below.\n"
+  },
+  "solution": {
+    "main.py": "visitors = 23\npack_size = 5\npack_price = 7.5\n\npacks = (visitors + pack_size - 1) // pack_size\nspare = packs * pack_size - visitors\ncost = packs * pack_price\nprint(packs, spare, cost)\n"
+  },
+  "checkpoints": [
+    {
+      "id": "python-v2-1-05-step-1",
+      "task": {
+        "en": "Calculate packs: the smallest whole number of packs that provides a notebook for every visitor. Zero visitors should require zero packs.",
+        "nl": "Bereken packs: het kleinste gehele aantal verpakkingen dat elke bezoeker een notitieboek geeft. Nul bezoekers moet nul verpakkingen vereisen."
+      },
+      "check": "packs == (visitors + pack_size - 1) // pack_size",
+      "hint": {
+        "en": "Whole-group division rounds down. This problem sometimes needs the next whole group.",
+        "nl": "Delen in hele groepen rondt naar beneden af. Dit probleem heeft soms de volgende hele groep nodig."
+      },
+      "hints": [
+        {
+          "en": "Whole-group division rounds down. This problem sometimes needs the next whole group.",
+          "nl": "Delen in hele groepen rondt naar beneden af. Dit probleem heeft soms de volgende hele groep nodig."
+        },
+        {
+          "en": "Think about how much you could add before whole-group division without adding a pack when the original quantity fits exactly.",
+          "nl": "Bedenk hoeveel je vóór het delen in hele groepen kunt toevoegen zonder een extra verpakking te krijgen wanneer de oorspronkelijke hoeveelheid precies past."
+        },
+        {
+          "en": "For groups of 4, adding 3 before // 4 makes 5 items require 2 groups while 4 items still require 1.",
+          "nl": "Bij groepen van 4 zorgt 3 optellen vóór // 4 ervoor dat 5 artikelen 2 groepen nodig hebben, terwijl 4 artikelen nog steeds 1 groep nodig hebben."
+        }
+      ],
+      "feedback": {
+        "en": "There must be enough notebooks, with no unnecessary pack.",
+        "nl": "Er moeten genoeg notitieboeken zijn, zonder een onnodige verpakking."
+      },
+      "probes": [
+        {
+          "inputs": {
+            "visitors": 0,
+            "pack_size": 6
+          },
+          "check": "packs == 0"
+        },
+        {
+          "inputs": {
+            "visitors": 1,
+            "pack_size": 6
+          },
+          "check": "packs == 1"
+        },
+        {
+          "inputs": {
+            "visitors": 12,
+            "pack_size": 6
+          },
+          "check": "packs == 2"
+        },
+        {
+          "inputs": {
+            "visitors": 14,
+            "pack_size": 6
+          },
+          "check": "packs == 3"
+        },
+        {
+          "inputs": {
+            "visitors": 25,
+            "pack_size": 6
+          },
+          "check": "packs == 5"
+        }
+      ]
+    },
+    {
+      "id": "python-v2-1-05-step-2",
+      "task": {
+        "en": "Calculate spare: the number of notebooks left after every visitor receives one.",
+        "nl": "Bereken spare: het aantal notitieboeken dat overblijft nadat elke bezoeker er één heeft gekregen."
+      },
+      "check": "spare == packs * pack_size - visitors",
+      "hint": {
+        "en": "First distinguish notebooks bought from notebooks needed.",
+        "nl": "Maak eerst onderscheid tussen gekochte en benodigde notitieboeken."
+      },
+      "hints": [
+        {
+          "en": "First distinguish notebooks bought from notebooks needed.",
+          "nl": "Maak eerst onderscheid tussen gekochte en benodigde notitieboeken."
+        },
+        {
+          "en": "Use the pack count you calculated and the number of notebooks in each pack.",
+          "nl": "Gebruik het berekende aantal verpakkingen en het aantal notitieboeken per verpakking."
+        },
+        {
+          "en": "If 3 bags contain 4 apples each and 10 apples are used, 2 remain.",
+          "nl": "Als 3 zakken elk 4 appels bevatten en 10 appels worden gebruikt, blijven er 2 over."
+        }
+      ],
+      "feedback": {
+        "en": "The spare count should describe notebooks, not unopened packs.",
+        "nl": "Het restant moet notitieboeken beschrijven, niet ongeopende verpakkingen."
+      },
+      "probes": [
+        {
+          "inputs": {
+            "visitors": 10,
+            "pack_size": 4
+          },
+          "check": "spare == 2"
+        },
+        {
+          "inputs": {
+            "visitors": 12,
+            "pack_size": 4
+          },
+          "check": "spare == 0"
+        }
+      ]
+    },
+    {
+      "id": "python-v2-1-05-step-3",
+      "task": {
+        "en": "Calculate cost and print packs, spare, and cost in that order. Check the report with at least one exact fit and one non-exact fit.",
+        "nl": "Bereken cost en druk packs, spare en cost in die volgorde af. Controleer het overzicht met minstens één precies passende en één niet precies passende hoeveelheid."
+      },
+      "check": "cost == packs * pack_price and [float(n) for n in _stdout.split()] == [packs, spare, cost]",
+      "hint": {
+        "en": "The price belongs to a pack, not to a single notebook.",
+        "nl": "De prijs hoort bij een verpakking, niet bij één notitieboek."
+      },
+      "hints": [
+        {
+          "en": "The price belongs to a pack, not to a single notebook.",
+          "nl": "De prijs hoort bij een verpakking, niet bij één notitieboek."
+        },
+        {
+          "en": "Use your computed quantities so the printed report follows changes to the inputs.",
+          "nl": "Gebruik je berekende hoeveelheden zodat het afgedrukte overzicht veranderingen van de invoer volgt."
+        },
+        {
+          "en": "print(boxes, remaining, amount) prints three values separated by spaces.",
+          "nl": "print(boxes, remaining, amount) drukt drie waarden af, gescheiden door spaties."
+        }
+      ],
+      "feedback": {
+        "en": "Check the pack-based price and the order of the three printed values.",
+        "nl": "Controleer de prijs per verpakking en de volgorde van de drie afgedrukte waarden."
+      },
+      "probes": [
+        {
+          "inputs": {
+            "visitors": 9,
+            "pack_size": 4,
+            "pack_price": 2.25
+          },
+          "check": "_error is None and [float(n) for n in _stdout.split()] == [3, 3, 6.75]"
+        }
+      ]
+    }
+  ],
+  "inputs": [],
+  "solutionNote": {
+    "en": "This solution rounds up using integer arithmetic. Other approaches are welcome if they meet the same behavior for zero, exact fits, and partial packs. The named result variables are the report interface, not a requirement to copy the reference algorithm.",
+    "nl": "Deze oplossing rondt met gehele rekenkunde naar boven af. Andere aanpakken zijn welkom als ze hetzelfde gedrag hebben bij nul, precies passende hoeveelheden en gedeeltelijke verpakkingen. De genoemde resultaatvariabelen vormen de interface van het overzicht, geen verplichting om het referentie-algoritme over te nemen."
+  }
+}

@@ -1,0 +1,233 @@
+{
+  "id": "python-v2-5-quiz",
+  "chapter": 5,
+  "group": "python-v2-module-5",
+  "kind": "quiz",
+  "optional": false,
+  "title": {
+    "en": "Check your reasoning: reusable functions",
+    "nl": "Controleer je inzicht: herbruikbare functies"
+  },
+  "estimatedMinutes": 5,
+  "questions": [
+    {
+      "id": "v2-5-q1",
+      "prompt": {
+        "en": "What does answer contain?",
+        "nl": "Wat bevat answer?"
+      },
+      "code": "def double(number):\n    print(number * 2)\n\nanswer = double(4)",
+      "choices": [
+        {
+          "id": "a",
+          "label": {
+            "en": "None",
+            "nl": "None"
+          },
+          "reason": {
+            "en": "The function prints 8 but has no explicit return.",
+            "nl": "De functie drukt 8 af maar heeft geen expliciete return."
+          }
+        },
+        {
+          "id": "b",
+          "label": {
+            "en": "8",
+            "nl": "8"
+          },
+          "reason": {
+            "en": "Printing a value is not returning it to the caller.",
+            "nl": "Een waarde afdrukken is niet hetzelfde als die teruggeven aan de aanroeper."
+          }
+        },
+        {
+          "id": "c",
+          "label": {
+            "en": "The string \"8\"",
+            "nl": "De string \"8\""
+          },
+          "reason": {
+            "en": "The displayed text is not assigned to answer.",
+            "nl": "De getoonde tekst wordt niet aan answer toegekend."
+          }
+        }
+      ],
+      "answer": "a"
+    },
+    {
+      "id": "v2-5-q2",
+      "prompt": {
+        "en": "What is printed?",
+        "nl": "Wat wordt afgedrukt?"
+      },
+      "code": "number = 10\ndef add_one(number):\n    number += 1\n    return number\n\nresult = add_one(3)\nprint(number, result)",
+      "choices": [
+        {
+          "id": "a",
+          "label": {
+            "en": "10 4",
+            "nl": "10 4"
+          },
+          "reason": {
+            "en": "The parameter is local to the call; the outside number is unchanged.",
+            "nl": "De parameter is lokaal voor de aanroep; number erbuiten blijft ongewijzigd."
+          }
+        },
+        {
+          "id": "b",
+          "label": {
+            "en": "4 4",
+            "nl": "4 4"
+          },
+          "reason": {
+            "en": "Using the same name does not make the local parameter the outside variable.",
+            "nl": "Dezelfde naam gebruiken maakt de lokale parameter niet tot de variabele erbuiten."
+          }
+        },
+        {
+          "id": "c",
+          "label": {
+            "en": "11 11",
+            "nl": "11 11"
+          },
+          "reason": {
+            "en": "The supplied argument is 3; the function uses that local value.",
+            "nl": "Het meegegeven argument is 3; de functie gebruikt die lokale waarde."
+          }
+        }
+      ],
+      "answer": "a"
+    },
+    {
+      "id": "v2-5-q3",
+      "prompt": {
+        "en": "Which call uses the default border?",
+        "nl": "Welke aanroep gebruikt de standaardrand?"
+      },
+      "code": "def badge(name, border=\"-\"):\n    return border + name + border",
+      "choices": [
+        {
+          "id": "a",
+          "label": {
+            "en": "badge(\"Sam\")",
+            "nl": "badge(\"Sam\")"
+          },
+          "reason": {
+            "en": "Omitting border uses its default value.",
+            "nl": "border weglaten gebruikt de standaardwaarde."
+          }
+        },
+        {
+          "id": "b",
+          "label": {
+            "en": "badge(\"Sam\", \"*\")",
+            "nl": "badge(\"Sam\", \"*\")"
+          },
+          "reason": {
+            "en": "This explicitly replaces the default with an asterisk.",
+            "nl": "Dit vervangt de standaardwaarde expliciet door een sterretje."
+          }
+        },
+        {
+          "id": "c",
+          "label": {
+            "en": "badge()",
+            "nl": "badge()"
+          },
+          "reason": {
+            "en": "name is still required; it has no default.",
+            "nl": "name is nog steeds verplicht; het heeft geen standaardwaarde."
+          }
+        }
+      ],
+      "answer": "a"
+    },
+    {
+      "id": "v2-5-q4",
+      "prompt": {
+        "en": "What does return do here?",
+        "nl": "Wat doet return hier?"
+      },
+      "code": "def first_positive():\n    while True:\n        number = float(input())\n        if number > 0:\n            return number\n    print(\"After loop\")",
+      "choices": [
+        {
+          "id": "a",
+          "label": {
+            "en": "Leaves the entire function with a value; the final print is not reached.",
+            "nl": "Verlaat de volledige functie met een waarde; de laatste print wordt niet bereikt."
+          },
+          "reason": {
+            "en": "return is a function exit, even when nested in a loop.",
+            "nl": "return is een functie-uitgang, ook wanneer deze in een lus staat."
+          }
+        },
+        {
+          "id": "b",
+          "label": {
+            "en": "Leaves only the if block.",
+            "nl": "Verlaat alleen het if-blok."
+          },
+          "reason": {
+            "en": "Its effect is larger than the nearest conditional block.",
+            "nl": "Het effect is groter dan alleen het dichtstbijzijnde voorwaardelijke blok."
+          }
+        },
+        {
+          "id": "c",
+          "label": {
+            "en": "Prints the number and repeats.",
+            "nl": "Drukt het getal af en herhaalt."
+          },
+          "reason": {
+            "en": "Returning does not print and does not continue the loop.",
+            "nl": "Teruggeven drukt niet af en vervolgt de lus niet."
+          }
+        }
+      ],
+      "answer": "a"
+    },
+    {
+      "id": "v2-5-q5",
+      "prompt": {
+        "en": "Why separate calculation from input and printing?",
+        "nl": "Waarom scheid je berekening van invoer en afdrukken?"
+      },
+      "choices": [
+        {
+          "id": "a",
+          "label": {
+            "en": "Other callers can reuse and test the calculation without a conversation.",
+            "nl": "Andere aanroepers kunnen de berekening hergebruiken en testen zonder interactie."
+          },
+          "reason": {
+            "en": "A clear argument/return contract makes reuse independent of the terminal layout.",
+            "nl": "Duidelijke afspraken over argumenten en terugkeerwaarde maken hergebruik onafhankelijk van de terminalindeling."
+          }
+        },
+        {
+          "id": "b",
+          "label": {
+            "en": "Functions are forbidden from printing.",
+            "nl": "Functies mogen niet afdrukken."
+          },
+          "reason": {
+            "en": "Presentation functions may print; the separation is a design choice based on responsibility.",
+            "nl": "Presentatiefuncties mogen afdrukken; de scheiding is een ontwerpkeuze op basis van verantwoordelijkheid."
+          }
+        },
+        {
+          "id": "c",
+          "label": {
+            "en": "It makes all bad input impossible.",
+            "nl": "Het maakt alle slechte invoer onmogelijk."
+          },
+          "reason": {
+            "en": "Inputs still need validation and an appropriate response.",
+            "nl": "Invoer heeft nog steeds validatie en een passende reactie nodig."
+          }
+        }
+      ],
+      "answer": "a"
+    }
+  ]
+}

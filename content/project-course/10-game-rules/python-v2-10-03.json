@@ -1,0 +1,243 @@
+{
+  "id": "python-v2-10-03",
+  "chapter": 10,
+  "group": "python-v2-module-10",
+  "title": {
+    "en": "Decide when a rally ends",
+    "nl": "Bepaal wanneer een rally eindigt"
+  },
+  "kind": "coding",
+  "optional": false,
+  "runtime": "pygame",
+  "guidance": "guided",
+  "estimatedMinutes": 18,
+  "explanation": {
+    "en": "A ball partly beyond the edge is still in play under our rule. Use the arrow keys to move it across either side and decide who earns a point only when it has completely left the court.",
+    "nl": "Een bal die deels voorbij de rand is, blijft volgens onze regel in het spel. Verplaats die met de pijltjestoetsen over beide kanten en bepaal pas wie een punt krijgt wanneer hij het veld volledig verlaten heeft."
+  },
+  "sections": [
+    {
+      "heading": {
+        "en": "Score for the opposite player",
+        "nl": "Een punt voor de andere speler"
+      },
+      "body": {
+        "en": "scorer(x, radius, width) receives the ball’s centre x. Return \"right\" when its rightmost edge is at or left of zero, \"left\" when its leftmost edge is at or right of width, and None otherwise. The boundary itself is off-screen. Do not award a point merely because the centre crossed an edge. This helper only identifies the scorer; it does not change a score or reset the ball.",
+        "nl": "scorer(x, radius, width) ontvangt het middelpunt-x van de bal. Geef \"right\" wanneer zijn meest rechtse rand op of links van nul ligt, \"left\" wanneer zijn meest linkse rand op of rechts van width ligt en anders None. De grens zelf ligt buiten het scherm. Geef niet al een punt wanneer alleen het middelpunt de rand passeert. Deze helper bepaalt alleen de scorer; die verandert geen score en herstelt de bal niet."
+      }
+    },
+    {
+      "heading": {
+        "en": "Run, observe, then finish",
+        "nl": "Voer uit, bekijk en rond af"
+      },
+      "body": {
+        "en": "Run starts main.py and opens the game preview. Click the preview to use the keyboard. Clicking elsewhere pauses the game. Finish & check sends the normal close event and checks your helper functions after the loop exits; Stop interrupts without grading. The supplied async loop gives the browser time to draw and receive input. Keep await asyncio.sleep(1 / 60) inside that loop. You do not need to learn asynchronous programming in depth yet.",
+        "nl": "Run start main.py en opent het spelvoorbeeld. Klik op het voorbeeld om het toetsenbord te gebruiken. Elders klikken pauzeert het spel. Afronden en controleren stuurt de normale sluitgebeurtenis en controleert je hulpfuncties nadat de lus eindigt; Stop onderbreekt zonder beoordeling. De meegeleverde async-lus geeft de browser tijd om te tekenen en invoer te ontvangen. Houd await asyncio.sleep(1 / 60) binnen die lus. Je hoeft asynchroon programmeren nog niet uitgebreid te leren."
+      }
+    }
+  ],
+  "example": "",
+  "files": {
+    "main.py": "import asyncio\nimport pygame\nimport rules\n\nasync def main():\n    pygame.init()\n    screen = pygame.display.set_mode((640, 400))\n    clock = pygame.time.Clock()\n    font = pygame.font.Font(None, 28)\n    running = True\n    x = 320.0\n    while running:\n        for event in pygame.event.get():\n            if event.type == pygame.QUIT or (event.type == pygame.KEYDOWN and event.key == pygame.K_ESCAPE):\n                running = False\n        dt = min(clock.tick() / 1000, 0.05)\n        keys = pygame.key.get_pressed()\n        x += (int(keys[pygame.K_RIGHT]) - int(keys[pygame.K_LEFT])) * 200 * dt\n        player = rules.scorer(x, 8, 640)\n        screen.fill((16, 23, 39))\n        pygame.draw.circle(screen, (255,255,255), (round(x),200),8)\n        label = font.render(\"Point: \" + str(player), True, (255,255,255))\n        screen.blit(label, (20,20))\n        pygame.display.flip()\n        await asyncio.sleep(1 / 60)\n    pygame.quit()\n\nasyncio.run(main())\n",
+    "rules.py": "def scorer(x, radius, width):\n    if x < 0:\n        return \"left\"\n    if x > width:\n        return \"right\"\n    return None\n"
+  },
+  "solution": {
+    "main.py": "import asyncio\nimport pygame\nimport rules\n\nasync def main():\n    pygame.init()\n    screen = pygame.display.set_mode((640, 400))\n    clock = pygame.time.Clock()\n    font = pygame.font.Font(None, 28)\n    running = True\n    x = 320.0\n    while running:\n        for event in pygame.event.get():\n            if event.type == pygame.QUIT or (event.type == pygame.KEYDOWN and event.key == pygame.K_ESCAPE):\n                running = False\n        dt = min(clock.tick() / 1000, 0.05)\n        keys = pygame.key.get_pressed()\n        x += (int(keys[pygame.K_RIGHT]) - int(keys[pygame.K_LEFT])) * 200 * dt\n        player = rules.scorer(x, 8, 640)\n        screen.fill((16, 23, 39))\n        pygame.draw.circle(screen, (255,255,255), (round(x),200),8)\n        label = font.render(\"Point: \" + str(player), True, (255,255,255))\n        screen.blit(label, (20,20))\n        pygame.display.flip()\n        await asyncio.sleep(1 / 60)\n    pygame.quit()\n\nasyncio.run(main())\n",
+    "rules.py": "def scorer(x, radius, width):\n    if x + radius <= 0:\n        return \"right\"\n    if x - radius >= width:\n        return \"left\"\n    return None\n"
+  },
+  "checkpoints": [
+    {
+      "id": "python-v2-10-03-step-1",
+      "task": {
+        "en": "Award the point to the opposite player when the ball is fully outside either side.",
+        "nl": "Geef de andere speler het punt wanneer de bal volledig buiten een van beide kanten is."
+      },
+      "check": "_rendered_frames > 0",
+      "hint": {
+        "en": "The player who misses does not receive the point.",
+        "nl": "De speler die mist krijgt het punt niet."
+      },
+      "hints": [
+        {
+          "en": "The player who misses does not receive the point.",
+          "nl": "De speler die mist krijgt het punt niet."
+        },
+        {
+          "en": "Map an exit side to the opposing player.",
+          "nl": "Koppel een uitstapkant aan de andere speler."
+        },
+        {
+          "en": "Leaving the left side awards the right player.",
+          "nl": "Links het veld verlaten geeft de rechterspeler een punt."
+        }
+      ],
+      "feedback": {
+        "en": "Choose the opposing scorer on each side.",
+        "nl": "Kies aan elke kant de andere speler als scorer."
+      },
+      "probes": [
+        {
+          "moduleOnly": true,
+          "call": {
+            "module": "rules",
+            "name": "scorer",
+            "args": [
+              -20,
+              8,
+              640
+            ]
+          },
+          "check": "_error is None and (_return == \"right\")"
+        },
+        {
+          "moduleOnly": true,
+          "call": {
+            "module": "rules",
+            "name": "scorer",
+            "args": [
+              660,
+              8,
+              640
+            ]
+          },
+          "check": "_error is None and (_return == \"left\")"
+        }
+      ]
+    },
+    {
+      "id": "python-v2-10-03-step-2",
+      "task": {
+        "en": "Keep partially visible balls in play. Use the radius, not just the centre.",
+        "nl": "Houd gedeeltelijk zichtbare ballen in het spel. Gebruik de straal, niet alleen het middelpunt."
+      },
+      "check": "_rendered_frames > 0",
+      "hint": {
+        "en": "The ball extends on both sides of its centre.",
+        "nl": "De bal steekt aan beide kanten van zijn middelpunt uit."
+      },
+      "hints": [
+        {
+          "en": "The ball extends on both sides of its centre.",
+          "nl": "De bal steekt aan beide kanten van zijn middelpunt uit."
+        },
+        {
+          "en": "Inspect the edge nearest the court when the centre is outside.",
+          "nl": "Bekijk de rand het dichtst bij het veld wanneer het middelpunt erbuiten is."
+        },
+        {
+          "en": "At x=−3 with radius 8, five pixels still extend into the court.",
+          "nl": "Bij x=−3 en straal 8 steken nog vijf pixels het veld in."
+        }
+      ],
+      "feedback": {
+        "en": "Return None while any part remains inside.",
+        "nl": "Geef None zolang een deel nog binnen is."
+      },
+      "probes": [
+        {
+          "moduleOnly": true,
+          "call": {
+            "module": "rules",
+            "name": "scorer",
+            "args": [
+              -3,
+              8,
+              640
+            ]
+          },
+          "check": "_error is None and (_return is None)"
+        },
+        {
+          "moduleOnly": true,
+          "call": {
+            "module": "rules",
+            "name": "scorer",
+            "args": [
+              643,
+              8,
+              640
+            ]
+          },
+          "check": "_error is None and (_return is None)"
+        },
+        {
+          "moduleOnly": true,
+          "call": {
+            "module": "rules",
+            "name": "scorer",
+            "args": [
+              320,
+              8,
+              640
+            ]
+          },
+          "check": "_error is None and (_return is None)"
+        }
+      ]
+    },
+    {
+      "id": "python-v2-10-03-step-3",
+      "task": {
+        "en": "Handle exact boundary contact and different court widths. Check both edges in the preview.",
+        "nl": "Handel exact grenscontact en verschillende veldbreedtes af. Controleer beide randen in het voorbeeld."
+      },
+      "check": "_rendered_frames > 0",
+      "hint": {
+        "en": "Define equality deliberately, rather than hoping it never happens.",
+        "nl": "Bepaal gelijkheid bewust in plaats van te hopen dat het nooit voorkomt."
+      },
+      "hints": [
+        {
+          "en": "Define equality deliberately, rather than hoping it never happens.",
+          "nl": "Bepaal gelijkheid bewust in plaats van te hopen dat het nooit voorkomt."
+        },
+        {
+          "en": "Our brief counts a ball with its last edge on the boundary as outside.",
+          "nl": "Onze opdracht telt een bal met zijn laatste rand op de grens als buiten."
+        },
+        {
+          "en": "Test exactly one radius beyond each court edge.",
+          "nl": "Test precies één straal voorbij elke veldrand."
+        }
+      ],
+      "feedback": {
+        "en": "Apply the full-exit rule inclusively at both boundaries.",
+        "nl": "Pas de volledig-buitenregel inclusief op beide grenzen toe."
+      },
+      "probes": [
+        {
+          "moduleOnly": true,
+          "call": {
+            "module": "rules",
+            "name": "scorer",
+            "args": [
+              -6,
+              6,
+              300
+            ]
+          },
+          "check": "_error is None and (_return == \"right\")"
+        },
+        {
+          "moduleOnly": true,
+          "call": {
+            "module": "rules",
+            "name": "scorer",
+            "args": [
+              306,
+              6,
+              300
+            ]
+          },
+          "check": "_error is None and (_return == \"left\")"
+        }
+      ]
+    }
+  ],
+  "inputs": [],
+  "solutionNote": {
+    "en": "This is one valid approach. Compare the reasoning with your own code before choosing whether to use it. Other implementations can satisfy the same behavior.",
+    "nl": "Dit is één geldige aanpak. Vergelijk de redenering met je eigen code voordat je besluit die te gebruiken. Andere implementaties kunnen aan hetzelfde gedrag voldoen."
+  }
+}

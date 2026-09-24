@@ -1,0 +1,268 @@
+{
+  "id": "python-v2-7-01",
+  "chapter": 7,
+  "group": "python-v2-module-7",
+  "title": {
+    "en": "Use a library to finish input validation",
+    "nl": "Gebruik een bibliotheek om invoervalidatie af te maken"
+  },
+  "kind": "coding",
+  "optional": false,
+  "runtime": "terminal",
+  "guidance": "guided",
+  "estimatedMinutes": 16,
+  "explanation": {
+    "en": "The earlier tools handled ordinary decimal input. Python also accepts special float strings such as nan and inf, which are unsuitable for a game speed. Use the standard library to distinguish a finite positive speed from text that merely converts successfully.",
+    "nl": "De eerdere tools handelden gewone decimale invoer af. Python accepteert ook bijzondere floatstrings zoals nan en inf, die ongeschikt zijn voor een spelsnelheid. Gebruik de standaardbibliotheek om een eindige positieve snelheid te onderscheiden van tekst die alleen succesvol wordt omgezet."
+  },
+  "sections": [
+    {
+      "heading": {
+        "en": "Import adds a module name",
+        "nl": "import voegt een modulenaam toe"
+      },
+      "body": {
+        "en": "The standard library ships with Python. import math makes its tools available as math.name. You can also write from math import isfinite and then call isfinite directly. Importing does not itself call a function. Keep your own files from shadowing library names such as math.py or random.py.",
+        "nl": "De standaardbibliotheek wordt met Python meegeleverd. import math maakt de tools beschikbaar als math.name. Je kunt ook from math import isfinite schrijven en vervolgens isfinite direct aanroepen. Importeren roept zelf geen functie aan. Voorkom dat je eigen bestanden bibliotheeknamen zoals math.py of random.py overschaduwen."
+      },
+      "code": "import math\nprint(math.ceil(2.3))\nprint(math.isfinite(12.5))",
+      "output": "3\nTrue"
+    },
+    {
+      "heading": {
+        "en": "Converting is only one validation step",
+        "nl": "Omzetten is maar één validatiestap"
+      },
+      "body": {
+        "en": "math.isfinite(value) is false for infinity and NaN (“not a number”). Comparisons alone can be misleading for NaN. safe_speed(text) should return a float only when conversion succeeds, the value is finite, and it is greater than zero. Return None for every rejected response. Test nan, inf, -inf, blank text, zero, and an ordinary speed.",
+        "nl": "math.isfinite(value) is onwaar voor oneindigheid en NaN (“not a number”). Alleen vergelijken kan bij NaN misleidend zijn. safe_speed(text) moet alleen een float teruggeven wanneer de conversie slaagt, de waarde eindig is en groter dan nul. Geef None terug voor elk afgewezen antwoord. Test nan, inf, -inf, lege tekst, nul en een gewone snelheid."
+      }
+    }
+  ],
+  "example": "",
+  "files": {
+    "main.py": "def safe_speed(text):\n    return float(text)\n\nraw_speed = input(\"Speed: \")\nspeed = safe_speed(raw_speed)\nprint(\"Speed:\", speed)\n"
+  },
+  "solution": {
+    "main.py": "import math\n\ndef safe_speed(text):\n    try:\n        value = float(text)\n    except ValueError:\n        return None\n    if not math.isfinite(value) or value <= 0:\n        return None\n    return value\n\nraw_speed = input(\"Speed: \")\nspeed = safe_speed(raw_speed)\nprint(\"Speed:\", speed)\n"
+  },
+  "checkpoints": [
+    {
+      "id": "python-v2-7-01-step-1",
+      "task": {
+        "en": "Keep valid positive speeds numeric, including decimal and padded text. Return None for text that cannot be converted.",
+        "nl": "Houd geldige positieve snelheden numeriek, inclusief decimale tekst en spaties aan de randen. Geef None terug voor tekst die niet kan worden omgezet."
+      },
+      "check": "callable(safe_speed) and (speed is None or isinstance(speed, float))",
+      "hint": {
+        "en": "The function receives text; its caller needs a number or a clear absence.",
+        "nl": "De functie ontvangt tekst; de aanroeper heeft een getal of duidelijke afwezigheid nodig."
+      },
+      "hints": [
+        {
+          "en": "The function receives text; its caller needs a number or a clear absence.",
+          "nl": "De functie ontvangt tekst; de aanroeper heeft een getal of duidelijke afwezigheid nodig."
+        },
+        {
+          "en": "Handle the conversion’s ValueError inside the function.",
+          "nl": "Handel ValueError van de conversie binnen de functie af."
+        },
+        {
+          "en": "float(\" 2.5 \") accepts surrounding whitespace.",
+          "nl": "float(\" 2.5 \") accepteert witruimte aan de randen."
+        }
+      ],
+      "feedback": {
+        "en": "Accept usable numeric text and reject conversion failures cleanly.",
+        "nl": "Accepteer bruikbare getaltekst en wijs conversiefouten netjes af."
+      },
+      "probes": [
+        {
+          "stdin": [
+            "180"
+          ],
+          "call": {
+            "name": "safe_speed",
+            "args": [
+              " 2.5 "
+            ]
+          },
+          "check": "_error is None and _return == 2.5"
+        },
+        {
+          "stdin": [
+            "180"
+          ],
+          "call": {
+            "name": "safe_speed",
+            "args": [
+              "fast"
+            ]
+          },
+          "check": "_error is None and _return is None"
+        }
+      ]
+    },
+    {
+      "id": "python-v2-7-01-step-2",
+      "task": {
+        "en": "Use the library’s finite-number check and the positive-speed rule to reject nan, infinities, zero, and negative values.",
+        "nl": "Gebruik de eindigheidscontrole van de bibliotheek en de regel voor positieve snelheid om nan, oneindigheden, nul en negatieve waarden af te wijzen."
+      },
+      "check": "callable(safe_speed)",
+      "hint": {
+        "en": "A successful conversion does not guarantee a usable speed.",
+        "nl": "Een geslaagde conversie garandeert geen bruikbare snelheid."
+      },
+      "hints": [
+        {
+          "en": "A successful conversion does not guarantee a usable speed.",
+          "nl": "Een geslaagde conversie garandeert geen bruikbare snelheid."
+        },
+        {
+          "en": "Check finiteness as well as the numeric range.",
+          "nl": "Controleer eindigheid én het numerieke bereik."
+        },
+        {
+          "en": "math.isfinite(float(\"inf\")) is False.",
+          "nl": "math.isfinite(float(\"inf\")) is False."
+        }
+      ],
+      "feedback": {
+        "en": "Nonfinite and nonpositive values must not enter the game state.",
+        "nl": "Niet-eindige en niet-positieve waarden mogen de speltoestand niet bereiken."
+      },
+      "probes": [
+        {
+          "stdin": [
+            "180"
+          ],
+          "call": {
+            "name": "safe_speed",
+            "args": [
+              "nan"
+            ]
+          },
+          "check": "_error is None and _return is None"
+        },
+        {
+          "stdin": [
+            "180"
+          ],
+          "call": {
+            "name": "safe_speed",
+            "args": [
+              "INF"
+            ]
+          },
+          "check": "_error is None and _return is None"
+        },
+        {
+          "stdin": [
+            "180"
+          ],
+          "call": {
+            "name": "safe_speed",
+            "args": [
+              "-inf"
+            ]
+          },
+          "check": "_error is None and _return is None"
+        },
+        {
+          "stdin": [
+            "180"
+          ],
+          "call": {
+            "name": "safe_speed",
+            "args": [
+              "0"
+            ]
+          },
+          "check": "_error is None and _return is None"
+        },
+        {
+          "stdin": [
+            "180"
+          ],
+          "call": {
+            "name": "safe_speed",
+            "args": [
+              "-0.0"
+            ]
+          },
+          "check": "_error is None and _return is None"
+        },
+        {
+          "stdin": [
+            "180"
+          ],
+          "call": {
+            "name": "safe_speed",
+            "args": [
+              "-4"
+            ]
+          },
+          "check": "_error is None and _return is None"
+        }
+      ]
+    },
+    {
+      "id": "python-v2-7-01-step-3",
+      "task": {
+        "en": "Keep the terminal report useful for both accepted and rejected speeds, and keep safe_speed reusable without extra input or printing.",
+        "nl": "Houd het terminaloverzicht bruikbaar voor geaccepteerde en afgewezen snelheden en houd safe_speed herbruikbaar zonder extra invoer of afdrukken."
+      },
+      "check": "callable(safe_speed) and (bool(_stdout.strip()) if speed is None else str(speed) in _stdout)",
+      "hint": {
+        "en": "The interface already owns input and display.",
+        "nl": "De interface beheert invoer en weergave al."
+      },
+      "hints": [
+        {
+          "en": "The interface already owns input and display.",
+          "nl": "De interface beheert invoer en weergave al."
+        },
+        {
+          "en": "Leave those actions outside the reusable validation function.",
+          "nl": "Laat die acties buiten de herbruikbare validatiefunctie."
+        },
+        {
+          "en": "A returned None can be shown or turned into a friendly message by the caller.",
+          "nl": "Een teruggegeven None kan door de aanroeper worden getoond of in een vriendelijk bericht worden omgezet."
+        }
+      ],
+      "feedback": {
+        "en": "The function should return an outcome without starting its own conversation.",
+        "nl": "De functie moet een uitkomst teruggeven zonder een eigen interactie te beginnen."
+      },
+      "probes": [
+        {
+          "stdin": [
+            "nan"
+          ],
+          "check": "_error is None and speed is None and bool(_stdout.strip())"
+        },
+        {
+          "stdin": [
+            "180"
+          ],
+          "call": {
+            "name": "safe_speed",
+            "args": [
+              "25"
+            ]
+          },
+          "check": "_error is None and _return == 25 and _call_stdout == \"\" and _call_input_chars == 0"
+        }
+      ]
+    }
+  ],
+  "inputs": [
+    "180"
+  ],
+  "solutionNote": {
+    "en": "Both import styles and aliases can pass. This adds a library tool to the validation pattern you already know; you can revisit earlier programs and decide whether their inputs also need a finite-number rule.",
+    "nl": "Beide importvormen en aliassen kunnen slagen. Dit voegt een bibliotheektool toe aan het validatiepatroon dat je al kent; je kunt eerdere programma’s opnieuw bekijken en bepalen of hun invoer ook een regel voor eindige getallen nodig heeft."
+  }
+}

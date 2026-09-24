@@ -1,0 +1,230 @@
+{
+  "id": "python-v2-7-quiz",
+  "chapter": 7,
+  "group": "python-v2-module-7",
+  "kind": "quiz",
+  "optional": false,
+  "title": {
+    "en": "Check your reasoning: modules and libraries",
+    "nl": "Controleer je inzicht: modules en bibliotheken"
+  },
+  "estimatedMinutes": 5,
+  "questions": [
+    {
+      "id": "v2-7-q1",
+      "prompt": {
+        "en": "Why is successful float conversion not enough to accept a game speed?",
+        "nl": "Waarom is geslaagde floatconversie niet genoeg om een spelsnelheid te accepteren?"
+      },
+      "choices": [
+        {
+          "id": "a",
+          "label": {
+            "en": "It may produce a nonfinite or nonpositive value.",
+            "nl": "Het kan een niet-eindige of niet-positieve waarde opleveren."
+          },
+          "reason": {
+            "en": "Validate the meaning of a converted value, not only its type.",
+            "nl": "Valideer de betekenis van een omgezette waarde, niet alleen het type."
+          }
+        },
+        {
+          "id": "b",
+          "label": {
+            "en": "float always returns a string.",
+            "nl": "float geeft altijd een string terug."
+          },
+          "reason": {
+            "en": "It returns a float, but that value still needs validation.",
+            "nl": "Het geeft een float terug, maar die waarde heeft nog validatie nodig."
+          }
+        },
+        {
+          "id": "c",
+          "label": {
+            "en": "Imported functions cannot accept floats.",
+            "nl": "Geïmporteerde functies kunnen geen floats accepteren."
+          },
+          "reason": {
+            "en": "Library functions can accept floats when their interface specifies them.",
+            "nl": "Bibliotheekfuncties kunnen floats accepteren wanneer hun interface dat aangeeft."
+          }
+        }
+      ],
+      "answer": "a"
+    },
+    {
+      "id": "v2-7-q2",
+      "prompt": {
+        "en": "Why might every serve be identical?",
+        "nl": "Waarom kan elke opslag identiek zijn?"
+      },
+      "code": "def choose_direction():\n    random.seed(7)\n    return random.choice([-1, 1])",
+      "choices": [
+        {
+          "id": "a",
+          "label": {
+            "en": "Every call restarts the same pseudo-random sequence.",
+            "nl": "Elke aanroep herstart dezelfde pseudowillekeurige reeks."
+          },
+          "reason": {
+            "en": "Seed once before an experiment, not before every choice.",
+            "nl": "Stel de seed één keer vóór een experiment in, niet vóór elke keuze."
+          }
+        },
+        {
+          "id": "b",
+          "label": {
+            "en": "choice always picks the first list item.",
+            "nl": "choice kiest altijd het eerste lijstitem."
+          },
+          "reason": {
+            "en": "The repeated seed makes the first choice repeat; choice itself can select either item.",
+            "nl": "De herhaalde seed herhaalt de eerste keuze; choice zelf kan beide items kiezen."
+          }
+        },
+        {
+          "id": "c",
+          "label": {
+            "en": "Python cannot generate negative random choices.",
+            "nl": "Python kan geen negatieve willekeurige keuzes genereren."
+          },
+          "reason": {
+            "en": "choice selects values from the supplied sequence, including negative values.",
+            "nl": "choice kiest waarden uit de meegegeven reeks, inclusief negatieve waarden."
+          }
+        }
+      ],
+      "answer": "a"
+    },
+    {
+      "id": "v2-7-q3",
+      "prompt": {
+        "en": "Which pair of statements is correct for this website?",
+        "nl": "Welk paar uitspraken is voor deze website juist?"
+      },
+      "choices": [
+        {
+          "id": "a",
+          "label": {
+            "en": "The bundled package is pygame-ce; Python code uses import pygame.",
+            "nl": "Het meegeleverde pakket is pygame-ce; Pythoncode gebruikt import pygame."
+          },
+          "reason": {
+            "en": "Package names and import names do not always match.",
+            "nl": "Pakketnamen en importnamen zijn niet altijd gelijk."
+          }
+        },
+        {
+          "id": "b",
+          "label": {
+            "en": "Type pip install into the Python prompt before every Run.",
+            "nl": "Typ vóór elke Run pip install in de Python-prompt."
+          },
+          "reason": {
+            "en": "Installation commands belong to an environment’s system terminal; this site already bundles the package.",
+            "nl": "Installatiecommando’s horen in de systeemterminal van een omgeving; deze site levert het pakket al mee."
+          }
+        },
+        {
+          "id": "c",
+          "label": {
+            "en": "Importing pygame immediately creates the complete game.",
+            "nl": "pygame importeren maakt meteen het volledige spel."
+          },
+          "reason": {
+            "en": "Importing makes tools available; your code still defines the game.",
+            "nl": "Importeren maakt tools beschikbaar; je code bepaalt nog steeds het spel."
+          }
+        }
+      ],
+      "answer": "a"
+    },
+    {
+      "id": "v2-7-q4",
+      "prompt": {
+        "en": "When layout.py is selected in the editor, what does Run start?",
+        "nl": "Wat start Run wanneer layout.py in de editor geselecteerd is?"
+      },
+      "choices": [
+        {
+          "id": "a",
+          "label": {
+            "en": "main.py, which can import layout.py.",
+            "nl": "main.py, dat layout.py kan importeren."
+          },
+          "reason": {
+            "en": "The selected tab controls editing; the activity’s script entry point remains main.py.",
+            "nl": "De geselecteerde tab bepaalt wat je bewerkt; het startpunt van het script blijft main.py."
+          }
+        },
+        {
+          "id": "b",
+          "label": {
+            "en": "Only the selected file.",
+            "nl": "Alleen het geselecteerde bestand."
+          },
+          "reason": {
+            "en": "Selecting a helper tab does not change the Run entry point.",
+            "nl": "Een helpertab selecteren verandert het startpunt van Run niet."
+          }
+        },
+        {
+          "id": "c",
+          "label": {
+            "en": "Every file independently, in alphabetical order.",
+            "nl": "Elk bestand onafhankelijk, op alfabetische volgorde."
+          },
+          "reason": {
+            "en": "Imports determine which modules are loaded; files are not all launched separately.",
+            "nl": "Imports bepalen welke modules worden geladen; bestanden worden niet allemaal apart gestart."
+          }
+        }
+      ],
+      "answer": "a"
+    },
+    {
+      "id": "v2-7-q5",
+      "prompt": {
+        "en": "Which call creates a moved copy while preserving paddle?",
+        "nl": "Welke aanroep maakt een verplaatste kopie en behoudt paddle?"
+      },
+      "choices": [
+        {
+          "id": "a",
+          "label": {
+            "en": "preview = paddle.move(0, 10)",
+            "nl": "preview = paddle.move(0, 10)"
+          },
+          "reason": {
+            "en": "move returns a new rectangle.",
+            "nl": "move geeft een nieuwe rechthoek terug."
+          }
+        },
+        {
+          "id": "b",
+          "label": {
+            "en": "preview = paddle",
+            "nl": "preview = paddle"
+          },
+          "reason": {
+            "en": "That creates another reference to the same rectangle.",
+            "nl": "Dat maakt nog een verwijzing naar dezelfde rechthoek."
+          }
+        },
+        {
+          "id": "c",
+          "label": {
+            "en": "preview = paddle.move_ip(0, 10)",
+            "nl": "preview = paddle.move_ip(0, 10)"
+          },
+          "reason": {
+            "en": "move_ip changes paddle in place and returns None.",
+            "nl": "move_ip verandert paddle ter plaatse en geeft None terug."
+          }
+        }
+      ],
+      "answer": "a"
+    }
+  ]
+}

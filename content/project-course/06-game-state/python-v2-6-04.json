@@ -1,0 +1,192 @@
+{
+  "id": "python-v2-6-04",
+  "chapter": 6,
+  "group": "python-v2-module-6",
+  "title": {
+    "en": "Reset the ball without moving its template",
+    "nl": "Reset de bal zonder zijn sjabloon te verplaatsen"
+  },
+  "kind": "coding",
+  "optional": false,
+  "runtime": "terminal",
+  "guidance": "adapt",
+  "estimatedMinutes": 18,
+  "explanation": {
+    "en": "The ball moves during a rally. A new round should start from an unchanged template, but the starter accidentally moves that template too. Investigate shared objects and make each round receive an independent ball dictionary.",
+    "nl": "De bal beweegt tijdens een rally. Een nieuwe ronde moet vanuit een ongewijzigd sjabloon beginnen, maar de startcode verplaatst dat sjabloon per ongeluk ook. Onderzoek gedeelde objecten en geef elke ronde een onafhankelijke baldictionary."
+  },
+  "sections": [
+    {
+      "heading": {
+        "en": "Another name is not another object",
+        "nl": "Een andere naam is geen ander object"
+      },
+      "body": {
+        "en": "Assigning one list or dictionary to another name does not copy it. Both names refer to the same object, so mutation through either name is visible through the other. .copy() makes a new outer container. For the flat dictionaries in this exercise, whose values are numbers, that is enough.",
+        "nl": "Een lijst of dictionary aan een andere naam toekennen kopieert deze niet. Beide namen verwijzen naar hetzelfde object, dus wijzigingen via de ene naam zijn via de andere zichtbaar. .copy() maakt een nieuwe buitenste container. Voor de platte dictionaries in deze opdracht, waarvan de waarden getallen zijn, is dat genoeg."
+      },
+      "code": "original = {\"score\": 0}\nseparate = original.copy()\nseparate[\"score\"] = 9\nprint(original[\"score\"], separate[\"score\"])",
+      "output": "0 9"
+    },
+    {
+      "heading": {
+        "en": "Know the limits of a shallow copy",
+        "nl": "Ken de grenzen van een ondiepe kopie"
+      },
+      "body": {
+        "en": "A shallow copy still shares nested lists or dictionaries. We deliberately use flat numeric state here. Later, if your state contains mutable objects inside it, decide which nested values also need copying. Do not reset unrelated match scores just to reset a ball.",
+        "nl": "Een ondiepe kopie deelt nog steeds geneste lijsten of dictionaries. We gebruiken hier bewust platte numerieke toestand. Als je toestand later veranderlijke objecten bevat, bepaal dan welke geneste waarden ook een kopie nodig hebben. Reset geen ongerelateerde wedstrijdscores alleen om een bal te resetten."
+      }
+    }
+  ],
+  "example": "",
+  "files": {
+    "main.py": "def new_ball(template):\n    return template\n\ntemplate = {\"x\": 320, \"y\": 200, \"vx\": 4, \"vy\": -3}\nmatch = {\"left\": 2, \"right\": 1}\nball = new_ball(template)\nball[\"x\"] += 40\nball[\"y\"] -= 12\nnext_ball = new_ball(template)\nprint(\"Template:\", template)\nprint(\"Moving ball:\", ball)\nprint(\"Next round:\", next_ball)\nprint(\"Match:\", match)\n"
+  },
+  "solution": {
+    "main.py": "def new_ball(template):\n    return template.copy()\n\ntemplate = {\"x\": 320, \"y\": 200, \"vx\": 4, \"vy\": -3}\nmatch = {\"left\": 2, \"right\": 1}\nball = new_ball(template)\nball[\"x\"] += 40\nball[\"y\"] -= 12\nnext_ball = new_ball(template)\nprint(\"Template:\", template)\nprint(\"Moving ball:\", ball)\nprint(\"Next round:\", next_ball)\nprint(\"Match:\", match)\n"
+  },
+  "checkpoints": [
+    {
+      "id": "python-v2-6-04-step-1",
+      "task": {
+        "en": "Make new_ball return an independent dictionary containing the template’s fields and values.",
+        "nl": "Laat new_ball een onafhankelijke dictionary met de velden en waarden van het sjabloon teruggeven."
+      },
+      "check": "ball is not template and next_ball is not template",
+      "hint": {
+        "en": "Returning the parameter itself gives the caller another name for the same object.",
+        "nl": "De parameter zelf teruggeven geeft de aanroeper een andere naam voor hetzelfde object."
+      },
+      "hints": [
+        {
+          "en": "Returning the parameter itself gives the caller another name for the same object.",
+          "nl": "De parameter zelf teruggeven geeft de aanroeper een andere naam voor hetzelfde object."
+        },
+        {
+          "en": "Construct a new outer dictionary from the supplied template.",
+          "nl": "Maak een nieuwe buitenste dictionary uit het meegegeven sjabloon."
+        },
+        {
+          "en": "original.copy() preserves the fields but creates a separate container.",
+          "nl": "original.copy() behoudt de velden maar maakt een aparte container."
+        }
+      ],
+      "feedback": {
+        "en": "Return equivalent state with a different identity.",
+        "nl": "Geef gelijkwaardige toestand terug met een andere identiteit."
+      },
+      "probes": [
+        {
+          "call": {
+            "name": "new_ball",
+            "args": [
+              {
+                "x": 10,
+                "y": 20,
+                "vx": -2,
+                "vy": 1,
+                "radius": 6
+              }
+            ]
+          },
+          "check": "_error is None and _return == _args[0] and _return is not _args[0]"
+        }
+      ]
+    },
+    {
+      "id": "python-v2-6-04-step-2",
+      "task": {
+        "en": "Keep the moving ball’s updates while preserving the original template and a fresh next_ball for the next round.",
+        "nl": "Behoud de wijzigingen van de bewegende bal en behoud tegelijk het oorspronkelijke sjabloon en een verse next_ball voor de volgende ronde."
+      },
+      "check": "template == {\"x\": 320, \"y\": 200, \"vx\": 4, \"vy\": -3} and ball[\"x\"] == 360 and ball[\"y\"] == 188 and next_ball == template",
+      "hint": {
+        "en": "The aim is isolation, not removing the movement statements.",
+        "nl": "Het doel is onafhankelijkheid, niet het verwijderen van de bewegingsstatements."
+      },
+      "hints": [
+        {
+          "en": "The aim is isolation, not removing the movement statements.",
+          "nl": "Het doel is onafhankelijkheid, niet het verwijderen van de bewegingsstatements."
+        },
+        {
+          "en": "Every call should create a fresh object, not reuse one cached copy.",
+          "nl": "Elke aanroep moet een nieuw object maken, niet één opgeslagen kopie hergebruiken."
+        },
+        {
+          "en": "Mutating one returned dictionary should not alter a later return.",
+          "nl": "Eén teruggegeven dictionary veranderen mag een latere terugkeerwaarde niet veranderen."
+        }
+      ],
+      "feedback": {
+        "en": "A played round must not move the starting position of the next round.",
+        "nl": "Een gespeelde ronde mag de beginpositie van de volgende ronde niet verplaatsen."
+      },
+      "probes": [
+        {
+          "call": {
+            "name": "new_ball",
+            "args": [
+              {
+                "x": 4,
+                "y": 9
+              }
+            ]
+          },
+          "check": "_error is None and not _return.update({\"x\": 999}) and _args[0] == {\"x\": 4, \"y\": 9} and new_ball(_args[0]) == {\"x\": 4, \"y\": 9}"
+        }
+      ]
+    },
+    {
+      "id": "python-v2-6-04-step-3",
+      "task": {
+        "en": "Preserve the match scores and keep all four reports available for inspection. Test a template with an extra numeric field.",
+        "nl": "Behoud de wedstrijdscores en houd alle vier overzichten beschikbaar voor inspectie. Test een sjabloon met een extra numeriek veld."
+      },
+      "check": "match == {\"left\": 2, \"right\": 1} and all(label in _stdout for label in (\"Template:\", \"Moving ball:\", \"Next round:\", \"Match:\"))",
+      "hint": {
+        "en": "Ball state and match state have different lifetimes.",
+        "nl": "Baltoestand en wedstrijdtoestand hebben verschillende levensduren."
+      },
+      "hints": [
+        {
+          "en": "Ball state and match state have different lifetimes.",
+          "nl": "Baltoestand en wedstrijdtoestand hebben verschillende levensduren."
+        },
+        {
+          "en": "A generic copy should retain fields the function does not specifically know about.",
+          "nl": "Een algemene kopie moet velden behouden die de functie niet specifiek kent."
+        },
+        {
+          "en": "Copying a dictionary preserves its key/value pairs, not only x and y.",
+          "nl": "Een dictionary kopiëren behoudt de sleutel-/waardeparen, niet alleen x en y."
+        }
+      ],
+      "feedback": {
+        "en": "Reset only the state that belongs to the new round.",
+        "nl": "Reset alleen de toestand die bij de nieuwe ronde hoort."
+      },
+      "probes": [
+        {
+          "call": {
+            "name": "new_ball",
+            "args": [
+              {
+                "x": 1,
+                "y": 2,
+                "speed": 7
+              }
+            ]
+          },
+          "check": "_return == {\"x\": 1, \"y\": 2, \"speed\": 7} and match == {\"left\": 2, \"right\": 1}"
+        }
+      ]
+    }
+  ],
+  "inputs": [],
+  "solutionNote": {
+    "en": "dict(template) or an equivalent fresh dictionary is also valid. If a future game uses nested state, copying only the outer dictionary may not be enough; this lesson does not claim otherwise.",
+    "nl": "dict(template) of een gelijkwaardige nieuwe dictionary is ook geldig. Als een toekomstig spel geneste toestand gebruikt, is alleen de buitenste dictionary kopiëren mogelijk niet genoeg; deze les beweert niet anders."
+  }
+}

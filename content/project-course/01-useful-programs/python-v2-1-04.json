@@ -1,0 +1,180 @@
+{
+  "id": "python-v2-1-04",
+  "chapter": 1,
+  "group": "python-v2-module-1",
+  "title": {
+    "en": "The packing report is wrong",
+    "nl": "Het inpakoverzicht klopt niet"
+  },
+  "kind": "coding",
+  "optional": false,
+  "runtime": "terminal",
+  "guidance": "adapt",
+  "estimatedMinutes": 12,
+  "explanation": {
+    "en": "A workshop packs loose items into full boxes. The report claims that there are fractional full boxes and forgets the leftovers. Investigate the calculations and repair the report. The editor deliberately contains incorrect operators.",
+    "nl": "Een werkplaats verpakt losse artikelen in volle dozen. Het overzicht beweert dat er gebroken aantallen volle dozen zijn en vergeet de rest. Onderzoek de berekeningen en herstel het overzicht. De editor bevat expres verkeerde operatoren."
+  },
+  "sections": [
+    {
+      "heading": {
+        "en": "Quotient and remainder",
+        "nl": "Quotiënt en rest"
+      },
+      "body": {
+        "en": "For nonnegative quantities, // gives the number of whole groups and % gives the amount left after those groups. Ordinary / gives the division result, which may be fractional. These operators answer different questions.",
+        "nl": "Bij niet-negatieve hoeveelheden geeft // het aantal hele groepen en % de hoeveelheid die daarna overblijft. Gewone / geeft het deelresultaat, dat gebroken kan zijn. Deze operatoren beantwoorden verschillende vragen."
+      },
+      "code": "minutes = 137\nhours = minutes // 60\nremaining_minutes = minutes % 60\nprint(hours, remaining_minutes)",
+      "output": "2 17"
+    },
+    {
+      "heading": {
+        "en": "Check the story behind an answer",
+        "nl": "Controleer het verhaal achter een antwoord"
+      },
+      "body": {
+        "en": "A packing report should account for every item exactly once. After calculating the whole groups and the remainder, reconstruct the original quantity. This gives you a useful check even before running an automatic checker.",
+        "nl": "Een inpakoverzicht moet elk artikel precies eenmaal verantwoorden. Bereken de hele groepen en de rest en reconstrueer daarna de oorspronkelijke hoeveelheid. Zo kun je zelf controleren, nog voordat je een automatische controle uitvoert."
+      }
+    }
+  ],
+  "example": "",
+  "files": {
+    "main.py": "items = 29\nbox_size = 6\n\nfull_boxes = items / box_size\nloose_items = items - box_size\naccounted_for = full_boxes + loose_items\nprint(full_boxes, loose_items, accounted_for)\n"
+  },
+  "solution": {
+    "main.py": "items = 29\nbox_size = 6\n\nfull_boxes = items // box_size\nloose_items = items % box_size\naccounted_for = full_boxes * box_size + loose_items\nprint(full_boxes, loose_items, accounted_for)\n"
+  },
+  "checkpoints": [
+    {
+      "id": "python-v2-1-04-step-1",
+      "task": {
+        "en": "Repair full_boxes so it counts only completely filled boxes.",
+        "nl": "Herstel full_boxes zodat het alleen volledig gevulde dozen telt."
+      },
+      "check": "full_boxes == items // box_size",
+      "hint": {
+        "en": "Can a completely filled box be fractional?",
+        "nl": "Kan een volledig gevulde doos een gebroken aantal zijn?"
+      },
+      "hints": [
+        {
+          "en": "Can a completely filled box be fractional?",
+          "nl": "Kan een volledig gevulde doos een gebroken aantal zijn?"
+        },
+        {
+          "en": "Compare the three division-related operators in the example.",
+          "nl": "Vergelijk de drie operatoren rond delen in het voorbeeld."
+        },
+        {
+          "en": "For example, 17 // 5 evaluates to 3.",
+          "nl": "Bijvoorbeeld: 17 // 5 heeft als uitkomst 3."
+        }
+      ],
+      "feedback": {
+        "en": "Count whole filled boxes, not a fractional division result.",
+        "nl": "Tel hele gevulde dozen, niet een gebroken deelresultaat."
+      },
+      "probes": [
+        {
+          "inputs": {
+            "items": 17,
+            "box_size": 4
+          },
+          "check": "full_boxes == 4"
+        }
+      ]
+    },
+    {
+      "id": "python-v2-1-04-step-2",
+      "task": {
+        "en": "Repair loose_items to report what is left outside the full boxes.",
+        "nl": "Herstel loose_items zodat het aangeeft wat buiten de volle dozen overblijft."
+      },
+      "check": "loose_items == items % box_size",
+      "hint": {
+        "en": "Imagine removing each full box from the original pile.",
+        "nl": "Stel je voor dat je elke volle doos van de oorspronkelijke stapel afhaalt."
+      },
+      "hints": [
+        {
+          "en": "Imagine removing each full box from the original pile.",
+          "nl": "Stel je voor dat je elke volle doos van de oorspronkelijke stapel afhaalt."
+        },
+        {
+          "en": "The leftover quantity must be smaller than one box.",
+          "nl": "De overgebleven hoeveelheid moet kleiner zijn dan één doos."
+        },
+        {
+          "en": "For example, 17 % 5 evaluates to 2.",
+          "nl": "Bijvoorbeeld: 17 % 5 heeft als uitkomst 2."
+        }
+      ],
+      "feedback": {
+        "en": "The leftover count should be between zero and one boxful.",
+        "nl": "Het aantal overgebleven artikelen moet tussen nul en één doosinhoud liggen."
+      },
+      "probes": [
+        {
+          "inputs": {
+            "items": 24,
+            "box_size": 6
+          },
+          "check": "loose_items == 0"
+        },
+        {
+          "inputs": {
+            "items": 2,
+            "box_size": 6
+          },
+          "check": "loose_items == 2"
+        }
+      ]
+    },
+    {
+      "id": "python-v2-1-04-step-3",
+      "task": {
+        "en": "Repair accounted_for to reconstruct the original item count using full_boxes, box_size, and loose_items. Try an exact multiple and a quantity smaller than one box.",
+        "nl": "Herstel accounted_for zodat het oorspronkelijke aantal wordt gereconstrueerd met full_boxes, box_size en loose_items. Probeer een exact veelvoud en een hoeveelheid kleiner dan één doos."
+      },
+      "check": "accounted_for == items and _stdout.split() == [str(full_boxes), str(loose_items), str(accounted_for)]",
+      "hint": {
+        "en": "A box count and an item count use different units.",
+        "nl": "Een aantal dozen en een aantal artikelen hebben verschillende eenheden."
+      },
+      "hints": [
+        {
+          "en": "A box count and an item count use different units.",
+          "nl": "Een aantal dozen en een aantal artikelen hebben verschillende eenheden."
+        },
+        {
+          "en": "Convert the full boxes back to an item count before including the loose items.",
+          "nl": "Zet de volle dozen terug om naar een aantal artikelen voordat je de losse artikelen meeneemt."
+        },
+        {
+          "en": "Three trays with four cups each account for twelve cups.",
+          "nl": "Drie dienbladen met elk vier kopjes verantwoorden twaalf kopjes."
+        }
+      ],
+      "feedback": {
+        "en": "The reconstructed count must account for every original item.",
+        "nl": "Het gereconstrueerde aantal moet alle oorspronkelijke artikelen verantwoorden."
+      },
+      "probes": [
+        {
+          "inputs": {
+            "items": 0,
+            "box_size": 8
+          },
+          "check": "accounted_for == 0 and full_boxes == 0 and loose_items == 0"
+        }
+      ]
+    }
+  ],
+  "inputs": [],
+  "solutionNote": {
+    "en": "The three values describe the same stock in different ways. Exact multiples and quantities below one box are useful cases because they expose different mistakes.",
+    "nl": "De drie waarden beschrijven dezelfde voorraad op verschillende manieren. Exacte veelvouden en hoeveelheden kleiner dan één doos zijn nuttige testgevallen omdat ze verschillende fouten blootleggen."
+  }
+}

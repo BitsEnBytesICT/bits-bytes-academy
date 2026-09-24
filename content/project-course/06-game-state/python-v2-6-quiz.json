@@ -1,0 +1,233 @@
+{
+  "id": "python-v2-6-quiz",
+  "chapter": 6,
+  "group": "python-v2-module-6",
+  "kind": "quiz",
+  "optional": false,
+  "title": {
+    "en": "Check your reasoning: game state",
+    "nl": "Controleer je inzicht: speltoestand"
+  },
+  "estimatedMinutes": 5,
+  "questions": [
+    {
+      "id": "v2-6-q1",
+      "prompt": {
+        "en": "Why does scores become None?",
+        "nl": "Waarom wordt scores None?"
+      },
+      "code": "scores = [2, 4]\nscores = scores.append(7)",
+      "choices": [
+        {
+          "id": "a",
+          "label": {
+            "en": "append changes the list and returns None; the assignment replaces the name.",
+            "nl": "append verandert de lijst en geeft None terug; de toekenning vervangt de naam."
+          },
+          "reason": {
+            "en": "Call scores.append(7) without assigning its result to scores.",
+            "nl": "Roep scores.append(7) aan zonder het resultaat aan scores toe te kennen."
+          }
+        },
+        {
+          "id": "b",
+          "label": {
+            "en": "Lists cannot contain three values.",
+            "nl": "Lijsten kunnen geen drie waarden bevatten."
+          },
+          "reason": {
+            "en": "Lists can contain many values; the mistaken assignment loses the reference.",
+            "nl": "Lijsten kunnen veel waarden bevatten; de verkeerde toekenning verliest de verwijzing."
+          }
+        },
+        {
+          "id": "c",
+          "label": {
+            "en": "7 is outside the list’s index range.",
+            "nl": "7 ligt buiten het indexbereik van de lijst."
+          },
+          "reason": {
+            "en": "The argument to append is a value, not an index.",
+            "nl": "Het argument van append is een waarde, geen index."
+          }
+        }
+      ],
+      "answer": "a"
+    },
+    {
+      "id": "v2-6-q2",
+      "prompt": {
+        "en": "What does unpacking do here?",
+        "nl": "Wat doet uitpakken hier?"
+      },
+      "code": "position = (80, 120)\nx, y = position",
+      "choices": [
+        {
+          "id": "a",
+          "label": {
+            "en": "Assigns 80 to x and 120 to y.",
+            "nl": "Kent 80 toe aan x en 120 aan y."
+          },
+          "reason": {
+            "en": "The values are assigned in order.",
+            "nl": "De waarden worden op volgorde toegekend."
+          }
+        },
+        {
+          "id": "b",
+          "label": {
+            "en": "Changes position to a dictionary.",
+            "nl": "Verandert position in een dictionary."
+          },
+          "reason": {
+            "en": "Unpacking does not change the original tuple.",
+            "nl": "Uitpakken verandert de oorspronkelijke tuple niet."
+          }
+        },
+        {
+          "id": "c",
+          "label": {
+            "en": "Assigns the full tuple to both x and y.",
+            "nl": "Kent de volledige tuple toe aan zowel x als y."
+          },
+          "reason": {
+            "en": "Each name receives one item, not the full group.",
+            "nl": "Elke naam ontvangt één item, niet de volledige groep."
+          }
+        }
+      ],
+      "answer": "a"
+    },
+    {
+      "id": "v2-6-q3",
+      "prompt": {
+        "en": "What is printed?",
+        "nl": "Wat wordt afgedrukt?"
+      },
+      "code": "state = {\"left\": 1, \"right\": 2}\nside = \"right\"\nstate[side] += 1\nprint(state[\"right\"])",
+      "choices": [
+        {
+          "id": "a",
+          "label": {
+            "en": "3",
+            "nl": "3"
+          },
+          "reason": {
+            "en": "side supplies the key right, whose value increases.",
+            "nl": "side levert de sleutel right, waarvan de waarde toeneemt."
+          }
+        },
+        {
+          "id": "b",
+          "label": {
+            "en": "2",
+            "nl": "2"
+          },
+          "reason": {
+            "en": "The dictionary is mutable and the update changes its right value.",
+            "nl": "De dictionary is veranderlijk en de wijziging verandert de waarde van right."
+          }
+        },
+        {
+          "id": "c",
+          "label": {
+            "en": "A key named side is added.",
+            "nl": "Er wordt een sleutel met de naam side toegevoegd."
+          },
+          "reason": {
+            "en": "state[side] uses the variable; state[\"side\"] would use the literal key.",
+            "nl": "state[side] gebruikt de variabele; state[\"side\"] zou de letterlijke sleutel gebruiken."
+          }
+        }
+      ],
+      "answer": "a"
+    },
+    {
+      "id": "v2-6-q4",
+      "prompt": {
+        "en": "Why does the template also move?",
+        "nl": "Waarom beweegt het sjabloon ook?"
+      },
+      "code": "template = {\"x\": 10}\nball = template\nball[\"x\"] += 5",
+      "choices": [
+        {
+          "id": "a",
+          "label": {
+            "en": "Both names refer to the same dictionary.",
+            "nl": "Beide namen verwijzen naar dezelfde dictionary."
+          },
+          "reason": {
+            "en": "Assignment does not copy a mutable object.",
+            "nl": "Toekenning kopieert geen veranderlijk object."
+          }
+        },
+        {
+          "id": "b",
+          "label": {
+            "en": "Every dictionary named ball updates template automatically.",
+            "nl": "Elke dictionary met de naam ball werkt template automatisch bij."
+          },
+          "reason": {
+            "en": "The shared object matters, not the chosen names.",
+            "nl": "Het gedeelde object is bepalend, niet de gekozen namen."
+          }
+        },
+        {
+          "id": "c",
+          "label": {
+            "en": "Integers cannot be stored independently.",
+            "nl": "Integers kunnen niet onafhankelijk worden opgeslagen."
+          },
+          "reason": {
+            "en": "Separate dictionaries can keep separate numeric values.",
+            "nl": "Aparte dictionaries kunnen aparte numerieke waarden bewaren."
+          }
+        }
+      ],
+      "answer": "a"
+    },
+    {
+      "id": "v2-6-q5",
+      "prompt": {
+        "en": "A first-to-two recording is left, right, right, left. Which summary is correct?",
+        "nl": "Een registratie tot twee punten is left, right, right, left. Welk overzicht is correct?"
+      },
+      "choices": [
+        {
+          "id": "a",
+          "label": {
+            "en": "Left 1, right 2; three rallies counted; right wins.",
+            "nl": "Left 1, right 2; drie rally’s geteld; right wint."
+          },
+          "reason": {
+            "en": "The match ends at the third rally; the later entry is outside it.",
+            "nl": "De wedstrijd eindigt bij de derde rally; het latere item valt erbuiten."
+          }
+        },
+        {
+          "id": "b",
+          "label": {
+            "en": "Both 2; four rallies counted; a tie.",
+            "nl": "Beide 2; vier rally’s geteld; gelijkspel."
+          },
+          "reason": {
+            "en": "That includes a rally recorded after the match ended.",
+            "nl": "Dat neemt een rally mee die na het einde van de wedstrijd is geregistreerd."
+          }
+        },
+        {
+          "id": "c",
+          "label": {
+            "en": "Left 1, right 1; stop after two rallies.",
+            "nl": "Left 1, right 1; stop na twee rally’s."
+          },
+          "reason": {
+            "en": "The target is points for one side, not total rallies.",
+            "nl": "Het doel betreft punten voor één kant, niet het totale aantal rally’s."
+          }
+        }
+      ],
+      "answer": "a"
+    }
+  ]
+}

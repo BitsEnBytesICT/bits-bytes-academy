@@ -1,0 +1,425 @@
+{
+  "id": "python-v2-10-05",
+  "chapter": 10,
+  "group": "python-v2-module-10",
+  "title": {
+    "en": "Join rallies into a match",
+    "nl": "Verbind rally’s tot een wedstrijd"
+  },
+  "kind": "coding",
+  "optional": false,
+  "runtime": "pygame",
+  "guidance": "independent",
+  "estimatedMinutes": 30,
+  "explanation": {
+    "en": "Combine the scoring rules into a complete round transition before building your own Pong. This test scene deliberately has no paddles, so every serve eventually scores and the difficult reset cases are easy to observe. Design the helper yourself; the brief specifies behavior, not an algorithm.",
+    "nl": "Combineer de scoreregels tot een volledige rondeovergang voordat je eigen Pong bouwt. Deze testscène heeft bewust geen paddles, zodat elke service uiteindelijk scoort en lastige resetgevallen makkelijk zichtbaar zijn. Ontwerp zelf de helper; de opdracht beschrijft gedrag, geen algoritme."
+  },
+  "sections": [
+    {
+      "heading": {
+        "en": "Round-transition brief",
+        "nl": "Opdracht voor rondeovergangen"
+      },
+      "body": {
+        "en": "step_round(state, width, height, target) returns a new state dictionary and never mutates its input. The flat state contains ball-centre x/y, velocities vx/vy, integer left/right scores, and winner (None or a player name). The radius is 8. If there is already a winner, leave everything unchanged. Otherwise, a fully exited ball awards exactly one point to the opposing player. Reset its centre to (width / 2, height / 2). For another rally, serve toward the scorer at horizontal speed 180 and vertical velocity +120. If the score reaches target, set winner and stop the centred ball with vx=vy=0. If no point is earned, preserve every value. Preserve extra state fields in every case. Dimensions are positive and large enough for the ball; target is a positive integer.",
+        "nl": "step_round(state, width, height, target) geeft een nieuwe toestandsdictionary terug en verandert nooit zijn invoer. De platte toestand bevat balmiddelpunt x/y, snelheden vx/vy, gehele left/right-scores en winner (None of een spelersnaam). De straal is 8. Als er al een winnaar is, blijft alles ongewijzigd. Anders geeft een volledig uitgetreden bal precies één punt aan de andere speler. Herstel zijn middelpunt naar (width / 2, height / 2). Serveer voor een volgende rally naar de scorer met horizontale snelheid 180 en verticale snelheid +120. Als de score target bereikt, stel je winner in en stop je de gecentreerde bal met vx=vy=0. Als geen punt verdiend wordt, behoud je elke waarde. Behoud in elk geval extra toestandsvelden. Afmetingen zijn positief en groot genoeg voor de bal; target is een positief geheel getal."
+      }
+    },
+    {
+      "heading": {
+        "en": "Check transitions, then assemble",
+        "nl": "Controleer overgangen en bouw dan samen"
+      },
+      "body": {
+        "en": "Try left and right exits, a partially visible ball, a one-point match, and repeated calls after a score. The reset moves the ball back into play, preventing the next frame from awarding the same point again. The next project asks you to combine your own movement, controls, collision, scoring, and presentation. You may look back at these lessons, but you choose the project’s structure.",
+        "nl": "Probeer links en rechts verlaten, een deels zichtbare bal, een wedstrijd van één punt en herhaalde aanroepen na een score. De reset brengt de bal weer in het spel en voorkomt dat het volgende beeld hetzelfde punt opnieuw geeft. Het volgende project vraagt je eigen beweging, besturing, botsingen, score en presentatie te combineren. Je mag deze lessen terugkijken, maar kiest zelf de projectstructuur."
+      }
+    },
+    {
+      "heading": {
+        "en": "Run, observe, then finish",
+        "nl": "Voer uit, bekijk en rond af"
+      },
+      "body": {
+        "en": "Run starts main.py and opens the game preview. Click the preview to use the keyboard. Clicking elsewhere pauses the game. Finish & check sends the normal close event and checks your helper functions after the loop exits; Stop interrupts without grading. The supplied async loop gives the browser time to draw and receive input. Keep await asyncio.sleep(1 / 60) inside that loop. You do not need to learn asynchronous programming in depth yet.",
+        "nl": "Run start main.py en opent het spelvoorbeeld. Klik op het voorbeeld om het toetsenbord te gebruiken. Elders klikken pauzeert het spel. Afronden en controleren stuurt de normale sluitgebeurtenis en controleert je hulpfuncties nadat de lus eindigt; Stop onderbreekt zonder beoordeling. De meegeleverde async-lus geeft de browser tijd om te tekenen en invoer te ontvangen. Houd await asyncio.sleep(1 / 60) binnen die lus. Je hoeft asynchroon programmeren nog niet uitgebreid te leren."
+      }
+    }
+  ],
+  "example": "",
+  "files": {
+    "main.py": "import asyncio\nimport pygame\nimport rules\n\ndef fresh_match():\n    return {\"x\":320.0, \"y\":200.0, \"vx\":180.0, \"vy\":120.0, \"left\":0, \"right\":0, \"winner\":None}\n\nasync def main():\n    pygame.init()\n    screen = pygame.display.set_mode((640, 400))\n    clock = pygame.time.Clock()\n    font = pygame.font.Font(None, 28)\n    running = True\n    state = fresh_match()\n    while running:\n        for event in pygame.event.get():\n            if event.type == pygame.QUIT or (event.type == pygame.KEYDOWN and event.key == pygame.K_ESCAPE):\n                running = False\n            if event.type == pygame.KEYDOWN and event.key == pygame.K_r:\n                state = fresh_match()\n        dt = min(clock.tick() / 1000, 0.05)\n        keys = pygame.key.get_pressed()\n        if state[\"winner\"] is None:\n            state[\"x\"] += state[\"vx\"] * dt\n            state[\"y\"] += state[\"vy\"] * dt\n            if state[\"y\"] <= 8 or state[\"y\"] >= 392:\n                state[\"y\"] = max(8, min(392, state[\"y\"]))\n                state[\"vy\"] = -state[\"vy\"]\n        state = rules.step_round(state, 640, 400, 3)\n        screen.fill((16, 23, 39))\n        pygame.draw.circle(screen, (255,255,255), (round(state[\"x\"]), round(state[\"y\"])), 8)\n        label = f\"{state['left']} : {state['right']}\"\n        screen.blit(font.render(label, True, (255,255,255)), (280,20))\n        message = \"Winner: \" + str(state[\"winner\"]) if state[\"winner\"] else \"Watch the round reset. R: restart.\"\n        screen.blit(font.render(message, True, (255,145,50)), (80,360))\n        pygame.display.flip()\n        await asyncio.sleep(1 / 60)\n    pygame.quit()\n\nasyncio.run(main())\n",
+    "rules.py": "def step_round(state, width, height, target):\n    # Work from the behavior brief. Helpers are welcome.\n    return state.copy()\n"
+  },
+  "solution": {
+    "main.py": "import asyncio\nimport pygame\nimport rules\n\ndef fresh_match():\n    return {\"x\":320.0, \"y\":200.0, \"vx\":180.0, \"vy\":120.0, \"left\":0, \"right\":0, \"winner\":None}\n\nasync def main():\n    pygame.init()\n    screen = pygame.display.set_mode((640, 400))\n    clock = pygame.time.Clock()\n    font = pygame.font.Font(None, 28)\n    running = True\n    state = fresh_match()\n    while running:\n        for event in pygame.event.get():\n            if event.type == pygame.QUIT or (event.type == pygame.KEYDOWN and event.key == pygame.K_ESCAPE):\n                running = False\n            if event.type == pygame.KEYDOWN and event.key == pygame.K_r:\n                state = fresh_match()\n        dt = min(clock.tick() / 1000, 0.05)\n        keys = pygame.key.get_pressed()\n        if state[\"winner\"] is None:\n            state[\"x\"] += state[\"vx\"] * dt\n            state[\"y\"] += state[\"vy\"] * dt\n            if state[\"y\"] <= 8 or state[\"y\"] >= 392:\n                state[\"y\"] = max(8, min(392, state[\"y\"]))\n                state[\"vy\"] = -state[\"vy\"]\n        state = rules.step_round(state, 640, 400, 3)\n        screen.fill((16, 23, 39))\n        pygame.draw.circle(screen, (255,255,255), (round(state[\"x\"]), round(state[\"y\"])), 8)\n        label = f\"{state['left']} : {state['right']}\"\n        screen.blit(font.render(label, True, (255,255,255)), (280,20))\n        message = \"Winner: \" + str(state[\"winner\"]) if state[\"winner\"] else \"Watch the round reset. R: restart.\"\n        screen.blit(font.render(message, True, (255,145,50)), (80,360))\n        pygame.display.flip()\n        await asyncio.sleep(1 / 60)\n    pygame.quit()\n\nasyncio.run(main())\n",
+    "rules.py": "def step_round(state, width, height, target):\n    result = state.copy()\n    if result[\"winner\"] is not None:\n        return result\n    if result[\"x\"] + 8 <= 0:\n        player = \"right\"\n    elif result[\"x\"] - 8 >= width:\n        player = \"left\"\n    else:\n        return result\n    result[player] += 1\n    result[\"x\"], result[\"y\"] = width / 2, height / 2\n    if result[player] >= target:\n        result[\"winner\"] = player\n        result[\"vx\"], result[\"vy\"] = 0, 0\n    else:\n        result[\"vx\"] = 180 if player == \"right\" else -180\n        result[\"vy\"] = 120\n    return result\n"
+  },
+  "checkpoints": [
+    {
+      "id": "python-v2-10-05-step-1",
+      "task": {
+        "en": "Award a single point to the correct player only after a complete exit.",
+        "nl": "Geef alleen na volledig verlaten één punt aan de juiste speler."
+      },
+      "check": "_rendered_frames > 0",
+      "hint": {
+        "en": "Reuse the full-ball exit rule rather than a centre-only test.",
+        "nl": "Hergebruik de regel voor de hele bal in plaats van alleen het middelpunt."
+      },
+      "hints": [
+        {
+          "en": "Reuse the full-ball exit rule rather than a centre-only test.",
+          "nl": "Hergebruik de regel voor de hele bal in plaats van alleen het middelpunt."
+        },
+        {
+          "en": "Identify the scorer before altering scores or positions.",
+          "nl": "Bepaal de scorer voordat je scores of posities verandert."
+        },
+        {
+          "en": "A ball at x=−8 is fully out on the left when its radius is 8.",
+          "nl": "Een bal op x=−8 is links volledig buiten wanneer zijn straal 8 is."
+        }
+      ],
+      "feedback": {
+        "en": "Apply the scorer rule and increment only that player.",
+        "nl": "Pas de scorerregel toe en verhoog alleen die speler."
+      },
+      "probes": [
+        {
+          "moduleOnly": true,
+          "call": {
+            "module": "rules",
+            "name": "step_round",
+            "args": [
+              {
+                "x": -8,
+                "y": 100,
+                "vx": 180,
+                "vy": 120,
+                "left": 0,
+                "right": 0,
+                "winner": null
+              },
+              640,
+              400,
+              3
+            ]
+          },
+          "check": "_error is None and (_return[\"right\"] == 1 and _return[\"left\"] == 0)"
+        },
+        {
+          "moduleOnly": true,
+          "call": {
+            "module": "rules",
+            "name": "step_round",
+            "args": [
+              {
+                "x": 648,
+                "y": 100,
+                "vx": 180,
+                "vy": 120,
+                "left": 0,
+                "right": 0,
+                "winner": null
+              },
+              640,
+              400,
+              3
+            ]
+          },
+          "check": "_error is None and (_return[\"left\"] == 1 and _return[\"right\"] == 0)"
+        },
+        {
+          "moduleOnly": true,
+          "call": {
+            "module": "rules",
+            "name": "step_round",
+            "args": [
+              {
+                "x": -3,
+                "y": 100,
+                "vx": 180,
+                "vy": 120,
+                "left": 0,
+                "right": 0,
+                "winner": null
+              },
+              640,
+              400,
+              3
+            ]
+          },
+          "check": "_error is None and (_return == _args[0])"
+        }
+      ]
+    },
+    {
+      "id": "python-v2-10-05-step-2",
+      "task": {
+        "en": "Reset the ball to the centre and serve toward the scorer when the match continues.",
+        "nl": "Herstel de bal naar het midden en serveer naar de scorer wanneer de wedstrijd doorgaat."
+      },
+      "check": "_rendered_frames > 0",
+      "hint": {
+        "en": "A new rally needs position and velocity, not just a score update.",
+        "nl": "Een nieuwe rally vereist positie en snelheid, niet alleen een score-update."
+      },
+      "hints": [
+        {
+          "en": "A new rally needs position and velocity, not just a score update.",
+          "nl": "Een nieuwe rally vereist positie en snelheid, niet alleen een score-update."
+        },
+        {
+          "en": "Use the supplied dimensions; choose the horizontal sign from the scorer.",
+          "nl": "Gebruik de meegegeven afmetingen; kies het horizontale teken uit de scorer."
+        },
+        {
+          "en": "Positive horizontal velocity travels right.",
+          "nl": "Positieve horizontale snelheid beweegt naar rechts."
+        }
+      ],
+      "feedback": {
+        "en": "Centre the ball and set the requested serve velocities.",
+        "nl": "Centreer de bal en stel de gevraagde servicesnelheden in."
+      },
+      "probes": [
+        {
+          "moduleOnly": true,
+          "call": {
+            "module": "rules",
+            "name": "step_round",
+            "args": [
+              {
+                "x": -10,
+                "y": 100,
+                "vx": 180,
+                "vy": 120,
+                "left": 0,
+                "right": 0,
+                "winner": null
+              },
+              300,
+              200,
+              5
+            ]
+          },
+          "check": "_error is None and (_return[\"x\"] == 150 and _return[\"y\"] == 100 and _return[\"vx\"] == 180 and _return[\"vy\"] == 120)"
+        },
+        {
+          "moduleOnly": true,
+          "call": {
+            "module": "rules",
+            "name": "step_round",
+            "args": [
+              {
+                "x": 308,
+                "y": 100,
+                "vx": 180,
+                "vy": 120,
+                "left": 0,
+                "right": 0,
+                "winner": null
+              },
+              300,
+              200,
+              5
+            ]
+          },
+          "check": "_error is None and (_return[\"vx\"] == -180 and _return[\"vy\"] == 120)"
+        }
+      ]
+    },
+    {
+      "id": "python-v2-10-05-step-3",
+      "task": {
+        "en": "Do not score again on the next call after resetting a rally.",
+        "nl": "Scoor niet opnieuw bij de volgende aanroep na het herstellen van een rally."
+      },
+      "check": "_rendered_frames > 0",
+      "hint": {
+        "en": "Think about what the next frame receives as input.",
+        "nl": "Bedenk wat het volgende beeld als invoer ontvangt."
+      },
+      "hints": [
+        {
+          "en": "Think about what the next frame receives as input.",
+          "nl": "Bedenk wat het volgende beeld als invoer ontvangt."
+        },
+        {
+          "en": "A reset ball must no longer satisfy either exit condition.",
+          "nl": "Een herstelde bal mag aan geen van beide uitvoorwaarden voldoen."
+        },
+        {
+          "en": "Test a transition by feeding its result back into the helper.",
+          "nl": "Test een overgang door het resultaat opnieuw aan de helper te geven."
+        }
+      ],
+      "feedback": {
+        "en": "A repeated call on the reset state must preserve it.",
+        "nl": "Een herhaalde aanroep op de herstelde toestand moet die behouden."
+      },
+      "probes": [
+        {
+          "moduleOnly": true,
+          "call": {
+            "module": "rules",
+            "name": "step_round",
+            "args": [
+              {
+                "x": -10,
+                "y": 100,
+                "vx": 180,
+                "vy": 120,
+                "left": 0,
+                "right": 0,
+                "winner": null
+              },
+              640,
+              400,
+              3
+            ]
+          },
+          "check": "_error is None and (_module.step_round(_return,640,400,3) == _return)"
+        }
+      ]
+    },
+    {
+      "id": "python-v2-10-05-step-4",
+      "task": {
+        "en": "Finish at the target, centre and stop the ball, and keep a finished match unchanged.",
+        "nl": "Eindig bij het doel, centreer en stop de bal en houd een afgelopen wedstrijd ongewijzigd."
+      },
+      "check": "_rendered_frames > 0",
+      "hint": {
+        "en": "Winning and starting another rally are different outcomes.",
+        "nl": "Winnen en een volgende rally starten zijn verschillende uitkomsten."
+      },
+      "hints": [
+        {
+          "en": "Winning and starting another rally are different outcomes.",
+          "nl": "Winnen en een volgende rally starten zijn verschillende uitkomsten."
+        },
+        {
+          "en": "Handle a finished state before considering another score.",
+          "nl": "Handel een afgelopen toestand af voordat je een volgende score overweegt."
+        },
+        {
+          "en": "A stopped ball has zero horizontal and vertical velocity.",
+          "nl": "Een gestopte bal heeft horizontaal en verticaal snelheid nul."
+        }
+      ],
+      "feedback": {
+        "en": "Freeze a winner and prevent further point awards.",
+        "nl": "Bevries een winnaar en voorkom verdere punten."
+      },
+      "probes": [
+        {
+          "moduleOnly": true,
+          "call": {
+            "module": "rules",
+            "name": "step_round",
+            "args": [
+              {
+                "x": 648,
+                "y": 100,
+                "vx": 180,
+                "vy": 120,
+                "left": 0,
+                "right": 0,
+                "winner": null
+              },
+              640,
+              400,
+              1
+            ]
+          },
+          "check": "_error is None and (_return[\"winner\"] == \"left\" and _return[\"vx\"] == 0 and _return[\"vy\"] == 0 and _return[\"x\"] == 320 and _return[\"y\"] == 200)"
+        },
+        {
+          "moduleOnly": true,
+          "call": {
+            "module": "rules",
+            "name": "step_round",
+            "args": [
+              {
+                "x": -10,
+                "y": 100,
+                "vx": 180,
+                "vy": 120,
+                "left": 3,
+                "right": 0,
+                "winner": "left"
+              },
+              640,
+              400,
+              3
+            ]
+          },
+          "check": "_error is None and (_return == _args[0])"
+        }
+      ]
+    },
+    {
+      "id": "python-v2-10-05-step-5",
+      "task": {
+        "en": "Preserve input and extra state fields. Run several rounds, restart with R, and finish the preview.",
+        "nl": "Behoud invoer en extra toestandsvelden. Speel meerdere rondes, herstart met R en rond het voorbeeld af."
+      },
+      "check": "_rendered_frames > 0",
+      "hint": {
+        "en": "Your helper owns only the fields mentioned by the brief.",
+        "nl": "Je helper beheert alleen de velden die de opdracht noemt."
+      },
+      "hints": [
+        {
+          "en": "Your helper owns only the fields mentioned by the brief.",
+          "nl": "Je helper beheert alleen de velden die de opdracht noemt."
+        },
+        {
+          "en": "Carry other values into the new state rather than rebuilding a partial dictionary.",
+          "nl": "Neem andere waarden mee naar de nieuwe toestand in plaats van een gedeeltelijke dictionary opnieuw op te bouwen."
+        },
+        {
+          "en": "state.copy() is one way to retain unrelated flat state.",
+          "nl": "state.copy() is één manier om overige platte toestand te behouden."
+        }
+      ],
+      "feedback": {
+        "en": "Return a separate dictionary, preserving the old values and extra fields.",
+        "nl": "Geef een afzonderlijke dictionary terug en behoud oude waarden en extra velden."
+      },
+      "probes": [
+        {
+          "moduleOnly": true,
+          "call": {
+            "module": "rules",
+            "name": "step_round",
+            "args": [
+              {
+                "x": -10,
+                "y": 100,
+                "vx": 180,
+                "vy": 120,
+                "left": 0,
+                "right": 0,
+                "winner": null,
+                "theme": "night"
+              },
+              640,
+              400,
+              3
+            ]
+          },
+          "check": "_error is None and (_return is not _args[0] and _args[0][\"x\"] == -10 and _args[0][\"right\"] == 0 and _return[\"theme\"] == \"night\")"
+        }
+      ]
+    }
+  ],
+  "inputs": [],
+  "solutionNote": {
+    "en": "This is one valid approach. Compare the reasoning with your own code before choosing whether to use it. Other implementations can satisfy the same behavior.",
+    "nl": "Dit is één geldige aanpak. Vergelijk de redenering met je eigen code voordat je besluit die te gebruiken. Andere implementaties kunnen aan hetzelfde gedrag voldoen."
+  }
+}

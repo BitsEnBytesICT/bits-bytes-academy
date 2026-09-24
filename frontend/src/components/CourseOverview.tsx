@@ -1,3 +1,4 @@
+import { Fragment } from 'react';
 import type {
   Activity,
   Course,
@@ -32,14 +33,14 @@ export function CourseOverview({
   const percent = required.length
     ? Math.round((done / required.length) * 100)
     : 0;
-  const started =
-    !!state.settings.lastActivity || Object.keys(state.progress).length > 0;
+  const started = course.activities.some(a => a.id === state.settings.lastActivity || state.progress[a.id]);
   const activitySummary = (items: Activity[]) => {
     const labels = [
       ["coding", "exercise", "exercises", "oefening", "oefeningen"],
       ["quiz", "quiz", "quizzes", "quiz", "quizzes"],
       ["reading", "reading", "readings", "leesonderdeel", "leesonderdelen"],
       ["challenge", "challenge", "challenges", "uitdaging", "uitdagingen"],
+      ["project", "project", "projects", "project", "projecten"],
     ];
     return labels
       .flatMap(([kind, enOne, enMany, nlOne, nlMany]) => {
@@ -93,9 +94,9 @@ export function CourseOverview({
             </p>
             <div className="course-meta">
               <span>{tr("Beginner", "Beginner")}</span>
-              <span>{tr("Approximately 20 hours", "Ongeveer 20 uur")}</span>
+              <span>{tr(`Approximately ${summary.estimatedHours} hours`, `Ongeveer ${summary.estimatedHours} uur`)}</span>
               <span>
-                {course.chapters.length} {tr("chapters", "hoofdstukken")}
+                {course.chapters.length} {tr("modules", "modules")}
               </span>
             </div>
             <details className="course-topics">
@@ -157,17 +158,21 @@ export function CourseOverview({
             <h2 id="syllabus-title">{tr("Syllabus", "Curriculum")}</h2>
             <div className="overview-chapters">
               {course.chapters.map((chapter) => {
+                const path = course.paths?.find(p => p.chapterNumbers[0] === chapter.number);
                 const items = course.activities.filter(
                   (a) => a.chapter === chapter.number,
                 );
-                const completed = items.filter(
+                const requiredItems = items.filter(a => !a.optional);
+                const completed = requiredItems.filter(
                   (a) => state.progress[a.id]?.complete,
                 ).length;
-                const chapterPercent = items.length
-                  ? Math.round((completed / items.length) * 100)
+                const chapterPercent = requiredItems.length
+                  ? Math.round((completed / requiredItems.length) * 100)
                   : 0;
                 return (
-                  <details key={chapter.number}>
+                  <Fragment key={chapter.number}>
+                  {path && <div className="learning-path-heading"><h3>{path.title[language]}</h3><p>{path.description[language]}</p></div>}
+                  <details>
                     <summary>
                       <span
                         className={
@@ -214,7 +219,7 @@ export function CourseOverview({
                             : ""}
                         </small>
                         <small className="syllabus-chapter-status">
-                          {completed} / {items.length}{" "}
+                          {completed} / {requiredItems.length}{" "}
                           {tr("complete", "afgerond")}
                         </small>
                       </span>
@@ -236,9 +241,11 @@ export function CourseOverview({
                       ))}
                     </div>
                   </details>
+                  </Fragment>
                 );
               })}
             </div>
+            {course.paths && <div className="future-path"><Icon name="lock" size={18}/><div><h3>{tr('More to come', 'Later meer')}</h3><p>{tr('The next learning path is not available yet.', 'Het volgende leerpad is nog niet beschikbaar.')}</p></div></div>}
           </section>
         </>
       ) : (

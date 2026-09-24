@@ -1,0 +1,229 @@
+{
+  "id": "python-v2-10-quiz",
+  "chapter": 10,
+  "group": "python-v2-module-10",
+  "kind": "quiz",
+  "optional": false,
+  "title": {
+    "en": "Review: game rules",
+    "nl": "Herhaling: spelregels"
+  },
+  "estimatedMinutes": 5,
+  "questions": [
+    {
+      "id": "v2-10-q1",
+      "prompt": {
+        "en": "Two Rects only touch along an edge. What does colliderect report?",
+        "nl": "Twee Rects raken elkaar alleen langs een rand. Wat geeft colliderect?"
+      },
+      "choices": [
+        {
+          "id": "a",
+          "label": {
+            "en": "False",
+            "nl": "False"
+          },
+          "reason": {
+            "en": "There is no overlapping area.",
+            "nl": "Er is geen overlappende oppervlakte."
+          }
+        },
+        {
+          "id": "b",
+          "label": {
+            "en": "True",
+            "nl": "True"
+          },
+          "reason": {
+            "en": "Edge-only contact is excluded by this collision rule.",
+            "nl": "Contact met alleen de rand is uitgesloten door deze botsingsregel."
+          }
+        },
+        {
+          "id": "c",
+          "label": {
+            "en": "The number of pixels touching.",
+            "nl": "Het aantal rakende pixels."
+          },
+          "reason": {
+            "en": "The result is a Boolean, not an area.",
+            "nl": "Het resultaat is een Boolean, geen oppervlakte."
+          }
+        }
+      ],
+      "answer": "a"
+    },
+    {
+      "id": "v2-10-q2",
+      "prompt": {
+        "en": "Why move a ball just outside the paddle after bouncing?",
+        "nl": "Waarom plaats je een bal na botsen net buiten de paddle?"
+      },
+      "choices": [
+        {
+          "id": "a",
+          "label": {
+            "en": "To resolve the overlap before the next update.",
+            "nl": "Om de overlap vóór de volgende update op te lossen."
+          },
+          "reason": {
+            "en": "Direction alone may leave the hitboxes overlapping.",
+            "nl": "Alleen richting veranderen kan de raakvlakken laten overlappen."
+          }
+        },
+        {
+          "id": "b",
+          "label": {
+            "en": "To award a point immediately.",
+            "nl": "Om meteen een punt te geven."
+          },
+          "reason": {
+            "en": "A paddle hit keeps the rally alive.",
+            "nl": "Een paddlehit houdt de rally gaande."
+          }
+        },
+        {
+          "id": "c",
+          "label": {
+            "en": "To erase the player’s score.",
+            "nl": "Om de score van de speler te wissen."
+          },
+          "reason": {
+            "en": "Collision correction should not reset scores.",
+            "nl": "Botsingscorrectie hoort scores niet te wissen."
+          }
+        }
+      ],
+      "answer": "a"
+    },
+    {
+      "id": "v2-10-q3",
+      "prompt": {
+        "en": "The ball centre is x=−4 with radius 8. Under our full-exit rule, what happens?",
+        "nl": "Het balmiddelpunt is x=−4 met straal 8. Wat gebeurt onder onze volledig-buitenregel?"
+      },
+      "choices": [
+        {
+          "id": "a",
+          "label": {
+            "en": "No point yet; some of the ball is still inside.",
+            "nl": "Nog geen punt; een deel van de bal is nog binnen."
+          },
+          "reason": {
+            "en": "Its rightmost edge is at x=4.",
+            "nl": "Zijn meest rechtse rand ligt op x=4."
+          }
+        },
+        {
+          "id": "b",
+          "label": {
+            "en": "The left player scores.",
+            "nl": "De linkerspeler scoort."
+          },
+          "reason": {
+            "en": "The ball is not fully out, and the opposite player would score a left exit.",
+            "nl": "De bal is niet volledig buiten en de andere speler zou scoren bij links verlaten."
+          }
+        },
+        {
+          "id": "c",
+          "label": {
+            "en": "Both players score.",
+            "nl": "Beide spelers scoren."
+          },
+          "reason": {
+            "en": "One rally awards at most one point.",
+            "nl": "Eén rally geeft hoogstens één punt."
+          }
+        }
+      ],
+      "answer": "a"
+    },
+    {
+      "id": "v2-10-q4",
+      "prompt": {
+        "en": "What prevents a missed ball from awarding another point every frame?",
+        "nl": "Wat voorkomt dat een gemiste bal elk beeld opnieuw een punt geeft?"
+      },
+      "choices": [
+        {
+          "id": "a",
+          "label": {
+            "en": "Resetting the round or moving into a finished-match state.",
+            "nl": "De ronde herstellen of naar een afgelopen-wedstrijdtoestand gaan."
+          },
+          "reason": {
+            "en": "The next update must no longer process the same exit as a new score.",
+            "nl": "De volgende update mag dezelfde uitstap niet als nieuwe score verwerken."
+          }
+        },
+        {
+          "id": "b",
+          "label": {
+            "en": "Printing the score more slowly.",
+            "nl": "De score langzamer afdrukken."
+          },
+          "reason": {
+            "en": "Display frequency does not fix the state transition.",
+            "nl": "Weergavefrequentie herstelt de toestandsverandering niet."
+          }
+        },
+        {
+          "id": "c",
+          "label": {
+            "en": "Renaming the ball variable.",
+            "nl": "De balvariabele hernoemen."
+          },
+          "reason": {
+            "en": "Names do not change the scoring rule.",
+            "nl": "Namen veranderen de scoreregel niet."
+          }
+        }
+      ],
+      "answer": "a"
+    },
+    {
+      "id": "v2-10-q5",
+      "prompt": {
+        "en": "How should the final Pong project be organised?",
+        "nl": "Hoe moet het uiteindelijke Pong-project worden ingedeeld?"
+      },
+      "choices": [
+        {
+          "id": "a",
+          "label": {
+            "en": "Choose your own structure and test the behavior against your design.",
+            "nl": "Kies je eigen structuur en test het gedrag tegen je ontwerp."
+          },
+          "reason": {
+            "en": "The project is self-assessed; lesson helper signatures are not mandatory.",
+            "nl": "Het project beoordeel je zelf; les-helpersignaturen zijn niet verplicht."
+          }
+        },
+        {
+          "id": "b",
+          "label": {
+            "en": "Use exactly the reference function names to unlock completion.",
+            "nl": "Gebruik precies de referentiefunctienamen om voltooiing vrij te geven."
+          },
+          "reason": {
+            "en": "The project has no such checker requirement.",
+            "nl": "Het project heeft geen dergelijke checker-eis."
+          }
+        },
+        {
+          "id": "c",
+          "label": {
+            "en": "Avoid testing until every feature is finished.",
+            "nl": "Vermijd testen totdat elke functie af is."
+          },
+          "reason": {
+            "en": "Small working increments make problems easier to find.",
+            "nl": "Kleine werkende stappen maken problemen makkelijker vindbaar."
+          }
+        }
+      ],
+      "answer": "a"
+    }
+  ]
+}

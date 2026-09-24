@@ -96,11 +96,13 @@ export function CurriculumDrawer({
             const items = course.activities.filter(
                 (a) => a.chapter === chapter.number,
               ),
-              count = items.filter(
+              requiredItems = items.filter(a => !a.optional),
+              count = requiredItems.filter(
                 (a) => state.progress[a.id]?.complete,
               ).length;
             return (
               <section className="chapter-group" key={chapter.number}>
+                {course.paths?.filter(p => p.chapterNumbers[0] === chapter.number).map(path => <h3 className="drawer-path-heading" key={path.id}>{path.title[language]}</h3>)}
                 <button
                   className={
                     "chapter-toggle " +
@@ -119,7 +121,7 @@ export function CurriculumDrawer({
                   <span>
                     {chapter.title[language]}
                     <small>
-                      {count} / {items.length}
+                      {count} / {requiredItems.length}
                     </small>
                   </span>
                   <Icon name="arrow" size={14} />
@@ -164,6 +166,7 @@ export function CurriculumDrawer({
               </section>
             );
           })}
+          {course.paths && <p className="drawer-future"><Icon name="lock" size={14}/> {tr('Next learning path · Coming later', 'Volgend leerpad · Later beschikbaar')}</p>}
         </div>
       </div>
     </div>

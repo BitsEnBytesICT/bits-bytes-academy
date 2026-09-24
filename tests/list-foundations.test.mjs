@@ -3,7 +3,7 @@ import path from "node:path";
 import assert from "node:assert/strict";
 import { loadPyodide } from "pyodide";
 import { execute, consoleLine } from "../frontend/public/runtime/engine.mjs";
-const course = JSON.parse(fs.readFileSync("content/course.json", "utf8"));
+const course = JSON.parse(fs.readFileSync("content/legacy/course-v1.json", "utf8"));
 const py = await loadPyodide({
   indexURL: path.resolve("node_modules/pyodide"),
 });

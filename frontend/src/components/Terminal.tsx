@@ -20,7 +20,7 @@ export function Terminal(props: Props) {
   const terminal = useRef<XTerminal | null>(null);
   latest.current = props;
   const tr = (en: string, nl: string) => (language === "nl" ? nl : en);
-  const busy = ["loading", "running", "input"].includes(status);
+  const busy = ["loading", "running", "input", "paused", "finishing", "grading"].includes(status);
 
   useEffect(() => {
     let disposed = false;
@@ -80,7 +80,7 @@ export function Terminal(props: Props) {
             host.current?.contains(document.activeElement) &&
             !term.hasSelection() &&
             !window.getSelection()?.toString() &&
-            (["loading", "running", "input"].includes(latest.current.status) ||
+            (["loading", "running", "input", "paused", "finishing", "grading"].includes(latest.current.status) ||
               latest.current.prompt === "...")
           ) {
             event.preventDefault();

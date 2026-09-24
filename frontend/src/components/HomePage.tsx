@@ -45,7 +45,7 @@ export function HomePage({
               <div className="course-facts">
                 <Icon name="book" size={15} />
                 {course.estimatedHours
-                  ? tr("Approximately 20 hours", "Ongeveer 20 uur")
+                  ? tr(`Approximately ${course.estimatedHours} hours`, `Ongeveer ${course.estimatedHours} uur`)
                   : tr("Duration to be announced", "Tijdsduur volgt")}
               </div>
               {course.status === "available" && (

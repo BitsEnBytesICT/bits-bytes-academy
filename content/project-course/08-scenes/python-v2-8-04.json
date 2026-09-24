@@ -1,0 +1,213 @@
+{
+  "id": "python-v2-8-04",
+  "chapter": 8,
+  "group": "python-v2-module-8",
+  "title": {
+    "en": "Repair the disappearing ball",
+    "nl": "Repareer de verdwijnende bal"
+  },
+  "kind": "coding",
+  "optional": false,
+  "runtime": "pygame",
+  "guidance": "adapt",
+  "estimatedMinutes": 20,
+  "explanation": {
+    "en": "This animation updates its position, but its frame renderer paints over the ball. Repair the order of drawing, then make sure old positions do not leave trails. You will work on time-based movement in the next module; here, concentrate on what a single frame means.",
+    "nl": "Deze animatie verandert zijn positie, maar de beeldtekenaar schildert over de bal heen. Herstel de tekenvolgorde en zorg daarna dat oude posities geen sporen achterlaten. In de volgende module werk je aan tijdsafhankelijke beweging; concentreer je hier op wat één beeld betekent."
+  },
+  "sections": [
+    {
+      "heading": {
+        "en": "A complete image, every time",
+        "nl": "Elke keer een volledig beeld"
+      },
+      "body": {
+        "en": "Drawing changes pixels on a Surface; it does not remember which pixels were a ball. To show a new position, repaint the background and then draw the current objects. draw_frame(canvas, position) receives the existing display Surface and a coordinate pair. Paint it dark blue (16, 23, 39), then a white radius-8 ball at position. Modify that supplied Surface; returning a different one is not enough for this caller.",
+        "nl": "Tekenen verandert pixels op een Surface; het onthoudt niet welke pixels een bal waren. Schilder voor een nieuwe positie de achtergrond opnieuw en teken daarna de huidige objecten. draw_frame(canvas, position) ontvangt de bestaande scherm-Surface en een coördinatenpaar. Kleur die donkerblauw (16, 23, 39) en teken daarna een witte bal met straal 8 op position. Bewerk die meegegeven Surface; alleen een andere teruggeven is voor deze aanroeper niet genoeg."
+      }
+    },
+    {
+      "heading": {
+        "en": "Run, observe, then finish",
+        "nl": "Voer uit, bekijk en rond af"
+      },
+      "body": {
+        "en": "Run starts main.py and opens the game preview. Click the preview to use the keyboard. Clicking elsewhere pauses the game. Finish & check sends the normal close event and checks your helper functions after the loop exits; Stop interrupts without grading. The supplied async loop gives the browser time to draw and receive input. Keep await asyncio.sleep(1 / 60) inside that loop. You do not need to learn asynchronous programming in depth yet.",
+        "nl": "Run start main.py en opent het spelvoorbeeld. Klik op het voorbeeld om het toetsenbord te gebruiken. Elders klikken pauzeert het spel. Afronden en controleren stuurt de normale sluitgebeurtenis en controleert je hulpfuncties nadat de lus eindigt; Stop onderbreekt zonder beoordeling. De meegeleverde async-lus geeft de browser tijd om te tekenen en invoer te ontvangen. Houd await asyncio.sleep(1 / 60) binnen die lus. Je hoeft asynchroon programmeren nog niet uitgebreid te leren."
+      }
+    }
+  ],
+  "example": "",
+  "files": {
+    "main.py": "import asyncio\nimport pygame\nimport scene\n\nasync def main():\n    pygame.init()\n    screen = pygame.display.set_mode((640, 400))\n    x = 40\n    running = True\n    while running:\n        for event in pygame.event.get():\n            if event.type == pygame.QUIT or (event.type == pygame.KEYDOWN and event.key == pygame.K_ESCAPE):\n                running = False\n        scene.draw_frame(screen, (x, 200))\n        pygame.display.flip()\n        x = (x + 2) % 640\n        await asyncio.sleep(1 / 60)\n    pygame.quit()\n\nasyncio.run(main())\n",
+    "scene.py": "import pygame\n\ndef draw_frame(canvas, position):\n    pygame.draw.circle(canvas, (255, 255, 255), position, 8)\n    canvas.fill((16, 23, 39))\n"
+  },
+  "solution": {
+    "main.py": "import asyncio\nimport pygame\nimport scene\n\nasync def main():\n    pygame.init()\n    screen = pygame.display.set_mode((640, 400))\n    x = 40\n    running = True\n    while running:\n        for event in pygame.event.get():\n            if event.type == pygame.QUIT or (event.type == pygame.KEYDOWN and event.key == pygame.K_ESCAPE):\n                running = False\n        scene.draw_frame(screen, (x, 200))\n        pygame.display.flip()\n        x = (x + 2) % 640\n        await asyncio.sleep(1 / 60)\n    pygame.quit()\n\nasyncio.run(main())\n",
+    "scene.py": "import pygame\n\ndef draw_frame(canvas, position):\n    canvas.fill((16, 23, 39))\n    pygame.draw.circle(canvas, (255, 255, 255), position, 8)\n"
+  },
+  "checkpoints": [
+    {
+      "id": "python-v2-8-04-step-1",
+      "task": {
+        "en": "Make the ball visible at the supplied position after a frame is drawn.",
+        "nl": "Maak de bal zichtbaar op de meegegeven positie nadat een beeld is getekend."
+      },
+      "check": "_rendered_frames > 0",
+      "hint": {
+        "en": "The last paint at a pixel wins.",
+        "nl": "De laatste verf op een pixel blijft zichtbaar."
+      },
+      "hints": [
+        {
+          "en": "The last paint at a pixel wins.",
+          "nl": "De laatste verf op een pixel blijft zichtbaar."
+        },
+        {
+          "en": "The background belongs behind the ball.",
+          "nl": "De achtergrond hoort achter de bal."
+        },
+        {
+          "en": "Try a small sketch of the two drawing operations in order.",
+          "nl": "Maak een kleine schets van de twee tekenacties in volgorde."
+        }
+      ],
+      "feedback": {
+        "en": "The current ball position must be white after drawing.",
+        "nl": "De huidige balpositie moet na het tekenen wit zijn."
+      },
+      "probes": [
+        {
+          "moduleOnly": true,
+          "files": {
+            "frame_probe.py": "import pygame\nimport scene\ndef inspect(positions):\n    canvas = pygame.Surface((200, 120))\n    canvas.fill((255,0,255))\n    for position in positions:\n        scene.draw_frame(canvas, position)\n    return canvas\n"
+          },
+          "call": {
+            "module": "frame_probe",
+            "name": "inspect",
+            "args": [
+              [
+                [
+                  40,
+                  60
+                ]
+              ]
+            ]
+          },
+          "check": "_error is None and (tuple(_return.get_at((40,60)))[:3] == (255,255,255))"
+        }
+      ]
+    },
+    {
+      "id": "python-v2-8-04-step-2",
+      "task": {
+        "en": "Remove trails: after a second frame, the previous position must be background again.",
+        "nl": "Verwijder sporen: na een tweede beeld moet de vorige positie weer achtergrond zijn."
+      },
+      "check": "_rendered_frames > 0",
+      "hint": {
+        "en": "The caller reuses the same Surface.",
+        "nl": "De aanroeper hergebruikt dezelfde Surface."
+      },
+      "hints": [
+        {
+          "en": "The caller reuses the same Surface.",
+          "nl": "De aanroeper hergebruikt dezelfde Surface."
+        },
+        {
+          "en": "Clearing only once before the loop leaves old pixels behind.",
+          "nl": "Slechts één keer wissen vóór de lus laat oude pixels staan."
+        },
+        {
+          "en": "A fill belongs inside the function that draws each complete frame.",
+          "nl": "Een fill hoort in de functie die elk volledig beeld tekent."
+        }
+      ],
+      "feedback": {
+        "en": "Erase old positions while preserving the new ball.",
+        "nl": "Wis oude posities en behoud de nieuwe bal."
+      },
+      "probes": [
+        {
+          "moduleOnly": true,
+          "files": {
+            "frame_probe.py": "import pygame\nimport scene\ndef inspect(positions):\n    canvas = pygame.Surface((200, 120))\n    canvas.fill((255,0,255))\n    for position in positions:\n        scene.draw_frame(canvas, position)\n    return canvas\n"
+          },
+          "call": {
+            "module": "frame_probe",
+            "name": "inspect",
+            "args": [
+              [
+                [
+                  40,
+                  60
+                ],
+                [
+                  120,
+                  70
+                ]
+              ]
+            ]
+          },
+          "check": "_error is None and (tuple(_return.get_at((40,60)))[:3] == (16,23,39) and tuple(_return.get_at((120,70)))[:3] == (255,255,255))"
+        }
+      ]
+    },
+    {
+      "id": "python-v2-8-04-step-3",
+      "task": {
+        "en": "Keep the radius at eight and leave all other pixels as background. Run long enough to see the ball wrap around.",
+        "nl": "Houd de straal op acht en laat alle andere pixels achtergrond blijven. Voer lang genoeg uit om de bal opnieuw te zien verschijnen."
+      },
+      "check": "_rendered_frames > 0",
+      "hint": {
+        "en": "Position changes; ball size does not.",
+        "nl": "De positie verandert; de balgrootte niet."
+      },
+      "hints": [
+        {
+          "en": "Position changes; ball size does not.",
+          "nl": "De positie verandert; de balgrootte niet."
+        },
+        {
+          "en": "Inspect pixels just beyond the radius.",
+          "nl": "Bekijk pixels net buiten de straal."
+        },
+        {
+          "en": "The circle API accepts a centre and radius, not a bounding-box width.",
+          "nl": "De cirkel-API krijgt een middelpunt en straal, geen kaderbreedte."
+        }
+      ],
+      "feedback": {
+        "en": "Keep a clean background and the requested ball size.",
+        "nl": "Behoud een schone achtergrond en de gevraagde balgrootte."
+      },
+      "probes": [
+        {
+          "moduleOnly": true,
+          "files": {
+            "frame_probe.py": "import pygame\nimport scene\ndef inspect(positions):\n    canvas = pygame.Surface((200, 120))\n    canvas.fill((255,0,255))\n    for position in positions:\n        scene.draw_frame(canvas, position)\n    return canvas\n"
+          },
+          "call": {
+            "module": "frame_probe",
+            "name": "inspect",
+            "args": [
+              [
+                [
+                  100,
+                  60
+                ]
+              ]
+            ]
+          },
+          "check": "_error is None and (tuple(_return.get_at((106,60)))[:3] == (255,255,255) and tuple(_return.get_at((110,60)))[:3] == (16,23,39) and tuple(_return.get_at((0,0)))[:3] == (16,23,39))"
+        }
+      ]
+    }
+  ],
+  "inputs": [],
+  "solutionNote": {
+    "en": "This is one valid approach. Compare the reasoning with your own code before choosing whether to use it. Other implementations can satisfy the same behavior.",
+    "nl": "Dit is één geldige aanpak. Vergelijk de redenering met je eigen code voordat je besluit die te gebruiken. Andere implementaties kunnen aan hetzelfde gedrag voldoen."
+  }
+}

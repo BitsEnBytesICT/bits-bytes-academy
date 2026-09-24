@@ -1,0 +1,264 @@
+{
+  "id": "python-v2-9-04",
+  "chapter": 9,
+  "group": "python-v2-module-9",
+  "title": {
+    "en": "Bounce without getting stuck",
+    "nl": "Bots zonder vast te lopen"
+  },
+  "kind": "coding",
+  "optional": false,
+  "runtime": "pygame",
+  "guidance": "adapt",
+  "estimatedMinutes": 22,
+  "explanation": {
+    "en": "The ball changes direction at a wall, then sometimes flips again while it is still touching. Repair the response using both position and travel direction. This lesson uses a simple clamp-and-reflect model; it discards any leftover distance after contact.",
+    "nl": "De bal verandert bij een muur van richting en draait soms opnieuw terwijl hij nog contact maakt. Herstel de reactie met zowel positie als bewegingsrichting. Deze les gebruikt een eenvoudig begrens-en-kaatsmodel; het laat resterende afstand na contact vervallen."
+  },
+  "sections": [
+    {
+      "heading": {
+        "en": "A centre has a radius",
+        "nl": "Een middelpunt heeft een straal"
+      },
+      "body": {
+        "en": "bounce(y, vy, radius, height) receives a proposed ball-centre coordinate and vertical velocity. Return (new_y, new_vy). Legal centres run from radius to height − radius. Clamp an outside centre to the nearest legal boundary. At the top, only an upward (negative) velocity should reverse. At the bottom, only a downward (positive) velocity should reverse. A ball already moving away must keep its direction; keep speed magnitude unchanged.",
+        "nl": "bounce(y, vy, radius, height) ontvangt een voorgestelde balmiddelpuntcoördinaat en verticale snelheid. Geef (new_y, new_vy) terug. Toegestane middelpunten lopen van radius tot height − radius. Begrens een middelpunt buiten het veld tot de dichtstbijzijnde toegestane grens. Boven moet alleen een opwaartse (negatieve) snelheid omkeren. Onder moet alleen een neerwaartse (positieve) snelheid omkeren. Een bal die al wegbeweegt moet zijn richting houden; behoud de snelheidsomvang."
+      }
+    },
+    {
+      "heading": {
+        "en": "Run, observe, then finish",
+        "nl": "Voer uit, bekijk en rond af"
+      },
+      "body": {
+        "en": "Run starts main.py and opens the game preview. Click the preview to use the keyboard. Clicking elsewhere pauses the game. Finish & check sends the normal close event and checks your helper functions after the loop exits; Stop interrupts without grading. The supplied async loop gives the browser time to draw and receive input. Keep await asyncio.sleep(1 / 60) inside that loop. You do not need to learn asynchronous programming in depth yet.",
+        "nl": "Run start main.py en opent het spelvoorbeeld. Klik op het voorbeeld om het toetsenbord te gebruiken. Elders klikken pauzeert het spel. Afronden en controleren stuurt de normale sluitgebeurtenis en controleert je hulpfuncties nadat de lus eindigt; Stop onderbreekt zonder beoordeling. De meegeleverde async-lus geeft de browser tijd om te tekenen en invoer te ontvangen. Houd await asyncio.sleep(1 / 60) binnen die lus. Je hoeft asynchroon programmeren nog niet uitgebreid te leren."
+      }
+    }
+  ],
+  "example": "",
+  "files": {
+    "main.py": "import asyncio\nimport pygame\nimport motion\n\nasync def main():\n    pygame.init()\n    screen = pygame.display.set_mode((640, 400))\n    clock = pygame.time.Clock()\n    running = True\n    y = 100.0\n    vy = 160.0\n    while running:\n        for event in pygame.event.get():\n            if event.type == pygame.QUIT or (event.type == pygame.KEYDOWN and event.key == pygame.K_ESCAPE):\n                running = False\n        # Seconds, capped to avoid a large jump after pausing the preview.\n        dt = min(clock.tick() / 1000, 0.05)\n        keys = pygame.key.get_pressed()\n        y, vy = motion.bounce(y + vy * dt, vy, 8, 400)\n        screen.fill((16, 23, 39))\n        pygame.draw.circle(screen, (255, 255, 255), (320, round(y)), 8)\n        pygame.display.flip()\n        await asyncio.sleep(1 / 60)\n    pygame.quit()\n\nasyncio.run(main())\n",
+    "motion.py": "def bounce(y, vy, radius, height):\n    if y <= radius or y >= height - radius:\n        vy = -vy\n    return (y, vy)\n"
+  },
+  "solution": {
+    "main.py": "import asyncio\nimport pygame\nimport motion\n\nasync def main():\n    pygame.init()\n    screen = pygame.display.set_mode((640, 400))\n    clock = pygame.time.Clock()\n    running = True\n    y = 100.0\n    vy = 160.0\n    while running:\n        for event in pygame.event.get():\n            if event.type == pygame.QUIT or (event.type == pygame.KEYDOWN and event.key == pygame.K_ESCAPE):\n                running = False\n        # Seconds, capped to avoid a large jump after pausing the preview.\n        dt = min(clock.tick() / 1000, 0.05)\n        keys = pygame.key.get_pressed()\n        y, vy = motion.bounce(y + vy * dt, vy, 8, 400)\n        screen.fill((16, 23, 39))\n        pygame.draw.circle(screen, (255, 255, 255), (320, round(y)), 8)\n        pygame.display.flip()\n        await asyncio.sleep(1 / 60)\n    pygame.quit()\n\nasyncio.run(main())\n",
+    "motion.py": "def bounce(y, vy, radius, height):\n    if y <= radius:\n        y = radius\n        if vy < 0:\n            vy = -vy\n    elif y >= height - radius:\n        y = height - radius\n        if vy > 0:\n            vy = -vy\n    return (y, vy)\n"
+  },
+  "checkpoints": [
+    {
+      "id": "python-v2-9-04-step-1",
+      "task": {
+        "en": "Reflect a ball travelling into either wall, preserving the speed magnitude.",
+        "nl": "Kaats een bal die naar een van beide muren beweegt terug, met behoud van de snelheidsomvang."
+      },
+      "check": "_rendered_frames > 0",
+      "hint": {
+        "en": "Negative y velocity means upward travel.",
+        "nl": "Negatieve y-snelheid betekent omhoog bewegen."
+      },
+      "hints": [
+        {
+          "en": "Negative y velocity means upward travel.",
+          "nl": "Negatieve y-snelheid betekent omhoog bewegen."
+        },
+        {
+          "en": "Compare velocity direction with the wall being touched.",
+          "nl": "Vergelijk de snelheidsrichting met de muur die geraakt wordt."
+        },
+        {
+          "en": "Negating a number changes its sign, not its magnitude.",
+          "nl": "Een getal negatief maken verandert zijn teken, niet zijn omvang."
+        }
+      ],
+      "feedback": {
+        "en": "An incoming ball must leave each wall facing inward.",
+        "nl": "Een inkomende bal moet elke muur naar binnen gericht verlaten."
+      },
+      "probes": [
+        {
+          "moduleOnly": true,
+          "call": {
+            "module": "motion",
+            "name": "bounce",
+            "args": [
+              8,
+              -140,
+              8,
+              400
+            ]
+          },
+          "check": "_error is None and (_return[0] == 8 and _return[1] == 140)"
+        },
+        {
+          "moduleOnly": true,
+          "call": {
+            "module": "motion",
+            "name": "bounce",
+            "args": [
+              392,
+              140,
+              8,
+              400
+            ]
+          },
+          "check": "_error is None and (_return[0] == 392 and _return[1] == -140)"
+        }
+      ]
+    },
+    {
+      "id": "python-v2-9-04-step-2",
+      "task": {
+        "en": "Repair positions beyond a wall so the whole ball is inside the court after the response.",
+        "nl": "Herstel posities voorbij een muur zodat de hele bal na de reactie binnen het veld is."
+      },
+      "check": "_rendered_frames > 0",
+      "hint": {
+        "en": "Reversing velocity does not repair position.",
+        "nl": "Snelheid omkeren herstelt de positie niet."
+      },
+      "hints": [
+        {
+          "en": "Reversing velocity does not repair position.",
+          "nl": "Snelheid omkeren herstelt de positie niet."
+        },
+        {
+          "en": "Limit the centre using the radius, not zero and height.",
+          "nl": "Begrens het middelpunt met de straal, niet met nul en hoogte."
+        },
+        {
+          "en": "For radius 6, the topmost legal centre is y=6.",
+          "nl": "Bij straal 6 is het bovenste toegestane middelpunt y=6."
+        }
+      ],
+      "feedback": {
+        "en": "Clamp overshoots to the centre boundaries.",
+        "nl": "Begrens overschrijdingen tot de middelpuntgrenzen."
+      },
+      "probes": [
+        {
+          "moduleOnly": true,
+          "call": {
+            "module": "motion",
+            "name": "bounce",
+            "args": [
+              -20,
+              -90,
+              6,
+              200
+            ]
+          },
+          "check": "_error is None and (_return[0] == 6 and _return[1] == 90)"
+        },
+        {
+          "moduleOnly": true,
+          "call": {
+            "module": "motion",
+            "name": "bounce",
+            "args": [
+              250,
+              90,
+              6,
+              200
+            ]
+          },
+          "check": "_error is None and (_return[0] == 194 and _return[1] == -90)"
+        }
+      ]
+    },
+    {
+      "id": "python-v2-9-04-step-3",
+      "task": {
+        "en": "Leave an outgoing or stationary ball alone. Watch several bounces for sticking or jitter.",
+        "nl": "Laat een wegbewegende of stilstaande bal ongemoeid. Bekijk meerdere botsingen op vastlopen of trillen."
+      },
+      "check": "_rendered_frames > 0",
+      "hint": {
+        "en": "Contact alone is not enough reason to reverse.",
+        "nl": "Contact alleen is niet genoeg reden om om te keren."
+      },
+      "hints": [
+        {
+          "en": "Contact alone is not enough reason to reverse.",
+          "nl": "Contact alleen is niet genoeg reden om om te keren."
+        },
+        {
+          "en": "Check motion toward the boundary before reflecting.",
+          "nl": "Controleer beweging naar de grens voordat je terugkaatst."
+        },
+        {
+          "en": "At the top, positive vy already points back into the court.",
+          "nl": "Boven wijst positieve vy al terug het veld in."
+        }
+      ],
+      "feedback": {
+        "en": "Do not reverse outgoing velocity or alter free movement.",
+        "nl": "Keer wegbewegende snelheid niet om en verander vrije beweging niet."
+      },
+      "probes": [
+        {
+          "moduleOnly": true,
+          "call": {
+            "module": "motion",
+            "name": "bounce",
+            "args": [
+              8,
+              140,
+              8,
+              400
+            ]
+          },
+          "check": "_error is None and (_return[1] == 140)"
+        },
+        {
+          "moduleOnly": true,
+          "call": {
+            "module": "motion",
+            "name": "bounce",
+            "args": [
+              392,
+              -140,
+              8,
+              400
+            ]
+          },
+          "check": "_error is None and (_return[1] == -140)"
+        },
+        {
+          "moduleOnly": true,
+          "call": {
+            "module": "motion",
+            "name": "bounce",
+            "args": [
+              8,
+              0,
+              8,
+              400
+            ]
+          },
+          "check": "_error is None and (_return[1] == 0)"
+        },
+        {
+          "moduleOnly": true,
+          "call": {
+            "module": "motion",
+            "name": "bounce",
+            "args": [
+              100.5,
+              -12.25,
+              8,
+              400
+            ]
+          },
+          "check": "_error is None and (_return[0] == 100.5 and _return[1] == -12.25)"
+        }
+      ]
+    }
+  ],
+  "inputs": [],
+  "solutionNote": {
+    "en": "This is one valid approach. Compare the reasoning with your own code before choosing whether to use it. Other implementations can satisfy the same behavior.",
+    "nl": "Dit is één geldige aanpak. Vergelijk de redenering met je eigen code voordat je besluit die te gebruiken. Andere implementaties kunnen aan hetzelfde gedrag voldoen."
+  }
+}

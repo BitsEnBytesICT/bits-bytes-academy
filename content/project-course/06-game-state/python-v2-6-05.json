@@ -1,0 +1,261 @@
+{
+  "id": "python-v2-6-05",
+  "chapter": 6,
+  "group": "python-v2-module-6",
+  "title": {
+    "en": "Work out when a match ended",
+    "nl": "Bepaal wanneer een wedstrijd eindigde"
+  },
+  "kind": "coding",
+  "optional": false,
+  "runtime": "terminal",
+  "guidance": "independent",
+  "estimatedMinutes": 24,
+  "explanation": {
+    "en": "A game records the winning side of each rally. Sometimes the recording keeps going after the match has already been won. Build a function that reconstructs the actual match, stops at its winner, and leaves the original recording intact.",
+    "nl": "Een spel registreert de winnende kant van elke rally. Soms gaat de registratie door nadat de wedstrijd al gewonnen is. Bouw een functie die de echte wedstrijd reconstrueert, bij de winnaar stopt en de oorspronkelijke registratie intact laat."
+  },
+  "sections": [
+    {
+      "heading": {
+        "en": "The result another screen needs",
+        "nl": "Het resultaat dat een ander scherm nodig heeft"
+      },
+      "body": {
+        "en": "summarise_match(rounds, target=3) receives a list of \"left\"/\"right\" rally winners and a positive integer target. Return a dictionary with left and right scores, played (rallies actually counted), and winner (\"left\", \"right\", or None). Stop counting as soon as a side reaches target. Ignore later entries entirely. Before that point, an unknown side raises ValueError. An empty list represents an unplayed match. Do not mutate rounds. Print the returned summary for the sample recording.",
+        "nl": "summarise_match(rounds, target=3) ontvangt een lijst met rallywinnaars \"left\"/\"right\" en een positief geheel doel. Geef een dictionary terug met scores left en right, played (daadwerkelijk getelde rally’s) en winner (\"left\", \"right\" of None). Stop met tellen zodra een kant target bereikt. Negeer latere items volledig. Vóór dat punt veroorzaakt een onbekende kant ValueError. Een lege lijst staat voor een ongespeelde wedstrijd. Verander rounds niet. Druk het teruggegeven overzicht voor de voorbeeldregistratie af."
+      }
+    }
+  ],
+  "example": "",
+  "files": {
+    "main.py": "rounds = [\"left\", \"right\", \"left\", \"left\", \"right\"]\n\n# Build summarise_match and report what happened.\n"
+  },
+  "solution": {
+    "main.py": "def summarise_match(rounds, target=3):\n    result = {\"left\": 0, \"right\": 0, \"played\": 0, \"winner\": None}\n    for side in rounds:\n        if side != \"left\" and side != \"right\":\n            raise ValueError(\"Unknown rally winner\")\n        result[side] += 1\n        result[\"played\"] += 1\n        if result[side] >= target:\n            result[\"winner\"] = side\n            break\n    return result\n\nrounds = [\"left\", \"right\", \"left\", \"left\", \"right\"]\nsummary = summarise_match(rounds)\nprint(summary)\n"
+  },
+  "checkpoints": [
+    {
+      "id": "python-v2-6-05-step-1",
+      "task": {
+        "en": "Return a fresh summary with both scores and the number of counted rallies, including an empty recording.",
+        "nl": "Geef een nieuw overzicht terug met beide scores en het aantal getelde rally’s, ook bij een lege registratie."
+      },
+      "check": "callable(summarise_match)",
+      "hint": {
+        "en": "Decide what the result should contain before the first rally.",
+        "nl": "Bepaal wat het resultaat moet bevatten vóór de eerste rally."
+      },
+      "hints": [
+        {
+          "en": "Decide what the result should contain before the first rally.",
+          "nl": "Bepaal wat het resultaat moet bevatten vóór de eerste rally."
+        },
+        {
+          "en": "Iterate over the recorded sides and update the appropriate score.",
+          "nl": "Loop over de geregistreerde kanten en werk de bijbehorende score bij."
+        },
+        {
+          "en": "The named-state lesson updated a dictionary key selected by a variable.",
+          "nl": "De les over benoemde toestand werkte een dictionary-sleutel bij die door een variabele werd gekozen."
+        }
+      ],
+      "feedback": {
+        "en": "Count the actual rallies without omitting zero scores.",
+        "nl": "Tel de werkelijke rally’s zonder nulscores weg te laten."
+      },
+      "probes": [
+        {
+          "call": {
+            "name": "summarise_match",
+            "args": [
+              []
+            ]
+          },
+          "check": "_error is None and _return == {\"left\": 0, \"right\": 0, \"played\": 0, \"winner\": None}"
+        },
+        {
+          "call": {
+            "name": "summarise_match",
+            "args": [
+              [
+                "right",
+                "left",
+                "right"
+              ],
+              5
+            ]
+          },
+          "check": "_error is None and _return == {\"left\": 1, \"right\": 2, \"played\": 3, \"winner\": None}"
+        }
+      ]
+    },
+    {
+      "id": "python-v2-6-05-step-2",
+      "task": {
+        "en": "Recognise either winner and stop at the first decisive rally. Respect the supplied target.",
+        "nl": "Herken beide winnaars en stop bij de eerste beslissende rally. Respecteer het meegegeven doel."
+      },
+      "check": "callable(summarise_match)",
+      "hint": {
+        "en": "An entry after victory belongs outside this match.",
+        "nl": "Een item na de overwinning hoort buiten deze wedstrijd."
+      },
+      "hints": [
+        {
+          "en": "An entry after victory belongs outside this match.",
+          "nl": "Een item na de overwinning hoort buiten deze wedstrijd."
+        },
+        {
+          "en": "Check the winning condition immediately after counting a rally.",
+          "nl": "Controleer de winconditie direct na het tellen van een rally."
+        },
+        {
+          "en": "break can end a loop before all items have been visited.",
+          "nl": "break kan een lus beëindigen voordat alle items zijn bezocht."
+        }
+      ],
+      "feedback": {
+        "en": "Do not include post-victory points or assume that left always wins.",
+        "nl": "Neem geen punten na de overwinning mee en neem niet aan dat left altijd wint."
+      },
+      "probes": [
+        {
+          "call": {
+            "name": "summarise_match",
+            "args": [
+              [
+                "right",
+                "left",
+                "right",
+                "left"
+              ],
+              2
+            ]
+          },
+          "check": "_return == {\"left\": 1, \"right\": 2, \"played\": 3, \"winner\": \"right\"}"
+        },
+        {
+          "call": {
+            "name": "summarise_match",
+            "kwargs": {
+              "rounds": [
+                "left",
+                "right"
+              ],
+              "target": 1
+            }
+          },
+          "check": "_return == {\"left\": 1, \"right\": 0, \"played\": 1, \"winner\": \"left\"}"
+        }
+      ]
+    },
+    {
+      "id": "python-v2-6-05-step-3",
+      "task": {
+        "en": "Reject an unknown side only if it occurs before the match ends. Preserve the original list on both successful and rejected recordings.",
+        "nl": "Wijs een onbekende kant alleen af wanneer deze voorkomt voordat de wedstrijd eindigt. Behoud de oorspronkelijke lijst bij zowel geslaagde als afgewezen registraties."
+      },
+      "check": "callable(summarise_match) and rounds == [\"left\", \"right\", \"left\", \"left\", \"right\"]",
+      "hint": {
+        "en": "Validation follows the part of the recording that actually belongs to the match.",
+        "nl": "Validatie volgt het deel van de registratie dat daadwerkelijk bij de wedstrijd hoort."
+      },
+      "hints": [
+        {
+          "en": "Validation follows the part of the recording that actually belongs to the match.",
+          "nl": "Validatie volgt het deel van de registratie dat daadwerkelijk bij de wedstrijd hoort."
+        },
+        {
+          "en": "Reading the list does not require removing items from it.",
+          "nl": "De lijst lezen vereist niet dat je er items uit verwijdert."
+        },
+        {
+          "en": "A for loop visits items without consuming the stored list.",
+          "nl": "Een for-lus bezoekt items zonder de opgeslagen lijst te verbruiken."
+        }
+      ],
+      "feedback": {
+        "en": "Keep the recording intact and apply validation at the correct point.",
+        "nl": "Houd de registratie intact en pas validatie op het juiste moment toe."
+      },
+      "probes": [
+        {
+          "call": {
+            "name": "summarise_match",
+            "args": [
+              [
+                "left",
+                "unknown"
+              ],
+              3
+            ]
+          },
+          "check": "_error == \"ValueError\" and _args[0] == [\"left\", \"unknown\"]"
+        },
+        {
+          "call": {
+            "name": "summarise_match",
+            "args": [
+              [
+                "left",
+                "unknown"
+              ],
+              1
+            ]
+          },
+          "check": "_error is None and _return[\"winner\"] == \"left\" and _return[\"played\"] == 1 and _args[0] == [\"left\", \"unknown\"]"
+        }
+      ]
+    },
+    {
+      "id": "python-v2-6-05-step-4",
+      "task": {
+        "en": "Store the sample result in summary and print it. Keep the function reusable for another match without retaining scores from the previous call.",
+        "nl": "Bewaar het voorbeeldresultaat in summary en druk het af. Houd de functie herbruikbaar voor een andere wedstrijd zonder scores uit de vorige aanroep te behouden."
+      },
+      "check": "isinstance(summary, dict) and str(summary) in _stdout",
+      "hint": {
+        "en": "The summary belongs to one call, not every match ever analysed.",
+        "nl": "Het overzicht hoort bij één aanroep, niet bij alle ooit geanalyseerde wedstrijden."
+      },
+      "hints": [
+        {
+          "en": "The summary belongs to one call, not every match ever analysed.",
+          "nl": "Het overzicht hoort bij één aanroep, niet bij alle ooit geanalyseerde wedstrijden."
+        },
+        {
+          "en": "Create the result state inside the function.",
+          "nl": "Maak de resultaattoestand binnen de functie."
+        },
+        {
+          "en": "A new dictionary per call prevents an earlier result from being reused accidentally.",
+          "nl": "Een nieuwe dictionary per aanroep voorkomt onbedoeld hergebruik van een eerder resultaat."
+        }
+      ],
+      "feedback": {
+        "en": "A later empty match must still begin with zero scores.",
+        "nl": "Een latere lege wedstrijd moet nog steeds met nulscores beginnen."
+      },
+      "probes": [
+        {
+          "call": {
+            "name": "summarise_match",
+            "args": [
+              [
+                "right"
+              ],
+              1
+            ]
+          },
+          "check": "_error is None and _return[\"winner\"] == \"right\" and summarise_match([]) == {\"left\": 0, \"right\": 0, \"played\": 0, \"winner\": None} and _return[\"winner\"] == \"right\""
+        }
+      ]
+    }
+  ],
+  "inputs": [],
+  "solutionNote": {
+    "en": "One dictionary, separate counters, or a helper function can all work. The important decisions are when to stop, which inputs still belong to the match, and which state must stay independent.",
+    "nl": "Eén dictionary, aparte tellers of een hulpfunctie kunnen allemaal werken. De belangrijke beslissingen zijn wanneer je stopt, welke invoer nog bij de wedstrijd hoort en welke toestand onafhankelijk moet blijven."
+  }
+}

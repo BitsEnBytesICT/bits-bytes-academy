@@ -1,0 +1,179 @@
+{
+  "id": "python-v2-1-02",
+  "chapter": 1,
+  "group": "python-v2-module-1",
+  "title": {
+    "en": "A price worth checking",
+    "nl": "Een prijs om te controleren"
+  },
+  "kind": "coding",
+  "optional": false,
+  "runtime": "terminal",
+  "guidance": "guided",
+  "estimatedMinutes": 12,
+  "explanation": {
+    "en": "A repair shop sells replacement parts. Someone wrote the order total by hand. You will replace that fragile number with a calculation, then account for a delivery charge and a voucher. When the order changes, the program should still work.",
+    "nl": "Een reparatiewinkel verkoopt onderdelen. Iemand heeft het ordertotaal met de hand ingevuld. Je vervangt dat kwetsbare getal door een berekening en verwerkt daarna bezorgkosten en een kortingsbon. Als de bestelling verandert, moet het programma blijven werken."
+  },
+  "sections": [
+    {
+      "heading": {
+        "en": "Numbers are values, not labels",
+        "nl": "Getallen zijn waarden, geen labels"
+      },
+      "body": {
+        "en": "An integer such as 4 represents a whole number; a float such as 2.5 can represent a fractional amount. Leave arithmetic values unquoted. Python uses +, -, *, and / for addition, subtraction, multiplication, and division.",
+        "nl": "Een integer zoals 4 stelt een heel getal voor; een float zoals 2.5 kan een gebroken hoeveelheid voorstellen. Zet rekenwaarden niet tussen aanhalingstekens. Python gebruikt +, -, * en / voor optellen, aftrekken, vermenigvuldigen en delen."
+      },
+      "code": "hours = 3\nrate = 8.5\npay = hours * rate\nprint(pay)",
+      "output": "25.5"
+    },
+    {
+      "heading": {
+        "en": "Follow the dependencies",
+        "nl": "Volg de afhankelijkheden"
+      },
+      "body": {
+        "en": "Python works from top to bottom. Calculate a value before using it in another calculation. Multiplication and division happen before addition and subtraction; parentheses let you group an operation explicitly.",
+        "nl": "Python werkt van boven naar beneden. Bereken een waarde voordat je die in een andere berekening gebruikt. Vermenigvuldigen en delen gaan voor optellen en aftrekken; met haakjes kun je een bewerking expliciet groeperen."
+      },
+      "code": "budget = 40\ntravel = 10\npeople = 3\nprint((budget - travel) / people)",
+      "output": "10.0"
+    }
+  ],
+  "example": "",
+  "files": {
+    "main.py": "quantity = 4\nunit_price = 3.5\ndelivery = 2\nvoucher = 5\n\nsubtotal = 14\ntotal = subtotal\nprint(total)\n"
+  },
+  "solution": {
+    "main.py": "quantity = 4\nunit_price = 3.5\ndelivery = 2\nvoucher = 5\n\nsubtotal = quantity * unit_price\ntotal = subtotal + delivery - voucher\nprint(total)\n"
+  },
+  "checkpoints": [
+    {
+      "id": "python-v2-1-02-step-1",
+      "task": {
+        "en": "Make subtotal represent the cost of the ordered parts. It must also work when quantity or unit_price changes.",
+        "nl": "Laat subtotal de kosten van de bestelde onderdelen voorstellen. Het moet ook werken wanneer quantity of unit_price verandert."
+      },
+      "check": "subtotal == quantity * unit_price",
+      "hint": {
+        "en": "Think about what one part costs and how many are ordered.",
+        "nl": "Denk aan de prijs van één onderdeel en het bestelde aantal."
+      },
+      "hints": [
+        {
+          "en": "Think about what one part costs and how many are ordered.",
+          "nl": "Denk aan de prijs van één onderdeel en het bestelde aantal."
+        },
+        {
+          "en": "The starter inputs should be used in the calculation instead of copying a known total.",
+          "nl": "Gebruik de invoerwaarden uit de startcode in de berekening, in plaats van een bekend totaal over te nemen."
+        },
+        {
+          "en": "For another situation, distance = trips * km_per_trip.",
+          "nl": "In een andere situatie: distance = trips * km_per_trip."
+        }
+      ],
+      "feedback": {
+        "en": "The parts cost must follow both order inputs.",
+        "nl": "De onderdelenkosten moeten beide orderwaarden volgen."
+      },
+      "probes": [
+        {
+          "inputs": {
+            "quantity": 7,
+            "unit_price": 2.25
+          },
+          "check": "subtotal == 15.75 and _error is None"
+        }
+      ]
+    },
+    {
+      "id": "python-v2-1-02-step-2",
+      "task": {
+        "en": "Update total to include one delivery charge and deduct one voucher from the order.",
+        "nl": "Werk total bij zodat één bezorgbedrag wordt toegevoegd en één kortingsbon van de bestelling wordt afgetrokken."
+      },
+      "check": "total == subtotal + delivery - voucher",
+      "hint": {
+        "en": "Which amounts add to the bill, and which amount reduces it?",
+        "nl": "Welke bedragen verhogen de rekening en welk bedrag verlaagt die?"
+      },
+      "hints": [
+        {
+          "en": "Which amounts add to the bill, and which amount reduces it?",
+          "nl": "Welke bedragen verhogen de rekening en welk bedrag verlaagt die?"
+        },
+        {
+          "en": "Delivery and the voucher apply to the whole order, not to each part.",
+          "nl": "Bezorgkosten en de kortingsbon gelden voor de hele bestelling, niet voor elk onderdeel."
+        },
+        {
+          "en": "A different budget might use remaining = starting_budget - expense + refund.",
+          "nl": "Een ander budget kan remaining = starting_budget - expense + refund gebruiken."
+        }
+      ],
+      "feedback": {
+        "en": "Check that delivery and the voucher are applied once each.",
+        "nl": "Controleer of bezorgkosten en de kortingsbon elk eenmaal zijn verwerkt."
+      },
+      "probes": [
+        {
+          "inputs": {
+            "quantity": 3,
+            "unit_price": 6,
+            "delivery": 4,
+            "voucher": 2
+          },
+          "check": "total == 20 and _error is None"
+        }
+      ]
+    },
+    {
+      "id": "python-v2-1-02-step-3",
+      "task": {
+        "en": "Print the calculated total. Test a different quantity yourself, then leave any positive quantity in the editor.",
+        "nl": "Druk het berekende totaal af. Test zelf een ander aantal en laat daarna een positief aantal in de editor staan."
+      },
+      "check": "quantity > 0 and float(_stdout.strip()) == total",
+      "hint": {
+        "en": "Printing a number copied from the terminal hides mistakes when an input changes.",
+        "nl": "Een getal uit de terminal overnemen verbergt fouten wanneer een invoer verandert."
+      },
+      "hints": [
+        {
+          "en": "Printing a number copied from the terminal hides mistakes when an input changes.",
+          "nl": "Een getal uit de terminal overnemen verbergt fouten wanneer een invoer verandert."
+        },
+        {
+          "en": "The print call should use the result stored by your program.",
+          "nl": "De print-aanroep moet het resultaat gebruiken dat je programma heeft opgeslagen."
+        },
+        {
+          "en": "print(pay) displays a calculated pay value.",
+          "nl": "print(pay) toont een berekende waarde voor pay."
+        }
+      ],
+      "feedback": {
+        "en": "The terminal should show the calculated total as a number.",
+        "nl": "De terminal moet het berekende totaal als getal tonen."
+      },
+      "probes": [
+        {
+          "inputs": {
+            "quantity": 2,
+            "unit_price": 8,
+            "delivery": 3,
+            "voucher": 1
+          },
+          "check": "float(_stdout.strip()) == 18 and _error is None"
+        }
+      ]
+    }
+  ],
+  "inputs": [],
+  "solutionNote": {
+    "en": "The arithmetic must follow the inputs. A result that happens to match the starter order is not enough when a customer changes the quantity.",
+    "nl": "De berekening moet de invoer volgen. Een resultaat dat toevallig klopt voor de startbestelling is niet voldoende wanneer een klant het aantal verandert."
+  }
+}

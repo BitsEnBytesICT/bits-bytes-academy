@@ -1,0 +1,209 @@
+{
+  "id": "python-v2-6-03",
+  "chapter": 6,
+  "group": "python-v2-module-6",
+  "title": {
+    "en": "Give match values meaningful names",
+    "nl": "Geef wedstrijdwaarden betekenisvolle namen"
+  },
+  "kind": "coding",
+  "optional": false,
+  "runtime": "terminal",
+  "guidance": "adapt",
+  "estimatedMinutes": 18,
+  "explanation": {
+    "en": "A match needs two scores and a winning target. A dictionary groups related values under names, so you can update one without losing the others. Repair award_point(state, side), which should update the supplied match and return its winner or None.",
+    "nl": "Een wedstrijd heeft twee scores en een winnend doel nodig. Een dictionary groepeert samenhangende waarden onder namen, zodat je er één kunt aanpassen zonder de andere te verliezen. Herstel award_point(state, side), die de meegegeven wedstrijd moet bijwerken en de winnaar of None moet teruggeven."
+  },
+  "sections": [
+    {
+      "heading": {
+        "en": "Look up a value by key",
+        "nl": "Zoek een waarde op via een sleutel"
+      },
+      "body": {
+        "en": "A dictionary uses key/value pairs: {\"name\": \"Sam\", \"score\": 0}. state[\"score\"] reads a value; assigning to that key updates it. A missing key raises KeyError. state.get(\"score\", 0) supplies a default without inserting the key. Use required keys directly when missing data should be treated as a bug.",
+        "nl": "Een dictionary gebruikt sleutel-/waardeparen: {\"name\": \"Sam\", \"score\": 0}. state[\"score\"] leest een waarde; toekennen aan die sleutel werkt deze bij. Een ontbrekende sleutel veroorzaakt KeyError. state.get(\"score\", 0) levert een standaardwaarde zonder de sleutel toe te voegen. Gebruik verplichte sleutels direct wanneer ontbrekende gegevens als fout moeten worden behandeld."
+      },
+      "code": "player = {\"name\": \"Sam\", \"score\": 0}\nplayer[\"score\"] += 1\nprint(player[\"name\"], player[\"score\"])",
+      "output": "Sam 1"
+    },
+    {
+      "heading": {
+        "en": "A deliberate update",
+        "nl": "Een bewuste wijziging"
+      },
+      "body": {
+        "en": "The contract requires keys left, right, and target, with nonnegative scores and a positive target. side must be \"left\" or \"right\"; reject other names with ValueError before changing state. Add one to the requested side only. Return that side when its updated score reaches or exceeds target; otherwise return None. Call this only while a match is in progress.",
+        "nl": "De afspraken vereisen sleutels left, right en target, met niet-negatieve scores en een positief doel. side moet \"left\" of \"right\" zijn; wijs andere namen met ValueError af voordat state verandert. Tel alleen bij de gevraagde kant één op. Geef die kant terug wanneer de bijgewerkte score target bereikt of overschrijdt; geef anders None terug. Roep dit alleen aan terwijl een wedstrijd bezig is."
+      }
+    }
+  ],
+  "example": "",
+  "files": {
+    "main.py": "def award_point(state, side):\n    state[\"left\"] = 1\n    return None\n\nmatch = {\"left\": 2, \"right\": 1, \"target\": 3}\nwinner = award_point(match, \"left\")\nprint(match)\nprint(\"Winner:\", winner)\n"
+  },
+  "solution": {
+    "main.py": "def award_point(state, side):\n    if side != \"left\" and side != \"right\":\n        raise ValueError(\"Unknown side\")\n    state[side] += 1\n    if state[side] >= state[\"target\"]:\n        return side\n    return None\n\nmatch = {\"left\": 2, \"right\": 1, \"target\": 3}\nwinner = award_point(match, \"left\")\nprint(match)\nprint(\"Winner:\", winner)\n"
+  },
+  "checkpoints": [
+    {
+      "id": "python-v2-6-03-step-1",
+      "task": {
+        "en": "Increase only the requested side’s score by one, preserving the other score, target, and any additional keys.",
+        "nl": "Verhoog alleen de score van de gevraagde kant met één en behoud de andere score, target en eventuele extra sleutels."
+      },
+      "check": "callable(award_point) and match[\"left\"] == 3 and match[\"right\"] == 1 and match[\"target\"] == 3",
+      "hint": {
+        "en": "Updating a score is different from replacing the entire dictionary.",
+        "nl": "Een score bijwerken is iets anders dan de volledige dictionary vervangen."
+      },
+      "hints": [
+        {
+          "en": "Updating a score is different from replacing the entire dictionary.",
+          "nl": "Een score bijwerken is iets anders dan de volledige dictionary vervangen."
+        },
+        {
+          "en": "A variable can supply a dictionary key: state[side].",
+          "nl": "Een variabele kan een dictionary-sleutel leveren: state[side]."
+        },
+        {
+          "en": "player[\"score\"] += 1 keeps the other player fields.",
+          "nl": "player[\"score\"] += 1 behoudt de andere spelervelden."
+        }
+      ],
+      "feedback": {
+        "en": "Change one score in the existing match, without discarding other state.",
+        "nl": "Verander één score in de bestaande wedstrijd zonder andere toestand te wissen."
+      },
+      "probes": [
+        {
+          "call": {
+            "name": "award_point",
+            "args": [
+              {
+                "left": 1,
+                "right": 2,
+                "target": 5,
+                "label": "Friendly"
+              },
+              "right"
+            ]
+          },
+          "check": "_error is None and _args[0] == {\"left\": 1, \"right\": 3, \"target\": 5, \"label\": \"Friendly\"}"
+        }
+      ]
+    },
+    {
+      "id": "python-v2-6-03-step-2",
+      "task": {
+        "en": "Return the side that reaches the target after the update, or None if the match continues.",
+        "nl": "Geef de kant terug die na de wijziging het doel bereikt, of None als de wedstrijd doorgaat."
+      },
+      "check": "winner == \"left\"",
+      "hint": {
+        "en": "Check the updated score, not the score from before this point.",
+        "nl": "Controleer de bijgewerkte score, niet de score van vóór dit punt."
+      },
+      "hints": [
+        {
+          "en": "Check the updated score, not the score from before this point.",
+          "nl": "Controleer de bijgewerkte score, niet de score van vóór dit punt."
+        },
+        {
+          "en": "The winning threshold is stored in the match, not fixed globally.",
+          "nl": "De winnende grens staat in de wedstrijd opgeslagen, niet globaal vast."
+        },
+        {
+          "en": "A target of 1 makes the first point decisive.",
+          "nl": "Bij een doel van 1 is het eerste punt beslissend."
+        }
+      ],
+      "feedback": {
+        "en": "Use the match’s target and support either winner.",
+        "nl": "Gebruik het doel van de wedstrijd en ondersteun beide winnaars."
+      },
+      "probes": [
+        {
+          "call": {
+            "name": "award_point",
+            "args": [
+              {
+                "left": 0,
+                "right": 0,
+                "target": 1
+              },
+              "right"
+            ]
+          },
+          "check": "_error is None and _return == \"right\""
+        },
+        {
+          "call": {
+            "name": "award_point",
+            "args": [
+              {
+                "left": 1,
+                "right": 0,
+                "target": 4
+              },
+              "left"
+            ]
+          },
+          "check": "_error is None and _return is None"
+        }
+      ]
+    },
+    {
+      "id": "python-v2-6-03-step-3",
+      "task": {
+        "en": "Reject an unknown side before changing any match values. Try a misspelled side in the console to see the error.",
+        "nl": "Wijs een onbekende kant af voordat wedstrijdwaarden veranderen. Probeer een verkeerd gespelde kant in de console om de fout te zien."
+      },
+      "check": "callable(award_point)",
+      "hint": {
+        "en": "An accidental key should not create a third player.",
+        "nl": "Een onbedoelde sleutel mag geen derde speler maken."
+      },
+      "hints": [
+        {
+          "en": "An accidental key should not create a third player.",
+          "nl": "Een onbedoelde sleutel mag geen derde speler maken."
+        },
+        {
+          "en": "Validate the side before performing the mutation.",
+          "nl": "Valideer de kant voordat je de wijziging uitvoert."
+        },
+        {
+          "en": "A ValueError can describe an invalid choice supplied to a function.",
+          "nl": "Een ValueError kan een ongeldige keuze beschrijven die aan een functie is meegegeven."
+        }
+      ],
+      "feedback": {
+        "en": "Keep the match untouched when rejecting invalid arguments.",
+        "nl": "Houd de wedstrijd ongewijzigd wanneer je ongeldige argumenten afwijst."
+      },
+      "probes": [
+        {
+          "call": {
+            "name": "award_point",
+            "args": [
+              {
+                "left": 2,
+                "right": 3,
+                "target": 5
+              },
+              "Leftt"
+            ]
+          },
+          "check": "_error == \"ValueError\" and _args[0] == {\"left\": 2, \"right\": 3, \"target\": 5}"
+        }
+      ]
+    }
+  ],
+  "inputs": [],
+  "solutionNote": {
+    "en": "This function intentionally changes state; translated intentionally did not. Both are useful interfaces when the behavior is clear to the caller.",
+    "nl": "Deze functie verandert state bewust; translated deed dat bewust niet. Beide zijn nuttige interfaces wanneer het gedrag voor de aanroeper duidelijk is."
+  }
+}

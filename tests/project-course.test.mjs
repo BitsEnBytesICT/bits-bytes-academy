@@ -2,7 +2,8 @@ import assert from "node:assert/strict";
 import path from "node:path";
 import fs from "node:fs";
 import { loadPyodide } from "pyodide";
-import { execute } from "../frontend/public/runtime/engine.mjs";
+import { execute, initializeRuntime } from "../frontend/public/runtime/engine.mjs";
+import { ensurePackages } from "../frontend/public/runtime/packages.mjs";
 
 const py = await loadPyodide({
   indexURL: path.resolve("frontend/public/runtime/pyodide"),
@@ -15,6 +16,21 @@ let lessons = 0,
   quizzes = 0,
   examples = 0;
 const all = [];
+async function gradeGraphical(activity, files, frames) {
+  await ensurePackages(py, files);
+  initializeRuntime(py);
+  for (const [name, code] of Object.entries(files)) {
+    py.globals.set('_fixture_code', code);
+    py.globals.set('_fixture_name', name);
+    py.runPython('compile(_fixture_code, _fixture_name, "exec")');
+  }
+  py.globals.set('_fixture_files', JSON.stringify(files));
+  py.runPython('_lab_prepare(json.loads(_fixture_files), fresh=True)');
+  const grade = py.globals.get('_lab_game_grade');
+  try {
+    return {error:null, results:JSON.parse(grade(JSON.stringify({files, checks:activity.checkpoints, frames, error:null})))};
+  } finally { grade.destroy(); }
+}
 for (const filename of fs
   .readdirSync(directory)
   .filter((f) => /^\d.*\.mjs$/.test(f))
@@ -58,6 +74,7 @@ for (const filename of fs
       continue;
     }
     if (a.kind !== "coding") continue;
+    assert(a.solutionNote.en && a.solutionNote.nl, a.id + ': solution note');
     assert(a.explanation.en && a.explanation.nl, a.id);
     assert(a.sections.length, a.id);
     for (const section of a.sections) {
@@ -94,7 +111,7 @@ for (const filename of fs
     );
     let input = [...a.inputs];
     py.setStdin({ stdin: () => input.shift() });
-    const reference = await execute(py, {
+    const reference = a.runtime === 'pygame' ? await gradeGraphical(a, a.solution, 1) : await execute(py, {
       files: a.solution,
       checks: a.checkpoints,
     });
@@ -103,7 +120,7 @@ for (const filename of fs
       reference.results.every((c) => c.passed),
       JSON.stringify({ id: a.id, results: reference.results }),
     );
-    const blank = await execute(py, {
+    const blank = a.runtime === 'pygame' ? await gradeGraphical(a, {...a.files, 'main.py':'pass\n'}, 0) : await execute(py, {
       files: { ...a.files, "main.py": "pass\n" },
       checks: a.checkpoints,
     });

@@ -1,0 +1,330 @@
+{
+  "id": "python-v2-10-01",
+  "chapter": 10,
+  "group": "python-v2-module-10",
+  "title": {
+    "en": "Detect paddle contact",
+    "nl": "Detecteer paddlecontact"
+  },
+  "kind": "coding",
+  "optional": false,
+  "runtime": "pygame",
+  "guidance": "guided",
+  "estimatedMinutes": 20,
+  "explanation": {
+    "en": "Use the arrow keys to slide a square ball around a paddle. It should change colour only while their rectangles overlap. This is the collision model we will use for Pong: a rectangular hitbox around the ball, rather than a mathematically exact circle.",
+    "nl": "Gebruik de pijltjestoetsen om een vierkante bal rond een paddle te schuiven. Die mag alleen van kleur veranderen wanneer de rechthoeken overlappen. Dit is het botsingsmodel voor Pong: een rechthoekig raakvlak rond de bal, geen wiskundig exacte cirkel."
+  },
+  "sections": [
+    {
+      "heading": {
+        "en": "Overlap needs both axes",
+        "nl": "Overlap vereist beide assen"
+      },
+      "body": {
+        "en": "overlaps(ball, paddle) receives two sequences in (left, top, width, height) order and returns a Boolean. pygame.Rect can be constructed from such a sequence. Rect.colliderect(other) checks for a nonempty overlapping area. Merely touching edges is not overlap. Both horizontal and vertical ranges matter; a ball passing above a paddle should miss.",
+        "nl": "overlaps(ball, paddle) ontvangt twee reeksen in de volgorde (links, boven, breedte, hoogte) en geeft een Boolean terug. pygame.Rect kan uit zo’n reeks worden gemaakt. Rect.colliderect(other) controleert op een overlappend gebied met oppervlakte. Alleen rakende randen zijn geen overlap. Zowel horizontale als verticale bereiken tellen mee; een bal boven een paddle moet missen."
+      },
+      "code": "import pygame\nfirst = pygame.Rect(0, 0, 10, 10)\nsecond = pygame.Rect(10, 0, 10, 10)\nprint(first.colliderect(second))",
+      "output": "False"
+    },
+    {
+      "heading": {
+        "en": "Run, observe, then finish",
+        "nl": "Voer uit, bekijk en rond af"
+      },
+      "body": {
+        "en": "Run starts main.py and opens the game preview. Click the preview to use the keyboard. Clicking elsewhere pauses the game. Finish & check sends the normal close event and checks your helper functions after the loop exits; Stop interrupts without grading. The supplied async loop gives the browser time to draw and receive input. Keep await asyncio.sleep(1 / 60) inside that loop. You do not need to learn asynchronous programming in depth yet.",
+        "nl": "Run start main.py en opent het spelvoorbeeld. Klik op het voorbeeld om het toetsenbord te gebruiken. Elders klikken pauzeert het spel. Afronden en controleren stuurt de normale sluitgebeurtenis en controleert je hulpfuncties nadat de lus eindigt; Stop onderbreekt zonder beoordeling. De meegeleverde async-lus geeft de browser tijd om te tekenen en invoer te ontvangen. Houd await asyncio.sleep(1 / 60) binnen die lus. Je hoeft asynchroon programmeren nog niet uitgebreid te leren."
+      }
+    }
+  ],
+  "example": "",
+  "files": {
+    "main.py": "import asyncio\nimport pygame\nimport rules\n\nasync def main():\n    pygame.init()\n    screen = pygame.display.set_mode((640, 400))\n    clock = pygame.time.Clock()\n    font = pygame.font.Font(None, 28)\n    running = True\n    paddle = pygame.Rect(280, 140, 12, 120)\n    x, y = 320.0, 190.0\n    while running:\n        for event in pygame.event.get():\n            if event.type == pygame.QUIT or (event.type == pygame.KEYDOWN and event.key == pygame.K_ESCAPE):\n                running = False\n        dt = min(clock.tick() / 1000, 0.05)\n        keys = pygame.key.get_pressed()\n        x += (int(keys[pygame.K_RIGHT]) - int(keys[pygame.K_LEFT])) * 140 * dt\n        y += (int(keys[pygame.K_DOWN]) - int(keys[pygame.K_UP])) * 140 * dt\n        ball = pygame.Rect(round(x), round(y), 16, 16)\n        touching = rules.overlaps(list(ball), list(paddle))\n        screen.fill((16, 23, 39))\n        pygame.draw.rect(screen, (80, 180, 255), paddle)\n        pygame.draw.rect(screen, (255, 145, 50) if touching else (255,255,255), ball)\n        pygame.display.flip()\n        await asyncio.sleep(1 / 60)\n    pygame.quit()\n\nasyncio.run(main())\n",
+    "rules.py": "import pygame\n\ndef overlaps(ball, paddle):\n    ball_rect = pygame.Rect(ball)\n    paddle_rect = pygame.Rect(paddle)\n    return ball_rect.left < paddle_rect.right\n"
+  },
+  "solution": {
+    "main.py": "import asyncio\nimport pygame\nimport rules\n\nasync def main():\n    pygame.init()\n    screen = pygame.display.set_mode((640, 400))\n    clock = pygame.time.Clock()\n    font = pygame.font.Font(None, 28)\n    running = True\n    paddle = pygame.Rect(280, 140, 12, 120)\n    x, y = 320.0, 190.0\n    while running:\n        for event in pygame.event.get():\n            if event.type == pygame.QUIT or (event.type == pygame.KEYDOWN and event.key == pygame.K_ESCAPE):\n                running = False\n        dt = min(clock.tick() / 1000, 0.05)\n        keys = pygame.key.get_pressed()\n        x += (int(keys[pygame.K_RIGHT]) - int(keys[pygame.K_LEFT])) * 140 * dt\n        y += (int(keys[pygame.K_DOWN]) - int(keys[pygame.K_UP])) * 140 * dt\n        ball = pygame.Rect(round(x), round(y), 16, 16)\n        touching = rules.overlaps(list(ball), list(paddle))\n        screen.fill((16, 23, 39))\n        pygame.draw.rect(screen, (80, 180, 255), paddle)\n        pygame.draw.rect(screen, (255, 145, 50) if touching else (255,255,255), ball)\n        pygame.display.flip()\n        await asyncio.sleep(1 / 60)\n    pygame.quit()\n\nasyncio.run(main())\n",
+    "rules.py": "import pygame\n\ndef overlaps(ball, paddle):\n    return pygame.Rect(ball).colliderect(pygame.Rect(paddle))\n"
+  },
+  "checkpoints": [
+    {
+      "id": "python-v2-10-01-step-1",
+      "task": {
+        "en": "Recognise real overlaps, including a ball partly covering a paddle edge.",
+        "nl": "Herken echte overlap, ook wanneer een bal een paddlerand deels bedekt."
+      },
+      "check": "_rendered_frames > 0",
+      "hint": {
+        "en": "One corner does not need to be inside for every possible overlap.",
+        "nl": "Niet bij elke mogelijke overlap hoeft één hoek binnen te liggen."
+      },
+      "hints": [
+        {
+          "en": "One corner does not need to be inside for every possible overlap.",
+          "nl": "Niet bij elke mogelijke overlap hoeft één hoek binnen te liggen."
+        },
+        {
+          "en": "The library already provides a rectangle-overlap operation.",
+          "nl": "De bibliotheek biedt al een rechthoek-overlapbewerking."
+        },
+        {
+          "en": "Read the Rect.colliderect documentation and its return type.",
+          "nl": "Lees de documentatie en het returntype van Rect.colliderect."
+        }
+      ],
+      "feedback": {
+        "en": "Return a Boolean for overlapping hitboxes.",
+        "nl": "Geef een Boolean voor overlappende raakvlakken terug."
+      },
+      "probes": [
+        {
+          "moduleOnly": true,
+          "call": {
+            "module": "rules",
+            "name": "overlaps",
+            "args": [
+              [
+                30,
+                60,
+                16,
+                16
+              ],
+              [
+                24,
+                40,
+                12,
+                72
+              ]
+            ]
+          },
+          "check": "_error is None and (_return is True)"
+        },
+        {
+          "moduleOnly": true,
+          "call": {
+            "module": "rules",
+            "name": "overlaps",
+            "args": [
+              [
+                20,
+                20,
+                100,
+                100
+              ],
+              [
+                24,
+                40,
+                12,
+                72
+              ]
+            ]
+          },
+          "check": "_error is None and (_return is True)"
+        }
+      ]
+    },
+    {
+      "id": "python-v2-10-01-step-2",
+      "task": {
+        "en": "Reject misses above, below, left, and right of the paddle.",
+        "nl": "Wijs missers boven, onder, links en rechts van de paddle af."
+      },
+      "check": "_rendered_frames > 0",
+      "hint": {
+        "en": "Overlap on one axis alone is not enough.",
+        "nl": "Overlap op slechts één as is niet genoeg."
+      },
+      "hints": [
+        {
+          "en": "Overlap on one axis alone is not enough.",
+          "nl": "Overlap op slechts één as is niet genoeg."
+        },
+        {
+          "en": "Check vertical separation as well as horizontal separation.",
+          "nl": "Controleer verticale én horizontale scheiding."
+        },
+        {
+          "en": "A shared x coordinate does not imply a shared y range.",
+          "nl": "Een gedeelde x-coördinaat betekent geen gedeeld y-bereik."
+        }
+      ],
+      "feedback": {
+        "en": "Separated rectangles must not collide.",
+        "nl": "Gescheiden rechthoeken mogen niet botsen."
+      },
+      "probes": [
+        {
+          "moduleOnly": true,
+          "call": {
+            "module": "rules",
+            "name": "overlaps",
+            "args": [
+              [
+                24,
+                0,
+                16,
+                16
+              ],
+              [
+                24,
+                40,
+                12,
+                72
+              ]
+            ]
+          },
+          "check": "_error is None and (_return is False)"
+        },
+        {
+          "moduleOnly": true,
+          "call": {
+            "module": "rules",
+            "name": "overlaps",
+            "args": [
+              [
+                24,
+                130,
+                16,
+                16
+              ],
+              [
+                24,
+                40,
+                12,
+                72
+              ]
+            ]
+          },
+          "check": "_error is None and (_return is False)"
+        },
+        {
+          "moduleOnly": true,
+          "call": {
+            "module": "rules",
+            "name": "overlaps",
+            "args": [
+              [
+                0,
+                60,
+                16,
+                16
+              ],
+              [
+                24,
+                40,
+                12,
+                72
+              ]
+            ]
+          },
+          "check": "_error is None and (_return is False)"
+        },
+        {
+          "moduleOnly": true,
+          "call": {
+            "module": "rules",
+            "name": "overlaps",
+            "args": [
+              [
+                50,
+                60,
+                16,
+                16
+              ],
+              [
+                24,
+                40,
+                12,
+                72
+              ]
+            ]
+          },
+          "check": "_error is None and (_return is False)"
+        }
+      ]
+    },
+    {
+      "id": "python-v2-10-01-step-3",
+      "task": {
+        "en": "Treat touching edges as a miss and leave both input sequences unchanged. Try the corners in the preview.",
+        "nl": "Behandel rakende randen als een misser en laat beide invoerreeksen ongemoeid. Probeer de hoeken in het voorbeeld."
+      },
+      "check": "_rendered_frames > 0",
+      "hint": {
+        "en": "A zero-width overlap has no area.",
+        "nl": "Overlap met breedte nul heeft geen oppervlakte."
+      },
+      "hints": [
+        {
+          "en": "A zero-width overlap has no area.",
+          "nl": "Overlap met breedte nul heeft geen oppervlakte."
+        },
+        {
+          "en": "Rect uses an exclusive right and bottom edge for collision.",
+          "nl": "Rect gebruikt een exclusieve rechter- en onderrand voor botsingen."
+        },
+        {
+          "en": "Creating a Rect from a list need not edit that list.",
+          "nl": "Een Rect uit een lijst maken hoeft die lijst niet te veranderen."
+        }
+      ],
+      "feedback": {
+        "en": "Respect edge-only contact and preserve the inputs.",
+        "nl": "Respecteer contact met alleen de rand en behoud de invoer."
+      },
+      "probes": [
+        {
+          "moduleOnly": true,
+          "call": {
+            "module": "rules",
+            "name": "overlaps",
+            "args": [
+              [
+                36,
+                60,
+                16,
+                16
+              ],
+              [
+                24,
+                40,
+                12,
+                72
+              ]
+            ]
+          },
+          "check": "_error is None and (_return is False and _args == [[36,60,16,16],[24,40,12,72]])"
+        },
+        {
+          "moduleOnly": true,
+          "call": {
+            "module": "rules",
+            "name": "overlaps",
+            "args": [
+              [
+                24,
+                112,
+                16,
+                16
+              ],
+              [
+                24,
+                40,
+                12,
+                72
+              ]
+            ]
+          },
+          "check": "_error is None and (_return is False)"
+        }
+      ]
+    }
+  ],
+  "inputs": [],
+  "solutionNote": {
+    "en": "This is one valid approach. Compare the reasoning with your own code before choosing whether to use it. Other implementations can satisfy the same behavior.",
+    "nl": "Dit is één geldige aanpak. Vergelijk de redenering met je eigen code voordat je besluit die te gebruiken. Andere implementaties kunnen aan hetzelfde gedrag voldoen."
+  }
+}

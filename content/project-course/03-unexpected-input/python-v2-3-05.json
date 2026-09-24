@@ -1,0 +1,216 @@
+{
+  "id": "python-v2-3-05",
+  "chapter": 3,
+  "group": "python-v2-module-3",
+  "title": {
+    "en": "Build a trustworthy temperature converter",
+    "nl": "Bouw een betrouwbare temperatuuromzetter"
+  },
+  "kind": "coding",
+  "optional": false,
+  "runtime": "terminal",
+  "guidance": "independent",
+  "estimatedMinutes": 22,
+  "explanation": {
+    "en": "A field team records temperatures in Celsius and Fahrenheit. Build a one-shot converter that asks for the source unit first, then a temperature. It should handle imperfect input without making up a result. This is a small independent program: decide how to organise its branches and exception handling.",
+    "nl": "Een veldteam registreert temperaturen in Celsius en Fahrenheit. Bouw een omzetter voor één meting die eerst de broneenheid vraagt en daarna de temperatuur. De omzetter moet onvolmaakte invoer afhandelen zonder een resultaat te verzinnen. Dit is een klein zelfstandig programma: bepaal zelf hoe je vertakkingen en foutafhandeling organiseert."
+  },
+  "sections": [
+    {
+      "heading": {
+        "en": "The contract",
+        "nl": "De afspraken"
+      },
+      "body": {
+        "en": "Accept C or F in any letter case with surrounding spaces. Read both responses, even when the unit is unknown. Store a numeric result for success and None for failure. Use status \"ok\", \"unknown unit\", or \"invalid number\". An unknown unit takes priority over invalid numeric text. Display the status; on success display the result to two decimals. Prompt wording and report layout are yours.",
+        "nl": "Accepteer C of F met elke combinatie van hoofdletters en spaties aan de randen. Lees beide antwoorden, ook wanneer de eenheid onbekend is. Bewaar een numeriek result bij succes en None bij fouten. Gebruik status \"ok\", \"unknown unit\" of \"invalid number\". Een onbekende eenheid heeft voorrang op ongeldige getaltekst. Toon de status; toon bij succes het resultaat met twee decimalen. De invoervragen en indeling kies je zelf."
+      }
+    },
+    {
+      "heading": {
+        "en": "The relationship",
+        "nl": "Het verband"
+      },
+      "body": {
+        "en": "Celsius to Fahrenheit: multiply by 9/5, then add 32. Fahrenheit to Celsius: subtract 32, then multiply by 5/9. Useful checks: 0 C becomes 32 F, 212 F becomes 100 C, and −40 has the same value in both systems. Negative temperatures are normal, not errors.",
+        "nl": "Celsius naar Fahrenheit: vermenigvuldig met 9/5 en tel dan 32 op. Fahrenheit naar Celsius: trek 32 af en vermenigvuldig dan met 5/9. Nuttige controles: 0 C wordt 32 F, 212 F wordt 100 C en −40 heeft in beide systemen dezelfde waarde. Negatieve temperaturen zijn normaal, geen fouten."
+      }
+    }
+  ],
+  "example": "",
+  "files": {
+    "main.py": "# Read a unit and temperature, then report a trustworthy result.\n"
+  },
+  "solution": {
+    "main.py": "unit = input(\"Source unit (C/F): \").strip().lower()\ntext = input(\"Temperature: \")\nresult = None\nif unit != \"c\" and unit != \"f\":\n    status = \"unknown unit\"\nelse:\n    try:\n        value = float(text)\n        if unit == \"c\":\n            result = value * 9 / 5 + 32\n        else:\n            result = (value - 32) * 5 / 9\n        status = \"ok\"\n    except ValueError:\n        status = \"invalid number\"\nprint(status)\nif status == \"ok\":\n    print(f\"{result:.2f}\")\n"
+  },
+  "checkpoints": [
+    {
+      "id": "python-v2-3-05-step-1",
+      "task": {
+        "en": "Make both conversions work with valid input. Preserve the numeric result for inspection in the console.",
+        "nl": "Laat beide omzettingen werken met geldige invoer. Bewaar het numerieke result voor inspectie in de console."
+      },
+      "check": "status in (\"ok\", \"unknown unit\", \"invalid number\") and (status != \"ok\" or isinstance(result, (int, float)))",
+      "hint": {
+        "en": "Work out one example by hand before writing the branches.",
+        "nl": "Reken eerst één voorbeeld met de hand uit voordat je de vertakkingen schrijft."
+      },
+      "hints": [
+        {
+          "en": "Work out one example by hand before writing the branches.",
+          "nl": "Reken eerst één voorbeeld met de hand uit voordat je de vertakkingen schrijft."
+        },
+        {
+          "en": "Clean the unit, convert the temperature, and select the appropriate relationship.",
+          "nl": "Schoon de eenheid op, zet de temperatuur om en kies het juiste verband."
+        },
+        {
+          "en": "Parentheses in (value - 32) make the subtraction happen before multiplication.",
+          "nl": "Haakjes in (value - 32) zorgen dat de aftrekking vóór de vermenigvuldiging gebeurt."
+        }
+      ],
+      "feedback": {
+        "en": "Both units, negative values, and decimal values should convert correctly.",
+        "nl": "Beide eenheden, negatieve waarden en decimale waarden moeten correct worden omgezet."
+      },
+      "probes": [
+        {
+          "stdin": [
+            " C ",
+            "0"
+          ],
+          "check": "_error is None and status == \"ok\" and _close(result, 32)"
+        },
+        {
+          "stdin": [
+            "f",
+            "212"
+          ],
+          "check": "_error is None and status == \"ok\" and _close(result, 100)"
+        },
+        {
+          "stdin": [
+            "c",
+            "-40"
+          ],
+          "check": "_error is None and _close(result, -40)"
+        },
+        {
+          "stdin": [
+            "F",
+            "33.8"
+          ],
+          "check": "_error is None and _close(result, 1)"
+        }
+      ]
+    },
+    {
+      "id": "python-v2-3-05-step-2",
+      "task": {
+        "en": "Report unknown units and invalid numbers with the specified status, leaving result as None. Respect the stated priority when both are invalid.",
+        "nl": "Meld onbekende eenheden en ongeldige getallen met de afgesproken status en laat result op None staan. Houd de genoemde voorrang aan wanneer beide ongeldig zijn."
+      },
+      "check": "status in _stdout and (status == \"ok\" or result is None)",
+      "hint": {
+        "en": "Decide which question the program should settle first.",
+        "nl": "Bepaal welke vraag het programma eerst moet oplossen."
+      },
+      "hints": [
+        {
+          "en": "Decide which question the program should settle first.",
+          "nl": "Bepaal welke vraag het programma eerst moet oplossen."
+        },
+        {
+          "en": "An unknown unit does not require trying to interpret a temperature.",
+          "nl": "Bij een onbekende eenheid hoef je de temperatuur niet te proberen te interpreteren."
+        },
+        {
+          "en": "The ratio tool kept None for failure and caught the conversion’s ValueError.",
+          "nl": "De verhoudingstool behield None bij fouten en ving ValueError van de conversie op."
+        }
+      ],
+      "feedback": {
+        "en": "Failures need distinct, predictable outcomes without a traceback.",
+        "nl": "Fouten moeten onderscheidbare, voorspelbare uitkomsten zonder traceback krijgen."
+      },
+      "probes": [
+        {
+          "stdin": [
+            "Kelvin",
+            "10"
+          ],
+          "check": "_error is None and status == \"unknown unit\" and result is None"
+        },
+        {
+          "stdin": [
+            "c",
+            "warm"
+          ],
+          "check": "_error is None and status == \"invalid number\" and result is None"
+        },
+        {
+          "stdin": [
+            "",
+            ""
+          ],
+          "check": "_error is None and status == \"unknown unit\" and result is None and _remaining_input == \"\""
+        }
+      ]
+    },
+    {
+      "id": "python-v2-3-05-step-3",
+      "task": {
+        "en": "Finish the report: always show status and show a two-decimal result only on success. Try a successful conversion followed by a failed one in separate runs.",
+        "nl": "Maak het overzicht af: toon altijd status en alleen bij succes een resultaat met twee decimalen. Probeer in aparte runs een geslaagde en daarna een mislukte omzetting."
+      },
+      "check": "status in _stdout and (status != \"ok\" or f\"{result:.2f}\" in _stdout)",
+      "hint": {
+        "en": "A success report and an error report carry different information.",
+        "nl": "Een succesoverzicht en een foutoverzicht bevatten verschillende informatie."
+      },
+      "hints": [
+        {
+          "en": "A success report and an error report carry different information.",
+          "nl": "Een succesoverzicht en een foutoverzicht bevatten verschillende informatie."
+        },
+        {
+          "en": "Use the status or result availability to decide whether a number belongs in the report.",
+          "nl": "Gebruik de status of beschikbaarheid van een resultaat om te bepalen of een getal in het overzicht hoort."
+        },
+        {
+          "en": "Formatting belongs at display time, so the console can still inspect a numeric result.",
+          "nl": "Formatteren hoort bij de weergave, zodat de console nog een numeriek resultaat kan inspecteren."
+        }
+      ],
+      "feedback": {
+        "en": "The displayed result must agree with the outcome of this run.",
+        "nl": "Het getoonde resultaat moet overeenkomen met de uitkomst van deze run."
+      },
+      "probes": [
+        {
+          "stdin": [
+            "f",
+            "32"
+          ],
+          "check": "_error is None and \"ok\" in _stdout and \"0.00\" in _stdout"
+        },
+        {
+          "stdin": [
+            "c",
+            "bad"
+          ],
+          "check": "_error is None and \"invalid number\" in _stdout and result is None and \"None\" not in _stdout"
+        }
+      ]
+    }
+  ],
+  "inputs": [
+    "C",
+    "18"
+  ],
+  "solutionNote": {
+    "en": "There are several sensible branch structures. The checks exercise outcomes and input combinations rather than requiring this arrangement. A larger program could separate conversion from interaction; that is coming in the functions module.",
+    "nl": "Er zijn meerdere logische vertakkingsstructuren. De controles testen uitkomsten en invoercombinaties in plaats van deze indeling te eisen. Een groter programma kan omzetting van interactie scheiden; dat komt in de functiemodule."
+  }
+}

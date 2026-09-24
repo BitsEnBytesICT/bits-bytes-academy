@@ -1,0 +1,292 @@
+{
+  "id": "python-v2-9-03",
+  "chapter": 9,
+  "group": "python-v2-module-9",
+  "title": {
+    "en": "Keep the whole paddle inside",
+    "nl": "Houd de hele paddle binnen"
+  },
+  "kind": "coding",
+  "optional": false,
+  "runtime": "pygame",
+  "guidance": "guided",
+  "estimatedMinutes": 20,
+  "explanation": {
+    "en": "The paddle should reach a boundary and stay there, even during a large update. Repair move_paddle so it accounts for the paddle’s height. Testing only whether its top has reached the bottom edge leaves most of it outside the court.",
+    "nl": "De paddle moet een grens bereiken en daar blijven, ook tijdens een grote update. Repareer move_paddle zodat de paddlehoogte meetelt. Alleen controleren of zijn bovenkant de onderrand bereikt laat het grootste deel buiten het veld."
+  },
+  "sections": [
+    {
+      "heading": {
+        "en": "Clamp the proposed position",
+        "nl": "Begrens de voorgestelde positie"
+      },
+      "body": {
+        "en": "move_paddle(y, direction, speed, dt, court_height, paddle_height) returns the next top coordinate. First consider the requested movement, then restrict it to the legal interval. Top cannot be below zero; bottom is top + paddle_height and cannot exceed court_height. All supplied time intervals are nonnegative and the paddle fits in the court. Handle even a one-second test step; do not rely on main.py’s usual time cap.",
+        "nl": "move_paddle(y, direction, speed, dt, court_height, paddle_height) geeft de volgende bovenkantcoördinaat terug. Bekijk eerst de gevraagde beweging en begrens die daarna tot het toegestane interval. Boven mag niet onder nul komen; onder is boven + paddle_height en mag court_height niet overschrijden. Alle tijdsintervallen zijn niet-negatief en de paddle past in het veld. Handel zelfs een teststap van één seconde af; vertrouw niet op de gebruikelijke tijdslimiet van main.py."
+      }
+    },
+    {
+      "heading": {
+        "en": "Speed is not distance per frame",
+        "nl": "Snelheid is geen afstand per beeld"
+      },
+      "body": {
+        "en": "Velocity describes pixels per second. Multiply it by elapsed seconds to obtain this frame’s displacement. Clock.tick() reports milliseconds, so main.py divides by 1000. It also caps the interval at 0.05 seconds to avoid a large jump after focus returns. Keep positions as floats while updating; convert to integers only for drawing. Rounding every update can make slow motion disappear.",
+        "nl": "Snelheid beschrijft pixels per seconde. Vermenigvuldig die met verstreken seconden voor de verplaatsing van dit beeld. Clock.tick() geeft milliseconden; main.py deelt daarom door 1000. Het begrenst het interval ook op 0,05 seconde om een grote sprong na terugkerende focus te voorkomen. Houd posities tijdens bijwerken als floats; zet ze alleen voor tekenen om naar integers. Elke update afronden kan langzame beweging laten verdwijnen."
+      },
+      "code": "distance = 150 * 0.02\nprint(distance)",
+      "output": "3.0"
+    },
+    {
+      "heading": {
+        "en": "Run, observe, then finish",
+        "nl": "Voer uit, bekijk en rond af"
+      },
+      "body": {
+        "en": "Run starts main.py and opens the game preview. Click the preview to use the keyboard. Clicking elsewhere pauses the game. Finish & check sends the normal close event and checks your helper functions after the loop exits; Stop interrupts without grading. The supplied async loop gives the browser time to draw and receive input. Keep await asyncio.sleep(1 / 60) inside that loop. You do not need to learn asynchronous programming in depth yet.",
+        "nl": "Run start main.py en opent het spelvoorbeeld. Klik op het voorbeeld om het toetsenbord te gebruiken. Elders klikken pauzeert het spel. Afronden en controleren stuurt de normale sluitgebeurtenis en controleert je hulpfuncties nadat de lus eindigt; Stop onderbreekt zonder beoordeling. De meegeleverde async-lus geeft de browser tijd om te tekenen en invoer te ontvangen. Houd await asyncio.sleep(1 / 60) binnen die lus. Je hoeft asynchroon programmeren nog niet uitgebreid te leren."
+      }
+    }
+  ],
+  "example": "",
+  "files": {
+    "main.py": "import asyncio\nimport pygame\nimport motion\n\nasync def main():\n    pygame.init()\n    screen = pygame.display.set_mode((640, 400))\n    clock = pygame.time.Clock()\n    running = True\n    y = 164.0\n    while running:\n        for event in pygame.event.get():\n            if event.type == pygame.QUIT or (event.type == pygame.KEYDOWN and event.key == pygame.K_ESCAPE):\n                running = False\n        # Seconds, capped to avoid a large jump after pausing the preview.\n        dt = min(clock.tick() / 1000, 0.05)\n        keys = pygame.key.get_pressed()\n        direction = int(bool(keys[pygame.K_s])) - int(bool(keys[pygame.K_w]))\n        y = motion.move_paddle(y, direction, 240, dt, 400, 72)\n        screen.fill((16, 23, 39))\n        pygame.draw.rect(screen, (80, 180, 255), (24, round(y), 12, 72))\n        pygame.display.flip()\n        await asyncio.sleep(1 / 60)\n    pygame.quit()\n\nasyncio.run(main())\n",
+    "motion.py": "def move_paddle(y, direction, speed, dt, court_height, paddle_height):\n    proposed = y + direction * speed * dt\n    if proposed < 0:\n        return 0\n    if proposed > court_height:\n        return court_height\n    return proposed\n"
+  },
+  "solution": {
+    "main.py": "import asyncio\nimport pygame\nimport motion\n\nasync def main():\n    pygame.init()\n    screen = pygame.display.set_mode((640, 400))\n    clock = pygame.time.Clock()\n    running = True\n    y = 164.0\n    while running:\n        for event in pygame.event.get():\n            if event.type == pygame.QUIT or (event.type == pygame.KEYDOWN and event.key == pygame.K_ESCAPE):\n                running = False\n        # Seconds, capped to avoid a large jump after pausing the preview.\n        dt = min(clock.tick() / 1000, 0.05)\n        keys = pygame.key.get_pressed()\n        direction = int(bool(keys[pygame.K_s])) - int(bool(keys[pygame.K_w]))\n        y = motion.move_paddle(y, direction, 240, dt, 400, 72)\n        screen.fill((16, 23, 39))\n        pygame.draw.rect(screen, (80, 180, 255), (24, round(y), 12, 72))\n        pygame.display.flip()\n        await asyncio.sleep(1 / 60)\n    pygame.quit()\n\nasyncio.run(main())\n",
+    "motion.py": "def move_paddle(y, direction, speed, dt, court_height, paddle_height):\n    proposed = y + direction * speed * dt\n    return max(0, min(court_height - paddle_height, proposed))\n"
+  },
+  "checkpoints": [
+    {
+      "id": "python-v2-9-03-step-1",
+      "task": {
+        "en": "Preserve normal movement and fractional coordinates away from the edges.",
+        "nl": "Behoud normale beweging en decimale coördinaten weg van de randen."
+      },
+      "check": "_rendered_frames > 0",
+      "hint": {
+        "en": "A boundary rule should not alter already legal movement.",
+        "nl": "Een grensregel mag al toegestane beweging niet veranderen."
+      },
+      "hints": [
+        {
+          "en": "A boundary rule should not alter already legal movement.",
+          "nl": "Een grensregel mag al toegestane beweging niet veranderen."
+        },
+        {
+          "en": "Compare the proposed coordinate to the legal interval.",
+          "nl": "Vergelijk de voorgestelde coördinaat met het toegestane interval."
+        },
+        {
+          "en": "Keep the result as a number; drawing handles rounding.",
+          "nl": "Houd het resultaat als getal; het tekenen regelt afronding."
+        }
+      ],
+      "feedback": {
+        "en": "Use speed and elapsed seconds without premature rounding.",
+        "nl": "Gebruik snelheid en verstreken seconden zonder te vroeg af te ronden."
+      },
+      "probes": [
+        {
+          "moduleOnly": true,
+          "call": {
+            "module": "motion",
+            "name": "move_paddle",
+            "args": [
+              100,
+              1,
+              75,
+              0.1,
+              400,
+              72
+            ]
+          },
+          "check": "_error is None and (abs(_return - (107.5)) < 1e-7)"
+        },
+        {
+          "moduleOnly": true,
+          "call": {
+            "module": "motion",
+            "name": "move_paddle",
+            "args": [
+              100,
+              -1,
+              50,
+              0.25,
+              400,
+              72
+            ]
+          },
+          "check": "_error is None and (abs(_return - (87.5)) < 1e-7)"
+        }
+      ]
+    },
+    {
+      "id": "python-v2-9-03-step-2",
+      "task": {
+        "en": "Stop at the top boundary, including a large overshoot. Zero movement must preserve a legal position.",
+        "nl": "Stop bij de bovengrens, ook bij een grote overschrijding. Geen beweging moet een toegestane positie behouden."
+      },
+      "check": "_rendered_frames > 0",
+      "hint": {
+        "en": "A proposed coordinate may jump past the boundary in one update.",
+        "nl": "Een voorgestelde coördinaat kan in één update voorbij de grens springen."
+      },
+      "hints": [
+        {
+          "en": "A proposed coordinate may jump past the boundary in one update.",
+          "nl": "Een voorgestelde coördinaat kan in één update voorbij de grens springen."
+        },
+        {
+          "en": "Use the boundary itself as the limited result.",
+          "nl": "Gebruik de grens zelf als begrensd resultaat."
+        },
+        {
+          "en": "Do not merely reverse direction after the paddle has left the court.",
+          "nl": "Keer niet alleen de richting om nadat de paddle het veld heeft verlaten."
+        }
+      ],
+      "feedback": {
+        "en": "Never return a negative top coordinate.",
+        "nl": "Geef nooit een negatieve bovenkantcoördinaat terug."
+      },
+      "probes": [
+        {
+          "moduleOnly": true,
+          "call": {
+            "module": "motion",
+            "name": "move_paddle",
+            "args": [
+              3,
+              -1,
+              240,
+              1,
+              400,
+              72
+            ]
+          },
+          "check": "_error is None and (_return == 0)"
+        },
+        {
+          "moduleOnly": true,
+          "call": {
+            "module": "motion",
+            "name": "move_paddle",
+            "args": [
+              0,
+              -1,
+              240,
+              0.1,
+              400,
+              72
+            ]
+          },
+          "check": "_error is None and (_return == 0)"
+        },
+        {
+          "moduleOnly": true,
+          "call": {
+            "module": "motion",
+            "name": "move_paddle",
+            "args": [
+              17.5,
+              0,
+              240,
+              1,
+              400,
+              72
+            ]
+          },
+          "check": "_error is None and (_return == 17.5)"
+        }
+      ]
+    },
+    {
+      "id": "python-v2-9-03-step-3",
+      "task": {
+        "en": "Keep the entire paddle above the bottom edge at different court and paddle sizes. Test both boundaries in the preview.",
+        "nl": "Houd de hele paddle boven de onderrand bij verschillende veld- en paddlegroottes. Test beide grenzen in het voorbeeld."
+      },
+      "check": "_rendered_frames > 0",
+      "hint": {
+        "en": "The returned coordinate describes the top, not the bottom.",
+        "nl": "De teruggegeven coördinaat beschrijft de bovenkant, niet de onderkant."
+      },
+      "hints": [
+        {
+          "en": "The returned coordinate describes the top, not the bottom.",
+          "nl": "De teruggegeven coördinaat beschrijft de bovenkant, niet de onderkant."
+        },
+        {
+          "en": "Find the highest legal top coordinate from the two heights.",
+          "nl": "Bepaal uit de twee hoogtes de hoogste toegestane bovenkantcoördinaat."
+        },
+        {
+          "en": "A 30-pixel object in a 100-pixel container can start at most at 70.",
+          "nl": "Een object van 30 pixels in een container van 100 pixels kan maximaal op 70 beginnen."
+        }
+      ],
+      "feedback": {
+        "en": "Subtract paddle height when finding the lower limit.",
+        "nl": "Trek de paddlehoogte af bij het bepalen van de ondergrens."
+      },
+      "probes": [
+        {
+          "moduleOnly": true,
+          "call": {
+            "module": "motion",
+            "name": "move_paddle",
+            "args": [
+              310,
+              1,
+              240,
+              1,
+              400,
+              72
+            ]
+          },
+          "check": "_error is None and (_return == 328)"
+        },
+        {
+          "moduleOnly": true,
+          "call": {
+            "module": "motion",
+            "name": "move_paddle",
+            "args": [
+              150,
+              1,
+              80,
+              1,
+              240,
+              90
+            ]
+          },
+          "check": "_error is None and (_return == 150)"
+        },
+        {
+          "moduleOnly": true,
+          "call": {
+            "module": "motion",
+            "name": "move_paddle",
+            "args": [
+              0,
+              1,
+              80,
+              1,
+              72,
+              72
+            ]
+          },
+          "check": "_error is None and (_return == 0)"
+        }
+      ]
+    }
+  ],
+  "inputs": [],
+  "solutionNote": {
+    "en": "This is one valid approach. Compare the reasoning with your own code before choosing whether to use it. Other implementations can satisfy the same behavior.",
+    "nl": "Dit is één geldige aanpak. Vergelijk de redenering met je eigen code voordat je besluit die te gebruiken. Andere implementaties kunnen aan hetzelfde gedrag voldoen."
+  }
+}

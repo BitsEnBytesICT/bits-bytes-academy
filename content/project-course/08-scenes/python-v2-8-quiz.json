@@ -1,0 +1,229 @@
+{
+  "id": "python-v2-8-quiz",
+  "chapter": 8,
+  "group": "python-v2-module-8",
+  "kind": "quiz",
+  "optional": false,
+  "title": {
+    "en": "Review: scenes and events",
+    "nl": "Herhaling: scènes en gebeurtenissen"
+  },
+  "estimatedMinutes": 5,
+  "questions": [
+    {
+      "id": "v2-8-q1",
+      "prompt": {
+        "en": "The ball is drawn, then the background is filled. What is visible?",
+        "nl": "De bal wordt getekend, daarna wordt de achtergrond gevuld. Wat is zichtbaar?"
+      },
+      "choices": [
+        {
+          "id": "a",
+          "label": {
+            "en": "Only the background.",
+            "nl": "Alleen de achtergrond."
+          },
+          "reason": {
+            "en": "The later fill covers the ball pixels.",
+            "nl": "De latere fill bedekt de balpixels."
+          }
+        },
+        {
+          "id": "b",
+          "label": {
+            "en": "Both, because pygame remembers the ball.",
+            "nl": "Beide, want pygame onthoudt de bal."
+          },
+          "reason": {
+            "en": "A Surface stores pixels, not the meaning of previous objects.",
+            "nl": "Een Surface bewaart pixels, niet de betekenis van eerdere objecten."
+          }
+        },
+        {
+          "id": "c",
+          "label": {
+            "en": "A ball with a transparent background.",
+            "nl": "Een bal met een transparante achtergrond."
+          },
+          "reason": {
+            "en": "A normal fill replaces those pixels.",
+            "nl": "Een gewone fill vervangt die pixels."
+          }
+        }
+      ],
+      "answer": "a"
+    },
+    {
+      "id": "v2-8-q2",
+      "prompt": {
+        "en": "A 12-pixel paddle must leave 24 pixels clear on the right of a 640-pixel court. What is its left coordinate?",
+        "nl": "Een paddle van 12 pixels moet rechts 24 pixels vrijlaten op een veld van 640 pixels. Wat is zijn linkercoördinaat?"
+      },
+      "choices": [
+        {
+          "id": "a",
+          "label": {
+            "en": "604",
+            "nl": "604"
+          },
+          "reason": {
+            "en": "640 − 24 − 12 leaves the full outside gap.",
+            "nl": "640 − 24 − 12 laat de volledige buitenruimte vrij."
+          }
+        },
+        {
+          "id": "b",
+          "label": {
+            "en": "616",
+            "nl": "616"
+          },
+          "reason": {
+            "en": "That is the desired right edge, not the left.",
+            "nl": "Dat is de gewenste rechterrand, niet de linkerrand."
+          }
+        },
+        {
+          "id": "c",
+          "label": {
+            "en": "628",
+            "nl": "628"
+          },
+          "reason": {
+            "en": "That places the paddle against the court edge.",
+            "nl": "Dat plaatst de paddle tegen de veldrand."
+          }
+        }
+      ],
+      "answer": "a"
+    },
+    {
+      "id": "v2-8-q3",
+      "prompt": {
+        "en": "Why can a Space key press cause two toggles in a careless event handler?",
+        "nl": "Waarom kan Space indrukken twee omschakelingen veroorzaken in een onzorgvuldige gebeurtenisafhandeling?"
+      },
+      "choices": [
+        {
+          "id": "a",
+          "label": {
+            "en": "It handles both KEYDOWN and KEYUP as a press.",
+            "nl": "Het behandelt zowel KEYDOWN als KEYUP als indrukken."
+          },
+          "reason": {
+            "en": "The release is a separate event; inspect its type.",
+            "nl": "Loslaten is een afzonderlijke gebeurtenis; controleer het type."
+          }
+        },
+        {
+          "id": "b",
+          "label": {
+            "en": "A Boolean cannot be toggled once.",
+            "nl": "Een Boolean kan niet één keer omschakelen."
+          },
+          "reason": {
+            "en": "not paused toggles a Boolean once whenever it runs.",
+            "nl": "not paused schakelt een Boolean om telkens wanneer het wordt uitgevoerd."
+          }
+        },
+        {
+          "id": "c",
+          "label": {
+            "en": "display.flip changes the Boolean.",
+            "nl": "display.flip verandert de Boolean."
+          },
+          "reason": {
+            "en": "Presenting a frame does not alter your pause flag.",
+            "nl": "Een beeld tonen verandert je pauzevlag niet."
+          }
+        }
+      ],
+      "answer": "a"
+    },
+    {
+      "id": "v2-8-q4",
+      "prompt": {
+        "en": "What does the await inside the browser game loop make possible?",
+        "nl": "Wat maakt de await in de browserspellus mogelijk?"
+      },
+      "choices": [
+        {
+          "id": "a",
+          "label": {
+            "en": "The browser can process drawing and input between iterations.",
+            "nl": "De browser kan tussen iteraties tekenen en invoer verwerken."
+          },
+          "reason": {
+            "en": "The task cooperatively yields rather than occupying the main thread continuously.",
+            "nl": "De taak staat vrijwillig tijd af in plaats van de hoofdthread voortdurend te bezetten."
+          }
+        },
+        {
+          "id": "b",
+          "label": {
+            "en": "Every computer runs at exactly 60 frames per second.",
+            "nl": "Elke computer draait precies op 60 beelden per seconde."
+          },
+          "reason": {
+            "en": "Scheduling and workload vary; elapsed time still needs measuring.",
+            "nl": "Planning en werklast verschillen; verstreken tijd moet nog steeds worden gemeten."
+          }
+        },
+        {
+          "id": "c",
+          "label": {
+            "en": "All variables reset after every frame.",
+            "nl": "Alle variabelen worden na elk beeld gewist."
+          },
+          "reason": {
+            "en": "Suspending preserves the task’s state.",
+            "nl": "Onderbreken behoudt de toestand van de taak."
+          }
+        }
+      ],
+      "answer": "a"
+    },
+    {
+      "id": "v2-8-q5",
+      "prompt": {
+        "en": "What should you do to check a graphical exercise after trying its preview?",
+        "nl": "Wat doe je om een grafische oefening te controleren nadat je het voorbeeld hebt geprobeerd?"
+      },
+      "choices": [
+        {
+          "id": "a",
+          "label": {
+            "en": "Use Finish & check, or handle the normal close event.",
+            "nl": "Gebruik Afronden en controleren, of handel de normale sluitgebeurtenis af."
+          },
+          "reason": {
+            "en": "A successful normal exit lets the website check the exercise.",
+            "nl": "Na normaal afsluiten kan de website de oefening controleren."
+          }
+        },
+        {
+          "id": "b",
+          "label": {
+            "en": "Use Stop; interruption always awards completion.",
+            "nl": "Gebruik Stop; onderbreken levert altijd voltooiing op."
+          },
+          "reason": {
+            "en": "Stop is an emergency interruption and does not grade.",
+            "nl": "Stop is een noodonderbreking en beoordeelt niet."
+          }
+        },
+        {
+          "id": "c",
+          "label": {
+            "en": "Type the expected answer in the console.",
+            "nl": "Typ het verwachte antwoord in de console."
+          },
+          "reason": {
+            "en": "Console experiments do not award exercise completion.",
+            "nl": "Console-experimenten leveren geen oefeningsvoltooiing op."
+          }
+        }
+      ],
+      "answer": "a"
+    }
+  ]
+}

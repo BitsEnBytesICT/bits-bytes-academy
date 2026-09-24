@@ -1,0 +1,182 @@
+{
+  "id": "python-v2-5-01",
+  "chapter": 5,
+  "group": "python-v2-module-5",
+  "title": {
+    "en": "Give repeated work a name",
+    "nl": "Geef herhaald werk een naam"
+  },
+  "kind": "coding",
+  "optional": false,
+  "runtime": "terminal",
+  "guidance": "guided",
+  "estimatedMinutes": 14,
+  "explanation": {
+    "en": "Two rooms display the same style of notice. Copying the formatting into every place makes a later change easy to miss. Create a function that owns the format and accepts the part that varies. Defining the function alone should not display a notice: calling it should.",
+    "nl": "Twee ruimtes tonen dezelfde stijl van bericht. De opmaak naar elke plek kopiëren maakt het gemakkelijk om later een wijziging te missen. Maak een functie die de opmaak beheert en het veranderlijke deel accepteert. Alleen de functie definiëren mag geen bericht tonen: de aanroep moet dat doen."
+  },
+  "sections": [
+    {
+      "heading": {
+        "en": "Define once, call when needed",
+        "nl": "Definieer één keer, roep aan wanneer nodig"
+      },
+      "body": {
+        "en": "def creates a function. Its indented body runs when the function is called, not when it is defined. Parameters name the values it receives. Arguments are the actual values supplied by a call. Put the definition before a call that needs it.",
+        "nl": "def maakt een functie. Het ingesprongen blok wordt uitgevoerd bij de aanroep, niet bij de definitie. Parameters geven de ontvangen waarden een naam. Argumenten zijn de werkelijke waarden die een aanroep meegeeft. Plaats de definitie vóór een aanroep die deze nodig heeft."
+      },
+      "code": "def announce(event):\n    print(\"Next event:\", event)\n\nannounce(\"Drawing\")\nannounce(\"Robotics\")",
+      "output": "Next event: Drawing\nNext event: Robotics"
+    },
+    {
+      "heading": {
+        "en": "One small responsibility",
+        "nl": "Eén kleine verantwoordelijkheid"
+      },
+      "body": {
+        "en": "notice(message) should print three lines: a line containing ---, the message, and another ---. Keep the message as a parameter instead of reading a global variable. Use the function for \"Quiet room\" and \"Workshop starts at 10\".",
+        "nl": "notice(message) moet drie regels afdrukken: een regel met ---, het bericht en nog een ---. Houd het bericht als parameter in plaats van een globale variabele te lezen. Gebruik de functie voor \"Quiet room\" en \"Workshop starts at 10\"."
+      }
+    }
+  ],
+  "example": "",
+  "files": {
+    "main.py": "print(\"---\")\nprint(\"Quiet room\")\nprint(\"---\")\n\nprint(\"---\")\nprint(\"Workshop starts at 10\")\nprint(\"---\")\n"
+  },
+  "solution": {
+    "main.py": "def notice(message):\n    print(\"---\")\n    print(message)\n    print(\"---\")\n\nnotice(\"Quiet room\")\nnotice(\"Workshop starts at 10\")\n"
+  },
+  "checkpoints": [
+    {
+      "id": "python-v2-5-01-step-1",
+      "task": {
+        "en": "Define notice(message) to print the three-line notice for any supplied message.",
+        "nl": "Definieer notice(message) om het bericht van drie regels voor elk meegegeven bericht af te drukken."
+      },
+      "check": "callable(notice)",
+      "hint": {
+        "en": "The format is stable; the message varies.",
+        "nl": "De opmaak blijft gelijk; het bericht verandert."
+      },
+      "hints": [
+        {
+          "en": "The format is stable; the message varies.",
+          "nl": "De opmaak blijft gelijk; het bericht verandert."
+        },
+        {
+          "en": "Put the repeated statements inside one function with a message parameter.",
+          "nl": "Plaats de herhaalde statements in één functie met een berichtparameter."
+        },
+        {
+          "en": "announce(event) uses the value supplied by its caller.",
+          "nl": "announce(event) gebruikt de waarde die de aanroeper meegeeft."
+        }
+      ],
+      "feedback": {
+        "en": "The function must use its argument, not a fixed example message.",
+        "nl": "De functie moet het argument gebruiken, niet een vast voorbeeldbericht."
+      },
+      "probes": [
+        {
+          "call": {
+            "name": "notice",
+            "args": [
+              "Library closes at 6"
+            ]
+          },
+          "check": "_error is None and _stdout.splitlines()[-3:] == [\"---\", \"Library closes at 6\", \"---\"]"
+        },
+        {
+          "call": {
+            "name": "notice",
+            "args": [
+              "Welkom, Zoë"
+            ]
+          },
+          "check": "_error is None and _stdout.splitlines()[-3:] == [\"---\", \"Welkom, Zoë\", \"---\"]"
+        }
+      ]
+    },
+    {
+      "id": "python-v2-5-01-step-2",
+      "task": {
+        "en": "Replace the two copied notices with function calls while preserving their order and exact displayed content.",
+        "nl": "Vervang de twee gekopieerde berichten door functieaanroepen en behoud hun volgorde en exacte getoonde inhoud."
+      },
+      "check": "callable(notice) and _stdout.splitlines() == [\"---\", \"Quiet room\", \"---\", \"---\", \"Workshop starts at 10\", \"---\"]",
+      "hint": {
+        "en": "A definition does nothing visible until called.",
+        "nl": "Een definitie doet niets zichtbaars totdat deze wordt aangeroepen."
+      },
+      "hints": [
+        {
+          "en": "A definition does nothing visible until called.",
+          "nl": "Een definitie doet niets zichtbaars totdat deze wordt aangeroepen."
+        },
+        {
+          "en": "Each call supplies one of the two original messages.",
+          "nl": "Elke aanroep geeft een van de twee oorspronkelijke berichten mee."
+        },
+        {
+          "en": "The announce example calls the same function twice with different arguments.",
+          "nl": "Het announce-voorbeeld roept dezelfde functie twee keer met verschillende argumenten aan."
+        }
+      ],
+      "feedback": {
+        "en": "Keep the two original notices and actually call the reusable function.",
+        "nl": "Behoud de twee oorspronkelijke berichten en roep de herbruikbare functie echt aan."
+      },
+      "probes": [
+        {
+          "check": "sum(isinstance(n, __import__(\"ast\").Call) and isinstance(n.func, __import__(\"ast\").Name) and n.func.id == \"notice\" for n in __import__(\"ast\").walk(__import__(\"ast\").parse(open(\"main.py\").read()))) >= 2"
+        }
+      ]
+    },
+    {
+      "id": "python-v2-5-01-step-3",
+      "task": {
+        "en": "Make an empty message produce an empty middle line without losing either border. Try notice(\"\") in the console after Run.",
+        "nl": "Laat een leeg bericht een lege middelste regel produceren zonder een rand te verliezen. Probeer notice(\"\") na Run in de console."
+      },
+      "check": "callable(notice)",
+      "hint": {
+        "en": "An empty string is still a valid message value.",
+        "nl": "Een lege string is nog steeds een geldige berichtwaarde."
+      },
+      "hints": [
+        {
+          "en": "An empty string is still a valid message value.",
+          "nl": "Een lege string is nog steeds een geldige berichtwaarde."
+        },
+        {
+          "en": "Do not make the borders conditional on the message being nonempty.",
+          "nl": "Maak de randen niet afhankelijk van het bericht dat niet leeg is."
+        },
+        {
+          "en": "print(\"\") prints a blank line.",
+          "nl": "print(\"\") drukt een lege regel af."
+        }
+      ],
+      "feedback": {
+        "en": "The format should stay consistent for empty text too.",
+        "nl": "De opmaak moet ook bij lege tekst consistent blijven."
+      },
+      "probes": [
+        {
+          "call": {
+            "name": "notice",
+            "args": [
+              ""
+            ]
+          },
+          "check": "_error is None and _stdout.splitlines()[-3:] == [\"---\", \"\", \"---\"]"
+        }
+      ]
+    }
+  ],
+  "inputs": [],
+  "solutionNote": {
+    "en": "This function deliberately prints: its job is presentation. The next lesson separates calculating a value from displaying it.",
+    "nl": "Deze functie drukt bewust af: de taak is presentatie. De volgende les scheidt het berekenen van een waarde van het tonen ervan."
+  }
+}

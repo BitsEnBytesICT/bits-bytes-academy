@@ -1,0 +1,201 @@
+{
+  "id": "python-v2-6-01",
+  "chapter": 6,
+  "group": "python-v2-module-6",
+  "title": {
+    "en": "Keep the results of several rounds",
+    "nl": "Bewaar de resultaten van meerdere rondes"
+  },
+  "kind": "coding",
+  "optional": false,
+  "runtime": "terminal",
+  "guidance": "guided",
+  "estimatedMinutes": 16,
+  "explanation": {
+    "en": "A practice game currently keeps only one score. A list lets it retain the sequence of results, so the latest round does not erase earlier rounds. Add the new score, inspect the updated history, and calculate a short summary.",
+    "nl": "Een oefenspel bewaart momenteel slechts één score. Met een lijst kan het de reeks resultaten bewaren, zodat de nieuwste ronde eerdere rondes niet wist. Voeg de nieuwe score toe, bekijk de bijgewerkte geschiedenis en bereken een kort overzicht."
+  },
+  "sections": [
+    {
+      "heading": {
+        "en": "One name, several ordered values",
+        "nl": "Eén naam, meerdere geordende waarden"
+      },
+      "body": {
+        "en": "A list stores values in order between square brackets. Indexes start at zero: values[0] is the first item. values[-1] is the last. Accessing an index that does not exist raises IndexError. len(values) counts the items; sum(values) adds numeric items.",
+        "nl": "Een lijst bewaart waarden op volgorde tussen vierkante haken. Indexen beginnen bij nul: values[0] is het eerste item. values[-1] is het laatste. Een index opvragen die niet bestaat veroorzaakt IndexError. len(values) telt de items; sum(values) telt numerieke items op."
+      },
+      "code": "times = [12, 9, 11]\nprint(times[0], times[-1])\nprint(len(times), sum(times))",
+      "output": "12 11\n3 32"
+    },
+    {
+      "heading": {
+        "en": "Append changes the existing list",
+        "nl": "append verandert de bestaande lijst"
+      },
+      "body": {
+        "en": "values.append(item) adds one item at the end. It changes the list and returns None; do not assign its return value back to the list. Appending to an empty list is valid. After adding one round, the history is guaranteed to contain at least one score.",
+        "nl": "values.append(item) voegt één item achteraan toe. De methode verandert de lijst en geeft None terug; ken die terugkeerwaarde niet aan de lijst toe. Aan een lege lijst toevoegen is geldig. Na één toegevoegde ronde bevat de geschiedenis gegarandeerd minstens één score."
+      },
+      "code": "times = []\ntimes.append(14)\nprint(times)",
+      "output": "[14]"
+    }
+  ],
+  "example": "",
+  "files": {
+    "main.py": "scores = [4, 7, 5]\nnew_score = 8\n\n# Keep the previous rounds and add this one.\nlatest = new_score\nrounds_played = 1\ntotal = new_score\nprint(\"Latest:\", latest)\nprint(\"Rounds:\", rounds_played)\nprint(\"Total:\", total)\n"
+  },
+  "solution": {
+    "main.py": "scores = [4, 7, 5]\nnew_score = 8\nscores.append(new_score)\nlatest = scores[-1]\nrounds_played = len(scores)\ntotal = sum(scores)\nprint(\"Latest:\", latest)\nprint(\"Rounds:\", rounds_played)\nprint(\"Total:\", total)\n"
+  },
+  "checkpoints": [
+    {
+      "id": "python-v2-6-01-step-1",
+      "task": {
+        "en": "Add new_score to the end of scores while preserving previous scores in order.",
+        "nl": "Voeg new_score achteraan scores toe en behoud eerdere scores op volgorde."
+      },
+      "check": "isinstance(scores, list) and len(scores) > 0 and scores[-1] == new_score",
+      "hint": {
+        "en": "The new round should extend history rather than replace it.",
+        "nl": "De nieuwe ronde moet de geschiedenis uitbreiden in plaats van vervangen."
+      },
+      "hints": [
+        {
+          "en": "The new round should extend history rather than replace it.",
+          "nl": "De nieuwe ronde moet de geschiedenis uitbreiden in plaats van vervangen."
+        },
+        {
+          "en": "Use a list operation that adds at the end.",
+          "nl": "Gebruik een lijstbewerking die achteraan toevoegt."
+        },
+        {
+          "en": "times.append(14) changes times; its return value is not the updated list.",
+          "nl": "times.append(14) verandert times; de terugkeerwaarde is niet de bijgewerkte lijst."
+        }
+      ],
+      "feedback": {
+        "en": "Preserve earlier values and add exactly one new score.",
+        "nl": "Behoud eerdere waarden en voeg precies één nieuwe score toe."
+      },
+      "probes": [
+        {
+          "inputs": {
+            "scores": [
+              2,
+              9
+            ],
+            "new_score": 3
+          },
+          "check": "_error is None and scores == [2, 9, 3]"
+        },
+        {
+          "inputs": {
+            "scores": [],
+            "new_score": 0
+          },
+          "check": "_error is None and scores == [0]"
+        }
+      ]
+    },
+    {
+      "id": "python-v2-6-01-step-2",
+      "task": {
+        "en": "Read latest from the updated list, and calculate rounds_played from its length.",
+        "nl": "Lees latest uit de bijgewerkte lijst en bereken rounds_played uit de lengte."
+      },
+      "check": "latest == scores[-1] and rounds_played == len(scores)",
+      "hint": {
+        "en": "A list knows both its final item and its current length.",
+        "nl": "Een lijst bevat zowel zijn laatste item als zijn huidige lengte."
+      },
+      "hints": [
+        {
+          "en": "A list knows both its final item and its current length.",
+          "nl": "Een lijst bevat zowel zijn laatste item als zijn huidige lengte."
+        },
+        {
+          "en": "Avoid an index that works only for today’s three existing rounds.",
+          "nl": "Vermijd een index die alleen bij de drie bestaande rondes van vandaag werkt."
+        },
+        {
+          "en": "values[-1] accesses the last item regardless of how many came before it.",
+          "nl": "values[-1] benadert het laatste item ongeacht hoeveel ervoor staan."
+        }
+      ],
+      "feedback": {
+        "en": "The latest value and round count should follow the actual history.",
+        "nl": "De nieuwste waarde en het aantal rondes moeten de echte geschiedenis volgen."
+      },
+      "probes": [
+        {
+          "inputs": {
+            "scores": [
+              1,
+              2,
+              3,
+              4
+            ],
+            "new_score": 6
+          },
+          "check": "latest == 6 and rounds_played == 5"
+        },
+        {
+          "inputs": {
+            "scores": [],
+            "new_score": 7
+          },
+          "check": "latest == 7 and rounds_played == 1"
+        }
+      ]
+    },
+    {
+      "id": "python-v2-6-01-step-3",
+      "task": {
+        "en": "Calculate total from all scores and keep the three summary values in the report.",
+        "nl": "Bereken total uit alle scores en behoud de drie overzichtswaarden in het rapport."
+      },
+      "check": "total == sum(scores) and str(total) in _stdout and str(latest) in _stdout and str(rounds_played) in _stdout",
+      "hint": {
+        "en": "The newest result is only one contribution to the session total.",
+        "nl": "Het nieuwste resultaat is slechts één bijdrage aan het sessietotaal."
+      },
+      "hints": [
+        {
+          "en": "The newest result is only one contribution to the session total.",
+          "nl": "Het nieuwste resultaat is slechts één bijdrage aan het sessietotaal."
+        },
+        {
+          "en": "Use sum or a loop to combine the numeric items.",
+          "nl": "Gebruik sum of een lus om de numerieke items te combineren."
+        },
+        {
+          "en": "sum([2, 5]) is 7; an empty list sums to zero.",
+          "nl": "sum([2, 5]) is 7; een lege lijst telt op tot nul."
+        }
+      ],
+      "feedback": {
+        "en": "Include earlier rounds in the total, including zero-valued rounds.",
+        "nl": "Neem eerdere rondes mee in het totaal, ook rondes met waarde nul."
+      },
+      "probes": [
+        {
+          "inputs": {
+            "scores": [
+              0,
+              10,
+              0
+            ],
+            "new_score": 2
+          },
+          "check": "total == 12 and rounds_played == 4 and \"12\" in _stdout and \"4\" in _stdout"
+        }
+      ]
+    }
+  ],
+  "inputs": [],
+  "solutionNote": {
+    "en": "Appending, concatenating with a one-item list, or another equivalent update can preserve the same history. The tests check the result, not one required method call.",
+    "nl": "Toevoegen met append, samenvoegen met een lijst van één item of een andere gelijkwaardige wijziging kan dezelfde geschiedenis behouden. De controles kijken naar het resultaat, niet naar één verplichte methodeaanroep."
+  }
+}

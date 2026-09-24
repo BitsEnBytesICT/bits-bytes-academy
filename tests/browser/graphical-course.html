@@ -1,0 +1,118 @@
+<!doctype html>
+<html>
+  <head>
+    <title>Graphical course verification</title>
+    <style>
+      body {
+        font: 16px system-ui;
+        background: #edf5ff;
+        color: #101727;
+      }
+      button {
+        padding: 10px;
+      }
+      .game-preview-frame {
+        width: 640px;
+        height: 400px;
+        border: 0;
+      }
+      li {
+        padding: 4px;
+      }
+      pre {
+        white-space: pre-wrap;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Graphical course verification</h1>
+    <p>
+      Runs the actual reference files for all fifteen graphical exercises,
+      closes each preview normally, and records its real frame count and
+      assessment results.
+    </p>
+    <button id="run">Run all graphical references</button
+    ><button id="stop" disabled>Stop verification</button>
+    <p role="status" id="status">Ready</p>
+    <div id="preview"></div>
+    <ol id="results"></ol>
+    <pre id="errors"></pre>
+    <script type="module">
+      import { GameRunner } from "/game-runtime.js";
+      const runner = new GameRunner(),
+        start = document.querySelector("#run"),
+        stop = document.querySelector("#stop"),
+        status = document.querySelector("#status"),
+        results = document.querySelector("#results"),
+        errors = document.querySelector("#errors"),
+        container = document.querySelector("#preview");
+      let cancelled = false,
+        finishTimer,
+        currentResolve;
+      stop.onclick = () => {
+        cancelled = true;
+        clearTimeout(finishTimer);
+        runner.cancel();
+        currentResolve?.({ cancelled: true });
+      };
+      start.onclick = async () => {
+        start.disabled = true;
+        stop.disabled = false;
+        cancelled = false;
+        results.replaceChildren();
+        errors.textContent = "";
+        const activities = await fetch("/graphical-fixtures").then((r) =>
+          r.json(),
+        );
+        let passed = 0;
+        for (const activity of activities) {
+          if (cancelled) break;
+          status.textContent = "Running " + activity.title.en;
+          const result = await new Promise((resolve) => {
+            currentResolve = resolve;
+            runner.onEvent = (e) => {
+              if (e.type === "running")
+                finishTimer = setTimeout(() => runner.finish(), 150);
+              if (e.type === "output" && e.channel === "stderr")
+                errors.textContent += e.text;
+              if (e.type === "done") {
+                clearTimeout(finishTimer);
+                resolve(e.result);
+              }
+              if (e.type === "failure" || e.type === "cancelled") {
+                clearTimeout(finishTimer);
+                resolve({ error: e.message });
+              }
+            };
+            runner.execute(container, activity.solution, activity.checkpoints);
+          });
+          if (cancelled) break;
+          const success =
+            !result.error &&
+            result.frames > 0 &&
+            result.results?.length === activity.checkpoints.length &&
+            result.results.every((r) => r.passed);
+          if (success) passed++;
+          const item = document.createElement("li");
+          item.textContent =
+            (success ? "PASS" : "FAIL") +
+            " " +
+            activity.id +
+            " · " +
+            activity.title.en +
+            " · " +
+            (result.frames || 0) +
+            " real frames · " +
+            JSON.stringify(result.results || result.error);
+          results.append(item);
+        }
+        runner.cancel();
+        status.textContent = cancelled
+          ? "Cancelled"
+          : `${passed} / ${activities.length} graphical references passed`;
+        start.disabled = false;
+        stop.disabled = true;
+      };
+    </script>
+  </body>
+</html>

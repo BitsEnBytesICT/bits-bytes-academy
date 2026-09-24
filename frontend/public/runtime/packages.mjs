@@ -3,6 +3,7 @@
 const ready = new WeakSet();
 export async function ensurePackages(py, files = {}, line = "") {
   if (ready.has(py)) return;
+  if (py.loadedPackages?.['pygame-ce']) { ready.add(py); return; }
   const sources = [...Object.values(files), line];
   if (!sources.some((source) => source.includes("pygame"))) return;
   py.globals.set("_lab_package_sources", JSON.stringify(sources));

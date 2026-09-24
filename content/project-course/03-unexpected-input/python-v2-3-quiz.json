@@ -1,0 +1,232 @@
+{
+  "id": "python-v2-3-quiz",
+  "chapter": 3,
+  "group": "python-v2-module-3",
+  "kind": "quiz",
+  "optional": false,
+  "title": {
+    "en": "Check your reasoning: imperfect input",
+    "nl": "Controleer je inzicht: onvolmaakte invoer"
+  },
+  "estimatedMinutes": 5,
+  "questions": [
+    {
+      "id": "v2-3-q1",
+      "prompt": {
+        "en": "What is printed?",
+        "nl": "Wat wordt afgedrukt?"
+      },
+      "code": "text = \" YES \"\ntext.strip()\nprint(text == \"YES\")",
+      "choices": [
+        {
+          "id": "a",
+          "label": {
+            "en": "False",
+            "nl": "False"
+          },
+          "reason": {
+            "en": "strip returns a new string; the result was not stored.",
+            "nl": "strip geeft een nieuwe string terug; het resultaat is niet opgeslagen."
+          }
+        },
+        {
+          "id": "b",
+          "label": {
+            "en": "True",
+            "nl": "True"
+          },
+          "reason": {
+            "en": "The method does not change the original string in place.",
+            "nl": "De methode verandert de oorspronkelijke string niet ter plaatse."
+          }
+        },
+        {
+          "id": "c",
+          "label": {
+            "en": "An error",
+            "nl": "Een fout"
+          },
+          "reason": {
+            "en": "The call is valid; ignoring its result is a logic mistake, not an exception.",
+            "nl": "De aanroep is geldig; het resultaat negeren is een logische fout, geen uitzondering."
+          }
+        }
+      ],
+      "answer": "a"
+    },
+    {
+      "id": "v2-3-q2",
+      "prompt": {
+        "en": "Access requires a valid ticket and an open venue. Which case exposes accidentally using or?",
+        "nl": "Toegang vereist een geldig ticket en een open locatie. Welk geval ontmaskert onbedoeld gebruik van or?"
+      },
+      "choices": [
+        {
+          "id": "a",
+          "label": {
+            "en": "Valid ticket, closed venue",
+            "nl": "Geldig ticket, gesloten locatie"
+          },
+          "reason": {
+            "en": "or accepts one true condition; the actual policy requires both.",
+            "nl": "or accepteert één ware voorwaarde; het echte beleid vereist beide."
+          }
+        },
+        {
+          "id": "b",
+          "label": {
+            "en": "Valid ticket, open venue",
+            "nl": "Geldig ticket, open locatie"
+          },
+          "reason": {
+            "en": "Both and and or accept this case, so it cannot distinguish them.",
+            "nl": "Zowel and als or accepteert dit geval; het maakt dus geen onderscheid."
+          }
+        },
+        {
+          "id": "c",
+          "label": {
+            "en": "Invalid ticket, closed venue",
+            "nl": "Ongeldig ticket, gesloten locatie"
+          },
+          "reason": {
+            "en": "Both operators reject this case.",
+            "nl": "Beide operatoren wijzen dit geval af."
+          }
+        }
+      ],
+      "answer": "a"
+    },
+    {
+      "id": "v2-3-q3",
+      "prompt": {
+        "en": "Why does this print two lines?",
+        "nl": "Waarom drukt dit twee regels af?"
+      },
+      "code": "mode = \"fast\"\nif mode == \"fast\":\n    print(\"Fast selected\")\nif mode == \"slow\":\n    print(\"Slow selected\")\nelse:\n    print(\"Unknown\")",
+      "choices": [
+        {
+          "id": "a",
+          "label": {
+            "en": "The else belongs only to the second if.",
+            "nl": "De else hoort alleen bij de tweede if."
+          },
+          "reason": {
+            "en": "The first decision succeeds; the second independently takes its else branch.",
+            "nl": "De eerste beslissing slaagt; de tweede neemt onafhankelijk de else-vertakking."
+          }
+        },
+        {
+          "id": "b",
+          "label": {
+            "en": "Python compares strings unpredictably.",
+            "nl": "Python vergelijkt strings onvoorspelbaar."
+          },
+          "reason": {
+            "en": "The equality comparisons are predictable; the decisions are separate.",
+            "nl": "De gelijkheidsvergelijkingen zijn voorspelbaar; de beslissingen staan los van elkaar."
+          }
+        },
+        {
+          "id": "c",
+          "label": {
+            "en": "Every else always runs.",
+            "nl": "Elke else wordt altijd uitgevoerd."
+          },
+          "reason": {
+            "en": "An else runs only when its associated if condition is false.",
+            "nl": "Een else wordt alleen uitgevoerd wanneer de bijbehorende if-conditie onwaar is."
+          }
+        }
+      ],
+      "answer": "a"
+    },
+    {
+      "id": "v2-3-q4",
+      "prompt": {
+        "en": "Which input produces the handled message?",
+        "nl": "Welke invoer produceert het afgehandelde bericht?"
+      },
+      "code": "try:\n    number = float(input())\n    print(10 / number)\nexcept ValueError:\n    print(\"Use a number\")",
+      "choices": [
+        {
+          "id": "a",
+          "label": {
+            "en": "ten",
+            "nl": "ten"
+          },
+          "reason": {
+            "en": "float cannot convert that text and raises ValueError.",
+            "nl": "float kan die tekst niet omzetten en veroorzaakt ValueError."
+          }
+        },
+        {
+          "id": "b",
+          "label": {
+            "en": "0",
+            "nl": "0"
+          },
+          "reason": {
+            "en": "Zero converts successfully; division then raises an unhandled ZeroDivisionError.",
+            "nl": "Nul wordt succesvol omgezet; de deling veroorzaakt daarna een niet-afgehandelde ZeroDivisionError."
+          }
+        },
+        {
+          "id": "c",
+          "label": {
+            "en": "2.5",
+            "nl": "2.5"
+          },
+          "reason": {
+            "en": "That is valid decimal text and the division succeeds.",
+            "nl": "Dat is geldige decimale tekst en de deling slaagt."
+          }
+        }
+      ],
+      "answer": "a"
+    },
+    {
+      "id": "v2-3-q5",
+      "prompt": {
+        "en": "Why keep None rather than 0 after a failed calculation?",
+        "nl": "Waarom behoud je None in plaats van 0 na een mislukte berekening?"
+      },
+      "choices": [
+        {
+          "id": "a",
+          "label": {
+            "en": "Zero could be a genuine successful result.",
+            "nl": "Nul kan een echt geslaagd resultaat zijn."
+          },
+          "reason": {
+            "en": "None distinguishes absence of a result from a valid numeric zero.",
+            "nl": "None onderscheidt het ontbreken van een resultaat van een geldige numerieke nul."
+          }
+        },
+        {
+          "id": "b",
+          "label": {
+            "en": "None makes every later calculation succeed.",
+            "nl": "None laat elke latere berekening slagen."
+          },
+          "reason": {
+            "en": "Arithmetic with None generally raises an error; you must decide how to handle absence.",
+            "nl": "Rekenen met None geeft doorgaans een fout; je moet bepalen hoe je afwezigheid afhandelt."
+          }
+        },
+        {
+          "id": "c",
+          "label": {
+            "en": "The text \"None\" and the value None are identical.",
+            "nl": "De tekst \"None\" en de waarde None zijn identiek."
+          },
+          "reason": {
+            "en": "One is a string, the other represents absence.",
+            "nl": "De ene is een string; de andere vertegenwoordigt afwezigheid."
+          }
+        }
+      ],
+      "answer": "a"
+    }
+  ]
+}

@@ -1,0 +1,181 @@
+{
+  "id": "python-v2-4-04",
+  "chapter": 4,
+  "group": "python-v2-module-4",
+  "title": {
+    "en": "Forecast a growing weekly deposit",
+    "nl": "Voorspel een groeiende wekelijkse inleg"
+  },
+  "kind": "coding",
+  "optional": false,
+  "runtime": "terminal",
+  "guidance": "guided",
+  "estimatedMinutes": 16,
+  "explanation": {
+    "en": "A saver adds a deposit each week, increasing the next deposit by a fixed amount. Generate a report for a chosen number of weeks. This is bounded repetition: you know how many turns you want before the program starts.",
+    "nl": "Een spaarder legt elke week geld in en verhoogt de volgende inleg met een vast bedrag. Genereer een overzicht voor een gekozen aantal weken. Dit is begrensde herhaling: vóór de start van het programma weet je hoeveel beurten je wilt."
+  },
+  "sections": [
+    {
+      "heading": {
+        "en": "Use a for loop for a known sequence",
+        "nl": "Gebruik een for-lus voor een bekende reeks"
+      },
+      "body": {
+        "en": "for assigns each item from a sequence to its loop variable. range(stop) produces integers starting at zero, excluding stop. range(start, stop) changes the start; range(start, stop, step) also changes the step. No manual counter update is needed.",
+        "nl": "for kent elk item uit een reeks toe aan de lusvariabele. range(stop) produceert integers vanaf nul, exclusief stop. range(start, stop) verandert het begin; range(start, stop, step) verandert ook de stap. Je hoeft de teller niet zelf bij te werken."
+      },
+      "code": "for seat in range(2, 7, 2):\n    print(\"Seat\", seat)",
+      "output": "Seat 2\nSeat 4\nSeat 6"
+    },
+    {
+      "heading": {
+        "en": "The order of updates matters",
+        "nl": "De volgorde van wijzigingen telt"
+      },
+      "body": {
+        "en": "Use this week’s deposit before increasing it for next week. A running balance accumulates the effects of previous weeks. Initialise it once. Each report line should be Week N: amount with two decimal places. Keep balance and next_deposit available after the loop.",
+        "nl": "Gebruik de inleg van deze week voordat je die voor volgende week verhoogt. Een lopend saldo verzamelt de effecten van eerdere weken. Initialiseer het één keer. Elke overzichtsregel moet Week N: bedrag met twee decimalen zijn. Houd balance en next_deposit na de lus beschikbaar."
+      }
+    }
+  ],
+  "example": "",
+  "files": {
+    "main.py": "weeks = 4\nbalance = 20\nnext_deposit = 10\nincrease = 5\n\n# Report the balance after each weekly deposit.\n"
+  },
+  "solution": {
+    "main.py": "weeks = 4\nbalance = 20\nnext_deposit = 10\nincrease = 5\n\nfor week in range(1, weeks + 1):\n    balance += next_deposit\n    next_deposit += increase\n    print(f\"Week {week}: {balance:.2f}\")\n"
+  },
+  "checkpoints": [
+    {
+      "id": "python-v2-4-04-step-1",
+      "task": {
+        "en": "Use for and range to produce one numbered report line for every week, starting at week 1.",
+        "nl": "Gebruik for en range om voor elke week één genummerde overzichtsregel te produceren, beginnend bij week 1."
+      },
+      "check": "any(isinstance(n, _ast.For) for n in _ast.walk(_ast.parse(_source))) and len(_stdout.splitlines()) == weeks",
+      "hint": {
+        "en": "The upper endpoint of range is excluded.",
+        "nl": "De bovengrens van range wordt niet meegenomen."
+      },
+      "hints": [
+        {
+          "en": "The upper endpoint of range is excluded.",
+          "nl": "De bovengrens van range wordt niet meegenomen."
+        },
+        {
+          "en": "Decide how to include the requested final week.",
+          "nl": "Bepaal hoe je de gevraagde laatste week meeneemt."
+        },
+        {
+          "en": "range(1, 3) supplies 1 and 2.",
+          "nl": "range(1, 3) levert 1 en 2."
+        }
+      ],
+      "feedback": {
+        "en": "Number the report from 1 through the requested number of weeks.",
+        "nl": "Nummer het overzicht van 1 tot en met het gevraagde aantal weken."
+      },
+      "probes": [
+        {
+          "inputs": {
+            "weeks": 2
+          },
+          "check": "_error is None and len(_stdout.splitlines()) == 2 and _stdout.splitlines()[0].startswith(\"Week 1:\") and _stdout.splitlines()[1].startswith(\"Week 2:\")"
+        }
+      ]
+    },
+    {
+      "id": "python-v2-4-04-step-2",
+      "task": {
+        "en": "Add the current deposit to balance, then prepare next week’s deposit using increase. Show the updated balance to two decimals.",
+        "nl": "Tel de huidige inleg bij balance op en bereid daarna de inleg voor volgende week voor met increase. Toon het bijgewerkte saldo met twee decimalen."
+      },
+      "check": "isinstance(balance, (int, float)) and isinstance(next_deposit, (int, float)) and (weeks == 0 or f\"{balance:.2f}\" in _stdout)",
+      "hint": {
+        "en": "Changing the deposit too early changes this week’s payment.",
+        "nl": "De inleg te vroeg veranderen wijzigt de betaling van deze week."
+      },
+      "hints": [
+        {
+          "en": "Changing the deposit too early changes this week’s payment.",
+          "nl": "De inleg te vroeg veranderen wijzigt de betaling van deze week."
+        },
+        {
+          "en": "Trace the first two weeks on paper and compare the printed values.",
+          "nl": "Volg de eerste twee weken op papier en vergelijk de afgedrukte waarden."
+        },
+        {
+          "en": "With a starting balance of 20 and deposits 10 then 15, the balances are 30 then 45.",
+          "nl": "Met beginsaldo 20 en inleggen 10 en daarna 15 zijn de saldi 30 en vervolgens 45."
+        }
+      ],
+      "feedback": {
+        "en": "Use each deposit once, in the intended order.",
+        "nl": "Gebruik elke inleg één keer, in de bedoelde volgorde."
+      },
+      "probes": [
+        {
+          "inputs": {
+            "weeks": 3
+          },
+          "check": "_error is None and balance == 65 and next_deposit == 25 and _stdout.splitlines() == [\"Week 1: 30.00\", \"Week 2: 45.00\", \"Week 3: 65.00\"]"
+        },
+        {
+          "inputs": {
+            "weeks": 2,
+            "balance": 0,
+            "next_deposit": 2.5,
+            "increase": 1.25
+          },
+          "check": "_error is None and balance == 6.25 and next_deposit == 5 and \"6.25\" in _stdout"
+        }
+      ]
+    },
+    {
+      "id": "python-v2-4-04-step-3",
+      "task": {
+        "en": "Handle weeks = 0 without inventing a deposit or report line. The starting balance and next deposit should remain unchanged.",
+        "nl": "Handel weeks = 0 af zonder een inleg of overzichtsregel te verzinnen. Het beginsaldo en de volgende inleg moeten ongewijzigd blijven."
+      },
+      "check": "isinstance(weeks, int) and isinstance(balance, (int, float))",
+      "hint": {
+        "en": "An empty range gives the loop no items.",
+        "nl": "Een leeg bereik geeft de lus geen items."
+      },
+      "hints": [
+        {
+          "en": "An empty range gives the loop no items.",
+          "nl": "Een leeg bereik geeft de lus geen items."
+        },
+        {
+          "en": "Do not force one iteration just to initialise a value needed later.",
+          "nl": "Forceer geen herhaling alleen om een later benodigde waarde te initialiseren."
+        },
+        {
+          "en": "range(1, 1) contains no integers.",
+          "nl": "range(1, 1) bevat geen integers."
+        }
+      ],
+      "feedback": {
+        "en": "Zero weeks should mean zero changes and zero report lines.",
+        "nl": "Nul weken moet nul wijzigingen en nul overzichtsregels betekenen."
+      },
+      "probes": [
+        {
+          "inputs": {
+            "weeks": 0,
+            "balance": 7,
+            "next_deposit": 3
+          },
+          "check": "_error is None and balance == 7 and next_deposit == 3 and _stdout == \"\""
+        }
+      ]
+    }
+  ],
+  "inputs": [],
+  "solutionNote": {
+    "en": "for manages iteration; the balance and deposit remain your state to update. The zero-week case also shows why values needed after a loop should be initialised before it.",
+    "nl": "for regelt de herhaling; het saldo en de inleg blijven de toestand die je zelf bijwerkt. Het geval met nul weken laat ook zien waarom je waarden die na een lus nodig zijn vóór de lus moet initialiseren."
+  }
+}

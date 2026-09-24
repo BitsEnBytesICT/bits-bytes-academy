@@ -1,0 +1,211 @@
+{
+  "id": "python-v2-8-02",
+  "chapter": 8,
+  "group": "python-v2-module-8",
+  "title": {
+    "en": "Place the players",
+    "nl": "Plaats de spelers"
+  },
+  "kind": "coding",
+  "optional": false,
+  "runtime": "pygame",
+  "guidance": "adapt",
+  "estimatedMinutes": 20,
+  "explanation": {
+    "en": "The court opens, but both paddles are on the same side and the ball is missing. Use rectangles and centres to repair the composition. Keep the layout responsive to the scene size instead of tracing the preview by eye.",
+    "nl": "Het veld opent, maar beide paddles staan aan dezelfde kant en de bal ontbreekt. Gebruik rechthoeken en middelpunten om de compositie te herstellen. Laat de indeling reageren op de scènegrootte in plaats van het voorbeeld op het oog na te tekenen."
+  },
+  "sections": [
+    {
+      "heading": {
+        "en": "Coordinates and edges",
+        "nl": "Coördinaten en randen"
+      },
+      "body": {
+        "en": "The origin (0, 0) is the top-left. x increases rightward; y increases downward. A Rect stores left, top, width, and height, but also offers right and centery. Setting right positions its outer right edge. pygame.draw.rect(surface, colour, rect) fills that rectangle unless you supply an outline width. A circle takes a centre and a radius.",
+        "nl": "De oorsprong (0, 0) ligt linksboven. x neemt naar rechts toe; y naar beneden. Een Rect bevat links, boven, breedte en hoogte, maar biedt ook right en centery. right instellen plaatst de buitenste rechterrand. pygame.draw.rect(surface, colour, rect) vult die rechthoek tenzij je een lijndikte opgeeft. Een cirkel krijgt een middelpunt en een straal."
+      },
+      "code": "marker = pygame.Rect(0, 0, 10, 30)\nmarker.right = 150\nmarker.centery = 60"
+    },
+    {
+      "heading": {
+        "en": "Design contract",
+        "nl": "Ontwerpafspraak"
+      },
+      "body": {
+        "en": "Use paddles 12 wide and 72 high, both vertically centred. Leave a 24-pixel gap between each paddle’s outer edge and the court edge. The left paddle is blue (80, 180, 255), the right orange (255, 145, 50). Put a white radius-8 ball at (width // 2, height // 2). The background stays (16, 23, 39). Tests use widths of at least 200 and heights of at least 120.",
+        "nl": "Gebruik paddles van 12 breed en 72 hoog, beide verticaal gecentreerd. Laat tussen de buitenrand van elke paddle en de veldrand 24 pixels ruimte. Links is blauw (80, 180, 255), rechts oranje (255, 145, 50). Zet een witte bal met straal 8 op (width // 2, height // 2). De achtergrond blijft (16, 23, 39). Tests gebruiken breedtes vanaf 200 en hoogtes vanaf 120."
+      }
+    },
+    {
+      "heading": {
+        "en": "Run, observe, then finish",
+        "nl": "Voer uit, bekijk en rond af"
+      },
+      "body": {
+        "en": "Run starts main.py and opens the game preview. Click the preview to use the keyboard. Clicking elsewhere pauses the game. Finish & check sends the normal close event and checks your helper functions after the loop exits; Stop interrupts without grading. The supplied async loop gives the browser time to draw and receive input. Keep await asyncio.sleep(1 / 60) inside that loop. You do not need to learn asynchronous programming in depth yet.",
+        "nl": "Run start main.py en opent het spelvoorbeeld. Klik op het voorbeeld om het toetsenbord te gebruiken. Elders klikken pauzeert het spel. Afronden en controleren stuurt de normale sluitgebeurtenis en controleert je hulpfuncties nadat de lus eindigt; Stop onderbreekt zonder beoordeling. De meegeleverde async-lus geeft de browser tijd om te tekenen en invoer te ontvangen. Houd await asyncio.sleep(1 / 60) binnen die lus. Je hoeft asynchroon programmeren nog niet uitgebreid te leren."
+      }
+    }
+  ],
+  "example": "",
+  "files": {
+    "main.py": "import asyncio\nimport pygame\nimport scene\n\nasync def main():\n    pygame.init()\n    screen = pygame.display.set_mode((640, 400))\n    running = True\n    while running:\n        for event in pygame.event.get():\n            if event.type == pygame.QUIT:\n                running = False\n            elif event.type == pygame.KEYDOWN and event.key == pygame.K_ESCAPE:\n                running = False\n        screen.blit(scene.make_scene(640, 400), (0, 0))\n        pygame.display.flip()\n        await asyncio.sleep(1 / 60)\n    pygame.quit()\n\nasyncio.run(main())\n",
+    "scene.py": "import pygame\n\ndef make_scene(width, height):\n    canvas = pygame.Surface((width, height))\n    canvas.fill((16, 23, 39))\n    left = pygame.Rect(24, 0, 12, 72)\n    left.centery = height // 2\n    right = left.copy()\n    pygame.draw.rect(canvas, (80, 180, 255), left)\n    pygame.draw.rect(canvas, (255, 145, 50), right)\n    return canvas\n"
+  },
+  "solution": {
+    "main.py": "import asyncio\nimport pygame\nimport scene\n\nasync def main():\n    pygame.init()\n    screen = pygame.display.set_mode((640, 400))\n    running = True\n    while running:\n        for event in pygame.event.get():\n            if event.type == pygame.QUIT:\n                running = False\n            elif event.type == pygame.KEYDOWN and event.key == pygame.K_ESCAPE:\n                running = False\n        screen.blit(scene.make_scene(640, 400), (0, 0))\n        pygame.display.flip()\n        await asyncio.sleep(1 / 60)\n    pygame.quit()\n\nasyncio.run(main())\n",
+    "scene.py": "import pygame\n\ndef make_scene(width, height):\n    canvas = pygame.Surface((width, height))\n    canvas.fill((16, 23, 39))\n    left = pygame.Rect(24, 0, 12, 72)\n    left.centery = height // 2\n    right = left.copy()\n    right.right = width - 24\n    pygame.draw.rect(canvas, (80, 180, 255), left)\n    pygame.draw.rect(canvas, (255, 145, 50), right)\n    pygame.draw.circle(canvas, (255, 255, 255), (width // 2, height // 2), 8)\n    return canvas\n"
+  },
+  "checkpoints": [
+    {
+      "id": "python-v2-8-02-step-1",
+      "task": {
+        "en": "Keep the left paddle visible with the specified size, gap, and vertical alignment.",
+        "nl": "Houd de linkerpaddle zichtbaar met de opgegeven grootte, afstand en verticale uitlijning."
+      },
+      "check": "_rendered_frames > 0",
+      "hint": {
+        "en": "Later drawing can cover earlier drawing.",
+        "nl": "Later tekenen kan eerder tekenwerk bedekken."
+      },
+      "hints": [
+        {
+          "en": "Later drawing can cover earlier drawing.",
+          "nl": "Later tekenen kan eerder tekenwerk bedekken."
+        },
+        {
+          "en": "Check whether the second paddle still overlaps the first.",
+          "nl": "Controleer of de tweede paddle nog over de eerste ligt."
+        },
+        {
+          "en": "Rect.copy() initially keeps the same coordinates.",
+          "nl": "Rect.copy() behoudt in eerste instantie dezelfde coördinaten."
+        }
+      ],
+      "feedback": {
+        "en": "The left paddle should occupy its own blue rectangle.",
+        "nl": "De linkerpaddle moet zijn eigen blauwe rechthoek innemen."
+      },
+      "probes": [
+        {
+          "moduleOnly": true,
+          "call": {
+            "module": "scene",
+            "name": "make_scene",
+            "args": [
+              300,
+              180
+            ]
+          },
+          "check": "_error is None and (all(tuple(_return.get_at(p))[:3] == (80,180,255) for p in [(24,54),(35,125)]) and tuple(_return.get_at((23,90)))[:3] == (16,23,39))"
+        }
+      ]
+    },
+    {
+      "id": "python-v2-8-02-step-2",
+      "task": {
+        "en": "Place the orange paddle symmetrically on the right, including when the window size changes.",
+        "nl": "Plaats de oranje paddle symmetrisch rechts, ook wanneer de venstergrootte verandert."
+      },
+      "check": "_rendered_frames > 0",
+      "hint": {
+        "en": "Mirror the outer gap, not the left coordinate.",
+        "nl": "Spiegel de buitenste ruimte, niet de linkercoördinaat."
+      },
+      "hints": [
+        {
+          "en": "Mirror the outer gap, not the left coordinate.",
+          "nl": "Spiegel de buitenste ruimte, niet de linkercoördinaat."
+        },
+        {
+          "en": "The right edge should sit inside the requested width.",
+          "nl": "De rechterrand hoort binnen de gevraagde breedte te liggen."
+        },
+        {
+          "en": "rect.right = boundary positions an edge, not a centre.",
+          "nl": "rect.right = boundary plaatst een rand, niet een middelpunt."
+        }
+      ],
+      "feedback": {
+        "en": "Use the width and keep a 24-pixel outer gap.",
+        "nl": "Gebruik de breedte en houd buitenaan 24 pixels vrij."
+      },
+      "probes": [
+        {
+          "moduleOnly": true,
+          "call": {
+            "module": "scene",
+            "name": "make_scene",
+            "args": [
+              300,
+              180
+            ]
+          },
+          "check": "_error is None and (all(tuple(_return.get_at(p))[:3] == (255,145,50) for p in [(264,54),(275,125)]) and tuple(_return.get_at((276,90)))[:3] == (16,23,39))"
+        },
+        {
+          "moduleOnly": true,
+          "call": {
+            "module": "scene",
+            "name": "make_scene",
+            "args": [
+              401,
+              221
+            ]
+          },
+          "check": "_error is None and (all(tuple(_return.get_at(p))[:3] == (255,145,50) for p in [(365,74),(376,145)]) and tuple(_return.get_at((377,110)))[:3] == (16,23,39))"
+        }
+      ]
+    },
+    {
+      "id": "python-v2-8-02-step-3",
+      "task": {
+        "en": "Add the centred white ball without covering either paddle. Inspect the whole court and finish the preview.",
+        "nl": "Voeg de gecentreerde witte bal toe zonder een paddle te bedekken. Bekijk het hele veld en rond het voorbeeld af."
+      },
+      "check": "_rendered_frames > 0",
+      "hint": {
+        "en": "Circle coordinates describe its centre.",
+        "nl": "Cirkelcoördinaten beschrijven het middelpunt."
+      },
+      "hints": [
+        {
+          "en": "Circle coordinates describe its centre.",
+          "nl": "Cirkelcoördinaten beschrijven het middelpunt."
+        },
+        {
+          "en": "Use both requested dimensions to locate that centre.",
+          "nl": "Gebruik beide gevraagde afmetingen om het middelpunt te vinden."
+        },
+        {
+          "en": "pygame.draw.circle(canvas, colour, centre, radius) draws a filled circle.",
+          "nl": "pygame.draw.circle(canvas, colour, centre, radius) tekent een gevulde cirkel."
+        }
+      ],
+      "feedback": {
+        "en": "Keep the ball centred and its radius at eight pixels.",
+        "nl": "Houd de bal gecentreerd en de straal op acht pixels."
+      },
+      "probes": [
+        {
+          "moduleOnly": true,
+          "call": {
+            "module": "scene",
+            "name": "make_scene",
+            "args": [
+              301,
+              181
+            ]
+          },
+          "check": "_error is None and (tuple(_return.get_at((150,90)))[:3] == (255,255,255) and tuple(_return.get_at((156,90)))[:3] == (255,255,255) and tuple(_return.get_at((160,90)))[:3] == (16,23,39))"
+        }
+      ]
+    }
+  ],
+  "inputs": [],
+  "solutionNote": {
+    "en": "This is one valid approach. Compare the reasoning with your own code before choosing whether to use it. Other implementations can satisfy the same behavior.",
+    "nl": "Dit is één geldige aanpak. Vergelijk de redenering met je eigen code voordat je besluit die te gebruiken. Andere implementaties kunnen aan hetzelfde gedrag voldoen."
+  }
+}

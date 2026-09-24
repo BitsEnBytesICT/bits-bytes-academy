@@ -1,0 +1,193 @@
+{
+  "id": "python-v2-4-02",
+  "chapter": 4,
+  "group": "python-v2-module-4",
+  "title": {
+    "en": "Keep the help desk open",
+    "nl": "Houd de helpdesk open"
+  },
+  "kind": "coding",
+  "optional": false,
+  "runtime": "terminal",
+  "guidance": "adapt",
+  "estimatedMinutes": 16,
+  "explanation": {
+    "en": "The help desk currently answers one request and closes. Keep it open until the user enters quit. Count help requests, answer unknown commands, and leave cleanly without treating quit as an error. Read a new response for each turn.",
+    "nl": "De helpdesk beantwoordt nu één verzoek en sluit dan. Houd hem open totdat de gebruiker quit invoert. Tel help-verzoeken, beantwoord onbekende commando’s en sluit netjes zonder quit als fout te behandelen. Lees elke beurt een nieuw antwoord."
+  },
+  "sections": [
+    {
+      "heading": {
+        "en": "Stop when the user decides",
+        "nl": "Stop wanneer de gebruiker beslist"
+      },
+      "body": {
+        "en": "Sometimes the number of repetitions is unknown. A sentinel is a special input that ends a sequence. break immediately exits the nearest loop. A while True loop therefore needs a reachable break or another deliberate exit. Statements after the loop still run.",
+        "nl": "Soms is het aantal herhalingen onbekend. Een sentinel is speciale invoer die een reeks beëindigt. break verlaat direct de dichtstbijzijnde lus. Een while True-lus heeft daarom een bereikbare break of een andere bewuste uitgang nodig. Statements na de lus worden nog uitgevoerd."
+      },
+      "code": "while True:\n    word = input(\"Word, or stop: \")\n    if word == \"stop\":\n        break\n    print(\"You entered\", word)\nprint(\"Session ended\")"
+    },
+    {
+      "heading": {
+        "en": "State lasts between turns",
+        "nl": "Toestand blijft tussen beurten bestaan"
+      },
+      "body": {
+        "en": "Initialise a session counter before the loop. Resetting it inside the loop erases earlier turns. Check the exit command before ordinary processing, so the sentinel is not counted as useful work.",
+        "nl": "Initialiseer een sessieteller vóór de lus. Binnen de lus opnieuw beginnen wist eerdere beurten. Controleer het afsluitcommando vóór de gewone verwerking, zodat de sentinel niet als nuttig werk wordt meegeteld."
+      }
+    }
+  ],
+  "example": "",
+  "files": {
+    "main.py": "help_count = 0\ncommand = input(\"help or quit: \").strip().lower()\nif command == \"help\":\n    help_count += 1\n    print(\"Ask the welcome desk\")\nelse:\n    print(\"Unknown command\")\nprint(\"Help requests:\", help_count)\n"
+  },
+  "solution": {
+    "main.py": "help_count = 0\nwhile True:\n    command = input(\"help or quit: \").strip().lower()\n    if command == \"quit\":\n        break\n    if command == \"help\":\n        help_count += 1\n        print(\"Ask the welcome desk\")\n    else:\n        print(\"Unknown command\")\nprint(\"Help requests:\", help_count)\n"
+  },
+  "checkpoints": [
+    {
+      "id": "python-v2-4-02-step-1",
+      "task": {
+        "en": "Read and handle repeated commands until quit, allowing surrounding spaces and different letter case.",
+        "nl": "Lees en behandel herhaalde commando’s tot quit, met ondersteuning voor spaties aan de randen en hoofdletters."
+      },
+      "check": "command == \"quit\"",
+      "hint": {
+        "en": "The next response must be read inside the repeating interaction.",
+        "nl": "Het volgende antwoord moet binnen de herhaalde interactie worden gelezen."
+      },
+      "hints": [
+        {
+          "en": "The next response must be read inside the repeating interaction.",
+          "nl": "Het volgende antwoord moet binnen de herhaalde interactie worden gelezen."
+        },
+        {
+          "en": "Keep the exit condition reachable on every turn.",
+          "nl": "Houd de stopconditie in elke beurt bereikbaar."
+        },
+        {
+          "en": "The word example reads again after every ordinary response.",
+          "nl": "Het woordvoorbeeld leest na elk gewoon antwoord opnieuw."
+        }
+      ],
+      "feedback": {
+        "en": "Process the sequence until the cleaned quit command is received.",
+        "nl": "Verwerk de reeks totdat het opgeschoonde quit-commando wordt ontvangen."
+      },
+      "probes": [
+        {
+          "stdin": [
+            "help",
+            "help",
+            " QuIt "
+          ],
+          "check": "_error is None and command == \"quit\" and _remaining_input == \"\""
+        }
+      ]
+    },
+    {
+      "id": "python-v2-4-02-step-2",
+      "task": {
+        "en": "Count only help requests in help_count. Keep earlier requests when the next turn starts.",
+        "nl": "Tel alleen help-verzoeken in help_count. Behoud eerdere verzoeken wanneer de volgende beurt begint."
+      },
+      "check": "type(help_count) is int and help_count >= 0",
+      "hint": {
+        "en": "The counter describes the whole session, not just the latest response.",
+        "nl": "De teller beschrijft de hele sessie, niet alleen het laatste antwoord."
+      },
+      "hints": [
+        {
+          "en": "The counter describes the whole session, not just the latest response.",
+          "nl": "De teller beschrijft de hele sessie, niet alleen het laatste antwoord."
+        },
+        {
+          "en": "Choose which statements belong before the loop and which belong inside it.",
+          "nl": "Kies welke statements vóór de lus horen en welke erin."
+        },
+        {
+          "en": "A counter initialised once can be increased on several turns.",
+          "nl": "Een eenmaal geïnitialiseerde teller kan in meerdere beurten worden verhoogd."
+        }
+      ],
+      "feedback": {
+        "en": "Unknown commands and quit should not increase the help counter.",
+        "nl": "Onbekende commando’s en quit mogen de helpteller niet verhogen."
+      },
+      "probes": [
+        {
+          "stdin": [
+            "help",
+            "other",
+            "HELP",
+            "quit"
+          ],
+          "check": "help_count == 2 and _stdout.count(\"Ask the welcome desk\") == 2"
+        },
+        {
+          "stdin": [
+            "quit"
+          ],
+          "check": "help_count == 0"
+        }
+      ]
+    },
+    {
+      "id": "python-v2-4-02-step-3",
+      "task": {
+        "en": "Report unknown commands during the session and print the final help count once when it ends. quit itself should not produce an unknown-command message.",
+        "nl": "Meld onbekende commando’s tijdens de sessie en druk bij het einde de definitieve helpteller één keer af. quit zelf mag geen melding van een onbekend commando opleveren."
+      },
+      "check": "_stdout.count(\"Help requests:\") == 1 and str(help_count) in _stdout",
+      "hint": {
+        "en": "Exiting is a recognised action, even though it is not a help request.",
+        "nl": "Afsluiten is een herkende actie, ook al is het geen hulpverzoek."
+      },
+      "hints": [
+        {
+          "en": "Exiting is a recognised action, even though it is not a help request.",
+          "nl": "Afsluiten is een herkende actie, ook al is het geen hulpverzoek."
+        },
+        {
+          "en": "Separate session reporting from per-command responses.",
+          "nl": "Scheid het sessieoverzicht van antwoorden per commando."
+        },
+        {
+          "en": "break skips the rest of its loop body and continues after the loop.",
+          "nl": "break slaat de rest van het lusblok over en gaat na de lus verder."
+        }
+      ],
+      "feedback": {
+        "en": "Give one response per ordinary command and one final summary.",
+        "nl": "Geef één antwoord per gewoon commando en één definitief overzicht."
+      },
+      "probes": [
+        {
+          "stdin": [
+            "no",
+            "",
+            "quit"
+          ],
+          "check": "_error is None and _stdout.count(\"Unknown command\") == 2 and _stdout.count(\"Help requests:\") == 1"
+        },
+        {
+          "stdin": [
+            "quit"
+          ],
+          "check": "\"Unknown command\" not in _stdout and \"Help requests: 0\" in _stdout"
+        }
+      ]
+    }
+  ],
+  "inputs": [
+    "help",
+    "other",
+    " HELP ",
+    "quit"
+  ],
+  "solutionNote": {
+    "en": "A sentinel-controlled while condition is also valid. The essential behavior is fresh input, retained state, and a reachable exit.",
+    "nl": "Een while-conditie die de sentinel controleert is ook geldig. Het essentiële gedrag is nieuwe invoer, behouden toestand en een bereikbare uitgang."
+  }
+}

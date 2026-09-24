@@ -1,0 +1,170 @@
+{
+  "id": "python-v2-4-01",
+  "chapter": 4,
+  "group": "python-v2-module-4",
+  "title": {
+    "en": "Print a batch without copying lines",
+    "nl": "Druk een reeks af zonder regels te kopiëren"
+  },
+  "kind": "coding",
+  "optional": false,
+  "runtime": "terminal",
+  "guidance": "guided",
+  "estimatedMinutes": 14,
+  "explanation": {
+    "en": "A packing station needs numbered labels. The starter repeats nearly identical lines and only works for three packages. Replace that repetition with a loop that respects the requested batch size, including an empty batch. If a loop does not finish, use Stop or Ctrl+C before trying the corrected version.",
+    "nl": "Een inpakstation heeft genummerde labels nodig. De startcode herhaalt bijna dezelfde regels en werkt alleen voor drie pakketten. Vervang die herhaling door een lus die het gevraagde aantal volgt, ook bij een lege reeks. Als een lus niet stopt, gebruik dan Stop of Ctrl+C voordat je de verbeterde versie probeert."
+  },
+  "sections": [
+    {
+      "heading": {
+        "en": "Repeat while a condition holds",
+        "nl": "Herhaal zolang een conditie geldt"
+      },
+      "body": {
+        "en": "while checks its condition before each repetition. Its indented body may run many times or not at all. Something in that body usually changes the state that the condition examines. Without progress toward a stopping condition, the loop can run forever.",
+        "nl": "while controleert de conditie vóór elke herhaling. Het ingesprongen blok kan vaak of helemaal niet worden uitgevoerd. Iets in dat blok verandert meestal de toestand die de conditie onderzoekt. Zonder voortgang naar een stopconditie kan de lus eindeloos doorgaan."
+      },
+      "code": "fuel = 3\nwhile fuel > 0:\n    print(\"Moving\")\n    fuel = fuel - 1\nprint(\"Stopped\")",
+      "output": "Moving\nMoving\nMoving\nStopped"
+    },
+    {
+      "heading": {
+        "en": "Track the next item",
+        "nl": "Houd het volgende item bij"
+      },
+      "body": {
+        "en": "A counter can identify the next item to process. i += 1 means i = i + 1. Decide the first counter value, the last valid value, and what changes after each repetition. Trace a batch of one by hand before a larger batch.",
+        "nl": "Een teller kan het volgende te verwerken item aangeven. i += 1 betekent i = i + 1. Bepaal de eerste tellerwaarde, de laatste geldige waarde en wat na elke herhaling verandert. Volg een reeks van één item met de hand voordat je een grotere reeks probeert."
+      }
+    }
+  ],
+  "example": "",
+  "files": {
+    "main.py": "batch_size = 3\nlabel_number = 1\nprint(\"Package\", 1)\nprint(\"Package\", 2)\nprint(\"Package\", 3)\nprint(\"Batch complete\")\n"
+  },
+  "solution": {
+    "main.py": "batch_size = 3\nlabel_number = 1\nwhile label_number <= batch_size:\n    print(\"Package\", label_number)\n    label_number += 1\nprint(\"Batch complete\")\n"
+  },
+  "checkpoints": [
+    {
+      "id": "python-v2-4-01-step-1",
+      "task": {
+        "en": "Use a while loop to print Package 1 through the requested batch_size. Remove the copied print statements.",
+        "nl": "Gebruik een while-lus om Package 1 tot en met de gevraagde batch_size af te drukken. Verwijder de gekopieerde print-statements."
+      },
+      "check": "any(isinstance(n, _ast.While) for n in _ast.walk(_ast.parse(_source)))",
+      "hint": {
+        "en": "One print statement can run several times with a changing value.",
+        "nl": "Eén print-statement kan meerdere keren met een veranderende waarde worden uitgevoerd."
+      },
+      "hints": [
+        {
+          "en": "One print statement can run several times with a changing value.",
+          "nl": "Eén print-statement kan meerdere keren met een veranderende waarde worden uitgevoerd."
+        },
+        {
+          "en": "The counter starts at the first label and advances after printing.",
+          "nl": "De teller begint bij het eerste label en gaat na het afdrukken verder."
+        },
+        {
+          "en": "The fuel example changes its counter inside the loop.",
+          "nl": "Het brandstofvoorbeeld verandert zijn teller binnen de lus."
+        }
+      ],
+      "feedback": {
+        "en": "Generate the labels from the batch size, rather than fixed lines.",
+        "nl": "Genereer de labels uit het aantal, niet uit vaste regels."
+      },
+      "probes": [
+        {
+          "inputs": {
+            "batch_size": 5
+          },
+          "check": "_error is None and _stdout.splitlines() == [\"Package \" + str(n) for n in range(1, 6)] + [\"Batch complete\"]"
+        }
+      ]
+    },
+    {
+      "id": "python-v2-4-01-step-2",
+      "task": {
+        "en": "Make the last label appear exactly once. After the loop, label_number should identify the next unused label.",
+        "nl": "Laat het laatste label precies één keer verschijnen. Na de lus moet label_number het volgende ongebruikte label aangeven."
+      },
+      "check": "label_number == batch_size + 1",
+      "hint": {
+        "en": "There is a difference between the last processed item and the next item.",
+        "nl": "Er is een verschil tussen het laatst verwerkte item en het volgende item."
+      },
+      "hints": [
+        {
+          "en": "There is a difference between the last processed item and the next item.",
+          "nl": "Er is een verschil tussen het laatst verwerkte item en het volgende item."
+        },
+        {
+          "en": "Check both the comparison and the counter update.",
+          "nl": "Controleer zowel de vergelijking als de tellerwijziging."
+        },
+        {
+          "en": "After processing label 1 in a one-item batch, the next unused label is 2.",
+          "nl": "Na label 1 in een reeks van één item is het volgende ongebruikte label 2."
+        }
+      ],
+      "feedback": {
+        "en": "Include the endpoint and advance the counter consistently.",
+        "nl": "Neem de eindwaarde mee en werk de teller consequent bij."
+      },
+      "probes": [
+        {
+          "inputs": {
+            "batch_size": 1
+          },
+          "check": "label_number == 2 and _stdout.splitlines() == [\"Package 1\", \"Batch complete\"]"
+        }
+      ]
+    },
+    {
+      "id": "python-v2-4-01-step-3",
+      "task": {
+        "en": "Print Batch complete once after the loop. A batch_size of zero should print only that message.",
+        "nl": "Druk Batch complete één keer na de lus af. Bij batch_size nul mag alleen dat bericht verschijnen."
+      },
+      "check": "_stdout.splitlines().count(\"Batch complete\") == 1 and _stdout.splitlines()[-1] == \"Batch complete\"",
+      "hint": {
+        "en": "An empty batch has no labels, but it still finishes.",
+        "nl": "Een lege reeks heeft geen labels, maar wordt wel afgerond."
+      },
+      "hints": [
+        {
+          "en": "An empty batch has no labels, but it still finishes.",
+          "nl": "Een lege reeks heeft geen labels, maar wordt wel afgerond."
+        },
+        {
+          "en": "Statements after the loop are not part of each repetition.",
+          "nl": "Statements na de lus horen niet bij elke herhaling."
+        },
+        {
+          "en": "A while loop can execute zero times if its first condition is false.",
+          "nl": "Een while-lus kan nul keer worden uitgevoerd als de eerste conditie onwaar is."
+        }
+      ],
+      "feedback": {
+        "en": "Keep the completion message outside the repeated body.",
+        "nl": "Houd het afrondingsbericht buiten het herhaalde blok."
+      },
+      "probes": [
+        {
+          "inputs": {
+            "batch_size": 0
+          },
+          "check": "_error is None and label_number == 1 and _stdout.splitlines() == [\"Batch complete\"]"
+        }
+      ]
+    }
+  ],
+  "inputs": [],
+  "solutionNote": {
+    "en": "The condition, update, and message position each have a separate job. Testing zero, one, and several items reveals common loop-boundary mistakes.",
+    "nl": "De conditie, wijziging en plaats van het bericht hebben elk een eigen taak. Nul, één en meerdere items testen maakt veelvoorkomende fouten op lusgrenzen zichtbaar."
+  }
+}

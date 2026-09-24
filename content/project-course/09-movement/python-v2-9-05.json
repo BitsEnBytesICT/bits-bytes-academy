@@ -1,0 +1,267 @@
+{
+  "id": "python-v2-9-05",
+  "chapter": 9,
+  "group": "python-v2-module-9",
+  "title": {
+    "en": "Give two players independent control",
+    "nl": "Geef twee spelers onafhankelijke besturing"
+  },
+  "kind": "coding",
+  "optional": false,
+  "runtime": "pygame",
+  "guidance": "independent",
+  "estimatedMinutes": 28,
+  "explanation": {
+    "en": "Combine input, time, boundaries, and dictionary state in a two-player controller. The preview supplies all four key states. Your job is to produce the next state without tying one player’s movement to the other.",
+    "nl": "Combineer invoer, tijd, grenzen en dictionarytoestand in een besturing voor twee spelers. Het voorbeeld levert alle vier toetstoestanden. Jij maakt de volgende toestand zonder de beweging van de ene speler aan de andere te koppelen."
+  },
+  "sections": [
+    {
+      "heading": {
+        "en": "Controller contract",
+        "nl": "Besturingsafspraak"
+      },
+      "body": {
+        "en": "update_players(state, controls, dt, court_height) returns a new dictionary. state[\"left\"] and state[\"right\"] hold paddle-top coordinates; other entries must be preserved. Both paddles are 72 pixels high and move at 240 pixels/second. controls contains Boolean w, s, up, down entries: W/S control left, arrows control right. Opposite keys cancel for that player. Clamp both paddles inside the court. Do not mutate either input dictionary. dt is nonnegative and the court is at least 72 pixels high. You may reuse helpers or choose another structure.",
+        "nl": "update_players(state, controls, dt, court_height) geeft een nieuwe dictionary terug. state[\"left\"] en state[\"right\"] bevatten paddle-bovenkantcoördinaten; andere gegevens moeten behouden blijven. Beide paddles zijn 72 pixels hoog en bewegen met 240 pixels/seconde. controls bevat de Booleans w, s, up, down: W/S bestuurt links, de pijlen rechts. Tegengestelde toetsen heffen elkaar voor die speler op. Begrens beide paddles binnen het veld. Verander geen van de invoerdictionaries. dt is niet-negatief en het veld is minstens 72 pixels hoog. Je mag helpers hergebruiken of een andere structuur kiezen."
+      }
+    },
+    {
+      "heading": {
+        "en": "Run, observe, then finish",
+        "nl": "Voer uit, bekijk en rond af"
+      },
+      "body": {
+        "en": "Run starts main.py and opens the game preview. Click the preview to use the keyboard. Clicking elsewhere pauses the game. Finish & check sends the normal close event and checks your helper functions after the loop exits; Stop interrupts without grading. The supplied async loop gives the browser time to draw and receive input. Keep await asyncio.sleep(1 / 60) inside that loop. You do not need to learn asynchronous programming in depth yet.",
+        "nl": "Run start main.py en opent het spelvoorbeeld. Klik op het voorbeeld om het toetsenbord te gebruiken. Elders klikken pauzeert het spel. Afronden en controleren stuurt de normale sluitgebeurtenis en controleert je hulpfuncties nadat de lus eindigt; Stop onderbreekt zonder beoordeling. De meegeleverde async-lus geeft de browser tijd om te tekenen en invoer te ontvangen. Houd await asyncio.sleep(1 / 60) binnen die lus. Je hoeft asynchroon programmeren nog niet uitgebreid te leren."
+      }
+    }
+  ],
+  "example": "",
+  "files": {
+    "main.py": "import asyncio\nimport pygame\nimport motion\n\nasync def main():\n    pygame.init()\n    screen = pygame.display.set_mode((640, 400))\n    clock = pygame.time.Clock()\n    running = True\n    state = {\"left\": 164.0, \"right\": 164.0, \"score\": [0, 0]}\n    while running:\n        for event in pygame.event.get():\n            if event.type == pygame.QUIT or (event.type == pygame.KEYDOWN and event.key == pygame.K_ESCAPE):\n                running = False\n        # Seconds, capped to avoid a large jump after pausing the preview.\n        dt = min(clock.tick() / 1000, 0.05)\n        keys = pygame.key.get_pressed()\n        controls = {\"w\": bool(keys[pygame.K_w]), \"s\": bool(keys[pygame.K_s]), \"up\": bool(keys[pygame.K_UP]), \"down\": bool(keys[pygame.K_DOWN])}\n        state = motion.update_players(state, controls, dt, 400)\n        screen.fill((16, 23, 39))\n        pygame.draw.rect(screen, (80, 180, 255), (24, round(state[\"left\"]), 12, 72))\n        pygame.draw.rect(screen, (255, 145, 50), (604, round(state[\"right\"]), 12, 72))\n        pygame.display.flip()\n        await asyncio.sleep(1 / 60)\n    pygame.quit()\n\nasyncio.run(main())\n",
+    "motion.py": "def update_players(state, controls, dt, court_height):\n    # Return the next state without modifying the inputs.\n    pass\n"
+  },
+  "solution": {
+    "main.py": "import asyncio\nimport pygame\nimport motion\n\nasync def main():\n    pygame.init()\n    screen = pygame.display.set_mode((640, 400))\n    clock = pygame.time.Clock()\n    running = True\n    state = {\"left\": 164.0, \"right\": 164.0, \"score\": [0, 0]}\n    while running:\n        for event in pygame.event.get():\n            if event.type == pygame.QUIT or (event.type == pygame.KEYDOWN and event.key == pygame.K_ESCAPE):\n                running = False\n        # Seconds, capped to avoid a large jump after pausing the preview.\n        dt = min(clock.tick() / 1000, 0.05)\n        keys = pygame.key.get_pressed()\n        controls = {\"w\": bool(keys[pygame.K_w]), \"s\": bool(keys[pygame.K_s]), \"up\": bool(keys[pygame.K_UP]), \"down\": bool(keys[pygame.K_DOWN])}\n        state = motion.update_players(state, controls, dt, 400)\n        screen.fill((16, 23, 39))\n        pygame.draw.rect(screen, (80, 180, 255), (24, round(state[\"left\"]), 12, 72))\n        pygame.draw.rect(screen, (255, 145, 50), (604, round(state[\"right\"]), 12, 72))\n        pygame.display.flip()\n        await asyncio.sleep(1 / 60)\n    pygame.quit()\n\nasyncio.run(main())\n",
+    "motion.py": "def update_players(state, controls, dt, court_height):\n    result = state.copy()\n    left_direction = int(controls[\"s\"]) - int(controls[\"w\"])\n    right_direction = int(controls[\"down\"]) - int(controls[\"up\"])\n    for player, direction in [(\"left\", left_direction), (\"right\", right_direction)]:\n        proposed = state[player] + direction * 240 * dt\n        result[player] = max(0, min(court_height - 72, proposed))\n    return result\n"
+  },
+  "checkpoints": [
+    {
+      "id": "python-v2-9-05-step-1",
+      "task": {
+        "en": "Move each paddle from its own keys and elapsed time. Both players must be able to move during the same frame.",
+        "nl": "Beweeg elke paddle met zijn eigen toetsen en verstreken tijd. Beide spelers moeten in hetzelfde beeld kunnen bewegen."
+      },
+      "check": "_rendered_frames > 0",
+      "hint": {
+        "en": "Two independent decisions are different from a single either/or branch.",
+        "nl": "Twee onafhankelijke beslissingen verschillen van één of/of-tak."
+      },
+      "hints": [
+        {
+          "en": "Two independent decisions are different from a single either/or branch.",
+          "nl": "Twee onafhankelijke beslissingen verschillen van één of/of-tak."
+        },
+        {
+          "en": "Work out one direction per player before updating their coordinates.",
+          "nl": "Bepaal één richting per speler voordat je hun coördinaten bijwerkt."
+        },
+        {
+          "en": "At 240 pixels/second, a quarter-second update covers 60 pixels.",
+          "nl": "Bij 240 pixels/seconde is een kwartseconde-update 60 pixels."
+        }
+      ],
+      "feedback": {
+        "en": "Keep left and right controls independent and time-based.",
+        "nl": "Houd links en rechts onafhankelijk en tijdsafhankelijk."
+      },
+      "probes": [
+        {
+          "moduleOnly": true,
+          "call": {
+            "module": "motion",
+            "name": "update_players",
+            "args": [
+              {
+                "left": 100,
+                "right": 200
+              },
+              {
+                "w": true,
+                "s": false,
+                "up": false,
+                "down": true
+              },
+              0.25,
+              400
+            ]
+          },
+          "check": "_error is None and (_return[\"left\"] == 40 and _return[\"right\"] == 260)"
+        },
+        {
+          "moduleOnly": true,
+          "call": {
+            "module": "motion",
+            "name": "update_players",
+            "args": [
+              {
+                "left": 100,
+                "right": 200
+              },
+              {
+                "w": false,
+                "s": true,
+                "up": true,
+                "down": false
+              },
+              0.125,
+              400
+            ]
+          },
+          "check": "_error is None and (_return[\"left\"] == 130 and _return[\"right\"] == 170)"
+        }
+      ]
+    },
+    {
+      "id": "python-v2-9-05-step-2",
+      "task": {
+        "en": "Handle opposing or released keys and both boundaries without affecting the other player.",
+        "nl": "Handel tegengestelde of losgelaten toetsen en beide grenzen af zonder de andere speler te beïnvloeden."
+      },
+      "check": "_rendered_frames > 0",
+      "hint": {
+        "en": "Treat each paddle’s direction and legal interval separately.",
+        "nl": "Behandel richting en toegestaan interval van elke paddle afzonderlijk."
+      },
+      "hints": [
+        {
+          "en": "Treat each paddle’s direction and legal interval separately.",
+          "nl": "Behandel richting en toegestaan interval van elke paddle afzonderlijk."
+        },
+        {
+          "en": "Test all keys held, none held, and one player at a boundary.",
+          "nl": "Test alle toetsen ingedrukt, geen toets ingedrukt en één speler bij een grens."
+        },
+        {
+          "en": "The legal top range depends on court_height and the fixed paddle height.",
+          "nl": "Het toegestane bovenkantbereik hangt af van court_height en de vaste paddlehoogte."
+        }
+      ],
+      "feedback": {
+        "en": "Respect cancellation and full-paddle boundaries.",
+        "nl": "Respecteer opheffing en grenzen voor de hele paddle."
+      },
+      "probes": [
+        {
+          "moduleOnly": true,
+          "call": {
+            "module": "motion",
+            "name": "update_players",
+            "args": [
+              {
+                "left": 100,
+                "right": 200
+              },
+              {
+                "w": true,
+                "s": true,
+                "up": false,
+                "down": false
+              },
+              1,
+              400
+            ]
+          },
+          "check": "_error is None and (_return[\"left\"] == 100 and _return[\"right\"] == 200)"
+        },
+        {
+          "moduleOnly": true,
+          "call": {
+            "module": "motion",
+            "name": "update_players",
+            "args": [
+              {
+                "left": 10,
+                "right": 100
+              },
+              {
+                "w": true,
+                "s": false,
+                "up": false,
+                "down": true
+              },
+              1,
+              240
+            ]
+          },
+          "check": "_error is None and (_return[\"left\"] == 0 and _return[\"right\"] == 168)"
+        }
+      ]
+    },
+    {
+      "id": "python-v2-9-05-step-3",
+      "task": {
+        "en": "Preserve unrelated state and leave the inputs unchanged. Play with both controls, then finish the preview.",
+        "nl": "Behoud overige toestand en laat invoer ongemoeid. Speel met beide besturingen en rond het voorbeeld af."
+      },
+      "check": "_rendered_frames > 0",
+      "hint": {
+        "en": "Other parts of the game may still hold the current state.",
+        "nl": "Andere speldelen kunnen nog de huidige toestand gebruiken."
+      },
+      "hints": [
+        {
+          "en": "Other parts of the game may still hold the current state.",
+          "nl": "Andere speldelen kunnen nog de huidige toestand gebruiken."
+        },
+        {
+          "en": "Copy before replacing the coordinates you own.",
+          "nl": "Kopieer voordat je de coördinaten vervangt die jij beheert."
+        },
+        {
+          "en": "A shallow dictionary copy is sufficient when only numeric top coordinates are changed.",
+          "nl": "Een oppervlakkige dictionarykopie volstaat wanneer alleen numerieke bovenkantcoördinaten worden veranderd."
+        }
+      ],
+      "feedback": {
+        "en": "Return a separate state dictionary and preserve extra fields.",
+        "nl": "Geef een afzonderlijke toestandsdictionary terug en behoud extra velden."
+      },
+      "probes": [
+        {
+          "moduleOnly": true,
+          "call": {
+            "module": "motion",
+            "name": "update_players",
+            "args": [
+              {
+                "left": 100,
+                "right": 120,
+                "score": [
+                  2,
+                  3
+                ],
+                "round": 7
+              },
+              {
+                "w": false,
+                "s": true,
+                "up": false,
+                "down": false
+              },
+              0.1,
+              400
+            ]
+          },
+          "check": "_error is None and (_return is not _args[0] and _args[0] == {\"left\":100,\"right\":120,\"score\":[2,3],\"round\":7} and _return[\"score\"] == [2,3] and _return[\"round\"] == 7 and _args[1] == {\"w\":False,\"s\":True,\"up\":False,\"down\":False})"
+        }
+      ]
+    }
+  ],
+  "inputs": [],
+  "solutionNote": {
+    "en": "This is one valid approach. Compare the reasoning with your own code before choosing whether to use it. Other implementations can satisfy the same behavior.",
+    "nl": "Dit is één geldige aanpak. Vergelijk de redenering met je eigen code voordat je besluit die te gebruiken. Andere implementaties kunnen aan hetzelfde gedrag voldoen."
+  }
+}

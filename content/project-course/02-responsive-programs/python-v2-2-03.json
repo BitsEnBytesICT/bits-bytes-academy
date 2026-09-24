@@ -1,0 +1,193 @@
+{
+  "id": "python-v2-2-03",
+  "chapter": 2,
+  "group": "python-v2-module-2",
+  "title": {
+    "en": "Will you reach the departure?",
+    "nl": "Haal je het vertrek?"
+  },
+  "kind": "coding",
+  "optional": false,
+  "runtime": "terminal",
+  "guidance": "adapt",
+  "estimatedMinutes": 12,
+  "explanation": {
+    "en": "The departure assistant knows how long the walk takes. Ask how many minutes remain before departure and produce an honest report, including when the person is already too late. Reaching the stop exactly at departure counts as making it in this simplified model.",
+    "nl": "De vertrekassistent weet hoe lang de wandeling duurt. Vraag hoeveel minuten er tot vertrek over zijn en maak een eerlijk overzicht, ook wanneer iemand al te laat is. Precies op het vertrekmoment bij de halte aankomen telt in dit vereenvoudigde model als op tijd."
+  },
+  "sections": [
+    {
+      "heading": {
+        "en": "A comparison produces a Boolean",
+        "nl": "Een vergelijking produceert een Boolean"
+      },
+      "body": {
+        "en": "A comparison evaluates to True or False. Use < and > for strict comparisons, <= and >= when equality is allowed, and == to compare equality. A single = assigns a value; it does not ask whether two values are equal.",
+        "nl": "Een vergelijking levert True of False op. Gebruik < en > voor strikte vergelijkingen, <= en >= wanneer gelijkheid is toegestaan en == om gelijkheid te vergelijken. Een enkele = kent een waarde toe; die vraagt niet of twee waarden gelijk zijn."
+      },
+      "code": "capacity = 8\nguests = 8\nfits = guests <= capacity\nprint(fits)\nprint(guests < capacity)",
+      "output": "True\nFalse"
+    },
+    {
+      "heading": {
+        "en": "Try the boundary",
+        "nl": "Probeer het grensgeval"
+      },
+      "body": {
+        "en": "If a rule includes “at most”, “at least”, or “exactly”, equality deserves its own test. Check one value below the boundary, the boundary itself, and one value above it. A Boolean can be stored in a variable and printed like another value.",
+        "nl": "Als een regel woorden als “hoogstens”, “minstens” of “precies” bevat, verdient gelijkheid een eigen test. Controleer een waarde onder de grens, de grens zelf en een waarde erboven. Je kunt een Boolean net als een andere waarde in een variabele opslaan en afdrukken."
+      }
+    }
+  ],
+  "example": "",
+  "files": {
+    "main.py": "walk_minutes = 8\nminutes_left = int(input(\"Minutes until departure: \"))\n\nbuffer = 0\ncan_make_it = False\nprint(\"Time after walking:\", buffer)\nprint(\"Can make it:\", can_make_it)\n"
+  },
+  "solution": {
+    "main.py": "walk_minutes = 8\nminutes_left = int(input(\"Minutes until departure: \"))\n\nbuffer = minutes_left - walk_minutes\ncan_make_it = walk_minutes <= minutes_left\nprint(\"Time after walking:\", buffer)\nprint(\"Can make it:\", can_make_it)\n"
+  },
+  "checkpoints": [
+    {
+      "id": "python-v2-2-03-step-1",
+      "task": {
+        "en": "Calculate buffer: the minutes remaining after the walk. Keep a negative result when the walk takes too long.",
+        "nl": "Bereken buffer: de minuten die na de wandeling overblijven. Behoud een negatieve uitkomst wanneer de wandeling te lang duurt."
+      },
+      "check": "buffer == minutes_left - walk_minutes",
+      "hint": {
+        "en": "The available time is spent on walking.",
+        "nl": "De beschikbare tijd wordt aan de wandeling besteed."
+      },
+      "hints": [
+        {
+          "en": "The available time is spent on walking.",
+          "nl": "De beschikbare tijd wordt aan de wandeling besteed."
+        },
+        {
+          "en": "Do not replace an inconvenient negative result with zero; it carries useful information.",
+          "nl": "Vervang een onhandige negatieve uitkomst niet door nul; die bevat nuttige informatie."
+        },
+        {
+          "en": "If an activity needs 10 minutes but only 6 remain, the time margin is -4.",
+          "nl": "Als een activiteit 10 minuten nodig heeft maar er nog maar 6 over zijn, is de tijdsmarge -4."
+        }
+      ],
+      "feedback": {
+        "en": "The margin should describe how early or late the arrival would be.",
+        "nl": "De marge moet aangeven hoe vroeg of laat de aankomst zou zijn."
+      },
+      "probes": [
+        {
+          "stdin": [
+            "5"
+          ],
+          "check": "_error is None and buffer == -3"
+        },
+        {
+          "stdin": [
+            "13"
+          ],
+          "check": "_error is None and buffer == 5"
+        }
+      ]
+    },
+    {
+      "id": "python-v2-2-03-step-2",
+      "task": {
+        "en": "Make can_make_it a Boolean that includes an arrival exactly at departure.",
+        "nl": "Maak can_make_it een Boolean die ook aankomst precies op het vertrekmoment toestaat."
+      },
+      "check": "type(can_make_it) is bool and can_make_it == (minutes_left >= walk_minutes)",
+      "hint": {
+        "en": "Think about the equality case before choosing the comparison.",
+        "nl": "Denk aan het gelijkheidsgeval voordat je de vergelijking kiest."
+      },
+      "hints": [
+        {
+          "en": "Think about the equality case before choosing the comparison.",
+          "nl": "Denk aan het gelijkheidsgeval voordat je de vergelijking kiest."
+        },
+        {
+          "en": "The walk must fit within the remaining time.",
+          "nl": "De wandeling moet binnen de resterende tijd passen."
+        },
+        {
+          "en": "The capacity example distinguishes <= from <.",
+          "nl": "Het capacity-voorbeeld maakt het verschil tussen <= en < duidelijk."
+        }
+      ],
+      "feedback": {
+        "en": "Check too early, exactly enough time, and too late.",
+        "nl": "Controleer ruim op tijd, precies genoeg tijd en te laat."
+      },
+      "probes": [
+        {
+          "stdin": [
+            "7"
+          ],
+          "check": "_error is None and can_make_it is False"
+        },
+        {
+          "stdin": [
+            "8"
+          ],
+          "check": "_error is None and can_make_it is True"
+        },
+        {
+          "stdin": [
+            "9"
+          ],
+          "check": "_error is None and can_make_it is True"
+        }
+      ]
+    },
+    {
+      "id": "python-v2-2-03-step-3",
+      "task": {
+        "en": "Keep both results in the report. Change walk_minutes once and test the new boundary yourself.",
+        "nl": "Behoud beide resultaten in het overzicht. Verander walk_minutes eenmaal en test zelf de nieuwe grens."
+      },
+      "check": "str(buffer) in _stdout and str(can_make_it) in _stdout",
+      "hint": {
+        "en": "The numeric margin explains the Boolean result.",
+        "nl": "De numerieke marge verklaart de Boolean-uitkomst."
+      },
+      "hints": [
+        {
+          "en": "The numeric margin explains the Boolean result.",
+          "nl": "De numerieke marge verklaart de Boolean-uitkomst."
+        },
+        {
+          "en": "Print the values the program calculated rather than fixed example results.",
+          "nl": "Druk de door het programma berekende waarden af in plaats van vaste voorbeelduitkomsten."
+        },
+        {
+          "en": "print(\"Fits:\", fits) displays a stored Boolean.",
+          "nl": "print(\"Fits:\", fits) toont een opgeslagen Boolean."
+        }
+      ],
+      "feedback": {
+        "en": "The displayed margin and Boolean should follow the current inputs.",
+        "nl": "De getoonde marge en Boolean moeten de huidige invoer volgen."
+      },
+      "probes": [
+        {
+          "inputs": {
+            "walk_minutes": 11
+          },
+          "stdin": [
+            "9"
+          ],
+          "check": "_error is None and \"-2\" in _stdout and \"False\" in _stdout"
+        }
+      ]
+    }
+  ],
+  "inputs": [
+    "12"
+  ],
+  "solutionNote": {
+    "en": "Comparing the two times directly or checking whether buffer is nonnegative are both valid. The important boundary is equality.",
+    "nl": "De twee tijden direct vergelijken of controleren of buffer niet negatief is, zijn allebei geldig. Het belangrijke grensgeval is gelijkheid."
+  }
+}

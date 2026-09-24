@@ -67,7 +67,7 @@ export class TerminalSession {
     this.anchor = null;
   }
   private get busy() {
-    return this.blocked || ["loading", "running"].includes(this.state.status);
+    return this.blocked || ["loading", "running", "paused", "finishing", "grading"].includes(this.state.status);
   }
   private async writeOutput(text: string, channel: string) {
     const color =

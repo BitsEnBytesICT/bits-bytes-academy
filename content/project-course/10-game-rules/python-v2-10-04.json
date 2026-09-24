@@ -1,0 +1,248 @@
+{
+  "id": "python-v2-10-04",
+  "chapter": 10,
+  "group": "python-v2-module-10",
+  "title": {
+    "en": "Keep a match score",
+    "nl": "Houd een wedstrijdscore bij"
+  },
+  "kind": "coding",
+  "optional": false,
+  "runtime": "pygame",
+  "guidance": "adapt",
+  "estimatedMinutes": 22,
+  "explanation": {
+    "en": "Test the scoreboard independently of ball physics. A and L award points, R starts a fresh match. Repair the state update so a match ends at its target, stays finished, and does not rewrite the previous state.",
+    "nl": "Test het scorebord onafhankelijk van balfysica. A en L geven punten, R begint een nieuwe wedstrijd. Repareer de toestandsupdate zodat een wedstrijd bij zijn doel eindigt, afgelopen blijft en de vorige toestand niet overschrijft."
+  },
+  "sections": [
+    {
+      "heading": {
+        "en": "One state transition",
+        "nl": "Eén toestandsverandering"
+      },
+      "body": {
+        "en": "award_point(state, player, target) returns a new dictionary containing the updated left/right scores and winner. player is \"left\" or \"right\"; target is a positive integer. If winner is already set, preserve the whole state. Otherwise add exactly one point to player and set winner when that score reaches or exceeds target. Preserve any other entries and do not mutate state. R in main.py demonstrates a fresh reset.",
+        "nl": "award_point(state, player, target) geeft een nieuwe dictionary met bijgewerkte left/right-scores en winner terug. player is \"left\" of \"right\"; target is een positief geheel getal. Als winner al is ingevuld, behoud je de hele toestand. Anders tel je precies één punt bij player op en stel je winner in wanneer die score target bereikt of overschrijdt. Behoud andere gegevens en verander state niet. R in main.py laat een verse reset zien."
+      }
+    },
+    {
+      "heading": {
+        "en": "Text is also an image",
+        "nl": "Tekst is ook een afbeelding"
+      },
+      "body": {
+        "en": "pygame.font.Font(None, 28) uses the bundled default font. font.render(text, True, colour) returns a Surface containing the text. main.py blits that Surface each frame, just like your earlier scenes. The game redraws the background first so old digits do not remain after a score changes.",
+        "nl": "pygame.font.Font(None, 28) gebruikt het meegeleverde standaardlettertype. font.render(text, True, colour) geeft een Surface met tekst terug. main.py kopieert die elk beeld met blit, net als je eerdere scènes. Het spel tekent eerst de achtergrond opnieuw zodat oude cijfers niet blijven staan na een scorewijziging."
+      }
+    },
+    {
+      "heading": {
+        "en": "Run, observe, then finish",
+        "nl": "Voer uit, bekijk en rond af"
+      },
+      "body": {
+        "en": "Run starts main.py and opens the game preview. Click the preview to use the keyboard. Clicking elsewhere pauses the game. Finish & check sends the normal close event and checks your helper functions after the loop exits; Stop interrupts without grading. The supplied async loop gives the browser time to draw and receive input. Keep await asyncio.sleep(1 / 60) inside that loop. You do not need to learn asynchronous programming in depth yet.",
+        "nl": "Run start main.py en opent het spelvoorbeeld. Klik op het voorbeeld om het toetsenbord te gebruiken. Elders klikken pauzeert het spel. Afronden en controleren stuurt de normale sluitgebeurtenis en controleert je hulpfuncties nadat de lus eindigt; Stop onderbreekt zonder beoordeling. De meegeleverde async-lus geeft de browser tijd om te tekenen en invoer te ontvangen. Houd await asyncio.sleep(1 / 60) binnen die lus. Je hoeft asynchroon programmeren nog niet uitgebreid te leren."
+      }
+    }
+  ],
+  "example": "",
+  "files": {
+    "main.py": "import asyncio\nimport pygame\nimport rules\n\nasync def main():\n    pygame.init()\n    screen = pygame.display.set_mode((640, 400))\n    clock = pygame.time.Clock()\n    font = pygame.font.Font(None, 28)\n    running = True\n    state = {\"left\": 0, \"right\": 0, \"winner\": None}\n    while running:\n        for event in pygame.event.get():\n            if event.type == pygame.QUIT or (event.type == pygame.KEYDOWN and event.key == pygame.K_ESCAPE):\n                running = False\n            if event.type == pygame.KEYDOWN:\n                if event.key == pygame.K_a:\n                    state = rules.award_point(state, \"left\", 3)\n                elif event.key == pygame.K_l:\n                    state = rules.award_point(state, \"right\", 3)\n                elif event.key == pygame.K_r:\n                    state = {\"left\": 0, \"right\": 0, \"winner\": None}\n        dt = min(clock.tick() / 1000, 0.05)\n        keys = pygame.key.get_pressed()\n        screen.fill((16, 23, 39))\n        label = font.render(str(state[\"left\"]) + \" : \" + str(state[\"right\"]), True, (255,255,255))\n        screen.blit(label, (280,160))\n        status = \"Winner: \" + str(state[\"winner\"]) if state[\"winner\"] else \"A / L: point. R: restart.\"\n        screen.blit(font.render(status, True, (255,145,50)), (100,220))\n        pygame.display.flip()\n        await asyncio.sleep(1 / 60)\n    pygame.quit()\n\nasyncio.run(main())\n",
+    "rules.py": "def award_point(state, player, target):\n    state[player] += 1\n    if state[player] == 5:\n        state[\"winner\"] = player\n    return state\n"
+  },
+  "solution": {
+    "main.py": "import asyncio\nimport pygame\nimport rules\n\nasync def main():\n    pygame.init()\n    screen = pygame.display.set_mode((640, 400))\n    clock = pygame.time.Clock()\n    font = pygame.font.Font(None, 28)\n    running = True\n    state = {\"left\": 0, \"right\": 0, \"winner\": None}\n    while running:\n        for event in pygame.event.get():\n            if event.type == pygame.QUIT or (event.type == pygame.KEYDOWN and event.key == pygame.K_ESCAPE):\n                running = False\n            if event.type == pygame.KEYDOWN:\n                if event.key == pygame.K_a:\n                    state = rules.award_point(state, \"left\", 3)\n                elif event.key == pygame.K_l:\n                    state = rules.award_point(state, \"right\", 3)\n                elif event.key == pygame.K_r:\n                    state = {\"left\": 0, \"right\": 0, \"winner\": None}\n        dt = min(clock.tick() / 1000, 0.05)\n        keys = pygame.key.get_pressed()\n        screen.fill((16, 23, 39))\n        label = font.render(str(state[\"left\"]) + \" : \" + str(state[\"right\"]), True, (255,255,255))\n        screen.blit(label, (280,160))\n        status = \"Winner: \" + str(state[\"winner\"]) if state[\"winner\"] else \"A / L: point. R: restart.\"\n        screen.blit(font.render(status, True, (255,145,50)), (100,220))\n        pygame.display.flip()\n        await asyncio.sleep(1 / 60)\n    pygame.quit()\n\nasyncio.run(main())\n",
+    "rules.py": "def award_point(state, player, target):\n    result = state.copy()\n    if result[\"winner\"] is not None:\n        return result\n    result[player] += 1\n    if result[player] >= target:\n        result[\"winner\"] = player\n    return result\n"
+  },
+  "checkpoints": [
+    {
+      "id": "python-v2-10-04-step-1",
+      "task": {
+        "en": "Award exactly one point to the chosen player and retain unrelated data without changing the input.",
+        "nl": "Geef precies één punt aan de gekozen speler en behoud overige gegevens zonder de invoer te veranderen."
+      },
+      "check": "_rendered_frames > 0",
+      "hint": {
+        "en": "The previous state may still be needed for display or debugging.",
+        "nl": "De vorige toestand kan nog nodig zijn voor weergave of debuggen."
+      },
+      "hints": [
+        {
+          "en": "The previous state may still be needed for display or debugging.",
+          "nl": "De vorige toestand kan nog nodig zijn voor weergave of debuggen."
+        },
+        {
+          "en": "Make a copy before changing a score.",
+          "nl": "Maak een kopie voordat je een score verandert."
+        },
+        {
+          "en": "A dictionary copy retains fields you are not updating.",
+          "nl": "Een dictionarykopie behoudt velden die je niet bijwerkt."
+        }
+      ],
+      "feedback": {
+        "en": "Update only the chosen score in a new dictionary.",
+        "nl": "Werk alleen de gekozen score in een nieuwe dictionary bij."
+      },
+      "probes": [
+        {
+          "moduleOnly": true,
+          "call": {
+            "module": "rules",
+            "name": "award_point",
+            "args": [
+              {
+                "left": 1,
+                "right": 2,
+                "winner": null,
+                "round": 4
+              },
+              "left",
+              5
+            ]
+          },
+          "check": "_error is None and (_return == {\"left\":2,\"right\":2,\"winner\":None,\"round\":4} and _args[0] == {\"left\":1,\"right\":2,\"winner\":None,\"round\":4} and _return is not _args[0])"
+        },
+        {
+          "moduleOnly": true,
+          "call": {
+            "module": "rules",
+            "name": "award_point",
+            "args": [
+              {
+                "left": 1,
+                "right": 0,
+                "winner": null
+              },
+              "right",
+              5
+            ]
+          },
+          "check": "_error is None and (_return[\"right\"] == 1 and _return[\"left\"] == 1)"
+        }
+      ]
+    },
+    {
+      "id": "python-v2-10-04-step-2",
+      "task": {
+        "en": "Recognise either player winning at the supplied target, including a one-point match.",
+        "nl": "Herken dat beide spelers bij het opgegeven doel kunnen winnen, ook in een wedstrijd van één punt."
+      },
+      "check": "_rendered_frames > 0",
+      "hint": {
+        "en": "The winning target is an argument, not a fixed constant.",
+        "nl": "Het winnende doel is een argument, geen vaste constante."
+      },
+      "hints": [
+        {
+          "en": "The winning target is an argument, not a fixed constant.",
+          "nl": "Het winnende doel is een argument, geen vaste constante."
+        },
+        {
+          "en": "Check the updated score against that target.",
+          "nl": "Controleer de bijgewerkte score tegen dat doel."
+        },
+        {
+          "en": "Reaching or exceeding a threshold uses an inclusive comparison.",
+          "nl": "Een drempel bereiken of overschrijden gebruikt een inclusieve vergelijking."
+        }
+      ],
+      "feedback": {
+        "en": "Use the supplied target for either player.",
+        "nl": "Gebruik het opgegeven doel voor beide spelers."
+      },
+      "probes": [
+        {
+          "moduleOnly": true,
+          "call": {
+            "module": "rules",
+            "name": "award_point",
+            "args": [
+              {
+                "left": 2,
+                "right": 1,
+                "winner": null
+              },
+              "left",
+              3
+            ]
+          },
+          "check": "_error is None and (_return[\"winner\"] == \"left\")"
+        },
+        {
+          "moduleOnly": true,
+          "call": {
+            "module": "rules",
+            "name": "award_point",
+            "args": [
+              {
+                "left": 0,
+                "right": 0,
+                "winner": null
+              },
+              "right",
+              1
+            ]
+          },
+          "check": "_error is None and (_return[\"winner\"] == \"right\")"
+        }
+      ]
+    },
+    {
+      "id": "python-v2-10-04-step-3",
+      "task": {
+        "en": "Freeze finished matches until R resets them. Try pressing both scoring keys after a win.",
+        "nl": "Bevries afgelopen wedstrijden totdat R ze herstelt. Probeer na winst beide scoretoetsen in te drukken."
+      },
+      "check": "_rendered_frames > 0",
+      "hint": {
+        "en": "A finished state should reject further score transitions.",
+        "nl": "Een afgelopen toestand hoort verdere scoreveranderingen te weigeren."
+      },
+      "hints": [
+        {
+          "en": "A finished state should reject further score transitions.",
+          "nl": "Een afgelopen toestand hoort verdere scoreveranderingen te weigeren."
+        },
+        {
+          "en": "Check whether a winner already exists before adding a point.",
+          "nl": "Controleer vóór het optellen of al een winnaar bestaat."
+        },
+        {
+          "en": "Returning an unchanged copy is still a valid new state.",
+          "nl": "Een ongewijzigde kopie teruggeven is nog steeds een geldige nieuwe toestand."
+        }
+      ],
+      "feedback": {
+        "en": "Do not award more points after a winner is set.",
+        "nl": "Geef geen extra punten nadat een winnaar is ingesteld."
+      },
+      "probes": [
+        {
+          "moduleOnly": true,
+          "call": {
+            "module": "rules",
+            "name": "award_point",
+            "args": [
+              {
+                "left": 3,
+                "right": 2,
+                "winner": "left"
+              },
+              "right",
+              3
+            ]
+          },
+          "check": "_error is None and (_return == _args[0] and _return is not _args[0])"
+        }
+      ]
+    }
+  ],
+  "inputs": [],
+  "solutionNote": {
+    "en": "This is one valid approach. Compare the reasoning with your own code before choosing whether to use it. Other implementations can satisfy the same behavior.",
+    "nl": "Dit is één geldige aanpak. Vergelijk de redenering met je eigen code voordat je besluit die te gebruiken. Andere implementaties kunnen aan hetzelfde gedrag voldoen."
+  }
+}

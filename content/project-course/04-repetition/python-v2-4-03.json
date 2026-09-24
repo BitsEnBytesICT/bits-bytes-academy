@@ -1,0 +1,198 @@
+{
+  "id": "python-v2-4-03",
+  "chapter": 4,
+  "group": "python-v2-module-4",
+  "title": {
+    "en": "Let a person recover from a mistake",
+    "nl": "Laat iemand herstellen van een fout"
+  },
+  "kind": "coding",
+  "optional": false,
+  "runtime": "terminal",
+  "guidance": "adapt",
+  "estimatedMinutes": 18,
+  "explanation": {
+    "en": "A donation desk needs one nonnegative decimal amount. A typo should invite another attempt, not close the program. Negative amounts are also rejected. The word cancel ends the interaction without a donation. Keep the count of all submitted responses, including the accepted amount or cancellation.",
+    "nl": "Een donatiebalie heeft één niet-negatief decimaal bedrag nodig. Een typefout moet een nieuwe poging uitlokken in plaats van het programma af te sluiten. Negatieve bedragen worden ook afgewezen. Het woord cancel beëindigt de interactie zonder donatie. Houd het aantal ingediende antwoorden bij, inclusief het geaccepteerde bedrag of de annulering."
+  },
+  "sections": [
+    {
+      "heading": {
+        "en": "Skip the rest of this turn",
+        "nl": "Sla de rest van deze beurt over"
+      },
+      "body": {
+        "en": "continue starts the next repetition of the nearest loop. It is useful after rejecting input: later statements in the body should not pretend the input succeeded. Check that every path still makes progress. A continue placed before reading new input can accidentally repeat the same mistake forever.",
+        "nl": "continue begint de volgende herhaling van de dichtstbijzijnde lus. Dat is nuttig na afgewezen invoer: latere statements in het blok mogen niet doen alsof de invoer is geslaagd. Controleer of elk pad nog voortgang maakt. Een continue vóór het lezen van nieuwe invoer kan dezelfde fout onbedoeld eindeloos herhalen."
+      },
+      "code": "while True:\n    text = input(\"Name, or stop: \").strip()\n    if text == \"stop\":\n        break\n    if text == \"\":\n        print(\"A name cannot be blank\")\n        continue\n    print(\"Hello\", text)"
+    },
+    {
+      "heading": {
+        "en": "Separate parsing from acceptance",
+        "nl": "Scheid ontleden van accepteren"
+      },
+      "body": {
+        "en": "A value may convert successfully but still violate a rule, such as a negative donation. Use a temporary candidate until it has passed validation. Store it in amount only on acceptance. status should finish as \"accepted\" or \"cancelled\"; amount stays None on cancellation.",
+        "nl": "Een waarde kan succesvol worden omgezet maar toch een regel schenden, zoals een negatieve donatie. Gebruik een tijdelijke kandidaat totdat deze is gevalideerd. Bewaar de waarde pas bij acceptatie in amount. status moet eindigen als \"accepted\" of \"cancelled\"; amount blijft None bij annulering."
+      }
+    }
+  ],
+  "example": "",
+  "files": {
+    "main.py": "amount = None\nstatus = \"pending\"\nattempts = 0\n\ntext = input(\"Donation or cancel: \").strip()\nattempts += 1\namount = float(text)\nstatus = \"accepted\"\nprint(status, amount)\nprint(\"Attempts:\", attempts)\n"
+  },
+  "solution": {
+    "main.py": "amount = None\nstatus = \"pending\"\nattempts = 0\n\nwhile True:\n    text = input(\"Donation or cancel: \").strip()\n    attempts += 1\n    if text.lower() == \"cancel\":\n        status = \"cancelled\"\n        break\n    try:\n        candidate = float(text)\n    except ValueError:\n        print(\"Use a number\")\n        continue\n    if candidate < 0:\n        print(\"Use zero or more\")\n        continue\n    amount = candidate\n    status = \"accepted\"\n    break\nprint(status, amount)\nprint(\"Attempts:\", attempts)\n"
+  },
+  "checkpoints": [
+    {
+      "id": "python-v2-4-03-step-1",
+      "task": {
+        "en": "Repeat after invalid numeric text or a negative amount. Accept zero or a positive decimal and store it in amount.",
+        "nl": "Herhaal na ongeldige getaltekst of een negatief bedrag. Accepteer nul of een positief decimaal getal en bewaar het in amount."
+      },
+      "check": "status in (\"accepted\", \"cancelled\") and (status != \"accepted\" or isinstance(amount, (int, float)) and amount >= 0)",
+      "hint": {
+        "en": "A failed response should not leave the session in a successful state.",
+        "nl": "Een mislukt antwoord mag de sessie niet in een geslaagde toestand achterlaten."
+      },
+      "hints": [
+        {
+          "en": "A failed response should not leave the session in a successful state.",
+          "nl": "Een mislukt antwoord mag de sessie niet in een geslaagde toestand achterlaten."
+        },
+        {
+          "en": "Handle conversion failure and the negative-value rule before accepting.",
+          "nl": "Handel conversiefouten en de regel voor negatieve waarden af vóór acceptatie."
+        },
+        {
+          "en": "The name example uses continue to skip processing a rejected response.",
+          "nl": "Het naamvoorbeeld gebruikt continue om de verwerking van een afgewezen antwoord over te slaan."
+        }
+      ],
+      "feedback": {
+        "en": "Continue asking after rejected responses and stop after a valid donation.",
+        "nl": "Blijf vragen na afgewezen antwoorden en stop na een geldige donatie."
+      },
+      "probes": [
+        {
+          "stdin": [
+            "bad",
+            "-1",
+            "4.25"
+          ],
+          "check": "_error is None and status == \"accepted\" and amount == 4.25 and _remaining_input == \"\""
+        },
+        {
+          "stdin": [
+            "",
+            "0"
+          ],
+          "check": "_error is None and status == \"accepted\" and amount == 0"
+        }
+      ]
+    },
+    {
+      "id": "python-v2-4-03-step-2",
+      "task": {
+        "en": "Allow cancel at any attempt, regardless of letter case or surrounding spaces. Finish with status cancelled and amount None.",
+        "nl": "Sta cancel bij elke poging toe, ongeacht hoofdletters of spaties aan de randen. Eindig met status cancelled en amount None."
+      },
+      "check": "status in (\"accepted\", \"cancelled\") and (status != \"cancelled\" or amount is None)",
+      "hint": {
+        "en": "Cancellation is a command, not numeric text to convert.",
+        "nl": "Annulering is een commando, geen getaltekst die moet worden omgezet."
+      },
+      "hints": [
+        {
+          "en": "Cancellation is a command, not numeric text to convert.",
+          "nl": "Annulering is een commando, geen getaltekst die moet worden omgezet."
+        },
+        {
+          "en": "Recognise the command before attempting conversion.",
+          "nl": "Herken het commando voordat je de conversie probeert."
+        },
+        {
+          "en": "The help desk checks its exit command before ordinary handling.",
+          "nl": "De helpdesk controleert zijn afsluitcommando vóór de gewone afhandeling."
+        }
+      ],
+      "feedback": {
+        "en": "Cancellation must work even after one or more failed attempts.",
+        "nl": "Annulering moet ook na een of meer mislukte pogingen werken."
+      },
+      "probes": [
+        {
+          "stdin": [
+            " CANCEL "
+          ],
+          "check": "_error is None and status == \"cancelled\" and amount is None"
+        },
+        {
+          "stdin": [
+            "bad",
+            "-4",
+            "cancel"
+          ],
+          "check": "_error is None and status == \"cancelled\" and amount is None"
+        }
+      ]
+    },
+    {
+      "id": "python-v2-4-03-step-3",
+      "task": {
+        "en": "Count every submitted response in attempts and report the final status and attempt count. Give feedback when you reject a response.",
+        "nl": "Tel elk ingediend antwoord in attempts en meld de eindstatus en het aantal pogingen. Geef feedback wanneer je een antwoord afwijst."
+      },
+      "check": "type(attempts) is int and attempts >= 1 and status in _stdout and str(attempts) in _stdout",
+      "hint": {
+        "en": "A counter should advance at one shared point per response.",
+        "nl": "Een teller moet op één gedeeld punt per antwoord omhooggaan."
+      },
+      "hints": [
+        {
+          "en": "A counter should advance at one shared point per response.",
+          "nl": "Een teller moet op één gedeeld punt per antwoord omhooggaan."
+        },
+        {
+          "en": "Putting the update only on success loses rejected attempts.",
+          "nl": "De wijziging alleen bij succes uitvoeren verliest afgewezen pogingen."
+        },
+        {
+          "en": "Reading a response and counting that response can happen next to each other.",
+          "nl": "Een antwoord lezen en dat antwoord tellen kunnen direct na elkaar gebeuren."
+        }
+      ],
+      "feedback": {
+        "en": "Do not silently repeat or lose failed attempts from the count.",
+        "nl": "Herhaal niet stilzwijgend en verlies mislukte pogingen niet uit de teller."
+      },
+      "probes": [
+        {
+          "stdin": [
+            "wrong",
+            "-3",
+            "2"
+          ],
+          "check": "_error is None and attempts == 3 and \"accepted\" in _stdout and \"3\" in _stdout and len(_stdout.splitlines()) >= 4"
+        },
+        {
+          "stdin": [
+            "cancel"
+          ],
+          "check": "attempts == 1 and \"cancelled\" in _stdout"
+        }
+      ]
+    }
+  ],
+  "inputs": [
+    "oops",
+    "-2",
+    "12.5"
+  ],
+  "solutionNote": {
+    "en": "Nested branches can replace continue without changing the behavior. A temporary candidate prevents a rejected negative value from looking like an accepted donation. As in the earlier ratio lesson, use ordinary finite numbers here.",
+    "nl": "Geneste vertakkingen kunnen continue vervangen zonder het gedrag te veranderen. Een tijdelijke kandidaat voorkomt dat een afgewezen negatieve waarde op een geaccepteerde donatie lijkt. Gebruik hier net als in de eerdere verhoudingsles gewone eindige getallen."
+  }
+}

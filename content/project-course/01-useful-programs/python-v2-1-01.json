@@ -1,0 +1,151 @@
+{
+  "id": "python-v2-1-01",
+  "chapter": 1,
+  "group": "python-v2-module-1",
+  "title": {
+    "en": "A welcome that can change",
+    "nl": "Een welkom dat kan veranderen"
+  },
+  "kind": "coding",
+  "optional": false,
+  "runtime": "terminal",
+  "guidance": "guided",
+  "estimatedMinutes": 10,
+  "explanation": {
+    "en": "A program is a set of instructions that Python follows. This workshop notice already runs. Your first job is to change its message without losing the useful information beneath it. Run the starter once before editing: the terminal is where you see what your program actually does.",
+    "nl": "Een programma is een reeks instructies die Python uitvoert. Dit workshopbericht werkt al. Je eerste taak is het bericht aanpassen zonder de nuttige informatie eronder kwijt te raken. Voer de startcode eerst uit: in de terminal zie je wat je programma echt doet."
+  },
+  "sections": [
+    {
+      "heading": {
+        "en": "Text and names",
+        "nl": "Tekst en namen"
+      },
+      "body": {
+        "en": "Quoted text is a string. A variable is a name for a value. On the first line below, = stores the string under the name place. In print(place), Python looks up that value. print(\"place\") would print the word place instead.",
+        "nl": "Tekst tussen aanhalingstekens is een string. Een variabele is een naam voor een waarde. Op de eerste regel slaat = de string op onder de naam place. In print(place) zoekt Python die waarde op. print(\"place\") zou juist het woord place afdrukken."
+      },
+      "code": "place = \"Studio\"\nprint(place)\nprint(\"Bring a notebook\")",
+      "output": "Studio\nBring a notebook"
+    },
+    {
+      "heading": {
+        "en": "Notes for people",
+        "nl": "Notities voor mensen"
+      },
+      "body": {
+        "en": "A # starts a comment. Python ignores the rest of that line. Comments can explain why a line exists; they do not appear in the terminal. Each print() below produces a new output line.",
+        "nl": "Een # begint een commentaar. Python negeert de rest van die regel. Commentaar kan uitleggen waarom een regel bestaat; het verschijnt niet in de terminal. Elke print() hieronder produceert een nieuwe uitvoerregel."
+      },
+      "code": "# Keep the location in one place\nroom = \"Library\"\nprint(room)\nprint(room)",
+      "output": "Library\nLibrary"
+    }
+  ],
+  "example": "",
+  "files": {
+    "main.py": "# Workshop notice\nworkshop = \"Repair afternoon\"\nprint(\"workshop\")\nprint(\"Bring a broken item\")\n"
+  },
+  "solution": {
+    "main.py": "# Keep the workshop name in one place\nworkshop = \"Robot workshop\"\nprint(workshop)\nprint(\"Bring a broken item\")\nprint(\"Everyone is welcome\")\n"
+  },
+  "checkpoints": [
+    {
+      "id": "python-v2-1-01-step-1",
+      "task": {
+        "en": "Make the first output line show the value of workshop, instead of the word workshop.",
+        "nl": "Laat de eerste uitvoerregel de waarde van workshop tonen, in plaats van het woord workshop."
+      },
+      "check": "_stdout.splitlines()[0] == workshop",
+      "hint": {
+        "en": "Compare a quoted word with an unquoted variable name.",
+        "nl": "Vergelijk een woord tussen aanhalingstekens met een variabelenaam zonder aanhalingstekens."
+      },
+      "hints": [
+        {
+          "en": "Compare a quoted word with an unquoted variable name.",
+          "nl": "Vergelijk een woord tussen aanhalingstekens met een variabelenaam zonder aanhalingstekens."
+        },
+        {
+          "en": "Keep the variable assignment. Change which value the first print receives.",
+          "nl": "Behoud de toekenning aan de variabele. Verander welke waarde de eerste print ontvangt."
+        },
+        {
+          "en": "In the example, print(place) uses the stored location.",
+          "nl": "In het voorbeeld gebruikt print(place) de opgeslagen locatie."
+        }
+      ],
+      "feedback": {
+        "en": "The first output line should contain the current workshop name.",
+        "nl": "De eerste uitvoerregel moet de huidige workshopnaam bevatten."
+      },
+      "probes": []
+    },
+    {
+      "id": "python-v2-1-01-step-2",
+      "task": {
+        "en": "Choose a different workshop name. Keep the reminder to bring a broken item.",
+        "nl": "Kies een andere workshopnaam. Behoud de herinnering om een kapot voorwerp mee te nemen."
+      },
+      "check": "isinstance(workshop, str) and workshop.strip() not in (\"\", \"Repair afternoon\", \"workshop\") and \"Bring a broken item\" in _stdout",
+      "hint": {
+        "en": "The name and the reminder serve different purposes.",
+        "nl": "De naam en de herinnering hebben elk een ander doel."
+      },
+      "hints": [
+        {
+          "en": "The name and the reminder serve different purposes.",
+          "nl": "De naam en de herinnering hebben elk een ander doel."
+        },
+        {
+          "en": "Change the value assigned to workshop, not the reminder line.",
+          "nl": "Verander de waarde die aan workshop wordt toegekend, niet de herinneringsregel."
+        },
+        {
+          "en": "For example, room = \"Maker space\" changes a stored label.",
+          "nl": "Bijvoorbeeld: room = \"Maker space\" verandert een opgeslagen label."
+        }
+      ],
+      "feedback": {
+        "en": "Use a new, nonempty name and retain the existing reminder.",
+        "nl": "Gebruik een nieuwe, niet-lege naam en behoud de bestaande herinnering."
+      },
+      "probes": []
+    },
+    {
+      "id": "python-v2-1-01-step-3",
+      "task": {
+        "en": "Add a third line welcoming visitors, using your own wording. Run the notice and check the three lines in order.",
+        "nl": "Voeg een derde regel toe die bezoekers welkom heet, in je eigen woorden. Voer het bericht uit en controleer de drie regels in volgorde."
+      },
+      "check": "len(_stdout.splitlines()) == 3 and bool(_stdout.splitlines()[2].strip())",
+      "hint": {
+        "en": "Output is produced when Python reaches a print call.",
+        "nl": "Uitvoer ontstaat wanneer Python een print-aanroep bereikt."
+      },
+      "hints": [
+        {
+          "en": "Output is produced when Python reaches a print call.",
+          "nl": "Uitvoer ontstaat wanneer Python een print-aanroep bereikt."
+        },
+        {
+          "en": "Place the new message after the existing reminder.",
+          "nl": "Plaats het nieuwe bericht na de bestaande herinnering."
+        },
+        {
+          "en": "print(\"See you soon\") is one possible additional message.",
+          "nl": "print(\"See you soon\") is een mogelijk extra bericht."
+        }
+      ],
+      "feedback": {
+        "en": "The notice needs exactly three nonempty lines.",
+        "nl": "Het bericht heeft precies drie niet-lege regels nodig."
+      },
+      "probes": []
+    }
+  ],
+  "inputs": [],
+  "solutionNote": {
+    "en": "The name and welcome sentence are your choice. Quoting the variable name would prevent the notice from following changes to its value.",
+    "nl": "De naam en welkomstzin kies je zelf. Als je de variabelenaam tussen aanhalingstekens zet, volgt het bericht veranderingen van de waarde niet."
+  }
+}

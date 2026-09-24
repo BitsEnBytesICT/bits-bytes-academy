@@ -1,0 +1,225 @@
+{
+  "id": "python-v2-3-02",
+  "chapter": 3,
+  "group": "python-v2-module-3",
+  "title": {
+    "en": "Check the whole rule",
+    "nl": "Controleer de hele regel"
+  },
+  "kind": "coding",
+  "optional": false,
+  "runtime": "terminal",
+  "guidance": "guided",
+  "estimatedMinutes": 14,
+  "explanation": {
+    "en": "A supervised workshop admits participants aged 12 through 17, and only with consent. The current rule checks one condition and admits people it should not. Make the complete policy visible in the program. Assume the age is a valid integer in this exercise.",
+    "nl": "Een begeleide workshop laat deelnemers van 12 tot en met 17 jaar toe, en alleen met toestemming. De huidige regel controleert één voorwaarde en laat mensen toe die niet mogen deelnemen. Maak het volledige beleid zichtbaar in het programma. Neem in deze opdracht aan dat de leeftijd een geldige integer is."
+  },
+  "sections": [
+    {
+      "heading": {
+        "en": "Combine conditions",
+        "nl": "Combineer voorwaarden"
+      },
+      "body": {
+        "en": "and requires both conditions to be true. or accepts either condition. not reverses a Boolean. Parentheses help readers see which parts belong together. Choose the operator from the rule, not from the wording of a particular example.",
+        "nl": "and vereist dat beide voorwaarden waar zijn. or accepteert een van beide voorwaarden. not keert een Boolean om. Haakjes helpen lezers te zien welke delen bij elkaar horen. Kies de operator op basis van de regel, niet op basis van één voorbeeld."
+      },
+      "code": "temperature = 19\nraining = False\ngood_for_picnic = temperature >= 15 and not raining\nprint(good_for_picnic)",
+      "output": "True"
+    },
+    {
+      "heading": {
+        "en": "Both ends matter",
+        "nl": "Beide grenzen tellen"
+      },
+      "body": {
+        "en": "A range has a lower and upper boundary. You can use two comparisons joined with and, or a chained comparison such as 3 <= value <= 9. Test below, at, inside, at the upper end, and above the range. Also change the independent permission condition.",
+        "nl": "Een bereik heeft een onder- en bovengrens. Gebruik twee vergelijkingen met and, of een keten zoals 3 <= value <= 9. Test onder de grens, op de grens, binnen het bereik, op de bovengrens en erboven. Verander ook de onafhankelijke toestemmingsvoorwaarde."
+      }
+    }
+  ],
+  "example": "",
+  "files": {
+    "main.py": "age = int(input(\"Age: \"))\nconsent = input(\"Consent (yes/no): \").strip().lower()\n\nin_age_range = age >= 12\nhas_consent = True\ncan_join = in_age_range\nprint(\"Can join:\", can_join)\n"
+  },
+  "solution": {
+    "main.py": "age = int(input(\"Age: \"))\nconsent = input(\"Consent (yes/no): \").strip().lower()\n\nin_age_range = 12 <= age <= 17\nhas_consent = consent == \"yes\"\ncan_join = in_age_range and has_consent\nprint(\"Can join:\", can_join)\n"
+  },
+  "checkpoints": [
+    {
+      "id": "python-v2-3-02-step-1",
+      "task": {
+        "en": "Set in_age_range to reflect both inclusive age boundaries.",
+        "nl": "Laat in_age_range beide leeftijdsgrenzen inclusief de grenswaarden controleren."
+      },
+      "check": "type(in_age_range) is bool and in_age_range == (12 <= age <= 17)",
+      "hint": {
+        "en": "A minimum alone does not enforce a maximum.",
+        "nl": "Alleen een minimum stelt geen maximum."
+      },
+      "hints": [
+        {
+          "en": "A minimum alone does not enforce a maximum.",
+          "nl": "Alleen een minimum stelt geen maximum."
+        },
+        {
+          "en": "Both comparisons must be satisfied at once.",
+          "nl": "Aan beide vergelijkingen moet tegelijk worden voldaan."
+        },
+        {
+          "en": "3 <= value <= 9 includes both 3 and 9.",
+          "nl": "3 <= value <= 9 bevat zowel 3 als 9."
+        }
+      ],
+      "feedback": {
+        "en": "Include 12 and 17; exclude ages outside that range.",
+        "nl": "Neem 12 en 17 mee; sluit leeftijden buiten dat bereik uit."
+      },
+      "probes": [
+        {
+          "stdin": [
+            "11",
+            "yes"
+          ],
+          "check": "in_age_range is False"
+        },
+        {
+          "stdin": [
+            "12",
+            "yes"
+          ],
+          "check": "in_age_range is True"
+        },
+        {
+          "stdin": [
+            "17",
+            "yes"
+          ],
+          "check": "in_age_range is True"
+        },
+        {
+          "stdin": [
+            "18",
+            "yes"
+          ],
+          "check": "in_age_range is False"
+        }
+      ]
+    },
+    {
+      "id": "python-v2-3-02-step-2",
+      "task": {
+        "en": "Set has_consent from the cleaned response. Only yes grants consent.",
+        "nl": "Bepaal has_consent uit het opgeschoonde antwoord. Alleen yes geeft toestemming."
+      },
+      "check": "type(has_consent) is bool and has_consent == (consent == \"yes\")",
+      "hint": {
+        "en": "The existence of some text is not permission.",
+        "nl": "Het bestaan van tekst is geen toestemming."
+      },
+      "hints": [
+        {
+          "en": "The existence of some text is not permission.",
+          "nl": "Het bestaan van tekst is geen toestemming."
+        },
+        {
+          "en": "Compare with the one accepted response.",
+          "nl": "Vergelijk met het enige geaccepteerde antwoord."
+        },
+        {
+          "en": "The previous lesson compared a cleaned command with a recognised word.",
+          "nl": "De vorige les vergeleek een opgeschoond commando met een herkend woord."
+        }
+      ],
+      "feedback": {
+        "en": "Reject no, blank, and unrelated responses as consent.",
+        "nl": "Accepteer no, leeg en ongerelateerde antwoorden niet als toestemming."
+      },
+      "probes": [
+        {
+          "stdin": [
+            "14",
+            " YES "
+          ],
+          "check": "has_consent is True"
+        },
+        {
+          "stdin": [
+            "14",
+            "no"
+          ],
+          "check": "has_consent is False"
+        },
+        {
+          "stdin": [
+            "14",
+            "maybe"
+          ],
+          "check": "has_consent is False"
+        }
+      ]
+    },
+    {
+      "id": "python-v2-3-02-step-3",
+      "task": {
+        "en": "Make can_join enforce the complete policy and keep it in the report. Find a case that would expose using or instead of and.",
+        "nl": "Laat can_join het volledige beleid afdwingen en behoud het in het overzicht. Bedenk een geval dat or in plaats van and zou ontmaskeren."
+      },
+      "check": "type(can_join) is bool and can_join == (in_age_range and has_consent) and str(can_join) in _stdout",
+      "hint": {
+        "en": "Neither age nor consent can compensate for the other.",
+        "nl": "Leeftijd en toestemming kunnen elkaar niet vervangen."
+      },
+      "hints": [
+        {
+          "en": "Neither age nor consent can compensate for the other.",
+          "nl": "Leeftijd en toestemming kunnen elkaar niet vervangen."
+        },
+        {
+          "en": "Try a permitted age without consent, then an unpermitted age with consent.",
+          "nl": "Probeer een toegestane leeftijd zonder toestemming, en een ongeldige leeftijd met toestemming."
+        },
+        {
+          "en": "The picnic example requires suitable temperature and no rain.",
+          "nl": "Het picknickvoorbeeld vereist een geschikte temperatuur én geen regen."
+        }
+      ],
+      "feedback": {
+        "en": "Participation needs an allowed age and consent together.",
+        "nl": "Deelname vereist tegelijk een toegestane leeftijd en toestemming."
+      },
+      "probes": [
+        {
+          "stdin": [
+            "14",
+            "no"
+          ],
+          "check": "can_join is False and \"False\" in _stdout"
+        },
+        {
+          "stdin": [
+            "18",
+            "yes"
+          ],
+          "check": "can_join is False"
+        },
+        {
+          "stdin": [
+            "12",
+            "yes"
+          ],
+          "check": "can_join is True"
+        }
+      ]
+    }
+  ],
+  "inputs": [
+    "14",
+    "yes"
+  ],
+  "solutionNote": {
+    "en": "Chained comparisons, two comparisons with and, and clear nested decisions can all express this policy. Boundary cases make an incomplete rule visible.",
+    "nl": "Vergelijkingsketens, twee vergelijkingen met and en duidelijke geneste beslissingen kunnen dit beleid allemaal uitdrukken. Grensgevallen maken een onvolledige regel zichtbaar."
+  }
+}

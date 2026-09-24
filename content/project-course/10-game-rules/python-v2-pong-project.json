@@ -1,0 +1,180 @@
+{
+  "id": "python-v2-pong-project",
+  "chapter": 10,
+  "group": "python-v2-pong-project",
+  "kind": "project",
+  "optional": false,
+  "runtime": "pygame",
+  "guidance": "independent",
+  "estimatedMinutes": 240,
+  "title": {
+    "en": "Project: your own Pong",
+    "nl": "Project: jouw eigen Pong"
+  },
+  "explanation": {
+    "en": "Create your own version of two-player Pong. You decide how to organise the code and how the game looks and feels. The starter contains only the browser-compatible entry point; the playing field, controls, movement, and rules are yours to build. These milestones and test ideas are optional. The website does not grade your project or demand a particular implementation.",
+    "nl": "Maak je eigen versie van Pong voor twee spelers. Je bepaalt zelf hoe de code is georganiseerd en hoe het spel eruitziet en aanvoelt. De startcode bevat alleen het browsergeschikte startpunt; het speelveld, de besturing, beweging en regels bouw je zelf. Deze mijlpalen en testideeën zijn optioneel. De website beoordeelt je project niet en verlangt geen specifieke implementatie."
+  },
+  "example": "",
+  "sections": [],
+  "files": {
+    "main.py": "import asyncio\nimport pygame\n\nasync def main():\n    pygame.init()\n    # Create your game here.\n    # Give the browser a turn inside your game loop:\n    # await asyncio.sleep(1 / 60)\n    pygame.quit()\n\nasyncio.run(main())\n"
+  },
+  "solution": {},
+  "checkpoints": [],
+  "solutionNote": {
+    "en": "The browser entry point is provided, but there is no prescribed game structure or project checker.",
+    "nl": "Het browserstartpunt is gegeven, maar er is geen voorgeschreven spelstructuur of projectcontrole."
+  },
+  "milestones": [
+    {
+      "id": "court",
+      "title": {
+        "en": "Create your playing field",
+        "nl": "Maak je speelveld"
+      },
+      "description": {
+        "en": "Choose a window size and draw two paddles and a ball. Make them easy to distinguish from the background.",
+        "nl": "Kies een venstergrootte en teken twee paddles en een bal. Zorg dat ze goed van de achtergrond te onderscheiden zijn."
+      },
+      "hints": [
+        {
+          "en": "Sketch where the objects belong before assigning coordinates.",
+          "nl": "Schets waar de objecten horen voordat je coördinaten kiest."
+        },
+        {
+          "en": "A frame usually clears the previous image before drawing the current one.",
+          "nl": "Een frame wist meestal het vorige beeld voordat het huidige wordt getekend."
+        },
+        {
+          "en": "The drawing lessons introduce display.set_mode(), Surface.fill(), and pygame.draw.",
+          "nl": "De tekenlessen introduceren display.set_mode(), Surface.fill() en pygame.draw."
+        }
+      ]
+    },
+    {
+      "id": "controls",
+      "title": {
+        "en": "Give both players control",
+        "nl": "Geef beide spelers controle"
+      },
+      "description": {
+        "en": "Use W/S for one paddle and the arrow keys for the other, or document your own keys. Keep the paddles inside the court and try both players moving together.",
+        "nl": "Gebruik W/S voor de ene paddle en de pijltjestoetsen voor de andere, of documenteer je eigen toetsen. Houd de paddles binnen het speelveld en probeer beide spelers tegelijk te laten bewegen."
+      },
+      "hints": [
+        {
+          "en": "Holding a key is different from pressing it once.",
+          "nl": "Een toets ingedrukt houden is iets anders dan die eenmaal indrukken."
+        },
+        {
+          "en": "Movement should depend on elapsed time, not the speed of the computer.",
+          "nl": "Beweging moet afhangen van verstreken tijd, niet van de snelheid van de computer."
+        },
+        {
+          "en": "The movement lessons compare input events with pygame.key.get_pressed().",
+          "nl": "De bewegingslessen vergelijken invoerevents met pygame.key.get_pressed()."
+        }
+      ]
+    },
+    {
+      "id": "rally",
+      "title": {
+        "en": "Make a rally possible",
+        "nl": "Maak een rally mogelijk"
+      },
+      "description": {
+        "en": "Move the ball and make it respond to the top and bottom walls and the paddles. Test contacts near paddle edges and watch for a ball getting stuck or bouncing repeatedly.",
+        "nl": "Beweeg de bal en laat die reageren op de boven- en onderrand en de paddles. Test contact bij de randen van een paddle en let op een bal die vast komt te zitten of herhaaldelijk terugkaatst."
+      },
+      "hints": [
+        {
+          "en": "Think about position and direction separately.",
+          "nl": "Denk apart na over positie en richting."
+        },
+        {
+          "en": "After a collision, the ball should be travelling away from the object it hit.",
+          "nl": "Na een botsing moet de bal van het geraakte object af bewegen."
+        },
+        {
+          "en": "Revisit rectangle collision tests and direction checks in the game-rules module.",
+          "nl": "Bekijk de rechthoekige botsingstests en richtingcontroles in de module met spelregels."
+        }
+      ]
+    },
+    {
+      "id": "rounds",
+      "title": {
+        "en": "Turn rallies into a match",
+        "nl": "Maak van rally’s een wedstrijd"
+      },
+      "description": {
+        "en": "Choose how to award points, serve again, and finish or restart a match. Make the score understandable to both players.",
+        "nl": "Kies hoe je punten toekent, opnieuw serveert en een wedstrijd beëindigt of herstart. Maak de score voor beide spelers begrijpelijk."
+      },
+      "hints": [
+        {
+          "en": "A missed ball is one event, even if it remains outside the court for several frames.",
+          "nl": "Een gemiste bal is één gebeurtenis, ook als die meerdere frames buiten het speelveld blijft."
+        },
+        {
+          "en": "Reset the round state without accidentally resetting the whole match.",
+          "nl": "Reset de toestand van de ronde zonder per ongeluk de hele wedstrijd te resetten."
+        },
+        {
+          "en": "The scoring lessons separate round resets from new-match resets.",
+          "nl": "De scorelessen maken onderscheid tussen een nieuwe ronde en een nieuwe wedstrijd."
+        }
+      ]
+    },
+    {
+      "id": "playtest",
+      "title": {
+        "en": "Play it with someone",
+        "nl": "Speel het met iemand"
+      },
+      "description": {
+        "en": "Try a real match. Look for unfair starts, stuck controls, difficult speeds, and confusing restarts. Change the design based on what you observe. A computer opponent is an optional next step.",
+        "nl": "Probeer een echte wedstrijd. Let op oneerlijke starts, vastzittende besturing, onhandige snelheden en verwarrende herstarts. Pas het ontwerp aan op basis van wat je ziet. Een computertegenstander is een optionele volgende stap."
+      },
+      "hints": [
+        {
+          "en": "Notice how the game behaves when attention moves away from the preview.",
+          "nl": "Let op hoe het spel zich gedraagt wanneer de aandacht van de preview weggaat."
+        },
+        {
+          "en": "Check the first serve, later serves, and the first frame after a restart.",
+          "nl": "Controleer de eerste service, latere services en het eerste frame na een herstart."
+        },
+        {
+          "en": "A short written test list makes it easier to repeat checks after changing a rule.",
+          "nl": "Een korte geschreven testlijst maakt het makkelijker controles te herhalen na een regelwijziging."
+        }
+      ]
+    }
+  ],
+  "suggestedTests": [
+    {
+      "en": "Move both paddles simultaneously and hold each against both boundaries.",
+      "nl": "Beweeg beide paddles tegelijk en houd ze elk tegen beide grenzen."
+    },
+    {
+      "en": "Try wall bounces, paddle centres, paddle edges, and a ball moving away from a paddle.",
+      "nl": "Probeer botsingen met muren, paddle-middens, paddle-randen en een bal die van een paddle af beweegt."
+    },
+    {
+      "en": "Miss a ball on each side. Check that each miss awards only one point.",
+      "nl": "Mis aan beide kanten een bal. Controleer of elke misser maar één punt oplevert."
+    },
+    {
+      "en": "Play several rounds, restart, click outside the game, return, and try Stop followed by Run.",
+      "nl": "Speel meerdere rondes, herstart, klik buiten het spel, keer terug en probeer Stop gevolgd door Uitvoeren."
+    }
+  ],
+  "references": [
+    "python-v2-7-05",
+    "python-v2-8-05",
+    "python-v2-9-05",
+    "python-v2-10-05"
+  ]
+}

@@ -1,0 +1,172 @@
+{
+  "id": "python-v2-7-03",
+  "chapter": 7,
+  "group": "python-v2-module-7",
+  "title": {
+    "en": "Meet a real Pygame object",
+    "nl": "Maak kennis met een echt Pygame-object"
+  },
+  "kind": "coding",
+  "optional": false,
+  "runtime": "terminal",
+  "guidance": "guided",
+  "estimatedMinutes": 18,
+  "explanation": {
+    "en": "Pygame is an external library for games. This site includes pygame-ce, which is imported as pygame. Before opening a game preview, use a rectangle in the terminal and inspect how its named attributes work. You do not need to write your own class to use an object supplied by a library.",
+    "nl": "Pygame is een externe bibliotheek voor spellen. Deze site bevat pygame-ce, dat als pygame wordt geïmporteerd. Gebruik vóór het openen van een spelvoorbeeld een rechthoek in de terminal en bekijk hoe de benoemde attributen werken. Je hoeft geen eigen klasse te schrijven om een object uit een bibliotheek te gebruiken."
+  },
+  "sections": [
+    {
+      "heading": {
+        "en": "Installing and importing are different",
+        "nl": "Installeren en importeren zijn verschillend"
+      },
+      "body": {
+        "en": "Installing makes a package available in an environment; importing gives a running Python program access to it. The package name pygame-ce differs from its import name pygame. This website loads its bundled version when your code imports it. A normal desktop environment would install it with python -m pip install pygame-ce in the operating-system terminal, not in the Python > prompt. Do not run that command here.",
+        "nl": "Installeren maakt een pakket beschikbaar in een omgeving; importeren geeft een draaiend Pythonprogramma toegang ertoe. De pakketnaam pygame-ce verschilt van de importnaam pygame. Deze website laadt de meegeleverde versie wanneer je code deze importeert. In een gewone desktopomgeving installeer je met python -m pip install pygame-ce in de terminal van het besturingssysteem, niet achter de Python-prompt >. Voer dat commando hier niet uit."
+      }
+    },
+    {
+      "heading": {
+        "en": "Attributes describe the object",
+        "nl": "Attributen beschrijven het object"
+      },
+      "body": {
+        "en": "pygame.Rect(x, y, width, height) creates an integer rectangle. Attributes such as width, height, and center describe the same object. Assigning center moves it without changing its size. rect.move(dx, dy) returns a moved copy; rect.move_ip(dx, dy) changes the original. The suffix means “in place”.",
+        "nl": "pygame.Rect(x, y, width, height) maakt een rechthoek met gehele coördinaten. Attributen zoals width, height en center beschrijven hetzelfde object. center toekennen verplaatst het zonder de grootte te veranderen. rect.move(dx, dy) geeft een verplaatste kopie terug; rect.move_ip(dx, dy) verandert het origineel. Het achtervoegsel betekent “in place”."
+      },
+      "code": "import pygame\nbox = pygame.Rect(0, 0, 20, 10)\nbox.center = (50, 30)\nprint(box.topleft, box.size)",
+      "output": "(40, 25) (20, 10)"
+    }
+  ],
+  "example": "",
+  "files": {
+    "main.py": "import pygame\n\npaddle_width = 12\npaddle_height = 80\ncentre_x = 40\ncentre_y = 160\nshift_y = 20\n\npaddle = pygame.Rect(0, 0, 1, 1)\npreview = paddle\nprint(\"Paddle:\", paddle)\nprint(\"Preview:\", preview)\n"
+  },
+  "solution": {
+    "main.py": "import pygame\n\npaddle_width = 12\npaddle_height = 80\ncentre_x = 40\ncentre_y = 160\nshift_y = 20\n\npaddle = pygame.Rect(0, 0, paddle_width, paddle_height)\npaddle.center = (centre_x, centre_y)\npreview = paddle.move(0, shift_y)\nprint(\"Paddle:\", paddle)\nprint(\"Preview:\", preview)\n"
+  },
+  "checkpoints": [
+    {
+      "id": "python-v2-7-03-step-1",
+      "task": {
+        "en": "Create a real pygame.Rect paddle with the supplied width and height.",
+        "nl": "Maak een echte pygame.Rect-paddle met de meegegeven breedte en hoogte."
+      },
+      "check": "isinstance(paddle, __import__(\"pygame\").Rect) and paddle.size == (paddle_width, paddle_height)",
+      "hint": {
+        "en": "The constructor receives position first, then dimensions.",
+        "nl": "De constructor ontvangt eerst de positie en daarna de afmetingen."
+      },
+      "hints": [
+        {
+          "en": "The constructor receives position first, then dimensions.",
+          "nl": "De constructor ontvangt eerst de positie en daarna de afmetingen."
+        },
+        {
+          "en": "Use the named dimension values instead of the placeholder ones.",
+          "nl": "Gebruik de benoemde afmetingen in plaats van de tijdelijke waarden."
+        },
+        {
+          "en": "The box example constructs a 20-by-10 rectangle.",
+          "nl": "Het box-voorbeeld maakt een rechthoek van 20 bij 10."
+        }
+      ],
+      "feedback": {
+        "en": "Use the library object and preserve both requested dimensions.",
+        "nl": "Gebruik het bibliotheekobject en behoud beide gevraagde afmetingen."
+      },
+      "probes": [
+        {
+          "inputs": {
+            "paddle_width": 16,
+            "paddle_height": 60
+          },
+          "check": "_error is None and isinstance(paddle, __import__(\"pygame\").Rect) and paddle.size == (16, 60)"
+        }
+      ]
+    },
+    {
+      "id": "python-v2-7-03-step-2",
+      "task": {
+        "en": "Place the paddle’s centre at (centre_x, centre_y), without changing its dimensions.",
+        "nl": "Plaats het midden van de paddle op (centre_x, centre_y), zonder de afmetingen te veranderen."
+      },
+      "check": "paddle.center == (centre_x, centre_y) and paddle.size == (paddle_width, paddle_height)",
+      "hint": {
+        "en": "The requested point is the centre, not the top-left corner.",
+        "nl": "Het gevraagde punt is het midden, niet de linkerbovenhoek."
+      },
+      "hints": [
+        {
+          "en": "The requested point is the centre, not the top-left corner.",
+          "nl": "Het gevraagde punt is het midden, niet de linkerbovenhoek."
+        },
+        {
+          "en": "Use an attribute that expresses the position you want to set.",
+          "nl": "Gebruik een attribuut dat de gewenste positie uitdrukt."
+        },
+        {
+          "en": "box.center = (50, 30) moves all related rectangle edges together.",
+          "nl": "box.center = (50, 30) verplaatst alle bijbehorende rechthoekranden samen."
+        }
+      ],
+      "feedback": {
+        "en": "Do not confuse centre coordinates with the constructor’s top-left position.",
+        "nl": "Verwar midden-coördinaten niet met de linkerbovenpositie van de constructor."
+      },
+      "probes": [
+        {
+          "inputs": {
+            "centre_x": 80,
+            "centre_y": 100
+          },
+          "check": "_error is None and paddle.center == (80, 100) and paddle.size == (12, 80)"
+        }
+      ]
+    },
+    {
+      "id": "python-v2-7-03-step-3",
+      "task": {
+        "en": "Make preview an independent rectangle shifted vertically by shift_y. Keep paddle at its original centre and retain both reports.",
+        "nl": "Maak preview een onafhankelijke rechthoek die verticaal met shift_y verschoven is. Houd paddle op zijn oorspronkelijke midden en behoud beide overzichten."
+      },
+      "check": "preview is not paddle and preview.center == (centre_x, centre_y + shift_y) and paddle.center == (centre_x, centre_y) and \"Paddle:\" in _stdout and \"Preview:\" in _stdout",
+      "hint": {
+        "en": "A moved copy and an in-place move have different effects.",
+        "nl": "Een verplaatste kopie en een verplaatsing ter plaatse hebben verschillende effecten."
+      },
+      "hints": [
+        {
+          "en": "A moved copy and an in-place move have different effects.",
+          "nl": "Een verplaatste kopie en een verplaatsing ter plaatse hebben verschillende effecten."
+        },
+        {
+          "en": "Choose a method that leaves the original rectangle alone.",
+          "nl": "Kies een methode die de oorspronkelijke rechthoek met rust laat."
+        },
+        {
+          "en": "move returns the copy; move_ip changes the current object.",
+          "nl": "move geeft de kopie terug; move_ip verandert het huidige object."
+        }
+      ],
+      "feedback": {
+        "en": "Preserve the original while moving the preview by the requested offset.",
+        "nl": "Behoud het origineel terwijl je het voorbeeld met de gevraagde verschuiving verplaatst."
+      },
+      "probes": [
+        {
+          "inputs": {
+            "shift_y": -15
+          },
+          "check": "_error is None and preview.center == (40, 145) and paddle.center == (40, 160) and preview.size == paddle.size"
+        }
+      ]
+    }
+  ],
+  "inputs": [],
+  "solutionNote": {
+    "en": "After Run, try paddle.center, paddle.bottom, or pygame.version.ver in the console. Attribute relationships come from the library; consult its reference when a name or boundary is unclear. Official reference: https://pyga.me/docs/ref/rect.html . The website pins its own compatible runtime version, which can differ from the latest documentation.",
+    "nl": "Probeer na Run paddle.center, paddle.bottom of pygame.version.ver in de console. De relaties tussen attributen komen uit de bibliotheek; raadpleeg de referentie wanneer een naam of grens onduidelijk is. Officiële referentie: https://pyga.me/docs/ref/rect.html . De website gebruikt een eigen vastgezette compatibele runtimeversie, die kan verschillen van de nieuwste documentatie."
+  }
+}

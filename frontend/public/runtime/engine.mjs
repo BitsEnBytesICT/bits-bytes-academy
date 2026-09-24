@@ -219,7 +219,7 @@ async def _lab_push(payload_json):
     return json.dumps({'syntax':syntax, 'error':error, 'display':display, 'files':_lab_files()})
 `;
 const initialized = new WeakSet();
-function initialize(py) {
+export function initializeRuntime(py) {
   if (!initialized.has(py)) {
     py.runPython(harness);
     initialized.add(py);
@@ -227,7 +227,7 @@ function initialize(py) {
 }
 export async function execute(py, payload) {
   await ensurePackages(py, payload.files);
-  initialize(py);
+  initializeRuntime(py);
   const fn = py.globals.get("_lab_run");
   try {
     return JSON.parse(fn(JSON.stringify(payload)));
@@ -236,7 +236,7 @@ export async function execute(py, payload) {
   }
 }
 export async function consoleLine(py, payload) {
-  initialize(py);
+  initializeRuntime(py);
   const pending = py.runPython(
     '"\\n".join(_lab_console.buffer) if _lab_console is not None else ""',
   );

@@ -20,9 +20,10 @@ For development, run `npm run dev` and open http://localhost:5174. The API remai
 
 ## What is included
 
-- 13 chapters and 240 activities: 160 core lesson pages, 59 optional coding challenges, 8 supporting readings, and 13 quizzes with 114 original questions.
+- Two learning paths across ten modules: **Python Foundations — Build a Calculator**, then **Interactive Python — Build Pong**. There are 50 substantial coding exercises, ten five-question quizzes, one documentation-research reading, two self-assessed projects, and an optional computer-opponent extension.
 - English and Dutch explanations, tasks, hints, feedback, and interface text. Python syntax stays in English.
-- A course homepage, Python overview with Start/Resume, and coming-soon previews for C# and HTML + CSS. Python is approximately 20 hours; preview courses have no announced duration.
+- A course homepage, Python overview with Start/Resume, and coming-soon previews for C# and HTML + CSS. Required Python activities total approximately 22 hours; preview courses have no announced duration. Later Python topics remain unavailable.
+- Real pygame-ce graphics with a canvas preview, keyboard controls, focus-loss pause, normal Finish & check, emergency Stop, and a persistent console for inspecting a finished run. Projects are assessed by the learner, without required function names or automated completion tests.
 - An xterm.js terminal with editable commands, history, ANSI output, real Python errors, `input()` and `sys.stdin.readline()`, Stop/Ctrl+C, and checks against program results.
 - Editable files, local Python imports, and text/CSV/JSON files created by your code.
 - Hints, per-file side-by-side solution differences with line numbers and addition/deletion highlighting, and an explicit assisted-completion marker when you use a solution.
@@ -30,28 +31,28 @@ For development, run `npm run dev` and open http://localhost:5174. The API remai
 - Sequential progression, with a manual jump that leaves skipped activities incomplete.
 - Automatic code saving, local draft recovery, saved progress, and backup export/import through **Manage learning data** on the homepage.
 
-Separate projects and video walkthroughs are excluded. This is an independently written course following the researched topic sequence; it is not a downloaded copy of Codecademy's explanations or question bank and is not affiliated with Codecademy.
+Video walkthroughs are excluded. The calculator and Pong projects are part of the active course. This is an independently written course following the researched topic sequence; it is not a downloaded copy of Codecademy's explanations or question bank and is not affiliated with Codecademy.
 
-The deeper course rewrite is in progress. The first four chapters now have 71 rewritten core pages and four supporting readings, with 119 worked examples, expected output and supplied programs to repair or extend. Their coding exercises have 185 individual checks with specific hints and feedback; control-flow, list and loop checks also try alternate inputs and boundary values. Five quizzes explain each wrong choice separately. Fresh list and loop quiz attempts include six original code-blank questions. Optional challenges and later chapters remain in progress. Coverage is tracked in `COURSE-REVISION.md`.
+The active course builds toward the two projects through guided examples, debugging/adaptation tasks, and independent exercises. Support gradually fades; project milestones and hints remain optional. See `COURSE-REWORK-MAP.md` for the retained, consolidated, and deferred topics. `COURSE-REVISION.md` records the earlier curriculum revision.
 
-Existing learner files are kept when course content changes. **Reset code** loads the current starter when you explicitly choose to start that activity over. Previously earned completion remains earned; revised task checks are tracked separately from the older tasks.
+Existing learner files are kept when course content changes. **Reset code** loads the current starter when you explicitly choose to start that activity over. The original 240 activities and their IDs remain in the legacy registry. Saved original-course work is available under **Manage learning data → Open original-course saved work**; old lesson URLs open that archive. New activities use new IDs, so old completion does not incorrectly complete the reworked course.
 
 Existing quiz attempts retain their original questions and answers. **Try again** starts the updated format after finishing an older attempt. Code-blank drafts and submitted token choices are saved with the attempt; existing backups remain readable. The backup envelope and database schema are unchanged, with optional versioned quiz fields added.
 
 ## Stack and design
 
-| Layer | Technology |
-|---|---|
-| Website | React 19, TypeScript 6, Vite 8, React Router 7, Tailwind CSS 4 |
-| Editor | CodeMirror 6 with Python highlighting and Ctrl+Enter to run |
-| Python | Pyodide 314.0.7 in a dedicated browser worker |
-| API | Express 5, Zod validation, controller/service/DAO separation |
-| Storage | SQLite with better-sqlite3, WAL, versioned workspace saves |
-| Style | Blue `#317199`, orange `#f2880f`, light blue `#92d5ff`, local Outfit font |
+| Layer   | Technology                                                                         |
+| ------- | ---------------------------------------------------------------------------------- |
+| Website | React 19, TypeScript 6, Vite 8, React Router 7, Tailwind CSS 4                     |
+| Editor  | CodeMirror 6 with Python highlighting and Ctrl+Enter to run                        |
+| Python  | Pyodide 314.0.7; terminal worker and a canvas interpreter for real pygame-ce 2.5.7 |
+| API     | Express 5, Zod validation, controller/service/DAO separation                       |
+| Storage | SQLite with better-sqlite3, WAL, versioned workspace saves                         |
+| Style   | Blue `#317199`, orange `#f2880f`, light blue `#92d5ff`, local Outfit font          |
 
 The source platform's application stack is retained. React Router and Vite use newer compatible releases to resolve the dependency warnings found during implementation. The original management-platform repository was not modified.
 
-Python runs on your browser's processor in one persistent worker per active lesson. The server stores learning data and serves the website; it does not execute student Python as host processes. A full script run starts with a fresh namespace and your saved workspace files. Its resulting variables remain available for console inspection. Console commands share variables within the current activity and never award completion. Stopping execution, resetting the console, reloading, or navigating away discards temporary console variables while retaining saved work.
+Python runs on your browser's processor. Terminal lessons retain one worker per activity; graphical lessons use a canvas interpreter with a watchdog. The server stores learning data and serves the website; it does not execute student Python as host processes. A full script run starts with a fresh namespace and your saved workspace files. Its resulting variables remain available for console inspection. Console commands share variables within the current activity and never award completion. Stopping execution, resetting the console, reloading, or navigating away discards temporary console variables while retaining saved work.
 
 The lesson layout keeps the original font sizes, pane widths, draggable dividers, and responsive breakpoints. Learn and Instructions share a scrolling pane. The header contains the smaller supplied Bits & Bytes logo, blue lesson navigation with progress segments and a curriculum button, and English/Dutch flag controls. On screens up to 540 pixels, lesson navigation occupies a second header row. The keyboard-accessible curriculum drawer also links to the course overview. Course cards and overviews share local Devicon SVG language icons. Python file tabs use the Python logo. The editor, examples, quizzes and solution comparisons share one Python syntax palette. Editor selections use a visible blue background, including when focus moves away.
 
@@ -64,8 +65,9 @@ frontend/src/                 React interface, editor, saves, Python worker clie
 frontend/public/runtime/     Python execution/grading bridge and bundled interpreter
 backend/src/                 Express API and SQLite persistence
 shared/types.d.ts            Shared course and workspace contracts
-content-src/                 Editable authored chapter modules and curriculum map
-content/chapters/            One JSON file per activity, grouped by chapter
+content-src/project-course/  Active authored modules, projects, and course assembly
+content/project-course/      One generated JSON file per activity, grouped by module
+content/legacy/course-v1.json Original course and IDs for saved-work compatibility
 content/course.json          Generated course loaded by the API
 backend/src/course-catalog.ts Read-only catalog served by GET /api/courses
 scripts/                     Content build, interpreter setup, app launcher
@@ -73,7 +75,7 @@ tests/                       Content, real-Python grading, persistence/API check
 data/                        Your learning database, logs, and pre-import backups
 ```
 
-Edit course content in `content-src/`, then run `npm run build` and restart the server. Generated JSON files are useful for reviewing individual chapters, but changes made directly to them are overwritten on the next build. The course build is self-contained in this folder.
+Edit active course content in `content-src/project-course/`, then run `npm run build` and restart the server. Generated JSON files are useful for reviewing individual modules, but changes made directly to them are overwritten on the next build. Earlier authoring sources and `content/chapters/` remain preserved for reference. The active build uses `scripts/build-project-content.mjs`; the original generator is retained separately and is not part of the active build.
 
 ## Saving and backups
 
@@ -83,12 +85,16 @@ Each save carries a revision number. A stale tab cannot silently overwrite a new
 
 ## Runtime scope
 
+For checks, run `npm test` (legacy compatibility and shared behavior) and `npm run test:rework` (the active course, grading, projects, and files). `npm run test:browser` opens a local verification server at http://127.0.0.1:3003; open that address and choose **Run all graphical references** to run all fifteen graphical exercise solutions in the real browser interpreter. It uses no learner database.
+
 - Enter Python expressions and statements at `>`. This display replaces Python's conventional `>>>` without changing how commands work. Multiline blocks use `...`; submit a blank line to finish a block. Up/Down recall command history.
 - `python main.py` and `/run` use the same execution and grading path as **Run code**. `/clear` clears output; `/reset` clears temporary console variables without deleting saved files. This is a Python console, not a Windows shell.
 - `ls`/`dir` list your lesson files, `pwd` shows the Python workspace, and `cat filename`/`type filename` display a saved lesson file. `clear`/`cls` and Ctrl+L clear output; `/help` lists these commands. Home/End and arrow keys edit commands, and pasted multiline code stays editable until Enter.
 - During `input()` or `sys.stdin.readline()`, the prompt accepts program input, including blank lines and Unicode. Ctrl+D sends end-of-input. Stop or Ctrl+C interrupts execution and resets the console session.
-- Course exercises use supported Python standard-library modules. Desktop GUIs, host filesystem access, and arbitrary `pip` packages are outside this course runner.
-- Each uninterrupted run has a 10-second limit. Waiting for terminal input pauses that timer. Stop works while running or waiting for input.
+- Course exercises use supported Python standard-library modules and the bundled pygame-ce package (`import pygame`). No `pip install` is needed for Pong. Arbitrary packages, desktop-only GUI features, and host filesystem access are outside this course runner.
+- Game loops must cooperate with the browser using `await asyncio.sleep(1 / 60)`. The supplied examples show the entry point. Click the preview for keyboard input; leaving it pauses play. **Finish & check** sends `pygame.QUIT` and grades a coding exercise after normal exit. **Close preview** performs the same normal exit for self-assessed projects. Handle that event in your loop. **Stop** interrupts without grading.
+- The practical multi-file lesson is **One program, two files** in **Libraries and local files**. Use **+** to create a helper, import it without `.py`, and keep `main.py` as the entry point. All files save together; a full Run reloads edited modules. The optional AI extension can copy all saved Pong files into its own independent workspace.
+- Terminal runs and console commands have a 10-second execution limit; waiting for input pauses it. Responsive game loops can keep running, while non-yielding loops are interrupted by a trace deadline and watchdog. Stop works while running or waiting for input.
 - Output is limited to 1 MiB; saved workspaces support up to 40 flat text files and 5 MiB total. Binary files and nested folders are not exposed in the editor.
 - Grading checks the stated task's variables, return values, output, files, or syntax as appropriate. It accepts tested alternative syntax, but it is not a universal proof of program correctness.
 - The server binds to this computer only. Public multi-user hosting would require authentication and a separate deployment design.

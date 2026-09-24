@@ -51,7 +51,7 @@ export function lesson({
       id: `python-v2-${module}-${String(number).padStart(2, "0")}-step-${i + 1}`,
     })),
     inputs,
-    solutionNote,
+    solutionNote: solutionNote ?? L('This is one valid approach. Compare the reasoning with your own code before choosing whether to use it. Other implementations can satisfy the same behavior.', 'Dit is één geldige aanpak. Vergelijk de redenering met je eigen code voordat je besluit die te gebruiken. Andere implementaties kunnen aan hetzelfde gedrag voldoen.'),
   };
 }
 export function quiz(module, title, questions) {

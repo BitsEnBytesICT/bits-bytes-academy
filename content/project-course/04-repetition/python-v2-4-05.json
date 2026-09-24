@@ -1,0 +1,227 @@
+{
+  "id": "python-v2-4-05",
+  "chapter": 4,
+  "group": "python-v2-module-4",
+  "title": {
+    "en": "Close the community stall",
+    "nl": "Sluit de buurtkraam af"
+  },
+  "kind": "coding",
+  "optional": false,
+  "runtime": "terminal",
+  "guidance": "independent",
+  "estimatedMinutes": 24,
+  "explanation": {
+    "en": "At closing time, a volunteer enters the stall’s sale amounts one at a time. Build a session that keeps valid amounts, rejects mistakes, and finishes on done. This combines the input, error handling, and loop decisions you will need in your calculator.",
+    "nl": "Bij sluiting voert een vrijwilliger de verkoopbedragen van de kraam één voor één in. Bouw een sessie die geldige bedragen bewaart, fouten afwijst en eindigt bij done. Hiermee combineer je invoer, foutafhandeling en lusbeslissingen die je voor je rekenmachine nodig hebt."
+  },
+  "sections": [
+    {
+      "heading": {
+        "en": "What a trustworthy session does",
+        "nl": "Wat een betrouwbare sessie doet"
+      },
+      "body": {
+        "en": "Accept nonnegative decimal amounts, including zero. Count accepted amounts in count and add them to total. Invalid text and negative amounts increase rejected and do not change count or total. done ends the session regardless of case or surrounding spaces, and is not a rejected amount. Print a final summary containing count, rejected, and a two-decimal total. Start with no sales. You choose the prompts, feedback, loop structure, and summary wording.",
+        "nl": "Accepteer niet-negatieve decimale bedragen, inclusief nul. Tel geaccepteerde bedragen in count en tel ze op bij total. Ongeldige tekst en negatieve bedragen verhogen rejected en veranderen count en total niet. done beëindigt de sessie ongeacht hoofdletters of spaties aan de randen en is geen afgewezen bedrag. Druk een eindoverzicht af met count, rejected en total met twee decimalen. Begin zonder verkopen. Je kiest de invoervragen, feedback, lusstructuur en formulering van het overzicht."
+      }
+    }
+  ],
+  "example": "",
+  "files": {
+    "main.py": "print(\"Community stall — closing report\")\n\n# Build the session.\n"
+  },
+  "solution": {
+    "main.py": "print(\"Community stall — closing report\")\ncount = 0\ntotal = 0.0\nrejected = 0\nwhile True:\n    text = input(\"Sale amount or done: \").strip()\n    if text.lower() == \"done\":\n        break\n    try:\n        amount = float(text)\n    except ValueError:\n        rejected += 1\n        print(\"Please enter an amount\")\n        continue\n    if amount < 0:\n        rejected += 1\n        print(\"Negative sales are not accepted\")\n        continue\n    count += 1\n    total += amount\nprint(\"Sales:\", count)\nprint(\"Rejected:\", rejected)\nprint(f\"Total: {total:.2f}\")\n"
+  },
+  "checkpoints": [
+    {
+      "id": "python-v2-4-05-step-1",
+      "task": {
+        "en": "Keep reading amounts until done. Allow the session to end immediately with no sales.",
+        "nl": "Blijf bedragen lezen tot done. Sta toe dat de sessie direct zonder verkopen eindigt."
+      },
+      "check": "type(count) is int and count >= 0 and isinstance(total, (int, float))",
+      "hint": {
+        "en": "Decide what must exist before the first response arrives.",
+        "nl": "Bepaal wat moet bestaan voordat het eerste antwoord binnenkomt."
+      },
+      "hints": [
+        {
+          "en": "Decide what must exist before the first response arrives.",
+          "nl": "Bepaal wat moet bestaan voordat het eerste antwoord binnenkomt."
+        },
+        {
+          "en": "Recognise the exit command before treating the response as an amount.",
+          "nl": "Herken het afsluitcommando voordat je het antwoord als bedrag behandelt."
+        },
+        {
+          "en": "The help desk used a sentinel to finish an unknown number of turns.",
+          "nl": "De helpdesk gebruikte een sentinel om een onbekend aantal beurten af te sluiten."
+        }
+      ],
+      "feedback": {
+        "en": "The session must reach its exit and handle an empty collection.",
+        "nl": "De sessie moet de uitgang bereiken en een lege verzameling kunnen afhandelen."
+      },
+      "probes": [
+        {
+          "stdin": [
+            " DoNe "
+          ],
+          "check": "_error is None and count == 0 and total == 0 and rejected == 0 and _remaining_input == \"\""
+        }
+      ]
+    },
+    {
+      "id": "python-v2-4-05-step-2",
+      "task": {
+        "en": "Accumulate every accepted amount and its count. Accept zero; do not replace earlier totals with the latest amount.",
+        "nl": "Verzamel elk geaccepteerd bedrag en het aantal bedragen. Accepteer nul; vervang eerdere totalen niet door het laatste bedrag."
+      },
+      "check": "type(count) is int and count >= 0 and isinstance(total, (int, float))",
+      "hint": {
+        "en": "A running total describes all accepted turns so far.",
+        "nl": "Een lopend totaal beschrijft alle geaccepteerde beurten tot nu toe."
+      },
+      "hints": [
+        {
+          "en": "A running total describes all accepted turns so far.",
+          "nl": "Een lopend totaal beschrijft alle geaccepteerde beurten tot nu toe."
+        },
+        {
+          "en": "Initialisation and accumulation belong in different places.",
+          "nl": "Initialisatie en optellen horen op verschillende plaatsen."
+        },
+        {
+          "en": "The savings forecast retained its balance between repetitions.",
+          "nl": "De spaarvoorspelling behield zijn saldo tussen herhalingen."
+        }
+      ],
+      "feedback": {
+        "en": "Count and add every accepted amount exactly once.",
+        "nl": "Tel elk geaccepteerd bedrag precies één keer mee in aantal en totaal."
+      },
+      "probes": [
+        {
+          "stdin": [
+            "2.25",
+            "0",
+            "3.5",
+            "done"
+          ],
+          "check": "_error is None and count == 3 and _close(total, 5.75) and rejected == 0"
+        },
+        {
+          "stdin": [
+            "0.1",
+            "0.2",
+            "done"
+          ],
+          "check": "_error is None and count == 2 and _close(total, 0.3)"
+        }
+      ]
+    },
+    {
+      "id": "python-v2-4-05-step-3",
+      "task": {
+        "en": "Reject invalid text and negative amounts, counting each in rejected while preserving the accepted sales.",
+        "nl": "Wijs ongeldige tekst en negatieve bedragen af, tel elk in rejected en behoud de geaccepteerde verkopen."
+      },
+      "check": "type(rejected) is int and rejected >= 0",
+      "hint": {
+        "en": "A rejected turn must not reach the successful accumulation.",
+        "nl": "Een afgewezen beurt mag het geslaagde optellen niet bereiken."
+      },
+      "hints": [
+        {
+          "en": "A rejected turn must not reach the successful accumulation.",
+          "nl": "Een afgewezen beurt mag het geslaagde optellen niet bereiken."
+        },
+        {
+          "en": "Check both failed conversion and a converted value outside the allowed range.",
+          "nl": "Controleer zowel mislukte conversie als een omgezette waarde buiten het toegestane bereik."
+        },
+        {
+          "en": "continue or separate branches can keep invalid data out of later work.",
+          "nl": "continue of aparte vertakkingen kunnen ongeldige gegevens uit latere verwerking houden."
+        }
+      ],
+      "feedback": {
+        "en": "Recover after errors without discarding or corrupting earlier sales.",
+        "nl": "Herstel na fouten zonder eerdere verkopen te wissen of te beschadigen."
+      },
+      "probes": [
+        {
+          "stdin": [
+            "2",
+            "bad",
+            "-8",
+            "",
+            "3",
+            "done"
+          ],
+          "check": "_error is None and count == 2 and total == 5 and rejected == 3"
+        }
+      ]
+    },
+    {
+      "id": "python-v2-4-05-step-4",
+      "task": {
+        "en": "Report the accepted count, rejected count, and total to two decimals after the session. Test only-invalid input followed by done.",
+        "nl": "Meld het geaccepteerde aantal, afgewezen aantal en totaal met twee decimalen na de sessie. Test uitsluitend ongeldige invoer gevolgd door done."
+      },
+      "check": "str(count) in _stdout and str(rejected) in _stdout and f\"{total:.2f}\" in _stdout",
+      "hint": {
+        "en": "The final report should describe the complete session.",
+        "nl": "Het eindoverzicht moet de volledige sessie beschrijven."
+      },
+      "hints": [
+        {
+          "en": "The final report should describe the complete session.",
+          "nl": "Het eindoverzicht moet de volledige sessie beschrijven."
+        },
+        {
+          "en": "Formatting the total need not change its numeric value.",
+          "nl": "Het totaal formatteren hoeft de numerieke waarde niet te veranderen."
+        },
+        {
+          "en": "A session with only rejected entries has a zero total, not a missing total.",
+          "nl": "Een sessie met alleen afgewezen invoer heeft totaal nul, geen ontbrekend totaal."
+        }
+      ],
+      "feedback": {
+        "en": "Keep the summary useful even when there are no accepted amounts.",
+        "nl": "Houd het overzicht bruikbaar, ook als er geen geaccepteerde bedragen zijn."
+      },
+      "probes": [
+        {
+          "stdin": [
+            "bad",
+            "-1",
+            "done"
+          ],
+          "check": "_error is None and count == 0 and rejected == 2 and total == 0 and \"0.00\" in _stdout and \"2\" in _stdout"
+        },
+        {
+          "stdin": [
+            "2.5",
+            "done"
+          ],
+          "check": "_error is None and \"2.50\" in _stdout and \"1\" in _stdout and \"0\" in _stdout"
+        }
+      ]
+    }
+  ],
+  "inputs": [
+    "4",
+    "-2",
+    "wrong",
+    "1.5",
+    "done"
+  ],
+  "solutionNote": {
+    "en": "This example uses continue, but a nested decision can be equally clear. Test the exit, empty session, invalid turns between valid ones, zero amounts, and decimal totals. Formatting hides ordinary floating-point display noise; tolerance-based checks still compare the numeric result.",
+    "nl": "Dit voorbeeld gebruikt continue, maar een geneste beslissing kan even duidelijk zijn. Test de uitgang, lege sessie, ongeldige beurten tussen geldige, nulbedragen en decimale totalen. Formatteren verbergt gewone weergaveruis van floats; controles met tolerantie vergelijken nog steeds het numerieke resultaat."
+  }
+}

@@ -1,0 +1,345 @@
+{
+  "id": "python-v2-5-05",
+  "chapter": 5,
+  "group": "python-v2-module-5",
+  "title": {
+    "en": "Build a bill splitter people can reuse",
+    "nl": "Bouw een herbruikbare rekeningverdeler"
+  },
+  "kind": "coding",
+  "optional": false,
+  "runtime": "terminal",
+  "guidance": "independent",
+  "estimatedMinutes": 24,
+  "explanation": {
+    "en": "A group wants to divide a bill and an optional tip fairly. Create a reusable calculation and a small terminal interface. Keep the calculation free of input and printing, so another program could use it later. Choose your own local variable names and structure.",
+    "nl": "Een groep wil een rekening en een optionele fooi eerlijk verdelen. Maak een herbruikbare berekening en een kleine terminalinterface. Houd de berekening vrij van invoer en afdrukken, zodat een ander programma deze later kan gebruiken. Kies zelf lokale variabelenamen en structuur."
+  },
+  "sections": [
+    {
+      "heading": {
+        "en": "Calculation contract",
+        "nl": "Afspraken voor de berekening"
+      },
+      "body": {
+        "en": "split_bill(total, people, tip_percent=0) returns the unrounded amount per person after adding the percentage tip. For this interface, total and tip_percent are numbers, and people is a whole-number count. Require total >= 0, people > 0, and tip_percent >= 0; raise ValueError otherwise. Do not round inside the function: the caller chooses how to display the result.",
+        "nl": "split_bill(total, people, tip_percent=0) geeft het onafgeronde bedrag per persoon terug nadat de procentuele fooi is toegevoegd. Voor deze interface zijn total en tip_percent getallen, en people is een geheel aantal. Vereis total >= 0, people > 0 en tip_percent >= 0; veroorzaak anders ValueError. Rond niet af binnen de functie: de aanroeper kiest hoe het resultaat wordt getoond."
+      }
+    },
+    {
+      "heading": {
+        "en": "Terminal contract",
+        "nl": "Afspraken voor de terminal"
+      },
+      "body": {
+        "en": "Ask for total, people, then tip percentage. Use your function for the calculation and display its result to two decimals. Invalid numeric text or invalid values should produce a message containing \"invalid\", without an unhandled exception. One attempt is enough in this exercise; a retrying version is an optional improvement. Example: a total of 60, three people, and a 10% tip gives 22 each.",
+        "nl": "Vraag achtereenvolgens om totaal, aantal personen en fooipercentage. Gebruik je functie voor de berekening en toon het resultaat met twee decimalen. Ongeldige getaltekst of ongeldige waarden moeten een bericht met \"invalid\" opleveren, zonder onafgehandelde uitzondering. Eén poging is genoeg in deze opdracht; een herhalende versie is een optionele verbetering. Voorbeeld: totaal 60, drie personen en 10% fooi geeft elk 22."
+      }
+    }
+  ],
+  "example": "",
+  "files": {
+    "main.py": "# Build the reusable calculation and its terminal interface.\n"
+  },
+  "solution": {
+    "main.py": "def split_bill(total, people, tip_percent=0):\n    if total < 0 or people <= 0 or tip_percent < 0:\n        raise ValueError(\"Invalid bill values\")\n    return total * (1 + tip_percent / 100) / people\n\ntry:\n    total = float(input(\"Total: \"))\n    people = int(input(\"People: \"))\n    tip = float(input(\"Tip percentage: \"))\n    share = split_bill(total, people, tip)\n    print(f\"Each pays: {share:.2f}\")\nexcept ValueError:\n    print(\"Invalid bill input\")\n"
+  },
+  "checkpoints": [
+    {
+      "id": "python-v2-5-05-step-1",
+      "task": {
+        "en": "Implement split_bill with the stated parameters and default. Return the share with the tip included, preserving numeric precision.",
+        "nl": "Implementeer split_bill met de genoemde parameters en standaardwaarde. Geef het aandeel inclusief fooi terug en behoud de numerieke precisie."
+      },
+      "check": "callable(split_bill)",
+      "hint": {
+        "en": "Work out what the group pays before dividing it.",
+        "nl": "Bereken wat de groep betaalt voordat je het verdeelt."
+      },
+      "hints": [
+        {
+          "en": "Work out what the group pays before dividing it.",
+          "nl": "Bereken wat de groep betaalt voordat je het verdeelt."
+        },
+        {
+          "en": "A percentage tip changes the total, not the number of people.",
+          "nl": "Een procentuele fooi verandert het totaal, niet het aantal personen."
+        },
+        {
+          "en": "The discount lesson converted percentages into fractions; here an amount is added rather than removed.",
+          "nl": "De kortingsles zette percentages om in fracties; hier wordt een bedrag toegevoegd in plaats van verwijderd."
+        }
+      ],
+      "feedback": {
+        "en": "The reusable calculation should handle varied totals, counts, and tips.",
+        "nl": "De herbruikbare berekening moet verschillende totalen, aantallen en fooien afhandelen."
+      },
+      "probes": [
+        {
+          "stdin": [
+            "60",
+            "3",
+            "10"
+          ],
+          "call": {
+            "name": "split_bill",
+            "args": [
+              10,
+              3
+            ]
+          },
+          "check": "_error is None and _close(_return, 10/3)"
+        },
+        {
+          "stdin": [
+            "60",
+            "3",
+            "10"
+          ],
+          "call": {
+            "name": "split_bill",
+            "kwargs": {
+              "tip_percent": 15,
+              "people": 2,
+              "total": 40
+            }
+          },
+          "check": "_error is None and _close(_return, 23)"
+        },
+        {
+          "stdin": [
+            "60",
+            "3",
+            "10"
+          ],
+          "call": {
+            "name": "split_bill",
+            "args": [
+              0,
+              2,
+              0
+            ]
+          },
+          "check": "_error is None and _return == 0"
+        }
+      ]
+    },
+    {
+      "id": "python-v2-5-05-step-2",
+      "task": {
+        "en": "Reject invalid values with ValueError. Keep zero total and zero tip valid, while rejecting zero people.",
+        "nl": "Wijs ongeldige waarden af met ValueError. Houd totaal nul en fooi nul geldig, maar wijs nul personen af."
+      },
+      "check": "callable(split_bill)",
+      "hint": {
+        "en": "The allowed boundary differs for money and the divisor.",
+        "nl": "De toegestane grens verschilt voor geld en de deler."
+      },
+      "hints": [
+        {
+          "en": "The allowed boundary differs for money and the divisor.",
+          "nl": "De toegestane grens verschilt voor geld en de deler."
+        },
+        {
+          "en": "Validate the documented inputs before dividing.",
+          "nl": "Valideer de afgesproken invoer voordat je deelt."
+        },
+        {
+          "en": "A caller can catch ValueError and choose how to report it.",
+          "nl": "Een aanroeper kan ValueError opvangen en kiezen hoe deze wordt gemeld."
+        }
+      ],
+      "feedback": {
+        "en": "Invalid arguments must raise the documented error rather than fabricate a share.",
+        "nl": "Ongeldige argumenten moeten de afgesproken fout veroorzaken in plaats van een aandeel te verzinnen."
+      },
+      "probes": [
+        {
+          "stdin": [
+            "60",
+            "3",
+            "10"
+          ],
+          "call": {
+            "name": "split_bill",
+            "args": [
+              -1,
+              2,
+              0
+            ]
+          },
+          "check": "_error == \"ValueError\""
+        },
+        {
+          "stdin": [
+            "60",
+            "3",
+            "10"
+          ],
+          "call": {
+            "name": "split_bill",
+            "args": [
+              10,
+              0,
+              0
+            ]
+          },
+          "check": "_error == \"ValueError\""
+        },
+        {
+          "stdin": [
+            "60",
+            "3",
+            "10"
+          ],
+          "call": {
+            "name": "split_bill",
+            "args": [
+              10,
+              -2,
+              0
+            ]
+          },
+          "check": "_error == \"ValueError\""
+        },
+        {
+          "stdin": [
+            "60",
+            "3",
+            "10"
+          ],
+          "call": {
+            "name": "split_bill",
+            "args": [
+              10,
+              2,
+              -1
+            ]
+          },
+          "check": "_error == \"ValueError\""
+        }
+      ]
+    },
+    {
+      "id": "python-v2-5-05-step-3",
+      "task": {
+        "en": "Use the function in the terminal interaction and display the returned share to two decimals. Keep input and printing outside the function.",
+        "nl": "Gebruik de functie in de terminalinteractie en toon het teruggegeven aandeel met twee decimalen. Houd invoer en afdrukken buiten de functie."
+      },
+      "check": "callable(split_bill) and len(_stdout.strip()) > 0",
+      "hint": {
+        "en": "The interface and calculation should have different responsibilities.",
+        "nl": "De interface en berekening moeten verschillende verantwoordelijkheden hebben."
+      },
+      "hints": [
+        {
+          "en": "The interface and calculation should have different responsibilities.",
+          "nl": "De interface en berekening moeten verschillende verantwoordelijkheden hebben."
+        },
+        {
+          "en": "The function can be called again without asking any questions or printing anything.",
+          "nl": "De functie kan opnieuw worden aangeroepen zonder vragen te stellen of iets af te drukken."
+        },
+        {
+          "en": "The delivery quote lesson returned silently and left the report to its caller.",
+          "nl": "De bezorgprijsles keerde stil terug en liet het overzicht aan de aanroeper over."
+        }
+      ],
+      "feedback": {
+        "en": "Read the three responses, call the reusable calculation, and format only for display.",
+        "nl": "Lees de drie antwoorden, roep de herbruikbare berekening aan en formatteer alleen voor weergave."
+      },
+      "probes": [
+        {
+          "stdin": [
+            "20",
+            "3",
+            "5"
+          ],
+          "check": "_error is None and \"7.00\" in _stdout and _remaining_input == \"\""
+        },
+        {
+          "stdin": [
+            "10",
+            "3",
+            "0"
+          ],
+          "call": {
+            "name": "split_bill",
+            "args": [
+              1234,
+              2,
+              0
+            ]
+          },
+          "check": "_error is None and \"3.33\" in _stdout and _call_stdout == \"\" and _call_stderr == \"\" and _call_input_chars == 0 and _return == 617"
+        }
+      ]
+    },
+    {
+      "id": "python-v2-5-05-step-4",
+      "task": {
+        "en": "Keep the interface usable on invalid text and invalid values. Show an invalid-input message instead of a traceback.",
+        "nl": "Houd de interface bruikbaar bij ongeldige tekst en ongeldige waarden. Toon een bericht over ongeldige invoer in plaats van een traceback."
+      },
+      "check": "callable(split_bill)",
+      "hint": {
+        "en": "Both conversion and the calculation may reject input.",
+        "nl": "Zowel conversie als de berekening kan invoer afwijzen."
+      },
+      "hints": [
+        {
+          "en": "Both conversion and the calculation may reject input.",
+          "nl": "Zowel conversie als de berekening kan invoer afwijzen."
+        },
+        {
+          "en": "Handle the expected error at the interface boundary.",
+          "nl": "Handel de verwachte fout af op de grens met de interface."
+        },
+        {
+          "en": "A try block can protect conversions and a function call together.",
+          "nl": "Een try-blok kan conversies en een functieaanroep samen beschermen."
+        }
+      ],
+      "feedback": {
+        "en": "A bad response should produce a useful message and finish cleanly.",
+        "nl": "Een slecht antwoord moet een nuttig bericht opleveren en netjes eindigen."
+      },
+      "probes": [
+        {
+          "stdin": [
+            "bad",
+            "3",
+            "0"
+          ],
+          "check": "_error is None and \"invalid\" in _stdout.lower()"
+        },
+        {
+          "stdin": [
+            "10",
+            "0",
+            "0"
+          ],
+          "check": "_error is None and \"invalid\" in _stdout.lower()"
+        },
+        {
+          "stdin": [
+            "10",
+            "2",
+            "-5"
+          ],
+          "check": "_error is None and \"invalid\" in _stdout.lower()"
+        }
+      ]
+    }
+  ],
+  "inputs": [
+    "60",
+    "3",
+    "10"
+  ],
+  "solutionNote": {
+    "en": "The calculation and interface can now change independently. Before the calculator project, try calling split_bill from the console with different arguments and decide which parts of your interaction you would reuse.",
+    "nl": "De berekening en interface kunnen nu onafhankelijk veranderen. Probeer vóór het rekenmachineproject split_bill vanuit de console met verschillende argumenten aan te roepen en bepaal welke delen van je interactie je zou hergebruiken."
+  }
+}

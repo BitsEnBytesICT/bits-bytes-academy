@@ -1,0 +1,232 @@
+{
+  "id": "python-v2-4-quiz",
+  "chapter": 4,
+  "group": "python-v2-module-4",
+  "kind": "quiz",
+  "optional": false,
+  "title": {
+    "en": "Check your reasoning: repetition",
+    "nl": "Controleer je inzicht: herhaling"
+  },
+  "estimatedMinutes": 5,
+  "questions": [
+    {
+      "id": "v2-4-q1",
+      "prompt": {
+        "en": "Why does this loop never finish?",
+        "nl": "Waarom stopt deze lus nooit?"
+      },
+      "code": "remaining = 3\nwhile remaining > 0:\n    print(remaining)",
+      "choices": [
+        {
+          "id": "a",
+          "label": {
+            "en": "The condition stays true because remaining never changes.",
+            "nl": "De conditie blijft waar omdat remaining nooit verandert."
+          },
+          "reason": {
+            "en": "The repeated body needs progress toward a stopping condition.",
+            "nl": "Het herhaalde blok heeft voortgang naar een stopconditie nodig."
+          }
+        },
+        {
+          "id": "b",
+          "label": {
+            "en": "print always restarts a program.",
+            "nl": "print start een programma altijd opnieuw."
+          },
+          "reason": {
+            "en": "print only produces output; the unchanged condition causes repetition.",
+            "nl": "print produceert alleen uitvoer; de ongewijzigde conditie veroorzaakt herhaling."
+          }
+        },
+        {
+          "id": "c",
+          "label": {
+            "en": "while cannot compare integers.",
+            "nl": "while kan geen integers vergelijken."
+          },
+          "reason": {
+            "en": "This comparison is valid and remains true.",
+            "nl": "Deze vergelijking is geldig en blijft waar."
+          }
+        }
+      ],
+      "answer": "a"
+    },
+    {
+      "id": "v2-4-q2",
+      "prompt": {
+        "en": "Which values does this visit?",
+        "nl": "Welke waarden worden hier bezocht?"
+      },
+      "code": "for value in range(1, 5):\n    print(value)",
+      "choices": [
+        {
+          "id": "a",
+          "label": {
+            "en": "1, 2, 3, 4",
+            "nl": "1, 2, 3, 4"
+          },
+          "reason": {
+            "en": "range includes its start and excludes its stop.",
+            "nl": "range neemt de beginwaarde mee en sluit de eindwaarde uit."
+          }
+        },
+        {
+          "id": "b",
+          "label": {
+            "en": "1, 2, 3, 4, 5",
+            "nl": "1, 2, 3, 4, 5"
+          },
+          "reason": {
+            "en": "The stop value 5 is excluded.",
+            "nl": "De eindwaarde 5 wordt uitgesloten."
+          }
+        },
+        {
+          "id": "c",
+          "label": {
+            "en": "0, 1, 2, 3, 4",
+            "nl": "0, 1, 2, 3, 4"
+          },
+          "reason": {
+            "en": "The explicit start is 1, not the default zero.",
+            "nl": "Het expliciete begin is 1, niet de standaardwaarde nul."
+          }
+        }
+      ],
+      "answer": "a"
+    },
+    {
+      "id": "v2-4-q3",
+      "prompt": {
+        "en": "What differs between continue and break?",
+        "nl": "Wat is het verschil tussen continue en break?"
+      },
+      "choices": [
+        {
+          "id": "a",
+          "label": {
+            "en": "continue starts the next turn; break leaves the loop.",
+            "nl": "continue begint de volgende beurt; break verlaat de lus."
+          },
+          "reason": {
+            "en": "Neither necessarily ends the whole program.",
+            "nl": "Geen van beide beëindigt noodzakelijk het hele programma."
+          }
+        },
+        {
+          "id": "b",
+          "label": {
+            "en": "Both end the whole program.",
+            "nl": "Beide beëindigen het hele programma."
+          },
+          "reason": {
+            "en": "They affect the nearest loop; code afterward can still run.",
+            "nl": "Ze beïnvloeden de dichtstbijzijnde lus; code erna kan nog worden uitgevoerd."
+          }
+        },
+        {
+          "id": "c",
+          "label": {
+            "en": "continue resumes the same line forever.",
+            "nl": "continue hervat eeuwig dezelfde regel."
+          },
+          "reason": {
+            "en": "It moves to the next repetition, including its condition or next item.",
+            "nl": "Het gaat naar de volgende herhaling, inclusief de conditie of het volgende item."
+          }
+        }
+      ],
+      "answer": "a"
+    },
+    {
+      "id": "v2-4-q4",
+      "prompt": {
+        "en": "Why is the final count only 1?",
+        "nl": "Waarom is de eindteller slechts 1?"
+      },
+      "code": "for turn in range(4):\n    count = 0\n    count += 1\nprint(count)",
+      "choices": [
+        {
+          "id": "a",
+          "label": {
+            "en": "The count is reset on every turn.",
+            "nl": "De teller wordt in elke beurt opnieuw ingesteld."
+          },
+          "reason": {
+            "en": "Initialise the accumulated count before the loop.",
+            "nl": "Initialiseer de opgetelde teller vóór de lus."
+          }
+        },
+        {
+          "id": "b",
+          "label": {
+            "en": "range(4) has only one item.",
+            "nl": "range(4) heeft maar één item."
+          },
+          "reason": {
+            "en": "It supplies four items: 0, 1, 2, and 3.",
+            "nl": "Het levert vier items: 0, 1, 2 en 3."
+          }
+        },
+        {
+          "id": "c",
+          "label": {
+            "en": "+= cannot be used in a for loop.",
+            "nl": "+= kan niet in een for-lus worden gebruikt."
+          },
+          "reason": {
+            "en": "The operator works; resetting the value causes the mistake.",
+            "nl": "De operator werkt; het opnieuw instellen veroorzaakt de fout."
+          }
+        }
+      ],
+      "answer": "a"
+    },
+    {
+      "id": "v2-4-q5",
+      "prompt": {
+        "en": "Which test best checks that rejected input does not erase earlier sales?",
+        "nl": "Welke test controleert het beste dat afgewezen invoer eerdere verkopen niet wist?"
+      },
+      "choices": [
+        {
+          "id": "a",
+          "label": {
+            "en": "2, bad, 3, done — expect count 2 and total 5.",
+            "nl": "2, bad, 3, done — verwacht count 2 en total 5."
+          },
+          "reason": {
+            "en": "It places an error between successful turns and checks retained state.",
+            "nl": "Het plaatst een fout tussen geslaagde beurten en controleert behouden toestand."
+          }
+        },
+        {
+          "id": "b",
+          "label": {
+            "en": "done immediately.",
+            "nl": "Direct done."
+          },
+          "reason": {
+            "en": "That checks an empty session, not preservation across errors.",
+            "nl": "Dat controleert een lege sessie, niet behoud na fouten."
+          }
+        },
+        {
+          "id": "c",
+          "label": {
+            "en": "One successful amount.",
+            "nl": "Eén geslaagd bedrag."
+          },
+          "reason": {
+            "en": "There is no rejected turn to expose the problem.",
+            "nl": "Er is geen afgewezen beurt die het probleem zichtbaar maakt."
+          }
+        }
+      ],
+      "answer": "a"
+    }
+  ]
+}

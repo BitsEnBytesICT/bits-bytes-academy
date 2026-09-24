@@ -1,0 +1,211 @@
+{
+  "id": "python-v2-8-01",
+  "chapter": 8,
+  "group": "python-v2-module-8",
+  "title": {
+    "en": "Your first visible scene",
+    "nl": "Je eerste zichtbare scène"
+  },
+  "kind": "coding",
+  "optional": false,
+  "runtime": "pygame",
+  "guidance": "guided",
+  "estimatedMinutes": 18,
+  "explanation": {
+    "en": "Until now, your programs described results with text. A game draws onto a Surface. Repair the scene builder in scene.py, then use the preview to see what the numbers mean. main.py already handles opening, presenting, and closing the window.",
+    "nl": "Tot nu toe beschreven je programma’s resultaten met tekst. Een spel tekent op een Surface. Repareer de scènebouwer in scene.py en bekijk in het voorbeeld wat de getallen betekenen. main.py regelt al het openen, weergeven en sluiten van het venster."
+  },
+  "sections": [
+    {
+      "heading": {
+        "en": "Pixels need a canvas",
+        "nl": "Pixels hebben een canvas nodig"
+      },
+      "body": {
+        "en": "pygame.Surface((width, height)) creates an image in memory. fill((red, green, blue)) paints it; each colour channel ranges from 0 to 255. A Surface is not automatically visible. The supplied main program copies it onto the display with blit, then display.flip presents that frame. The builder should return the Surface, not print it.",
+        "nl": "pygame.Surface((width, height)) maakt een afbeelding in het geheugen. fill((red, green, blue)) kleurt die; elk kleurkanaal loopt van 0 tot 255. Een Surface is niet automatisch zichtbaar. Het meegeleverde hoofdprogramma kopieert die met blit naar het scherm; display.flip toont dat beeld. De bouwer moet de Surface teruggeven, niet afdrukken."
+      },
+      "code": "tile = pygame.Surface((80, 60))\ntile.fill((30, 70, 100))"
+    },
+    {
+      "heading": {
+        "en": "A reusable size",
+        "nl": "Een herbruikbare grootte"
+      },
+      "body": {
+        "en": "make_scene(width, height) must work for different positive whole-number sizes, not just the 640 × 400 preview. Use a dark blue background (16, 23, 39). Each call should create an independent Surface; another caller must not overwrite an earlier scene.",
+        "nl": "make_scene(width, height) moet met verschillende positieve gehele afmetingen werken, niet alleen met het voorbeeld van 640 × 400. Gebruik de donkerblauwe achtergrond (16, 23, 39). Elke aanroep maakt een onafhankelijke Surface; een andere aanroeper mag een eerdere scène niet overschrijven."
+      }
+    },
+    {
+      "heading": {
+        "en": "Run, observe, then finish",
+        "nl": "Voer uit, bekijk en rond af"
+      },
+      "body": {
+        "en": "Run starts main.py and opens the game preview. Click the preview to use the keyboard. Clicking elsewhere pauses the game. Finish & check sends the normal close event and checks your helper functions after the loop exits; Stop interrupts without grading. The supplied async loop gives the browser time to draw and receive input. Keep await asyncio.sleep(1 / 60) inside that loop. You do not need to learn asynchronous programming in depth yet.",
+        "nl": "Run start main.py en opent het spelvoorbeeld. Klik op het voorbeeld om het toetsenbord te gebruiken. Elders klikken pauzeert het spel. Afronden en controleren stuurt de normale sluitgebeurtenis en controleert je hulpfuncties nadat de lus eindigt; Stop onderbreekt zonder beoordeling. De meegeleverde async-lus geeft de browser tijd om te tekenen en invoer te ontvangen. Houd await asyncio.sleep(1 / 60) binnen die lus. Je hoeft asynchroon programmeren nog niet uitgebreid te leren."
+      }
+    }
+  ],
+  "example": "",
+  "files": {
+    "main.py": "import asyncio\nimport pygame\nimport scene\n\nasync def main():\n    pygame.init()\n    screen = pygame.display.set_mode((640, 400))\n    running = True\n    while running:\n        for event in pygame.event.get():\n            if event.type == pygame.QUIT:\n                running = False\n            elif event.type == pygame.KEYDOWN and event.key == pygame.K_ESCAPE:\n                running = False\n        screen.blit(scene.make_scene(640, 400), (0, 0))\n        pygame.display.flip()\n        await asyncio.sleep(1 / 60)\n    pygame.quit()\n\nasyncio.run(main())\n",
+    "scene.py": "import pygame\n\ndef make_scene(width, height):\n    canvas = pygame.Surface((320, 200))\n    canvas.fill((255, 255, 255))\n    # Give the caller the finished image.\n"
+  },
+  "solution": {
+    "main.py": "import asyncio\nimport pygame\nimport scene\n\nasync def main():\n    pygame.init()\n    screen = pygame.display.set_mode((640, 400))\n    running = True\n    while running:\n        for event in pygame.event.get():\n            if event.type == pygame.QUIT:\n                running = False\n            elif event.type == pygame.KEYDOWN and event.key == pygame.K_ESCAPE:\n                running = False\n        screen.blit(scene.make_scene(640, 400), (0, 0))\n        pygame.display.flip()\n        await asyncio.sleep(1 / 60)\n    pygame.quit()\n\nasyncio.run(main())\n",
+    "scene.py": "import pygame\n\ndef make_scene(width, height):\n    canvas = pygame.Surface((width, height))\n    canvas.fill((16, 23, 39))\n    return canvas\n"
+  },
+  "checkpoints": [
+    {
+      "id": "python-v2-8-01-step-1",
+      "task": {
+        "en": "Return a Surface with the requested width and height. Try swapping the dimensions before restoring the preview.",
+        "nl": "Geef een Surface met de gevraagde breedte en hoogte terug. Probeer de afmetingen te verwisselen en herstel daarna het voorbeeld."
+      },
+      "check": "_rendered_frames > 0",
+      "hint": {
+        "en": "The caller needs the image itself.",
+        "nl": "De aanroeper heeft de afbeelding zelf nodig."
+      },
+      "hints": [
+        {
+          "en": "The caller needs the image itself.",
+          "nl": "De aanroeper heeft de afbeelding zelf nodig."
+        },
+        {
+          "en": "Look at the size tuple and the function’s return value.",
+          "nl": "Bekijk de afmetingstuple en de returnwaarde van de functie."
+        },
+        {
+          "en": "A 90 × 40 tile uses (90, 40).",
+          "nl": "Een tegel van 90 × 40 gebruikt (90, 40)."
+        }
+      ],
+      "feedback": {
+        "en": "Return the requested Surface for more than one size.",
+        "nl": "Geef de gevraagde Surface voor meerdere afmetingen terug."
+      },
+      "probes": [
+        {
+          "moduleOnly": true,
+          "call": {
+            "module": "scene",
+            "name": "make_scene",
+            "args": [
+              180,
+              110
+            ]
+          },
+          "check": "_error is None and (isinstance(_return, __import__(\"pygame\").Surface) and _return.get_size() == (180, 110))"
+        },
+        {
+          "moduleOnly": true,
+          "call": {
+            "module": "scene",
+            "name": "make_scene",
+            "args": [
+              90,
+              160
+            ]
+          },
+          "check": "_error is None and (_return.get_size() == (90, 160))"
+        }
+      ]
+    },
+    {
+      "id": "python-v2-8-01-step-2",
+      "task": {
+        "en": "Cover the whole image with the specified dark blue. Check the edges as well as its centre.",
+        "nl": "Bedek de hele afbeelding met het opgegeven donkerblauw. Controleer ook de randen, niet alleen het midden."
+      },
+      "check": "_rendered_frames > 0",
+      "hint": {
+        "en": "A blank Surface starts black, not your chosen colour.",
+        "nl": "Een lege Surface begint zwart, niet met jouw gekozen kleur."
+      },
+      "hints": [
+        {
+          "en": "A blank Surface starts black, not your chosen colour.",
+          "nl": "Een lege Surface begint zwart, niet met jouw gekozen kleur."
+        },
+        {
+          "en": "Use one fill on the whole Surface.",
+          "nl": "Gebruik één fill op de hele Surface."
+        },
+        {
+          "en": "Colours are RGB tuples such as (30, 70, 100).",
+          "nl": "Kleuren zijn RGB-tuples zoals (30, 70, 100)."
+        }
+      ],
+      "feedback": {
+        "en": "Every sampled background pixel should be (16, 23, 39).",
+        "nl": "Elke gecontroleerde achtergrondpixel moet (16, 23, 39) zijn."
+      },
+      "probes": [
+        {
+          "moduleOnly": true,
+          "call": {
+            "module": "scene",
+            "name": "make_scene",
+            "args": [
+              137,
+              91
+            ]
+          },
+          "check": "_error is None and (all(tuple(_return.get_at(p))[:3] == (16,23,39) for p in [(0,0),(136,90),(68,45)]))"
+        }
+      ]
+    },
+    {
+      "id": "python-v2-8-01-step-3",
+      "task": {
+        "en": "Run the preview and finish it normally. Make sure repeated builder calls produce separate images.",
+        "nl": "Start het voorbeeld en sluit het normaal af. Zorg dat herhaalde bouwer-aanroepen afzonderlijke afbeeldingen opleveren."
+      },
+      "check": "_rendered_frames > 0",
+      "hint": {
+        "en": "Think about where the Surface is created.",
+        "nl": "Bedenk waar de Surface wordt gemaakt."
+      },
+      "hints": [
+        {
+          "en": "Think about where the Surface is created.",
+          "nl": "Bedenk waar de Surface wordt gemaakt."
+        },
+        {
+          "en": "Create it inside the function rather than keeping one shared image.",
+          "nl": "Maak die binnen de functie in plaats van één gedeelde afbeelding te bewaren."
+        },
+        {
+          "en": "Two calls to a constructor normally create two objects.",
+          "nl": "Twee aanroepen van een constructor maken normaal twee objecten."
+        }
+      ],
+      "feedback": {
+        "en": "Create a fresh Surface on each call and show at least one frame.",
+        "nl": "Maak bij elke aanroep een nieuwe Surface en toon minstens één beeld."
+      },
+      "probes": [
+        {
+          "moduleOnly": true,
+          "call": {
+            "module": "scene",
+            "name": "make_scene",
+            "args": [
+              120,
+              80
+            ]
+          },
+          "check": "_error is None and (_return is not _module.make_scene(120,80))"
+        }
+      ]
+    }
+  ],
+  "inputs": [],
+  "solutionNote": {
+    "en": "This is one valid approach. Compare the reasoning with your own code before choosing whether to use it. Other implementations can satisfy the same behavior.",
+    "nl": "Dit is één geldige aanpak. Vergelijk de redenering met je eigen code voordat je besluit die te gebruiken. Andere implementaties kunnen aan hetzelfde gedrag voldoen."
+  }
+}

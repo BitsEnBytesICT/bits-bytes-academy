@@ -1,0 +1,197 @@
+{
+  "id": "python-v2-3-04",
+  "chapter": 3,
+  "group": "python-v2-module-3",
+  "title": {
+    "en": "A failed calculation is still an outcome",
+    "nl": "Een mislukte berekening is ook een uitkomst"
+  },
+  "kind": "coding",
+  "optional": false,
+  "runtime": "terminal",
+  "guidance": "guided",
+  "estimatedMinutes": 18,
+  "explanation": {
+    "en": "A ratio tool asks for two decimal numbers and divides the first by the second. Invalid text and a zero divisor currently end the program with a traceback. Handle those two expected problems, keeping an honest status and no pretend numerical result. Trying again will be added when you learn loops.",
+    "nl": "Een verhoudingstool vraagt om twee decimale getallen en deelt het eerste door het tweede. Ongeldige tekst en een deler nul beëindigen het programma nu met een traceback. Handel deze twee verwachte problemen af, met een eerlijke status en zonder verzonnen numeriek resultaat. Opnieuw proberen voegen we toe wanneer je lussen leert."
+  },
+  "sections": [
+    {
+      "heading": {
+        "en": "An exception interrupts the normal path",
+        "nl": "Een uitzondering onderbreekt het normale pad"
+      },
+      "body": {
+        "en": "float(\"hello\") raises ValueError. Dividing by zero raises ZeroDivisionError. try runs a block normally; a matching except handles that particular exception. Once an exception occurs, the remaining statements in the try block are skipped. A later except does not resume at the failed line.",
+        "nl": "float(\"hello\") veroorzaakt ValueError. Delen door nul veroorzaakt ZeroDivisionError. try voert een blok normaal uit; een passende except handelt die specifieke uitzondering af. Na een uitzondering worden de resterende statements in het try-blok overgeslagen. Een latere except hervat niet bij de mislukte regel."
+      },
+      "code": "try:\n    amount = int(\"many\")\n    print(amount + 1)\nexcept ValueError:\n    print(\"Use a whole number\")\nprint(\"Finished\")",
+      "output": "Use a whole number\nFinished"
+    },
+    {
+      "heading": {
+        "en": "Handle expected failures, not every mistake",
+        "nl": "Handel verwachte fouten af, niet elke vergissing"
+      },
+      "body": {
+        "en": "Catch the exceptions you understand. A bare except can hide a misspelled variable or other bug that you need to see. None is a useful value for “no result”; it is not the string \"None\" and is not zero. A failed calculation should leave result as None.",
+        "nl": "Vang de uitzonderingen op die je begrijpt. Een kale except kan een verkeerd gespelde variabele of andere fout verbergen die je juist wilt zien. None is een bruikbare waarde voor “geen resultaat”; het is niet de string \"None\" en niet nul. Een mislukte berekening moet result op None laten staan."
+      }
+    }
+  ],
+  "example": "",
+  "files": {
+    "main.py": "result = None\nstatus = \"pending\"\nfirst_text = input(\"First number: \")\nsecond_text = input(\"Second number: \")\n\nfirst = float(first_text)\nsecond = float(second_text)\nresult = first / second\nstatus = \"ok\"\nprint(status, result)\n"
+  },
+  "solution": {
+    "main.py": "result = None\nstatus = \"pending\"\nfirst_text = input(\"First number: \")\nsecond_text = input(\"Second number: \")\n\ntry:\n    first = float(first_text)\n    second = float(second_text)\n    result = first / second\n    status = \"ok\"\nexcept ValueError:\n    status = \"invalid number\"\nexcept ZeroDivisionError:\n    status = \"zero divisor\"\nprint(status, result)\n"
+  },
+  "checkpoints": [
+    {
+      "id": "python-v2-3-04-step-1",
+      "task": {
+        "en": "Keep successful division working for decimal and negative values. Store the numeric result and set status to \"ok\".",
+        "nl": "Laat geslaagde delingen werken met decimale en negatieve waarden. Bewaar het numerieke result en zet status op \"ok\"."
+      },
+      "check": "status in (\"ok\", \"invalid number\", \"zero divisor\")",
+      "hint": {
+        "en": "Handling errors must not replace the calculation on valid inputs.",
+        "nl": "Foutafhandeling mag de berekening bij geldige invoer niet vervangen."
+      },
+      "hints": [
+        {
+          "en": "Handling errors must not replace the calculation on valid inputs.",
+          "nl": "Foutafhandeling mag de berekening bij geldige invoer niet vervangen."
+        },
+        {
+          "en": "The successful status belongs after the calculation succeeds.",
+          "nl": "De geslaagde status hoort nadat de berekening slaagt."
+        },
+        {
+          "en": "A quotient of 0 is a valid result when the first number is zero.",
+          "nl": "Een quotiënt van 0 is geldig wanneer het eerste getal nul is."
+        }
+      ],
+      "feedback": {
+        "en": "Valid values should still produce the correct quotient.",
+        "nl": "Geldige waarden moeten nog steeds het juiste quotiënt produceren."
+      },
+      "probes": [
+        {
+          "stdin": [
+            "-7.5",
+            "2.5"
+          ],
+          "check": "_error is None and result == -3 and status == \"ok\""
+        },
+        {
+          "stdin": [
+            "0",
+            "4"
+          ],
+          "check": "_error is None and result == 0 and status == \"ok\""
+        }
+      ]
+    },
+    {
+      "id": "python-v2-3-04-step-2",
+      "task": {
+        "en": "Handle invalid numeric text with status \"invalid number\". Leave result as None and report the status instead of crashing.",
+        "nl": "Handel ongeldige getaltekst af met status \"invalid number\". Laat result op None staan en meld de status in plaats van vast te lopen."
+      },
+      "check": "status in _stdout and (status != \"invalid number\" or result is None)",
+      "hint": {
+        "en": "The conversion is where numeric text becomes a number or raises an exception.",
+        "nl": "Bij de conversie wordt getaltekst een getal of ontstaat een uitzondering."
+      },
+      "hints": [
+        {
+          "en": "The conversion is where numeric text becomes a number or raises an exception.",
+          "nl": "Bij de conversie wordt getaltekst een getal of ontstaat een uitzondering."
+        },
+        {
+          "en": "Both conversions belong inside the protected block.",
+          "nl": "Beide conversies horen binnen het beschermde blok."
+        },
+        {
+          "en": "The amount example handles ValueError specifically.",
+          "nl": "Het amount-voorbeeld handelt specifiek ValueError af."
+        }
+      ],
+      "feedback": {
+        "en": "Invalid text in either number should give a useful status and no result.",
+        "nl": "Ongeldige tekst in elk van beide getallen moet een nuttige status zonder resultaat geven."
+      },
+      "probes": [
+        {
+          "stdin": [
+            "oops",
+            "2"
+          ],
+          "check": "_error is None and result is None and status == \"invalid number\" and status in _stdout"
+        },
+        {
+          "stdin": [
+            "4",
+            ""
+          ],
+          "check": "_error is None and result is None and status == \"invalid number\""
+        }
+      ]
+    },
+    {
+      "id": "python-v2-3-04-step-3",
+      "task": {
+        "en": "Handle a zero divisor separately with status \"zero divisor\" and no result. Keep the two failure reasons distinguishable.",
+        "nl": "Handel een deler nul apart af met status \"zero divisor\" en zonder resultaat. Houd de twee foutoorzaken onderscheidbaar."
+      },
+      "check": "status in _stdout and (status != \"zero divisor\" or result is None)",
+      "hint": {
+        "en": "A valid number can still be unsuitable for an operation.",
+        "nl": "Een geldig getal kan toch ongeschikt zijn voor een bewerking."
+      },
+      "hints": [
+        {
+          "en": "A valid number can still be unsuitable for an operation.",
+          "nl": "Een geldig getal kan toch ongeschikt zijn voor een bewerking."
+        },
+        {
+          "en": "Use a separate handler or an explicit zero check for this case.",
+          "nl": "Gebruik hiervoor een aparte afhandeling of een expliciete nulcontrole."
+        },
+        {
+          "en": "ZeroDivisionError describes division by zero; ValueError describes the conversion problem here.",
+          "nl": "ZeroDivisionError beschrijft delen door nul; ValueError beschrijft hier het conversieprobleem."
+        }
+      ],
+      "feedback": {
+        "en": "Division by zero should be explained without inventing a numeric answer.",
+        "nl": "Delen door nul moet worden uitgelegd zonder een numeriek antwoord te verzinnen."
+      },
+      "probes": [
+        {
+          "stdin": [
+            "8",
+            "0"
+          ],
+          "check": "_error is None and result is None and status == \"zero divisor\" and status in _stdout"
+        },
+        {
+          "stdin": [
+            "0",
+            "-0.0"
+          ],
+          "check": "_error is None and result is None and status == \"zero divisor\""
+        }
+      ]
+    }
+  ],
+  "inputs": [
+    "9",
+    "2"
+  ],
+  "solutionNote": {
+    "en": "Checking the divisor explicitly is also valid. Avoid a catch-all handler: it would conceal unrelated programming mistakes. This version accepts ordinary finite decimal input; unusual float values will be revisited with library tools.",
+    "nl": "De deler expliciet controleren is ook geldig. Vermijd een afhandeling die alles opvangt: die zou ongerelateerde programmeerfouten verbergen. Deze versie accepteert gewone eindige decimale invoer; bijzondere floatwaarden bekijken we opnieuw bij bibliotheektools."
+  }
+}

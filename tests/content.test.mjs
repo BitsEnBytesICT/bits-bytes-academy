@@ -1,6 +1,6 @@
 import fs from "node:fs";
 import assert from "node:assert/strict";
-const course = JSON.parse(fs.readFileSync("content/course.json", "utf8"));
+const course = JSON.parse(fs.readFileSync("content/legacy/course-v1.json", "utf8"));
 assert.equal(course.chapters.length, 13);
 assert.equal(course.activities.length, 240);
 assert.equal(course.activities.filter((a) => a.sourcePosition).length, 160);

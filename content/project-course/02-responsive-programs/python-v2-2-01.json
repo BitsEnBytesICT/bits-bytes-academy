@@ -1,0 +1,190 @@
+{
+  "id": "python-v2-2-01",
+  "chapter": 2,
+  "group": "python-v2-module-2",
+  "title": {
+    "en": "A notice for the person at the keyboard",
+    "nl": "Een bericht voor de persoon achter het toetsenbord"
+  },
+  "kind": "coding",
+  "optional": false,
+  "runtime": "terminal",
+  "guidance": "guided",
+  "estimatedMinutes": 12,
+  "explanation": {
+    "en": "The welcome desk currently prints a notice for a fictional visitor. Let the person using the program supply the name and destination instead. A program waiting for input is not broken: click the terminal, type a response, and press Enter.",
+    "nl": "De ontvangstbalie drukt nu een bericht voor een fictieve bezoeker af. Laat de gebruiker zelf de naam en bestemming opgeven. Een programma dat op invoer wacht is niet kapot: klik in de terminal, typ een antwoord en druk op Enter."
+  },
+  "sections": [
+    {
+      "heading": {
+        "en": "Pause, read, continue",
+        "nl": "Pauzeren, lezen, doorgaan"
+      },
+      "body": {
+        "en": "input() displays its prompt and waits for one line. It returns that line as a string, without the Enter at the end. Store the returned value if a later statement needs it. The next statement runs only after a response arrives.",
+        "nl": "input() toont een vraag en wacht op één regel. De functie geeft die regel als string terug, zonder de Enter aan het einde. Bewaar de teruggegeven waarde als een later statement die nodig heeft. Het volgende statement wordt pas na het antwoord uitgevoerd."
+      },
+      "code": "colour = input(\"Choose a colour: \")\nprint(\"You chose\", colour)"
+    },
+    {
+      "heading": {
+        "en": "Two responses, in order",
+        "nl": "Twee antwoorden, in volgorde"
+      },
+      "body": {
+        "en": "Two input calls ask two separate questions. Each assignment stores its own response. A blank line is still a response: it produces the empty string \"\". Do not put quote marks around your response in the terminal unless you actually want them in the text.",
+        "nl": "Twee input-aanroepen stellen twee aparte vragen. Elke toekenning bewaart een eigen antwoord. Een lege regel is ook een antwoord: die produceert de lege string \"\". Zet je antwoord in de terminal niet tussen aanhalingstekens, tenzij je die echt in de tekst wilt hebben."
+      },
+      "code": "animal = input(\"Animal: \")\nsound = input(\"Sound: \")\nprint(animal, \"says\", sound)"
+    }
+  ],
+  "example": "",
+  "files": {
+    "main.py": "print(\"Welcome desk\")\nvisitor = \"Sample visitor\"\ndestination = \"Sample room\"\nprint(\"Hello\", visitor)\nprint(\"Your destination:\", destination)\n"
+  },
+  "solution": {
+    "main.py": "print(\"Welcome desk\")\nvisitor = input(\"Your name: \")\ndestination = input(\"Where are you going? \")\nprint(\"Hello\", visitor)\nprint(\"Your destination:\", destination)\n"
+  },
+  "checkpoints": [
+    {
+      "id": "python-v2-2-01-step-1",
+      "task": {
+        "en": "Ask for a visitor name and store the response in visitor. Keep the welcome heading.",
+        "nl": "Vraag naar de naam van de bezoeker en bewaar het antwoord in visitor. Behoud de welkomstkop."
+      },
+      "check": "isinstance(visitor, str) and \"Welcome desk\" in _stdout",
+      "hint": {
+        "en": "The current assignment always supplies the same visitor.",
+        "nl": "De huidige toekenning levert altijd dezelfde bezoeker op."
+      },
+      "hints": [
+        {
+          "en": "The current assignment always supplies the same visitor.",
+          "nl": "De huidige toekenning levert altijd dezelfde bezoeker op."
+        },
+        {
+          "en": "An input call can be the value on the right of an assignment.",
+          "nl": "Een input-aanroep kan de waarde rechts van een toekenning zijn."
+        },
+        {
+          "en": "The colour example stores whatever the person types, rather than a fixed colour.",
+          "nl": "Het colour-voorbeeld bewaart wat de gebruiker typt, in plaats van een vaste kleur."
+        }
+      ],
+      "feedback": {
+        "en": "The stored visitor should come from the first response.",
+        "nl": "De opgeslagen bezoeker moet uit het eerste antwoord komen."
+      },
+      "probes": [
+        {
+          "stdin": [
+            "Zoë",
+            "Studio"
+          ],
+          "check": "_error is None and visitor == \"Zoë\""
+        },
+        {
+          "stdin": [
+            "Amir",
+            "Workshop"
+          ],
+          "check": "_error is None and visitor == \"Amir\""
+        }
+      ]
+    },
+    {
+      "id": "python-v2-2-01-step-2",
+      "task": {
+        "en": "Ask for a destination after the name and store it separately in destination.",
+        "nl": "Vraag na de naam naar een bestemming en bewaar die apart in destination."
+      },
+      "check": "isinstance(destination, str)",
+      "hint": {
+        "en": "A second question needs a second response.",
+        "nl": "Een tweede vraag heeft een tweede antwoord nodig."
+      },
+      "hints": [
+        {
+          "en": "A second question needs a second response.",
+          "nl": "Een tweede vraag heeft een tweede antwoord nodig."
+        },
+        {
+          "en": "Keep the two assignments separate so the destination does not replace the name.",
+          "nl": "Houd de twee toekenningen apart zodat de bestemming de naam niet vervangt."
+        },
+        {
+          "en": "animal and sound in the example hold different answers.",
+          "nl": "animal en sound in het voorbeeld bevatten verschillende antwoorden."
+        }
+      ],
+      "feedback": {
+        "en": "Check the order of the questions and which variable receives each response.",
+        "nl": "Controleer de volgorde van de vragen en welke variabele elk antwoord ontvangt."
+      },
+      "probes": [
+        {
+          "stdin": [
+            "Zoë",
+            "Studio"
+          ],
+          "check": "_error is None and destination == \"Studio\" and visitor == \"Zoë\""
+        },
+        {
+          "stdin": [
+            "Amir",
+            "Main hall"
+          ],
+          "check": "_error is None and destination == \"Main hall\""
+        }
+      ]
+    },
+    {
+      "id": "python-v2-2-01-step-3",
+      "task": {
+        "en": "Keep both personalised lines in the report. Try your own name and a destination containing a space.",
+        "nl": "Behoud beide gepersonaliseerde regels in het overzicht. Probeer je eigen naam en een bestemming met een spatie."
+      },
+      "check": "visitor in _stdout and destination in _stdout",
+      "hint": {
+        "en": "Reading a response does not automatically print a finished report.",
+        "nl": "Een antwoord lezen drukt niet automatisch een afgerond overzicht af."
+      },
+      "hints": [
+        {
+          "en": "Reading a response does not automatically print a finished report.",
+          "nl": "Een antwoord lezen drukt niet automatisch een afgerond overzicht af."
+        },
+        {
+          "en": "Use the stored responses in the two existing print calls.",
+          "nl": "Gebruik de opgeslagen antwoorden in de twee bestaande print-aanroepen."
+        },
+        {
+          "en": "print(\"Selected:\", colour) displays a label and a stored response.",
+          "nl": "print(\"Selected:\", colour) toont een label en een opgeslagen antwoord."
+        }
+      ],
+      "feedback": {
+        "en": "Both responses should appear in the final output.",
+        "nl": "Beide antwoorden moeten in de uiteindelijke uitvoer voorkomen."
+      },
+      "probes": [
+        {
+          "stdin": [
+            "Léa",
+            "Meeting room"
+          ],
+          "check": "_error is None and \"Léa\" in _stdout and \"Meeting room\" in _stdout and _remaining_input == \"\""
+        }
+      ]
+    }
+  ],
+  "inputs": [
+    "Taylor",
+    "Library"
+  ],
+  "solutionNote": {
+    "en": "The wording of the questions is yours. Each response is stored separately; spaces and accented letters remain part of the text.",
+    "nl": "De formulering van de vragen kies je zelf. Elk antwoord wordt apart opgeslagen; spaties en letters met accenten blijven deel van de tekst."
+  }
+}

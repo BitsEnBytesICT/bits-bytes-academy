@@ -1,30 +1,46 @@
+# Project course release verification — 24 September 2026
+
+The active release contains two paths, ten modules, 50 coding exercises / 155 checks, ten five-question quizzes, one documentation reading, two self-assessed projects, and an optional AI extension (64 activities / 63 required; approximately 22 hours).
+
+- Final `npm test`, `npm run test:rework`, frontend/backend typecheck, and production build passed.
+- All 50 reference programs and 30 executable explanation examples passed. Behavioral suites accept tested alternate implementations and reject incomplete or plausibly incorrect programs.
+- All fifteen graphical reference programs passed in the real browser pygame interpreter, with rendered-frame evidence and normal Finish & check. Additional graphical tests reject missing previews and unfinished starters.
+- Browser checks covered multi-file creation/validation/imports, Run from a helper tab, saving/reloading, Unicode/blank/EOF input, animation and keyboard events, focus pause/resume, interruption, non-yielding loops, output limits and recovery, persistent console variables, reading completion, project self-assessment, copying all Pong files into the optional extension, quiz drafts/feedback/retry, and mobile/drawer keyboard behavior.
+- Revealing a solution marks assistance but does not award new completion until a graded Run passes.
+- Production was restarted at http://localhost:3001. Before/after row hashes matched for all 12 workspaces, 11 progress rows, 2 settings, 21 attempts, and the migration marker. SQLite integrity passed. Homepage, overview, and original-course archive were checked after restart.
+- The original complete snapshot and verified restore copy remain outside Git. No database migration or learner-data reset was required.
+
+These checks cover the documented scenarios and tested programs; they are not an exhaustive proof for every learner program. The browser suite can be repeated with `npm run test:browser`. The sections below are historical evidence for previous releases and retain their original counts.
+
+---
+
 # Verification — 21 September 2026
 
 The production build runs at http://localhost:3001. The homepage/lesson/console update was tested against a separate SQLite profile on port 3002. The existing production learning profile was retained, with no database migration or reset.
 
 ## Automated checks
 
-| Check | Result |
-|---|---|
-| TypeScript frontend and backend | Passed |
-| Production Vite/Express build | Passed |
-| Curriculum structure | 13 chapters, 240 unique activities |
-| Core lesson pages | 160 |
-| Optional coding challenges | 59 |
-| Supporting/closing readings | 8 |
-| Quizzes | 13, containing 114 questions |
-| English/Dutch content fields | All required fields populated |
-| Actual Python execution | 227 reference examples passed |
-| Negative grading cases | 206 incomplete programs correctly rejected |
-| Quiz output predictions | 64 answer keys verified by executing their Python snippets |
-| Expected exception handling | Passed |
-| Alternative correct syntax | Passed |
-| Persistence/API scenarios | Passed |
-| Concurrent save/navigation regressions | Passed |
-| Persistent Python console and script namespace isolation | Passed |
-| Worker reuse, stdin/EOF protocol, and cancelled-response isolation | Passed |
-| Read-only course catalog and activity/group metadata | Passed |
-| Dependency audit | 0 known vulnerabilities reported |
+| Check                                                              | Result                                                     |
+| ------------------------------------------------------------------ | ---------------------------------------------------------- |
+| TypeScript frontend and backend                                    | Passed                                                     |
+| Production Vite/Express build                                      | Passed                                                     |
+| Curriculum structure                                               | 13 chapters, 240 unique activities                         |
+| Core lesson pages                                                  | 160                                                        |
+| Optional coding challenges                                         | 59                                                         |
+| Supporting/closing readings                                        | 8                                                          |
+| Quizzes                                                            | 13, containing 114 questions                               |
+| English/Dutch content fields                                       | All required fields populated                              |
+| Actual Python execution                                            | 227 reference examples passed                              |
+| Negative grading cases                                             | 206 incomplete programs correctly rejected                 |
+| Quiz output predictions                                            | 64 answer keys verified by executing their Python snippets |
+| Expected exception handling                                        | Passed                                                     |
+| Alternative correct syntax                                         | Passed                                                     |
+| Persistence/API scenarios                                          | Passed                                                     |
+| Concurrent save/navigation regressions                             | Passed                                                     |
+| Persistent Python console and script namespace isolation           | Passed                                                     |
+| Worker reuse, stdin/EOF protocol, and cancelled-response isolation | Passed                                                     |
+| Read-only course catalog and activity/group metadata               | Passed                                                     |
+| Dependency audit                                                   | 0 known vulnerabilities reported                           |
 
 The persistence/API checks cover stale revisions, unsafe filenames, unknown activities, cross-origin writes, cumulative progress, best quiz scores, saved quiz state, malformed quiz data, backup preview/restore, stale saves after restore, and preserving records across a database restart. Save tests also confirm that edits made during an ongoing save remain recoverable and that a slow earlier page cannot replace a newer workspace.
 
@@ -218,6 +234,7 @@ node scripts/start.mjs --no-browser
 ```
 
 The app's runtime scope and storage behavior are documented in README.md.
+
 # List support readings — 23 September 2026
 
 - Replaced the tuple and zip readings with original bilingual guided explorations,
@@ -242,6 +259,7 @@ The app's runtime scope and storage behavior are documented in README.md.
   `research/2026-09-23-list-readings.md`. Embedded source assessments remained
   loading and were not inspected. Overall rewrite: 58/160 core pages, 4/8 support
   readings, 4/13 enhanced quizzes, 0/59 revised optional challenges.
+
 # Loop chapter rewrite — 23 September 2026
 
 - Rewrote all 13 loop pages with 36 connected checkpoints, 96 alternate-input

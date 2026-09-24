@@ -1,0 +1,225 @@
+{
+  "id": "python-v2-5-04",
+  "chapter": 5,
+  "group": "python-v2-module-5",
+  "title": {
+    "en": "Reuse a safe input conversation",
+    "nl": "Hergebruik een veilige invoerinteractie"
+  },
+  "kind": "coding",
+  "optional": false,
+  "runtime": "terminal",
+  "guidance": "adapt",
+  "estimatedMinutes": 20,
+  "explanation": {
+    "en": "Several tools need the same conversation: ask for a number, allow mistakes, and let the user cancel. Move this behavior into read_number(prompt). Its caller should receive a number or None, without needing to know how many attempts happened inside.",
+    "nl": "Verschillende tools hebben dezelfde interactie nodig: vraag om een getal, sta fouten toe en laat de gebruiker annuleren. Verplaats dit gedrag naar read_number(prompt). De aanroeper moet een getal of None ontvangen, zonder te hoeven weten hoeveel pogingen er binnen de functie waren."
+  },
+  "sections": [
+    {
+      "heading": {
+        "en": "Return ends the function, even inside a loop",
+        "nl": "return beëindigt de functie, ook binnen een lus"
+      },
+      "body": {
+        "en": "break leaves a loop; return leaves the whole function and gives its caller a value. Early returns can make successful and cancelled outcomes clear. A function may contain its own loop and try/except blocks.",
+        "nl": "break verlaat een lus; return verlaat de volledige functie en geeft de aanroeper een waarde. Vroege returns kunnen geslaagde en geannuleerde uitkomsten duidelijk maken. Een functie mag een eigen lus en try/except-blokken bevatten."
+      },
+      "code": "def category(value):\n    if value < 0:\n        return \"negative\"\n    return \"nonnegative\""
+    },
+    {
+      "heading": {
+        "en": "End of input is not an empty response",
+        "nl": "Einde van invoer is geen leeg antwoord"
+      },
+      "body": {
+        "en": "A blank line is an ordinary response. End-of-input means no more input is available: input() raises EOFError. The terminal can send end-of-input with Ctrl+D. For this function, treat EOF and a cleaned cancel command as cancellation and return None. Retry blank or other invalid numeric text. Negative and zero numbers are valid here.",
+        "nl": "Een lege regel is een gewoon antwoord. Einde van invoer betekent dat er geen invoer meer beschikbaar is: input() veroorzaakt EOFError. De terminal kan einde van invoer sturen met Ctrl+D. Behandel voor deze functie EOF en een opgeschoond cancel-commando als annulering en geef None terug. Probeer opnieuw bij lege of andere ongeldige getaltekst. Negatieve getallen en nul zijn hier geldig."
+      }
+    }
+  ],
+  "example": "",
+  "files": {
+    "main.py": "def read_number(prompt):\n    text = input(\"Number: \")\n    return float(text)\n\nvalue = read_number(\"Measurement or cancel: \")\nif value is None:\n    print(\"Cancelled\")\nelse:\n    print(\"Measurement:\", value)\n"
+  },
+  "solution": {
+    "main.py": "def read_number(prompt):\n    while True:\n        try:\n            text = input(prompt)\n        except EOFError:\n            return None\n        if text.strip().lower() == \"cancel\":\n            return None\n        try:\n            return float(text)\n        except ValueError:\n            print(\"Please enter a number or cancel\")\n\nvalue = read_number(\"Measurement or cancel: \")\nif value is None:\n    print(\"Cancelled\")\nelse:\n    print(\"Measurement:\", value)\n"
+  },
+  "checkpoints": [
+    {
+      "id": "python-v2-5-04-step-1",
+      "task": {
+        "en": "Use the supplied prompt and return a numeric value after a valid response, including zero and negative decimals.",
+        "nl": "Gebruik de meegegeven prompt en geef na een geldig antwoord een numerieke waarde terug, inclusief nul en negatieve decimalen."
+      },
+      "check": "callable(read_number) and (value is None or isinstance(value, (int, float)))",
+      "hint": {
+        "en": "The function’s caller should choose the question text.",
+        "nl": "De aanroeper van de functie moet de vraagtekst kiezen."
+      },
+      "hints": [
+        {
+          "en": "The function’s caller should choose the question text.",
+          "nl": "De aanroeper van de functie moet de vraagtekst kiezen."
+        },
+        {
+          "en": "The prompt parameter should reach the input call.",
+          "nl": "De prompt-parameter moet de input-aanroep bereiken."
+        },
+        {
+          "en": "Returning float(text) supplies a number to the caller.",
+          "nl": "float(text) teruggeven levert een getal aan de aanroeper."
+        }
+      ],
+      "feedback": {
+        "en": "Accept valid numbers and respect the prompt passed by the caller.",
+        "nl": "Accepteer geldige getallen en respecteer de door de aanroeper meegegeven vraagtekst."
+      },
+      "probes": [
+        {
+          "stdin": [
+            "1",
+            "-2.5"
+          ],
+          "call": {
+            "name": "read_number",
+            "args": [
+              "Custom question: "
+            ]
+          },
+          "check": "_error is None and _return == -2.5 and \"Custom question:\" in _stdout"
+        },
+        {
+          "stdin": [
+            "1",
+            "0"
+          ],
+          "call": {
+            "name": "read_number",
+            "args": [
+              "Number: "
+            ]
+          },
+          "check": "_error is None and _return == 0"
+        }
+      ]
+    },
+    {
+      "id": "python-v2-5-04-step-2",
+      "task": {
+        "en": "Retry invalid numeric responses inside the function and give feedback. Do not return until a valid number or cancellation arrives.",
+        "nl": "Probeer ongeldige getalantwoorden binnen de functie opnieuw en geef feedback. Keer pas terug bij een geldig getal of annulering."
+      },
+      "check": "callable(read_number)",
+      "hint": {
+        "en": "A failed conversion belongs to this attempt, not necessarily the whole conversation.",
+        "nl": "Een mislukte conversie hoort bij deze poging, niet noodzakelijk bij de hele interactie."
+      },
+      "hints": [
+        {
+          "en": "A failed conversion belongs to this attempt, not necessarily the whole conversation.",
+          "nl": "Een mislukte conversie hoort bij deze poging, niet noodzakelijk bij de hele interactie."
+        },
+        {
+          "en": "Keep the retry loop inside the reusable function.",
+          "nl": "Houd de herhaallus binnen de herbruikbare functie."
+        },
+        {
+          "en": "A return on success naturally leaves both the loop and the function.",
+          "nl": "Een return bij succes verlaat vanzelf zowel de lus als de functie."
+        }
+      ],
+      "feedback": {
+        "en": "Handle repeated mistakes without losing the eventual valid response.",
+        "nl": "Handel herhaalde fouten af zonder het uiteindelijke geldige antwoord te verliezen."
+      },
+      "probes": [
+        {
+          "stdin": [
+            "1",
+            "oops",
+            "",
+            "4.75"
+          ],
+          "call": {
+            "name": "read_number",
+            "args": [
+              "Try: "
+            ]
+          },
+          "check": "_error is None and _return == 4.75 and _remaining_input == \"\" and _stdout.count(\"Try:\") == 3 and len(_stdout.splitlines()) >= 4"
+        }
+      ]
+    },
+    {
+      "id": "python-v2-5-04-step-3",
+      "task": {
+        "en": "Return None for cancel or end-of-input. Preserve the caller’s existing success/cancellation report.",
+        "nl": "Geef None terug bij cancel of einde van invoer. Behoud het bestaande succes-/annuleringsbericht van de aanroeper."
+      },
+      "check": "callable(read_number) and (\"Cancelled\" if value is None else \"Measurement:\") in _stdout",
+      "hint": {
+        "en": "EOF is an exception; a blank line is text that can be retried.",
+        "nl": "EOF is een uitzondering; een lege regel is tekst die opnieuw kan worden gevraagd."
+      },
+      "hints": [
+        {
+          "en": "EOF is an exception; a blank line is text that can be retried.",
+          "nl": "EOF is een uitzondering; een lege regel is tekst die opnieuw kan worden gevraagd."
+        },
+        {
+          "en": "Catch EOFError around the input call, separately from conversion errors.",
+          "nl": "Vang EOFError op rond de input-aanroep, apart van conversiefouten."
+        },
+        {
+          "en": "return None tells the caller that no numeric result is available.",
+          "nl": "return None laat de aanroeper weten dat geen numeriek resultaat beschikbaar is."
+        }
+      ],
+      "feedback": {
+        "en": "Both explicit cancellation and exhausted input should finish cleanly.",
+        "nl": "Zowel expliciete annulering als uitgeputte invoer moet netjes eindigen."
+      },
+      "probes": [
+        {
+          "stdin": [
+            "1",
+            " CANcel "
+          ],
+          "call": {
+            "name": "read_number",
+            "args": [
+              "Try: "
+            ]
+          },
+          "check": "_error is None and _return is None"
+        },
+        {
+          "stdin": [
+            "1",
+            "bad"
+          ],
+          "call": {
+            "name": "read_number",
+            "args": [
+              "Try: "
+            ]
+          },
+          "check": "_error is None and _return is None"
+        },
+        {
+          "stdin": [],
+          "check": "_error is None and value is None and \"Cancelled\" in _stdout"
+        }
+      ]
+    }
+  ],
+  "inputs": [
+    "wrong",
+    "2.5"
+  ],
+  "solutionNote": {
+    "en": "The caller receives one simple outcome even though the function may manage many turns. In the calculator project you can reuse this idea, adapt it, or choose a different interaction.",
+    "nl": "De aanroeper ontvangt één eenvoudige uitkomst, ook als de functie veel beurten beheert. In het rekenmachineproject kun je dit idee hergebruiken, aanpassen of een andere interactie kiezen."
+  }
+}

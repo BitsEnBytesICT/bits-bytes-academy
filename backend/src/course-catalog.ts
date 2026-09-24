@@ -4,20 +4,20 @@ export const courseCatalog: CourseSummary[] = [
     slug: "python",
     title: "Python",
     status: "available",
-    estimatedHours: 20,
+    estimatedHours: 22,
     description: {
-      en: "Learn to write, run, and debug Python. Build your understanding through explanations, hands-on exercises, and quizzes.",
-      nl: "Leer Python schrijven, uitvoeren en debuggen. Bouw je kennis op met uitleg, praktische oefeningen en quizzes.",
+      en: "Build a terminal calculator, then your own two-player Pong. Learn through guided repairs, independent exercises, quizzes, and two projects you design yourself.",
+      nl: "Bouw een terminalrekenmachine en daarna je eigen Pong voor twee spelers. Leer met begeleide reparaties, zelfstandige oefeningen, quizzes en twee projecten die je zelf ontwerpt.",
     },
     topics: [
-      { en: "Variables and control flow", nl: "Variables en control flow" },
+      { en: "Input, decisions, loops, and functions", nl: "Invoer, beslissingen, lussen en functies" },
       {
-        en: "Lists, strings, and dictionaries",
-        nl: "Lists, strings en dictionaries",
+        en: "Libraries, multiple files, and finding documentation",
+        nl: "Bibliotheken, meerdere bestanden en documentatie vinden",
       },
       {
-        en: "Functions, files, and classes",
-        nl: "Functions, bestanden en classes",
+        en: "Real pygame: drawing, controls, collisions, and scoring",
+        nl: "Echte pygame: tekenen, besturing, botsingen en score",
       },
     ],
   },

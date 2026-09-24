@@ -1,0 +1,197 @@
+{
+  "id": "python-v2-7-05",
+  "chapter": 7,
+  "group": "python-v2-module-7",
+  "title": {
+    "en": "Build a reusable paddle layout module",
+    "nl": "Bouw een herbruikbare module voor paddleposities"
+  },
+  "kind": "coding",
+  "optional": false,
+  "runtime": "terminal",
+  "guidance": "independent",
+  "estimatedMinutes": 24,
+  "explanation": {
+    "en": "Prepare the two paddles for a court without opening a window yet. main.py already asks a separate layout module for the rectangles. Implement that module so both sides work for different court sizes. This is the same multi-file workflow you can use in your own Pong project.",
+    "nl": "Bereid de twee paddles voor een speelveld voor zonder al een venster te openen. main.py vraagt de rechthoeken al aan een aparte layout-module. Implementeer die module zodat beide kanten bij verschillende speelveldgrootten werken. Dit is dezelfde werkwijze met meerdere bestanden die je in je eigen Pong-project kunt gebruiken."
+  },
+  "sections": [
+    {
+      "heading": {
+        "en": "A small public interface",
+        "nl": "Een kleine publieke interface"
+      },
+      "body": {
+        "en": "In layout.py, make_paddle(width, height, side) returns a pygame.Rect that is 12 pixels wide and 72 high. Its vertical centre is height // 2. A left paddle has 24 pixels between its left edge and the court’s left edge. A right paddle has the same gap between its right edge and the court’s right edge. side is \"left\" or \"right\"; reject anything else with ValueError. Assume courts are at least 200 by 100. Each call returns a fresh rectangle. The module should not ask for input or print when imported.",
+        "nl": "In layout.py geeft make_paddle(width, height, side) een pygame.Rect terug die 12 pixels breed en 72 hoog is. Het verticale midden is height // 2. Een linkerpaddle heeft 24 pixels tussen zijn linkerrand en de linkerrand van het veld. Een rechterpaddle heeft dezelfde ruimte tussen zijn rechterrand en de rechterrand van het veld. side is \"left\" of \"right\"; wijs iets anders af met ValueError. Neem aan dat velden minstens 200 bij 100 zijn. Elke aanroep geeft een verse rechthoek terug. De module moet bij importeren geen invoer vragen of afdrukken."
+      }
+    }
+  ],
+  "example": "",
+  "files": {
+    "main.py": "import layout\n\ncourt_width = 640\ncourt_height = 400\nleft = layout.make_paddle(court_width, court_height, \"left\")\nright = layout.make_paddle(court_width, court_height, \"right\")\nprint(\"Left:\", left)\nprint(\"Right:\", right)\n",
+    "layout.py": "# Create the reusable paddle layout function here.\n"
+  },
+  "solution": {
+    "main.py": "import layout\n\ncourt_width = 640\ncourt_height = 400\nleft = layout.make_paddle(court_width, court_height, \"left\")\nright = layout.make_paddle(court_width, court_height, \"right\")\nprint(\"Left:\", left)\nprint(\"Right:\", right)\n",
+    "layout.py": "import pygame\n\ndef make_paddle(width, height, side):\n    if side != \"left\" and side != \"right\":\n        raise ValueError(\"Unknown side\")\n    paddle = pygame.Rect(0, 0, 12, 72)\n    paddle.centery = height // 2\n    if side == \"left\":\n        paddle.left = 24\n    else:\n        paddle.right = width - 24\n    return paddle\n"
+  },
+  "checkpoints": [
+    {
+      "id": "python-v2-7-05-step-1",
+      "task": {
+        "en": "Implement make_paddle in layout.py, returning the correct rectangle dimensions and vertical centre for either side.",
+        "nl": "Implementeer make_paddle in layout.py en geef voor beide kanten de juiste rechthoekafmetingen en het verticale midden terug."
+      },
+      "check": "left.size == (12, 72) and right.size == (12, 72) and left.centery == court_height // 2 and right.centery == court_height // 2",
+      "hint": {
+        "en": "The caller already knows the court; the module should use those arguments.",
+        "nl": "De aanroeper kent het veld al; de module moet die argumenten gebruiken."
+      },
+      "hints": [
+        {
+          "en": "The caller already knows the court; the module should use those arguments.",
+          "nl": "De aanroeper kent het veld al; de module moet die argumenten gebruiken."
+        },
+        {
+          "en": "Construct an object and set the attributes that describe the layout.",
+          "nl": "Maak een object en stel de attributen in die de indeling beschrijven."
+        },
+        {
+          "en": "The previous library lesson positioned a rectangle through its centre attribute.",
+          "nl": "De vorige bibliotheekles plaatste een rechthoek via het center-attribuut."
+        }
+      ],
+      "feedback": {
+        "en": "Return real rectangles that fit the documented size and vertical placement.",
+        "nl": "Geef echte rechthoeken terug met de afgesproken grootte en verticale plaatsing."
+      },
+      "probes": [
+        {
+          "call": {
+            "module": "layout",
+            "name": "make_paddle",
+            "args": [
+              800,
+              301,
+              "left"
+            ]
+          },
+          "check": "_error is None and isinstance(_return, __import__(\"pygame\").Rect) and _return.size == (12, 72) and _return.centery == 150"
+        }
+      ]
+    },
+    {
+      "id": "python-v2-7-05-step-2",
+      "task": {
+        "en": "Keep a 24-pixel gap at the appropriate outer edge. Make the right-hand position follow the court width.",
+        "nl": "Houd aan de juiste buitenrand een ruimte van 24 pixels. Laat de rechterpositie de breedte van het veld volgen."
+      },
+      "check": "left.left == 24 and right.right == court_width - 24",
+      "hint": {
+        "en": "A right-edge gap is not measured from the paddle’s left edge.",
+        "nl": "Een ruimte aan de rechterrand wordt niet vanaf de linkerrand van de paddle gemeten."
+      },
+      "hints": [
+        {
+          "en": "A right-edge gap is not measured from the paddle’s left edge.",
+          "nl": "Een ruimte aan de rechterrand wordt niet vanaf de linkerrand van de paddle gemeten."
+        },
+        {
+          "en": "Think in terms of edges before converting to a top-left coordinate.",
+          "nl": "Denk eerst in randen voordat je naar een linkerbovencoördinaat omzet."
+        },
+        {
+          "en": "The rectangle’s right attribute already accounts for its width.",
+          "nl": "Het right-attribuut van de rechthoek houdt al rekening met zijn breedte."
+        }
+      ],
+      "feedback": {
+        "en": "Both outer gaps should stay equal when the court changes size.",
+        "nl": "Beide buitenruimtes moeten gelijk blijven wanneer de veldgrootte verandert."
+      },
+      "probes": [
+        {
+          "inputs": {
+            "court_width": 900,
+            "court_height": 500
+          },
+          "check": "_error is None and left.left == 24 and right.right == 876 and left.centery == 250 and right.centery == 250"
+        },
+        {
+          "call": {
+            "module": "layout",
+            "name": "make_paddle",
+            "args": [
+              240,
+              160,
+              "right"
+            ]
+          },
+          "check": "_return.right == 216 and _return.left == 204"
+        }
+      ]
+    },
+    {
+      "id": "python-v2-7-05-step-3",
+      "task": {
+        "en": "Reject invalid sides, return a fresh rectangle for each call, and keep layout free of terminal interaction. Run main.py to inspect both paddles.",
+        "nl": "Wijs ongeldige kanten af, geef bij elke aanroep een nieuwe rechthoek terug en houd layout vrij van terminalinteractie. Voer main.py uit om beide paddles te bekijken."
+      },
+      "check": "left is not right and \"Left:\" in _stdout and \"Right:\" in _stdout",
+      "hint": {
+        "en": "A reusable module should provide objects, not own the whole program.",
+        "nl": "Een herbruikbare module moet objecten leveren, niet het volledige programma beheren."
+      },
+      "hints": [
+        {
+          "en": "A reusable module should provide objects, not own the whole program.",
+          "nl": "Een herbruikbare module moet objecten leveren, niet het volledige programma beheren."
+        },
+        {
+          "en": "Validate the side and create the rectangle inside the function.",
+          "nl": "Valideer de kant en maak de rechthoek binnen de functie."
+        },
+        {
+          "en": "The earlier reset lesson explained why sharing one mutable object can break later calls.",
+          "nl": "De eerdere resetles legde uit waarom één veranderlijk object delen latere aanroepen kan verstoren."
+        }
+      ],
+      "feedback": {
+        "en": "Keep imports quiet, reject invalid input, and avoid shared paddles.",
+        "nl": "Houd imports stil, wijs ongeldige invoer af en vermijd gedeelde paddles."
+      },
+      "probes": [
+        {
+          "call": {
+            "module": "layout",
+            "name": "make_paddle",
+            "args": [
+              640,
+              400,
+              "top"
+            ]
+          },
+          "check": "_error == \"ValueError\""
+        },
+        {
+          "call": {
+            "module": "layout",
+            "name": "make_paddle",
+            "args": [
+              640,
+              400,
+              "left"
+            ]
+          },
+          "check": "_error is None and _call_stdout == \"\" and _call_input_chars == 0 and len(_stdout.splitlines()) == 2 and _return is not left and _return is not right"
+        }
+      ]
+    }
+  ],
+  "inputs": [],
+  "solutionNote": {
+    "en": "Setting edge/centre attributes or calculating the top-left coordinates can both work. Run starts main.py even while layout.py is selected. Changing the helper and running again reloads the module; the next scene lessons will draw these same kinds of objects.",
+    "nl": "Rand-/middenattributen instellen of linkerbovencoördinaten berekenen kan allebei werken. Run start main.py, ook wanneer layout.py is geselecteerd. De helper veranderen en opnieuw uitvoeren herlaadt de module; de volgende scènelessen tekenen ditzelfde soort objecten."
+  }
+}

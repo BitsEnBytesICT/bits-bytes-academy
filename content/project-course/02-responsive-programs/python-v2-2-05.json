@@ -1,0 +1,188 @@
+{
+  "id": "python-v2-2-05",
+  "chapter": 2,
+  "group": "python-v2-module-2",
+  "title": {
+    "en": "Build a small booking desk",
+    "nl": "Bouw een kleine boekingsbalie"
+  },
+  "kind": "coding",
+  "optional": false,
+  "runtime": "terminal",
+  "guidance": "independent",
+  "estimatedMinutes": 18,
+  "explanation": {
+    "en": "A visitor wants to book workshop tickets within a budget. Build the interaction yourself using the supplied ticket price. Ask for a whole-number ticket quantity first and a decimal budget second. Work with valid nonnegative inputs for now. A booking is affordable when its cost is no greater than the budget, including an exact fit.",
+    "nl": "Een bezoeker wil binnen een budget workshopkaartjes boeken. Bouw de interactie zelf met de gegeven ticketprijs. Vraag eerst een geheel aantal kaartjes en daarna een budget dat decimalen mag bevatten. Werk voorlopig met geldige niet-negatieve invoer. Een boeking is betaalbaar als de kosten niet hoger zijn dan het budget, ook wanneer die precies gelijk zijn."
+  },
+  "sections": [
+    {
+      "heading": {
+        "en": "What the desk should report",
+        "nl": "Wat de balie moet melden"
+      },
+      "body": {
+        "en": "Keep quantity, budget, total, can_book, and remaining as values that describe the booking. The report should show a two-decimal price and either \"booked\" or \"save more\". For an affordable booking, remaining is the budget left after paying. Otherwise, no money is spent and remaining stays equal to the original budget. Choose your own prompts and layout.",
+        "nl": "Bewaar quantity, budget, total, can_book en remaining als waarden die de boeking beschrijven. Het overzicht moet een prijs met twee decimalen en \"booked\" of \"save more\" tonen. Bij een betaalbare boeking is remaining het budget na betaling. Anders wordt geen geld uitgegeven en blijft remaining gelijk aan het oorspronkelijke budget. Kies je eigen invoervragen en indeling."
+      }
+    }
+  ],
+  "example": "",
+  "files": {
+    "main.py": "ticket_price = 4.5\n\n# Build the booking interaction and report.\n"
+  },
+  "solution": {
+    "main.py": "ticket_price = 4.5\n\nquantity = int(input(\"Tickets: \"))\nbudget = float(input(\"Budget: \"))\ntotal = quantity * ticket_price\ncan_book = total <= budget\nif can_book:\n    remaining = budget - total\n    message = \"booked\"\nelse:\n    remaining = budget\n    message = \"save more\"\nprint(f\"Price: {total:.2f}\")\nprint(message)\nprint(f\"Remaining: {remaining:.2f}\")\n"
+  },
+  "checkpoints": [
+    {
+      "id": "python-v2-2-05-step-1",
+      "task": {
+        "en": "Read quantity and budget in the stated order, with suitable numeric types, and calculate total.",
+        "nl": "Lees quantity en budget in de genoemde volgorde met geschikte numerieke typen en bereken total."
+      },
+      "check": "type(quantity) is int and isinstance(budget, (float, int)) and total == quantity * ticket_price",
+      "hint": {
+        "en": "The two responses have different numeric meanings.",
+        "nl": "De twee antwoorden hebben verschillende numerieke betekenissen."
+      },
+      "hints": [
+        {
+          "en": "The two responses have different numeric meanings.",
+          "nl": "De twee antwoorden hebben verschillende numerieke betekenissen."
+        },
+        {
+          "en": "A ticket count is whole; a budget may include a fraction.",
+          "nl": "Een aantal kaartjes is geheel; een budget kan een gebroken deel bevatten."
+        },
+        {
+          "en": "Review int() and float() in the ticket-price lesson if the input still behaves like text.",
+          "nl": "Bekijk int() en float() in de ticketprijsles als de invoer zich nog als tekst gedraagt."
+        }
+      ],
+      "feedback": {
+        "en": "Use both typed responses as numbers and calculate from the current price.",
+        "nl": "Gebruik beide getypte antwoorden als getallen en reken met de huidige prijs."
+      },
+      "probes": [
+        {
+          "inputs": {
+            "ticket_price": 2.25
+          },
+          "stdin": [
+            "4",
+            "9.5"
+          ],
+          "check": "_error is None and quantity == 4 and budget == 9.5 and total == 9"
+        }
+      ]
+    },
+    {
+      "id": "python-v2-2-05-step-2",
+      "task": {
+        "en": "Decide whether the booking fits the budget and store that Boolean in can_book.",
+        "nl": "Bepaal of de boeking binnen het budget past en bewaar die Boolean in can_book."
+      },
+      "check": "type(can_book) is bool and can_book == (total <= budget)",
+      "hint": {
+        "en": "Compare what is needed with what is available.",
+        "nl": "Vergelijk wat nodig is met wat beschikbaar is."
+      },
+      "hints": [
+        {
+          "en": "Compare what is needed with what is available.",
+          "nl": "Vergelijk wat nodig is met wat beschikbaar is."
+        },
+        {
+          "en": "Do not reject a booking that uses the budget exactly.",
+          "nl": "Wijs een boeking die precies het budget gebruikt niet af."
+        },
+        {
+          "en": "Test one budget just below the total and one equal to it.",
+          "nl": "Test een budget net onder het totaal en een budget dat eraan gelijk is."
+        }
+      ],
+      "feedback": {
+        "en": "Check both affordable and unaffordable bookings, including equality.",
+        "nl": "Controleer betaalbare en onbetaalbare boekingen, inclusief gelijkheid."
+      },
+      "probes": [
+        {
+          "stdin": [
+            "2",
+            "9"
+          ],
+          "check": "can_book is True"
+        },
+        {
+          "stdin": [
+            "2",
+            "8.99"
+          ],
+          "check": "can_book is False"
+        }
+      ]
+    },
+    {
+      "id": "python-v2-2-05-step-3",
+      "task": {
+        "en": "Set remaining according to whether the booking succeeds. Report the price to two decimals and the correct outcome: \"booked\" or \"save more\".",
+        "nl": "Bepaal remaining op basis van het slagen van de boeking. Toon de prijs met twee decimalen en de juiste uitkomst: \"booked\" of \"save more\"."
+      },
+      "check": "remaining == (budget - total if can_book else budget) and f\"{total:.2f}\" in _stdout and (\"booked\" if can_book else \"save more\") in _stdout.lower()",
+      "hint": {
+        "en": "An unsuccessful booking should not spend any money.",
+        "nl": "Een mislukte boeking mag geen geld uitgeven."
+      },
+      "hints": [
+        {
+          "en": "An unsuccessful booking should not spend any money.",
+          "nl": "Een mislukte boeking mag geen geld uitgeven."
+        },
+        {
+          "en": "Treat each outcome as a consistent message and budget update.",
+          "nl": "Behandel elke uitkomst als een samenhangend bericht en een budgetwijziging."
+        },
+        {
+          "en": "The equipment-desk exercise keeps its stock unchanged when it rejects a request.",
+          "nl": "De uitleenbalie-oefening houdt de voorraad ongewijzigd wanneer een aanvraag wordt afgewezen."
+        }
+      ],
+      "feedback": {
+        "en": "The displayed outcome and the remaining budget should agree.",
+        "nl": "De getoonde uitkomst en het resterende budget moeten overeenkomen."
+      },
+      "probes": [
+        {
+          "stdin": [
+            "2",
+            "10"
+          ],
+          "check": "_error is None and remaining == 1 and \"9.00\" in _stdout and \"booked\" in _stdout.lower()"
+        },
+        {
+          "stdin": [
+            "3",
+            "10"
+          ],
+          "check": "_error is None and remaining == 10 and \"13.50\" in _stdout and \"save more\" in _stdout.lower()"
+        },
+        {
+          "stdin": [
+            "0",
+            "0"
+          ],
+          "check": "_error is None and total == 0 and remaining == 0 and can_book is True"
+        }
+      ]
+    }
+  ],
+  "inputs": [
+    "3",
+    "20"
+  ],
+  "solutionNote": {
+    "en": "Your prompts, branch structure, and report layout may differ. The checks care about the responses, budget rule, and resulting behavior rather than matching this implementation.",
+    "nl": "Je invoervragen, vertakkingsstructuur en overzicht mogen verschillen. De controles kijken naar antwoorden, de budgetregel en het resulterende gedrag, niet naar overeenkomst met deze implementatie."
+  }
+}

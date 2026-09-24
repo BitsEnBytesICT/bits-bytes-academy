@@ -1,0 +1,189 @@
+{
+  "id": "python-v2-2-02",
+  "chapter": 2,
+  "group": "python-v2-module-2",
+  "title": {
+    "en": "From typed text to a ticket price",
+    "nl": "Van getypte tekst naar een ticketprijs"
+  },
+  "kind": "coding",
+  "optional": false,
+  "runtime": "terminal",
+  "guidance": "guided",
+  "estimatedMinutes": 14,
+  "explanation": {
+    "en": "A ticket desk needs to calculate a price from a typed quantity. The starter reads a quantity but accidentally treats it as text. Repair that boundary between input and arithmetic, then display the price as an amount of money. For this exercise, enter valid whole-number quantities; handling invalid input comes in the next module.",
+    "nl": "Een ticketbalie moet een prijs berekenen met een getypt aantal. De startcode leest het aantal, maar behandelt het per ongeluk als tekst. Herstel die grens tussen invoer en rekenen en toon de prijs daarna als een geldbedrag. Voer voor deze opdracht geldige gehele aantallen in; ongeldige invoer behandelen we in de volgende module."
+  },
+  "sections": [
+    {
+      "heading": {
+        "en": "Input returns text",
+        "nl": "Invoer geeft tekst terug"
+      },
+      "body": {
+        "en": "Typing 5 produces the string \"5\", not the integer 5. int(text) converts valid whole-number text; float(text) converts valid decimal text. Use a decimal point in Python input, such as 2.5. Multiplying a string by an integer repeats the text instead of doing numeric multiplication.",
+        "nl": "Als je 5 typt, krijg je de string \"5\", niet de integer 5. int(text) zet geldige tekst met een geheel getal om; float(text) zet geldige decimale tekst om. Gebruik bij Python-invoer een punt, zoals 2.5. Een string met een integer vermenigvuldigen herhaalt de tekst in plaats van numeriek te rekenen."
+      },
+      "code": "text = \"4\"\nprint(text * 3)\nprint(int(text) * 3)",
+      "output": "444\n12"
+    },
+    {
+      "heading": {
+        "en": "Values and presentation",
+        "nl": "Waarden en presentatie"
+      },
+      "body": {
+        "en": "An f-string inserts expressions inside braces. A format such as :.2f displays two digits after the decimal point. Formatting changes the displayed text, not the stored number. Keep a numeric total for further calculations.",
+        "nl": "Een f-string voegt uitdrukkingen tussen accolades in. Een formaat zoals :.2f toont twee cijfers achter de punt. Formatteren verandert de weergegeven tekst, niet het opgeslagen getal. Bewaar een numeriek totaal voor verdere berekeningen."
+      },
+      "code": "length = 3.5\nprint(f\"Length: {length:.2f} m\")",
+      "output": "Length: 3.50 m"
+    }
+  ],
+  "example": "",
+  "files": {
+    "main.py": "ticket_price = 4.5\nquantity = input(\"How many tickets? \")\n\ntotal = quantity * 2\nprint(\"Ticket total:\", total)\n"
+  },
+  "solution": {
+    "main.py": "ticket_price = 4.5\nquantity = int(input(\"How many tickets? \"))\n\ntotal = quantity * ticket_price\nprint(f\"Ticket total: {total:.2f}\")\n"
+  },
+  "checkpoints": [
+    {
+      "id": "python-v2-2-02-step-1",
+      "task": {
+        "en": "Store the typed quantity as an integer in quantity.",
+        "nl": "Bewaar het getypte aantal als integer in quantity."
+      },
+      "check": "type(quantity) is int",
+      "hint": {
+        "en": "The terminal supplies text even when the response looks numeric.",
+        "nl": "De terminal levert tekst, ook wanneer het antwoord er numeriek uitziet."
+      },
+      "hints": [
+        {
+          "en": "The terminal supplies text even when the response looks numeric.",
+          "nl": "De terminal levert tekst, ook wanneer het antwoord er numeriek uitziet."
+        },
+        {
+          "en": "Convert the response before using it in numeric arithmetic.",
+          "nl": "Zet het antwoord om voordat je het in een numerieke berekening gebruikt."
+        },
+        {
+          "en": "int(\"8\") produces the integer 8.",
+          "nl": "int(\"8\") produceert de integer 8."
+        }
+      ],
+      "feedback": {
+        "en": "quantity should be an integer obtained from the response.",
+        "nl": "quantity moet een integer zijn die uit het antwoord is verkregen."
+      },
+      "probes": [
+        {
+          "stdin": [
+            "7"
+          ],
+          "check": "_error is None and type(quantity) is int and quantity == 7"
+        },
+        {
+          "stdin": [
+            "0"
+          ],
+          "check": "_error is None and quantity == 0"
+        }
+      ]
+    },
+    {
+      "id": "python-v2-2-02-step-2",
+      "task": {
+        "en": "Calculate the numeric total using the requested quantity and ticket_price.",
+        "nl": "Bereken het numerieke total met het gevraagde aantal en ticket_price."
+      },
+      "check": "isinstance(total, (int, float)) and total == quantity * ticket_price",
+      "hint": {
+        "en": "The starter uses a number that does not represent the ticket price.",
+        "nl": "De startcode gebruikt een getal dat niet de ticketprijs voorstelt."
+      },
+      "hints": [
+        {
+          "en": "The starter uses a number that does not represent the ticket price.",
+          "nl": "De startcode gebruikt een getal dat niet de ticketprijs voorstelt."
+        },
+        {
+          "en": "Keep the unit price as an input to the calculation.",
+          "nl": "Behoud de stuksprijs als invoer voor de berekening."
+        },
+        {
+          "en": "A quantity of 2 at 4.5 per item costs 9, not the text \"22\".",
+          "nl": "Een aantal van 2 bij 4.5 per stuk kost 9, niet de tekst \"22\"."
+        }
+      ],
+      "feedback": {
+        "en": "The total must change when either the quantity or the price changes.",
+        "nl": "Het totaal moet veranderen wanneer het aantal of de prijs verandert."
+      },
+      "probes": [
+        {
+          "inputs": {
+            "ticket_price": 2.25
+          },
+          "stdin": [
+            "4"
+          ],
+          "check": "_error is None and total == 9"
+        }
+      ]
+    },
+    {
+      "id": "python-v2-2-02-step-3",
+      "task": {
+        "en": "Display the total with exactly two decimal places. Leave total itself as a number.",
+        "nl": "Toon het totaal met precies twee decimalen. Laat total zelf een getal blijven."
+      },
+      "check": "f\"{total:.2f}\" in _stdout and isinstance(total, (int, float))",
+      "hint": {
+        "en": "A numeric value and its printed representation have different jobs.",
+        "nl": "Een numerieke waarde en de afgedrukte weergave hebben verschillende taken."
+      },
+      "hints": [
+        {
+          "en": "A numeric value and its printed representation have different jobs.",
+          "nl": "Een numerieke waarde en de afgedrukte weergave hebben verschillende taken."
+        },
+        {
+          "en": "Format at the point where the value is displayed.",
+          "nl": "Formatteer op het moment dat de waarde wordt weergegeven."
+        },
+        {
+          "en": "The length example uses {length:.2f} inside an f-string.",
+          "nl": "Het length-voorbeeld gebruikt {length:.2f} in een f-string."
+        }
+      ],
+      "feedback": {
+        "en": "Show both decimal places, including trailing zeroes.",
+        "nl": "Toon beide decimalen, ook nullen aan het einde."
+      },
+      "probes": [
+        {
+          "stdin": [
+            "2"
+          ],
+          "check": "_error is None and \"9.00\" in _stdout"
+        },
+        {
+          "stdin": [
+            "0"
+          ],
+          "check": "_error is None and \"0.00\" in _stdout"
+        }
+      ]
+    }
+  ],
+  "inputs": [
+    "3"
+  ],
+  "solutionNote": {
+    "en": "Conversion makes arithmetic possible; formatting makes its result readable. Other formatting approaches are fine if they preserve the numeric total and display two decimals.",
+    "nl": "Conversie maakt rekenen mogelijk; formattering maakt het resultaat leesbaar. Andere manieren van formatteren zijn ook goed als ze het numerieke totaal behouden en twee decimalen tonen."
+  }
+}

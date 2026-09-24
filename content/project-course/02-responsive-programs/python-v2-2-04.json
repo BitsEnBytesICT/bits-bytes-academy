@@ -1,0 +1,193 @@
+{
+  "id": "python-v2-2-04",
+  "chapter": 2,
+  "group": "python-v2-module-2",
+  "title": {
+    "en": "Choose what the equipment desk does",
+    "nl": "Kies wat de uitleenbalie doet"
+  },
+  "kind": "coding",
+  "optional": false,
+  "runtime": "terminal",
+  "guidance": "adapt",
+  "estimatedMinutes": 14,
+  "explanation": {
+    "en": "An equipment desk should lend items only when enough are available. The starter always lends them and can report negative stock. Repair the decision so a request either succeeds as a whole or leaves the stock unchanged.",
+    "nl": "Een uitleenbalie mag artikelen alleen uitlenen als er genoeg beschikbaar zijn. De startcode leent ze altijd uit en kan een negatieve voorraad tonen. Herstel de beslissing zodat een aanvraag volledig slaagt of de voorraad ongewijzigd laat."
+  },
+  "sections": [
+    {
+      "heading": {
+        "en": "Choose one path",
+        "nl": "Kies één pad"
+      },
+      "body": {
+        "en": "An if statement runs its indented block when the condition is true. An else block runs otherwise. The colon begins a block; consistent indentation shows which statements belong to it. Unindented statements afterward run whichever path was chosen.",
+        "nl": "Een if-statement voert het ingesprongen blok uit wanneer de conditie waar is. Een else-blok wordt anders uitgevoerd. De dubbele punt begint een blok; consistente inspringing toont welke statements erbij horen. Statements zonder die inspringing erna worden uitgevoerd ongeacht het gekozen pad."
+      },
+      "code": "temperature = 18\nif temperature < 16:\n    advice = \"Take a coat\"\nelse:\n    advice = \"A light jacket is enough\"\nprint(advice)",
+      "output": "A light jacket is enough"
+    },
+    {
+      "heading": {
+        "en": "Keep related updates together",
+        "nl": "Houd samenhangende updates bij elkaar"
+      },
+      "body": {
+        "en": "A branch can contain several statements. If an action is conditional, keep its state changes in the same branch. Merely changing a printed message does not stop an incorrect calculation elsewhere.",
+        "nl": "Een vertakking kan meerdere statements bevatten. Als een actie voorwaardelijk is, horen de bijbehorende wijzigingen in dezelfde vertakking. Alleen een afgedrukt bericht veranderen stopt een onjuiste berekening ergens anders niet."
+      }
+    }
+  ],
+  "example": "",
+  "files": {
+    "main.py": "available = 6\nrequested = int(input(\"How many kits? \"))\n\ncan_lend = True\ndecision = \"ready\"\nremaining = available - requested\nprint(decision)\nprint(\"Remaining:\", remaining)\n"
+  },
+  "solution": {
+    "main.py": "available = 6\nrequested = int(input(\"How many kits? \"))\n\ncan_lend = requested <= available\nif can_lend:\n    decision = \"ready\"\n    remaining = available - requested\nelse:\n    decision = \"wait\"\n    remaining = available\nprint(decision)\nprint(\"Remaining:\", remaining)\n"
+  },
+  "checkpoints": [
+    {
+      "id": "python-v2-2-04-step-1",
+      "task": {
+        "en": "Calculate can_lend from requested and available. A request for the entire available stock is allowed.",
+        "nl": "Bereken can_lend uit requested en available. Een aanvraag voor de hele beschikbare voorraad is toegestaan."
+      },
+      "check": "type(can_lend) is bool and can_lend == (requested <= available)",
+      "hint": {
+        "en": "The request must not exceed the available stock.",
+        "nl": "De aanvraag mag de beschikbare voorraad niet overschrijden."
+      },
+      "hints": [
+        {
+          "en": "The request must not exceed the available stock.",
+          "nl": "De aanvraag mag de beschikbare voorraad niet overschrijden."
+        },
+        {
+          "en": "Test a request equal to the stock as well as a larger request.",
+          "nl": "Test zowel een aanvraag gelijk aan de voorraad als een grotere aanvraag."
+        },
+        {
+          "en": "The departure exercise used an inclusive comparison at its boundary.",
+          "nl": "De vertrekoefening gebruikte op de grens een vergelijking die gelijkheid toestaat."
+        }
+      ],
+      "feedback": {
+        "en": "The Boolean should reflect whether the complete request can be fulfilled.",
+        "nl": "De Boolean moet aangeven of de volledige aanvraag kan worden afgehandeld."
+      },
+      "probes": [
+        {
+          "stdin": [
+            "6"
+          ],
+          "check": "can_lend is True"
+        },
+        {
+          "stdin": [
+            "7"
+          ],
+          "check": "can_lend is False"
+        }
+      ]
+    },
+    {
+      "id": "python-v2-2-04-step-2",
+      "task": {
+        "en": "Use an if/else decision to set decision to \"ready\" for a request that can be fulfilled, or \"wait\" otherwise.",
+        "nl": "Gebruik een if/else-beslissing om decision op \"ready\" te zetten voor een aanvraag die kan worden afgehandeld, of anders op \"wait\"."
+      },
+      "check": "decision == (\"ready\" if can_lend else \"wait\") and any(isinstance(n, _ast.If) for n in _ast.walk(_ast.parse(_source)))",
+      "hint": {
+        "en": "The two messages describe mutually exclusive outcomes.",
+        "nl": "De twee berichten beschrijven uitkomsten die elkaar uitsluiten."
+      },
+      "hints": [
+        {
+          "en": "The two messages describe mutually exclusive outcomes.",
+          "nl": "De twee berichten beschrijven uitkomsten die elkaar uitsluiten."
+        },
+        {
+          "en": "Use the Boolean to select which value is assigned.",
+          "nl": "Gebruik de Boolean om te kiezen welke waarde wordt toegekend."
+        },
+        {
+          "en": "In the coat example, only one assignment to advice runs.",
+          "nl": "In het jasvoorbeeld wordt maar één toekenning aan advice uitgevoerd."
+        }
+      ],
+      "feedback": {
+        "en": "One branch should choose ready; the other should choose wait.",
+        "nl": "De ene vertakking moet ready kiezen; de andere wait."
+      },
+      "probes": [
+        {
+          "stdin": [
+            "8"
+          ],
+          "check": "_error is None and decision == \"wait\""
+        },
+        {
+          "stdin": [
+            "1"
+          ],
+          "check": "_error is None and decision == \"ready\""
+        }
+      ]
+    },
+    {
+      "id": "python-v2-2-04-step-3",
+      "task": {
+        "en": "Update remaining only for a successful request; otherwise keep the original stock. Print the decision and remaining stock.",
+        "nl": "Werk remaining alleen bij voor een geslaagde aanvraag; behoud anders de oorspronkelijke voorraad. Druk de beslissing en resterende voorraad af."
+      },
+      "check": "remaining == (available - requested if can_lend else available) and decision in _stdout and str(remaining) in _stdout",
+      "hint": {
+        "en": "A rejected request should not remove items.",
+        "nl": "Een afgewezen aanvraag mag geen artikelen weghalen."
+      },
+      "hints": [
+        {
+          "en": "A rejected request should not remove items.",
+          "nl": "Een afgewezen aanvraag mag geen artikelen weghalen."
+        },
+        {
+          "en": "Review which assignments belong inside each branch.",
+          "nl": "Bekijk welke toekenningen binnen elke vertakking horen."
+        },
+        {
+          "en": "A branch can choose a message and calculate a new stock value together.",
+          "nl": "Een vertakking kan tegelijk een bericht kiezen en een nieuwe voorraadwaarde berekenen."
+        }
+      ],
+      "feedback": {
+        "en": "The stock should change only when the request succeeds.",
+        "nl": "De voorraad moet alleen veranderen wanneer de aanvraag slaagt."
+      },
+      "probes": [
+        {
+          "stdin": [
+            "8"
+          ],
+          "check": "_error is None and remaining == 6 and \"wait\" in _stdout"
+        },
+        {
+          "inputs": {
+            "available": 3
+          },
+          "stdin": [
+            "3"
+          ],
+          "check": "_error is None and remaining == 0 and \"ready\" in _stdout"
+        }
+      ]
+    }
+  ],
+  "inputs": [
+    "4"
+  ],
+  "solutionNote": {
+    "en": "The message and the stock update need to agree. This exercise explicitly practises an if statement; later independent tasks can choose any equivalent approach.",
+    "nl": "Het bericht en de voorraadwijziging moeten met elkaar overeenkomen. Deze opdracht oefent expliciet een if-statement; latere zelfstandige opdrachten mogen elke gelijkwaardige aanpak kiezen."
+  }
+}

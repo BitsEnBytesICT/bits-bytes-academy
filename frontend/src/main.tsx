@@ -14,21 +14,25 @@ import type {
 } from "../../shared/types";
 import { api, WorkspaceStore } from "./api";
 import { recordLessonRun } from "./lesson-progress";
-import { newFileError } from "./workspace-files";
+import { CreateFileForm } from "./components/CreateFileForm";
 const Editor = lazy(() =>
   import("./Editor").then((module) => ({ default: module.Editor })),
 );
 import { PythonRunner } from "./runtime";
+import { GameRunner } from "./game-runtime";
 import { Icon } from "./Icon";
 import { Header } from "./components/Header";
 import { HomePage } from "./components/HomePage";
 import { CourseOverview } from "./components/CourseOverview";
 import { LessonPane } from "./components/LessonPane";
 import { ProjectPane } from "./components/ProjectPane";
+import { ReadingPane } from "./components/ReadingPane";
+import { ArchivePage } from "./components/ArchivePage";
 import { LessonNavigation } from "./components/LessonNavigation";
 import { displayConsolePrompt } from "./console-prompt";
 import { CurriculumDrawer } from "./components/CurriculumDrawer";
 import { Terminal } from "./components/Terminal";
+import { GamePane } from "./components/GamePane";
 import { CodeBlock } from "./components/CodeBlock";
 import { SolutionDiff } from "./components/SolutionDiff";
 import { CodeBlankQuestion } from "./components/CodeBlankQuestion";
@@ -60,6 +64,7 @@ function App() {
     [file, setFile] = useState("main.py"),
     [quizState, setQuizState] = useState<Workspace["quiz"]>();
   const [projectMilestones, setProjectMilestones] = useState<string[]>([]);
+  const [executionKind, setExecutionKind] = useState<"run" | "console">("run");
   const [drawer, setDrawer] = useState(false),
     [saveStatus, setSaveStatus] = useState("saved"),
     [loading, setLoading] = useState(true),
@@ -69,7 +74,14 @@ function App() {
     [results, setResults] = useState<Record<string, boolean>>({}),
     [consolePrompt, setConsolePrompt] = useState(">>>");
   const [modal, setModal] = useState<
-      "settings" | "solution" | "reset" | "import" | "finish" | null
+      | "settings"
+      | "solution"
+      | "reset"
+      | "import"
+      | "finish"
+      | "new-file"
+      | "copy-project"
+      | null
     >(null),
     [pendingJump, setPendingJump] = useState<Activity | null>(null),
     [backup, setBackup] = useState<any>(null),
@@ -78,6 +90,8 @@ function App() {
     [mobileTab, setMobileTab] = useState("learn");
   const store = useRef(new WorkspaceStore()),
     runner = useRef(new PythonRunner()),
+    gameRunner = useRef(new GameRunner()),
+    gamePreview = useRef<HTMLDivElement>(null),
     saveTimer = useRef<ReturnType<typeof setTimeout> | undefined>(undefined),
     activeRef = useRef<Activity | null>(null),
     executing = useRef(false),
@@ -91,7 +105,14 @@ function App() {
   const progress = active
     ? state.progress[active.id] || { complete: false }
     : { complete: false };
-  const busy = ["loading", "running", "input"].includes(runStatus);
+  const busy = [
+    "loading",
+    "running",
+    "input",
+    "paused",
+    "finishing",
+    "grading",
+  ].includes(runStatus);
   useEffect(() => {
     store.current.status = setSaveStatus;
     Promise.all([
@@ -109,7 +130,10 @@ function App() {
         setError(e.message);
         setLoading(false);
       });
-    return () => runner.current.cancel();
+    return () => {
+      runner.current.cancel();
+      gameRunner.current.cancel();
+    };
   }, []);
   useEffect(() => {
     document.documentElement.lang = language;
@@ -141,6 +165,7 @@ function App() {
     const token = ++navToken.current;
     clearTimeout(saveTimer.current);
     runner.current.cancel();
+    gameRunner.current.cancel();
     executing.current = false;
     activeRef.current = null;
     setActive(null);
@@ -164,7 +189,7 @@ function App() {
         );
         const activity = course.activities.find((a) => a.id === id);
         if (!activity) {
-          navigate("/courses/python", { replace: true });
+          navigate("/archive/" + encodeURIComponent(id), { replace: true });
           return;
         }
         const workspace = await store.current.load(
@@ -249,8 +274,10 @@ function App() {
     const a = activeRef.current;
     if (!a || a.kind === "quiz" || executing.current) return;
     executing.current = true;
+    setExecutionKind(kind);
+    const engine = a.runtime === "pygame" ? gameRunner.current : runner.current;
     const token = navToken.current,
-      sessionBeforeSave = runner.current.runId;
+      sessionBeforeSave = engine.runId;
     setRunStatus("loading");
     setError("");
     if (kind === "run") {
@@ -260,19 +287,28 @@ function App() {
     }
     try {
       await store.current.save();
-      if (
-        token !== navToken.current ||
-        runner.current.runId !== sessionBeforeSave
-      )
+      if (token !== navToken.current || engine.runId !== sessionBeforeSave)
         return;
       const revision = store.current.generation;
-      runner.current.onEvent = (event) => {
+      engine.onEvent = (event) => {
         if (token !== navToken.current || activeRef.current?.id !== a.id)
           return;
         if (event.type === "output")
           appendOutput(event.text || "", event.channel);
-        if (["loading", "running", "input", "resume"].includes(event.type))
+        if (
+          [
+            "loading",
+            "running",
+            "input",
+            "resume",
+            "paused",
+            "finishing",
+            "grading",
+          ].includes(event.type)
+        )
           setRunStatus(event.type === "resume" ? "running" : event.type);
+        if (event.type === "watchdog")
+          appendOutput((event.message || "") + "\n", "stderr");
         if (event.type === "done" || event.type === "console-done") {
           executing.current = false;
           const result = event.result!;
@@ -317,7 +353,28 @@ function App() {
           );
         }
       };
-      if (kind === "run")
+      if (a.runtime === "pygame") {
+        if (!gamePreview.current)
+          throw new Error(
+            tr(
+              "The game preview is not ready. Try again.",
+              "Het spelvoorbeeld is nog niet gereed. Probeer opnieuw.",
+            ),
+          );
+        if (kind === "run") {
+          setMobileTab("terminal");
+          gameRunner.current.execute(
+            gamePreview.current,
+            { ...store.current.current.files },
+            a.kind === "project" ? [] : a.checkpoints,
+          );
+        } else
+          gameRunner.current.command(
+            gamePreview.current,
+            { ...store.current.current.files },
+            line,
+          );
+      } else if (kind === "run")
         runner.current.execute(
           { ...store.current.current.files },
           a.checkpoints,
@@ -334,6 +391,7 @@ function App() {
   const run = () => startPython("run");
   const stop = () => {
     runner.current.cancel();
+    gameRunner.current.cancel();
     executing.current = false;
     setRunStatus("error");
     setConsolePrompt(">>>");
@@ -390,6 +448,7 @@ function App() {
     }
     if (consolePrompt === ">>>" && line.trim() === "/reset") {
       runner.current.cancel();
+      gameRunner.current.cancel();
       setConsolePrompt(">>>");
       setRunStatus("idle");
       appendOutput(
@@ -409,7 +468,13 @@ function App() {
   };
   const sendInput = (line: string | null) => {
     try {
-      runner.current.input(line);
+      if (
+        activeRef.current &&
+        activeRef.current.kind !== "quiz" &&
+        activeRef.current.runtime === "pygame"
+      )
+        gameRunner.current.input(line);
+      else runner.current.input(line);
       appendOutput(line === null ? "^D\n" : line + "\n", "stdin");
       setRunStatus("running");
     } catch (e) {
@@ -459,11 +524,8 @@ function App() {
   };
   const next = async () => {
     if (!course || !active) return;
-    if (active.kind !== "reading" && !state.progress[active.id]?.complete)
-      return;
+    if (!state.progress[active.id]?.complete) return;
     try {
-      if (active.kind === "reading")
-        await markProgress(active.id, { complete: true });
       const index = course.activities.findIndex((a) => a.id === active.id);
       const target = course.activities[index + 1];
       if (target) await go(target, true);
@@ -813,7 +875,26 @@ function App() {
         </div>
       )}
       {!isLesson ? (
-        catalog.find((c) => location.pathname === "/courses/" + c.slug) ? (
+        location.pathname === "/archive" ||
+        location.pathname.startsWith("/archive/") ? (
+          <ArchivePage
+            key={location.pathname}
+            language={language}
+            id={
+              location.pathname.startsWith("/archive/")
+                ? decodeURIComponent(location.pathname.slice(9))
+                : undefined
+            }
+            onOpen={(id) =>
+              void navigatePage("/archive/" + encodeURIComponent(id))
+            }
+            onBack={() =>
+              void navigatePage(
+                location.pathname === "/archive" ? "/" : "/archive",
+              )
+            }
+          />
+        ) : catalog.find((c) => location.pathname === "/courses/" + c.slug) ? (
           <CourseOverview
             summary={
               catalog.find((c) => location.pathname === "/courses/" + c.slug)!
@@ -852,7 +933,9 @@ function App() {
       ) : (
         <>
           <div className="mobile-nav">
-            {a.kind === "quiz" ? (
+            {a.kind === "reading" && a.presentation === "article" ? (
+              <button className="selected">{tr("Reading", "Leesles")}</button>
+            ) : a.kind === "quiz" ? (
               <>
                 <button className="selected">Quiz</button>
                 <button onClick={() => setDrawer(true)}>Curriculum</button>
@@ -876,7 +959,11 @@ function App() {
           <main
             className={
               "workspace " +
-              (a?.kind === "quiz" ? "quiz-layout" : "") +
+              (a?.kind === "quiz"
+                ? "quiz-layout"
+                : a.kind === "reading" && a.presentation === "article"
+                  ? "article-layout"
+                  : "") +
               " mobile-" +
               mobileTab
             }
@@ -887,7 +974,21 @@ function App() {
               } as React.CSSProperties
             }
           >
-            {a.kind === "project" ? (
+            {a.kind === "reading" && a.presentation === "article" ? (
+              <ReadingPane
+                key={a.id}
+                activity={a}
+                language={language}
+                complete={progress.complete}
+                onComplete={async () => {
+                  try {
+                    await markProgress(a.id, { complete: true });
+                  } catch (e) {
+                    setError((e as Error).message);
+                  }
+                }}
+              />
+            ) : a.kind === "project" ? (
               <ProjectPane
                 key={a.id}
                 activity={a}
@@ -909,6 +1010,9 @@ function App() {
                   }
                 }}
                 onActivity={(activity) => void go(activity)}
+                onCopy={
+                  a.continueFrom ? () => setModal("copy-project") : undefined
+                }
               />
             ) : (
               <LessonPane
@@ -919,7 +1023,8 @@ function App() {
                 results={results}
               />
             )}
-            {a?.kind === "quiz" ? (
+            {a.kind === "reading" &&
+            a.presentation === "article" ? null : a?.kind === "quiz" ? (
               quizView()
             ) : (
               <>
@@ -971,44 +1076,7 @@ function App() {
                     <button
                       className="add-file"
                       title={tr("Create a file", "Maak een bestand")}
-                      onClick={() => {
-                        const entered = window.prompt(
-                          tr(
-                            "Filename, for example helpers.py",
-                            "Bestandsnaam, bijvoorbeeld helpers.py",
-                          ),
-                        );
-                        if (entered === null) return;
-                        const name = entered.trim();
-                        const issue = newFileError(name, files);
-                        if (issue) {
-                          setError(
-                            issue === "duplicate"
-                              ? tr(
-                                  "That file already exists. Select its tab to edit it.",
-                                  "Dat bestand bestaat al. Selecteer de tab om het te bewerken.",
-                                )
-                              : issue === "limit"
-                                ? tr(
-                                    "This workspace already has 40 files.",
-                                    "Deze werkruimte heeft al 40 bestanden.",
-                                  )
-                                : issue === "python-module"
-                                  ? tr(
-                                      "Use a Python module name such as shipping.py: letters, digits and underscores, starting with a letter or underscore. Python keywords cannot be module names.",
-                                      "Gebruik een Pythonmodulenaam zoals shipping.py: letters, cijfers en underscores, beginnend met een letter of underscore. Python-trefwoorden kunnen geen modulenaam zijn.",
-                                    )
-                                  : tr(
-                                      "Enter a filename of at most 100 characters using letters, digits, underscores, dots or hyphens. Folder paths are not supported.",
-                                      "Gebruik een bestandsnaam van maximaal 100 tekens met letters, cijfers, underscores, punten of streepjes. Mappaden worden niet ondersteund.",
-                                    ),
-                          );
-                          return;
-                        }
-                        setError("");
-                        editFiles({ ...files, [name]: "" });
-                        setFile(name);
-                      }}
+                      onClick={() => setModal("new-file")}
                     >
                       +
                     </button>
@@ -1123,17 +1191,36 @@ function App() {
                       ]);
                   }}
                 />
-                <Terminal
-                  key={a.id}
-                  output={output}
-                  status={runStatus}
-                  prompt={consolePrompt}
-                  language={language}
-                  onCommand={command}
-                  onInput={sendInput}
-                  onStop={stop}
-                  onClear={() => setOutput([])}
-                />
+                {a.runtime === "pygame" ? (
+                  <GamePane
+                    key={a.id}
+                    previewRef={gamePreview}
+                    project={a.kind === "project"}
+                    previewRunning={executionKind === "run"}
+                    output={output}
+                    status={runStatus}
+                    prompt={consolePrompt}
+                    language={language}
+                    onCommand={command}
+                    onInput={sendInput}
+                    onStop={stop}
+                    onClear={() => setOutput([])}
+                    onFinish={() => gameRunner.current.finish()}
+                    onResume={() => gameRunner.current.resume()}
+                  />
+                ) : (
+                  <Terminal
+                    key={a.id}
+                    output={output}
+                    status={runStatus}
+                    prompt={consolePrompt}
+                    language={language}
+                    onCommand={command}
+                    onInput={sendInput}
+                    onStop={stop}
+                    onClear={() => setOutput([])}
+                  />
+                )}
               </>
             )}
           </main>
@@ -1187,9 +1274,7 @@ function App() {
             </span>
             <button
               className="next-button"
-              disabled={
-                loading || (!progress.complete && a?.kind !== "reading")
-              }
+              disabled={loading || !progress.complete}
               onClick={() => void next()}
             >
               {index === course.activities.length - 1
@@ -1265,6 +1350,73 @@ function App() {
                   <Icon name="arrow" />
                 </button>
               </>
+            ) : modal === "new-file" ? (
+              <CreateFileForm
+                files={files}
+                language={language}
+                onCreate={(name) => {
+                  editFiles({ ...files, [name]: "" });
+                  setFile(name);
+                  setModal(null);
+                  setError("");
+                }}
+              />
+            ) : modal === "copy-project" &&
+              a?.kind === "project" &&
+              a.continueFrom ? (
+              <>
+                <h2>
+                  {tr("Copy your saved Pong?", "Je opgeslagen Pong kopiëren?")}
+                </h2>
+                <p>
+                  {tr(
+                    "This replaces the files in this optional extension. Your original Pong project stays unchanged.",
+                    "Dit vervangt de bestanden in deze optionele uitbreiding. Je oorspronkelijke Pong-project blijft ongewijzigd.",
+                  )}
+                </p>
+                <button
+                  className="primary"
+                  onClick={() =>
+                    void (async () => {
+                      const targetId = a.id,
+                        token = navToken.current;
+                      await store.current.save();
+                      const source = await api<Workspace | null>(
+                        "/workspaces/" + a.continueFrom,
+                      );
+                      if (
+                        token !== navToken.current ||
+                        activeRef.current?.id !== targetId
+                      )
+                        return;
+                      if (!source || !Object.keys(source.files).length)
+                        throw new Error(
+                          tr(
+                            "No saved Pong files yet. Save your Pong project first.",
+                            "Nog geen opgeslagen Pong-bestanden. Sla eerst je Pong-project op.",
+                          ),
+                        );
+                      runner.current.cancel();
+                      gameRunner.current.cancel();
+                      executing.current = false;
+                      setRunStatus("idle");
+                      setConsolePrompt(">>>");
+                      setOutput([]);
+                      setResults({});
+                      editFiles({ ...source.files });
+                      setFile(
+                        Object.hasOwn(source.files, "main.py")
+                          ? "main.py"
+                          : Object.keys(source.files)[0],
+                      );
+                      await store.current.save();
+                      setModal(null);
+                    })().catch((e) => setError(e.message))
+                  }
+                >
+                  {tr("Copy files", "Bestanden kopiëren")}
+                </button>
+              </>
             ) : modal === "finish" ? (
               <>
                 <span className="eyebrow">PYTHON LAB</span>
@@ -1301,6 +1453,18 @@ function App() {
                 <span className="eyebrow">PYTHON LAB</span>
                 <h2>{tr("Manage learning data", "Beheer leergegevens")}</h2>
                 <h3>{tr("Your learning, saved", "Je leerwerk, opgeslagen")}</h3>
+                <button
+                  className="text-button"
+                  onClick={() => {
+                    setModal(null);
+                    void navigatePage("/archive");
+                  }}
+                >
+                  {tr(
+                    "Open original-course saved work",
+                    "Open opgeslagen werk uit de oorspronkelijke cursus",
+                  )}
+                </button>
                 <p>
                   {tr(
                     "Your code, results, and preferences are saved on this computer. Export a backup to take them with you.",
@@ -1396,6 +1560,7 @@ function App() {
                   onClick={() => {
                     if (exercise) {
                       runner.current.cancel();
+                      gameRunner.current.cancel();
                       executing.current = false;
                       setRunStatus("idle");
                       setConsolePrompt(">>>");
@@ -1416,7 +1581,14 @@ function App() {
                   {tr("A HELPING HAND", "EEN HELPENDE HAND")}
                 </span>
                 <h2>{tr("One way to solve it", "Eén mogelijke oplossing")}</h2>
-                <p>{text(exercise.solutionNote)}</p>
+                <p>
+                  {exercise.solutionNote
+                    ? text(exercise.solutionNote)
+                    : tr(
+                        "Compare this approach with your own code.",
+                        "Vergelijk deze aanpak met je eigen code.",
+                      )}
+                </p>
                 <SolutionDiff
                   files={files}
                   solution={exercise.solution}
@@ -1431,16 +1603,19 @@ function App() {
                     onClick={() =>
                       void (async () => {
                         runner.current.cancel();
+                        gameRunner.current.cancel();
                         executing.current = false;
                         setRunStatus("idle");
                         setConsolePrompt(">>>");
                         editFiles({ ...exercise.files, ...exercise.solution });
                         setFile("main.py");
+                        setResults({});
                         await store.current.save();
                         await markProgress(exercise.id, {
-                          complete: true,
+                          complete: !!state.progress[exercise.id]?.complete,
                           assisted: true,
-                          checkpoints: exercise.checkpoints.map((c) => c.id),
+                          checkpoints:
+                            state.progress[exercise.id]?.checkpoints || [],
                         });
                         setModal(null);
                       })().catch((e) => setError(e.message))
@@ -1457,8 +1632,10 @@ function App() {
     </div>
   );
 }
-createRoot(document.getElementById("root")!).render(
+const root = createRoot(document.getElementById("root")!);
+root.render(
   <BrowserRouter>
     <App />
   </BrowserRouter>,
 );
+if (import.meta.hot) import.meta.hot.dispose(() => root.unmount());

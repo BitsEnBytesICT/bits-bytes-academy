@@ -64,6 +64,7 @@ export interface Exercise {
 }
 export interface Project extends Omit<Exercise, "kind" | "checkpoints"> {
   kind: "project";
+  continueFrom?: string;
   checkpoints: [];
   milestones: {
     id: string;

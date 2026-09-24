@@ -1,0 +1,214 @@
+{
+  "id": "python-v2-8-05",
+  "chapter": 8,
+  "group": "python-v2-module-8",
+  "title": {
+    "en": "Build a practice court",
+    "nl": "Bouw een oefenveld"
+  },
+  "kind": "coding",
+  "optional": false,
+  "runtime": "pygame",
+  "guidance": "independent",
+  "estimatedMinutes": 25,
+  "explanation": {
+    "en": "Turn a short visual brief into a reusable scene. There is no broken algorithm to repair this time. Decide how to arrange your drawing code, reuse earlier lessons when useful, and inspect both normal and paused versions.",
+    "nl": "Zet een korte visuele opdracht om in een herbruikbare scène. Deze keer is er geen kapot algoritme om te herstellen. Kies hoe je de tekencode indeelt, gebruik eerdere lessen waar nuttig en bekijk de normale en gepauzeerde versie."
+  },
+  "sections": [
+    {
+      "heading": {
+        "en": "The brief",
+        "nl": "De opdracht"
+      },
+      "body": {
+        "en": "make_scene(width, height, paused=False) returns a new court Surface. Use the same dark background, paddle colours, 12 × 72 paddle size and 24-pixel outside gaps as before. Both paddles and the radius-8 white ball are vertically centred. Add a one-pixel grey (80, 90, 110) centre line from top to bottom; the ball sits in front of it. When paused is true, show a 40 × 12 orange marker centred horizontally with top=12. When false, that area is ordinary court. Sizes are at least 200 × 120. Change the last argument in main.py to preview both states.",
+        "nl": "make_scene(width, height, paused=False) geeft een nieuwe veld-Surface terug. Gebruik dezelfde donkere achtergrond, paddlekleuren, paddlegrootte van 12 × 72 en buitenruimte van 24 pixels als eerder. Beide paddles en de witte bal met straal 8 zijn verticaal gecentreerd. Voeg een één pixel brede grijze (80, 90, 110) middenlijn van boven tot onder toe; de bal staat ervoor. Bij paused=True toon je een oranje markering van 40 × 12, horizontaal gecentreerd met top=12. Bij False is dat gebied gewoon veld. Afmetingen zijn minstens 200 × 120. Verander het laatste argument in main.py om beide toestanden te bekijken."
+      }
+    },
+    {
+      "heading": {
+        "en": "Run, observe, then finish",
+        "nl": "Voer uit, bekijk en rond af"
+      },
+      "body": {
+        "en": "Run starts main.py and opens the game preview. Click the preview to use the keyboard. Clicking elsewhere pauses the game. Finish & check sends the normal close event and checks your helper functions after the loop exits; Stop interrupts without grading. The supplied async loop gives the browser time to draw and receive input. Keep await asyncio.sleep(1 / 60) inside that loop. You do not need to learn asynchronous programming in depth yet.",
+        "nl": "Run start main.py en opent het spelvoorbeeld. Klik op het voorbeeld om het toetsenbord te gebruiken. Elders klikken pauzeert het spel. Afronden en controleren stuurt de normale sluitgebeurtenis en controleert je hulpfuncties nadat de lus eindigt; Stop onderbreekt zonder beoordeling. De meegeleverde async-lus geeft de browser tijd om te tekenen en invoer te ontvangen. Houd await asyncio.sleep(1 / 60) binnen die lus. Je hoeft asynchroon programmeren nog niet uitgebreid te leren."
+      }
+    }
+  ],
+  "example": "",
+  "files": {
+    "main.py": "import asyncio\nimport pygame\nimport scene\n\nasync def main():\n    pygame.init()\n    screen = pygame.display.set_mode((640, 400))\n    running = True\n    while running:\n        for event in pygame.event.get():\n            if event.type == pygame.QUIT:\n                running = False\n            elif event.type == pygame.KEYDOWN and event.key == pygame.K_ESCAPE:\n                running = False\n        screen.blit(scene.make_scene(640, 400, False), (0, 0))\n        pygame.display.flip()\n        await asyncio.sleep(1 / 60)\n    pygame.quit()\n\nasyncio.run(main())\n",
+    "scene.py": "import pygame\n\ndef make_scene(width, height, paused=False):\n    # Turn the visual brief into a complete image.\n    pass\n"
+  },
+  "solution": {
+    "main.py": "import asyncio\nimport pygame\nimport scene\n\nasync def main():\n    pygame.init()\n    screen = pygame.display.set_mode((640, 400))\n    running = True\n    while running:\n        for event in pygame.event.get():\n            if event.type == pygame.QUIT:\n                running = False\n            elif event.type == pygame.KEYDOWN and event.key == pygame.K_ESCAPE:\n                running = False\n        screen.blit(scene.make_scene(640, 400, False), (0, 0))\n        pygame.display.flip()\n        await asyncio.sleep(1 / 60)\n    pygame.quit()\n\nasyncio.run(main())\n",
+    "scene.py": "import pygame\n\ndef make_scene(width, height, paused=False):\n    canvas = pygame.Surface((width, height))\n    canvas.fill((16, 23, 39))\n    pygame.draw.line(canvas, (80, 90, 110), (width // 2, 0), (width // 2, height - 1))\n    for x, colour in [(24, (80,180,255)), (width-36, (255,145,50))]:\n        pygame.draw.rect(canvas, colour, (x, height // 2 - 36, 12, 72))\n    pygame.draw.circle(canvas, (255,255,255), (width // 2, height // 2), 8)\n    if paused:\n        pygame.draw.rect(canvas, (255,145,50), (width // 2 - 20, 12, 40, 12))\n    return canvas\n"
+  },
+  "checkpoints": [
+    {
+      "id": "python-v2-8-05-step-1",
+      "task": {
+        "en": "Produce a correctly sized court with two distinct, aligned paddles. Support more than the preview size.",
+        "nl": "Maak een veld met de juiste afmetingen en twee afzonderlijke, uitgelijnde paddles. Ondersteun meer dan alleen de voorbeeldgrootte."
+      },
+      "check": "_rendered_frames > 0",
+      "hint": {
+        "en": "Separate the fixed design dimensions from the requested window size.",
+        "nl": "Scheid vaste ontwerpafmetingen van de gevraagde venstergrootte."
+      },
+      "hints": [
+        {
+          "en": "Separate the fixed design dimensions from the requested window size.",
+          "nl": "Scheid vaste ontwerpafmetingen van de gevraagde venstergrootte."
+        },
+        {
+          "en": "Revisit Place the players if an edge feels ambiguous.",
+          "nl": "Bekijk Plaats de spelers opnieuw als een rand onduidelijk is."
+        },
+        {
+          "en": "A rectangle can be positioned either with calculated coordinates or named edge properties.",
+          "nl": "Je kunt een rechthoek plaatsen met berekende coördinaten of benoemde randeigenschappen."
+        }
+      ],
+      "feedback": {
+        "en": "Check both paddle centres and the returned dimensions.",
+        "nl": "Controleer beide paddlemiddelpunten en de teruggegeven afmetingen."
+      },
+      "probes": [
+        {
+          "moduleOnly": true,
+          "call": {
+            "module": "scene",
+            "name": "make_scene",
+            "args": [
+              320,
+              200
+            ]
+          },
+          "check": "_error is None and (_return.get_size() == (320,200) and tuple(_return.get_at((25,100)))[:3] == (80,180,255) and tuple(_return.get_at((290,100)))[:3] == (255,145,50))"
+        },
+        {
+          "moduleOnly": true,
+          "call": {
+            "module": "scene",
+            "name": "make_scene",
+            "args": [
+              401,
+              221
+            ]
+          },
+          "check": "_error is None and (_return.get_size() == (401,221) and tuple(_return.get_at((25,110)))[:3] == (80,180,255) and tuple(_return.get_at((371,110)))[:3] == (255,145,50))"
+        }
+      ]
+    },
+    {
+      "id": "python-v2-8-05-step-2",
+      "task": {
+        "en": "Layer the centred ball in front of the thin centre line. Keep the remaining court dark.",
+        "nl": "Plaats de gecentreerde bal vóór de dunne middenlijn. Houd de rest van het veld donker."
+      },
+      "check": "_rendered_frames > 0",
+      "hint": {
+        "en": "Drawing order determines what remains visible where objects overlap.",
+        "nl": "Tekenvolgorde bepaalt wat zichtbaar blijft waar objecten overlappen."
+      },
+      "hints": [
+        {
+          "en": "Drawing order determines what remains visible where objects overlap.",
+          "nl": "Tekenvolgorde bepaalt wat zichtbaar blijft waar objecten overlappen."
+        },
+        {
+          "en": "Build from the background toward the foreground.",
+          "nl": "Bouw van achtergrond naar voorgrond."
+        },
+        {
+          "en": "A line is drawn with pygame.draw.line(surface, colour, start, end).",
+          "nl": "Een lijn teken je met pygame.draw.line(surface, colour, start, end)."
+        }
+      ],
+      "feedback": {
+        "en": "The centre should be white, the uncovered line grey, and nearby background dark.",
+        "nl": "Het midden moet wit zijn, de onbedekte lijn grijs en de achtergrond ernaast donker."
+      },
+      "probes": [
+        {
+          "moduleOnly": true,
+          "call": {
+            "module": "scene",
+            "name": "make_scene",
+            "args": [
+              320,
+              200
+            ]
+          },
+          "check": "_error is None and (tuple(_return.get_at((160,100)))[:3] == (255,255,255) and tuple(_return.get_at((160,0)))[:3] == (80,90,110) and tuple(_return.get_at((160,199)))[:3] == (80,90,110) and tuple(_return.get_at((159,40)))[:3] == (16,23,39))"
+        }
+      ]
+    },
+    {
+      "id": "python-v2-8-05-step-3",
+      "task": {
+        "en": "Show the pause marker only in the paused state. Compare both versions and finish a successful preview.",
+        "nl": "Toon de pauzemarkering alleen in de gepauzeerde toestand. Vergelijk beide versies en rond een geslaagd voorbeeld af."
+      },
+      "check": "_rendered_frames > 0",
+      "hint": {
+        "en": "The same function should describe both states.",
+        "nl": "Dezelfde functie moet beide toestanden beschrijven."
+      },
+      "hints": [
+        {
+          "en": "The same function should describe both states.",
+          "nl": "Dezelfde functie moet beide toestanden beschrijven."
+        },
+        {
+          "en": "The marker is an extra foreground element controlled by the argument.",
+          "nl": "De markering is een extra voorgrondelement dat door het argument wordt bestuurd."
+        },
+        {
+          "en": "Use an if for an optional part of an image.",
+          "nl": "Gebruik een if voor een optioneel deel van een afbeelding."
+        }
+      ],
+      "feedback": {
+        "en": "Respect the flag and the marker dimensions; do not leave stale pixels between calls.",
+        "nl": "Respecteer de vlag en de markeringafmetingen; laat geen oude pixels tussen aanroepen staan."
+      },
+      "probes": [
+        {
+          "moduleOnly": true,
+          "call": {
+            "module": "scene",
+            "name": "make_scene",
+            "args": [
+              320,
+              200,
+              true
+            ]
+          },
+          "check": "_error is None and (all(tuple(_return.get_at(p))[:3] == (255,145,50) for p in [(140,12),(179,23),(160,18)]) and tuple(_return.get_at((139,18)))[:3] == (16,23,39))"
+        },
+        {
+          "moduleOnly": true,
+          "call": {
+            "module": "scene",
+            "name": "make_scene",
+            "args": [
+              320,
+              200,
+              false
+            ]
+          },
+          "check": "_error is None and (tuple(_return.get_at((145,18)))[:3] == (16,23,39))"
+        }
+      ]
+    }
+  ],
+  "inputs": [],
+  "solutionNote": {
+    "en": "This is one valid approach. Compare the reasoning with your own code before choosing whether to use it. Other implementations can satisfy the same behavior.",
+    "nl": "Dit is één geldige aanpak. Vergelijk de redenering met je eigen code voordat je besluit die te gebruiken. Andere implementaties kunnen aan hetzelfde gedrag voldoen."
+  }
+}

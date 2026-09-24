@@ -1,0 +1,208 @@
+{
+  "id": "python-v2-3-03",
+  "chapter": 3,
+  "group": "python-v2-module-3",
+  "title": {
+    "en": "One request, one response",
+    "nl": "Eén verzoek, één antwoord"
+  },
+  "kind": "coding",
+  "optional": false,
+  "runtime": "terminal",
+  "guidance": "adapt",
+  "estimatedMinutes": 14,
+  "explanation": {
+    "en": "A community centre has three information commands. Its starter prints an error even after answering a recognised request. Repair the routing so every request gets exactly one response. You are debugging how the branches relate, not just adding more messages.",
+    "nl": "Een buurthuis heeft drie informatiecommando’s. De startcode drukt ook na een herkend verzoek een fout af. Herstel de afhandeling zodat elk verzoek precies één antwoord krijgt. Je onderzoekt hoe vertakkingen samenhangen; je voegt niet alleen berichten toe."
+  },
+  "sections": [
+    {
+      "heading": {
+        "en": "A chain of alternatives",
+        "nl": "Een reeks alternatieven"
+      },
+      "body": {
+        "en": "if / elif / else describes a single decision with several alternatives. Python runs the first matching branch and skips the others. Several separate if statements are different decisions: an else belongs to the nearest if at the same indentation.",
+        "nl": "if / elif / else beschrijft één beslissing met meerdere alternatieven. Python voert de eerste passende vertakking uit en slaat de rest over. Meerdere losse if-statements zijn verschillende beslissingen: een else hoort bij de dichtstbijzijnde if met dezelfde inspringing."
+      },
+      "code": "score = 72\nif score >= 80:\n    band = \"high\"\nelif score >= 50:\n    band = \"middle\"\nelse:\n    band = \"low\"\nprint(band)",
+      "output": "middle"
+    },
+    {
+      "heading": {
+        "en": "Read the branches as a reader would",
+        "nl": "Lees de vertakkingen als een lezer"
+      },
+      "body": {
+        "en": "Trace one input through the complete program. Mark each condition it reaches and each line it prints. Then repeat with an unknown input. The expected report is one line: hours → \"Open 09:00–17:00\", address → \"14 River Road\", help → \"Try hours or address\". Any other command → \"Unknown command\".",
+        "nl": "Volg één invoer door het volledige programma. Markeer elke conditie die wordt bereikt en elke regel die wordt afgedrukt. Herhaal dat met onbekende invoer. Het verwachte overzicht is één regel: hours → \"Open 09:00–17:00\", address → \"14 River Road\", help → \"Try hours or address\". Elk ander commando → \"Unknown command\"."
+      }
+    }
+  ],
+  "example": "",
+  "files": {
+    "main.py": "command = input().strip().lower()\nif command == \"hours\":\n    print(\"Open 09:00–17:00\")\nif command == \"address\":\n    print(\"14 River Road\")\nif command == \"help\":\n    print(\"Try hours or address\")\nelse:\n    print(\"Unknown command\")\n"
+  },
+  "solution": {
+    "main.py": "command = input().strip().lower()\nif command == \"hours\":\n    print(\"Open 09:00–17:00\")\nelif command == \"address\":\n    print(\"14 River Road\")\nelif command == \"help\":\n    print(\"Try hours or address\")\nelse:\n    print(\"Unknown command\")\n"
+  },
+  "checkpoints": [
+    {
+      "id": "python-v2-3-03-step-1",
+      "task": {
+        "en": "Keep each recognised response correct for hours, address, and help, including capitalised or padded input.",
+        "nl": "Behoud het juiste herkende antwoord voor hours, address en help, ook bij hoofdletters of witruimte."
+      },
+      "check": "command == command.strip().lower() and len(_stdout.strip()) > 0",
+      "hint": {
+        "en": "First establish which response belongs to each command.",
+        "nl": "Bepaal eerst welk antwoord bij elk commando hoort."
+      },
+      "hints": [
+        {
+          "en": "First establish which response belongs to each command.",
+          "nl": "Bepaal eerst welk antwoord bij elk commando hoort."
+        },
+        {
+          "en": "Keep the input cleanup while repairing the decision.",
+          "nl": "Behoud het opschonen van de invoer terwijl je de beslissing herstelt."
+        },
+        {
+          "en": "Try \" HOURS \" as well as \"hours\".",
+          "nl": "Probeer zowel \" HOURS \" als \"hours\"."
+        }
+      ],
+      "feedback": {
+        "en": "Each recognised command must retain its own response.",
+        "nl": "Elk herkend commando moet zijn eigen antwoord behouden."
+      },
+      "probes": [
+        {
+          "stdin": [
+            " HOURS "
+          ],
+          "check": "\"Open 09:00–17:00\" in _stdout"
+        },
+        {
+          "stdin": [
+            "Address"
+          ],
+          "check": "\"14 River Road\" in _stdout"
+        },
+        {
+          "stdin": [
+            "help"
+          ],
+          "check": "\"Try hours or address\" in _stdout"
+        }
+      ]
+    },
+    {
+      "id": "python-v2-3-03-step-2",
+      "task": {
+        "en": "Organise the alternatives as an if/elif/else chain so a recognised command prints only its own line.",
+        "nl": "Organiseer de alternatieven als een if/elif/else-keten zodat een herkend commando alleen zijn eigen regel afdrukt."
+      },
+      "check": "len(_stdout.strip().splitlines()) == 1 and any(isinstance(n, _ast.If) and n.orelse and isinstance(n.orelse[0], _ast.If) for n in _ast.walk(_ast.parse(_source)))",
+      "hint": {
+        "en": "An else currently belongs to only the last decision.",
+        "nl": "Een else hoort momenteel alleen bij de laatste beslissing."
+      },
+      "hints": [
+        {
+          "en": "An else currently belongs to only the last decision.",
+          "nl": "Een else hoort momenteel alleen bij de laatste beslissing."
+        },
+        {
+          "en": "Make later recognised options alternatives within the same decision.",
+          "nl": "Maak latere herkende opties alternatieven binnen dezelfde beslissing."
+        },
+        {
+          "en": "In the score example, elif is considered only if the preceding condition was false.",
+          "nl": "In het scorevoorbeeld wordt elif alleen bekeken als de voorgaande conditie onwaar was."
+        }
+      ],
+      "feedback": {
+        "en": "Recognised requests should not also reach an unrelated error branch.",
+        "nl": "Herkende verzoeken mogen niet ook in een ongerelateerde foutvertakking belanden."
+      },
+      "probes": [
+        {
+          "stdin": [
+            "hours"
+          ],
+          "check": "_error is None and len(_stdout.strip().splitlines()) == 1 and \"Unknown command\" not in _stdout"
+        },
+        {
+          "stdin": [
+            "address"
+          ],
+          "check": "_error is None and len(_stdout.strip().splitlines()) == 1 and \"Unknown command\" not in _stdout"
+        },
+        {
+          "stdin": [
+            "help"
+          ],
+          "check": "_error is None and len(_stdout.strip().splitlines()) == 1 and \"Unknown command\" not in _stdout"
+        }
+      ]
+    },
+    {
+      "id": "python-v2-3-03-step-3",
+      "task": {
+        "en": "Keep a single fallback response for unknown and blank commands. Test a word that merely contains a known command, such as hoursplease.",
+        "nl": "Behoud één terugvalantwoord voor onbekende en lege commando’s. Test een woord dat slechts een bekend commando bevat, zoals hoursplease."
+      },
+      "check": "isinstance(command, str) and len(_stdout.strip().splitlines()) == 1",
+      "hint": {
+        "en": "Containing a word is different from being that command.",
+        "nl": "Een woord bevatten is iets anders dan dat commando zijn."
+      },
+      "hints": [
+        {
+          "en": "Containing a word is different from being that command.",
+          "nl": "Een woord bevatten is iets anders dan dat commando zijn."
+        },
+        {
+          "en": "The fallback belongs after every recognised alternative.",
+          "nl": "Het terugvalantwoord hoort na alle herkende alternatieven."
+        },
+        {
+          "en": "An empty string fails an equality comparison with \"hours\".",
+          "nl": "Een lege string is bij een gelijkheidsvergelijking niet gelijk aan \"hours\"."
+        }
+      ],
+      "feedback": {
+        "en": "Unrecognised inputs should produce only the fallback response.",
+        "nl": "Onbekende invoer moet alleen het terugvalantwoord produceren."
+      },
+      "probes": [
+        {
+          "stdin": [
+            ""
+          ],
+          "check": "_error is None and _stdout.strip() == \"Unknown command\""
+        },
+        {
+          "stdin": [
+            "hoursplease"
+          ],
+          "check": "_error is None and _stdout.strip() == \"Unknown command\""
+        },
+        {
+          "stdin": [
+            "other"
+          ],
+          "check": "_error is None and _stdout.strip() == \"Unknown command\""
+        }
+      ]
+    }
+  ],
+  "inputs": [
+    "hours"
+  ],
+  "solutionNote": {
+    "en": "This exercise deliberately practises a branch chain. The visible mistake was an extra message; its cause was several independent decisions.",
+    "nl": "Deze opdracht oefent bewust een vertakkingsketen. De zichtbare fout was een extra bericht; de oorzaak was een reeks onafhankelijke beslissingen."
+  }
+}

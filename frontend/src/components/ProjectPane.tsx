@@ -18,6 +18,7 @@ export function ProjectPane({
   onMilestones,
   onComplete,
   onActivity,
+  onCopy,
 }: {
   activity: Project;
   course: Course;
@@ -27,6 +28,7 @@ export function ProjectPane({
   onMilestones: (ids: string[]) => void;
   onComplete: () => Promise<void>;
   onActivity: (activity: Activity) => void;
+  onCopy?: () => void;
 }) {
   const [saving, setSaving] = useState(false);
   const tr = (en: string, nl: string) => (language === "nl" ? nl : en);
@@ -46,6 +48,7 @@ export function ProjectPane({
           <div className="explanation">
             <LessonText text={activity.explanation[language]} />
           </div>
+          {onCopy && <button className="secondary" onClick={onCopy}>{tr('Copy my Pong', 'Kopieer mijn Pong')}</button>}
         </section>
         <div className="lesson-section-bar">
           <h2>{tr("Suggested milestones", "Voorgestelde mijlpalen")}</h2>

@@ -1,0 +1,240 @@
+{
+  "id": "python-v2-9-01",
+  "chapter": 9,
+  "group": "python-v2-module-9",
+  "title": {
+    "en": "Move with elapsed time",
+    "nl": "Beweeg met verstreken tijd"
+  },
+  "kind": "coding",
+  "optional": false,
+  "runtime": "pygame",
+  "guidance": "guided",
+  "estimatedMinutes": 20,
+  "explanation": {
+    "en": "The ball currently moves by a fixed amount every frame. On a faster computer that makes it faster. Repair advance(position, velocity, dt) so motion depends on elapsed seconds instead. The preview wraps around its edges to keep the ball visible.",
+    "nl": "De bal beweegt nu elk beeld een vaste afstand. Op een snellere computer gaat hij daardoor sneller. Repareer advance(position, velocity, dt) zodat beweging afhangt van verstreken seconden. Het voorbeeld laat de bal aan de andere rand terugkomen zodat hij zichtbaar blijft."
+  },
+  "sections": [
+    {
+      "heading": {
+        "en": "Speed is not distance per frame",
+        "nl": "Snelheid is geen afstand per beeld"
+      },
+      "body": {
+        "en": "Velocity describes pixels per second. Multiply it by elapsed seconds to obtain this frame’s displacement. Clock.tick() reports milliseconds, so main.py divides by 1000. It also caps the interval at 0.05 seconds to avoid a large jump after focus returns. Keep positions as floats while updating; convert to integers only for drawing. Rounding every update can make slow motion disappear.",
+        "nl": "Snelheid beschrijft pixels per seconde. Vermenigvuldig die met verstreken seconden voor de verplaatsing van dit beeld. Clock.tick() geeft milliseconden; main.py deelt daarom door 1000. Het begrenst het interval ook op 0,05 seconde om een grote sprong na terugkerende focus te voorkomen. Houd posities tijdens bijwerken als floats; zet ze alleen voor tekenen om naar integers. Elke update afronden kan langzame beweging laten verdwijnen."
+      },
+      "code": "distance = 150 * 0.02\nprint(distance)",
+      "output": "3.0"
+    },
+    {
+      "heading": {
+        "en": "A small reusable calculation",
+        "nl": "Een kleine herbruikbare berekening"
+      },
+      "body": {
+        "en": "position and velocity are coordinate pairs. Return a new pair containing the updated x and y; leave supplied lists or tuples untouched. A negative velocity moves left or up. A zero dt should change nothing. No screen or keyboard is needed inside this function.",
+        "nl": "position en velocity zijn coördinatenparen. Geef een nieuw paar met de bijgewerkte x en y terug; laat meegegeven lijsten of tuples ongemoeid. Negatieve snelheid beweegt naar links of boven. dt=0 mag niets veranderen. In deze functie zijn geen scherm of toetsenbord nodig."
+      }
+    },
+    {
+      "heading": {
+        "en": "Run, observe, then finish",
+        "nl": "Voer uit, bekijk en rond af"
+      },
+      "body": {
+        "en": "Run starts main.py and opens the game preview. Click the preview to use the keyboard. Clicking elsewhere pauses the game. Finish & check sends the normal close event and checks your helper functions after the loop exits; Stop interrupts without grading. The supplied async loop gives the browser time to draw and receive input. Keep await asyncio.sleep(1 / 60) inside that loop. You do not need to learn asynchronous programming in depth yet.",
+        "nl": "Run start main.py en opent het spelvoorbeeld. Klik op het voorbeeld om het toetsenbord te gebruiken. Elders klikken pauzeert het spel. Afronden en controleren stuurt de normale sluitgebeurtenis en controleert je hulpfuncties nadat de lus eindigt; Stop onderbreekt zonder beoordeling. De meegeleverde async-lus geeft de browser tijd om te tekenen en invoer te ontvangen. Houd await asyncio.sleep(1 / 60) binnen die lus. Je hoeft asynchroon programmeren nog niet uitgebreid te leren."
+      }
+    }
+  ],
+  "example": "",
+  "files": {
+    "main.py": "import asyncio\nimport pygame\nimport motion\n\nasync def main():\n    pygame.init()\n    screen = pygame.display.set_mode((640, 400))\n    clock = pygame.time.Clock()\n    running = True\n    position = (40.0, 80.0)\n    velocity = (100.0, 45.0)\n    while running:\n        for event in pygame.event.get():\n            if event.type == pygame.QUIT or (event.type == pygame.KEYDOWN and event.key == pygame.K_ESCAPE):\n                running = False\n        # Seconds, capped to avoid a large jump after pausing the preview.\n        dt = min(clock.tick() / 1000, 0.05)\n        keys = pygame.key.get_pressed()\n        position = motion.advance(position, velocity, dt)\n        position = (position[0] % 640, position[1] % 400)\n        screen.fill((16, 23, 39))\n        pygame.draw.circle(screen, (255, 255, 255), (round(position[0]), round(position[1])), 8)\n        pygame.display.flip()\n        await asyncio.sleep(1 / 60)\n    pygame.quit()\n\nasyncio.run(main())\n",
+    "motion.py": "def advance(position, velocity, dt):\n    x, y = position\n    vx, vy = velocity\n    return (x + vx, y + vy)\n"
+  },
+  "solution": {
+    "main.py": "import asyncio\nimport pygame\nimport motion\n\nasync def main():\n    pygame.init()\n    screen = pygame.display.set_mode((640, 400))\n    clock = pygame.time.Clock()\n    running = True\n    position = (40.0, 80.0)\n    velocity = (100.0, 45.0)\n    while running:\n        for event in pygame.event.get():\n            if event.type == pygame.QUIT or (event.type == pygame.KEYDOWN and event.key == pygame.K_ESCAPE):\n                running = False\n        # Seconds, capped to avoid a large jump after pausing the preview.\n        dt = min(clock.tick() / 1000, 0.05)\n        keys = pygame.key.get_pressed()\n        position = motion.advance(position, velocity, dt)\n        position = (position[0] % 640, position[1] % 400)\n        screen.fill((16, 23, 39))\n        pygame.draw.circle(screen, (255, 255, 255), (round(position[0]), round(position[1])), 8)\n        pygame.display.flip()\n        await asyncio.sleep(1 / 60)\n    pygame.quit()\n\nasyncio.run(main())\n",
+    "motion.py": "def advance(position, velocity, dt):\n    x, y = position\n    vx, vy = velocity\n    return (x + vx * dt, y + vy * dt)\n"
+  },
+  "checkpoints": [
+    {
+      "id": "python-v2-9-01-step-1",
+      "task": {
+        "en": "Make both coordinates advance by the correct distance for the elapsed seconds.",
+        "nl": "Laat beide coördinaten de juiste afstand voor de verstreken seconden afleggen."
+      },
+      "check": "_rendered_frames > 0",
+      "hint": {
+        "en": "The units should end in pixels, not pixels per second.",
+        "nl": "De eenheid moet pixels worden, niet pixels per seconde."
+      },
+      "hints": [
+        {
+          "en": "The units should end in pixels, not pixels per second.",
+          "nl": "De eenheid moet pixels worden, niet pixels per seconde."
+        },
+        {
+          "en": "Apply the same time interval separately to horizontal and vertical speed.",
+          "nl": "Pas hetzelfde tijdsinterval afzonderlijk toe op horizontale en verticale snelheid."
+        },
+        {
+          "en": "At 60 pixels per second, 0.5 seconds covers 30 pixels.",
+          "nl": "Bij 60 pixels per seconde leg je in 0,5 seconde 30 pixels af."
+        }
+      ],
+      "feedback": {
+        "en": "Use elapsed time for both axes.",
+        "nl": "Gebruik verstreken tijd voor beide assen."
+      },
+      "probes": [
+        {
+          "moduleOnly": true,
+          "call": {
+            "module": "motion",
+            "name": "advance",
+            "args": [
+              [
+                10,
+                20
+              ],
+              [
+                80,
+                40
+              ],
+              0.25
+            ]
+          },
+          "check": "_error is None and (abs(_return[0] - (30)) < 1e-7 and abs(_return[1] - (30)) < 1e-7)"
+        },
+        {
+          "moduleOnly": true,
+          "call": {
+            "module": "motion",
+            "name": "advance",
+            "args": [
+              [
+                1,
+                2
+              ],
+              [
+                9,
+                12
+              ],
+              0
+            ]
+          },
+          "check": "_error is None and (_return[0] == 1 and _return[1] == 2)"
+        }
+      ]
+    },
+    {
+      "id": "python-v2-9-01-step-2",
+      "task": {
+        "en": "Preserve fractional movement and support negative velocities. Try a small speed in the preview.",
+        "nl": "Behoud beweging met decimalen en ondersteun negatieve snelheden. Probeer een lage snelheid in het voorbeeld."
+      },
+      "check": "_rendered_frames > 0",
+      "hint": {
+        "en": "A coordinate can lie between two display pixels.",
+        "nl": "Een coördinaat kan tussen twee schermpixels liggen."
+      },
+      "hints": [
+        {
+          "en": "A coordinate can lie between two display pixels.",
+          "nl": "Een coördinaat kan tussen twee schermpixels liggen."
+        },
+        {
+          "en": "Do not round the stored position inside this calculation.",
+          "nl": "Rond de opgeslagen positie niet binnen deze berekening af."
+        },
+        {
+          "en": "A displacement of −0.25 moves a quarter pixel toward the smaller coordinate.",
+          "nl": "Een verplaatsing van −0,25 beweegt een kwart pixel naar de kleinere coördinaat."
+        }
+      ],
+      "feedback": {
+        "en": "Keep signed fractional displacements accurate.",
+        "nl": "Houd verplaatsingen met teken en decimalen nauwkeurig."
+      },
+      "probes": [
+        {
+          "moduleOnly": true,
+          "call": {
+            "module": "motion",
+            "name": "advance",
+            "args": [
+              [
+                2.5,
+                4.25
+              ],
+              [
+                -5,
+                2.5
+              ],
+              0.05
+            ]
+          },
+          "check": "_error is None and (abs(_return[0] - (2.25)) < 1e-7 and abs(_return[1] - (4.375)) < 1e-7)"
+        }
+      ]
+    },
+    {
+      "id": "python-v2-9-01-step-3",
+      "task": {
+        "en": "Return a new coordinate pair without changing the input values. Run and finish the preview.",
+        "nl": "Geef een nieuw coördinatenpaar terug zonder de invoerwaarden te veranderen. Start en rond het voorbeeld af."
+      },
+      "check": "_rendered_frames > 0",
+      "hint": {
+        "en": "A helper can calculate a result without editing its arguments.",
+        "nl": "Een hulpfunctie kan een resultaat berekenen zonder argumenten te bewerken."
+      },
+      "hints": [
+        {
+          "en": "A helper can calculate a result without editing its arguments.",
+          "nl": "Een hulpfunctie kan een resultaat berekenen zonder argumenten te bewerken."
+        },
+        {
+          "en": "Unpacking reads a pair; assigning into a list changes that list.",
+          "nl": "Uitpakken leest een paar; toewijzen aan een lijstpositie verandert die lijst."
+        },
+        {
+          "en": "return (new_x, new_y) creates a result pair.",
+          "nl": "return (new_x, new_y) maakt een resultaatpaar."
+        }
+      ],
+      "feedback": {
+        "en": "Preserve position and velocity inputs.",
+        "nl": "Behoud de ingevoerde positie en snelheid."
+      },
+      "probes": [
+        {
+          "moduleOnly": true,
+          "call": {
+            "module": "motion",
+            "name": "advance",
+            "args": [
+              [
+                3,
+                7
+              ],
+              [
+                2,
+                -4
+              ],
+              0.5
+            ]
+          },
+          "check": "_error is None and (_args == [[3,7],[2,-4],0.5] and _return is not _args[0])"
+        }
+      ]
+    }
+  ],
+  "inputs": [],
+  "solutionNote": {
+    "en": "This is one valid approach. Compare the reasoning with your own code before choosing whether to use it. Other implementations can satisfy the same behavior.",
+    "nl": "Dit is één geldige aanpak. Vergelijk de redenering met je eigen code voordat je besluit die te gebruiken. Andere implementaties kunnen aan hetzelfde gedrag voldoen."
+  }
+}

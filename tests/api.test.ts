@@ -39,7 +39,7 @@ test("Workspace revisions, progress, quiz state, and backup validation", async (
     assert.deepEqual(
       catalog.data.map((c: any) => [c.slug, c.status, c.estimatedHours]),
       [
-        ["python", "available", 20],
+        ["python", "available", 22],
         ["csharp", "coming-soon", null],
         ["html-css", "coming-soon", null],
       ],
@@ -49,7 +49,7 @@ test("Workspace revisions, progress, quiz state, and backup validation", async (
       health.headers.get("cross-origin-embedder-policy"),
       "require-corp",
     );
-    const id = "python-hello-world-05";
+    const id = "python-v2-1-05";
     const saved = await request(
       "/workspaces/" + id,
       { revision: 0, files: { "main.py": 'print("saved")' } },
@@ -104,7 +104,7 @@ test("Workspace revisions, progress, quiz state, and backup validation", async (
     const state = await request("/state");
     assert.equal(state.data.progress[id].complete, true);
     assert.deepEqual(state.data.progress[id].checkpoints, ["step-1", "step-2"]);
-    const q = "python-control-flow-quiz";
+    const q = "python-v2-2-quiz";
     const course = (await request("/course")).data;
     const questions = course.activities.find((a: any) => a.id === q).questions;
     const quiz = {

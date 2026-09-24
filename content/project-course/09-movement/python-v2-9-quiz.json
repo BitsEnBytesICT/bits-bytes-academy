@@ -1,0 +1,229 @@
+{
+  "id": "python-v2-9-quiz",
+  "chapter": 9,
+  "group": "python-v2-module-9",
+  "kind": "quiz",
+  "optional": false,
+  "title": {
+    "en": "Review: movement and control",
+    "nl": "Herhaling: beweging en besturing"
+  },
+  "estimatedMinutes": 5,
+  "questions": [
+    {
+      "id": "v2-9-q1",
+      "prompt": {
+        "en": "How far does a ball travel at 120 pixels/second during a 0.25-second update?",
+        "nl": "Hoe ver beweegt een bal bij 120 pixels/seconde tijdens een update van 0,25 seconde?"
+      },
+      "choices": [
+        {
+          "id": "a",
+          "label": {
+            "en": "30 pixels",
+            "nl": "30 pixels"
+          },
+          "reason": {
+            "en": "Speed multiplied by seconds gives displacement.",
+            "nl": "Snelheid maal seconden geeft verplaatsing."
+          }
+        },
+        {
+          "id": "b",
+          "label": {
+            "en": "480 pixels",
+            "nl": "480 pixels"
+          },
+          "reason": {
+            "en": "Dividing by time makes shorter frames move farther.",
+            "nl": "Delen door tijd laat kortere beelden verder bewegen."
+          }
+        },
+        {
+          "id": "c",
+          "label": {
+            "en": "120 pixels",
+            "nl": "120 pixels"
+          },
+          "reason": {
+            "en": "That assumes a full second has passed.",
+            "nl": "Dat neemt aan dat een hele seconde verstreken is."
+          }
+        }
+      ],
+      "answer": "a"
+    },
+    {
+      "id": "v2-9-q2",
+      "prompt": {
+        "en": "Which input source suits continuously moving a paddle?",
+        "nl": "Welke invoerbron past bij voortdurend een paddle bewegen?"
+      },
+      "choices": [
+        {
+          "id": "a",
+          "label": {
+            "en": "Current held-key state, read every frame.",
+            "nl": "Huidige ingedrukte-toetstoestand, elk beeld gelezen."
+          },
+          "reason": {
+            "en": "It represents whether the key remains down.",
+            "nl": "Die beschrijft of de toets ingedrukt blijft."
+          }
+        },
+        {
+          "id": "b",
+          "label": {
+            "en": "One input() call per frame.",
+            "nl": "Eén input()-aanroep per beeld."
+          },
+          "reason": {
+            "en": "That waits for terminal text instead of game controls.",
+            "nl": "Die wacht op terminaltekst in plaats van spelbesturing."
+          }
+        },
+        {
+          "id": "c",
+          "label": {
+            "en": "A single KEYDOWN event from the start of the game.",
+            "nl": "Eén KEYDOWN-gebeurtenis bij het begin van het spel."
+          },
+          "reason": {
+            "en": "A past press does not tell you whether the key is still held.",
+            "nl": "Een eerdere druk vertelt niet of de toets nog ingedrukt is."
+          }
+        }
+      ],
+      "answer": "a"
+    },
+    {
+      "id": "v2-9-q3",
+      "prompt": {
+        "en": "A paddle is 72 pixels high in a 400-pixel court. What is its maximum legal top coordinate?",
+        "nl": "Een paddle is 72 pixels hoog op een veld van 400 pixels. Wat is zijn maximale toegestane bovenkantcoördinaat?"
+      },
+      "choices": [
+        {
+          "id": "a",
+          "label": {
+            "en": "328",
+            "nl": "328"
+          },
+          "reason": {
+            "en": "Its bottom is top + 72, so 328 + 72 = 400.",
+            "nl": "Zijn onderkant is boven + 72, dus 328 + 72 = 400."
+          }
+        },
+        {
+          "id": "b",
+          "label": {
+            "en": "400",
+            "nl": "400"
+          },
+          "reason": {
+            "en": "That puts the entire paddle below the court.",
+            "nl": "Dat zet de hele paddle onder het veld."
+          }
+        },
+        {
+          "id": "c",
+          "label": {
+            "en": "364",
+            "nl": "364"
+          },
+          "reason": {
+            "en": "That accounts for only half the paddle height.",
+            "nl": "Dat houdt slechts rekening met de halve paddlehoogte."
+          }
+        }
+      ],
+      "answer": "a"
+    },
+    {
+      "id": "v2-9-q4",
+      "prompt": {
+        "en": "A ball touches the top wall with positive vertical velocity. Should you reverse it?",
+        "nl": "Een bal raakt de bovenmuur met positieve verticale snelheid. Moet je die omkeren?"
+      },
+      "choices": [
+        {
+          "id": "a",
+          "label": {
+            "en": "No: it is already moving down, away from that wall.",
+            "nl": "Nee: hij beweegt al omlaag, van die muur af."
+          },
+          "reason": {
+            "en": "Reflect only motion directed into the wall.",
+            "nl": "Kaats alleen beweging terug die naar de muur gericht is."
+          }
+        },
+        {
+          "id": "b",
+          "label": {
+            "en": "Yes: all contact must reverse velocity.",
+            "nl": "Ja: elk contact moet snelheid omkeren."
+          },
+          "reason": {
+            "en": "That can trap the ball in repeated reversals.",
+            "nl": "Dat kan de bal vastzetten in herhaalde omkeringen."
+          }
+        },
+        {
+          "id": "c",
+          "label": {
+            "en": "Set the velocity to zero permanently.",
+            "nl": "Zet de snelheid permanent op nul."
+          },
+          "reason": {
+            "en": "That stops the rally instead of resolving a bounce.",
+            "nl": "Dat stopt de rally in plaats van de botsing op te lossen."
+          }
+        }
+      ],
+      "answer": "a"
+    },
+    {
+      "id": "v2-9-q5",
+      "prompt": {
+        "en": "Why retain a floating-point paddle position instead of rounding after every update?",
+        "nl": "Waarom bewaar je een paddlepositie met decimalen in plaats van na elke update af te ronden?"
+      },
+      "choices": [
+        {
+          "id": "a",
+          "label": {
+            "en": "Small movements can accumulate instead of disappearing.",
+            "nl": "Kleine bewegingen kunnen optellen in plaats van verdwijnen."
+          },
+          "reason": {
+            "en": "Round for display, while the model retains subpixel movement.",
+            "nl": "Rond af voor weergave, terwijl het model beweging kleiner dan één pixel bewaart."
+          }
+        },
+        {
+          "id": "b",
+          "label": {
+            "en": "Floats automatically prevent all collisions.",
+            "nl": "Floats voorkomen automatisch alle botsingen."
+          },
+          "reason": {
+            "en": "Collision rules still need to be implemented.",
+            "nl": "Botsingsregels moeten nog steeds worden gemaakt."
+          }
+        },
+        {
+          "id": "c",
+          "label": {
+            "en": "pygame cannot draw at integer coordinates.",
+            "nl": "Pygame kan niet op gehele coördinaten tekenen."
+          },
+          "reason": {
+            "en": "Integer display coordinates are normal; this is about preserving state precision.",
+            "nl": "Gehele schermcoördinaten zijn normaal; dit gaat over nauwkeurige toestand bewaren."
+          }
+        }
+      ],
+      "answer": "a"
+    }
+  ]
+}

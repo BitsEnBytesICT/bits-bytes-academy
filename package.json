@@ -6,14 +6,15 @@
   "scripts": {
     "dev": "concurrently -k -n API,WEB \"tsx watch backend/src/index.ts\" \"vite --config frontend/vite.config.ts\"",
     "setup:runtime": "node scripts/setup-runtime.mjs",
-    "content": "node scripts/build-content.mjs",
+    "content": "node scripts/build-project-content.mjs",
     "typecheck": "tsc -p frontend/tsconfig.json --noEmit && tsc -p backend/tsconfig.json --noEmit",
     "build": "npm run content && npm run setup:runtime && npm run typecheck && vite build --config frontend/vite.config.ts && tsc -p backend/tsconfig.json",
     "start": "node dist-server/index.js",
     "test": "node tests/content.test.mjs && node tests/runtime.test.mjs && node tests/guided-content.test.mjs && node tests/control-flow.test.mjs && node tests/list-foundations.test.mjs && node tests/list-operations.test.mjs && node tests/loops.test.mjs && node tests/console.test.mjs && tsx --test tests/api.test.ts tests/workspace.test.ts tests/lesson-progress.test.ts tests/runner.test.ts tests/code-presentation.test.ts tests/terminal-line.test.ts tests/terminal-session.test.ts tests/quiz-blanks.test.ts",
-    "test:rework": "node tests/behavior-probes.test.mjs && node tests/packages.test.mjs && node tests/graphical-grading.test.mjs && node tests/project-course.test.mjs && node tests/foundations-behavior.test.mjs && node tests/game-state.test.mjs && node tests/library-lessons.test.mjs && node tests/multifile.test.mjs && tsx --test tests/project-persistence.test.ts tests/workspace-files.test.ts",
+    "test:rework": "node tests/course-assembly.test.mjs && node tests/behavior-probes.test.mjs && node tests/packages.test.mjs && node tests/graphical-grading.test.mjs && node tests/project-course.test.mjs && node tests/foundations-behavior.test.mjs && node tests/game-state.test.mjs && node tests/library-lessons.test.mjs && node tests/multifile.test.mjs && tsx --test tests/project-persistence.test.ts tests/workspace-files.test.ts && tsx --test tests/game-runner.test.ts && node tests/game-lessons.test.mjs",
     "pretest:rework": "npm run setup:runtime",
-    "launch": "node scripts/start.mjs"
+    "launch": "node scripts/start.mjs",
+    "test:browser": "node scripts/serve-browser-checks.mjs"
   },
   "dependencies": {
     "@codemirror/commands": "^6.8.1",

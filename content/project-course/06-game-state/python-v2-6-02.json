@@ -1,0 +1,216 @@
+{
+  "id": "python-v2-6-02",
+  "chapter": 6,
+  "group": "python-v2-module-6",
+  "title": {
+    "en": "Keep coordinates together",
+    "nl": "Houd coördinaten bij elkaar"
+  },
+  "kind": "coding",
+  "optional": false,
+  "runtime": "terminal",
+  "guidance": "guided",
+  "estimatedMinutes": 16,
+  "explanation": {
+    "en": "A position has two related values: x and y. Passing them together makes a movement function easier to use. Build translated(position, offset), which returns a new coordinate pair without changing the pair supplied by its caller.",
+    "nl": "Een positie heeft twee samenhangende waarden: x en y. Ze samen doorgeven maakt een bewegingsfunctie gemakkelijker te gebruiken. Bouw translated(position, offset), die een nieuw coördinatenpaar teruggeeft zonder het paar van de aanroeper te veranderen."
+  },
+  "sections": [
+    {
+      "heading": {
+        "en": "A fixed group of values",
+        "nl": "Een vaste groep waarden"
+      },
+      "body": {
+        "en": "A tuple groups values, usually with parentheses: (x, y). Unlike a list, you cannot replace individual tuple items. Unpacking assigns one value to each name: x, y = position. The number of names must match the number of items. Lists can also be unpacked.",
+        "nl": "Een tuple groepeert waarden, meestal met haakjes: (x, y). Anders dan bij een lijst kun je individuele tuple-items niet vervangen. Uitpakken kent aan elke naam een waarde toe: x, y = position. Het aantal namen moet overeenkomen met het aantal items. Lijsten kunnen ook worden uitgepakt."
+      },
+      "code": "size = (640, 400)\nwidth, height = size\nprint(width, height)",
+      "output": "640 400"
+    },
+    {
+      "heading": {
+        "en": "Translate each axis independently",
+        "nl": "Verplaats elke as onafhankelijk"
+      },
+      "body": {
+        "en": "An offset describes how much each coordinate changes. Positive x moves right and negative x moves left in the game’s coordinate system. Positive y moves down and negative y moves up. translated should accept any two-item coordinate pair and return a tuple (new_x, new_y).",
+        "nl": "Een verschuiving beschrijft hoeveel elke coördinaat verandert. Positieve x beweegt naar rechts en negatieve x naar links in het coördinatenstelsel van het spel. Positieve y beweegt naar beneden en negatieve y naar boven. translated moet elk coördinatenpaar met twee items accepteren en een tuple (new_x, new_y) teruggeven."
+      }
+    }
+  ],
+  "example": "",
+  "files": {
+    "main.py": "def translated(position, offset):\n    x, y = position\n    dx, dy = offset\n    return (x, y)\n\nstart = (100, 160)\nshift = (12, -8)\nend = translated(start, shift)\nprint(\"Start:\", start)\nprint(\"End:\", end)\n"
+  },
+  "solution": {
+    "main.py": "def translated(position, offset):\n    x, y = position\n    dx, dy = offset\n    return (x + dx, y + dy)\n\nstart = (100, 160)\nshift = (12, -8)\nend = translated(start, shift)\nprint(\"Start:\", start)\nprint(\"End:\", end)\n"
+  },
+  "checkpoints": [
+    {
+      "id": "python-v2-6-02-step-1",
+      "task": {
+        "en": "Apply each offset to its matching coordinate and return the new pair as a tuple.",
+        "nl": "Pas elke verschuiving toe op de bijbehorende coördinaat en geef het nieuwe paar als tuple terug."
+      },
+      "check": "callable(translated) and isinstance(end, tuple) and end == (start[0] + shift[0], start[1] + shift[1])",
+      "hint": {
+        "en": "The horizontal and vertical values have separate roles.",
+        "nl": "De horizontale en verticale waarden hebben aparte rollen."
+      },
+      "hints": [
+        {
+          "en": "The horizontal and vertical values have separate roles.",
+          "nl": "De horizontale en verticale waarden hebben aparte rollen."
+        },
+        {
+          "en": "Use the unpacked values to construct a new pair.",
+          "nl": "Gebruik de uitgepakte waarden om een nieuw paar te maken."
+        },
+        {
+          "en": "A position of (2, 7) shifted by (3, 0) becomes (5, 7).",
+          "nl": "Een positie (2, 7) verschoven met (3, 0) wordt (5, 7)."
+        }
+      ],
+      "feedback": {
+        "en": "Do not mix the axes or return the unchanged position.",
+        "nl": "Verwissel de assen niet en geef niet de ongewijzigde positie terug."
+      },
+      "probes": [
+        {
+          "call": {
+            "name": "translated",
+            "args": [
+              [
+                2,
+                7
+              ],
+              [
+                3,
+                -4
+              ]
+            ]
+          },
+          "check": "_error is None and isinstance(_return, tuple) and _return == (5, 3)"
+        }
+      ]
+    },
+    {
+      "id": "python-v2-6-02-step-2",
+      "task": {
+        "en": "Handle zero, negative, and fractional offsets. Keep the function usable for positions other than start.",
+        "nl": "Handel nul, negatieve en gebroken verschuivingen af. Houd de functie bruikbaar voor andere posities dan start."
+      },
+      "check": "callable(translated)",
+      "hint": {
+        "en": "The parameters are the source of truth for each call.",
+        "nl": "De parameters zijn voor elke aanroep de bron van de waarden."
+      },
+      "hints": [
+        {
+          "en": "The parameters are the source of truth for each call.",
+          "nl": "De parameters zijn voor elke aanroep de bron van de waarden."
+        },
+        {
+          "en": "Arithmetic works with fractional coordinates too; avoid unnecessary integer conversion.",
+          "nl": "Rekenen werkt ook met gebroken coördinaten; vermijd onnodige integerconversie."
+        },
+        {
+          "en": "An offset of (0, 0) should preserve both coordinate values.",
+          "nl": "Een verschuiving van (0, 0) moet beide coördinaatwaarden behouden."
+        }
+      ],
+      "feedback": {
+        "en": "Respect the supplied values without rounding or global dependencies.",
+        "nl": "Respecteer de meegegeven waarden zonder afronding of afhankelijkheid van globale waarden."
+      },
+      "probes": [
+        {
+          "call": {
+            "name": "translated",
+            "args": [
+              [
+                -2,
+                5
+              ],
+              [
+                0,
+                0
+              ]
+            ]
+          },
+          "check": "_return == (-2, 5)"
+        },
+        {
+          "call": {
+            "name": "translated",
+            "args": [
+              [
+                1.25,
+                2.5
+              ],
+              [
+                -0.5,
+                0.75
+              ]
+            ]
+          },
+          "check": "_return == (0.75, 3.25)"
+        }
+      ]
+    },
+    {
+      "id": "python-v2-6-02-step-3",
+      "task": {
+        "en": "Leave the caller’s position and offset unchanged. Keep the start/end report so you can compare the two.",
+        "nl": "Laat de positie en verschuiving van de aanroeper ongewijzigd. Behoud het begin-/eindoverzicht zodat je beide kunt vergelijken."
+      },
+      "check": "str(start) in _stdout and str(end) in _stdout and callable(translated)",
+      "hint": {
+        "en": "Calculating a new position need not overwrite the original.",
+        "nl": "Een nieuwe positie berekenen hoeft het origineel niet te overschrijven."
+      },
+      "hints": [
+        {
+          "en": "Calculating a new position need not overwrite the original.",
+          "nl": "Een nieuwe positie berekenen hoeft het origineel niet te overschrijven."
+        },
+        {
+          "en": "Return newly grouped values instead of assigning into the supplied pair.",
+          "nl": "Geef nieuw gegroepeerde waarden terug in plaats van in het meegegeven paar toe te kennen."
+        },
+        {
+          "en": "return (a, b) constructs a pair for the caller.",
+          "nl": "return (a, b) maakt een paar voor de aanroeper."
+        }
+      ],
+      "feedback": {
+        "en": "The function should also preserve mutable pairs supplied as lists.",
+        "nl": "De functie moet ook veranderlijke paren behouden die als lijsten worden meegegeven."
+      },
+      "probes": [
+        {
+          "call": {
+            "name": "translated",
+            "args": [
+              [
+                10,
+                20
+              ],
+              [
+                2,
+                3
+              ]
+            ]
+          },
+          "check": "_error is None and _return == (12, 23) and _args == [[10, 20], [2, 3]]"
+        }
+      ]
+    }
+  ],
+  "inputs": [],
+  "solutionNote": {
+    "en": "Indexing the pairs is also valid, though unpacking often makes the axis names clearer. Returning a fresh tuple lets callers retain the previous position when they need it.",
+    "nl": "De paren indexeren is ook geldig, hoewel uitpakken de asnamen vaak duidelijker maakt. Een nieuwe tuple teruggeven laat aanroepers de vorige positie behouden wanneer dat nodig is."
+  }
+}

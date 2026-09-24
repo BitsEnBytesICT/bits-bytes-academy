@@ -1,0 +1,244 @@
+{
+  "id": "python-v2-8-03",
+  "chapter": 8,
+  "group": "python-v2-module-8",
+  "title": {
+    "en": "Listen without blocking",
+    "nl": "Luister zonder te blokkeren"
+  },
+  "kind": "coding",
+  "optional": false,
+  "runtime": "pygame",
+  "guidance": "guided",
+  "estimatedMinutes": 22,
+  "explanation": {
+    "en": "A game must redraw while it listens. input() would wait for a line and stop that flow. Instead, pygame supplies a queue of events. Complete a small event translator so the provided loop can close or toggle a pause colour.",
+    "nl": "Een spel moet blijven tekenen terwijl het luistert. input() wacht op een regel en stopt die stroom. Pygame levert daarom een wachtrij met gebeurtenissen. Maak een kleine vertaler af zodat de meegeleverde lus kan sluiten of een pauzekleur kan omschakelen."
+  },
+  "sections": [
+    {
+      "heading": {
+        "en": "One event, one decision",
+        "nl": "Eén gebeurtenis, één beslissing"
+      },
+      "body": {
+        "en": "pygame.event.get() retrieves waiting events. Each has a type; KEYDOWN events also have a key. Named constants such as pygame.QUIT and pygame.K_SPACE make the comparisons readable. The main loop passes event.type and, when present, event.key to event_action. Return \"quit\" for QUIT or an Escape KEYDOWN, \"toggle\" for a Space KEYDOWN, and None for everything else. KEYUP must not toggle again.",
+        "nl": "pygame.event.get() haalt wachtende gebeurtenissen op. Elke gebeurtenis heeft een type; KEYDOWN heeft ook een key. Benoemde constanten zoals pygame.QUIT en pygame.K_SPACE maken vergelijkingen leesbaar. De hoofdlus geeft event.type en, indien aanwezig, event.key door aan event_action. Geef \"quit\" voor QUIT of een Escape-KEYDOWN, \"toggle\" voor een Space-KEYDOWN en None voor al het andere. KEYUP mag niet opnieuw omschakelen."
+      }
+    },
+    {
+      "heading": {
+        "en": "Give the browser a turn",
+        "nl": "Geef de browser een beurt"
+      },
+      "body": {
+        "en": "async def and asyncio.run provide the browser-compatible entry point. await asyncio.sleep(1 / 60) suspends this task briefly so drawing and input can proceed. A normal while loop with no await can freeze the preview; the site interrupts it. This is scheduling, not an exact promise of 60 frames each second. Later you will measure elapsed time for movement.",
+        "nl": "async def en asyncio.run vormen het browsergeschikte startpunt. await asyncio.sleep(1 / 60) onderbreekt deze taak even zodat tekenen en invoer verder kunnen. Een gewone while-lus zonder await kan het voorbeeld vastzetten; de site onderbreekt die. Dit is planning, geen exacte belofte van 60 beelden per seconde. Later meet je verstreken tijd voor beweging."
+      }
+    },
+    {
+      "heading": {
+        "en": "Run, observe, then finish",
+        "nl": "Voer uit, bekijk en rond af"
+      },
+      "body": {
+        "en": "Run starts main.py and opens the game preview. Click the preview to use the keyboard. Clicking elsewhere pauses the game. Finish & check sends the normal close event and checks your helper functions after the loop exits; Stop interrupts without grading. The supplied async loop gives the browser time to draw and receive input. Keep await asyncio.sleep(1 / 60) inside that loop. You do not need to learn asynchronous programming in depth yet.",
+        "nl": "Run start main.py en opent het spelvoorbeeld. Klik op het voorbeeld om het toetsenbord te gebruiken. Elders klikken pauzeert het spel. Afronden en controleren stuurt de normale sluitgebeurtenis en controleert je hulpfuncties nadat de lus eindigt; Stop onderbreekt zonder beoordeling. De meegeleverde async-lus geeft de browser tijd om te tekenen en invoer te ontvangen. Houd await asyncio.sleep(1 / 60) binnen die lus. Je hoeft asynchroon programmeren nog niet uitgebreid te leren."
+      }
+    }
+  ],
+  "example": "",
+  "files": {
+    "main.py": "import asyncio\nimport pygame\nimport scene\n\nasync def main():\n    pygame.init()\n    screen = pygame.display.set_mode((640, 400))\n    running = True\n    paused = False\n    while running:\n        for event in pygame.event.get():\n            action = scene.event_action(event.type, getattr(event, \"key\", None))\n            if action == \"quit\":\n                running = False\n            elif action == \"toggle\":\n                paused = not paused\n        screen.fill((100, 65, 25) if paused else (16, 23, 39))\n        pygame.display.flip()\n        await asyncio.sleep(1 / 60)\n    pygame.quit()\n\nasyncio.run(main())\n",
+    "scene.py": "import pygame\n\ndef event_action(event_type, key=None):\n    if event_type == pygame.QUIT:\n        return \"quit\"\n    return None\n"
+  },
+  "solution": {
+    "main.py": "import asyncio\nimport pygame\nimport scene\n\nasync def main():\n    pygame.init()\n    screen = pygame.display.set_mode((640, 400))\n    running = True\n    paused = False\n    while running:\n        for event in pygame.event.get():\n            action = scene.event_action(event.type, getattr(event, \"key\", None))\n            if action == \"quit\":\n                running = False\n            elif action == \"toggle\":\n                paused = not paused\n        screen.fill((100, 65, 25) if paused else (16, 23, 39))\n        pygame.display.flip()\n        await asyncio.sleep(1 / 60)\n    pygame.quit()\n\nasyncio.run(main())\n",
+    "scene.py": "import pygame\n\ndef event_action(event_type, key=None):\n    if event_type == pygame.QUIT:\n        return \"quit\"\n    if event_type == pygame.KEYDOWN:\n        if key == pygame.K_ESCAPE:\n            return \"quit\"\n        if key == pygame.K_SPACE:\n            return \"toggle\"\n    return None\n"
+  },
+  "checkpoints": [
+    {
+      "id": "python-v2-8-03-step-1",
+      "task": {
+        "en": "Keep window closing working and let Escape close the game when pressed.",
+        "nl": "Behoud het sluiten van het venster en laat Escape het spel sluiten wanneer die wordt ingedrukt."
+      },
+      "check": "_rendered_frames > 0",
+      "hint": {
+        "en": "The same action can have more than one trigger.",
+        "nl": "Dezelfde actie kan meerdere aanleidingen hebben."
+      },
+      "hints": [
+        {
+          "en": "The same action can have more than one trigger.",
+          "nl": "Dezelfde actie kan meerdere aanleidingen hebben."
+        },
+        {
+          "en": "Test the key only for a KEYDOWN event.",
+          "nl": "Controleer de toets alleen bij een KEYDOWN-gebeurtenis."
+        },
+        {
+          "en": "pygame.K_ESCAPE names the Escape key.",
+          "nl": "pygame.K_ESCAPE benoemt de Escape-toets."
+        }
+      ],
+      "feedback": {
+        "en": "QUIT and an Escape press should return \"quit\".",
+        "nl": "QUIT en Escape indrukken moeten \"quit\" teruggeven."
+      },
+      "probes": [
+        {
+          "moduleOnly": true,
+          "call": {
+            "module": "scene",
+            "name": "event_action",
+            "args": [
+              256
+            ]
+          },
+          "check": "_error is None and (_return == \"quit\")"
+        },
+        {
+          "moduleOnly": true,
+          "call": {
+            "module": "scene",
+            "name": "event_action",
+            "args": [
+              768,
+              27
+            ]
+          },
+          "check": "_error is None and (_return == \"quit\")"
+        }
+      ]
+    },
+    {
+      "id": "python-v2-8-03-step-2",
+      "task": {
+        "en": "Make Space presses toggle the pause colour. Releasing Space must leave it alone.",
+        "nl": "Laat Space indrukken de pauzekleur omschakelen. Space loslaten moet die ongemoeid laten."
+      },
+      "check": "_rendered_frames > 0",
+      "hint": {
+        "en": "Press and release are separate events.",
+        "nl": "Indrukken en loslaten zijn afzonderlijke gebeurtenissen."
+      },
+      "hints": [
+        {
+          "en": "Press and release are separate events.",
+          "nl": "Indrukken en loslaten zijn afzonderlijke gebeurtenissen."
+        },
+        {
+          "en": "The main loop already flips its paused Boolean for \"toggle\".",
+          "nl": "De hoofdlus draait zijn paused-Boolean al om voor \"toggle\"."
+        },
+        {
+          "en": "Compare the event type before checking pygame.K_SPACE.",
+          "nl": "Vergelijk eerst het gebeurtenistype en daarna pygame.K_SPACE."
+        }
+      ],
+      "feedback": {
+        "en": "Return \"toggle\" only on a Space KEYDOWN.",
+        "nl": "Geef \"toggle\" alleen bij een Space-KEYDOWN terug."
+      },
+      "probes": [
+        {
+          "moduleOnly": true,
+          "call": {
+            "module": "scene",
+            "name": "event_action",
+            "args": [
+              768,
+              32
+            ]
+          },
+          "check": "_error is None and (_return == \"toggle\")"
+        },
+        {
+          "moduleOnly": true,
+          "call": {
+            "module": "scene",
+            "name": "event_action",
+            "args": [
+              769,
+              32
+            ]
+          },
+          "check": "_error is None and (_return is None)"
+        }
+      ]
+    },
+    {
+      "id": "python-v2-8-03-step-3",
+      "task": {
+        "en": "Ignore unrelated events and keys. Try two Space presses, another key, and Escape in the preview.",
+        "nl": "Negeer andere gebeurtenissen en toetsen. Probeer in het voorbeeld twee keer Space, een andere toets en Escape."
+      },
+      "check": "_rendered_frames > 0",
+      "hint": {
+        "en": "Not every event should produce an action.",
+        "nl": "Niet elke gebeurtenis hoeft een actie op te leveren."
+      },
+      "hints": [
+        {
+          "en": "Not every event should produce an action.",
+          "nl": "Niet elke gebeurtenis hoeft een actie op te leveren."
+        },
+        {
+          "en": "Keep a no-action return after the recognised cases.",
+          "nl": "Behoud een return zonder actie na de herkende gevallen."
+        },
+        {
+          "en": "None is different from the text \"None\".",
+          "nl": "None verschilt van de tekst \"None\"."
+        }
+      ],
+      "feedback": {
+        "en": "Unrelated input must leave the game state unchanged.",
+        "nl": "Andere invoer moet de speltoestand ongemoeid laten."
+      },
+      "probes": [
+        {
+          "moduleOnly": true,
+          "call": {
+            "module": "scene",
+            "name": "event_action",
+            "args": [
+              768,
+              119
+            ]
+          },
+          "check": "_error is None and (_return is None)"
+        },
+        {
+          "moduleOnly": true,
+          "call": {
+            "module": "scene",
+            "name": "event_action",
+            "args": [
+              1024
+            ]
+          },
+          "check": "_error is None and (_return is None)"
+        },
+        {
+          "moduleOnly": true,
+          "call": {
+            "module": "scene",
+            "name": "event_action",
+            "args": [
+              769,
+              27
+            ]
+          },
+          "check": "_error is None and (_return is None)"
+        }
+      ]
+    }
+  ],
+  "inputs": [],
+  "solutionNote": {
+    "en": "This is one valid approach. Compare the reasoning with your own code before choosing whether to use it. Other implementations can satisfy the same behavior.",
+    "nl": "Dit is één geldige aanpak. Vergelijk de redenering met je eigen code voordat je besluit die te gebruiken. Andere implementaties kunnen aan hetzelfde gedrag voldoen."
+  }
+}

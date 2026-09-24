@@ -1,0 +1,270 @@
+{
+  "id": "python-v2-2-quiz",
+  "chapter": 2,
+  "group": "python-v2-module-2",
+  "kind": "quiz",
+  "optional": false,
+  "title": {
+    "en": "Check your reasoning: input and decisions",
+    "nl": "Controleer je inzicht: invoer en beslissingen"
+  },
+  "estimatedMinutes": 5,
+  "questions": [
+    {
+      "id": "v2-m2-q1",
+      "prompt": {
+        "en": "A person types 6. What is stored in response?",
+        "nl": "Iemand typt 6. Wat wordt in response opgeslagen?"
+      },
+      "code": "response = input(\"Quantity: \")",
+      "choices": [
+        {
+          "id": "a",
+          "label": {
+            "en": "The string \"6\"",
+            "nl": "De string \"6\""
+          },
+          "reason": {
+            "en": "input returns text; conversion is a separate step.",
+            "nl": "input geeft tekst terug; conversie is een aparte stap."
+          }
+        },
+        {
+          "id": "b",
+          "label": {
+            "en": "The integer 6",
+            "nl": "De integer 6"
+          },
+          "reason": {
+            "en": "You need a numeric conversion to obtain an integer.",
+            "nl": "Je hebt een numerieke conversie nodig om een integer te krijgen."
+          }
+        },
+        {
+          "id": "c",
+          "label": {
+            "en": "The Boolean True",
+            "nl": "De Boolean True"
+          },
+          "reason": {
+            "en": "Typing a nonempty response does not convert it to a Boolean.",
+            "nl": "Een niet-leeg antwoord typen zet dat niet om in een Boolean."
+          }
+        }
+      ],
+      "answer": "a"
+    },
+    {
+      "id": "v2-m2-q2",
+      "prompt": {
+        "en": "Which statement best describes the result?",
+        "nl": "Welke beschrijving past het beste bij het resultaat?"
+      },
+      "code": "price = 2.5\nlabel = f\"{price:.2f}\"",
+      "choices": [
+        {
+          "id": "a",
+          "label": {
+            "en": "label is \"2.50\"; price remains a number",
+            "nl": "label is \"2.50\"; price blijft een getal"
+          },
+          "reason": {
+            "en": "Formatting produces text without changing the source value.",
+            "nl": "Formatteren produceert tekst zonder de bronwaarde te veranderen."
+          }
+        },
+        {
+          "id": "b",
+          "label": {
+            "en": "price becomes \"2.50\"",
+            "nl": "price wordt \"2.50\""
+          },
+          "reason": {
+            "en": "The assignment stores the formatted text in label, not price.",
+            "nl": "De toekenning bewaart de geformatteerde tekst in label, niet in price."
+          }
+        },
+        {
+          "id": "c",
+          "label": {
+            "en": "label becomes the number 2.50",
+            "nl": "label wordt het getal 2.50"
+          },
+          "reason": {
+            "en": "An f-string produces a string.",
+            "nl": "Een f-string produceert een string."
+          }
+        }
+      ],
+      "answer": "a"
+    },
+    {
+      "id": "v2-m2-q3",
+      "prompt": {
+        "en": "A request equal to the stock must succeed. Which comparison expresses that?",
+        "nl": "Een aanvraag gelijk aan de voorraad moet slagen. Welke vergelijking drukt dat uit?"
+      },
+      "choices": [
+        {
+          "id": "a",
+          "label": {
+            "en": "requested <= available",
+            "nl": "requested <= available"
+          },
+          "reason": {
+            "en": "This allows smaller requests and equality.",
+            "nl": "Dit staat kleinere aanvragen en gelijkheid toe."
+          }
+        },
+        {
+          "id": "b",
+          "label": {
+            "en": "requested < available",
+            "nl": "requested < available"
+          },
+          "reason": {
+            "en": "Strictly smaller excludes an exact fit.",
+            "nl": "Strikt kleiner sluit een precies passende aanvraag uit."
+          }
+        },
+        {
+          "id": "c",
+          "label": {
+            "en": "requested = available",
+            "nl": "requested = available"
+          },
+          "reason": {
+            "en": "A single equals sign assigns a value instead of comparing.",
+            "nl": "Een enkele gelijkteken kent een waarde toe in plaats van te vergelijken."
+          }
+        }
+      ],
+      "answer": "a",
+      "codeBlank": {
+        "prompt": {
+          "en": "Choose the comparison that permits a request equal to the available stock.",
+          "nl": "Kies de vergelijking die een aanvraag gelijk aan de beschikbare voorraad toestaat."
+        },
+        "segments": [
+          "requested = 6\navailable = 6\ncan_lend = requested ",
+          " available\nprint(can_lend)\n"
+        ],
+        "tokens": [
+          {
+            "id": "inclusive",
+            "code": "<="
+          },
+          {
+            "id": "strict",
+            "code": "<"
+          },
+          {
+            "id": "opposite",
+            "code": ">"
+          },
+          {
+            "id": "assign",
+            "code": "="
+          }
+        ],
+        "blanks": [
+          {
+            "answer": "<=",
+            "reason": {
+              "en": "At most includes equality.",
+              "nl": "Hoogstens omvat gelijkheid."
+            }
+          }
+        ],
+        "output": "True\n"
+      }
+    },
+    {
+      "id": "v2-m2-q4",
+      "prompt": {
+        "en": "Why can this report show the right message but the wrong stock?",
+        "nl": "Waarom kan dit overzicht het juiste bericht maar de verkeerde voorraad tonen?"
+      },
+      "code": "remaining = available - requested\nif requested <= available:\n    print(\"ready\")\nelse:\n    print(\"wait\")",
+      "choices": [
+        {
+          "id": "a",
+          "label": {
+            "en": "The subtraction happens even when the request is rejected",
+            "nl": "De aftrekking gebeurt ook wanneer de aanvraag wordt afgewezen"
+          },
+          "reason": {
+            "en": "Only the message is conditional; the stock change is outside the branches.",
+            "nl": "Alleen het bericht is voorwaardelijk; de voorraadwijziging staat buiten de vertakkingen."
+          }
+        },
+        {
+          "id": "b",
+          "label": {
+            "en": "else runs before if",
+            "nl": "else wordt vóór if uitgevoerd"
+          },
+          "reason": {
+            "en": "Python tests the condition first and chooses a branch.",
+            "nl": "Python test eerst de conditie en kiest dan een vertakking."
+          }
+        },
+        {
+          "id": "c",
+          "label": {
+            "en": "Printing wait restores the stock automatically",
+            "nl": "wait afdrukken herstelt de voorraad automatisch"
+          },
+          "reason": {
+            "en": "Printing text does not reverse a previous calculation.",
+            "nl": "Tekst afdrukken draait een eerdere berekening niet terug."
+          }
+        }
+      ],
+      "answer": "a"
+    },
+    {
+      "id": "v2-m2-q5",
+      "prompt": {
+        "en": "A booking costs 9. Which pair of tests is most useful for its affordability boundary?",
+        "nl": "Een boeking kost 9. Welk paar tests is het nuttigst voor de betaalbaarheidsgrens?"
+      },
+      "choices": [
+        {
+          "id": "a",
+          "label": {
+            "en": "Budgets 8.99 and 9",
+            "nl": "Budgetten 8.99 en 9"
+          },
+          "reason": {
+            "en": "One is just below the price and the other is an exact fit.",
+            "nl": "Het ene ligt net onder de prijs en het andere past precies."
+          }
+        },
+        {
+          "id": "b",
+          "label": {
+            "en": "Budgets 20 and 30",
+            "nl": "Budgetten 20 en 30"
+          },
+          "reason": {
+            "en": "Both are comfortably affordable, so they do not test the boundary.",
+            "nl": "Beide zijn ruim voldoende en testen de grens dus niet."
+          }
+        },
+        {
+          "id": "c",
+          "label": {
+            "en": "Budget 9 twice",
+            "nl": "Tweemaal budget 9"
+          },
+          "reason": {
+            "en": "Equality matters, but repeating it does not test the rejecting side.",
+            "nl": "Gelijkheid is belangrijk, maar herhaling test de afwijzende kant niet."
+          }
+        }
+      ],
+      "answer": "a"
+    }
+  ]
+}

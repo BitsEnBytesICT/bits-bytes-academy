@@ -1,0 +1,200 @@
+{
+  "id": "python-v2-9-02",
+  "chapter": 9,
+  "group": "python-v2-module-9",
+  "title": {
+    "en": "Held keys and opposing input",
+    "nl": "Ingedrukte toetsen en tegengestelde invoer"
+  },
+  "kind": "coding",
+  "optional": false,
+  "runtime": "pygame",
+  "guidance": "adapt",
+  "estimatedMinutes": 18,
+  "explanation": {
+    "en": "The paddle moves down even when neither key is pressed. Repair the direction helper for W and S. Decide what should happen when both are held before writing code; our rule is that opposing inputs cancel.",
+    "nl": "De paddle beweegt omlaag terwijl geen toets is ingedrukt. Repareer de richtingsfunctie voor W en S. Bepaal vóór het programmeren wat er gebeurt als beide ingedrukt zijn; onze regel is dat tegengestelde invoer elkaar opheft."
+  },
+  "sections": [
+    {
+      "heading": {
+        "en": "State versus events",
+        "nl": "Toestand tegenover gebeurtenissen"
+      },
+      "body": {
+        "en": "KEYDOWN is useful for one-time actions such as pausing. Continuous movement needs the current key state on every frame. pygame.key.get_pressed() provides that state. main.py turns the W and S entries into Booleans and calls axis(negative, positive). Return −1 for only the negative key, +1 for only the positive key, and 0 for neither or both. Screen y increases downward, so W is negative.",
+        "nl": "KEYDOWN is nuttig voor eenmalige acties zoals pauzeren. Voortdurende beweging vraagt elk beeld de huidige toetstoestand. pygame.key.get_pressed() levert die toestand. main.py zet de W- en S-waarden om naar Booleans en roept axis(negative, positive) aan. Geef −1 bij alleen de negatieve toets, +1 bij alleen de positieve toets en 0 bij geen of beide toetsen. Scherm-y neemt naar beneden toe; W is dus negatief."
+      }
+    },
+    {
+      "heading": {
+        "en": "Run, observe, then finish",
+        "nl": "Voer uit, bekijk en rond af"
+      },
+      "body": {
+        "en": "Run starts main.py and opens the game preview. Click the preview to use the keyboard. Clicking elsewhere pauses the game. Finish & check sends the normal close event and checks your helper functions after the loop exits; Stop interrupts without grading. The supplied async loop gives the browser time to draw and receive input. Keep await asyncio.sleep(1 / 60) inside that loop. You do not need to learn asynchronous programming in depth yet.",
+        "nl": "Run start main.py en opent het spelvoorbeeld. Klik op het voorbeeld om het toetsenbord te gebruiken. Elders klikken pauzeert het spel. Afronden en controleren stuurt de normale sluitgebeurtenis en controleert je hulpfuncties nadat de lus eindigt; Stop onderbreekt zonder beoordeling. De meegeleverde async-lus geeft de browser tijd om te tekenen en invoer te ontvangen. Houd await asyncio.sleep(1 / 60) binnen die lus. Je hoeft asynchroon programmeren nog niet uitgebreid te leren."
+      }
+    }
+  ],
+  "example": "",
+  "files": {
+    "main.py": "import asyncio\nimport pygame\nimport motion\n\nasync def main():\n    pygame.init()\n    screen = pygame.display.set_mode((640, 400))\n    clock = pygame.time.Clock()\n    running = True\n    y = 164.0\n    while running:\n        for event in pygame.event.get():\n            if event.type == pygame.QUIT or (event.type == pygame.KEYDOWN and event.key == pygame.K_ESCAPE):\n                running = False\n        # Seconds, capped to avoid a large jump after pausing the preview.\n        dt = min(clock.tick() / 1000, 0.05)\n        keys = pygame.key.get_pressed()\n        direction = motion.axis(bool(keys[pygame.K_w]), bool(keys[pygame.K_s]))\n        y = max(0, min(328, y + direction * 220 * dt))\n        screen.fill((16, 23, 39))\n        pygame.draw.rect(screen, (80, 180, 255), (24, round(y), 12, 72))\n        pygame.display.flip()\n        await asyncio.sleep(1 / 60)\n    pygame.quit()\n\nasyncio.run(main())\n",
+    "motion.py": "def axis(negative, positive):\n    if negative:\n        return -1\n    return 1\n"
+  },
+  "solution": {
+    "main.py": "import asyncio\nimport pygame\nimport motion\n\nasync def main():\n    pygame.init()\n    screen = pygame.display.set_mode((640, 400))\n    clock = pygame.time.Clock()\n    running = True\n    y = 164.0\n    while running:\n        for event in pygame.event.get():\n            if event.type == pygame.QUIT or (event.type == pygame.KEYDOWN and event.key == pygame.K_ESCAPE):\n                running = False\n        # Seconds, capped to avoid a large jump after pausing the preview.\n        dt = min(clock.tick() / 1000, 0.05)\n        keys = pygame.key.get_pressed()\n        direction = motion.axis(bool(keys[pygame.K_w]), bool(keys[pygame.K_s]))\n        y = max(0, min(328, y + direction * 220 * dt))\n        screen.fill((16, 23, 39))\n        pygame.draw.rect(screen, (80, 180, 255), (24, round(y), 12, 72))\n        pygame.display.flip()\n        await asyncio.sleep(1 / 60)\n    pygame.quit()\n\nasyncio.run(main())\n",
+    "motion.py": "def axis(negative, positive):\n    if negative == positive:\n        return 0\n    return -1 if negative else 1\n"
+  },
+  "checkpoints": [
+    {
+      "id": "python-v2-9-02-step-1",
+      "task": {
+        "en": "Keep a released paddle still. Return zero when neither key is held.",
+        "nl": "Houd een losgelaten paddle stil. Geef nul als geen van beide toetsen is ingedrukt."
+      },
+      "check": "_rendered_frames > 0",
+      "hint": {
+        "en": "A final else currently means more than “positive is held”.",
+        "nl": "Een laatste else betekent nu meer dan “positief is ingedrukt”."
+      },
+      "hints": [
+        {
+          "en": "A final else currently means more than “positive is held”.",
+          "nl": "Een laatste else betekent nu meer dan “positief is ingedrukt”."
+        },
+        {
+          "en": "Work through all four Boolean pairs.",
+          "nl": "Doorloop alle vier Booleanparen."
+        },
+        {
+          "en": "False, False is a separate input combination.",
+          "nl": "False, False is een afzonderlijke invoercombinatie."
+        }
+      ],
+      "feedback": {
+        "en": "No pressed key means no movement.",
+        "nl": "Geen ingedrukte toets betekent geen beweging."
+      },
+      "probes": [
+        {
+          "moduleOnly": true,
+          "call": {
+            "module": "motion",
+            "name": "axis",
+            "args": [
+              false,
+              false
+            ]
+          },
+          "check": "_error is None and (_return == 0)"
+        }
+      ]
+    },
+    {
+      "id": "python-v2-9-02-step-2",
+      "task": {
+        "en": "Make single-key input move in the expected direction: W up, S down.",
+        "nl": "Laat invoer van één toets in de verwachte richting bewegen: W omhoog, S omlaag."
+      },
+      "check": "_rendered_frames > 0",
+      "hint": {
+        "en": "A screen’s vertical coordinate grows downward.",
+        "nl": "De verticale schermcoördinaat groeit omlaag."
+      },
+      "hints": [
+        {
+          "en": "A screen’s vertical coordinate grows downward.",
+          "nl": "De verticale schermcoördinaat groeit omlaag."
+        },
+        {
+          "en": "Return a direction; main.py already applies speed and time.",
+          "nl": "Geef een richting terug; main.py past snelheid en tijd al toe."
+        },
+        {
+          "en": "The direction values are −1, 0 and +1.",
+          "nl": "De richtingswaarden zijn −1, 0 en +1."
+        }
+      ],
+      "feedback": {
+        "en": "Opposite single keys need opposite signs.",
+        "nl": "Tegengestelde enkele toetsen hebben tegengestelde tekens nodig."
+      },
+      "probes": [
+        {
+          "moduleOnly": true,
+          "call": {
+            "module": "motion",
+            "name": "axis",
+            "args": [
+              true,
+              false
+            ]
+          },
+          "check": "_error is None and (_return == -1)"
+        },
+        {
+          "moduleOnly": true,
+          "call": {
+            "module": "motion",
+            "name": "axis",
+            "args": [
+              false,
+              true
+            ]
+          },
+          "check": "_error is None and (_return == 1)"
+        }
+      ]
+    },
+    {
+      "id": "python-v2-9-02-step-3",
+      "task": {
+        "en": "Cancel movement when both keys are held. Try releasing either one, then finish the preview.",
+        "nl": "Hef beweging op wanneer beide toetsen ingedrukt zijn. Laat daarna één ervan los en rond het voorbeeld af."
+      },
+      "check": "_rendered_frames > 0",
+      "hint": {
+        "en": "The result should not depend on which if appears first.",
+        "nl": "Het resultaat mag niet afhangen van welke if eerst komt."
+      },
+      "hints": [
+        {
+          "en": "The result should not depend on which if appears first.",
+          "nl": "Het resultaat mag niet afhangen van welke if eerst komt."
+        },
+        {
+          "en": "Handle equal input states consistently, or combine their contributions.",
+          "nl": "Behandel gelijke invoertoestanden consequent of combineer hun bijdragen."
+        },
+        {
+          "en": "Two opposite contributions can add to zero.",
+          "nl": "Twee tegengestelde bijdragen kunnen samen nul zijn."
+        }
+      ],
+      "feedback": {
+        "en": "Both held should produce zero direction.",
+        "nl": "Beide ingedrukt moet richting nul opleveren."
+      },
+      "probes": [
+        {
+          "moduleOnly": true,
+          "call": {
+            "module": "motion",
+            "name": "axis",
+            "args": [
+              true,
+              true
+            ]
+          },
+          "check": "_error is None and (_return == 0)"
+        }
+      ]
+    }
+  ],
+  "inputs": [],
+  "solutionNote": {
+    "en": "This is one valid approach. Compare the reasoning with your own code before choosing whether to use it. Other implementations can satisfy the same behavior.",
+    "nl": "Dit is één geldige aanpak. Vergelijk de redenering met je eigen code voordat je besluit die te gebruiken. Andere implementaties kunnen aan hetzelfde gedrag voldoen."
+  }
+}

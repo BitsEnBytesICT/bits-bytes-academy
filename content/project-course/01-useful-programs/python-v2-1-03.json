@@ -1,0 +1,166 @@
+{
+  "id": "python-v2-1-03",
+  "chapter": 1,
+  "group": "python-v2-module-1",
+  "title": {
+    "en": "Stock changes during the day",
+    "nl": "Voorraad verandert gedurende de dag"
+  },
+  "kind": "coding",
+  "optional": false,
+  "runtime": "terminal",
+  "guidance": "adapt",
+  "estimatedMinutes": 12,
+  "explanation": {
+    "en": "The stock log starts with a working report, but it ignores what happened during the day. Turn it into a sequence of updates. Keep the original opening stock available so the final report can show both the opening and closing position.",
+    "nl": "Het voorraadlogboek begint met een werkend overzicht, maar negeert wat er gedurende de dag gebeurde. Maak er een reeks updates van. Houd de oorspronkelijke beginvoorraad beschikbaar zodat het eindoverzicht zowel de begin- als eindstand kan tonen."
+  },
+  "sections": [
+    {
+      "heading": {
+        "en": "A variable can receive a new value",
+        "nl": "Een variabele kan een nieuwe waarde krijgen"
+      },
+      "body": {
+        "en": "The right side of an assignment is evaluated before the new value is stored. charge = charge + 4 uses the old charge to calculate the new one. charge += 4 is a shorter way to make the same update. Earlier calculations are not recalculated automatically.",
+        "nl": "De rechterkant van een toekenning wordt berekend voordat de nieuwe waarde wordt opgeslagen. charge = charge + 4 gebruikt de oude charge om de nieuwe te berekenen. charge += 4 is een kortere manier voor dezelfde update. Eerdere berekeningen worden niet automatisch opnieuw uitgevoerd."
+      },
+      "code": "charge = 10\nstart = charge\ncharge += 4\ncharge -= 3\nprint(start, charge)",
+      "output": "10 11"
+    }
+  ],
+  "example": "",
+  "files": {
+    "main.py": "opening = 18\ndelivered = 7\nsold = 9\nreturned = 2\n\nstock = opening\nafter_delivery = stock\nafter_sales = stock\nclosing = stock\nprint(opening, closing)\n"
+  },
+  "solution": {
+    "main.py": "opening = 18\ndelivered = 7\nsold = 9\nreturned = 2\n\nstock = opening\nstock += delivered\nafter_delivery = stock\nstock -= sold\nafter_sales = stock\nstock += returned\nclosing = stock\nprint(opening, closing)\n"
+  },
+  "checkpoints": [
+    {
+      "id": "python-v2-1-03-step-1",
+      "task": {
+        "en": "Record the available stock after the delivery in after_delivery.",
+        "nl": "Leg de beschikbare voorraad na de levering vast in after_delivery."
+      },
+      "check": "after_delivery == opening + delivered",
+      "hint": {
+        "en": "A delivery brings items into the shop.",
+        "nl": "Een levering brengt artikelen de winkel binnen."
+      },
+      "hints": [
+        {
+          "en": "A delivery brings items into the shop.",
+          "nl": "Een levering brengt artikelen de winkel binnen."
+        },
+        {
+          "en": "Update stock before taking the after_delivery snapshot.",
+          "nl": "Werk stock bij voordat je de momentopname after_delivery maakt."
+        },
+        {
+          "en": "A counter can be updated with count += extra.",
+          "nl": "Een teller kun je bijwerken met count += extra."
+        }
+      ],
+      "feedback": {
+        "en": "The delivery snapshot should include the arriving items.",
+        "nl": "De momentopname na levering moet de binnengekomen artikelen bevatten."
+      },
+      "probes": [
+        {
+          "inputs": {
+            "opening": 12,
+            "delivered": 4
+          },
+          "check": "after_delivery == 16"
+        }
+      ]
+    },
+    {
+      "id": "python-v2-1-03-step-2",
+      "task": {
+        "en": "Record the stock after the sales in after_sales. Do not change the earlier snapshot.",
+        "nl": "Leg de voorraad na de verkopen vast in after_sales. Verander de eerdere momentopname niet."
+      },
+      "check": "after_sales == after_delivery - sold",
+      "hint": {
+        "en": "Sales remove items from the available stock.",
+        "nl": "Verkopen halen artikelen uit de beschikbare voorraad."
+      },
+      "hints": [
+        {
+          "en": "Sales remove items from the available stock.",
+          "nl": "Verkopen halen artikelen uit de beschikbare voorraad."
+        },
+        {
+          "en": "Use the stock after delivery as the starting point for the sales update.",
+          "nl": "Gebruik de voorraad na levering als uitgangspunt voor de verkoopupdate."
+        },
+        {
+          "en": "A running budget can use budget -= spent.",
+          "nl": "Een lopend budget kan budget -= spent gebruiken."
+        }
+      ],
+      "feedback": {
+        "en": "The sales snapshot should deduct the sold items from the delivered stock.",
+        "nl": "De verkoopmomentopname moet verkochte artikelen van de voorraad na levering aftrekken."
+      },
+      "probes": [
+        {
+          "inputs": {
+            "opening": 20,
+            "delivered": 3,
+            "sold": 6
+          },
+          "check": "after_sales == 17"
+        }
+      ]
+    },
+    {
+      "id": "python-v2-1-03-step-3",
+      "task": {
+        "en": "Include the returned items in closing. Print opening and closing, in that order, without losing the original opening value.",
+        "nl": "Verwerk de teruggebrachte artikelen in closing. Druk opening en closing in die volgorde af zonder de oorspronkelijke beginwaarde te verliezen."
+      },
+      "check": "closing == after_sales + returned and _stdout.split() == [str(opening), str(closing)]",
+      "hint": {
+        "en": "Returned items become available again.",
+        "nl": "Teruggebrachte artikelen worden weer beschikbaar."
+      },
+      "hints": [
+        {
+          "en": "Returned items become available again.",
+          "nl": "Teruggebrachte artikelen worden weer beschikbaar."
+        },
+        {
+          "en": "Keep opening separate from the changing stock value.",
+          "nl": "Houd opening apart van de veranderende stock-waarde."
+        },
+        {
+          "en": "print(start, finish) can display two values on one line.",
+          "nl": "print(start, finish) kan twee waarden op één regel tonen."
+        }
+      ],
+      "feedback": {
+        "en": "Keep both report values, and include the returns in the closing stock.",
+        "nl": "Behoud beide overzichtswaarden en verwerk retouren in de eindvoorraad."
+      },
+      "probes": [
+        {
+          "inputs": {
+            "opening": 9,
+            "delivered": 0,
+            "sold": 4,
+            "returned": 1
+          },
+          "check": "opening == 9 and closing == 6 and _stdout.split() == [\"9\", \"6\"]"
+        }
+      ]
+    }
+  ],
+  "inputs": [],
+  "solutionNote": {
+    "en": "Reassignment and augmented assignment are both valid. Snapshots capture the value at that point in execution; they do not follow later updates.",
+    "nl": "Opnieuw toekennen en verkorte toekenning zijn allebei geldig. Momentopnamen bewaren de waarde op dat punt in de uitvoering; ze volgen latere updates niet."
+  }
+}

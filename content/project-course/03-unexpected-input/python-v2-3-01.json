@@ -1,0 +1,190 @@
+{
+  "id": "python-v2-3-01",
+  "chapter": 3,
+  "group": "python-v2-module-3",
+  "title": {
+    "en": "Recognise the same request",
+    "nl": "Herken hetzelfde verzoek"
+  },
+  "kind": "coding",
+  "optional": false,
+  "runtime": "terminal",
+  "guidance": "guided",
+  "estimatedMinutes": 12,
+  "explanation": {
+    "en": "A help desk understands \"help\" but rejects \" HELP \". People should not have to guess the exact capitalisation. Keep the original response for the receipt, then compare a cleaned version. Do not remove spaces inside someone’s message.",
+    "nl": "Een helpdesk begrijpt \"help\", maar wijst \" HELP \" af. Mensen moeten niet de exacte hoofdletters hoeven raden. Bewaar het oorspronkelijke antwoord voor het ontvangstbewijs en vergelijk vervolgens een opgeschoonde versie. Verwijder geen spaties binnen iemands bericht."
+  },
+  "sections": [
+    {
+      "heading": {
+        "en": "Strings have useful methods",
+        "nl": "Strings hebben nuttige methoden"
+      },
+      "body": {
+        "en": "A method is a function attached to a value. text.strip() returns a copy without surrounding whitespace; text.lower() returns a lowercase copy. Strings are unchanged unless you assign the returned value. The dot and parentheses matter.",
+        "nl": "Een methode is een functie die bij een waarde hoort. text.strip() geeft een kopie zonder witruimte aan de randen; text.lower() geeft een kopie met kleine letters. Strings blijven ongewijzigd tenzij je de teruggegeven waarde toekent. De punt en haakjes zijn belangrijk."
+      },
+      "code": "label = \"  Blue Sky  \"\nclean_label = label.strip().lower()\nprint(clean_label)\nprint(label)",
+      "output": "blue sky\n  Blue Sky  "
+    },
+    {
+      "heading": {
+        "en": "Keep evidence and interpretation separate",
+        "nl": "Bewaar invoer en interpretatie apart"
+      },
+      "body": {
+        "en": "The original text can explain what the user typed. A separate cleaned value can drive the decision. A response made only of spaces becomes an empty string after strip(). This is different from an unknown command.",
+        "nl": "De oorspronkelijke tekst laat zien wat de gebruiker typte. Een aparte opgeschoonde waarde kan de beslissing bepalen. Een antwoord met alleen spaties wordt na strip() een lege string. Dat is iets anders dan een onbekend commando."
+      }
+    }
+  ],
+  "example": "",
+  "files": {
+    "main.py": "raw_command = input(\"Command: \")\ncommand = raw_command\nrecognised = command == \"help\"\nif recognised:\n    print(\"Available: help\")\nelse:\n    print(\"Unknown command:\", raw_command)\n"
+  },
+  "solution": {
+    "main.py": "raw_command = input(\"Command: \")\ncommand = raw_command.strip().lower()\nrecognised = command == \"help\"\nif recognised:\n    print(\"Available: help\")\nelse:\n    print(\"Unknown command:\", raw_command)\n"
+  },
+  "checkpoints": [
+    {
+      "id": "python-v2-3-01-step-1",
+      "task": {
+        "en": "Keep the response unchanged in raw_command. Store a version without surrounding whitespace in command.",
+        "nl": "Bewaar het antwoord ongewijzigd in raw_command. Bewaar in command een versie zonder witruimte aan de randen."
+      },
+      "check": "raw_command.strip().lower() == command.lower()",
+      "hint": {
+        "en": "Change the interpreted value, not the evidence.",
+        "nl": "Verander de geïnterpreteerde waarde, niet de oorspronkelijke invoer."
+      },
+      "hints": [
+        {
+          "en": "Change the interpreted value, not the evidence.",
+          "nl": "Verander de geïnterpreteerde waarde, niet de oorspronkelijke invoer."
+        },
+        {
+          "en": "strip() returns the cleaned text; calling it without using the result has no effect.",
+          "nl": "strip() geeft de opgeschoonde tekst terug; de methode aanroepen zonder het resultaat te gebruiken heeft geen effect."
+        },
+        {
+          "en": "clean_label = label.strip() leaves label unchanged.",
+          "nl": "clean_label = label.strip() laat label ongewijzigd."
+        }
+      ],
+      "feedback": {
+        "en": "Preserve the original response and remove only surrounding whitespace.",
+        "nl": "Behoud het oorspronkelijke antwoord en verwijder alleen witruimte aan de randen."
+      },
+      "probes": [
+        {
+          "stdin": [
+            "  HELp  "
+          ],
+          "check": "_error is None and raw_command == \"  HELp  \" and command.lower() == \"help\""
+        },
+        {
+          "stdin": [
+            " blue sky "
+          ],
+          "check": "raw_command == \" blue sky \" and command.lower() == \"blue sky\""
+        }
+      ]
+    },
+    {
+      "id": "python-v2-3-01-step-2",
+      "task": {
+        "en": "Make command lowercase so help works with any mixture of capital letters.",
+        "nl": "Maak command lowercase zodat help met elke combinatie van hoofdletters werkt."
+      },
+      "check": "command == raw_command.strip().lower() and type(recognised) is bool",
+      "hint": {
+        "en": "Whitespace and letter case are separate issues.",
+        "nl": "Witruimte en hoofdletters zijn aparte problemen."
+      },
+      "hints": [
+        {
+          "en": "Whitespace and letter case are separate issues.",
+          "nl": "Witruimte en hoofdletters zijn aparte problemen."
+        },
+        {
+          "en": "Use the result of one string method as the input to the next.",
+          "nl": "Gebruik het resultaat van een stringmethode als invoer voor de volgende."
+        },
+        {
+          "en": "\"SuN\".lower() gives \"sun\".",
+          "nl": "\"SuN\".lower() geeft \"sun\"."
+        }
+      ],
+      "feedback": {
+        "en": "The decision should use the cleaned lowercase command.",
+        "nl": "De beslissing moet het opgeschoonde commando met kleine letters gebruiken."
+      },
+      "probes": [
+        {
+          "stdin": [
+            "HeLp"
+          ],
+          "check": "command == \"help\" and recognised is True"
+        },
+        {
+          "stdin": [
+            "hello"
+          ],
+          "check": "recognised is False"
+        }
+      ]
+    },
+    {
+      "id": "python-v2-3-01-step-3",
+      "task": {
+        "en": "Keep the existing report working for recognised and unknown commands. Test a blank response too; it should not count as help.",
+        "nl": "Laat het bestaande overzicht werken voor herkende en onbekende commando’s. Test ook een leeg antwoord; dat mag niet als help tellen."
+      },
+      "check": "(\"Available: help\" if recognised else \"Unknown command:\") in _stdout",
+      "hint": {
+        "en": "Cleaning the text should not remove the report.",
+        "nl": "Het opschonen van de tekst mag het overzicht niet verwijderen."
+      },
+      "hints": [
+        {
+          "en": "Cleaning the text should not remove the report.",
+          "nl": "Het opschonen van de tekst mag het overzicht niet verwijderen."
+        },
+        {
+          "en": "An empty cleaned string still compares normally with \"help\".",
+          "nl": "Een lege opgeschoonde string kan gewoon met \"help\" worden vergeleken."
+        },
+        {
+          "en": "Use a blank line in the terminal to try the empty response.",
+          "nl": "Gebruik een lege regel in de terminal om het lege antwoord te proberen."
+        }
+      ],
+      "feedback": {
+        "en": "Show help only for the help command; report other responses without crashing.",
+        "nl": "Toon hulp alleen voor het help-commando; meld andere antwoorden zonder vast te lopen."
+      },
+      "probes": [
+        {
+          "stdin": [
+            "   "
+          ],
+          "check": "_error is None and command == \"\" and recognised is False and \"Unknown command:\" in _stdout"
+        },
+        {
+          "stdin": [
+            " HeLP "
+          ],
+          "check": "\"Available: help\" in _stdout"
+        }
+      ]
+    }
+  ],
+  "inputs": [
+    " HELP "
+  ],
+  "solutionNote": {
+    "en": "Two separate assignments for strip and lower work just as well as chaining them. The original response remains available for diagnostics.",
+    "nl": "Twee aparte toekenningen voor strip en lower werken net zo goed als ze achter elkaar aanroepen. Het oorspronkelijke antwoord blijft beschikbaar voor foutonderzoek."
+  }
+}

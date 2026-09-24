@@ -7,8 +7,9 @@ import { LearningDAO } from "./endpoints/learning.dao.js";
 import { LearningService } from "./endpoints/learning.service.js";
 import { learningRoutes } from "./endpoints/learning.controller.js";
 import { courseCatalog } from "./course-catalog.js";
-export function createApp(db = openDatabase()) {
-  const course = JSON.parse(
+import type { Course } from "../../shared/types.js";
+export function createApp(db = openDatabase(), courseOverride?: Course) {
+  const course = courseOverride ?? JSON.parse(
     fs.readFileSync(path.resolve("content/course.json"), "utf8"),
   );
   const legacy = JSON.parse(

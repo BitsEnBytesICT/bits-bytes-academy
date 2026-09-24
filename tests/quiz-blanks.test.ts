@@ -20,7 +20,7 @@ import {
 } from "../frontend/src/quiz-answers.ts";
 import type { Course, Quiz } from "../shared/types";
 const course: Course = JSON.parse(
-  fs.readFileSync("content/course.json", "utf8"),
+  fs.readFileSync("content/legacy/course-v1.json", "utf8"),
 );
 const quiz = course.activities.find(
   (a) => a.id === "create-python-list-quiz",
